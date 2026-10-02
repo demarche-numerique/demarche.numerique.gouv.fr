@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Lambert 93</name>
+    <Placemark>
+      <name>Point en Lambert 93</name>
+      <Point>
+        <coordinates>652000,6862000,0</coordinates>
+      </Point>
+    </Placemark>
+  </Document>
+</kml>

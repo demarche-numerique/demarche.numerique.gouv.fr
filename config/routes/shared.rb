@@ -8,11 +8,6 @@ namespace :champs do
   post ':dossier_id/:stable_id/repetition', to: 'repetition#add', as: :repetition
   delete ':dossier_id/:stable_id/repetition', to: 'repetition#remove'
 
-  get ':dossier_id/:stable_id/carte/features', to: 'carte#index', as: :carte_features
-  post ':dossier_id/:stable_id/carte/features', to: 'carte#create'
-  patch ':dossier_id/:stable_id/carte/features/:id', to: 'carte#update', as: :carte_feature
-  delete ':dossier_id/:stable_id/carte/features/:id', to: 'carte#destroy'
-
   get ':dossier_id/:stable_id/piece_justificative', to: 'piece_justificative#show', as: :piece_justificative
   put ':dossier_id/:stable_id/piece_justificative', to: 'piece_justificative#update'
   get ':dossier_id/:stable_id/piece_justificative/template', to: 'piece_justificative#template', as: :piece_justificative_template

@@ -12,7 +12,11 @@ import invariant from 'tiny-invariant';
 
 import { StyleSwitch } from '../shared/maplibre/StyleControl';
 import { useMapId } from './MapLibreProvider';
-import { useFeatureCollection } from './FeatureCollectionProvider';
+import {
+  useFeatureActions,
+  useFeatureCollection
+} from './FeatureCollectionProvider';
+import { EditLayers } from './EditLayers';
 import { PortalControl } from './PortalControl';
 import { AttributionControl } from './AttributionControl';
 import { OptionalLayers } from './OptionalLayers';
@@ -56,6 +60,7 @@ export function MapCanvas({
   const visible = useElementVisible(containerRef);
   const { style, layers: optionalLayers, ...styleProps } = useMapStyle(layers);
   const [hovered, onMouseMove, onMouseLeave] = useHoveredFeature();
+  const editing = useFeatureActions() != null;
 
   if (!webglSupported) {
     return <UnsupportedBrowser />;
@@ -73,37 +78,46 @@ export function MapCanvas({
           }}
           attributionControl={false}
           interactiveLayerIds={INTERACTIVE_LAYERS}
-          cursor={hovered ? 'pointer' : undefined}
+          // In the editor, the cursor is the one of the drawing tool.
+          cursor={hovered && !editing ? 'pointer' : undefined}
           onMouseMove={onMouseMove}
           onMouseLeave={onMouseLeave}
           // Leaving the map over a shape is not leaving the shape.
           onMouseOut={onMouseLeave}
         >
-          <NavigationControl position="top-right" />
-          <AttributionControl />
-          <PortalControl position="bottom-left">
-            <StyleSwitch
-              styleId={style.id}
-              layers={optionalLayers}
-              {...styleProps}
-            />
-          </PortalControl>
-          <OptionalLayers layers={optionalLayers} />
-          <SelectionsLayer />
-          <MapStyleIdContext value={style.id}>{children}</MapStyleIdContext>
-          {hovered ? (
-            <Popup
-              longitude={hovered.longitude}
-              latitude={hovered.latitude}
-              closeButton={false}
-              closeOnClick={false}
-              className="map-popup"
-            >
-              {hovered.lines.map((line, index) => (
-                <div key={index}>{line}</div>
-              ))}
-            </Popup>
-          ) : null}
+          {/* Everything on the map may need to know the basemap: the layers
+              outside of the style must be added again after a change. */}
+          <MapStyleIdContext value={style.id}>
+            <NavigationControl position="top-right" />
+            <AttributionControl />
+            <PortalControl position="bottom-left">
+              <StyleSwitch
+                styleId={style.id}
+                layers={optionalLayers}
+                {...styleProps}
+              />
+            </PortalControl>
+            <OptionalLayers layers={optionalLayers} />
+            {editing ? (
+              <EditLayers layers={optionalLayers} />
+            ) : (
+              <SelectionsLayer />
+            )}
+            {children}
+            {hovered ? (
+              <Popup
+                longitude={hovered.longitude}
+                latitude={hovered.latitude}
+                closeButton={false}
+                closeOnClick={false}
+                className="map-popup"
+              >
+                {hovered.lines.map((line, index) => (
+                  <div key={index}>{line}</div>
+                ))}
+              </Popup>
+            ) : null}
+          </MapStyleIdContext>
         </Map>
       ) : null}
     </div>

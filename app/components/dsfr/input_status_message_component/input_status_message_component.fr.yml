@@ -15,6 +15,10 @@ fr:
     fetched: "%{raison_sociale_or_name} %{forme_juridique}"
     error: "Une erreur est survenue lors de la récupération des informations SIRET."
     degraded: "Le SIRET %{value} est bien enregistré. Les informations sur lʼentreprise arriveront plus tard : vous pouvez continuer."
+  carte:
+    rejected:
+      one: "Une forme n’a pas été enregistrée : sa géométrie %{errors}."
+      other: "%{count} formes n’ont pas été enregistrées : leur géométrie %{errors}."
   referentiel:
     not_configured: "Ce champ n’est pas encore configuré par l’administrateur."
     fetching: "Recherche en cours."

@@ -1,11 +1,11 @@
 <% if editing %>
-  <li
-    class="fr-mb-1w"
-    data-controller="geo-area"
-    data-geo-area-id-value="<%= geo_area.uuid %>"
-  >
-    <%= button_tag geo_area.label, type: :button, class: "fr-link", data: { action: "geo-area#onClick" } %>
-    <%= text_field_tag :description, geo_area.description, data: { action: "focus->geo-area#onFocus input->geo-area#onInput", geo_area_target: "description" }, placeholder: "Description", class: "fr-input", id: "geo_area_#{geo_area.id}_description" %>
+  <li class="flex column align-start fr-mb-2w">
+    <%= render ReactComponent.new("Map/FeatureLink", id: geo_area.uuid) do %>
+      <%= geo_area.label %>
+    <% end %>
+
+    <%= render ReactComponent.new("Map/DescriptionInput", id: geo_area.uuid, label: geo_area.label) %>
+    <%= render ReactComponent.new("Map/RemoveFeatureButton", id: geo_area.uuid, label: geo_area.label) %>
   </li>
 <% else %>
   <li class="flex column align-start fr-mb-2w">

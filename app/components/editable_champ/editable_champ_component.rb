@@ -126,6 +126,6 @@ class EditableChamp::EditableChampComponent < ApplicationComponent
   end
 
   def autosave_enabled?
-    !@champ.carte? && !@champ.repetition? && @champ.fillable?
+    !@champ.repetition? && @champ.fillable?
   end
 end

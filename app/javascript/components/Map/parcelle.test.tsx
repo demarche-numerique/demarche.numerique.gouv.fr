@@ -6,6 +6,7 @@ import type { MapGeoJSONFeature } from 'maplibre-gl';
 import {
   parcelleInfo,
   tileParcelleId,
+  tileParcelleInfo,
   useParcelleLabel,
   type ParcelleInfo
 } from './parcelle';
@@ -44,7 +45,8 @@ const cadastre = {
   numero: '42',
   prefixe: '000',
   section: 'AB',
-  commune: '75056'
+  commune: '75056',
+  contenance: 1234
 } as const;
 
 suite('parcelle', () => {
@@ -64,6 +66,10 @@ suite('parcelle', () => {
       commune: '75056',
       surface: 1300
     });
+    // Picked, not saved yet: the surface of the tiles.
+    expect(parcelleInfo({ ...cadastre, cid: '75056000AB0042' })?.surface).toBe(
+      1234
+    );
     expect(parcelleInfo({ source: 'rpg', cid: '12345', area: 25000 })).toEqual({
       source: 'rpg',
       numero: '12345',
@@ -74,7 +80,13 @@ suite('parcelle', () => {
     );
   });
 
-  test('finds the id of a parcelle of the tiles', () => {
+  test('describes a parcelle of the tiles', () => {
+    expect(
+      tileParcelleInfo(tileParcelle('cadastre', { ...cadastre, id: 'cid' }))
+    ).toMatchObject({ numero: '42', surface: 1234 });
+    expect(
+      tileParcelleInfo(tileParcelle('rpg', { ID_PARCEL: 7, SURF_PARC: 2.5 }))
+    ).toEqual({ source: 'rpg', numero: '7', surface: 25000 });
     expect(tileParcelleId(tileParcelle('rpg', { ID_PARCEL: 7 }))).toBe('7');
     expect(
       tileParcelleId(tileParcelle('cadastre', { id: '75056000AB0042' }))

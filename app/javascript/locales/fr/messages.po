@@ -13,6 +13,10 @@ msgstr ""
 "Language-Team: \n"
 "Plural-Forms: \n"
 
+#: app/javascript/components/Map/DrawLayer.tsx:272
+msgid "Annuler la dernière modification"
+msgstr "Annuler la dernière modification"
+
 #. placeholder {0}: selectedItems.length
 #: app/javascript/components/Select.tsx:187
 msgid "{0, plural, =0 {{defaultChildren}} one {1 choix sélectionné} other {# "
@@ -20,23 +24,51 @@ msgid "{0, plural, =0 {{defaultChildren}} one {1 choix sélectionné} other {# "
 msgstr "{0, plural, =0 {{defaultChildren}} one {1 choix sélectionné} other {# "
 "choix sélectionnés}}"
 
-#: app/javascript/components/Map/parcelle.ts:81
+#: app/javascript/components/Map/parcelle.ts:113
 msgid "{area} hectares"
 msgstr "{area} hectares"
 
-#: app/javascript/components/Map/parcelle.ts:84
+#: app/javascript/components/Map/parcelle.ts:116
 msgid "{area} m²"
 msgstr "{area} m²"
 
-#: app/javascript/components/Map/DrawLayer.tsx:168
+#: app/javascript/components/Map/PointInput.tsx:37
+msgid "Afficher votre position sur la carte"
+msgstr "Afficher votre position sur la carte"
+
+#: app/javascript/components/Map/PointInput.tsx:38
+msgid "Ajouter le point avec les coordonnées saisies sur la carte"
+msgstr "Ajouter le point avec les coordonnées saisies sur la carte"
+
+#: app/javascript/components/Map/FileImport.tsx:60
+msgid "Ajouter un fichier GPX ou KML"
+msgstr "Ajouter un fichier GPX ou KML"
+
+#: app/javascript/components/Map/DrawLayer.tsx:259
 msgid "Ajouter un point"
 msgstr "Ajouter un point"
+
+#: app/javascript/components/Map/PointInput.tsx:43
+msgid "Ajouter un point sur la carte"
+msgstr "Ajouter un point sur la carte"
 
 #: app/javascript/components/shared/maplibre/StyleControl.tsx:28
 msgid "Carte IGN"
 msgstr "Carte IGN"
 
-#: app/javascript/components/Map/parcelle.ts:87
+#: app/javascript/components/Map/AddressInput.tsx:34
+msgid "Centrer la carte en recherchant une adresse"
+msgstr "Centrer la carte en recherchant une adresse"
+
+#: app/javascript/components/Map/FileImport.tsx:48
+msgid "Choisir un fichier GPX ou KML"
+msgstr "Choisir un fichier GPX ou KML"
+
+#: app/javascript/components/Map/AddressInput.tsx:37
+msgid "Commencez à saisir"
+msgstr "Commencez à saisir"
+
+#: app/javascript/components/Map/parcelle.ts:119
 msgid "commune {commune}"
 msgstr "commune {commune}"
 
@@ -48,15 +80,23 @@ msgstr "Couches"
 msgid "Couches cartographiques"
 msgstr "Couches cartographiques"
 
-#: app/javascript/components/Map/DrawLayer.tsx:170
+#: app/javascript/components/Map/DescriptionInput.tsx:21
+msgid "Description"
+msgstr "Description"
+
+#: app/javascript/components/Map/DrawLayer.tsx:261
 msgid "Dessiner un polygone"
 msgstr "Dessiner un polygone"
 
-#: app/javascript/components/Map/DrawLayer.tsx:171
+#: app/javascript/components/Map/DrawLayer.tsx:262
 msgid "Dessiner un rectangle"
 msgstr "Dessiner un rectangle"
 
-#: app/javascript/components/Map/parcelle.ts:77
+#: app/javascript/components/Map/PointInput.tsx:45
+msgid "Exemple :"
+msgstr "Exemple :"
+
+#: app/javascript/components/Map/parcelle.ts:109
 msgid "Feuille {feuille}"
 msgstr "Feuille {feuille}"
 
@@ -78,11 +118,11 @@ msgstr "Nous ne pouvons pas afficher la carte car elle est incompatible avec "
 "votre navigateur. Nous vous conseillons de le mettre à jour ou "
 "d’utiliser <0>un navigateur plus récent</0>."
 
-#: app/javascript/components/Map/DrawLayer.tsx:177
+#: app/javascript/components/Map/DrawLayer.tsx:277
 msgid "Outils de dessin"
 msgstr "Outils de dessin"
 
-#: app/javascript/components/Map/parcelle.ts:74
+#: app/javascript/components/Map/parcelle.ts:106
 msgid "Parcelle n° {numero}"
 msgstr "Parcelle n° {numero}"
 
@@ -98,6 +138,16 @@ msgstr "Rechercher dans la liste"
 msgid "Réglage de l’opacité de la couche «{NBS}{name}{NBS}»"
 msgstr "Réglage de l’opacité de la couche «{NBS}{name}{NBS}»"
 
+#: app/javascript/components/Map/DrawLayer.tsx:273
+msgid "Rétablir la modification annulée"
+msgstr "Rétablir la modification annulée"
+
+#: app/javascript/components/Map/AddressInput.tsx:36
+msgid "Saisissez une adresse, une voie, un lieu-dit ou une commune. Exemple : "
+"11 rue Réaumur, Paris"
+msgstr "Saisissez une adresse, une voie, un lieu-dit ou une commune. Exemple : "
+"11 rue Réaumur, Paris"
+
 #: app/javascript/components/shared/maplibre/StyleControl.tsx:26
 msgid "Satellite"
 msgstr "Satellite"
@@ -106,7 +156,11 @@ msgstr "Satellite"
 msgid "Sélection"
 msgstr "Sélection"
 
-#: app/javascript/components/Map/DrawLayer.tsx:165
+#: app/javascript/components/Map/DrawLayer.tsx:267
+msgid "Sélectionner des parcelles"
+msgstr "Sélectionner des parcelles"
+
+#: app/javascript/components/Map/DrawLayer.tsx:256
 msgid "Sélectionner et modifier une forme"
 msgstr "Sélectionner et modifier une forme"
 
@@ -114,18 +168,34 @@ msgstr "Sélectionner et modifier une forme"
 msgid "Sélectionner les couches cartographiques"
 msgstr "Sélectionner les couches cartographiques"
 
+#: app/javascript/components/Map/RemoveFeatureButton.tsx:31
+msgid "Supprimer"
+msgstr "Supprimer"
+
+#: app/javascript/components/Map/RemoveFeatureButton.tsx:26
+msgid "Supprimer « {label} » ?"
+msgstr "Supprimer « {label} » ?"
+
 #. placeholder {0}: item.label
 #: app/javascript/components/react-aria/components/TagGroup.tsx:36
 msgid "Supprimer {0}"
 msgstr "Supprimer {0}"
 
-#: app/javascript/components/Map/DrawLayer.tsx:173
+#: app/javascript/components/Map/DrawLayer.tsx:271
 msgid "Supprimer la forme sélectionnée"
 msgstr "Supprimer la forme sélectionnée"
 
-#: app/javascript/components/Map/DrawLayer.tsx:169
+#: app/javascript/components/Map/FileImport.tsx:49
+msgid "Supprimer le fichier"
+msgstr "Supprimer le fichier"
+
+#: app/javascript/components/Map/DrawLayer.tsx:260
 msgid "Tracer une ligne"
 msgstr "Tracer une ligne"
+
+#: app/javascript/components/Map/AddressInput.tsx:22
+msgid "Une erreur est survenue lors de la recherche d’adresse"
+msgstr "Une erreur est survenue lors de la recherche d’adresse"
 
 #: app/javascript/components/shared/maplibre/StyleControl.tsx:27
 msgid "Vectoriel"
