@@ -168,6 +168,8 @@
               = paginate @filtered_sorted_paginated_ids, views_prefix: 'shared'
             .fr-table__footer--end.flex-no-grow
 
+      = render Instructeurs::ArchiveModalComponent.new
+
     - else
       %h2.empty-text
         = t('views.instructeurs.dossiers.no_file')
