@@ -1,0 +1,5 @@
+en:
+  instructeurs:
+    procedure_presentation:
+      reset_to_admin_default:
+        notice: The columns set by the administrator are displayed.

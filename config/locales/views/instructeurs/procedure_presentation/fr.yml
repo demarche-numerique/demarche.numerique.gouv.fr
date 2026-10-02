@@ -1,0 +1,5 @@
+fr:
+  instructeurs:
+    procedure_presentation:
+      reset_to_admin_default:
+        notice: Les colonnes définies par l’administrateur sont affichées.

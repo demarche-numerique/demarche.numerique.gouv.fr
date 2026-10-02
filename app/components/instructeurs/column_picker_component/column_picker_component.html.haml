@@ -3,19 +3,28 @@
     = render ReactComponent.new "Select/MultipleSelect", items: @displayable_columns_for_select, value: @displayable_columns_selected, name: 'displayed_columns[]', 'aria-label': 'Colonne à afficher', class_name: "fr-mb-2v"
 
   - if instructeur_is_admin?
-    .fr-my-2w
+    %hr.fr-hr.fr-mt-3w
+    .fr-mb-2w
       = render Dsfr::ToggleComponent.new(form: f,
         target: :admin_default_procedure_presentation_active_virtual,
-        title: 'Appliquer cette personnalisation pour tous les instructeurs de la démarche',
+        title: 'Appliquer cette personnalisation pour tous les instructeurs',
         extra_class_names: '',
         disabled: toggle_disabled?,
         checked: toggle_checked?,
         toggle_labels: nil)
 
-    - if another_admin_active_default_presentation?
-      .fr-background-alt--grey.fr-p-1w.fr-mb-2w
-        = dsfr_icon('fr-icon-lock-fill', :sm)
-        %span.fr-text--sm
-          Personnalisation déjà appliquée par l'administrateur #{default_admin&.email}
+      - if another_admin_active_default_presentation?
+        .fr-mt-1w
+          = dsfr_icon('fr-icon-lock-fill', :sm)
+          %span.fr-text--sm
+            Personnalisation déjà appliquée par #{default_admin&.email}
 
   = submit_tag t('.save'), id: dom_id(@procedure_presentation, "submit"), class: 'fr-btn fr-btn--secondary fr-ml-0'
+
+  - if show_reset_to_admin_default?
+    .fr-background-alt--blue-france.fr-p-2w.fr-mt-1w
+      %p.fr-mb-1w= t('.customized_hint', email: default_admin&.email)
+      = button_tag t('.reset_to_admin_default'), type: :submit, form: reset_to_admin_default_form_id, class: 'fr-btn fr-btn--tertiary fr-ml-0 fr-mb-1v'
+
+- if show_reset_to_admin_default?
+  = form_with(url: reset_to_admin_default_instructeur_procedure_presentation_path(@procedure_presentation), method: :post, id: reset_to_admin_default_form_id) {}

@@ -51,6 +51,27 @@ describe "procedure filters" do
     end
   end
 
+  scenario "should be able to go back to the columns set by the administrator", js: true do
+    other_instructeur = create(:instructeur, groupe_instructeurs: [procedure.defaut_groupe_instructeur])
+    admin_presentation = other_instructeur.procedure_presentation_for_procedure_id(procedure.id)
+    admin_presentation.update!(displayed_columns: procedure.default_displayed_columns + [procedure.find_column(label: 'Date de création')])
+    procedure.update!(admin_default_procedure_presentation_active: true, admin_default_procedure_presentation_id: admin_presentation.id)
+    instructeur.procedure_presentation_for_procedure_id(procedure.id).update!(customized: true)
+
+    visit instructeur_procedure_path(procedure)
+    within ".dossiers-table" do
+      expect(page).not_to have_button("Date de création")
+    end
+
+    click_on 'Personnaliser le tableau'
+    click_button "Remplacer mes colonnes par celles de l’administrateur"
+
+    expect(page).to have_content("Les colonnes définies par l’administrateur sont affichées.")
+    within ".dossiers-table" do
+      expect(page).to have_button("Date de création")
+    end
+  end
+
   scenario "should add be able to add and remove custom type_de_champ column", js: true do
     # Hack to force filters combo to be above the menu so Enregistrer button
     # is clickable. (by default height is 2000+ for playwright driver)

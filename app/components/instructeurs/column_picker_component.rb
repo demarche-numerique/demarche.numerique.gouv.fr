@@ -27,7 +27,9 @@ class Instructeurs::ColumnPickerComponent < ApplicationComponent
   end
 
   def default_presentation
-    ProcedurePresentation.find_by(id: procedure.admin_default_procedure_presentation_id)
+    return @default_presentation if defined?(@default_presentation)
+
+    @default_presentation = ProcedurePresentation.find_by(id: procedure.admin_default_procedure_presentation_id)
   end
 
   def default_admin
@@ -53,5 +55,15 @@ class Instructeurs::ColumnPickerComponent < ApplicationComponent
 
   def toggle_checked?
     default_presentation_active? && owner_of_default_presentation?
+  end
+
+  def show_reset_to_admin_default?
+    default_presentation_active? &&
+      procedure_presentation.customized &&
+      procedure.admin_default_procedure_presentation_id != procedure_presentation.id
+  end
+
+  def reset_to_admin_default_form_id
+    dom_id(procedure_presentation, :reset_to_admin_default)
   end
 end

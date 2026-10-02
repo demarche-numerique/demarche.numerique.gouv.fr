@@ -2,7 +2,7 @@
 
 module Instructeurs
   class ProcedurePresentationController < InstructeurController
-    before_action :set_procedure_presentation, only: [:update, :refresh_filters, :update_filter, :persist_filters, :toggle_filters_expanded, :customize_filters, :clear_all_filters]
+    before_action :set_procedure_presentation, only: [:update, :refresh_filters, :update_filter, :persist_filters, :toggle_filters_expanded, :customize_filters, :clear_all_filters, :reset_to_admin_default]
 
     # updates the value of a filter
     def update_filter
@@ -66,6 +66,12 @@ module Instructeurs
       @procedure_presentation.clear_filters_values_for_statut!(params[:statut])
 
       render turbo_stream: turbo_stream.refresh
+    end
+
+    def reset_to_admin_default
+      @procedure_presentation.update!(customized: false)
+
+      redirect_back_or_to([:instructeur, procedure], notice: t('.notice'))
     end
 
     private

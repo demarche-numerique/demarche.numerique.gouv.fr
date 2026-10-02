@@ -1,3 +1,5 @@
 ---
 fr:
   save: 'Enregistrer'
+  customized_hint: 'Vous affichez actuellement vos colonnes à la place de celles définies par l’administrateur %{email}'
+  reset_to_admin_default: 'Remplacer mes colonnes par celles de l’administrateur'

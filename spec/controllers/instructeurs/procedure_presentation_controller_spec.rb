@@ -317,6 +317,33 @@ describe Instructeurs::ProcedurePresentationController, type: :controller do
     end
   end
 
+  describe '#reset_to_admin_default' do
+    subject { post :reset_to_admin_default, params: { id: procedure_presentation.id } }
+
+    before { procedure_presentation.update!(customized: true) }
+
+    context 'nominal case' do
+      before { sign_in(instructeur.user) }
+
+      it 'stops customizing the displayed columns' do
+        subject
+
+        expect(procedure_presentation.reload.customized).to be false
+        expect(response).to redirect_to(instructeur_procedure_path(procedure))
+        expect(flash.notice).to eq("Les colonnes définies par l’administrateur sont affichées.")
+      end
+    end
+
+    context 'with a wrong instructeur' do
+      before { sign_in(create(:instructeur).user) }
+
+      it 'does not touch the presentation' do
+        expect { subject }.to raise_error(ActiveRecord::RecordNotFound)
+        expect(procedure_presentation.reload.customized).to be true
+      end
+    end
+  end
+
   describe '#clear_all_filters' do
     subject { post :clear_all_filters, params: }
 

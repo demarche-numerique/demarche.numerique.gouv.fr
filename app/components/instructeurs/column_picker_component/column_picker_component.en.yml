@@ -1,3 +1,5 @@
 ---
 en:
   save: 'Save'
+  customized_hint: 'You are currently displaying your columns instead of the ones set by the administrator %{email}'
+  reset_to_admin_default: 'Replace my columns with the administrator’s'

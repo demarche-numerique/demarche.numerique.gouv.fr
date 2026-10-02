@@ -28,6 +28,7 @@ scope module: 'instructeurs', as: 'instructeur', defaults: { nav_bar_profile: :i
       post 'persist_filters'
       post 'toggle_filters_expanded'
       post 'clear_all_filters'
+      post 'reset_to_admin_default'
     end
   end
 

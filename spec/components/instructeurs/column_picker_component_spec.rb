@@ -78,8 +78,53 @@ describe Instructeurs::ColumnPickerComponent, type: :component do
         rendered = render_inline(component)
 
         expect(rendered.to_html)
-          .to include("Personnalisation déjà appliquée par l'administrateur #{other_instructeur.email}")
+          .to include("Personnalisation déjà appliquée par #{other_instructeur.email}")
       end
+    end
+  end
+
+  describe "reset to admin default button" do
+    subject(:rendered) { render_inline(component) }
+
+    let(:button_label) { "Remplacer mes colonnes par celles de l’administrateur" }
+    let(:default_presentation_id) { other_presentation.id }
+    let(:customized) { true }
+
+    before do
+      allow(component).to receive(:instructeur_is_admin?).and_return(false)
+      procedure_presentation.update!(customized:)
+      procedure.update!(
+        admin_default_procedure_presentation_active: true,
+        admin_default_procedure_presentation_id: default_presentation_id
+      )
+    end
+
+    context "when the instructeur replaced the admin default with their own columns" do
+      it "displays the button" do
+        expect(rendered).to have_button(button_label)
+        expect(rendered).to have_text("définies par l’administrateur #{other_instructeur.email}")
+
+        form_id = rendered.at_css("button[form]")["form"]
+        expect(rendered).to have_css("form##{form_id}[action$='/reset_to_admin_default']", visible: :all)
+      end
+    end
+
+    context "when the instructeur follows the admin default" do
+      let(:customized) { false }
+
+      it { expect(rendered).not_to have_button(button_label) }
+    end
+
+    context "when the instructeur owns the admin default" do
+      let(:default_presentation_id) { procedure_presentation.id }
+
+      it { expect(rendered).not_to have_button(button_label) }
+    end
+
+    context "when no admin default is active" do
+      before { procedure.update!(admin_default_procedure_presentation_active: false, admin_default_procedure_presentation_id: nil) }
+
+      it { expect(rendered).not_to have_button(button_label) }
     end
   end
 end
