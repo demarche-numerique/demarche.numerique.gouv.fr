@@ -283,12 +283,16 @@ class Champs::ReferentielChamp < ChampData
     end
   end
 
+  # Screening reads only the dossier off the champ, so this champ stands in for the target.
+  def prefill_attributes_for(type_de_champ, raw_value)
+    TypesDeChamp::PrefillTypeDeChamp
+      .build(type_de_champ, dossier.revision)
+      .to_assignable_attributes(self, normalize_api_value(raw_value, type_de_champ))
+  end
+
   def update_prefillable_champ(type_de_champ:, raw_value:, row_id: nil)
     prefill_champ = dossier.champ_for_update(type_de_champ, row_id:, updated_by:)
-    normalized = normalize_api_value(raw_value, type_de_champ)
-    attributes = TypesDeChamp::PrefillTypeDeChamp
-      .build(type_de_champ, dossier.revision)
-      .to_assignable_attributes(prefill_champ, normalized)
+    attributes = prefill_attributes_for(type_de_champ, raw_value)
     return prefill_champ if attributes.nil?
 
     attributes[:prefilled] = true
