@@ -40,13 +40,13 @@ RSpec.describe PrefillDescription, type: :model do
     it_behaves_like "filters out non fillable types de champ", :explication
 
     context 'when the procedure contains prefillable and non prefillable types de champ' do
-      let(:public_type_de_champs) { [{}, { type: :carte }, { type: :decimal_number }] }
+      let(:public_type_de_champs) { [{}, { type: :piece_justificative }, { type: :decimal_number }] }
 
       it "sort types de champ by putting prefillable ones first" do
         expect(prefill_description.type_de_champs.map(&:type_champ)).to eq([
           'text',
           'decimal_number',
-          'carte',
+          'piece_justificative',
         ])
       end
     end
