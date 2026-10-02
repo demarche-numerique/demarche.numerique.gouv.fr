@@ -27,6 +27,22 @@ describe Brevo::APIDeliveryMethod do
     expect(mail.date).to be_present
   end
 
+  it 'gives each bcc recipient its own Brevo message id in EmailEvent' do
+    mail.to = nil
+    mail.bcc = ['a@example.com', 'b@example.com']
+    allow(api).to receive(:send_email)
+      .with(hash_including(messageVersions: [{ to: [{ email: 'a@example.com' }] }, { to: [{ email: 'b@example.com' }] }]))
+      .and_return(Success(['<1@smtp-relay.mailin.fr>', '<2@smtp-relay.mailin.fr>']))
+
+    delivery.deliver!(mail)
+    EmailEvent.create_from_message!(mail, status: 'dispatched')
+
+    expect(EmailEvent.where(to: ['a@example.com', 'b@example.com']).pluck(:to, :message_id)).to contain_exactly(
+      ['a@example.com', '1@smtp-relay.mailin.fr'],
+      ['b@example.com', '2@smtp-relay.mailin.fr']
+    )
+  end
+
   it 'treats a duplicate as already delivered' do
     allow(api).to receive(:send_email).and_return(failure(:duplicate, brevo_code: 'duplicate_request'))
 
