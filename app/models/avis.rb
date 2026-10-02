@@ -44,10 +44,12 @@ class Avis < ApplicationRecord
   scope :by_latest, -> { order(updated_at: :desc) }
   scope :termine_expired_after_notice_grace, -> { unscope(:joins).where(dossier: Dossier.termine_expired_after_notice_grace) }
   scope :not_hidden_by_administration, -> { where(dossiers: { hidden_by_administration_at: nil }) }
+  # The link condition goes through a subquery rather than a join: the scope is
+  # composed into associations that already join experts_procedures, and a
+  # second join would give the two aliases a raw SQL condition can silently pick
+  # the wrong one from — or leave `procedures` out of the FROM clause entirely.
   scope :not_revoked, -> {
-    joins(experts_procedure: :procedure)
-      .where(revoked_at: nil)
-      .where("experts_procedures.revoked_at IS NULL OR procedures.experts_require_administrateur_invitation IS NOT TRUE")
+    where(revoked_at: nil, experts_procedure: ExpertsProcedure.granting_access)
   }
   scope :not_termine, -> { where.not(dossiers: { state: Dossier::TERMINE }) }
 

@@ -61,9 +61,7 @@ module Administrateurs
     private
 
     def retrieve_experts_procedure
-      experts_procedures = @procedure.experts_procedures
-      experts_procedures = experts_procedures.not_revoked if @procedure.experts_require_administrateur_invitation?
-      @experts_procedure ||= experts_procedures.sort_by { _1.expert.email }
+      @experts_procedure ||= @procedure.experts_procedures.granting_access.sort_by { _1.expert.email }
     end
 
     def retrieve_experts_emails

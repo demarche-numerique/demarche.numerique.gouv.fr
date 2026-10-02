@@ -50,7 +50,7 @@ module Instructeurs
       @dossier ||= begin
         dossier_id = params[:dossier_id]
         found = current_instructeur&.dossiers&.visible_by_administration&.find_by(id: dossier_id)
-        found ||= current_expert&.avis&.not_revoked&.find_by(dossier_id:)&.dossier
+        found ||= current_expert&.avis&.find_by(dossier_id:)&.dossier
         found || raise(ActiveRecord::RecordNotFound)
       end
     end

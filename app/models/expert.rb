@@ -6,7 +6,11 @@ class Expert < ApplicationRecord
   belongs_to :user
   has_many :experts_procedures
   has_many :procedures, through: :experts_procedures
-  has_many :avis, through: :experts_procedures
+  # Either revocation ends the expert's access to the dossier, so the plain name
+  # is the safe one: no caller reaches a revoked avis — or its dossier — by
+  # forgetting a filter. Revoked avis stay visible to the instructeur, who reads
+  # them through `dossier.avis`.
+  has_many :avis, -> { not_revoked }, through: :experts_procedures
   has_many :dossiers, through: :avis
   has_many :commentaires, inverse_of: :expert, dependent: :nullify
 
@@ -16,10 +20,12 @@ class Expert < ApplicationRecord
     user.email
   end
 
-  # Dossiers the expert can currently access, excluding those whose avis has been
-  # revoked or whose whole ExpertsProcedure link has been revoked by an admin.
-  def dossiers_from_not_revoked_avis
-    Dossier.where(id: avis.not_revoked.select(:dossier_id))
+  # A flat set rather than the dossiers association, which joins through avis:
+  # DossierSearchService evaluates the relation twice and caps the match set at
+  # MAX_RESULTS before de-duplicating, so a join repeating a dossier once per
+  # avis would spend that cap on duplicates.
+  def dossiers_for_search
+    Dossier.where(id: avis.select(:dossier_id))
   end
 
   def self.by_email(email)
@@ -27,17 +33,21 @@ class Expert < ApplicationRecord
   end
 
   def avis_summary
-    @avis_summary ||= { unanswered: avis.not_revoked.without_answer.not_hidden_by_administration.not_termine.count }
+    @avis_summary ||= { unanswered: avis.without_answer.not_hidden_by_administration.not_termine.count }
   end
 
   def self.autocomplete_mails(procedure)
+    # granting_access is a no-op while the procedure lets instructeurs invite
+    # whoever they want, so it applies to both modes and the branch below is
+    # left to decide only which experts are worth suggesting. A subquery rather
+    # than a merge: granting_access joins :procedure, which Expert has no
+    # singular association for.
     procedure_experts = Expert
       .joins(:experts_procedures, :user)
-      .where(experts_procedures: { procedure: procedure })
+      .where(experts_procedures: { procedure: procedure, id: ExpertsProcedure.granting_access })
 
     suggested_expert = if procedure.experts_require_administrateur_invitation?
       procedure_experts
-        .merge(ExpertsProcedure.not_revoked)
     else
       procedure_experts
         .where.not(users: { last_sign_in_at: nil })
