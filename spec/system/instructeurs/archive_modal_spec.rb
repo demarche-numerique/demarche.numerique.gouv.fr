@@ -20,7 +20,8 @@ describe 'Archive warning modal', js: true do
       check('Ne plus afficher cette information', allow_label_click: true)
       click_on 'Annuler'
     end
-    expect(page).to have_selector('#modal-archive', visible: false)
+    expect(page).to have_no_selector('#modal-archive', visible: :visible)
+    expect(page).to have_button('Déplacer dans “à archiver“')
     expect(dossier_1.reload.archived).to be(false)
     expect(instructeur.reload.archive_warning_dismissed).to be(false)
 
@@ -59,8 +60,8 @@ describe 'Archive warning modal', js: true do
     open_dsfr_modal('#modal-archive') { click_on 'Déplacer dans “à archiver“' }
     find('#modal-archive-dismiss', visible: :all).send_keys(:escape)
 
-    expect(page).to have_selector('#modal-archive', visible: false)
-    expect(page.evaluate_script('document.activeElement.getAttribute("aria-controls")')).to eq('modal-archive')
+    expect(page).to have_no_selector('#modal-archive', visible: :visible)
+    expect(page).to have_selector('[aria-controls="modal-archive"]:focus')
     expect(dossier_1.reload.archived).to be(false)
   end
 
