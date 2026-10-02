@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_09_28_120001) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_02_100000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_catalog.plpgsql"
@@ -888,6 +888,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_09_28_120001) do
 
   create_table "instructeurs", id: :serial, force: :cascade do |t|
     t.string "agent_connect_id_token"
+    t.boolean "archive_warning_dismissed", default: false, null: false
     t.boolean "bypass_email_login_token", default: false, null: false
     t.datetime "created_at", precision: nil
     t.text "encrypted_login_token"
