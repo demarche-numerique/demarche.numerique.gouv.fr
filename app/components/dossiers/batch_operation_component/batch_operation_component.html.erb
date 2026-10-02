@@ -149,7 +149,7 @@
       </div>
     </dialog>
 
-    <% if available_operations[:options].any? { it[:aria] == 'modal-archive-batch' } -%>
+    <% if available_operations[:options].any? { it[:operation] == BatchOperation.operations.fetch(:archiver) } -%>
       <%= render Instructeurs::ArchiveModalComponent.new(procedure:) %>
     <% end -%>
   </div>
