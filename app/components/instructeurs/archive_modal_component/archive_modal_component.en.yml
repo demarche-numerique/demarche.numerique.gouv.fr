@@ -1,0 +1,8 @@
+---
+en:
+  title: Move to “to archive”
+  notice_title: Important information
+  notice_desc: Moving a file to “to archive” disables its messaging. The user will no longer be able to contact you this way.
+  dismiss: Do not show this information again
+  cancel: Cancel
+  confirm: Confirm
