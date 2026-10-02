@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-# Sentry `before_send` hook grouping outages by their source.
+# Sentry `before_send` hook grouping outages by their source, and Brevo API
+# delivery errors by cause.
 #
 # Sentry groups events by stacktrace and transaction, so a single Redis,
 # PostgreSQL or object storage outage fans out into dozens of issues (one per
@@ -11,12 +12,12 @@
 # every burst land in a single issue per class, which Sentry reopens as
 # "regressed" the next time the component goes down.
 #
-# Two kinds of events are grouped: connection-level errors of our own
-# infrastructure, by exception class; and availability errors of an external
+# Three kinds of events are grouped: connection-level errors of our own
+# infrastructure, by exception class; availability errors of an external
 # provider, by provider, when the exception says so by including
-# ProviderOutage. Everything else (4xx, schema mismatches, mail delivery…)
-# keeps the default grouping: those failures are per endpoint and per
-# transaction.
+# ProviderOutage; and the other Brevo API delivery errors, by kind and Brevo
+# error code. Everything else (4xx, schema mismatches, SMTP delivery…) keeps
+# the default grouping: those failures are per endpoint and per transaction.
 module SentryFingerprint
   # Mixed into an exception meaning "an external provider is unavailable":
   # timeout, connection failure, 5xx, once the retries the caller allows are
@@ -64,7 +65,9 @@ module SentryFingerprint
     return [infrastructure_error.class.name] if infrastructure_error
 
     provider_outage = chain.find { it.is_a?(ProviderOutage) }
-    [PROVIDER_OUTAGE_KEY, provider_outage.provider.to_s] if provider_outage
+    return [PROVIDER_OUTAGE_KEY, provider_outage.provider.to_s] if provider_outage
+
+    ["brevo-#{exception.kind}", exception.brevo_code].compact if exception.is_a?(Brevo::APIDeliveryMethod::Error)
   end
 
   def self.infrastructure_error?(exception)

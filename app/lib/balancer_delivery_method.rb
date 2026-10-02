@@ -19,6 +19,7 @@ class BalancerDeliveryMethod
   BYPASS_UNVERIFIED_MAIL_PROTECTION = 'BYPASS_UNVERIFIED_MAIL_PROTECTION'
   FORCE_DELIVERY_METHOD_HEADER = 'X-deliver-with'
   CRITICAL_HEADER = 'x-critical'
+  BREVO_API_FEATURE = :brevo_api_delivery
   # Allows configuring the random number generator used for selecting a delivery method,
   # mostly for testing purposes.
   mattr_accessor :random, default: Random.new
@@ -67,9 +68,16 @@ class BalancerDeliveryMethod
 
   def delivery_method(mail)
     return mail[FORCE_DELIVERY_METHOD_HEADER].value.to_sym if force_delivery_method?(mail)
+    return :brevo_api if brevo_api_enabled_for?(mail)
 
     @delivery_methods
       .flat_map { |delivery_method, weight| [delivery_method] * weight }
       .sample(random: self.class.random)
+  end
+
+  def brevo_api_enabled_for?(mail)
+    return false if !@delivery_methods.key?(:brevo_api) || mail.to.blank?
+
+    Flipper.enabled?(BREVO_API_FEATURE, User.find_by(email: mail.to.first))
   end
 end

@@ -134,12 +134,14 @@ Rails.application.configure do
     }
   else
     brevo_weight = ENV.fetch('BREVO_BALANCING_VALUE') { 0 }.to_i
+    brevo_api_weight = ENV['BREVO_API_BALANCING_VALUE']&.to_i
     scaleway_weight = ENV.fetch('SCALEWAY_BALANCING_VALUE') { 0 }.to_i
     ActionMailer::Base.add_delivery_method :balancer, BalancerDeliveryMethod
     config.action_mailer.balancer_settings = {
       brevo: brevo_weight,
+      brevo_api: brevo_api_weight,
       scaleway: scaleway_weight,
-    }
+    }.compact
     config.action_mailer.delivery_method = :balancer
   end
 

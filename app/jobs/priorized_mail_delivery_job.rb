@@ -7,12 +7,18 @@ class PriorizedMailDeliveryJob < ActionMailer::MailDeliveryJob
 
   discard_on ActiveJob::DeserializationError
 
+  sidekiq_options attempt_threshold: 6
+
   # DeviseUserMailer descends from Devise::Mailer, so ApplicationMailer never
   # tags it.
   before_perform do |job|
     mailer, action = job.arguments
 
     Sentry.set_tags(mailer:, action:)
+  end
+
+  around_perform do |job, block|
+    Current.set(mail_idempotency_key: job.job_id) { block.call }
   end
 
   def queue_name

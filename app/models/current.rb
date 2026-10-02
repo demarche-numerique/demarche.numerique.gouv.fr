@@ -7,6 +7,7 @@ class Current < ActiveSupport::CurrentAttributes
   attribute :contact_email
   attribute :host
   attribute :job_id
+  attribute :mail_idempotency_key
   attribute :no_reply_email
   attribute :request_id
   attribute :user

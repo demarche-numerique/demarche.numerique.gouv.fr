@@ -36,6 +36,7 @@ features = [
   :llm_nightly_improve_procedure,
   :ami_notifications,
   :ami_recipient_fc_hash_v2,
+  :brevo_api_delivery,
   :dossier_vide_weasyprint,
   :s3_storage,
   :session_registry,

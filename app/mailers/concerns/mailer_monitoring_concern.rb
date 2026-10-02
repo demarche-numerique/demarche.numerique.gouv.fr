@@ -14,9 +14,12 @@ module MailerMonitoringConcern
         message.perform_deliveries = false
       end
     end
+
+    rescue_from Brevo::APIDeliveryMethod::RejectedError, with: :log_delivery_error
   end
 
   def log_delivery_error(exception)
+    Sentry.capture_exception(exception)
     EmailEvent.create_from_message!(message, status: "dispatch_error")
   end
 end
