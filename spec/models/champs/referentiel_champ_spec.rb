@@ -238,6 +238,37 @@ describe Champs::ReferentielChamp, type: :model do
         expect(row_ids_of(200) - rows_before).to eq([prefilled.row_id])
       end
     end
+
+    context 'when two rows of the source repetition prefill the same element' do
+      let(:prefilled_stable_id) { 201 }
+      let(:public_type_de_champs) do
+        [
+          {
+            type: :repetition, stable_id: 100, children: [
+              { type: :referentiel, stable_id: 101, referentiel:, referentiel_mapping: mapping },
+            ],
+          },
+          { type: :repetition, stable_id: 200, children: [{ type: :text, stable_id: 201 }] },
+        ]
+      end
+
+      def prefill_from(row_id)
+        reloaded = Dossier.find(dossier.id)
+        reloaded.champ_for_update(reloaded.find_type_de_champ_by_stable_id(101), row_id:, updated_by: 'test')
+          .update_external_data!(data: { societes: [{ nom: 'ACME' }] })
+      end
+
+      it 'keeps one row per source row, and replaying a source adds none' do
+        other_row_id = dossier.repetition_add_row(dossier.find_type_de_champ_by_stable_id(100), updated_by: 'test')
+        rows_before = row_ids_of(200)
+
+        prefill_from(own_row_id)
+        prefill_from(other_row_id)
+        expect((row_ids_of(200) - rows_before).size).to eq(2)
+
+        expect { prefill_from(own_row_id) }.not_to change { row_ids_of(200) }
+      end
+    end
   end
 
   describe '#update_external_data! prefilling a repetition from a root referentiel champ' do
@@ -272,6 +303,40 @@ describe Champs::ReferentielChamp, type: :model do
       reloaded.repetition_row_ids(repetition).map do |row_id|
         [reloaded.project_champ(nom, row_id:).value, reloaded.project_champ(siren, row_id:).value]
       end
+    end
+
+    it 'adds exactly one row for a new element of the array' do
+      prefill(societes: [{ nom: 'ACME', siren: '111' }])
+
+      prefill(societes: [{ nom: 'ACME', siren: '111' }, { nom: 'BETA', siren: '222' }])
+
+      expect(rows).to eq([['ACME', '111'], ['BETA', '222']])
+    end
+
+    it 'adds no row when an element with a nil field is replayed' do
+      2.times { prefill(societes: [{ nom: 'ACME', siren: nil }]) }
+
+      expect(rows).to eq([['ACME', nil]])
+    end
+
+    # Décision produit : pas de rapprochement par clé, la ligne obsolète reste à retirer.
+    it 'adds a row when an element changed, leaving the outdated one in place' do
+      prefill(societes: [{ nom: 'ACME', siren: '111' }])
+
+      prefill(societes: [{ nom: 'ACME', siren: '222' }])
+
+      expect(rows).to eq([['ACME', '111'], ['ACME', '222']])
+    end
+
+    it 're-injects an element whose row the usager removed' do
+      prefill(societes: [{ nom: 'ACME', siren: '111' }])
+      reloaded = Dossier.find(dossier.id)
+      repetition = reloaded.find_type_de_champ_by_stable_id(200)
+      reloaded.repetition_remove_row(repetition, reloaded.repetition_row_ids(repetition).first, updated_by: 'test')
+
+      prefill(societes: [{ nom: 'ACME', siren: '111' }])
+
+      expect(rows).to eq([['ACME', '111']])
     end
 
     it 'takes a single object for a one-element array' do
