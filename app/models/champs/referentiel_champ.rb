@@ -241,12 +241,7 @@ class Champs::ReferentielChamp < ChampData
           else
             row_id = determine_row_id(repetition_type_de_champ)
             array_mappings.map do |jsonpath, type_de_champ|
-              raw_value = if JSONPathUtil.json_path_contains_array?(jsonpath)
-                JSONPathUtil.on_safe(json_value, JSONPathUtil.extract_key_after_array(jsonpath)).first
-              else
-                json_value
-              end
-              update_prefillable_champ(type_de_champ:, raw_value:, row_id:)
+              update_prefillable_champ(type_de_champ:, raw_value: raw_value_in(json_value, jsonpath), row_id:)
             end
           end
         end
@@ -271,6 +266,14 @@ class Champs::ReferentielChamp < ChampData
 
   def group_mappings_by_json_array(mappings)
     mappings.group_by { |jsonpath, _| JSONPathUtil.extract_array_name(jsonpath) }
+  end
+
+  def raw_value_in(json_value, jsonpath)
+    if JSONPathUtil.json_path_contains_array?(jsonpath)
+      JSONPathUtil.on_safe(json_value, JSONPathUtil.extract_key_after_array(jsonpath)).first
+    else
+      json_value
+    end
   end
 
   def update_simple_prefillable_champs(data, mappings)
