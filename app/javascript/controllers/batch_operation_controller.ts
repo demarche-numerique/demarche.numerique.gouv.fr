@@ -12,6 +12,7 @@ export class BatchOperationController extends ApplicationController {
     'dropdown',
     'checkboxCount',
     'avisForm',
+    'archiveForm',
     'commentaireForm',
     'commentaireTitleSingular',
     'commentaireTitlePlural',
@@ -24,6 +25,7 @@ export class BatchOperationController extends ApplicationController {
   declare readonly dropdownTargets: HTMLButtonElement[];
   declare readonly checkboxCountTarget: HTMLElement;
   declare readonly avisFormTarget: HTMLFormElement;
+  declare readonly archiveFormTarget: HTMLFormElement;
   declare readonly commentaireFormTarget: HTMLFormElement;
   declare readonly commentaireTitleSingularTarget: HTMLElement;
   declare readonly commentaireTitlePluralTarget: HTMLElement;
@@ -175,8 +177,7 @@ export class BatchOperationController extends ApplicationController {
 
     const trigger = event.currentTarget as HTMLElement | null;
     const modalType = trigger?.dataset?.modalType;
-    const modalForm =
-      modalType === 'avis' ? this.avisFormTarget : this.commentaireFormTarget;
+    const modalForm = this.modalFormFor(modalType);
 
     if (!modalForm) return;
 
@@ -197,6 +198,17 @@ export class BatchOperationController extends ApplicationController {
       detail: { ids: this.getSelectedIds() },
       target: window
     });
+  }
+
+  private modalFormFor(modalType?: string): HTMLFormElement {
+    switch (modalType) {
+      case 'avis':
+        return this.avisFormTarget;
+      case 'archive':
+        return this.archiveFormTarget;
+      default:
+        return this.commentaireFormTarget;
+    }
   }
 
   private getSelectedIds(): string[] {

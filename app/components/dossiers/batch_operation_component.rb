@@ -81,10 +81,7 @@ class Dossiers::BatchOperationComponent < ApplicationComponent
       {
         options:
           [
-            {
-              label: t(".operations.archiver"),
-              operation: BatchOperation.operations.fetch(:archiver),
-            },
+            archiver_option,
             {
               label: t(".operations.supprimer"),
               operation: BatchOperation.operations.fetch(:supprimer),
@@ -198,10 +195,7 @@ class Dossiers::BatchOperationComponent < ApplicationComponent
               operation: BatchOperation.operations.fetch(:repasser_en_construction),
             },
 
-            {
-              label: t(".operations.archiver"),
-              operation: BatchOperation.operations.fetch(:archiver),
-            },
+            archiver_option,
             {
               label: t(".operations.supprimer"),
               operation: BatchOperation.operations.fetch(:supprimer),
@@ -221,6 +215,19 @@ class Dossiers::BatchOperationComponent < ApplicationComponent
       {
         options: [],
       }
+    end
+  end
+
+  def archiver_option
+    option = { label: t(".operations.archiver"), operation: BatchOperation.operations.fetch(:archiver) }
+
+    if current_instructeur.archive_warning_dismissed?
+      option
+    else
+      option.merge(
+        modal_data: { action: 'batch-operation#injectSelectedIdsIntoModal', 'fr-opened': "false", 'modal-type': 'archive' },
+        aria: 'modal-archive-batch'
+      )
     end
   end
 
