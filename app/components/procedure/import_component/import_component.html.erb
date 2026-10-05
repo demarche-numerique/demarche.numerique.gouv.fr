@@ -1,28 +1,11 @@
-<% if @procedure.routing_enabled? %>
-  <button
-    class="
-      fr-btn fr-btn--secondary fr-icon-upload-line fr-btn--icon-left
-      fr-mb-3w fr-ml-2w
-    "
-    aria-controls="modal-import"
-    aria-haspopup="dialog"
-    data-fr-opened="false"
-  >
-    <%= t('.button_groupes') %>
-  </button>
-<% else %>
-  <button
-    class="
-      fr-btn fr-btn--secondary fr-icon-upload-line fr-btn--icon-left
-      fr-mb-3w
-    "
-    aria-controls="modal-import"
-    aria-haspopup="dialog"
-    data-fr-opened="false"
-  >
-    <%= t('.button_instructeurs') %>
-  </button>
-<% end %>
+<button
+  class="<%= class_names('fr-btn fr-btn--secondary fr-icon-upload-line fr-btn--icon-left fr-mb-3w', 'fr-ml-2w' => @procedure.routing_enabled?) %>"
+  aria-controls="modal-import"
+  aria-haspopup="dialog"
+  data-fr-opened="false"
+>
+  <%= @procedure.routing_enabled? ? t('.button_groupes') : t('.button_instructeurs') %>
+</button>
 
 <%= render Dsfr::ModalComponent.new(id: 'modal-import', size: :lg, icon: 'fr-icon-upload-line') do |modal| %>
   <% modal.with_title { @procedure.routing_enabled? ? t('.title_groupes') : t('.title_instructeurs') } %>
