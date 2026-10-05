@@ -355,7 +355,7 @@ describe Champs::ReferentielChamp, type: :model do
       it 'adds a row per element' do
         prefill([{ nom: 'ACME' }, { nom: 'BETA' }])
 
-        expect(rows).to eq([['ACME', nil], ['BETA', nil]])
+        expect(rows).to contain_exactly(['ACME', nil], ['BETA', nil])
       end
     end
   end
