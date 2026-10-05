@@ -1,163 +1,135 @@
-<dialog
-  class="fr-modal"
-  id="fr-theme-modal"
-  aria-labelledby="fr-theme-modal-title"
-  role="dialog"
->
-  <div class="fr-container fr-container--fluid fr-container-md">
-    <div class="fr-grid-row fr-grid-row--center">
-      <div class="fr-col-12 fr-col-md-6 fr-col-lg-4">
-        <div class="fr-modal__body">
-          <div class="fr-modal__header">
-            <button
-              class="fr-btn--close fr-btn"
-              id="button-5622"
-              aria-controls="fr-theme-modal"
-              title="<%= t('utils.modal_close_alt') %>"
+<%= render Dsfr::ModalComponent.new(id: 'fr-theme-modal', size: :sm, icon: nil) do |modal| %>
+  <% modal.with_title { t('links.footer.display_params') } %>
+
+  <div class="fr-display" id="fr-display">
+    <fieldset class="fr-fieldset" id="display-fieldset">
+      <legend
+        class="fr-fieldset__legend--regular fr-fieldset__legend"
+        id="display-fieldset-legend"
+      >
+        Choisissez un thème pour personnaliser l’apparence du site.
+      </legend>
+
+      <div class="fr-fieldset__element">
+        <div class="fr-radio-group fr-radio-rich">
+          <input
+            id="fr-radios-theme-light"
+            name="fr-radios-theme"
+            type="radio"
+            value="light"
+          >
+
+          <label class="fr-label" for="fr-radios-theme-light">
+            Thème clair
+          </label>
+
+          <div class="fr-radio-rich__img">
+            <svg
+              class="fr-artwork"
+              aria-hidden="true"
+              viewBox="0 0 80 80"
+              width="80px"
+              height="80px"
             >
-              <%= t('utils.modal_close') %>
-            </button>
-          </div>
+              <use
+                class="fr-artwork-decorative"
+                href="<%= image_path("pictograms/environment/sun.svg#artwork-decorative") %>"
+              ></use>
 
-          <div class="fr-modal__content">
-            <h1 class="fr-modal__title" id="fr-theme-modal-title">
-              Paramètres d’affichage
-            </h1>
+              <use
+                class="fr-artwork-minor"
+                href="<%= image_path("pictograms/environment/sun.svg#artwork-minor") %>"
+              ></use>
 
-            <div class="fr-display" id="fr-display">
-              <fieldset class="fr-fieldset" id="display-fieldset">
-                <legend
-                  class="fr-fieldset__legend--regular fr-fieldset__legend"
-                  id="display-fieldset-legend"
-                >
-                  Choisissez un thème pour personnaliser l’apparence du site.
-                </legend>
-
-                <div class="fr-fieldset__element">
-                  <div class="fr-radio-group fr-radio-rich">
-                    <input
-                      id="fr-radios-theme-light"
-                      name="fr-radios-theme"
-                      type="radio"
-                      value="light"
-                    >
-
-                    <label class="fr-label" for="fr-radios-theme-light">
-                      Thème clair
-                    </label>
-
-                    <div class="fr-radio-rich__img">
-                      <svg
-                        class="fr-artwork"
-                        aria-hidden="true"
-                        viewBox="0 0 80 80"
-                        width="80px"
-                        height="80px"
-                      >
-                        <use
-                          class="fr-artwork-decorative"
-                          href="<%= image_path("pictograms/environment/sun.svg#artwork-decorative") %>"
-                        ></use>
-
-                        <use
-                          class="fr-artwork-minor"
-                          href="<%= image_path("pictograms/environment/sun.svg#artwork-minor") %>"
-                        ></use>
-
-                        <use
-                          class="fr-artwork-major"
-                          href="<%= image_path("pictograms/environment/sun.svg#artwork-major") %>"
-                        ></use>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="fr-fieldset__element">
-                  <div class="fr-radio-group fr-radio-rich">
-                    <input
-                      id="fr-radios-theme-dark"
-                      name="fr-radios-theme"
-                      type="radio"
-                      value="dark"
-                    >
-
-                    <label class="fr-label" for="fr-radios-theme-dark">
-                      Thème sombre
-                    </label>
-
-                    <div class="fr-radio-rich__img">
-                      <svg
-                        class="fr-artwork"
-                        aria-hidden="true"
-                        height="80px"
-                        viewbox="0 0 80 80"
-                        width="80px"
-                      >
-                        <use
-                          class="fr-artwork-decorative"
-                          href="<%= image_path("pictograms/environment/moon.svg#artwork-decorative") %>"
-                        ></use>
-
-                        <use
-                          class="fr-artwork-minor"
-                          href="<%= image_path("pictograms/environment/moon.svg#artwork-minor") %>"
-                        ></use>
-
-                        <use
-                          class="fr-artwork-major"
-                          href="<%= image_path("pictograms/environment/moon.svg#artwork-major") %>"
-                        ></use>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="fr-fieldset__element">
-                  <div class="fr-radio-group fr-radio-rich">
-                    <input
-                      id="fr-radios-theme-system"
-                      name="fr-radios-theme"
-                      type="radio"
-                      value="system"
-                    >
-
-                    <label class="fr-label" for="fr-radios-theme-system">
-                      Système
-                      <span class="fr-hint-text">Utilise les paramètres système</span>
-                    </label>
-
-                    <div class="fr-radio-rich__img">
-                      <svg
-                        class="fr-artwork"
-                        aria-hidden="true"
-                        height="80px"
-                        viewbox="0 0 80 80"
-                        width="80px"
-                      >
-                        <use
-                          class="fr-artwork-decorative"
-                          href="<%= image_path("pictograms/system/system.svg#artwork-decorative") %>"
-                        ></use>
-
-                        <use
-                          class="fr-artwork-minor"
-                          href="<%= image_path("pictograms/system/system.svg#artwork-minor") %>"
-                        ></use>
-
-                        <use
-                          class="fr-artwork-major"
-                          href="<%= image_path("pictograms/system/system.svg#artwork-major") %>"
-                        ></use>
-                      </svg>
-                    </div>
-                  </div>
-                </div>
-              </fieldset>
-            </div>
+              <use
+                class="fr-artwork-major"
+                href="<%= image_path("pictograms/environment/sun.svg#artwork-major") %>"
+              ></use>
+            </svg>
           </div>
         </div>
       </div>
-    </div>
+
+      <div class="fr-fieldset__element">
+        <div class="fr-radio-group fr-radio-rich">
+          <input
+            id="fr-radios-theme-dark"
+            name="fr-radios-theme"
+            type="radio"
+            value="dark"
+          >
+
+          <label class="fr-label" for="fr-radios-theme-dark">
+            Thème sombre
+          </label>
+
+          <div class="fr-radio-rich__img">
+            <svg
+              class="fr-artwork"
+              aria-hidden="true"
+              height="80px"
+              viewbox="0 0 80 80"
+              width="80px"
+            >
+              <use
+                class="fr-artwork-decorative"
+                href="<%= image_path("pictograms/environment/moon.svg#artwork-decorative") %>"
+              ></use>
+
+              <use
+                class="fr-artwork-minor"
+                href="<%= image_path("pictograms/environment/moon.svg#artwork-minor") %>"
+              ></use>
+
+              <use
+                class="fr-artwork-major"
+                href="<%= image_path("pictograms/environment/moon.svg#artwork-major") %>"
+              ></use>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="fr-fieldset__element">
+        <div class="fr-radio-group fr-radio-rich">
+          <input
+            id="fr-radios-theme-system"
+            name="fr-radios-theme"
+            type="radio"
+            value="system"
+          >
+
+          <label class="fr-label" for="fr-radios-theme-system">
+            Système
+            <span class="fr-hint-text">Utilise les paramètres système</span>
+          </label>
+
+          <div class="fr-radio-rich__img">
+            <svg
+              class="fr-artwork"
+              aria-hidden="true"
+              height="80px"
+              viewbox="0 0 80 80"
+              width="80px"
+            >
+              <use
+                class="fr-artwork-decorative"
+                href="<%= image_path("pictograms/system/system.svg#artwork-decorative") %>"
+              ></use>
+
+              <use
+                class="fr-artwork-minor"
+                href="<%= image_path("pictograms/system/system.svg#artwork-minor") %>"
+              ></use>
+
+              <use
+                class="fr-artwork-major"
+                href="<%= image_path("pictograms/system/system.svg#artwork-major") %>"
+              ></use>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </fieldset>
   </div>
-</dialog>
+<% end %>
