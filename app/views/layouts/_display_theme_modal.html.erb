@@ -31,20 +31,12 @@
               width="80px"
               height="80px"
             >
-              <use
-                class="fr-artwork-decorative"
-                href="<%= image_path("pictograms/environment/sun.svg#artwork-decorative") %>"
-              ></use>
-
-              <use
-                class="fr-artwork-minor"
-                href="<%= image_path("pictograms/environment/sun.svg#artwork-minor") %>"
-              ></use>
-
-              <use
-                class="fr-artwork-major"
-                href="<%= image_path("pictograms/environment/sun.svg#artwork-major") %>"
-              ></use>
+              <% %w[decorative minor major].each do |part| %>
+                <use
+                  class="fr-artwork-<%= part %>"
+                  href="<%= image_path("pictograms/environment/sun.svg#artwork-#{part}") %>"
+                ></use>
+              <% end %>
             </svg>
           </div>
         </div>
@@ -71,20 +63,12 @@
               viewbox="0 0 80 80"
               width="80px"
             >
-              <use
-                class="fr-artwork-decorative"
-                href="<%= image_path("pictograms/environment/moon.svg#artwork-decorative") %>"
-              ></use>
-
-              <use
-                class="fr-artwork-minor"
-                href="<%= image_path("pictograms/environment/moon.svg#artwork-minor") %>"
-              ></use>
-
-              <use
-                class="fr-artwork-major"
-                href="<%= image_path("pictograms/environment/moon.svg#artwork-major") %>"
-              ></use>
+              <% %w[decorative minor major].each do |part| %>
+                <use
+                  class="fr-artwork-<%= part %>"
+                  href="<%= image_path("pictograms/environment/moon.svg#artwork-#{part}") %>"
+                ></use>
+              <% end %>
             </svg>
           </div>
         </div>
@@ -112,20 +96,12 @@
               viewbox="0 0 80 80"
               width="80px"
             >
-              <use
-                class="fr-artwork-decorative"
-                href="<%= image_path("pictograms/system/system.svg#artwork-decorative") %>"
-              ></use>
-
-              <use
-                class="fr-artwork-minor"
-                href="<%= image_path("pictograms/system/system.svg#artwork-minor") %>"
-              ></use>
-
-              <use
-                class="fr-artwork-major"
-                href="<%= image_path("pictograms/system/system.svg#artwork-major") %>"
-              ></use>
+              <% %w[decorative minor major].each do |part| %>
+                <use
+                  class="fr-artwork-<%= part %>"
+                  href="<%= image_path("pictograms/system/system.svg#artwork-#{part}") %>"
+                ></use>
+              <% end %>
             </svg>
           </div>
         </div>
