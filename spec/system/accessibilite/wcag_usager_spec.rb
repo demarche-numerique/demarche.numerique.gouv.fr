@@ -199,6 +199,21 @@ describe 'wcag rules for usager', js: true do
       visit brouillon_dossier_path(dossier)
       expect(page).to be_axe_clean
     end
+
+    scenario 'modale des invités' do
+      visit brouillon_dossier_path(dossier)
+      click_on "Inviter une personne à modifier ce dossier"
+      expect(page).to have_button("Envoyer une invitation", visible: true)
+      expect(page).to be_axe_clean.within('#dossier-invites-modal-dialog')
+    end
+
+    scenario 'modale de la messagerie désactivée' do
+      dossier.update_columns(state: Dossier.states.fetch(:en_construction), archived: true)
+      visit messagerie_dossier_path(dossier)
+      click_on "+ d’infos"
+      expect(page).to have_selector('#messagerie-close-explanations', visible: true)
+      expect(page).to be_axe_clean.within('#messagerie-close-explanations')
+    end
   end
 
   context "logged in, messagerie avec des messages" do
