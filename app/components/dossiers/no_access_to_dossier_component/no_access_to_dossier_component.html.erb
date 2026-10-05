@@ -3,63 +3,31 @@
       aria: { controls: modal_id, haspopup: "dialog" },
       data: { "fr-opened": "false" }) %>
 
-<dialog
-  id="<%= modal_id %>"
-  class="fr-modal"
-  role="dialog"
-  aria-labelledby="<%= modal_id %>-title"
->
-  <div class="fr-container fr-container--fluid fr-container-md">
-    <div class="fr-grid-row fr-grid-row--center">
-      <div class="fr-col-12 fr-col-md-10 fr-col-lg-8">
-        <div class="fr-modal__body">
-          <div class="fr-modal__header">
-            <button
-              class="fr-btn--close fr-btn"
-              aria-controls="<%= modal_id %>"
-              title="<%= t("utils.modal_close_alt") %>"
-            >
-              <%= t("utils.modal_close") %>
-            </button>
-          </div>
+<%= render Dsfr::ModalComponent.new(id: modal_id, size: :lg) do |modal| %>
+  <% modal.with_title { t(".title") } %>
 
-          <div class="fr-modal__content">
-            <h1 id="<%= modal_id %>-title" class="fr-modal__title">
-              <span
-                class="fr-icon-arrow-right-line fr-icon--lg"
-                aria-hidden="true"
-              ></span>
-
-              <%= t(".title") %>
-            </h1>
-
-            <%= render Dsfr::AlertComponent.new(state: :warning, heading_level: "p") do |alert| %>
-              <% alert.with_body do %>
-                <% if administrateurs_emails.any? %>
-                  <p class="fr-text">
-                    <%= t(".content_html", procedure_name:) %>
-                  </p>
-                  <ul>
-                    <% administrateurs_emails.each do |email| %>
-                      <li>
-                        <%= mail_to(email, email, target: "_blank", rel: "noopener", class: "fr-link fr-icon-external-link-line fr-link--icon-right") %>
-                      </li>
-                    <% end %>
-                  </ul>
-                <% else %>
-                  <p class="fr-text">
-                    <%= t(".no_matching_admin_html", procedure_name:) %>
-                  </p>
-                  <% if service.present? %>
-                    <p class="fr-text--bold fr-mb-1w"><%= service.nom %></p>
-                    <%= render Procedure::ServiceListContactComponent.new(service_or_contact_information: service, dossier: nil) %>
-                  <% end %>
-                <% end %>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</dialog>
+  <%= render Dsfr::AlertComponent.new(state: :warning, heading_level: "p") do |alert| %>
+    <% alert.with_body do %>
+      <% if administrateurs_emails.any? %>
+        <p class="fr-text">
+          <%= t(".content_html", procedure_name:) %>
+        </p>
+        <ul>
+          <% administrateurs_emails.each do |email| %>
+            <li>
+              <%= mail_to(email, email, target: "_blank", rel: "noopener", class: "fr-link fr-icon-external-link-line fr-link--icon-right") %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p class="fr-text">
+          <%= t(".no_matching_admin_html", procedure_name:) %>
+        </p>
+        <% if service.present? %>
+          <p class="fr-text--bold fr-mb-1w"><%= service.nom %></p>
+          <%= render Procedure::ServiceListContactComponent.new(service_or_contact_information: service, dossier: nil) %>
+        <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
