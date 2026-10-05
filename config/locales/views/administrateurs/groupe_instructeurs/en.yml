@@ -13,7 +13,7 @@ en:
           alert_body: "You now need to rename them and give them routing rules based on the “routable” fields of your form, i.e. fields of type:"
         simple:
           title: Automatic routing configuration
-          alert_title: The instructor groups have been created from the field “%{champ}”
+          alert_title: The teams have been created from the field “%{champ}”
       index:
         procedures: Procedures
       add_instructeurs:
