@@ -43,42 +43,9 @@
     </div>
   </div>
 
-  <dialog
-    id="<%= MODAL_ID %>"
-    class="fr-modal"
-    role="dialog"
-    aria-labelledby="<%= MODAL_TITLE_ID %>"
-  >
-    <div class="fr-container fr-container--fluid fr-container-md">
-      <div class="fr-grid-row fr-grid-row--center">
-        <div class="fr-col-12 fr-col-md-10 fr-col-lg-8">
-          <div class="fr-modal__body">
-            <div class="fr-modal__header">
-              <button
-                class="fr-btn--close fr-btn"
-                type="button"
-                aria-controls="<%= MODAL_ID %>"
-                title="<%= t('utils.modal_close_alt') %>"
-              >
-                <%= t('utils.modal_close') %>
-              </button>
-            </div>
+  <%= render Dsfr::ModalComponent.new(id: MODAL_ID, size: :lg, icon: 'fr-icon-information-line') do |modal| %>
+    <% modal.with_title { t('.modal.title', app_name: Ami::APP_NAME) } %>
 
-            <div class="fr-modal__content">
-              <h1 id="<%= MODAL_TITLE_ID %>" class="fr-modal__title">
-                <span
-                  class="fr-icon-information-line fr-icon--lg"
-                  aria-hidden="true"
-                ></span>
-
-                <%= t('.modal.title', app_name: Ami::APP_NAME) %>
-              </h1>
-
-              <%= t('.modal.body_html', app_name: Ami::APP_NAME) %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </dialog>
+    <%= t('.modal.body_html', app_name: Ami::APP_NAME) %>
+  <% end %>
 </section>

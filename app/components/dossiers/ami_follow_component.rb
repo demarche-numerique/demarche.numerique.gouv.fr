@@ -5,7 +5,6 @@
 # chargée à part, cf. Dossiers::AmiConsentStateComponent.
 class Dossiers::AmiFollowComponent < ApplicationComponent
   MODAL_ID = "ami-info-modal"
-  MODAL_TITLE_ID = "#{MODAL_ID}-title"
 
   attr_reader :dossier
 
