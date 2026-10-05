@@ -105,20 +105,6 @@
                   J’utilise cette option temporairement à des fins de support.
                 </p>
               <% end %>
-            <% elsif attribute.name == 'tags' %>
-              <%= form_for procedure, url: add_tags_manager_procedure_path(procedure), html: { class: 'form procedure-form__column--form fr-background-alt--blue-france fr-mt-2v' }  do %>
-                <react-fragment>
-                  <%= render ReactComponent.new "ComboBox/MultiComboBox",
-                    items: Procedure.tags,
-                    selected_keys: procedure.tags,
-                    value_separator: ',|;',
-                    allows_custom_value: true,
-                    name: 'procedure[tags][]',
-                    'aria-label': 'Tags' %>
-                </react-fragment>
-
-                <button class="fr-mt-2v">Ajouter des tags</button>
-              <% end %>
             <% elsif attribute.name == 'template' %>
               <%= form_for procedure, url: update_template_status_manager_procedure_path(procedure), html: { method: :patch, class: 'procedure-form__column--form fr-background-alt--blue-france fr-mt-2v', id: 'template-form' } do |f| %>
                 <%= f.label :template, 'Marquer comme modèle', for: 'template_checkbox' %>

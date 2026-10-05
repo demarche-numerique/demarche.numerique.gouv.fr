@@ -660,12 +660,6 @@ class Procedure < ApplicationRecord
     publiee? || close?
   end
 
-  def self.tags
-    unnest = Arel::Nodes::NamedFunction.new('UNNEST', [self.arel_table[:tags]])
-    query = self.select(unnest.as('tags')).publiees.distinct.order('tags') # rubocop:disable Rails/OrderArguments
-    self.connection.query(query.to_sql).flatten
-  end
-
   def compute_dossiers_count
     now = Time.zone.now
     if now > (self.dossiers_count_computed_at || self.created_at) + DOSSIERS_COUNT_EXPIRING

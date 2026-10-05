@@ -13,7 +13,6 @@ namespace :manager do
       post :add_administrateur_and_instructeur
       post :add_administrateur_with_confirmation
       post :change_piece_justificative_template
-      patch :add_tags
       patch :update_template_status
       get :export_mail_brouillons
     end
