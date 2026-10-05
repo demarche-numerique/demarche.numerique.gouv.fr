@@ -2061,6 +2061,7 @@ describe Administrateurs::ProceduresController, type: :controller do
       end
     end
   end
+
   describe 'lazy modal frames' do
     render_views
 
