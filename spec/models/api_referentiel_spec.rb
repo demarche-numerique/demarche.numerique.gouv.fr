@@ -84,6 +84,20 @@ describe Referentiels::APIReferentiel, type: :model do
     end
   end
 
+  describe '#domain' do
+    let(:referentiel) { build(:api_referentiel, :exact_match, url_tiptap:) }
+
+    context 'with a subdomain and a tag in the path' do
+      let(:url_tiptap) { { "type" => "doc", "content" => [{ "type" => "paragraph", "content" => [{ "type" => "text", "text" => "https://rnb-api.beta.gouv.fr/buildings/" }, { "type" => "mention", "attrs" => { "id" => "{query}", "label" => "Query" } }] }] } }
+      it { expect(referentiel.domain).to eq('beta.gouv.fr') }
+    end
+
+    context 'when url_tiptap is nil' do
+      let(:url_tiptap) { nil }
+      it { expect(referentiel.domain).to be_nil }
+    end
+  end
+
   describe '#url_allowed?' do
     def tiptap_url(text)
       {

@@ -1,0 +1,27 @@
+<div class="fr-mt-2w">
+  <p class="fr-text--bold fr-mb-1w"><%= title %></p>
+
+  <%= render Dossiers::ExternalDataCardComponent.new(source:) do %>
+    <% groups.each do |group_title, changes| %>
+      <% if group_title %>
+        <p class="fr-text--bold fr-mb-1w"><%= group_title %></p>
+      <% end %>
+
+      <dl class="<%= class_names('fr-mb-2w', 'sub_list fr-pl-2w' => group_title) %>">
+        <% changes.each do |label, value| %>
+          <div class="champ-row">
+            <dt class="champ-label">
+              <%= t('.field_label', libelle: label) %>
+            </dt>
+
+            <dd class="champ-content"><%= value %></dd>
+          </div>
+        <% end %>
+      </dl>
+    <% end %>
+  <% end %>
+
+  <%= render NestedForms::OwnedButtonComponent.new(formaction: submit_path, http_method: :patch, opt: { class: "fr-btn fr-btn--sm fr-mt-2w" }) do %>
+    <%= t('.submit_label') %>
+  <% end %>
+</div>

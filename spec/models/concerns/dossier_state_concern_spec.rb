@@ -395,6 +395,15 @@ RSpec.describe DossierStateConcern do
       expect { submit }.not_to change { dossier.submitted_revision_id }
       expect { submit }.not_to have_enqueued_mail(NotificationMailer)
     end
+
+    context 'with notify: false' do
+      subject(:submit) { dossier.instructeur_submit_en_construction!(instructeur:, notify: false) }
+
+      it 'records the traitement without a commentaire' do
+        expect { submit }.not_to change { dossier.commentaires.count }
+        expect(dossier.reload.traitement.event).to eq(:depose_correction_instructeur)
+      end
+    end
   end
 
   describe '#passer_en_instruction!' do

@@ -1,0 +1,9 @@
+---
+fr:
+  title_from_api: "Les données suivantes ont bien été récupérées automatiquement à partir de l’API %{source} et le dossier de l’usager est prêt à être prérempli :"
+  title: "Les données suivantes ont bien été récupérées automatiquement à partir du référentiel et le dossier de l’usager est prêt à être prérempli :"
+  row_added: "Ajout de l’élément « %{libelle} %{number} »"
+  field_label: "%{libelle} :"
+  replaces: "(remplace « %{previous_value} »)"
+  cleared: "La valeur sera supprimée"
+  submit_label: "Préremplir le dossier et informer l’usager qu’il peut compléter son dossier"

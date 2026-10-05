@@ -18,14 +18,15 @@ module DossierStateConcern
     DossierNotification.create_notification(self, :dossier_modifie)
   end
 
-  def instructeur_submit_en_construction!(instructeur:, motivation: nil)
+  # `notify: false` pour un appelant qui informe l'usager autrement, ou pas encore.
+  def instructeur_submit_en_construction!(instructeur:, motivation: nil, notify: true)
     checkpoint = merge_instructeur_buffer_stream!
     traitement = self.traitements.instructeur_submit_en_construction(instructeur:, checkpoint:, motivation:)
     save!
 
     RoutingEngine.compute(self)
     render_carte_champs_later!
-    Message::DossierModifierParInstructeurComponent.create_commentaire(traitement)
+    Message::DossierModifierParInstructeurComponent.create_commentaire(traitement) if notify
   end
 
   def after_passer_en_construction

@@ -1,0 +1,9 @@
+---
+en:
+  title_from_api: "The following data was retrieved automatically from the %{source} API, and the applicant’s application is ready to be prefilled:"
+  title: "The following data was retrieved automatically from the reference data, and the applicant’s application is ready to be prefilled:"
+  row_added: "New “%{libelle} %{number}” row"
+  field_label: "%{libelle}:"
+  replaces: "(replaces “%{previous_value}”)"
+  cleared: "The value will be removed"
+  submit_label: "Prefill the application and let the applicant know they can complete it"

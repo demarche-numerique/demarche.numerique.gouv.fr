@@ -6,4 +6,5 @@
     = render champ_component
     = render Dsfr::InputStatusMessageComponent.new(champ_component:champ_component, champ: @champ, row_number: row_number_if_in_repetition)
     = render EditableChamp::RevertPrefilledButtonComponent.new(champ: @champ)
+    = render EditableChamp::ProposedPrefillComponent.new(champ: @champ)
     = render EditableChamp::ReferentielDisplayComponent.new(champ: @champ)

@@ -401,6 +401,20 @@ module Instructeurs
       end
     end
 
+    # Le garde porte sur la présence de changements et pas sur le seul bouton : sans
+    # lui, un second envoi enregistrerait une correction vide.
+    def proposition
+      if dossier.instructeur_buffer_changes?
+        dossier.repasser_en_construction!(instructeur: current_instructeur) if dossier.en_instruction?
+        # Le message générique annoncerait une modification « afin de poursuivre l'instruction »,
+        # alors que le dossier repart attendre l'usager.
+        dossier.instructeur_submit_en_construction!(instructeur: current_instructeur, notify: false)
+        flash.notice = t('.sent')
+      end
+
+      redirect_to annotations_privees_instructeur_dossier_path(dossier.procedure, dossier)
+    end
+
     def print
       @dossier = dossier
       render layout: "print"

@@ -91,6 +91,13 @@ class Referentiels::APIReferentiel < Referentiel
     tiptap_paragraph_nodes.any? { _1["type"] == "mention" && _1.dig("attrs", "id") == ReferentielService::USAGER_INPUT_TAG }
   end
 
+  # Le domaine ne peut pas porter de balise (domain_left_open?) : il est le même pour tous les dossiers.
+  def domain
+    Addressable::URI.parse(url_from_tiptap_for_validation.to_s).domain
+  rescue Addressable::URI::InvalidURIError
+    nil
+  end
+
   def test_data_tags
     return [] if url_tiptap.blank?
     TiptapService.used_tags_and_libelle_for(url_tiptap.deep_symbolize_keys)
