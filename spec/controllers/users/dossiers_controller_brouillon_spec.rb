@@ -579,7 +579,7 @@ describe Users::DossiersController, type: :controller do
           subject
           dossier.reload
           expect(dossier.can_passer_en_construction?).to be_falsey
-          expect(response.body).to match(/aria-controls='modal-eligibilite-rules-dialog'[^>]*data-fr-opened='true'/)
+          expect(response.body).to match(/aria-controls=["']modal-eligibilite-rules-dialog["'][^>]*data-fr-opened=["']true["']/)
         end
       end
 
@@ -589,7 +589,7 @@ describe Users::DossiersController, type: :controller do
           subject
           dossier.reload
           expect(dossier.can_passer_en_construction?).to be_truthy
-          expect(response.body).to match(/aria-controls='modal-eligibilite-rules-dialog'[^>]*data-fr-opened='false'/)
+          expect(response.body).to match(/aria-controls=["']modal-eligibilite-rules-dialog["'][^>]*data-fr-opened=["']false["']/)
         end
       end
 
@@ -612,7 +612,7 @@ describe Users::DossiersController, type: :controller do
           subject
           dossier.reload
           expect(dossier.can_passer_en_construction?).to be_falsey
-          expect(response.body).to match(/aria-controls='modal-eligibilite-rules-dialog'[^>]*data-fr-opened='false'/)
+          expect(response.body).to match(/aria-controls=["']modal-eligibilite-rules-dialog["'][^>]*data-fr-opened=["']false["']/)
         end
       end
 
@@ -624,7 +624,7 @@ describe Users::DossiersController, type: :controller do
           subject
           dossier.reload
           expect(dossier.can_passer_en_construction?).to be_falsey
-          expect(response.body).not_to include("aria-controls='modal-eligibilite-rules-dialog'")
+          expect(response.body).not_to match(/id=["']modal-eligibilite-rules-dialog["']/)
         end
       end
     end
