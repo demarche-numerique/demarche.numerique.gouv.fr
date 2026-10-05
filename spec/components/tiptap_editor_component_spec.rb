@@ -37,6 +37,16 @@ describe TiptapEditorComponent, type: :component do
     end
   end
 
+  context "with the link action" do
+    let(:modal_html) { rendered.to_html }
+
+    it_behaves_like 'a labelled DSFR modal', 'tiptap-link-modal'
+
+    it "keeps the Stimulus target on the dialog" do
+      expect(Capybara.string(modal_html)).to have_css('dialog#tiptap-link-modal[data-tiptap-target="linkModal"]', visible: :all)
+    end
+  end
+
   it "does not render any tag button when tags: is not given" do
     expect(rendered).not_to have_css('[data-tiptap-target="tag"]')
   end
