@@ -1,0 +1,25 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://rnb-api.beta.gouv.fr/api/alpha/buildings/JE-VALIDE/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - demarche.numerique.gouv.fr
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+    body:
+      encoding: UTF-8
+      string: '{"dirigeant":[{"nom":"Dupont","prenom":"Jeanne","statut":"Presidente"},{"nom":"Martin","prenom":"Paul","statut":"Tresorier"}]}'
+  recorded_at: Tue, 30 Sep 2026 09:00:00 GMT
+recorded_with: VCR 6.3.1
