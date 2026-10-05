@@ -20,7 +20,7 @@ RSpec.describe Dsfr::ModalComponent, type: :component do
 
   it 'renders the DSFR skeleton with a typed close button' do
     expect(page).to have_css('dialog#my-modal.fr-modal[role="dialog"] .fr-container.fr-container--fluid.fr-container-md .fr-grid-row--center .fr-col-12.fr-col-md-8.fr-col-lg-6 .fr-modal__body')
-    expect(page).to have_button('Fermer', title: 'Fermer la fenêtre modale', type: 'button')
+    expect(page).to have_button('Fermer', title: 'Fermer', type: 'button')
     expect(page).to have_css('button.fr-btn--close[aria-controls="my-modal"]')
     expect(page).to have_css('.fr-modal__content', text: 'Mon contenu')
     expect(page).to have_no_css('.fr-modal__footer')
