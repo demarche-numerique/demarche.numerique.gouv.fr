@@ -1,5 +1,8 @@
 en:
   devise:
+    mailer:
+      email_changed:
+        subject: Change of your account email address
     failure:
       inactivity: For your security, your session expired after a spell of inactivity. Please sign in again.
       expired: For your security, your session has expired. Please sign in again.

@@ -43,4 +43,35 @@ RSpec.describe DeviseUserMailer, type: :mailer do
       end
     end
   end
+
+  describe '.email_changed' do
+    subject { described_class.email_changed(user, to: user.email) }
+
+    shared_examples 'a warning to the current address' do
+      it 'names the requested address and points to the support' do
+        expect(subject.to).to eq([user.email])
+        expect(subject.subject).to eq('Changement de l’adresse électronique de votre compte')
+        expect(subject.body).to include(requested_email)
+        expect(subject.body).to have_link('formulaire de contact', href: contact_url)
+        expect(subject.body).to have_link(CONTACT_EMAIL, href: "mailto:#{CONTACT_EMAIL}")
+      end
+    end
+
+    context 'when a new address is waiting for confirmation' do
+      let(:requested_email) { 'nouvelle@adresse.fr' }
+
+      before { user.update_column(:unconfirmed_email, requested_email) }
+
+      it_behaves_like 'a warning to the current address'
+    end
+
+    context 'when a merge into another account is requested' do
+      let(:other_user) { create(:user) }
+      let(:requested_email) { other_user.email }
+
+      before { user.update_column(:requested_merge_into_id, other_user.id) }
+
+      it_behaves_like 'a warning to the current address'
+    end
+  end
 end
