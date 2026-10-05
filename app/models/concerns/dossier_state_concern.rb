@@ -406,6 +406,9 @@ module DossierStateConcern
     rebase_later
   end
 
+  # Efface aussi ce qu'un appel d'API a prérempli, dès que la condition d'affichage devient
+  # fausse — perte irréversible, dont la seule parade est de ne pas décocher l'annotation qui
+  # pilote le bloc une fois le dossier parti.
   def clean_champs_after_submit!
     remove_not_in_revision_champs!
     remove_discarded_rows!
