@@ -143,6 +143,38 @@ describe Instructeurs::CommentairesController, type: :controller do
     end
   end
 
+  context 'as expert who is also instructeur on another procedure' do
+    let(:expert) { experts.default }
+    let(:dossier) { dossiers.en_instruction }
+    let(:commentaire) { create(:commentaire, expert:, dossier:) }
+
+    before do
+      expert.user.create_instructeur!(bypass_email_login_token: true).assign_to_procedure(procedures.close)
+      sign_in(expert.user)
+    end
+
+    describe 'destroy' do
+      subject { delete :destroy, params: { dossier_id: dossier.id, procedure_id: procedure.id, id: commentaire.id, statut: 'a-suivre' }, format: :turbo_stream }
+
+      it 'deletes the message without rendering the instructeur header' do
+        expect(subject).to have_http_status(:ok)
+        expect(subject.body).to include('Votre message a été supprimé')
+        expect(subject.body).not_to include('header-top')
+        expect(commentaire.reload).to be_discarded
+      end
+    end
+
+    describe 'cancel_correction' do
+      subject { post :cancel_correction, params: { dossier_id: dossier.id, procedure_id: procedure.id, id: commentaire.id, statut: 'a-suivre' }, format: :turbo_stream }
+
+      it 'answers without rendering the instructeur header' do
+        expect(subject).to have_http_status(:ok)
+        expect(subject.body).to include('Aucune demande de correction en attente')
+        expect(subject.body).not_to include('header-top')
+      end
+    end
+  end
+
   context 'as expert' do
     let!(:experts_procedure) { create(:experts_procedure, expert:, procedure:) }
     let!(:avis) { create(:avis, dossier:, experts_procedure:, claimant: instructeur) }
