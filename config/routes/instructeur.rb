@@ -111,6 +111,7 @@ scope module: 'instructeurs', as: 'instructeur', defaults: { nav_bar_profile: :i
           get 'telecharger_pjs' => 'dossiers#telecharger_pjs'
           get 'print' => 'dossiers#print'
           patch 'annotations' => 'dossiers#update_annotations'
+          patch 'annotations/proposition' => 'dossiers#proposition', as: :proposition
           get 'annotations/:stable_id', to: 'dossiers#annotation', as: :annotation
           get 'geo_data'
           get 'apercu_attestation'

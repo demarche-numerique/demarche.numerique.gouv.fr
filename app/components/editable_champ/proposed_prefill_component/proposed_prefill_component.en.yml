@@ -1,0 +1,5 @@
+---
+en:
+  title: "These form fields will be updated"
+  replaces: "replaces \"%{previous_value}\""
+  submit_label: "Send to the usager"

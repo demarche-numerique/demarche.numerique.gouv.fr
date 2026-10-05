@@ -1,0 +1,5 @@
+---
+fr:
+  title: "Ces champs du formulaire seront mis à jour"
+  replaces: "remplace « %{previous_value} »"
+  submit_label: "Envoyer à l’usager"

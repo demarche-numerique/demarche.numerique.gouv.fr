@@ -1,0 +1,23 @@
+<%= render Dsfr::AlertComponent.new(state: :info, title: nil, size: :sm, extra_class_names: "fr-mt-2w") do |c| %>
+  <% c.with_body do %>
+    <p><%= t('.title') %></p>
+
+    <ul class="fr-mb-2w list-style-type-disc">
+      <% changed_columns.each do |column| %>
+        <li>
+          <%= column.label %>
+
+          <% if column.previous_value.present? %>
+            <span class="fr-text--sm">
+              <%= t('.replaces', previous_value: column.previous_value) %>
+            </span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+
+    <%= render NestedForms::OwnedButtonComponent.new(formaction: submit_path, http_method: :patch, opt: { class: "fr-btn fr-btn--sm" }) do %>
+      <%= t('.submit_label') %>
+    <% end %>
+  <% end %>
+<% end %>

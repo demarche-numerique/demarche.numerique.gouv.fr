@@ -1096,6 +1096,8 @@ en:
       attestation_notice_accept: Accepting the file automatically generates a certificate for the user to download
       attestation_notice_refuse: Refusing the file automatically generates a certificate for the user to download
       preview_attestation: Preview the certificate
+      proposition:
+        sent: The prefilled fields have been sent to the usager, who can now complete their dossier.
       terminer_notice: The file has been processed. The user has been informed that their file has been %{state}.
       alert_unspecified_attestation_title: The decision certificate is incomplete
       unspecified_champs_group: User form
