@@ -1,70 +1,41 @@
-<dialog
-  id="dossier-submit-dialog"
-  class="fr-modal"
-  aria-labelledby="dossier-submit-dialog-title"
-  data-controller="auto-open-modal"
->
-  <div class="fr-container fr-container--fluid fr-container-lg">
-    <div class="fr-grid-row fr-grid-row--center">
-      <div class="fr-col-12 fr-col-md-10 fr-col-lg-8">
-        <div class="fr-modal__body">
-          <div class="fr-modal__header">
-            <button
-              class="fr-btn--close fr-btn"
-              aria-controls="dossier-submit-dialog"
-              aria-haspopup="dialog"
-              title="<%= t('utils.modal_close_alt') %>"
-            >
-              <%= t('utils.modal_close') %>
-            </button>
-          </div>
+<%= render Dsfr::ModalComponent.new(id: 'dossier-submit-dialog', size: :lg, data: { controller: 'auto-open-modal' }) do |modal| %>
+  <% modal.with_title { title } %>
 
-          <div class="fr-modal__content">
-            <h1 id="dossier-submit-dialog-title" class="fr-modal__title">
-              <span class="fr-icon-arrow-right-line fr-icon--lg"></span>
-              <%= title %>
-            </h1>
+  <% modal.with_footer do %>
+    <div class="fr-btns-group fr-btns-group--center fr-btns-group--inline-lg">
+      <button
+        type="button"
+        class="fr-btn fr-btn--secondary fr-mb-2w"
+        aria-controls="dossier-submit-dialog"
+      >
+        <%= t('.cancel') %>
+      </button>
 
-            <%= render Instructeurs::EditDossierAlertComponent.new %>
+      <button
+        type="submit"
+        class="fr-btn fr-mb-2w"
+        form="submit_dossier"
+        data-controller="autosave-submit"
+      >
+        <%= t('.confirm') %>
+      </button>
+    </div>
+  <% end %>
 
-            <%= form_for :traitement, url: submit_instructeur_dossier_path, id: 'submit_dossier', method: :patch, class: 'fr-mt-2w' do |f| %>
-              <div class="fr-input-group fr-mb-3w">
-                <%= f.label :default_message, t('.default_message_label'), class: 'fr-label' %>
+  <%= render Instructeurs::EditDossierAlertComponent.new %>
 
-                <div class="fr-p-4v fr-mt-4v readonly-text-area">
-                  <%= default_message %>
-                </div>
-              </div>
+  <%= form_for :traitement, url: submit_instructeur_dossier_path, id: 'submit_dossier', method: :patch, class: 'fr-mt-2w' do |f| %>
+    <div class="fr-input-group fr-mb-3w">
+      <%= f.label :default_message, t('.default_message_label'), class: 'fr-label' %>
 
-              <div class="fr-input-group fr-mb-3w">
-                <%= f.label :motivation, t('.motivation_label'), class: 'fr-label' %>
-                <%= f.text_area :motivation, class: 'fr-input', placeholder: t('.motivation_placeholder'), data: { controller: 'autoresize' } %>
-              </div>
-            <% end %>
-          </div>
-
-          <div class="fr-modal__footer">
-            <div class="fr-btns-group fr-btns-group--center fr-btns-group--inline-lg">
-              <button
-                type="button"
-                class="fr-btn fr-btn--secondary fr-mb-2w"
-                aria-controls="dossier-submit-dialog"
-              >
-                <%= t('.cancel') %>
-              </button>
-
-              <button
-                type="submit"
-                class="fr-btn fr-mb-2w"
-                form="submit_dossier"
-                data-controller="autosave-submit"
-              >
-                <%= t('.confirm') %>
-              </button>
-            </div>
-          </div>
-        </div>
+      <div class="fr-p-4v fr-mt-4v readonly-text-area">
+        <%= default_message %>
       </div>
     </div>
-  </div>
-</dialog>
+
+    <div class="fr-input-group fr-mb-3w">
+      <%= f.label :motivation, t('.motivation_label'), class: 'fr-label' %>
+      <%= f.text_area :motivation, class: 'fr-input', placeholder: t('.motivation_placeholder'), data: { controller: 'autoresize' } %>
+    </div>
+  <% end %>
+<% end %>
