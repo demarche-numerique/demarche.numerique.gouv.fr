@@ -3,7 +3,7 @@
 
 .dossier-container {
   .sub-header {
-    h1 {
+    h1:not(.fr-modal__title) {
       font-size: 22px;
       margin-bottom: 0;
     }
