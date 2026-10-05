@@ -279,6 +279,7 @@ module ProcedureCloneConcern
         revision_type_de_champs: :type_de_champ,
         dossier_submitted_message: [],
       },
+      procedure_tags: [],
     }
 
     if options[:clone_attestation_acceptation_template]

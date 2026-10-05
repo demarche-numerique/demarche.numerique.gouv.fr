@@ -84,6 +84,12 @@ describe ProcedureCloneConcern, type: :model do
       expect(subject.template).to be_falsey
     end
 
+    it 'keeps the procedure tags' do
+      procedure.procedure_tags = [ProcedureTag.create!(name: 'Chasse'), ProcedureTag.create!(name: 'Animaux')]
+
+      expect(subject.reload.procedure_tags.map(&:name)).to contain_exactly('Chasse', 'Animaux')
+    end
+
     it 'attaches the cloned types de champ to the clone' do
       type_de_champ_ids = procedure.draft_revision.revision_type_de_champs.map(&:type_de_champ_id)
       TypeDeChamp.where(id: type_de_champ_ids).update_all(procedure_id: procedure.id)
