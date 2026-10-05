@@ -2077,5 +2077,17 @@ describe Administrateurs::ProceduresController, type: :controller do
       get :commune_info, params: { id: procedure.id }
       expect(response.body).to have_css("h2##{title_id}.fr-modal__title")
     end
+
+    context 'before a frame loads' do
+      let(:modal_html) { response.body }
+
+      before { get :champs, params: { id: procedure.id } }
+
+      it_behaves_like 'a labelled DSFR modal', 'api-champ-columns-modal'
+
+      it 'names the modal with a placeholder title' do
+        expect(response.body).to have_css("turbo-frame#api-champ-columns h2##{title_id}", text: 'Liste des informations remontées', visible: :all)
+      end
+    end
   end
 end

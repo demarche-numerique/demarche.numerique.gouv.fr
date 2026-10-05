@@ -182,6 +182,7 @@ fr:
         callout_personne_physique_names_html: <li><b>Prénom</b></li><li><b>Nom</b></li>
         callout_personne_morale_html: Le <b>Numéro SIRET</b> concernant le demandeur est déjà renseigné dans la première étape Identification du formulaire.
         callout_no_ask_twice: Il est donc inutile de les redemander dans d’autres champs du formulaire.
+        api_champ_columns_button: Liste des informations remontées
       add_administrateur:
         wrong_address:
           one: "%{emails} n’est pas une adresse électronique valide"

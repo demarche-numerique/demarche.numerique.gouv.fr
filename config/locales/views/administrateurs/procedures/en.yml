@@ -176,6 +176,8 @@ en:
         submit: Create the procedure
         cancel: Cancel
         cancel_confirm: Are you sure you want to cancel the creation of this procedure?
+      champs:
+        api_champ_columns_button: List of retrieved information
       add_administrateur:
         wrong_address:
           one: "%{emails} is not a valid email address"
