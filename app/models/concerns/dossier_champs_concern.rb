@@ -145,7 +145,7 @@ module DossierChampsConcern
 
   def repetition_row_markers(type_de_champ)
     return [] if !type_de_champ.repetition?
-    champ_data_on_stream.filter { _1.row? && _1.stable_id == type_de_champ.stable_id && !_1.discarded? }
+    champ_data_on_stream.filter { it.row? && it.stable_id == type_de_champ.stable_id && !it.discarded? }
   end
 
   def repetition_row_ids(type_de_champ)
