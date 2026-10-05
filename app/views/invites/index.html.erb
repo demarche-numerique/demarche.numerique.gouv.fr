@@ -1,0 +1,65 @@
+<%= turbo_frame_tag("dossier-invites-modal") do %>
+  <dialog
+    class="fr-modal"
+    id="dossier-invites-modal-dialog"
+    aria-labelledby="dossier-invites-modal-title"
+  >
+    <div class="fr-container--fluid fr-container-md">
+      <div class="fr-grid-row fr-grid-row--center">
+        <div class="fr-col-12 fr-col-md-10 fr-col-lg-8">
+          <div class="fr-modal__body">
+            <%= form_for @dossier.invites.build, url: dossier_invites_path(@dossier), html: { id: "dossier-invites-form" }, data: { turbo_force: :server } do |f| %>
+              <div class="fr-modal__header">
+                <button
+                  class="fr-btn fr-btn--close"
+                  type="button"
+                  aria-controls="dossier-invites-modal-dialog"
+                  title="<%= t('utils.modal_close_alt') %>"
+                >
+                  <%= t('utils.modal_close') %>
+                </button>
+              </div>
+
+              <div class="fr-modal__content">
+                <h1
+                  class="fr-modal__title fr-mb-4v"
+                  id="dossier-invites-modal-title"
+                >
+                  <span class="fr-icon-arrow-right-line fr-icon--lg">
+                    <%= t('views.invites.form.modal_title') %>
+                  </span>
+                </h1>
+
+                <div class="fr-notice fr-notice--info">
+                  <div class="fr-notice__body fr-ml-3v">
+                    <p>
+                      <span class="fr-notice__title">
+                        <%= t('views.invites.form.modal_highlight') %>
+                      </span>
+                    </p>
+                  </div>
+                </div>
+
+                <%= render partial: "invites/form", locals: { dossier: @dossier, invite: @dossier.invites.build, invites: @dossier.invites.filter(&:persisted?) } %>
+              </div>
+
+              <div class="fr-modal__footer">
+                <div class="fr-btns-group fr-btns-group--left fr-btns-group--inline-lg">
+                  <button
+                    class="fr-btn fr-btn--secondary"
+                    type="button"
+                    aria-controls="dossier-invites-modal-dialog"
+                  >
+                    <%= t('views.invites.form.cancel') %>
+                  </button>
+
+                  <%= f.submit t('views.invites.form.send_invitation'), class: "fr-btn" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </dialog>
+<% end %>
