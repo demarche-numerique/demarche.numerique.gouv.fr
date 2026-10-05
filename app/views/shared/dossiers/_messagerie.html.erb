@@ -45,8 +45,8 @@
       <%= t('shared.messagerie.disabled_modal.contact_html', dossier_id: dossier.id) %>
     </p>
 
-    <ul class="list-style-type-none">
+    <div class="fr-pl-2w fr-my-1w">
       <%= render Procedure::ServiceListContactComponent.new(service_or_contact_information: dossier.procedure.service, dossier: dossier) %>
-    </ul>
+    </div>
   <% end %>
 <% end %>

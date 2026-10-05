@@ -23,4 +23,9 @@ RSpec.describe 'shared/dossiers/_messagerie', type: :view do
     expect(rendered).to have_css('#messagerie-close-explanations-title', text: 'La messagerie est désactivée.', visible: :all)
     expect(rendered).to have_css('b', text: "dossier n°\u00a0#{dossier.id}", visible: :all)
   end
+
+  it 'lists the service contact without a list around it (RGAA 9.3)' do
+    expect(rendered).to have_css('#messagerie-close-explanations dl', visible: :all)
+    expect(rendered).to have_no_css('#messagerie-close-explanations ul > dl', visible: :all)
+  end
 end
