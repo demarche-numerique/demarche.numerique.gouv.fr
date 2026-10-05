@@ -1,7 +1,7 @@
 <%= render Dsfr::ModalComponent.new(id: 'routing-mode-modal', data: { controller: 'auto-open-modal' }) do |modal| %>
   <% modal.with_title { t('administrateurs.groupe_instructeurs.routing_modal.custom.title') } %>
 
-  <%= render Dsfr::AlertComponent.new(state: :success, title: t('administrateurs.groupe_instructeurs.routing_modal.custom.alert_title'), heading_level: 'h2', with_prefix: false) do |alert| %>
+  <%= render Dsfr::AlertComponent.new(state: :success, title: t('administrateurs.groupe_instructeurs.routing_modal.custom.alert_title'), heading_level: 'h3', with_prefix: false) do |alert| %>
     <% alert.with_body do %>
       <p>
         <%= t('administrateurs.groupe_instructeurs.routing_modal.custom.alert_body') %>

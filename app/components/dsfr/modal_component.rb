@@ -3,7 +3,7 @@
 # see: https://www.systeme-de-design.gouv.fr/elements-d-interface/composants/modale
 # The title gets the id "#{id}-title", which the dialog's aria-labelledby points to.
 # A modal whose title arrives later (turbo frame) leaves the title slot empty and
-# renders an h1.fr-modal__title with id ModalComponent.title_id(id) itself.
+# renders an h2.fr-modal__title with id ModalComponent.title_id(id) itself.
 # Extra keyword arguments are deep-merged into the dialog's attributes.
 class Dsfr::ModalComponent < ApplicationComponent
   SIZES = {

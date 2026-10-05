@@ -27,7 +27,7 @@ RSpec.describe Dsfr::ModalComponent, type: :component do
   end
 
   it 'prefixes the title with a decorative icon' do
-    expect(page).to have_css('h1.fr-modal__title > span.fr-icon-arrow-right-line.fr-icon--lg[aria-hidden="true"]')
+    expect(page).to have_css('h2.fr-modal__title > span.fr-icon-arrow-right-line.fr-icon--lg[aria-hidden="true"]')
   end
 
   context 'with a size' do
@@ -45,20 +45,20 @@ RSpec.describe Dsfr::ModalComponent, type: :component do
   context 'without icon' do
     let(:options) { { icon: nil } }
 
-    it { expect(page).to have_no_css('h1.fr-modal__title span') }
+    it { expect(page).to have_no_css('h2.fr-modal__title span') }
   end
 
   context 'with a hidden title' do
     let(:options) { { title_hidden: true } }
 
-    it { expect(page).to have_css('h1#my-modal-title.fr-modal__title.fr-sr-only', visible: :all) }
+    it { expect(page).to have_css('h2#my-modal-title.fr-modal__title.fr-sr-only', visible: :all) }
   end
 
   context 'without title slot' do
     let(:with_title) { false }
 
-    it 'leaves the h1 to the caller but keeps the label reference' do
-      expect(page).to have_no_css('h1')
+    it 'leaves the h2 to the caller but keeps the label reference' do
+      expect(page).to have_no_css('h2')
       expect(page).to have_css('dialog[aria-labelledby="my-modal-title"]')
     end
   end

@@ -2070,12 +2070,12 @@ describe Administrateurs::ProceduresController, type: :controller do
 
     it 'titles the API columns frame with the id its dialog points to' do
       get :api_champ_columns, params: { id: procedure.id, stub_type_champ: 'siret' }
-      expect(response.body).to have_css("h1##{title_id}.fr-modal__title")
+      expect(response.body).to have_css("h2##{title_id}.fr-modal__title")
     end
 
     it 'titles the commune frame with the id its dialog points to' do
       get :commune_info, params: { id: procedure.id }
-      expect(response.body).to have_css("h1##{title_id}.fr-modal__title")
+      expect(response.body).to have_css("h2##{title_id}.fr-modal__title")
     end
   end
 end

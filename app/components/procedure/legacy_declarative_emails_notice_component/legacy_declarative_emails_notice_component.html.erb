@@ -19,7 +19,7 @@
 <%= render Dsfr::ModalComponent.new(id: MODAL_ID, size: :lg, icon: nil, title_hidden: true) do |modal| %>
   <% modal.with_title { t('.modal.title') } %>
 
-  <%= render Dsfr::AlertComponent.new(state: :info, title: t('.modal.title'), heading_level: 'h2') do |c| %>
+  <%= render Dsfr::AlertComponent.new(state: :info, title: t('.modal.title'), heading_level: 'h3') do |c| %>
     <% c.with_body do %>
       <p><%= t('.modal.what_changes_html') %></p>
 

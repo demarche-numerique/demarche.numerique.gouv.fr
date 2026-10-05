@@ -1,5 +1,5 @@
 <%= render Dsfr::ModalComponent.new(id: 'routing-mode-modal', data: { controller: 'auto-open-modal' }) do |modal| %>
   <% modal.with_title { t('administrateurs.groupe_instructeurs.routing_modal.simple.title') } %>
 
-  <%= render Dsfr::AlertComponent.new(state: :success, title: t('administrateurs.groupe_instructeurs.routing_modal.simple.alert_title', champ: procedure.routing_champs.first), heading_level: 'h2', with_prefix: false) %>
+  <%= render Dsfr::AlertComponent.new(state: :success, title: t('administrateurs.groupe_instructeurs.routing_modal.simple.alert_title', champ: procedure.routing_champs.first), heading_level: 'h3', with_prefix: false) %>
 <% end %>
