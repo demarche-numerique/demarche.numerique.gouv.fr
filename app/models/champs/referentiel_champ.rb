@@ -86,6 +86,10 @@ class Champs::ReferentielChamp < ChampData
       .map { |_jsonpath, mapping| mapping[:prefill_stable_id].to_i }
   end
 
+  def proposes_public_changes?
+    private? && dossier.instructeur_buffer_changes?
+  end
+
   def prefillable_champs
     elligible_stable_ids = prefillable_stable_ids
     if public?
@@ -117,12 +121,48 @@ class Champs::ReferentielChamp < ChampData
 
   def propagate_prefill(type_de_champs)
     type_de_champs_by_stable_id = type_de_champs.index_by(&:stable_id)
-    referentiel_mapping_prefillable_with_stable_id
-      .transform_values do |mapping|
-        type_de_champs_by_stable_id[mapping[:prefill_stable_id].to_i]
-      end.compact.group_by do |_, type_de_champ|
-        dossier.revision.parent_of(type_de_champ)
-      end.flat_map do |repetition_type_de_champ, mappings|
+    targets = referentiel_mapping_prefillable_with_stable_id
+      .transform_values { type_de_champs_by_stable_id[it[:prefill_stable_id].to_i] }
+      .compact
+
+    public_targets, private_targets = targets.partition { |_, tdc| tdc.public? }.map(&:to_h)
+
+    propagate_public_prefill(public_targets) + propagate_to(private_targets)
+  end
+
+  private
+
+  # Une annotation écrit sur le buffer instructeur, où l'usager ne voit rien avant
+  # que la proposition ne soit validée.
+  def propagate_public_prefill(targets)
+    return [] if targets.empty?
+    return propagate_to(targets) if !private?
+
+    # Hors du bloc : c'est son `with_stream` qui vide ensuite les mémos dérivés.
+    discard_previous_proposal(targets)
+    dossier.with_instructeur_buffer_stream { propagate_to(targets) }
+  end
+
+  # Sur le buffer rien n'appartient à l'usager : remplacer la proposition précédente
+  # suffit à rendre un nouvel appel idempotent, sans comparer les valeurs.
+  def discard_previous_proposal(targets)
+    buffer = dossier.champ_data.where(stream: Dossier::INSTRUCTEUR_BUFFER_STREAM)
+    proposed = buffer.where(stable_id: targets.values.map(&:stable_id), prefilled: true)
+    # Les marqueurs de ligne ne portent pas `prefilled`, et sans eux la répétition
+    # garderait des lignes vides.
+    row_ids = proposed.where.not(row_id: nil).pluck(:row_id)
+    discarded_ids = proposed.ids + (row_ids.any? ? buffer.where(row_id: row_ids).ids : [])
+
+    return if discarded_ids.empty?
+
+    dossier.champ_data.where(id: discarded_ids).destroy_all
+    dossier.association(:champ_data).target = dossier.champ_data.reject { it.id.in?(discarded_ids) }
+  end
+
+  def propagate_to(targets)
+    targets
+      .group_by { |_, type_de_champ| dossier.revision.parent_of(type_de_champ) }
+      .flat_map do |repetition_type_de_champ, mappings|
         if repetition_type_de_champ.present?
           update_repetition_prefillable_champs(data, repetition_type_de_champ, mappings)
         else
@@ -130,8 +170,6 @@ class Champs::ReferentielChamp < ChampData
         end
       end
   end
-
-  private
 
   def prefillable_type_de_champs
     if main_stream?

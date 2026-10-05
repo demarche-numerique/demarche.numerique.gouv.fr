@@ -471,4 +471,107 @@ describe Champs::ReferentielChamp, type: :model do
       expect(referentiel_champ.selected_items).to eq([{ label: 'label', value: 'label' }])
     end
   end
+
+  describe 'prefilling public champs while the dossier is en construction' do
+    let(:procedure) do
+      create(:procedure,
+             public_type_de_champs: [{ type: :text, libelle: 'Nom', stable_id: 99 }],
+             private_type_de_champs: [
+               {
+                 type: :referentiel,
+                 stable_id: 88,
+                 referentiel:,
+                 referentiel_mapping: {
+                   public_mapping_path => { prefill: "1", prefill_stable_id: 99, type: "string" },
+                   private_mapping_path => { prefill: "1", prefill_stable_id: 77, type: "string" },
+                 },
+               },
+               { type: :text, libelle: 'Avis', stable_id: 77 },
+             ])
+    end
+    let(:dossier) { create(:dossier, :en_construction, procedure:) }
+    let(:champ) { dossier.champ_data.find { it.stable_id == 88 } }
+
+    def public_target
+      dossier.reload.flat_champs_public.find { it.stable_id == 99 }
+    end
+
+    def private_target
+      dossier.reload.flat_champs_private.find { it.stable_id == 77 }
+    end
+
+    def proposed_public_target
+      dossier.reload.with_instructeur_buffer_stream do
+        dossier.flat_champs_public.find { it.stable_id == 99 }
+      end
+    end
+
+    context 'in exact match mode' do
+      let(:referentiel) { create(:api_referentiel, :exact_match) }
+      let(:public_mapping_path) { "$.nom" }
+      let(:private_mapping_path) { "$.avis" }
+
+      # Sur un dossier en construction, où une écriture publique directe lèverait.
+      it 'proposes the public target on the instructeur buffer and writes the private ones' do
+        expect { champ.update_external_data!(data: { 'nom' => 'Dupont', 'avis' => 'Favorable' }, value: 'JE-VALIDE', value_json: {}) }
+          .not_to raise_error
+
+        expect(private_target.value).to eq('Favorable')
+        expect(proposed_public_target.value).to eq('Dupont')
+        # invisible de l'usager tant que l'instructeur n'a pas validé
+        expect(public_target.value).to be_nil
+      end
+
+      # Sur une répétition seulement : une cible racine serait de toute façon réécrite,
+      # donc un test sur un champ simple ne prouverait rien.
+      context 'when the target is a repetition child' do
+        let(:procedure) do
+          create(:procedure,
+                 public_type_de_champs: [
+                   {
+                     type: :repetition, libelle: 'Dirigeants', stable_id: 310, mandatory: false,
+                     children: [{ type: :text, libelle: 'Nom du dirigeant', stable_id: 311 }],
+                   },
+                 ],
+                 private_type_de_champs: [
+                   {
+                     type: :referentiel,
+                     stable_id: 88,
+                     referentiel:,
+                     referentiel_mapping: { "$.dirigeant[0].nom" => { prefill: "1", prefill_stable_id: 311, type: "string" } },
+                   },
+                 ])
+        end
+
+        def proposed_dirigeants
+          dossier.reload.with_instructeur_buffer_stream do
+            dossier.flat_champs_public.filter { it.stable_id == 311 }.map(&:value)
+          end
+        end
+
+        it 'replaces a previous proposal rather than stacking on it' do
+          champ.update_external_data!(data: { 'dirigeant' => [{ 'nom' => 'Dupont' }, { 'nom' => 'Martin' }] }, value: 'JE-VALIDE', value_json: {})
+          expect(proposed_dirigeants).to match_array(['Dupont', 'Martin'])
+
+          champ.update_external_data!(data: { 'dirigeant' => [{ 'nom' => 'Durand' }] }, value: 'AUTRE-REF', value_json: {})
+
+          expect(proposed_dirigeants).to eq(['Durand'])
+        end
+      end
+    end
+
+    context 'in autocomplete mode' do
+      let(:referentiel) { create(:api_referentiel, :autocomplete, datasource: '$.items') }
+      let(:public_mapping_path) { "$.items[0].nom" }
+      let(:private_mapping_path) { "$.items[0].avis" }
+      let(:token) { MessageEncryptorService.new.encrypt_and_sign({ 'nom' => 'Dupont', 'avis' => 'Favorable' }, purpose: :storage, expires_in: 1.hour) }
+
+      it 'drops the public target and still writes the private ones' do
+        expect { champ.data = token }.not_to raise_error
+
+        expect(private_target.value).to eq('Favorable')
+        expect(public_target.value).to be_nil
+      end
+    end
+  end
 end
