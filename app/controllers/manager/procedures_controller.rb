@@ -2,8 +2,6 @@
 
 module Manager
   class ProceduresController < Manager::ApplicationController
-    include ActiveSupport::NumberHelper
-    include CsvParsingConcern
     include RequiresFreshSuperAdminOtp
 
     before_action :verify_fresh_super_admin_otp!, only: [:add_administrateur_and_instructeur]
@@ -142,43 +140,6 @@ module Manager
       end
     end
 
-    def import_data
-    end
-
-    def import_tags
-      case validate_csv_upload(tags_csv_file)
-      when :not_csv
-        flash[:alert] = "Importation impossible : veuillez importer un fichier CSV"
-        return redirect_to manager_administrateurs_path
-      when :too_large
-        flash[:alert] = "Importation impossible : le poids du fichier est supérieur à #{number_to_human_size(CSV_MAX_SIZE)}"
-        return redirect_to manager_administrateurs_path
-      end
-
-      procedure_tags = parse_csv(tags_csv_file).map { |r| r.to_h.slice('demarche', 'tag') }
-      invalid_ids = []
-
-      procedure_tags.each do |procedure_tag|
-        procedure = Procedure.find_by(id: procedure_tag['demarche'])
-        tags = procedure_tag["tag"].split(',').map(&:strip).map(&:capitalize)
-
-        if procedure.nil?
-          invalid_ids << procedure_tag['demarche']
-          next
-        end
-
-        tags.each do |tag|
-          procedure.tags.push(tag)
-        end
-        procedure.save
-      end
-
-      message = "Import des tags terminé."
-      message += " Ces démarches n'existent pas : #{invalid_ids.to_sentence}" if invalid_ids.any?
-      flash.notice = message
-      redirect_to manager_administrateurs_path
-    end
-
     private
 
     def find_resource(param)
@@ -203,10 +164,6 @@ module Manager
 
     def template_params
       params.require(:procedure).permit(:template)
-    end
-
-    def tags_csv_file
-      params[:tags_csv_file]
     end
 
     def unfiltered_list?

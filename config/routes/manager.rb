@@ -125,7 +125,5 @@ namespace :manager do
   get 'exports/administrateurs/with_publiee_procedure' => 'administrateurs#export_with_publiee_procedure'
   get 'exports/instructeurs/currently_active' => 'instructeurs#export_currently_active'
 
-  get 'import_procedure_tags' => 'procedures#import_data'
-  post 'import_tags' => 'procedures#import_tags'
   root to: "administrateurs#index"
 end
