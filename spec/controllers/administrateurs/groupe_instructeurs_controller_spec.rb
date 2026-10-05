@@ -53,11 +53,7 @@ describe Administrateurs::GroupeInstructeursController, type: :controller do
 
       it_behaves_like 'a labelled DSFR modal', 'modal-add-groupe'
 
-      context 'modal-import' do
-        before { pending 'migrated in Task 6g' }
-
-        it_behaves_like 'a labelled DSFR modal', 'modal-import'
-      end
+      it_behaves_like 'a labelled DSFR modal', 'modal-import'
 
       it_behaves_like 'a labelled DSFR modal', 'routing-mode-modal'
     end
