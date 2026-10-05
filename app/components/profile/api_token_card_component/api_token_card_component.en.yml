@@ -1,5 +1,5 @@
 en:
   tokens_title: API identification tokens
   first_paragraph_html: |
-    These tokens are needed to make calls to the API of %{application_name}. You can <strong>click on </strong><a target=_blank rel="noopener" href="%{api_doc_url}" title="See %{application_name} API documentation">this link</a> to check our documentation
+    These tokens are needed to make calls to the API of %{application_name}. Learn more about the <a target="_blank" rel="noopener" href="%{api_doc_url}" title="See %{application_name} API documentation">GraphQL API</a>
   create_token: create a new token
