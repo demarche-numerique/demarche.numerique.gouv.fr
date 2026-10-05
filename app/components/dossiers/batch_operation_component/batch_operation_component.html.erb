@@ -52,101 +52,42 @@
           </div>
         </div>
       <% end %>
-      <dialog
-        id="modal-avis-batch"
-        class="fr-modal"
-        aria-labelledby="fr-modal-title-avis-batch"
-        role="dialog"
-      >
-        <div class="fr-container fr-container--fluid fr-container-md">
-          <div class="fr-grid-row fr-grid-row--center">
-            <div class="fr-col-12 fr-col-md-10 fr-col-lg-8">
-              <div class="fr-modal__body">
-                <div class="fr-modal__header">
-                  <button
-                    class="fr-btn--close fr-btn"
-                    aria-controls="modal-avis-batch"
-                    title="<%= t('utils.modal_close_alt') %>"
-                  >
-                    <%= t('utils.modal_close') %>
-                  </button>
-                </div>
-
-                <div class="fr-modal__content">
-                  <h1 id="fr-modal-title-avis-batch" class="fr-modal__title">
-                    <span class="fr-icon-arrow-right-line fr-icon--lg"></span>
-                    <%= t(".operations.create_avis") %>
-                  </h1>
-
-                  <%= render partial: "shared/avis/form_wrapper", locals: { url: create_batch_avis_instructeur_batch_operations_path(procedure_id: procedure.id), linked_dossiers: nil, must_be_confidentiel: false, avis: Avis.new, batch_action: true, procedure:, dossier_ids: @ids } %>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </dialog>
+      <%= render Dsfr::ModalComponent.new(id: 'modal-avis-batch', size: :lg) do |modal| %>
+        <% modal.with_title { t('.operations.create_avis') } %>
+        <%= render partial: "shared/avis/form_wrapper", locals: { url: create_batch_avis_instructeur_batch_operations_path(procedure_id: procedure.id), linked_dossiers: nil, must_be_confidentiel: false, avis: Avis.new, batch_action: true, procedure:, dossier_ids: @ids } %>
+      <% end %>
     <% end -%>
 
     <% if available_operations[:options].any? { it[:instruction] } -%>
       <%= render partial: 'instructeurs/dossiers/instruction_modal', locals: { dossier: nil, batch: true, procedure: } %>
     <% end -%>
 
-    <dialog
-      id="modal-commentaire-batch"
-      class="fr-modal"
-      aria-labelledby="fr-modal-title-commentaire-batch"
-      role="dialog"
-    >
-      <div class="fr-container fr-container--fluid fr-container-md">
-        <div class="fr-grid-row fr-grid-row--center">
-          <div class="fr-col-12 fr-col-md-10 fr-col-lg-8">
-            <div class="fr-modal__body">
-              <div class="fr-modal__header">
-                <button
-                  class="fr-btn--close fr-btn"
-                  aria-controls="modal-commentaire-batch"
-                  title="<%= t('utils.modal_close_alt') %>"
-                >
-                  <%= t('utils.modal_close') %>
-                </button>
-              </div>
+    <%= render Dsfr::ModalComponent.new(id: 'modal-commentaire-batch', size: :lg) do |modal| %>
+      <% modal.with_title do %>
+        <span
+          class="hidden"
+          data-batch-operation-target="commentaireTitleSingular"
+        >
+          <%= t('.commentaire_modal.title_singular') %>
+        </span>
 
-              <div class="fr-modal__content">
-                <h1 id="modal-title-commentaire-batch" class="fr-modal__title">
-                  <span class="fr-icon-arrow-right-line fr-icon--lg"></span>
+        <span
+          class="hidden"
+          data-batch-operation-target="commentaireTitlePlural"
+        >
+          <%= t('.commentaire_modal.title_plural', count: '__COUNT__') %>
+        </span>
+      <% end %>
 
-                  <span
-                    class="hidden"
-                    data-batch-operation-target="commentaireTitleSingular"
-                  >
-                    <%= t('.commentaire_modal.title_singular') %>
-                  </span>
+      <div data-batch-operation-target="commentaireFormContainer">
+        <%= render partial: "instructeurs/batch_operations/commentaire_form", locals: { url: create_batch_commentaire_instructeur_batch_operations_path(procedure_id: procedure.id), commentaire: Commentaire.new, procedure:, dossier_ids: @ids } %>
+      </div>
 
-                  <span
-                    class="hidden"
-                    data-batch-operation-target="commentaireTitlePlural"
-                  >
-                    <%= t('.commentaire_modal.title_plural', count: '__COUNT__') %>
-                  </span>
-                </h1>
-
-                <div data-batch-operation-target="commentaireFormContainer">
-                  <%= render partial: "instructeurs/batch_operations/commentaire_form", locals: { url: create_batch_commentaire_instructeur_batch_operations_path(procedure_id: procedure.id), commentaire: Commentaire.new, procedure:, dossier_ids: @ids } %>
-                </div>
-
-                <div
-                  class="hidden"
-                  data-batch-operation-target="commentaireWarning"
-                >
-                  <div class="fr-alert fr-alert--warning">
-                    <%= t('.commentaire_warning_html', limit: BatchOperation::BATCH_SELECTION_LIMIT) %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+      <div class="hidden" data-batch-operation-target="commentaireWarning">
+        <div class="fr-alert fr-alert--warning">
+          <%= t('.commentaire_warning_html', limit: BatchOperation::BATCH_SELECTION_LIMIT) %>
         </div>
       </div>
-    </dialog>
+    <% end %>
   </div>
 </div>
