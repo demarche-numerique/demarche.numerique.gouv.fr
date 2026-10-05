@@ -380,7 +380,7 @@ module Users
       @dossier = dossier_with_champs(pj_template: false)
       champ = @dossier.public_champ_for_update(params[:stable_id], updated_by: current_user.email)
 
-      champ.revert_to_prefilled_value! if champ.prefilled_original_value.present?
+      champ.revert_to_prefilled_value! if champ.prefilled_value_modified?
 
       respond_to do |format|
         format.turbo_stream do
