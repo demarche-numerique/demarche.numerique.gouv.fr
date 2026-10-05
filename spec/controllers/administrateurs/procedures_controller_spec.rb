@@ -1568,6 +1568,39 @@ describe Administrateurs::ProceduresController, type: :controller do
     end
   end
 
+  describe 'GET #modifications' do
+    render_views
+
+    let(:procedure) { procedures.individual }
+
+    subject(:perform_request) { get :modifications, params: { id: procedure.id } }
+
+    before do
+      sign_in(admin.user)
+      procedure.draft_revision.add_type_de_champ(type_champ: "text", libelle: "Nouveau champ")
+      procedure.publish_revision!(admin)
+    end
+
+    it 'shows when each revision was published, and by whom' do
+      perform_request
+
+      published_revision = procedure.reload.published_revision
+      expect(response.body).to include("Modifications publiées le #{I18n.l(published_revision.published_at, format: :long_with_time)} par #{admin.user.email}")
+    end
+
+    context 'when a published revision has no publication date' do
+      before { procedure.reload.published_revision.update_columns(published_at: nil, administrateur_id: nil) }
+
+      it 'lists the revision without a date' do
+        perform_request
+
+        expect(response).to have_http_status(:ok)
+        expect(response.body).to have_css("h2.card-title", text: /\A\s*Modifications publiées\s*\z/)
+        expect(response.body).to include("Nouveau champ")
+      end
+    end
+  end
+
   describe 'GET #publication' do
     subject(:perform_request) { get :publication, params: { procedure_id: procedure.id } }
 
