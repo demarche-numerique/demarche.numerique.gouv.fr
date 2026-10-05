@@ -1,5 +1,5 @@
 = turbo_frame_tag("api-champ-columns") do
-  %h1#fr-modal-api-champ-columns-h1.fr-modal__title
+  %h1.fr-modal__title{ id: Dsfr::ModalComponent.title_id('api-champ-columns-modal') }
     = t('.title', type_de_champ: t(@type_de_champ.type_champ, scope: 'activerecord.attributes.type_de_champ.type_champs'))
 
   %p.fr-hint-text

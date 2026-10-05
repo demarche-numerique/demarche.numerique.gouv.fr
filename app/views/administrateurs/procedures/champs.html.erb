@@ -66,34 +66,9 @@
 
       <%= render TypesDeChampEditor::EditorComponent.new(revision: @procedure.draft_revision, is_annotation: false) %>
 
-      <dialog
-        class="fr-modal"
-        id="api-champ-columns-modal"
-        aria-labelledby="fr-modal-api-champ-columns-h1"
-        role="dialog"
-      >
-        <div class="fr-container fr-container--fluid fr-container-md">
-          <div class="fr-grid-row fr-grid-row--center">
-            <div class="fr-col-12 fr-col-md-8">
-              <div class="fr-modal__body">
-                <div class="fr-modal__header">
-                  <button
-                    class="fr-btn--close fr-btn"
-                    aria-controls="api-champ-columns-modal"
-                    title="<%= t('utils.modal_close_alt') %>"
-                  >
-                    <%= t('utils.modal_close') %>
-                  </button>
-                </div>
-
-                <div class="fr-modal__content">
-                  <%= turbo_frame_tag "api-champ-columns", data: { "lazy-modal-target": "frame" } %>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </dialog>
+      <%= render Dsfr::ModalComponent.new(id: 'api-champ-columns-modal', size: :lg) do %>
+        <%= turbo_frame_tag "api-champ-columns", data: { "lazy-modal-target": "frame" } %>
+      <% end %>
     </div>
   </div>
 </div>

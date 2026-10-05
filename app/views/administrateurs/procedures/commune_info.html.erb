@@ -1,5 +1,8 @@
 <%= turbo_frame_tag("api-champ-columns") do %>
-  <h1 id="fr-modal-api-champ-columns-h1" class="fr-modal__title">
+  <h1
+    id="<%= Dsfr::ModalComponent.title_id('api-champ-columns-modal') %>"
+    class="fr-modal__title"
+  >
     <%= t(".title") %>
   </h1>
 
