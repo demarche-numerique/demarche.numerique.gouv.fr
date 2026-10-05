@@ -83,4 +83,12 @@ RSpec.describe Dsfr::ModalComponent, type: :component do
       expect(page).to have_css('dialog#my-modal.fr-modal.tags-legend-modal[role="alertdialog"][aria-labelledby="my-modal-title"][aria-describedby="my-description"][data-controller="auto-open-modal"][data-turbo-permanent]')
     end
   end
+
+  context 'with html attributes trying to override the label' do
+    let(:options) { { aria: { labelledby: 'other', describedby: 'my-description' } } }
+
+    it 'keeps the dialog labelled by its own title' do
+      expect(page).to have_css('dialog#my-modal[aria-labelledby="my-modal-title"][aria-describedby="my-description"]')
+    end
+  end
 end

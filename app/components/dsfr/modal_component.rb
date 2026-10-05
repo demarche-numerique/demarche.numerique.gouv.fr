@@ -40,8 +40,9 @@ class Dsfr::ModalComponent < ApplicationComponent
   def title_class = class_names('fr-modal__title', 'fr-sr-only' => @title_hidden)
 
   def dialog_attributes
-    { id:, role: 'dialog', aria: { labelledby: title_id } }
+    { role: 'dialog' }
       .deep_merge(@html_attributes)
+      .deep_merge(id:, aria: { labelledby: title_id })
       .merge(class: class_names('fr-modal', @html_attributes[:class]))
   end
 end
