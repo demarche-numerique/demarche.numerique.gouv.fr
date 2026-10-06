@@ -21,6 +21,7 @@ describe Instructeurs::CommentairesController, type: :controller do
           expect(subject.body).to include('Message supprimé')
           expect(subject.body).to include('alert-success')
           expect(subject.body).to include('Votre message a été supprimé')
+          expect(subject.body).to include('header-top')
           expect(commentaire.reload).to be_discarded
           expect(commentaire.body).to be_empty
         end
