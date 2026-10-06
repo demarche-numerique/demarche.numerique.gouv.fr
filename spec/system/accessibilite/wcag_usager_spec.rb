@@ -201,9 +201,16 @@ describe 'wcag rules for usager', js: true do
     end
 
     scenario 'modale des invités' do
+      # DSFR names a dialog lacking aria-labelledby after its opening button.
+      labelled_dialog = 'dialog#dossier-invites-modal-dialog[aria-labelledby="dossier-invites-modal-dialog-title"]'
+
       visit brouillon_dossier_path(dossier)
+      expect(page).to have_css(labelled_dialog, visible: :all)
+
       click_on "Inviter une personne à modifier ce dossier"
       expect(page).to have_button("Envoyer une invitation", visible: true)
+      expect(page).to have_css(labelled_dialog)
+      expect(page).to have_css('#dossier-invites-modal-dialog-title', text: 'Gestion des invités', count: 1)
       expect(page).to be_axe_clean.within('#dossier-invites-modal-dialog')
     end
 

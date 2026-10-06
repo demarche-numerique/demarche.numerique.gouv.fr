@@ -16,5 +16,8 @@
       - else
         = t('views.invites.dropdown.invite_to_edit')
 
+  -# Without its own name, DSFR labels the empty dialog with the opening button.
+  -# A placeholder title holds the id until the frame swaps in the modal.
   = turbo_frame_tag "dossier-invites-modal", data: { "lazy-modal-target": "frame" } do
-    %dialog.fr-modal#dossier-invites-modal-dialog
+    %dialog.fr-modal#dossier-invites-modal-dialog{ aria: { labelledby: Dsfr::ModalComponent.title_id('dossier-invites-modal-dialog') } }
+      %h2.fr-modal__title{ id: Dsfr::ModalComponent.title_id('dossier-invites-modal-dialog') }= t('views.invites.form.modal_title')
