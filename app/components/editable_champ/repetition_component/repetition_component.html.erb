@@ -20,9 +20,11 @@
 
 <div
   class="fr-fieldset__element flex column flex-gap-2"
-  data-controller="repetition-toggle-all"
+  data-controller="<%= token_list('repetition-toggle-all', 'repetition-limits' => min_repetitions?) %>"
   data-repetition-toggle-all-expanded-text-value="<%= t(".collapse_all") %>"
   data-repetition-toggle-all-collapsed-text-value="<%= t(".expand_all") %>"
+  data-repetition-limits-min-value="<%= min_repetitions %>"
+  data-repetition-limits-error-id-value="<%= @champ.error_id(:value) %>"
 >
   <% if show_toggle_all_button? %>
     <div class="repetition-toggle-all fr-mt-n2w">

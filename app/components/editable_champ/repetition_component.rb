@@ -55,6 +55,10 @@ class EditableChamp::RepetitionComponent < EditableChamp::EditableChampBaseCompo
     @champ.type_de_champ.min_repetitions.to_i
   end
 
+  def min_repetitions?
+    @champ.type_de_champ.limit_repetitions? && @champ.type_de_champ.min_repetitions.present?
+  end
+
   def max_repetitions
     @champ.type_de_champ.max_repetitions.to_i
   end

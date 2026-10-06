@@ -1,4 +1,4 @@
-<div id="safe-row-selector-<%= row_id %>" class="repetition-row">
+<div id="safe-row-selector-<%= row_id %>" class="repetition-row" data-repetition-limits-target="row">
   <% if has_fieldset? %>
     <div class="width-100 champs-group fr-p-0 fr-m-0">
       <%= render Dsfr::AccordionComponent.new(id: "#{@champ.html_id}-#{row_id}-accordion", expanded: @expanded, accordion_tag: :fieldset, title_tag: :legend, title_id: repetition_row_fieldset_legend_id(@champ, row_id)) do |accordion| %>
