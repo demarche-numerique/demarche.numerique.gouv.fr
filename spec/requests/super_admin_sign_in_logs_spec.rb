@@ -15,4 +15,10 @@ describe 'super admin sign in logs', type: :request do
 
     expect(logs.sole).to include(super_admin_id: super_admin.id, user_roles: 'SuperAdmin')
   end
+
+  it 'identifies the account targeted by a failed attempt' do
+    post super_admin_session_path, params: { super_admin: { email: super_admin.email, password: 'wrong password', otp_attempt: current_otp_for(super_admin) } }
+
+    expect(logs.pluck(:super_admin_id, :user_roles)).to eq([[super_admin.id, 'Guest'], [nil, 'Guest']])
+  end
 end
