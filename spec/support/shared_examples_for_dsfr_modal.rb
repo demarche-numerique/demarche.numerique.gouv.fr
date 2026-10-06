@@ -23,4 +23,14 @@ RSpec.shared_examples 'a labelled DSFR modal' do |dialog_id|
     expect(dialog).to have_css('h2', visible: :all, count: 1)
     expect(dialog).to have_css("h2##{dialog_id}-title", visible: :all)
   end
+
+  # DSFR leaves it out, but aria-haspopup tells screen reader users that the
+  # button opens a dialog. Buttons inside the dialog close it, so they don't.
+  it "announces the buttons opening ##{dialog_id} as dialog triggers" do
+    html = Capybara.string(modal_html)
+    triggers = html.all("[aria-controls='#{dialog_id}']", visible: :all)
+      .reject { it.has_ancestor?("dialog##{dialog_id}", visible: :all) }
+
+    expect(triggers.map { it['aria-haspopup'] }).to all(eq('dialog'))
+  end
 end

@@ -15,6 +15,7 @@
     "
     data-fr-opened="false"
     aria-controls="dossiers-search-modal"
+    aria-haspopup="dialog"
   >
     <%= t('views.users.dossiers.index.search.open') %>
   </button>
@@ -28,6 +29,7 @@
     "
     data-fr-opened="false"
     aria-controls="dossiers-filter-modal"
+    aria-haspopup="dialog"
     data-controller="lazy-frame"
     data-action="lazy-frame#load"
     data-lazy-frame-frame-id-value="<%= Dossiers::UserSearchComponent::FILTER_PANEL_FRAME_ID %>"
