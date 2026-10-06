@@ -5,6 +5,7 @@ export class EnableSubmitIfFilledController extends Controller {
 
   declare readonly submitTarget: HTMLButtonElement;
   declare readonly inputTarget: HTMLInputElement;
+  declare readonly inputTargets: HTMLInputElement[];
 
   fill() {
     if (this.inputTarget.value.trim() != '') {
@@ -14,13 +15,12 @@ export class EnableSubmitIfFilledController extends Controller {
     }
   }
 
+  // A combobox renders its value in hidden inputs, re-rendered by React: one per
+  // selected item for a multiple combobox, a single one (empty when nothing is
+  // selected) otherwise.
   fillCombobox() {
-    if (this.submitTarget) {
-      if (document.querySelectorAll('.fr-ds-combobox__multiple')) {
-        this.submitTarget.disabled = false;
-      } else {
-        this.submitTarget.disabled = true;
-      }
-    }
+    this.submitTarget.disabled = !this.inputTargets.some(
+      (input) => input.value.trim() != ''
+    );
   }
 }

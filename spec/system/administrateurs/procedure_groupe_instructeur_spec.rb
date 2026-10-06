@@ -57,6 +57,42 @@ describe 'Manage procedure instructeurs', js: true do
     end
   end
 
+  context 'when adding instructeurs to a procedure without routing' do
+    let(:procedure) { procedures.individual }
+
+    scenario 'the submit button is enabled only while an email is selected' do
+      visit admin_procedure_groupe_instructeurs_path(procedure)
+
+      expect(page).to have_button('Ajouter', disabled: true)
+
+      select_combobox('Emails', 'new_instructeur@gouv.fr', custom_value: true)
+      expect(page).to have_button('Ajouter', disabled: false)
+
+      click_button 'Supprimer new_instructeur@gouv.fr'
+      expect(page).to have_button('Ajouter', disabled: true)
+    end
+  end
+
+  context 'when assigning instructeurs to every groupe of a routed procedure' do
+    before_all { seed "cases/routage" }
+    let(:procedure) { procedures.routee }
+
+    scenario 'only the submit button of the filled form is enabled' do
+      visit admin_procedure_groupe_instructeurs_path(procedure)
+
+      within('#panel-bulk-add') do
+        expect(page).to have_button('Ajouter dans tous les groupes', disabled: true)
+        select_combobox('Emails', 'new_instructeur@gouv.fr', custom_value: true)
+        expect(page).to have_button('Ajouter dans tous les groupes', disabled: false)
+      end
+
+      click_button 'Retrait'
+      within('#panel-bulk-remove') do
+        expect(page).to have_button('Retirer de tous les groupes', disabled: true)
+      end
+    end
+  end
+
   context 'when configuring the routing without a simple routable champ' do
     let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :integer_number }]) }
 
