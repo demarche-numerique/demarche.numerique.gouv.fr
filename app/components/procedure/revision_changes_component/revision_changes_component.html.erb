@@ -75,6 +75,10 @@
         <% list.with_item do %>
           <%= t(".#{prefix}.update_pj_auto_purge", label: change.label) %>
         <% end %>
+      <% when :rib_account_holder_match %>
+        <% list.with_item do %>
+          <%= t(".#{prefix}.#{change.to ? 'enable' : 'disable'}_rib_account_holder_match", label: change.label) %>
+        <% end %>
       <% when :notice_explicative %>
         <% list.with_item do %>
           <%= t(".#{prefix}.update_notice_explicative", label: change.label) %>

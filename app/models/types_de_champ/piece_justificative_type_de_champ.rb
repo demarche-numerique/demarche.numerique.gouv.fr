@@ -2,7 +2,7 @@
 
 class TypesDeChamp::PieceJustificativeTypeDeChamp < TypeDeChamp
   def self.icon = 'fr-icon-attachment-line'
-  def self.option_keys = [:old_pj, :skip_pj_validation, :skip_content_type_pj_validation, :pj_limit_formats, :pj_format_families, :pj_auto_purge]
+  def self.option_keys = [:old_pj, :skip_pj_validation, :skip_content_type_pj_validation, :pj_limit_formats, :pj_format_families, :pj_auto_purge, :rib_account_holder_match]
   def self.column_type = :attachments
 
   FILE_MAX_SIZE = 200.megabytes
@@ -16,7 +16,8 @@ class TypesDeChamp::PieceJustificativeTypeDeChamp < TypeDeChamp
                  :skip_content_type_pj_validation,
                  :pj_limit_formats,
                  :pj_format_families,
-                 :pj_auto_purge
+                 :pj_auto_purge,
+                 :rib_account_holder_match
 
   validates :piece_justificative_template, size: { less_than: FILE_MAX_SIZE }, on: :update
   validates :piece_justificative_template, content_type: -> (_record) { AUTHORIZED_CONTENT_TYPES }, on: :update
@@ -76,10 +77,15 @@ class TypesDeChamp::PieceJustificativeTypeDeChamp < TypeDeChamp
 
   def ocr_compatible? = rib? || justificatif_domicile? || avis_impot?
 
+  def rib_account_holder_match?
+    rib? && ActiveModel::Type::Boolean.new.cast(rib_account_holder_match) || false
+  end
+
   def revision_diff_options
     values = {
       piece_justificative_template: RevisionDiffValue.new(piece_justificative_template.blob&.checksum) { piece_justificative_template.blob&.filename },
       nature:,
+      rib_account_holder_match: rib_account_holder_match?,
     }
     # les natures forcées imposent leurs règles de format : on compare des
     # valeurs normalisées des deux côtés, sinon quitter une nature forcée
