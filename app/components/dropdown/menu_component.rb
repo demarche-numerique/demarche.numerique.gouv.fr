@@ -3,9 +3,9 @@
 class Dropdown::MenuComponent < ApplicationComponent
   renders_one :button_inner_html
   renders_one :menu_header_html
-  # beware, items elements like button_to/link_to must include role: 'menuitem' for aria reason
+  # in a menu (no forms, no explicit role), item links/buttons must carry role: 'menuitem'
   renders_many :items, -> (options = {}, &block) do
-    tag.li(**options.merge(role: 'none'), &block)
+    tag.li(**options, &block)
   end
   renders_many :forms
 
@@ -44,6 +44,10 @@ class Dropdown::MenuComponent < ApplicationComponent
   def menu_role
     return @role if @role
     forms? ? :region : :menu
+  end
+
+  def menu?
+    menu_role.to_s == 'menu'
   end
 
   def menu_class_names

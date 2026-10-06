@@ -4,14 +4,14 @@
 
   - if dossier.may_repasser_en_construction?
     = menu.with_item do
-      = button_to(repasser_en_construction_instructeur_dossier_path(dossier.procedure.id, dossier.id, statut: params[:statut]), method: :post, role: 'menuitem', class: 'dropdown-items-link', form: { role: 'none', data: { turbo: true } }) do
+      = button_to(repasser_en_construction_instructeur_dossier_path(dossier.procedure.id, dossier.id, statut: params[:statut]), method: :post, class: 'dropdown-items-link', form: { data: { turbo: true } }) do
         %span.fr-icon.fr-icon-draft-line.fr-text-default--info.fr-mt-1v{ "aria-hidden": "true" }
         .dropdown-description
           %h4= t('.revert_en_construction')
           L’usager pourra modifier le dossier. Informez-le si nécessaire
 
   - menu.with_item do
-    = link_to('#', data: { action: 'panels#show', panels_name_param: 'pending_correction' }, role: 'menuitem') do
+    = link_to('#', data: { action: 'panels#show', panels_name_param: 'pending_correction' }) do
       %span.fr-icon.fr-icon-error-warning-line.fr-text-default--info.fr-mt-1v{ "aria-hidden": "true" }
       .dropdown-description
         %h4= t('.request_correction')
@@ -36,7 +36,7 @@
 
   - if sva_svr_enabled?
     - menu.with_item do
-      = link_to('#', data: { action: 'panels#show', panels_name_param: 'pending_completion' }, role: 'menuitem') do
+      = link_to('#', data: { action: 'panels#show', panels_name_param: 'pending_completion' }) do
         %span.fr-icon.fr-icon-error-warning-line.fr-text-default--warning.fr-mt-1v{ "aria-hidden": "true" }
         .dropdown-description
           %h4= t('.request_completion')
