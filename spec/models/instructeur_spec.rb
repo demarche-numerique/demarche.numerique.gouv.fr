@@ -279,6 +279,15 @@ describe Instructeur, type: :model do
     end
   end
 
+  describe '#archive_warning_dismissed_for?' do
+    before { create(:instructeurs_procedure, instructeur:, procedure:, archive_warning_dismissed: true) }
+
+    it 'is scoped to the procedure where the warning was dismissed' do
+      expect(instructeur.archive_warning_dismissed_for?(procedure.id)).to be(true)
+      expect(instructeur.archive_warning_dismissed_for?(procedure_2.id)).to be(false)
+    end
+  end
+
   describe '#young_login_token?' do
     let!(:instructeur) { create(:instructeur) }
 

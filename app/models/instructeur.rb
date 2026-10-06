@@ -334,6 +334,11 @@ class Instructeur < ApplicationRecord
     Flipper.enabled?(feature, self)
   end
 
+  def archive_warning_dismissed_for?(procedure_id)
+    @archive_warning_dismissed_procedure_ids ||= instructeurs_procedures.where(archive_warning_dismissed: true).pluck(:procedure_id)
+    procedure_id.in?(@archive_warning_dismissed_procedure_ids)
+  end
+
   private
 
   def assign_to_for_procedure_id(procedure_id)

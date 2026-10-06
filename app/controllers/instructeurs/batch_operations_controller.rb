@@ -2,6 +2,8 @@
 
 module Instructeurs
   class BatchOperationsController < InstructeurController
+    include InstructeurProcedureConcern
+
     before_action :set_procedure
     before_action :ensure_ownership!
 
@@ -17,6 +19,9 @@ module Instructeurs
       begin
         batch = BatchOperation.safe_create!(batch_operation_params)
         flash[:alert] = "Le traitement de masse n’a pas été lancé. Vérifiez que l’action demandée est possible pour les dossiers sélectionnés" if batch.blank?
+        if batch.present? && operation == BatchOperation.operations.fetch(:archiver) && params[:dismiss_archive_warning] == '1'
+          find_or_create_instructeur_procedure(@procedure).update!(archive_warning_dismissed: true)
+        end
       rescue ActiveRecord::RecordInvalid => e
         flash[:alert] = e.record.errors.full_messages
       end

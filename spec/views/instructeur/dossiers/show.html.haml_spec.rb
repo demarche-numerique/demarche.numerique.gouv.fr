@@ -11,6 +11,7 @@ describe 'instructeurs/dossiers/show', type: :view do
   before do
     sign_in(current_instructeur.user)
     allow(view).to receive(:current_instructeur).and_return(current_instructeur)
+    allow(controller).to receive(:current_instructeur).and_return(current_instructeur)
     allow(controller).to receive(:params).and_return(statut:)
     assign(:dossier, dossier)
     assign(:procedure_presentation, procedure_presentation)
