@@ -70,6 +70,11 @@ describe 'Manage procedure instructeurs', js: true do
 
       click_button 'Supprimer new_instructeur@gouv.fr'
       expect(page).to have_button('Ajouter', disabled: true)
+
+      # typed key by key and turned into a tag by the separator, without leaving the field
+      find_field('Emails').send_keys('other_instructeur@gouv.fr', :space)
+      expect(page).to have_button('Supprimer other_instructeur@gouv.fr')
+      expect(page).to have_button('Ajouter', disabled: false)
     end
   end
 
