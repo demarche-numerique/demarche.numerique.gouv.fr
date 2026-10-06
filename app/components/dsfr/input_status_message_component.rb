@@ -24,7 +24,11 @@ module Dsfr
 
     # The visible region shows the errors instead of the status: never announce what it hides.
     def announceable?
-      @champ.errors.empty? && @champ.dossier_nested_errors.empty? && status_announcement?
+      !errored? && status_announcement?
+    end
+
+    def errored?
+      @champ.errors.any? || @champ.dossier_nested_errors.any?
     end
 
     def statutable?

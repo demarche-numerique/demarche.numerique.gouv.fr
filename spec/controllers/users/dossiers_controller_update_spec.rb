@@ -409,6 +409,22 @@ describe Users::DossiersController, type: :controller do
       end
     end
 
+    context 'when a dossier link is refused by the validation' do
+      render_views
+      let(:allowed_procedure) { create(:procedure, :published) }
+      let(:public_type_de_champs) { [{ type: :dossier_link, procedures_limit: true, dossier_link_procedure_ids: [allowed_procedure.id] }] }
+      let(:linked_dossier) { create(:dossier, :en_construction, user:) }
+      let(:payload) { submit_payload.merge(validate: 'true') }
+      let(:value) { linked_dossier.id.to_s }
+
+      it 'empties the live region instead of announcing the linked dossier' do
+        subject
+        region = Nokogiri::HTML5.fragment(response.body).at_css(%(turbo-stream[action="update"][target="#{first_champ.focusable_input_id}-aria-live"]))
+        expect(response.body).to include("Ce dossier n’est pas dans une démarche autorisée")
+        expect(region.text.strip).to be_empty
+      end
+    end
+
     context 'when the champ is an autocomplete with prefillable champs' do
       render_views
       let(:referentiel) { create(:api_referentiel, :exact_match, :with_exact_match_response) }
