@@ -104,8 +104,13 @@ describe Champs::RepetitionChamp do
         champ_for_update(champ.rows.first.flat_children.first).update(value: "rb")
       end
 
-      it "adds a repetition_too_few error" do
+      it "does not add a repetition_too_few error while the dossier is being filled" do
         champ.valid?(:champ_value)
+        expect(champ.errors.where(:value, :repetition_too_few)).to be_empty
+      end
+
+      it "adds a repetition_too_few error on submission" do
+        champ.valid?([:champ_value, :champ_completeness])
         expect(champ.errors.where(:value, :repetition_too_few)).to be_present
       end
     end
@@ -120,7 +125,7 @@ describe Champs::RepetitionChamp do
 
       it "adds a repetition_too_few error even without any rows" do
         fresh_champ = dossier.reload.root_champs_public.find(&:repetition?)
-        fresh_champ.valid?(:champ_value)
+        fresh_champ.valid?([:champ_value, :champ_completeness])
         expect(fresh_champ.errors.where(:value, :repetition_too_few)).to be_present
       end
     end
@@ -150,7 +155,7 @@ describe Champs::RepetitionChamp do
       end
 
       it "does not add any errors" do
-        champ.valid?(:champ_value)
+        champ.valid?([:champ_value, :champ_completeness])
         expect(champ.errors).to be_empty
       end
     end

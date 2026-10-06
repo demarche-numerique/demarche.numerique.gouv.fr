@@ -50,26 +50,27 @@ class Champs::RepetitionChamp < ChampData
     row_ids.count >= type_de_champ.max_repetitions.to_i
   end
 
-  validate :validate_repetition_limits, if: :should_validate_in_current_context?
+  validate :validate_repetition_min, on: :champ_completeness, if: :visible?
+  validate :validate_repetition_max, if: :should_validate_in_current_context?
 
   private
 
-  def validate_repetition_limits
+  def validate_repetition_min
     return if !type_de_champ.limit_repetitions?
-    # Only skip validation when no rows have been filled AND no minimum is required.
-    # When a minimum is configured, always validate so that submitting with 0 rows is caught.
-    return if type_de_champ.min_repetitions.blank? && rows.none? { |row| row.flat_children.any? { it.value.present? } }
+    return if type_de_champ.min_repetitions.blank?
 
-    count = row_ids.count
     min = type_de_champ.min_repetitions.to_i
+    errors.add(:value, :repetition_too_few, min:, libelle: type_de_champ.libelle) if row_ids.count < min
+  end
+
+  def validate_repetition_max
+    return if !type_de_champ.limit_repetitions?
+    return if type_de_champ.max_repetitions.blank?
+
     max = type_de_champ.max_repetitions.to_i
+    return if row_ids.count <= max
+    return if rows.none? { |row| row.flat_children.any? { it.value.present? } }
 
-    if type_de_champ.min_repetitions.present? && count < min
-      errors.add(:value, :repetition_too_few, min: min, libelle: type_de_champ.libelle)
-    end
-
-    if type_de_champ.max_repetitions.present? && count > max
-      errors.add(:value, :repetition_too_many, max: max, libelle: type_de_champ.libelle)
-    end
+    errors.add(:value, :repetition_too_many, max:, libelle: type_de_champ.libelle)
   end
 end
