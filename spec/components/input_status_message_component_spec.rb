@@ -106,6 +106,15 @@ RSpec.describe Dsfr::InputStatusMessageComponent, type: :component do
         end
       end
 
+      context "when the value holds several numbers" do
+        before { champ.update_column(:value, "#{linked_dossier.id}  34197685 fvfez") }
+
+        it "does not present the first number as the linked dossier" do
+          expect(component.statutable?).to be(false)
+          expect(subject).not_to have_css(".fr-message--info")
+        end
+      end
+
       context "when the linked dossier has been hidden by the user" do
         let(:linked_dossier) do
           create(:dossier, :en_instruction, hidden_by_user_at: Time.zone.local(2026, 3, 15))
