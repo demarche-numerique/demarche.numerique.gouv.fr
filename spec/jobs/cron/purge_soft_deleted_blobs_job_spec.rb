@@ -61,7 +61,7 @@ RSpec.describe Cron::PurgeSoftDeletedBlobsJob, type: :job do
 
       before do
         blob_older
-        stub_const('BlobService::BULK_DELETE_LIMIT', 1)
+        stub_const('BlobService::BATCH_SIZE', 1)
       end
 
       it 'purges batch after batch, oldest soft-deleted first' do

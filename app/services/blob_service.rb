@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 
 class BlobService
-  # Swift bulk delete accepts up to 10_000 objects per request; stay well under.
-  BULK_DELETE_LIMIT = 1000
+  # Blobs per purge_blobs_with_variants call, picked by the callers.
+  BATCH_SIZE = 1000
+
+  # Objects per Swift bulk delete. Swift deletes them one by one, so the total time
+  # depends on the object count, not the request count: a smaller request only adds a
+  # round trip, but stays well under the timeouts and costs less to replay.
+  BULK_DELETE_LIMIT = 200
 
   class << self
     # For a batch of expired blobs

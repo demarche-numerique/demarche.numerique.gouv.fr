@@ -26,7 +26,7 @@ class Cron::PurgeSoftDeletedBlobsJob < Cron::CronJob
     previous_ids = nil
     MAX_BATCHES_PER_RUN.times do
       batch = cursor ? expired.where(soft_deleted_at: cursor..) : expired
-      soft_deleted_ats, ids = batch.order(:soft_deleted_at).limit(BlobService::BULK_DELETE_LIMIT)
+      soft_deleted_ats, ids = batch.order(:soft_deleted_at).limit(BlobService::BATCH_SIZE)
         .pluck(:soft_deleted_at, :id).transpose
 
       # ids == previous_ids: the rows survived the purge, so retrying would

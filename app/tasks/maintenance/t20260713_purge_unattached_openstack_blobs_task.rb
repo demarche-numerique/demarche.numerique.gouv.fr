@@ -19,7 +19,7 @@ module Maintenance
     LOG_PATH = Rails.root.join('log', 'purge_unattached_openstack_blobs.log')
 
     def collection
-      ActiveStorage::Blob.where(service_name: :openstack).in_batches(of: BlobService::BULK_DELETE_LIMIT)
+      ActiveStorage::Blob.where(service_name: :openstack).in_batches(of: BlobService::BATCH_SIZE)
     end
 
     def process(batch)

@@ -55,6 +55,15 @@ RSpec.describe BlobService do
         expect(ActiveStorage::Attachment.where(id: image_attachment.id)).not_to exist
       end
 
+      it 'splits the files over several bulk deletes past BULK_DELETE_LIMIT' do
+        stub_const('BlobService::BULK_DELETE_LIMIT', 1)
+
+        purge_blobs_with_variants
+
+        expect(client).to have_received(:delete_multiple_objects).with('bucket', [blob.key]).ordered
+        expect(client).to have_received(:delete_multiple_objects).with('bucket', [variant_blob.key]).ordered
+      end
+
       it 'drops a variant record left without attachment (it would block the parent blob delete)' do
         orphan_variant_record = ActiveStorage::VariantRecord.create!(blob:, variation_digest: "orphan-digest")
 
