@@ -58,4 +58,4 @@
       = render partial: 'instructeurs/dossiers/header_actions', locals: { dossier: }
 
   - if dossier.termine?
-    = render Instructeurs::ArchiveModalComponent.new
+    = render Instructeurs::ArchiveModalComponent.new(procedure: dossier.procedure)

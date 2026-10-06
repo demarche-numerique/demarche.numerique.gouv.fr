@@ -8,6 +8,7 @@ module Instructeurs
     include AvisCreationConcern
     include TurboChampsConcern
     include InstructeurConcern
+    include InstructeurProcedureConcern
     include DossierEditConcern
     include ActionController::Streaming
     include BilansBdfConcern
@@ -194,7 +195,7 @@ module Instructeurs
         flash.alert = t('activerecord.errors.models.dossier.cannot_archive')
       else
         dossier.archiver!(current_instructeur)
-        current_instructeur.update!(archive_warning_dismissed: true) if params[:dismiss_archive_warning] == '1'
+        find_or_create_instructeur_procedure(procedure).update!(archive_warning_dismissed: true) if params[:dismiss_archive_warning] == '1'
       end
       redirect_back_or_to(instructeur_procedure_path(procedure))
     end

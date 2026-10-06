@@ -888,7 +888,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_02_100000) do
 
   create_table "instructeurs", id: :serial, force: :cascade do |t|
     t.string "agent_connect_id_token"
-    t.boolean "archive_warning_dismissed", default: false, null: false
     t.boolean "bypass_email_login_token", default: false, null: false
     t.datetime "created_at", precision: nil
     t.text "encrypted_login_token"
@@ -899,6 +898,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_02_100000) do
   end
 
   create_table "instructeurs_procedures", force: :cascade do |t|
+    t.boolean "archive_warning_dismissed", default: false, null: false
     t.datetime "created_at", null: false
     t.boolean "daily_email_summary", default: false, null: false
     t.string "display_annotation_instructeur_notifications", default: "followed", null: false

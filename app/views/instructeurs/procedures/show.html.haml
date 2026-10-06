@@ -169,7 +169,7 @@
             .fr-table__footer--end.flex-no-grow
 
       - if @statut.in?(%w[traites tous])
-        = render Instructeurs::ArchiveModalComponent.new
+        = render Instructeurs::ArchiveModalComponent.new(procedure: @procedure)
 
     - else
       %h2.empty-text

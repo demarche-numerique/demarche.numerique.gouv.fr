@@ -129,6 +129,10 @@ describe Instructeurs::DossiersController, type: :controller do
     let(:batch_operation) {}
     let(:extra_params) { {} }
 
+    def archive_warning_dismissed_on(procedure)
+      InstructeursProcedure.find_by(instructeur:, procedure:)&.archive_warning_dismissed || false
+    end
+
     before do
       batch_operation
       patch :archive, params: { procedure_id: procedure.id, dossier_id: dossier_to_archive.id, statut: 'traites', **extra_params }
@@ -142,7 +146,7 @@ describe Instructeurs::DossiersController, type: :controller do
       it do
         expect(dossier_to_archive.archived).to eq(true)
         expect(response).to redirect_to(instructeur_procedure_path(dossier_to_archive.procedure))
-        expect(instructeur.reload.archive_warning_dismissed).to be(false)
+        expect(archive_warning_dismissed_on(dossier_to_archive.procedure)).to be(false)
       end
 
       context 'when the instructeur dismisses the archive warning' do
@@ -150,7 +154,7 @@ describe Instructeurs::DossiersController, type: :controller do
 
         it do
           expect(dossier_to_archive.archived).to eq(true)
-          expect(instructeur.reload.archive_warning_dismissed).to be(true)
+          expect(archive_warning_dismissed_on(dossier_to_archive.procedure)).to be(true)
         end
       end
     end
@@ -166,7 +170,7 @@ describe Instructeurs::DossiersController, type: :controller do
       context 'when the instructeur dismisses the archive warning' do
         let(:extra_params) { { dismiss_archive_warning: '1' } }
 
-        it { expect(instructeur.reload.archive_warning_dismissed).to be(false) }
+        it { expect(archive_warning_dismissed_on(dossier_to_archive.procedure)).to be(false) }
       end
     end
 

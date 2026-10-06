@@ -8,6 +8,10 @@ describe Instructeurs::BatchOperationsController, type: :controller do
   describe '#POST create' do
     before { sign_in(instructeur.user) }
 
+    def archive_warning_dismissed_on(procedure)
+      InstructeursProcedure.find_by(instructeur:, procedure:)&.archive_warning_dismissed || false
+    end
+
     let(:params) do
       {
         procedure_id: procedure.id,
@@ -54,13 +58,13 @@ describe Instructeurs::BatchOperationsController, type: :controller do
       let(:params) { super().merge(dismiss_archive_warning: '1') }
 
       it 'remembers that the instructeur dismissed the archive warning' do
-        expect { subject }.to change { instructeur.reload.archive_warning_dismissed }.from(false).to(true)
+        expect { subject }.to change { archive_warning_dismissed_on(procedure) }.from(false).to(true)
       end
     end
 
     context 'when archiving without dismiss_archive_warning' do
       it 'keeps showing the archive warning' do
-        expect { subject }.not_to change { instructeur.reload.archive_warning_dismissed }
+        expect { subject }.not_to change { archive_warning_dismissed_on(procedure) }
       end
     end
 
@@ -69,7 +73,7 @@ describe Instructeurs::BatchOperationsController, type: :controller do
       let(:params) { super().merge(dismiss_archive_warning: '1') }
 
       it 'keeps showing the archive warning' do
-        expect { subject }.not_to change { instructeur.reload.archive_warning_dismissed }
+        expect { subject }.not_to change { archive_warning_dismissed_on(procedure) }
         expect(flash.alert).to eq("Le traitement de masse n’a pas été lancé. Vérifiez que l’action demandée est possible pour les dossiers sélectionnés")
       end
     end
@@ -80,7 +84,7 @@ describe Instructeurs::BatchOperationsController, type: :controller do
       end
 
       it 'does not touch the archive warning preference' do
-        expect { subject }.not_to change { instructeur.reload.archive_warning_dismissed }
+        expect { subject }.not_to change { archive_warning_dismissed_on(procedure) }
       end
     end
 
