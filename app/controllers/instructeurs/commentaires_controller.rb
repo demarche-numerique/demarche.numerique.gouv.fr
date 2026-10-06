@@ -5,7 +5,7 @@ module Instructeurs
     include InstructeurConcern
     before_action :authenticate_instructeur_or_expert!
     before_action :retrieve_procedure_presentation, if: :instructeur_of_dossier?
-    after_action :mark_messagerie_as_read
+    after_action :mark_messagerie_as_read, if: :instructeur_of_dossier?
     helper_method :instructeur_of_dossier?
 
     def destroy
