@@ -24,7 +24,7 @@ module Dsfr
 
     # The visible region shows the errors instead of the status: never announce what it hides.
     def announceable?
-      @champ.errors.empty? && @champ.dossier.errors.none? { nested_error_on_champ?(it) } && status_announcement?
+      @champ.errors.empty? && @champ.dossier_nested_errors.empty? && status_announcement?
     end
 
     def statutable?
@@ -78,11 +78,6 @@ module Dsfr
     end
 
     private
-
-    # Validation can add the errors to another instance of the champ, nested on the dossier.
-    def nested_error_on_champ?(error)
-      error.is_a?(ActiveModel::NestedError) && error.inner_error.base.try(:public_id) == @champ.public_id
-    end
 
     def compute_statut_message
       case @champ.type_de_champ.type_champ
