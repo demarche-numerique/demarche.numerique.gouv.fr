@@ -61,8 +61,7 @@ module Dsfr
     end
 
     def dossier_link_support_statut?
-      # The lookup casts the value to an integer: "123 456" would show dossier 123.
-      type_de_champ.dossier_link? && @champ.value&.match?(Champs::DossierLinkChamp::DOSSIER_NUMBER_REGEXP)
+      type_de_champ.dossier_link? && @champ.dossier_number?
     end
 
     def libelle
