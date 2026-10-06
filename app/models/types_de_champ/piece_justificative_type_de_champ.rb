@@ -200,6 +200,23 @@ class TypesDeChamp::PieceJustificativeTypeDeChamp < TypeDeChamp
          mandatory: mandatory?
        )
       end
+
+      if rib_account_holder_match?
+        cs << Columns::JSONPathColumn.new(
+          procedure_id:,
+          stable_id:,
+          tdc_type: type_champ,
+          label: "#{libelle_with_prefix(prefix)} – #{RIB.human_attribute_name(:account_holder_match)}",
+          type: :boolean,
+          jsonpath: '$.account_holder_match',
+          options_for_select: [
+            [I18n.t('activemodel.attributes.rib.account_holder_match_values.true'), true],
+            [I18n.t('activemodel.attributes.rib.account_holder_match_values.false'), false],
+          ],
+          displayable: true,
+          mandatory: mandatory?
+        )
+      end
     elsif justificatif_domicile?
       cs += [
         [:beneficiary, :text],
