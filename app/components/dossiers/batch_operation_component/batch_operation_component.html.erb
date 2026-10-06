@@ -91,7 +91,7 @@
     <% end %>
 
     <% if available_operations[:options].any? { it[:operation] == BatchOperation.operations.fetch(:archiver) } -%>
-      <%= render Instructeurs::ArchiveModalComponent.new(procedure:) %>
+      <%= render Instructeurs::ArchiveModalComponent.new(procedure:, batch: true) %>
     <% end -%>
   </div>
 </div>

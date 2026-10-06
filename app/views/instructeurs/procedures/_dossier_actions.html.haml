@@ -28,7 +28,7 @@
       = button_to repasser_en_instruction_instructeur_dossier_path(procedure_id, dossier_id, statut: params[:statut]), method: :post, class: 'fr-btn fr-btn--secondary fr-icon-edit-line', form: { data: { turbo: turbo ? 'true' : 'false' } } do
         Repasser en instruction
 
-      - if current_instructeur.archive_warning_dismissed?
+      - if current_instructeur.archive_warning_dismissed_for?(procedure_id)
         = button_to archive_instructeur_dossier_path(procedure_id, dossier_id, statut: params[:statut]), method: :patch, class: 'fr-btn fr-icon-folder-2-line' do
           Déplacer dans “à archiver“
       - else

@@ -44,7 +44,7 @@ RSpec.describe Dossiers::BatchOperationComponent, type: :component do
     context 'statut traites once the archive warning is dismissed' do
       let(:statut) { 'traites' }
 
-      before { user.instructeur.update!(archive_warning_dismissed: true) }
+      before { InstructeursProcedure.find_or_initialize_by(instructeur: user.instructeur, procedure:).update!(position: 1, archive_warning_dismissed: true) }
 
       it do
         is_expected.to have_selector("button[value='archiver']:not([aria-controls])")

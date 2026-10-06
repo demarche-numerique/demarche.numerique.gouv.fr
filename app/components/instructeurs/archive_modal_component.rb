@@ -3,19 +3,18 @@
 class Instructeurs::ArchiveModalComponent < ApplicationComponent
   attr_reader :procedure
 
-  def initialize(procedure: nil)
+  def initialize(procedure: nil, batch: false)
     @procedure = procedure
+    @batch = batch
   end
 
   def render?
-    current_instructeur.present? && !current_instructeur.archive_warning_dismissed?
+    current_instructeur.present? && (procedure.nil? || !current_instructeur.archive_warning_dismissed_for?(procedure.id))
   end
 
   private
 
-  def batch?
-    procedure.present?
-  end
+  def batch? = @batch
 
   def modal_id
     batch? ? 'modal-archive-batch' : 'modal-archive'

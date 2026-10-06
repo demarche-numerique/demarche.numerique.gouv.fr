@@ -221,7 +221,7 @@ class Dossiers::BatchOperationComponent < ApplicationComponent
   def archiver_option
     option = { label: t(".operations.archiver"), operation: BatchOperation.operations.fetch(:archiver) }
 
-    if current_instructeur.archive_warning_dismissed?
+    if current_instructeur.archive_warning_dismissed_for?(procedure.id)
       option
     else
       option.merge(
