@@ -47,6 +47,12 @@ class ErrorsController < ApplicationController
     nil
   end
 
+  def current_super_admin
+    super
+  rescue
+    nil
+  end
+
   private
 
   def render_error(status)

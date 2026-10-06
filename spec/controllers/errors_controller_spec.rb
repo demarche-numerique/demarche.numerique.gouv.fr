@@ -17,6 +17,19 @@ RSpec.describe ErrorsController, type: :controller do
         expect(response).to render_template(:internal_server_error)
         expect(Sentry).not_to have_received(:capture_exception)
       end
+
+      context 'with a super admin session' do
+        before do
+          sign_in(create(:super_admin), scope: :super_admin)
+          allow(SuperAdmin).to receive(:serialize_from_session).and_raise(ActiveRecord::DatabaseConnectionError.hostname_error('db'))
+        end
+
+        it 'still renders the error page' do
+          get :internal_server_error
+
+          expect(response).to render_template(:internal_server_error)
+        end
+      end
     end
   end
 
