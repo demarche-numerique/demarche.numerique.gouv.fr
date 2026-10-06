@@ -199,25 +199,34 @@ describe 'The user', js: true do
     procedure
   end
 
-  scenario 'repetition with min limit reports the error on submission and clears it once the min is reached' do
+  scenario 'repetition with min limit reports the error on submission and clears it once enough rows are filled' do
     log_in_fast(user, procedure_with_repetition_min)
 
     expect(page).to have_selector('.fr-alert.fr-alert--info.fr-alert--sm', text: 'Vous devez renseigner au minimum 2 élément(s).')
     expect(page).not_to have_content('doit contenir au minimum 2 élément(s)')
+
+    within(all('.repetition-row').first) { fill_in 'sous champ', with: 'premier' }
+    wait_for_autosave
+    click_on 'Ajouter un élément à « bloc »'
+    expect(page).to have_selector('.repetition-row', count: 2)
     expect(page).not_to have_selector('.editable-champ-repetition.fr-fieldset--error')
 
     click_on 'Déposer le dossier'
 
     expect(page).to have_content('« bloc » doit contenir au minimum 2 élément(s)')
-    expect(page).to have_content('« [1] sous champ » doit être rempli')
+    expect(page).to have_content('« [2] sous champ » doit être rempli')
     expect(page).to have_selector('.editable-champ-repetition.fr-fieldset--error')
 
     click_on 'Ajouter un élément à « bloc »'
-    expect(page).to have_selector('.repetition .champs-group', count: 2)
+    expect(page).to have_selector('.repetition-row', count: 3)
+    expect(page).to have_selector('.editable-champ-repetition.fr-fieldset--error')
+
+    within(all('.repetition-row').last) { fill_in 'sous champ', with: 'troisième' }
+    wait_for_autosave
 
     expect(page).not_to have_content('« bloc » doit contenir au minimum 2 élément(s)')
     expect(page).not_to have_selector('.editable-champ-repetition.fr-fieldset--error')
-    expect(page).to have_content('« [1] sous champ » doit être rempli')
+    expect(page).to have_content('« [2] sous champ » doit être rempli')
   end
 
   let(:procedure_with_repetition_2) do

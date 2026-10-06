@@ -85,7 +85,7 @@ describe Champs::RepetitionChamp do
         public_type_de_champs: [
           {
             type: :repetition,
-            children: [{ type: :text }],
+            children:,
             libelle: "Bloc",
             limit_repetitions: '1',
             min_repetitions: min_rep,
@@ -93,6 +93,7 @@ describe Champs::RepetitionChamp do
           },
         ])
     end
+    let(:children) { [{ type: :text }] }
     let(:dossier) { create(:dossier, procedure:) }
     let(:champ) { dossier.root_champs_public.find(&:repetition?) }
 
@@ -127,6 +128,48 @@ describe Champs::RepetitionChamp do
         fresh_champ = dossier.reload.root_champs_public.find(&:repetition?)
         fresh_champ.valid?([:champ_value, :champ_completeness])
         expect(fresh_champ.errors.where(:value, :repetition_too_few)).to be_present
+      end
+    end
+
+    context "when an added row is left empty" do
+      let(:min_rep) { 2 }
+      let(:max_rep) { nil }
+
+      before do
+        champ_for_update(champ.rows.first.flat_children.first).update(value: "rb")
+        champ.add_row(updated_by: "test")
+      end
+
+      it "does not count the empty row" do
+        champ.valid?([:champ_value, :champ_completeness])
+        expect(champ.errors.where(:value, :repetition_too_few)).to be_present
+        expect(champ.min_repetitions_reached?).to be(false)
+      end
+    end
+
+    context "when a row misses a mandatory value" do
+      let(:children) { [{ type: :text, libelle: "Nom" }, { type: :text, libelle: "Rôle", mandatory: true }] }
+      let(:min_rep) { 2 }
+      let(:max_rep) { nil }
+
+      before do
+        champ_for_update(champ.rows.first.flat_children.first).update(value: "Ada")
+        champ_for_update(champ.rows.first.flat_children.last).update(value: "Dev")
+        champ.add_row(updated_by: "test")
+        champ_for_update(champ.rows.last.flat_children.first).update(value: "Grace")
+      end
+
+      it "does not count the incomplete row" do
+        champ.valid?([:champ_value, :champ_completeness])
+        expect(champ.errors.where(:value, :repetition_too_few)).to be_present
+      end
+
+      it "counts the row once its mandatory values are filled" do
+        champ_for_update(champ.rows.last.flat_children.last).update(value: "Ops")
+
+        champ.valid?([:champ_value, :champ_completeness])
+        expect(champ.errors.where(:value, :repetition_too_few)).to be_empty
+        expect(champ.min_repetitions_reached?).to be(true)
       end
     end
 

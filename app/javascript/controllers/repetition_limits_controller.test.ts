@@ -9,35 +9,37 @@ suite('RepetitionLimitsController', () => {
   let application: Application;
   let fieldset: HTMLFieldSetElement;
 
-  const rows = () => fieldset.querySelector('.repetition') as HTMLElement;
   const errorMessage = () =>
     fieldset.querySelector('#bloc-error') as HTMLElement;
-  const row = () =>
-    '<div data-repetition-limits-target="row" class="repetition-row"></div>';
 
-  const addRow = async () => {
-    rows().insertAdjacentHTML('beforeend', row());
+  const dispatchMinReached = async (errorId: string) => {
+    document.documentElement.dispatchEvent(
+      new CustomEvent('repetition:min-reached', {
+        bubbles: true,
+        detail: { error_id: errorId }
+      })
+    );
     await nextFrame();
   };
 
-  const mount = async (rowsCount: number) => {
+  beforeEach(async () => {
+    application = Application.start();
+    application.register('repetition-limits', RepetitionLimitsController);
+
     fieldset = document.createElement('fieldset');
     fieldset.className = 'fr-fieldset fr-fieldset--error';
     fieldset.innerHTML = `
-      <div data-controller="repetition-limits" data-repetition-limits-min-value="2" data-repetition-limits-error-id-value="bloc-error">
-        <div class="repetition">${row().repeat(rowsCount)}</div>
-      </div>
+      <div
+        data-controller="repetition-limits"
+        data-action="repetition:min-reached@document->repetition-limits#clear"
+        data-repetition-limits-error-id-value="bloc-error"
+      ></div>
       <div class="fr-messages-group" id="bloc-error">
         <p class="fr-message fr-message--error">« bloc » doit contenir au minimum 2 élément(s)</p>
       </div>
     `;
     document.body.appendChild(fieldset);
     await nextFrame();
-  };
-
-  beforeEach(() => {
-    application = Application.start();
-    application.register('repetition-limits', RepetitionLimitsController);
   });
 
   afterEach(() => {
@@ -45,26 +47,17 @@ suite('RepetitionLimitsController', () => {
     document.body.innerHTML = '';
   });
 
-  test('keeps the error rendered by the server on load', async () => {
-    await mount(2);
-
-    expect(fieldset.classList.contains('fr-fieldset--error')).toBe(true);
-    expect(errorMessage().textContent).toContain('au minimum 2');
-  });
-
-  test('keeps the error while the minimum is not reached', async () => {
-    await mount(0);
-    await addRow();
-
-    expect(fieldset.classList.contains('fr-fieldset--error')).toBe(true);
-    expect(errorMessage().textContent).toContain('au minimum 2');
-  });
-
-  test('clears the error once a new row reaches the minimum', async () => {
-    await mount(1);
-    await addRow();
+  test('clears the error of its block once the minimum is reached', async () => {
+    await dispatchMinReached('bloc-error');
 
     expect(fieldset.classList.contains('fr-fieldset--error')).toBe(false);
     expect(errorMessage().textContent?.trim()).toBe('');
+  });
+
+  test('ignores the minimum reached by another block', async () => {
+    await dispatchMinReached('other-bloc-error');
+
+    expect(fieldset.classList.contains('fr-fieldset--error')).toBe(true);
+    expect(errorMessage().textContent).toContain('au minimum 2');
   });
 });
