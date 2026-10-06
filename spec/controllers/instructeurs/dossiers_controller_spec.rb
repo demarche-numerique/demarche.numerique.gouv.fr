@@ -2165,6 +2165,25 @@ describe Instructeurs::DossiersController, type: :controller do
         expect(dossier.dossier_labels.count).to eq(0)
         expect(subject.body).to include('Ajouter un label')
       end
+
+      context 'when a concurrent request already removed the label' do
+        before do
+          # Simulates the other request (double submit, second tab) deleting
+          # the row between listing the labels and looking each one up again.
+          # The fix no longer does that lookup, so this guards against bringing it back.
+          allow(DossierLabel).to receive(:find_by).and_wrap_original do |find_by, **attributes|
+            DossierLabel.where(attributes).delete_all
+            find_by.call(**attributes)
+          end
+        end
+
+        it 'removes the labels without failing' do
+          subject
+
+          expect(response).to have_http_status(:ok)
+          expect(dossier.reload.dossier_labels).to be_empty
+        end
+      end
     end
 
     context 'when a label_id belongs to another procedure' do
