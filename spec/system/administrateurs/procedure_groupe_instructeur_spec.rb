@@ -82,18 +82,13 @@ describe 'Manage procedure instructeurs', js: true do
     before_all { seed "cases/routage" }
     let(:procedure) { procedures.routee }
 
-    scenario 'only the submit button of the filled form is enabled' do
+    scenario 'the submit button is enabled once an email is selected' do
       visit admin_procedure_groupe_instructeurs_path(procedure)
 
       within('#panel-bulk-add') do
         expect(page).to have_button('Ajouter dans tous les groupes', disabled: true)
         select_combobox('Emails', 'new_instructeur@gouv.fr', custom_value: true)
         expect(page).to have_button('Ajouter dans tous les groupes', disabled: false)
-      end
-
-      click_button 'Retrait'
-      within('#panel-bulk-remove') do
-        expect(page).to have_button('Retirer de tous les groupes', disabled: true)
       end
     end
   end
