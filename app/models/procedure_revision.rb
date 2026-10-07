@@ -221,10 +221,10 @@ class ProcedureRevision < ApplicationRecord
   # once the dossier is submitted.
   def used_by_a_condition?(tdc)
     stable_id = tdc.stable_id
-    # An annotation can gate another annotation, never a question of the form.
-    scope = tdc.public? ? nil : :private
 
-    return true if type_de_champs_for(scope:).any? { _1.condition? && _1.condition.sources.include?(stable_id) }
+    # Une question du formulaire peut être conditionnée par une annotation : la dépendance va
+    # dans les deux sens, il faut scanner les deux collections.
+    return true if type_de_champs_for.any? { _1.condition? && _1.condition.sources.include?(stable_id) }
     return true if ineligibilite_enabled? && ineligibilite_rules&.sources&.include?(stable_id)
 
     procedure.used_by_routing_rules?(tdc)
