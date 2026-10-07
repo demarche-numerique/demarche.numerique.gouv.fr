@@ -2,8 +2,6 @@
 
 module Manager
   class ProceduresController < Manager::ApplicationController
-    include ActiveSupport::NumberHelper
-    include CsvParsingConcern
     include RequiresFreshSuperAdminOtp
 
     before_action :verify_fresh_super_admin_otp!, only: [:add_administrateur_and_instructeur]
@@ -134,58 +132,12 @@ module Manager
       redirect_to manager_procedure_path(procedure)
     end
 
-    def add_tags
-      if procedure.update(tags: tags_params[:tags])
-        flash.notice = "Le modèle est mis à jour."
-      else
-        flash.alert = procedure.errors.full_messages.join(', ')
-      end
-      redirect_to manager_procedure_path(procedure)
-    end
-
     def update_template_status
       if procedure.update(template_params)
         redirect_to manager_procedure_path(procedure), notice: 'Le statut de modèle a été mis à jour.'
       else
         flash.alert = procedure.errors.full_messages.join(', ')
       end
-    end
-
-    def import_data
-    end
-
-    def import_tags
-      case validate_csv_upload(tags_csv_file)
-      when :not_csv
-        flash[:alert] = "Importation impossible : veuillez importer un fichier CSV"
-        return redirect_to manager_administrateurs_path
-      when :too_large
-        flash[:alert] = "Importation impossible : le poids du fichier est supérieur à #{number_to_human_size(CSV_MAX_SIZE)}"
-        return redirect_to manager_administrateurs_path
-      end
-
-      procedure_tags = parse_csv(tags_csv_file).map { |r| r.to_h.slice('demarche', 'tag') }
-      invalid_ids = []
-
-      procedure_tags.each do |procedure_tag|
-        procedure = Procedure.find_by(id: procedure_tag['demarche'])
-        tags = procedure_tag["tag"].split(',').map(&:strip).map(&:capitalize)
-
-        if procedure.nil?
-          invalid_ids << procedure_tag['demarche']
-          next
-        end
-
-        tags.each do |tag|
-          procedure.tags.push(tag)
-        end
-        procedure.save
-      end
-
-      message = "Import des tags terminé."
-      message += " Ces démarches n'existent pas : #{invalid_ids.to_sentence}" if invalid_ids.any?
-      flash.notice = message
-      redirect_to manager_administrateurs_path
     end
 
     private
@@ -210,16 +162,8 @@ module Manager
       params.require(:type_de_champ).permit(:piece_justificative_template)
     end
 
-    def tags_params
-      params.require(:procedure).permit(tags: [])
-    end
-
     def template_params
       params.require(:procedure).permit(:template)
-    end
-
-    def tags_csv_file
-      params[:tags_csv_file]
     end
 
     def unfiltered_list?

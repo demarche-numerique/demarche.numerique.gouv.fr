@@ -20,6 +20,7 @@ class Procedure < ApplicationRecord
 
   include Discard::Model
   self.discard_column = :hidden_at
+  self.ignored_columns += [:tags]
 
   default_scope -> { kept }
 
@@ -658,12 +659,6 @@ class Procedure < ApplicationRecord
 
   def publiee_or_close?
     publiee? || close?
-  end
-
-  def self.tags
-    unnest = Arel::Nodes::NamedFunction.new('UNNEST', [self.arel_table[:tags]])
-    query = self.select(unnest.as('tags')).publiees.distinct.order('tags') # rubocop:disable Rails/OrderArguments
-    self.connection.query(query.to_sql).flatten
   end
 
   def compute_dossiers_count

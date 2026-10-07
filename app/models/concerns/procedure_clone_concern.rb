@@ -53,7 +53,6 @@ module ProcedureCloneConcern
     'opendata',
     'duree_conservation_etendue_par_ds',
     'max_duree_conservation_dossiers_dans_ds',
-    'tags',
     'piece_justificative_multiple',
     'estimated_duration_visible',
     'estimated_processing_duration_visible',
@@ -279,6 +278,7 @@ module ProcedureCloneConcern
         revision_type_de_champs: :type_de_champ,
         dossier_submitted_message: [],
       },
+      procedure_tags: [],
     }
 
     if options[:clone_attestation_acceptation_template]

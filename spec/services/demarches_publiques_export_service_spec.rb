@@ -8,6 +8,7 @@ describe DemarchesPubliquesExportService do
 
   describe 'call' do
     it 'generate json for all closed procedures' do
+      procedure.procedure_tags = ['Social', 'Étrangers', 'Agriculture'].map { ProcedureTag.create!(name: it) }
       expected_result = {
         id: procedure.to_typed_id,
         number: procedure.id,
@@ -37,7 +38,7 @@ describe DemarchesPubliquesExportService do
         dateDepublication: nil,
         dateFermeture: nil,
         zones: ["Ministère 1"],
-        tags: [],
+        tags: ['Agriculture', 'Étrangers', 'Social'],
         dossiersCount: 4,
         revision: {
           id: procedure.active_revision.to_typed_id,

@@ -82,7 +82,11 @@ Cela évite l’accès récursif aux dossiers."
       procedure.aasm.current_state
     end
 
-    delegate :description, :opendata, :tags, to: :procedure
+    delegate :description, :opendata, to: :procedure
+
+    def tags
+      dataloader.with(Sources::Association, :procedure_tags).load(procedure).map(&:name).sort_by { I18n.transliterate(it).downcase }
+    end
 
     def demarche_url
       dataloader.with(Sources::Association, :procedure_paths).load(procedure).then do |paths|
