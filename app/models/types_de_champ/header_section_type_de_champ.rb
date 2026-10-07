@@ -28,7 +28,7 @@ class TypesDeChamp::HeaderSectionTypeDeChamp < TypeDeChamp
 
     difference = current_level - previous_level
     if current_level > previous_level && difference != 1
-      I18n.t('activerecord.errors.type_de_champ.attributes.header_section_level.gap_error', level: current_level - previous_level - 1)
+      I18n.t('activerecord.errors.type_de_champ.attributes.header_section_level.gap_error', level: current_level - 1)
     else
       nil
     end

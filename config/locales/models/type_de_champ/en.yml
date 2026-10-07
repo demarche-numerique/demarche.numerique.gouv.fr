@@ -90,4 +90,4 @@ en:
       type_de_champ:
         attributes:
           header_section_level:
-            gap_error: 'An header section with %{level} is missing.'
+            gap_error: 'should be preceded by a level %{level} header section'
