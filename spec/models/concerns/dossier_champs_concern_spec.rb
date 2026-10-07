@@ -1014,10 +1014,10 @@ RSpec.describe DossierChampsConcern do
         dossier.with_instructeur_buffer_stream { assign_champs_attributes(attributes_0) }
       end
 
-      # Each phase happens at a distinct virtual time on purpose: champ data is
-      # deduplicated by taking the most recent updated_at per public_id, and
-      # `sort_by` is not stable, so rows sharing an updated_at would resolve
-      # arbitrarily. Do not collapse the travel_to blocks or reuse an offset.
+      # Each phase happens at a distinct virtual time on purpose: the history
+      # stream is rebuilt from the merge times, which are second-precision
+      # strings, so merges sharing a second would overlap. Do not collapse the
+      # travel_to blocks or reuse an offset.
       it "keeps the user and instructeur buffers independent and lets a user merge win" do
         subject
         dossier.save!
@@ -1073,8 +1073,9 @@ RSpec.describe DossierChampsConcern do
             expect(user_draft_champ_99.value).to eq("Hello???")
           end
 
-          dossier.merge_user_buffer_stream!
-          dossier.touch(:en_construction_at)
+          checkpoint = dossier.merge_user_buffer_stream!
+          dossier.traitements.usager_submit_en_construction(checkpoint:)
+          dossier.save!
           dossier.champ_data.reload
         end
 
@@ -1158,6 +1159,75 @@ RSpec.describe DossierChampsConcern do
 
       expect(history_champ).to be_persisted
       expect(history_champ.value).to eq('before deposit')
+    end
+
+    def fill(value)
+      champ = dossier.champ_for_update(type_de_champ, updated_by: 'usager')
+      champ.update!(value:)
+      champ.update_timestamps
+      champ
+    end
+
+    def correct(value)
+      dossier.with_update_stream(dossier.user) do
+        dossier.public_champ_for_update(type_de_champ.public_id(nil), updated_by: 'usager').update!(value:)
+      end
+    end
+
+    def history_champ
+      dossier.reload.with_user_history_stream { dossier.project_champ(type_de_champ) }
+    end
+
+    it 'keeps showing a row whose data landed after the deposit' do
+      champ = fill('before deposit')
+      dossier.passer_en_construction!
+
+      # a fetch retry, an OCR result… stamp the main row as modified
+      travel_to(1.hour.from_now) do
+        champ.reload.update!(value_json: { 'fetched' => true })
+        champ.update_timestamps
+      end
+
+      expect(history_champ.value).to eq('before deposit')
+    end
+
+    it 'shows the values of the latest usager correction' do
+      fill('deposited')
+      dossier.passer_en_construction!
+
+      travel_to(1.hour.from_now) do
+        correct('corrected')
+        dossier.reload.usager_submit_en_construction!
+      end
+
+      expect(history_champ.value).to eq('corrected')
+    end
+
+    it 'leaves out an instructeur correction made after the usager submission' do
+      fill('deposited')
+      dossier.passer_en_construction!
+
+      travel_to(1.hour.from_now) do
+        dossier.with_instructeur_buffer_stream do
+          dossier.public_champ_for_update(type_de_champ.public_id(nil), updated_by: 'instructeur').update!(value: 'by instructeur')
+        end
+        dossier.reload.merge_instructeur_buffer_stream!
+      end
+
+      expect(history_champ.value).to eq('deposited')
+    end
+
+    it 'dates a correction merged before checkpoints existed by the creation of its row' do
+      fill('deposited')
+      dossier.passer_en_construction!
+
+      travel_to(1.hour.from_now) do
+        correct('corrected before 2026-06-02')
+        dossier.reload.merge_user_buffer_stream!
+      end
+      dossier.champ_data.where(stream: Dossier::MAIN_STREAM).update_all(checkpoint: nil)
+
+      expect(history_champ.value).to eq('deposited')
     end
   end
 
