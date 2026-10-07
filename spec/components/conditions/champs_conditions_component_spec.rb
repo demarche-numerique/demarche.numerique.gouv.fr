@@ -224,6 +224,25 @@ describe Conditions::ChampsConditionsComponent, type: :component do
         end
       end
 
+      context 'and a private annotation among the sources' do
+        let(:annotation) { create(:type_de_champ_yes_no, libelle: 'Statut', private: true) }
+        let(:upper_tdcs) do
+          [
+            create(:type_de_champ_header_section_level_1, libelle: 'Section publique'),
+            create(:type_de_champ_yes_no, libelle: 'Statut'),
+            annotation,
+          ]
+        end
+        let(:condition) { ds_eq(champ_value(annotation.stable_id), constant(true)) }
+        let(:select) { "select[name='type_de_champ[condition_form][rows][][targeted_champ]']" }
+
+        it 'groups it apart from the last public section' do
+          expect(page).to have_selector("#{select} > option[disabled]", text: 'Section publique')
+          expect(page).to have_selector("#{select} > option", text: 'Statut', count: 1)
+          expect(page).to have_selector("#{select} > optgroup[label='Annotations privées'] > option[selected]", text: 'Statut')
+        end
+      end
+
       context 'and 2 conditions' do
         let(:condition) { ds_and([empty_operator(empty, empty), empty_operator(empty, empty)]) }
 

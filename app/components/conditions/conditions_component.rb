@@ -40,8 +40,9 @@ class Conditions::ConditionsComponent < ApplicationComponent
     # - its type has changed : number -> carto
     # - it has been removed
     # - it has been put lower in the form
-    current_target_valid = sources_by_section
+    current_target_valid = sources_by_visibility
       .values
+      .flat_map(&:values)
       .flat_map { it.map(&:last) }
       .include?(targeted_champ)
 
@@ -49,22 +50,30 @@ class Conditions::ConditionsComponent < ApplicationComponent
 
     select_tag(
       input_name_for('targeted_champ'),
-      target_options_html(sources_by_section, selected_target),
+      target_options_html(selected_target),
       onchange: "this.form.action = this.form.action + '/change_targeted_champ?row_index=#{row_index}'",
       id: input_id_for('targeted_champ', row_index),
       class: { 'fr-select': true, alert: !current_target_valid }
     )
   end
 
-  def target_options_html(sources_by_section, selected_target)
+  def target_options_html(selected_target)
     options = [option_tag(t('.select'), empty, selected_target)]
+    options += section_options(sources_by_visibility[:public], selected_target)
 
-    sources_by_section.each do |section, sources|
-      options << content_tag(:option, section.libelle, disabled: true) if section.present?
-      sources.each { |label, source| options << option_tag(label, source, selected_target) }
+    if sources_by_visibility[:private].present?
+      private_options = safe_join(section_options(sources_by_visibility[:private], selected_target))
+      options << content_tag(:optgroup, private_options, label: t('.private_annotations_group'))
     end
 
     safe_join(options)
+  end
+
+  def section_options(sources_by_section, selected_target)
+    sources_by_section.flat_map do |section, sources|
+      options = sources.map { |label, source| option_tag(label, source, selected_target) }
+      section.present? ? [content_tag(:option, section.libelle, disabled: true), *options] : options
+    end
   end
 
   def option_tag(label, source, selected)
@@ -79,9 +88,17 @@ class Conditions::ConditionsComponent < ApplicationComponent
     !@champ_value_in_condition
   end
 
-  def sources_by_section
-    @sources_by_section ||= index_by_top_section(@source_tdcs)
-      .transform_values { |tdcs| to_sources(tdcs) }
+  # Découper par visibilité avant le regroupement par section : sinon les annotations tombent
+  # sous le dernier titre public, sans séparateur.
+  def sources_by_visibility
+    @sources_by_visibility ||= @source_tdcs.partition(&:public?).then do |public_tdcs, private_tdcs|
+      { public: sources_by_section(public_tdcs), private: sources_by_section(private_tdcs) }
+    end
+  end
+
+  def sources_by_section(tdcs)
+    index_by_top_section(tdcs)
+      .transform_values { to_sources(it) }
       .compact_blank
   end
 
@@ -250,7 +267,7 @@ class Conditions::ConditionsComponent < ApplicationComponent
   end
 
   def render?
-    @condition.present? || sources_by_section.any?
+    @condition.present? || sources_by_visibility.values.any?(&:present?)
   end
 
   def input_name_for(name)
