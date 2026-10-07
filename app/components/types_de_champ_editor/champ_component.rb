@@ -1,12 +1,11 @@
 # frozen_string_literal: true
 
 class TypesDeChampEditor::ChampComponent < ApplicationComponent
-  attr_reader :coordinate, :upper_coordinates
+  attr_reader :coordinate
 
-  def initialize(coordinate:, upper_coordinates:, focused: false, errors: '')
+  def initialize(coordinate:, focused: false, errors: '')
     @coordinate = coordinate
     @focused = focused
-    @upper_coordinates = upper_coordinates
     @errors = errors
   end
 

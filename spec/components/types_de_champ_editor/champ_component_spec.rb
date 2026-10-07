@@ -2,7 +2,7 @@
 
 describe TypesDeChampEditor::ChampComponent, type: :component do
   describe 'render' do
-    let(:component) { described_class.new(coordinate:, upper_coordinates: []) }
+    let(:component) { described_class.new(coordinate:) }
     let(:routing_rules_stable_ids) { [] }
     let(:ineligibilite_rules_used?) { false }
 
@@ -100,7 +100,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
   describe 'piece_justificative field' do
     let(:procedure) { create(:procedure, piece_justificative_multiple: true, public_type_de_champs: [{ type: :piece_justificative }]) }
     let(:coordinate) { procedure.draft_revision.public_revision_type_de_champs.first }
-    let(:component) { described_class.new(coordinate:, upper_coordinates: []) }
+    let(:component) { described_class.new(coordinate:) }
 
     before do
       allow_any_instance_of(Procedure).to receive(:stable_ids_used_by_routing_rules).and_return([])
