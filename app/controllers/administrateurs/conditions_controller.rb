@@ -63,7 +63,7 @@ module Administrateurs
       ProcedureRevisionPreloader.load_one(draft_revision)
       @tdc = draft_revision.find_and_ensure_exclusive_use(params[:stable_id])
       @coordinate = draft_revision.coordinate_for(@tdc)
-      @upper_tdcs = @coordinate.upper_coordinates.map(&:type_de_champ)
+      @upper_tdcs = @coordinate.condition_source_coordinates.map(&:type_de_champ)
     end
 
     def draft_revision
