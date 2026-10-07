@@ -1975,7 +1975,7 @@ describe Instructeurs::DossiersController, type: :controller do
     let!(:dossier) { create(:dossier, :en_construction, procedure: procedure, groupe_instructeur: procedure.groupe_instructeurs.reorder(:id).first) }
 
     before do
-      post :reaffectation,
+      get :reaffectation,
          params: {
            procedure_id: procedure.id,
            dossier_id: dossier.id,

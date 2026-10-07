@@ -33,7 +33,7 @@ module Administrateurs
         flash.now.alert = "L’email contient des erreurs et n’a pas pu être enregistré. Veuillez les corriger"
         @email_template = email_template
         @dossier = preview_dossier
-        render :edit
+        render :edit, status: :unprocessable_content
       end
     end
 

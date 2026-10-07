@@ -50,7 +50,7 @@ describe Users::ProfilController, type: :controller do
   describe 'GET #show' do
     render_views
 
-    before { post :show }
+    before { get :show }
 
     context 'when the current user is not an instructeur' do
       it { expect(response.body).to include(I18n.t('users.profil.show.transfer_title')) }
@@ -60,7 +60,7 @@ describe Users::ProfilController, type: :controller do
         let(:next_owner) { 'loulou@lou.com' }
         let!(:transfer) { DossierTransfer.initiate(next_owner, dossiers) }
 
-        before { post :show }
+        before { get :show }
 
         it { expect(response.body).to include(I18n.t('users.profil.show.one_waiting_transfer', count: dossiers.count, email: next_owner)) }
       end

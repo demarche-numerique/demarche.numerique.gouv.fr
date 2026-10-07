@@ -268,7 +268,7 @@ describe Administrateurs::ServicesController, type: :controller do
 
       it do
         expect(flash.alert).not_to be_nil
-        expect(response).to have_http_status(:ok)
+        expect(response).to have_http_status(:unprocessable_content)
         expect(response).to render_template(:edit)
       end
     end

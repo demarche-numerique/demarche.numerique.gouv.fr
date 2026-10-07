@@ -13,7 +13,7 @@ module Manager
         flash.notice = "Administrateur créé"
         redirect_to manager_administrateurs_path
       else
-        render :new, locals: {
+        render :new, status: :unprocessable_content, locals: {
           page: Administrate::Page::Form.new(dashboard, administrateur),
         }
       end

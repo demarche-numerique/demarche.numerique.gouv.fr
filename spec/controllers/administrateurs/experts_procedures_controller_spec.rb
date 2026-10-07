@@ -55,7 +55,7 @@ describe Administrateurs::ExpertsProceduresController, type: :controller do
         expect(procedure.experts.map(&:email)).to match_array([expert.email, "new@expert.fr"])
         expect(flash.notice).to be_present
         expect(assigns(:maybe_typos)).to eq([])
-        expect(response).to have_http_status(:success)
+        expect(response).to redirect_to(admin_procedure_experts_path(procedure))
       end
     end
 
@@ -66,12 +66,11 @@ describe Administrateurs::ExpertsProceduresController, type: :controller do
         subject
         expect(flash.alert).to be_present
         expect(assigns(:maybe_typos)).to eq([['martin@oraneg.fr', 'martin@orange.fr']])
-        expect(response).to have_http_status(:success)
+        expect(response).to have_http_status(:unprocessable_content)
       end
     end
 
     context 'when forcing email with typos' do
-      render_views
       let(:final_email) { 'martin@oraneg.fr' }
       let(:params) { { procedure_id: procedure.id, final_email: } }
 
@@ -81,9 +80,8 @@ describe Administrateurs::ExpertsProceduresController, type: :controller do
         expect(created_user).to be_an_instance_of(User)
         expect(created_user.expert).to be_an_instance_of(Expert)
         expect(procedure.experts.include?(created_user.expert)).to be_truthy
-        expect(flash.notice).to be_present
-        expect(response).to have_http_status(:success)
-        expect(response.body).to have_content(final_email)
+        expect(flash.notice).to include(final_email)
+        expect(response).to redirect_to(admin_procedure_experts_path(procedure))
       end
     end
   end

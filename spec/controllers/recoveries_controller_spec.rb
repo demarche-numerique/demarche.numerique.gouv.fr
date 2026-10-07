@@ -32,7 +32,7 @@ describe RecoveriesController, type: :controller do
   end
 
   describe 'ensure_pro_connect_is_used' do
-    subject { post :selection }
+    subject { get :selection }
 
     before do
       allow(controller).to receive(:ensure_collectivite_territoriale).and_return(true)
@@ -55,7 +55,7 @@ describe RecoveriesController, type: :controller do
   end
 
   describe 'ensure_collectivite_territoriale' do
-    subject { post :selection }
+    subject { get :selection }
 
     before do
       allow(controller).to receive(:ensure_pro_connect_is_used).and_return(true)

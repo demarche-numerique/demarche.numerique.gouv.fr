@@ -22,7 +22,7 @@ module Administrateurs
         end
       else
         flash.now.alert = "Des erreurs empêchent la validation du connecteur chorus. Corrigez les erreurs"
-        render :edit
+        render :edit, status: :unprocessable_content
       end
     end
 

@@ -39,7 +39,7 @@ module Administrateurs
       else
         @procedure = procedure
         flash[:alert] = @service.errors.full_messages
-        render :new
+        render :new, status: :unprocessable_content
       end
     end
 
@@ -63,7 +63,7 @@ module Administrateurs
         @procedure = procedure
         set_other_procedures
         flash[:alert] = @service.errors.full_messages
-        render :edit
+        render :edit, status: :unprocessable_content
       end
     end
 

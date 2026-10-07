@@ -16,7 +16,7 @@ module GroupeInstructeursSignatureConcern
       end
 
       flash[:alert] = "Aucun fichier joint pour le tampon de l’attestation"
-      render :show
+      render :show, status: :unprocessable_content
     else
       if @groupe_instructeur.signature.attach(signature_file)
         handle_redirect :success

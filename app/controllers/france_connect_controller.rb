@@ -68,13 +68,13 @@ class FranceConnectController < ApplicationController
     if user.present?
       if params[:password].blank?
         @merge_email = sanitized_email_params
-        return render :confirm_email_merge_password
+        return render :confirm_email_merge_password, status: :unprocessable_content
       end
 
       if !user.valid_for_authentication? { user.valid_password?(params[:password]) }
         flash.now[:alert] = t('france_connect.flash.invalid_password')
         @merge_email = sanitized_email_params
-        return render :confirm_email_merge_password
+        return render :confirm_email_merge_password, status: :unprocessable_content
       end
     end
 

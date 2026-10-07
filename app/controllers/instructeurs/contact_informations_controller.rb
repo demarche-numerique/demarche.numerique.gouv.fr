@@ -14,7 +14,7 @@ module Instructeurs
         redirect_to instructeur_groupe_path(@procedure, @groupe_instructeur), notice: "Les informations de contact ont bien été ajoutées"
       else
         flash[:alert] = @contact_information.errors.full_messages
-        render :new
+        render :new, status: :unprocessable_content
       end
     end
 
@@ -30,7 +30,7 @@ module Instructeurs
         redirect_to instructeur_groupe_path(@procedure, @groupe_instructeur), notice: "Les informations de contact ont bien été modifiées"
       else
         flash[:alert] = @contact_information.errors.full_messages
-        render :edit
+        render :edit, status: :unprocessable_content
       end
     end
 

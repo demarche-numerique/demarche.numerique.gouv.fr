@@ -19,7 +19,7 @@ module Administrateurs
         redirect_to admin_procedure_jetons_path(id: @procedure.id)
       else
         flash.now.alert = "Mise à jour impossible : le jeton n’est pas valide"
-        render :edit_particulier
+        render :edit_particulier, status: :unprocessable_content
       end
     end
 
@@ -43,7 +43,7 @@ module Administrateurs
         redirect_to admin_procedure_jetons_path(id: @procedure.id)
       else
         flash.now.alert = "Mise à jour impossible : le jeton n’est pas valide"
-        render :edit_entreprise
+        render :edit_entreprise, status: :unprocessable_content
       end
     end
 

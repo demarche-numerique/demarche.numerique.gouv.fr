@@ -23,7 +23,7 @@ module Gestionnaires
       else
         flash.now.alert = "Le groupe contient des erreurs et n’a pas pu être enregistré. Veuiller les corriger"
 
-        render :edit
+        render :edit, status: :unprocessable_content
       end
     end
 
