@@ -8,7 +8,7 @@ class Cron::StalledDeclarativeProceduresJob < Cron::CronJob
       .or(Procedure.where(closed_at: 24.hours.ago..))
 
     Dossier.state_en_construction
-      .where(declarative_triggered_at: nil)
+      .where(declarative_triggered_at: nil, hidden_by_user_at: nil)
       .joins(:procedure).merge(Procedure.declarative.merge(recent_or_open))
       .find_each { ProcessStalledDeclarativeDossierJob.perform_later(it) }
   end
