@@ -19,3 +19,6 @@ fr:
         champ_missing_in_previous_revision:
           one: contient la balise "%{tags}" qui n’existe pas sur un des dossiers en cours de traitement. Supprimer la balise
           other: contient %{count} balises (%{tags}) qui n’existent pas sur un des dossiers en cours de traitement. Supprimer les balises
+        block_tag_in_heading:
+          one: contient la balise "%{tags}" dans un titre. Cette balise affiche une liste, la placer dans un paragraphe
+          other: contient %{count} balises (%{tags}) dans un titre. Ces balises affichent une liste, les placer dans un paragraphe
