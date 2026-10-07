@@ -420,6 +420,26 @@ describe Dossier, type: :model do
         end
       end
     end
+
+    context "when the usager restores a dossier hidden before the automatic closing" do
+      let(:dossier) { dossiers.en_construction.tap { it.update_columns(hidden_by_user_at: 1.hour.ago, hidden_by_reason: :user_request) } }
+      let(:author) { dossier.user }
+      let(:auto_archive_on) { 1.day.ago.to_date }
+
+      before { dossier.procedure.update_columns(auto_archive_on:) }
+
+      it "passes it en instruction" do
+        subject
+        expect(dossier.reload).to be_en_instruction
+        expect(dossier).not_to be_hidden_by_user
+      end
+
+      context "when the closing date is in the future" do
+        let(:auto_archive_on) { 1.day.from_now.to_date }
+
+        it { expect { subject }.not_to change { dossier.reload.state } }
+      end
+    end
   end
 
   describe 'methods' do
