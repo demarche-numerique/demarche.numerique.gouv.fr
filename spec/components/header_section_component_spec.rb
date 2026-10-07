@@ -78,4 +78,44 @@ RSpec.describe TypesDeChampEditor::HeaderSectionComponent, type: :component do
       expect(subject).to have_selector('.errors-summary')
     end
   end
+
+  describe 'in the editor' do
+    let(:revision) { procedure.draft_revision }
+    let(:coordinate) { revision.revision_type_de_champs.joins(:type_de_champ).find_by(type_de_champ: { libelle: 'tested' }) }
+
+    let(:level_select) { page.find("select[name$='[header_section_level]']") }
+
+    # With the upper coordinates BlockComponent passes, to prove the header ignores them
+    before { render_inline(TypesDeChampEditor::ChampComponent.new(coordinate:, upper_coordinates: coordinate.upper_coordinates)) }
+
+    shared_examples 'offers level 1 only and shows the error the publication raises' do
+      it do
+        expect(page).to have_selector('.errors-summary')
+        expect(level_select).to have_selector('option:not([disabled])', count: 1)
+        expect(level_select).to have_selector('option[disabled]', count: 2)
+      end
+    end
+
+    context 'for an annotation below public headers' do
+      let(:procedure) do
+        create(:procedure,
+               public_type_de_champs: [{ type: :header_section, level: 1 }, { type: :header_section, level: 2 }],
+               private_type_de_champs: [{ type: :header_section, libelle: 'tested', level: 2 }])
+      end
+
+      it_behaves_like 'offers level 1 only and shows the error the publication raises'
+    end
+
+    context 'for a header in a repetition below root headers' do
+      let(:procedure) do
+        create(:procedure, public_type_de_champs: [
+          { type: :header_section, level: 1 },
+          { type: :header_section, level: 2 },
+          { type: :repetition, children: [{ type: :header_section, libelle: 'tested', level: 2 }] },
+        ])
+      end
+
+      it_behaves_like 'offers level 1 only and shows the error the publication raises'
+    end
+  end
 end
