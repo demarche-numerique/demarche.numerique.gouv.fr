@@ -1464,12 +1464,24 @@ describe Dossier, type: :model do
 
         it { expect(dossier.can_passer_automatiquement_en_instruction?).to be_falsey }
       end
+
+      context 'when dossier was deleted by the usager' do
+        before { dossier.update_columns(hidden_by_user_at: 1.hour.ago) }
+
+        it { expect(dossier.can_passer_automatiquement_en_instruction?).to be_falsey }
+      end
     end
 
     context 'when procedure has auto archive set' do
       before { dossier.procedure.update(auto_archive_on: 1.day.ago) }
 
       it { expect(dossier.can_passer_automatiquement_en_instruction?).to be_truthy }
+
+      context 'when dossier was deleted by the usager' do
+        before { dossier.update_columns(hidden_by_user_at: 1.hour.ago) }
+
+        it { expect(dossier.can_passer_automatiquement_en_instruction?).to be_falsey }
+      end
 
       context 'when auto_archive_on is in the future' do
         before { dossier.procedure.update(auto_archive_on: 1.day.from_now) }
@@ -1523,6 +1535,12 @@ describe Dossier, type: :model do
 
       context 'when dossier never transitioned' do
         it { expect(dossier.can_accepter_automatiquement?).to be_truthy }
+      end
+
+      context 'when dossier was deleted by the usager' do
+        before { dossier.update_columns(hidden_by_user_at: 1.hour.ago) }
+
+        it { expect(dossier.can_accepter_automatiquement?).to be_falsey }
       end
 
       context 'when dossier transitioned before' do

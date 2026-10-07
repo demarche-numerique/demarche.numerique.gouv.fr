@@ -571,6 +571,7 @@ class Dossier < ApplicationRecord
   end
 
   def can_accepter_automatiquement?
+    return false if hidden_by_user? && en_construction?
     return false unless can_terminer?
     return true if declarative_triggered_at.nil? && procedure.declarative_accepte? && en_construction?
     return true if procedure.sva? && can_terminer_automatiquement_by_sva_svr?
@@ -602,6 +603,7 @@ class Dossier < ApplicationRecord
   end
 
   def can_passer_automatiquement_en_instruction?
+    return false if hidden_by_user?
     return true if procedure.auto_archive_on? && !procedure.auto_archive_on.future? && !pending_correction?
     return false if !can_passer_en_instruction?
     return true if declarative_triggered_at.nil? && procedure.declarative_en_instruction?
