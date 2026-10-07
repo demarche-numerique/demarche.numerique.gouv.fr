@@ -7,15 +7,15 @@ describe Champs::CommuneChamp do
   let(:champ) { dossier.root_champs_public.first }
 
   let(:code_insee) { '63102' }
-  let(:code_postal) { '63290' }
-  let(:code_departement) { '63' }
-  let(:code_region) { '84' }
+  let(:postal_code) { '63290' }
+  let(:department_code) { '63' }
+  let(:region_code) { '84' }
   let(:city_name) { 'Châteldon' }
 
   describe 'value' do
     context 'default' do
       before do
-        champ.code_postal = code_postal
+        champ.postal_code = postal_code
         champ.external_id = code_insee
         champ.save
       end
@@ -25,8 +25,8 @@ describe Champs::CommuneChamp do
         expect(champ.name).to eq('Châteldon')
         expect(champ.external_id).to eq(code_insee)
         expect(champ.code).to eq(code_insee)
-        expect(champ.code_departement).to eq(code_departement)
-        expect(champ.code_postal).to eq(code_postal)
+        expect(champ.department_code).to eq(department_code)
+        expect(champ.postal_code).to eq(postal_code)
         expect(champ.type_de_champ.champ_value_for_export(champ, :value)).to eq 'Châteldon (63290)'
         expect(champ.type_de_champ.champ_value_for_export(champ, :code)).to eq '63102'
         expect(champ.type_de_champ.champ_value_for_export(champ, :departement)).to eq '63 – Puy-de-Dôme'
@@ -58,8 +58,8 @@ describe Champs::CommuneChamp do
         expect(champ.name).to eq('Châteldon')
         expect(champ.external_id).to eq(code_insee)
         expect(champ.code).to eq(code_insee)
-        expect(champ.code_departement).to eq(code_departement)
-        expect(champ.code_postal).to eq(code_postal)
+        expect(champ.department_code).to eq(department_code)
+        expect(champ.postal_code).to eq(postal_code)
         expect(champ.type_de_champ.champ_value_for_export(champ, :value)).to eq 'Châteldon (63290)'
         expect(champ.type_de_champ.champ_value_for_export(champ, :code)).to eq '63102'
         expect(champ.type_de_champ.champ_value_for_export(champ, :departement)).to eq '63 – Puy-de-Dôme'
@@ -67,23 +67,20 @@ describe Champs::CommuneChamp do
     end
   end
 
-  describe 'double-write of canonical value_json keys' do
+  describe 'canonical value_json keys' do
     context 'when commune is set via code=' do
       before do
         champ.code = '63102-63290'
         champ.save
       end
 
-      it 'persists canonical keys alongside legacy keys in value_json' do
-        expect(champ.value_json['code_postal']).to eq('63290')
-        expect(champ.value_json['code_departement']).to eq('63')
-        expect(champ.value_json['code_region']).to eq('84')
-
+      it 'persists only the canonical keys in value_json' do
         expect(champ.value_json['postal_code']).to eq('63290')
         expect(champ.value_json['department_code']).to eq('63')
         expect(champ.value_json['region_code']).to eq('84')
         expect(champ.value_json['city_name']).to eq('Châteldon')
         expect(champ.value_json['city_code']).to eq('63102')
+        expect(champ.value_json.keys).not_to include('code_postal', 'code_departement', 'code_region')
       end
     end
   end

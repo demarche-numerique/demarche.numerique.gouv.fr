@@ -3,6 +3,13 @@
 module ColumnsConcern
   extend ActiveSupport::Concern
 
+  # these types lost their plain champ column to an addressable jsonpath column
+  LEGACY_CHAMP_COLUMN_JSONPATHS = {
+    'communes' => '$.city_name',
+    'departements' => '$.department_code',
+    'regions' => '$.region_code',
+  }.freeze
+
   # we cannot use column.id ( == { procedure_id, column_id }.to_json)
   # as the order of the keys is not guaranteed
   # instead, we are using h_id == { procedure_id:, column_id: }
@@ -17,8 +24,12 @@ module ColumnsConcern
         .gsub('->', '.')
         .gsub('departement_code', 'department_code')
         .gsub('naf', 'code_naf')
+        .gsub('$.code_postal', '$.postal_code')
+        .gsub('$.code_departement', '$.department_code')
+        .gsub('$.region_name', '$.region_code')
 
       column = columns.find { _1.h_id == h_id.merge(column_id: new_column_id) }
+      column ||= legacy_champ_column(h_id, new_column_id)
     end
 
     raise ActiveRecord::RecordNotFound.new("Column: unable to find h_id: #{h_id} or label: #{label} for procedure_id #{id}") if column.nil?
@@ -174,6 +185,17 @@ module ColumnsConcern
   end
 
   private
+
+  def legacy_champ_column(h_id, column_id)
+    stable_id = column_id[%r{\Atype_de_champ/(\d+)\z}, 1]&.to_i
+    return if stable_id.nil?
+
+    tdc_type = columns.find { _1.is_a?(Columns::ChampColumn) && _1.stable_id == stable_id }&.tdc_type
+    jsonpath = LEGACY_CHAMP_COLUMN_JSONPATHS[tdc_type]
+    return if jsonpath.nil?
+
+    columns.find { _1.h_id == h_id.merge(column_id: "#{column_id}-#{jsonpath}") }
+  end
 
   def groupe_instructeurs_id_column = dossier_col(table: 'groupe_instructeur', column: 'id', type: :enum)
 

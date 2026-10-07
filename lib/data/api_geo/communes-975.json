@@ -2,14 +2,14 @@
   {
     "name": "Miquelon-Langlade",
     "code": "97501",
-    "departement_code": "975",
+    "department_code": "975",
     "region_code": "975",
     "postal_code": "97500"
   },
   {
     "name": "Saint-Pierre",
     "code": "97502",
-    "departement_code": "975",
+    "department_code": "975",
     "region_code": "975",
     "postal_code": "97500"
   }

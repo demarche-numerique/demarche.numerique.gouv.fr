@@ -3,7 +3,7 @@
     "name": "Les Avirons",
     "code": "97401",
     "epci_code": "249740077",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97425"
   },
@@ -11,7 +11,7 @@
     "name": "Bras-Panon",
     "code": "97402",
     "epci_code": "249740093",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97412"
   },
@@ -19,7 +19,7 @@
     "name": "Entre-Deux",
     "code": "97403",
     "epci_code": "249740085",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97414"
   },
@@ -27,7 +27,7 @@
     "name": "L’Étang-Salé",
     "code": "97404",
     "epci_code": "249740077",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97427"
   },
@@ -35,7 +35,7 @@
     "name": "Petite-Île",
     "code": "97405",
     "epci_code": "249740077",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97429"
   },
@@ -43,7 +43,7 @@
     "name": "La Plaine-des-Palmistes",
     "code": "97406",
     "epci_code": "249740093",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97431"
   },
@@ -51,7 +51,7 @@
     "name": "Le Port",
     "code": "97407",
     "epci_code": "249740101",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97420"
   },
@@ -59,7 +59,7 @@
     "name": "La Possession",
     "code": "97408",
     "epci_code": "249740101",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97419"
   },
@@ -67,7 +67,7 @@
     "name": "Saint-André",
     "code": "97409",
     "epci_code": "249740093",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97440"
   },
@@ -75,7 +75,7 @@
     "name": "Saint-Benoît",
     "code": "97410",
     "epci_code": "249740093",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97437"
   },
@@ -83,7 +83,7 @@
     "name": "Saint-Benoît",
     "code": "97410",
     "epci_code": "249740093",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97470"
   },
@@ -91,7 +91,7 @@
     "name": "Saint-Denis",
     "code": "97411",
     "epci_code": "249740119",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97400"
   },
@@ -99,7 +99,7 @@
     "name": "Saint-Denis",
     "code": "97411",
     "epci_code": "249740119",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97417"
   },
@@ -107,7 +107,7 @@
     "name": "Saint-Denis",
     "code": "97411",
     "epci_code": "249740119",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97490"
   },
@@ -115,7 +115,7 @@
     "name": "Saint-Joseph",
     "code": "97412",
     "epci_code": "249740085",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97480"
   },
@@ -123,7 +123,7 @@
     "name": "Saint-Leu",
     "code": "97413",
     "epci_code": "249740101",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97416"
   },
@@ -131,7 +131,7 @@
     "name": "Saint-Leu",
     "code": "97413",
     "epci_code": "249740101",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97424"
   },
@@ -139,7 +139,7 @@
     "name": "Saint-Leu",
     "code": "97413",
     "epci_code": "249740101",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97436"
   },
@@ -147,7 +147,7 @@
     "name": "Saint-Louis",
     "code": "97414",
     "epci_code": "249740077",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97421"
   },
@@ -155,7 +155,7 @@
     "name": "Saint-Louis",
     "code": "97414",
     "epci_code": "249740077",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97450"
   },
@@ -163,7 +163,7 @@
     "name": "Saint-Paul",
     "code": "97415",
     "epci_code": "249740101",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97411"
   },
@@ -171,7 +171,7 @@
     "name": "Saint-Paul",
     "code": "97415",
     "epci_code": "249740101",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97422"
   },
@@ -179,7 +179,7 @@
     "name": "Saint-Paul",
     "code": "97415",
     "epci_code": "249740101",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97423"
   },
@@ -187,7 +187,7 @@
     "name": "Saint-Paul",
     "code": "97415",
     "epci_code": "249740101",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97434"
   },
@@ -195,7 +195,7 @@
     "name": "Saint-Paul",
     "code": "97415",
     "epci_code": "249740101",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97435"
   },
@@ -203,7 +203,7 @@
     "name": "Saint-Paul",
     "code": "97415",
     "epci_code": "249740101",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97460"
   },
@@ -211,7 +211,7 @@
     "name": "Saint-Pierre",
     "code": "97416",
     "epci_code": "249740077",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97410"
   },
@@ -219,7 +219,7 @@
     "name": "Saint-Pierre",
     "code": "97416",
     "epci_code": "249740077",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97432"
   },
@@ -227,7 +227,7 @@
     "name": "Saint-Philippe",
     "code": "97417",
     "epci_code": "249740085",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97442"
   },
@@ -235,7 +235,7 @@
     "name": "Sainte-Marie",
     "code": "97418",
     "epci_code": "249740119",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97438"
   },
@@ -243,7 +243,7 @@
     "name": "Sainte-Rose",
     "code": "97419",
     "epci_code": "249740093",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97439"
   },
@@ -251,7 +251,7 @@
     "name": "Sainte-Suzanne",
     "code": "97420",
     "epci_code": "249740119",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97441"
   },
@@ -259,7 +259,7 @@
     "name": "Salazie",
     "code": "97421",
     "epci_code": "249740093",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97433"
   },
@@ -267,7 +267,7 @@
     "name": "Le Tampon",
     "code": "97422",
     "epci_code": "249740085",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97418"
   },
@@ -275,7 +275,7 @@
     "name": "Le Tampon",
     "code": "97422",
     "epci_code": "249740085",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97430"
   },
@@ -283,7 +283,7 @@
     "name": "Les Trois-Bassins",
     "code": "97423",
     "epci_code": "249740101",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97426"
   },
@@ -291,7 +291,7 @@
     "name": "Cilaos",
     "code": "97424",
     "epci_code": "249740077",
-    "departement_code": "974",
+    "department_code": "974",
     "region_code": "04",
     "postal_code": "97413"
   }

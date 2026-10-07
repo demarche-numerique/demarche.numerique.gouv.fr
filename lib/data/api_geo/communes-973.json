@@ -3,7 +3,7 @@
     "name": "Régina",
     "code": "97301",
     "epci_code": "249730052",
-    "departement_code": "973",
+    "department_code": "973",
     "region_code": "03",
     "postal_code": "97390"
   },
@@ -11,7 +11,7 @@
     "name": "Régina",
     "code": "97301",
     "epci_code": "249730052",
-    "departement_code": "973",
+    "department_code": "973",
     "region_code": "03",
     "postal_code": "97353"
   },
@@ -19,7 +19,7 @@
     "name": "Cayenne",
     "code": "97302",
     "epci_code": "249730045",
-    "departement_code": "973",
+    "department_code": "973",
     "region_code": "03",
     "postal_code": "97300"
   },
@@ -27,7 +27,7 @@
     "name": "Iracoubo",
     "code": "97303",
     "epci_code": "200027548",
-    "departement_code": "973",
+    "department_code": "973",
     "region_code": "03",
     "postal_code": "97350"
   },
@@ -35,7 +35,7 @@
     "name": "Kourou",
     "code": "97304",
     "epci_code": "200027548",
-    "departement_code": "973",
+    "department_code": "973",
     "region_code": "03",
     "postal_code": "97310"
   },
@@ -43,7 +43,7 @@
     "name": "Macouria",
     "code": "97305",
     "epci_code": "249730045",
-    "departement_code": "973",
+    "department_code": "973",
     "region_code": "03",
     "postal_code": "97355"
   },
@@ -51,7 +51,7 @@
     "name": "Mana",
     "code": "97306",
     "epci_code": "249730037",
-    "departement_code": "973",
+    "department_code": "973",
     "region_code": "03",
     "postal_code": "97318"
   },
@@ -59,7 +59,7 @@
     "name": "Mana",
     "code": "97306",
     "epci_code": "249730037",
-    "departement_code": "973",
+    "department_code": "973",
     "region_code": "03",
     "postal_code": "97360"
   },
@@ -67,7 +67,7 @@
     "name": "Matoury",
     "code": "97307",
     "epci_code": "249730045",
-    "departement_code": "973",
+    "department_code": "973",
     "region_code": "03",
     "postal_code": "97351"
   },
@@ -75,7 +75,7 @@
     "name": "Saint-Georges",
     "code": "97308",
     "epci_code": "249730052",
-    "departement_code": "973",
+    "department_code": "973",
     "region_code": "03",
     "postal_code": "97313"
   },
@@ -83,7 +83,7 @@
     "name": "Remire-Montjoly",
     "code": "97309",
     "epci_code": "249730045",
-    "departement_code": "973",
+    "department_code": "973",
     "region_code": "03",
     "postal_code": "97354"
   },
@@ -91,7 +91,7 @@
     "name": "Roura",
     "code": "97310",
     "epci_code": "249730045",
-    "departement_code": "973",
+    "department_code": "973",
     "region_code": "03",
     "postal_code": "97352"
   },
@@ -99,7 +99,7 @@
     "name": "Roura",
     "code": "97310",
     "epci_code": "249730045",
-    "departement_code": "973",
+    "department_code": "973",
     "region_code": "03",
     "postal_code": "97311"
   },
@@ -107,7 +107,7 @@
     "name": "Saint-Laurent-du-Maroni",
     "code": "97311",
     "epci_code": "249730037",
-    "departement_code": "973",
+    "department_code": "973",
     "region_code": "03",
     "postal_code": "97320"
   },
@@ -115,7 +115,7 @@
     "name": "Sinnamary",
     "code": "97312",
     "epci_code": "200027548",
-    "departement_code": "973",
+    "department_code": "973",
     "region_code": "03",
     "postal_code": "97315"
   },
@@ -123,7 +123,7 @@
     "name": "Montsinéry-Tonnegrande",
     "code": "97313",
     "epci_code": "249730045",
-    "departement_code": "973",
+    "department_code": "973",
     "region_code": "03",
     "postal_code": "97356"
   },
@@ -131,7 +131,7 @@
     "name": "Ouanary",
     "code": "97314",
     "epci_code": "249730052",
-    "departement_code": "973",
+    "department_code": "973",
     "region_code": "03",
     "postal_code": "97380"
   },
@@ -139,7 +139,7 @@
     "name": "Saül",
     "code": "97352",
     "epci_code": "249730037",
-    "departement_code": "973",
+    "department_code": "973",
     "region_code": "03",
     "postal_code": "97314"
   },
@@ -147,7 +147,7 @@
     "name": "Maripasoula",
     "code": "97353",
     "epci_code": "249730037",
-    "departement_code": "973",
+    "department_code": "973",
     "region_code": "03",
     "postal_code": "97370"
   },
@@ -155,7 +155,7 @@
     "name": "Camopi",
     "code": "97356",
     "epci_code": "249730052",
-    "departement_code": "973",
+    "department_code": "973",
     "region_code": "03",
     "postal_code": "97330"
   },
@@ -163,7 +163,7 @@
     "name": "Grand-Santi",
     "code": "97357",
     "epci_code": "249730037",
-    "departement_code": "973",
+    "department_code": "973",
     "region_code": "03",
     "postal_code": "97340"
   },
@@ -171,7 +171,7 @@
     "name": "Saint-Élie",
     "code": "97358",
     "epci_code": "200027548",
-    "departement_code": "973",
+    "department_code": "973",
     "region_code": "03",
     "postal_code": "97312"
   },
@@ -179,7 +179,7 @@
     "name": "Apatou",
     "code": "97360",
     "epci_code": "249730037",
-    "departement_code": "973",
+    "department_code": "973",
     "region_code": "03",
     "postal_code": "97317"
   },
@@ -187,7 +187,7 @@
     "name": "Awala-Yalimapo",
     "code": "97361",
     "epci_code": "249730037",
-    "departement_code": "973",
+    "department_code": "973",
     "region_code": "03",
     "postal_code": "97319"
   },
@@ -195,7 +195,7 @@
     "name": "Papaichton",
     "code": "97362",
     "epci_code": "249730037",
-    "departement_code": "973",
+    "department_code": "973",
     "region_code": "03",
     "postal_code": "97316"
   }

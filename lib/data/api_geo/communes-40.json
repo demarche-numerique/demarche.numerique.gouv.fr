@@ -3,7 +3,7 @@
     "name": "Aire-sur-l’Adour",
     "code": "40001",
     "epci_code": "200030435",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40800"
   },
@@ -11,7 +11,7 @@
     "name": "Amou",
     "code": "40002",
     "epci_code": "244000881",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40330"
   },
@@ -19,7 +19,7 @@
     "name": "Angoumé",
     "code": "40003",
     "epci_code": "244000675",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40990"
   },
@@ -27,7 +27,7 @@
     "name": "Angresse",
     "code": "40004",
     "epci_code": "244000865",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40150"
   },
@@ -35,7 +35,7 @@
     "name": "Arboucave",
     "code": "40005",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40320"
   },
@@ -43,7 +43,7 @@
     "name": "Arengosse",
     "code": "40006",
     "epci_code": "244000691",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40110"
   },
@@ -51,7 +51,7 @@
     "name": "Argelos",
     "code": "40007",
     "epci_code": "244000881",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40700"
   },
@@ -59,7 +59,7 @@
     "name": "Argelouse",
     "code": "40008",
     "epci_code": "200069656",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40430"
   },
@@ -67,7 +67,7 @@
     "name": "Arsague",
     "code": "40011",
     "epci_code": "244000881",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40330"
   },
@@ -75,7 +75,7 @@
     "name": "Artassenx",
     "code": "40012",
     "epci_code": "244000824",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40090"
   },
@@ -83,7 +83,7 @@
     "name": "Arthez-d’Armagnac",
     "code": "40013",
     "epci_code": "244000774",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40190"
   },
@@ -91,7 +91,7 @@
     "name": "Arue",
     "code": "40014",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40120"
   },
@@ -99,7 +99,7 @@
     "name": "Arx",
     "code": "40015",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40310"
   },
@@ -107,7 +107,7 @@
     "name": "Aubagnan",
     "code": "40016",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40700"
   },
@@ -115,7 +115,7 @@
     "name": "Audignon",
     "code": "40017",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40500"
   },
@@ -123,7 +123,7 @@
     "name": "Audon",
     "code": "40018",
     "epci_code": "244000766",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40400"
   },
@@ -131,7 +131,7 @@
     "name": "Aureilhan",
     "code": "40019",
     "epci_code": "244000543",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40200"
   },
@@ -139,7 +139,7 @@
     "name": "Aurice",
     "code": "40020",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40500"
   },
@@ -147,7 +147,7 @@
     "name": "Azur",
     "code": "40021",
     "epci_code": "244000865",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40140"
   },
@@ -155,7 +155,7 @@
     "name": "Bahus-Soubiran",
     "code": "40022",
     "epci_code": "200030435",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40320"
   },
@@ -163,7 +163,7 @@
     "name": "Baigts",
     "code": "40023",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40380"
   },
@@ -171,7 +171,7 @@
     "name": "Banos",
     "code": "40024",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40500"
   },
@@ -179,7 +179,7 @@
     "name": "Bascons",
     "code": "40025",
     "epci_code": "244000824",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40090"
   },
@@ -187,7 +187,7 @@
     "name": "Bas-Mauco",
     "code": "40026",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40500"
   },
@@ -195,7 +195,7 @@
     "name": "Bassercles",
     "code": "40027",
     "epci_code": "244000881",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40700"
   },
@@ -203,7 +203,7 @@
     "name": "Bastennes",
     "code": "40028",
     "epci_code": "244000881",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40360"
   },
@@ -211,7 +211,7 @@
     "name": "Bats",
     "code": "40029",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40320"
   },
@@ -219,7 +219,7 @@
     "name": "Baudignan",
     "code": "40030",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40310"
   },
@@ -227,7 +227,7 @@
     "name": "Bégaar",
     "code": "40031",
     "epci_code": "244000766",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40400"
   },
@@ -235,7 +235,7 @@
     "name": "Belhade",
     "code": "40032",
     "epci_code": "200069656",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40410"
   },
@@ -243,7 +243,7 @@
     "name": "Bélis",
     "code": "40033",
     "epci_code": "200069656",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40120"
   },
@@ -251,7 +251,7 @@
     "name": "Bélus",
     "code": "40034",
     "epci_code": "200069417",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40300"
   },
@@ -259,7 +259,7 @@
     "name": "Bénesse-lès-Dax",
     "code": "40035",
     "epci_code": "244000675",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40180"
   },
@@ -267,7 +267,7 @@
     "name": "Bénesse-Maremne",
     "code": "40036",
     "epci_code": "244000865",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40230"
   },
@@ -275,7 +275,7 @@
     "name": "Benquet",
     "code": "40037",
     "epci_code": "244000808",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40280"
   },
@@ -283,7 +283,7 @@
     "name": "Bergouey",
     "code": "40038",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40250"
   },
@@ -291,7 +291,7 @@
     "name": "Betbezer-d’Armagnac",
     "code": "40039",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40240"
   },
@@ -299,7 +299,7 @@
     "name": "Beylongue",
     "code": "40040",
     "epci_code": "244000766",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40370"
   },
@@ -307,7 +307,7 @@
     "name": "Beyries",
     "code": "40041",
     "epci_code": "244000881",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40700"
   },
@@ -315,7 +315,7 @@
     "name": "Biarrotte",
     "code": "40042",
     "epci_code": "244000659",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40390"
   },
@@ -323,7 +323,7 @@
     "name": "Bias",
     "code": "40043",
     "epci_code": "244000543",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40170"
   },
@@ -331,7 +331,7 @@
     "name": "Biaudos",
     "code": "40044",
     "epci_code": "244000659",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40390"
   },
@@ -339,7 +339,7 @@
     "name": "Biscarrosse",
     "code": "40046",
     "epci_code": "244000873",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40600"
   },
@@ -347,7 +347,7 @@
     "name": "Bonnegarde",
     "code": "40047",
     "epci_code": "244000881",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40330"
   },
@@ -355,7 +355,7 @@
     "name": "Bordères-et-Lamensans",
     "code": "40049",
     "epci_code": "244000824",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40270"
   },
@@ -363,7 +363,7 @@
     "name": "Bostens",
     "code": "40050",
     "epci_code": "244000808",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40090"
   },
@@ -371,7 +371,7 @@
     "name": "Bougue",
     "code": "40051",
     "epci_code": "244000808",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40090"
   },
@@ -379,7 +379,7 @@
     "name": "Bourdalat",
     "code": "40052",
     "epci_code": "244000774",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40190"
   },
@@ -387,7 +387,7 @@
     "name": "Bourriot-Bergonce",
     "code": "40053",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40120"
   },
@@ -395,7 +395,7 @@
     "name": "Brassempouy",
     "code": "40054",
     "epci_code": "244000881",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40330"
   },
@@ -403,7 +403,7 @@
     "name": "Bretagne-de-Marsan",
     "code": "40055",
     "epci_code": "244000808",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40280"
   },
@@ -411,7 +411,7 @@
     "name": "Brocas",
     "code": "40056",
     "epci_code": "200069656",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40420"
   },
@@ -419,7 +419,7 @@
     "name": "Buanes",
     "code": "40057",
     "epci_code": "200030435",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40320"
   },
@@ -427,7 +427,7 @@
     "name": "Cachen",
     "code": "40058",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40120"
   },
@@ -435,7 +435,7 @@
     "name": "Cagnotte",
     "code": "40059",
     "epci_code": "200069417",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40300"
   },
@@ -443,7 +443,7 @@
     "name": "Callen",
     "code": "40060",
     "epci_code": "200069656",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40430"
   },
@@ -451,7 +451,7 @@
     "name": "Campagne",
     "code": "40061",
     "epci_code": "244000808",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40090"
   },
@@ -459,7 +459,7 @@
     "name": "Campet-et-Lamolère",
     "code": "40062",
     "epci_code": "244000808",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40090"
   },
@@ -467,7 +467,7 @@
     "name": "Candresse",
     "code": "40063",
     "epci_code": "244000675",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40180"
   },
@@ -475,7 +475,7 @@
     "name": "Canenx-et-Réaut",
     "code": "40064",
     "epci_code": "200069656",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40090"
   },
@@ -483,7 +483,7 @@
     "name": "Capbreton",
     "code": "40065",
     "epci_code": "244000865",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40130"
   },
@@ -491,7 +491,7 @@
     "name": "Carcarès-Sainte-Croix",
     "code": "40066",
     "epci_code": "244000766",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40400"
   },
@@ -499,7 +499,7 @@
     "name": "Carcen-Ponson",
     "code": "40067",
     "epci_code": "244000766",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40400"
   },
@@ -507,7 +507,7 @@
     "name": "Cassen",
     "code": "40068",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40380"
   },
@@ -515,7 +515,7 @@
     "name": "Castaignos-Souslens",
     "code": "40069",
     "epci_code": "244000881",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40700"
   },
@@ -523,7 +523,7 @@
     "name": "Castandet",
     "code": "40070",
     "epci_code": "244000824",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40270"
   },
@@ -531,7 +531,7 @@
     "name": "Castelnau-Chalosse",
     "code": "40071",
     "epci_code": "244000881",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40360"
   },
@@ -539,7 +539,7 @@
     "name": "Castelnau-Tursan",
     "code": "40072",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40320"
   },
@@ -547,7 +547,7 @@
     "name": "Castelner",
     "code": "40073",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40700"
   },
@@ -555,7 +555,7 @@
     "name": "Castel-Sarrazin",
     "code": "40074",
     "epci_code": "244000881",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40330"
   },
@@ -563,7 +563,7 @@
     "name": "Castets",
     "code": "40075",
     "epci_code": "244000857",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40260"
   },
@@ -571,7 +571,7 @@
     "name": "Cauna",
     "code": "40076",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40500"
   },
@@ -579,7 +579,7 @@
     "name": "Cauneille",
     "code": "40077",
     "epci_code": "200069417",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40300"
   },
@@ -587,7 +587,7 @@
     "name": "Caupenne",
     "code": "40078",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40250"
   },
@@ -595,7 +595,7 @@
     "name": "Cazalis",
     "code": "40079",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40700"
   },
@@ -603,7 +603,7 @@
     "name": "Cazères-sur-l’Adour",
     "code": "40080",
     "epci_code": "244000824",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40270"
   },
@@ -611,7 +611,7 @@
     "name": "Cère",
     "code": "40081",
     "epci_code": "200069656",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40090"
   },
@@ -619,7 +619,7 @@
     "name": "Classun",
     "code": "40082",
     "epci_code": "200030435",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40320"
   },
@@ -627,7 +627,7 @@
     "name": "Clèdes",
     "code": "40083",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40320"
   },
@@ -635,7 +635,7 @@
     "name": "Clermont",
     "code": "40084",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40180"
   },
@@ -643,7 +643,7 @@
     "name": "Commensacq",
     "code": "40085",
     "epci_code": "200069656",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40210"
   },
@@ -651,7 +651,7 @@
     "name": "Coudures",
     "code": "40086",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40500"
   },
@@ -659,7 +659,7 @@
     "name": "Créon-d’Armagnac",
     "code": "40087",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40240"
   },
@@ -667,7 +667,7 @@
     "name": "Dax",
     "code": "40088",
     "epci_code": "244000675",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40100"
   },
@@ -675,7 +675,7 @@
     "name": "Doazit",
     "code": "40089",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40700"
   },
@@ -683,7 +683,7 @@
     "name": "Donzacq",
     "code": "40090",
     "epci_code": "244000881",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40360"
   },
@@ -691,7 +691,7 @@
     "name": "Duhort-Bachen",
     "code": "40091",
     "epci_code": "200030435",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40800"
   },
@@ -699,7 +699,7 @@
     "name": "Dumes",
     "code": "40092",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40500"
   },
@@ -707,7 +707,7 @@
     "name": "Escalans",
     "code": "40093",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40310"
   },
@@ -715,7 +715,7 @@
     "name": "Escource",
     "code": "40094",
     "epci_code": "200069656",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40210"
   },
@@ -723,7 +723,7 @@
     "name": "Estibeaux",
     "code": "40095",
     "epci_code": "200069417",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40290"
   },
@@ -731,7 +731,7 @@
     "name": "Estigarde",
     "code": "40096",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40240"
   },
@@ -739,7 +739,7 @@
     "name": "Eugénie-les-Bains",
     "code": "40097",
     "epci_code": "200030435",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40320"
   },
@@ -747,7 +747,7 @@
     "name": "Eyres-Moncube",
     "code": "40098",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40500"
   },
@@ -755,7 +755,7 @@
     "name": "Fargues",
     "code": "40099",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40500"
   },
@@ -763,7 +763,7 @@
     "name": "Le Frêche",
     "code": "40100",
     "epci_code": "244000774",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40190"
   },
@@ -771,7 +771,7 @@
     "name": "Gaas",
     "code": "40101",
     "epci_code": "200069417",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40350"
   },
@@ -779,7 +779,7 @@
     "name": "Gabarret",
     "code": "40102",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40310"
   },
@@ -787,7 +787,7 @@
     "name": "Gaillères",
     "code": "40103",
     "epci_code": "244000808",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40090"
   },
@@ -795,7 +795,7 @@
     "name": "Gamarde-les-Bains",
     "code": "40104",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40380"
   },
@@ -803,7 +803,7 @@
     "name": "Garein",
     "code": "40105",
     "epci_code": "200069656",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40420"
   },
@@ -811,7 +811,7 @@
     "name": "Garrey",
     "code": "40106",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40180"
   },
@@ -819,7 +819,7 @@
     "name": "Gastes",
     "code": "40108",
     "epci_code": "244000873",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40160"
   },
@@ -827,7 +827,7 @@
     "name": "Gaujacq",
     "code": "40109",
     "epci_code": "244000881",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40330"
   },
@@ -835,7 +835,7 @@
     "name": "Geaune",
     "code": "40110",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40320"
   },
@@ -843,7 +843,7 @@
     "name": "Geloux",
     "code": "40111",
     "epci_code": "244000808",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40090"
   },
@@ -851,7 +851,7 @@
     "name": "Gibret",
     "code": "40112",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40380"
   },
@@ -859,7 +859,7 @@
     "name": "Goos",
     "code": "40113",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40180"
   },
@@ -867,7 +867,7 @@
     "name": "Gourbera",
     "code": "40114",
     "epci_code": "244000675",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40990"
   },
@@ -875,7 +875,7 @@
     "name": "Gousse",
     "code": "40115",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40465"
   },
@@ -883,7 +883,7 @@
     "name": "Gouts",
     "code": "40116",
     "epci_code": "244000766",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40400"
   },
@@ -891,7 +891,7 @@
     "name": "Grenade-sur-l’Adour",
     "code": "40117",
     "epci_code": "244000824",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40270"
   },
@@ -899,7 +899,7 @@
     "name": "Habas",
     "code": "40118",
     "epci_code": "200069417",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40290"
   },
@@ -907,7 +907,7 @@
     "name": "Hagetmau",
     "code": "40119",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40700"
   },
@@ -915,7 +915,7 @@
     "name": "Hastingues",
     "code": "40120",
     "epci_code": "200069417",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40300"
   },
@@ -923,7 +923,7 @@
     "name": "Hauriet",
     "code": "40121",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40250"
   },
@@ -931,7 +931,7 @@
     "name": "Haut-Mauco",
     "code": "40122",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40280"
   },
@@ -939,7 +939,7 @@
     "name": "Herm",
     "code": "40123",
     "epci_code": "244000675",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40990"
   },
@@ -947,7 +947,7 @@
     "name": "Herré",
     "code": "40124",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40310"
   },
@@ -955,7 +955,7 @@
     "name": "Heugas",
     "code": "40125",
     "epci_code": "244000675",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40180"
   },
@@ -963,7 +963,7 @@
     "name": "Hinx",
     "code": "40126",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40180"
   },
@@ -971,7 +971,7 @@
     "name": "Hontanx",
     "code": "40127",
     "epci_code": "244000774",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40190"
   },
@@ -979,7 +979,7 @@
     "name": "Horsarrieu",
     "code": "40128",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40700"
   },
@@ -987,7 +987,7 @@
     "name": "Josse",
     "code": "40129",
     "epci_code": "244000865",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40230"
   },
@@ -995,7 +995,7 @@
     "name": "Labastide-Chalosse",
     "code": "40130",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40700"
   },
@@ -1003,7 +1003,7 @@
     "name": "Labastide-d’Armagnac",
     "code": "40131",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40240"
   },
@@ -1011,7 +1011,7 @@
     "name": "Labatut",
     "code": "40132",
     "epci_code": "200069417",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40300"
   },
@@ -1019,7 +1019,7 @@
     "name": "Labenne",
     "code": "40133",
     "epci_code": "244000865",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40530"
   },
@@ -1027,7 +1027,7 @@
     "name": "Labouheyre",
     "code": "40134",
     "epci_code": "200069656",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40210"
   },
@@ -1035,7 +1035,7 @@
     "name": "Labrit",
     "code": "40135",
     "epci_code": "200069656",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40420"
   },
@@ -1043,7 +1043,7 @@
     "name": "Lacajunte",
     "code": "40136",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40320"
   },
@@ -1051,7 +1051,7 @@
     "name": "Lacquy",
     "code": "40137",
     "epci_code": "244000774",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40120"
   },
@@ -1059,7 +1059,7 @@
     "name": "Lacrabe",
     "code": "40138",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40700"
   },
@@ -1067,7 +1067,7 @@
     "name": "Laglorieuse",
     "code": "40139",
     "epci_code": "244000808",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40090"
   },
@@ -1075,7 +1075,7 @@
     "name": "Lagrange",
     "code": "40140",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40240"
   },
@@ -1083,7 +1083,7 @@
     "name": "Lahosse",
     "code": "40141",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40250"
   },
@@ -1091,7 +1091,7 @@
     "name": "Laluque",
     "code": "40142",
     "epci_code": "244000766",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40465"
   },
@@ -1099,7 +1099,7 @@
     "name": "Lamothe",
     "code": "40143",
     "epci_code": "244000766",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40250"
   },
@@ -1107,7 +1107,7 @@
     "name": "Larbey",
     "code": "40144",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40250"
   },
@@ -1115,7 +1115,7 @@
     "name": "Larrivière-Saint-Savin",
     "code": "40145",
     "epci_code": "244000824",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40270"
   },
@@ -1123,7 +1123,7 @@
     "name": "Latrille",
     "code": "40146",
     "epci_code": "200030435",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40800"
   },
@@ -1131,7 +1131,7 @@
     "name": "Laurède",
     "code": "40147",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40250"
   },
@@ -1139,7 +1139,7 @@
     "name": "Lauret",
     "code": "40148",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40320"
   },
@@ -1147,7 +1147,7 @@
     "name": "Lencouacq",
     "code": "40149",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40120"
   },
@@ -1155,7 +1155,7 @@
     "name": "Léon",
     "code": "40150",
     "epci_code": "244000857",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40550"
   },
@@ -1163,7 +1163,7 @@
     "name": "Lesgor",
     "code": "40151",
     "epci_code": "244000766",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40400"
   },
@@ -1171,7 +1171,7 @@
     "name": "Lesperon",
     "code": "40152",
     "epci_code": "244000691",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40260"
   },
@@ -1179,7 +1179,7 @@
     "name": "Le Leuy",
     "code": "40153",
     "epci_code": "244000766",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40250"
   },
@@ -1187,7 +1187,7 @@
     "name": "Lévignacq",
     "code": "40154",
     "epci_code": "244000857",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40170"
   },
@@ -1195,7 +1195,7 @@
     "name": "Linxe",
     "code": "40155",
     "epci_code": "244000857",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40260"
   },
@@ -1203,7 +1203,7 @@
     "name": "Liposthey",
     "code": "40156",
     "epci_code": "200069656",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40410"
   },
@@ -1211,7 +1211,7 @@
     "name": "Lit-et-Mixe",
     "code": "40157",
     "epci_code": "244000857",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40170"
   },
@@ -1219,7 +1219,7 @@
     "name": "Losse",
     "code": "40158",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40240"
   },
@@ -1227,7 +1227,7 @@
     "name": "Louer",
     "code": "40159",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40380"
   },
@@ -1235,7 +1235,7 @@
     "name": "Lourquen",
     "code": "40160",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40250"
   },
@@ -1243,7 +1243,7 @@
     "name": "Lubbon",
     "code": "40161",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40240"
   },
@@ -1251,7 +1251,7 @@
     "name": "Lucbardez-et-Bargues",
     "code": "40162",
     "epci_code": "244000808",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40090"
   },
@@ -1259,7 +1259,7 @@
     "name": "Lüe",
     "code": "40163",
     "epci_code": "244000873",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40210"
   },
@@ -1267,7 +1267,7 @@
     "name": "Retjons",
     "code": "40164",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40120"
   },
@@ -1275,7 +1275,7 @@
     "name": "Luglon",
     "code": "40165",
     "epci_code": "200069656",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40630"
   },
@@ -1283,7 +1283,7 @@
     "name": "Lussagnet",
     "code": "40166",
     "epci_code": "244000824",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40270"
   },
@@ -1291,7 +1291,7 @@
     "name": "Luxey",
     "code": "40167",
     "epci_code": "200069656",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40430"
   },
@@ -1299,7 +1299,7 @@
     "name": "Magescq",
     "code": "40168",
     "epci_code": "244000865",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40140"
   },
@@ -1307,7 +1307,7 @@
     "name": "Maillas",
     "code": "40169",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40120"
   },
@@ -1315,7 +1315,7 @@
     "name": "Maillères",
     "code": "40170",
     "epci_code": "200069656",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40120"
   },
@@ -1323,7 +1323,7 @@
     "name": "Mano",
     "code": "40171",
     "epci_code": "200069656",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40410"
   },
@@ -1331,7 +1331,7 @@
     "name": "Mant",
     "code": "40172",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40700"
   },
@@ -1339,7 +1339,7 @@
     "name": "Marpaps",
     "code": "40173",
     "epci_code": "244000881",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40330"
   },
@@ -1347,7 +1347,7 @@
     "name": "Mauries",
     "code": "40174",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40320"
   },
@@ -1355,7 +1355,7 @@
     "name": "Maurrin",
     "code": "40175",
     "epci_code": "244000824",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40270"
   },
@@ -1363,7 +1363,7 @@
     "name": "Mauvezin-d’Armagnac",
     "code": "40176",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40240"
   },
@@ -1371,7 +1371,7 @@
     "name": "Maylis",
     "code": "40177",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40250"
   },
@@ -1379,7 +1379,7 @@
     "name": "Mazerolles",
     "code": "40178",
     "epci_code": "244000808",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40090"
   },
@@ -1387,7 +1387,7 @@
     "name": "Mées",
     "code": "40179",
     "epci_code": "244000675",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40990"
   },
@@ -1395,7 +1395,7 @@
     "name": "Meilhan",
     "code": "40180",
     "epci_code": "244000766",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40400"
   },
@@ -1403,7 +1403,7 @@
     "name": "Messanges",
     "code": "40181",
     "epci_code": "244000865",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40660"
   },
@@ -1411,7 +1411,7 @@
     "name": "Mézos",
     "code": "40182",
     "epci_code": "244000543",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40170"
   },
@@ -1419,7 +1419,7 @@
     "name": "Mimbaste",
     "code": "40183",
     "epci_code": "200069417",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40350"
   },
@@ -1427,7 +1427,7 @@
     "name": "Mimizan",
     "code": "40184",
     "epci_code": "244000543",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40200"
   },
@@ -1435,7 +1435,7 @@
     "name": "Miramont-Sensacq",
     "code": "40185",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40320"
   },
@@ -1443,7 +1443,7 @@
     "name": "Misson",
     "code": "40186",
     "epci_code": "200069417",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40290"
   },
@@ -1451,7 +1451,7 @@
     "name": "Moliets-et-Maa",
     "code": "40187",
     "epci_code": "244000865",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40660"
   },
@@ -1459,7 +1459,7 @@
     "name": "Momuy",
     "code": "40188",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40700"
   },
@@ -1467,7 +1467,7 @@
     "name": "Monget",
     "code": "40189",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40700"
   },
@@ -1475,7 +1475,7 @@
     "name": "Monségur",
     "code": "40190",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40700"
   },
@@ -1483,7 +1483,7 @@
     "name": "Montaut",
     "code": "40191",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40500"
   },
@@ -1491,7 +1491,7 @@
     "name": "Mont-de-Marsan",
     "code": "40192",
     "epci_code": "244000808",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40000"
   },
@@ -1499,7 +1499,7 @@
     "name": "Montégut",
     "code": "40193",
     "epci_code": "244000774",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40190"
   },
@@ -1507,7 +1507,7 @@
     "name": "Montfort-en-Chalosse",
     "code": "40194",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40380"
   },
@@ -1515,7 +1515,7 @@
     "name": "Montgaillard",
     "code": "40195",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40500"
   },
@@ -1523,7 +1523,7 @@
     "name": "Montsoué",
     "code": "40196",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40500"
   },
@@ -1531,7 +1531,7 @@
     "name": "Morcenx-la-Nouvelle",
     "code": "40197",
     "epci_code": "244000691",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40110"
   },
@@ -1539,7 +1539,7 @@
     "name": "Morganx",
     "code": "40198",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40700"
   },
@@ -1547,7 +1547,7 @@
     "name": "Mouscardès",
     "code": "40199",
     "epci_code": "200069417",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40290"
   },
@@ -1555,7 +1555,7 @@
     "name": "Moustey",
     "code": "40200",
     "epci_code": "200069656",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40410"
   },
@@ -1563,7 +1563,7 @@
     "name": "Mugron",
     "code": "40201",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40250"
   },
@@ -1571,7 +1571,7 @@
     "name": "Narrosse",
     "code": "40202",
     "epci_code": "244000675",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40180"
   },
@@ -1579,7 +1579,7 @@
     "name": "Nassiet",
     "code": "40203",
     "epci_code": "244000881",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40330"
   },
@@ -1587,7 +1587,7 @@
     "name": "Nerbis",
     "code": "40204",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40250"
   },
@@ -1595,7 +1595,7 @@
     "name": "Nousse",
     "code": "40205",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40380"
   },
@@ -1603,7 +1603,7 @@
     "name": "Oeyregave",
     "code": "40206",
     "epci_code": "200069417",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40300"
   },
@@ -1611,7 +1611,7 @@
     "name": "Oeyreluy",
     "code": "40207",
     "epci_code": "244000675",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40180"
   },
@@ -1619,7 +1619,7 @@
     "name": "Onard",
     "code": "40208",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40380"
   },
@@ -1627,7 +1627,7 @@
     "name": "Ondres",
     "code": "40209",
     "epci_code": "244000659",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40440"
   },
@@ -1635,7 +1635,7 @@
     "name": "Onesse-Laharie",
     "code": "40210",
     "epci_code": "244000691",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40110"
   },
@@ -1643,7 +1643,7 @@
     "name": "Orist",
     "code": "40211",
     "epci_code": "200069417",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40300"
   },
@@ -1651,7 +1651,7 @@
     "name": "Orthevielle",
     "code": "40212",
     "epci_code": "200069417",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40300"
   },
@@ -1659,7 +1659,7 @@
     "name": "Orx",
     "code": "40213",
     "epci_code": "244000865",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40230"
   },
@@ -1667,7 +1667,7 @@
     "name": "Ossages",
     "code": "40214",
     "epci_code": "200069417",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40290"
   },
@@ -1675,7 +1675,7 @@
     "name": "Ousse-Suzan",
     "code": "40215",
     "epci_code": "244000691",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40110"
   },
@@ -1683,7 +1683,7 @@
     "name": "Ozourt",
     "code": "40216",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40380"
   },
@@ -1691,7 +1691,7 @@
     "name": "Parentis-en-Born",
     "code": "40217",
     "epci_code": "244000873",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40160"
   },
@@ -1699,7 +1699,7 @@
     "name": "Parleboscq",
     "code": "40218",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40310"
   },
@@ -1707,7 +1707,7 @@
     "name": "Payros-Cazautets",
     "code": "40219",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40320"
   },
@@ -1715,7 +1715,7 @@
     "name": "Pécorade",
     "code": "40220",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40320"
   },
@@ -1723,7 +1723,7 @@
     "name": "Perquie",
     "code": "40221",
     "epci_code": "244000774",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40190"
   },
@@ -1731,7 +1731,7 @@
     "name": "Pey",
     "code": "40222",
     "epci_code": "200069417",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40300"
   },
@@ -1739,7 +1739,7 @@
     "name": "Peyre",
     "code": "40223",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40700"
   },
@@ -1747,7 +1747,7 @@
     "name": "Peyrehorade",
     "code": "40224",
     "epci_code": "200069417",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40300"
   },
@@ -1755,7 +1755,7 @@
     "name": "Philondenx",
     "code": "40225",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40320"
   },
@@ -1763,7 +1763,7 @@
     "name": "Pimbo",
     "code": "40226",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40320"
   },
@@ -1771,7 +1771,7 @@
     "name": "Pissos",
     "code": "40227",
     "epci_code": "200069656",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40410"
   },
@@ -1779,7 +1779,7 @@
     "name": "Pomarez",
     "code": "40228",
     "epci_code": "244000881",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40360"
   },
@@ -1787,7 +1787,7 @@
     "name": "Pontenx-les-Forges",
     "code": "40229",
     "epci_code": "244000543",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40200"
   },
@@ -1795,7 +1795,7 @@
     "name": "Pontonx-sur-l’Adour",
     "code": "40230",
     "epci_code": "244000766",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40465"
   },
@@ -1803,7 +1803,7 @@
     "name": "Port-de-Lanne",
     "code": "40231",
     "epci_code": "200069417",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40300"
   },
@@ -1811,7 +1811,7 @@
     "name": "Poudenx",
     "code": "40232",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40700"
   },
@@ -1819,7 +1819,7 @@
     "name": "Pouillon",
     "code": "40233",
     "epci_code": "200069417",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40350"
   },
@@ -1827,7 +1827,7 @@
     "name": "Pouydesseaux",
     "code": "40234",
     "epci_code": "244000808",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40120"
   },
@@ -1835,7 +1835,7 @@
     "name": "Poyanne",
     "code": "40235",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40380"
   },
@@ -1843,7 +1843,7 @@
     "name": "Poyartin",
     "code": "40236",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40380"
   },
@@ -1851,7 +1851,7 @@
     "name": "Préchacq-les-Bains",
     "code": "40237",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40465"
   },
@@ -1859,7 +1859,7 @@
     "name": "Pujo-le-Plan",
     "code": "40238",
     "epci_code": "244000774",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40190"
   },
@@ -1867,7 +1867,7 @@
     "name": "Puyol-Cazalet",
     "code": "40239",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40320"
   },
@@ -1875,7 +1875,7 @@
     "name": "Renung",
     "code": "40240",
     "epci_code": "200030435",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40270"
   },
@@ -1883,7 +1883,7 @@
     "name": "Rimbez-et-Baudiets",
     "code": "40242",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40310"
   },
@@ -1891,7 +1891,7 @@
     "name": "Rion-des-Landes",
     "code": "40243",
     "epci_code": "244000766",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40370"
   },
@@ -1899,7 +1899,7 @@
     "name": "Rivière-Saas-et-Gourby",
     "code": "40244",
     "epci_code": "244000675",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40180"
   },
@@ -1907,7 +1907,7 @@
     "name": "Roquefort",
     "code": "40245",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40120"
   },
@@ -1915,7 +1915,7 @@
     "name": "Sabres",
     "code": "40246",
     "epci_code": "200069656",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40630"
   },
@@ -1923,7 +1923,7 @@
     "name": "Saint-Agnet",
     "code": "40247",
     "epci_code": "200030435",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40800"
   },
@@ -1931,7 +1931,7 @@
     "name": "Saint-André-de-Seignanx",
     "code": "40248",
     "epci_code": "244000659",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40390"
   },
@@ -1939,7 +1939,7 @@
     "name": "Saint-Aubin",
     "code": "40249",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40250"
   },
@@ -1947,7 +1947,7 @@
     "name": "Saint-Avit",
     "code": "40250",
     "epci_code": "244000808",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40090"
   },
@@ -1955,7 +1955,7 @@
     "name": "Saint-Barthélemy",
     "code": "40251",
     "epci_code": "244000659",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40390"
   },
@@ -1963,7 +1963,7 @@
     "name": "Sainte-Colombe",
     "code": "40252",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40700"
   },
@@ -1971,7 +1971,7 @@
     "name": "Saint-Cricq-Chalosse",
     "code": "40253",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40700"
   },
@@ -1979,7 +1979,7 @@
     "name": "Saint-Cricq-du-Gave",
     "code": "40254",
     "epci_code": "200069417",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40300"
   },
@@ -1987,7 +1987,7 @@
     "name": "Saint-Cricq-Villeneuve",
     "code": "40255",
     "epci_code": "244000774",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40190"
   },
@@ -1995,7 +1995,7 @@
     "name": "Saint-Étienne-d’Orthe",
     "code": "40256",
     "epci_code": "200069417",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40300"
   },
@@ -2003,7 +2003,7 @@
     "name": "Sainte-Eulalie-en-Born",
     "code": "40257",
     "epci_code": "244000873",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40200"
   },
@@ -2011,7 +2011,7 @@
     "name": "Sainte-Foy",
     "code": "40258",
     "epci_code": "244000774",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40190"
   },
@@ -2019,7 +2019,7 @@
     "name": "Saint-Gein",
     "code": "40259",
     "epci_code": "244000774",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40190"
   },
@@ -2027,7 +2027,7 @@
     "name": "Saint-Geours-d’Auribat",
     "code": "40260",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40380"
   },
@@ -2035,7 +2035,7 @@
     "name": "Saint-Geours-de-Maremne",
     "code": "40261",
     "epci_code": "244000865",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40230"
   },
@@ -2043,7 +2043,7 @@
     "name": "Saint-Gor",
     "code": "40262",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40120"
   },
@@ -2051,7 +2051,7 @@
     "name": "Saint-Jean-de-Lier",
     "code": "40263",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40380"
   },
@@ -2059,7 +2059,7 @@
     "name": "Saint-Jean-de-Marsacq",
     "code": "40264",
     "epci_code": "244000865",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40230"
   },
@@ -2067,7 +2067,7 @@
     "name": "Saint-Julien-d’Armagnac",
     "code": "40265",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40240"
   },
@@ -2075,7 +2075,7 @@
     "name": "Saint-Julien-en-Born",
     "code": "40266",
     "epci_code": "244000857",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40170"
   },
@@ -2083,7 +2083,7 @@
     "name": "Saint-Justin",
     "code": "40267",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40240"
   },
@@ -2091,7 +2091,7 @@
     "name": "Saint-Laurent-de-Gosse",
     "code": "40268",
     "epci_code": "244000659",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40390"
   },
@@ -2099,7 +2099,7 @@
     "name": "Saint-Lon-les-Mines",
     "code": "40269",
     "epci_code": "200069417",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40300"
   },
@@ -2107,7 +2107,7 @@
     "name": "Saint-Loubouer",
     "code": "40270",
     "epci_code": "200030435",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40320"
   },
@@ -2115,7 +2115,7 @@
     "name": "Sainte-Marie-de-Gosse",
     "code": "40271",
     "epci_code": "244000865",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40390"
   },
@@ -2123,7 +2123,7 @@
     "name": "Saint-Martin-de-Hinx",
     "code": "40272",
     "epci_code": "244000865",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40390"
   },
@@ -2131,7 +2131,7 @@
     "name": "Saint-Martin-de-Seignanx",
     "code": "40273",
     "epci_code": "244000659",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40390"
   },
@@ -2139,7 +2139,7 @@
     "name": "Saint-Martin-d’Oney",
     "code": "40274",
     "epci_code": "244000808",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40090"
   },
@@ -2147,7 +2147,7 @@
     "name": "Saint-Maurice-sur-Adour",
     "code": "40275",
     "epci_code": "244000824",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40270"
   },
@@ -2155,7 +2155,7 @@
     "name": "Saint-Michel-Escalus",
     "code": "40276",
     "epci_code": "244000857",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40550"
   },
@@ -2163,7 +2163,7 @@
     "name": "Saint-Pandelon",
     "code": "40277",
     "epci_code": "244000675",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40180"
   },
@@ -2171,7 +2171,7 @@
     "name": "Saint-Paul-en-Born",
     "code": "40278",
     "epci_code": "244000543",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40200"
   },
@@ -2179,7 +2179,7 @@
     "name": "Saint-Paul-lès-Dax",
     "code": "40279",
     "epci_code": "244000675",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40990"
   },
@@ -2187,7 +2187,7 @@
     "name": "Saint-Perdon",
     "code": "40280",
     "epci_code": "244000808",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40090"
   },
@@ -2195,7 +2195,7 @@
     "name": "Saint-Pierre-du-Mont",
     "code": "40281",
     "epci_code": "244000808",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40280"
   },
@@ -2203,7 +2203,7 @@
     "name": "Saint-Sever",
     "code": "40282",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40500"
   },
@@ -2211,7 +2211,7 @@
     "name": "Saint-Vincent-de-Paul",
     "code": "40283",
     "epci_code": "244000675",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40990"
   },
@@ -2219,7 +2219,7 @@
     "name": "Saint-Vincent-de-Tyrosse",
     "code": "40284",
     "epci_code": "244000865",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40230"
   },
@@ -2227,7 +2227,7 @@
     "name": "Saint-Yaguen",
     "code": "40285",
     "epci_code": "244000766",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40400"
   },
@@ -2235,7 +2235,7 @@
     "name": "Samadet",
     "code": "40286",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40320"
   },
@@ -2243,7 +2243,7 @@
     "name": "Sanguinet",
     "code": "40287",
     "epci_code": "244000873",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40460"
   },
@@ -2251,7 +2251,7 @@
     "name": "Sarbazan",
     "code": "40288",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40120"
   },
@@ -2259,7 +2259,7 @@
     "name": "Sarraziet",
     "code": "40289",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40500"
   },
@@ -2267,7 +2267,7 @@
     "name": "Sarron",
     "code": "40290",
     "epci_code": "200030435",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40800"
   },
@@ -2275,7 +2275,7 @@
     "name": "Saubion",
     "code": "40291",
     "epci_code": "244000865",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40230"
   },
@@ -2283,7 +2283,7 @@
     "name": "Saubrigues",
     "code": "40292",
     "epci_code": "244000865",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40230"
   },
@@ -2291,7 +2291,7 @@
     "name": "Saubusse",
     "code": "40293",
     "epci_code": "244000865",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40180"
   },
@@ -2299,7 +2299,7 @@
     "name": "Saugnac-et-Cambran",
     "code": "40294",
     "epci_code": "244000675",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40180"
   },
@@ -2307,7 +2307,7 @@
     "name": "Saugnac-et-Muret",
     "code": "40295",
     "epci_code": "200069656",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40410"
   },
@@ -2315,7 +2315,7 @@
     "name": "Seignosse",
     "code": "40296",
     "epci_code": "244000865",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40510"
   },
@@ -2323,7 +2323,7 @@
     "name": "Le Sen",
     "code": "40297",
     "epci_code": "200069656",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40420"
   },
@@ -2331,7 +2331,7 @@
     "name": "Serres-Gaston",
     "code": "40298",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40700"
   },
@@ -2339,7 +2339,7 @@
     "name": "Serreslous-et-Arribans",
     "code": "40299",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40700"
   },
@@ -2347,7 +2347,7 @@
     "name": "Seyresse",
     "code": "40300",
     "epci_code": "244000675",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40180"
   },
@@ -2355,7 +2355,7 @@
     "name": "Siest",
     "code": "40301",
     "epci_code": "244000675",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40180"
   },
@@ -2363,7 +2363,7 @@
     "name": "Solférino",
     "code": "40303",
     "epci_code": "200069656",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40210"
   },
@@ -2371,7 +2371,7 @@
     "name": "Soorts-Hossegor",
     "code": "40304",
     "epci_code": "244000865",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40150"
   },
@@ -2379,7 +2379,7 @@
     "name": "Sorbets",
     "code": "40305",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40320"
   },
@@ -2387,7 +2387,7 @@
     "name": "Sorde-l’Abbaye",
     "code": "40306",
     "epci_code": "200069417",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40300"
   },
@@ -2395,7 +2395,7 @@
     "name": "Sore",
     "code": "40307",
     "epci_code": "200069656",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40430"
   },
@@ -2403,7 +2403,7 @@
     "name": "Sort-en-Chalosse",
     "code": "40308",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40180"
   },
@@ -2411,7 +2411,7 @@
     "name": "Souprosse",
     "code": "40309",
     "epci_code": "244000766",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40250"
   },
@@ -2419,7 +2419,7 @@
     "name": "Soustons",
     "code": "40310",
     "epci_code": "244000865",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40140"
   },
@@ -2427,7 +2427,7 @@
     "name": "Taller",
     "code": "40311",
     "epci_code": "244000857",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40260"
   },
@@ -2435,7 +2435,7 @@
     "name": "Tarnos",
     "code": "40312",
     "epci_code": "244000659",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40220"
   },
@@ -2443,7 +2443,7 @@
     "name": "Tartas",
     "code": "40313",
     "epci_code": "244000766",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40400"
   },
@@ -2451,7 +2451,7 @@
     "name": "Tercis-les-Bains",
     "code": "40314",
     "epci_code": "244000675",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40180"
   },
@@ -2459,7 +2459,7 @@
     "name": "Téthieu",
     "code": "40315",
     "epci_code": "244000675",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40990"
   },
@@ -2467,7 +2467,7 @@
     "name": "Tilh",
     "code": "40316",
     "epci_code": "200069417",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40360"
   },
@@ -2475,7 +2475,7 @@
     "name": "Tosse",
     "code": "40317",
     "epci_code": "244000865",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40230"
   },
@@ -2483,7 +2483,7 @@
     "name": "Toulouzette",
     "code": "40318",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40250"
   },
@@ -2491,7 +2491,7 @@
     "name": "Trensacq",
     "code": "40319",
     "epci_code": "200069656",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40630"
   },
@@ -2499,7 +2499,7 @@
     "name": "Uchacq-et-Parentis",
     "code": "40320",
     "epci_code": "244000808",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40090"
   },
@@ -2507,7 +2507,7 @@
     "name": "Urgons",
     "code": "40321",
     "epci_code": "200069649",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40320"
   },
@@ -2515,7 +2515,7 @@
     "name": "Uza",
     "code": "40322",
     "epci_code": "244000857",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40170"
   },
@@ -2523,7 +2523,7 @@
     "name": "Vert",
     "code": "40323",
     "epci_code": "200069656",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40420"
   },
@@ -2531,7 +2531,7 @@
     "name": "Vicq-d’Auribat",
     "code": "40324",
     "epci_code": "200069631",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40380"
   },
@@ -2539,7 +2539,7 @@
     "name": "Vielle-Tursan",
     "code": "40325",
     "epci_code": "200030435",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40320"
   },
@@ -2547,7 +2547,7 @@
     "name": "Vielle-Saint-Girons",
     "code": "40326",
     "epci_code": "244000857",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40560"
   },
@@ -2555,7 +2555,7 @@
     "name": "Vielle-Soubiran",
     "code": "40327",
     "epci_code": "200035541",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40240"
   },
@@ -2563,7 +2563,7 @@
     "name": "Vieux-Boucau-les-Bains",
     "code": "40328",
     "epci_code": "244000865",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40480"
   },
@@ -2571,7 +2571,7 @@
     "name": "Le Vignau",
     "code": "40329",
     "epci_code": "244000824",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40270"
   },
@@ -2579,7 +2579,7 @@
     "name": "Villenave",
     "code": "40330",
     "epci_code": "244000766",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40110"
   },
@@ -2587,7 +2587,7 @@
     "name": "Villeneuve-de-Marsan",
     "code": "40331",
     "epci_code": "244000774",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40190"
   },
@@ -2595,7 +2595,7 @@
     "name": "Ychoux",
     "code": "40332",
     "epci_code": "244000873",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40160"
   },
@@ -2603,7 +2603,7 @@
     "name": "Ygos-Saint-Saturnin",
     "code": "40333",
     "epci_code": "244000691",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40110"
   },
@@ -2611,7 +2611,7 @@
     "name": "Yzosse",
     "code": "40334",
     "epci_code": "244000675",
-    "departement_code": "40",
+    "department_code": "40",
     "region_code": "75",
     "postal_code": "40180"
   }

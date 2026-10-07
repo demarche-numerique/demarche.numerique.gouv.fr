@@ -20,7 +20,7 @@ class Dossiers::DepartementComponent < ApplicationComponent
   def data
     [
       [t('shared.dossiers.geo.department'), champ.to_s],
-      [t('shared.dossiers.geo.region_code'), champ.code_region],
+      [t('shared.dossiers.geo.region_code'), champ.region_code],
     ]
   end
 

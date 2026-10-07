@@ -8,6 +8,9 @@ describe ColumnsConcern do
       [
         { type: :linked_drop_down_list, libelle: 'linked' },
         { type: :address, libelle: 'address' },
+        { type: :communes, libelle: 'commune' },
+        { type: :departements, libelle: 'departement' },
+        { type: :regions, libelle: 'region' },
       ]
     end
     let(:procedure) { create(:procedure, public_type_de_champs:) }
@@ -57,6 +60,32 @@ describe ColumnsConcern do
 
         h_id = { procedure_id:, column_id: }
         expect(procedure.find_column(h_id:)).to eq(code_naf_column)
+      end
+    end
+
+    context 'when the column_id is an old commune column id' do
+      let(:commune_tdc) { procedure.active_revision.type_de_champs.find { _1.type_champ == 'communes' } }
+
+      it do
+        {
+          "" => "$.city_name",
+          "-$.code_postal" => "$.postal_code",
+          "-$.code_departement" => "$.department_code",
+        }.each do |legacy_suffix, jsonpath|
+          h_id = { procedure_id:, column_id: "type_de_champ/#{commune_tdc.stable_id}#{legacy_suffix}" }
+          expect(procedure.find_column(h_id:)).to have_attributes(stable_id: commune_tdc.stable_id, jsonpath:)
+        end
+      end
+    end
+
+    context 'when the column_id is the old plain column of a departement or a region' do
+      it do
+        { 'departements' => '$.department_code', 'regions' => '$.region_code' }.each do |type_champ, jsonpath|
+          tdc = procedure.active_revision.type_de_champs.find { _1.type_champ == type_champ }
+          h_id = { procedure_id:, column_id: "type_de_champ/#{tdc.stable_id}" }
+
+          expect(procedure.find_column(h_id:)).to have_attributes(stable_id: tdc.stable_id, jsonpath:)
+        end
       end
     end
 

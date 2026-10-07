@@ -3,7 +3,7 @@
     "name": "L’Absie",
     "code": "79001",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79240"
   },
@@ -11,7 +11,7 @@
     "name": "Adilly",
     "code": "79002",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79200"
   },
@@ -19,7 +19,7 @@
     "name": "Aiffres",
     "code": "79003",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79230"
   },
@@ -27,7 +27,7 @@
     "name": "Airvault",
     "code": "79005",
     "epci_code": "200041416",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79600"
   },
@@ -35,7 +35,7 @@
     "name": "Allonne",
     "code": "79007",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79130"
   },
@@ -43,7 +43,7 @@
     "name": "Amailloux",
     "code": "79008",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79350"
   },
@@ -51,7 +51,7 @@
     "name": "Amuré",
     "code": "79009",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79210"
   },
@@ -59,7 +59,7 @@
     "name": "Arçais",
     "code": "79010",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79210"
   },
@@ -67,7 +67,7 @@
     "name": "Ardin",
     "code": "79012",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79160"
   },
@@ -75,7 +75,7 @@
     "name": "Argentonnay",
     "code": "79013",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79150"
   },
@@ -83,7 +83,7 @@
     "name": "Argentonnay",
     "code": "79013",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79300"
   },
@@ -91,7 +91,7 @@
     "name": "Loretz-d’Argenton",
     "code": "79014",
     "epci_code": "247900798",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79290"
   },
@@ -99,7 +99,7 @@
     "name": "Asnières-en-Poitou",
     "code": "79015",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79170"
   },
@@ -107,7 +107,7 @@
     "name": "Assais-les-Jumeaux",
     "code": "79016",
     "epci_code": "200041416",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79600"
   },
@@ -115,7 +115,7 @@
     "name": "Aubigné",
     "code": "79018",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79110"
   },
@@ -123,7 +123,7 @@
     "name": "Aubigny",
     "code": "79019",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79390"
   },
@@ -131,7 +131,7 @@
     "name": "Augé",
     "code": "79020",
     "epci_code": "200041994",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79400"
   },
@@ -139,7 +139,7 @@
     "name": "Availles-Thouarsais",
     "code": "79022",
     "epci_code": "200041416",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79600"
   },
@@ -147,7 +147,7 @@
     "name": "Avon",
     "code": "79023",
     "epci_code": "200041994",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79800"
   },
@@ -155,7 +155,7 @@
     "name": "Azay-le-Brûlé",
     "code": "79024",
     "epci_code": "200041994",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79400"
   },
@@ -163,7 +163,7 @@
     "name": "Azay-sur-Thouet",
     "code": "79025",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79130"
   },
@@ -171,7 +171,7 @@
     "name": "Beaulieu-sous-Parthenay",
     "code": "79029",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79420"
   },
@@ -179,7 +179,7 @@
     "name": "Beaussais-Vitré",
     "code": "79030",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79370"
   },
@@ -187,7 +187,7 @@
     "name": "Beauvoir-sur-Niort",
     "code": "79031",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79360"
   },
@@ -195,7 +195,7 @@
     "name": "Béceleuf",
     "code": "79032",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79160"
   },
@@ -203,7 +203,7 @@
     "name": "Bessines",
     "code": "79034",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79000"
   },
@@ -211,7 +211,7 @@
     "name": "Boismé",
     "code": "79038",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79300"
   },
@@ -219,7 +219,7 @@
     "name": "La Boissière-en-Gâtine",
     "code": "79040",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79310"
   },
@@ -227,7 +227,7 @@
     "name": "Bougon",
     "code": "79042",
     "epci_code": "200041994",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79800"
   },
@@ -235,7 +235,7 @@
     "name": "Le Bourdet",
     "code": "79046",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79210"
   },
@@ -243,7 +243,7 @@
     "name": "Boussais",
     "code": "79047",
     "epci_code": "200041416",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79600"
   },
@@ -251,7 +251,7 @@
     "name": "La Crèche",
     "code": "79048",
     "epci_code": "200041994",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79260"
   },
@@ -259,7 +259,7 @@
     "name": "Bressuire",
     "code": "79049",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79300"
   },
@@ -267,7 +267,7 @@
     "name": "Bretignolles",
     "code": "79050",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79140"
   },
@@ -275,7 +275,7 @@
     "name": "Brieuil-sur-Chizé",
     "code": "79055",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79170"
   },
@@ -283,7 +283,7 @@
     "name": "Brion-près-Thouet",
     "code": "79056",
     "epci_code": "247900798",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79290"
   },
@@ -291,7 +291,7 @@
     "name": "Brioux-sur-Boutonne",
     "code": "79057",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79170"
   },
@@ -299,7 +299,7 @@
     "name": "Brûlain",
     "code": "79058",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79230"
   },
@@ -307,7 +307,7 @@
     "name": "Le Busseau",
     "code": "79059",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79240"
   },
@@ -315,7 +315,7 @@
     "name": "Celles-sur-Belle",
     "code": "79061",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79370"
   },
@@ -323,7 +323,7 @@
     "name": "Cerizay",
     "code": "79062",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79140"
   },
@@ -331,7 +331,7 @@
     "name": "Val en Vignes",
     "code": "79063",
     "epci_code": "247900798",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79150"
   },
@@ -339,7 +339,7 @@
     "name": "Val en Vignes",
     "code": "79063",
     "epci_code": "247900798",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79290"
   },
@@ -347,7 +347,7 @@
     "name": "Fontivillié",
     "code": "79064",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79110"
   },
@@ -355,7 +355,7 @@
     "name": "Fontivillié",
     "code": "79064",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79500"
   },
@@ -363,7 +363,7 @@
     "name": "Champdeniers",
     "code": "79066",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79220"
   },
@@ -371,7 +371,7 @@
     "name": "Chanteloup",
     "code": "79069",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79320"
   },
@@ -379,7 +379,7 @@
     "name": "La Chapelle-Bâton",
     "code": "79070",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79220"
   },
@@ -387,7 +387,7 @@
     "name": "La Chapelle-Bertrand",
     "code": "79071",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79200"
   },
@@ -395,7 +395,7 @@
     "name": "La Chapelle-Pouilloux",
     "code": "79074",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79190"
   },
@@ -403,7 +403,7 @@
     "name": "La Chapelle-Saint-Laurent",
     "code": "79076",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79430"
   },
@@ -411,7 +411,7 @@
     "name": "Beugnon-Thireuil",
     "code": "79077",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79130"
   },
@@ -419,7 +419,7 @@
     "name": "Beugnon-Thireuil",
     "code": "79077",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79160"
   },
@@ -427,7 +427,7 @@
     "name": "Plaine-d’Argenson",
     "code": "79078",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79360"
   },
@@ -435,7 +435,7 @@
     "name": "Mauléon",
     "code": "79079",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79700"
   },
@@ -443,7 +443,7 @@
     "name": "Châtillon-sur-Thouet",
     "code": "79080",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79200"
   },
@@ -451,7 +451,7 @@
     "name": "Chauray",
     "code": "79081",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79180"
   },
@@ -459,7 +459,7 @@
     "name": "Chef-Boutonne",
     "code": "79083",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79110"
   },
@@ -467,7 +467,7 @@
     "name": "Chenay",
     "code": "79084",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79120"
   },
@@ -475,7 +475,7 @@
     "name": "Chérigné",
     "code": "79085",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79170"
   },
@@ -483,7 +483,7 @@
     "name": "Cherveux",
     "code": "79086",
     "epci_code": "200041994",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79410"
   },
@@ -491,7 +491,7 @@
     "name": "Chey",
     "code": "79087",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79120"
   },
@@ -499,7 +499,7 @@
     "name": "Chiché",
     "code": "79088",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79350"
   },
@@ -507,7 +507,7 @@
     "name": "Le Chillou",
     "code": "79089",
     "epci_code": "200041416",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79600"
   },
@@ -515,7 +515,7 @@
     "name": "Chizé",
     "code": "79090",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79170"
   },
@@ -523,7 +523,7 @@
     "name": "Cirières",
     "code": "79091",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79140"
   },
@@ -531,7 +531,7 @@
     "name": "Clavé",
     "code": "79092",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79420"
   },
@@ -539,7 +539,7 @@
     "name": "Clessé",
     "code": "79094",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79350"
   },
@@ -547,7 +547,7 @@
     "name": "Clussais-la-Pommeraie",
     "code": "79095",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79190"
   },
@@ -555,7 +555,7 @@
     "name": "Combrand",
     "code": "79096",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79140"
   },
@@ -563,7 +563,7 @@
     "name": "Coulon",
     "code": "79100",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79510"
   },
@@ -571,7 +571,7 @@
     "name": "Coulonges-sur-l’Autize",
     "code": "79101",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79160"
   },
@@ -579,7 +579,7 @@
     "name": "Coulonges-Thouarsais",
     "code": "79102",
     "epci_code": "247900798",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79330"
   },
@@ -587,7 +587,7 @@
     "name": "Courlay",
     "code": "79103",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79440"
   },
@@ -595,7 +595,7 @@
     "name": "Cours",
     "code": "79104",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79220"
   },
@@ -603,7 +603,7 @@
     "name": "Les Châteliers",
     "code": "79105",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79340"
   },
@@ -611,7 +611,7 @@
     "name": "Couture-d’Argenson",
     "code": "79106",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79110"
   },
@@ -619,7 +619,7 @@
     "name": "Doux",
     "code": "79108",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79390"
   },
@@ -627,7 +627,7 @@
     "name": "Échiré",
     "code": "79109",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79410"
   },
@@ -635,7 +635,7 @@
     "name": "Ensigné",
     "code": "79111",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79170"
   },
@@ -643,7 +643,7 @@
     "name": "Épannes",
     "code": "79112",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79270"
   },
@@ -651,7 +651,7 @@
     "name": "Exireuil",
     "code": "79114",
     "epci_code": "200041994",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79400"
   },
@@ -659,7 +659,7 @@
     "name": "Exoudun",
     "code": "79115",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79800"
   },
@@ -667,7 +667,7 @@
     "name": "Faye-l’Abbesse",
     "code": "79116",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79350"
   },
@@ -675,7 +675,7 @@
     "name": "Faye-sur-Ardin",
     "code": "79117",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79160"
   },
@@ -683,7 +683,7 @@
     "name": "Fénery",
     "code": "79118",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79450"
   },
@@ -691,7 +691,7 @@
     "name": "Fenioux",
     "code": "79119",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79160"
   },
@@ -699,7 +699,7 @@
     "name": "La Ferrière-en-Parthenay",
     "code": "79120",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79390"
   },
@@ -707,7 +707,7 @@
     "name": "Fomperron",
     "code": "79121",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79340"
   },
@@ -715,7 +715,7 @@
     "name": "Fontenille-Saint-Martin-d’Entraigues",
     "code": "79122",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79110"
   },
@@ -723,7 +723,7 @@
     "name": "La Forêt-sur-Sèvre",
     "code": "79123",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79380"
   },
@@ -731,7 +731,7 @@
     "name": "Les Forges",
     "code": "79124",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79340"
   },
@@ -739,7 +739,7 @@
     "name": "Fors",
     "code": "79125",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79230"
   },
@@ -747,7 +747,7 @@
     "name": "Les Fosses",
     "code": "79126",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79360"
   },
@@ -755,7 +755,7 @@
     "name": "La Foye-Monjault",
     "code": "79127",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79360"
   },
@@ -763,7 +763,7 @@
     "name": "François",
     "code": "79128",
     "epci_code": "200041994",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79260"
   },
@@ -771,7 +771,7 @@
     "name": "Fressines",
     "code": "79129",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79370"
   },
@@ -779,7 +779,7 @@
     "name": "Frontenay-Rohan-Rohan",
     "code": "79130",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79270"
   },
@@ -787,7 +787,7 @@
     "name": "Geay",
     "code": "79131",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79330"
   },
@@ -795,7 +795,7 @@
     "name": "Genneton",
     "code": "79132",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79150"
   },
@@ -803,7 +803,7 @@
     "name": "Germond-Rouvre",
     "code": "79133",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79220"
   },
@@ -811,7 +811,7 @@
     "name": "Glénay",
     "code": "79134",
     "epci_code": "247900798",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79330"
   },
@@ -819,7 +819,7 @@
     "name": "Gourgé",
     "code": "79135",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79200"
   },
@@ -827,7 +827,7 @@
     "name": "Alloinay",
     "code": "79136",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79110"
   },
@@ -835,7 +835,7 @@
     "name": "Alloinay",
     "code": "79136",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79190"
   },
@@ -843,7 +843,7 @@
     "name": "Granzay-Gript",
     "code": "79137",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79360"
   },
@@ -851,7 +851,7 @@
     "name": "Les Groseillers",
     "code": "79139",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79220"
   },
@@ -859,7 +859,7 @@
     "name": "Valdelaume",
     "code": "79140",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79110"
   },
@@ -867,7 +867,7 @@
     "name": "Irais",
     "code": "79141",
     "epci_code": "200041416",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79600"
   },
@@ -875,7 +875,7 @@
     "name": "Juillé",
     "code": "79142",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79170"
   },
@@ -883,7 +883,7 @@
     "name": "Juscorps",
     "code": "79144",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79230"
   },
@@ -891,7 +891,7 @@
     "name": "Lageon",
     "code": "79145",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79200"
   },
@@ -899,7 +899,7 @@
     "name": "Largeasse",
     "code": "79147",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79240"
   },
@@ -907,7 +907,7 @@
     "name": "Lezay",
     "code": "79148",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79120"
   },
@@ -915,7 +915,7 @@
     "name": "Lhoumois",
     "code": "79149",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79390"
   },
@@ -923,7 +923,7 @@
     "name": "Limalonges",
     "code": "79150",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79190"
   },
@@ -931,7 +931,7 @@
     "name": "Lorigné",
     "code": "79152",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79190"
   },
@@ -939,7 +939,7 @@
     "name": "Loubigné",
     "code": "79153",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79110"
   },
@@ -947,7 +947,7 @@
     "name": "Loubillé",
     "code": "79154",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79110"
   },
@@ -955,7 +955,7 @@
     "name": "Louin",
     "code": "79156",
     "epci_code": "200041416",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79600"
   },
@@ -963,7 +963,7 @@
     "name": "Louzy",
     "code": "79157",
     "epci_code": "247900798",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79100"
   },
@@ -971,7 +971,7 @@
     "name": "Luché-sur-Brioux",
     "code": "79158",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79170"
   },
@@ -979,7 +979,7 @@
     "name": "Luché-Thouarsais",
     "code": "79159",
     "epci_code": "247900798",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79330"
   },
@@ -987,7 +987,7 @@
     "name": "Lusseray",
     "code": "79160",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79170"
   },
@@ -995,7 +995,7 @@
     "name": "Luzay",
     "code": "79161",
     "epci_code": "247900798",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79100"
   },
@@ -1003,7 +1003,7 @@
     "name": "Magné",
     "code": "79162",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79460"
   },
@@ -1011,7 +1011,7 @@
     "name": "Mairé-Levescault",
     "code": "79163",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79190"
   },
@@ -1019,7 +1019,7 @@
     "name": "Maisonnay",
     "code": "79164",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79500"
   },
@@ -1027,7 +1027,7 @@
     "name": "Maisontiers",
     "code": "79165",
     "epci_code": "200041416",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79600"
   },
@@ -1035,7 +1035,7 @@
     "name": "Marigny",
     "code": "79166",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79360"
   },
@@ -1043,7 +1043,7 @@
     "name": "Marnes",
     "code": "79167",
     "epci_code": "247900798",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79600"
   },
@@ -1051,7 +1051,7 @@
     "name": "Mauzé-sur-le-Mignon",
     "code": "79170",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79210"
   },
@@ -1059,7 +1059,7 @@
     "name": "Mazières-en-Gâtine",
     "code": "79172",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79310"
   },
@@ -1067,7 +1067,7 @@
     "name": "Melle",
     "code": "79174",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79500"
   },
@@ -1075,7 +1075,7 @@
     "name": "Melleran",
     "code": "79175",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79190"
   },
@@ -1083,7 +1083,7 @@
     "name": "Ménigoute",
     "code": "79176",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79340"
   },
@@ -1091,7 +1091,7 @@
     "name": "Messé",
     "code": "79177",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79120"
   },
@@ -1099,7 +1099,7 @@
     "name": "Moncoutant-sur-Sèvre",
     "code": "79179",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79240"
   },
@@ -1107,7 +1107,7 @@
     "name": "Moncoutant-sur-Sèvre",
     "code": "79179",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79320"
   },
@@ -1115,7 +1115,7 @@
     "name": "Moncoutant-sur-Sèvre",
     "code": "79179",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79380"
   },
@@ -1123,7 +1123,7 @@
     "name": "Montravers",
     "code": "79183",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79140"
   },
@@ -1131,7 +1131,7 @@
     "name": "La Mothe-Saint-Héray",
     "code": "79184",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79800"
   },
@@ -1139,7 +1139,7 @@
     "name": "Aigondigné",
     "code": "79185",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79370"
   },
@@ -1147,7 +1147,7 @@
     "name": "Nanteuil",
     "code": "79189",
     "epci_code": "200041994",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79400"
   },
@@ -1155,7 +1155,7 @@
     "name": "Neuvy-Bouin",
     "code": "79190",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79130"
   },
@@ -1163,7 +1163,7 @@
     "name": "Niort",
     "code": "79191",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79000"
   },
@@ -1171,7 +1171,7 @@
     "name": "Nueil-les-Aubiers",
     "code": "79195",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79250"
   },
@@ -1179,7 +1179,7 @@
     "name": "Plaine-et-Vallées",
     "code": "79196",
     "epci_code": "247900798",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79100"
   },
@@ -1187,7 +1187,7 @@
     "name": "Plaine-et-Vallées",
     "code": "79196",
     "epci_code": "247900798",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79600"
   },
@@ -1195,7 +1195,7 @@
     "name": "Oroux",
     "code": "79197",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79390"
   },
@@ -1203,7 +1203,7 @@
     "name": "Paizay-le-Chapt",
     "code": "79198",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79170"
   },
@@ -1211,7 +1211,7 @@
     "name": "Pamplie",
     "code": "79200",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79220"
   },
@@ -1219,7 +1219,7 @@
     "name": "Pamproux",
     "code": "79201",
     "epci_code": "200041994",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79800"
   },
@@ -1227,7 +1227,7 @@
     "name": "Parthenay",
     "code": "79202",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79200"
   },
@@ -1235,7 +1235,7 @@
     "name": "Pas-de-Jeu",
     "code": "79203",
     "epci_code": "247900798",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79100"
   },
@@ -1243,7 +1243,7 @@
     "name": "Périgné",
     "code": "79204",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79170"
   },
@@ -1251,7 +1251,7 @@
     "name": "La Petite-Boissière",
     "code": "79207",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79700"
   },
@@ -1259,7 +1259,7 @@
     "name": "La Peyratte",
     "code": "79208",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79200"
   },
@@ -1267,7 +1267,7 @@
     "name": "Pierrefitte",
     "code": "79209",
     "epci_code": "247900798",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79330"
   },
@@ -1275,7 +1275,7 @@
     "name": "Le Pin",
     "code": "79210",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79140"
   },
@@ -1283,7 +1283,7 @@
     "name": "Pompaire",
     "code": "79213",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79200"
   },
@@ -1291,7 +1291,7 @@
     "name": "Pougne-Hérisson",
     "code": "79215",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79130"
   },
@@ -1299,7 +1299,7 @@
     "name": "Prahecq",
     "code": "79216",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79230"
   },
@@ -1307,7 +1307,7 @@
     "name": "Prailles-La Couarde",
     "code": "79217",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79370"
   },
@@ -1315,7 +1315,7 @@
     "name": "Prailles-La Couarde",
     "code": "79217",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79800"
   },
@@ -1323,7 +1323,7 @@
     "name": "Pressigny",
     "code": "79218",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79390"
   },
@@ -1331,7 +1331,7 @@
     "name": "Prin-Deyrançon",
     "code": "79220",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79210"
   },
@@ -1339,7 +1339,7 @@
     "name": "Puihardy",
     "code": "79223",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79160"
   },
@@ -1347,7 +1347,7 @@
     "name": "Reffannes",
     "code": "79225",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79420"
   },
@@ -1355,7 +1355,7 @@
     "name": "Le Retail",
     "code": "79226",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79130"
   },
@@ -1363,7 +1363,7 @@
     "name": "La Rochénard",
     "code": "79229",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79270"
   },
@@ -1371,7 +1371,7 @@
     "name": "Rom",
     "code": "79230",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79120"
   },
@@ -1379,7 +1379,7 @@
     "name": "Romans",
     "code": "79231",
     "epci_code": "200041994",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79260"
   },
@@ -1387,7 +1387,7 @@
     "name": "Saint-Amand-sur-Sèvre",
     "code": "79235",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79700"
   },
@@ -1395,7 +1395,7 @@
     "name": "Saint-André-sur-Sèvre",
     "code": "79236",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79380"
   },
@@ -1403,7 +1403,7 @@
     "name": "Saint-Aubin-du-Plain",
     "code": "79238",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79300"
   },
@@ -1411,7 +1411,7 @@
     "name": "Saint-Aubin-le-Cloud",
     "code": "79239",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79450"
   },
@@ -1419,7 +1419,7 @@
     "name": "Saint-Christophe-sur-Roc",
     "code": "79241",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79220"
   },
@@ -1427,7 +1427,7 @@
     "name": "Voulmentin",
     "code": "79242",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79150"
   },
@@ -1435,7 +1435,7 @@
     "name": "Saint-Coutant",
     "code": "79243",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79120"
   },
@@ -1443,7 +1443,7 @@
     "name": "Saint-Cyr-la-Lande",
     "code": "79244",
     "epci_code": "247900798",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79100"
   },
@@ -1451,7 +1451,7 @@
     "name": "Sainte-Eanne",
     "code": "79246",
     "epci_code": "200041994",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79800"
   },
@@ -1459,7 +1459,7 @@
     "name": "Saint-Gelais",
     "code": "79249",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79410"
   },
@@ -1467,7 +1467,7 @@
     "name": "Sainte-Gemme",
     "code": "79250",
     "epci_code": "247900798",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79330"
   },
@@ -1475,7 +1475,7 @@
     "name": "Marcillé",
     "code": "79251",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79500"
   },
@@ -1483,7 +1483,7 @@
     "name": "Saint-Généroux",
     "code": "79252",
     "epci_code": "247900798",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79600"
   },
@@ -1491,7 +1491,7 @@
     "name": "Saint-Georges-de-Noisné",
     "code": "79253",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79400"
   },
@@ -1499,7 +1499,7 @@
     "name": "Saint-Georges-de-Rex",
     "code": "79254",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79210"
   },
@@ -1507,7 +1507,7 @@
     "name": "Saint-Germain-de-Longue-Chaume",
     "code": "79255",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79200"
   },
@@ -1515,7 +1515,7 @@
     "name": "Saint-Germier",
     "code": "79256",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79340"
   },
@@ -1523,7 +1523,7 @@
     "name": "Saint-Hilaire-la-Palud",
     "code": "79257",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79210"
   },
@@ -1531,7 +1531,7 @@
     "name": "Saint-Jacques-de-Thouars",
     "code": "79258",
     "epci_code": "247900798",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79100"
   },
@@ -1539,7 +1539,7 @@
     "name": "Saint-Jean-de-Thouars",
     "code": "79259",
     "epci_code": "247900798",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79100"
   },
@@ -1547,7 +1547,7 @@
     "name": "Saint-Laurs",
     "code": "79263",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79160"
   },
@@ -1555,7 +1555,7 @@
     "name": "Saint-Léger-de-Montbrun",
     "code": "79265",
     "epci_code": "247900798",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79100"
   },
@@ -1563,7 +1563,7 @@
     "name": "Saint-Lin",
     "code": "79267",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79420"
   },
@@ -1571,7 +1571,7 @@
     "name": "Saint-Loup-Lamairé",
     "code": "79268",
     "epci_code": "200041416",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79600"
   },
@@ -1579,7 +1579,7 @@
     "name": "Saint-Maixent-de-Beugné",
     "code": "79269",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79160"
   },
@@ -1587,7 +1587,7 @@
     "name": "Saint-Maixent-l’École",
     "code": "79270",
     "epci_code": "200041994",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79400"
   },
@@ -1595,7 +1595,7 @@
     "name": "Saint-Marc-la-Lande",
     "code": "79271",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79310"
   },
@@ -1603,7 +1603,7 @@
     "name": "Saint-Martin-de-Bernegoue",
     "code": "79273",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79230"
   },
@@ -1611,7 +1611,7 @@
     "name": "Saint-Martin-de-Mâcon",
     "code": "79274",
     "epci_code": "247900798",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79100"
   },
@@ -1619,7 +1619,7 @@
     "name": "Saint-Martin-de-Saint-Maixent",
     "code": "79276",
     "epci_code": "200041994",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79400"
   },
@@ -1627,7 +1627,7 @@
     "name": "Saint-Martin-de-Sanzay",
     "code": "79277",
     "epci_code": "247900798",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79290"
   },
@@ -1635,7 +1635,7 @@
     "name": "Saint-Martin-du-Fouilloux",
     "code": "79278",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79420"
   },
@@ -1643,7 +1643,7 @@
     "name": "Saint Maurice Étusson",
     "code": "79280",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79150"
   },
@@ -1651,7 +1651,7 @@
     "name": "Saint-Maxire",
     "code": "79281",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79410"
   },
@@ -1659,7 +1659,7 @@
     "name": "Sainte-Néomaye",
     "code": "79283",
     "epci_code": "200041994",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79260"
   },
@@ -1667,7 +1667,7 @@
     "name": "Sainte-Ouenne",
     "code": "79284",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79220"
   },
@@ -1675,7 +1675,7 @@
     "name": "Saint-Pardoux-Soutiers",
     "code": "79285",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79310"
   },
@@ -1683,7 +1683,7 @@
     "name": "Saint-Paul-en-Gâtine",
     "code": "79286",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79240"
   },
@@ -1691,7 +1691,7 @@
     "name": "Saint-Pierre-des-Échaubrognes",
     "code": "79289",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79700"
   },
@@ -1699,7 +1699,7 @@
     "name": "Saint-Pompain",
     "code": "79290",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79160"
   },
@@ -1707,7 +1707,7 @@
     "name": "Saint-Rémy",
     "code": "79293",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79410"
   },
@@ -1715,7 +1715,7 @@
     "name": "Saint-Romans-des-Champs",
     "code": "79294",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79230"
   },
@@ -1723,7 +1723,7 @@
     "name": "Saint-Romans-lès-Melle",
     "code": "79295",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79500"
   },
@@ -1731,7 +1731,7 @@
     "name": "Sainte-Soline",
     "code": "79297",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79120"
   },
@@ -1739,7 +1739,7 @@
     "name": "Saint-Symphorien",
     "code": "79298",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79270"
   },
@@ -1747,7 +1747,7 @@
     "name": "Saint-Varent",
     "code": "79299",
     "epci_code": "247900798",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79330"
   },
@@ -1755,7 +1755,7 @@
     "name": "Sainte-Verge",
     "code": "79300",
     "epci_code": "247900798",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79100"
   },
@@ -1763,7 +1763,7 @@
     "name": "Saint-Vincent-la-Châtre",
     "code": "79301",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79500"
   },
@@ -1771,7 +1771,7 @@
     "name": "Saivres",
     "code": "79302",
     "epci_code": "200041994",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79400"
   },
@@ -1779,7 +1779,7 @@
     "name": "Salles",
     "code": "79303",
     "epci_code": "200041994",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79800"
   },
@@ -1787,7 +1787,7 @@
     "name": "Sansais",
     "code": "79304",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79270"
   },
@@ -1795,7 +1795,7 @@
     "name": "Saurais",
     "code": "79306",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79200"
   },
@@ -1803,7 +1803,7 @@
     "name": "Sauzé-entre-Bois",
     "code": "79307",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79190"
   },
@@ -1811,7 +1811,7 @@
     "name": "Sciecq",
     "code": "79308",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79000"
   },
@@ -1819,7 +1819,7 @@
     "name": "Scillé",
     "code": "79309",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79240"
   },
@@ -1827,7 +1827,7 @@
     "name": "Secondigné-sur-Belle",
     "code": "79310",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79170"
   },
@@ -1835,7 +1835,7 @@
     "name": "Secondigny",
     "code": "79311",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79130"
   },
@@ -1843,7 +1843,7 @@
     "name": "Séligné",
     "code": "79312",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79170"
   },
@@ -1851,7 +1851,7 @@
     "name": "Sepvret",
     "code": "79313",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79120"
   },
@@ -1859,7 +1859,7 @@
     "name": "Soudan",
     "code": "79316",
     "epci_code": "200041994",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79800"
   },
@@ -1867,7 +1867,7 @@
     "name": "Souvigné",
     "code": "79319",
     "epci_code": "200041994",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79800"
   },
@@ -1875,7 +1875,7 @@
     "name": "Surin",
     "code": "79320",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79220"
   },
@@ -1883,7 +1883,7 @@
     "name": "Le Tallud",
     "code": "79322",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79200"
   },
@@ -1891,7 +1891,7 @@
     "name": "Thénezay",
     "code": "79326",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79390"
   },
@@ -1899,7 +1899,7 @@
     "name": "Thouars",
     "code": "79329",
     "epci_code": "247900798",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79100"
   },
@@ -1907,7 +1907,7 @@
     "name": "Tourtenay",
     "code": "79331",
     "epci_code": "247900798",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79100"
   },
@@ -1915,7 +1915,7 @@
     "name": "Trayes",
     "code": "79332",
     "epci_code": "200040244",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79240"
   },
@@ -1923,7 +1923,7 @@
     "name": "Val-du-Mignon",
     "code": "79334",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79210"
   },
@@ -1931,7 +1931,7 @@
     "name": "Val-du-Mignon",
     "code": "79334",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79360"
   },
@@ -1939,7 +1939,7 @@
     "name": "Vallans",
     "code": "79335",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79270"
   },
@@ -1947,7 +1947,7 @@
     "name": "Vançais",
     "code": "79336",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79120"
   },
@@ -1955,7 +1955,7 @@
     "name": "Le Vanneau-Irleau",
     "code": "79337",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79270"
   },
@@ -1963,7 +1963,7 @@
     "name": "Vanzay",
     "code": "79338",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79120"
   },
@@ -1971,7 +1971,7 @@
     "name": "Vasles",
     "code": "79339",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79340"
   },
@@ -1979,7 +1979,7 @@
     "name": "Vausseroux",
     "code": "79340",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79420"
   },
@@ -1987,7 +1987,7 @@
     "name": "Vautebis",
     "code": "79341",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79420"
   },
@@ -1995,7 +1995,7 @@
     "name": "Vernoux-en-Gâtine",
     "code": "79342",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79240"
   },
@@ -2003,7 +2003,7 @@
     "name": "Vernoux-sur-Boutonne",
     "code": "79343",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79170"
   },
@@ -2011,7 +2011,7 @@
     "name": "Verruyes",
     "code": "79345",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79310"
   },
@@ -2019,7 +2019,7 @@
     "name": "Le Vert",
     "code": "79346",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79170"
   },
@@ -2027,7 +2027,7 @@
     "name": "Viennay",
     "code": "79347",
     "epci_code": "200041333",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79200"
   },
@@ -2035,7 +2035,7 @@
     "name": "Villefollet",
     "code": "79348",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79170"
   },
@@ -2043,7 +2043,7 @@
     "name": "Villemain",
     "code": "79349",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79110"
   },
@@ -2051,7 +2051,7 @@
     "name": "Villiers-en-Bois",
     "code": "79350",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79360"
   },
@@ -2059,7 +2059,7 @@
     "name": "Villiers-en-Plaine",
     "code": "79351",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79160"
   },
@@ -2067,7 +2067,7 @@
     "name": "Villiers-sur-Chizé",
     "code": "79352",
     "epci_code": "200069755",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79170"
   },
@@ -2075,7 +2075,7 @@
     "name": "Vouhé",
     "code": "79354",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79310"
   },
@@ -2083,7 +2083,7 @@
     "name": "Vouillé",
     "code": "79355",
     "epci_code": "200041317",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79230"
   },
@@ -2091,7 +2091,7 @@
     "name": "Xaintray",
     "code": "79357",
     "epci_code": "200069748",
-    "departement_code": "79",
+    "department_code": "79",
     "region_code": "75",
     "postal_code": "79220"
   }

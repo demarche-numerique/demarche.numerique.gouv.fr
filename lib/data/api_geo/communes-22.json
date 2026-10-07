@@ -3,7 +3,7 @@
     "name": "Allineuc",
     "code": "22001",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22460"
   },
@@ -11,7 +11,7 @@
     "name": "Andel",
     "code": "22002",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22400"
   },
@@ -19,7 +19,7 @@
     "name": "Aucaleuc",
     "code": "22003",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22100"
   },
@@ -27,7 +27,7 @@
     "name": "Bégard",
     "code": "22004",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22140"
   },
@@ -35,7 +35,7 @@
     "name": "Belle-Isle-en-Terre",
     "code": "22005",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22810"
   },
@@ -43,7 +43,7 @@
     "name": "Berhet",
     "code": "22006",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22140"
   },
@@ -51,7 +51,7 @@
     "name": "Bobital",
     "code": "22008",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22100"
   },
@@ -59,7 +59,7 @@
     "name": "Le Bodéo",
     "code": "22009",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22320"
   },
@@ -67,7 +67,7 @@
     "name": "Boqueho",
     "code": "22011",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22170"
   },
@@ -75,7 +75,7 @@
     "name": "La Bouillie",
     "code": "22012",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22240"
   },
@@ -83,7 +83,7 @@
     "name": "Bourbriac",
     "code": "22013",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22390"
   },
@@ -91,7 +91,7 @@
     "name": "Bourseul",
     "code": "22014",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22130"
   },
@@ -99,14 +99,14 @@
     "name": "Bréhand",
     "code": "22015",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22510"
   },
   {
     "name": "Île-de-Bréhat",
     "code": "22016",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22870"
   },
@@ -114,7 +114,7 @@
     "name": "Brélidy",
     "code": "22018",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22140"
   },
@@ -122,7 +122,7 @@
     "name": "Bringolo",
     "code": "22019",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22170"
   },
@@ -130,7 +130,7 @@
     "name": "Broons",
     "code": "22020",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22250"
   },
@@ -138,7 +138,7 @@
     "name": "Brusvily",
     "code": "22021",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22100"
   },
@@ -146,7 +146,7 @@
     "name": "Bulat-Pestivien",
     "code": "22023",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22160"
   },
@@ -154,7 +154,7 @@
     "name": "Calanhel",
     "code": "22024",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22160"
   },
@@ -162,7 +162,7 @@
     "name": "Callac",
     "code": "22025",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22160"
   },
@@ -170,7 +170,7 @@
     "name": "Calorguen",
     "code": "22026",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22100"
   },
@@ -178,7 +178,7 @@
     "name": "Camlez",
     "code": "22028",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22450"
   },
@@ -186,7 +186,7 @@
     "name": "Canihuel",
     "code": "22029",
     "epci_code": "242200715",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22480"
   },
@@ -194,7 +194,7 @@
     "name": "Caouënnec-Lanvézéac",
     "code": "22030",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22300"
   },
@@ -202,7 +202,7 @@
     "name": "Carnoët",
     "code": "22031",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22160"
   },
@@ -210,7 +210,7 @@
     "name": "Caulnes",
     "code": "22032",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22350"
   },
@@ -218,7 +218,7 @@
     "name": "Caurel",
     "code": "22033",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22530"
   },
@@ -226,7 +226,7 @@
     "name": "Cavan",
     "code": "22034",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22140"
   },
@@ -234,7 +234,7 @@
     "name": "Les Champs-Géraux",
     "code": "22035",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22630"
   },
@@ -242,7 +242,7 @@
     "name": "La Chapelle-Blanche",
     "code": "22036",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22350"
   },
@@ -250,7 +250,7 @@
     "name": "La Chapelle-Neuve",
     "code": "22037",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22160"
   },
@@ -258,7 +258,7 @@
     "name": "La Chèze",
     "code": "22039",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22210"
   },
@@ -266,7 +266,7 @@
     "name": "Coadout",
     "code": "22040",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22970"
   },
@@ -274,7 +274,7 @@
     "name": "Coatascorn",
     "code": "22041",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22140"
   },
@@ -282,7 +282,7 @@
     "name": "Coatréven",
     "code": "22042",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22450"
   },
@@ -290,7 +290,7 @@
     "name": "Coëtmieux",
     "code": "22044",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22400"
   },
@@ -298,7 +298,7 @@
     "name": "Cohiniac",
     "code": "22045",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22800"
   },
@@ -306,7 +306,7 @@
     "name": "Le Mené",
     "code": "22046",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22330"
   },
@@ -314,7 +314,7 @@
     "name": "Corlay",
     "code": "22047",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22320"
   },
@@ -322,7 +322,7 @@
     "name": "Corseul",
     "code": "22048",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22130"
   },
@@ -330,7 +330,7 @@
     "name": "Créhen",
     "code": "22049",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22130"
   },
@@ -338,7 +338,7 @@
     "name": "Dinan",
     "code": "22050",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22100"
   },
@@ -346,7 +346,7 @@
     "name": "Duault",
     "code": "22052",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22160"
   },
@@ -354,7 +354,7 @@
     "name": "Éréac",
     "code": "22053",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22250"
   },
@@ -362,7 +362,7 @@
     "name": "Erquy",
     "code": "22054",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22430"
   },
@@ -370,7 +370,7 @@
     "name": "Binic-Étables-sur-Mer",
     "code": "22055",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22520"
   },
@@ -378,7 +378,7 @@
     "name": "Binic-Étables-sur-Mer",
     "code": "22055",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22680"
   },
@@ -386,7 +386,7 @@
     "name": "Évran",
     "code": "22056",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22630"
   },
@@ -394,7 +394,7 @@
     "name": "Le Faouët",
     "code": "22057",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22290"
   },
@@ -402,7 +402,7 @@
     "name": "Le Fœil",
     "code": "22059",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22800"
   },
@@ -410,7 +410,7 @@
     "name": "Gausson",
     "code": "22060",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22150"
   },
@@ -418,7 +418,7 @@
     "name": "Glomel",
     "code": "22061",
     "epci_code": "242200715",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22110"
   },
@@ -426,7 +426,7 @@
     "name": "Gomené",
     "code": "22062",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22230"
   },
@@ -434,7 +434,7 @@
     "name": "Gommenec’h",
     "code": "22063",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22290"
   },
@@ -442,7 +442,7 @@
     "name": "Gouarec",
     "code": "22064",
     "epci_code": "242200715",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22570"
   },
@@ -450,7 +450,7 @@
     "name": "Goudelin",
     "code": "22065",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22290"
   },
@@ -458,7 +458,7 @@
     "name": "Grâces",
     "code": "22067",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22200"
   },
@@ -466,7 +466,7 @@
     "name": "Grâce-Uzel",
     "code": "22068",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22460"
   },
@@ -474,7 +474,7 @@
     "name": "Guenroc",
     "code": "22069",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22350"
   },
@@ -482,7 +482,7 @@
     "name": "Guingamp",
     "code": "22070",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22200"
   },
@@ -490,7 +490,7 @@
     "name": "Guitté",
     "code": "22071",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22350"
   },
@@ -498,7 +498,7 @@
     "name": "Gurunhuel",
     "code": "22072",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22390"
   },
@@ -506,7 +506,7 @@
     "name": "La Harmoye",
     "code": "22073",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22320"
   },
@@ -514,7 +514,7 @@
     "name": "Le Haut-Corlay",
     "code": "22074",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22320"
   },
@@ -522,7 +522,7 @@
     "name": "Hémonstoir",
     "code": "22075",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22600"
   },
@@ -530,7 +530,7 @@
     "name": "Hénanbihen",
     "code": "22076",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22550"
   },
@@ -538,7 +538,7 @@
     "name": "Hénansal",
     "code": "22077",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22400"
   },
@@ -546,7 +546,7 @@
     "name": "Hénon",
     "code": "22079",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22150"
   },
@@ -554,7 +554,7 @@
     "name": "Hillion",
     "code": "22081",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22120"
   },
@@ -562,7 +562,7 @@
     "name": "Le Hinglé",
     "code": "22082",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22100"
   },
@@ -570,7 +570,7 @@
     "name": "Illifaut",
     "code": "22083",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22230"
   },
@@ -578,7 +578,7 @@
     "name": "Jugon-les-Lacs",
     "code": "22084",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22270"
   },
@@ -586,7 +586,7 @@
     "name": "Kerbors",
     "code": "22085",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22610"
   },
@@ -594,7 +594,7 @@
     "name": "Kerfot",
     "code": "22086",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22500"
   },
@@ -602,7 +602,7 @@
     "name": "Kergrist-Moëlou",
     "code": "22087",
     "epci_code": "242200715",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22110"
   },
@@ -610,7 +610,7 @@
     "name": "Kerien",
     "code": "22088",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22480"
   },
@@ -618,7 +618,7 @@
     "name": "Kermaria-Sulard",
     "code": "22090",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22450"
   },
@@ -626,7 +626,7 @@
     "name": "Kermoroc’h",
     "code": "22091",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22140"
   },
@@ -634,7 +634,7 @@
     "name": "Kerpert",
     "code": "22092",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22480"
   },
@@ -642,7 +642,7 @@
     "name": "Lamballe-Armor",
     "code": "22093",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22400"
   },
@@ -650,7 +650,7 @@
     "name": "Lancieux",
     "code": "22094",
     "epci_code": "243500725",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22770"
   },
@@ -658,7 +658,7 @@
     "name": "Landebaëron",
     "code": "22095",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22140"
   },
@@ -666,7 +666,7 @@
     "name": "Landébia",
     "code": "22096",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22130"
   },
@@ -674,7 +674,7 @@
     "name": "La Landec",
     "code": "22097",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22980"
   },
@@ -682,7 +682,7 @@
     "name": "Landéhen",
     "code": "22098",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22400"
   },
@@ -690,7 +690,7 @@
     "name": "Lanfains",
     "code": "22099",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22800"
   },
@@ -698,7 +698,7 @@
     "name": "Langoat",
     "code": "22101",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22450"
   },
@@ -706,7 +706,7 @@
     "name": "Langrolay-sur-Rance",
     "code": "22103",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22490"
   },
@@ -714,7 +714,7 @@
     "name": "Languédias",
     "code": "22104",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22980"
   },
@@ -722,7 +722,7 @@
     "name": "Languenan",
     "code": "22105",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22130"
   },
@@ -730,7 +730,7 @@
     "name": "Langueux",
     "code": "22106",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22360"
   },
@@ -738,7 +738,7 @@
     "name": "Bon Repos sur Blavet",
     "code": "22107",
     "epci_code": "242200715",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22570"
   },
@@ -746,7 +746,7 @@
     "name": "Lanleff",
     "code": "22108",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22290"
   },
@@ -754,7 +754,7 @@
     "name": "Lanloup",
     "code": "22109",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22580"
   },
@@ -762,7 +762,7 @@
     "name": "Lanmérin",
     "code": "22110",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22300"
   },
@@ -770,7 +770,7 @@
     "name": "Lanmodez",
     "code": "22111",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22610"
   },
@@ -778,7 +778,7 @@
     "name": "Lannebert",
     "code": "22112",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22290"
   },
@@ -786,7 +786,7 @@
     "name": "Lannion",
     "code": "22113",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22300"
   },
@@ -794,7 +794,7 @@
     "name": "Lanrelas",
     "code": "22114",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22250"
   },
@@ -802,7 +802,7 @@
     "name": "Lanrivain",
     "code": "22115",
     "epci_code": "242200715",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22480"
   },
@@ -810,7 +810,7 @@
     "name": "Lanrodec",
     "code": "22116",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22170"
   },
@@ -818,7 +818,7 @@
     "name": "Lantic",
     "code": "22117",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22410"
   },
@@ -826,7 +826,7 @@
     "name": "Lanvallay",
     "code": "22118",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22100"
   },
@@ -834,7 +834,7 @@
     "name": "Lanvellec",
     "code": "22119",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22420"
   },
@@ -842,7 +842,7 @@
     "name": "Lanvollon",
     "code": "22121",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22290"
   },
@@ -850,7 +850,7 @@
     "name": "Laurenan",
     "code": "22122",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22230"
   },
@@ -858,7 +858,7 @@
     "name": "Lescouët-Gouarec",
     "code": "22124",
     "epci_code": "242200715",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22570"
   },
@@ -866,7 +866,7 @@
     "name": "Le Leslay",
     "code": "22126",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22800"
   },
@@ -874,7 +874,7 @@
     "name": "Lézardrieux",
     "code": "22127",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22740"
   },
@@ -882,7 +882,7 @@
     "name": "Locarn",
     "code": "22128",
     "epci_code": "242200715",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22340"
   },
@@ -890,7 +890,7 @@
     "name": "Loc-Envel",
     "code": "22129",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22810"
   },
@@ -898,7 +898,7 @@
     "name": "Loguivy-Plougras",
     "code": "22131",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22780"
   },
@@ -906,7 +906,7 @@
     "name": "Lohuec",
     "code": "22132",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22160"
   },
@@ -914,7 +914,7 @@
     "name": "Loscouët-sur-Meu",
     "code": "22133",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22230"
   },
@@ -922,7 +922,7 @@
     "name": "Louannec",
     "code": "22134",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22700"
   },
@@ -930,7 +930,7 @@
     "name": "Louargat",
     "code": "22135",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22540"
   },
@@ -938,7 +938,7 @@
     "name": "Loudéac",
     "code": "22136",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22600"
   },
@@ -946,7 +946,7 @@
     "name": "Maël-Carhaix",
     "code": "22137",
     "epci_code": "242200715",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22340"
   },
@@ -954,7 +954,7 @@
     "name": "Maël-Pestivien",
     "code": "22138",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22160"
   },
@@ -962,7 +962,7 @@
     "name": "Magoar",
     "code": "22139",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22480"
   },
@@ -970,7 +970,7 @@
     "name": "La Malhoure",
     "code": "22140",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22640"
   },
@@ -978,7 +978,7 @@
     "name": "Mantallot",
     "code": "22141",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22450"
   },
@@ -986,7 +986,7 @@
     "name": "Matignon",
     "code": "22143",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22550"
   },
@@ -994,7 +994,7 @@
     "name": "La Méaugon",
     "code": "22144",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22440"
   },
@@ -1002,7 +1002,7 @@
     "name": "Mégrit",
     "code": "22145",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22270"
   },
@@ -1010,7 +1010,7 @@
     "name": "Mellionnec",
     "code": "22146",
     "epci_code": "242200715",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22110"
   },
@@ -1018,7 +1018,7 @@
     "name": "Merdrignac",
     "code": "22147",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22230"
   },
@@ -1026,7 +1026,7 @@
     "name": "Mérillac",
     "code": "22148",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22230"
   },
@@ -1034,7 +1034,7 @@
     "name": "Merléac",
     "code": "22149",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22460"
   },
@@ -1042,7 +1042,7 @@
     "name": "Le Merzer",
     "code": "22150",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22200"
   },
@@ -1050,7 +1050,7 @@
     "name": "Minihy-Tréguier",
     "code": "22152",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22220"
   },
@@ -1058,7 +1058,7 @@
     "name": "Moncontour",
     "code": "22153",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22510"
   },
@@ -1066,7 +1066,7 @@
     "name": "La Motte",
     "code": "22155",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22600"
   },
@@ -1074,7 +1074,7 @@
     "name": "Moustéru",
     "code": "22156",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22200"
   },
@@ -1082,7 +1082,7 @@
     "name": "Le Moustoir",
     "code": "22157",
     "epci_code": "242900744",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22340"
   },
@@ -1090,7 +1090,7 @@
     "name": "Guerlédan",
     "code": "22158",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22530"
   },
@@ -1098,7 +1098,7 @@
     "name": "Noyal",
     "code": "22160",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22400"
   },
@@ -1106,7 +1106,7 @@
     "name": "Pabu",
     "code": "22161",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22200"
   },
@@ -1114,7 +1114,7 @@
     "name": "Paimpol",
     "code": "22162",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22500"
   },
@@ -1122,7 +1122,7 @@
     "name": "Paule",
     "code": "22163",
     "epci_code": "242200715",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22340"
   },
@@ -1130,7 +1130,7 @@
     "name": "Pédernec",
     "code": "22164",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22540"
   },
@@ -1138,7 +1138,7 @@
     "name": "Penguily",
     "code": "22165",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22510"
   },
@@ -1146,7 +1146,7 @@
     "name": "Penvénan",
     "code": "22166",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22710"
   },
@@ -1154,7 +1154,7 @@
     "name": "Perros-Guirec",
     "code": "22168",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22700"
   },
@@ -1162,7 +1162,7 @@
     "name": "Peumerit-Quintin",
     "code": "22169",
     "epci_code": "242200715",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22480"
   },
@@ -1170,7 +1170,7 @@
     "name": "Plaine-Haute",
     "code": "22170",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22800"
   },
@@ -1178,7 +1178,7 @@
     "name": "Plaintel",
     "code": "22171",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22940"
   },
@@ -1186,7 +1186,7 @@
     "name": "Plancoët",
     "code": "22172",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22130"
   },
@@ -1194,7 +1194,7 @@
     "name": "Pléboulle",
     "code": "22174",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22550"
   },
@@ -1202,7 +1202,7 @@
     "name": "Plédéliac",
     "code": "22175",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22270"
   },
@@ -1210,7 +1210,7 @@
     "name": "Plédran",
     "code": "22176",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22960"
   },
@@ -1218,7 +1218,7 @@
     "name": "Pléguien",
     "code": "22177",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22290"
   },
@@ -1226,7 +1226,7 @@
     "name": "Pléhédel",
     "code": "22178",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22290"
   },
@@ -1234,7 +1234,7 @@
     "name": "Fréhel",
     "code": "22179",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22240"
   },
@@ -1242,7 +1242,7 @@
     "name": "Plélan-le-Petit",
     "code": "22180",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22980"
   },
@@ -1250,7 +1250,7 @@
     "name": "Plélauff",
     "code": "22181",
     "epci_code": "242200715",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22570"
   },
@@ -1258,7 +1258,7 @@
     "name": "Plélo",
     "code": "22182",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22170"
   },
@@ -1266,7 +1266,7 @@
     "name": "Plémet",
     "code": "22183",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22210"
   },
@@ -1274,7 +1274,7 @@
     "name": "Plémy",
     "code": "22184",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22150"
   },
@@ -1282,7 +1282,7 @@
     "name": "Plénée-Jugon",
     "code": "22185",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22640"
   },
@@ -1290,7 +1290,7 @@
     "name": "Pléneuf-Val-André",
     "code": "22186",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22370"
   },
@@ -1298,7 +1298,7 @@
     "name": "Plérin",
     "code": "22187",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22190"
   },
@@ -1306,7 +1306,7 @@
     "name": "Plerneuf",
     "code": "22188",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22170"
   },
@@ -1314,7 +1314,7 @@
     "name": "Plésidy",
     "code": "22189",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22720"
   },
@@ -1322,7 +1322,7 @@
     "name": "Pleslin-Trigavou",
     "code": "22190",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22490"
   },
@@ -1330,7 +1330,7 @@
     "name": "Plestan",
     "code": "22193",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22640"
   },
@@ -1338,7 +1338,7 @@
     "name": "Plestin-les-Grèves",
     "code": "22194",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22310"
   },
@@ -1346,7 +1346,7 @@
     "name": "Pleubian",
     "code": "22195",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22610"
   },
@@ -1354,7 +1354,7 @@
     "name": "Pleudaniel",
     "code": "22196",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22740"
   },
@@ -1362,7 +1362,7 @@
     "name": "Pleudihen-sur-Rance",
     "code": "22197",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22690"
   },
@@ -1370,7 +1370,7 @@
     "name": "Pleumeur-Bodou",
     "code": "22198",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22560"
   },
@@ -1378,7 +1378,7 @@
     "name": "Pleumeur-Gautier",
     "code": "22199",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22740"
   },
@@ -1386,7 +1386,7 @@
     "name": "Plévenon",
     "code": "22201",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22240"
   },
@@ -1394,7 +1394,7 @@
     "name": "Plévin",
     "code": "22202",
     "epci_code": "242900744",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22340"
   },
@@ -1402,7 +1402,7 @@
     "name": "Plœuc-L’Hermitage",
     "code": "22203",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22150"
   },
@@ -1410,7 +1410,7 @@
     "name": "Ploëzal",
     "code": "22204",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22260"
   },
@@ -1418,7 +1418,7 @@
     "name": "Plorec-sur-Arguenon",
     "code": "22205",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22130"
   },
@@ -1426,7 +1426,7 @@
     "name": "Châtelaudren-Plouagat",
     "code": "22206",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22170"
   },
@@ -1434,7 +1434,7 @@
     "name": "Plouaret",
     "code": "22207",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22420"
   },
@@ -1442,7 +1442,7 @@
     "name": "Plouasne",
     "code": "22208",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22830"
   },
@@ -1450,7 +1450,7 @@
     "name": "Beaussais-sur-Mer",
     "code": "22209",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22650"
   },
@@ -1458,7 +1458,7 @@
     "name": "Ploubazlanec",
     "code": "22210",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22620"
   },
@@ -1466,7 +1466,7 @@
     "name": "Ploubezre",
     "code": "22211",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22300"
   },
@@ -1474,7 +1474,7 @@
     "name": "Plouëc-du-Trieux",
     "code": "22212",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22260"
   },
@@ -1482,7 +1482,7 @@
     "name": "Plouër-sur-Rance",
     "code": "22213",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22490"
   },
@@ -1490,7 +1490,7 @@
     "name": "Plouézec",
     "code": "22214",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22470"
   },
@@ -1498,7 +1498,7 @@
     "name": "Ploufragan",
     "code": "22215",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22440"
   },
@@ -1506,7 +1506,7 @@
     "name": "Plougonver",
     "code": "22216",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22810"
   },
@@ -1514,7 +1514,7 @@
     "name": "Plougras",
     "code": "22217",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22780"
   },
@@ -1522,7 +1522,7 @@
     "name": "Plougrescant",
     "code": "22218",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22820"
   },
@@ -1530,7 +1530,7 @@
     "name": "Plouguenast-Langast",
     "code": "22219",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22150"
   },
@@ -1538,7 +1538,7 @@
     "name": "Plouguernével",
     "code": "22220",
     "epci_code": "242200715",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22110"
   },
@@ -1546,7 +1546,7 @@
     "name": "Plouguiel",
     "code": "22221",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22220"
   },
@@ -1554,7 +1554,7 @@
     "name": "Plouha",
     "code": "22222",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22580"
   },
@@ -1562,7 +1562,7 @@
     "name": "Plouisy",
     "code": "22223",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22200"
   },
@@ -1570,7 +1570,7 @@
     "name": "Ploulec’h",
     "code": "22224",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22300"
   },
@@ -1578,7 +1578,7 @@
     "name": "Ploumagoar",
     "code": "22225",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22970"
   },
@@ -1586,7 +1586,7 @@
     "name": "Ploumilliau",
     "code": "22226",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22300"
   },
@@ -1594,7 +1594,7 @@
     "name": "Plounérin",
     "code": "22227",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22780"
   },
@@ -1602,7 +1602,7 @@
     "name": "Plounévez-Moëdec",
     "code": "22228",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22810"
   },
@@ -1610,7 +1610,7 @@
     "name": "Plounévez-Quintin",
     "code": "22229",
     "epci_code": "242200715",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22110"
   },
@@ -1618,7 +1618,7 @@
     "name": "Plourac’h",
     "code": "22231",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22160"
   },
@@ -1626,7 +1626,7 @@
     "name": "Plourhan",
     "code": "22232",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22410"
   },
@@ -1634,7 +1634,7 @@
     "name": "Plourivo",
     "code": "22233",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22860"
   },
@@ -1642,7 +1642,7 @@
     "name": "Plouvara",
     "code": "22234",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22170"
   },
@@ -1650,7 +1650,7 @@
     "name": "Plouzélambre",
     "code": "22235",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22420"
   },
@@ -1658,7 +1658,7 @@
     "name": "Pludual",
     "code": "22236",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22290"
   },
@@ -1666,7 +1666,7 @@
     "name": "Val-d’Arguenon",
     "code": "22237",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22130"
   },
@@ -1674,7 +1674,7 @@
     "name": "Plufur",
     "code": "22238",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22310"
   },
@@ -1682,7 +1682,7 @@
     "name": "Plumaudan",
     "code": "22239",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22350"
   },
@@ -1690,7 +1690,7 @@
     "name": "Plumaugat",
     "code": "22240",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22250"
   },
@@ -1698,7 +1698,7 @@
     "name": "Plumieux",
     "code": "22241",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22210"
   },
@@ -1706,7 +1706,7 @@
     "name": "Plurien",
     "code": "22242",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22240"
   },
@@ -1714,7 +1714,7 @@
     "name": "Plusquellec",
     "code": "22243",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22160"
   },
@@ -1722,7 +1722,7 @@
     "name": "Plussulien",
     "code": "22244",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22320"
   },
@@ -1730,7 +1730,7 @@
     "name": "Pluzunet",
     "code": "22245",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22140"
   },
@@ -1738,7 +1738,7 @@
     "name": "Pommeret",
     "code": "22246",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22120"
   },
@@ -1746,7 +1746,7 @@
     "name": "Pommerit-le-Vicomte",
     "code": "22248",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22200"
   },
@@ -1754,7 +1754,7 @@
     "name": "Pont-Melvez",
     "code": "22249",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22390"
   },
@@ -1762,7 +1762,7 @@
     "name": "Pontrieux",
     "code": "22250",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22260"
   },
@@ -1770,7 +1770,7 @@
     "name": "Pordic",
     "code": "22251",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22590"
   },
@@ -1778,7 +1778,7 @@
     "name": "Prat",
     "code": "22254",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22140"
   },
@@ -1786,7 +1786,7 @@
     "name": "La Prénessaye",
     "code": "22255",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22210"
   },
@@ -1794,7 +1794,7 @@
     "name": "Quemper-Guézennec",
     "code": "22256",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22260"
   },
@@ -1802,7 +1802,7 @@
     "name": "Quemperven",
     "code": "22257",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22450"
   },
@@ -1810,7 +1810,7 @@
     "name": "Quessoy",
     "code": "22258",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22120"
   },
@@ -1818,7 +1818,7 @@
     "name": "Quévert",
     "code": "22259",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22100"
   },
@@ -1826,7 +1826,7 @@
     "name": "Le Quillio",
     "code": "22260",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22460"
   },
@@ -1834,7 +1834,7 @@
     "name": "Quintenic",
     "code": "22261",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22400"
   },
@@ -1842,7 +1842,7 @@
     "name": "Quintin",
     "code": "22262",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22800"
   },
@@ -1850,7 +1850,7 @@
     "name": "Le Quiou",
     "code": "22263",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22630"
   },
@@ -1858,7 +1858,7 @@
     "name": "La Roche-Jaudy",
     "code": "22264",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22450"
   },
@@ -1866,7 +1866,7 @@
     "name": "Rospez",
     "code": "22265",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22300"
   },
@@ -1874,7 +1874,7 @@
     "name": "Rostrenen",
     "code": "22266",
     "epci_code": "242200715",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22110"
   },
@@ -1882,7 +1882,7 @@
     "name": "Rouillac",
     "code": "22267",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22250"
   },
@@ -1890,7 +1890,7 @@
     "name": "Ruca",
     "code": "22268",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22550"
   },
@@ -1898,7 +1898,7 @@
     "name": "Runan",
     "code": "22269",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22260"
   },
@@ -1906,7 +1906,7 @@
     "name": "Saint-Adrien",
     "code": "22271",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22390"
   },
@@ -1914,7 +1914,7 @@
     "name": "Saint-Agathon",
     "code": "22272",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22200"
   },
@@ -1922,7 +1922,7 @@
     "name": "Saint-Alban",
     "code": "22273",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22400"
   },
@@ -1930,7 +1930,7 @@
     "name": "Saint-André-des-Eaux",
     "code": "22274",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22630"
   },
@@ -1938,7 +1938,7 @@
     "name": "Saint-Barnabé",
     "code": "22275",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22600"
   },
@@ -1946,7 +1946,7 @@
     "name": "Saint-Bihy",
     "code": "22276",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22800"
   },
@@ -1954,7 +1954,7 @@
     "name": "Saint-Brandan",
     "code": "22277",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22800"
   },
@@ -1962,7 +1962,7 @@
     "name": "Saint-Brieuc",
     "code": "22278",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22000"
   },
@@ -1970,7 +1970,7 @@
     "name": "Saint-Caradec",
     "code": "22279",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22600"
   },
@@ -1978,7 +1978,7 @@
     "name": "Saint-Carné",
     "code": "22280",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22100"
   },
@@ -1986,7 +1986,7 @@
     "name": "Saint-Carreuc",
     "code": "22281",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22150"
   },
@@ -1994,7 +1994,7 @@
     "name": "Saint-Cast-le-Guildo",
     "code": "22282",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22380"
   },
@@ -2002,7 +2002,7 @@
     "name": "Saint-Clet",
     "code": "22283",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22260"
   },
@@ -2010,7 +2010,7 @@
     "name": "Saint-Connan",
     "code": "22284",
     "epci_code": "242200715",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22480"
   },
@@ -2018,7 +2018,7 @@
     "name": "Saint-Connec",
     "code": "22285",
     "epci_code": "245614433",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22530"
   },
@@ -2026,7 +2026,7 @@
     "name": "Saint-Denoual",
     "code": "22286",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22400"
   },
@@ -2034,7 +2034,7 @@
     "name": "Saint-Donan",
     "code": "22287",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22800"
   },
@@ -2042,7 +2042,7 @@
     "name": "Saint-Étienne-du-Gué-de-l’Isle",
     "code": "22288",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22210"
   },
@@ -2050,7 +2050,7 @@
     "name": "Saint-Fiacre",
     "code": "22289",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22720"
   },
@@ -2058,7 +2058,7 @@
     "name": "Saint-Gildas",
     "code": "22291",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22800"
   },
@@ -2066,7 +2066,7 @@
     "name": "Saint-Gilles-les-Bois",
     "code": "22293",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22290"
   },
@@ -2074,7 +2074,7 @@
     "name": "Saint-Gilles-Pligeaux",
     "code": "22294",
     "epci_code": "242200715",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22480"
   },
@@ -2082,7 +2082,7 @@
     "name": "Saint-Gilles-Vieux-Marché",
     "code": "22295",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22530"
   },
@@ -2090,7 +2090,7 @@
     "name": "Saint-Glen",
     "code": "22296",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22510"
   },
@@ -2098,7 +2098,7 @@
     "name": "Saint-Hélen",
     "code": "22299",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22100"
   },
@@ -2106,7 +2106,7 @@
     "name": "Saint-Hervé",
     "code": "22300",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22460"
   },
@@ -2114,7 +2114,7 @@
     "name": "Saint-Jacut-de-la-Mer",
     "code": "22302",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22750"
   },
@@ -2122,7 +2122,7 @@
     "name": "Saint-Jean-Kerdaniel",
     "code": "22304",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22170"
   },
@@ -2130,7 +2130,7 @@
     "name": "Saint-Jouan-de-l’Isle",
     "code": "22305",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22350"
   },
@@ -2138,7 +2138,7 @@
     "name": "Saint-Judoce",
     "code": "22306",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22630"
   },
@@ -2146,7 +2146,7 @@
     "name": "Saint-Julien",
     "code": "22307",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22940"
   },
@@ -2154,7 +2154,7 @@
     "name": "Saint-Juvat",
     "code": "22308",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22630"
   },
@@ -2162,7 +2162,7 @@
     "name": "Saint-Laurent",
     "code": "22310",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22140"
   },
@@ -2170,7 +2170,7 @@
     "name": "Saint-Lormel",
     "code": "22311",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22130"
   },
@@ -2178,7 +2178,7 @@
     "name": "Saint-Maden",
     "code": "22312",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22350"
   },
@@ -2186,7 +2186,7 @@
     "name": "Saint-Martin-des-Prés",
     "code": "22313",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22320"
   },
@@ -2194,7 +2194,7 @@
     "name": "Saint-Maudan",
     "code": "22314",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22600"
   },
@@ -2202,7 +2202,7 @@
     "name": "Saint-Maudez",
     "code": "22315",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22980"
   },
@@ -2210,7 +2210,7 @@
     "name": "Saint-Mayeux",
     "code": "22316",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22320"
   },
@@ -2218,7 +2218,7 @@
     "name": "Saint-Méloir-des-Bois",
     "code": "22317",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22980"
   },
@@ -2226,7 +2226,7 @@
     "name": "Saint-Michel-de-Plélan",
     "code": "22318",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22980"
   },
@@ -2234,7 +2234,7 @@
     "name": "Saint-Michel-en-Grève",
     "code": "22319",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22300"
   },
@@ -2242,7 +2242,7 @@
     "name": "Saint-Nicodème",
     "code": "22320",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22160"
   },
@@ -2250,7 +2250,7 @@
     "name": "Saint-Nicolas-du-Pélem",
     "code": "22321",
     "epci_code": "242200715",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22480"
   },
@@ -2258,7 +2258,7 @@
     "name": "Saint-Péver",
     "code": "22322",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22720"
   },
@@ -2266,7 +2266,7 @@
     "name": "Saint-Pôtan",
     "code": "22323",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22550"
   },
@@ -2274,7 +2274,7 @@
     "name": "Saint-Quay-Perros",
     "code": "22324",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22700"
   },
@@ -2282,7 +2282,7 @@
     "name": "Saint-Quay-Portrieux",
     "code": "22325",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22410"
   },
@@ -2290,7 +2290,7 @@
     "name": "Saint-Rieul",
     "code": "22326",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22270"
   },
@@ -2298,7 +2298,7 @@
     "name": "Saint-Samson-sur-Rance",
     "code": "22327",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22100"
   },
@@ -2306,7 +2306,7 @@
     "name": "Saint-Servais",
     "code": "22328",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22160"
   },
@@ -2314,7 +2314,7 @@
     "name": "Saint-Thélo",
     "code": "22330",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22460"
   },
@@ -2322,7 +2322,7 @@
     "name": "Sainte-Tréphine",
     "code": "22331",
     "epci_code": "242200715",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22480"
   },
@@ -2330,7 +2330,7 @@
     "name": "Saint-Trimoël",
     "code": "22332",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22510"
   },
@@ -2338,7 +2338,7 @@
     "name": "Saint-Vran",
     "code": "22333",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22230"
   },
@@ -2346,7 +2346,7 @@
     "name": "Saint-Igeaux",
     "code": "22334",
     "epci_code": "242200715",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22570"
   },
@@ -2354,7 +2354,7 @@
     "name": "Senven-Léhart",
     "code": "22335",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22720"
   },
@@ -2362,7 +2362,7 @@
     "name": "Sévignac",
     "code": "22337",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22250"
   },
@@ -2370,7 +2370,7 @@
     "name": "Squiffiec",
     "code": "22338",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22200"
   },
@@ -2378,7 +2378,7 @@
     "name": "Taden",
     "code": "22339",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22100"
   },
@@ -2386,7 +2386,7 @@
     "name": "Tonquédec",
     "code": "22340",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22140"
   },
@@ -2394,7 +2394,7 @@
     "name": "Tramain",
     "code": "22341",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22640"
   },
@@ -2402,7 +2402,7 @@
     "name": "Trébédan",
     "code": "22342",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22980"
   },
@@ -2410,7 +2410,7 @@
     "name": "Trébeurden",
     "code": "22343",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22560"
   },
@@ -2418,7 +2418,7 @@
     "name": "Trébrivan",
     "code": "22344",
     "epci_code": "242200715",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22340"
   },
@@ -2426,7 +2426,7 @@
     "name": "Trébry",
     "code": "22345",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22510"
   },
@@ -2434,7 +2434,7 @@
     "name": "Trédaniel",
     "code": "22346",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22510"
   },
@@ -2442,7 +2442,7 @@
     "name": "Trédarzec",
     "code": "22347",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22220"
   },
@@ -2450,7 +2450,7 @@
     "name": "Trédias",
     "code": "22348",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22250"
   },
@@ -2458,7 +2458,7 @@
     "name": "Trédrez-Locquémeau",
     "code": "22349",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22300"
   },
@@ -2466,7 +2466,7 @@
     "name": "Tréduder",
     "code": "22350",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22310"
   },
@@ -2474,7 +2474,7 @@
     "name": "Treffrin",
     "code": "22351",
     "epci_code": "242900744",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22340"
   },
@@ -2482,7 +2482,7 @@
     "name": "Tréfumel",
     "code": "22352",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22630"
   },
@@ -2490,7 +2490,7 @@
     "name": "Trégastel",
     "code": "22353",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22730"
   },
@@ -2498,7 +2498,7 @@
     "name": "Tréglamus",
     "code": "22354",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22540"
   },
@@ -2506,7 +2506,7 @@
     "name": "Trégomeur",
     "code": "22356",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22590"
   },
@@ -2514,7 +2514,7 @@
     "name": "Trégonneau",
     "code": "22358",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22200"
   },
@@ -2522,7 +2522,7 @@
     "name": "Trégrom",
     "code": "22359",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22420"
   },
@@ -2530,7 +2530,7 @@
     "name": "Trégueux",
     "code": "22360",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22950"
   },
@@ -2538,7 +2538,7 @@
     "name": "Tréguidel",
     "code": "22361",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22290"
   },
@@ -2546,7 +2546,7 @@
     "name": "Tréguier",
     "code": "22362",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22220"
   },
@@ -2554,7 +2554,7 @@
     "name": "Trélévern",
     "code": "22363",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22660"
   },
@@ -2562,7 +2562,7 @@
     "name": "Trélivan",
     "code": "22364",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22100"
   },
@@ -2570,7 +2570,7 @@
     "name": "Trémargat",
     "code": "22365",
     "epci_code": "242200715",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22110"
   },
@@ -2578,7 +2578,7 @@
     "name": "Trémel",
     "code": "22366",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22310"
   },
@@ -2586,7 +2586,7 @@
     "name": "Tréméreuc",
     "code": "22368",
     "epci_code": "243500725",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22490"
   },
@@ -2594,7 +2594,7 @@
     "name": "Trémeur",
     "code": "22369",
     "epci_code": "200069391",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22250"
   },
@@ -2602,7 +2602,7 @@
     "name": "Tréméven",
     "code": "22370",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22290"
   },
@@ -2610,7 +2610,7 @@
     "name": "Trémorel",
     "code": "22371",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22230"
   },
@@ -2618,7 +2618,7 @@
     "name": "Trémuson",
     "code": "22372",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22440"
   },
@@ -2626,7 +2626,7 @@
     "name": "Tréogan",
     "code": "22373",
     "epci_code": "242900744",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22340"
   },
@@ -2634,7 +2634,7 @@
     "name": "Tressignaux",
     "code": "22375",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22290"
   },
@@ -2642,7 +2642,7 @@
     "name": "Trévé",
     "code": "22376",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22600"
   },
@@ -2650,7 +2650,7 @@
     "name": "Tréveneuc",
     "code": "22377",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22410"
   },
@@ -2658,7 +2658,7 @@
     "name": "Trévérec",
     "code": "22378",
     "epci_code": "200069086",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22290"
   },
@@ -2666,7 +2666,7 @@
     "name": "Trévou-Tréguignec",
     "code": "22379",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22660"
   },
@@ -2674,7 +2674,7 @@
     "name": "Trévron",
     "code": "22380",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22100"
   },
@@ -2682,7 +2682,7 @@
     "name": "Trézény",
     "code": "22381",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22450"
   },
@@ -2690,7 +2690,7 @@
     "name": "Troguéry",
     "code": "22383",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22450"
   },
@@ -2698,7 +2698,7 @@
     "name": "Uzel",
     "code": "22384",
     "epci_code": "200067460",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22460"
   },
@@ -2706,7 +2706,7 @@
     "name": "La Vicomté-sur-Rance",
     "code": "22385",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22690"
   },
@@ -2714,7 +2714,7 @@
     "name": "Le Vieux-Bourg",
     "code": "22386",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22800"
   },
@@ -2722,7 +2722,7 @@
     "name": "Le Vieux-Marché",
     "code": "22387",
     "epci_code": "200065928",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22420"
   },
@@ -2730,7 +2730,7 @@
     "name": "Vildé-Guingalan",
     "code": "22388",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22980"
   },
@@ -2738,7 +2738,7 @@
     "name": "Yffiniac",
     "code": "22389",
     "epci_code": "200069409",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22120"
   },
@@ -2746,7 +2746,7 @@
     "name": "Yvias",
     "code": "22390",
     "epci_code": "200067981",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22930"
   },
@@ -2754,7 +2754,7 @@
     "name": "Yvignac-la-Tour",
     "code": "22391",
     "epci_code": "200068989",
-    "departement_code": "22",
+    "department_code": "22",
     "region_code": "53",
     "postal_code": "22350"
   }

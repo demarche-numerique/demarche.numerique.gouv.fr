@@ -3,7 +3,7 @@
     "name": "Aigurande",
     "code": "36001",
     "epci_code": "200007052",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36140"
   },
@@ -11,7 +11,7 @@
     "name": "Aize",
     "code": "36002",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36150"
   },
@@ -19,7 +19,7 @@
     "name": "Ambrault",
     "code": "36003",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36120"
   },
@@ -27,7 +27,7 @@
     "name": "Anjouin",
     "code": "36004",
     "epci_code": "243600202",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36210"
   },
@@ -35,7 +35,7 @@
     "name": "Ardentes",
     "code": "36005",
     "epci_code": "243600327",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36120"
   },
@@ -43,7 +43,7 @@
     "name": "Argenton-sur-Creuse",
     "code": "36006",
     "epci_code": "200068872",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36200"
   },
@@ -51,7 +51,7 @@
     "name": "Argy",
     "code": "36007",
     "epci_code": "243600301",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36500"
   },
@@ -59,7 +59,7 @@
     "name": "Arpheuilles",
     "code": "36008",
     "epci_code": "200035848",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36700"
   },
@@ -67,7 +67,7 @@
     "name": "Arthon",
     "code": "36009",
     "epci_code": "243600327",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36330"
   },
@@ -75,7 +75,7 @@
     "name": "Azay-le-Ferron",
     "code": "36010",
     "epci_code": "243600343",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36290"
   },
@@ -83,7 +83,7 @@
     "name": "Bagneux",
     "code": "36011",
     "epci_code": "243600202",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36210"
   },
@@ -91,7 +91,7 @@
     "name": "Baraize",
     "code": "36012",
     "epci_code": "200068872",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36270"
   },
@@ -99,7 +99,7 @@
     "name": "Baudres",
     "code": "36013",
     "epci_code": "243600293",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36110"
   },
@@ -107,7 +107,7 @@
     "name": "Bazaiges",
     "code": "36014",
     "epci_code": "200068872",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36270"
   },
@@ -115,7 +115,7 @@
     "name": "Beaulieu",
     "code": "36015",
     "epci_code": "200035137",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36310"
   },
@@ -123,7 +123,7 @@
     "name": "Bélâbre",
     "code": "36016",
     "epci_code": "200035137",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36370"
   },
@@ -131,7 +131,7 @@
     "name": "La Berthenoux",
     "code": "36017",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36400"
   },
@@ -139,7 +139,7 @@
     "name": "Le Blanc",
     "code": "36018",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36300"
   },
@@ -147,7 +147,7 @@
     "name": "Bommiers",
     "code": "36019",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36120"
   },
@@ -155,7 +155,7 @@
     "name": "Bonneuil",
     "code": "36020",
     "epci_code": "200035137",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36310"
   },
@@ -163,7 +163,7 @@
     "name": "Les Bordes",
     "code": "36021",
     "epci_code": "243600236",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36100"
   },
@@ -171,7 +171,7 @@
     "name": "Bouesse",
     "code": "36022",
     "epci_code": "200068872",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36200"
   },
@@ -179,7 +179,7 @@
     "name": "Bouges-le-Château",
     "code": "36023",
     "epci_code": "243600293",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36110"
   },
@@ -187,7 +187,7 @@
     "name": "Bretagne",
     "code": "36024",
     "epci_code": "243600293",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36110"
   },
@@ -195,7 +195,7 @@
     "name": "Briantes",
     "code": "36025",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36400"
   },
@@ -203,7 +203,7 @@
     "name": "Brion",
     "code": "36026",
     "epci_code": "243600293",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36110"
   },
@@ -211,7 +211,7 @@
     "name": "Brives",
     "code": "36027",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36100"
   },
@@ -219,7 +219,7 @@
     "name": "La Buxerette",
     "code": "36028",
     "epci_code": "200007052",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36140"
   },
@@ -227,7 +227,7 @@
     "name": "Buxeuil",
     "code": "36029",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36150"
   },
@@ -235,7 +235,7 @@
     "name": "Buxières-d’Aillac",
     "code": "36030",
     "epci_code": "200018521",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36230"
   },
@@ -243,7 +243,7 @@
     "name": "Buzançais",
     "code": "36031",
     "epci_code": "243600301",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36500"
   },
@@ -251,7 +251,7 @@
     "name": "Ceaulmont",
     "code": "36032",
     "epci_code": "200068872",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36200"
   },
@@ -259,7 +259,7 @@
     "name": "Celon",
     "code": "36033",
     "epci_code": "200068872",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36200"
   },
@@ -267,7 +267,7 @@
     "name": "Chabris",
     "code": "36034",
     "epci_code": "243600202",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36210"
   },
@@ -275,7 +275,7 @@
     "name": "Chaillac",
     "code": "36035",
     "epci_code": "200035137",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36310"
   },
@@ -283,7 +283,7 @@
     "name": "Chalais",
     "code": "36036",
     "epci_code": "200035137",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36370"
   },
@@ -291,7 +291,7 @@
     "name": "La Champenoise",
     "code": "36037",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36100"
   },
@@ -299,7 +299,7 @@
     "name": "Champillet",
     "code": "36038",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36160"
   },
@@ -307,7 +307,7 @@
     "name": "La Chapelle-Orthemale",
     "code": "36040",
     "epci_code": "243600301",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36500"
   },
@@ -315,7 +315,7 @@
     "name": "La Chapelle-Saint-Laurian",
     "code": "36041",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36150"
   },
@@ -323,7 +323,7 @@
     "name": "Chasseneuil",
     "code": "36042",
     "epci_code": "200068872",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36800"
   },
@@ -331,7 +331,7 @@
     "name": "Chassignolles",
     "code": "36043",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36400"
   },
@@ -339,7 +339,7 @@
     "name": "Châteauroux",
     "code": "36044",
     "epci_code": "243600327",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36000"
   },
@@ -347,7 +347,7 @@
     "name": "Châtillon-sur-Indre",
     "code": "36045",
     "epci_code": "200035848",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36700"
   },
@@ -355,7 +355,7 @@
     "name": "La Châtre",
     "code": "36046",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36400"
   },
@@ -363,7 +363,7 @@
     "name": "La Châtre-Langlin",
     "code": "36047",
     "epci_code": "200035137",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36170"
   },
@@ -371,7 +371,7 @@
     "name": "Chavin",
     "code": "36048",
     "epci_code": "200068872",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36200"
   },
@@ -379,7 +379,7 @@
     "name": "Chazelet",
     "code": "36049",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36170"
   },
@@ -387,7 +387,7 @@
     "name": "Chezelles",
     "code": "36050",
     "epci_code": "243600301",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36500"
   },
@@ -395,7 +395,7 @@
     "name": "Chitray",
     "code": "36051",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36800"
   },
@@ -403,7 +403,7 @@
     "name": "Chouday",
     "code": "36052",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36100"
   },
@@ -411,7 +411,7 @@
     "name": "Ciron",
     "code": "36053",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36300"
   },
@@ -419,7 +419,7 @@
     "name": "Cléré-du-Bois",
     "code": "36054",
     "epci_code": "200035848",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36700"
   },
@@ -427,7 +427,7 @@
     "name": "Clion",
     "code": "36055",
     "epci_code": "200035848",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36700"
   },
@@ -435,7 +435,7 @@
     "name": "Cluis",
     "code": "36056",
     "epci_code": "200018521",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36340"
   },
@@ -443,7 +443,7 @@
     "name": "Coings",
     "code": "36057",
     "epci_code": "243600327",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36130"
   },
@@ -451,7 +451,7 @@
     "name": "Concremiers",
     "code": "36058",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36300"
   },
@@ -459,7 +459,7 @@
     "name": "Condé",
     "code": "36059",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36100"
   },
@@ -467,7 +467,7 @@
     "name": "Crevant",
     "code": "36060",
     "epci_code": "200007052",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36140"
   },
@@ -475,7 +475,7 @@
     "name": "Crozon-sur-Vauvre",
     "code": "36061",
     "epci_code": "200007052",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36140"
   },
@@ -483,7 +483,7 @@
     "name": "Cuzion",
     "code": "36062",
     "epci_code": "200068872",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36190"
   },
@@ -491,7 +491,7 @@
     "name": "Déols",
     "code": "36063",
     "epci_code": "243600327",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36130"
   },
@@ -499,7 +499,7 @@
     "name": "Diors",
     "code": "36064",
     "epci_code": "243600327",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36130"
   },
@@ -507,7 +507,7 @@
     "name": "Diou",
     "code": "36065",
     "epci_code": "243600236",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36260"
   },
@@ -515,7 +515,7 @@
     "name": "Douadic",
     "code": "36066",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36300"
   },
@@ -523,7 +523,7 @@
     "name": "Dunet",
     "code": "36067",
     "epci_code": "200035137",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36310"
   },
@@ -531,7 +531,7 @@
     "name": "Dun-le-Poëlier",
     "code": "36068",
     "epci_code": "243600202",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36210"
   },
@@ -539,7 +539,7 @@
     "name": "Écueillé",
     "code": "36069",
     "epci_code": "200040558",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36240"
   },
@@ -547,7 +547,7 @@
     "name": "Éguzon-Chantôme",
     "code": "36070",
     "epci_code": "200068872",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36270"
   },
@@ -555,7 +555,7 @@
     "name": "Étrechet",
     "code": "36071",
     "epci_code": "243600327",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36120"
   },
@@ -563,7 +563,7 @@
     "name": "Feusines",
     "code": "36073",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36160"
   },
@@ -571,7 +571,7 @@
     "name": "Fléré-la-Rivière",
     "code": "36074",
     "epci_code": "200035848",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36700"
   },
@@ -579,7 +579,7 @@
     "name": "Fontenay",
     "code": "36075",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36150"
   },
@@ -587,7 +587,7 @@
     "name": "Fontgombault",
     "code": "36076",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36220"
   },
@@ -595,7 +595,7 @@
     "name": "Fontguenand",
     "code": "36077",
     "epci_code": "200040558",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36600"
   },
@@ -603,7 +603,7 @@
     "name": "Fougerolles",
     "code": "36078",
     "epci_code": "200018521",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36230"
   },
@@ -611,7 +611,7 @@
     "name": "Francillon",
     "code": "36079",
     "epci_code": "243600293",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36110"
   },
@@ -619,7 +619,7 @@
     "name": "Frédille",
     "code": "36080",
     "epci_code": "200040558",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36180"
   },
@@ -627,7 +627,7 @@
     "name": "Gargilesse-Dampierre",
     "code": "36081",
     "epci_code": "200068872",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36190"
   },
@@ -635,7 +635,7 @@
     "name": "Gehée",
     "code": "36082",
     "epci_code": "200040558",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36240"
   },
@@ -643,7 +643,7 @@
     "name": "Giroux",
     "code": "36083",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36150"
   },
@@ -651,7 +651,7 @@
     "name": "Gournay",
     "code": "36084",
     "epci_code": "200018521",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36230"
   },
@@ -659,7 +659,7 @@
     "name": "Guilly",
     "code": "36085",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36150"
   },
@@ -667,7 +667,7 @@
     "name": "Heugnes",
     "code": "36086",
     "epci_code": "200040558",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36180"
   },
@@ -675,7 +675,7 @@
     "name": "Ingrandes",
     "code": "36087",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36300"
   },
@@ -683,7 +683,7 @@
     "name": "Issoudun",
     "code": "36088",
     "epci_code": "243600236",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36100"
   },
@@ -691,7 +691,7 @@
     "name": "Jeu-les-Bois",
     "code": "36089",
     "epci_code": "243600327",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36120"
   },
@@ -699,7 +699,7 @@
     "name": "Jeu-Maloches",
     "code": "36090",
     "epci_code": "200040558",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36240"
   },
@@ -707,7 +707,7 @@
     "name": "Lacs",
     "code": "36091",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36400"
   },
@@ -715,7 +715,7 @@
     "name": "Langé",
     "code": "36092",
     "epci_code": "200040558",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36600"
   },
@@ -723,7 +723,7 @@
     "name": "Levroux",
     "code": "36093",
     "epci_code": "243600293",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36110"
   },
@@ -731,7 +731,7 @@
     "name": "Lignac",
     "code": "36094",
     "epci_code": "200035137",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36370"
   },
@@ -739,7 +739,7 @@
     "name": "Lignerolles",
     "code": "36095",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36160"
   },
@@ -747,7 +747,7 @@
     "name": "Lingé",
     "code": "36096",
     "epci_code": "243600343",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36220"
   },
@@ -755,7 +755,7 @@
     "name": "Liniez",
     "code": "36097",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36150"
   },
@@ -763,7 +763,7 @@
     "name": "Lizeray",
     "code": "36098",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36100"
   },
@@ -771,7 +771,7 @@
     "name": "Lourdoueix-Saint-Michel",
     "code": "36099",
     "epci_code": "200007052",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36140"
   },
@@ -779,7 +779,7 @@
     "name": "Lourouer-Saint-Laurent",
     "code": "36100",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36400"
   },
@@ -787,7 +787,7 @@
     "name": "Luant",
     "code": "36101",
     "epci_code": "243600327",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36350"
   },
@@ -795,7 +795,7 @@
     "name": "Luçay-le-Libre",
     "code": "36102",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36150"
   },
@@ -803,7 +803,7 @@
     "name": "Luçay-le-Mâle",
     "code": "36103",
     "epci_code": "200040558",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36360"
   },
@@ -811,7 +811,7 @@
     "name": "Lurais",
     "code": "36104",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36220"
   },
@@ -819,7 +819,7 @@
     "name": "Lureuil",
     "code": "36105",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36220"
   },
@@ -827,7 +827,7 @@
     "name": "Luzeret",
     "code": "36106",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36800"
   },
@@ -835,7 +835,7 @@
     "name": "Lye",
     "code": "36107",
     "epci_code": "200040558",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36600"
   },
@@ -843,7 +843,7 @@
     "name": "Lys-Saint-Georges",
     "code": "36108",
     "epci_code": "200018521",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36230"
   },
@@ -851,7 +851,7 @@
     "name": "Le Magny",
     "code": "36109",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36400"
   },
@@ -859,7 +859,7 @@
     "name": "Maillet",
     "code": "36110",
     "epci_code": "200018521",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36340"
   },
@@ -867,7 +867,7 @@
     "name": "Malicornay",
     "code": "36111",
     "epci_code": "200018521",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36340"
   },
@@ -875,7 +875,7 @@
     "name": "Mâron",
     "code": "36112",
     "epci_code": "243600327",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36120"
   },
@@ -883,7 +883,7 @@
     "name": "Martizay",
     "code": "36113",
     "epci_code": "243600343",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36220"
   },
@@ -891,7 +891,7 @@
     "name": "Mauvières",
     "code": "36114",
     "epci_code": "200035137",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36370"
   },
@@ -899,7 +899,7 @@
     "name": "Menetou-sur-Nahon",
     "code": "36115",
     "epci_code": "243600202",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36210"
   },
@@ -907,7 +907,7 @@
     "name": "Ménétréols-sous-Vatan",
     "code": "36116",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36150"
   },
@@ -915,7 +915,7 @@
     "name": "Le Menoux",
     "code": "36117",
     "epci_code": "200068872",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36200"
   },
@@ -923,7 +923,7 @@
     "name": "Méobecq",
     "code": "36118",
     "epci_code": "243600301",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36500"
   },
@@ -931,7 +931,7 @@
     "name": "Mérigny",
     "code": "36119",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36220"
   },
@@ -939,7 +939,7 @@
     "name": "Mers-sur-Indre",
     "code": "36120",
     "epci_code": "200018521",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36230"
   },
@@ -947,7 +947,7 @@
     "name": "Meunet-Planches",
     "code": "36121",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36100"
   },
@@ -955,7 +955,7 @@
     "name": "Meunet-sur-Vatan",
     "code": "36122",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36150"
   },
@@ -963,7 +963,7 @@
     "name": "Mézières-en-Brenne",
     "code": "36123",
     "epci_code": "243600343",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36290"
   },
@@ -971,7 +971,7 @@
     "name": "Migné",
     "code": "36124",
     "epci_code": "243600343",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36800"
   },
@@ -979,7 +979,7 @@
     "name": "Migny",
     "code": "36125",
     "epci_code": "243600236",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36260"
   },
@@ -987,7 +987,7 @@
     "name": "Montchevrier",
     "code": "36126",
     "epci_code": "200007052",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36140"
   },
@@ -995,7 +995,7 @@
     "name": "Montgivray",
     "code": "36127",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36400"
   },
@@ -1003,7 +1003,7 @@
     "name": "Montierchaume",
     "code": "36128",
     "epci_code": "243600327",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36130"
   },
@@ -1011,7 +1011,7 @@
     "name": "Montipouret",
     "code": "36129",
     "epci_code": "200018521",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36230"
   },
@@ -1019,7 +1019,7 @@
     "name": "Montlevicq",
     "code": "36130",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36400"
   },
@@ -1027,7 +1027,7 @@
     "name": "Mosnay",
     "code": "36131",
     "epci_code": "200068872",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36200"
   },
@@ -1035,7 +1035,7 @@
     "name": "La Motte-Feuilly",
     "code": "36132",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36160"
   },
@@ -1043,7 +1043,7 @@
     "name": "Mouhers",
     "code": "36133",
     "epci_code": "200018521",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36340"
   },
@@ -1051,7 +1051,7 @@
     "name": "Mouhet",
     "code": "36134",
     "epci_code": "200035137",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36170"
   },
@@ -1059,7 +1059,7 @@
     "name": "Moulins-sur-Céphons",
     "code": "36135",
     "epci_code": "243600293",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36110"
   },
@@ -1067,7 +1067,7 @@
     "name": "Murs",
     "code": "36136",
     "epci_code": "200035848",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36700"
   },
@@ -1075,7 +1075,7 @@
     "name": "Néons-sur-Creuse",
     "code": "36137",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36220"
   },
@@ -1083,7 +1083,7 @@
     "name": "Néret",
     "code": "36138",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36400"
   },
@@ -1091,7 +1091,7 @@
     "name": "Neuillay-les-Bois",
     "code": "36139",
     "epci_code": "243600301",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36500"
   },
@@ -1099,7 +1099,7 @@
     "name": "Neuvy-Pailloux",
     "code": "36140",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36100"
   },
@@ -1107,7 +1107,7 @@
     "name": "Neuvy-Saint-Sépulchre",
     "code": "36141",
     "epci_code": "200018521",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36230"
   },
@@ -1115,7 +1115,7 @@
     "name": "Niherne",
     "code": "36142",
     "epci_code": "243600301",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36250"
   },
@@ -1123,7 +1123,7 @@
     "name": "Nohant-Vic",
     "code": "36143",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36400"
   },
@@ -1131,7 +1131,7 @@
     "name": "Nuret-le-Ferron",
     "code": "36144",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36800"
   },
@@ -1139,7 +1139,7 @@
     "name": "Obterre",
     "code": "36145",
     "epci_code": "243600343",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36290"
   },
@@ -1147,7 +1147,7 @@
     "name": "Orsennes",
     "code": "36146",
     "epci_code": "200007052",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36190"
   },
@@ -1155,7 +1155,7 @@
     "name": "Orville",
     "code": "36147",
     "epci_code": "243600202",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36210"
   },
@@ -1163,7 +1163,7 @@
     "name": "Oulches",
     "code": "36148",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36800"
   },
@@ -1171,7 +1171,7 @@
     "name": "Palluau-sur-Indre",
     "code": "36149",
     "epci_code": "200035848",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36500"
   },
@@ -1179,7 +1179,7 @@
     "name": "Parnac",
     "code": "36150",
     "epci_code": "200035137",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36170"
   },
@@ -1187,7 +1187,7 @@
     "name": "Paudy",
     "code": "36152",
     "epci_code": "243600236",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36260"
   },
@@ -1195,7 +1195,7 @@
     "name": "Paulnay",
     "code": "36153",
     "epci_code": "243600343",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36290"
   },
@@ -1203,7 +1203,7 @@
     "name": "Le Pêchereau",
     "code": "36154",
     "epci_code": "200068872",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36200"
   },
@@ -1211,7 +1211,7 @@
     "name": "Pellevoisin",
     "code": "36155",
     "epci_code": "200040558",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36180"
   },
@@ -1219,7 +1219,7 @@
     "name": "Pérassay",
     "code": "36156",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36160"
   },
@@ -1227,7 +1227,7 @@
     "name": "La Pérouille",
     "code": "36157",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36350"
   },
@@ -1235,7 +1235,7 @@
     "name": "Badecon-le-Pin",
     "code": "36158",
     "epci_code": "200068872",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36200"
   },
@@ -1243,7 +1243,7 @@
     "name": "Le Poinçonnet",
     "code": "36159",
     "epci_code": "243600327",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36330"
   },
@@ -1251,7 +1251,7 @@
     "name": "Pommiers",
     "code": "36160",
     "epci_code": "200068872",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36190"
   },
@@ -1259,7 +1259,7 @@
     "name": "Le Pont-Chrétien-Chabenet",
     "code": "36161",
     "epci_code": "200068872",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36800"
   },
@@ -1267,7 +1267,7 @@
     "name": "Poulaines",
     "code": "36162",
     "epci_code": "243600202",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36210"
   },
@@ -1275,7 +1275,7 @@
     "name": "Pouligny-Notre-Dame",
     "code": "36163",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36160"
   },
@@ -1283,7 +1283,7 @@
     "name": "Pouligny-Saint-Martin",
     "code": "36164",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36160"
   },
@@ -1291,7 +1291,7 @@
     "name": "Pouligny-Saint-Pierre",
     "code": "36165",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36300"
   },
@@ -1299,7 +1299,7 @@
     "name": "Préaux",
     "code": "36166",
     "epci_code": "200040558",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36240"
   },
@@ -1307,7 +1307,7 @@
     "name": "Preuilly-la-Ville",
     "code": "36167",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36220"
   },
@@ -1315,7 +1315,7 @@
     "name": "Prissac",
     "code": "36168",
     "epci_code": "200035137",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36370"
   },
@@ -1323,7 +1323,7 @@
     "name": "Pruniers",
     "code": "36169",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36120"
   },
@@ -1331,7 +1331,7 @@
     "name": "Reboursin",
     "code": "36170",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36150"
   },
@@ -1339,7 +1339,7 @@
     "name": "Reuilly",
     "code": "36171",
     "epci_code": "243600236",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36260"
   },
@@ -1347,7 +1347,7 @@
     "name": "Rivarennes",
     "code": "36172",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36800"
   },
@@ -1355,7 +1355,7 @@
     "name": "Rosnay",
     "code": "36173",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36300"
   },
@@ -1363,7 +1363,7 @@
     "name": "Roussines",
     "code": "36174",
     "epci_code": "200035137",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36170"
   },
@@ -1371,7 +1371,7 @@
     "name": "Rouvres-les-Bois",
     "code": "36175",
     "epci_code": "243600293",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36110"
   },
@@ -1379,7 +1379,7 @@
     "name": "Ruffec",
     "code": "36176",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36300"
   },
@@ -1387,7 +1387,7 @@
     "name": "Sacierges-Saint-Martin",
     "code": "36177",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36170"
   },
@@ -1395,7 +1395,7 @@
     "name": "Saint-Aigny",
     "code": "36178",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36300"
   },
@@ -1403,7 +1403,7 @@
     "name": "Saint-Aoustrille",
     "code": "36179",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36100"
   },
@@ -1411,7 +1411,7 @@
     "name": "Saint-Août",
     "code": "36180",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36120"
   },
@@ -1419,7 +1419,7 @@
     "name": "Saint-Aubin",
     "code": "36181",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36100"
   },
@@ -1427,7 +1427,7 @@
     "name": "Saint-Benoît-du-Sault",
     "code": "36182",
     "epci_code": "200035137",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36170"
   },
@@ -1435,7 +1435,7 @@
     "name": "Saint-Chartier",
     "code": "36184",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36400"
   },
@@ -1443,7 +1443,7 @@
     "name": "Saint-Christophe-en-Bazelle",
     "code": "36185",
     "epci_code": "243600202",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36210"
   },
@@ -1451,7 +1451,7 @@
     "name": "Saint-Christophe-en-Boucherie",
     "code": "36186",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36400"
   },
@@ -1459,7 +1459,7 @@
     "name": "Saint-Civran",
     "code": "36187",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36170"
   },
@@ -1467,7 +1467,7 @@
     "name": "Saint-Cyran-du-Jambot",
     "code": "36188",
     "epci_code": "200035848",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36700"
   },
@@ -1475,7 +1475,7 @@
     "name": "Saint-Denis-de-Jouhet",
     "code": "36189",
     "epci_code": "200007052",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36230"
   },
@@ -1483,7 +1483,7 @@
     "name": "Sainte-Fauste",
     "code": "36190",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36100"
   },
@@ -1491,7 +1491,7 @@
     "name": "Saint-Florentin",
     "code": "36191",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36150"
   },
@@ -1499,7 +1499,7 @@
     "name": "Saint-Gaultier",
     "code": "36192",
     "epci_code": "200068872",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36800"
   },
@@ -1507,7 +1507,7 @@
     "name": "Sainte-Gemme",
     "code": "36193",
     "epci_code": "243600343",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36500"
   },
@@ -1515,7 +1515,7 @@
     "name": "Saint-Genou",
     "code": "36194",
     "epci_code": "243600301",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36500"
   },
@@ -1523,7 +1523,7 @@
     "name": "Saint-Georges-sur-Arnon",
     "code": "36195",
     "epci_code": "243600236",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36100"
   },
@@ -1531,7 +1531,7 @@
     "name": "Saint-Gilles",
     "code": "36196",
     "epci_code": "200035137",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36170"
   },
@@ -1539,7 +1539,7 @@
     "name": "Saint-Hilaire-sur-Benaize",
     "code": "36197",
     "epci_code": "200035137",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36370"
   },
@@ -1547,7 +1547,7 @@
     "name": "Saint-Lactencin",
     "code": "36198",
     "epci_code": "243600301",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36500"
   },
@@ -1555,7 +1555,7 @@
     "name": "Sainte-Lizaigne",
     "code": "36199",
     "epci_code": "243600236",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36260"
   },
@@ -1563,7 +1563,7 @@
     "name": "Saint-Marcel",
     "code": "36200",
     "epci_code": "200068872",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36200"
   },
@@ -1571,7 +1571,7 @@
     "name": "Saint-Maur",
     "code": "36202",
     "epci_code": "243600327",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36250"
   },
@@ -1579,7 +1579,7 @@
     "name": "Saint-Médard",
     "code": "36203",
     "epci_code": "200035848",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36700"
   },
@@ -1587,7 +1587,7 @@
     "name": "Saint-Michel-en-Brenne",
     "code": "36204",
     "epci_code": "243600343",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36290"
   },
@@ -1595,7 +1595,7 @@
     "name": "Saint-Pierre-de-Jards",
     "code": "36205",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36260"
   },
@@ -1603,7 +1603,7 @@
     "name": "Saint-Plantaire",
     "code": "36207",
     "epci_code": "200007052",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36190"
   },
@@ -1611,7 +1611,7 @@
     "name": "Sainte-Sévère-sur-Indre",
     "code": "36208",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36160"
   },
@@ -1619,7 +1619,7 @@
     "name": "Saint-Valentin",
     "code": "36209",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36100"
   },
@@ -1627,7 +1627,7 @@
     "name": "Sarzay",
     "code": "36210",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36230"
   },
@@ -1635,7 +1635,7 @@
     "name": "Sassierges-Saint-Germain",
     "code": "36211",
     "epci_code": "243600327",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36120"
   },
@@ -1643,7 +1643,7 @@
     "name": "Saulnay",
     "code": "36212",
     "epci_code": "243600343",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36290"
   },
@@ -1651,7 +1651,7 @@
     "name": "Sauzelles",
     "code": "36213",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36220"
   },
@@ -1659,7 +1659,7 @@
     "name": "Sazeray",
     "code": "36214",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36160"
   },
@@ -1667,7 +1667,7 @@
     "name": "Ségry",
     "code": "36215",
     "epci_code": "243600236",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36100"
   },
@@ -1675,7 +1675,7 @@
     "name": "Selles-sur-Nahon",
     "code": "36216",
     "epci_code": "200040558",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36180"
   },
@@ -1683,7 +1683,7 @@
     "name": "Sembleçay",
     "code": "36217",
     "epci_code": "243600202",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36210"
   },
@@ -1691,7 +1691,7 @@
     "name": "Sougé",
     "code": "36218",
     "epci_code": "243600301",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36500"
   },
@@ -1699,7 +1699,7 @@
     "name": "Tendu",
     "code": "36219",
     "epci_code": "200068872",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36200"
   },
@@ -1707,7 +1707,7 @@
     "name": "Thenay",
     "code": "36220",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36800"
   },
@@ -1715,7 +1715,7 @@
     "name": "Thevet-Saint-Julien",
     "code": "36221",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36400"
   },
@@ -1723,7 +1723,7 @@
     "name": "Thizay",
     "code": "36222",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36100"
   },
@@ -1731,7 +1731,7 @@
     "name": "Tilly",
     "code": "36223",
     "epci_code": "200035137",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36310"
   },
@@ -1739,7 +1739,7 @@
     "name": "Tournon-Saint-Martin",
     "code": "36224",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36220"
   },
@@ -1747,7 +1747,7 @@
     "name": "Le Tranger",
     "code": "36225",
     "epci_code": "200035848",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36700"
   },
@@ -1755,7 +1755,7 @@
     "name": "Tranzault",
     "code": "36226",
     "epci_code": "200018521",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36230"
   },
@@ -1763,7 +1763,7 @@
     "name": "Urciers",
     "code": "36227",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36160"
   },
@@ -1771,7 +1771,7 @@
     "name": "Valençay",
     "code": "36228",
     "epci_code": "200040558",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36600"
   },
@@ -1779,7 +1779,7 @@
     "name": "Val-Fouzon",
     "code": "36229",
     "epci_code": "243600202",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36210"
   },
@@ -1787,7 +1787,7 @@
     "name": "Vatan",
     "code": "36230",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36150"
   },
@@ -1795,7 +1795,7 @@
     "name": "Velles",
     "code": "36231",
     "epci_code": "200068872",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36330"
   },
@@ -1803,7 +1803,7 @@
     "name": "Vendœuvres",
     "code": "36232",
     "epci_code": "243600301",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36500"
   },
@@ -1811,7 +1811,7 @@
     "name": "La Vernelle",
     "code": "36233",
     "epci_code": "200040558",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36600"
   },
@@ -1819,7 +1819,7 @@
     "name": "Verneuil-sur-Igneraie",
     "code": "36234",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36400"
   },
@@ -1827,7 +1827,7 @@
     "name": "Veuil",
     "code": "36235",
     "epci_code": "200040558",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36600"
   },
@@ -1835,7 +1835,7 @@
     "name": "Vicq-Exemplet",
     "code": "36236",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36400"
   },
@@ -1843,7 +1843,7 @@
     "name": "Vicq-sur-Nahon",
     "code": "36237",
     "epci_code": "200040558",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36600"
   },
@@ -1851,7 +1851,7 @@
     "name": "Vigoulant",
     "code": "36238",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36160"
   },
@@ -1859,7 +1859,7 @@
     "name": "Vigoux",
     "code": "36239",
     "epci_code": "243600319",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36170"
   },
@@ -1867,7 +1867,7 @@
     "name": "Vijon",
     "code": "36240",
     "epci_code": "243600350",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36160"
   },
@@ -1875,7 +1875,7 @@
     "name": "Villedieu-sur-Indre",
     "code": "36241",
     "epci_code": "243600301",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36320"
   },
@@ -1883,7 +1883,7 @@
     "name": "Villegongis",
     "code": "36242",
     "epci_code": "243600293",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36110"
   },
@@ -1891,7 +1891,7 @@
     "name": "Villegouin",
     "code": "36243",
     "epci_code": "200040558",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36500"
   },
@@ -1899,7 +1899,7 @@
     "name": "Villentrois-Faverolles-en-Berry",
     "code": "36244",
     "epci_code": "200040558",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36360"
   },
@@ -1907,7 +1907,7 @@
     "name": "Villentrois-Faverolles-en-Berry",
     "code": "36244",
     "epci_code": "200040558",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36600"
   },
@@ -1915,7 +1915,7 @@
     "name": "Villiers",
     "code": "36246",
     "epci_code": "243600343",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36290"
   },
@@ -1923,7 +1923,7 @@
     "name": "Vineuil",
     "code": "36247",
     "epci_code": "243600293",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36110"
   },
@@ -1931,7 +1931,7 @@
     "name": "Vouillon",
     "code": "36248",
     "epci_code": "200068880",
-    "departement_code": "36",
+    "department_code": "36",
     "region_code": "24",
     "postal_code": "36100"
   }

@@ -3,7 +3,7 @@
     "name": "Albas",
     "code": "46001",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46140"
   },
@@ -11,7 +11,7 @@
     "name": "Albiac",
     "code": "46002",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46500"
   },
@@ -19,7 +19,7 @@
     "name": "Alvignac",
     "code": "46003",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46500"
   },
@@ -27,7 +27,7 @@
     "name": "Anglars",
     "code": "46004",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46120"
   },
@@ -35,7 +35,7 @@
     "name": "Anglars-Juillac",
     "code": "46005",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46140"
   },
@@ -43,7 +43,7 @@
     "name": "Anglars-Nozac",
     "code": "46006",
     "epci_code": "244600482",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46300"
   },
@@ -51,7 +51,7 @@
     "name": "Arcambal",
     "code": "46007",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46090"
   },
@@ -59,7 +59,7 @@
     "name": "Les Arques",
     "code": "46008",
     "epci_code": "200035327",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46250"
   },
@@ -67,7 +67,7 @@
     "name": "Assier",
     "code": "46009",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46320"
   },
@@ -75,7 +75,7 @@
     "name": "Aujols",
     "code": "46010",
     "epci_code": "244600532",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46090"
   },
@@ -83,7 +83,7 @@
     "name": "Autoire",
     "code": "46011",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46400"
   },
@@ -91,7 +91,7 @@
     "name": "Aynac",
     "code": "46012",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46120"
   },
@@ -99,7 +99,7 @@
     "name": "Bach",
     "code": "46013",
     "epci_code": "244600532",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46230"
   },
@@ -107,7 +107,7 @@
     "name": "Bagnac-sur-Célé",
     "code": "46015",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46270"
   },
@@ -115,7 +115,7 @@
     "name": "Baladou",
     "code": "46016",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46600"
   },
@@ -123,7 +123,7 @@
     "name": "Bannes",
     "code": "46017",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46400"
   },
@@ -131,7 +131,7 @@
     "name": "Le Bastit",
     "code": "46018",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46500"
   },
@@ -139,7 +139,7 @@
     "name": "Beauregard",
     "code": "46020",
     "epci_code": "244600532",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46260"
   },
@@ -147,7 +147,7 @@
     "name": "Béduer",
     "code": "46021",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46100"
   },
@@ -155,7 +155,7 @@
     "name": "Bélaye",
     "code": "46022",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46140"
   },
@@ -163,7 +163,7 @@
     "name": "Belfort-du-Quercy",
     "code": "46023",
     "epci_code": "244600532",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46230"
   },
@@ -171,7 +171,7 @@
     "name": "Belmont-Bretenoux",
     "code": "46024",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46130"
   },
@@ -179,7 +179,7 @@
     "name": "Belmont-Sainte-Foi",
     "code": "46026",
     "epci_code": "244600532",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46230"
   },
@@ -187,7 +187,7 @@
     "name": "Berganty",
     "code": "46027",
     "epci_code": "244600532",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46090"
   },
@@ -195,7 +195,7 @@
     "name": "Bétaille",
     "code": "46028",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46110"
   },
@@ -203,7 +203,7 @@
     "name": "Biars-sur-Cère",
     "code": "46029",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46130"
   },
@@ -211,7 +211,7 @@
     "name": "Bio",
     "code": "46030",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46500"
   },
@@ -219,7 +219,7 @@
     "name": "Blars",
     "code": "46031",
     "epci_code": "244600573",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46330"
   },
@@ -227,7 +227,7 @@
     "name": "Boissières",
     "code": "46032",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46150"
   },
@@ -235,7 +235,7 @@
     "name": "Porte-du-Quercy",
     "code": "46033",
     "epci_code": "200039519",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46800"
   },
@@ -243,7 +243,7 @@
     "name": "Le Bourg",
     "code": "46034",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46120"
   },
@@ -251,7 +251,7 @@
     "name": "Boussac",
     "code": "46035",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46100"
   },
@@ -259,7 +259,7 @@
     "name": "Le Bouyssou",
     "code": "46036",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46120"
   },
@@ -267,7 +267,7 @@
     "name": "Bouziès",
     "code": "46037",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46330"
   },
@@ -275,7 +275,7 @@
     "name": "Bretenoux",
     "code": "46038",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46130"
   },
@@ -283,7 +283,7 @@
     "name": "Brengues",
     "code": "46039",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46320"
   },
@@ -291,7 +291,7 @@
     "name": "Cabrerets",
     "code": "46040",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46330"
   },
@@ -299,7 +299,7 @@
     "name": "Cadrieu",
     "code": "46041",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46160"
   },
@@ -307,7 +307,7 @@
     "name": "Cahors",
     "code": "46042",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46000"
   },
@@ -315,7 +315,7 @@
     "name": "Cahus",
     "code": "46043",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46130"
   },
@@ -323,7 +323,7 @@
     "name": "Caillac",
     "code": "46044",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46140"
   },
@@ -331,7 +331,7 @@
     "name": "Cajarc",
     "code": "46045",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46160"
   },
@@ -339,7 +339,7 @@
     "name": "Calamane",
     "code": "46046",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46150"
   },
@@ -347,7 +347,7 @@
     "name": "Calès",
     "code": "46047",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46350"
   },
@@ -355,7 +355,7 @@
     "name": "Calvignac",
     "code": "46049",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46160"
   },
@@ -363,7 +363,7 @@
     "name": "Cambayrac",
     "code": "46050",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46140"
   },
@@ -371,7 +371,7 @@
     "name": "Cambes",
     "code": "46051",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46100"
   },
@@ -379,7 +379,7 @@
     "name": "Camboulit",
     "code": "46052",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46100"
   },
@@ -387,7 +387,7 @@
     "name": "Camburat",
     "code": "46053",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46100"
   },
@@ -395,7 +395,7 @@
     "name": "Caniac-du-Causse",
     "code": "46054",
     "epci_code": "244600573",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46240"
   },
@@ -403,7 +403,7 @@
     "name": "Capdenac",
     "code": "46055",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46100"
   },
@@ -411,7 +411,7 @@
     "name": "Carayac",
     "code": "46056",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46160"
   },
@@ -419,7 +419,7 @@
     "name": "Cardaillac",
     "code": "46057",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46100"
   },
@@ -427,7 +427,7 @@
     "name": "Carennac",
     "code": "46058",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46110"
   },
@@ -435,7 +435,7 @@
     "name": "Carlucet",
     "code": "46059",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46500"
   },
@@ -443,7 +443,7 @@
     "name": "Carnac-Rouffiac",
     "code": "46060",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46140"
   },
@@ -451,7 +451,7 @@
     "name": "Cassagnes",
     "code": "46061",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46700"
   },
@@ -459,7 +459,7 @@
     "name": "Castelfranc",
     "code": "46062",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46140"
   },
@@ -467,7 +467,7 @@
     "name": "Castelnau-Montratier",
     "code": "46063",
     "epci_code": "200039519",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46170"
   },
@@ -475,7 +475,7 @@
     "name": "Catus",
     "code": "46064",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46150"
   },
@@ -483,7 +483,7 @@
     "name": "Cavagnac",
     "code": "46065",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46110"
   },
@@ -491,7 +491,7 @@
     "name": "Cazals",
     "code": "46066",
     "epci_code": "200035327",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46250"
   },
@@ -499,7 +499,7 @@
     "name": "Cénevières",
     "code": "46068",
     "epci_code": "244600532",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46330"
   },
@@ -507,7 +507,7 @@
     "name": "Cézac",
     "code": "46069",
     "epci_code": "200039519",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46170"
   },
@@ -515,7 +515,7 @@
     "name": "Cieurac",
     "code": "46070",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46230"
   },
@@ -523,7 +523,7 @@
     "name": "Concorès",
     "code": "46072",
     "epci_code": "244600482",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46310"
   },
@@ -531,7 +531,7 @@
     "name": "Concots",
     "code": "46073",
     "epci_code": "244600532",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46260"
   },
@@ -539,7 +539,7 @@
     "name": "Condat",
     "code": "46074",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46110"
   },
@@ -547,7 +547,7 @@
     "name": "Corn",
     "code": "46075",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46100"
   },
@@ -555,7 +555,7 @@
     "name": "Cornac",
     "code": "46076",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46130"
   },
@@ -563,7 +563,7 @@
     "name": "Couzou",
     "code": "46078",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46500"
   },
@@ -571,7 +571,7 @@
     "name": "Cras",
     "code": "46079",
     "epci_code": "244600573",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46360"
   },
@@ -579,7 +579,7 @@
     "name": "Crayssac",
     "code": "46080",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46150"
   },
@@ -587,7 +587,7 @@
     "name": "Crégols",
     "code": "46081",
     "epci_code": "244600532",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46330"
   },
@@ -595,7 +595,7 @@
     "name": "Cremps",
     "code": "46082",
     "epci_code": "244600532",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46230"
   },
@@ -603,7 +603,7 @@
     "name": "Cressensac-Sarrazac",
     "code": "46083",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46600"
   },
@@ -611,7 +611,7 @@
     "name": "Creysse",
     "code": "46084",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46600"
   },
@@ -619,7 +619,7 @@
     "name": "Cuzac",
     "code": "46085",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46270"
   },
@@ -627,7 +627,7 @@
     "name": "Cuzance",
     "code": "46086",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46600"
   },
@@ -635,7 +635,7 @@
     "name": "Dégagnac",
     "code": "46087",
     "epci_code": "200035327",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46340"
   },
@@ -643,7 +643,7 @@
     "name": "Douelle",
     "code": "46088",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46140"
   },
@@ -651,7 +651,7 @@
     "name": "Duravel",
     "code": "46089",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46700"
   },
@@ -659,7 +659,7 @@
     "name": "Durbans",
     "code": "46090",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46320"
   },
@@ -667,7 +667,7 @@
     "name": "Escamps",
     "code": "46091",
     "epci_code": "244600532",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46230"
   },
@@ -675,7 +675,7 @@
     "name": "Esclauzels",
     "code": "46092",
     "epci_code": "244600532",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46090"
   },
@@ -683,7 +683,7 @@
     "name": "Espagnac-Sainte-Eulalie",
     "code": "46093",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46320"
   },
@@ -691,7 +691,7 @@
     "name": "Espédaillac",
     "code": "46094",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46320"
   },
@@ -699,7 +699,7 @@
     "name": "Espère",
     "code": "46095",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46090"
   },
@@ -707,7 +707,7 @@
     "name": "Espeyroux",
     "code": "46096",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46120"
   },
@@ -715,7 +715,7 @@
     "name": "Estal",
     "code": "46097",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46130"
   },
@@ -723,7 +723,7 @@
     "name": "Fajoles",
     "code": "46098",
     "epci_code": "244600482",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46300"
   },
@@ -731,7 +731,7 @@
     "name": "Faycelles",
     "code": "46100",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46100"
   },
@@ -739,7 +739,7 @@
     "name": "Felzins",
     "code": "46101",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46270"
   },
@@ -747,7 +747,7 @@
     "name": "Figeac",
     "code": "46102",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46100"
   },
@@ -755,7 +755,7 @@
     "name": "Saint-Paul-Flaugnac",
     "code": "46103",
     "epci_code": "200039519",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46170"
   },
@@ -763,7 +763,7 @@
     "name": "Flaujac-Gare",
     "code": "46104",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46320"
   },
@@ -771,7 +771,7 @@
     "name": "Flaujac-Poujols",
     "code": "46105",
     "epci_code": "244600532",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46090"
   },
@@ -779,7 +779,7 @@
     "name": "Floirac",
     "code": "46106",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46600"
   },
@@ -787,7 +787,7 @@
     "name": "Floressas",
     "code": "46107",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46700"
   },
@@ -795,7 +795,7 @@
     "name": "Fons",
     "code": "46108",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46100"
   },
@@ -803,7 +803,7 @@
     "name": "Fontanes",
     "code": "46109",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46230"
   },
@@ -811,7 +811,7 @@
     "name": "Fourmagnac",
     "code": "46111",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46100"
   },
@@ -819,7 +819,7 @@
     "name": "Francoulès",
     "code": "46112",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46090"
   },
@@ -827,7 +827,7 @@
     "name": "Frayssinet",
     "code": "46113",
     "epci_code": "244600573",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46310"
   },
@@ -835,7 +835,7 @@
     "name": "Frayssinet-le-Gélat",
     "code": "46114",
     "epci_code": "200035327",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46250"
   },
@@ -843,7 +843,7 @@
     "name": "Frayssinhes",
     "code": "46115",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46400"
   },
@@ -851,7 +851,7 @@
     "name": "Frontenac",
     "code": "46116",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46160"
   },
@@ -859,7 +859,7 @@
     "name": "Gagnac-sur-Cère",
     "code": "46117",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46130"
   },
@@ -867,7 +867,7 @@
     "name": "Gignac",
     "code": "46118",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46600"
   },
@@ -875,7 +875,7 @@
     "name": "Gigouzac",
     "code": "46119",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46150"
   },
@@ -883,7 +883,7 @@
     "name": "Gindou",
     "code": "46120",
     "epci_code": "200035327",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46250"
   },
@@ -891,7 +891,7 @@
     "name": "Ginouillac",
     "code": "46121",
     "epci_code": "244600573",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46300"
   },
@@ -899,7 +899,7 @@
     "name": "Gintrac",
     "code": "46122",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46130"
   },
@@ -907,7 +907,7 @@
     "name": "Girac",
     "code": "46123",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46130"
   },
@@ -915,7 +915,7 @@
     "name": "Glanes",
     "code": "46124",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46130"
   },
@@ -923,7 +923,7 @@
     "name": "Gorses",
     "code": "46125",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46210"
   },
@@ -931,7 +931,7 @@
     "name": "Goujounac",
     "code": "46126",
     "epci_code": "200035327",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46250"
   },
@@ -939,7 +939,7 @@
     "name": "Gourdon",
     "code": "46127",
     "epci_code": "244600482",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46300"
   },
@@ -947,7 +947,7 @@
     "name": "Gramat",
     "code": "46128",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46500"
   },
@@ -955,7 +955,7 @@
     "name": "Gréalou",
     "code": "46129",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46160"
   },
@@ -963,7 +963,7 @@
     "name": "Grézels",
     "code": "46130",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46700"
   },
@@ -971,7 +971,7 @@
     "name": "Grèzes",
     "code": "46131",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46320"
   },
@@ -979,7 +979,7 @@
     "name": "Issendolus",
     "code": "46132",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46500"
   },
@@ -987,7 +987,7 @@
     "name": "Issepts",
     "code": "46133",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46320"
   },
@@ -995,7 +995,7 @@
     "name": "Les Junies",
     "code": "46134",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46150"
   },
@@ -1003,7 +1003,7 @@
     "name": "Labastide-du-Haut-Mont",
     "code": "46135",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46210"
   },
@@ -1011,7 +1011,7 @@
     "name": "Labastide-du-Vert",
     "code": "46136",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46150"
   },
@@ -1019,7 +1019,7 @@
     "name": "Labastide-Marnhac",
     "code": "46137",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46090"
   },
@@ -1027,7 +1027,7 @@
     "name": "Cœur de Causse",
     "code": "46138",
     "epci_code": "244600573",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46240"
   },
@@ -1035,7 +1035,7 @@
     "name": "Labathude",
     "code": "46139",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46120"
   },
@@ -1043,7 +1043,7 @@
     "name": "Laburgade",
     "code": "46140",
     "epci_code": "244600532",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46230"
   },
@@ -1051,7 +1051,7 @@
     "name": "Lacapelle-Cabanac",
     "code": "46142",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46700"
   },
@@ -1059,7 +1059,7 @@
     "name": "Lacapelle-Marival",
     "code": "46143",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46120"
   },
@@ -1067,7 +1067,7 @@
     "name": "Lacave",
     "code": "46144",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46200"
   },
@@ -1075,7 +1075,7 @@
     "name": "Lachapelle-Auzac",
     "code": "46145",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46200"
   },
@@ -1083,7 +1083,7 @@
     "name": "Ladirat",
     "code": "46146",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46400"
   },
@@ -1091,7 +1091,7 @@
     "name": "Lagardelle",
     "code": "46147",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46220"
   },
@@ -1099,7 +1099,7 @@
     "name": "Lalbenque",
     "code": "46148",
     "epci_code": "244600532",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46230"
   },
@@ -1107,7 +1107,7 @@
     "name": "Lamagdelaine",
     "code": "46149",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46090"
   },
@@ -1115,7 +1115,7 @@
     "name": "Lamothe-Cassel",
     "code": "46151",
     "epci_code": "244600482",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46240"
   },
@@ -1123,7 +1123,7 @@
     "name": "Lamothe-Fénelon",
     "code": "46152",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46350"
   },
@@ -1131,7 +1131,7 @@
     "name": "Lanzac",
     "code": "46153",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46200"
   },
@@ -1139,7 +1139,7 @@
     "name": "Laramière",
     "code": "46154",
     "epci_code": "200069383",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46260"
   },
@@ -1147,7 +1147,7 @@
     "name": "Larnagol",
     "code": "46155",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46160"
   },
@@ -1155,7 +1155,7 @@
     "name": "Bellefont-La Rauze",
     "code": "46156",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46090"
   },
@@ -1163,7 +1163,7 @@
     "name": "Larroque-Toirac",
     "code": "46157",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46160"
   },
@@ -1171,7 +1171,7 @@
     "name": "Latouille-Lentillac",
     "code": "46159",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46400"
   },
@@ -1179,7 +1179,7 @@
     "name": "Latronquière",
     "code": "46160",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46210"
   },
@@ -1187,7 +1187,7 @@
     "name": "Lauresses",
     "code": "46161",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46210"
   },
@@ -1195,7 +1195,7 @@
     "name": "Lauzès",
     "code": "46162",
     "epci_code": "244600573",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46360"
   },
@@ -1203,7 +1203,7 @@
     "name": "Laval-de-Cère",
     "code": "46163",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46130"
   },
@@ -1211,7 +1211,7 @@
     "name": "Lavercantière",
     "code": "46164",
     "epci_code": "200035327",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46340"
   },
@@ -1219,7 +1219,7 @@
     "name": "Lavergne",
     "code": "46165",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46500"
   },
@@ -1227,7 +1227,7 @@
     "name": "Lentillac-du-Causse",
     "code": "46167",
     "epci_code": "244600573",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46330"
   },
@@ -1235,7 +1235,7 @@
     "name": "Lentillac-Saint-Blaise",
     "code": "46168",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46100"
   },
@@ -1243,7 +1243,7 @@
     "name": "Léobard",
     "code": "46169",
     "epci_code": "200035327",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46300"
   },
@@ -1251,7 +1251,7 @@
     "name": "Leyme",
     "code": "46170",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46120"
   },
@@ -1259,7 +1259,7 @@
     "name": "Lherm",
     "code": "46171",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46150"
   },
@@ -1267,7 +1267,7 @@
     "name": "Pern-Lhospitalet",
     "code": "46172",
     "epci_code": "200039519",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46170"
   },
@@ -1275,7 +1275,7 @@
     "name": "Limogne-en-Quercy",
     "code": "46173",
     "epci_code": "244600532",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46260"
   },
@@ -1283,7 +1283,7 @@
     "name": "Linac",
     "code": "46174",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46270"
   },
@@ -1291,7 +1291,7 @@
     "name": "Lissac-et-Mouret",
     "code": "46175",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46100"
   },
@@ -1299,7 +1299,7 @@
     "name": "Livernon",
     "code": "46176",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46320"
   },
@@ -1307,7 +1307,7 @@
     "name": "Loubressac",
     "code": "46177",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46130"
   },
@@ -1315,7 +1315,7 @@
     "name": "Loupiac",
     "code": "46178",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46350"
   },
@@ -1323,7 +1323,7 @@
     "name": "Lugagnac",
     "code": "46179",
     "epci_code": "244600532",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46260"
   },
@@ -1331,7 +1331,7 @@
     "name": "Lunan",
     "code": "46180",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46100"
   },
@@ -1339,7 +1339,7 @@
     "name": "Lunegarde",
     "code": "46181",
     "epci_code": "244600573",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46240"
   },
@@ -1347,7 +1347,7 @@
     "name": "Luzech",
     "code": "46182",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46140"
   },
@@ -1355,7 +1355,7 @@
     "name": "Marcilhac-sur-Célé",
     "code": "46183",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46160"
   },
@@ -1363,7 +1363,7 @@
     "name": "Marminiac",
     "code": "46184",
     "epci_code": "200035327",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46250"
   },
@@ -1371,7 +1371,7 @@
     "name": "Martel",
     "code": "46185",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46600"
   },
@@ -1379,7 +1379,7 @@
     "name": "Masclat",
     "code": "46186",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46350"
   },
@@ -1387,7 +1387,7 @@
     "name": "Mauroux",
     "code": "46187",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46700"
   },
@@ -1395,7 +1395,7 @@
     "name": "Maxou",
     "code": "46188",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46090"
   },
@@ -1403,7 +1403,7 @@
     "name": "Mayrinhac-Lentour",
     "code": "46189",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46500"
   },
@@ -1411,7 +1411,7 @@
     "name": "Mechmont",
     "code": "46190",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46150"
   },
@@ -1419,7 +1419,7 @@
     "name": "Mercuès",
     "code": "46191",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46090"
   },
@@ -1427,7 +1427,7 @@
     "name": "Meyronne",
     "code": "46192",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46200"
   },
@@ -1435,7 +1435,7 @@
     "name": "Miers",
     "code": "46193",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46500"
   },
@@ -1443,7 +1443,7 @@
     "name": "Milhac",
     "code": "46194",
     "epci_code": "244600482",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46300"
   },
@@ -1451,7 +1451,7 @@
     "name": "Molières",
     "code": "46195",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46120"
   },
@@ -1459,7 +1459,7 @@
     "name": "Montamel",
     "code": "46196",
     "epci_code": "244600482",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46310"
   },
@@ -1467,7 +1467,7 @@
     "name": "Le Montat",
     "code": "46197",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46090"
   },
@@ -1475,7 +1475,7 @@
     "name": "Montbrun",
     "code": "46198",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46160"
   },
@@ -1483,7 +1483,7 @@
     "name": "Montcabrier",
     "code": "46199",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46700"
   },
@@ -1491,7 +1491,7 @@
     "name": "Montcléra",
     "code": "46200",
     "epci_code": "200035327",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46250"
   },
@@ -1499,7 +1499,7 @@
     "name": "Montcuq-en-Quercy-Blanc",
     "code": "46201",
     "epci_code": "200039519",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46800"
   },
@@ -1507,7 +1507,7 @@
     "name": "Montdoumerc",
     "code": "46202",
     "epci_code": "244600532",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46230"
   },
@@ -1515,7 +1515,7 @@
     "name": "Montet-et-Bouxal",
     "code": "46203",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46210"
   },
@@ -1523,7 +1523,7 @@
     "name": "Montfaucon",
     "code": "46204",
     "epci_code": "244600573",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46240"
   },
@@ -1531,7 +1531,7 @@
     "name": "Montgesty",
     "code": "46205",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46150"
   },
@@ -1539,7 +1539,7 @@
     "name": "Montlauzun",
     "code": "46206",
     "epci_code": "200039519",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46800"
   },
@@ -1547,7 +1547,7 @@
     "name": "Montredon",
     "code": "46207",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46270"
   },
@@ -1555,7 +1555,7 @@
     "name": "Montvalent",
     "code": "46208",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46600"
   },
@@ -1563,7 +1563,7 @@
     "name": "Nadaillac-de-Rouge",
     "code": "46209",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46350"
   },
@@ -1571,7 +1571,7 @@
     "name": "Nadillac",
     "code": "46210",
     "epci_code": "244600573",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46360"
   },
@@ -1579,7 +1579,7 @@
     "name": "Nuzéjouls",
     "code": "46211",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46150"
   },
@@ -1587,7 +1587,7 @@
     "name": "Orniac",
     "code": "46212",
     "epci_code": "244600573",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46330"
   },
@@ -1595,7 +1595,7 @@
     "name": "Padirac",
     "code": "46213",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46500"
   },
@@ -1603,7 +1603,7 @@
     "name": "Parnac",
     "code": "46214",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46140"
   },
@@ -1611,7 +1611,7 @@
     "name": "Payrac",
     "code": "46215",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46350"
   },
@@ -1619,7 +1619,7 @@
     "name": "Payrignac",
     "code": "46216",
     "epci_code": "244600482",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46300"
   },
@@ -1627,7 +1627,7 @@
     "name": "Pescadoires",
     "code": "46218",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46220"
   },
@@ -1635,7 +1635,7 @@
     "name": "Peyrilles",
     "code": "46219",
     "epci_code": "244600482",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46310"
   },
@@ -1643,7 +1643,7 @@
     "name": "Pinsac",
     "code": "46220",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46200"
   },
@@ -1651,7 +1651,7 @@
     "name": "Planioles",
     "code": "46221",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46100"
   },
@@ -1659,7 +1659,7 @@
     "name": "Pomarède",
     "code": "46222",
     "epci_code": "200035327",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46250"
   },
@@ -1667,7 +1667,7 @@
     "name": "Pontcirq",
     "code": "46223",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46150"
   },
@@ -1675,7 +1675,7 @@
     "name": "Pradines",
     "code": "46224",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46090"
   },
@@ -1683,7 +1683,7 @@
     "name": "Prayssac",
     "code": "46225",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46220"
   },
@@ -1691,7 +1691,7 @@
     "name": "Prendeignes",
     "code": "46226",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46270"
   },
@@ -1699,7 +1699,7 @@
     "name": "Promilhanes",
     "code": "46227",
     "epci_code": "200069383",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46260"
   },
@@ -1707,7 +1707,7 @@
     "name": "Prudhomat",
     "code": "46228",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46130"
   },
@@ -1715,7 +1715,7 @@
     "name": "Puybrun",
     "code": "46229",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46130"
   },
@@ -1723,7 +1723,7 @@
     "name": "Puyjourdes",
     "code": "46230",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46260"
   },
@@ -1731,7 +1731,7 @@
     "name": "Puy-l’Évêque",
     "code": "46231",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46700"
   },
@@ -1739,7 +1739,7 @@
     "name": "Le Vignon-en-Quercy",
     "code": "46232",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46110"
   },
@@ -1747,7 +1747,7 @@
     "name": "Le Vignon-en-Quercy",
     "code": "46232",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46600"
   },
@@ -1755,7 +1755,7 @@
     "name": "Quissac-en-Quercy",
     "code": "46233",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46320"
   },
@@ -1763,7 +1763,7 @@
     "name": "Rampoux",
     "code": "46234",
     "epci_code": "200035327",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46340"
   },
@@ -1771,7 +1771,7 @@
     "name": "Reilhac",
     "code": "46235",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46500"
   },
@@ -1779,7 +1779,7 @@
     "name": "Reilhaguet",
     "code": "46236",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46350"
   },
@@ -1787,7 +1787,7 @@
     "name": "Reyrevignes",
     "code": "46237",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46320"
   },
@@ -1795,7 +1795,7 @@
     "name": "Rignac",
     "code": "46238",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46500"
   },
@@ -1803,7 +1803,7 @@
     "name": "Le Roc",
     "code": "46239",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46200"
   },
@@ -1811,7 +1811,7 @@
     "name": "Rocamadour",
     "code": "46240",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46500"
   },
@@ -1819,7 +1819,7 @@
     "name": "Rouffilhac",
     "code": "46241",
     "epci_code": "244600482",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46300"
   },
@@ -1827,7 +1827,7 @@
     "name": "Rudelle",
     "code": "46242",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46120"
   },
@@ -1835,7 +1835,7 @@
     "name": "Rueyres",
     "code": "46243",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46120"
   },
@@ -1843,7 +1843,7 @@
     "name": "Sabadel-Latronquière",
     "code": "46244",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46210"
   },
@@ -1851,7 +1851,7 @@
     "name": "Sabadel-Lauzès",
     "code": "46245",
     "epci_code": "244600573",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46360"
   },
@@ -1859,7 +1859,7 @@
     "name": "Saignes",
     "code": "46246",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46500"
   },
@@ -1867,7 +1867,7 @@
     "name": "Saillac",
     "code": "46247",
     "epci_code": "244600532",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46260"
   },
@@ -1875,7 +1875,7 @@
     "name": "Saint-Bressou",
     "code": "46249",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46120"
   },
@@ -1883,7 +1883,7 @@
     "name": "Saint-Caprais",
     "code": "46250",
     "epci_code": "200035327",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46250"
   },
@@ -1891,7 +1891,7 @@
     "name": "Saint-Céré",
     "code": "46251",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46400"
   },
@@ -1899,7 +1899,7 @@
     "name": "Les Pechs du Vers",
     "code": "46252",
     "epci_code": "244600573",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46360"
   },
@@ -1907,7 +1907,7 @@
     "name": "Saint-Chamarand",
     "code": "46253",
     "epci_code": "244600482",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46310"
   },
@@ -1915,7 +1915,7 @@
     "name": "Saint-Chels",
     "code": "46254",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46160"
   },
@@ -1923,7 +1923,7 @@
     "name": "Saint-Cirgues",
     "code": "46255",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46210"
   },
@@ -1931,7 +1931,7 @@
     "name": "Saint-Cirq-Lapopie",
     "code": "46256",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46330"
   },
@@ -1939,7 +1939,7 @@
     "name": "Saint-Cirq-Madelon",
     "code": "46257",
     "epci_code": "244600482",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46300"
   },
@@ -1947,7 +1947,7 @@
     "name": "Saint-Cirq-Souillaguet",
     "code": "46258",
     "epci_code": "244600482",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46300"
   },
@@ -1955,7 +1955,7 @@
     "name": "Saint-Clair",
     "code": "46259",
     "epci_code": "244600482",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46300"
   },
@@ -1963,7 +1963,7 @@
     "name": "Sainte-Colombe",
     "code": "46260",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46120"
   },
@@ -1971,7 +1971,7 @@
     "name": "Lendou-en-Quercy",
     "code": "46262",
     "epci_code": "200039519",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46800"
   },
@@ -1979,7 +1979,7 @@
     "name": "Barguelonne-en-Quercy",
     "code": "46263",
     "epci_code": "200039519",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46800"
   },
@@ -1987,7 +1987,7 @@
     "name": "Saint-Denis-Catus",
     "code": "46264",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46150"
   },
@@ -1995,7 +1995,7 @@
     "name": "Saint-Denis-lès-Martel",
     "code": "46265",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46600"
   },
@@ -2003,7 +2003,7 @@
     "name": "Saint-Félix",
     "code": "46266",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46100"
   },
@@ -2011,7 +2011,7 @@
     "name": "Saint-Germain-du-Bel-Air",
     "code": "46267",
     "epci_code": "244600482",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46310"
   },
@@ -2019,7 +2019,7 @@
     "name": "Saint Géry-Vers",
     "code": "46268",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46090"
   },
@@ -2027,7 +2027,7 @@
     "name": "Saint Géry-Vers",
     "code": "46268",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46330"
   },
@@ -2035,7 +2035,7 @@
     "name": "Saint-Hilaire",
     "code": "46269",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46210"
   },
@@ -2043,7 +2043,7 @@
     "name": "Saint-Jean-de-Laur",
     "code": "46270",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46260"
   },
@@ -2051,7 +2051,7 @@
     "name": "Saint-Jean-Lespinasse",
     "code": "46271",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46400"
   },
@@ -2059,7 +2059,7 @@
     "name": "Saint-Jean-Mirabel",
     "code": "46272",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46270"
   },
@@ -2067,7 +2067,7 @@
     "name": "Saint-Laurent-les-Tours",
     "code": "46273",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46400"
   },
@@ -2075,7 +2075,7 @@
     "name": "Saint-Martin-Labouval",
     "code": "46276",
     "epci_code": "244600532",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46330"
   },
@@ -2083,7 +2083,7 @@
     "name": "Saint-Martin-le-Redon",
     "code": "46277",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46700"
   },
@@ -2091,7 +2091,7 @@
     "name": "Saint-Maurice-en-Quercy",
     "code": "46279",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46120"
   },
@@ -2099,7 +2099,7 @@
     "name": "Saint-Médard",
     "code": "46280",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46150"
   },
@@ -2107,7 +2107,7 @@
     "name": "Saint-Médard-de-Presque",
     "code": "46281",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46400"
   },
@@ -2115,7 +2115,7 @@
     "name": "Saint-Médard-Nicourby",
     "code": "46282",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46210"
   },
@@ -2123,7 +2123,7 @@
     "name": "Saint-Michel-de-Bannières",
     "code": "46283",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46110"
   },
@@ -2131,7 +2131,7 @@
     "name": "Saint-Michel-Loubéjou",
     "code": "46284",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46130"
   },
@@ -2139,7 +2139,7 @@
     "name": "Saint-Paul-de-Vern",
     "code": "46286",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46400"
   },
@@ -2147,7 +2147,7 @@
     "name": "Saint-Perdoux",
     "code": "46288",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46100"
   },
@@ -2155,7 +2155,7 @@
     "name": "Saint-Pierre-Toirac",
     "code": "46289",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46160"
   },
@@ -2163,7 +2163,7 @@
     "name": "Saint-Projet",
     "code": "46290",
     "epci_code": "244600482",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46300"
   },
@@ -2171,7 +2171,7 @@
     "name": "Saint-Simon",
     "code": "46292",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46320"
   },
@@ -2179,7 +2179,7 @@
     "name": "Saint-Sozy",
     "code": "46293",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46200"
   },
@@ -2187,7 +2187,7 @@
     "name": "Saint-Sulpice",
     "code": "46294",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46160"
   },
@@ -2195,7 +2195,7 @@
     "name": "Saint-Vincent-du-Pendit",
     "code": "46295",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46400"
   },
@@ -2203,7 +2203,7 @@
     "name": "Saint-Vincent-Rive-d’Olt",
     "code": "46296",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46140"
   },
@@ -2211,7 +2211,7 @@
     "name": "Salviac",
     "code": "46297",
     "epci_code": "200035327",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46340"
   },
@@ -2219,7 +2219,7 @@
     "name": "Sauliac-sur-Célé",
     "code": "46299",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46330"
   },
@@ -2227,7 +2227,7 @@
     "name": "Sauzet",
     "code": "46301",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46140"
   },
@@ -2235,7 +2235,7 @@
     "name": "Sénaillac-Latronquière",
     "code": "46302",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46210"
   },
@@ -2243,7 +2243,7 @@
     "name": "Sénaillac-Lauzès",
     "code": "46303",
     "epci_code": "244600573",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46360"
   },
@@ -2251,7 +2251,7 @@
     "name": "Séniergues",
     "code": "46304",
     "epci_code": "244600573",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46240"
   },
@@ -2259,7 +2259,7 @@
     "name": "Sérignac",
     "code": "46305",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46700"
   },
@@ -2267,7 +2267,7 @@
     "name": "Sonac",
     "code": "46306",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46320"
   },
@@ -2275,7 +2275,7 @@
     "name": "Soturac",
     "code": "46307",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46700"
   },
@@ -2283,7 +2283,7 @@
     "name": "Soucirac",
     "code": "46308",
     "epci_code": "244600482",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46300"
   },
@@ -2291,7 +2291,7 @@
     "name": "Souillac",
     "code": "46309",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46200"
   },
@@ -2299,7 +2299,7 @@
     "name": "Soulomès",
     "code": "46310",
     "epci_code": "244600573",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46240"
   },
@@ -2307,7 +2307,7 @@
     "name": "Sousceyrac-en-Quercy",
     "code": "46311",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46190"
   },
@@ -2315,7 +2315,7 @@
     "name": "Strenquels",
     "code": "46312",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46110"
   },
@@ -2323,7 +2323,7 @@
     "name": "Tauriac",
     "code": "46313",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46130"
   },
@@ -2331,7 +2331,7 @@
     "name": "Terrou",
     "code": "46314",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46120"
   },
@@ -2339,7 +2339,7 @@
     "name": "Teyssieu",
     "code": "46315",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46190"
   },
@@ -2347,7 +2347,7 @@
     "name": "Thédirac",
     "code": "46316",
     "epci_code": "200035327",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46150"
   },
@@ -2355,7 +2355,7 @@
     "name": "Thégra",
     "code": "46317",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46500"
   },
@@ -2363,7 +2363,7 @@
     "name": "Thémines",
     "code": "46318",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46120"
   },
@@ -2371,7 +2371,7 @@
     "name": "Théminettes",
     "code": "46319",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46120"
   },
@@ -2379,7 +2379,7 @@
     "name": "Tour-de-Faure",
     "code": "46320",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46330"
   },
@@ -2387,7 +2387,7 @@
     "name": "Touzac",
     "code": "46321",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46700"
   },
@@ -2395,7 +2395,7 @@
     "name": "Trespoux-Rassiels",
     "code": "46322",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46090"
   },
@@ -2403,7 +2403,7 @@
     "name": "Ussel",
     "code": "46323",
     "epci_code": "244600482",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46240"
   },
@@ -2411,7 +2411,7 @@
     "name": "Uzech",
     "code": "46324",
     "epci_code": "244600482",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46310"
   },
@@ -2419,7 +2419,7 @@
     "name": "Varaire",
     "code": "46328",
     "epci_code": "244600532",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46260"
   },
@@ -2427,7 +2427,7 @@
     "name": "Vaylats",
     "code": "46329",
     "epci_code": "244600532",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46230"
   },
@@ -2435,7 +2435,7 @@
     "name": "Vayrac",
     "code": "46330",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46110"
   },
@@ -2443,7 +2443,7 @@
     "name": "Viazac",
     "code": "46332",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46100"
   },
@@ -2451,7 +2451,7 @@
     "name": "Vidaillac",
     "code": "46333",
     "epci_code": "244600532",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46260"
   },
@@ -2459,7 +2459,7 @@
     "name": "Le Vigan-en-Quercy",
     "code": "46334",
     "epci_code": "244600482",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46300"
   },
@@ -2467,7 +2467,7 @@
     "name": "Villesèque",
     "code": "46335",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46090"
   },
@@ -2475,7 +2475,7 @@
     "name": "Vire-sur-Lot",
     "code": "46336",
     "epci_code": "244600433",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46700"
   },
@@ -2483,7 +2483,7 @@
     "name": "Mayrac",
     "code": "46337",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46200"
   },
@@ -2491,7 +2491,7 @@
     "name": "Bessonies",
     "code": "46338",
     "epci_code": "200067361",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46210"
   },
@@ -2499,7 +2499,7 @@
     "name": "Saint-Jean-Lagineste",
     "code": "46339",
     "epci_code": "200066371",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46400"
   },
@@ -2507,7 +2507,7 @@
     "name": "Saint-Pierre-Lafeuille",
     "code": "46340",
     "epci_code": "200023737",
-    "departement_code": "46",
+    "department_code": "46",
     "region_code": "76",
     "postal_code": "46090"
   }

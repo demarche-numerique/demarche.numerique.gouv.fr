@@ -1,34 +1,24 @@
 # frozen_string_literal: true
 
 class Champs::EpciChamp < Champs::TextChamp
-  store_accessor :value_json, :code_departement, :code_region
+  store_accessor :value_json, :department_code, :region_code
   before_validation :on_departement_change
   before_validation :on_epci_name_changes
 
-  validate :code_departement_in_departement_codes, if: -> { !(code_departement.nil?) && should_validate_in_current_context? }
-  validate :external_id_in_departement_epci_codes, if: -> { !(code_departement.nil? || external_id.nil?) && should_validate_in_current_context? }
-  validate :value_in_departement_epci_names, if: -> { !(code_departement.nil? || external_id.nil? || value.nil?) && should_validate_in_current_context? }
-
-  def code_departement=(v)
-    super
-    value_json['department_code'] = v
-  end
-
-  def code_region=(v)
-    super
-    value_json['region_code'] = v
-  end
+  validate :department_code_in_departement_codes, if: -> { !(department_code.nil?) && should_validate_in_current_context? }
+  validate :external_id_in_departement_epci_codes, if: -> { !(department_code.nil? || external_id.nil?) && should_validate_in_current_context? }
+  validate :value_in_departement_epci_names, if: -> { !(department_code.nil? || external_id.nil? || value.nil?) && should_validate_in_current_context? }
 
   def departement_name
-    APIGeoService.departement_name(code_departement)
+    APIGeoService.departement_name(department_code)
   end
 
   def departement
-    { code: code_departement, name: departement_name }
+    { code: department_code, name: departement_name }
   end
 
   def departement?
-    code_departement.present?
+    department_code.present?
   end
 
   def html_label?
@@ -51,8 +41,8 @@ class Champs::EpciChamp < Champs::TextChamp
     external_id
   end
 
-  def code_region
-    APIGeoService.region_code_by_departement(code_departement)
+  def region_code
+    APIGeoService.region_code_by_departement(department_code)
   end
 
   def selected
@@ -64,51 +54,51 @@ class Champs::EpciChamp < Champs::TextChamp
       self.external_id = nil
       super(nil)
     else
-      self.external_id = APIGeoService.epci_code(code_departement, code_or_name) || code_or_name
-      super(APIGeoService.epci_name(code_departement, external_id))
+      self.external_id = APIGeoService.epci_code(department_code, code_or_name) || code_or_name
+      super(APIGeoService.epci_name(department_code, external_id))
     end
   end
 
   def departement_code_and_name
     if departement?
-      "#{code_departement} – #{departement_name}"
+      "#{department_code} – #{departement_name}"
     end
   end
 
-  def condition_value = { department_code: code_departement, region_code: code_region }
+  def condition_value = { department_code:, region_code: }
 
   private
 
   def on_departement_change
-    if code_departement_changed?
+    if department_code_changed?
       self.external_id = nil
       self.value = nil
-      self.code_region = code_region
+      self.region_code = region_code
     end
   end
 
-  def code_departement_in_departement_codes
-    return if code_departement.in?(APIGeoService.departements.pluck(:code))
+  def department_code_in_departement_codes
+    return if department_code.in?(APIGeoService.departements.pluck(:code))
 
-    errors.add(:code_departement, :not_in_departement_codes)
+    errors.add(:department_code, :not_in_departement_codes)
   end
 
   def external_id_in_departement_epci_codes
-    return if external_id.in?(APIGeoService.epcis(code_departement).pluck(:code))
+    return if external_id.in?(APIGeoService.epcis(department_code).pluck(:code))
     errors.add(:external_id, :not_in_departement_epci_codes)
   end
 
   def value_in_departement_epci_names
-    return if value.in?(APIGeoService.epcis(code_departement).pluck(:name))
+    return if value.in?(APIGeoService.epcis(department_code).pluck(:name))
 
     errors.add(:value, :not_in_departement_epci_names)
   end
 
   def on_epci_name_changes
-    return if external_id.nil? || code_departement.nil?
-    return if value.in?(APIGeoService.epcis(code_departement).pluck(:name))
+    return if external_id.nil? || department_code.nil?
+    return if value.in?(APIGeoService.epcis(department_code).pluck(:name))
 
-    if external_id.in?(APIGeoService.epcis(code_departement).pluck(:code))
+    if external_id.in?(APIGeoService.epcis(department_code).pluck(:code))
       self.value = (external_id)
     end
   end

@@ -3,7 +3,7 @@
     "name": "Ablon-sur-Seine",
     "code": "94001",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94480"
   },
@@ -11,7 +11,7 @@
     "name": "Alfortville",
     "code": "94002",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94140"
   },
@@ -19,7 +19,7 @@
     "name": "Arcueil",
     "code": "94003",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94110"
   },
@@ -27,7 +27,7 @@
     "name": "Boissy-Saint-Léger",
     "code": "94004",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94470"
   },
@@ -35,7 +35,7 @@
     "name": "Bonneuil-sur-Marne",
     "code": "94011",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94380"
   },
@@ -43,7 +43,7 @@
     "name": "Bry-sur-Marne",
     "code": "94015",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94360"
   },
@@ -51,7 +51,7 @@
     "name": "Cachan",
     "code": "94016",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94230"
   },
@@ -59,7 +59,7 @@
     "name": "Champigny-sur-Marne",
     "code": "94017",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94500"
   },
@@ -67,7 +67,7 @@
     "name": "Charenton-le-Pont",
     "code": "94018",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94220"
   },
@@ -75,7 +75,7 @@
     "name": "Chennevières-sur-Marne",
     "code": "94019",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94430"
   },
@@ -83,7 +83,7 @@
     "name": "Chevilly-Larue",
     "code": "94021",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94550"
   },
@@ -91,7 +91,7 @@
     "name": "Choisy-le-Roi",
     "code": "94022",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94600"
   },
@@ -99,7 +99,7 @@
     "name": "Créteil",
     "code": "94028",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94000"
   },
@@ -107,7 +107,7 @@
     "name": "Fontenay-sous-Bois",
     "code": "94033",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94120"
   },
@@ -115,7 +115,7 @@
     "name": "Fresnes",
     "code": "94034",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94260"
   },
@@ -123,7 +123,7 @@
     "name": "Gentilly",
     "code": "94037",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94250"
   },
@@ -131,7 +131,7 @@
     "name": "L’Haÿ-les-Roses",
     "code": "94038",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94240"
   },
@@ -139,7 +139,7 @@
     "name": "Ivry-sur-Seine",
     "code": "94041",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94200"
   },
@@ -147,7 +147,7 @@
     "name": "Joinville-le-Pont",
     "code": "94042",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94340"
   },
@@ -155,7 +155,7 @@
     "name": "Le Kremlin-Bicêtre",
     "code": "94043",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94270"
   },
@@ -163,7 +163,7 @@
     "name": "Limeil-Brévannes",
     "code": "94044",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94450"
   },
@@ -171,7 +171,7 @@
     "name": "Maisons-Alfort",
     "code": "94046",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94700"
   },
@@ -179,7 +179,7 @@
     "name": "Mandres-les-Roses",
     "code": "94047",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94520"
   },
@@ -187,7 +187,7 @@
     "name": "Marolles-en-Brie",
     "code": "94048",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94440"
   },
@@ -195,7 +195,7 @@
     "name": "Nogent-sur-Marne",
     "code": "94052",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94130"
   },
@@ -203,7 +203,7 @@
     "name": "Noiseau",
     "code": "94053",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94880"
   },
@@ -211,7 +211,7 @@
     "name": "Orly",
     "code": "94054",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94310"
   },
@@ -219,7 +219,7 @@
     "name": "Ormesson-sur-Marne",
     "code": "94055",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94490"
   },
@@ -227,7 +227,7 @@
     "name": "Périgny",
     "code": "94056",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94520"
   },
@@ -235,7 +235,7 @@
     "name": "Le Perreux-sur-Marne",
     "code": "94058",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94170"
   },
@@ -243,7 +243,7 @@
     "name": "Le Plessis-Trévise",
     "code": "94059",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94420"
   },
@@ -251,7 +251,7 @@
     "name": "La Queue-en-Brie",
     "code": "94060",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94510"
   },
@@ -259,7 +259,7 @@
     "name": "Rungis",
     "code": "94065",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94150"
   },
@@ -267,7 +267,7 @@
     "name": "Saint-Mandé",
     "code": "94067",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94160"
   },
@@ -275,7 +275,7 @@
     "name": "Saint-Maur-des-Fossés",
     "code": "94068",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94100"
   },
@@ -283,7 +283,7 @@
     "name": "Saint-Maur-des-Fossés",
     "code": "94068",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94210"
   },
@@ -291,7 +291,7 @@
     "name": "Saint-Maurice",
     "code": "94069",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94410"
   },
@@ -299,7 +299,7 @@
     "name": "Santeny",
     "code": "94070",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94440"
   },
@@ -307,7 +307,7 @@
     "name": "Sucy-en-Brie",
     "code": "94071",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94370"
   },
@@ -315,7 +315,7 @@
     "name": "Thiais",
     "code": "94073",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94320"
   },
@@ -323,7 +323,7 @@
     "name": "Valenton",
     "code": "94074",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94460"
   },
@@ -331,7 +331,7 @@
     "name": "Villecresnes",
     "code": "94075",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94440"
   },
@@ -339,7 +339,7 @@
     "name": "Villejuif",
     "code": "94076",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94800"
   },
@@ -347,7 +347,7 @@
     "name": "Villeneuve-le-Roi",
     "code": "94077",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94290"
   },
@@ -355,7 +355,7 @@
     "name": "Villeneuve-Saint-Georges",
     "code": "94078",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94190"
   },
@@ -363,7 +363,7 @@
     "name": "Villiers-sur-Marne",
     "code": "94079",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94350"
   },
@@ -371,7 +371,7 @@
     "name": "Vincennes",
     "code": "94080",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94300"
   },
@@ -379,7 +379,7 @@
     "name": "Vitry-sur-Seine",
     "code": "94081",
     "epci_code": "200054781",
-    "departement_code": "94",
+    "department_code": "94",
     "region_code": "11",
     "postal_code": "94400"
   }

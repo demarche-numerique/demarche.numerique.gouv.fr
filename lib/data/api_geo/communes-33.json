@@ -3,7 +3,7 @@
     "name": "Abzac",
     "code": "33001",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33230"
   },
@@ -11,7 +11,7 @@
     "name": "Aillas",
     "code": "33002",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33124"
   },
@@ -19,7 +19,7 @@
     "name": "Ambarès-et-Lagrave",
     "code": "33003",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33440"
   },
@@ -27,7 +27,7 @@
     "name": "Ambès",
     "code": "33004",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33810"
   },
@@ -35,7 +35,7 @@
     "name": "Andernos-les-Bains",
     "code": "33005",
     "epci_code": "243301504",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33510"
   },
@@ -43,7 +43,7 @@
     "name": "Anglade",
     "code": "33006",
     "epci_code": "243300811",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33390"
   },
@@ -51,7 +51,7 @@
     "name": "Arbanats",
     "code": "33007",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33640"
   },
@@ -59,7 +59,7 @@
     "name": "Porte-de-Benauge",
     "code": "33008",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33760"
   },
@@ -67,7 +67,7 @@
     "name": "Arcachon",
     "code": "33009",
     "epci_code": "243300563",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33120"
   },
@@ -75,7 +75,7 @@
     "name": "Arcins",
     "code": "33010",
     "epci_code": "243301447",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33460"
   },
@@ -83,7 +83,7 @@
     "name": "Arès",
     "code": "33011",
     "epci_code": "243301504",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33740"
   },
@@ -91,7 +91,7 @@
     "name": "Arsac",
     "code": "33012",
     "epci_code": "243301447",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33460"
   },
@@ -99,7 +99,7 @@
     "name": "Artigues-près-Bordeaux",
     "code": "33013",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33370"
   },
@@ -107,7 +107,7 @@
     "name": "Les Artigues-de-Lussac",
     "code": "33014",
     "epci_code": "200035533",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33570"
   },
@@ -115,7 +115,7 @@
     "name": "Arveyres",
     "code": "33015",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33500"
   },
@@ -123,7 +123,7 @@
     "name": "Asques",
     "code": "33016",
     "epci_code": "243301397",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33240"
   },
@@ -131,7 +131,7 @@
     "name": "Aubiac",
     "code": "33017",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33430"
   },
@@ -139,7 +139,7 @@
     "name": "Val de Virvée",
     "code": "33018",
     "epci_code": "243301223",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33240"
   },
@@ -147,7 +147,7 @@
     "name": "Audenge",
     "code": "33019",
     "epci_code": "243301504",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33980"
   },
@@ -155,7 +155,7 @@
     "name": "Auriolles",
     "code": "33020",
     "epci_code": "243301371",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33790"
   },
@@ -163,7 +163,7 @@
     "name": "Auros",
     "code": "33021",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33124"
   },
@@ -171,7 +171,7 @@
     "name": "Avensan",
     "code": "33022",
     "epci_code": "243301389",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33480"
   },
@@ -179,7 +179,7 @@
     "name": "Ayguemorte-les-Graves",
     "code": "33023",
     "epci_code": "243301264",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33640"
   },
@@ -187,7 +187,7 @@
     "name": "Bagas",
     "code": "33024",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -195,7 +195,7 @@
     "name": "Baigneaux",
     "code": "33025",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33760"
   },
@@ -203,7 +203,7 @@
     "name": "Balizac",
     "code": "33026",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33730"
   },
@@ -211,7 +211,7 @@
     "name": "Barie",
     "code": "33027",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -219,7 +219,7 @@
     "name": "Baron",
     "code": "33028",
     "epci_code": "243301215",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33750"
   },
@@ -227,7 +227,7 @@
     "name": "Le Barp",
     "code": "33029",
     "epci_code": "243301405",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33114"
   },
@@ -235,7 +235,7 @@
     "name": "Barsac",
     "code": "33030",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33720"
   },
@@ -243,7 +243,7 @@
     "name": "Bassanne",
     "code": "33031",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -251,7 +251,7 @@
     "name": "Bassens",
     "code": "33032",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33530"
   },
@@ -259,7 +259,7 @@
     "name": "Baurech",
     "code": "33033",
     "epci_code": "243301439",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33880"
   },
@@ -267,7 +267,7 @@
     "name": "Bayas",
     "code": "33034",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33230"
   },
@@ -275,7 +275,7 @@
     "name": "Bayon-sur-Gironde",
     "code": "33035",
     "epci_code": "200023794",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33710"
   },
@@ -283,7 +283,7 @@
     "name": "Bazas",
     "code": "33036",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33430"
   },
@@ -291,7 +291,7 @@
     "name": "Beautiran",
     "code": "33037",
     "epci_code": "243301264",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33640"
   },
@@ -299,7 +299,7 @@
     "name": "Bégadan",
     "code": "33038",
     "epci_code": "200069995",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33340"
   },
@@ -307,7 +307,7 @@
     "name": "Bègles",
     "code": "33039",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33130"
   },
@@ -315,7 +315,7 @@
     "name": "Béguey",
     "code": "33040",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33410"
   },
@@ -323,7 +323,7 @@
     "name": "Belin-Béliet",
     "code": "33042",
     "epci_code": "243301405",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33830"
   },
@@ -331,7 +331,7 @@
     "name": "Bellebat",
     "code": "33043",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33760"
   },
@@ -339,7 +339,7 @@
     "name": "Bellefond",
     "code": "33044",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33760"
   },
@@ -347,7 +347,7 @@
     "name": "Belvès-de-Castillon",
     "code": "33045",
     "epci_code": "200035533",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33350"
   },
@@ -355,7 +355,7 @@
     "name": "Bernos-Beaulac",
     "code": "33046",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33430"
   },
@@ -363,7 +363,7 @@
     "name": "Berson",
     "code": "33047",
     "epci_code": "200023794",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33390"
   },
@@ -371,7 +371,7 @@
     "name": "Berthez",
     "code": "33048",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33124"
   },
@@ -379,7 +379,7 @@
     "name": "Beychac-et-Caillau",
     "code": "33049",
     "epci_code": "243301249",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33750"
   },
@@ -387,7 +387,7 @@
     "name": "Bieujac",
     "code": "33050",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33210"
   },
@@ -395,7 +395,7 @@
     "name": "Biganos",
     "code": "33051",
     "epci_code": "243301504",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33380"
   },
@@ -403,7 +403,7 @@
     "name": "Les Billaux",
     "code": "33052",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33500"
   },
@@ -411,7 +411,7 @@
     "name": "Birac",
     "code": "33053",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33430"
   },
@@ -419,7 +419,7 @@
     "name": "Blaignac",
     "code": "33054",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -427,7 +427,7 @@
     "name": "Blaignan-Prignac",
     "code": "33055",
     "epci_code": "200069995",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33340"
   },
@@ -435,7 +435,7 @@
     "name": "Blanquefort",
     "code": "33056",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33290"
   },
@@ -443,7 +443,7 @@
     "name": "Blasimon",
     "code": "33057",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33540"
   },
@@ -451,7 +451,7 @@
     "name": "Blaye",
     "code": "33058",
     "epci_code": "200023794",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33390"
   },
@@ -459,7 +459,7 @@
     "name": "Blésignac",
     "code": "33059",
     "epci_code": "243301215",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33670"
   },
@@ -467,7 +467,7 @@
     "name": "Bommes",
     "code": "33060",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33210"
   },
@@ -475,7 +475,7 @@
     "name": "Bonnetan",
     "code": "33061",
     "epci_code": "243301355",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33370"
   },
@@ -483,7 +483,7 @@
     "name": "Bonzac",
     "code": "33062",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33910"
   },
@@ -491,7 +491,7 @@
     "name": "Bordeaux",
     "code": "33063",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33000"
   },
@@ -499,7 +499,7 @@
     "name": "Bordeaux",
     "code": "33063",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33100"
   },
@@ -507,7 +507,7 @@
     "name": "Bordeaux",
     "code": "33063",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33200"
   },
@@ -515,7 +515,7 @@
     "name": "Bordeaux",
     "code": "33063",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33300"
   },
@@ -523,7 +523,7 @@
     "name": "Bordeaux",
     "code": "33063",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33800"
   },
@@ -531,7 +531,7 @@
     "name": "Bossugan",
     "code": "33064",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33350"
   },
@@ -539,7 +539,7 @@
     "name": "Bouliac",
     "code": "33065",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33270"
   },
@@ -547,7 +547,7 @@
     "name": "Bourdelles",
     "code": "33066",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -555,7 +555,7 @@
     "name": "Bourg",
     "code": "33067",
     "epci_code": "243301223",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33710"
   },
@@ -563,7 +563,7 @@
     "name": "Bourideys",
     "code": "33068",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33113"
   },
@@ -571,7 +571,7 @@
     "name": "Le Bouscat",
     "code": "33069",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33110"
   },
@@ -579,7 +579,7 @@
     "name": "Brach",
     "code": "33070",
     "epci_code": "243301389",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33480"
   },
@@ -587,7 +587,7 @@
     "name": "Branne",
     "code": "33071",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33420"
   },
@@ -595,7 +595,7 @@
     "name": "Brannens",
     "code": "33072",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33124"
   },
@@ -603,7 +603,7 @@
     "name": "Braud-et-Saint-Louis",
     "code": "33073",
     "epci_code": "243300811",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33820"
   },
@@ -611,7 +611,7 @@
     "name": "Brouqueyran",
     "code": "33074",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33124"
   },
@@ -619,7 +619,7 @@
     "name": "Bruges",
     "code": "33075",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33520"
   },
@@ -627,7 +627,7 @@
     "name": "Budos",
     "code": "33076",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33720"
   },
@@ -635,7 +635,7 @@
     "name": "Cabanac-et-Villagrains",
     "code": "33077",
     "epci_code": "243301264",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33650"
   },
@@ -643,7 +643,7 @@
     "name": "Cabara",
     "code": "33078",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33420"
   },
@@ -651,7 +651,7 @@
     "name": "Cadarsac",
     "code": "33079",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33750"
   },
@@ -659,7 +659,7 @@
     "name": "Cadaujac",
     "code": "33080",
     "epci_code": "243301264",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33140"
   },
@@ -667,7 +667,7 @@
     "name": "Cadillac-sur-Garonne",
     "code": "33081",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33410"
   },
@@ -675,7 +675,7 @@
     "name": "Cadillac-en-Fronsadais",
     "code": "33082",
     "epci_code": "243301397",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33240"
   },
@@ -683,7 +683,7 @@
     "name": "Camarsac",
     "code": "33083",
     "epci_code": "243301355",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33750"
   },
@@ -691,7 +691,7 @@
     "name": "Cambes",
     "code": "33084",
     "epci_code": "243301439",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33880"
   },
@@ -699,7 +699,7 @@
     "name": "Camblanes-et-Meynac",
     "code": "33085",
     "epci_code": "243301439",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33360"
   },
@@ -707,7 +707,7 @@
     "name": "Camiac-et-Saint-Denis",
     "code": "33086",
     "epci_code": "243301215",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33420"
   },
@@ -715,7 +715,7 @@
     "name": "Camiran",
     "code": "33087",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -723,7 +723,7 @@
     "name": "Camps-sur-l’Isle",
     "code": "33088",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33660"
   },
@@ -731,7 +731,7 @@
     "name": "Campugnan",
     "code": "33089",
     "epci_code": "200023794",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33390"
   },
@@ -739,7 +739,7 @@
     "name": "Canéjan",
     "code": "33090",
     "epci_code": "243301165",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33610"
   },
@@ -747,7 +747,7 @@
     "name": "Capian",
     "code": "33093",
     "epci_code": "243301215",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33550"
   },
@@ -755,7 +755,7 @@
     "name": "Caplong",
     "code": "33094",
     "epci_code": "243301371",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33220"
   },
@@ -763,7 +763,7 @@
     "name": "Captieux",
     "code": "33095",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33840"
   },
@@ -771,7 +771,7 @@
     "name": "Carbon-Blanc",
     "code": "33096",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33560"
   },
@@ -779,7 +779,7 @@
     "name": "Carcans",
     "code": "33097",
     "epci_code": "200070720",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33121"
   },
@@ -787,7 +787,7 @@
     "name": "Cardan",
     "code": "33098",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33410"
   },
@@ -795,7 +795,7 @@
     "name": "Carignan-de-Bordeaux",
     "code": "33099",
     "epci_code": "243301355",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33360"
   },
@@ -803,7 +803,7 @@
     "name": "Cars",
     "code": "33100",
     "epci_code": "200023794",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33390"
   },
@@ -811,7 +811,7 @@
     "name": "Cartelègue",
     "code": "33101",
     "epci_code": "243300811",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33390"
   },
@@ -819,7 +819,7 @@
     "name": "Casseuil",
     "code": "33102",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -827,7 +827,7 @@
     "name": "Castelmoron-d’Albret",
     "code": "33103",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33540"
   },
@@ -835,7 +835,7 @@
     "name": "Castelnau-de-Médoc",
     "code": "33104",
     "epci_code": "243301389",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33480"
   },
@@ -843,7 +843,7 @@
     "name": "Castelviel",
     "code": "33105",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33540"
   },
@@ -851,7 +851,7 @@
     "name": "Castets et Castillon",
     "code": "33106",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33210"
   },
@@ -859,7 +859,7 @@
     "name": "Castillon-la-Bataille",
     "code": "33108",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33350"
   },
@@ -867,7 +867,7 @@
     "name": "Castres-Gironde",
     "code": "33109",
     "epci_code": "243301264",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33640"
   },
@@ -875,7 +875,7 @@
     "name": "Caudrot",
     "code": "33111",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33490"
   },
@@ -883,7 +883,7 @@
     "name": "Caumont",
     "code": "33112",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33540"
   },
@@ -891,7 +891,7 @@
     "name": "Cauvignac",
     "code": "33113",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33690"
   },
@@ -899,7 +899,7 @@
     "name": "Cavignac",
     "code": "33114",
     "epci_code": "243301181",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33620"
   },
@@ -907,7 +907,7 @@
     "name": "Cazalis",
     "code": "33115",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33113"
   },
@@ -915,7 +915,7 @@
     "name": "Cazats",
     "code": "33116",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33430"
   },
@@ -923,7 +923,7 @@
     "name": "Cazaugitat",
     "code": "33117",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33790"
   },
@@ -931,7 +931,7 @@
     "name": "Cénac",
     "code": "33118",
     "epci_code": "243301439",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33360"
   },
@@ -939,7 +939,7 @@
     "name": "Cenon",
     "code": "33119",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33150"
   },
@@ -947,7 +947,7 @@
     "name": "Cérons",
     "code": "33120",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33720"
   },
@@ -955,7 +955,7 @@
     "name": "Cessac",
     "code": "33121",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33760"
   },
@@ -963,7 +963,7 @@
     "name": "Cestas",
     "code": "33122",
     "epci_code": "243301165",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33610"
   },
@@ -971,7 +971,7 @@
     "name": "Cézac",
     "code": "33123",
     "epci_code": "243301181",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33620"
   },
@@ -979,7 +979,7 @@
     "name": "Chamadelle",
     "code": "33124",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33230"
   },
@@ -987,7 +987,7 @@
     "name": "Cissac-Médoc",
     "code": "33125",
     "epci_code": "200069995",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33250"
   },
@@ -995,7 +995,7 @@
     "name": "Civrac-de-Blaye",
     "code": "33126",
     "epci_code": "243301181",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33920"
   },
@@ -1003,7 +1003,7 @@
     "name": "Civrac-sur-Dordogne",
     "code": "33127",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33350"
   },
@@ -1011,7 +1011,7 @@
     "name": "Civrac-en-Médoc",
     "code": "33128",
     "epci_code": "200069995",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33340"
   },
@@ -1019,7 +1019,7 @@
     "name": "Cleyrac",
     "code": "33129",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33540"
   },
@@ -1027,7 +1027,7 @@
     "name": "Coimères",
     "code": "33130",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33210"
   },
@@ -1035,7 +1035,7 @@
     "name": "Coirac",
     "code": "33131",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33540"
   },
@@ -1043,7 +1043,7 @@
     "name": "Comps",
     "code": "33132",
     "epci_code": "200023794",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33710"
   },
@@ -1051,7 +1051,7 @@
     "name": "Coubeyrac",
     "code": "33133",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33890"
   },
@@ -1059,7 +1059,7 @@
     "name": "Couquèques",
     "code": "33134",
     "epci_code": "200069995",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33340"
   },
@@ -1067,7 +1067,7 @@
     "name": "Courpiac",
     "code": "33135",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33760"
   },
@@ -1075,7 +1075,7 @@
     "name": "Cours-de-Monségur",
     "code": "33136",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33580"
   },
@@ -1083,7 +1083,7 @@
     "name": "Cours-les-Bains",
     "code": "33137",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33690"
   },
@@ -1091,7 +1091,7 @@
     "name": "Coutras",
     "code": "33138",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33230"
   },
@@ -1099,7 +1099,7 @@
     "name": "Coutures",
     "code": "33139",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33580"
   },
@@ -1107,7 +1107,7 @@
     "name": "Créon",
     "code": "33140",
     "epci_code": "243301215",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33670"
   },
@@ -1115,7 +1115,7 @@
     "name": "Croignon",
     "code": "33141",
     "epci_code": "243301355",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33750"
   },
@@ -1123,7 +1123,7 @@
     "name": "Cubnezais",
     "code": "33142",
     "epci_code": "243301181",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33620"
   },
@@ -1131,7 +1131,7 @@
     "name": "Cubzac-les-Ponts",
     "code": "33143",
     "epci_code": "243301223",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33240"
   },
@@ -1139,7 +1139,7 @@
     "name": "Cudos",
     "code": "33144",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33430"
   },
@@ -1147,7 +1147,7 @@
     "name": "Cursan",
     "code": "33145",
     "epci_code": "243301215",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33670"
   },
@@ -1155,7 +1155,7 @@
     "name": "Cussac-Fort-Médoc",
     "code": "33146",
     "epci_code": "243301447",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33460"
   },
@@ -1163,7 +1163,7 @@
     "name": "Daignac",
     "code": "33147",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33420"
   },
@@ -1171,7 +1171,7 @@
     "name": "Dardenac",
     "code": "33148",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33420"
   },
@@ -1179,7 +1179,7 @@
     "name": "Daubèze",
     "code": "33149",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33540"
   },
@@ -1187,7 +1187,7 @@
     "name": "Dieulivol",
     "code": "33150",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33580"
   },
@@ -1195,7 +1195,7 @@
     "name": "Donnezac",
     "code": "33151",
     "epci_code": "243301181",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33860"
   },
@@ -1203,7 +1203,7 @@
     "name": "Donzac",
     "code": "33152",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33410"
   },
@@ -1211,7 +1211,7 @@
     "name": "Doulezon",
     "code": "33153",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33350"
   },
@@ -1219,7 +1219,7 @@
     "name": "Les Églisottes-et-Chalaures",
     "code": "33154",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33230"
   },
@@ -1227,7 +1227,7 @@
     "name": "Escaudes",
     "code": "33155",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33840"
   },
@@ -1235,7 +1235,7 @@
     "name": "Escoussans",
     "code": "33156",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33760"
   },
@@ -1243,7 +1243,7 @@
     "name": "Espiet",
     "code": "33157",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33420"
   },
@@ -1251,7 +1251,7 @@
     "name": "Les Esseintes",
     "code": "33158",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -1259,7 +1259,7 @@
     "name": "Étauliers",
     "code": "33159",
     "epci_code": "243300811",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33820"
   },
@@ -1267,7 +1267,7 @@
     "name": "Eynesse",
     "code": "33160",
     "epci_code": "243301371",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33220"
   },
@@ -1275,7 +1275,7 @@
     "name": "Eyrans",
     "code": "33161",
     "epci_code": "243300811",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33390"
   },
@@ -1283,7 +1283,7 @@
     "name": "Eysines",
     "code": "33162",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33320"
   },
@@ -1291,7 +1291,7 @@
     "name": "Faleyras",
     "code": "33163",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33760"
   },
@@ -1299,7 +1299,7 @@
     "name": "Fargues",
     "code": "33164",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33210"
   },
@@ -1307,7 +1307,7 @@
     "name": "Fargues-Saint-Hilaire",
     "code": "33165",
     "epci_code": "243301355",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33370"
   },
@@ -1315,7 +1315,7 @@
     "name": "Le Fieu",
     "code": "33166",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33230"
   },
@@ -1323,7 +1323,7 @@
     "name": "Floirac",
     "code": "33167",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33270"
   },
@@ -1331,7 +1331,7 @@
     "name": "Flaujagues",
     "code": "33168",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33350"
   },
@@ -1339,7 +1339,7 @@
     "name": "Floudès",
     "code": "33169",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -1347,7 +1347,7 @@
     "name": "Fontet",
     "code": "33170",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -1355,7 +1355,7 @@
     "name": "Fossès-et-Baleyssac",
     "code": "33171",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -1363,7 +1363,7 @@
     "name": "Fours",
     "code": "33172",
     "epci_code": "200023794",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33390"
   },
@@ -1371,7 +1371,7 @@
     "name": "Francs",
     "code": "33173",
     "epci_code": "200035533",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33570"
   },
@@ -1379,7 +1379,7 @@
     "name": "Fronsac",
     "code": "33174",
     "epci_code": "243301397",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33126"
   },
@@ -1387,7 +1387,7 @@
     "name": "Frontenac",
     "code": "33175",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33760"
   },
@@ -1395,7 +1395,7 @@
     "name": "Gabarnac",
     "code": "33176",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33410"
   },
@@ -1403,7 +1403,7 @@
     "name": "Gaillan-en-Médoc",
     "code": "33177",
     "epci_code": "200069995",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33340"
   },
@@ -1411,7 +1411,7 @@
     "name": "Gajac",
     "code": "33178",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33430"
   },
@@ -1419,7 +1419,7 @@
     "name": "Galgon",
     "code": "33179",
     "epci_code": "243301397",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33133"
   },
@@ -1427,7 +1427,7 @@
     "name": "Gans",
     "code": "33180",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33430"
   },
@@ -1435,7 +1435,7 @@
     "name": "Gardegan-et-Tourtirac",
     "code": "33181",
     "epci_code": "200035533",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33350"
   },
@@ -1443,7 +1443,7 @@
     "name": "Gauriac",
     "code": "33182",
     "epci_code": "200023794",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33710"
   },
@@ -1451,7 +1451,7 @@
     "name": "Gauriaguet",
     "code": "33183",
     "epci_code": "243301223",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33240"
   },
@@ -1459,7 +1459,7 @@
     "name": "Générac",
     "code": "33184",
     "epci_code": "200023794",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33920"
   },
@@ -1467,7 +1467,7 @@
     "name": "Génissac",
     "code": "33185",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33420"
   },
@@ -1475,7 +1475,7 @@
     "name": "Gensac",
     "code": "33186",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33890"
   },
@@ -1483,7 +1483,7 @@
     "name": "Gironde-sur-Dropt",
     "code": "33187",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -1491,7 +1491,7 @@
     "name": "Giscos",
     "code": "33188",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33840"
   },
@@ -1499,7 +1499,7 @@
     "name": "Gornac",
     "code": "33189",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33540"
   },
@@ -1507,7 +1507,7 @@
     "name": "Goualade",
     "code": "33190",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33840"
   },
@@ -1515,7 +1515,7 @@
     "name": "Gours",
     "code": "33191",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33660"
   },
@@ -1523,7 +1523,7 @@
     "name": "Gradignan",
     "code": "33192",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33170"
   },
@@ -1531,7 +1531,7 @@
     "name": "Grayan-et-l’Hôpital",
     "code": "33193",
     "epci_code": "200070720",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33590"
   },
@@ -1539,7 +1539,7 @@
     "name": "Grézillac",
     "code": "33194",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33420"
   },
@@ -1547,7 +1547,7 @@
     "name": "Grignols",
     "code": "33195",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33690"
   },
@@ -1555,7 +1555,7 @@
     "name": "Guillac",
     "code": "33196",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33420"
   },
@@ -1563,7 +1563,7 @@
     "name": "Guillos",
     "code": "33197",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33720"
   },
@@ -1571,7 +1571,7 @@
     "name": "Guîtres",
     "code": "33198",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33230"
   },
@@ -1579,7 +1579,7 @@
     "name": "Gujan-Mestras",
     "code": "33199",
     "epci_code": "243300563",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33470"
   },
@@ -1587,7 +1587,7 @@
     "name": "Le Haillan",
     "code": "33200",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33185"
   },
@@ -1595,7 +1595,7 @@
     "name": "Haux",
     "code": "33201",
     "epci_code": "243301215",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33550"
   },
@@ -1603,7 +1603,7 @@
     "name": "Hostens",
     "code": "33202",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33125"
   },
@@ -1611,7 +1611,7 @@
     "name": "Hourtin",
     "code": "33203",
     "epci_code": "200070720",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33990"
   },
@@ -1619,7 +1619,7 @@
     "name": "Hure",
     "code": "33204",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -1627,7 +1627,7 @@
     "name": "Illats",
     "code": "33205",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33720"
   },
@@ -1635,7 +1635,7 @@
     "name": "Isle-Saint-Georges",
     "code": "33206",
     "epci_code": "243301264",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33640"
   },
@@ -1643,7 +1643,7 @@
     "name": "Izon",
     "code": "33207",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33450"
   },
@@ -1651,7 +1651,7 @@
     "name": "Jau-Dignac-et-Loirac",
     "code": "33208",
     "epci_code": "200070720",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33590"
   },
@@ -1659,7 +1659,7 @@
     "name": "Jugazan",
     "code": "33209",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33420"
   },
@@ -1667,7 +1667,7 @@
     "name": "Juillac",
     "code": "33210",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33890"
   },
@@ -1675,7 +1675,7 @@
     "name": "Labarde",
     "code": "33211",
     "epci_code": "243301447",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33460"
   },
@@ -1683,7 +1683,7 @@
     "name": "Labescau",
     "code": "33212",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33690"
   },
@@ -1691,7 +1691,7 @@
     "name": "La Brède",
     "code": "33213",
     "epci_code": "243301264",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33650"
   },
@@ -1699,7 +1699,7 @@
     "name": "Lacanau",
     "code": "33214",
     "epci_code": "200070720",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33680"
   },
@@ -1707,7 +1707,7 @@
     "name": "Ladaux",
     "code": "33215",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33760"
   },
@@ -1715,7 +1715,7 @@
     "name": "Lados",
     "code": "33216",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33124"
   },
@@ -1723,7 +1723,7 @@
     "name": "Lagorce",
     "code": "33218",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33230"
   },
@@ -1731,7 +1731,7 @@
     "name": "La Lande-de-Fronsac",
     "code": "33219",
     "epci_code": "243301397",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33240"
   },
@@ -1739,7 +1739,7 @@
     "name": "Lamarque",
     "code": "33220",
     "epci_code": "243301447",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33460"
   },
@@ -1747,7 +1747,7 @@
     "name": "Lamothe-Landerron",
     "code": "33221",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -1755,7 +1755,7 @@
     "name": "Lalande-de-Pomerol",
     "code": "33222",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33500"
   },
@@ -1763,7 +1763,7 @@
     "name": "Landerrouat",
     "code": "33223",
     "epci_code": "243301371",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33790"
   },
@@ -1771,7 +1771,7 @@
     "name": "Landerrouet-sur-Ségur",
     "code": "33224",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33540"
   },
@@ -1779,7 +1779,7 @@
     "name": "Landiras",
     "code": "33225",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33720"
   },
@@ -1787,7 +1787,7 @@
     "name": "Langoiran",
     "code": "33226",
     "epci_code": "243301439",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33550"
   },
@@ -1795,7 +1795,7 @@
     "name": "Langon",
     "code": "33227",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33210"
   },
@@ -1803,7 +1803,7 @@
     "name": "Lansac",
     "code": "33228",
     "epci_code": "243301223",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33710"
   },
@@ -1811,7 +1811,7 @@
     "name": "Lanton",
     "code": "33229",
     "epci_code": "243301504",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33138"
   },
@@ -1819,7 +1819,7 @@
     "name": "Lapouyade",
     "code": "33230",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33620"
   },
@@ -1827,7 +1827,7 @@
     "name": "Laroque",
     "code": "33231",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33410"
   },
@@ -1835,7 +1835,7 @@
     "name": "Lartigue",
     "code": "33232",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33840"
   },
@@ -1843,7 +1843,7 @@
     "name": "Laruscade",
     "code": "33233",
     "epci_code": "243301181",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33620"
   },
@@ -1851,7 +1851,7 @@
     "name": "Latresne",
     "code": "33234",
     "epci_code": "243301439",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33360"
   },
@@ -1859,7 +1859,7 @@
     "name": "Lavazan",
     "code": "33235",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33690"
   },
@@ -1867,7 +1867,7 @@
     "name": "Lège-Cap-Ferret",
     "code": "33236",
     "epci_code": "243301504",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33950"
   },
@@ -1875,7 +1875,7 @@
     "name": "Lège-Cap-Ferret",
     "code": "33236",
     "epci_code": "243301504",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33970"
   },
@@ -1883,7 +1883,7 @@
     "name": "Léogeats",
     "code": "33237",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33210"
   },
@@ -1891,7 +1891,7 @@
     "name": "Léognan",
     "code": "33238",
     "epci_code": "243301264",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33850"
   },
@@ -1899,7 +1899,7 @@
     "name": "Lerm-et-Musset",
     "code": "33239",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33840"
   },
@@ -1907,7 +1907,7 @@
     "name": "Lesparre-Médoc",
     "code": "33240",
     "epci_code": "200069995",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33340"
   },
@@ -1915,7 +1915,7 @@
     "name": "Lestiac-sur-Garonne",
     "code": "33241",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33550"
   },
@@ -1923,7 +1923,7 @@
     "name": "Les Lèves-et-Thoumeyragues",
     "code": "33242",
     "epci_code": "243301371",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33220"
   },
@@ -1931,7 +1931,7 @@
     "name": "Libourne",
     "code": "33243",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33500"
   },
@@ -1939,7 +1939,7 @@
     "name": "Lignan-de-Bazas",
     "code": "33244",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33430"
   },
@@ -1947,7 +1947,7 @@
     "name": "Lignan-de-Bordeaux",
     "code": "33245",
     "epci_code": "243301439",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33360"
   },
@@ -1955,7 +1955,7 @@
     "name": "Ligueux",
     "code": "33246",
     "epci_code": "243301371",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33220"
   },
@@ -1963,7 +1963,7 @@
     "name": "Listrac-de-Durèze",
     "code": "33247",
     "epci_code": "243301371",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33790"
   },
@@ -1971,7 +1971,7 @@
     "name": "Listrac-Médoc",
     "code": "33248",
     "epci_code": "243301389",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33480"
   },
@@ -1979,7 +1979,7 @@
     "name": "Lormont",
     "code": "33249",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33310"
   },
@@ -1987,7 +1987,7 @@
     "name": "Loubens",
     "code": "33250",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -1995,7 +1995,7 @@
     "name": "Louchats",
     "code": "33251",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33125"
   },
@@ -2003,7 +2003,7 @@
     "name": "Loupes",
     "code": "33252",
     "epci_code": "243301215",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33370"
   },
@@ -2011,7 +2011,7 @@
     "name": "Loupiac",
     "code": "33253",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33410"
   },
@@ -2019,7 +2019,7 @@
     "name": "Loupiac-de-la-Réole",
     "code": "33254",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -2027,7 +2027,7 @@
     "name": "Lucmau",
     "code": "33255",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33840"
   },
@@ -2035,7 +2035,7 @@
     "name": "Ludon-Médoc",
     "code": "33256",
     "epci_code": "243301447",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33290"
   },
@@ -2043,7 +2043,7 @@
     "name": "Lugaignac",
     "code": "33257",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33420"
   },
@@ -2051,7 +2051,7 @@
     "name": "Lugasson",
     "code": "33258",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33760"
   },
@@ -2059,7 +2059,7 @@
     "name": "Lugon-et-l’Île-du-Carnay",
     "code": "33259",
     "epci_code": "243301397",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33240"
   },
@@ -2067,7 +2067,7 @@
     "name": "Lugos",
     "code": "33260",
     "epci_code": "243301405",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33830"
   },
@@ -2075,7 +2075,7 @@
     "name": "Lussac",
     "code": "33261",
     "epci_code": "200035533",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33570"
   },
@@ -2083,7 +2083,7 @@
     "name": "Macau",
     "code": "33262",
     "epci_code": "243301447",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33460"
   },
@@ -2091,7 +2091,7 @@
     "name": "Madirac",
     "code": "33263",
     "epci_code": "243301215",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33670"
   },
@@ -2099,7 +2099,7 @@
     "name": "Maransin",
     "code": "33264",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33230"
   },
@@ -2107,7 +2107,7 @@
     "name": "Marcenais",
     "code": "33266",
     "epci_code": "243301181",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33620"
   },
@@ -2115,7 +2115,7 @@
     "name": "Margaux-Cantenac",
     "code": "33268",
     "epci_code": "243301447",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33460"
   },
@@ -2123,7 +2123,7 @@
     "name": "Margueron",
     "code": "33269",
     "epci_code": "243301371",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33220"
   },
@@ -2131,7 +2131,7 @@
     "name": "Marimbault",
     "code": "33270",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33430"
   },
@@ -2139,7 +2139,7 @@
     "name": "Marions",
     "code": "33271",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33690"
   },
@@ -2147,7 +2147,7 @@
     "name": "Marsas",
     "code": "33272",
     "epci_code": "243301181",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33620"
   },
@@ -2155,7 +2155,7 @@
     "name": "Martignas-sur-Jalle",
     "code": "33273",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33127"
   },
@@ -2163,7 +2163,7 @@
     "name": "Martillac",
     "code": "33274",
     "epci_code": "243301264",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33650"
   },
@@ -2171,7 +2171,7 @@
     "name": "Martres",
     "code": "33275",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33760"
   },
@@ -2179,7 +2179,7 @@
     "name": "Masseilles",
     "code": "33276",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33690"
   },
@@ -2187,7 +2187,7 @@
     "name": "Massugas",
     "code": "33277",
     "epci_code": "243301371",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33790"
   },
@@ -2195,7 +2195,7 @@
     "name": "Mauriac",
     "code": "33278",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33540"
   },
@@ -2203,7 +2203,7 @@
     "name": "Mazères",
     "code": "33279",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33210"
   },
@@ -2211,7 +2211,7 @@
     "name": "Mazion",
     "code": "33280",
     "epci_code": "243300811",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33390"
   },
@@ -2219,7 +2219,7 @@
     "name": "Mérignac",
     "code": "33281",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33700"
   },
@@ -2227,7 +2227,7 @@
     "name": "Mérignas",
     "code": "33282",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33350"
   },
@@ -2235,7 +2235,7 @@
     "name": "Mesterrieux",
     "code": "33283",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33540"
   },
@@ -2243,7 +2243,7 @@
     "name": "Mios",
     "code": "33284",
     "epci_code": "243301504",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33380"
   },
@@ -2251,7 +2251,7 @@
     "name": "Mombrier",
     "code": "33285",
     "epci_code": "243301223",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33710"
   },
@@ -2259,7 +2259,7 @@
     "name": "Mongauzy",
     "code": "33287",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -2267,7 +2267,7 @@
     "name": "Monprimblanc",
     "code": "33288",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33410"
   },
@@ -2275,7 +2275,7 @@
     "name": "Monségur",
     "code": "33289",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33580"
   },
@@ -2283,7 +2283,7 @@
     "name": "Montagne",
     "code": "33290",
     "epci_code": "200035533",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33570"
   },
@@ -2291,7 +2291,7 @@
     "name": "Montagoudin",
     "code": "33291",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -2299,7 +2299,7 @@
     "name": "Montignac",
     "code": "33292",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33760"
   },
@@ -2307,7 +2307,7 @@
     "name": "Montussan",
     "code": "33293",
     "epci_code": "243301249",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33450"
   },
@@ -2315,7 +2315,7 @@
     "name": "Morizès",
     "code": "33294",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -2323,7 +2323,7 @@
     "name": "Mouillac",
     "code": "33295",
     "epci_code": "243301397",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33240"
   },
@@ -2331,7 +2331,7 @@
     "name": "Mouliets-et-Villemartin",
     "code": "33296",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33350"
   },
@@ -2339,7 +2339,7 @@
     "name": "Moulis-en-Médoc",
     "code": "33297",
     "epci_code": "243301389",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33480"
   },
@@ -2347,7 +2347,7 @@
     "name": "Moulon",
     "code": "33298",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33420"
   },
@@ -2355,7 +2355,7 @@
     "name": "Mourens",
     "code": "33299",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33410"
   },
@@ -2363,7 +2363,7 @@
     "name": "Naujac-sur-Mer",
     "code": "33300",
     "epci_code": "200070720",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33990"
   },
@@ -2371,7 +2371,7 @@
     "name": "Naujan-et-Postiac",
     "code": "33301",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33420"
   },
@@ -2379,7 +2379,7 @@
     "name": "Néac",
     "code": "33302",
     "epci_code": "200035533",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33500"
   },
@@ -2387,7 +2387,7 @@
     "name": "Nérigean",
     "code": "33303",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33750"
   },
@@ -2395,7 +2395,7 @@
     "name": "Neuffons",
     "code": "33304",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33580"
   },
@@ -2403,7 +2403,7 @@
     "name": "Le Nizan",
     "code": "33305",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33430"
   },
@@ -2411,7 +2411,7 @@
     "name": "Noaillac",
     "code": "33306",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -2419,7 +2419,7 @@
     "name": "Noaillan",
     "code": "33307",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33730"
   },
@@ -2427,7 +2427,7 @@
     "name": "Omet",
     "code": "33308",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33410"
   },
@@ -2435,7 +2435,7 @@
     "name": "Ordonnac",
     "code": "33309",
     "epci_code": "200069995",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33340"
   },
@@ -2443,7 +2443,7 @@
     "name": "Origne",
     "code": "33310",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33113"
   },
@@ -2451,7 +2451,7 @@
     "name": "Paillet",
     "code": "33311",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33550"
   },
@@ -2459,7 +2459,7 @@
     "name": "Parempuyre",
     "code": "33312",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33290"
   },
@@ -2467,7 +2467,7 @@
     "name": "Pauillac",
     "code": "33314",
     "epci_code": "200069995",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33250"
   },
@@ -2475,7 +2475,7 @@
     "name": "Les Peintures",
     "code": "33315",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33230"
   },
@@ -2483,7 +2483,7 @@
     "name": "Pellegrue",
     "code": "33316",
     "epci_code": "243301371",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33790"
   },
@@ -2491,7 +2491,7 @@
     "name": "Périssac",
     "code": "33317",
     "epci_code": "243301397",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33240"
   },
@@ -2499,7 +2499,7 @@
     "name": "Pessac",
     "code": "33318",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33600"
   },
@@ -2507,7 +2507,7 @@
     "name": "Pessac-sur-Dordogne",
     "code": "33319",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33890"
   },
@@ -2515,7 +2515,7 @@
     "name": "Petit-Palais-et-Cornemps",
     "code": "33320",
     "epci_code": "200035533",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33570"
   },
@@ -2523,7 +2523,7 @@
     "name": "Peujard",
     "code": "33321",
     "epci_code": "243301223",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33240"
   },
@@ -2531,7 +2531,7 @@
     "name": "Le Pian-Médoc",
     "code": "33322",
     "epci_code": "243301447",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33290"
   },
@@ -2539,7 +2539,7 @@
     "name": "Le Pian-sur-Garonne",
     "code": "33323",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33490"
   },
@@ -2547,7 +2547,7 @@
     "name": "Pineuilh",
     "code": "33324",
     "epci_code": "243301371",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33220"
   },
@@ -2555,7 +2555,7 @@
     "name": "Plassac",
     "code": "33325",
     "epci_code": "200023794",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33390"
   },
@@ -2563,7 +2563,7 @@
     "name": "Pleine-Selve",
     "code": "33326",
     "epci_code": "243300811",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33820"
   },
@@ -2571,7 +2571,7 @@
     "name": "Podensac",
     "code": "33327",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33720"
   },
@@ -2579,7 +2579,7 @@
     "name": "Pomerol",
     "code": "33328",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33500"
   },
@@ -2587,7 +2587,7 @@
     "name": "Pompéjac",
     "code": "33329",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33730"
   },
@@ -2595,7 +2595,7 @@
     "name": "Pompignac",
     "code": "33330",
     "epci_code": "243301355",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33370"
   },
@@ -2603,7 +2603,7 @@
     "name": "Pondaurat",
     "code": "33331",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -2611,7 +2611,7 @@
     "name": "Porchères",
     "code": "33332",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33660"
   },
@@ -2619,7 +2619,7 @@
     "name": "Le Porge",
     "code": "33333",
     "epci_code": "243301389",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33680"
   },
@@ -2627,7 +2627,7 @@
     "name": "Portets",
     "code": "33334",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33640"
   },
@@ -2635,7 +2635,7 @@
     "name": "Le Pout",
     "code": "33335",
     "epci_code": "243301215",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33670"
   },
@@ -2643,7 +2643,7 @@
     "name": "Préchac",
     "code": "33336",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33730"
   },
@@ -2651,7 +2651,7 @@
     "name": "Preignac",
     "code": "33337",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33210"
   },
@@ -2659,7 +2659,7 @@
     "name": "Prignac-et-Marcamps",
     "code": "33339",
     "epci_code": "243301223",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33710"
   },
@@ -2667,7 +2667,7 @@
     "name": "Pugnac",
     "code": "33341",
     "epci_code": "243301223",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33710"
   },
@@ -2675,7 +2675,7 @@
     "name": "Puisseguin",
     "code": "33342",
     "epci_code": "200035533",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33570"
   },
@@ -2683,7 +2683,7 @@
     "name": "Pujols-sur-Ciron",
     "code": "33343",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33210"
   },
@@ -2691,7 +2691,7 @@
     "name": "Pujols",
     "code": "33344",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33350"
   },
@@ -2699,7 +2699,7 @@
     "name": "Le Puy",
     "code": "33345",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33580"
   },
@@ -2707,7 +2707,7 @@
     "name": "Puybarban",
     "code": "33346",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -2715,7 +2715,7 @@
     "name": "Puynormand",
     "code": "33347",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33660"
   },
@@ -2723,7 +2723,7 @@
     "name": "Queyrac",
     "code": "33348",
     "epci_code": "200070720",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33340"
   },
@@ -2731,7 +2731,7 @@
     "name": "Quinsac",
     "code": "33349",
     "epci_code": "243301439",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33360"
   },
@@ -2739,7 +2739,7 @@
     "name": "Rauzan",
     "code": "33350",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33420"
   },
@@ -2747,7 +2747,7 @@
     "name": "Reignac",
     "code": "33351",
     "epci_code": "243300811",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33860"
   },
@@ -2755,7 +2755,7 @@
     "name": "La Réole",
     "code": "33352",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -2763,7 +2763,7 @@
     "name": "Rimons",
     "code": "33353",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33580"
   },
@@ -2771,7 +2771,7 @@
     "name": "Riocaud",
     "code": "33354",
     "epci_code": "243301371",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33220"
   },
@@ -2779,7 +2779,7 @@
     "name": "Rions",
     "code": "33355",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33410"
   },
@@ -2787,7 +2787,7 @@
     "name": "La Rivière",
     "code": "33356",
     "epci_code": "243301397",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33126"
   },
@@ -2795,7 +2795,7 @@
     "name": "Roaillan",
     "code": "33357",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33210"
   },
@@ -2803,7 +2803,7 @@
     "name": "Romagne",
     "code": "33358",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33760"
   },
@@ -2811,7 +2811,7 @@
     "name": "Roquebrune",
     "code": "33359",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33580"
   },
@@ -2819,7 +2819,7 @@
     "name": "La Roquille",
     "code": "33360",
     "epci_code": "243301371",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33220"
   },
@@ -2827,7 +2827,7 @@
     "name": "Ruch",
     "code": "33361",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33350"
   },
@@ -2835,7 +2835,7 @@
     "name": "Sablons",
     "code": "33362",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33910"
   },
@@ -2843,7 +2843,7 @@
     "name": "Sadirac",
     "code": "33363",
     "epci_code": "243301215",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33670"
   },
@@ -2851,7 +2851,7 @@
     "name": "Saillans",
     "code": "33364",
     "epci_code": "243301397",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33141"
   },
@@ -2859,7 +2859,7 @@
     "name": "Saint-Aignan",
     "code": "33365",
     "epci_code": "243301397",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33126"
   },
@@ -2867,7 +2867,7 @@
     "name": "Saint-André-de-Cubzac",
     "code": "33366",
     "epci_code": "243301223",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33240"
   },
@@ -2875,7 +2875,7 @@
     "name": "Saint-André-du-Bois",
     "code": "33367",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33490"
   },
@@ -2883,7 +2883,7 @@
     "name": "Saint-André-et-Appelles",
     "code": "33369",
     "epci_code": "243301371",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33220"
   },
@@ -2891,7 +2891,7 @@
     "name": "Saint-Androny",
     "code": "33370",
     "epci_code": "243300811",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33390"
   },
@@ -2899,7 +2899,7 @@
     "name": "Saint-Antoine-du-Queyret",
     "code": "33372",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33790"
   },
@@ -2907,7 +2907,7 @@
     "name": "Saint-Antoine-sur-l’Isle",
     "code": "33373",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33660"
   },
@@ -2915,7 +2915,7 @@
     "name": "Saint-Aubin-de-Blaye",
     "code": "33374",
     "epci_code": "243300811",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33820"
   },
@@ -2923,7 +2923,7 @@
     "name": "Saint-Aubin-de-Branne",
     "code": "33375",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33420"
   },
@@ -2931,7 +2931,7 @@
     "name": "Saint-Aubin-de-Médoc",
     "code": "33376",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33160"
   },
@@ -2939,7 +2939,7 @@
     "name": "Saint-Avit-de-Soulège",
     "code": "33377",
     "epci_code": "243301371",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33220"
   },
@@ -2947,7 +2947,7 @@
     "name": "Saint-Avit-Saint-Nazaire",
     "code": "33378",
     "epci_code": "243301371",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33220"
   },
@@ -2955,7 +2955,7 @@
     "name": "Saint-Brice",
     "code": "33379",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33540"
   },
@@ -2963,7 +2963,7 @@
     "name": "Val-de-Livenne",
     "code": "33380",
     "epci_code": "243300811",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33820"
   },
@@ -2971,7 +2971,7 @@
     "name": "Val-de-Livenne",
     "code": "33380",
     "epci_code": "243300811",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33860"
   },
@@ -2979,7 +2979,7 @@
     "name": "Saint-Caprais-de-Bordeaux",
     "code": "33381",
     "epci_code": "243301439",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33880"
   },
@@ -2987,7 +2987,7 @@
     "name": "Saint-Christoly-de-Blaye",
     "code": "33382",
     "epci_code": "200023794",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33920"
   },
@@ -2995,7 +2995,7 @@
     "name": "Saint-Christoly-Médoc",
     "code": "33383",
     "epci_code": "200069995",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33340"
   },
@@ -3003,7 +3003,7 @@
     "name": "Saint-Christophe-des-Bardes",
     "code": "33384",
     "epci_code": "200035533",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33330"
   },
@@ -3011,7 +3011,7 @@
     "name": "Saint-Christophe-de-Double",
     "code": "33385",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33230"
   },
@@ -3019,7 +3019,7 @@
     "name": "Saint-Cibard",
     "code": "33386",
     "epci_code": "200035533",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33570"
   },
@@ -3027,7 +3027,7 @@
     "name": "Saint-Ciers-d’Abzac",
     "code": "33387",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33910"
   },
@@ -3035,7 +3035,7 @@
     "name": "Saint-Ciers-de-Canesse",
     "code": "33388",
     "epci_code": "200023794",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33710"
   },
@@ -3043,7 +3043,7 @@
     "name": "Saint-Ciers-sur-Gironde",
     "code": "33389",
     "epci_code": "243300811",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33820"
   },
@@ -3051,7 +3051,7 @@
     "name": "Sainte-Colombe",
     "code": "33390",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33350"
   },
@@ -3059,7 +3059,7 @@
     "name": "Saint-Côme",
     "code": "33391",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33430"
   },
@@ -3067,7 +3067,7 @@
     "name": "Sainte-Croix-du-Mont",
     "code": "33392",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33410"
   },
@@ -3075,7 +3075,7 @@
     "name": "Saint-Denis-de-Pile",
     "code": "33393",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33910"
   },
@@ -3083,7 +3083,7 @@
     "name": "Saint-Émilion",
     "code": "33394",
     "epci_code": "200035533",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33330"
   },
@@ -3091,7 +3091,7 @@
     "name": "Saint-Estèphe",
     "code": "33395",
     "epci_code": "200069995",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33180"
   },
@@ -3099,7 +3099,7 @@
     "name": "Saint-Étienne-de-Lisse",
     "code": "33396",
     "epci_code": "200035533",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33330"
   },
@@ -3107,7 +3107,7 @@
     "name": "Sainte-Eulalie",
     "code": "33397",
     "epci_code": "243301249",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33560"
   },
@@ -3115,7 +3115,7 @@
     "name": "Saint-Exupéry",
     "code": "33398",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -3123,7 +3123,7 @@
     "name": "Saint-Félix-de-Foncaude",
     "code": "33399",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33540"
   },
@@ -3131,7 +3131,7 @@
     "name": "Saint-Ferme",
     "code": "33400",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33580"
   },
@@ -3139,7 +3139,7 @@
     "name": "Sainte-Florence",
     "code": "33401",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33350"
   },
@@ -3147,7 +3147,7 @@
     "name": "Sainte-Foy-la-Grande",
     "code": "33402",
     "epci_code": "243301371",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33220"
   },
@@ -3155,7 +3155,7 @@
     "name": "Sainte-Foy-la-Longue",
     "code": "33403",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33490"
   },
@@ -3163,7 +3163,7 @@
     "name": "Sainte-Gemme",
     "code": "33404",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33580"
   },
@@ -3171,7 +3171,7 @@
     "name": "Saint-Genès-de-Blaye",
     "code": "33405",
     "epci_code": "200023794",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33390"
   },
@@ -3179,7 +3179,7 @@
     "name": "Saint-Genès-de-Castillon",
     "code": "33406",
     "epci_code": "200035533",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33350"
   },
@@ -3187,7 +3187,7 @@
     "name": "Saint-Genès-de-Fronsac",
     "code": "33407",
     "epci_code": "243301397",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33240"
   },
@@ -3195,7 +3195,7 @@
     "name": "Saint-Genès-de-Lombaud",
     "code": "33408",
     "epci_code": "243301215",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33670"
   },
@@ -3203,7 +3203,7 @@
     "name": "Saint-Germain-de-Grave",
     "code": "33411",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33490"
   },
@@ -3211,7 +3211,7 @@
     "name": "Saint-Germain-d’Esteuil",
     "code": "33412",
     "epci_code": "200069995",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33340"
   },
@@ -3219,7 +3219,7 @@
     "name": "Saint-Germain-du-Puch",
     "code": "33413",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33750"
   },
@@ -3227,7 +3227,7 @@
     "name": "Saint-Germain-de-la-Rivière",
     "code": "33414",
     "epci_code": "243301397",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33240"
   },
@@ -3235,7 +3235,7 @@
     "name": "Saint-Gervais",
     "code": "33415",
     "epci_code": "243301223",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33240"
   },
@@ -3243,7 +3243,7 @@
     "name": "Saint-Girons-d’Aiguevives",
     "code": "33416",
     "epci_code": "200023794",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33920"
   },
@@ -3251,7 +3251,7 @@
     "name": "Sainte-Hélène",
     "code": "33417",
     "epci_code": "243301389",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33480"
   },
@@ -3259,7 +3259,7 @@
     "name": "Saint-Hilaire-de-la-Noaille",
     "code": "33418",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -3267,7 +3267,7 @@
     "name": "Saint-Hilaire-du-Bois",
     "code": "33419",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33540"
   },
@@ -3275,7 +3275,7 @@
     "name": "Saint-Hippolyte",
     "code": "33420",
     "epci_code": "200035533",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33330"
   },
@@ -3283,7 +3283,7 @@
     "name": "Saint-Jean-de-Blaignac",
     "code": "33421",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33420"
   },
@@ -3291,7 +3291,7 @@
     "name": "Saint-Jean-d’Illac",
     "code": "33422",
     "epci_code": "243301165",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33127"
   },
@@ -3299,7 +3299,7 @@
     "name": "Saint-Julien-Beychevelle",
     "code": "33423",
     "epci_code": "200069995",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33250"
   },
@@ -3307,7 +3307,7 @@
     "name": "Saint-Laurent-Médoc",
     "code": "33424",
     "epci_code": "200069995",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33112"
   },
@@ -3315,7 +3315,7 @@
     "name": "Saint-Laurent-d’Arce",
     "code": "33425",
     "epci_code": "243301223",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33240"
   },
@@ -3323,7 +3323,7 @@
     "name": "Saint-Laurent-des-Combes",
     "code": "33426",
     "epci_code": "200035533",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33330"
   },
@@ -3331,7 +3331,7 @@
     "name": "Saint-Laurent-du-Bois",
     "code": "33427",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33540"
   },
@@ -3339,7 +3339,7 @@
     "name": "Saint-Laurent-du-Plan",
     "code": "33428",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -3347,7 +3347,7 @@
     "name": "Saint-Léger-de-Balson",
     "code": "33429",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33113"
   },
@@ -3355,7 +3355,7 @@
     "name": "Saint-Léon",
     "code": "33431",
     "epci_code": "243301215",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33670"
   },
@@ -3363,7 +3363,7 @@
     "name": "Saint-Loubert",
     "code": "33432",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33210"
   },
@@ -3371,7 +3371,7 @@
     "name": "Saint-Loubès",
     "code": "33433",
     "epci_code": "243301249",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33450"
   },
@@ -3379,7 +3379,7 @@
     "name": "Saint-Louis-de-Montferrand",
     "code": "33434",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33440"
   },
@@ -3387,7 +3387,7 @@
     "name": "Saint-Macaire",
     "code": "33435",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33490"
   },
@@ -3395,7 +3395,7 @@
     "name": "Saint-Magne",
     "code": "33436",
     "epci_code": "243301405",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33125"
   },
@@ -3403,7 +3403,7 @@
     "name": "Saint-Magne-de-Castillon",
     "code": "33437",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33350"
   },
@@ -3411,7 +3411,7 @@
     "name": "Saint-Maixant",
     "code": "33438",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33490"
   },
@@ -3419,7 +3419,7 @@
     "name": "Saint-Mariens",
     "code": "33439",
     "epci_code": "243301181",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33620"
   },
@@ -3427,7 +3427,7 @@
     "name": "Saint-Martial",
     "code": "33440",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33490"
   },
@@ -3435,7 +3435,7 @@
     "name": "Saint-Martin-Lacaussade",
     "code": "33441",
     "epci_code": "200023794",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33390"
   },
@@ -3443,7 +3443,7 @@
     "name": "Saint-Martin-de-Laye",
     "code": "33442",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33910"
   },
@@ -3451,7 +3451,7 @@
     "name": "Saint-Martin-de-Lerm",
     "code": "33443",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33540"
   },
@@ -3459,7 +3459,7 @@
     "name": "Saint-Martin-de-Sescas",
     "code": "33444",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33490"
   },
@@ -3467,7 +3467,7 @@
     "name": "Saint-Martin-du-Bois",
     "code": "33445",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33910"
   },
@@ -3475,7 +3475,7 @@
     "name": "Saint-Martin-du-Puy",
     "code": "33446",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33540"
   },
@@ -3483,7 +3483,7 @@
     "name": "Saint-Médard-de-Guizières",
     "code": "33447",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33230"
   },
@@ -3491,7 +3491,7 @@
     "name": "Saint-Médard-d’Eyrans",
     "code": "33448",
     "epci_code": "243301264",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33650"
   },
@@ -3499,7 +3499,7 @@
     "name": "Saint-Médard-en-Jalles",
     "code": "33449",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33160"
   },
@@ -3507,7 +3507,7 @@
     "name": "Saint-Michel-de-Castelnau",
     "code": "33450",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33840"
   },
@@ -3515,7 +3515,7 @@
     "name": "Saint-Michel-de-Fronsac",
     "code": "33451",
     "epci_code": "243301397",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33126"
   },
@@ -3523,7 +3523,7 @@
     "name": "Saint-Michel-de-Rieufret",
     "code": "33452",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33720"
   },
@@ -3531,7 +3531,7 @@
     "name": "Saint-Michel-de-Lapujade",
     "code": "33453",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -3539,7 +3539,7 @@
     "name": "Saint-Morillon",
     "code": "33454",
     "epci_code": "243301264",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33650"
   },
@@ -3547,7 +3547,7 @@
     "name": "Saint-Palais",
     "code": "33456",
     "epci_code": "243300811",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33820"
   },
@@ -3555,7 +3555,7 @@
     "name": "Saint-Pardon-de-Conques",
     "code": "33457",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33210"
   },
@@ -3563,7 +3563,7 @@
     "name": "Saint-Paul",
     "code": "33458",
     "epci_code": "200023794",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33390"
   },
@@ -3571,7 +3571,7 @@
     "name": "Saint-Pey-d’Armens",
     "code": "33459",
     "epci_code": "200035533",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33330"
   },
@@ -3579,7 +3579,7 @@
     "name": "Saint-Pey-de-Castets",
     "code": "33460",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33350"
   },
@@ -3587,7 +3587,7 @@
     "name": "Saint-Philippe-d’Aiguilhe",
     "code": "33461",
     "epci_code": "200035533",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33350"
   },
@@ -3595,7 +3595,7 @@
     "name": "Saint-Philippe-du-Seignal",
     "code": "33462",
     "epci_code": "243301371",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33220"
   },
@@ -3603,7 +3603,7 @@
     "name": "Saint-Pierre-d’Aurillac",
     "code": "33463",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33490"
   },
@@ -3611,7 +3611,7 @@
     "name": "Saint-Pierre-de-Bat",
     "code": "33464",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33760"
   },
@@ -3619,7 +3619,7 @@
     "name": "Saint-Pierre-de-Mons",
     "code": "33465",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33210"
   },
@@ -3627,7 +3627,7 @@
     "name": "Saint-Quentin-de-Baron",
     "code": "33466",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33750"
   },
@@ -3635,7 +3635,7 @@
     "name": "Saint-Quentin-de-Caplong",
     "code": "33467",
     "epci_code": "243301371",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33220"
   },
@@ -3643,7 +3643,7 @@
     "name": "Sainte-Radegonde",
     "code": "33468",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33350"
   },
@@ -3651,7 +3651,7 @@
     "name": "Saint-Romain-la-Virvée",
     "code": "33470",
     "epci_code": "243301397",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33240"
   },
@@ -3659,7 +3659,7 @@
     "name": "Saint-Sauveur",
     "code": "33471",
     "epci_code": "200069995",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33250"
   },
@@ -3667,7 +3667,7 @@
     "name": "Saint-Sauveur-de-Puynormand",
     "code": "33472",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33660"
   },
@@ -3675,7 +3675,7 @@
     "name": "Saint-Savin",
     "code": "33473",
     "epci_code": "243301181",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33920"
   },
@@ -3683,7 +3683,7 @@
     "name": "Saint-Selve",
     "code": "33474",
     "epci_code": "243301264",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33650"
   },
@@ -3691,7 +3691,7 @@
     "name": "Saint-Seurin-de-Bourg",
     "code": "33475",
     "epci_code": "200023794",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33710"
   },
@@ -3699,7 +3699,7 @@
     "name": "Saint-Seurin-de-Cadourne",
     "code": "33476",
     "epci_code": "200069995",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33180"
   },
@@ -3707,7 +3707,7 @@
     "name": "Saint-Seurin-de-Cursac",
     "code": "33477",
     "epci_code": "243300811",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33390"
   },
@@ -3715,7 +3715,7 @@
     "name": "Saint-Seurin-sur-l’Isle",
     "code": "33478",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33660"
   },
@@ -3723,7 +3723,7 @@
     "name": "Saint-Sève",
     "code": "33479",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33190"
   },
@@ -3731,7 +3731,7 @@
     "name": "Saint-Sulpice-de-Faleyrens",
     "code": "33480",
     "epci_code": "200035533",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33330"
   },
@@ -3739,7 +3739,7 @@
     "name": "Saint-Sulpice-de-Guilleragues",
     "code": "33481",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33580"
   },
@@ -3747,7 +3747,7 @@
     "name": "Saint-Sulpice-de-Pommiers",
     "code": "33482",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33540"
   },
@@ -3755,7 +3755,7 @@
     "name": "Saint-Sulpice-et-Cameyrac",
     "code": "33483",
     "epci_code": "243301249",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33450"
   },
@@ -3763,7 +3763,7 @@
     "name": "Saint-Symphorien",
     "code": "33484",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33113"
   },
@@ -3771,7 +3771,7 @@
     "name": "Sainte-Terre",
     "code": "33485",
     "epci_code": "200035533",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33350"
   },
@@ -3779,7 +3779,7 @@
     "name": "Saint-Trojan",
     "code": "33486",
     "epci_code": "243301223",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33710"
   },
@@ -3787,7 +3787,7 @@
     "name": "Saint-Vincent-de-Paul",
     "code": "33487",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33440"
   },
@@ -3795,7 +3795,7 @@
     "name": "Saint-Vincent-de-Pertignas",
     "code": "33488",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33420"
   },
@@ -3803,7 +3803,7 @@
     "name": "Saint-Vivien-de-Blaye",
     "code": "33489",
     "epci_code": "243301181",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33920"
   },
@@ -3811,7 +3811,7 @@
     "name": "Saint-Vivien-de-Médoc",
     "code": "33490",
     "epci_code": "200070720",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33590"
   },
@@ -3819,7 +3819,7 @@
     "name": "Saint-Vivien-de-Monségur",
     "code": "33491",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33580"
   },
@@ -3827,7 +3827,7 @@
     "name": "Saint-Yzan-de-Soudiac",
     "code": "33492",
     "epci_code": "243301181",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33920"
   },
@@ -3835,7 +3835,7 @@
     "name": "Saint-Yzans-de-Médoc",
     "code": "33493",
     "epci_code": "200069995",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33340"
   },
@@ -3843,7 +3843,7 @@
     "name": "Salaunes",
     "code": "33494",
     "epci_code": "243301389",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33160"
   },
@@ -3851,7 +3851,7 @@
     "name": "Sallebœuf",
     "code": "33496",
     "epci_code": "243301355",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33370"
   },
@@ -3859,7 +3859,7 @@
     "name": "Salles",
     "code": "33498",
     "epci_code": "243301405",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33770"
   },
@@ -3867,7 +3867,7 @@
     "name": "Les Salles-de-Castillon",
     "code": "33499",
     "epci_code": "243301454",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33350"
   },
@@ -3875,7 +3875,7 @@
     "name": "Samonac",
     "code": "33500",
     "epci_code": "200023794",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33710"
   },
@@ -3883,7 +3883,7 @@
     "name": "Saucats",
     "code": "33501",
     "epci_code": "243301264",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33650"
   },
@@ -3891,7 +3891,7 @@
     "name": "Saugon",
     "code": "33502",
     "epci_code": "200023794",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33920"
   },
@@ -3899,7 +3899,7 @@
     "name": "Saumos",
     "code": "33503",
     "epci_code": "243301389",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33680"
   },
@@ -3907,7 +3907,7 @@
     "name": "Sauternes",
     "code": "33504",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33210"
   },
@@ -3915,7 +3915,7 @@
     "name": "La Sauve",
     "code": "33505",
     "epci_code": "243301215",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33670"
   },
@@ -3923,7 +3923,7 @@
     "name": "Sauveterre-de-Guyenne",
     "code": "33506",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33540"
   },
@@ -3931,7 +3931,7 @@
     "name": "Sauviac",
     "code": "33507",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33430"
   },
@@ -3939,7 +3939,7 @@
     "name": "Savignac",
     "code": "33508",
     "epci_code": "200044394",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33124"
   },
@@ -3947,7 +3947,7 @@
     "name": "Savignac-de-l’Isle",
     "code": "33509",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33910"
   },
@@ -3955,7 +3955,7 @@
     "name": "Semens",
     "code": "33510",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33490"
   },
@@ -3963,7 +3963,7 @@
     "name": "Sendets",
     "code": "33511",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33690"
   },
@@ -3971,7 +3971,7 @@
     "name": "Sigalens",
     "code": "33512",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33690"
   },
@@ -3979,7 +3979,7 @@
     "name": "Sillas",
     "code": "33513",
     "epci_code": "200043982",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33690"
   },
@@ -3987,7 +3987,7 @@
     "name": "Soulac-sur-Mer",
     "code": "33514",
     "epci_code": "200070720",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33780"
   },
@@ -3995,7 +3995,7 @@
     "name": "Soulignac",
     "code": "33515",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33760"
   },
@@ -4003,7 +4003,7 @@
     "name": "Soussac",
     "code": "33516",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33790"
   },
@@ -4011,7 +4011,7 @@
     "name": "Soussans",
     "code": "33517",
     "epci_code": "243301447",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33460"
   },
@@ -4019,7 +4019,7 @@
     "name": "Tabanac",
     "code": "33518",
     "epci_code": "243301439",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33550"
   },
@@ -4027,7 +4027,7 @@
     "name": "Le Taillan-Médoc",
     "code": "33519",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33320"
   },
@@ -4035,7 +4035,7 @@
     "name": "Taillecavat",
     "code": "33520",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33580"
   },
@@ -4043,7 +4043,7 @@
     "name": "Talais",
     "code": "33521",
     "epci_code": "200070720",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33590"
   },
@@ -4051,7 +4051,7 @@
     "name": "Talence",
     "code": "33522",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33400"
   },
@@ -4059,7 +4059,7 @@
     "name": "Targon",
     "code": "33523",
     "epci_code": "200069599",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33760"
   },
@@ -4067,7 +4067,7 @@
     "name": "Tarnès",
     "code": "33524",
     "epci_code": "243301397",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33240"
   },
@@ -4075,7 +4075,7 @@
     "name": "Tauriac",
     "code": "33525",
     "epci_code": "243301223",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33710"
   },
@@ -4083,7 +4083,7 @@
     "name": "Tayac",
     "code": "33526",
     "epci_code": "200035533",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33570"
   },
@@ -4091,7 +4091,7 @@
     "name": "Le Teich",
     "code": "33527",
     "epci_code": "243300563",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33470"
   },
@@ -4099,7 +4099,7 @@
     "name": "Le Temple",
     "code": "33528",
     "epci_code": "243301389",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33680"
   },
@@ -4107,7 +4107,7 @@
     "name": "La Teste-de-Buch",
     "code": "33529",
     "epci_code": "243300563",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33115"
   },
@@ -4115,7 +4115,7 @@
     "name": "La Teste-de-Buch",
     "code": "33529",
     "epci_code": "243300563",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33260"
   },
@@ -4123,7 +4123,7 @@
     "name": "Teuillac",
     "code": "33530",
     "epci_code": "243301223",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33710"
   },
@@ -4131,7 +4131,7 @@
     "name": "Tizac-de-Curton",
     "code": "33531",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33420"
   },
@@ -4139,7 +4139,7 @@
     "name": "Tizac-de-Lapouyade",
     "code": "33532",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33620"
   },
@@ -4147,7 +4147,7 @@
     "name": "Toulenne",
     "code": "33533",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33210"
   },
@@ -4155,7 +4155,7 @@
     "name": "Le Tourne",
     "code": "33534",
     "epci_code": "243301439",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33550"
   },
@@ -4163,7 +4163,7 @@
     "name": "Tresses",
     "code": "33535",
     "epci_code": "243301355",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33370"
   },
@@ -4171,7 +4171,7 @@
     "name": "Le Tuzan",
     "code": "33536",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33125"
   },
@@ -4179,7 +4179,7 @@
     "name": "Uzeste",
     "code": "33537",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33730"
   },
@@ -4187,7 +4187,7 @@
     "name": "Valeyrac",
     "code": "33538",
     "epci_code": "200070720",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33340"
   },
@@ -4195,7 +4195,7 @@
     "name": "Vayres",
     "code": "33539",
     "epci_code": "200070092",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33870"
   },
@@ -4203,7 +4203,7 @@
     "name": "Vendays-Montalivet",
     "code": "33540",
     "epci_code": "200070720",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33930"
   },
@@ -4211,7 +4211,7 @@
     "name": "Vensac",
     "code": "33541",
     "epci_code": "200070720",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33590"
   },
@@ -4219,7 +4219,7 @@
     "name": "Vérac",
     "code": "33542",
     "epci_code": "243301397",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33240"
   },
@@ -4227,7 +4227,7 @@
     "name": "Verdelais",
     "code": "33543",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33490"
   },
@@ -4235,7 +4235,7 @@
     "name": "Le Verdon-sur-Mer",
     "code": "33544",
     "epci_code": "200070720",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33123"
   },
@@ -4243,7 +4243,7 @@
     "name": "Vertheuil",
     "code": "33545",
     "epci_code": "200069995",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33180"
   },
@@ -4251,7 +4251,7 @@
     "name": "Vignonet",
     "code": "33546",
     "epci_code": "200035533",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33330"
   },
@@ -4259,7 +4259,7 @@
     "name": "Villandraut",
     "code": "33547",
     "epci_code": "200043974",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33730"
   },
@@ -4267,7 +4267,7 @@
     "name": "Villegouge",
     "code": "33548",
     "epci_code": "243301397",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33141"
   },
@@ -4275,7 +4275,7 @@
     "name": "Villenave-de-Rions",
     "code": "33549",
     "epci_code": "243301215",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33550"
   },
@@ -4283,7 +4283,7 @@
     "name": "Villenave-d’Ornon",
     "code": "33550",
     "epci_code": "243300316",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33140"
   },
@@ -4291,7 +4291,7 @@
     "name": "Villeneuve",
     "code": "33551",
     "epci_code": "200023794",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33710"
   },
@@ -4299,7 +4299,7 @@
     "name": "Virelade",
     "code": "33552",
     "epci_code": "200069581",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33720"
   },
@@ -4307,7 +4307,7 @@
     "name": "Virsac",
     "code": "33553",
     "epci_code": "243301223",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33240"
   },
@@ -4315,7 +4315,7 @@
     "name": "Yvrac",
     "code": "33554",
     "epci_code": "243301249",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33370"
   },
@@ -4323,7 +4323,7 @@
     "name": "Marcheprime",
     "code": "33555",
     "epci_code": "243301504",
-    "departement_code": "33",
+    "department_code": "33",
     "region_code": "75",
     "postal_code": "33380"
   }

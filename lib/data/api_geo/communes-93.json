@@ -3,7 +3,7 @@
     "name": "Aubervilliers",
     "code": "93001",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93300"
   },
@@ -11,7 +11,7 @@
     "name": "Aulnay-sous-Bois",
     "code": "93005",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93600"
   },
@@ -19,7 +19,7 @@
     "name": "Bagnolet",
     "code": "93006",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93170"
   },
@@ -27,7 +27,7 @@
     "name": "Le Blanc-Mesnil",
     "code": "93007",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93150"
   },
@@ -35,7 +35,7 @@
     "name": "Bobigny",
     "code": "93008",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93000"
   },
@@ -43,7 +43,7 @@
     "name": "Bondy",
     "code": "93010",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93140"
   },
@@ -51,7 +51,7 @@
     "name": "Le Bourget",
     "code": "93013",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93350"
   },
@@ -59,7 +59,7 @@
     "name": "Clichy-sous-Bois",
     "code": "93014",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93390"
   },
@@ -67,7 +67,7 @@
     "name": "Coubron",
     "code": "93015",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93470"
   },
@@ -75,7 +75,7 @@
     "name": "La Courneuve",
     "code": "93027",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93120"
   },
@@ -83,7 +83,7 @@
     "name": "Drancy",
     "code": "93029",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93700"
   },
@@ -91,7 +91,7 @@
     "name": "Dugny",
     "code": "93030",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93440"
   },
@@ -99,7 +99,7 @@
     "name": "Épinay-sur-Seine",
     "code": "93031",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93800"
   },
@@ -107,7 +107,7 @@
     "name": "Gagny",
     "code": "93032",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93220"
   },
@@ -115,7 +115,7 @@
     "name": "Gournay-sur-Marne",
     "code": "93033",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93460"
   },
@@ -123,7 +123,7 @@
     "name": "L’Île-Saint-Denis",
     "code": "93039",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93450"
   },
@@ -131,7 +131,7 @@
     "name": "Les Lilas",
     "code": "93045",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93260"
   },
@@ -139,7 +139,7 @@
     "name": "Livry-Gargan",
     "code": "93046",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93190"
   },
@@ -147,7 +147,7 @@
     "name": "Montfermeil",
     "code": "93047",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93370"
   },
@@ -155,7 +155,7 @@
     "name": "Montreuil",
     "code": "93048",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93100"
   },
@@ -163,7 +163,7 @@
     "name": "Neuilly-Plaisance",
     "code": "93049",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93360"
   },
@@ -171,7 +171,7 @@
     "name": "Neuilly-sur-Marne",
     "code": "93050",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93330"
   },
@@ -179,7 +179,7 @@
     "name": "Noisy-le-Grand",
     "code": "93051",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93160"
   },
@@ -187,7 +187,7 @@
     "name": "Noisy-le-Sec",
     "code": "93053",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93130"
   },
@@ -195,7 +195,7 @@
     "name": "Pantin",
     "code": "93055",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93500"
   },
@@ -203,7 +203,7 @@
     "name": "Les Pavillons-sous-Bois",
     "code": "93057",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93320"
   },
@@ -211,7 +211,7 @@
     "name": "Le Pré-Saint-Gervais",
     "code": "93061",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93310"
   },
@@ -219,7 +219,7 @@
     "name": "Le Raincy",
     "code": "93062",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93340"
   },
@@ -227,7 +227,7 @@
     "name": "Romainville",
     "code": "93063",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93230"
   },
@@ -235,7 +235,7 @@
     "name": "Rosny-sous-Bois",
     "code": "93064",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93110"
   },
@@ -243,7 +243,7 @@
     "name": "Saint-Denis",
     "code": "93066",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93200"
   },
@@ -251,7 +251,7 @@
     "name": "Saint-Denis",
     "code": "93066",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93210"
   },
@@ -259,7 +259,7 @@
     "name": "Saint-Denis",
     "code": "93066",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93380"
   },
@@ -267,7 +267,7 @@
     "name": "Saint-Ouen-sur-Seine",
     "code": "93070",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93400"
   },
@@ -275,7 +275,7 @@
     "name": "Sevran",
     "code": "93071",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93270"
   },
@@ -283,7 +283,7 @@
     "name": "Stains",
     "code": "93072",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93240"
   },
@@ -291,7 +291,7 @@
     "name": "Tremblay-en-France",
     "code": "93073",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93290"
   },
@@ -299,7 +299,7 @@
     "name": "Vaujours",
     "code": "93074",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93410"
   },
@@ -307,7 +307,7 @@
     "name": "Villemomble",
     "code": "93077",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93250"
   },
@@ -315,7 +315,7 @@
     "name": "Villepinte",
     "code": "93078",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93420"
   },
@@ -323,7 +323,7 @@
     "name": "Villetaneuse",
     "code": "93079",
     "epci_code": "200054781",
-    "departement_code": "93",
+    "department_code": "93",
     "region_code": "11",
     "postal_code": "93430"
   }

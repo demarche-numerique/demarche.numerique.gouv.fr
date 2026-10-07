@@ -27,8 +27,8 @@ module Maintenance
           champ.save!
         else # otherwise, we can't find the expected departement
           if champ.dossier.en_construction?
-            champ.code_departement = nil
-            champ.code_postal = nil
+            champ.department_code = nil
+            champ.postal_code = nil
             champ.external_id = nil
             champ.value = nil
             champ.save(validate: false)
