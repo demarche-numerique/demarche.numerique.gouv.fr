@@ -13,17 +13,6 @@ class TypesDeChamp::CommuneTypeDeChamp < TypeDeChamp
 
   include AddressableColumnConcern
 
-  def typed_champ_value_for_export(champ, path = :value)
-    case path
-    when :value
-      typed_champ_value(champ)
-    when :departement
-      champ.departement_code_and_name || ''
-    when :code
-      champ.code || ''
-    end
-  end
-
   def typed_champ_value_for_tag(champ, path = :value)
     case path
     when :value
@@ -37,6 +26,17 @@ class TypesDeChamp::CommuneTypeDeChamp < TypeDeChamp
 
   def typed_champ_value(champ)
     champ.code_postal? ? "#{champ.name} (#{champ.code_postal})" : champ.name
+  end
+
+  # « Nom (code postal) », the code INSEE and the département
+  def legacy_export_columns(procedure_id:)
+    postal_code, city_name, department, city_code = addressable_columns(procedure_id:, only: [:postal_code, :city_name, :department_code, :city_code])
+
+    [
+      legacy_export_column(procedure_id:, label: libelle, columns: [city_name, postal_code]) { |name, code_postal| code_postal.present? ? "#{name} (#{code_postal})" : name },
+      ["#{libelle} (Code INSEE)", city_code],
+      ["#{libelle} (Département)", department],
+    ]
   end
 
   def columns(procedure_id:, displayable: true, prefix: nil)

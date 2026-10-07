@@ -13,10 +13,6 @@ class TypesDeChamp::YesNoTypeDeChamp < TypeDeChamp
     champ_value_true?(champ) ? 'Oui' : 'Non'
   end
 
-  def typed_champ_value_for_export(champ, path = :value)
-    champ_value_true?(champ) ? 'Oui' : 'Non'
-  end
-
   def typed_champ_value_for_api(champ, version: 2)
     case version
     when 2
@@ -30,8 +26,9 @@ class TypesDeChamp::YesNoTypeDeChamp < TypeDeChamp
     ''
   end
 
-  def champ_default_export_value(path = :value)
-    ''
+  # 'Oui' / 'Non', '' when blank
+  def legacy_export_columns(procedure_id:)
+    [legacy_export_column(procedure_id:, label: libelle, columns: canonical_column(procedure_id:)) { it.nil? ? '' : (it ? 'Oui' : 'Non') }]
   end
 
   private

@@ -27,12 +27,19 @@ class TypesDeChamp::MultipleDropDownListTypeDeChamp < TypesDeChamp::DropDownBase
     end
   end
 
-  def typed_champ_value_for_export(champ, path = :value)
-    path == :value ? typed_champ_value(champ).presence : super
-  end
-
   def typed_champ_value_for_tag(champ, path = :value)
     ChampPresentations::MultipleDropDownListPresentation.new(selected_options(champ))
+  end
+
+  # advanced: the user values of the first référentiel column, in one cell
+  def legacy_export_columns(procedure_id:)
+    first_column = columns(procedure_id:).first if drop_down_advanced?
+
+    if first_column
+      [legacy_export_column(procedure_id:, label: libelle, columns: first_column)]
+    else
+      super
+    end
   end
 
   def columns(procedure_id:, displayable: true, prefix: nil)

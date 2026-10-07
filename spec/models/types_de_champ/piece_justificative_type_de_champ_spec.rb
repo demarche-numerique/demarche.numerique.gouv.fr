@@ -43,36 +43,40 @@ describe TypesDeChamp::PieceJustificativeTypeDeChamp do
     end
   end
 
-  describe '#champ_value_for_export' do
+  describe '#legacy_export_columns' do
+    let(:dossier) { create(:dossier, procedure:) }
+    let(:champ) { dossier.champ_data.first }
+    let(:type_de_champ) { champ.type_de_champ }
+
+    # the [libelle, cell] the default export writes for the champ
+    def exported_cell
+      libelle, column = type_de_champ.legacy_export_columns(procedure_id: procedure.id).first
+      [libelle, ExportedColumnFormatter.format(column:, champ_or_dossier: champ, format: :xlsx)]
+    end
+
     context 'when nature is titre_identite' do
       let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :piece_justificative, nature: 'titre_identite' }]) }
-      let(:dossier) { create(:dossier, procedure:) }
-      let(:champ) { dossier.champ_data.first }
-      let(:type_de_champ) { champ.type_de_champ }
 
-      it 'returns "absent" when no file attached' do
-        expect(type_de_champ.typed_champ_value_for_export(champ)).to eq('absent')
+      it 'exports "absent" when no file attached' do
+        expect(exported_cell).to eq([type_de_champ.libelle, 'absent'])
       end
 
-      it 'returns "présent" when file attached' do
+      it 'exports "présent" when file attached' do
         champ.piece_justificative_file.attach(fixture_file_upload('spec/fixtures/files/logo_test_procedure.png', 'image/png'))
-        expect(type_de_champ.typed_champ_value_for_export(champ)).to eq('présent')
+        expect(exported_cell).to eq([type_de_champ.libelle, 'présent'])
       end
     end
 
     context 'when nature is not titre_identite' do
       let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :piece_justificative }]) }
-      let(:dossier) { create(:dossier, procedure:) }
-      let(:champ) { dossier.champ_data.first }
-      let(:type_de_champ) { champ.type_de_champ }
 
-      it 'returns filenames' do
+      it 'exports the filenames' do
         champ.piece_justificative_file.attach(fixture_file_upload('spec/fixtures/files/logo_test_procedure.png', 'image/png'))
-        expect(type_de_champ.typed_champ_value_for_export(champ)).to include('logo_test_procedure.png')
+        expect(exported_cell.second).to include('logo_test_procedure.png')
       end
 
-      it 'returns empty string when no file' do
-        expect(type_de_champ.typed_champ_value_for_export(champ)).to eq('')
+      it 'exports an empty string when no file' do
+        expect(exported_cell).to eq([type_de_champ.libelle, ''])
       end
     end
   end

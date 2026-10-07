@@ -347,15 +347,17 @@ RSpec.describe DossierChampsConcern do
   end
 
   describe "#champ_values_for_export" do
-    subject { dossier.champ_values_for_export(dossier.revision.public_root_type_de_champs, format: :xlsx) }
+    let(:export_template) { LegacyExportTemplate.new(procedure: dossier.procedure, kind: :xlsx) }
 
-    # An empty yes_no exports as "" where the other types export nil.
-    it "returns one [libelle, value] pair per root champ" do
+    subject { dossier.champ_values_for_export(dossier.revision.public_root_type_de_champs, export_template:, format: :xlsx) }
+
+    # An empty yes_no exports as "" where the other types export nil. The
+    # repetition has no column of its own: its rows go to their own sheet.
+    it "returns one [libelle, value, type] cell per root champ" do
       expect(subject).to eq([
-        ["Un champ text", nil],
-        ["Un autre champ text", nil],
-        ["Un champ yes no", ""],
-        ["Un champ répétable", nil],
+        ["Un champ text", nil, :string],
+        ["Un autre champ text", nil, :string],
+        ["Un champ yes no", "", :string],
       ])
     end
   end

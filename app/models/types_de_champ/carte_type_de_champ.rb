@@ -81,11 +81,10 @@ class TypesDeChamp::CarteTypeDeChamp < TypeDeChamp
     nil
   end
 
-  def typed_champ_value_for_export(champ, path = :value)
-    champ.geo_areas.map(&:label).join("\n")
-  end
-
   def typed_champ_blank?(champ) = champ.geo_areas.blank?
+
+  # no column in the default export: the catalogue has none for a carte
+  def legacy_export_columns(procedure_id:) = []
 
   def canonical_column(procedure_id:, displayable: true, prefix: nil)
     Columns::GeoJSONColumn.new(

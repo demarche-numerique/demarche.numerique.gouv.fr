@@ -1,14 +1,23 @@
 # frozen_string_literal: true
 
 class Columns::DossierColumn < Column
+  # The chorus columns (table 'procedure') read the procedure's ChorusConfiguration.
+  CHORUS_ATTRIBUTES = {
+    'domaine_fonctionnel' => :domaine_fonctionnel,
+    'referentiel_prog' => :referentiel_de_programmation,
+    'centre_de_cout' => :centre_de_cout,
+  }.freeze
+
   def value(dossier)
     case table
     when 'self'
       dossier.public_send(column)
     when 'etablissement'
-      dossier.etablissement.public_send(column)
+      dossier.etablissement&.public_send(column)
     when 'individual'
-      dossier.individual.public_send(column)
+      dossier.individual&.public_send(column)
+    when 'procedure'
+      chorus_code(dossier)
     when 'groupe_instructeur'
       dossier.groupe_instructeur.label
     when 'dossier_labels'
@@ -121,5 +130,11 @@ class Columns::DossierColumn < Column
         .joins(:dossier_notifications)
         .where(dossier_notifications: { notification_type: values })
     end.ids
+  end
+
+  private
+
+  def chorus_code(dossier)
+    dossier.procedure.chorus_configuration.public_send(CHORUS_ATTRIBUTES.fetch(column))&.fetch('code') { '' }
   end
 end

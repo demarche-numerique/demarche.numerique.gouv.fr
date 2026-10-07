@@ -12,8 +12,10 @@ class TypesDeChamp::RNATypeDeChamp < TypeDeChamp
     FILL_DURATION_MEDIUM
   end
 
-  def typed_champ_value_for_export(champ, path = :value)
-    champ.identifier
+  # « W123456789 (titre) »
+  def legacy_export_columns(procedure_id:)
+    columns = [canonical_column(procedure_id:), title_column(procedure_id:, displayable: false, prefix: nil)]
+    [legacy_export_column(procedure_id:, label: libelle, columns:) { |rna, title| title.present? ? "#{rna} (#{title})" : rna }]
   end
 
   def info_columns(procedure:)
@@ -46,17 +48,21 @@ class TypesDeChamp::RNATypeDeChamp < TypeDeChamp
           )
         end
       )
-      .concat([
-        Columns::JSONPathColumn.new(
-          procedure_id:,
-          stable_id:,
-          tdc_type: type_champ,
-          label: "#{libelle_with_prefix(prefix)} – Titre au répertoire national des associations",
-          type: :text,
-          jsonpath: '$.title',
-          displayable:,
-          mandatory: mandatory?
-        ),
-      ])
+      .concat([title_column(procedure_id:, displayable:, prefix:)])
+  end
+
+  private
+
+  def title_column(procedure_id:, displayable:, prefix:)
+    Columns::JSONPathColumn.new(
+      procedure_id:,
+      stable_id:,
+      tdc_type: type_champ,
+      label: "#{libelle_with_prefix(prefix)} – Titre au répertoire national des associations",
+      type: :text,
+      jsonpath: '$.title',
+      displayable:,
+      mandatory: mandatory?
+    )
   end
 end

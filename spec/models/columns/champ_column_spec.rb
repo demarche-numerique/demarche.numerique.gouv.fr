@@ -17,7 +17,7 @@ describe Columns::ChampColumn do
         expect_type_de_champ_values('departements', eq(["01", "84", "01"]))
         expect_type_de_champ_values('regions', eq(['01', '01']))
         expect_type_de_champ_values('pays', eq(['FR']))
-        expect_type_de_champ_values('epci', eq([nil, nil, nil]))
+        expect_type_de_champ_values('epci', eq([nil, nil, nil, nil]))
         expect_type_de_champ_values('iban', eq([nil]))
         expect_type_de_champ_values('siret', match_array(
           [
@@ -57,7 +57,7 @@ describe Columns::ChampColumn do
         expect_type_de_champ_values('cojo', eq([nil]))
         expect_type_de_champ_values('formatted', eq([nil]))
         expect_type_de_champ_values('rna', eq(["W173847273", "postal_code", "city_name", "department_code", "region_code", "region_name", nil, nil, nil, nil, nil, nil, "LA PRÉVENTION ROUTIERE"]))
-        expect_type_de_champ_values('rnf', eq(["075-FDD-00003-01", "postal_code", "city_name", "department_code", "region_code", "region_name", "Fondation SFR"]))
+        expect_type_de_champ_values('rnf', eq(["075-FDD-00003-01", "postal_code", "city_name", "department_code", "region_code", "region_name", "Fondation SFR", nil, "city_code"]))
       end
     end
 

@@ -21,21 +21,22 @@ describe TypesDeChamp::MultipleDropDownListTypeDeChamp do
     end
   end
 
-  describe '#libelles_for_export' do
+  describe '#legacy_export_columns' do
     let(:referentiel) { create(:csv_referentiel, :with_items) }
     let(:procedure) do
       create(:procedure, public_type_de_champs: [{ type: :multiple_drop_down_list, referentiel:, drop_down_mode: 'advanced' }])
     end
     let(:multiple_dropdown_list_tdc) { procedure.active_revision.type_de_champs.first }
 
-    it 'returns a single column with path :value for standard export' do
-      libelles = multiple_dropdown_list_tdc.libelles_for_export
+    it 'keeps a single legacy column with path :value for the default export' do
+      columns = multiple_dropdown_list_tdc.legacy_export_columns(procedure_id: procedure.id)
 
-      expect(libelles).to eq([[multiple_dropdown_list_tdc.libelle, :value]])
+      expect(columns.map(&:first)).to eq([multiple_dropdown_list_tdc.libelle])
+      expect(columns.first.second).to be_a(Columns::LegacyColumn)
     end
   end
 
-  describe '#champ_value_for_export' do
+  describe 'the default export cell' do
     let(:referentiel) { create(:csv_referentiel, :with_items) }
     let(:procedure) do
       create(:procedure, public_type_de_champs: [{ type: :multiple_drop_down_list, referentiel:, drop_down_mode: 'advanced' }])
@@ -51,7 +52,7 @@ describe TypesDeChamp::MultipleDropDownListTypeDeChamp do
     end
 
     it 'returns user values and not referentiel ids' do
-      expect(multiple_dropdown_list_tdc.champ_value_for_export(champ)).to eq('fromage, dessert')
+      expect(legacy_export_cells(champ, type_de_champ: multiple_dropdown_list_tdc).first.second).to eq('fromage, dessert')
     end
 
     context 'when the champ is not in advanced mode' do
@@ -61,7 +62,7 @@ describe TypesDeChamp::MultipleDropDownListTypeDeChamp do
       let(:champ) { multiple_dropdown_list_tdc.build_champ(value: ['val1', 'val2'].to_json) }
 
       it 'returns selected option labels' do
-        expect(multiple_dropdown_list_tdc.champ_value_for_export(champ)).to eq('val1, val2')
+        expect(legacy_export_cells(champ, type_de_champ: multiple_dropdown_list_tdc).first.second).to eq('val1, val2')
       end
     end
   end

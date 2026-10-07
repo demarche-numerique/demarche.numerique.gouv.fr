@@ -15,15 +15,6 @@ class TypesDeChamp::PaysTypeDeChamp < TypesDeChamp::TextTypeDeChamp
     champ.name
   end
 
-  def typed_champ_value_for_export(champ, path = :value)
-    case path
-    when :value
-      typed_champ_value(champ)
-    when :code
-      champ.code
-    end
-  end
-
   def typed_champ_value_for_tag(champ, path = :value)
     case path
     when :value
@@ -35,6 +26,16 @@ class TypesDeChamp::PaysTypeDeChamp < TypesDeChamp::TextTypeDeChamp
 
   def typed_champ_blank?(champ)
     champ.value.blank? && champ.external_id.blank?
+  end
+
+  # bare name and code; the catalogue only has the name
+  def legacy_export_columns(procedure_id:)
+    code = canonical_column(procedure_id:)
+
+    [
+      legacy_export_column(procedure_id:, label: libelle, columns: code) { APIGeoService.country_name(it) if it },
+      legacy_export_column(procedure_id:, label: "#{libelle} (Code)", columns: code),
+    ]
   end
 
   private

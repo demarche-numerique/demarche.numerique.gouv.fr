@@ -49,10 +49,6 @@ class TypesDeChamp::FormattedTypeDeChamp < TypeDeChamp
     true
   end
 
-  def typed_champ_value_for_export(champ, path = :value)
-    Sanitizers::Xml.sanitize(champ_text_value(champ))
-  end
-
   private
 
   def set_default_options

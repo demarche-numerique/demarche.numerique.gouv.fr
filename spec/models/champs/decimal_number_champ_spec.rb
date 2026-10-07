@@ -135,7 +135,7 @@ describe Champs::DecimalNumberChamp do
   end
 
   describe 'for_export' do
-    subject { champ.type_de_champ.champ_value_for_export(champ) }
+    subject { legacy_export_cells(champ).first.second }
     context 'with nil' do
       let(:value) { 0 }
       it { is_expected.to eq(0.0) }
