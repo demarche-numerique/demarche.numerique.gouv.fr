@@ -1,0 +1,17 @@
+<div id="help_dropdown_dossier">
+  <%= render Dsfr::TranslateMenuComponent.new(id: "help-menu", list_tag: :div, button_class: "help-btn", menu_class: "help-content") do |c| %>
+    <% c.with_button { t('help') } %>
+
+    <% if dossier.service_or_contact_information.present? %>
+      <% title = dossier.brouillon? ? t("help_dropdown.help_brouillon_title") : t("help_dropdown.help_filled_dossier") %>
+      <div class="flex fr-py-3v fr-px-2w">
+        <%= render partial: 'shared/help/dropdown_items/service_item',
+          locals: { service: dossier.service_or_contact_information, title:, dossier: } %>
+      </div>
+    <% end %>
+
+    <div class="flex fr-py-3v fr-px-2w">
+      <%= render partial: 'shared/help/dropdown_items/faq_item' %>
+    </div>
+  <% end %>
+</div>

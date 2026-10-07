@@ -1,0 +1,17 @@
+<%= render Dsfr::TranslateMenuComponent.new(id: "identity", list_tag: :div, button_class: "fr-py-1w help-btn", item_class: "fr-nav__item--align-right edit-identity-action", list_class: "dossier-show edit-identity-content") do |c| %>
+  <% c.with_button { dossier.for_tiers? ? t("views.shared.dossiers.demande.requester_identity") : t("views.shared.dossiers.demande.individual_identity") } %>
+
+  <% if dossier.procedure.for_individual %>
+    <dl class="fr-pl-0">
+      <%= render partial: "shared/dossiers/identite_individual", locals: { dossier: } %>
+    </dl>
+    <%= link_to t('views.shared.dossiers.demande.edit_identity'), identite_dossier_path(dossier), class: 'fr-btn fr-btn--secondary fr-btn--sm fr-my-1w' %>
+  <% elsif dossier.etablissement || dossier.demandeur_siret %>
+    <% if dossier.etablissement %>
+      <%= render Dossiers::ShortIdentiteEntrepriseComponent.new(etablissement: dossier.etablissement) %>
+    <% else %>
+      <%= render Dossiers::DegradedIdentiteEntrepriseComponent.new(**dossier.demandeur_siret_component_args('usager')) %>
+    <% end %>
+    <%= link_to t('views.shared.dossiers.demande.edit_siret'), siret_dossier_path(dossier), class: 'fr-btn fr-btn--secondary fr-btn--sm fr-my-1w' %>
+  <% end %>
+<% end %>
