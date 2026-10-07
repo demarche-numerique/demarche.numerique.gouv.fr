@@ -1102,6 +1102,21 @@ describe ProcedureRevision do
     end
   end
 
+  describe '#used_by_a_condition?' do
+    include Logic
+
+    # Flag éteint : la dépendance vaut quelle que soit la porte d'entrée de l'éditeur.
+    let(:procedure) do
+      create(:procedure,
+             public_type_de_champs: [{ type: :text, libelle: 'conditionnel', stable_id: 1, condition: ds_eq(champ_value(2), constant(true)) }],
+             private_type_de_champs: [{ type: :yes_no, libelle: 'annotation', stable_id: 2 }])
+    end
+
+    it 'finds a private annotation gating a public champ' do
+      expect(draft.used_by_a_condition?(type_de_champ_private)).to be true
+    end
+  end
+
   describe 'only_present_on_draft?' do
     let(:procedure) { create(:procedure, public_type_de_champs: [{ libelle: 'Un champ texte' }]) }
     let(:type_de_champ) { procedure.draft_revision.public_root_type_de_champs.first }
