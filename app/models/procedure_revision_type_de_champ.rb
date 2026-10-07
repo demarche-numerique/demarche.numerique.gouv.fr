@@ -71,6 +71,17 @@ class ProcedureRevisionTypeDeChamp < ApplicationRecord
     upper
   end
 
+  # Les coordonnées qu'une condition portée par celle-ci peut citer.
+  def condition_source_coordinates
+    sources = upper_coordinates
+
+    if type_de_champ.public? && procedure.feature_enabled?(:annotation_condition_champs_public)
+      sources += revision.private_revision_type_de_champs
+    end
+
+    sources
+  end
+
   def preceding_siblings
     siblings.filter { it.position < position }
   end
