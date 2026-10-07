@@ -6,3 +6,9 @@ fr:
         ineligibilite_rules: Les conditions d’inéligibilité
         hints:
           ineligibilite_message: "Ce message sera affiché à l’usager si son dossier est bloqué et lui expliquera la raison de son inéligibilité."
+    errors:
+      models:
+        procedure_revision:
+          attributes:
+            base:
+              condition_cycle: fait partie d’une boucle de conditions d’affichage (%{libelles}). Retirez l’une de ces conditions pour pouvoir publier.

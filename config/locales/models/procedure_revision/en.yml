@@ -1,0 +1,9 @@
+---
+en:
+  activerecord:
+    errors:
+      models:
+        procedure_revision:
+          attributes:
+            base:
+              condition_cycle: is part of a loop of display conditions (%{libelles}). Remove one of these conditions to publish.
