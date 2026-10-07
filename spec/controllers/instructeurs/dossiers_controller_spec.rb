@@ -786,6 +786,22 @@ describe Instructeurs::DossiersController, type: :controller do
         end
       end
 
+      context 'with a reason the interface does not offer' do
+        let(:reason) { 'outdated' }
+
+        it 'falls back to an incorrect correction' do
+          expect(dossier.corrections.last).to be_dossier_incorrect
+        end
+      end
+
+      context 'with a forged reason' do
+        let(:reason) { 'forged' }
+
+        it 'falls back to an incorrect correction' do
+          expect(dossier.corrections.last).to be_dossier_incorrect
+        end
+      end
+
       context 'with an attachment' do
         let(:justificatif) { fake_justificatif }
 
