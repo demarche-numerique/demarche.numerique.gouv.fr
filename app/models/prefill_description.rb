@@ -20,7 +20,7 @@ class PrefillDescription < SimpleDelegator
   end
 
   def type_de_champs
-    TypesDeChamp::PrefillTypeDeChamp.wrap(active_fillable_public_type_de_champs.partition(&:prefillable?).flatten, active_revision)
+    TypesDeChamp::PrefillTypeDeChamp.wrap(active_fillable_public_type_de_champs, active_revision).partition(&:prefillable?).flatten(1)
   end
 
   def include?(entity)

@@ -113,7 +113,6 @@ class ChampData < ApplicationRecord
     :current_section_level,
     :fillable?,
     :mandatory?,
-    :prefillable?,
     :refresh_after_update?,
     :formatted_simple?,
     :formatted_advanced?,
