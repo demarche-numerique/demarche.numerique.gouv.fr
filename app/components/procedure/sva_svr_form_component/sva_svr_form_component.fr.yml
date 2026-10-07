@@ -23,5 +23,6 @@ fr:
     reset_label: "Réinitialiser le délai"
     reset_hint: "Exemple: si le dossier est re-déposé le 15 avril et que le délai est de 2 mois, la décision sera automatiquement prise le 16 juin, sauf à ce que l’instructeur se prononce d’ici là ou demande à nouveau des corrections."
   notice_new_files_only: "Information : si vous activez cette règle, seuls les nouveaux dossiers déposés y seront soumis."
-  notice_edit_denied: "Avertissement : le changement ou la désactivation du SVA/SVR est impossible."
+  notice_edit_denied: "Les réglages ne sont plus modifiables. Seule la désactivation reste possible, et elle est définitive."
+  disable: "Désactiver le %{rule}"
   notice_incompatible_with_declarative_html: 'Avertissement : le SVA/SVR est incompatible avec les démarches déclaratives. <a href="%{edit_admin_procedure_path}">Désactiver le déclaratif</a> au préalable.'

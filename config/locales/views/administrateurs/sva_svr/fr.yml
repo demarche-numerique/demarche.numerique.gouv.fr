@@ -1,0 +1,10 @@
+fr:
+  administrateurs:
+    sva_svr:
+      edit:
+        disabled_notice: "Le %{rule} est désactivé depuis le %{date} : les dossiers déposés depuis ne reçoivent plus de décision automatique."
+        pending_dossiers:
+          one: "%{count} dossier déposé avant reste soumis au %{rule} : sans décision d’un instructeur d’ici là, il sera automatiquement %{outcome} à son échéance."
+          other: "%{count} dossiers déposés avant restent soumis au %{rule} : sans décision d’un instructeur d’ici là, chacun sera automatiquement %{outcome} à son échéance."
+        approved: accepté
+        rejected: refusé

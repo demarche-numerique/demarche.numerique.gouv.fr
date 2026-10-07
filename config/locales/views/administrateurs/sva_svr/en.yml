@@ -1,0 +1,10 @@
+en:
+  administrateurs:
+    sva_svr:
+      edit:
+        disabled_notice: "Automatic decision (%{rule}) has been disabled since %{date}: applications submitted since then get no automatic decision."
+        pending_dossiers:
+          one: "%{count} application submitted before remains under automatic decision (%{rule}): unless a reviewer decides it by then, it will be automatically %{outcome} on its due date."
+          other: "%{count} applications submitted before remain under automatic decision (%{rule}): unless a reviewer decides them by then, each one will be automatically %{outcome} on its due date."
+        approved: approved
+        rejected: rejected

@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 RSpec.describe Procedure::SVASVRFormComponent, type: :component do
-  let(:procedure) { create(:procedure, :published) }
+  before_all { seed "cases/sva" }
 
-  subject(:rendered) { render_inline(described_class.new(procedure: procedure, configuration: SVASVRConfiguration.new)) }
+  let(:procedure) { procedures.individual }
+
+  subject(:rendered) { render_inline(described_class.new(procedure: procedure, configuration: procedure.sva_svr_configuration)) }
 
   let(:sva_enabled) { true }
   before { allow(procedure).to receive(:feature_enabled?).with(:sva).and_return(sva_enabled) }
@@ -18,28 +20,28 @@ RSpec.describe Procedure::SVASVRFormComponent, type: :component do
   end
 
   context "when procedure is published with config" do
-    let(:procedure) { create(:procedure, :published, :sva) }
+    let(:procedure) { procedures.sva }
 
-    it "shows notice about new files only" do
-      expect(rendered).to have_text(/changement.*impossible/i)
+    it "freezes the form and leads to the disabling" do
       expect(rendered).to have_field('Silence Vaut Accord', disabled: true)
-      expect(rendered).to have_button('Enregistrer', disabled: true)
+      expect(rendered).not_to have_button('Enregistrer')
+      expect(rendered).to have_css('.fr-alert a', text: 'Désactiver le SVA')
     end
   end
 
   context "when procedure is declarative" do
-    let(:procedure) { create(:procedure, :published, declarative_with_state: :en_instruction) }
+    let(:procedure) { procedures.individual.tap { it.update_column(:declarative_with_state, 'en_instruction') } }
 
     it "shows incompatibility warning" do
       expect(rendered).to have_text(/incompatible avec les démarches déclaratives/i)
       expect(rendered).to have_link("Désactiver le déclaratif")
       expect(rendered).to have_field('Silence Vaut Accord', disabled: true)
-      expect(rendered).to have_button('Enregistrer', disabled: true)
+      expect(rendered).not_to have_button('Enregistrer')
     end
   end
 
   context "when procedure is brouillon with sva enabled" do
-    let(:procedure) { create(:procedure, :draft, :sva) }
+    let(:procedure) { procedures.brouillon.tap { it.update_column(:sva_svr, SVASVRConfiguration.new(decision: :sva).attributes) } }
 
     it "shows enabled form with all options" do
       expect(rendered).to have_field('Silence Vaut Accord', type: 'radio', disabled: false)

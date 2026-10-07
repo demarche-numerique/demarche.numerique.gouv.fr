@@ -19,6 +19,8 @@ module ProcedureSVASVRConcern
     sva_svr_rule? && !sva_svr_rule_disabled?
   end
 
+  def sva_svr_disablable? = !brouillon? && sva_svr_enabled?
+
   def sva?
     decision == :sva
   end
@@ -41,6 +43,10 @@ module ProcedureSVASVRConcern
 
   def sva_svr_rule_running?
     sva_svr_enabled? || (sva_svr_rule_disabled? && sva_svr_pending_dossiers.exists?)
+  end
+
+  def disable_sva_svr
+    self.sva_svr = sva_svr.merge('disabled_at' => Time.current.iso8601)
   end
 
   private
