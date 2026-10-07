@@ -137,7 +137,7 @@ class Champs::ReferentielChamp < ChampData
     if main_stream?
       dossier.revision.type_de_champs
     else
-      dossier.public_type_de_champs_all
+      dossier.revision.public_flat_type_de_champs
     end
   end
 

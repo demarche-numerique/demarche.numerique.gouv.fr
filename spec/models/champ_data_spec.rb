@@ -82,6 +82,25 @@ describe ChampData do
     end
   end
 
+  describe '#type_de_champ' do
+    let(:dossier) { dossiers.entreprise_en_instruction }
+
+    context 'when the champ is loaded on its own' do
+      let(:champ) { ChampData.find(dossier.champ_data.first.id) }
+
+      it 'is the type de champ laid out by the dossier revision' do
+        expect(champ.type_de_champ).to equal(champ.dossier.revision.type_de_champ(champ.stable_id))
+        expect(champ.type_de_champ.stable_id).to eq(champ.stable_id)
+      end
+    end
+
+    context 'when the dossier revision does not lay out its stable id' do
+      let(:champ) { Champs::TextChamp.new(dossier:, stable_id: 0) }
+
+      it { expect { champ.type_de_champ }.to raise_error("Type De Champ 0 not found in Revision #{dossier.revision_id}") }
+    end
+  end
+
   describe 'public and private' do
     let(:champ) { ChampData.new }
     let(:dossier) { create(:dossier) }

@@ -40,6 +40,7 @@ RSpec.describe ChampValidateConcern do
       before {
         update_champ('test')
         dossier.revision.revision_type_de_champs.delete_all
+        dossier.revision.store_type_de_champ_tree # laid by hand: the tree follows
         dossier.reload
         dossier.validate(:champs_public_value)
       }
@@ -55,6 +56,7 @@ RSpec.describe ChampValidateConcern do
 
       before {
         dossier.revision.revision_type_de_champs.delete_all
+        dossier.revision.store_type_de_champ_tree # laid by hand: the tree follows
         dossier.reload
         dossier.validate(:champs_public_value)
       }
@@ -70,6 +72,7 @@ RSpec.describe ChampValidateConcern do
 
       before {
         dossier.revision.revision_type_de_champs.delete_all
+        dossier.revision.store_type_de_champ_tree # laid by hand: the tree follows
         dossier.reload
         dossier.validate(:champs_public_value)
       }
@@ -88,6 +91,7 @@ RSpec.describe ChampValidateConcern do
 
         dossier.champ_data.first.update_column(:external_state, 'waiting_for_job')
         dossier.revision.revision_type_de_champs.delete_all
+        dossier.revision.store_type_de_champ_tree # laid by hand: the tree follows
 
         dossier.reload
         dossier.validate(:champs_public_value)
