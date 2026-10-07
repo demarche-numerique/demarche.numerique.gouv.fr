@@ -1,0 +1,10 @@
+---
+en:
+  display_if: Display if
+  enable_conditionnel: click to enable
+  disable_conditionnel: click to disable
+  disable_conditionnel_alert: "The conditional logic applied to this field will be disabled.\nDo you want to continue?"
+  select: Select
+  add_condition: Add a condition
+  remove_a_row: Remove the row
+  private_annotations_group: Private annotations
