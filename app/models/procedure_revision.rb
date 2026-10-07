@@ -33,6 +33,9 @@ class ProcedureRevision < ApplicationRecord
 
   validate :ineligibilite_rules_are_valid?,
     on: [:ineligibilite_rules_editor, :publication]
+  # Sans contexte, l'erreur remonterait sur chaque save de la procédure (validates_associated_draft_revision_with_context).
+  validates_with ConditionCycleValidator,
+    on: [:public_type_de_champs_editor, :private_type_de_champs_editor, :publication]
   validates :ineligibilite_message,
     presence: true,
     if: -> { ineligibilite_enabled? },
