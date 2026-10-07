@@ -16,43 +16,25 @@
           <%= render Dossiers::BatchOperationInlineButtonsComponent.new(opt:, icons:, form:, procedure:) %>
         <% end -%>
 
-        <div class="dropdown" data-controller="menu-button" data-popover="true">
-          <button
-            id="batch_operation_others"
-            class="fr-btn fr-btn--sm fr-btn--secondary fr-ml-1w dropdown-button"
-            disabled
-            data-menu-button-target="button"
-            data-batch-operation-target="dropdown"
-            aria-expanded="false"
-            aria-controls="state-menu"
-          >
+        <%= render Dropdown::MenuComponent.new(wrapper: :div, role: :region, button_options: { class: ['fr-btn--sm', 'fr-btn--secondary', 'fr-ml-1w'], disabled: true, data: { batch_operation_target: 'dropdown' } }, menu_options: { id: 'state-menu', class: ['no-wrap'] }) do |menu| %>
+          <% menu.with_button_inner_html do %>
             <%= t('.operations.other') %>
-            <span class="fr-ml-2v" aria-hidden="true"></span>
-          </button>
+          <% end %>
 
-          <div
-            id="state-menu"
-            class="dropdown-content fade-in-down"
-            data-menu-button-target="menu"
-            aria-labelledby="batch_operation_others"
-          >
-            <ul class="dropdown-items no-wrap">
-              <% available_operations[:options][2, available_operations[:options].count].each do |opt| -%>
-                <% unless expert_review_disallowed?(opt[:operation]) -%>
-                  <li>
-                    <%= form.button opt[:label], class: 'dropdown-items-link', disabled: true, name: "#{form.object_name}[operation]", value: opt[:operation], data: { operation: opt[:operation] }.merge(opt[:modal_data].to_h), aria: { controls: opt[:aria].present? ? opt[:aria] : nil, haspopup: opt[:aria].present? ? 'dialog' : nil } do %>
-                      <span class="<%= icons[opt[:operation].to_sym] %>"></span>
+          <% available_operations[:options][2, available_operations[:options].count].each do |opt| -%>
+            <% unless expert_review_disallowed?(opt[:operation]) -%>
+              <% menu.with_item do %>
+                <%= form.button opt[:label], class: 'dropdown-items-link', disabled: true, name: "#{form.object_name}[operation]", value: opt[:operation], data: { operation: opt[:operation] }.merge(opt[:modal_data].to_h), aria: { controls: opt[:aria].present? ? opt[:aria] : nil, haspopup: opt[:aria].present? ? 'dialog' : nil } do %>
+                  <span class="<%= icons[opt[:operation].to_sym] %>"></span>
 
-                      <div class="dropdown-description">
-                        <h4><%= opt[:label] %></h4>
-                      </div>
-                    <% end %>
-                  </li>
-                <% end -%>
-              <% end -%>
-            </ul>
-          </div>
-        </div>
+                  <div class="dropdown-description">
+                    <h4><%= opt[:label] %></h4>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end -%>
+          <% end -%>
+        <% end %>
       <% end %>
       <dialog
         id="modal-avis-batch"
