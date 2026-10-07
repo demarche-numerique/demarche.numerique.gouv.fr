@@ -14,7 +14,7 @@ module DossierDemandeurSiretConcern
       siret: demandeur_siret.siret,
       profile:,
       token_rejected: procedure.api_entreprise_token_rejected? || !procedure.api_entreprise_token.usable?,
-      not_found: demandeur_siret.external_error?,
+      error_code: (demandeur_siret.fetch_external_data_exceptions.last&.code if demandeur_siret.external_error?),
     }
   end
 end

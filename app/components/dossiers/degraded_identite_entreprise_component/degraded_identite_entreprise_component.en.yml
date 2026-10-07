@@ -5,4 +5,5 @@ en:
   insee_down: "INSEE is unavailable, company information will arrive within a few hours."
   token_rejected: "This procedure's API Entreprise token was rejected: company information will not arrive until it is renewed."
   not_found: "This SIRET was not found in the INSEE directory."
+  unavailable_for_legal_reasons: "Information for this establishment is not available (non-diffusible entity)."
   unavailable: "Company information could not be retrieved; the administration has been notified."
