@@ -63,7 +63,7 @@ class ProcedureRevision < ApplicationRecord
     after_stable_id = params.delete(:after_stable_id)
 
     type_de_champ = TypeDeChamp.new(params)
-    type_de_champ.procedure_id = procedure_id
+    type_de_champ.procedure = procedure
 
     if params[:private].to_s == "true"
       type_de_champ.mandatory = false
@@ -451,7 +451,7 @@ class ProcedureRevision < ApplicationRecord
     edit_type_de_champs do
       cloned_type_de_champ = coordinate.type_de_champ.deep_clone do |original, kopy|
         ClonePiecesJustificativesService.clone_attachments(original, kopy)
-        kopy.procedure_id = procedure_id
+        kopy.procedure = procedure
       end
       coordinate.update!(type_de_champ: cloned_type_de_champ)
       cloned_type_de_champ
