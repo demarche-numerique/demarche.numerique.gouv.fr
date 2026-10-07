@@ -9,7 +9,7 @@ RSpec.describe TypesDeChampEditor::HeaderSectionComponent, type: :component do
   let(:component) do
     cmp = nil
     form_for(tdc, url: '/') do |form|
-      cmp = described_class.new(form: form, tdc: tdc, upper_tdcs: upper_tdcs)
+      cmp = described_class.new(form:, coordinate: procedure.draft_revision.coordinate_for(tdc))
     end
     cmp
   end
@@ -19,7 +19,6 @@ RSpec.describe TypesDeChampEditor::HeaderSectionComponent, type: :component do
     context 'without upper tdc' do
       let(:public_type_de_champs) { [{ type: :header_section, level: 1 }] }
       let(:tdc) { procedure.draft_revision.public_root_type_de_champs.first }
-      let(:upper_tdcs) { [] }
 
       it 'allows up to level 1 header section' do
         expect(subject).to have_selector("option", count: 1)
@@ -34,7 +33,6 @@ RSpec.describe TypesDeChampEditor::HeaderSectionComponent, type: :component do
         ]
       end
       let(:tdc) { procedure.draft_revision.public_root_type_de_champs.last }
-      let(:upper_tdcs) { [procedure.draft_revision.public_root_type_de_champs.first] }
 
       it 'allows up to level 2 header section' do
         expect(subject).to have_selector("option", count: 2)
@@ -50,7 +48,6 @@ RSpec.describe TypesDeChampEditor::HeaderSectionComponent, type: :component do
         ]
       end
       let(:tdc) { procedure.draft_revision.public_root_type_de_champs.third }
-      let(:upper_tdcs) { [procedure.draft_revision.public_root_type_de_champs.first, procedure.draft_revision.public_root_type_de_champs.second] }
 
       it 'allows up to level 3 header section' do
         expect(subject).to have_selector("option", count: 3)
@@ -60,7 +57,6 @@ RSpec.describe TypesDeChampEditor::HeaderSectionComponent, type: :component do
     context 'with error' do
       let(:public_type_de_champs) { [{ type: :header_section, level: 2 }] }
       let(:tdc) { procedure.draft_revision.public_root_type_de_champs.first }
-      let(:upper_tdcs) { [] }
 
       it 'includes disabled levels' do
         expect(subject).to have_selector("option", count: 3)
@@ -72,7 +68,6 @@ RSpec.describe TypesDeChampEditor::HeaderSectionComponent, type: :component do
   describe 'errors' do
     let(:public_type_de_champs) { [{ type: :header_section, level: 2 }] }
     let(:tdc) { procedure.draft_revision.public_root_type_de_champs.first }
-    let(:upper_tdcs) { [] }
 
     it 'returns errors' do
       expect(subject).to have_selector('.errors-summary')
