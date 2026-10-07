@@ -714,16 +714,15 @@ describe Procedure do
         include Logic
         let(:public_type_de_champs) { [{ type: :text, libelle: 'condition', condition: ds_eq(champ_value(1), constant(2)), stable_id: 2 }] }
         let(:private_type_de_champs) { [{ type: :decimal_number, stable_id: 1 }] }
-        let(:error_on_condition) { "Le champ a une logique conditionnelle invalide" }
 
         it 'validate without context' do
           procedure.validate
           expect(procedure.errors.full_messages_for(:public_draft_type_de_champs)).to be_empty
         end
 
-        it 'validate prevent condition' do
+        it 'validate allows condition' do
           procedure.validate(:public_type_de_champs_editor)
-          expect(procedure.errors.full_messages_for(:public_draft_type_de_champs)).to include(error_on_condition)
+          expect(procedure.errors.full_messages_for(:public_draft_type_de_champs)).to be_empty
         end
       end
     end
