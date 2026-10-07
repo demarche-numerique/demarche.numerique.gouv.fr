@@ -51,7 +51,10 @@ describe Administrateurs::GroupeInstructeursController, type: :controller do
     context 'of a group I belong to' do
       before { get :show, params: { procedure_id: procedure.id, id: gi_1_1.id } }
 
-      it { expect(response).to have_http_status(:ok) }
+      it 'does not restrict the email domain' do
+        expect(response).to have_http_status(:ok)
+        expect(response.body).not_to include('Seules les adresses du même domaine')
+      end
     end
 
     context 'when the routage is not activated on the procedure' do

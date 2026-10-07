@@ -90,6 +90,86 @@ describe GroupeInstructeur, type: :model do
     end
   end
 
+  describe '#add_instructeurs' do
+    let!(:target) { create(:groupe_instructeur, procedure: procedure) }
+    let(:domain) { 'interieur.gouv.fr' }
+
+    subject { target.add_instructeurs(emails:, restrict_to_domain: domain) }
+
+    context 'with a new instructeur from the same domain' do
+      let(:emails) { ['nouveau@interieur.gouv.fr'] }
+
+      it 'returns them only once' do
+        added, _invalid, invalid_domain = subject
+
+        expect(added.map(&:email)).to eq(emails)
+        expect(invalid_domain).to be_empty
+      end
+    end
+
+    context 'with an unknown email from another domain' do
+      let(:emails) { ['inconnu@gmail.com'] }
+
+      it 'rejects it without creating an account' do
+        expect { subject }.not_to change(User, :count)
+      end
+
+      it 'reports it as an invalid domain' do
+        added, _invalid, invalid_domain = subject
+
+        expect(added).to be_empty
+        expect(invalid_domain).to eq(emails)
+      end
+    end
+
+    context 'with an existing instructeur from another domain' do
+      let(:other) { create(:instructeur, email: 'quelquun@gmail.com') }
+      let(:emails) { [other.email] }
+
+      it 'rejects them' do
+        added, _invalid, invalid_domain = subject
+
+        expect(added).to be_empty
+        expect(invalid_domain).to eq(emails)
+        expect(target.reload.instructeurs).not_to include(other)
+      end
+    end
+
+    context 'with a mix of valid and invalid domains' do
+      let(:emails) { ['ok@interieur.gouv.fr', 'ko@gmail.com'] }
+
+      it 'adds the valid one and reports the other' do
+        added, _invalid, invalid_domain = subject
+
+        expect(added.map(&:email)).to eq(['ok@interieur.gouv.fr'])
+        expect(invalid_domain).to eq(['ko@gmail.com'])
+      end
+    end
+
+    context 'without domain restriction (administrateur side)' do
+      let(:domain) { nil }
+      let(:emails) { ['quelquun@gmail.com', 'autre@interieur.gouv.fr'] }
+
+      it 'does not restrict by domain' do
+        added, _invalid, invalid_domain = subject
+
+        expect(added.map(&:email)).to match_array(emails)
+        expect(invalid_domain).to be_empty
+      end
+    end
+
+    context 'with a domain written in uppercase' do
+      let(:emails) { ['Collegue@INTERIEUR.gouv.fr'] }
+
+      it 'accepts it as the same domain' do
+        added, _invalid, invalid_domain = subject
+
+        expect(added.size).to eq(1)
+        expect(invalid_domain).to be_empty
+      end
+    end
+  end
+
   describe "#remove" do
     subject { procedure_to_remove.defaut_groupe_instructeur.remove(instructeur) }
 

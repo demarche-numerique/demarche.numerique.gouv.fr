@@ -44,6 +44,7 @@ en:
         remove: Remove
         instructeur_emails: Email addresses
         copy_paste_hint: "You can enter addresses individually, or copy-paste a list of addresses separated by semicolons into the field below (example: adress1@mail.com; adress2@mail.com; adress3@mail.com)."
+        domain_restriction_hint: "Only addresses from the same domain as yours (@%{domain}) can be added."
         actions: Action
         notification_alert_html: Even if your procedure is still in test / not published, all the instructors you will add to the procedure <strong>will be notified by email</strong>.
         notification_alert_publiee_html: All the instructors you will add to the procedure <strong>will be notified by email</strong>.

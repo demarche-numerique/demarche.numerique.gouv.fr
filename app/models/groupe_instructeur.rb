@@ -65,26 +65,28 @@ class GroupeInstructeur < ApplicationRecord
     end
   end
 
-  def add_instructeurs(ids: [], emails: [])
+  def add_instructeurs(ids: [], emails: [], restrict_to_domain: nil)
     instructeurs_to_add, valid_emails, invalid_emails = Instructeur.find_all_by_identifier_with_emails(ids:, emails:)
     not_found_emails = valid_emails - instructeurs_to_add.map(&:email)
+    invalid_domain_emails = []
 
-    # Send invitations to users without account
-    if not_found_emails.present?
-      instructeurs_to_add += not_found_emails.map do |email|
-        user = User.create_or_promote_to_instructeur(email, SecureRandom.hex, administrateurs: procedure.administrateurs)
-        user.instructeur
-      end
+    if restrict_to_domain
+      candidate_emails = instructeurs_to_add.map(&:email) + not_found_emails
+      invalid_domain_emails = invalid_domain_for(candidate_emails, restrict_to_domain)
+      not_found_emails -= invalid_domain_emails
+      instructeurs_to_add = instructeurs_to_add.reject { invalid_domain_emails.include?(it.email) }
     end
 
+    # Send invitations to users without account
+    new_instructeurs = create_instructeur_for(not_found_emails)
+
     # We dont't want to assign a user to a groupe_instructeur if they are already assigned to it
-    instructeurs_to_add -= instructeurs
-    instructeurs_to_add.compact!
+    instructeurs_to_add = (instructeurs_to_add + new_instructeurs) - instructeurs
 
-    new_instructeurs = instructeurs_to_add.filter { |instructeur| instructeur.assign_to.create_or_find_by(groupe_instructeur: self).previously_new_record? }
-    DossierNotification.refresh_notifications_new_instructeurs_for_groupe(self, new_instructeurs)
+    added = instructeurs_to_add.filter { |instructeur| instructeur.assign_to.create_or_find_by(groupe_instructeur: self).previously_new_record? }
+    DossierNotification.refresh_notifications_new_instructeurs_for_groupe(self, added)
 
-    [instructeurs_to_add, invalid_emails]
+    [instructeurs_to_add, invalid_emails, invalid_domain_emails]
   end
 
   def can_delete?
@@ -155,6 +157,17 @@ class GroupeInstructeur < ApplicationRecord
   end
 
   private
+
+  def invalid_domain_for(emails, domain)
+    emails.reject { it.split('@').last.downcase == domain }
+  end
+
+  def create_instructeur_for(emails)
+    emails.map do |email|
+      user = User.create_or_promote_to_instructeur(email, SecureRandom.hex, administrateurs: procedure.administrateurs)
+      user.instructeur
+    end
+  end
 
   def routing_rule_matches_tdc?(rule)
     tdcs = procedure.active_revision.public_root_type_de_champs
