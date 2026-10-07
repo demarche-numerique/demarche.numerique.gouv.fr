@@ -19,6 +19,14 @@ describe 'super admin sign in logs', type: :request do
   it 'identifies the account targeted by a failed attempt' do
     post super_admin_session_path, params: { super_admin: { email: super_admin.email, password: 'wrong password', otp_attempt: current_otp_for(super_admin) } }
 
-    expect(logs.pluck(:super_admin_id, :user_roles)).to eq([[super_admin.id, 'Guest'], [nil, 'Guest']])
+    expect(logs.pluck(:super_admin_id, :failed_attempt)).to eq([[super_admin.id, 'invalid'], [nil, nil]])
+  end
+
+  it 'tells when the targeted account is locked' do
+    super_admin.lock_access!
+
+    post super_admin_session_path, params: { super_admin: { email: super_admin.email, password: super_admin.password, otp_attempt: current_otp_for(super_admin) } }
+
+    expect(logs.first).to include(super_admin_id: super_admin.id, failed_attempt: 'locked')
   end
 end
