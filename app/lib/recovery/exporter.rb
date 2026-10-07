@@ -21,7 +21,7 @@ module Recovery
                  etablissement: :exercices,
                  revision: :procedure)
       @dossiers = DossierPreloader.new(dossier_with_data,
-                                       includes_for_champ: [:geo_areas, etablissement: :exercices],
+                                       includes_for_champ: [:geo_areas],
                                        includes_for_etablissement: [:exercices]).all
       @file_path = file_path
     end

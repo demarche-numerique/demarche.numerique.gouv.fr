@@ -59,10 +59,9 @@ class ChampData < ApplicationRecord
   # them one forgotten `piece_justificative?` away from surfacing it.
   has_one_attached :static_map
 
-  # We declare champ specific relationships (Champs::CarteChamp, Champs::SiretChamp and Champs::RepetitionChamp)
+  # We declare champ specific relationships (Champs::CarteChamp and Champs::RepetitionChamp)
   # here because otherwise we can't easily use includes in our queries.
   has_many :geo_areas, -> { order(:created_at) }, dependent: :destroy, inverse_of: :champ_data
-  belongs_to :etablissement, optional: true, dependent: :destroy, inverse_of: :champ_data
 
   delegate :procedure, to: :dossier
   normalizes :value, with: NORMALIZES_NON_PRINTABLE_PROC
@@ -310,7 +309,7 @@ class ChampData < ApplicationRecord
   def clone
     champ_attributes = [:private, :row_id, :type, :stable_id, :stream]
     value_attributes = !private? ? [:value, :value_json, :data, :external_id, :external_state, :prefilled, :prefilled_original_value] : []
-    relationships = !private? ? [:etablissement, :geo_areas] : []
+    relationships = !private? ? clone_relationships : []
 
     deep_clone(only: champ_attributes + value_attributes, include: relationships, validate: true) do |original, kopy|
       if original.is_a?(ChampData)
@@ -336,7 +335,6 @@ class ChampData < ApplicationRecord
   def clear
     update_columns(value: nil, value_json: nil, external_id: nil, data: nil)
     ChampData.no_touching do
-      etablissement&.destroy
       geo_areas.destroy_all
       piece_justificative_file.purge_later
       # The geometry is gone, so the rendered map must go with it. The render is
@@ -359,11 +357,6 @@ class ChampData < ApplicationRecord
     self.geo_areas = champ.geo_areas.map(&:dup)
 
     ClonePiecesJustificativesService.clone_attachments(champ, self)
-
-    if champ.etablissement.present?
-      self.etablissement = champ.etablissement.dup
-      ClonePiecesJustificativesService.clone_attachments(champ.etablissement, self.etablissement)
-    end
 
     save!
   end
@@ -410,6 +403,8 @@ class ChampData < ApplicationRecord
   end
 
   private
+
+  def clone_relationships = [:geo_areas]
 
   # Timestamps are set before the create callbacks run, so the reader would
   # already answer with `updated_at`: check the column itself.

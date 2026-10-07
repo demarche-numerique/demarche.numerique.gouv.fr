@@ -27,7 +27,8 @@ module DossierCloneConcern
       # solution: exclude champs where there is a type mismatch
       .filter { _1.is_type?(_1.type_de_champ.type_champ) }
 
-    ActiveRecord::Associations::Preloader.new(records: champs_to_clone, associations: [:geo_areas, :etablissement]).call
+    ActiveRecord::Associations::Preloader.new(records: champs_to_clone, associations: :geo_areas).call
+    ActiveRecord::Associations::Preloader.new(records: champs_to_clone.grep(Champs::SiretChamp), associations: :etablissement).call
     cloned_champs = champs_to_clone.map(&:clone)
 
     cloned_dossier = deep_clone(only: dossier_attributes, include: relationships) do |original, kopy|

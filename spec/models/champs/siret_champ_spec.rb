@@ -474,4 +474,17 @@ describe Champs::SiretChamp do
       expect { old_etablissement.reload }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
+
+  describe '#clone_value_from' do
+    let(:external_id) { '30613890001294' }
+    let(:etablissement) { create(:etablissement, siret: external_id) }
+    let(:target_champ) { champ.dup.tap { it.stream = Dossier::USER_BUFFER_STREAM } }
+
+    it 'copies the etablissement into a new record' do
+      target_champ.clone_value_from(champ)
+
+      expect(target_champ.etablissement.siret).to eq(external_id)
+      expect(target_champ.etablissement.id).not_to eq(etablissement.id)
+    end
+  end
 end

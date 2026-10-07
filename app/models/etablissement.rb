@@ -3,7 +3,7 @@
 class Etablissement < ApplicationRecord
   belongs_to :dossier, optional: true, touch: true
 
-  has_one :champ_data, class_name: 'ChampData', touch: true, inverse_of: :etablissement
+  has_one :champ_data, class_name: 'Champs::SiretChamp', touch: true, inverse_of: :etablissement
 
   has_many :exercices, dependent: :destroy
 

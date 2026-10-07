@@ -652,7 +652,7 @@ class Dossier < ApplicationRecord
   end
 
   def champs_awaiting_verification
-    flat_champs_public.filter { _1.awaiting_fix? || _1.etablissement&.as_degraded_mode? }
+    flat_champs_public.filter { _1.awaiting_fix? || _1.try(:etablissement)&.as_degraded_mode? }
   end
 
   def messagerie_available?
