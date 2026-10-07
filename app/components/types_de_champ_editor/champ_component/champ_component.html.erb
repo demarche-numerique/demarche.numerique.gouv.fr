@@ -73,7 +73,7 @@
             <% if type_de_champ.header_section? %>
               <p class="fr-text--sm"><%= t(".header_section_hint") %></p>
               <div class="cell fr-mt-1w">
-                <%= render TypesDeChampEditor::HeaderSectionComponent.new(form: form, tdc: type_de_champ, upper_tdcs: @upper_coordinates.map(&:type_de_champ)) %>
+                <%= render TypesDeChampEditor::HeaderSectionComponent.new(form:, coordinate:) %>
               </div>
             <% end %>
 

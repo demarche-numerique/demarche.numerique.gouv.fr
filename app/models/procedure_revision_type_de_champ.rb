@@ -58,7 +58,7 @@ class ProcedureRevisionTypeDeChamp < ApplicationRecord
   end
 
   def upper_coordinates
-    upper = siblings.filter { |s| s.position < position }
+    upper = preceding_siblings
 
     if child?
       upper += parent.upper_coordinates
@@ -69,6 +69,10 @@ class ProcedureRevisionTypeDeChamp < ApplicationRecord
     end
 
     upper
+  end
+
+  def preceding_siblings
+    siblings.filter { it.position < position }
   end
 
   def siblings_starting_at(offset)
