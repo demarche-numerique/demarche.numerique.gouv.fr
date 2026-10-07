@@ -76,10 +76,7 @@ class Attachment::FileInputComponent < ApplicationComponent
   end
 
   def auto_attach_url
-    return context.auto_attach_url if context.auto_attach_url.present?
-    return helpers.auto_attach_url(champ) if champ.present?
-
-    nil
+    helpers.auto_attach_url(champ) if champ.present?
   end
 
   def direct_upload_url

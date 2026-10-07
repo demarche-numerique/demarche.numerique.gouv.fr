@@ -57,14 +57,14 @@ export class TypeDeChampEditorController extends ApplicationController {
   private onChange(event: Event) {
     matchInputElement(event.target, {
       file: (target) => {
-        if (target.files?.length && target.name != 'referentiel_file') {
-          const autoupload = new AutoUpload(target, target.files[0]);
-          // The error is already displayed above the input by `AutoUpload`;
-          // swallow the rejection so it is not reported as unhandled.
-          autoupload.start().catch(() => null);
+        const file = target.files?.[0];
+        if (!file) {
+          return;
         }
-        if (target.files?.length && target.name == 'referentiel_file') {
+        if (target.name == 'referentiel_file') {
           this.requestSubmitForm(target.form);
+        } else {
+          this.uploadAndSubmit(target, file);
         }
       },
       changeable: (target) => this.save(target.form),
@@ -82,6 +82,40 @@ export class TypeDeChampEditorController extends ApplicationController {
         }
       }
     });
+  }
+
+  // Attachments are saved with their form: the file is uploaded straight to
+  // the storage service, then the resulting blob signed id is submitted under
+  // the file input's own name.
+  private uploadAndSubmit(input: HTMLInputElement, file: File) {
+    // The upload's retry button runs the same continuation, so a retried
+    // upload is submitted too. The error is already displayed above the input
+    // by `AutoUpload`; swallow the rejection so it is not reported as
+    // unhandled.
+    const upload = (): Promise<unknown> =>
+      autoUpload
+        .start()
+        .then((blobSignedId) => this.submitBlobSignedId(input, blobSignedId))
+        .catch(() => null);
+    const autoUpload: AutoUpload = new AutoUpload(input, file, {
+      retry: upload
+    });
+    return upload();
+  }
+
+  private submitBlobSignedId(input: HTMLInputElement, blobSignedId: string) {
+    const form = input.form;
+    if (!form) {
+      return;
+    }
+
+    // The upload cleared the file input, so the blob signed id is submitted
+    // through a hidden input under the same name.
+    const hiddenInput = createHiddenInput(form, input.name, blobSignedId);
+    this.requestSubmitForm(form);
+    this.#latestPromise = this.#latestPromise.finally(() =>
+      hiddenInput.remove()
+    );
   }
 
   private save(form?: HTMLFormElement | null): void {
@@ -163,4 +197,5 @@ function createHiddenInput(
   input.name = name;
   input.value = String(value);
   form.appendChild(input);
+  return input;
 }
