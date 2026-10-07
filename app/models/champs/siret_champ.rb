@@ -2,6 +2,9 @@
 
 class Champs::SiretChamp < ChampData
   include APIEntrepriseChampConcern
+
+  belongs_to :etablissement, optional: true, dependent: :destroy, inverse_of: :champ_data
+
   validate :validate_etablissement, if: :should_validate_in_current_context?
   normalizes :external_id, with: -> siret { siret.gsub(/[[:space:]]/, "") }
 
@@ -55,6 +58,20 @@ class Champs::SiretChamp < ChampData
     etablissement.present? ? etablissement.search_terms : [value]
   end
 
+  def clear
+    super
+    ChampData.no_touching { etablissement&.destroy }
+  end
+
+  def clone_value_from(champ)
+    source = champ.try(:etablissement)
+    if source.present?
+      self.etablissement = source.dup
+      ClonePiecesJustificativesService.clone_attachments(source, etablissement)
+    end
+    super
+  end
+
   def save_additional_job_exception(exception, code)
     exceptions = fetch_external_data_exceptions || []
     exceptions << ExternalDataException.new(error: exception.inspect, code:)
@@ -62,6 +79,8 @@ class Champs::SiretChamp < ChampData
   end
 
   private
+
+  def clone_relationships = [*super, :etablissement]
 
   def update_external_data!(hash)
     etablissement = hash[:etablissement]

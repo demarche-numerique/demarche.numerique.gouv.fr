@@ -31,7 +31,7 @@ class Champs::RNAChamp < ChampData
   end
 
   def search_terms
-    etablissement.present? ? etablissement.search_terms : [value]
+    [value]
   end
 
   def full_address

@@ -100,14 +100,15 @@ module Recovery
         dossier.champ_data.each do |champ|
           champ.piece_justificative_file.each { |pj| import(pj) }
 
-          if champ.etablissement.present?
-            APIEntreprise::EtablissementJob.perform_later(champ.etablissement.id, dossier.procedure.id)
+          etablissement = champ.try(:etablissement)
+          if etablissement.present?
+            APIEntreprise::EtablissementJob.perform_later(etablissement.id, dossier.procedure.id)
 
-            champ.etablissement.exercices.each do |exercice|
+            etablissement.exercices.each do |exercice|
               Exercice.insert(exercice.attributes)
             end
 
-            Etablissement.insert(champ.etablissement.attributes)
+            Etablissement.insert(etablissement.attributes)
           end
 
           ChampData.insert(champ.attributes)
