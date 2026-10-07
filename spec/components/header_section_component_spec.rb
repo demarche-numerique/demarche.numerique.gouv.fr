@@ -81,7 +81,7 @@ RSpec.describe TypesDeChampEditor::HeaderSectionComponent, type: :component do
     let(:level_select) { page.find("select[name$='[header_section_level]']") }
 
     # With the upper coordinates BlockComponent passes, to prove the header ignores them
-    before { render_inline(TypesDeChampEditor::ChampComponent.new(coordinate:, upper_coordinates: coordinate.upper_coordinates)) }
+    before { render_inline(TypesDeChampEditor::ChampComponent.new(coordinate:)) }
 
     shared_examples 'offers level 1 only and shows the error the publication raises' do
       it do

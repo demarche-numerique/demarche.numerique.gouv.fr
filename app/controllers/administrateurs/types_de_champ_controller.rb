@@ -223,7 +223,6 @@ module Administrateurs
     def champ_component_from(coordinate, focused: false, errors: '')
       TypesDeChampEditor::ChampComponent.new(
         coordinate:,
-        upper_coordinates: coordinate.upper_coordinates,
         focused: focused,
         errors:
       )
