@@ -88,8 +88,12 @@ class TypesDeChamp::PrefillRepetitionTypeDeChamp < TypesDeChamp::PrefillTypeDeCh
         type_de_champ = revision.type_de_champs.find { _1.stable_id == stable_id }
         next unless type_de_champ
 
+        prefill_type_de_champ = TypesDeChamp::PrefillTypeDeChamp.build(type_de_champ, revision)
+        # as for the root champs, which PrefillChamps filters the same way
+        next unless prefill_type_de_champ.prefillable?
+
         subchamp = champ.dossier.champ_for_update(type_de_champ, row_id:, updated_by: nil)
-        attributes = TypesDeChamp::PrefillTypeDeChamp.build(subchamp.type_de_champ, revision).to_assignable_attributes(subchamp, value)
+        attributes = prefill_type_de_champ.to_assignable_attributes(subchamp, value)
         [subchamp, attributes] if attributes.present?
       end
     end

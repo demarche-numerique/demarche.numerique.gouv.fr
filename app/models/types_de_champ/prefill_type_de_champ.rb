@@ -47,6 +47,8 @@ class TypesDeChamp::PrefillTypeDeChamp < SimpleDelegator
       TypesDeChamp::PrefillDossierLinkTypeDeChamp.new(type_de_champ, revision)
     when TypeDeChamp.type_champs.fetch(:carte)
       TypesDeChamp::PrefillCarteTypeDeChamp.new(type_de_champ, revision)
+    when TypeDeChamp.type_champs.fetch(:iban)
+      TypesDeChamp::PrefillIbanTypeDeChamp.new(type_de_champ, revision)
     else
       new(type_de_champ, revision)
     end

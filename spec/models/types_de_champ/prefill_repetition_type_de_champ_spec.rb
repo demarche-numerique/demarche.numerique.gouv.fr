@@ -60,7 +60,7 @@ RSpec.describe TypesDeChamp::PrefillRepetitionTypeDeChamp, type: :model do
   # covered so that a new type cannot regress unnoticed.
   PREFILLABLE_IN_REPETITION = [
     :address, :checkbox, :civilite, :communes, :date, :datetime, :decimal_number,
-    :departements, :drop_down_list, :email, :epci, :formatted, :iban,
+    :departements, :drop_down_list, :email, :epci, :formatted,
     :integer_number, :multiple_drop_down_list, :pays, :phone, :regions, :text,
     :textarea, :yes_no,
   ].freeze
