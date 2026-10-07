@@ -9,7 +9,7 @@ class Dossiers::GeoAreasComponentPreview < ViewComponent::Preview
         mock_geo_area(3, "Point (46°32′18″N 2°25′42″E)", "Entrée principale"),
       ],
       cadastres: [
-        mock_geo_area(4, "Parcelle n° 42 - Feuille 000 A11 - 123 m² — Commune 75127", nil),
+        mock_geo_area(4, "Parcelle n° 42 – Feuille 000 A11 – 123 m² – commune 75127", nil),
       ],
       rpgs: [
         mock_geo_area(5, "Parcelle agricole n° 12345 - 10 ha", nil),
