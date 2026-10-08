@@ -19,6 +19,12 @@ RSpec.describe TypesDeChamp::PrefillFormattedTypeDeChamp do
        it { expect(subject.example_value).to eq("ABC123") }
      end
 
+     context 'when mode is missing' do
+       before { type_de_champ.options = { "letters_accepted" => "1", "min_character_length" => "3" } }
+
+       it { expect(subject.example_value).to match(/^[A-Z]{3,}$/) }
+     end
+
      context 'when mode is simple' do
        let(:base_options) do
          {
