@@ -181,7 +181,7 @@ describe 'Invitations' do
       navigate_to_dossier(dossier)
       send_invite_to "user_invite@exemple.fr"
 
-      within('#flash_messages') { click_on "inviter une autre personne" }
+      within('#flash_messages') { click_button "inviter une autre personne" }
       expect(page).to have_button("Fermer", focused: true)
       within('#dossier-invites-modal-dialog') { expect(page).to have_text("1 personne invitée") }
       expect(page).to have_field('invite_email', with: '', visible: true)

@@ -354,9 +354,9 @@ en:
         resent: 'Resend the confirmation email'
     invites:
       create:
-        success: "An invitation has been sent to %{email}. You can <button type=\"button\" class=\"fr-link\" aria-controls=\"dossier-invites-modal-dialog\" data-fr-opened=\"false\">create another one</button>."
+        success: "An invitation has been sent to %{email}. You can <button class=\"fr-link fr-text--sm\" aria-controls=\"dossier-invites-modal-dialog\" data-fr-opened=\"false\">create another one</button>."
       destroy:
-        success: "The permission given to %{email} had been revoked. You can <button type=\"button\" class=\"fr-link\" aria-controls=\"dossier-invites-modal-dialog\" data-fr-opened=\"false\">create another one</button>."
+        success: "The permission given to %{email} had been revoked. You can <button class=\"fr-link fr-text--sm\" aria-controls=\"dossier-invites-modal-dialog\" data-fr-opened=\"false\">create another one</button>."
         error: "You can't revoke this invitation"
       dropdown:
         invite_to_edit: Invite someone to edit this file
