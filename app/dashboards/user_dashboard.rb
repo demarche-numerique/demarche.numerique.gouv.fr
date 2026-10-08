@@ -19,7 +19,7 @@ class UserDashboard < Administrate::BaseDashboard
     blocked_at: Field::DateTime,
     blocked_reason: Field::String,
     current_sign_in_at: Field::DateTime,
-    dossiers: Field::HasMany,
+    dossiers: Field::HasMany.with_options(sort_by: :created_at, direction: :desc),
     dossiers_invites: Field::HasMany,
     otp_attempt: OtpAttemptField,
   }.freeze

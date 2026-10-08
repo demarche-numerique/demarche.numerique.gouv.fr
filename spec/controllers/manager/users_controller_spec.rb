@@ -29,6 +29,19 @@ describe Manager::UsersController, type: :controller do
       end
     end
 
+    context 'when the user has more dossiers than a page holds (5)' do
+      let(:owner) { create(:user) }
+      let(:dossiers) do
+        6.downto(1).map { create(:dossier, user: owner, procedure: procedures.individual, created_at: it.days.ago) }
+      end
+      let(:user) { dossiers.first.user }
+
+      it 'lists the most recent dossiers first' do
+        links = response.body.scan(%r{href="/manager/dossiers/(\d+)"}).flatten.map(&:to_i).uniq
+        expect(links).to eq(dossiers.drop(1).reverse.map(&:id))
+      end
+    end
+
     context 'when user is blocked' do
       let(:user) { create(:user, blocked_at: Time.zone.now) }
 
