@@ -1,0 +1,23 @@
+<% invites = dossier.invites.count %>
+
+<button
+  type="button"
+  class="fr-btn fr-btn--secondary"
+  aria-controls="dossier-invites-modal-dialog"
+  aria-haspopup="dialog"
+  data-fr-opened="false"
+  data-turbo-frame="dossier-invites-modal"
+  data-action="lazy-modal#load"
+  src="<%= dossier_index_invites_path(dossier_id: dossier.id) %>"
+>
+  <%= dsfr_icon('fr-icon-user-add-fill', :sm, :mr) %>
+
+  <% if invites > 0 %>
+    <%= t('views.invites.dropdown.view_invited_people') %>
+    <span class="fr-badge fr-ml-1v"><%= invites %></span>
+  <% elsif dossier.read_only? %>
+    <%= t('views.invites.dropdown.invite_to_view') %>
+  <% else %>
+    <%= t('views.invites.dropdown.invite_to_edit') %>
+  <% end %>
+</button>
