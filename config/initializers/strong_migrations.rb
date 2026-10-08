@@ -12,6 +12,9 @@ StrongMigrations.statement_timeout = 1.hour
 # Outdated statistics can sometimes hurt performance
 StrongMigrations.auto_analyze = true
 
+# Remove an invalid index left by a failed concurrent build when the migration runs again
+StrongMigrations.remove_invalid_indexes = true
+
 # Set the version of the production database
 # so the right checks are run in development
 # StrongMigrations.target_version = 10
