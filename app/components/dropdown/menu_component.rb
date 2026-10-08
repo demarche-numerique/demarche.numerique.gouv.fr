@@ -3,9 +3,10 @@
 class Dropdown::MenuComponent < ApplicationComponent
   renders_one :button_inner_html
   renders_one :menu_header_html
-  # in a menu (no forms, no explicit role), item links/buttons must carry role: 'menuitem'
+  # in a menu (no forms, no explicit role), item links/buttons must carry role: 'menuitem',
+  # and the li between role="menu" and role="menuitem" gets role="none"
   renders_many :items, -> (options = {}, &block) do
-    tag.li(**options, &block)
+    tag.li(**options.reverse_merge(role: menu? ? 'none' : nil), &block)
   end
   renders_many :forms
 
