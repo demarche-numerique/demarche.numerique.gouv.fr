@@ -635,6 +635,9 @@ fr:
           pending_correction:
             title: "Attention"
             body_html: 'Consultez les corrections à apporter à votre dossier dans la <a href="%{link}" class="fr-notice__link">messagerie<span class="fr-sr-only"> du dossier numéro %{id}</span></a>.'
+          pending_complement:
+            title: "Dossier à compléter"
+            body_html: 'L’administration vous invite à compléter votre dossier : <a href="%{link}" class="fr-notice__link">modifier le dossier<span class="fr-sr-only"> numéro %{id}</span></a>.'
           pending_response:
             title: "Attention"
             message_html: 'Consultez la <a href="%{link}" class="fr-notice__link">messagerie<span class="fr-sr-only"> du dossier numéro %{id}</span></a> et répondez à l''administration.'

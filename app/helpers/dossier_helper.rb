@@ -140,8 +140,8 @@ module DossierHelper
     dossier.unread_messages_for_user.any?
   end
 
-  def pending_correction_badge(profile, html_class: nil)
-    tag.span(Dossier.human_attribute_name("pending_correction.#{profile}"), class:
+  def pending_correction_badge(profile, reason: nil, html_class: nil)
+    tag.span(correction_label(profile, reason), class:
       class_names(
         "fr-badge fr-badge--sm",
         "fr-badge--warning super" => profile == :for_user,
@@ -149,8 +149,13 @@ module DossierHelper
       ))
   end
 
-  def correction_resolved_badge(type, html_class: nil)
-    tag.span(Dossier.human_attribute_name("pending_correction.#{type}"), class: ['fr-badge fr-badge--sm', html_class])
+  def correction_resolved_badge(type, reason: nil, html_class: nil)
+    tag.span(correction_label(type, reason), class: ['fr-badge fr-badge--sm', html_class])
+  end
+
+  def correction_label(key, reason)
+    Dossier.human_attribute_name("pending_correction.#{reason}.#{key}",
+      default: Dossier.human_attribute_name("pending_correction.#{key}"))
   end
 
   def pending_response_badge(profile, html_class: nil)

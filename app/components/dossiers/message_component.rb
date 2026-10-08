@@ -21,7 +21,7 @@ class Dossiers::MessageComponent < ApplicationComponent
     return if groupe_gestionnaire || commentaire.dossier_correction.nil?
 
     if commentaire.dossier_correction.cancelled?
-      helpers.correction_resolved_badge(:discarded)
+      helpers.correction_resolved_badge(:discarded, reason: commentaire.dossier_correction.reason)
     elsif commentaire.dossier_correction.resolved?
       type = if commentaire.dossier_correction.resolved_by_modification?
         :modified
@@ -29,9 +29,9 @@ class Dossiers::MessageComponent < ApplicationComponent
         :not_modified
       end
 
-      helpers.correction_resolved_badge(type)
+      helpers.correction_resolved_badge(type, reason: commentaire.dossier_correction.reason)
     else
-      helpers.pending_correction_badge(connected_user.is_a?(Instructeur) ? :for_instructeur : :for_user)
+      helpers.pending_correction_badge(connected_user.is_a?(Instructeur) ? :for_instructeur : :for_user, reason: commentaire.dossier_correction.reason)
     end
   end
 
@@ -77,6 +77,11 @@ class Dossiers::MessageComponent < ApplicationComponent
     return false unless connected_user.is_a?(Instructeur)
 
     commentaire.can_cancel_correction?(connected_user)
+  end
+
+  # Falls back on the correction wording for a reason without its own.
+  def correction_wording(key)
+    t(".#{commentaire.dossier_correction.reason}.#{key}", default: t(".#{key}"))
   end
 
   def show_delete_button?

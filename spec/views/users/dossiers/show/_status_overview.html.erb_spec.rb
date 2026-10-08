@@ -62,6 +62,19 @@ describe 'users/dossiers/show/_status_overview', type: :view do
       end
     end
 
+    context 'with a pending complement request' do
+      let(:dossier) do
+        create(:dossier, :en_construction).tap { create(:dossier_correction, dossier: it, reason: :complement) }
+      end
+
+      it 'renders the "à compléter" notice, which links to the edition' do
+        expect(rendered).to have_selector('.fr-notice.fr-notice--info')
+        expect(rendered).to have_text('L’administration vous invite à compléter votre dossier')
+        expect(rendered).to have_link(href: modifier_dossier_path(dossier))
+        expect(rendered).to have_selector('.en-construction', text: /\(\s*à.compléter\s*\)/)
+      end
+    end
+
     context 'with a pending response' do
       let(:dossier) do
         create(:dossier, :en_construction).tap { create(:dossier_pending_response, dossier: it) }

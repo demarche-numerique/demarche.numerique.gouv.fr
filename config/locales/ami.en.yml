@@ -28,6 +28,9 @@ en:
       pending_correction:
         title: Correct your file
         body: "Complete your procedure «\u00A0%{libelle_demarche}\u00A0» from the app or your %{app_host} account."
+      pending_complement:
+        title: Complete your application
+        body: "Complete your procedure «\u00A0%{libelle_demarche}\u00A0» from the app or your %{app_host} account."
       messagerie_message:
         title: New message
         body: "Read the message about your procedure «\u00A0%{libelle_demarche}\u00A0» no.\u00A0%{dossier_id}."

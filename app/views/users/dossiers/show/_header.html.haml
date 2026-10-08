@@ -8,7 +8,7 @@
       %span.fr-text--lg
         = dossier.procedure.libelle
         = status_badge_user(dossier, 'super')
-        = pending_correction_badge(:for_user) if dossier.pending_correction?
+        = pending_correction_badge(:for_user, reason: dossier.pending_correction_reason) if dossier.pending_correction?
         = pending_response_badge(:for_user) if dossier.pending_response?
         = new_message_badge if show_new_message_notification?(dossier)
         = expiration_badge(dossier, html_class: 'super')

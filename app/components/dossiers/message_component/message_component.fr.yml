@@ -15,3 +15,6 @@ fr:
   alert_correction_title: Comment corriger mon dossier ?
   alert_correction_description: Vous devez effectuer les modifications demandées en modifiant votre dossier.
   alert_correction_cta: Modifier le dossier
+  complement:
+    cancel_correction_button: Annuler la demande de complément
+    confirm_cancel_correction: Êtes-vous sûr de vouloir annuler la demande de complément ? Le message restera visible.

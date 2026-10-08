@@ -20,7 +20,7 @@
 
             <% if dossier.pending_correction.present? %>
               (
-              <%= Dossier.human_attribute_name("pending_correction.for_user") %>
+              <%= correction_label(:for_user, dossier.pending_correction_reason) %>
               )
             <% end %>
           </li>
@@ -48,10 +48,7 @@
       <% if dossier.en_construction? %>
         <div class="en-construction">
           <% if dossier.pending_correction.present? %>
-            <%= render Dsfr::NoticeComponent.new(state: 'warning', extra_class_names: "fr-mb-2w") do |c| %>
-              <% c.with_title { t('views.users.dossiers.dossiers_list.pending_correction.title') } %>
-              <% c.with_desc { t('views.users.dossiers.dossiers_list.pending_correction.body_html', link: messagerie_dossier_path(dossier), id: dossier.id) } %>
-            <% end %>
+            <%= render 'users/dossiers/pending_correction_notice', dossier: %>
           <% end %>
 
           <% if dossier.awaiting_response.present? %>

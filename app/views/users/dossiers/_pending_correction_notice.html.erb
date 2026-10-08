@@ -1,0 +1,11 @@
+<% if dossier.pending_correction_reason == 'complement' %>
+  <%= render Dsfr::NoticeComponent.new(state: 'info', extra_class_names: "fr-mb-2w") do |c| %>
+    <% c.with_title { t('views.users.dossiers.dossiers_list.pending_complement.title') } %>
+    <% c.with_desc { t('views.users.dossiers.dossiers_list.pending_complement.body_html', link: modifier_dossier_path(dossier), id: dossier.id) } %>
+  <% end %>
+<% else %>
+  <%= render Dsfr::NoticeComponent.new(state: 'warning', extra_class_names: "fr-mb-2w") do |c| %>
+    <% c.with_title { t('views.users.dossiers.dossiers_list.pending_correction.title') } %>
+    <% c.with_desc { t('views.users.dossiers.dossiers_list.pending_correction.body_html', link: messagerie_dossier_path(dossier), id: dossier.id) } %>
+  <% end %>
+<% end %>

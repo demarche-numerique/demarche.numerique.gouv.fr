@@ -47,6 +47,11 @@ module DossierCorrectableConcern
     pending_corrections.exists?
   end
 
+  # The plural association: it is the one preloaded on the dossiers list.
+  def pending_correction_reason
+    pending_corrections.first&.reason
+  end
+
   def last_correction_resolved?
     corrections.last&.resolved?
   end

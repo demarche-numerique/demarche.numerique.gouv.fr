@@ -25,7 +25,7 @@
         <%= status_badge_user(dossier) %>
 
         <% if dossier.pending_correction? %>
-          <%= pending_correction_badge(:for_user) %>
+          <%= pending_correction_badge(:for_user, reason: dossier.pending_correction_reason) %>
         <% end %>
 
         <% if dossier.pending_response? %>
@@ -99,7 +99,7 @@
       <%= status_badge_user(dossier) %>
 
       <% if dossier.pending_correction? %>
-        <%= pending_correction_badge(:for_user) %>
+        <%= pending_correction_badge(:for_user, reason: dossier.pending_correction_reason) %>
       <% end %>
 
       <% if dossier.pending_response? %>

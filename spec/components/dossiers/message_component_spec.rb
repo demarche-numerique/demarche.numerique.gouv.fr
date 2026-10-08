@@ -228,6 +228,16 @@ RSpec.describe Dossiers::MessageComponent, type: :component do
           end
         end
 
+        context 'when commentaire is a pending complement request' do
+          let(:commentaire) { create(:commentaire, instructeur:, body: 'Please complete this') }
+          before { create(:dossier_correction, commentaire:, dossier:, reason: :complement) }
+
+          it 'words the cancel button for a complement' do
+            is_expected.to have_button("Annuler la demande de complément")
+            is_expected.to have_selector("form[data-turbo-confirm^='Êtes-vous sûr de vouloir annuler la demande de complément']")
+          end
+        end
+
         context 'when commentaire is a cancelled correction' do
           let(:commentaire) { create(:commentaire, instructeur:, body: 'Please fix this') }
           before { create(:dossier_correction, commentaire:, dossier:, cancelled_at: Time.current, resolved_at: Time.current) }
@@ -308,6 +318,22 @@ RSpec.describe Dossiers::MessageComponent, type: :component do
         end
       end
 
+      context 'when the correction is a complement request' do
+        let!(:correction) { create(:dossier_correction, commentaire:, dossier:, reason: :complement) }
+
+        it 'returns a badge à compléter' do
+          expect(subject).to have_text('à compléter')
+        end
+
+        context 'connected as instructeur' do
+          let(:connected_user) { create(:instructeur) }
+
+          it 'returns a badge en attente de complément' do
+            expect(subject).to have_text('en attente de complément')
+          end
+        end
+      end
+
       context 'when the correction is resolved' do
         context "when the dossier has not been modified due to a change en_instruction" do
           let!(:correction) { create(:dossier_correction, commentaire:, dossier:, resolved_at: 1.minute.ago) }
@@ -355,6 +381,20 @@ RSpec.describe Dossiers::MessageComponent, type: :component do
           expect(subject).to have_css('.fr-alert--warning')
           expect(subject).to have_text(component.t('.alert_correction_title'))
           expect(subject).to have_text(component.t('.alert_correction_description'))
+          expect(subject).to have_link(
+            component.t('.alert_correction_cta'),
+            href: component.helpers.modifier_dossier_path(dossier)
+          )
+        end
+      end
+
+      context 'when the pending correction is a complement request' do
+        before do
+          create(:dossier_correction, commentaire: commentaire, dossier: dossier, reason: :complement)
+        end
+
+        it 'links to the edition without a warning: nothing is wrong with the dossier' do
+          expect(subject).not_to have_css('.fr-alert')
           expect(subject).to have_link(
             component.t('.alert_correction_cta'),
             href: component.helpers.modifier_dossier_path(dossier)

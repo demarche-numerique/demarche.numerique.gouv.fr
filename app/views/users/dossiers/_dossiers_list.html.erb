@@ -33,10 +33,7 @@
       <% end %>
 
       <% if dossier.pending_correction? %>
-        <%= render Dsfr::NoticeComponent.new(state: 'warning', extra_class_names: "fr-mb-2w") do |c| %>
-          <% c.with_title { t('views.users.dossiers.dossiers_list.pending_correction.title') } %>
-          <% c.with_desc { t('views.users.dossiers.dossiers_list.pending_correction.body_html', link: messagerie_dossier_path(dossier), id: dossier.id) } %>
-        <% end %>
+        <%= render 'users/dossiers/pending_correction_notice', dossier: %>
       <% end %>
 
       <% if dossier.pending_response? %>

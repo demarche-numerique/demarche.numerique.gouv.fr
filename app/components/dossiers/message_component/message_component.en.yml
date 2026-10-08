@@ -15,3 +15,6 @@ en:
   alert_correction_title: How do I correct my file?
   alert_correction_description: You must make the requested changes by editing your file.
   alert_correction_cta: Edit the file
+  complement:
+    cancel_correction_button: Cancel the completion request
+    confirm_cancel_correction: Are you sure you want to cancel the completion request? The message will remain visible.

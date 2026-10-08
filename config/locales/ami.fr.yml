@@ -28,6 +28,9 @@ fr:
       pending_correction:
         title: Corriger votre dossier
         body: "Complétez votre démarche «\u00A0%{libelle_demarche}\u00A0» depuis l’application ou votre compte %{app_host}."
+      pending_complement:
+        title: Compléter votre dossier
+        body: "Complétez votre démarche «\u00A0%{libelle_demarche}\u00A0» depuis l’application ou votre compte %{app_host}."
       messagerie_message:
         title: Nouveau message
         body: "Lire le message concernant votre démarche «\u00A0%{libelle_demarche}\u00A0» n°\u00A0%{dossier_id}."

@@ -217,5 +217,14 @@ RSpec.describe Ami::CreateNotificationService do
         expect(payload[:content_link]).to end_with("/dossiers/#{dossier.id}/messagerie")
       end
     end
+
+    context 'when triggered by a complement request' do
+      it 'asks the user to complete the dossier, straight from its edition' do
+        payload = described_class.new(dossier:, trigger: :pending_complement, state: nil).create_notification_payload(event_date:)
+
+        expect(payload).to include(content_title: "Compléter votre dossier")
+        expect(payload[:content_link]).to end_with("/dossiers/#{dossier.id}/modifier")
+      end
+    end
   end
 end
