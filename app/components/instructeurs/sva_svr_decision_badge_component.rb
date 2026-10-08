@@ -13,7 +13,7 @@ class Instructeurs::SVASVRDecisionBadgeComponent < ApplicationComponent
   end
 
   def render?
-    return false if !procedure.sva_svr_enabled? && !dated_by_disabled_rule?
+    return false unless dossier.sva_svr_rule_applies?
 
     [:en_construction, :en_instruction].include? dossier.state.to_sym
   end
@@ -22,15 +22,11 @@ class Instructeurs::SVASVRDecisionBadgeComponent < ApplicationComponent
     dossier.sva_svr_decision_on.nil?
   end
 
-  def rule_disabled? = procedure.sva_svr_rule_disabled?
-
-  def dated_by_disabled_rule? = rule_disabled? && !without_date?
-
   def classes
     class_names(
       'fr-badge fr-badge--sm': true,
-      'fr-badge--warning': !rule_disabled? && soon?,
-      'fr-badge--info': !rule_disabled? && !without_date? && !soon?
+      'fr-badge--warning': soon?,
+      'fr-badge--info': !without_date? && !soon?
     )
   end
 
@@ -63,8 +59,6 @@ class Instructeurs::SVASVRDecisionBadgeComponent < ApplicationComponent
   def situation
     @situation ||= if previously_termine?
       :previously_termine
-    elsif rule_disabled?
-      :rule_disabled
     elsif depose_before_configuration?
       :depose_before_configuration
     elsif without_date?
@@ -78,7 +72,7 @@ class Instructeurs::SVASVRDecisionBadgeComponent < ApplicationComponent
 
   def badge_text
     case situation
-    when :previously_termine, :rule_disabled, :no_date then t('.manual_decision')
+    when :previously_termine, :no_date then t('.manual_decision')
     when :depose_before_configuration then t('.depose_before_configuration', decision: human_decision)
     when :pending_correction then t('.remaining_days_after_correction', count: days_count)
     when :scheduled then t('.in_days', count: days_count)
@@ -88,7 +82,6 @@ class Instructeurs::SVASVRDecisionBadgeComponent < ApplicationComponent
   def title
     case situation
     when :previously_termine then t('.previously_termine_title')
-    when :rule_disabled then t('.rule_disabled_title')
     when :depose_before_configuration then t('.depose_before_configuration_title', decision: human_decision)
     when :no_date then t('.manual_decision_title', decision: human_decision)
     when :pending_correction then t('.dossier_terminated_x_days_after_correction', count: days_count)
