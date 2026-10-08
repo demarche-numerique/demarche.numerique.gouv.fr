@@ -136,6 +136,9 @@ en:
             sva_svr:
               immutable: "SVA/SVR configuration can no longer be modified"
               declarative_incompatible: "SVA/SVR is incompatible with a declarative procedure"
+              declarative_incompatible_until_decided:
+                one: "The disabled automatic decision (SVA/SVR) still applies to one open application: the procedure can become declarative once it is decided"
+                other: "The disabled automatic decision (SVA/SVR) still applies to %{count} open applications: the procedure can become declarative once they are decided"
               definitive: "The SVA/SVR rule has been disabled and can no longer be changed"
             monavis_embed:
               format: 'MonAvis code %{message}'

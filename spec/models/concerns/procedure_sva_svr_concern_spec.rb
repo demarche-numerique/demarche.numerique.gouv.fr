@@ -16,6 +16,31 @@ describe ProcedureSVASVRConcern do
       expect(configuration.decision).to eq('sva')
       expect(configuration.period).to eq(7)
     end
+
+    describe 'passage au déclaratif' do
+      it 'reste refusé tant qu’un dossier attend une décision de la règle, même supprimé par l’usager' do
+        create(:dossier, :en_construction, :with_individual, procedure:, sva_svr_decision_on: 10.days.from_now, hidden_by_user_at: 1.day.ago)
+        procedure.declarative_with_state = 'accepte'
+
+        expect(procedure).not_to be_valid
+        expect(procedure.errors).to be_of_kind(:sva_svr, :declarative_incompatible_until_decided)
+      end
+
+      it 'est permis une fois ces dossiers tranchés' do
+        create(:dossier, :accepte, :with_individual, procedure:, sva_svr_decision_on: 1.day.ago, sva_svr_decision_triggered_at: 1.day.ago)
+        procedure.declarative_with_state = 'accepte'
+
+        expect(procedure).to be_valid
+      end
+
+      it 'ne bloque pas les autres réglages d’une démarche déjà déclarative' do
+        procedure.update_column(:declarative_with_state, 'accepte')
+        create(:dossier, :en_instruction, :with_individual, procedure:, sva_svr_decision_on: 10.days.from_now)
+        procedure.libelle = 'Nouveau libellé'
+
+        expect(procedure).to be_valid
+      end
+    end
   end
 
   describe '#sva_svr_pending_dossiers' do

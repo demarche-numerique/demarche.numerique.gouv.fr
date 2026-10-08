@@ -59,10 +59,13 @@ module ProcedureSVASVRConcern
   end
 
   def validates_sva_svr_compatible
-    return if !sva_svr_enabled?
+    return if declarative_with_state.blank?
 
-    if declarative_with_state.present?
+    if sva_svr_enabled?
       errors.add(:sva_svr, :declarative_incompatible)
+    elsif sva_svr_rule_disabled? && will_save_change_to_declarative_with_state?
+      count = sva_svr_pending_dossiers.count
+      errors.add(:sva_svr, :declarative_incompatible_until_decided, count:) if count > 0
     end
   end
 end
