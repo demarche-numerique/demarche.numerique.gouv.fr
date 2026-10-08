@@ -677,6 +677,93 @@ describe 'Referentiel API:' do
     end
   end
 
+  context 'when the instructeur homologates a dossier to unlock the rest of the usager form' do
+    include Logic
+
+    let(:repetition_stable_id) { 310 }
+    let(:dirigeant_nom_stable_id) { 311 }
+    let(:homologation_stable_id) { 320 }
+    let(:referentiel) { create(:api_referentiel, :exact_match) }
+
+    # La condition sur l'annotation est posée en factory : `annotation_condition_champs_public`
+    # reste éteint, ce qui prouve au passage que le runtime ne le lit jamais.
+    let(:public_type_de_champs) do
+      [
+        {
+          type: :repetition,
+          libelle: 'Dirigeants',
+          stable_id: repetition_stable_id,
+          # Sans quoi le dossier naît avec une ligne vide (build_default_champs_for),
+          # alors que le bloc est fermé au dépôt : c'est l'API qui crée les lignes.
+          mandatory: false,
+          condition: ds_eq(champ_value(homologation_stable_id), constant(true)),
+          children: [{ type: :text, libelle: 'Nom du dirigeant', stable_id: dirigeant_nom_stable_id }],
+        },
+      ]
+    end
+
+    let(:private_type_de_champs) do
+      [
+        { type: :checkbox, libelle: 'Homologation', stable_id: homologation_stable_id },
+        {
+          type: :referentiel,
+          libelle: 'Validation SIAF',
+          referentiel:,
+          referentiel_mapping: {
+            "$.dirigeant[0].nom" => { prefill: "1", prefill_stable_id: dirigeant_nom_stable_id, type: "string" },
+          },
+        },
+      ]
+    end
+
+    let(:dossier) { create(:dossier, :en_construction, procedure:) }
+
+    before { Flipper.enable(:annotation_prefill_champs_public, procedure) }
+
+    def public_champs_with(stable_id)
+      dossier.reload.flat_champs_public.filter { it.stable_id == stable_id }
+    end
+
+    # Pas de `vcr: true` : sans fixture par exemple, VCR passerait en enregistrement
+    # et rouvrirait le réseau réel. Les cassettes imbriquées suffisent.
+    scenario 'the instructeur homologates, reviews the proposal, then sends it', js: true do
+      dossier.passer_en_instruction!(instructeur:)
+      expect(public_champs_with(repetition_stable_id).first).not_to be_visible
+
+      visit annotations_privees_instructeur_dossier_path(procedure, dossier)
+      custom_check(find(:label, text: 'Homologation')['for'])
+      expect(page).to have_content('Annotations enregistrées')
+
+      # Le bloc répétable, fermé au dépôt, s'ouvre dès que l'annotation est cochée.
+      wait_until { public_champs_with(repetition_stable_id).first.visible? }
+
+      VCR.use_cassette('referentiel/siaf_homologation') do
+        fill_in('Validation SIAF', with: 'JE-VALIDE')
+        perform_enqueued_jobs do
+          expect(page).to have_content('Référence trouvée : JE-VALIDE')
+        end
+      end
+
+      # La réponse de l'API attend sur le buffer : l'instructeur voit ce qui sera écrit,
+      # et le dossier de l'usager n'a pas bougé.
+      expect(page).to have_content('Ces champs du formulaire seront mis à jour')
+      expect(public_champs_with(dirigeant_nom_stable_id).map(&:value)).to eq([])
+
+      click_on 'Envoyer à l’usager'
+      expect(page).to have_content('Les champs préremplis ont été envoyés à l’usager')
+
+      expect(public_champs_with(dirigeant_nom_stable_id).map(&:value)).to match_array(['Dupont', 'Martin'])
+
+      # L'usager retrouve son dossier modifiable, le bloc ouvert et pré-rempli.
+      login_as dossier.user, scope: :user
+      visit modifier_dossier_path(dossier)
+
+      expect(page).to have_content('Dirigeants')
+      expect(page).to have_field('Nom du dirigeant', with: 'Dupont')
+      expect(page).to have_field('Nom du dirigeant', with: 'Martin')
+    end
+  end
+
   private
 
   def publish(procedure)

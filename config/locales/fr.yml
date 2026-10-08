@@ -1098,6 +1098,8 @@ fr:
       attestation_notice_accept: L’acceptation du dossier génère automatiquement une attestation à télécharger par l’usager
       attestation_notice_refuse: Le refus du dossier génère automatiquement une attestation à télécharger par l’usager
       preview_attestation: Prévisualiser l’attestation
+      proposition:
+        sent: Les champs préremplis ont été envoyés à l’usager, qui peut désormais compléter son dossier.
       terminer_notice: Le dossier a bien été traité. L’usager a été informé que son dossier a été %{state}.
       alert_unspecified_attestation_title: L’attestation de décision est incomplète
       unspecified_champs_group: Formulaire usager

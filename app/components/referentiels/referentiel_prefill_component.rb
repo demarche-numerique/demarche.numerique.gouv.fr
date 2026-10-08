@@ -26,12 +26,10 @@ class Referentiels::ReferentielPrefillComponent < Referentiels::MappingFormBase
   end
 
   def source_tdcs
-    @source_tdcs ||= begin
-      public_coordinates = collect_public_coordinates
-      private_coordinates = collect_private_coordinates
-
-      (public_coordinates + private_coordinates).map(&:type_de_champ)
-    end
+    @source_tdcs ||= draft_revision
+      .coordinate_for(type_de_champ)
+      .prefill_target_coordinates
+      .map(&:type_de_champ)
   end
 
   def prefill_stable_id_tag(jsonpath, mapping_opts)
@@ -48,11 +46,7 @@ class Referentiels::ReferentielPrefillComponent < Referentiels::MappingFormBase
   private
 
   def build_select_options(target_tdcs, selected_value)
-    if type_de_champ.public?
-      grouped_options_for_select(target_tdcs, selected_value)
-    else
-      options_for_select(target_tdcs, selected_value)
-    end
+    grouped_options_for_select(target_tdcs, selected_value)
   end
 
   def tdc_targets(mapping_element)
@@ -101,58 +95,10 @@ class Referentiels::ReferentielPrefillComponent < Referentiels::MappingFormBase
     [tdc.libelle_with_parent(draft_revision), tdc.stable_id]
   end
 
+  # Le filtrage par visibilité a déjà eu lieu sur la coordonnée : un groupe vide ici
+  # signifie que ce champ n'a aucune cible de cette visibilité.
   def select_grouped_tdcs(grouped_tdcs)
-    if type_de_champ.public?
-      grouped_tdcs.compact_blank
-    else
-      grouped_tdcs[private_annotations_group]
-    end
-  end
-
-  def tdcs_after_current(prtdcs)
-    current_coordinate = current_coordinate(prtdcs)
-
-    if current_coordinate.child?
-      siblings_after_current(current_coordinate)
-    else
-      elements_after_current_root(current_coordinate, prtdcs)
-    end
-  end
-
-  private
-
-  def current_coordinate(prtdcs)
-    prtdcs.find { it.type_de_champ == type_de_champ }
-  end
-
-  def siblings_after_current(current_coordinate)
-    current_coordinate.siblings.filter { it.position > current_coordinate.position }
-  end
-
-  def elements_after_current_root(current_coordinate, all_coordinates)
-    all_coordinates.filter do |coordinate|
-      if coordinate.child?
-        coordinate.parent.position >= current_coordinate.position
-      else
-        coordinate.position > current_coordinate.position
-      end
-    end
-  end
-
-  def collect_public_coordinates
-    if type_de_champ.public?
-      tdcs_after_current(draft_revision.revision_type_de_champs.filter(&:public?))
-    else
-      []
-    end
-  end
-
-  def collect_private_coordinates
-    if type_de_champ.public?
-      draft_revision.revision_type_de_champs.filter(&:private?)
-    else
-      tdcs_after_current(draft_revision.revision_type_de_champs.filter(&:private?))
-    end
+    grouped_tdcs.compact_blank
   end
 
   def render?

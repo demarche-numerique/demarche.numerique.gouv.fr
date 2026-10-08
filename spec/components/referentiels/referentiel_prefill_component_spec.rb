@@ -174,12 +174,22 @@ RSpec.describe Referentiels::ReferentielPrefillComponent, type: :component do
       let(:referentiel_mapping_type) { Referentiels::MappingFormComponent::TYPES[:string] }
 
       context 'when not selected' do
-          it 'shows only private text' do
-            expect(subject).to have_select('type_de_champ[referentiel_mapping][$.jsonpath][prefill_stable_id]', options: ['private text'])
-            expect(subject).not_to have_selector('optgroup[label="Champs"]')
-            expect(subject).not_to have_selector('optgroup[label="Annotations privées"]')
-          end
+        it 'shows only private text' do
+          expect(subject).to have_select('type_de_champ[referentiel_mapping][$.jsonpath][prefill_stable_id]', options: ['private text'])
+          expect(subject).not_to have_selector('optgroup[label="Champs"]')
+          expect(subject).to have_selector('optgroup[label="Annotations privées"]')
         end
+      end
+
+      context 'when the procedure may prefill public champs from an annotation' do
+        before { Flipper.enable(:annotation_prefill_champs_public, procedure) }
+
+        it 'offers the public champs too, in their own group' do
+          expect(subject).to have_select('type_de_champ[referentiel_mapping][$.jsonpath][prefill_stable_id]', options: ['public text', 'private text'])
+          expect(subject).to have_selector('optgroup[label="Champs"]')
+          expect(subject).to have_selector('optgroup[label="Annotations privées"]')
+        end
+      end
     end
   end
 
