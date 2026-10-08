@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_07_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_08_180000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_catalog.plpgsql"
@@ -407,6 +407,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_07_120000) do
     t.bigint "previous_groupe_instructeur_id"
     t.string "previous_groupe_instructeur_label"
     t.index ["dossier_id"], name: "index_dossier_assignments_on_dossier_id"
+    t.index ["groupe_instructeur_id"], name: "index_dossier_assignments_on_groupe_instructeur_id"
+    t.index ["previous_groupe_instructeur_id"], name: "index_dossier_assignments_on_previous_groupe_instructeur_id"
   end
 
   create_table "dossier_batch_operations", force: :cascade do |t|
