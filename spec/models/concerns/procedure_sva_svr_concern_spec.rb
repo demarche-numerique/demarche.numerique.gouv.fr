@@ -14,9 +14,9 @@ describe ProcedureSVASVRConcern do
     end
 
     it 'garde la mémoire de la règle appliquée' do
-      expect(procedure.sva_svr_ever_enabled?).to be true
+      expect(procedure.sva_svr_rule?).to be true
       expect(procedure.sva_svr_decision).to eq(:sva)
-      expect(procedure.sva_svr_disabled?).to be true
+      expect(procedure.sva_svr_rule_disabled?).to be true
     end
 
     it 'sort du scope que parcourt le cron' do
@@ -45,7 +45,7 @@ describe ProcedureSVASVRConcern do
 
     it 'reste dans le scope' do
       expect(procedure.sva_svr_enabled?).to be true
-      expect(procedure.sva_svr_disabled?).to be false
+      expect(procedure.sva_svr_rule_disabled?).to be false
       expect(Procedure.sva_svr).to include(procedure)
     end
   end

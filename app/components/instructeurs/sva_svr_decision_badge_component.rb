@@ -22,7 +22,7 @@ class Instructeurs::SVASVRDecisionBadgeComponent < ApplicationComponent
     dossier.sva_svr_decision_on.nil?
   end
 
-  def rule_disabled? = procedure.sva_svr_disabled?
+  def rule_disabled? = procedure.sva_svr_rule_disabled?
 
   def dated_by_disabled_rule? = rule_disabled? && !without_date?
 

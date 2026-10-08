@@ -9,20 +9,20 @@ module ProcedureSVASVRConcern
     validate :validates_sva_svr_compatible
   end
 
-  def sva_svr_disabled? = sva_svr['disabled_at'].present?
+  def sva_svr_rule_disabled? = sva_svr['disabled_at'].present?
 
-  def sva_svr_ever_enabled? = [:sva, :svr].include?(decision)
+  def sva_svr_rule? = [:sva, :svr].include?(decision)
 
   def sva_svr_enabled?
-    sva_svr_ever_enabled? && !sva_svr_disabled?
+    sva_svr_rule? && !sva_svr_rule_disabled?
   end
 
   def sva?
-    decision == :sva && !sva_svr_disabled?
+    decision == :sva && !sva_svr_rule_disabled?
   end
 
   def svr?
-    decision == :svr && !sva_svr_disabled?
+    decision == :svr && !sva_svr_rule_disabled?
   end
 
   def sva_svr_configuration
