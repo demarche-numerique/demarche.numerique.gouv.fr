@@ -2,17 +2,28 @@
 en:
   dossier_mailer:
     notify_pending_correction:
-      subject: You need to modify your file no. %{dossier_id} « %{libelle_demarche} »
       incorrect:
+        subject: You need to modify your file no. %{dossier_id} « %{libelle_demarche} »
         explanation_html:
           In order to continue its instruction, <strong>an instructor requested you to edit information</strong> to your file no. %{dossier_id} of the « %{libelle_demarche} » procedure.
         sva_svr:
           As part of the « %{rule_name} » principle, the instruction period is suspended until you submit the requested corrections.
       incomplete:
+        subject: You need to modify your file no. %{dossier_id} « %{libelle_demarche} »
         explanation_html:
           In order to continue its instruction, <strong>an instructor requested you to complete</strong> your file no. %{dossier_id} of the « %{libelle_demarche} » procedure.
         sva_svr:
           As part of the « %{rule_name} » principle, the instruction period will be reset upon receipt of your complete file.
+      outdated:
+        subject: You need to modify your file no. %{dossier_id} « %{libelle_demarche} »
+      complement:
+        subject: You need to complete your application no. %{dossier_id} « %{libelle_demarche} »
+        explanation_html:
+          In order to continue its review, <strong>a reviewer asks you to complete</strong> your application no. %{dossier_id} of the « %{libelle_demarche} » procedure.
+        sva_svr:
+          As part of the « %{rule_name} » principle, the review period is suspended until you submit your completed application.
+        link: Go to the website to edit it.
+        access_label: Edit the application
       link:
         Check your file's mailbox to see what changes need to be made, then edit the file directly on the website.
       access_message: Open the mailbox
