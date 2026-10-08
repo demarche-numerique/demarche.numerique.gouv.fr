@@ -16,7 +16,7 @@
           <%= render Dossiers::BatchOperationInlineButtonsComponent.new(opt:, icons:, form:, procedure:) %>
         <% end -%>
 
-        <%= render Dropdown::MenuComponent.new(wrapper: :div, role: :region, button_options: { class: ['fr-btn--sm', 'fr-btn--secondary', 'fr-ml-1w'], disabled: true, data: { batch_operation_target: 'dropdown' } }, menu_options: { id: 'state-menu', class: ['no-wrap'] }) do |menu| %>
+        <%= render Dropdown::MenuComponent.new(wrapper: :div, button_options: { class: ['fr-btn--sm', 'fr-btn--secondary', 'fr-ml-1w'], disabled: true, data: { batch_operation_target: 'dropdown' } }, menu_options: { id: 'state-menu', class: ['no-wrap'] }) do |menu| %>
           <% menu.with_button_inner_html do %>
             <%= t('.operations.other') %>
           <% end %>
@@ -24,7 +24,7 @@
           <% available_operations[:options][2, available_operations[:options].count].each do |opt| -%>
             <% unless expert_review_disallowed?(opt[:operation]) -%>
               <% menu.with_item do %>
-                <%= form.button opt[:label], class: 'dropdown-items-link', disabled: true, name: "#{form.object_name}[operation]", value: opt[:operation], data: { operation: opt[:operation] }.merge(opt[:modal_data].to_h), aria: { controls: opt[:aria].present? ? opt[:aria] : nil, haspopup: opt[:aria].present? ? 'dialog' : nil } do %>
+                <%= form.button opt[:label], class: 'dropdown-items-link', role: 'menuitem', disabled: true, name: "#{form.object_name}[operation]", value: opt[:operation], data: { operation: opt[:operation] }.merge(opt[:modal_data].to_h), aria: { controls: opt[:aria].present? ? opt[:aria] : nil, haspopup: opt[:aria].present? ? 'dialog' : nil } do %>
                   <span class="<%= icons[opt[:operation].to_sym] %>"></span>
 
                   <div class="dropdown-description">
