@@ -64,8 +64,9 @@ public/vite-test
 app/graphql/schema.json
 public/graphql/schema
 
-/.claude/
+/.claude/*
 !/.claude/settings.json
+!/.claude/skills/
 CLAUDE.local.md
 /.playwright-mcp
 
