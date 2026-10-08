@@ -13,6 +13,7 @@ import {
   Header,
   ButtonContext,
   useFilter,
+  useLocale,
   useSlottedContext
 } from 'react-aria-components';
 import type {
@@ -76,14 +77,22 @@ function Select<M extends SelectionMode = 'single'>({
 }: SelectProps<M>) {
   const { t } = useLingui();
   const { contains } = useFilter({ sensitivity: 'base', numeric: true });
+  const { locale } = useLocale();
+  const containsTypedAccents = useMemo(
+    () => typedAccentsMatcher(locale),
+    [locale]
+  );
   const filter = useCallback<AutocompleteFilter>(
     (textValue, inputValue, node) => {
       if (alwaysShowKey && node.value?.value == alwaysShowKey) {
         return true;
       }
-      return contains(textValue, inputValue);
+      return (
+        contains(textValue, inputValue) &&
+        (!hasAccents(inputValue) || containsTypedAccents(textValue, inputValue))
+      );
     },
-    [contains, alwaysShowKey]
+    [contains, containsTypedAccents, alwaysShowKey]
   );
 
   if (!items && !sections) {
@@ -176,6 +185,46 @@ function selectOption(item: Item) {
       />
     </SelectItem>
   );
+}
+
+function hasAccents(text: string) {
+  // NFD splits "é" into "e" + a combining accent, which \p{M} matches
+  return /\p{M}/u.test(text.normalize('NFD'));
+}
+
+// French often writes capitals without their accent ("ECOLE")
+function isUnaccentedCapital(letter: string) {
+  return letter != letter.toLowerCase() && !hasAccents(letter);
+}
+
+function typedAccentsMatcher(locale: string) {
+  const sameBaseLetter = new Intl.Collator(locale, { sensitivity: 'base' });
+  const sameAccent = new Intl.Collator(locale, { sensitivity: 'accent' });
+
+  function letterMatches(labelLetter: string, typedLetter: string) {
+    if (sameBaseLetter.compare(labelLetter, typedLetter) != 0) {
+      return false;
+    }
+    if (!hasAccents(typedLetter) || isUnaccentedCapital(labelLetter)) {
+      return true;
+    }
+    return sameAccent.compare(labelLetter, typedLetter) == 0;
+  }
+
+  return (label: string, typed: string) => {
+    const labelLetters = [...label.normalize('NFC')];
+    const typedLetters = [...typed.normalize('NFC')];
+    const lastStart = labelLetters.length - typedLetters.length;
+    for (let start = 0; start <= lastStart; start++) {
+      const candidate = labelLetters.slice(start, start + typedLetters.length);
+      if (
+        candidate.every((letter, i) => letterMatches(letter, typedLetters[i]))
+      ) {
+        return true;
+      }
+    }
+    return false;
+  };
 }
 
 function selectedLabel(count: number, labels?: { one: string; other: string }) {
