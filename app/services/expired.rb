@@ -21,14 +21,16 @@ module Expired
   # A dossier is considered expired after 3 months max of inactivity
   MONTHS_BEFORE_BROUILLON_EXPIRATION = 3
 
+  # A brouillon nobody ever filled in is deleted after this delay: never touched
+  # since its creation, or prefilled and never claimed by a user
+  WEEKS_BEFORE_NEVER_TOUCHED_BROUILLON_EXPIRATION = 2
+
   # Expiracy jobs are run daily.
   #   it send a lot o email, so we spread our jobs through the day
   def self.schedule_at(caller)
     case caller.name
     when 'Cron::NeverTouchedDossiersBrouillonDeletionJob'
       "every day at 5 am"
-    when 'Cron::ExpiredPrefilledDossiersDeletionJob'
-      "every day at 3 am"
     when 'Cron::ExpiredDossiersTermineDeletionJob'
       "every day at 1 am"
     when 'Cron::ExpiredDossiersBrouillonDeletionJob'
