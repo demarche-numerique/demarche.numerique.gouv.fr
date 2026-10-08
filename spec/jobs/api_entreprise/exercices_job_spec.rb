@@ -20,4 +20,14 @@ RSpec.describe APIEntreprise::ExercicesJob, type: :job do
     ca_list = Etablissement.find(etablissement.id).exercices.map(&:ca)
     expect(ca_list).to contain_exactly('900001', '1900051')
   end
+
+  context 'when the DGFIP holds no turnover for its legal form' do
+    let(:etablissement) { create(:etablissement, siret:, entreprise_forme_juridique_code: '7120') }
+
+    it 'does not call the API' do
+      subject
+
+      expect(a_request(:get, /chiffres_affaires/)).not_to have_been_made
+    end
+  end
 end

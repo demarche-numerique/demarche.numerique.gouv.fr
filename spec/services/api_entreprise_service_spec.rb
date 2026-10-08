@@ -31,5 +31,18 @@ describe APIEntrepriseService do
         expect(APIEntreprise::BilansBdfJob).to have_been_enqueued
       end
     end
+
+    context 'when the DGFIP holds no turnover for the legal form' do
+      let(:roles) { [] }
+
+      before { etablissement.update!(entreprise_forme_juridique_code: '7120') }
+
+      it 'skips the exercices' do
+        subject
+
+        expect(APIEntreprise::ExercicesJob).not_to have_been_enqueued
+        expect(APIEntreprise::TvaJob).to have_been_enqueued
+      end
+    end
   end
 end

@@ -19,9 +19,10 @@ class APIEntrepriseService
       token = Procedure.find(procedure_id).api_entreprise_token
       jobs = [
         APIEntreprise::ExtraitKbisJob, APIEntreprise::TvaJob,
-        APIEntreprise::AssociationJob, APIEntreprise::ExercicesJob,
+        APIEntreprise::AssociationJob,
         APIEntreprise::EffectifsJob, APIEntreprise::EffectifsAnnuelsJob,
       ]
+      jobs << APIEntreprise::ExercicesJob if etablissement.exercices_fetchable?
       jobs << APIEntreprise::AttestationSocialeJob if token.can_fetch_attestation_sociale?
       jobs << APIEntreprise::BilansBdfJob if token.can_fetch_bilans_bdf?
       if etablissement.as_degraded_mode?

@@ -54,6 +54,34 @@ describe Etablissement do
     end
   end
 
+  describe '#exercices_fetchable?' do
+    subject { Etablissement.new(entreprise_forme_juridique_code:).exercices_fetchable? }
+
+    context 'for a company' do
+      let(:entreprise_forme_juridique_code) { '5710' }
+
+      it { is_expected.to be true }
+    end
+
+    context 'for a state service' do
+      let(:entreprise_forme_juridique_code) { '7120' }
+
+      it { is_expected.to be false }
+    end
+
+    context 'for a declared association, some of which are liable to corporate tax' do
+      let(:entreprise_forme_juridique_code) { '9220' }
+
+      it { is_expected.to be true }
+    end
+
+    context 'when the legal form is unknown' do
+      let(:entreprise_forme_juridique_code) { nil }
+
+      it { is_expected.to be true }
+    end
+  end
+
   describe '#entreprise_raison_sociale' do
     subject { etablissement.entreprise_raison_sociale }
 
