@@ -93,9 +93,7 @@ module Instructeurs
 
       labels.each { |label_id| DossierLabel.find_or_create_by(dossier_id: @dossier.id, label_id:) }
 
-      all_labels = DossierLabel.where(dossier_id: @dossier.id).pluck(:label_id)
-
-      (all_labels - labels).each { DossierLabel.find_by(dossier_id: @dossier.id, label_id: _1).destroy }
+      @dossier.dossier_labels.where.not(label_id: labels).destroy_all
 
       render :change_state
     end
