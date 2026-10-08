@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "redcarpet/render_strip"
+
 class TypesDeChamp::ExplicationTypeDeChamp < TypesDeChamp::TextTypeDeChamp
   def self.category = STRUCTURE
   def self.icon = 'fr-icon-emphasis'
@@ -11,6 +13,12 @@ class TypesDeChamp::ExplicationTypeDeChamp < TypesDeChamp::TextTypeDeChamp
   def prefillable? = false
   def fillable? = false
   def libelle_optionnal? = true
+
+  def display_libelle
+    libelle.presence || plain_description.truncate(50, separator: " ", omission: "…").presence ||
+      I18n.t("activerecord.attributes.type_de_champ.type_champs.explication")
+  end
+
   def has_label? = false
   def tags_for_template = [].freeze
   def customizable? = false
@@ -23,5 +31,13 @@ class TypesDeChamp::ExplicationTypeDeChamp < TypesDeChamp::TextTypeDeChamp
       collapsible_explanation_enabled: collapsible_explanation_enabled?,
       collapsible_explanation_text:,
     }
+  end
+
+  private
+
+  # the description is markdown that may embed html
+  def plain_description
+    stripped = Redcarpet::Markdown.new(Redcarpet::Render::StripDown).render(description.to_s)
+    Nokogiri::HTML5.fragment(stripped).text.squish
   end
 end
