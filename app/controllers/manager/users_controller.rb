@@ -87,7 +87,7 @@ module Manager
     def delete
       user = User.find(params[:id])
       if !user.can_be_deleted?
-        fail "Impossible de supprimer cet utilisateur. Il a des dossiers en instruction ou il est administrateur."
+        fail "Impossible de supprimer cet utilisateur : il est administrateur, instructeur, ou expert encore rattaché à une démarche, un avis ou un message."
       end
       user.delete_and_keep_track_dossiers_also_delete_user(current_super_admin, reason: :user_removed)
 

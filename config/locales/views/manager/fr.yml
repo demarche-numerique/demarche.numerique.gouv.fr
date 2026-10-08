@@ -28,7 +28,7 @@ fr:
         submit: "Devenir administrateur et instructeur"
     users:
       show:
-        cannot_be_deleted: "Cet utilisateur ne peut pas être supprimé : il est administrateur, instructeur ou expert."
+        cannot_be_deleted: "Cet utilisateur ne peut pas être supprimé : il est administrateur, instructeur, ou expert encore rattaché à une démarche, un avis ou un message."
       delete_edit:
         title: "Supprimer l’utilisateur n° %{id}"
         warning_html: "Vous allez supprimer définitivement le compte de <strong>%{email}</strong>. Cette suppression est irréversible."
