@@ -134,7 +134,7 @@ describe 'Invitations' do
       expect(page).to have_current_path(brouillon_dossier_path(dossier))
 
       # Disconnect the user to trigger an autosave error
-      logout(:user)
+      page.driver.with_playwright_page { it.context.clear_cookies }
       fill_in 'Texte obligatoire', with: 'some input'
 
       expect(page).to have_css('.autosave-status.failed')
@@ -146,8 +146,10 @@ describe 'Invitations' do
       log_in(owner)
       navigate_to_brouillon(dossier)
 
-      # Simulate session expiration (e.g. logged out in another tab, or iOS bfcache)
-      logout(:user)
+      # Simulate session expiration (e.g. logged out in another tab, or iOS bfcache).
+      # Not Warden's logout: it acts on the next request, which can be a test asset
+      # (favicon, font) fired by the page instead of the invites modal.
+      page.driver.with_playwright_page { it.context.clear_cookies }
 
       click_on "Inviter une personne à modifier ce dossier"
 
