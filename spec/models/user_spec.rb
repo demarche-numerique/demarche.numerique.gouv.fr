@@ -468,8 +468,16 @@ describe User, type: :model do
     end
 
     context 'when the user is an expert' do
-      it 'cannot be deleted' do
-        expect(expert.user.can_be_deleted?).to be_falsy
+      context 'with avis' do
+        it 'cannot be deleted' do
+          expect(experts.default.user.can_be_deleted?).to be false
+        end
+      end
+
+      context 'without any procedure nor avis' do
+        it 'can be deleted' do
+          expect(expert.user.can_be_deleted?).to be true
+        end
       end
     end
   end
@@ -539,6 +547,39 @@ describe User, type: :model do
       it { expect { subject }.not_to raise_error }
       it { expect { subject }.to change { FranceConnectInformation.count }.from(2).to(0) }
       it { expect { subject }.to change { User.count }.by(-1) }
+    end
+
+    context 'when the user is an expert only attached to a discarded procedure' do
+      let(:procedure) { create(:procedure) }
+      let(:expert) { create(:expert, user:) }
+
+      before do
+        create(:experts_procedure, expert:, procedure:)
+        procedure.discard!
+      end
+
+      it 'deletes the user along with its expert role' do
+        user.delete_and_keep_track_dossiers_also_delete_user(super_admin, reason:)
+
+        expect(User.find_by(id: user.id)).to be_nil
+        expect(Expert.find_by(id: expert.id)).to be_nil
+        expect(ExpertsProcedure.where(expert_id: expert.id)).to be_empty
+      end
+
+      # An avis requested after the check: its foreign key rolls the deletion back.
+      context 'when an avis appears after the check' do
+        let!(:avis) { create(:avis, experts_procedure: create(:experts_procedure, expert:, procedure: procedures.individual)) }
+
+        before { allow(user).to receive(:can_be_deleted?).and_return(true) }
+
+        it 'keeps the user and the avis' do
+          expect { user.delete_and_keep_track_dossiers_also_delete_user(super_admin, reason:) }
+            .to raise_error(ActiveRecord::InvalidForeignKey)
+
+          expect(User.find_by(id: user.id)).to be_present
+          expect(Avis.find_by(id: avis.id)).to be_present
+        end
+      end
     end
 
     context 'when the deletion comes from the expiration job' do

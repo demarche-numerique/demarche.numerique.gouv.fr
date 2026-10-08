@@ -224,4 +224,55 @@ RSpec.describe Expert, type: :model do
       end
     end
   end
+
+  describe '#can_be_deleted?' do
+    let(:expert) { create(:expert) }
+
+    subject { expert.can_be_deleted? }
+
+    context 'without any procedure nor avis' do
+      it { is_expected.to be true }
+    end
+
+    context 'when attached to a kept procedure' do
+      before { create(:experts_procedure, expert:, procedure: procedures.individual) }
+
+      it { is_expected.to be false }
+    end
+
+    context 'when only attached to a discarded procedure' do
+      let(:procedure) { create(:procedure) }
+
+      before do
+        create(:experts_procedure, expert:, procedure:)
+        procedure.discard!
+      end
+
+      it { is_expected.to be true }
+    end
+
+    context 'when its link to a kept procedure was revoked' do
+      before { create(:experts_procedure, expert:, procedure: procedures.individual, revoked_at: Time.zone.now) }
+
+      it { is_expected.to be true }
+    end
+
+    context 'when it still has avis' do
+      it { expect(experts.default.can_be_deleted?).to be false }
+    end
+
+    # The avis requested from another expert would otherwise lose its claimant.
+    context 'when it requested an avis from another expert' do
+      before { create(:avis, claimant: expert) }
+
+      it { is_expected.to be false }
+    end
+
+    # Its messages would otherwise read as sent by the usager.
+    context 'when it sent a message' do
+      before { create(:commentaire, expert:, email: expert.email) }
+
+      it { is_expected.to be false }
+    end
+  end
 end

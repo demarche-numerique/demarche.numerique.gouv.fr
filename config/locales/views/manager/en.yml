@@ -4,7 +4,7 @@ en:
       invalid_code: "Invalid or missing OTP code. The operation has been cancelled."
     users:
       show:
-        cannot_be_deleted: "This user cannot be deleted: they are an administrateur, an instructeur or an expert."
+        cannot_be_deleted: "This user cannot be deleted: they are an administrator, a reviewer, or an expert still attached to a procedure, an opinion or a message."
       delete_edit:
         title: "Delete user %{id}"
         warning_html: "You are about to permanently delete the account of <strong>%{email}</strong>. This deletion cannot be undone."

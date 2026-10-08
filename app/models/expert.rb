@@ -4,16 +4,22 @@ class Expert < ApplicationRecord
   include GrantsSessionLifetimeConcern
 
   belongs_to :user
-  has_many :experts_procedures
+  # Only revoked links or links to discarded procedures remain once can_be_deleted?
+  has_many :experts_procedures, dependent: :delete_all
   has_many :procedures, through: :experts_procedures
   has_many :avis, through: :experts_procedures
   has_many :dossiers, through: :avis
-  has_many :commentaires, inverse_of: :expert, dependent: :nullify
+  has_many :commentaires, inverse_of: :expert
 
   default_scope { eager_load(:user) }
 
   def email
     user.email
+  end
+
+  # Nothing may still name the expert: a live link, an avis, a message.
+  def can_be_deleted?
+    !linked_to_kept_procedure? && !involved_in_avis? && commentaires.none?
   end
 
   # Dossiers the expert can currently access, excluding those whose avis has been
@@ -77,5 +83,18 @@ class Expert < ApplicationRecord
     Avis
       .where(claimant_id: old_expert.id, claimant_type: Expert.name)
       .update_all(claimant_id: id)
+  end
+
+  private
+
+  def linked_to_kept_procedure?
+    experts_procedures.not_revoked.exists?(procedure_id: Procedure.select(:id))
+  end
+
+  # Avis drop their default join on dossiers: only existence matters.
+  def involved_in_avis?
+    avis_scope = Avis.unscope(:joins)
+    avis_scope.exists?(experts_procedure_id: experts_procedures.select(:id)) ||
+      avis_scope.exists?(claimant: self)
   end
 end

@@ -309,15 +309,15 @@ class User < ApplicationRecord
   end
 
   def can_be_deleted?
-    !administrateur? && !instructeur? && !expert?
+    !administrateur? && !instructeur? && (expert.nil? || expert.can_be_deleted?)
   end
 
   def delete_and_keep_track_dossiers_also_delete_user(super_admin, reason:)
-    if !can_be_deleted?
-      raise "Cannot delete this user because they are also instructeur, expert or administrateur"
-    end
-
     transaction do
+      if !can_be_deleted?
+        raise "Cannot delete this user: administrateur, instructeur, or expert still referenced by a procedure, an avis or a message"
+      end
+
       # delete invites
       Invite.where(dossier: dossiers).destroy_all
 
