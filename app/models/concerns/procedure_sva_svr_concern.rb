@@ -37,6 +37,10 @@ module ProcedureSVASVRConcern
     dossiers.state_en_construction_ou_instruction.where.not(sva_svr_decision_on: nil)
   end
 
+  def sva_svr_rule_running?
+    sva_svr_enabled? || (sva_svr_rule_disabled? && sva_svr_pending_dossiers.exists?)
+  end
+
   private
 
   def decision

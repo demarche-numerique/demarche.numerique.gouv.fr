@@ -360,7 +360,8 @@ describe Instructeurs::ProceduresController, type: :controller do
 
       let(:instructeur) { instructeurs.default }
       let(:procedure) { procedures.sva }
-      let!(:dossier) { create(:dossier, :en_instruction, :with_individual, procedure:, sva_svr_decision_on: Date.tomorrow) }
+      let(:sva_svr_decision_on) { Date.tomorrow }
+      let!(:dossier) { create(:dossier, :en_instruction, :with_individual, procedure:, sva_svr_decision_on:) }
 
       before do
         procedure.update_column(:sva_svr, procedure.sva_svr.merge('disabled_at' => Time.current.iso8601))
@@ -368,14 +369,22 @@ describe Instructeurs::ProceduresController, type: :controller do
         subject
       end
 
-      it 'stops forcing the column into the list' do
-        expect(response.body).to have_css("tr#table-dossiers-row-#{dossier.id}")
-        expect(response.body).not_to have_css('th', text: 'Date décision SVA')
-        expect(response.body).not_to have_text('Instruction manuelle')
+      it 'keeps the column while a dossier still waits for the rule' do
+        expect(response.body).to have_css('th', text: 'Date décision SVA')
+        expect(response.body).to have_css("tr#table-dossiers-row-#{dossier.id} .fr-badge", text: 'Demain')
       end
 
       it 'hides the send back button of a dossier the rule still decides' do
         expect(response.body).not_to include('Repasser en construction')
+      end
+
+      context 'once no dossier waits for the rule any more' do
+        let(:sva_svr_decision_on) { nil }
+
+        it 'stops forcing the column into the list' do
+          expect(response.body).to have_css("tr#table-dossiers-row-#{dossier.id}")
+          expect(response.body).not_to have_css('th', text: 'Date décision SVA')
+        end
       end
     end
 

@@ -7,6 +7,8 @@
 
 - content_for(:title, "Dossiers")
 
+- sva_svr_running = @procedure.sva_svr_rule_running?
+
 #procedure-show
   .sub-header
     .fr-container.flex.column
@@ -82,7 +84,7 @@
                             %input{ type: "checkbox", disabled: @disable_checkbox_all, checked: @disable_checkbox_all, data: { action: "batch-operation#onCheckAll" }, id: dom_id(BatchOperation.new, :checkbox_all), aria: { label: t('views.instructeurs.dossiers.select_all') } }
                             = label_tag dom_id(BatchOperation.new, :checkbox_all), "Sélectionner tous les dossiers", class: 'fr-label'
 
-                      = render Instructeurs::ColumnTableHeaderComponent.new(procedure_presentation: @procedure_presentation, displayed_columns: @displayed_columns )
+                      = render Instructeurs::ColumnTableHeaderComponent.new(procedure_presentation: @procedure_presentation, displayed_columns: @displayed_columns, sva_svr_running:)
 
                       %th.follow-col{ scope: 'col' }
                         Actions
@@ -139,7 +141,7 @@
                         %td
                           = link_to_if(dossier.hidden_by_administration_at.blank?, status_badge(dossier.state), path)
 
-                        - if @procedure.sva_svr_enabled?
+                        - if sva_svr_running
                           %td
                             %span
                               = link_to_if dossier.hidden_by_administration_at.blank?, render(Instructeurs::SVASVRDecisionBadgeComponent.new(dossier:, procedure: @procedure)), path
