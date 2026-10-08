@@ -148,13 +148,24 @@ describe RechercheController, type: :controller do
         end
 
         context 'once the rule is disabled' do
-          let(:dossier) { create(:dossier, :en_instruction, :with_individual, procedure:, sva_svr_decision_on: Date.tomorrow) }
-
           before { procedure.update_column(:sva_svr, procedure.sva_svr.merge('disabled_at' => Time.current.iso8601)) }
 
-          it 'lets the instructeur send the dossier back to en construction' do
-            subject
-            expect(response.body).to include('Repasser en construction')
+          context 'on a dossier the rule still decides' do
+            let(:dossier) { create(:dossier, :en_instruction, :with_individual, procedure:, sva_svr_decision_on: Date.tomorrow) }
+
+            it 'still hides the send back button' do
+              subject
+              expect(response.body).not_to include('Repasser en construction')
+            end
+          end
+
+          context 'on a dossier submitted after' do
+            let(:dossier) { create(:dossier, :en_instruction, :with_individual, procedure:) }
+
+            it 'lets the instructeur send the dossier back to en construction' do
+              subject
+              expect(response.body).to include('Repasser en construction')
+            end
           end
         end
       end

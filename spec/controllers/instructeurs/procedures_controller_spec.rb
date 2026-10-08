@@ -373,6 +373,10 @@ describe Instructeurs::ProceduresController, type: :controller do
         expect(response.body).not_to have_css('th', text: 'Date décision SVA')
         expect(response.body).not_to have_text('Instruction manuelle')
       end
+
+      it 'hides the send back button of a dossier the rule still decides' do
+        expect(response.body).not_to include('Repasser en construction')
+      end
     end
 
     context "when logged in, and belonging to gi_1, gi_2" do

@@ -4,25 +4,25 @@ module ProcedureSVASVRConcern
   extend ActiveSupport::Concern
 
   included do
-    scope :sva_svr, -> { where("sva_svr ->> 'decision' IN (?) AND sva_svr ->> 'disabled_at' IS NULL", ['sva', 'svr']) }
+    scope :sva_svr, -> { where("sva_svr ->> 'decision' IN (?)", ['sva', 'svr']) }
     validate :sva_svr_immutable_on_published, if: :will_save_change_to_sva_svr?
     validate :validates_sva_svr_compatible
   end
 
-  def sva_svr_rule_disabled? = sva_svr['disabled_at'].present?
+  def sva_svr_rule? = sva? || svr?
 
-  def sva_svr_rule? = [:sva, :svr].include?(decision)
+  def sva_svr_rule_disabled? = sva_svr['disabled_at'].present?
 
   def sva_svr_enabled?
     sva_svr_rule? && !sva_svr_rule_disabled?
   end
 
   def sva?
-    decision == :sva && !sva_svr_rule_disabled?
+    decision == :sva
   end
 
   def svr?
-    decision == :svr && !sva_svr_rule_disabled?
+    decision == :svr
   end
 
   def sva_svr_configuration
@@ -31,6 +31,10 @@ module ProcedureSVASVRConcern
 
   def sva_svr_decision
     decision
+  end
+
+  def sva_svr_pending_dossiers
+    dossiers.state_en_construction_ou_instruction.where.not(sva_svr_decision_on: nil)
   end
 
   private

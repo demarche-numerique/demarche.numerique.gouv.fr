@@ -9,7 +9,7 @@ class Dossiers::PendingCorrectionCheckboxComponent < ApplicationComponent
   end
 
   def render?
-    return false unless dossier.procedure.sva_svr_enabled?
+    return false unless dossier.sva_svr_rule_applies?
 
     dossier.pending_correction?
   end

@@ -3,7 +3,7 @@
 class Instructeurs::EnConstructionMenuComponent < ApplicationComponent
   attr_reader :dossier
 
-  delegate :sva_svr_enabled?, to: :"dossier.procedure"
+  delegate :sva_svr_rule_applies?, to: :dossier
 
   def initialize(dossier:)
     @dossier = dossier

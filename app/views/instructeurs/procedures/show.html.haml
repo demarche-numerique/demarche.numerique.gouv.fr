@@ -154,7 +154,7 @@
                                         close_to_expiration: @statut == 'expirant',
                                         hidden_by_administration: @statut == 'supprimes',
                                         hidden_by_expired: dossier.hidden_by_reason == 'expired',
-                                        sva_svr: @procedure.sva_svr_enabled?,
+                                        sva_svr: dossier.sva_svr_rule_applies?,
                                         has_blocking_pending_correction: dossier.blocked_with_pending_correction?,
                                         turbo: false,
                                         with_menu: false }

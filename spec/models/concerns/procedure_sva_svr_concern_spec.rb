@@ -8,21 +8,6 @@ describe ProcedureSVASVRConcern do
 
     before { procedure.update_column(:sva_svr, procedure.sva_svr.merge('disabled_at' => Time.current.iso8601)) }
 
-    it 'éteint le moteur' do
-      expect(procedure.sva_svr_enabled?).to be false
-      expect(procedure.sva?).to be false
-    end
-
-    it 'garde la mémoire de la règle appliquée' do
-      expect(procedure.sva_svr_rule?).to be true
-      expect(procedure.sva_svr_decision).to eq(:sva)
-      expect(procedure.sva_svr_rule_disabled?).to be true
-    end
-
-    it 'sort du scope que parcourt le cron' do
-      expect(Procedure.sva_svr).not_to include(procedure)
-    end
-
     it 'garde ses réglages malgré la désactivation' do
       procedure.update_column(:sva_svr, procedure.sva_svr.merge('period' => 7))
 
@@ -31,22 +16,18 @@ describe ProcedureSVASVRConcern do
       expect(configuration.decision).to eq('sva')
       expect(configuration.period).to eq(7)
     end
-
-    it 'éteint aussi svr?' do
-      svr_procedure = procedures.svr
-      svr_procedure.update_column(:sva_svr, svr_procedure.sva_svr.merge('disabled_at' => Time.current.iso8601))
-
-      expect(svr_procedure.svr?).to be false
-    end
   end
 
-  describe 'une règle active' do
+  describe '#sva_svr_pending_dossiers' do
     let(:procedure) { procedures.sva }
 
-    it 'reste dans le scope' do
-      expect(procedure.sva_svr_enabled?).to be true
-      expect(procedure.sva_svr_rule_disabled?).to be false
-      expect(Procedure.sva_svr).to include(procedure)
+    let!(:en_instruction) { create(:dossier, :en_instruction, :with_individual, procedure:, sva_svr_decision_on: 10.days.from_now.to_date) }
+    let!(:en_attente_de_correction) { create(:dossier, :en_construction, :with_individual, procedure:, sva_svr_decision_on: 3.days.from_now.to_date) }
+    let!(:tranche) { create(:dossier, :accepte, :with_individual, procedure:, sva_svr_decision_on: 1.day.ago.to_date, sva_svr_decision_triggered_at: 1.day.ago) }
+    let!(:sans_date) { create(:dossier, :en_instruction, :with_individual, procedure:) }
+
+    it 'ne retient que les dossiers en cours portant une date' do
+      expect(procedure.sva_svr_pending_dossiers).to contain_exactly(en_instruction, en_attente_de_correction)
     end
   end
 

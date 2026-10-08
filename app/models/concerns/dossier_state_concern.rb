@@ -137,7 +137,7 @@ module DossierStateConcern
     end
     EmailTemplatePresenterService.create_commentaire_for_state(self, state)
 
-    if procedure.sva_svr_enabled?
+    if sva_svr_rule_applies?
       log_automatic_dossier_operation(:passer_en_instruction, self)
     else
       log_automatic_dossier_operation(:passer_en_instruction)
@@ -167,7 +167,6 @@ module DossierStateConcern
       .passer_en_construction(instructeur: instructeur)
       .processed_at
     self.expired_at = expiration_date
-    self.sva_svr_decision_on = nil if procedure.sva_svr_rule_disabled?
 
     save!
 
