@@ -13,6 +13,8 @@ module ProcedureSVASVRConcern
 
   def sva_svr_rule_disabled? = sva_svr['disabled_at'].present?
 
+  def sva_svr_rule_disabled_at = Time.zone.parse(sva_svr['disabled_at'])
+
   def sva_svr_enabled?
     sva_svr_rule? && !sva_svr_rule_disabled?
   end

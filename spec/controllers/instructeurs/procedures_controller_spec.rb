@@ -364,7 +364,7 @@ describe Instructeurs::ProceduresController, type: :controller do
       let!(:dossier) { create(:dossier, :en_instruction, :with_individual, procedure:, sva_svr_decision_on:) }
 
       before do
-        procedure.update_column(:sva_svr, procedure.sva_svr.merge('disabled_at' => Time.current.iso8601))
+        procedure.update_column(:sva_svr, procedure.sva_svr.merge('disabled_at' => '2026-10-07T14:30:00+02:00'))
         sign_in(instructeur.user)
         subject
       end
@@ -378,12 +378,20 @@ describe Instructeurs::ProceduresController, type: :controller do
         expect(response.body).not_to include('Repasser en construction')
       end
 
+      it 'tells the instructeurs new dossiers get no automatic decision' do
+        expect(response.body).to have_css('.fr-alert--info', text: "Le SVA ne s’applique plus : aucune décision automatique pour les dossiers déposés à partir du 07 octobre 2026 à 14:30.")
+      end
+
       context 'once no dossier waits for the rule any more' do
         let(:sva_svr_decision_on) { nil }
 
         it 'stops forcing the column into the list' do
           expect(response.body).to have_css("tr#table-dossiers-row-#{dossier.id}")
           expect(response.body).not_to have_css('th', text: 'Date décision SVA')
+        end
+
+        it 'drops the banner' do
+          expect(response.body).not_to have_text('ne s’applique plus')
         end
       end
     end

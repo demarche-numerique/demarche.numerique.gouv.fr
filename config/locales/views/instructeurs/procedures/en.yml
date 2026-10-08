@@ -13,6 +13,7 @@ en:
       show:
         file_tracking: File tracking
         reinit_display: Your display had to be reset due to a technical issue.
+        sva_svr_disabled: "Automatic decision (%{rule}) no longer applies: applications submitted from %{date} onwards get no automatic decision."
       administrators_list:
         title: Procedure administrators
       index:

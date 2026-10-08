@@ -20,6 +20,9 @@
         %h1.fr-h5.fr-mb-0= t('.file_tracking')
         = render Instructeurs::TabsExplanationsComponent.new
       = render Instructeurs::WarningBannerComponent.new(draft: @procedure.brouillon?, single_procedure: true)
+      - if sva_svr_running && @procedure.sva_svr_rule_disabled?
+        .fr-alert.fr-alert--info.fr-alert--sm.fr-mt-2w
+          %p= t('.sva_svr_disabled', rule: @procedure.sva_svr_configuration.human_decision, date: l(@procedure.sva_svr_rule_disabled_at, format: :long_with_time))
     .fr-container
       .flex= render partial: "tabs", locals: { procedure: @procedure,
         statut: @statut,
