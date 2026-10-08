@@ -123,10 +123,12 @@ class Champs::ReferentielChamp < ChampData
       end.compact.group_by do |_, type_de_champ|
         dossier.revision.parent_of(type_de_champ)
       end.flat_map do |repetition_type_de_champ, mappings|
-        if repetition_type_de_champ.present?
-          update_repetition_prefillable_champs(data, repetition_type_de_champ, mappings)
-        else
+        if repetition_type_de_champ.nil?
           update_simple_prefillable_champs(data, mappings)
+        elsif repetition_type_de_champ == parent
+          prefill_own_row(data, mappings)
+        else
+          prefill_new_rows(data, repetition_type_de_champ, mappings)
         end
       end
   end
@@ -231,41 +233,26 @@ class Champs::ReferentielChamp < ChampData
     end
   end
 
-  def update_repetition_prefillable_champs(data, repetition_type_de_champ, mappings)
+  # In its own repetition, the champ writes on its own row: no row to add.
+  # Note: limited to updating that row only.
+  def prefill_own_row(data, mappings)
     group_mappings_by_json_array(mappings).flat_map do |array_key, array_mappings|
-      json_array = Array(JSONPathUtil.on_safe(data.with_indifferent_access, array_key).first)
-      if json_array.is_a?(Array)
-        json_array.flat_map do |json_value|
-          if json_value.blank?
-            []
-          else
-            row_id = determine_row_id(repetition_type_de_champ)
-            array_mappings.map do |jsonpath, type_de_champ|
-              raw_value = if JSONPathUtil.json_path_contains_array?(jsonpath)
-                JSONPathUtil.on_safe(json_value, JSONPathUtil.extract_key_after_array(jsonpath)).first
-              else
-                json_value
-              end
-              update_prefillable_champ(type_de_champ:, raw_value:, row_id:)
-            end
-          end
-        end
-      else
-        []
-      end
+      json_elements(data, array_key).flat_map { prefill_row(element_attributes(it, array_mappings), row_id) }
     end
   end
 
-  def determine_row_id(repetition_type_de_champ)
-    # When the referentiel champ belongs to the very repetition being prefilled, keep the data
-    # on its own row. Note: limited to updating that row only.
-    # Otherwise (root champ, or a champ of another repetition), create a new row for each array
-    # element: reusing our own row_id would write a row of our repetition into another one, where
-    # no row marker carries it — the data would be persisted but invisible to the whole app.
-    if dossier.revision.parent_of(type_de_champ) == repetition_type_de_champ
-      self.row_id
-    else
-      dossier.repetition_add_row(repetition_type_de_champ, updated_by:)
+  # Elsewhere (root champ, or a champ of another repetition), one new row per element that no
+  # row created by this champ already holds: replaying a response adds nothing.
+  def prefill_new_rows(data, repetition_type_de_champ, mappings)
+    sourced_rows = dossier.repetition_row_markers(repetition_type_de_champ).filter { it.prefilled_by?(self) }
+
+    group_mappings_by_json_array(mappings).flat_map do |array_key, array_mappings|
+      prefilled = sourced_rows.to_set { row_signature(it.row_id, array_mappings) }
+
+      json_elements(data, array_key)
+        .map { element_attributes(it, array_mappings) }
+        .reject { prefilled.include?(element_signature(it)) }
+        .flat_map { prefill_row(it, add_prefilled_row(repetition_type_de_champ)) }
     end
   end
 
@@ -273,24 +260,63 @@ class Champs::ReferentielChamp < ChampData
     mappings.group_by { |jsonpath, _| JSONPathUtil.extract_array_name(jsonpath) }
   end
 
-  def update_simple_prefillable_champs(data, mappings)
-    mappings.map do |jsonpath, type_de_champ|
-      raw_value = JSONPathUtil.on_safe(data, jsonpath).first
-      update_prefillable_champ(type_de_champ:, raw_value:)
+  def json_elements(data, array_key)
+    Array.wrap(JSONPathUtil.on_safe(data, array_key).first).compact_blank
+  end
+
+  def element_attributes(json_value, array_mappings)
+    array_mappings.map do |jsonpath, type_de_champ|
+      [type_de_champ, prefill_attributes_for(type_de_champ, raw_value_in(json_value, jsonpath))]
     end
   end
 
-  def update_prefillable_champ(type_de_champ:, raw_value:, row_id: nil)
-    prefill_champ = dossier.champ_for_update(type_de_champ, row_id:, updated_by:)
-    normalized = normalize_api_value(raw_value, type_de_champ)
-    attributes = TypesDeChamp::PrefillTypeDeChamp
-      .build(type_de_champ, dossier.revision)
-      .to_assignable_attributes(prefill_champ, normalized)
-    return prefill_champ if attributes.nil?
+  def raw_value_in(json_value, jsonpath)
+    if JSONPathUtil.json_path_contains_array?(jsonpath)
+      JSONPathUtil.on_safe(json_value, JSONPathUtil.extract_key_after_array(jsonpath)).first
+    else
+      json_value
+    end
+  end
 
-    attributes[:prefilled] = true
-    prefill_champ.update(attributes.merge(prefilled_original_value: attributes.except(:prefilled)))
-    prefill_champ
+  # A champ left unprefilled keeps a nil that matches nil attributes.
+  def row_signature(row_id, array_mappings)
+    array_mappings.map { |_, type_de_champ| dossier.project_champ(type_de_champ, row_id:).prefilled_original_value }
+  end
+
+  # as_json mimics the jsonb round trip of prefilled_original_value: string keys, ISO dates.
+  def element_signature(element_attributes)
+    element_attributes.map { |_, attributes| attributes.as_json }
+  end
+
+  def prefill_row(element_attributes, row_id)
+    element_attributes.map { |type_de_champ, attributes| prefill_champ(type_de_champ, attributes, row_id:) }
+  end
+
+  # Reusing our own row_id would write a row of our repetition into another one, where no row
+  # marker carries it: the data would be persisted but invisible to the whole app.
+  def add_prefilled_row(repetition_type_de_champ)
+    dossier.champ_for_update(repetition_type_de_champ, row_id: ULID.generate, updated_by:)
+      .tap { it.mark_prefilled_by!(self) }
+      .row_id
+  end
+
+  def update_simple_prefillable_champs(data, mappings)
+    mappings.map do |jsonpath, type_de_champ|
+      prefill_champ(type_de_champ, prefill_attributes_for(type_de_champ, JSONPathUtil.on_safe(data, jsonpath).first))
+    end
+  end
+
+  # Screening reads only the dossier off the champ, so this champ stands in for the target.
+  def prefill_attributes_for(type_de_champ, raw_value)
+    TypesDeChamp::PrefillTypeDeChamp
+      .build(type_de_champ, dossier.revision)
+      .to_assignable_attributes(self, normalize_api_value(raw_value, type_de_champ))
+  end
+
+  def prefill_champ(type_de_champ, attributes, row_id: nil)
+    champ = dossier.champ_for_update(type_de_champ, row_id:, updated_by:)
+    champ.update(attributes.merge(prefilled: true, prefilled_original_value: attributes)) if attributes
+    champ
   end
 
   def rewrap_selected_object_in_datasource(data)

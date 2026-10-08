@@ -1063,6 +1063,22 @@ describe Users::DossiersController, type: :controller do
       end
     end
 
+    context 'when the champ is the row marker of a prefilled repetition' do
+      let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :repetition, children: [{}] }]) }
+      let(:repetition) { dossier.root_champs_public.first.type_de_champ }
+      let(:row_id) { dossier.repetition_row_ids(repetition).first }
+      let(:source) { double(public_id: '100') }
+
+      before { dossier.champ_for_update(repetition, row_id:, updated_by: user.email).mark_prefilled_by!(source) }
+
+      it 'leaves the marker untouched' do
+        patch :revert_prefill, params: { id: dossier.id, stable_id: "#{repetition.stable_id}-#{row_id}" }, format: :turbo_stream
+
+        expect(response).to have_http_status(:success)
+        expect(Dossier.find(dossier.id).repetition_row_markers(repetition).first).to be_prefilled_by(source)
+      end
+    end
+
     context 'when dossier is en_construction (buffer stream)' do
       let(:dossier) { create(:dossier, :en_construction, user:, procedure:) }
 
