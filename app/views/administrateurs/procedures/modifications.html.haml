@@ -21,10 +21,10 @@
       - dossiers_en_instruction_count = dossiers.state_en_instruction.count
       .card.fr-mb-8v
         %h2.card-title
-          - if revision.administrateur.present?
-            = "Modifications publiées le #{l(revision.published_at, format: :long_with_time)} par #{revision.administrateur.user.email}"
-          - else
-            = "Modifications publiées le #{l(revision.published_at, format: :long_with_time)}"
+          - card_title = "Modifications publiées"
+          - card_title += " le #{l(revision.published_at, format: :long_with_time)}" if revision.published_at.present?
+          - card_title += " par #{revision.administrateur.user.email}" if revision.administrateur.present?
+          = card_title
         - if !dossiers_en_construction_count.zero? && !dossiers_en_instruction_count.zero?
           %p
             - if dossiers_en_construction_count == 1
