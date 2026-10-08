@@ -2,17 +2,24 @@
 
 %p= t(:hello, scope: [:views, :shared, :greetings])
 
-- unconfirmed_email = @resource.try(:unconfirmed_email?)
-- if unconfirmed_email.present?
+- requested_email = @resource.try(:unconfirmed_email) || @resource.try(:requested_merge_into)&.email
+- if requested_email.present?
   %p
     Nous avons reçu une demande de changement d’adresse électronique pour votre
-    compte #{@email} sur #{APPLICATION_NAME}.
-    Une fois la demande prise en compte, la nouvelle adresse électronique de
-    votre compte sera #{unconfirmed_email}.
+    compte #{@email} sur #{APPLICATION_NAME}. La nouvelle adresse demandée est
+    #{requested_email}.
 - else
   %p
     Le changement d’adresse électronique de votre compte #{@email} sur
     #{APPLICATION_NAME} a bien été pris en compte.
     Vous pouvez désormais vous connecter avec l’adresse #{@resource.email}.
+
+%p
+  Si vous n’êtes pas à l’origine de cette demande, votre compte est peut-être
+  compromis : contactez le support via le
+  = link_to 'formulaire de contact', contact_url
+  ou à l’adresse
+  = succeed '.' do
+    = mail_to CONTACT_EMAIL
 
 = render partial: "layouts/mailers/signature"

@@ -128,6 +128,27 @@ describe Users::ProfilController, type: :controller do
       end
     end
 
+    describe 'warning the current address' do
+      let(:previous_email) { user.email }
+
+      it 'warns it when a new address is requested' do
+        expect { patch :update_email, params: { user: { email: 'loulou@lou.com' } } }
+          .to have_enqueued_mail(DeviseUserMailer, :email_changed).with(user, { to: previous_email })
+      end
+
+      it 'warns it when a merge is requested' do
+        existing_user = create(:user)
+
+        expect { patch :update_email, params: { user: { email: existing_user.email } } }
+          .to have_enqueued_mail(DeviseUserMailer, :email_changed).with(user, { to: previous_email })
+      end
+
+      it 'does not warn it when the change is rejected' do
+        expect { patch :update_email, params: { user: { email: 'incorrect' } } }
+          .not_to have_enqueued_mail(DeviseUserMailer, :email_changed)
+      end
+    end
+
     context 'when the mail is incorrect' do
       before do
         patch :update_email, params: { user: { email: 'incorrect' } }

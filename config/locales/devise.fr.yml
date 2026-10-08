@@ -1,5 +1,8 @@
 fr:
   devise:
+    mailer:
+      email_changed:
+        subject: Changement de l’adresse électronique de votre compte
     failure:
       inactivity: Pour votre sécurité, votre session a expiré faute d’activité. Reconnectez-vous pour continuer.
       expired: Pour votre sécurité, votre session a expiré. Reconnectez-vous pour continuer.

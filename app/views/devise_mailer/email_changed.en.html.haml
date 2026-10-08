@@ -2,12 +2,19 @@
 
 %p= t(:hello, scope: [:views, :shared, :greetings])
 
-- unconfirmed_email = @resource.try(:unconfirmed_email?)
-- if unconfirmed_email.present?
+- requested_email = @resource.try(:unconfirmed_email) || @resource.try(:requested_merge_into)&.email
+- if requested_email.present?
   %p
-    We recieved a request to change the email address associated with your account #{@email} on #{APPLICATION_NAME}. The new email address will be #{unconfirmed_email}.
+    We received a request to change the email address associated with your account #{@email} on #{APPLICATION_NAME}. The requested address is #{requested_email}.
 - else
   %p
     A change to the email address associated with your account #{@email} was made on #{APPLICATION_NAME}. You can now connect with the email address #{@resource.email}.
+
+%p
+  If you did not make this request, your account may be compromised: contact the support through the
+  = link_to 'contact form', contact_url
+  or at
+  = succeed '.' do
+    = mail_to CONTACT_EMAIL
 
 = render partial: "layouts/mailers/signature"
