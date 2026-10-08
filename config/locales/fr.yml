@@ -1103,6 +1103,9 @@ fr:
       preview_attestation: Prévisualiser l’attestation
       proposition:
         sent: Le dossier a été prérempli et l’usager a été informé qu’il peut le compléter.
+        message: Suite à l’examen de votre dossier, l’administration vous informe que vous pouvez le compléter en cliquant sur le bouton « Modifier le dossier ».
+        already_pending: Le dossier est déjà en attente de correction.
+        termine: Impossible de demander de corriger un dossier terminé.
       terminer_notice: Le dossier a bien été traité. L’usager a été informé que son dossier a été %{state}.
       alert_unspecified_attestation_title: L’attestation de décision est incomplète
       unspecified_champs_group: Formulaire usager

@@ -1101,6 +1101,9 @@ en:
       preview_attestation: Preview the certificate
       proposition:
         sent: The application has been prefilled and the applicant has been told they can complete it.
+        message: Following the review of your application, the administration informs you that you can complete it with the edit button below.
+        already_pending: The application is already awaiting a correction.
+        termine: A completed application cannot be sent back for correction.
       terminer_notice: The file has been processed. The user has been informed that their file has been %{state}.
       alert_unspecified_attestation_title: The decision certificate is incomplete
       unspecified_champs_group: User form
