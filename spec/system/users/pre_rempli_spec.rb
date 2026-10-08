@@ -39,6 +39,9 @@ describe 'Pre-rempli champ:', js: true do
         dossier.reload
         expect(dossier.state).to eq('en_construction')
         expect(dossier.project_champ(tdc).value).to eq('REF-42')
+
+        visit demande_dossier_path(dossier)
+        expect(page).not_to have_text('Référence interne')
       end
     end
   end

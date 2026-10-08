@@ -151,4 +151,34 @@ RSpec.describe Dossiers::ChampsRowsShowComponent, type: :component do
       end
     end
   end
+
+  describe "pre_rempli champ hidden from the usager" do
+    let(:procedure) do
+      create(:procedure, :published, public_type_de_champs: [
+        { type: :text, libelle: "Nom complet" },
+        { type: :pre_rempli, libelle: "Statut interne", pre_rempli_hidden: true },
+      ])
+    end
+    let(:dossier) do
+      create(:dossier, :en_construction, procedure:).tap do |dossier|
+        dossier.root_champs_public.find { it.libelle == "Statut interne" }.update!(value: "CONFIRME")
+      end
+    end
+    let(:component) { described_class.new(champs:, profile:, seen_at: nil) }
+
+    context "for the usager" do
+      let(:profile) { "usager" }
+
+      it do
+        expect(page).to have_text("Nom complet")
+        expect(page).not_to have_text("Statut interne")
+      end
+    end
+
+    context "for the instructeur" do
+      let(:profile) { "instructeur" }
+
+      it { expect(page).to have_text("Statut interne") }
+    end
+  end
 end

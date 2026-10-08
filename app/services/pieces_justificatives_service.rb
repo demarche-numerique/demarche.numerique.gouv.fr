@@ -102,6 +102,7 @@ class PiecesJustificativesService
         include_infos_administration: false,
         include_avis_for_expert: false, # should be true, expert can use the messagerie, why not provide avis ?
         only_for_expert: false,
+        for_usager: true,
       }
     else
       raise 'not supported'
