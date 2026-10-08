@@ -63,7 +63,8 @@ class DossierMailer < ApplicationMailer
       @logo_url = procedure_logo_url(@dossier.procedure)
       @correction = commentaire.dossier_correction
 
-      @subject = default_i18n_subject(dossier_id: dossier.id, libelle_demarche: dossier.procedure.libelle)
+      # No default: a fallback would give a plausible but wrong subject ("correct" for a complement).
+      @subject = t(".#{@correction.reason}.subject", dossier_id: dossier.id, libelle_demarche: dossier.procedure.libelle)
 
       mail(to: dossier.user_email_for(:notification), subject: @subject)
     end

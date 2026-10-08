@@ -37,6 +37,10 @@ en:
         modified: "Modified file"
         not_modified: "File not modified"
         discarded: "Correction request cancelled"
+      pending_correction/complement:
+        for_instructeur: "pending completion"
+        for_user: "to be completed"
+        discarded: "Completion request cancelled"
       attente_reponse:
         for_user: "PENDING RESPONSE"
         for_instructeur: "pending response"

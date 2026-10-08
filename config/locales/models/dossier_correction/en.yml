@@ -6,3 +6,4 @@ en:
           incorrect: "The file is invalid and needs to be corrected"
           incomplete: "The file is incomplete and needs to be completed"
           outdated: "The file needs to be updated and revalidated"
+          complement: "The application was completed by the administration and awaits the applicant"

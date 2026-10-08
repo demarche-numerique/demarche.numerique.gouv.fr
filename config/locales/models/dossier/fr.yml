@@ -37,6 +37,10 @@ fr:
         modified: "Dossier modifié"
         not_modified: "Dossier non modifié"
         discarded: "Demande de correction annulée"
+      pending_correction/complement:
+        for_instructeur: "en attente de complément"
+        for_user: "à compléter"
+        discarded: "Demande de complément annulée"
       attente_reponse:
         for_user: "EN ATTENTE DE RÉPONSE"
         for_instructeur: "en attente de réponse"

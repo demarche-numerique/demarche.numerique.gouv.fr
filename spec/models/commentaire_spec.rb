@@ -164,6 +164,16 @@ describe Commentaire do
         commentaire.send(:notify_user, wait: 5.minutes)
       end
     end
+
+    context "when the commentaire carries a complement request" do
+      before { commentaire.dossier_correction = build(:dossier_correction, dossier:, commentaire:, reason: :complement) }
+
+      it "triggers AMI notification with the complement trigger" do
+        expect(Ami::CreateNotificationService).to receive(:call).with(dossier: dossier, trigger: :pending_complement)
+
+        commentaire.send(:notify_user, wait: 5.minutes)
+      end
+    end
   end
 
   describe 'body validation' do

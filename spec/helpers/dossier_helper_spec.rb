@@ -443,4 +443,25 @@ RSpec.describe DossierHelper, type: :helper do
       it { is_expected.to be_falsey }
     end
   end
+  describe ".pending_correction_badge" do
+    it "words a complement request as such" do
+      expect(pending_correction_badge(:for_user, reason: 'complement')).to have_text("à compléter", normalize_ws: true)
+      expect(pending_correction_badge(:for_instructeur, reason: 'complement')).to have_text("en attente de complément", normalize_ws: true)
+    end
+
+    it "falls back on the correction wording for a reason without its own" do
+      expect(pending_correction_badge(:for_user, reason: 'incorrect')).to have_text("à corriger", normalize_ws: true)
+      expect(pending_correction_badge(:for_instructeur, reason: 'incomplete')).to have_text("en attente de correction", normalize_ws: true)
+    end
+  end
+
+  describe ".correction_resolved_badge" do
+    it "words a cancelled complement request as such" do
+      expect(correction_resolved_badge(:discarded, reason: 'complement')).to have_text("Demande de complément annulée", normalize_ws: true)
+    end
+
+    it "keeps the neutral wording shared by every reason" do
+      expect(correction_resolved_badge(:modified, reason: 'complement')).to have_text("Dossier modifié", normalize_ws: true)
+    end
+  end
 end

@@ -635,6 +635,9 @@ fr:
           pending_correction:
             title: "Attention"
             body_html: 'Consultez les corrections à apporter à votre dossier dans la <a href="%{link}" class="fr-notice__link">messagerie<span class="fr-sr-only"> du dossier numéro %{id}</span></a>.'
+          pending_complement:
+            title: "Dossier à compléter"
+            body_html: 'L’administration vous invite à compléter votre dossier : <a href="%{link}" class="fr-notice__link">modifier le dossier<span class="fr-sr-only"> numéro %{id}</span></a>.'
           pending_response:
             title: "Attention"
             message_html: 'Consultez la <a href="%{link}" class="fr-notice__link">messagerie<span class="fr-sr-only"> du dossier numéro %{id}</span></a> et répondez à l''administration.'
@@ -1100,6 +1103,9 @@ fr:
       preview_attestation: Prévisualiser l’attestation
       proposition:
         sent: Le dossier a été prérempli et l’usager a été informé qu’il peut le compléter.
+        message: Suite à l’examen de votre dossier, l’administration vous informe que vous pouvez le compléter en cliquant sur le bouton « Modifier le dossier ».
+        already_pending: Le dossier est déjà en attente de correction.
+        termine: Impossible de demander de corriger un dossier terminé.
       terminer_notice: Le dossier a bien été traité. L’usager a été informé que son dossier a été %{state}.
       alert_unspecified_attestation_title: L’attestation de décision est incomplète
       unspecified_champs_group: Formulaire usager

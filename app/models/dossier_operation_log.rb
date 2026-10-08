@@ -7,6 +7,7 @@ class DossierOperationLog < ApplicationRecord
     repasser_en_construction: 'repasser_en_construction',
     demander_une_correction: 'demander_une_correction',
     demander_a_completer: 'demander_a_completer',
+    transmettre_un_complement: 'transmettre_un_complement',
     repasser_en_instruction: 'repasser_en_instruction',
     accepter: 'accepter',
     refuser: 'refuser',

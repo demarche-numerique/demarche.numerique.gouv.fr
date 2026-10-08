@@ -735,6 +735,56 @@ describe Instructeurs::DossiersController, type: :controller do
     end
   end
 
+  describe '#proposition' do
+    let(:procedure) { create(:procedure, :published, :for_individual, public_type_de_champs: [{ type: :text, stable_id: 99 }], instructeurs: [instructeur]) }
+    let(:dossier) { create(:dossier, :en_instruction, :with_individual, procedure:) }
+
+    subject { patch :proposition, params: { procedure_id: procedure.id, dossier_id: dossier.id } }
+
+    def prefilled_value
+      dossier.reload.with_main_stream { dossier.project_champ(dossier.find_type_de_champ_by_stable_id(99)).value }
+    end
+
+    before do
+      dossier.with_instructeur_buffer_stream do
+        dossier.public_champ_for_update('99', updated_by: instructeur.email).update!(value: 'Prérempli')
+      end
+    end
+
+    it 'prefills the dossier and asks the usager to complete it, in a single message' do
+      expect { subject }.to change { dossier.commentaires.count }.by(1)
+
+      expect(dossier.reload).to be_en_construction
+      expect(dossier.pending_correction).to be_dossier_complement
+      expect(dossier.pending_correction.commentaire.body).to eq(I18n.t('instructeurs.dossiers.proposition.message'))
+      expect(prefilled_value).to eq('Prérempli')
+      expect(flash.notice).to eq(I18n.t('instructeurs.dossiers.proposition.sent'))
+    end
+
+    context 'when a correction is already pending' do
+      before { create(:dossier_correction, dossier:) }
+
+      it 'merges nothing and says why' do
+        expect { subject }.not_to change { dossier.commentaires.count }
+
+        expect(prefilled_value).to be_nil
+        expect(dossier.reload.corrections.map(&:reason)).to eq(['incorrect'])
+        expect(flash.alert).to eq(I18n.t('instructeurs.dossiers.proposition.already_pending'))
+      end
+    end
+
+    context 'when the dossier is terminé' do
+      let(:dossier) { create(:dossier, :accepte, :with_individual, procedure:) }
+
+      it 'merges nothing and says why' do
+        expect { subject }.not_to change { dossier.commentaires.count }
+
+        expect(prefilled_value).to be_nil
+        expect(flash.alert).to eq(I18n.t('instructeurs.dossiers.proposition.termine'))
+      end
+    end
+  end
+
   describe '#pending_correction' do
     let(:message) { 'do that' }
     let(:justificatif) { nil }

@@ -5,7 +5,7 @@ module Ami
     SOURCE = ApplicationHelper::APP_HOST
 
     DECISION_STATES = [:accepte, :refuse, :sans_suite].freeze
-    MESSAGE_TRIGGERS = [:messagerie_message, :pending_correction].freeze
+    MESSAGE_TRIGGERS = [:messagerie_message, :pending_correction, :pending_complement].freeze
 
     ITEM_GENERIC_STATUS_BY_STATE = {
       brouillon: "new",
@@ -65,8 +65,11 @@ module Ami
 
     private
 
+    # A complement request carries no instruction of its own: straight to the edition.
     def item_external_url
-      if message_trigger?
+      if trigger == :pending_complement
+        Rails.application.routes.url_helpers.modifier_dossier_url(dossier)
+      elsif message_trigger?
         Rails.application.routes.url_helpers.messagerie_dossier_url(dossier)
       else
         Rails.application.routes.url_helpers.dossier_url(dossier)

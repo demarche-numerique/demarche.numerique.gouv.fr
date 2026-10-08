@@ -159,7 +159,17 @@ class Commentaire < ApplicationRecord
 
     # Une demande de correction n'est pas un message ordinaire : elle attend une
     # action de l'usager, et AMI la formule comme telle.
-    Ami::CreateNotificationService.call(dossier:, trigger: flagged_pending_correction? ? :pending_correction : :messagerie_message)
+    Ami::CreateNotificationService.call(dossier:, trigger: ami_trigger)
+  end
+
+  def ami_trigger
+    if !flagged_pending_correction?
+      :messagerie_message
+    elsif dossier_correction.dossier_complement?
+      :pending_complement
+    else
+      :pending_correction
+    end
   end
 
   def notify_administration

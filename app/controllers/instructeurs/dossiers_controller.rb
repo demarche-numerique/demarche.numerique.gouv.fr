@@ -401,15 +401,31 @@ module Instructeurs
       end
     end
 
-    # Le garde porte sur la présence de changements et pas sur le seul bouton : sans
-    # lui, un second envoi enregistrerait une correction vide.
+    # `flag_as_pending_correction!` est un no-op silencieux quand il ne peut pas flaguer :
+    # sans le garde en tête, on fusionnerait sans demande et on annoncerait un envoi.
     def proposition
-      if dossier.instructeur_buffer_changes?
-        dossier.repasser_en_construction!(instructeur: current_instructeur) if dossier.en_instruction?
-        # Le message générique annoncerait une modification « afin de poursuivre l'instruction »,
-        # alors que le dossier repart attendre l'usager.
-        dossier.instructeur_submit_en_construction!(instructeur: current_instructeur, notify: false)
-        flash.notice = t('.sent')
+      if !dossier.may_flag_as_pending_correction?
+        flash.alert = dossier.termine? ? t('.termine') : t('.already_pending')
+      elsif dossier.instructeur_buffer_changes?
+        # Construit et non créé : `Commentaire#notify` choisit l'e-mail selon la correction.
+        message = CommentaireService.build(current_instructeur, dossier, body: t('.message'), deletable: false)
+
+        if message.valid?
+          # La correction d'abord : sinon la fusion trace un traitement en_construction
+          # sur un dossier encore en instruction.
+          dossier.transaction do
+            dossier.flag_as_pending_correction!(message, :complement)
+            # Le message générique doublerait la demande de complément.
+            dossier.instructeur_submit_en_construction!(instructeur: current_instructeur, notify: false)
+          end
+
+          dossier.touch(:last_commentaire_updated_at)
+          current_instructeur.follow(dossier)
+
+          flash.notice = t('.sent')
+        else
+          flash.alert = message.errors.full_messages.map { "Commentaire : #{it}" }
+        end
       end
 
       redirect_to annotations_privees_instructeur_dossier_path(dossier.procedure, dossier)

@@ -12,6 +12,7 @@ class DossierCorrection < ApplicationRecord
     incorrect: 'incorrect',
     incomplete: 'incomplete',
     outdated: 'outdated',
+    complement: 'complement',
   }, prefix: :dossier
 
   def resolved?

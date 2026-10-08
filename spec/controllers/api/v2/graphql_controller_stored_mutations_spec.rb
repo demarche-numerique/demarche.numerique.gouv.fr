@@ -891,6 +891,18 @@ describe API::V2::GraphqlController do
           end
         end
 
+        context 'when the reason is complement' do
+          let(:variables) { { input: { dossierId: dossier.to_typed_id, instructeurId: instructeur.to_typed_id, body: 'Hello World!', correction: 'complement' } } }
+
+          it 'refuses it: only the prefill proposal asks for a complement' do
+            expect(gql_errors).to be_nil
+            expect(gql_data[:dossierEnvoyerMessage][:message]).to be_nil
+            expect(gql_data[:dossierEnvoyerMessage][:errors])
+              .to eq([{ message: 'Le motif complement ne peut pas être demandé par l’API' }])
+            expect(dossier.reload.corrections).to be_empty
+          end
+        end
+
         context 'when the dossier is terminated' do
           let(:dossier) { dossiers.accepte }
 

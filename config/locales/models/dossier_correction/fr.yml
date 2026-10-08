@@ -6,3 +6,4 @@ fr:
           incorrect: "Le dossier n’est pas valide et nécessite une correction"
           incomplete: "Le dossier est incomplet et nécessite d’être complété"
           outdated: "Le dossier doit être mis à jour et revalidé"
+          complement: "Le dossier a été complété par l’administration et attend l’usager"

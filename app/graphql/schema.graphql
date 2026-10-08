@@ -880,6 +880,11 @@ type Correction {
 
 enum CorrectionReason {
   """
+  Le dossier a été complété par l’administration et attend l’usager
+  """
+  complement
+
+  """
   Le dossier est incomplet et nécessite d’être complété
   """
   incomplete

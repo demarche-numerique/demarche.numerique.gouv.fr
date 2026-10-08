@@ -41,6 +41,11 @@ module Mutations
     end
 
     def authorized?(dossier:, instructeur:, correction: nil, **args)
+      # Readable on a correction, never posed here: only the prefill proposal asks for a complement.
+      if correction.to_s == 'complement'
+        return false, { errors: ["Le motif complement ne peut pas être demandé par l’API"] }
+      end
+
       if correction.present? && !dossier.may_flag_as_pending_correction?
         return false, { errors: [correction_error_message(dossier)] }
       end

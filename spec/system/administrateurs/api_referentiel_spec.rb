@@ -716,7 +716,7 @@ describe 'Referentiel API:' do
       ]
     end
 
-    let(:dossier) { create(:dossier, :en_construction, procedure:) }
+    let(:dossier) { create(:dossier, :en_instruction, procedure:) }
 
     before { Flipper.enable(:annotation_prefill_champs_public, procedure) }
 
@@ -727,7 +727,6 @@ describe 'Referentiel API:' do
     # Pas de `vcr: true` : sans fixture par exemple, VCR passerait en enregistrement
     # et rouvrirait le réseau réel. Les cassettes imbriquées suffisent.
     scenario 'the instructeur homologates, reviews the proposal, then sends it', js: true do
-      dossier.passer_en_instruction!(instructeur:)
       expect(public_champs_with(repetition_stable_id).first).not_to be_visible
 
       visit annotations_privees_instructeur_dossier_path(procedure, dossier)
@@ -755,8 +754,10 @@ describe 'Referentiel API:' do
       expect(page).to have_content('Le dossier a été prérempli et l’usager a été informé')
 
       expect(public_champs_with(dirigeant_nom_stable_id).map(&:value)).to match_array(['Dupont', 'Martin'])
-      # Aucun message tant que la notification dédiée n'existe pas.
-      expect(dossier.commentaires.count).to eq(commentaires_count)
+      # Une demande de complément, et pas en plus le message générique de modification.
+      expect(dossier.commentaires.count).to eq(commentaires_count + 1)
+      expect(dossier).to be_en_construction
+      expect(dossier.pending_correction).to be_dossier_complement
 
       # L'usager retrouve son dossier modifiable, le bloc ouvert et pré-rempli.
       login_as dossier.user, scope: :user
