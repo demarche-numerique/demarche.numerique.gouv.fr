@@ -176,6 +176,17 @@ describe 'Invitations' do
       expect(page).to have_text("user_invite@exemple.fr")
     end
 
+    scenario 'the confirmation of an invitation reopens the updated modal right away', js: true do
+      log_in(owner)
+      navigate_to_dossier(dossier)
+      send_invite_to "user_invite@exemple.fr"
+
+      within('#flash_messages') { click_on "inviter une autre personne" }
+      expect(page).to have_button("Fermer", focused: true)
+      within('#dossier-invites-modal-dialog') { expect(page).to have_text("1 personne invitée") }
+      expect(page).to have_field('invite_email', with: '', visible: true)
+    end
+
     scenario 'an invitation error focuses the email field, which describes the error, at each attempt', js: true do
       create(:invite, dossier:, email: "user_invite@exemple.fr")
       log_in(owner)
