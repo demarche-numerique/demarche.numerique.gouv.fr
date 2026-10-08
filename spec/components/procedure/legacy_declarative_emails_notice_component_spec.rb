@@ -5,6 +5,8 @@ require 'rails_helper'
 RSpec.describe Procedure::LegacyDeclarativeEmailsNoticeComponent, type: :component do
   let(:procedure) { create(:procedure, declarative_with_state: :en_instruction) }
 
+  let(:modal_html) { rendered_content }
+
   before { render_inline(described_class.new(procedure:)) }
 
   context 'when the declarative procedure was kept on the legacy emails' do
@@ -14,6 +16,8 @@ RSpec.describe Procedure::LegacyDeclarativeEmailsNoticeComponent, type: :compone
         create(:email_depose, procedure:)
       end
     end
+
+    it_behaves_like 'a labelled DSFR modal', 'switch-to-combined-declarative-emails'
 
     it 'offers the switch' do
       expect(page).to have_css('.fr-notice--warning', text: 'nouvelle version')

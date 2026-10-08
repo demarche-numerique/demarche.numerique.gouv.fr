@@ -1,140 +1,102 @@
-<dialog
-  id="<%= modal_id %>"
-  class="fr-modal tags-legend-modal"
-  role="dialog"
-  aria-labelledby="<%= title_id %>"
->
-  <div class="fr-container fr-container--fluid fr-container-md">
-    <div class="fr-grid-row fr-grid-row--center">
-      <div class="fr-col-12 fr-col-md-10 fr-col-lg-8">
-        <div class="fr-modal__body">
-          <div class="fr-modal__header">
-            <button
-              class="fr-btn--close fr-btn"
-              type="button"
-              aria-controls="<%= modal_id %>"
-              title="<%= t('utils.modal_close_alt') %>"
-            >
-              <%= t('utils.modal_close') %>
-            </button>
-          </div>
+<%= render Dsfr::ModalComponent.new(id: modal_id, size: :lg, class: 'tags-legend-modal') do |modal| %>
+  <% modal.with_title { 'Légende des balises' } %>
 
-          <div class="fr-modal__content">
-            <h1 id="<%= title_id %>" class="fr-modal__title">
-              <span
-                class="fr-icon-arrow-right-line fr-icon--lg"
-                aria-hidden="true"
-              ></span>
-              Légende des balises
-            </h1>
+  <p>
+    Si vous utilisez la balise d’un champ <strong>facultatif</strong> ou
+    <strong>conditionné</strong> et que l’usager (ou l’instructeur) n’a pas
+    renseigné ce champ, le texte généré <strong>sera incomplet</strong>.
+  </p>
 
-            <p>
-              Si vous utilisez la balise d’un champ <strong>facultatif</strong>
-              ou <strong>conditionné</strong> et que l’usager (ou l’instructeur)
-              n’a pas renseigné ce champ, le texte généré
-              <strong>sera incomplet</strong>.
-            </p>
+  <p>
+    Il est donc recommandé de bien prendre en compte les caractéristiques des
+    balises et de privilégier le cas échéant une formulation qui fonctionne
+    aussi bien lorsque la balise est renseignée que lorsqu’elle ne l’est pas.
+  </p>
 
-            <p>
-              Il est donc recommandé de bien prendre en compte les
-              caractéristiques des balises et de privilégier le cas échéant une
-              formulation qui fonctionne aussi bien lorsque la balise est
-              renseignée que lorsqu’elle ne l’est pas.
-            </p>
+  <div class="fr-table fr-mb-2w">
+    <div class="fr-table__wrapper">
+      <div class="fr-table__container">
+        <div class="fr-table__content">
+          <table>
+            <caption class="fr-sr-only">Légende des balises</caption>
 
-            <div class="fr-table fr-mb-2w">
-              <div class="fr-table__wrapper">
-                <div class="fr-table__container">
-                  <div class="fr-table__content">
-                    <table>
-                      <caption class="fr-sr-only">Légende des balises</caption>
+            <thead>
+              <tr>
+                <th scope="col">Format de balise</th>
+                <th scope="col">Signification</th>
+              </tr>
+            </thead>
 
-                      <thead>
-                        <tr>
-                          <th scope="col">Format de balise</th>
-                          <th scope="col">Signification</th>
-                        </tr>
-                      </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <span class="fr-tag fr-tag--sm"> Libellé du champ * </span>
+                </td>
 
-                      <tbody>
-                        <tr>
-                          <td>
-                            <span class="fr-tag fr-tag--sm">
-                              Libellé du champ *
-                            </span>
-                          </td>
+                <td>Champ obligatoire</td>
+              </tr>
 
-                          <td>Champ obligatoire</td>
-                        </tr>
+              <tr>
+                <td>
+                  <span class="fr-tag fr-tag--sm"> Libellé du champ </span>
+                </td>
 
-                        <tr>
-                          <td>
-                            <span class="fr-tag fr-tag--sm">
-                              Libellé du champ
-                            </span>
-                          </td>
+                <td>
+                  Champ facultatif
+                  <br>
+                  <span class="fr-text--sm fr-text-default--warning">
+                    <span
+                      class="fr-icon-warning-fill fr-icon--sm"
+                      aria-hidden="true"
+                    ></span>
+                    Sera vide si non rempli
+                  </span>
+                </td>
+              </tr>
 
-                          <td>
-                            Champ facultatif
-                            <br>
-                            <span class="fr-text--sm fr-text-default--warning">
-                              <span
-                                class="fr-icon-warning-fill fr-icon--sm"
-                                aria-hidden="true"
-                              ></span>
-                              Sera vide si non rempli
-                            </span>
-                          </td>
-                        </tr>
+              <tr>
+                <td>
+                  <span class="fr-tag fr-tag--sm fr-tag--purple-glycine">
+                    Libellé du champ * [conditionné]
+                  </span>
+                </td>
 
-                        <tr>
-                          <td>
-                            <span class="fr-tag fr-tag--sm fr-tag--purple-glycine">
-                              Libellé du champ * [conditionné]
-                            </span>
-                          </td>
+                <td>
+                  Champ obligatoire conditionné
+                  <br>
+                  <span class="fr-text--sm fr-text-default--warning">
+                    <span
+                      class="fr-icon-warning-fill fr-icon--sm"
+                      aria-hidden="true"
+                    ></span>
+                    Sera vide si non rempli
+                  </span>
+                </td>
+              </tr>
 
-                          <td>
-                            Champ obligatoire conditionné
-                            <br>
-                            <span class="fr-text--sm fr-text-default--warning">
-                              <span
-                                class="fr-icon-warning-fill fr-icon--sm"
-                                aria-hidden="true"
-                              ></span>
-                              Sera vide si non rempli
-                            </span>
-                          </td>
-                        </tr>
+              <tr>
+                <td>
+                  <span class="fr-tag fr-tag--sm fr-tag--purple-glycine">
+                    Libellé du champ [conditionné]
+                  </span>
+                </td>
 
-                        <tr>
-                          <td>
-                            <span class="fr-tag fr-tag--sm fr-tag--purple-glycine">
-                              Libellé du champ [conditionné]
-                            </span>
-                          </td>
-
-                          <td>
-                            Champ facultatif conditionné
-                            <br>
-                            <span class="fr-text--sm fr-text-default--warning">
-                              <span
-                                class="fr-icon-warning-fill fr-icon--sm"
-                                aria-hidden="true"
-                              ></span>
-                              Sera vide si non rempli
-                            </span>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+                <td>
+                  Champ facultatif conditionné
+                  <br>
+                  <span class="fr-text--sm fr-text-default--warning">
+                    <span
+                      class="fr-icon-warning-fill fr-icon--sm"
+                      aria-hidden="true"
+                    ></span>
+                    Sera vide si non rempli
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
-</dialog>
+<% end %>

@@ -8,6 +8,12 @@ RSpec.describe Dossiers::NoAccessToDossierComponent, type: :component do
 
   subject { render_inline(described_class.new(dossier, instructeur)) }
 
+  it_behaves_like "a labelled DSFR modal", "modal-no-access-to-dossier-1" do
+    let(:modal_html) { subject.to_html }
+
+    before { allow(dossier).to receive(:id).and_return(1) }
+  end
+
   it "renders the dossier number as the modal trigger link" do
     expect(subject).to have_link("Dossier n° #{dossier.id}", href: "#modal-no-access-to-dossier-#{dossier.id}")
   end

@@ -9,61 +9,34 @@
       class="fr-btn fr-btn--secondary fr-btn--sm fr-ml-2w"
       data-fr-opened="false"
       aria-controls="<%= MODAL_ID %>"
+      aria-haspopup="dialog"
     >
       <%= t('.learn_more') %>
     </button>
   <% end %>
 <% end %>
 
-<dialog
-  id="<%= MODAL_ID %>"
-  class="fr-modal"
-  role="dialog"
-  aria-labelledby="<%= MODAL_ID %>-title"
->
-  <div class="fr-container fr-container--fluid fr-container-md">
-    <div class="fr-grid-row fr-grid-row--center">
-      <div class="fr-col-12 fr-col-md-10 fr-col-lg-8">
-        <div class="fr-modal__body">
-          <div class="fr-modal__header">
-            <button
-              class="fr-btn--close fr-btn"
-              type="button"
-              aria-controls="<%= MODAL_ID %>"
-              title="<%= t('utils.modal_close_alt') %>"
-            >
-              <%= t('utils.modal_close') %>
-            </button>
-          </div>
+<%# visible title carried by the alert: the modal keeps its own for screen readers %>
+<%= render Dsfr::ModalComponent.new(id: MODAL_ID, size: :lg, icon: nil, title_hidden: true) do |modal| %>
+  <% modal.with_title { t('.modal.title') } %>
 
-          <div class="fr-modal__content">
-            <%# visible title carried by the alert: the modal keeps its own for screen readers %>
-            <h1 id="<%= MODAL_ID %>-title" class="fr-modal__title fr-sr-only">
-              <%= t('.modal.title') %>
-            </h1>
+  <%= render Dsfr::AlertComponent.new(state: :info, title: t('.modal.title'), heading_level: 'h3') do |c| %>
+    <% c.with_body do %>
+      <p><%= t('.modal.what_changes_html') %></p>
 
-            <%= render Dsfr::AlertComponent.new(state: :info, title: t('.modal.title'), heading_level: 'h2') do |c| %>
-              <% c.with_body do %>
-                <p><%= t('.modal.what_changes_html') %></p>
+      <p>
+        <%= t(".modal.what_you_lose.#{declarative_state}_html") %>
+      </p>
 
-                <p>
-                  <%= t(".modal.what_you_lose.#{declarative_state}_html") %>
-                </p>
+      <p>
+        <%= link_to t('.modal.documentation'), EMAILS_AUTOMATIQUES_DOC_URL,
+              target: '_blank', rel: 'noopener', class: 'fr-link' %>
+      </p>
+    <% end %>
+  <% end %>
 
-                <p>
-                  <%= link_to t('.modal.documentation'), EMAILS_AUTOMATIQUES_DOC_URL,
-                        target: '_blank', rel: 'noopener', class: 'fr-link' %>
-                </p>
-              <% end %>
-            <% end %>
-
-            <%= button_to t('.modal.switch'),
-                  switch_to_combined_admin_procedure_email_templates_path(procedure),
-                  method: :patch,
-                  class: 'fr-btn fr-mt-2w' %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</dialog>
+  <%= button_to t('.modal.switch'),
+        switch_to_combined_admin_procedure_email_templates_path(procedure),
+        method: :patch,
+        class: 'fr-btn fr-mt-2w' %>
+<% end %>

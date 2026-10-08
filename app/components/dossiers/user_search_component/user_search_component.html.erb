@@ -15,6 +15,7 @@
     "
     data-fr-opened="false"
     aria-controls="dossiers-search-modal"
+    aria-haspopup="dialog"
   >
     <%= t('views.users.dossiers.index.search.open') %>
   </button>
@@ -28,6 +29,7 @@
     "
     data-fr-opened="false"
     aria-controls="dossiers-filter-modal"
+    aria-haspopup="dialog"
     data-controller="lazy-frame"
     data-action="lazy-frame#load"
     data-lazy-frame-frame-id-value="<%= Dossiers::UserSearchComponent::FILTER_PANEL_FRAME_ID %>"
@@ -43,44 +45,14 @@
   </button>
 </div>
 
-<dialog
-  id="dossiers-search-modal"
-  class="fr-modal user-search-panel"
-  aria-labelledby="dossiers-search-title"
-  role="dialog"
->
-  <div class="fr-container fr-container--fluid fr-container-md">
-    <div class="fr-grid-row fr-grid-row--center">
-      <div class="fr-col-12 fr-col-md-8">
-        <div class="fr-modal__body">
-          <div class="fr-modal__header">
-            <button
-              type="button"
-              class="fr-btn--close fr-btn"
-              aria-controls="dossiers-search-modal"
-            >
-              <%= t('utils.modal_close') %>
-            </button>
-          </div>
+<%= render Dsfr::ModalComponent.new(id: 'dossiers-search-modal', class: 'user-search-panel') do |modal| %>
+  <% modal.with_title { t('views.users.dossiers.index.search.panel_title') } %>
 
-          <div class="fr-modal__content">
-            <h1
-              id="dossiers-search-title"
-              class="fr-modal__title fr-icon-arrow-right-line"
-            >
-              <%= t('views.users.dossiers.index.search.panel_title') %>
-            </h1>
+  <%= form_with url: dossiers_path, method: :get, data: { turbo_frame: "dossiers_list", turbo_action: "advance" } do %>
+    <% filter_hidden_inputs.each do |name, value| %>
+      <%= hidden_field_tag name, value %>
+    <% end %>
 
-            <%= form_with url: dossiers_path, method: :get, data: { turbo_frame: "dossiers_list", turbo_action: "advance" } do %>
-              <% filter_hidden_inputs.each do |name, value| %>
-                <%= hidden_field_tag name, value %>
-              <% end %>
-
-              <%= render partial: 'users/dossiers/search_input', locals: { search_terms: search_terms, input_id: 'search-mobile' } %>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</dialog>
+    <%= render partial: 'users/dossiers/search_input', locals: { search_terms: search_terms, input_id: 'search-mobile' } %>
+  <% end %>
+<% end %>

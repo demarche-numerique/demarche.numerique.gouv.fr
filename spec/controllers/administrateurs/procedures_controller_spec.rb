@@ -2061,4 +2061,33 @@ describe Administrateurs::ProceduresController, type: :controller do
       end
     end
   end
+
+  describe 'lazy modal frames' do
+    render_views
+
+    let(:procedure) { procedures.individual }
+    let(:title_id) { Dsfr::ModalComponent.title_id('api-champ-columns-modal') }
+
+    it 'titles the API columns frame with the id its dialog points to' do
+      get :api_champ_columns, params: { id: procedure.id, stub_type_champ: 'siret' }
+      expect(response.body).to have_css("h2##{title_id}.fr-modal__title")
+    end
+
+    it 'titles the commune frame with the id its dialog points to' do
+      get :commune_info, params: { id: procedure.id }
+      expect(response.body).to have_css("h2##{title_id}.fr-modal__title")
+    end
+
+    context 'before a frame loads' do
+      let(:modal_html) { response.body }
+
+      before { get :champs, params: { id: procedure.id } }
+
+      it_behaves_like 'a labelled DSFR modal', 'api-champ-columns-modal'
+
+      it 'names the modal with a placeholder title' do
+        expect(response.body).to have_css("turbo-frame#api-champ-columns h2##{title_id}", text: 'Liste des informations remontées', visible: :all)
+      end
+    end
+  end
 end

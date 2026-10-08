@@ -13,35 +13,8 @@
   <%= t('.title') %>
 </button>
 
-<dialog
-  id="synthese-modal"
-  class="fr-modal"
-  role="dialog"
-  aria-labelledby="synthese-modal-title"
->
-  <div class="fr-container fr-container--fluid fr-container-md">
-    <div class="fr-grid-row fr-grid-row--center">
-      <div class="fr-col-12 fr-col-md-10 fr-col-lg-8">
-        <div class="fr-modal__body">
-          <div class="fr-modal__header">
-            <button
-              class="fr-btn--close fr-btn"
-              aria-controls="synthese-modal"
-              title="<%= t('utils.modal_close_alt') %>"
-            >
-              <%= t('utils.modal_close') %>
-            </button>
-          </div>
+<%= render Dsfr::ModalComponent.new(id: 'synthese-modal', size: :lg, icon: nil) do |modal| %>
+  <% modal.with_title { t('.title') } %>
 
-          <div class="fr-modal__content">
-            <h1 id="synthese-modal-title" class="fr-modal__title">
-              <%= t('.title') %>
-            </h1>
-
-            <turbo-frame id="synthese-content" data-lazy-modal-target="frame"></turbo-frame>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</dialog>
+  <turbo-frame id="synthese-content" data-lazy-modal-target="frame"></turbo-frame>
+<% end %>

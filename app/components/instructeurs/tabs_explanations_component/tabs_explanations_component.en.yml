@@ -1,8 +1,6 @@
 en:
   modal:
     title: What do the tabs include?
-    close: Close
-    close_alt: Close this modal
     tabs_en_cours_html: <strong>“in progress”</strong> tab brings together published procedures as well as closed procedures that still have files to process.
     tabs_en_test_html: <strong>“in testing”</strong> tab groups together the procedures which have not yet been published. Files submitted during the test phase are deleted when the procedure’s settings are modified or when it is published.
     tabs_close_html: <strong>“finished”</strong> tab groups together closed procedures with no more files to process.

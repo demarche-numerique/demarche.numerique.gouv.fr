@@ -24,6 +24,7 @@
           type="button"
           title="<%= t('.link_button_title') %>"
           aria-controls="tiptap-link-modal"
+          aria-haspopup="dialog"
           data-fr-opened="false"
           data-action="click->tiptap#menuButton"
           data-tiptap-target="button"
@@ -91,110 +92,69 @@
   <% end %>
 
   <% if link? %>
-    <dialog
-      id="tiptap-link-modal"
-      class="fr-modal"
-      role="dialog"
-      aria-labelledby="tiptap-link-modal-title"
-      data-tiptap-target="linkModal"
-    >
-      <div class="fr-container fr-container--fluid fr-container-md">
-        <div class="fr-grid-row fr-grid-row--center">
-          <div class="fr-col-12 fr-col-md-6">
-            <div class="fr-modal__body">
-              <div class="fr-modal__header">
-                <button
-                  class="fr-btn--close fr-btn"
-                  type="button"
-                  aria-controls="tiptap-link-modal"
-                  title="<%= t('utils.modal_close_alt') %>"
-                >
-                  <%= t('utils.modal_close') %>
-                </button>
-              </div>
+    <%= render Dsfr::ModalComponent.new(id: 'tiptap-link-modal', icon: 'fr-icon-link', data: { 'tiptap-target': 'linkModal' }) do |modal| %>
+      <% modal.with_title { t('.insert_link') } %>
 
-              <div class="fr-modal__content">
-                <h1 id="tiptap-link-modal-title" class="fr-modal__title">
-                  <span class="fr-icon-link fr-mr-1v" aria-hidden="true"></span>
-                  <%= t('.insert_link') %>
-                </h1>
+      <div data-tiptap-target="linkFormContent">
+        <p class="fr-text--sm fr-mb-2w">
+          <%= t('.link_label') %>
+          <strong data-tiptap-target="linkSelectedText"></strong>
+        </p>
 
-                <div data-tiptap-target="linkFormContent">
-                  <p class="fr-text--sm fr-mb-2w">
-                    <%= t('.link_label') %>
-                    <strong data-tiptap-target="linkSelectedText"></strong>
-                  </p>
+        <div class="fr-input-group" data-tiptap-target="linkInputGroup">
+          <label class="fr-label" for="tiptap-link-url-input">
+            <%= t('.link_url_label') %>
 
-                  <div
-                    class="fr-input-group"
-                    data-tiptap-target="linkInputGroup"
-                  >
-                    <label class="fr-label" for="tiptap-link-url-input">
-                      <%= t('.link_url_label') %>
+            <span class="fr-hint-text"><%= t('.link_url_hint') %></span>
+          </label>
 
-                      <span class="fr-hint-text">
-                        <%= t('.link_url_hint') %>
-                      </span>
-                    </label>
+          <input
+            class="fr-input fr-mt-1w"
+            type="url"
+            id="tiptap-link-url-input"
+            data-tiptap-target="linkUrlInput"
+            data-action="keydown.enter->tiptap#confirmLink input->tiptap#updateRemoveLinkButtonState"
+            autocomplete="url"
+          >
 
-                    <input
-                      class="fr-input fr-mt-1w"
-                      type="url"
-                      id="tiptap-link-url-input"
-                      data-tiptap-target="linkUrlInput"
-                      data-action="keydown.enter->tiptap#confirmLink input->tiptap#updateRemoveLinkButtonState"
-                      autocomplete="url"
-                    >
-
-                    <p
-                      class="fr-error-text fr-hidden"
-                      data-tiptap-target="linkErrorText"
-                    >
-                      <%= t('.link_url_error') %>
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="fr-modal__footer">
-                <div class="flex width-100 justify-between items-center">
-                  <button
-                    class="
-                      fr-btn fr-btn--secondary fr-btn--icon-left
-                      fr-icon-delete-line
-                    "
-                    type="button"
-                    disabled
-                    data-action="click->tiptap#clearLinkInput"
-                    data-tiptap-target="removeLinkButton"
-                  >
-                    <%= t('.remove_link') %>
-                  </button>
-
-                  <div class="fr-btns-group fr-btns-group--inline fr-btns-group--inline-lg">
-                    <button
-                      class="fr-btn fr-btn--secondary"
-                      type="button"
-                      data-action="click->tiptap#closeLinkModal"
-                    >
-                      <%= t('.cancel') %>
-                    </button>
-
-                    <button
-                      class="fr-btn"
-                      type="button"
-                      data-action="click->tiptap#confirmLink"
-                      data-tiptap-target="linkConfirmButton"
-                    >
-                      <%= t('.create_link') %>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <p class="fr-error-text fr-hidden" data-tiptap-target="linkErrorText">
+            <%= t('.link_url_error') %>
+          </p>
         </div>
       </div>
-    </dialog>
+
+      <% modal.with_footer do %>
+        <div class="flex width-100 justify-between items-center">
+          <button
+            class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-delete-line"
+            type="button"
+            disabled
+            data-action="click->tiptap#clearLinkInput"
+            data-tiptap-target="removeLinkButton"
+          >
+            <%= t('.remove_link') %>
+          </button>
+
+          <div class="fr-btns-group fr-btns-group--inline fr-btns-group--inline-lg">
+            <button
+              class="fr-btn fr-btn--secondary"
+              type="button"
+              data-action="click->tiptap#closeLinkModal"
+            >
+              <%= t('.cancel') %>
+            </button>
+
+            <button
+              class="fr-btn"
+              type="button"
+              data-action="click->tiptap#confirmLink"
+              data-tiptap-target="linkConfirmButton"
+            >
+              <%= t('.create_link') %>
+            </button>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
   <% end %>
 </div>

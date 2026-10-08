@@ -185,6 +185,26 @@ describe InvitesController, type: :controller do
     end
   end
 
+  describe '#GET index' do
+    render_views
+
+    let(:modal_html) { response.body }
+
+    before do
+      sign_in dossier.user
+      get :index, params: { dossier_id: dossier.id }
+    end
+
+    it_behaves_like 'a labelled DSFR modal', 'dossier-invites-modal-dialog'
+
+    it 'targets the invitation form from the modal footer' do
+      html = Capybara.string(response.body)
+
+      expect(html).to have_css('form#dossier-invites-form[data-turbo-force="server"]', visible: :all)
+      expect(html).to have_css('.fr-modal__footer input[type="submit"][form="dossier-invites-form"]', visible: :all)
+    end
+  end
+
   describe '#GET show' do
     let(:user) { users.usager }
 

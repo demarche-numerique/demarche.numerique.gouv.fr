@@ -1,0 +1,26 @@
+<% modal_content = capture do %>
+  <button
+    class="fr-sr-only"
+    aria-controls="modal-eligibilite-rules-dialog"
+    aria-haspopup="dialog"
+    data-fr-opened="<%= opened?.to_s %>"
+  >
+    show modal
+  </button>
+
+  <%= render Dsfr::ModalComponent.new(id: 'modal-eligibilite-rules-dialog', role: 'alertdialog', aria: { describedby: 'modal-eligibilite-rules-description' }, data: { 'turbo-permanent': true }) do |modal| %>
+    <% modal.with_title { t('.modal.title') } %>
+
+    <div id="modal-eligibilite-rules-description">
+      <%= render SimpleFormatComponent.new(error_message) %>
+    </div>
+  <% end %>
+<% end %>
+
+<% if wrapped? %>
+  <div id="ineligibilite_rules_modal">
+    <%= modal_content %>
+  </div>
+<% else %>
+  <%= modal_content %>
+<% end %>

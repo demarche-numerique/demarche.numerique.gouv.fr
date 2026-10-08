@@ -6,6 +6,14 @@ en:
           one: "The expert %{value} was assigned to the procedure n° %{procedure}"
           other: "The experts %{value} were assigned to the procedure n° %{procedure}"
     groupe_instructeurs:
+      routing_modal:
+        custom:
+          title: Manual routing configuration
+          alert_title: Two default groups have been created
+          alert_body: "You now need to rename them and give them routing rules based on the “routable” fields of your form, i.e. fields of type:"
+        simple:
+          title: Automatic routing configuration
+          alert_title: The teams have been created from the field “%{champ}”
       index:
         procedures: Procedures
       add_instructeurs:

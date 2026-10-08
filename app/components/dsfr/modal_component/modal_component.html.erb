@@ -1,0 +1,38 @@
+<%= tag.dialog(**dialog_attributes) do %>
+  <div class="fr-container fr-container--fluid fr-container-md">
+    <div class="fr-grid-row fr-grid-row--center">
+      <div class="<%= column_class %>">
+        <div class="fr-modal__body">
+          <div class="fr-modal__header">
+            <button
+              type="button"
+              class="fr-btn--close fr-btn"
+              aria-controls="<%= id %>"
+              title="<%= t('utils.modal_close') %>"
+            >
+              <%= t('utils.modal_close') %>
+            </button>
+          </div>
+
+          <div class="fr-modal__content">
+            <% if title? %>
+              <h2 id="<%= title_id %>" class="<%= title_class %>">
+                <% if icon %>
+                  <span class="<%= icon %> fr-icon--lg" aria-hidden="true"></span>
+                <% end %>
+
+                <%= title %>
+              </h2>
+            <% end %>
+
+            <%= content %>
+          </div>
+
+          <% if footer? %>
+            <div class="fr-modal__footer"><%= footer %></div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

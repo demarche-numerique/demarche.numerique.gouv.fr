@@ -27,6 +27,10 @@ RSpec.describe Dossiers::AmiFollowComponent, type: :component do
     expect(page).to have_css("turbo-frame#ami-consent[src='/dossiers/#{dossier.id}/ami-consent'][loading='lazy']")
   end
 
+  it_behaves_like 'a labelled DSFR modal', 'ami-info-modal' do
+    let(:modal_html) { render_component.to_html }
+  end
+
   it 'opens the app information in a modal' do
     render_component
 

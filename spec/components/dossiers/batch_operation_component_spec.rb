@@ -52,6 +52,13 @@ RSpec.describe Dossiers::BatchOperationComponent, type: :component do
         is_expected.not_to have_selector('form #modal-instruction-button')
       end
 
+      context 'modals' do
+        let(:modal_html) { subject }
+
+        it_behaves_like 'a labelled DSFR modal', 'modal-avis-batch'
+        it_behaves_like 'a labelled DSFR modal', 'modal-commentaire-batch'
+      end
+
       context 'with expert review disallowed procedure' do
         before {
           procedure.update!(allow_expert_review: false)

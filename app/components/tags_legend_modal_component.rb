@@ -6,8 +6,4 @@ class TagsLegendModalComponent < ApplicationComponent
   def initialize(modal_id:)
     @modal_id = modal_id
   end
-
-  def title_id
-    "#{modal_id}-title"
-  end
 end

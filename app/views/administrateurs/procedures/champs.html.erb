@@ -43,7 +43,7 @@
             <p class="fr-callout__text fr-text--bold">
               <%= t('administrateurs.procedures.champs.callout_no_ask_twice') %>
             </p>
-            <%= button_tag("Liste des informations remontées", type: :button, class: "fr-btn fr-icon-info-line fr-btn--icon-left fr-btn--tertiary-no-outline fr-btn--sm", data: { "fr-opened" => "false", "turbo-frame" => "api-champ-columns", action: "lazy-modal#load" }, src: api_champ_columns_admin_procedure_path(id: @procedure.id, stub_type_champ: 'siret'), "aria-controls" => "api-champ-columns-modal", "aria-haspopup" => "dialog") %>
+            <%= button_tag(t('.api_champ_columns_button'), type: :button, class: "fr-btn fr-icon-info-line fr-btn--icon-left fr-btn--tertiary-no-outline fr-btn--sm", data: { "fr-opened" => "false", "turbo-frame" => "api-champ-columns", action: "lazy-modal#load" }, src: api_champ_columns_admin_procedure_path(id: @procedure.id, stub_type_champ: 'siret'), "aria-controls" => "api-champ-columns-modal", "aria-haspopup" => "dialog") %>
           <% end %>
         <% end %>
       <% end %>
@@ -66,34 +66,16 @@
 
       <%= render TypesDeChampEditor::EditorComponent.new(revision: @procedure.draft_revision, is_annotation: false) %>
 
-      <dialog
-        class="fr-modal"
-        id="api-champ-columns-modal"
-        aria-labelledby="fr-modal-api-champ-columns-h1"
-        role="dialog"
-      >
-        <div class="fr-container fr-container--fluid fr-container-md">
-          <div class="fr-grid-row fr-grid-row--center">
-            <div class="fr-col-12 fr-col-md-8">
-              <div class="fr-modal__body">
-                <div class="fr-modal__header">
-                  <button
-                    class="fr-btn--close fr-btn"
-                    aria-controls="api-champ-columns-modal"
-                    title="<%= t('utils.modal_close_alt') %>"
-                  >
-                    <%= t('utils.modal_close') %>
-                  </button>
-                </div>
-
-                <div class="fr-modal__content">
-                  <%= turbo_frame_tag "api-champ-columns", data: { "lazy-modal-target": "frame" } %>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </dialog>
+      <%= render Dsfr::ModalComponent.new(id: 'api-champ-columns-modal', size: :lg) do %>
+        <%= turbo_frame_tag "api-champ-columns", data: { "lazy-modal-target": "frame" } do %>
+          <h2
+            id="<%= Dsfr::ModalComponent.title_id('api-champ-columns-modal') %>"
+            class="fr-modal__title"
+          >
+            <%= t('.api_champ_columns_button') %>
+          </h2>
+        <% end %>
+      <% end %>
     </div>
   </div>
 </div>

@@ -1,0 +1,33 @@
+<%= turbo_frame_tag("dossier-invites-modal") do %>
+  <%= render Dsfr::ModalComponent.new(id: 'dossier-invites-modal-dialog', size: :lg) do |modal| %>
+    <% modal.with_title { t('views.invites.form.modal_title') } %>
+
+    <% modal.with_footer do %>
+      <div class="fr-btns-group fr-btns-group--left fr-btns-group--inline-lg">
+        <button
+          type="button"
+          class="fr-btn fr-btn--secondary"
+          aria-controls="dossier-invites-modal-dialog"
+        >
+          <%= t('views.invites.form.cancel') %>
+        </button>
+
+        <%= submit_tag t('views.invites.form.send_invitation'), class: 'fr-btn', form: 'dossier-invites-form' %>
+      </div>
+    <% end %>
+
+    <%= form_for @dossier.invites.build, url: dossier_invites_path(@dossier), html: { id: "dossier-invites-form" }, data: { turbo_force: :server } do %>
+      <div class="fr-notice fr-notice--info">
+        <div class="fr-notice__body fr-ml-3v">
+          <p>
+            <span class="fr-notice__title">
+              <%= t('views.invites.form.modal_highlight') %>
+            </span>
+          </p>
+        </div>
+      </div>
+
+      <%= render partial: "invites/form", locals: { dossier: @dossier, invite: @dossier.invites.build, invites: @dossier.invites.filter(&:persisted?) } %>
+    <% end %>
+  <% end %>
+<% end %>

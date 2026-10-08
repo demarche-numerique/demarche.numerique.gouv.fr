@@ -11,6 +11,10 @@ RSpec.describe Dossiers::UserSearchComponent, type: :component do
     render_inline(described_class.new(search_terms: search_terms, active_filter_count: active_filter_count, filter_params: filter_params))
   end
 
+  it_behaves_like 'a labelled DSFR modal', 'dossiers-search-modal' do
+    let(:modal_html) { subject.to_html }
+  end
+
   it 'renders the search input' do
     expect(subject.css('input[name=search]')).to be_present
   end

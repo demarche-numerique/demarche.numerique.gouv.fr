@@ -3,3 +3,6 @@ en:
   shared:
     messagerie:
       new_message: New message
+      disabled_modal:
+        title: Messaging is disabled.
+        contact_html: "To ask a question, contact the service below, stating that your request concerns <b>application n°&nbsp;%{dossier_id}</b>:"

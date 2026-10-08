@@ -26,6 +26,14 @@ RSpec.describe Dossiers::InvalidIneligibiliteRulesComponent, type: :component do
   end
 
   context 'on a page render, the rules being met by the untouched checkbox' do
+    let(:modal_html) { subject }
+
+    it_behaves_like 'a labelled DSFR modal', 'modal-eligibilite-rules-dialog'
+
+    it 'keeps its alertdialog semantics' do
+      expect(Capybara.string(subject)).to have_css('dialog#modal-eligibilite-rules-dialog[role="alertdialog"][aria-describedby="modal-eligibilite-rules-description"][data-turbo-permanent]', visible: :all)
+    end
+
     it 'renders the modal closed' do
       expect(dossier.can_passer_en_construction?).to be false
       expect(subject).to have_selector("[data-fr-opened='false']")

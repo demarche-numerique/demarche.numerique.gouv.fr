@@ -1,8 +1,6 @@
 fr:
   modal:
     title: Que regroupent les onglets ?
-    close: Fermer
-    close_alt: Fermer la fenêtre modale
     tabs_en_cours_html: L’onglet <strong>« en cours »</strong> regroupe les démarches publiées ainsi que les démarches closes ayant encore des dossiers à traiter.
     tabs_en_test_html: L’onglet <strong>« en test »</strong> regroupe les démarches qui ne sont pas encore publiées. Les dossiers déposés pendant la phase de test sont supprimés lorsque les réglages de la démarche sont modifiés ou lorsqu’elle est publiée.
     tabs_close_html: L’onglet <strong>« terminée »</strong> regroupe les démarches closes n’ayant plus de dossiers à traiter.

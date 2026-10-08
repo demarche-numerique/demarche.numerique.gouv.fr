@@ -1,0 +1,9 @@
+<button class="fr-btn" aria-controls="preview-modal" data-fr-opened="true">
+  Ouvrir
+</button>
+
+<%= render Dsfr::ModalComponent.new(id: 'preview-modal') do |modal| %>
+  <% modal.with_title { 'Titre de la modale' } %>
+
+  <p>Contenu de la modale.</p>
+<% end %>
