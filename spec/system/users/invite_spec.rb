@@ -176,6 +176,24 @@ describe 'Invitations' do
       expect(page).to have_text("user_invite@exemple.fr")
     end
 
+    scenario 'an invitation error focuses the email field, which describes the error, at each attempt', js: true do
+      create(:invite, dossier:, email: "user_invite@exemple.fr")
+      log_in(owner)
+      navigate_to_dossier(dossier)
+
+      click_on "Voir les personnes invitées"
+      fill_in 'invite_email', with: "user_invite@exemple.fr"
+
+      2.times do
+        click_on "Envoyer une invitation"
+        expect(page).to have_field('invite_email', focused: true)
+      end
+
+      email_field = find_field('invite_email')
+      expect(email_field['aria-invalid']).to eq('true')
+      expect(find(id: email_field['aria-describedby'])).to have_text("Invitation déjà envoyée")
+    end
+
     context 'as an invited user', js: true do
       before do
         navigate_to_invited_dossier(invite)

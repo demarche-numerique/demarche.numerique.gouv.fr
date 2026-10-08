@@ -12,3 +12,4 @@
 - else
   - invites = @dossier.invites.load
   = turbo_stream.replace "dossier-invites-form-content", partial: "invites/form", locals: { dossier: @dossier, invite: @invite, invites: }
+  = turbo_stream.focus "invite_email"

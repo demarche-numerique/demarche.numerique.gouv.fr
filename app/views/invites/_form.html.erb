@@ -30,7 +30,10 @@
     </p>
 
     <% if invite.errors.any? %>
-      <p class="fr-alert fr-alert--error fr-alert--sm fr-mb-3w" role="alert">
+      <p
+        id="dossier-invites-error"
+        class="fr-alert fr-alert--error fr-alert--sm fr-mb-3w"
+      >
         <%= invite.errors.full_messages.to_sentence %>
       </p>
     <% end %>
@@ -46,7 +49,7 @@
           </span>
         <% end %>
 
-        <%= email_field_tag :invite_email, '', required: true, class: "fr-input" %>
+        <%= email_field_tag :invite_email, '', required: true, class: "fr-input", aria: { invalid: invite.errors.any?, describedby: ("dossier-invites-error" if invite.errors.any?) } %>
       </div>
     </div>
 
