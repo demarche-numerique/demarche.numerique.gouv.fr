@@ -18,7 +18,7 @@ RSpec.describe Dropdown::MenuComponent, type: :component do
   context 'with menu items' do
     it 'follows the menu button pattern' do
       expect(subject).to have_selector('button[aria-haspopup="menu"][aria-expanded="false"][aria-controls="my-menu"]')
-      expect(subject).to have_selector('#my-menu[role="menu"] ul[role="none"]')
+      expect(subject).to have_selector('#my-menu[role="menu"] ul[role="none"] > li[role="none"] > [role="menuitem"]')
     end
   end
 
