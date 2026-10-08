@@ -741,12 +741,29 @@ class Dossier < ApplicationRecord
 
   def extend_conservation_and_restore(conservation_extension, author)
     extend_conservation(conservation_extension)
-    update(hidden_by_expired_at: nil, hidden_by_reason: nil)
-    restore(author)
+    # with_lock in restore raises on unsaved changes
+    return if has_changes_to_save?
+
+    restore(author, expired: true)
   end
 
   def show_procedure_state_warning?
     procedure.discarded? || (brouillon? && !procedure.dossier_can_transition_to_en_construction?)
+  end
+
+  def add_label(label)
+    dossier_label = dossier_labels.find_or_create_by(label:)
+    emit_webhook_event(:dossier_label_ajoute) if dossier_label.previously_new_record?
+    dossier_label
+  end
+
+  def remove_label(label)
+    dossier_label = dossier_labels.find_by(label:)
+    return if dossier_label.nil?
+
+    dossier_label.destroy
+    emit_webhook_event(:dossier_label_supprime) if dossier_label.destroyed?
+    dossier_label
   end
 
   def assign_to_groupe_instructeur(groupe_instructeur, mode, author = nil)
@@ -768,6 +785,10 @@ class Dossier < ApplicationRecord
 
       if author.present?
         log_dossier_operation(author, :changer_groupe_instructeur, self)
+      end
+
+      if previous_groupe_instructeur.present? && previous_groupe_instructeur != groupe_instructeur
+        emit_webhook_event(:groupe_instructeur_change)
       end
     end
   end
@@ -932,7 +953,12 @@ class Dossier < ApplicationRecord
   end
 
   def hide_and_keep_track!(author, reason)
-    transaction do
+    hidden_from_administration = false
+
+    # serializes concurrent hides and restores, so each emits at most once
+    with_lock do
+      was_visible_by_administration = Dossier.visible_by_administration.exists?(id)
+
       if is_administration?(author) && can_be_deleted_by_administration?(reason)
         update(hidden_by_administration_at: Time.zone.now, hidden_by_reason: reason)
         log_dossier_operation(author, :supprimer, self)
@@ -949,6 +975,13 @@ class Dossier < ApplicationRecord
       else
         raise "Unauthorized dossier hide attempt Dossier##{id} by #{author} for reason #{reason}"
       end
+
+      hidden_from_administration = was_visible_by_administration && !Dossier.visible_by_administration.exists?(id)
+    end
+
+    # a removed démarche emits nothing
+    if hidden_from_administration && reason != :procedure_removed
+      emit_webhook_event(:dossier_supprime)
     end
 
     if en_construction? && !hidden_by_administration?
@@ -960,8 +993,14 @@ class Dossier < ApplicationRecord
     end
   end
 
-  def restore(author)
-    transaction do
+  def restore(author, expired: false)
+    restored_to_administration = false
+
+    with_lock do
+      was_visible_by_administration = Dossier.visible_by_administration.exists?(id)
+      restored_from_procedure_removal = hidden_by_reason&.to_sym == :procedure_removed
+
+      update(hidden_by_expired_at: nil, hidden_by_reason: nil) if expired
       if is_administration?(author)
         update(hidden_by_administration_at: nil)
         DossierNotification.destroy_notifications_by_dossier_and_type(self, :dossier_suppression)
@@ -980,7 +1019,11 @@ class Dossier < ApplicationRecord
       end
 
       log_dossier_operation(author, :restaurer, self)
+
+      restored_to_administration = !was_visible_by_administration && !restored_from_procedure_removal && Dossier.visible_by_administration.exists?(id)
     end
+
+    emit_webhook_event(:dossier_restaure) if restored_to_administration
   end
 
   def email_template_for(state)
