@@ -135,7 +135,6 @@ RSpec.describe PrefillChamps do
     it_behaves_like "a champ public value that is authorized", :integer_number, "42"
     it_behaves_like "a champ public value that is authorized", :email, "value"
     it_behaves_like "a champ public value that is authorized", :phone, "value"
-    it_behaves_like "a champ public value that is authorized", :iban, "value"
     it_behaves_like "a champ public value that is authorized", :civilite, "M."
     it_behaves_like "a champ public value that is authorized", :pays, "FR"
     it_behaves_like "a champ public value that is authorized", :regions, "03"
@@ -171,13 +170,47 @@ RSpec.describe PrefillChamps do
       end
     end
 
+    context "with an IBAN, at the root and in a repetition" do
+      let(:public_type_de_champs) { [{ type: :iban }, { type: :repetition, children: [{ type: :iban }] }] }
+      let(:type_de_champ) { procedure.published_revision.public_root_type_de_champs.first }
+      let(:repetition) { procedure.published_revision.public_root_type_de_champs.second }
+      let(:type_de_champ_child) { procedure.published_revision.children_of(repetition).first }
+      let(:iban) { "FR7611315000011234567890138" }
+
+      let(:params) do
+        {
+          "champ_#{type_de_champ.to_typed_id_for_query}" => iban,
+          "champ_#{repetition.to_typed_id_for_query}" => [{ "champ_#{type_de_champ_child.to_typed_id_for_query}" => iban }],
+        }
+      end
+
+      it "filters out both" do
+        expect(prefill_champs_array).to eq([])
+      end
+
+      context "when the procedure kept the IBAN prefill" do
+        before do
+          Flipper.enable(:prefill_iban, procedure)
+          # types de champ predating the column have no procedure: the flag must not depend on it
+          TypeDeChamp.where(id: [type_de_champ.id, type_de_champ_child.id]).update_all(procedure_id: nil)
+          procedure.reload
+        end
+
+        it "prefills both" do
+          expect(prefill_champs_array.map { |champ, attributes| [champ.stable_id, attributes] }).to contain_exactly(
+            [type_de_champ.stable_id, { value: iban }],
+            [type_de_champ_child.stable_id, { value: iban }]
+          )
+        end
+      end
+    end
+
     it_behaves_like "a champ private value that is authorized", :text, "value"
     it_behaves_like "a champ private value that is authorized", :textarea, "value"
     it_behaves_like "a champ private value that is authorized", :decimal_number, "3.14"
     it_behaves_like "a champ private value that is authorized", :integer_number, "42"
     it_behaves_like "a champ private value that is authorized", :email, "value"
     it_behaves_like "a champ private value that is authorized", :phone, "value"
-    it_behaves_like "a champ private value that is authorized", :iban, "value"
     it_behaves_like "a champ private value that is authorized", :civilite, "M."
     it_behaves_like "a champ private value that is authorized", :pays, "FR"
     it_behaves_like "a champ private value that is authorized", :regions, "93"

@@ -40,7 +40,7 @@ class PrefillChamps
     end
 
     def prefillable?
-      champ.prefillable? && champ_attributes.present?
+      prefill_type_de_champ.prefillable? && champ_attributes.present?
     end
 
     # An array of [champ, attributes] pairs; a repetition champ expands to
@@ -50,9 +50,11 @@ class PrefillChamps
     end
 
     def champ_attributes
-      @champ_attributes ||= TypesDeChamp::PrefillTypeDeChamp
-        .build(champ.type_de_champ, dossier.revision)
-        .to_assignable_attributes(champ, value)
+      @champ_attributes ||= prefill_type_de_champ.to_assignable_attributes(champ, value)
+    end
+
+    def prefill_type_de_champ
+      @prefill_type_de_champ ||= TypesDeChamp::PrefillTypeDeChamp.build(champ.type_de_champ, dossier.revision)
     end
   end
 end

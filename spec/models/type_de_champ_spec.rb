@@ -285,7 +285,6 @@ describe TypeDeChamp do
     it_behaves_like "a prefillable type de champ", :type_de_champ_integer_number
     it_behaves_like "a prefillable type de champ", :type_de_champ_email
     it_behaves_like "a prefillable type de champ", :type_de_champ_phone
-    it_behaves_like "a prefillable type de champ", :type_de_champ_iban
     it_behaves_like "a prefillable type de champ", :type_de_champ_date
     it_behaves_like "a prefillable type de champ", :type_de_champ_datetime
     it_behaves_like "a prefillable type de champ", :type_de_champ_civilite
@@ -305,6 +304,7 @@ describe TypeDeChamp do
     it_behaves_like "a prefillable type de champ", :type_de_champ_siret
 
     it_behaves_like "a non-prefillable type de champ", :type_de_champ_number
+    it_behaves_like "a non-prefillable type de champ", :type_de_champ_iban
     it_behaves_like "a non-prefillable type de champ", :type_de_champ_linked_drop_down_list
     it_behaves_like "a non-prefillable type de champ", :type_de_champ_header_section
     it_behaves_like "a non-prefillable type de champ", :type_de_champ_explication
