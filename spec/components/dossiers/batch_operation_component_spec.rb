@@ -45,6 +45,11 @@ RSpec.describe Dossiers::BatchOperationComponent, type: :component do
         is_expected.to have_button('Envoyer un message aux usagers', disabled: true)
       end
 
+      it 'renders the other operations as a menu' do
+        is_expected.to have_selector('button[aria-haspopup="menu"]', text: 'Autres actions multiples')
+        is_expected.to have_selector('#state-menu[role="menu"] li[role="none"] > button[role="menuitem"]', text: 'Ne plus suivre les dossiers')
+      end
+
       it 'renders the instruction modal outside the batch form' do
         is_expected.to have_selector('#modal-instruction-button')
         is_expected.to have_selector('#modal-instruction-title', text: 'Rendre une décision sur les dossiers')
