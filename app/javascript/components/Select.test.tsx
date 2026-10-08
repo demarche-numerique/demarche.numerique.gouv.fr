@@ -242,6 +242,63 @@ suite('SingleSelect with a section id equal to an item value', () => {
   });
 });
 
+suite('SingleSelect search', () => {
+  let container: HTMLDivElement;
+  let root: Root;
+
+  beforeEach(async () => {
+    container = document.createElement('div');
+    document.body.appendChild(container);
+    root = createRoot(container);
+    root.render(
+      <SingleSelect
+        name="type"
+        value={null}
+        aria-label="Type"
+        items={[
+          { label: 'Département', value: 'departements' },
+          { label: 'Titre identité', value: 'titre_identite' },
+          { label: 'Numéro de téléphone', value: 'phone' },
+          { label: 'Ecoles', value: 'ecoles' }
+        ]}
+      />
+    );
+    await userEvent.click(page.getByRole('button'));
+  });
+
+  afterEach(() => {
+    root.unmount();
+    container.remove();
+  });
+
+  test('matches the accents typed', async () => {
+    await userEvent.type(page.getByRole('searchbox'), 'dé');
+
+    await expect
+      .element(page.getByRole('option', { name: 'Département' }))
+      .toBeVisible();
+    expect(
+      page.getByRole('option', { name: 'Titre identité' }).query()
+    ).toBeNull();
+  });
+
+  test('ignores the accents left out', async () => {
+    await userEvent.type(page.getByRole('searchbox'), 'numero de téléphone');
+
+    await expect
+      .element(page.getByRole('option', { name: 'Numéro de téléphone' }))
+      .toBeVisible();
+  });
+
+  test('matches an accent typed on a capital written without it', async () => {
+    await userEvent.type(page.getByRole('searchbox'), 'école');
+
+    await expect
+      .element(page.getByRole('option', { name: 'Ecoles' }))
+      .toBeVisible();
+  });
+});
+
 suite('SingleSelect inside a form', () => {
   let container: HTMLDivElement;
   let root: Root;
