@@ -1731,6 +1731,17 @@ describe Dossier, type: :model do
           expect(dossier.reload.may_accepter?(instructeur:, motivation:)).to be_truthy
         end
       end
+
+      context 'when the SIRET turned out not diffusible' do
+        before do
+          dossier.demandeur_siret.update_columns(external_state: 'external_error',
+            fetch_external_data_exceptions: [ExternalDataException.new(error: 'unavailable_for_legal_reasons', code: 451)])
+        end
+
+        it 'hands its error code to the component' do
+          expect(dossier.reload.demandeur_siret_component_args('instructeur')[:error_code]).to eq(451)
+        end
+      end
     end
   end
 
