@@ -61,7 +61,7 @@ module Dsfr
     end
 
     def dossier_link_support_statut?
-      type_de_champ.dossier_link? && @champ.value.present?
+      type_de_champ.dossier_link? && @champ.dossier_number?
     end
 
     def libelle
