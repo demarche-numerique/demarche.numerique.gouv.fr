@@ -30,13 +30,9 @@
     </p>
 
     <% if invite.errors.any? %>
-      <div class="fr-alert fr-alert--error fr-alert--sm fr-mb-3w" role="alert">
-        <ul>
-          <% invite.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-          <% end %>
-        </ul>
-      </div>
+      <p class="fr-alert fr-alert--error fr-alert--sm fr-mb-3w" role="alert">
+        <%= invite.errors.full_messages.to_sentence %>
+      </p>
     <% end %>
 
     <div class="fr-fieldset__element">
