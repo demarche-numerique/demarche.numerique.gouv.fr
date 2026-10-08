@@ -1,0 +1,9 @@
+<div class="fr-translate fr-nav">
+  <%= tag.div(class: class_names("fr-nav__item", item_class)) do %>
+    <%= tag.button(button, class: class_names(button_class, "fr-translate__btn fr-btn"), title:, aria: { controls: id, expanded: "false" }) %>
+
+    <%= tag.div(id:, class: class_names(menu_class, "fr-collapse fr-menu")) do %>
+      <%= content_tag(list_tag, content, class: class_names("fr-menu__list", list_class)) %>
+    <% end %>
+  <% end %>
+</div>

@@ -1,29 +1,18 @@
-<div class="fr-translate fr-nav">
-  <div class="fr-nav__item">
-    <button
-      class="fr-translate__btn fr-btn"
-      aria-controls="translate"
-      aria-expanded="false"
-      title="<%= t('.select_locale') %>"
-    >
-      <%= I18n.locale.upcase %>
-      <span class="fr-hidden-lg">&nbsp;- <%= t('.locale_name') %></span>
-    </button>
+<%= render Dsfr::TranslateMenuComponent.new(id: "translate", title: t('.select_locale')) do |c| %>
+  <% c.with_button do %>
+    <%= I18n.locale.upcase %>
+    <span class="fr-hidden-lg">&nbsp;- <%= t('.locale_name') %></span>
+  <% end %>
 
-    <div id="translate" class="fr-collapse fr-menu">
-      <ul class="fr-menu__list">
-        <li>
-          <%= active_locale_link(:fr) do %>
-            FR - Français
-          <% end %>
-        </li>
+  <li>
+    <%= active_locale_link(:fr) do %>
+      FR - Français
+    <% end %>
+  </li>
 
-        <li>
-          <%= active_locale_link(:en) do %>
-            EN - English
-          <% end %>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
+  <li>
+    <%= active_locale_link(:en) do %>
+      EN - English
+    <% end %>
+  </li>
+<% end %>

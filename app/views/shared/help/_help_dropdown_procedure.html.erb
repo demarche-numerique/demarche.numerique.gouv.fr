@@ -1,0 +1,13 @@
+<%= render Dsfr::TranslateMenuComponent.new(id: "help-menu", list_tag: :div, button_class: "help-btn", menu_class: "help-content") do |c| %>
+  <% c.with_button { t('help') } %>
+
+  <% if procedure.service.present? %>
+    <div class="flex fr-py-3v fr-px-2w">
+      <%= render partial: 'shared/help/dropdown_items/service_item', locals: { service: procedure.service, title: t('help_dropdown.procedure_title'), dossier: nil } %>
+    </div>
+  <% end %>
+
+  <div class="flex fr-py-3v fr-px-2w">
+    <%= render partial: 'shared/help/dropdown_items/faq_item' %>
+  </div>
+<% end %>
