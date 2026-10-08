@@ -7,7 +7,7 @@ describe Tchap::APIService do
 
   before do
     allow(ENV).to receive(:fetch).and_call_original
-    allow(ENV).to receive(:fetch).with("TCHAP_BOT_TOKEN").and_return(token)
+    allow(ENV).to receive(:fetch).with("TCHAP_BOT_BUGS_TOKEN").and_return(token)
   end
 
   subject { described_class.new.send_notice(room_id:, txn_id: "txn/1", body: "plain", formatted_body: "<p>html</p>") }

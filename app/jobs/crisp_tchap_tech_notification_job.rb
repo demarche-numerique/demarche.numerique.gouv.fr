@@ -12,7 +12,7 @@ class CrispTchapTechNotificationJob < ApplicationJob
   discard_on(Tchap::APIService::RejectedError) { |_job, error| Sentry.capture_exception(error) }
 
   before_perform do
-    throw :abort if inbox_id_dev.blank? || ENV.fetch("TCHAP_BOT_TOKEN", nil).blank?
+    throw :abort if inbox_id_dev.blank? || ENV.fetch("TCHAP_BOT_BUGS_TOKEN", nil).blank?
   end
 
   attr_reader :session_id

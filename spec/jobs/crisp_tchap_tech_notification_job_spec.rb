@@ -22,8 +22,8 @@ RSpec.describe CrispTchapTechNotificationJob, type: :job do
     allow(ENV).to receive(:fetch).with("CRISP_CLIENT_IDENTIFIER").and_return("test-client-id")
     allow(ENV).to receive(:fetch).with("CRISP_CLIENT_KEY").and_return("test-client-key")
     allow(ENV).to receive(:fetch).with("CRISP_INBOX_ID_DEV", nil).and_return("123-456")
-    allow(ENV).to receive(:fetch).with("TCHAP_BOT_TOKEN", nil).and_return(token)
-    allow(ENV).to receive(:fetch).with("TCHAP_BOT_TOKEN").and_return(token)
+    allow(ENV).to receive(:fetch).with("TCHAP_BOT_BUGS_TOKEN", nil).and_return(token)
+    allow(ENV).to receive(:fetch).with("TCHAP_BOT_BUGS_TOKEN").and_return(token)
 
     stub_request(:get, %r{^https://api.crisp.chat/v1/website/#{website_id}/conversation/#{session_id}$})
       .and_return(

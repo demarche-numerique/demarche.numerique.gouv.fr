@@ -22,7 +22,7 @@ module Tchap
         "m.mentions": {},
       }
 
-      case API::Client.new.call(url:, json:, method: :put, authorization_token: ENV.fetch("TCHAP_BOT_TOKEN"))
+      case API::Client.new.call(url:, json:, method: :put, authorization_token: ENV.fetch("TCHAP_BOT_BUGS_TOKEN"))
       in Success(_)
         nil
       in Failure(code:, error:) if code.between?(400, 499) && code != 429
