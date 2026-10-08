@@ -132,6 +132,7 @@ describe Champs::RepetitionChamp do
     end
 
     context "when an added row is left empty" do
+      let(:children) { [{ type: :text, mandatory: false }] }
       let(:min_rep) { 2 }
       let(:max_rep) { nil }
 
@@ -170,6 +171,41 @@ describe Champs::RepetitionChamp do
         champ.valid?([:champ_value, :champ_completeness])
         expect(champ.errors.where(:value, :repetition_too_few)).to be_empty
         expect(champ.min_repetitions_reached?).to be(true)
+      end
+    end
+
+    context "when the only value of a row is in a hidden child" do
+      include Logic
+
+      let(:children) { [{ type: :text, libelle: "Nom", stable_id: 901, mandatory: false }, { type: :text, libelle: "Détail", stable_id: 902, mandatory: false, condition: ds_eq(champ_value(901), constant("oui")) }] }
+      let(:min_rep) { 1 }
+      let(:max_rep) { nil }
+
+      before do
+        champ_for_update(champ.rows.first.flat_children.last).update(value: "masqué")
+      end
+
+      it "does not count the row" do
+        expect(champ.min_repetitions_reached?).to be(false)
+      end
+    end
+
+    context "when count exceeds max in a block of pieces justificatives" do
+      let(:children) { [{ type: :piece_justificative }] }
+      let(:min_rep) { 1 }
+      let(:max_rep) { 1 }
+
+      before do
+        champ.add_row(updated_by: "test")
+        champ.rows.each do |row|
+          champ_for_update(row.flat_children.first).piece_justificative_file.attach(io: StringIO.new("toto"), filename: "toto.txt", content_type: "text/plain")
+        end
+      end
+
+      it "adds a repetition_too_many error" do
+        champ.valid?(:champ_value)
+        expect(champ.errors.where(:value, :repetition_too_many)).to be_present
+        expect(champ.too_many_rows?).to be(true)
       end
     end
 

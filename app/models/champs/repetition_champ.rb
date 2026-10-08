@@ -58,13 +58,23 @@ class Champs::RepetitionChamp < ChampData
     min_repetitions? && rows.count { filled_row?(it) } >= type_de_champ.min_repetitions.to_i
   end
 
+  def too_many_rows?
+    return false if !type_de_champ.limit_repetitions? || type_de_champ.max_repetitions.blank?
+
+    row_ids.count > type_de_champ.max_repetitions.to_i && rows.any? { row_with_value?(it) }
+  end
+
   validate :validate_repetition_min, on: :champ_completeness, if: :visible?
   validate :validate_repetition_max, if: :should_validate_in_current_context?
 
   private
 
+  def row_with_value?(row)
+    row.flat_children.compact_blank.any?(&:visible?)
+  end
+
   def filled_row?(row)
-    row.flat_children.any?(&:present?) && row.flat_children.none? { it.required? && it.mandatory_blank? }
+    row_with_value?(row) && row.flat_children.none? { it.required? && it.mandatory_blank? }
   end
 
   def validate_repetition_min
@@ -74,13 +84,8 @@ class Champs::RepetitionChamp < ChampData
   end
 
   def validate_repetition_max
-    return if !type_de_champ.limit_repetitions?
-    return if type_de_champ.max_repetitions.blank?
+    return if !too_many_rows?
 
-    max = type_de_champ.max_repetitions.to_i
-    return if row_ids.count <= max
-    return if rows.none? { |row| row.flat_children.any? { it.value.present? } }
-
-    errors.add(:value, :repetition_too_many, max:, libelle: type_de_champ.libelle)
+    errors.add(:value, :repetition_too_many, max: type_de_champ.max_repetitions.to_i, libelle: type_de_champ.libelle)
   end
 end

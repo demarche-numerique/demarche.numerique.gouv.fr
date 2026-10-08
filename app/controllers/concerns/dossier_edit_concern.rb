@@ -18,7 +18,7 @@ module DossierEditConcern
     end
 
     validate_champ(champ, saved, scope)
-    @repetition_min_reached = repetition_min_reached(champ)
+    @repetition_reaching_min = repetition_reaching_min(champ) if scope == :public
   end
 
   def find_and_prepare_champ(scope:)
@@ -67,11 +67,11 @@ module DossierEditConcern
     dossier.validate(validation_context) if should_validate
   end
 
-  def repetition_min_reached(champ)
+  def repetition_reaching_min(champ)
     return if !champ.child?
 
     repetition = dossier.project_champ(champ.parent)
-    repetition if repetition.min_repetitions_reached?
+    repetition if repetition.min_repetitions_reached? && !repetition.too_many_rows?
   end
 
   def refresh_external_data(champ, refresh_requested: false)
