@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Dossiers::ChangesComponent < ApplicationComponent
+  include Dossiers::ChangedColumnFormatting
+
   attr_reader :changed_columns
 
   def initialize(changed_columns:)
@@ -29,21 +31,6 @@ class Dossiers::ChangesComponent < ApplicationComponent
     return tag.em(t('.removed')) if value.nil?
 
     tag.strong(format_value(changed_column, value))
-  end
-
-  def format_value(column, value)
-    case column.type
-    when :boolean
-      value ? t('utils.yes') : t('utils.no')
-    when :enum
-      column.label_for_value(value)
-    when :date
-      I18n.l(value, format: :short)
-    when :datetime
-      I18n.l(value, format: :short_with_time)
-    else
-      value.to_s
-    end
   end
 
   def attachments_change(changed_column)
