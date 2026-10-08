@@ -145,6 +145,7 @@ class ChampData < ApplicationRecord
     :expression_reguliere_exemple_text,
     :expression_reguliere_error_message,
     :pre_rempli_hidden?,
+    :hidden_from_usager?,
     :rib?,
     :france_connect?,
     :justificatif_domicile?,

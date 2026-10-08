@@ -18,6 +18,7 @@ class TypesDeChamp::PreRempliTypeDeChamp < TypeDeChamp
   def prefillable? = true
   def options_for_select = drop_down_options.uniq.map { [_1, _1] }
   def cannot_be_mandatory? = true
+  def hidden_from_usager? = pre_rempli_hidden?
 
   def drop_down_options = Array.wrap(super)
 
