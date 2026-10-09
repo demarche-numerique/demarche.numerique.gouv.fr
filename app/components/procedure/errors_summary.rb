@@ -35,15 +35,12 @@ class Procedure::ErrorsSummary < ApplicationComponent
   end
 
   def error_correction_page(error)
+    tdc = error.options[:type_de_champ]
+    return tdc_correction_page(tdc) if tdc
+
     case error.attribute
     when :ineligibilite_rules
       edit_admin_procedure_ineligibilite_rules_path(@procedure)
-    when :public_draft_type_de_champs
-      tdc = error.options[:type_de_champ]
-      champs_admin_procedure_path(@procedure, anchor: dom_id(tdc, :editor_error))
-    when :private_draft_type_de_champs
-      tdc = error.options[:type_de_champ]
-      annotations_admin_procedure_path(@procedure, anchor: dom_id(tdc, :editor_error))
     when :attestation_acceptation_template, :attestation_refus_template
       if error.detail[:value].version == 1
         edit_admin_procedure_attestation_template_path(@procedure)
@@ -53,6 +50,16 @@ class Procedure::ErrorsSummary < ApplicationComponent
     when *EMAIL_TEMPLATE_ATTRIBUTES
       klass = "Emails::#{error.attribute.to_s.delete_prefix('email_').camelize}".constantize
       edit_admin_procedure_email_template_path(@procedure, klass.const_get(:SLUG))
+    end
+  end
+
+  def tdc_correction_page(tdc)
+    anchor = dom_id(tdc, :editor_error)
+
+    if tdc.private?
+      annotations_admin_procedure_path(@procedure, anchor:)
+    else
+      champs_admin_procedure_path(@procedure, anchor:)
     end
   end
 
@@ -66,12 +73,9 @@ class Procedure::ErrorsSummary < ApplicationComponent
   end
 
   def to_error_descriptor(error)
-    libelle = case error.attribute
-    when :public_draft_type_de_champs, :private_draft_type_de_champs
-      error.options[:type_de_champ].libelle.truncate(200)
-    else
-      error.base.class.human_attribute_name(error.attribute)
-    end
+    tdc = error.options[:type_de_champ]
+    libelle = tdc ? tdc.libelle.truncate(200) : error.base.class.human_attribute_name(error.attribute)
+
     ErrorDescriptor.new(error_correction_page(error), libelle, error.message)
   end
 end
