@@ -51,8 +51,18 @@ class APIEntreprise::API
     call_with_siret(TVA_NAME, siren)
   end
 
+  # For part of the SIRETs out of its scope, whatever their legal form (associations, State
+  # services, but also sole traders and companies), the DGFIP answers a permanent 502 "03001
+  # Service non disponible" instead of the documented 404. While its ping is up, the 03001 is
+  # about this SIRET, not an outage: retrying it for weeks is useless.
   def exercices(siret)
-    call_with_siret(EXERCICES_RESOURCE_NAME, siret)
+    call_with_siret(EXERCICES_RESOURCE_NAME, siret).or do |failure|
+      if out_of_exercices_scope?(failure)
+        Failure(**failure, type: :out_of_scope, retryable: false)
+      else
+        Failure(failure)
+      end
+    end
   end
 
   def rna(siret)
@@ -168,6 +178,13 @@ class APIEntreprise::API
   def service_unavailable?(raw_response)
     raw_response.code.in?(SERVICE_UNAVAILABLE_CODES) &&
       parse_response_errors(raw_response).any? { _1.is_a?(Hash) && _1[:code]&.in?(SERVICE_UNAVAILABLE_ERRORS) }
+  end
+
+  def out_of_exercices_scope?(failure)
+    failure[:code] == 502 &&
+      failure[:raw_response].present? &&
+      parse_response_errors(failure[:raw_response]).any? { _1.is_a?(Hash) && _1[:code] == "03001" } &&
+      APIEntreprise::HealthChecker.provider_up?(:dgfip_chiffre_affaires)
   end
 
   def parse_response_errors(raw_response)
