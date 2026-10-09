@@ -73,4 +73,26 @@
       </fieldset>
     <% end %>
   </dl>
+
+  <h2>Fusionner un ancien administrateur</h2>
+
+  <%= form_tag(request_merge_manager_administrateur_path(page.resource)) do %>
+    <p>
+      J’utilise cette option ETQ support quand cet administrateur remplace un
+      administrateur qui a quitté le service. Ses démarches, services,
+      instructeurs et jetons d’API sont transférés à
+      <em><%= page.resource.email %></em>.
+    </p>
+
+    <%= label_tag :email, "Adresse électronique de l’ancien administrateur" %>
+    <%= email_field_tag(:email, "", required: true, autocapitalize: "off", autocorrect: "off", spellcheck: "false", style: "margin-bottom: 1rem;width:24rem;") %>
+
+    <% if SUPER_ADMIN_OTP_ENABLED %>
+      <div class="field-unit field-unit--string field-unit--required">
+        <%= render Manager::OtpAttemptInputComponent.new %>
+      </div>
+    <% end %>
+
+    <button>Fusionner dans ce compte</button>
+  <% end %>
 </section>
