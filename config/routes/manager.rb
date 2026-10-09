@@ -13,7 +13,6 @@ namespace :manager do
       post :add_administrateur_and_instructeur
       post :add_administrateur_with_confirmation
       post :change_piece_justificative_template
-      patch :add_tags
       patch :update_template_status
       get :export_mail_brouillons
     end
@@ -126,7 +125,5 @@ namespace :manager do
   get 'exports/administrateurs/with_publiee_procedure' => 'administrateurs#export_with_publiee_procedure'
   get 'exports/instructeurs/currently_active' => 'instructeurs#export_currently_active'
 
-  get 'import_procedure_tags' => 'procedures#import_data'
-  post 'import_tags' => 'procedures#import_tags'
   root to: "administrateurs#index"
 end
