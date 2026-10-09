@@ -1,0 +1,22 @@
+fr:
+  administrateurs:
+    sva_svr_disablings:
+      new:
+        title: Désactiver le %{rule}
+        sva_svr_breadcrumb: Silence Vaut Accord ou Rejet
+        definitive_title: Cette désactivation est définitive
+        consequences_intro: "Après désactivation du %{rule} :"
+        new_dossiers_html: "Les <strong>nouveaux dossiers</strong> ne recevront <strong>plus de décision automatique</strong>."
+        pending_dossiers_html:
+          one: "Le <strong>dossier déjà déposé et encore en cours</strong> reste soumis au %{rule} : sans décision d’un instructeur d’ici là, il sera automatiquement %{outcome} à son échéance."
+          other: "Les <strong>%{count} dossiers déjà déposés et encore en cours</strong> restent soumis au %{rule} : sans décision d’un instructeur d’ici là, chacun sera automatiquement %{outcome} à son échéance."
+        earliest_decision_html: "Prochaine échéance d’un dossier en instruction : <strong>le %{date}</strong>."
+        checkbox:
+          one: "J’ai compris que ce dossier sera automatiquement %{outcome} à son échéance s’il n’est pas traité avant"
+          other: "J’ai compris que chacun de ces %{count} dossiers sera automatiquement %{outcome} à son échéance s’il n’est pas traité avant"
+        approved: accepté
+        rejected: refusé
+        submit: Désactiver définitivement
+        cancel: Annuler
+      create:
+        notice: Le %{rule} a été désactivé pour les nouveaux dossiers.

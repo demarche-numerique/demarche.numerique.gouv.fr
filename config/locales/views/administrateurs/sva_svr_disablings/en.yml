@@ -1,0 +1,22 @@
+en:
+  administrateurs:
+    sva_svr_disablings:
+      new:
+        title: Disable automatic decision (%{rule})
+        sva_svr_breadcrumb: Automatic approval or rejection (SVA/SVR)
+        definitive_title: This is permanent
+        consequences_intro: "Once automatic decision (%{rule}) is disabled:"
+        new_dossiers_html: "<strong>New applications</strong> will <strong>no longer get an automatic decision</strong>."
+        pending_dossiers_html:
+          one: "The <strong>open application already submitted</strong> remains under automatic decision (%{rule}): unless a reviewer decides it by then, it will be automatically %{outcome} on its due date."
+          other: "The <strong>%{count} open applications already submitted</strong> remain under automatic decision (%{rule}): unless a reviewer decides them by then, each one will be automatically %{outcome} on its due date."
+        earliest_decision_html: "Next due date of an application under review: <strong>%{date}</strong>."
+        checkbox:
+          one: "I understand that this application will be automatically %{outcome} on its due date unless decided before"
+          other: "I understand that each of these %{count} applications will be automatically %{outcome} on its due date unless decided before"
+        approved: approved
+        rejected: rejected
+        submit: Disable permanently
+        cancel: Cancel
+      create:
+        notice: "Automatic decision (%{rule}) has been disabled for new applications."
