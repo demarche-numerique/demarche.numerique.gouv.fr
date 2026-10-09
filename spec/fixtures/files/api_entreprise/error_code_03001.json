@@ -1,0 +1,10 @@
+{
+  "errors": [
+    {
+      "code": "03001",
+      "title": "Service non disponible",
+      "detail": "Le service du fournisseur de données est temporairement indisponible ou en maintenance.",
+      "meta": { "provider": "DGFIP - Adélie" }
+    }
+  ]
+}

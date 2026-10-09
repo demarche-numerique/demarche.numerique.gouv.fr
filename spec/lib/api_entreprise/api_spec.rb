@@ -261,6 +261,32 @@ describe APIEntreprise::API do
         expect(subject.value!).to eq(JSON.parse(body, symbolize_names: true))
       end
     end
+
+    context 'when the DGFIP answers 502 03001' do
+      subject { described_class.new(procedure_id).exercices(siret) }
+
+      let(:siret) { '41816609600051' }
+      let(:status) { 502 }
+      let(:body) { fixture_file('error_code_03001.json') }
+
+      before { allow(APIEntreprise::HealthChecker).to receive(:provider_up?).with(:dgfip_chiffre_affaires).and_return(provider_up) }
+
+      context 'while its ping is up, for a SIRET out of its scope' do
+        let(:provider_up) { true }
+
+        it 'returns a Failure that is not retried' do
+          expect(subject.failure).to include(type: :out_of_scope, code: 502, retryable: false)
+        end
+      end
+
+      context 'while its ping is down, for an outage' do
+        let(:provider_up) { false }
+
+        it 'returns a Failure that is retried' do
+          expect(subject.failure).to include(type: :server_error, code: 502, retryable: true)
+        end
+      end
+    end
   end
 
   describe '.rna' do
