@@ -60,4 +60,20 @@ RSpec.describe Instructeurs::SVASVRDecisionBadgeComponent, type: :component do
       it { expect(subject).to have_text("4 j. après correction") }
     end
   end
+
+  describe 'once the rule is disabled' do
+    before_all { seed "cases/sva" }
+
+    let(:procedure) { procedures.sva }
+
+    before { procedure.update_column(:sva_svr, procedure.sva_svr.merge('disabled_at' => Time.current.iso8601)) }
+
+    subject { render_inline(described_class.new(dossier:, procedure:)) }
+
+    context 'on a dossier the rule already dated' do
+      let(:dossier) { create(:dossier, :en_instruction, :with_individual, procedure:, sva_svr_decision_on: Date.new(2023, 9, 5)) }
+
+      it { expect(subject).to have_text("dans 4 jours") }
+    end
+  end
 end

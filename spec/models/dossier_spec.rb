@@ -1410,6 +1410,14 @@ describe Dossier, type: :model do
       let(:dossier) { create(:dossier, :en_instruction, procedure: procedures.sva) }
 
       it { expect(dossier.can_repasser_en_construction?).to be_falsey }
+
+      context 'once the rule is disabled, on a dossier it already dated' do
+        let(:dossier) { create(:dossier, :en_instruction, procedure: procedures.sva, sva_svr_decision_on: 10.days.from_now) }
+
+        before { procedures.sva.update_column(:sva_svr, procedures.sva.sva_svr.merge('disabled_at' => Time.current.iso8601)) }
+
+        it { expect(dossier.can_repasser_en_construction?).to be_falsey }
+      end
     end
   end
 
@@ -2353,6 +2361,25 @@ describe Dossier, type: :model do
     let(:dossier) { dossiers.en_instruction.tap { it.update_columns(sva_svr_decision_on: 10.days.from_now) } }
 
     it { expect(dossier.sva_svr_decision_in_days).to eq 10 }
+  end
+
+  describe '#sva_svr_rule_applies?' do
+    let(:procedure) { procedures.sva }
+    let(:dated) { create(:dossier, :en_instruction, :with_individual, procedure:, sva_svr_decision_on: 10.days.from_now) }
+    let(:undated) { create(:dossier, :en_instruction, :with_individual, procedure:) }
+
+    it 'covers every dossier while the rule dates new ones' do
+      expect(undated.sva_svr_rule_applies?).to be true
+    end
+
+    context 'once the rule is disabled' do
+      before { procedure.update_column(:sva_svr, procedure.sva_svr.merge('disabled_at' => Time.current.iso8601)) }
+
+      it 'only covers the dossiers it already dated' do
+        expect(dated.sva_svr_rule_applies?).to be true
+        expect(undated.sva_svr_rule_applies?).to be false
+      end
+    end
   end
 
   describe '#update_champs_timestamps' do

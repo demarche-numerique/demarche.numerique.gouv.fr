@@ -13,6 +13,7 @@ fr:
       show:
         file_tracking: Suivi des dossiers
         reinit_display: Votre affichage a dû être réinitialisé en raison d’un problème technique.
+        sva_svr_disabled: "Le %{rule} ne s’applique plus : aucune décision automatique pour les dossiers déposés à partir du %{date}."
       administrators_list:
         title: Administrateurs de la démarche
       index:

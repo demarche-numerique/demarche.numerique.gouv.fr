@@ -25,7 +25,7 @@ module DossierCorrectableConcern
 
     create_dossier_notifications(commentaire.instructeur)
 
-    log_pending_correction_operation(commentaire, reason) if procedure.sva_svr_enabled?
+    log_pending_correction_operation(commentaire, reason) if sva_svr_rule_applies?
 
     return if en_construction?
 
@@ -63,7 +63,7 @@ module DossierCorrectableConcern
   end
 
   def validate_pending_correction
-    return unless procedure.sva_svr_enabled?
+    return unless sva_svr_rule_applies?
     return if instructeur_buffer_stream?
     return if pending_correction.nil? || pending_correction.resolved?
 

@@ -615,13 +615,13 @@ class Dossier < ApplicationRecord
     return true if procedure.auto_archive_on? && !procedure.auto_archive_on.future? && !pending_correction?
     return false if !can_passer_en_instruction?
     return true if declarative_triggered_at.nil? && procedure.declarative_en_instruction?
-    return true if procedure.sva_svr_enabled? && sva_svr_decision_triggered_at.nil? && !pending_correction?
+    return true if sva_svr_rule_applies? && sva_svr_decision_triggered_at.nil? && !pending_correction?
 
     false
   end
 
   def can_repasser_en_construction?
-    !procedure.sva_svr_enabled?
+    !sva_svr_rule_applies?
   end
 
   def can_repasser_en_instruction?
@@ -646,6 +646,10 @@ class Dossier < ApplicationRecord
 
   def can_terminer_automatiquement_by_sva_svr?
     sva_svr_decision_triggered_at.nil? && !pending_correction? && (sva_svr_decision_on.today? || sva_svr_decision_on.past?)
+  end
+
+  def sva_svr_rule_applies?
+    procedure.sva_svr_enabled? || (procedure.sva_svr_rule? && sva_svr_decision_on.present?)
   end
 
   def any_etablissement_as_degraded_mode?
@@ -1005,7 +1009,7 @@ class Dossier < ApplicationRecord
   end
 
   def process_sva_svr!
-    return unless procedure.sva_svr_enabled?
+    return unless sva_svr_rule_applies?
     return if sva_svr_decision_triggered_at.present?
 
     # set or recompute sva date, except for dossiers submitted before sva was enabled

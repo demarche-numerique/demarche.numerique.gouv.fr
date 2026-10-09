@@ -371,7 +371,7 @@ module TagsSubstitutionConcern
 
     return tags unless respond_to?(:procedure)
 
-    tags << DOSSIER_SVA_SVR_DECISION_DATE_TAG if procedure.sva_svr_enabled?
+    tags << DOSSIER_SVA_SVR_DECISION_DATE_TAG if procedure.sva_svr_rule?
 
     if procedure.routing_enabled?
       has_contact_info = procedure.groupe_instructeurs

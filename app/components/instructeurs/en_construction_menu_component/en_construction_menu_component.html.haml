@@ -17,7 +17,7 @@
         %h4= t('.request_correction')
         L’usager sera informé que des modifications sont attendues.
 
-        - if sva_svr_enabled?
+        - if sva_svr_rule_applies?
           - if sva_svr_resume_method == :reset
             Le délai du #{sva_svr_human_decision} sera réinitialisé lorqu’il déclarera avoir complété le dossier.
           - else
@@ -34,7 +34,7 @@
         confirm: 'Envoyer la demande de corrections ?',
         required: true}
 
-  - if sva_svr_enabled?
+  - if sva_svr_rule_applies?
     - menu.with_item do
       = link_to('#', data: { action: 'panels#show', panels_name_param: 'pending_completion' }, role: 'menuitem') do
         %span.fr-icon.fr-icon-error-warning-line.fr-text-default--warning.fr-mt-1v{ "aria-hidden": "true" }

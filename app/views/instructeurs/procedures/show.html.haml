@@ -7,6 +7,8 @@
 
 - content_for(:title, "Dossiers")
 
+- sva_svr_running = @procedure.sva_svr_rule_running?
+
 #procedure-show
   .sub-header
     .fr-container.flex.column
@@ -18,6 +20,9 @@
         %h1.fr-h5.fr-mb-0= t('.file_tracking')
         = render Instructeurs::TabsExplanationsComponent.new
       = render Instructeurs::WarningBannerComponent.new(draft: @procedure.brouillon?, single_procedure: true)
+      - if sva_svr_running && @procedure.sva_svr_rule_disabled?
+        .fr-alert.fr-alert--info.fr-alert--sm.fr-mt-2w
+          %p= t('.sva_svr_disabled', rule: @procedure.sva_svr_configuration.human_decision, date: l(@procedure.sva_svr_rule_disabled_at, format: :long_with_time))
     .fr-container
       .flex= render partial: "tabs", locals: { procedure: @procedure,
         statut: @statut,
@@ -82,7 +87,7 @@
                             %input{ type: "checkbox", disabled: @disable_checkbox_all, checked: @disable_checkbox_all, data: { action: "batch-operation#onCheckAll" }, id: dom_id(BatchOperation.new, :checkbox_all), aria: { label: t('views.instructeurs.dossiers.select_all') } }
                             = label_tag dom_id(BatchOperation.new, :checkbox_all), "Sélectionner tous les dossiers", class: 'fr-label'
 
-                      = render Instructeurs::ColumnTableHeaderComponent.new(procedure_presentation: @procedure_presentation, displayed_columns: @displayed_columns )
+                      = render Instructeurs::ColumnTableHeaderComponent.new(procedure_presentation: @procedure_presentation, displayed_columns: @displayed_columns, sva_svr_running:)
 
                       %th.follow-col{ scope: 'col' }
                         Actions
@@ -139,7 +144,7 @@
                         %td
                           = link_to_if(dossier.hidden_by_administration_at.blank?, status_badge(dossier.state), path)
 
-                        - if @procedure.sva_svr_enabled?
+                        - if sva_svr_running
                           %td
                             %span
                               = link_to_if dossier.hidden_by_administration_at.blank?, render(Instructeurs::SVASVRDecisionBadgeComponent.new(dossier:, procedure: @procedure)), path
@@ -154,7 +159,7 @@
                                         close_to_expiration: @statut == 'expirant',
                                         hidden_by_administration: @statut == 'supprimes',
                                         hidden_by_expired: dossier.hidden_by_reason == 'expired',
-                                        sva_svr: @procedure.sva_svr_enabled?,
+                                        sva_svr: dossier.sva_svr_rule_applies?,
                                         has_blocking_pending_correction: dossier.blocked_with_pending_correction?,
                                         turbo: false,
                                         with_menu: false }

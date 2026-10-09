@@ -1,22 +1,22 @@
 # frozen_string_literal: true
 
 class Instructeurs::ColumnTableHeaderComponent < ApplicationComponent
-  def initialize(procedure_presentation:, displayed_columns:)
+  def initialize(procedure_presentation:, displayed_columns:, sva_svr_running:)
     @procedure_presentation = procedure_presentation
     @procedure = procedure_presentation.procedure
-    @columns = build_header_columns(displayed_columns)
+    @columns = build_header_columns(displayed_columns, sva_svr_running)
     @sorted_column = procedure_presentation.sorted_column
   end
 
   private
 
-  def build_header_columns(displayed_columns)
+  def build_header_columns(displayed_columns, sva_svr_running)
     header_columns = [
       @procedure.dossier_id_column,
       *displayed_columns,
       @procedure.dossier_state_column,
     ]
-    header_columns.concat(@procedure.sva_svr_columns.filter(&:displayable)) if @procedure.sva_svr_enabled?
+    header_columns.concat(@procedure.sva_svr_columns.filter(&:displayable)) if sva_svr_running
     header_columns
   end
 

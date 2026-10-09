@@ -354,6 +354,48 @@ describe Instructeurs::ProceduresController, type: :controller do
       end
     end
 
+    describe 'sva/svr decision column once the rule is disabled' do
+      render_views
+      before_all { seed "cases/sva" }
+
+      let(:instructeur) { instructeurs.default }
+      let(:procedure) { procedures.sva }
+      let(:sva_svr_decision_on) { Date.tomorrow }
+      let!(:dossier) { create(:dossier, :en_instruction, :with_individual, procedure:, sva_svr_decision_on:) }
+
+      before do
+        procedure.update_column(:sva_svr, procedure.sva_svr.merge('disabled_at' => '2026-10-07T14:30:00+02:00'))
+        sign_in(instructeur.user)
+        subject
+      end
+
+      it 'keeps the column while a dossier still waits for the rule' do
+        expect(response.body).to have_css('th', text: 'Date décision SVA')
+        expect(response.body).to have_css("tr#table-dossiers-row-#{dossier.id} .fr-badge", text: 'Demain')
+      end
+
+      it 'hides the send back button of a dossier the rule still decides' do
+        expect(response.body).not_to include('Repasser en construction')
+      end
+
+      it 'tells the instructeurs new dossiers get no automatic decision' do
+        expect(response.body).to have_css('.fr-alert--info', text: "Le SVA ne s’applique plus : aucune décision automatique pour les dossiers déposés à partir du 07 octobre 2026 à 14:30.")
+      end
+
+      context 'once no dossier waits for the rule any more' do
+        let(:sva_svr_decision_on) { nil }
+
+        it 'stops forcing the column into the list' do
+          expect(response.body).to have_css("tr#table-dossiers-row-#{dossier.id}")
+          expect(response.body).not_to have_css('th', text: 'Date décision SVA')
+        end
+
+        it 'drops the banner' do
+          expect(response.body).not_to have_text('ne s’applique plus')
+        end
+      end
+    end
+
     context "when logged in, and belonging to gi_1, gi_2" do
       before do
         sign_in(instructeur.user)

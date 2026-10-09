@@ -290,6 +290,18 @@ RSpec.describe DossierStateConcern do
           expect(dossier.sva_svr_decision_on).to be_present
           expect(notifications(dossier, :dossier_depose)).to be_empty
         end
+
+        context 'once the rule is disabled' do
+          before { procedures.sva.update_column(:sva_svr, procedures.sva.sva_svr.merge('disabled_at' => Time.current.iso8601)) }
+
+          it 'leaves the dossier to the instructeurs, without a decision date' do
+            passer_en_construction
+
+            expect(dossier).to be_en_construction
+            expect(dossier.sva_svr_decision_on).to be_nil
+            expect(notifications(dossier, :dossier_depose)).to be_present
+          end
+        end
       end
     end
 
@@ -551,6 +563,18 @@ RSpec.describe DossierStateConcern do
 
           expect(dossier.sva_svr_decision_on).to be_nil
           expect(dossier).to be_en_construction
+        end
+      end
+
+      context 'once the rule is disabled' do
+        before { procedure.update_column(:sva_svr, procedure.sva_svr.merge('disabled_at' => Time.current.iso8601)) }
+
+        it 'still passes en instruction a dossier the rule already dated' do
+          process
+
+          expect(dossier).to be_en_instruction
+          expect(dossier.sva_svr_decision_on).to eq(sva_svr_decision_on)
+          expect(last_operation.data['subject']).to be_present
         end
       end
     end
@@ -848,6 +872,20 @@ RSpec.describe DossierStateConcern do
         expect(last_operation.automatic_operation?).to be(true)
         expect(dossier.attestation).to be_present
         expect(dossier.commentaires.count).to eq(1)
+      end
+
+      context 'reached by the cron once the rule is disabled' do
+        let(:dossier) { create(:dossier, :en_instruction, :with_individual, procedure:, depose_at: 3.months.ago, sva_svr_decision_on: Date.current) }
+
+        before { procedure.update_column(:sva_svr, procedure.sva_svr.merge('disabled_at' => Time.current.iso8601)) }
+
+        it 'still accepts a dossier the rule already dated' do
+          dossier.process_sva_svr!
+          dossier.reload
+
+          expect(dossier).to be_accepte
+          expect(dossier.sva_svr_decision_triggered_at).to eq(Time.current)
+        end
       end
     end
   end
