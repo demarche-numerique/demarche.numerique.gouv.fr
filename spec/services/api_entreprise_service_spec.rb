@@ -31,5 +31,53 @@ describe APIEntrepriseService do
         expect(APIEntreprise::BilansBdfJob).to have_been_enqueued
       end
     end
+
+    context 'when the DGFIP holds no turnover for the legal form' do
+      let(:roles) { [] }
+
+      before { etablissement.update!(entreprise_forme_juridique_code: '7120') }
+
+      it 'skips the exercices' do
+        subject
+
+        expect(APIEntreprise::ExercicesJob).not_to have_been_enqueued
+        expect(APIEntreprise::TvaJob).to have_been_enqueued
+      end
+    end
+
+    context 'when the legal form is not registered with the RCS' do
+      let(:roles) { [] }
+
+      before { etablissement.update!(entreprise_forme_juridique_code: '7210') }
+
+      it 'skips the extrait Kbis' do
+        subject
+
+        expect(APIEntreprise::ExtraitKbisJob).not_to have_been_enqueued
+      end
+    end
+
+    context 'when the etablissement is not an association' do
+      let(:roles) { [] }
+
+      it 'skips the RNA' do
+        subject
+
+        expect(APIEntreprise::AssociationJob).not_to have_been_enqueued
+      end
+    end
+
+    context 'when the unite legale employs nobody' do
+      let(:roles) { [] }
+
+      before { etablissement.update!(entreprise_code_effectif_entreprise: 'NN') }
+
+      it 'skips the staff counts' do
+        subject
+
+        expect(APIEntreprise::EffectifsJob).not_to have_been_enqueued
+        expect(APIEntreprise::EffectifsAnnuelsJob).not_to have_been_enqueued
+      end
+    end
   end
 end
