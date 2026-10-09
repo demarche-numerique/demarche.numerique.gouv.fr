@@ -359,7 +359,7 @@ describe Champs::SiretChamp do
       end
 
       it 'asks for the complementary data' do
-        expect { champ.fetch! }.to have_enqueued_job(APIEntreprise::ExtraitKbisJob)
+        expect { champ.fetch! }.to have_enqueued_job(APIEntreprise::TvaJob)
       end
     end
 
@@ -387,7 +387,7 @@ describe Champs::SiretChamp do
       end
 
       it 'does not ask for the complementary data' do
-        expect { champ.fetch! }.not_to have_enqueued_job(APIEntreprise::ExtraitKbisJob)
+        expect { champ.fetch! }.not_to have_enqueued_job(APIEntreprise::TvaJob)
       end
     end
 
@@ -416,7 +416,7 @@ describe Champs::SiretChamp do
       end
 
       it 'does not queue the complementary jobs on a missing etablissement' do
-        expect { champ.fetch! }.not_to have_enqueued_job(APIEntreprise::ExtraitKbisJob)
+        expect { champ.fetch! }.not_to have_enqueued_job(APIEntreprise::TvaJob)
       end
     end
 
@@ -442,7 +442,7 @@ describe Champs::SiretChamp do
     end
 
     it 'does not ask API Entreprise again' do
-      expect { dossier.clone }.not_to have_enqueued_job(APIEntreprise::ExtraitKbisJob)
+      expect { dossier.clone }.not_to have_enqueued_job(APIEntreprise::TvaJob)
     end
   end
 

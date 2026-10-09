@@ -44,5 +44,17 @@ describe APIEntrepriseService do
         expect(APIEntreprise::TvaJob).to have_been_enqueued
       end
     end
+
+    context 'when the legal form is not registered with the RCS' do
+      let(:roles) { [] }
+
+      before { etablissement.update!(entreprise_forme_juridique_code: '7210') }
+
+      it 'skips the extrait Kbis' do
+        subject
+
+        expect(APIEntreprise::ExtraitKbisJob).not_to have_been_enqueued
+      end
+    end
   end
 end

@@ -105,7 +105,7 @@ RSpec.describe DemandeurSiret do
       end
 
       it 'asks for the complementary data' do
-        expect { verify }.to have_enqueued_job(APIEntreprise::ExtraitKbisJob)
+        expect { verify }.to have_enqueued_job(APIEntreprise::TvaJob)
       end
     end
 

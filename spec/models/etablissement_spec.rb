@@ -82,6 +82,34 @@ describe Etablissement do
     end
   end
 
+  describe '#extrait_kbis_fetchable?' do
+    subject { Etablissement.new(entreprise_forme_juridique_code:).extrait_kbis_fetchable? }
+
+    context 'for a company' do
+      let(:entreprise_forme_juridique_code) { '5710' }
+
+      it { is_expected.to be true }
+    end
+
+    context 'for a local authority' do
+      let(:entreprise_forme_juridique_code) { '7210' }
+
+      it { is_expected.to be false }
+    end
+
+    context 'for a declared association' do
+      let(:entreprise_forme_juridique_code) { '9220' }
+
+      it { is_expected.to be false }
+    end
+
+    context 'when the legal form is unknown' do
+      let(:entreprise_forme_juridique_code) { nil }
+
+      it { is_expected.to be true }
+    end
+  end
+
   describe '#entreprise_raison_sociale' do
     subject { etablissement.entreprise_raison_sociale }
 
