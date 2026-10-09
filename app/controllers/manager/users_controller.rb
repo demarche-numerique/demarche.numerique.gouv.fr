@@ -151,9 +151,8 @@ module Manager
     def filter_resources(resources, search_term:)
       return super if search_term.blank?
 
-      term = search_term.strip
-      exact = resources.where(email: term)
-      exact = exact.or(resources.where(id: term)) if term.match?(/\A\d+\z/)
+      exact = resources.where(email: search_term)
+      exact = exact.or(resources.where(id: search_term)) if search_term.match?(/\A\d+\z/)
 
       exact.exists? ? exact : super
     end
