@@ -16,9 +16,6 @@ module Typhoeus
   # Development only, on purpose: Sentry turns every Rails.logger write into a
   # breadcrumb (breadcrumbs_logger = [:active_support_logger]) while
   # send_default_pii is false.
-  #
-  # Known reserve: a Mattermost webhook URL *is* its secret (.../hooks/<token>),
-  # so its path lands in the log. Acceptable on a developer's own .env.
   module Trace
     TAG = "[HTTP]"
 

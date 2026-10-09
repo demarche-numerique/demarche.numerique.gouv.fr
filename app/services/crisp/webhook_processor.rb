@@ -35,7 +35,7 @@ module Crisp
       # Note: as of 3 sept 2025, crisp has a known bug: new inbox_id is empty,
       # we have to call API to get the id
 
-      CrispMattermostTechNotificationJob.perform_later(session_id)
+      CrispTchapTechNotificationJob.perform_later(session_id)
     end
 
     def extract_email_from_params

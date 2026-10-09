@@ -12,23 +12,6 @@ class WebhookController < ActionController::Base
 
   private
 
-  def send_mattermost_notification(url, text)
-    Net::HTTP.post(
-      URI.parse(url),
-      { "text": text }.to_json,
-     "Content-Type" => "application/json"
-    )
-  end
-
-  def link_to_manager(model, url)
-    "<a target='_blank' href='#{url}' rel='noopener'>#{model.model_name.human}##{model.id}</a>"
-  end
-
-  def email_link_to_manager(user)
-    url = emails_manager_user_url(user)
-    "<a target='_blank' href='#{url}' rel='noopener'>Emails##{user.id}</a>"
-  end
-
   def verify_crisp_signature!
     timestamp = request.headers['X-Crisp-Request-Timestamp']
     signature = request.headers['X-Crisp-Signature']

@@ -50,8 +50,8 @@ RSpec.describe Crisp::WebhookProcessor do
       end
 
       context 'when conversation is moved to tech inbox' do
-        it 'enqueues CrispMattermostTechNotificationJob' do
-          expect { subject }.to have_enqueued_job(CrispMattermostTechNotificationJob).with(session_id)
+        it 'enqueues CrispTchapTechNotificationJob' do
+          expect { subject }.to have_enqueued_job(CrispTchapTechNotificationJob).with(session_id)
         end
       end
     end
