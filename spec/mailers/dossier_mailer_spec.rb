@@ -342,6 +342,27 @@ RSpec.describe DossierMailer, type: :mailer do
       end
     end
 
+    context 'reason is outdated' do
+      let(:reason) { :outdated }
+
+      it 'asks to update the dossier' do
+        expect(subject.subject).to eq("Vous devez corriger votre dossier n° #{dossier.id} « #{dossier.procedure.libelle} »")
+        expect(subject.body).to include("Afin de poursuivre son instruction, <strong>un instructeur vous demande de mettre à jour</strong> votre dossier n° #{dossier.id} de la démarche « #{dossier.procedure.libelle} ».")
+        expect(subject.body).not_to include("translation missing")
+      end
+    end
+
+    context 'sva with reason is outdated' do
+      let(:sva_svr_decision_on) { Date.tomorrow }
+      let(:reason) { :outdated }
+      let(:procedure) { create(:procedure, :sva) }
+
+      it 'mentions the suspension until the updated dossier is submitted' do
+        expect(subject.body).to include("Dans le cadre du principe du « Silence Vaut Accord », le délai d’instruction est suspendu jusqu’à ce que vous déposiez votre dossier mis à jour.")
+        expect(subject.body).not_to include("translation missing")
+      end
+    end
+
     context 'svr with reason is incomplete' do
       let(:sva_svr_decision_on) { Date.tomorrow }
       let(:reason) { :incomplete }

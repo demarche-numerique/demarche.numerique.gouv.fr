@@ -13,6 +13,11 @@ en:
           In order to continue its instruction, <strong>an instructor requested you to complete</strong> your file no. %{dossier_id} of the « %{libelle_demarche} » procedure.
         sva_svr:
           As part of the « %{rule_name} » principle, the instruction period will be reset upon receipt of your complete file.
+      outdated:
+        explanation_html:
+          In order to continue its review, <strong>a reviewer requested you to update</strong> your application no. %{dossier_id} of the « %{libelle_demarche} » procedure.
+        sva_svr:
+          As part of the « %{rule_name} » principle, the review period is suspended until you submit your updated application.
       link:
         Check your file's mailbox to see what changes need to be made, then edit the file directly on the website.
       access_message: Open the mailbox

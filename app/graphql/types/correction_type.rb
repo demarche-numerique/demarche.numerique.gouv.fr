@@ -3,7 +3,7 @@
 module Types
   class CorrectionType < Types::BaseObject
     class CorrectionReason < Types::BaseEnum
-      # i18n-tasks-use t('dossier_correction.reasons.incorrect'), t('dossier_correction.reasons.incomplete')
+      # i18n-tasks-use t('dossier_correction.reasons.incorrect'), t('dossier_correction.reasons.incomplete'), t('dossier_correction.reasons.outdated')
       DossierCorrection.reasons.each do |symbol_name, string_name|
         value(string_name,
           I18n.t(symbol_name, scope: [:activerecord, :attributes, :dossier_correction, :reasons]),

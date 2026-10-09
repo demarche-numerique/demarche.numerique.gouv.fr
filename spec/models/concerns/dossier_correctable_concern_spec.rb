@@ -121,6 +121,12 @@ describe DossierCorrectableConcern do
         expect(correction_log.data["subject"]["body"]).to eq(commentaire.body)
         expect(correction_log.data["subject"]["email"]).to eq(commentaire.instructeur.email)
       end
+
+      it 'logs an update request and repasse dossier en_construction' do
+        expect { dossier.flag_as_pending_correction!(commentaire, :outdated) }.to change { dossier.state }.to('en_construction')
+
+        expect(dossier.dossier_operation_logs.map(&:operation)).to include("demander_une_mise_a_jour")
+      end
     end
 
     context "when there others instructeurs" do
