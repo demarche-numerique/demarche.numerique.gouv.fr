@@ -22,6 +22,33 @@ describe TypesDeChamp::PieceJustificativeTypeDeChamp do
       expect(labels.any? { _1.include?('Nom de la Banque') }).to be true
     end
 
+    it 'adds the account holder match column only when the admin asked for the check' do
+      expect(create(:type_de_champ_piece_justificative, procedure:, nature: 'rib').columns(procedure_id: procedure.id).map(&:label))
+        .not_to include(end_with('Correspondance avec l’identité du demandeur'))
+    end
+
+    context 'when the admin asked for the account holder check' do
+      let(:procedure) { create(:procedure, :for_individual, public_type_de_champs: [{ type: :piece_justificative, nature: 'rib', rib_account_holder_match: '1', libelle: 'RIB' }]) }
+      let(:dossier) { create(:dossier, :with_individual, procedure:) }
+      let(:champ) { dossier.champ_data.first }
+      let(:column) { champ.type_de_champ.columns(procedure_id: procedure.id).find { it.label == 'RIB – Correspondance avec l’identité du demandeur' } }
+
+      before { champ.update!(value_json: { rib: { account_holder: 'M XAVIER JULIEN' } }) }
+
+      it 'shows and filters the match as Correspond / Ne correspond pas' do
+        expect(column.options_for_select).to eq([['Correspond', true], ['Ne correspond pas', false]])
+        expect(ColumnValueFormatter.format(column:, raw_value: true)).to eq('Correspond')
+        expect(ColumnValueFormatter.format(column:, raw_value: false)).to eq('Ne correspond pas')
+      end
+
+      it 'reads and filters the stored match' do
+        expect(column.type).to eq(:boolean)
+        expect(column.value(champ)).to eq(true)
+        expect(column.filtered_ids(Dossier.where(id: dossier), { value: ['true'] })).to eq([dossier.id])
+        expect(column.filtered_ids(Dossier.where(id: dossier), { value: ['false'] })).to eq([])
+      end
+    end
+
     it 'adds justificatif de domicile columns with i18n labels' do
       tdc = create(:type_de_champ_piece_justificative, procedure:, nature: 'justificatif_domicile')
       cols = tdc.columns(procedure_id: procedure.id, displayable: true)

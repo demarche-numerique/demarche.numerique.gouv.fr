@@ -165,6 +165,24 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
         expect(page).to have_css('strong', text: '.pdf, .doc, .docx, .jpg, .jpeg, .png')
         expect(page).not_to have_text('document texte')
       end
+
+      it 'offers to check the account holder against the raison sociale' do
+        expect(page).to have_unchecked_field('Vérifier que le titulaire du compte correspond à la raison sociale du demandeur')
+      end
+
+      context 'on a procedure for individuals' do
+        let(:procedure) { create(:procedure, :for_individual, public_type_de_champs: [{ type: :piece_justificative }]) }
+
+        it 'offers to check the account holder against the name' do
+          expect(page).to have_unchecked_field('Vérifier que le titulaire du compte correspond au nom et au prénom du demandeur')
+        end
+      end
+    end
+
+    context 'when nature is not rib' do
+      it 'does not offer the account holder check' do
+        expect(page).not_to have_text('Vérifier que le titulaire du compte')
+      end
     end
   end
 end

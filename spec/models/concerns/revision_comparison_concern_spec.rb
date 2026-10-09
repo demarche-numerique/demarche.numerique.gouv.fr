@@ -141,6 +141,7 @@ describe RevisionComparisonConcern do
         [:piece_justificative, { pj_limit_formats: '0' }, { pj_limit_formats: '1' }, update(:pj_limit_formats, false, true)],
         [:piece_justificative, { pj_limit_formats: '1' }, { pj_format_families: ['image'] }, update(:pj_format_families, [], ['image'])],
         [:piece_justificative, { pj_auto_purge: '0' }, { pj_auto_purge: '1' }, update(:pj_auto_purge, false, true)],
+        [:piece_justificative, { nature: 'rib' }, { rib_account_holder_match: '1' }, update(:rib_account_holder_match, false, true)],
       ])
     end
 

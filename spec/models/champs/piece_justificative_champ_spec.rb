@@ -280,6 +280,78 @@ describe Champs::PieceJustificativeChamp do
     end
   end
 
+  describe 'account holder match' do
+    let(:rib_account_holder_match) { '1' }
+    let(:procedure) { create(:procedure, :for_individual, public_type_de_champs: [{ type: :piece_justificative, nature: 'rib', rib_account_holder_match: }]) }
+    let(:dossier) { create(:dossier, :with_individual, procedure:) }
+    let(:champ) { dossier.champ_data.first }
+
+    # Symbol keys, as the OCR service and the instructeur form write them.
+    before { champ.update!(value_json: { rib: { account_holder: }, hint: 'rib' }) }
+
+    context 'when the holder is the applicant' do
+      let(:account_holder) { "M XAVIER JULIEN\n12 RUE DE LA PAIX" }
+
+      it { expect(champ.value_json).to eq('rib' => { 'account_holder' => account_holder }, 'hint' => 'rib', 'account_holder_match' => true) }
+    end
+
+    context 'when the holder is someone else' do
+      let(:account_holder) { 'MME MARIE DUPONT' }
+
+      it { expect(champ.value_json['account_holder_match']).to eq(false) }
+    end
+
+    context 'when the holder could not be read' do
+      let(:account_holder) { nil }
+
+      it { expect(champ.value_json['account_holder_match']).to be_nil }
+    end
+
+    context 'when the holder is a joint account under the applicant’s last name' do
+      let(:account_holder) { 'M OU MME JULIEN' }
+
+      it { expect(champ.value_json['account_holder_match']).to eq(true) }
+    end
+
+    context 'when the applicant has no last name' do
+      let(:dossier) { create(:dossier, :with_individual, procedure:).tap { it.individual.update_columns(nom: nil) } }
+      let(:account_holder) { 'M XAVIER' }
+
+      it { expect(champ.value_json['account_holder_match']).to be_nil }
+    end
+
+    context 'when the applicant has several first names' do
+      let(:dossier) { create(:dossier, :with_individual, procedure:).tap { it.individual.update_columns(prenom: 'Xavier Jean-Marie') } }
+
+      context 'and the holder carries the first one' do
+        let(:account_holder) { 'M XAVIER JULIEN' }
+
+        it { expect(champ.value_json['account_holder_match']).to eq(true) }
+      end
+
+      context 'and the holder carries another one' do
+        let(:account_holder) { 'M JEAN MARIE JULIEN' }
+
+        it { expect(champ.value_json['account_holder_match']).to eq(false) }
+      end
+    end
+
+    context 'on a procedure for entreprises' do
+      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :piece_justificative, nature: 'rib', rib_account_holder_match: '1' }]) }
+      let(:dossier) { create(:dossier, :with_entreprise, procedure:) }
+      let(:account_holder) { 'SA GRTGAZ' }
+
+      it { expect(champ.value_json['account_holder_match']).to eq(true) }
+    end
+
+    context 'when the admin did not ask for the check' do
+      let(:rib_account_holder_match) { '0' }
+      let(:account_holder) { 'M XAVIER JULIEN' }
+
+      it { expect(champ.value_json).not_to have_key('account_holder_match') }
+    end
+  end
+
   describe "#for_export" do
     subject { champ.type_de_champ.champ_value_for_export(champ) }
 

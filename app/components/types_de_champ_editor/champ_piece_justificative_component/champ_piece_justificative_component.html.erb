@@ -24,6 +24,22 @@
   </div>
 <% end %>
 
+<% if rib? %>
+  <div class="cell fr-mt-3w">
+    <div class="fr-toggle fr-toggle--no-label">
+      <%= form.check_box :rib_account_holder_match, id: dom_id(type_de_champ, :rib_account_holder_match), class: 'fr-toggle__input', checked: rib_account_holder_match?, aria: { describedby: dom_id(type_de_champ, :rib_account_holder_match_hint) } %>
+      <%= form.label :rib_account_holder_match, t(".account_holder_match.#{procedure.for_individual? ? 'individual' : 'entreprise'}"), for: dom_id(type_de_champ, :rib_account_holder_match), class: 'fr-toggle__label fr-label' %>
+
+      <p
+        class="fr-hint-text"
+        id="<%= dom_id(type_de_champ, :rib_account_holder_match_hint) %>"
+      >
+        <%= t('.account_holder_match.hint') %>
+      </p>
+    </div>
+  </div>
+<% end %>
+
 <%# Accepted formats %>
 <div class="cell fr-mt-3w">
   <div class="fr-hr"></div>

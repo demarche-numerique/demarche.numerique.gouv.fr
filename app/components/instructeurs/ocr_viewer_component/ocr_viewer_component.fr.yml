@@ -2,4 +2,8 @@
 fr:
   title: Données récupérées depuis la pièce jointe
   processing_error: Cette donnée n’a pas pu être récupérée automatiquement dans le fichier joint
+  account_holder_match:
+    'yes': Correspond
+    'no': Ne correspond pas
+    unknown: Non vérifiable
   two_ddoc_title: 'Le code-barre « 2D-Doc » présent sur le document contient des données codées ainsi qu’une signature qui permet de lutter contre la fraude documentaire et sécuriser les données échangées entre l’usager et l’administration'

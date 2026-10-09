@@ -242,6 +242,7 @@ module Administrateurs
         :mandatory,
         :pj_limit_formats,
         :pj_auto_purge,
+        :rib_account_holder_match,
         { pj_format_families: [] },
         :drop_down_options_from_text,
         :drop_down_other,
