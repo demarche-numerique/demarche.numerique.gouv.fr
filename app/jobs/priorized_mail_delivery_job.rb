@@ -12,9 +12,13 @@ class PriorizedMailDeliveryJob < ActionMailer::MailDeliveryJob
   # DeviseUserMailer descends from Devise::Mailer, so ApplicationMailer never
   # tags it.
   before_perform do |job|
-    mailer, action = job.arguments
+    mailer, action, _delivery_method, options = job.arguments
 
     Sentry.set_tags(mailer:, action:)
+
+    if (dossier = options.dig(:params, :dossier))
+      Sentry.set_tags(dossier: dossier.id, procedure: dossier.revision.procedure_id)
+    end
   end
 
   around_perform do |job, block|

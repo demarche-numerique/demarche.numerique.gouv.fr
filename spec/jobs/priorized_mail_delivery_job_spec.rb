@@ -20,4 +20,14 @@ RSpec.describe PriorizedMailDeliveryJob, type: :job do
 
     expect(keys).to eq([job.job_id])
   end
+
+  it 'tags Sentry with the dossier and procedure passed as params' do
+    allow(Sentry).to receive(:set_tags)
+    dossier = dossiers.brouillon
+
+    described_class.perform_later('DossierMailer', 'notify_new_draft', 'deliver_now', args: [], params: { dossier: })
+    perform_enqueued_jobs
+
+    expect(Sentry).to have_received(:set_tags).with(dossier: dossier.id, procedure: dossier.revision.procedure_id)
+  end
 end
