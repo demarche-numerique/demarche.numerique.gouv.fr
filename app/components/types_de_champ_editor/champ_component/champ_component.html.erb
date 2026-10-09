@@ -73,7 +73,7 @@
             <% if type_de_champ.header_section? %>
               <p class="fr-text--sm"><%= t(".header_section_hint") %></p>
               <div class="cell fr-mt-1w">
-                <%= render TypesDeChampEditor::HeaderSectionComponent.new(form: form, tdc: type_de_champ, upper_tdcs: @upper_coordinates.map(&:type_de_champ)) %>
+                <%= render TypesDeChampEditor::HeaderSectionComponent.new(form:, coordinate:) %>
               </div>
             <% end %>
 
@@ -433,7 +433,7 @@
     <% if type_de_champ.repetition? %>
       <div class="flex justify-start section fr-ml-1w">
         <div class="editor-block flex-grow cell">
-          <%= render TypesDeChampEditor::BlockComponent.new(block: coordinate, coordinates: coordinate.revision_type_de_champs, upper_coordinates: @upper_coordinates) %>
+          <%= render TypesDeChampEditor::BlockComponent.new(block: coordinate, coordinates: coordinate.revision_type_de_champs) %>
 
           <div
             class="type-de-champ-add-button <%= class_names(hidden: !coordinate.empty?) %>"
