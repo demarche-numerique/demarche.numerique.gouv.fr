@@ -39,6 +39,8 @@ module Manager
         user_agent: request.user_agent,
         user_id: current_user&.id,
         user_email: current_user&.email,
+        super_admin_id: current_super_admin&.id,
+        client_ip: request.remote_ip,
       }
 
       if browser.known?

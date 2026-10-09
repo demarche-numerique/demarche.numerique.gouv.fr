@@ -92,7 +92,7 @@ describe ApplicationController, type: :controller do
       allow(@controller).to receive(:current_user).and_return(current_user)
       expect(@controller).to receive(:current_instructeur).and_return(current_instructeur)
       expect(@controller).to receive(:current_administrateur).at_least(:once).and_return(current_administrateur)
-      expect(@controller).to receive(:current_super_admin).and_return(current_super_admin)
+      expect(@controller).to receive(:current_super_admin).at_least(:once).and_return(current_super_admin)
       allow(Sentry).to receive(:set_user)
 
       @controller.send(:set_sentry_user)
@@ -157,6 +157,7 @@ describe ApplicationController, type: :controller do
           user_agent: 'Rails Testing',
           user_id: current_user.id,
           user_roles: 'User, Instructeur, Administrateur, SuperAdmin',
+          super_admin_id: current_super_admin.id,
           client_ip: request.remote_ip,
         })
       end

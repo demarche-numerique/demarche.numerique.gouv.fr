@@ -294,6 +294,7 @@ class ApplicationController < ActionController::Base
       user_agent: request.user_agent,
       user_id: current_user&.id,
       user_roles: current_user_roles,
+      super_admin_id: current_super_admin&.id,
       client_ip: request.remote_ip,
       request_id: Current.request_id,
     })
