@@ -8,6 +8,8 @@ RSpec.describe Cron::StalledDeclarativeProceduresJob, type: :job do
     let!(:en_construction) { create(:dossier, :en_construction, :with_individual, procedure:) }
     let!(:en_construction_triggered) { create(:dossier, :en_construction, :with_individual, procedure:, declarative_triggered_at: 1.minute.ago) }
     let!(:en_instruction) { create(:dossier, :en_instruction, :with_individual, procedure:) }
+    let!(:hidden_by_user) { create(:dossier, :en_construction, :with_individual, :hidden_by_user, procedure:) }
+    let!(:hidden_by_expired) { create(:dossier, :en_construction, :with_individual, :hidden_by_expired, procedure:) }
 
     subject(:perform_job) do
       described_class.perform_now
@@ -22,6 +24,8 @@ RSpec.describe Cron::StalledDeclarativeProceduresJob, type: :job do
         expect(ProcessStalledDeclarativeDossierJob).to have_been_enqueued.with(en_construction)
         expect(ProcessStalledDeclarativeDossierJob).not_to have_been_enqueued.with(en_construction_triggered)
         expect(ProcessStalledDeclarativeDossierJob).not_to have_been_enqueued.with(en_instruction)
+        expect(ProcessStalledDeclarativeDossierJob).not_to have_been_enqueued.with(hidden_by_user)
+        expect(ProcessStalledDeclarativeDossierJob).not_to have_been_enqueued.with(hidden_by_expired)
       }
     end
 
