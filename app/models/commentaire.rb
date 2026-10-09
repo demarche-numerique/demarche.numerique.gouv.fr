@@ -35,6 +35,8 @@ class Commentaire < ApplicationRecord
       .where("commentaires.instructeur_id IS NULL OR commentaires.instructeur_id != ?", instructeur_id)
   }
 
+  attr_accessor :dossier_modifie_par_instructeur
+
   after_create :notify
 
   def self.mark_usager_messages_as_seen(dossier)
@@ -153,13 +155,25 @@ class Commentaire < ApplicationRecord
   def notify_user(job_options = {})
     if flagged_pending_correction?
       DossierMailer.with(commentaire: self).notify_pending_correction.deliver_later(job_options)
+    elsif dossier_modifie_par_instructeur
+      DossierMailer.with(commentaire: self).notify_dossier_modifie_par_instructeur.deliver_later(job_options)
     else
       DossierMailer.with(commentaire: self).notify_new_answer.deliver_later(job_options)
     end
 
-    # Une demande de correction n'est pas un message ordinaire : elle attend une
-    # action de l'usager, et AMI la formule comme telle.
-    Ami::CreateNotificationService.call(dossier:, trigger: flagged_pending_correction? ? :pending_correction : :messagerie_message)
+    Ami::CreateNotificationService.call(dossier:, trigger: ami_trigger)
+  end
+
+  # Une demande de correction n'est pas un message ordinaire : elle attend une
+  # action de l'usager, et AMI la formule comme telle.
+  def ami_trigger
+    if flagged_pending_correction?
+      :pending_correction
+    elsif dossier_modifie_par_instructeur
+      :dossier_modifie_par_instructeur
+    else
+      :messagerie_message
+    end
   end
 
   def notify_administration

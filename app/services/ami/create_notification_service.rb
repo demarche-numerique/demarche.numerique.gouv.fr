@@ -5,7 +5,7 @@ module Ami
     SOURCE = ApplicationHelper::APP_HOST
 
     DECISION_STATES = [:accepte, :refuse, :sans_suite].freeze
-    MESSAGE_TRIGGERS = [:messagerie_message, :pending_correction].freeze
+    MESSAGE_TRIGGERS = [:messagerie_message, :pending_correction, :dossier_modifie_par_instructeur].freeze
 
     ITEM_GENERIC_STATUS_BY_STATE = {
       brouillon: "new",

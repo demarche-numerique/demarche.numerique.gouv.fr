@@ -164,6 +164,28 @@ describe Commentaire do
         commentaire.send(:notify_user, wait: 5.minutes)
       end
     end
+
+    context "when the commentaire notifies a dossier edited by an instructeur" do
+      let(:commentaire) { CommentaireService.build(instructeur, dossier, body: "Mon commentaire", dossier_modifie_par_instructeur: true) }
+
+      before do
+        allow(mailer).to receive(:notify_dossier_modifie_par_instructeur).and_return(mail_delivery)
+        allow(Ami::CreateNotificationService).to receive(:call)
+      end
+
+      it "sends the dedicated email" do
+        expect(mailer).to receive(:notify_dossier_modifie_par_instructeur).and_return(mail_delivery)
+        expect(mailer).not_to receive(:notify_new_answer)
+
+        commentaire.send(:notify_user, wait: 5.minutes)
+      end
+
+      it "triggers AMI notification with the dossier modifie trigger" do
+        expect(Ami::CreateNotificationService).to receive(:call).with(dossier: dossier, trigger: :dossier_modifie_par_instructeur)
+
+        commentaire.send(:notify_user, wait: 5.minutes)
+      end
+    end
   end
 
   describe 'body validation' do
