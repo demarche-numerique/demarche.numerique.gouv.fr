@@ -51,6 +51,35 @@ describe Manager::UsersController, type: :controller do
     end
   end
 
+  describe '#index' do
+    render_views
+
+    let!(:user) { create(:user, email: 'camille@manager-search.test') }
+    let!(:lookalike) { create(:user, email: "#{user.id}.xcamille@manager-search.test") }
+
+    def listed_ids
+      response.body.scan(%r{href="/manager/users/(\d+)"}).flatten.map(&:to_i).uniq
+    end
+
+    it 'finds the user by exact email, ignoring case and surrounding spaces' do
+      get :index, params: { search: '  Camille@Manager-Search.test ' }
+
+      expect(listed_ids).to eq([user.id])
+    end
+
+    it 'finds the user by exact id' do
+      get :index, params: { search: user.id.to_s }
+
+      expect(listed_ids).to eq([user.id])
+    end
+
+    it 'falls back to a partial search when nothing matches exactly' do
+      get :index, params: { search: '@manager-search.test' }
+
+      expect(listed_ids).to contain_exactly(user.id, lookalike.id)
+    end
+  end
+
   describe '#resend_reset_password_instructions' do
     let(:super_admin) { create(:super_admin, :with_otp) }
     let(:user) { administrateurs.default.user }
