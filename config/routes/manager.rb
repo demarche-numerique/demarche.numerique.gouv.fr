@@ -43,6 +43,10 @@ namespace :manager do
       post :reinvite
       get :delete_edit
       delete :delete
+      post :request_merge
+      get :merge_link
+      get :merge_edit
+      post :merge
     end
   end
 

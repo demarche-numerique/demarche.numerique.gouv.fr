@@ -1,0 +1,26 @@
+<% content_for(:title) { "Confirmation de fusion d’un administrateur" } %>
+
+<header class="main-content__header">
+  <h1 class="main-content__page-title"><%= content_for(:title) %></h1>
+
+  <div>
+    <%= link_to t("administrate.actions.back"), manager_administrateur_path(@administrateur), class: "button" %>
+  </div>
+</header>
+
+<section class="main-content__body">
+  <p>
+    Vous avez été invité·e par <em><%= @inviter.email %></em> à confirmer le
+    transfert des démarches, services, instructeurs et jetons d’API de
+    <em><%= @old_administrateur.email %></em> vers
+    <strong><%= @administrateur.email %></strong>.
+  </p>
+
+  <p>Confirmez-vous cette fusion ?</p>
+
+  <%= form_tag merge_manager_administrateur_path(@administrateur) do %>
+    <%= hidden_field_tag :q, params[:q] %>
+    <%= submit_tag "Oui, je confirme la fusion" %>
+    <%= link_to "Non, je ne confirme pas la fusion", manager_administrateur_path(@administrateur) %>
+  <% end %>
+</section>

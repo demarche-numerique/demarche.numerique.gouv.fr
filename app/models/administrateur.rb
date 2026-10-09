@@ -76,51 +76,58 @@ class Administrateur < ApplicationRecord
   end
 
   def merge(old_admin)
-    return if old_admin.nil?
+    return if old_admin.nil? || old_admin == self
 
-    procedures_with_new_admin, procedures_without_new_admin = old_admin
-      .procedures
-      .with_discarded
-      .partition { |p| p.administrateurs.exists?(id) }
+    transaction do
+      old_procedure_ids = old_admin.procedures.ids
 
-    procedures_with_new_admin.each do |p|
-      p.administrateurs.delete(old_admin)
-    end
+      procedures_with_new_admin, procedures_without_new_admin = old_admin
+        .procedures
+        .with_discarded
+        .partition { |p| p.administrateurs.exists?(id) }
 
-    procedures_without_new_admin.each do |p|
-      p.administrateurs << self
-      p.administrateurs.delete(old_admin)
-    end
-
-    old_services = old_admin.services
-    new_service_by_nom = services.index_by(&:nom)
-
-    old_services.each do |old_service|
-      corresponding_service = new_service_by_nom[old_service.nom]
-      if corresponding_service.present?
-        old_service.procedures.with_discarded.update_all(service_id: corresponding_service.id)
-        old_service.destroy
-      else
-        old_service.update_column(:administrateur_id, id)
+      procedures_with_new_admin.each do |p|
+        p.administrateurs.delete(old_admin)
       end
-    end
 
-    instructeurs_with_new_admin, instructeurs_without_new_admin = old_admin.instructeurs
-      .partition { |i| i.administrateurs.exists?(id) }
+      procedures_without_new_admin.each do |p|
+        p.administrateurs << self
+        p.administrateurs.delete(old_admin)
+      end
 
-    instructeurs_with_new_admin.each do |i|
-      i.administrateurs.delete(old_admin)
-    end
+      old_services = old_admin.services
+      new_service_by_nom = services.index_by(&:nom)
 
-    instructeurs_without_new_admin.each do |i|
-      i.administrateurs << self
-      i.administrateurs.delete(old_admin)
-    end
+      old_services.each do |old_service|
+        corresponding_service = new_service_by_nom[old_service.nom]
+        if corresponding_service.present?
+          old_service.procedures.with_discarded.update_all(service_id: corresponding_service.id)
+          old_service.destroy
+        else
+          old_service.update_column(:administrateur_id, id)
+        end
+      end
 
-    # v1/v2 tokens are deliberately left behind (and destroyed with the old
-    # admin): we want their owners to migrate to v3 tokens.
-    old_admin.api_tokens.authenticable.find_each do |token|
-      self.api_tokens << token
+      instructeurs_with_new_admin, instructeurs_without_new_admin = old_admin.instructeurs
+        .partition { |i| i.administrateurs.exists?(id) }
+
+      instructeurs_with_new_admin.each do |i|
+        i.administrateurs.delete(old_admin)
+      end
+
+      instructeurs_without_new_admin.each do |i|
+        i.administrateurs << self
+        i.administrateurs.delete(old_admin)
+      end
+
+      # v1/v2 tokens are deliberately left behind (and destroyed with the old
+      # admin): we want their owners to migrate to v3 tokens.
+      # A full access token is narrowed to the old admin's procedures, so it
+      # does not gain access to the new admin's own procedures.
+      old_admin.api_tokens.authenticable.find_each do |token|
+        token.allowed_procedure_ids = old_procedure_ids if token.full_access?
+        self.api_tokens << token
+      end
     end
   end
 

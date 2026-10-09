@@ -73,6 +73,16 @@ describe Administrateur, type: :model do
       it { expect { subject }.not_to raise_error }
     end
 
+    context 'when the old admin is the new admin' do
+      let(:old_admin) { new_admin }
+      let!(:procedure) { create(:procedure, administrateurs: [new_admin]) }
+
+      it 'keeps its procedures' do
+        subject
+        expect(procedure.reload.administrateurs).to eq([new_admin])
+      end
+    end
+
     context 'when the old admin has a procedure' do
       let(:procedure) { create(:procedure) }
       let(:discarded_procedure) { create(:procedure, :discarded) }
@@ -157,6 +167,19 @@ describe Administrateur, type: :model do
         subject
         expect(new_admin.api_tokens.count).to eq 1
         expect(new_admin.api_tokens.first).to eq token
+      end
+    end
+
+    context 'when the old admin has a full access api token' do
+      let(:old_admin) { create(:administrateur, :with_api_token) }
+      let!(:old_procedure) { create(:procedure, administrateurs: [old_admin]) }
+      let!(:new_procedure) { create(:procedure, administrateurs: [new_admin]) }
+
+      it 'restricts the token to the old admin procedures' do
+        token = old_admin.api_tokens.first
+        subject
+
+        expect(token.reload.procedure_ids).to eq([old_procedure.id])
       end
     end
 
