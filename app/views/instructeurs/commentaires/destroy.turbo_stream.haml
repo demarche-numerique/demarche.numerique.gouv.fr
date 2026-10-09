@@ -2,7 +2,7 @@
   = turbo_stream.update @commentaire do
     = render Dossiers::MessageComponent.new(commentaire: @commentaire, connected_user: @commentaire.instructeur || @commentaire.expert)
 
-  - if current_user.instructeur?
+  - if instructeur_of_dossier?
     = turbo_stream.replace 'header-top', partial: 'instructeurs/dossiers/header_top', locals: { dossier: @commentaire.dossier, procedure_presentation: @procedure_presentation, notifications: @notifications }
 
     - if @notifications_sticker.present?
