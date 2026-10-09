@@ -14,7 +14,7 @@ class ProcedureRevisionTypeDeChamp < ApplicationRecord
   scope :public_only, -> { joins(:type_de_champ).where(types_de_champ: { private: false }) }
   scope :private_only, -> { joins(:type_de_champ).where(types_de_champ: { private: true }) }
 
-  delegate :libelle, :description, :type_champ, :header_section?, :repetition?, :mandatory?, :public?, :private?, :to_typed_id, to: :type_de_champ
+  delegate :libelle, :display_libelle, :description, :type_champ, :header_section?, :repetition?, :mandatory?, :public?, :private?, :to_typed_id, to: :type_de_champ
   delegate :type_de_champ, to: :parent, prefix: true, allow_nil: true
 
   default_scope { eager_load(:type_de_champ) }

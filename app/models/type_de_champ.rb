@@ -136,6 +136,7 @@ class TypeDeChamp < ApplicationRecord
   end
 
   def libelle_optionnal? = false
+  def display_libelle = libelle
   def libelle_configurable? = true
   def description_configurable? = true
   def has_label? = true

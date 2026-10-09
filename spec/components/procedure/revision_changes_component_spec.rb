@@ -419,4 +419,56 @@ describe Procedure::RevisionChangesComponent, type: :component do
       expect(subject).not_to have_text("du champ")
     end
   end
+
+  describe "explication without libelle" do
+    let(:procedure) { procedures.individual }
+    let(:draft) { procedure.draft_revision }
+
+    # the libelle is defaulted on creation, the admin empties it afterwards
+    def add_explication(description:)
+      draft.add_type_de_champ(type_champ: "explication", libelle: "Explication").update!(libelle: "", description:)
+    end
+
+    subject do
+      render_inline(described_class.new(new_revision: draft.reload, previous_revision: procedure.published_revision))
+      page
+    end
+
+    context "when it is added with a description" do
+      before { add_explication(description: "Munissez-vous **de votre avis d’imposition** & d’un <b>justificatif</b> de domicile récent") }
+
+      it "names it after its truncated description" do
+        expect(subject).to have_text("Le champ « Munissez-vous de votre avis d’imposition & d’un… » a été ajouté.", normalize_ws: true)
+      end
+    end
+
+    context "when it is added without a description" do
+      before { add_explication(description: "") }
+
+      it "names it after its type" do
+        expect(subject).to have_text("Le champ « Explication » a été ajouté.", normalize_ws: true)
+      end
+    end
+
+    context "when it is removed" do
+      before { add_explication(description: "Lisez la notice") }
+
+      subject do
+        render_inline(described_class.new(new_revision: procedure.published_revision, previous_revision: draft.reload))
+        page
+      end
+
+      it "names it after its description" do
+        expect(subject).to have_text("Le champ « Lisez la notice » a été supprimé.", normalize_ws: true)
+      end
+    end
+
+    context "when a champ with a libelle is added" do
+      before { draft.add_type_de_champ(type_champ: "text", libelle: "Nom de l’association", mandatory: false) }
+
+      it "keeps its libelle" do
+        expect(subject).to have_text("Le champ « Nom de l’association » a été ajouté.", normalize_ws: true)
+      end
+    end
+  end
 end
