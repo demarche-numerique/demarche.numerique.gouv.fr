@@ -138,6 +138,29 @@ describe Etablissement do
     end
   end
 
+  describe '#effectifs_fetchable?' do
+    subject { Etablissement.new(entreprise_etat_administratif:, entreprise_code_effectif_entreprise:).effectifs_fetchable? }
+
+    let(:entreprise_etat_administratif) { :actif }
+    let(:entreprise_code_effectif_entreprise) { '11' }
+
+    context 'for an open employer' do
+      it { is_expected.to be true }
+    end
+
+    context 'for an unite legale that employs nobody' do
+      let(:entreprise_code_effectif_entreprise) { 'NN' }
+
+      it { is_expected.to be false }
+    end
+
+    context 'for a ceased unite legale' do
+      let(:entreprise_etat_administratif) { :fermé }
+
+      it { is_expected.to be false }
+    end
+  end
+
   describe '#entreprise_raison_sociale' do
     subject { etablissement.entreprise_raison_sociale }
 

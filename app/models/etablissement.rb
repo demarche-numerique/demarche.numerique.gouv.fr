@@ -213,6 +213,12 @@ class Etablissement < ApplicationRecord
     entreprise_forme_juridique_code.nil? || entreprise_forme_juridique_code.start_with?('92', '93')
   end
 
+  # GIP-MDS only counts the staff of open employers; INSEE marks an unite legale that employs
+  # nobody "NN": https://entreprise.api.gouv.fr/catalogue/gip_mds/effectifs_annuels_unite_legale
+  def effectifs_fetchable?
+    !entreprise_etat_administratif_fermé? && entreprise_code_effectif_entreprise != 'NN'
+  end
+
   def entreprise
     Entreprise.new(
       etablissement: self,

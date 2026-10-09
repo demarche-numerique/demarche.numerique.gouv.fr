@@ -66,5 +66,18 @@ describe APIEntrepriseService do
         expect(APIEntreprise::AssociationJob).not_to have_been_enqueued
       end
     end
+
+    context 'when the unite legale employs nobody' do
+      let(:roles) { [] }
+
+      before { etablissement.update!(entreprise_code_effectif_entreprise: 'NN') }
+
+      it 'skips the staff counts' do
+        subject
+
+        expect(APIEntreprise::EffectifsJob).not_to have_been_enqueued
+        expect(APIEntreprise::EffectifsAnnuelsJob).not_to have_been_enqueued
+      end
+    end
   end
 end
