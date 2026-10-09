@@ -19,6 +19,9 @@
       Lien
     </dt>
 
-    <dd class="attribute-data"><%= @url %></dd>
+    <dd class="attribute-data">
+      <%= @url %>
+      <%= render Dsfr::CopyButtonComponent.new(text: @url, title: "Copier le lien") %>
+    </dd>
   </dl>
 </section>
