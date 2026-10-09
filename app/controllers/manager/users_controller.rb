@@ -147,6 +147,17 @@ module Manager
       params.require(:user).permit(:email)[:email]
     end
 
+    # Indexed exact match on email or id before Administrate's full-table LIKE '%term%'.
+    def filter_resources(resources, search_term:)
+      return super if search_term.blank?
+
+      term = search_term.strip
+      exact = resources.where(email: term)
+      exact = exact.or(resources.where(id: term)) if term.match?(/\A\d+\z/)
+
+      exact.exists? ? exact : super
+    end
+
     def paginate_resources(_resources)
       super.without_count
     end
