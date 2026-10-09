@@ -13,6 +13,11 @@ module ChampValidateConcern
     errors.add(:value, :missing) if mandatory_blank?
   end
 
+  # Validation can add the errors to another instance of the champ, nested on the dossier.
+  def dossier_nested_errors
+    dossier.errors.filter { it.is_a?(ActiveModel::NestedError) && it.inner_error.base.try(:public_id) == public_id }
+  end
+
   private
 
   def should_validate_in_current_context?
