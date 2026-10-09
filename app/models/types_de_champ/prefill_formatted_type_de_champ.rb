@@ -2,10 +2,9 @@
 
 class TypesDeChamp::PrefillFormattedTypeDeChamp < TypesDeChamp::PrefillTypeDeChamp
   def example_value
-    case options["formatted_mode"].to_sym
-    when :advanced
+    if formatted_advanced?
       options["expression_reguliere_exemple_text"]
-    when :simple
+    else
       # Generate simple random example
       example = +""
 
