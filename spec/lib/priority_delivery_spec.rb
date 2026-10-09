@@ -58,6 +58,8 @@ RSpec.describe PriorityDeliveryConcern do
 
   class MockSendmail < TestMail; end
 
+  class MockBrevoAPI < TestMail; end
+
   class FixedSequence
     def initialize(sequence)
       @enumerator = sequence.each
@@ -78,6 +80,7 @@ RSpec.describe PriorityDeliveryConcern do
 
     ActionMailer::Base.add_delivery_method :mock_smtp, MockSmtp
     ActionMailer::Base.add_delivery_method :mock_sendmail, MockSendmail
+    ActionMailer::Base.add_delivery_method :brevo_api, MockBrevoAPI
     ActionMailer::Base.add_delivery_method :balancer, BalancerDeliveryMethod
 
     example.run
@@ -243,6 +246,29 @@ RSpec.describe PriorityDeliveryConcern do
       mail = ImportantEmail.greet('test@example.com').deliver_now
       expect(mail[BalancerDeliveryMethod::CRITICAL_HEADER].value).to eq("true")
     end
+  end
+
+  context 'when the brevo_api flag is enabled for the recipient' do
+    before do
+      ActionMailer::Base.balancer_settings = { mock_smtp: 10, brevo_api: 0 }
+      Flipper.enable_actor(BalancerDeliveryMethod::BREVO_API_FEATURE, users.usager)
+    end
+
+    it 'forces brevo_api for that user only' do
+      expect(ExampleMailer.greet(users.usager.email).deliver_now).to have_been_delivered_using(MockBrevoAPI)
+      expect(ExampleMailer.greet('someone-else@example.com').deliver_now).to have_been_delivered_using(MockSmtp)
+    end
+
+    it 'ignores the flag where the balancer has no brevo_api method' do
+      ActionMailer::Base.balancer_settings = { mock_smtp: 10 }
+
+      expect(ExampleMailer.greet(users.usager.email).deliver_now).to have_been_delivered_using(MockSmtp)
+    end
+  end
+
+  it 'names the mailer and action in a header' do
+    mail = ExampleMailer.greet('test@example.com').deliver_now
+    expect(mail[PriorityDeliveryConcern::MAILER_HEADER].value).to eq('ExampleMailer.greet')
   end
 
   # Helpers

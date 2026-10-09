@@ -3,9 +3,12 @@
 module PriorityDeliveryConcern
   extend ActiveSupport::Concern
 
+  MAILER_HEADER = 'X-DN-Mailer'
+
   included do
     self.delivery_job = PriorizedMailDeliveryJob
 
+    before_action :set_mailer_header
     before_action :set_critical_header, if: :critical_email?
     before_action :set_forced_delivery_method_header, if: :should_force_delivery?
   end
@@ -25,6 +28,10 @@ module PriorityDeliveryConcern
   end
 
   private
+
+  def set_mailer_header
+    headers[MAILER_HEADER] = "#{self.class.name}.#{action_name}"
+  end
 
   def set_critical_header
     headers[BalancerDeliveryMethod::CRITICAL_HEADER] = true

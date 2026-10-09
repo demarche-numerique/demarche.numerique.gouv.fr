@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 class Brevo::API
+  include Dry::Monads[:result]
+
+  Error = Data.define(:kind, :type, :http_code, :brevo_code, :message)
+
+  ACCOUNT_CODES = %w[unauthorized not_enough_credits account_under_validation permission_denied].freeze
+  DUPLICATE_CODES = %w[duplicate_parameter duplicate_request].freeze
+  ACCOUNT_HTTP_CODES = [401, 402, 403].freeze
+
   def initialize
     @failures = []
   end
@@ -73,6 +81,22 @@ class Brevo::API
     false
   end
 
+  def send_email(payload)
+    result = API::Client.new.call(
+      url: "#{BREVO_API_V3_URL}/smtp/email",
+      method: :post,
+      json: payload,
+      headers: { 'api-key' => client_key }
+    )
+
+    case result
+    in Success(body:)
+      Success(Array(body[:messageIds] || body[:messageId]))
+    in Failure(error)
+      Failure(classify(error))
+    end
+  end
+
   def run
     hydra.run
     @hydra = nil
@@ -121,5 +145,37 @@ class Brevo::API
 
   def parse_date(date)
     date.is_a?(String) ? Time.zone.parse(date) : date
+  end
+
+  def classify(error)
+    body = error_body(error)
+    code = body[:code]
+
+    kind = if code.in?(DUPLICATE_CODES)
+      :duplicate
+    elsif code.in?(ACCOUNT_CODES) || error.code.in?(ACCOUNT_HTTP_CODES)
+      :account
+    elsif error.code == 429
+      :throttled
+    elsif code.present? && error.code < 500
+      :rejected
+    else
+      :outage
+    end
+
+    Error[kind, error.type, error.code, code, body[:message]&.gsub(/\S+@\S+/, '[email]')&.truncate(300)]
+  end
+
+  def error_body(error)
+    case error
+    in type: :http
+      JSON.parse(error.error.response.body, symbolize_names: true)
+    in type: :network | :timeout
+      { message: error.error.response.return_message }
+    else
+      {}
+    end
+  rescue JSON::ParserError
+    {}
   end
 end

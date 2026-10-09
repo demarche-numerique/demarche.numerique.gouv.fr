@@ -9,16 +9,16 @@ RSpec.describe ApplicationMailer, type: :mailer do
       before do
         allow_any_instance_of(DossierMailer)
           .to receive(:notify_new_draft)
-          .and_raise(smtp_error)
+          .and_raise(delivery_error)
       end
 
       context 'when the server handles invalid emails with Net::SMTPSyntaxError' do
-        let(:smtp_error) { Net::SMTPSyntaxError.new('400 unexpected recipients: want atleast 1, got 0') }
+        let(:delivery_error) { Net::SMTPSyntaxError.new('400 unexpected recipients: want atleast 1, got 0') }
         it { expect(subject.message).to be_an_instance_of(ActionMailer::Base::NullMail) }
       end
 
       context 'when the server handles invalid emails with Net::SMTPServerBusy' do
-        let(:smtp_error) { Net::SMTPServerBusy.new('400 unexpected recipients: want atleast 1, got 0') }
+        let(:delivery_error) { Net::SMTPServerBusy.new('400 unexpected recipients: want atleast 1, got 0') }
         it { expect(subject.message).to be_an_instance_of(ActionMailer::Base::NullMail) }
       end
     end
@@ -57,11 +57,11 @@ RSpec.describe ApplicationMailer, type: :mailer do
       before do
         allow_any_instance_of(Mail::Message)
           .to receive(:do_delivery)
-          .and_raise(smtp_error)
+          .and_raise(delivery_error)
       end
 
       context "smtp server busy" do
-        let(:smtp_error) { Net::SMTPServerBusy.new('451 4.7.500 Server busy') }
+        let(:delivery_error) { Net::SMTPServerBusy.new('451 4.7.500 Server busy') }
 
         it "catches the smtp error" do
           expect { subject.deliver_now }.not_to raise_error
@@ -69,8 +69,20 @@ RSpec.describe ApplicationMailer, type: :mailer do
         end
       end
 
+      context "brevo rejects the payload" do
+        let(:delivery_error) { Brevo::APIDeliveryMethod::RejectedError.new(Brevo::API::Error[:rejected, :http, 400, 'invalid_parameter', 'email [email] is not valid in to']) }
+
+        it "records the error and does not retry" do
+          allow(Sentry).to receive(:capture_exception)
+
+          expect { subject.deliver_now }.not_to raise_error
+          expect(EmailEvent.dispatch_error.exists?(to: 'your@email.com')).to be(true)
+          expect(Sentry).to have_received(:capture_exception).with(delivery_error)
+        end
+      end
+
       context "does not catches other error" do
-        let(:smtp_error) { Net::OpenTimeout.new }
+        let(:delivery_error) { Net::OpenTimeout.new }
 
         it "re-raise an error and creates an event" do
           expect { subject.deliver_now }.to raise_error(Net::OpenTimeout)
