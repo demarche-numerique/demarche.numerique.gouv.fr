@@ -1,6 +1,10 @@
 <%= render partial: 'shared/dossiers/update_champs', locals: { to_show: @to_show, to_hide: @to_hide, to_update: @to_update, polling: @polling } %>
 <%= render partial: 'shared/dossiers/update_footer', locals: { dossier: @dossier } %>
 
+<% if @repetition_reaching_min %>
+  <%= turbo_stream.dispatch 'repetition:min-reached', error_id: @repetition_reaching_min.error_id(:value) %>
+<% end %>
+
 <% if params[:validate].present? %>
   <%= render partial: 'shared/dossiers/update_ineligibilite_rules', locals: { dossier: @dossier, updated_champ: @updated_champ } %>
 <% end %>

@@ -13,6 +13,16 @@ class EditableChamp::RepetitionComponent < EditableChamp::EditableChampBaseCompo
     @champ.description.present? ? { id: dom_id(@champ, :repetition) } : {}
   end
 
+  def fieldset_aria_opts
+    return super if !show_limits_description?
+
+    super.deep_merge(aria: { describedby: limits_description_id })
+  end
+
+  def limits_description_id
+    dom_id(@champ, :limits_description)
+  end
+
   def show_toggle_all_button?
     @champ.dossier.revision.children_of(@champ.type_de_champ).size > 1
   end

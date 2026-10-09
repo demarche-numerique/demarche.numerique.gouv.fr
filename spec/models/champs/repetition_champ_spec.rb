@@ -85,7 +85,7 @@ describe Champs::RepetitionChamp do
         public_type_de_champs: [
           {
             type: :repetition,
-            children: [{ type: :text }],
+            children:,
             libelle: "Bloc",
             limit_repetitions: '1',
             min_repetitions: min_rep,
@@ -93,6 +93,7 @@ describe Champs::RepetitionChamp do
           },
         ])
     end
+    let(:children) { [{ type: :text }] }
     let(:dossier) { create(:dossier, procedure:) }
     let(:champ) { dossier.root_champs_public.find(&:repetition?) }
 
@@ -104,8 +105,13 @@ describe Champs::RepetitionChamp do
         champ_for_update(champ.rows.first.flat_children.first).update(value: "rb")
       end
 
-      it "adds a repetition_too_few error" do
+      it "does not add a repetition_too_few error while the dossier is being filled" do
         champ.valid?(:champ_value)
+        expect(champ.errors.where(:value, :repetition_too_few)).to be_empty
+      end
+
+      it "adds a repetition_too_few error on submission" do
+        champ.valid?([:champ_value, :champ_completeness])
         expect(champ.errors.where(:value, :repetition_too_few)).to be_present
       end
     end
@@ -120,8 +126,86 @@ describe Champs::RepetitionChamp do
 
       it "adds a repetition_too_few error even without any rows" do
         fresh_champ = dossier.reload.root_champs_public.find(&:repetition?)
-        fresh_champ.valid?(:champ_value)
+        fresh_champ.valid?([:champ_value, :champ_completeness])
         expect(fresh_champ.errors.where(:value, :repetition_too_few)).to be_present
+      end
+    end
+
+    context "when an added row is left empty" do
+      let(:children) { [{ type: :text, mandatory: false }] }
+      let(:min_rep) { 2 }
+      let(:max_rep) { nil }
+
+      before do
+        champ_for_update(champ.rows.first.flat_children.first).update(value: "rb")
+        champ.add_row(updated_by: "test")
+      end
+
+      it "does not count the empty row" do
+        champ.valid?([:champ_value, :champ_completeness])
+        expect(champ.errors.where(:value, :repetition_too_few)).to be_present
+        expect(champ.min_repetitions_reached?).to be(false)
+      end
+    end
+
+    context "when a row misses a mandatory value" do
+      let(:children) { [{ type: :text, libelle: "Nom" }, { type: :text, libelle: "Rôle", mandatory: true }] }
+      let(:min_rep) { 2 }
+      let(:max_rep) { nil }
+
+      before do
+        champ_for_update(champ.rows.first.flat_children.first).update(value: "Ada")
+        champ_for_update(champ.rows.first.flat_children.last).update(value: "Dev")
+        champ.add_row(updated_by: "test")
+        champ_for_update(champ.rows.last.flat_children.first).update(value: "Grace")
+      end
+
+      it "does not count the incomplete row" do
+        champ.valid?([:champ_value, :champ_completeness])
+        expect(champ.errors.where(:value, :repetition_too_few)).to be_present
+      end
+
+      it "counts the row once its mandatory values are filled" do
+        champ_for_update(champ.rows.last.flat_children.last).update(value: "Ops")
+
+        champ.valid?([:champ_value, :champ_completeness])
+        expect(champ.errors.where(:value, :repetition_too_few)).to be_empty
+        expect(champ.min_repetitions_reached?).to be(true)
+      end
+    end
+
+    context "when the only value of a row is in a hidden child" do
+      include Logic
+
+      let(:children) { [{ type: :text, libelle: "Nom", stable_id: 901, mandatory: false }, { type: :text, libelle: "Détail", stable_id: 902, mandatory: false, condition: ds_eq(champ_value(901), constant("oui")) }] }
+      let(:min_rep) { 1 }
+      let(:max_rep) { nil }
+
+      before do
+        champ_for_update(champ.rows.first.flat_children.last).update(value: "masqué")
+      end
+
+      it "does not count the row" do
+        expect(champ.min_repetitions_reached?).to be(false)
+      end
+    end
+
+    context "when count exceeds max in a block of pieces justificatives" do
+      let(:children) { [{ type: :piece_justificative }] }
+      let(:min_rep) { 1 }
+      let(:max_rep) { 1 }
+
+      before do
+        champ.add_row(updated_by: "test")
+        champ.rows.each do |row|
+          champ_for_update(row.flat_children.first).piece_justificative_file.attach(io: StringIO.new("toto"), filename: "toto.txt", content_type: "text/plain")
+        end
+      end
+
+      it "adds a repetition_too_many error" do
+        champ.valid?(:champ_value)
+        expect(champ.errors.where(:value, :repetition_too_many)).to be_present
+        expect(champ.too_many_rows?).to be(true)
       end
     end
 
@@ -150,7 +234,7 @@ describe Champs::RepetitionChamp do
       end
 
       it "does not add any errors" do
-        champ.valid?(:champ_value)
+        champ.valid?([:champ_value, :champ_completeness])
         expect(champ.errors).to be_empty
       end
     end

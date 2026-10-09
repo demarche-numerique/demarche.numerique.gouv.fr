@@ -192,6 +192,43 @@ describe 'The user', js: true do
     expect(page).to have_button('Ajouter un élément à « bloc »', disabled: true)
   end
 
+  let(:procedure_with_repetition_min) do
+    procedure = create(:procedure, :published, :for_individual, public_type_de_champs: [{ type: :repetition, libelle: 'bloc', children: [{ libelle: 'sous champ', mandatory: true }] }])
+    tdc = procedure.draft_revision.public_root_type_de_champs.first
+    tdc.update!(limit_repetitions: '1', min_repetitions: '2')
+    procedure
+  end
+
+  scenario 'repetition with min limit reports the error on submission and clears it once enough rows are filled' do
+    log_in_fast(user, procedure_with_repetition_min)
+
+    expect(page).to have_selector('.fr-alert.fr-alert--info.fr-alert--sm', text: 'Vous devez renseigner au minimum 2 élément(s).')
+    expect(page).not_to have_content('doit contenir au minimum 2 élément(s)')
+
+    within(all('.repetition-row').first) { fill_in 'sous champ', with: 'premier' }
+    wait_for_autosave
+    click_on 'Ajouter un élément à « bloc »'
+    expect(page).to have_selector('.repetition-row', count: 2)
+    expect(page).not_to have_selector('.editable-champ-repetition.fr-fieldset--error')
+
+    click_on 'Déposer le dossier'
+
+    expect(page).to have_content('« bloc » doit contenir au minimum 2 élément(s)')
+    expect(page).to have_content('« [2] sous champ » doit être rempli')
+    expect(page).to have_selector('.editable-champ-repetition.fr-fieldset--error')
+
+    click_on 'Ajouter un élément à « bloc »'
+    expect(page).to have_selector('.repetition-row', count: 3)
+    expect(page).to have_selector('.editable-champ-repetition.fr-fieldset--error')
+
+    within(all('.repetition-row').last) { fill_in 'sous champ', with: 'troisième' }
+    wait_for_autosave
+
+    expect(page).not_to have_content('« bloc » doit contenir au minimum 2 élément(s)')
+    expect(page).not_to have_selector('.editable-champ-repetition.fr-fieldset--error')
+    expect(page).to have_content('« [2] sous champ » doit être rempli')
+  end
+
   let(:procedure_with_repetition_2) do
     create(:procedure, :published, :for_individual, public_type_de_champs: [{ type: :text, mandatory: true, libelle: 'texte obligatoire' }, { type: :repetition, mandatory: true, libelle: 'repetition', children: [{ libelle: 'sub type de champ' }] }])
   end
