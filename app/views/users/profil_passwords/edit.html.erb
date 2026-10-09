@@ -1,0 +1,55 @@
+<% content_for(:title, t('.title')) %>
+
+<%= render partial: 'shared/breadcrumbs_section', locals: { steps: [[t('users.profil.show.profile'), profil_path(context: params[:context])], [t('.title')]] } %>
+
+<div class="fr-container fr-my-5w">
+  <div class="fr-grid-row">
+    <div class="fr-col-lg-6">
+      <h1><%= t('.title') %></h1>
+
+      <% if current_user.france_connect_informations.any? %>
+        <%= render Dsfr::AlertComponent.new(title: t('.france_connect_title'), state: :info, heading_level: 'h2', extra_class_names: 'fr-mb-4w') do |c| %>
+          <% c.with_body do %>
+            <p><%= t('.france_connect_body') %></p>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <%= form_for current_user, as: :user, url: profil_password_path(context: params[:context]), method: :patch do |f| %>
+        <fieldset class="fr-mb-0 fr-fieldset">
+          <div class="fr-fieldset__element">
+            <p class="fr-text--sm"><%= t('utils.asterisk_html') %></p>
+          </div>
+
+          <div class="fr-fieldset__element">
+            <%= render Dsfr::InputComponent.new(form: f, attribute: :current_password, input_type: :password_field, opts: { autocomplete: 'current-password' }) %>
+          </div>
+
+          <div class="fr-fieldset__element">
+            <%= render Dsfr::InputComponent.new(form: f, attribute: :password, input_type: :password_field,
+              opts: { autocomplete: 'new-password',
+                data: { controller: 'turbo-input', turbo_input_url_value: show_password_complexity_path },
+                aria: { describedby: 'password_hint' } }) %>
+
+            <div id="password_complexity">
+              <%= render PasswordComplexityComponent.new %>
+            </div>
+          </div>
+
+          <div class="fr-fieldset__element">
+            <%= render Dsfr::InputComponent.new(form: f, attribute: :password_confirmation, input_type: :password_field) %>
+          </div>
+        </fieldset>
+
+        <%= f.submit t('.submit'), id: 'submit-password', disabled: :disabled, class: 'fr-btn fr-btn--lg fr-mt-2w', data: { disable_with: t('.submit_loading') } %>
+      <% end %>
+
+      <div class="fr-mt-4w">
+        <h2 class="fr-h6"><%= t('.forgot_title') %></h2>
+
+        <p class="fr-hint-text"><%= t('.forgot_hint') %></p>
+        <%= button_to t('.forgot_current_password'), forgot_profil_password_path, class: 'fr-btn fr-btn--secondary' %>
+      </div>
+    </div>
+  </div>
+</div>
