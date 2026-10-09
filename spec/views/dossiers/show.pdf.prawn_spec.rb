@@ -93,6 +93,39 @@ describe 'dossiers/show.pdf', :external_deps, type: :view do
     end
   end
 
+  describe 'a pre_rempli champ hidden from the usager' do
+    let(:instructeur) { create(:instructeur) }
+    let(:procedure) do
+      create(:procedure, instructeurs: [instructeur], public_type_de_champs: [
+        { type: :text, libelle: 'Nom complet' },
+        { type: :pre_rempli, libelle: 'Statut interne', pre_rempli_hidden: true },
+      ])
+    end
+    let(:dossier) do
+      create(:dossier, :en_construction, procedure:).tap do |dossier|
+        dossier.root_champs_public.find { it.libelle == 'Statut interne' }.update!(value: 'CONFIRME')
+      end
+    end
+
+    it 'is left out of the usager PDF', if: PDFTOTEXT_AVAILABLE do
+      text = render_and_extract(dossier, procedure, 'pre_rempli_hidden_usager')
+
+      expect(text).to include('Nom complet')
+      expect(text).not_to include('Statut interne')
+    end
+
+    it 'stays in the instructeur PDF', if: PDFTOTEXT_AVAILABLE do
+      assign(:dossier, dossier)
+      assign(:acls, PiecesJustificativesService.new(user_profile: instructeur, export_template: nil).acl_for_dossier_export(procedure))
+      render template: 'dossiers/show', formats: [:pdf]
+
+      pdf_path = Rails.root.join('tmp/test_show_pre_rempli_hidden_instructeur.pdf')
+      File.binwrite(pdf_path, rendered)
+
+      expect(`pdftotext -layout #{pdf_path} - 2>/dev/null`).to include('Statut interne')
+    end
+  end
+
   describe 'no header sections' do
     let(:procedure) do
       create(:procedure, public_type_de_champs: [

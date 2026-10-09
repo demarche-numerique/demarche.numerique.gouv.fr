@@ -25,6 +25,32 @@ RSpec.describe Message::DossierModifierParInstructeurComponent, type: :component
     end
   end
 
+  context 'when a champ hidden from the usager has changed' do
+    let(:procedure) do
+      create(:procedure, :published, public_type_de_champs: [
+        { type: :text, libelle: "Texte", stable_id: 99 },
+        { type: :pre_rempli, libelle: "Statut interne", stable_id: 98, drop_down_options: ['CONFIRME'], pre_rempli_hidden: true },
+      ])
+    end
+    let(:motivation) { nil }
+    let(:instructeur) { create(:instructeur) }
+    let(:changed_columns) do
+      dossier.with_instructeur_buffer_stream do
+        dossier.public_champ_for_update('99', updated_by: instructeur.email).assign_attributes(value: "Nouvelle valeur")
+        dossier.public_champ_for_update('98', updated_by: instructeur.email).assign_attributes(value: "CONFIRME")
+      end
+      dossier.save!
+      dossier.instructeur_submit_en_construction!(instructeur:)
+      dossier.traitements.last.changed_columns
+    end
+
+    it 'leaves it out of the message' do
+      expect(changed_columns.map(&:label)).to include('Statut interne')
+      expect(subject).to have_text('Nouvelle valeur')
+      expect(subject).not_to have_text('Statut interne')
+    end
+  end
+
   context 'when the changed columns are unknown' do
     let(:changed_columns) { [] }
     let(:motivation) { nil }

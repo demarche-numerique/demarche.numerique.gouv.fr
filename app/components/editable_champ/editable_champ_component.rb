@@ -8,7 +8,7 @@ class EditableChamp::EditableChampComponent < ApplicationComponent
     @attribute = :value
   end
 
-  def render? = !hidden_pre_rempli?
+  def render? = !@champ.hidden_from_usager?
 
   def champ_component
     @champ_component ||= component_class.new(form: @form, champ: @champ, seen_at: @seen_at, aria_labelledby_prefix: aria_labelledby_prefix, row_number: row_number_if_in_repetition)
@@ -45,8 +45,6 @@ class EditableChamp::EditableChampComponent < ApplicationComponent
   end
 
   private
-
-  def hidden_pre_rempli? = @champ.pre_rempli? && @champ.pre_rempli_hidden?
 
   def component_class
     if @champ.france_connect?

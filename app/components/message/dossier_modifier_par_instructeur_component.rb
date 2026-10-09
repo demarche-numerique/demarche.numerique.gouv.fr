@@ -5,7 +5,8 @@ class Message::DossierModifierParInstructeurComponent < ApplicationComponent
 
   def initialize(dossier:, changed_columns:, motivation: nil)
     @dossier = dossier
-    @changed_columns = changed_columns
+    # Le message est lu par l'usager : ce qui lui est masqué n'y figure pas.
+    @changed_columns = changed_columns.reject { hidden_from_usager?(it) }
     @motivation = motivation
   end
 
@@ -42,5 +43,11 @@ class Message::DossierModifierParInstructeurComponent < ApplicationComponent
   def self.create_commentaire(traitement)
     body = render(dossier: traitement.dossier, changed_columns: traitement.changed_columns, motivation: traitement.motivation)
     CommentaireService.create!(traitement.instructeur, traitement.dossier, body:, deletable: false)
+  end
+
+  private
+
+  def hidden_from_usager?(changed_column)
+    @dossier.find_type_de_champ_by_stable_id(changed_column.stable_id, :public)&.hidden_from_usager?
   end
 end

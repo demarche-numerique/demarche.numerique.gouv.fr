@@ -245,6 +245,7 @@ end
 def add_single_champ(pdf, champ)
   tdc = champ.type_de_champ
   return if champ.conditional? && !champ.visible?
+  return if @acls[:for_usager] && champ.hidden_from_usager?
 
   case champ.type
   when 'Champs::PieceJustificativeChamp'

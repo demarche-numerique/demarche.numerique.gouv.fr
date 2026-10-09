@@ -178,6 +178,8 @@ class TypeDeChamp < ApplicationRecord
 
   def cannot_be_mandatory? = false
 
+  def hidden_from_usager? = false
+
   def public?
     !private?
   end

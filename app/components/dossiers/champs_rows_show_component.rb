@@ -56,6 +56,7 @@ class Dossiers::ChampsRowsShowComponent < ApplicationComponent
 
   def visible?(champ)
     return false if champ.header_section? || champ.explication?
+    return false if usager? && champ.hidden_from_usager?
     return true if champ.visible?
 
     if profile == 'instructeur' && champ.public?
