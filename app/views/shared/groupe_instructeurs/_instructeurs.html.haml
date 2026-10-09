@@ -12,7 +12,7 @@
 
   = render Procedure::InvitationWithTypoComponent.new(maybe_typos: @maybe_typos, url: add_instructeurs_admin_procedure_groupe_instructeur_path(@procedure, groupe_instructeur.id), title: "Avant d’ajouter l’adresse électronique, veuillez confirmer" )
   = form_for :instructeur, url: { action: :add_instructeurs, id: groupe_instructeur.id }, html: { class: 'form', data: { controller: 'enable-submit-if-filled' } } do |f|
-    .instructeur-wrapper{ data: { 'action': "change->enable-submit-if-filled#fillCombobox" } }
+    .instructeur-wrapper{ data: { 'action': "change->enable-submit-if-filled#fill input->enable-submit-if-filled#fill" } }
       %p= t('views.shared.groupe_instructeurs.instructeur_emails')
       %p.fr-hint-text= t('views.shared.groupe_instructeurs.copy_paste_hint')
 

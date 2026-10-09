@@ -151,6 +151,7 @@ export function MultiComboBox(maybeProps: MultiComboBoxProps) {
     allowsCustomValue,
     valueSeparator,
     className,
+    data,
     ...props
   } = useMemo(() => s.create(maybeProps, MultiComboBoxProps), [maybeProps]);
 
@@ -212,6 +213,7 @@ export function MultiComboBox(maybeProps: MultiComboBoxProps) {
               name={name}
               form={form}
               ref={formResetRef}
+              {...dataAttributes(data)}
             />
           ) : (
             hiddenInputValues.map((value, i) => (
@@ -222,6 +224,7 @@ export function MultiComboBox(maybeProps: MultiComboBoxProps) {
                 form={form}
                 ref={i === 0 ? formResetRef : undefined}
                 key={value}
+                {...dataAttributes(data)}
               />
             ))
           )}
