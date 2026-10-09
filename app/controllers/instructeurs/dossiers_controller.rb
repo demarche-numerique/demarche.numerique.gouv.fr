@@ -8,7 +8,6 @@ module Instructeurs
     include AvisCreationConcern
     include TurboChampsConcern
     include InstructeurConcern
-    include InstructeurProcedureConcern
     include DossierEditConcern
     include ActionController::Streaming
     include BilansBdfConcern
