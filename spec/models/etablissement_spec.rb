@@ -110,6 +110,34 @@ describe Etablissement do
     end
   end
 
+  describe '#association_fetchable?' do
+    subject { Etablissement.new(entreprise_forme_juridique_code:).association_fetchable? }
+
+    context 'for a declared association' do
+      let(:entreprise_forme_juridique_code) { '9220' }
+
+      it { is_expected.to be true }
+    end
+
+    context 'for a foundation' do
+      let(:entreprise_forme_juridique_code) { '9300' }
+
+      it { is_expected.to be true }
+    end
+
+    context 'for a company' do
+      let(:entreprise_forme_juridique_code) { '5710' }
+
+      it { is_expected.to be false }
+    end
+
+    context 'when the legal form is unknown' do
+      let(:entreprise_forme_juridique_code) { nil }
+
+      it { is_expected.to be true }
+    end
+  end
+
   describe '#entreprise_raison_sociale' do
     subject { etablissement.entreprise_raison_sociale }
 

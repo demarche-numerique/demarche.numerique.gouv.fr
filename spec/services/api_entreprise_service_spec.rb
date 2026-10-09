@@ -56,5 +56,15 @@ describe APIEntrepriseService do
         expect(APIEntreprise::ExtraitKbisJob).not_to have_been_enqueued
       end
     end
+
+    context 'when the etablissement is not an association' do
+      let(:roles) { [] }
+
+      it 'skips the RNA' do
+        subject
+
+        expect(APIEntreprise::AssociationJob).not_to have_been_enqueued
+      end
+    end
   end
 end

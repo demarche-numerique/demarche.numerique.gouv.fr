@@ -207,6 +207,12 @@ class Etablissement < ApplicationRecord
     !entreprise_forme_juridique_code&.start_with?(*LEGAL_FORMS_WITHOUT_RCS)
   end
 
+  # The RNA only holds associations (92xx, "Association loi 1901 ou assimilé"), and in production a
+  # few foundations (93xx): https://entreprise.api.gouv.fr/catalogue/djepva/associations_open_data
+  def association_fetchable?
+    entreprise_forme_juridique_code.nil? || entreprise_forme_juridique_code.start_with?('92', '93')
+  end
+
   def entreprise
     Entreprise.new(
       etablissement: self,
