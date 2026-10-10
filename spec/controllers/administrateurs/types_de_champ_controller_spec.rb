@@ -17,7 +17,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
   def second_coordinate = procedure.draft_revision.reload.public_revision_type_de_champs.second
   def third_coordinate = procedure.draft_revision.public_revision_type_de_champs.third
 
-  def extract_libelle(champ_component) = [champ_component.coordinate.libelle, champ_component.upper_coordinates.map(&:libelle)]
+  def extract_libelle(champ_component) = [champ_component.coordinate.libelle, champ_component.coordinate.upper_coordinates.map(&:libelle)]
 
   def morpheds
     assigns(:morphed)

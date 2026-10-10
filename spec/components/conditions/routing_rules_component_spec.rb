@@ -14,7 +14,7 @@ describe Conditions::RoutingRulesComponent, type: :component do
     let(:component) { Conditions::RoutingRulesComponent.new(groupe_instructeur:) }
 
     it 'excludes repetition tdcs from condition targets' do
-      libelles = component.send(:sources_by_section).values.flatten(1).map(&:first)
+      libelles = component.send(:sources_by_visibility)[:public].values.flatten(1).map(&:first)
 
       expect(libelles).to include('age')
       expect(libelles).not_to include('family')
