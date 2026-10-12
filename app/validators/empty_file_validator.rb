@@ -14,6 +14,8 @@
 # Maintenance::T20260728PurgeEmptyAttachmentsTask instead.
 class EmptyFileValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
+    return if value.is_a?(ActiveStorage::Attached) && !record.attachment_changes.key?(attribute.to_s)
+
     blobs(value).each do
       next unless it.byte_size == 0
       next if already_attached?(record, attribute, it)
