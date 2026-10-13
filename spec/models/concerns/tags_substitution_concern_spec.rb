@@ -70,7 +70,7 @@ describe TagsSubstitutionConcern, type: :model do
       let(:dossier) { create(:dossier, :accepte, procedure:, processed_at: Time.zone.local(2024, 3, 5, 9, 7)) }
       let(:tags) { Set.new([["dossier_processed_at_with_time", "date et heure de décision"]]) }
 
-      it { is_expected.to eq("dossier_processed_at_with_time" => "05/03/2024 09:07") }
+      it { is_expected.to eq("dossier_processed_at_with_time" => "05/03/2024 à 09:07") }
     end
 
     context 'when the dossier has a motivation' do
@@ -489,7 +489,7 @@ describe TagsSubstitutionConcern, type: :model do
         expect(template_concern.send(:replace_tags, '--date de dépôt--', dossier)).to eq('03/02/2001')
         expect(template_concern.send(:replace_tags, '--date de passage en instruction--', dossier)).to eq('06/05/2004')
         expect(template_concern.send(:replace_tags, '--date de décision--', dossier)).to eq('09/08/2007')
-        expect(template_concern.send(:replace_tags, '--date et heure de décision--', dossier)).to eq('09/08/2007 14:30')
+        expect(template_concern.send(:replace_tags, '--date et heure de décision--', dossier)).to eq('09/08/2007 à 14:30')
         expect(template_concern.send(:replace_tags, '--date de mise à jour--', dossier)).to eq('03/01/2003')
       end
     end
