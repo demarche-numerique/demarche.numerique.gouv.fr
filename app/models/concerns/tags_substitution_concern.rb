@@ -104,6 +104,13 @@ module TagsSubstitutionConcern
       available_for_states: Dossier::TERMINE,
     },
     {
+      id: 'dossier_processed_at_with_time',
+      libelle: 'date et heure de décision',
+      description: 'Date et heure (heure de Paris) de la décision d’acceptation, refus, ou classement sans suite',
+      lambda: -> (d) { format_datetime(d.processed_at) },
+      available_for_states: Dossier::TERMINE,
+    },
+    {
       id: 'dossier_last_champ_updated_at',
       libelle: 'date de mise à jour',
       description: 'Date de dernière mise à jour d’un champ du dossier',
@@ -349,6 +356,11 @@ module TagsSubstitutionConcern
     else
       ''
     end
+  end
+
+  # i18n-tasks-use t('time.formats.short_with_time')
+  def format_datetime(time)
+    time.present? ? I18n.l(time, format: :short_with_time) : ''
   end
 
   def external_link(url, title = nil)
