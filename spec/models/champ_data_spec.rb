@@ -368,15 +368,6 @@ describe ChampData do
       end
     end
 
-    context 'for number champ' do
-      let(:champ) { Champs::NumberChamp.new(value:) }
-      before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_number)) }
-
-      let(:value) { "1234" }
-
-      it { is_expected.to eq([value]) }
-    end
-
     context 'for pays champ' do
       let(:champ) { Champs::PaysChamp.new(value:) }
       before { allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_pays)) }

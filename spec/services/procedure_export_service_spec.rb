@@ -84,7 +84,6 @@ describe ProcedureExportService do
             "textarea",
             "date",
             "datetime",
-            "number",
             "decimal_number",
             "integer_number",
             "checkbox",

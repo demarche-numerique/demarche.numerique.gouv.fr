@@ -29,7 +29,6 @@ en:
           siret: 'SIRET number'
           text: 'Text'
           textarea: 'Text area'
-          number: 'Number'
           decimal_number: 'Decimal number'
           integer_number: 'Integer number'
           date: 'Date'

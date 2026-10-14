@@ -52,7 +52,7 @@ describe Conditions::ChampsConditionsComponent, type: :component do
     end
 
     context 'when there are upper tdc and a condition' do
-      let(:upper_tdc) { create(:type_de_champ_number) }
+      let(:upper_tdc) { create(:type_de_champ_integer_number) }
       let(:upper_tdcs) { [upper_tdc] }
 
       shared_examples 'targeted condition rendering' do
@@ -280,7 +280,7 @@ describe Conditions::ChampsConditionsComponent, type: :component do
     end
 
     context 'when there are 3 conditions' do
-      let(:upper_tdc) { create(:type_de_champ_number) }
+      let(:upper_tdc) { create(:type_de_champ_integer_number) }
       let(:upper_tdcs) { [upper_tdc] }
 
       let(:condition) do

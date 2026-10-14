@@ -21,10 +21,6 @@ FactoryBot.define do
       value { '15/09/1962 15:35' }
     end
 
-    factory :champ_do_not_use_number, class: 'Champs::NumberChamp' do
-      value { '42' }
-    end
-
     factory :champ_do_not_use_decimal_number, class: 'Champs::DecimalNumberChamp' do
       value { '42.1' }
     end

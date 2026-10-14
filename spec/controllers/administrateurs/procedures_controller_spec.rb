@@ -1600,7 +1600,7 @@ describe Administrateurs::ProceduresController, type: :controller do
     let(:procedure3) { create(:procedure, :published, :new_administrateur, lien_site_web: lien_site_web) }
     let(:lien_site_web) { 'http://some.administration/' }
     let(:robots_indexable) { "0" }
-    let(:tdc_attributes) { { type_champ: :number, libelle: 'libelle 1' } }
+    let(:tdc_attributes) { { type_champ: :integer_number, libelle: 'libelle 1' } }
 
     subject(:perform_request) { put :publish, params: { procedure_id: procedure.id, procedure: { path:, lien_site_web:, robots_indexable: } } }
 
