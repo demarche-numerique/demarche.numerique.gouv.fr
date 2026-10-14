@@ -972,9 +972,14 @@ describe User, type: :model do
           .to raise_error(ArgumentError, /not persisted/)
       end
 
-      # The guards fire before anything irreversible, not inside `super`: a late
-      # raise would leave the trusted device broken for a call that did nothing
-      # else.
+      it 'refuses to spare and target at once, before anything irreversible' do
+        row = usager.open_user_session!('a browser')
+
+        expect { usager.revoke_sessions!(reason: :logout_all, except: row, only: row) }
+          .to raise_error(ArgumentError, /cannot combine/)
+        expect(row.reload).not_to be_unusable
+      end
+
       it 'refuses to revoke a session that is not persisted, before breaking anything' do
         version = usager.trusted_device_version
 

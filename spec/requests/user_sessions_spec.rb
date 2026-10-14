@@ -152,6 +152,31 @@ describe 'the session registry', type: :request do
 
         expect(response).to have_http_status(:ok)
       end
+
+      it 'closes the session it takes the browser over from' do
+        someone_else = create(:user, password: users.default_password)
+        post user_session_path,
+          params: { user: { email: someone_else.email, password: users.default_password } }
+        theirs = UserSession.where(sessionable: someone_else).sole
+
+        activate
+
+        expect(theirs.reload.unusable_reason).to eq(:sign_out)
+      end
+
+      it 'leaves that session alone when the new row cannot be written' do
+        someone_else = create(:user, password: users.default_password)
+        post user_session_path,
+          params: { user: { email: someone_else.email, password: users.default_password } }
+        theirs = UserSession.where(sessionable: someone_else).sole
+
+        allow_any_instance_of(User).to receive(:open_user_session!).and_raise('boom')
+        expect(Sentry).to receive(:capture_exception).at_least(:once)
+
+        activate
+
+        expect(theirs.reload).not_to be_unusable
+      end
     end
 
     # A housekeeping horizon, not a policy: it exists so the rows can be

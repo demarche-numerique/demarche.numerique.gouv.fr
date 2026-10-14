@@ -85,15 +85,20 @@ module SessionRegistrableConcern
     false
   end
 
+  # One transaction: a failed INSERT leaves the session as it was, not half moved.
   def self.open_session!(record, warden, scope)
     request = warden.request
     session = warden.session(scope)
+    outgoing = session[SESSION_KEY]
 
+    opened = record.transaction do
+      drop_former_session!(outgoing)
+
+      record.open_user_session!(request.user_agent, request.remote_ip)
+    end
+
+    session[SESSION_KEY] = opened.id
     session[LAST_SEEN_KEY] = Date.current.iso8601
-
-    drop_former_session!(session[SESSION_KEY])
-
-    session[SESSION_KEY] = record.open_user_session!(request.user_agent, request.remote_ip).id
   end
 
   # By id: the key being taken over may name another account's session.
@@ -236,6 +241,7 @@ module SessionRegistrableConcern
     UserSession.validate_reason!(reason)
     raise ArgumentError, 'cannot spare a session that is not persisted' if except && !except.persisted?
     raise ArgumentError, 'cannot revoke a session that is not persisted' if only && !only.persisted?
+    raise ArgumentError, 'cannot combine except: and only:' if except && only
 
     transaction do
       revoke_account_wide!(reason)
