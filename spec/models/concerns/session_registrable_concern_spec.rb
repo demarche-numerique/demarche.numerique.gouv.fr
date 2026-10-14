@@ -66,7 +66,7 @@ describe SessionRegistrableConcern do
     # the past and is cut on its next request.
     it 'writes a deadline already past when the session predates the role' do
       user_session = user.open_user_session!(chrome_on_mac)
-      user_session.update!(created_at: 3.weeks.ago, expires_at: nil)
+      user_session.update!(created_at: 3.weeks.ago)
 
       user.tighten_sessions!(1.week)
 
