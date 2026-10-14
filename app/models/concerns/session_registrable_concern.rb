@@ -39,13 +39,18 @@ module SessionRegistrableConcern
     warden.raw_session["warden.user.#{scope}.session"] ||= {}
   end
 
+  # One transaction, the cookie after it: a failed INSERT leaves the session it
+  # was replacing as it was, not revoked with the cookie still naming it.
   def self.open_session!(record, warden, scope, login_method: nil)
     user_agent, remote_ip = warden.request.user_agent, warden.request.remote_ip
-
-    drop_former_session!(warden.session(scope)[SESSION_KEY])
+    outgoing = warden.session(scope)[SESSION_KEY]
 
     # in db
-    user_session = record.open_user_session!(user_agent, remote_ip, login_method:)
+    user_session = record.transaction do
+      drop_former_session!(outgoing)
+
+      record.open_user_session!(user_agent, remote_ip, login_method:)
+    end
 
     # in cookie
     warden.session(scope).merge!(LAST_SEEN_KEY => Date.current.iso8601, SESSION_KEY => user_session.id)
@@ -195,6 +200,7 @@ module SessionRegistrableConcern
     UserSession.validate_reason!(reason)
     raise ArgumentError, 'cannot spare a session that is not persisted' if except && !except.persisted?
     raise ArgumentError, 'cannot revoke a session that is not persisted' if only && !only.persisted?
+    raise ArgumentError, 'cannot combine except: and only:' if except && only
 
     transaction do
       revoke_account_wide!(reason)
