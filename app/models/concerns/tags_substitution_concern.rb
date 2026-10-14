@@ -358,9 +358,8 @@ module TagsSubstitutionConcern
     end
   end
 
-  # i18n-tasks-use t('time.formats.short_with_time_at')
   def format_datetime(time)
-    time.present? ? I18n.l(time, format: :short_with_time_at) : ''
+    time.present? ? I18n.l(time, format: :short_with_time) : ''
   end
 
   def external_link(url, title = nil)

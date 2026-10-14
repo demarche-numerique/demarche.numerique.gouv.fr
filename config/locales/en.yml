@@ -933,7 +933,6 @@ en:
       long_with_time: "%d %B %Y at %H:%M"
       long_with_time_and_timezone: "%d %B %Y at %H:%M (%Z)"
       short_with_time: "%d %b %Y at %H:%M"
-      short_with_time_at: "%d %b %Y at %H:%M"
       messagerie_date: "On %d %b %Y %H:%M"
       human: "%A %-d %B at %Hh%M"
   datetime:
