@@ -6,11 +6,11 @@ module Maintenance
     let(:public_type_de_champs) {
       [
         { type: :text, libelle: "Text", stable_id: 11, mandatory: true },
-        { type: :number, libelle: "Number", description: "Old desc", stable_id: 12 },
+        { type: :integer_number, libelle: "Number", description: "Old desc", stable_id: 12 },
         {
           type: :repetition, libelle: "Bloc", stable_id: 13, children: [
             { type: :text, libelle: "RepText", stable_id: 131, description: "Remove me", mandatory: true },
-            { type: :number, libelle: "RepNum", stable_id: 132 },
+            { type: :integer_number, libelle: "RepNum", stable_id: 132 },
           ],
         },
       ]

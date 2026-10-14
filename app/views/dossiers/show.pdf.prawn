@@ -301,7 +301,7 @@ def add_single_champ(pdf, champ)
         pdf.text "Les informations sur l’entreprise n’ont pas pu être récupérées."
       end
     end
-  when 'Champs::NumberChamp', 'Champs::IntegerNumberChamp', 'Champs::DecimalNumberChamp'
+  when 'Champs::IntegerNumberChamp', 'Champs::DecimalNumberChamp'
     value = champ.blank? ? 'Non communiqué' : number_with_delimiter(champ.to_s)
     format_in_2_lines(pdf, tdc.libelle, value)
   when 'Champs::AddressChamp'

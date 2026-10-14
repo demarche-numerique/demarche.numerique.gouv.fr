@@ -47,7 +47,6 @@ class TypesDeChampEditor::TypeDeChampSelectorComponent < ApplicationComponent
 
   def available_types
     @available_types ||= TypeDeChamp.type_champ_classes
-      .filter(&method(:filter_type_champ))
       .filter(&method(:filter_featured_type_champ))
       .filter(&method(:filter_block_type_champ))
       .filter(&method(:filter_public_or_private_only_type_champ))
@@ -83,13 +82,5 @@ class TypesDeChampEditor::TypeDeChampSelectorComponent < ApplicationComponent
 
   def filter_featured_type_champ(klass)
     klass.feature_flag.nil? || procedure.feature_enabled?(klass.feature_flag)
-  end
-
-  def filter_type_champ(klass)
-    klass != TypesDeChamp::NumberTypeDeChamp || has_legacy_number?
-  end
-
-  def has_legacy_number?
-    revision.type_de_champs.any?(&:number?)
   end
 end

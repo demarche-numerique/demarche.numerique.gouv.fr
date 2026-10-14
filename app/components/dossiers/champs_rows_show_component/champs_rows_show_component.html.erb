@@ -64,7 +64,7 @@
               <% end %>
             <% when TypeDeChamp.type_champs.fetch(:datetime) %>
               <p class="copy-zone"><%= champ.to_s %></p>
-            <% when TypeDeChamp.type_champs.fetch(:number), TypeDeChamp.type_champs.fetch(:integer_number), TypeDeChamp.type_champs.fetch(:decimal_number) %>
+            <% when TypeDeChamp.type_champs.fetch(:integer_number), TypeDeChamp.type_champs.fetch(:decimal_number) %>
               <p class="copy-zone">
                 <%= helpers.number_with_html_delimiter(champ.to_s) %>
                 <span data-copy-message-placeholder></span>

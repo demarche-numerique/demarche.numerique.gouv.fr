@@ -41,6 +41,7 @@ class ChampData < ApplicationRecord
     'Champs::COJOChamp',
     'Champs::DGFIPChamp',
     'Champs::MESRIChamp',
+    'Champs::NumberChamp',
     'Champs::PoleEmploiChamp',
   ].freeze
 

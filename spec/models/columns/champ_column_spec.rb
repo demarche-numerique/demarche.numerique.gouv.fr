@@ -38,7 +38,6 @@ describe Columns::ChampColumn do
         ))
         expect_type_de_champ_values('text', eq(['text']))
         expect_type_de_champ_values('textarea', eq(['textarea']))
-        expect_type_de_champ_values('number', eq(['42']))
         expect_type_de_champ_values('decimal_number', eq([42.1]))
         expect_type_de_champ_values('integer_number', eq([42]))
         expect_type_de_champ_values('date', eq([Time.zone.parse('2019-07-10').to_date]))

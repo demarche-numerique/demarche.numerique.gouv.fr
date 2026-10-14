@@ -52,9 +52,6 @@ FactoryBot.define do
     factory :type_de_champ_textarea do
       type_champ { TypeDeChamp.type_champs.fetch(:textarea) }
     end
-    factory :type_de_champ_number do
-      type_champ { TypeDeChamp.type_champs.fetch(:number) }
-    end
     factory :type_de_champ_decimal_number do
       type_champ { TypeDeChamp.type_champs.fetch(:decimal_number) }
     end
