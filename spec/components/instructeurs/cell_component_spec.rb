@@ -94,7 +94,7 @@ describe Instructeurs::CellComponent do
 
       before { dossier.champ_data.first.update(value: Time.zone.parse("12/02/2025 09:19").iso8601) }
 
-      it { is_expected.to eq('12/02/2025 09:19') }
+      it { is_expected.to eq('12/02/2025 à 09:19') }
     end
 
     context 'for a date column with value as string' do

@@ -938,7 +938,7 @@ fr:
       default: "%d %B %Y %R"
       long_with_time: "%d %B %Y à %H:%M"
       long_with_time_and_timezone: "%d %B %Y à %H:%M (%Z)"
-      short_with_time: "%d/%m/%Y %H:%M"
+      short_with_time: "%d/%m/%Y à %H:%M"
       short_with_time_at: "%d/%m/%Y à %H:%M"
       messagerie_date: "Le %d/%m/%Y %H:%M"
       human: "%A %-d %B à %Hh%M"

@@ -60,7 +60,7 @@ RSpec.describe CrispTchapTechNotificationJob, type: :job do
       expect(sent_message).to include("msgtype" => "m.notice", "format" => "org.matrix.custom.html", "m.mentions" => {})
 
       [sent_message["body"], sent_message["formatted_body"]].each do |text|
-        expect(text).to include(topic, user.email, "User ##{user.id}", "Dossier #42", "customer, tech", "02/09/2025 15:12")
+        expect(text).to include(topic, user.email, "User ##{user.id}", "Dossier #42", "customer, tech", "02/09/2025 à 15:12")
         expect(text).to include("https://app.crisp.chat/website/#{website_id}/inbox/#{session_id}/")
       end
       expect(sent_message["body"]).to include(last_message)
