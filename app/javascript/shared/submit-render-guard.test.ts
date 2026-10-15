@@ -1,5 +1,5 @@
 import type { TurboSubmitEndEvent } from '@hotwired/turbo';
-import { afterEach, beforeEach, expect, suite, test } from 'vitest';
+import { afterEach, beforeEach, expect, suite, test } from 'vite-plus/test';
 
 import { SubmitRenderGuard } from './submit-render-guard';
 

@@ -5,8 +5,8 @@
 // en-têtes de section s'affichent, que le filtre masque les sections vides et
 // que la sélection fonctionne.
 import './process-env-shim';
-import { suite, test, expect, beforeEach, afterEach } from 'vitest';
-import { userEvent, page } from '@vitest/browser/context';
+import { suite, test, expect, beforeEach, afterEach } from 'vite-plus/test';
+import { userEvent, page } from 'vite-plus/test/browser/context';
 import { useState, type Key } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import {
@@ -147,7 +147,7 @@ suite('Select avec sections', () => {
     await userEvent.click(
       page.getByRole('option', { name: 'Préfecture du Rhône' })
     );
-    await expect.element(button).toHaveTextContent('Préfecture du Rhône');
+    await expect.element(button).toMatchTextContent('Préfecture du Rhône');
   });
 
   test('affiche un item désactivé sans permettre de le sélectionner', async () => {

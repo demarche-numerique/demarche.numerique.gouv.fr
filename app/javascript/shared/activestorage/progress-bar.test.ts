@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, expect, suite, test, vi } from 'vitest';
+import { afterEach, beforeEach, expect, suite, test, vi } from 'vite-plus/test';
 
 import ProgressBar from './progress-bar';
 

@@ -72,7 +72,7 @@ function Select<M extends SelectionMode = 'single'>({
   alwaysShowKey,
   emptyHint,
   selectedLabels,
-  id: _id, // eslint-disable-line @typescript-eslint/no-unused-vars -- intentionally discarded to prevent AriaSelect from putting it on a hidden <select>
+  id: _id, // oxlint-disable-line @typescript-eslint/no-unused-vars -- intentionally discarded to prevent AriaSelect from putting it on a hidden <select>
   ...props
 }: SelectProps<M>) {
   const { t } = useLingui();

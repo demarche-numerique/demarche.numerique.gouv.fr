@@ -1,5 +1,5 @@
 import { Application } from '@hotwired/stimulus';
-import { afterEach, beforeEach, expect, suite, test } from 'vitest';
+import { afterEach, beforeEach, expect, suite, test } from 'vite-plus/test';
 
 import { ApplicationController } from './application_controller';
 

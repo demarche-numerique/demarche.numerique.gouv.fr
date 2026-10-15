@@ -1,7 +1,7 @@
 import { Application } from '@hotwired/stimulus';
 import invariant from 'tiny-invariant';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// oxlint-disable-next-line @typescript-eslint/no-explicit-any
 type Module = { [key: string]: any };
 type Loader = () => Promise<Module>;
 

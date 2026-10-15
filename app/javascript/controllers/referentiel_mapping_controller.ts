@@ -11,7 +11,7 @@ export class ReferentielMappingController extends ApplicationController {
 
   connect() {}
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  // oxlint-disable-next-line @typescript-eslint/no-unused-vars
   onCheckboxChange(_event: Event) {
     toggle(this.enabledContentTarget);
     toggle(this.disabledContentTarget);

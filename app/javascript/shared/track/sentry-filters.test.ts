@@ -1,5 +1,5 @@
 import type { ErrorEvent, EventHint, Exception } from '@sentry/browser';
-import { expect, suite, test } from 'vitest';
+import { expect, suite, test } from 'vite-plus/test';
 
 import { ResponseError } from '@utils';
 import { shouldDropEvent } from './sentry-filters';

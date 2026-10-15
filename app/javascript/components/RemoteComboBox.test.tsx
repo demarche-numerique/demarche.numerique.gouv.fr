@@ -6,8 +6,8 @@
 // jeton pour la même donnée : resélectionner une suggestion soumet le plus récent,
 // le serveur refusant un jeton expiré.
 import './process-env-shim';
-import { vi, suite, test, expect, beforeEach, afterEach } from 'vitest';
-import { userEvent, page } from '@vitest/browser/context';
+import { vi, suite, test, expect, beforeEach, afterEach } from 'vite-plus/test';
+import { userEvent, page } from 'vite-plus/test/browser/context';
 import { createRoot, type Root } from 'react-dom/client';
 
 import { RemoteComboBox, ComboBoxValueSlot } from './ComboBox';

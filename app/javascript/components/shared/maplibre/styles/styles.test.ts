@@ -1,4 +1,4 @@
-import { suite, test, expect } from 'vitest';
+import { suite, test, expect } from 'vite-plus/test';
 
 import { getMapStyle, type MapStyle } from './index';
 

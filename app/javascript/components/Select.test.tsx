@@ -1,8 +1,8 @@
 import './process-env-shim';
 import '@gouvfr/dsfr/dist/core/core.min.css';
 import '@gouvfr/dsfr/dist/component/select/select.min.css';
-import { vi, suite, test, expect, beforeEach, afterEach } from 'vitest';
-import { userEvent, page } from '@vitest/browser/context';
+import { vi, suite, test, expect, beforeEach, afterEach } from 'vite-plus/test';
+import { userEvent, page } from 'vite-plus/test/browser/context';
 import { createRoot, type Root } from 'react-dom/client';
 import { MultipleSelect, SingleSelect } from './Select';
 
@@ -428,7 +428,7 @@ suite('SingleSelect with icons and descriptions', () => {
       page.getByRole('option', { name: 'Texte court', exact: true })
     );
 
-    await expect.element(button).toHaveTextContent('Texte court');
+    await expect.element(button).toMatchTextContent('Texte court');
     expect(button.element().querySelector('.fr-icon-text')).not.toBeNull();
     await expect.poll(() => visibleCount('Une seule ligne')).toBe(0);
   });

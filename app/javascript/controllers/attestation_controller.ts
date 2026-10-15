@@ -27,7 +27,7 @@ export class AttestationController extends ApplicationController {
     });
 
     this.on('turbo:submit-end', () => {
-      // eslint-disable-next-line no-self-assign
+      // oxlint-disable-next-line no-self-assign
       this.previewTarget.src = this.previewTarget.src; // reload the iframe
     });
   }

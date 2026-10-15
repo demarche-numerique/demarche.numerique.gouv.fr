@@ -1,5 +1,5 @@
 import { Application } from '@hotwired/stimulus';
-import { afterEach, beforeEach, expect, suite, test, vi } from 'vitest';
+import { afterEach, beforeEach, expect, suite, test, vi } from 'vite-plus/test';
 
 import { FileInputResetController } from './file_input_reset_controller';
 
