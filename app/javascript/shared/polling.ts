@@ -47,14 +47,14 @@ export function startPolling(
       }
       const active = isActive();
       if (active) {
-        poll();
+        void poll();
       } else {
         next(delay);
       }
     }, delay);
   };
 
-  poll();
+  void poll();
 
   return () => {
     discarded = true;

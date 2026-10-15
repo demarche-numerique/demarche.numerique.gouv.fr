@@ -30,7 +30,7 @@ export class ClipboardController extends Controller {
   }
 
   copy() {
-    navigator.clipboard
+    void navigator.clipboard
       .writeText(this.textValue)
       .then(() => this.displayCopyConfirmation());
   }

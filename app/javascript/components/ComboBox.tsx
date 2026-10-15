@@ -47,7 +47,8 @@ export function ComboBox({
   placeholder,
   items,
   ...props
-}: ComboBoxProps & {
+}: Omit<ComboBoxProps, 'className'> & {
+  className?: string;
   inputId?: string;
   inputRef?: RefObject<HTMLInputElement | null>;
   isOpen?: boolean;

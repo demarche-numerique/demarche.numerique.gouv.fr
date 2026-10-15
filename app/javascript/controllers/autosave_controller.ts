@@ -175,7 +175,7 @@ export class AutosaveController extends ApplicationController {
 
   private enqueueAutouploadRequest(target: HTMLInputElement, file: File) {
     const autoupload = new AutoUpload(target, file);
-    autoupload
+    void autoupload
       .start()
       .catch((e) => {
         const error = e as FileUploadError;

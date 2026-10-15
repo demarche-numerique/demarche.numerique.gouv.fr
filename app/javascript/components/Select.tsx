@@ -212,8 +212,8 @@ function typedAccentsMatcher(locale: string) {
   }
 
   return (label: string, typed: string) => {
-    const labelLetters = [...label.normalize('NFC')];
-    const typedLetters = [...typed.normalize('NFC')];
+    const labelLetters = Array.from(label.normalize('NFC'));
+    const typedLetters = Array.from(typed.normalize('NFC'));
     const lastStart = labelLetters.length - typedLetters.length;
     for (let start = 0; start <= lastStart; start++) {
       const candidate = labelLetters.slice(start, start + typedLetters.length);
