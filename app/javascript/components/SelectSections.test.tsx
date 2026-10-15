@@ -122,7 +122,10 @@ suite('Select avec sections', () => {
   test('affiche les sections, filtre et sélectionne une option', async () => {
     root.render(<SelectWithSections />);
 
-    const button = page.getByRole('button', { name: 'Organisme' });
+    const button = page.getByRole('button', {
+      name: 'Organisme',
+      exact: false
+    });
     await userEvent.click(button);
 
     // les deux sections et leurs options sont visibles à l'ouverture
@@ -153,7 +156,10 @@ suite('Select avec sections', () => {
   test('affiche un item désactivé sans permettre de le sélectionner', async () => {
     root.render(<SelectWithSections />);
 
-    const button = page.getByRole('button', { name: 'Organisme' });
+    const button = page.getByRole('button', {
+      name: 'Organisme',
+      exact: false
+    });
     await userEvent.click(button);
 
     // l'item est lisible, annoncé désactivé, et donc hors de portée du clic
