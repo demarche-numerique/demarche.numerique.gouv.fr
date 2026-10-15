@@ -79,13 +79,13 @@ describe Champs::RepetitionChamp do
     end
   end
 
-  describe "#validate_repetition_limits" do
+  describe "repetition limits validation" do
     let(:procedure) do
       create(:procedure,
         public_type_de_champs: [
           {
             type: :repetition,
-            children: [{ type: :text }],
+            children:,
             libelle: "Bloc",
             limit_repetitions: '1',
             min_repetitions: min_rep,
@@ -93,8 +93,14 @@ describe Champs::RepetitionChamp do
           },
         ])
     end
+    let(:children) { [{ type: :text }] }
     let(:dossier) { create(:dossier, procedure:) }
     let(:champ) { dossier.root_champs_public.find(&:repetition?) }
+
+    def too_few_on_submission?(champ)
+      champ.valid?([:champ_value, :champ_completeness])
+      champ.errors.where(:value, :repetition_too_few).present?
+    end
 
     context "when count is below min" do
       let(:min_rep) { 2 }
@@ -104,8 +110,13 @@ describe Champs::RepetitionChamp do
         champ_for_update(champ.rows.first.flat_children.first).update(value: "rb")
       end
 
-      it "adds a repetition_too_few error" do
+      it "does not add a repetition_too_few error while the dossier is being filled" do
         champ.valid?(:champ_value)
+        expect(champ.errors.where(:value, :repetition_too_few)).to be_empty
+      end
+
+      it "adds a repetition_too_few error on submission" do
+        champ.valid?([:champ_value, :champ_completeness])
         expect(champ.errors.where(:value, :repetition_too_few)).to be_present
       end
     end
@@ -120,8 +131,130 @@ describe Champs::RepetitionChamp do
 
       it "adds a repetition_too_few error even without any rows" do
         fresh_champ = dossier.reload.root_champs_public.find(&:repetition?)
-        fresh_champ.valid?(:champ_value)
+        fresh_champ.valid?([:champ_value, :champ_completeness])
         expect(fresh_champ.errors.where(:value, :repetition_too_few)).to be_present
+      end
+    end
+
+    context "when an added row is left empty" do
+      let(:children) { [{ type: :text, mandatory: false }] }
+      let(:min_rep) { 2 }
+      let(:max_rep) { nil }
+
+      before do
+        champ_for_update(champ.rows.first.flat_children.first).update(value: "rb")
+        champ.add_row(updated_by: "test")
+      end
+
+      it "does not count the empty row" do
+        expect(too_few_on_submission?(champ)).to be(true)
+      end
+    end
+
+    context "when a row misses a mandatory value" do
+      let(:children) { [{ type: :text, libelle: "Nom" }, { type: :text, libelle: "Rôle", mandatory: true }] }
+      let(:min_rep) { 2 }
+      let(:max_rep) { nil }
+
+      before do
+        champ_for_update(champ.rows.first.flat_children.first).update(value: "Ada")
+        champ_for_update(champ.rows.first.flat_children.last).update(value: "Dev")
+        champ.add_row(updated_by: "test")
+        champ_for_update(champ.rows.last.flat_children.first).update(value: "Grace")
+      end
+
+      it "does not count the incomplete row" do
+        champ.valid?([:champ_value, :champ_completeness])
+        expect(champ.errors.where(:value, :repetition_too_few)).to be_present
+      end
+
+      it "counts the row once its mandatory values are filled" do
+        champ_for_update(champ.rows.last.flat_children.last).update(value: "Ops")
+
+        expect(too_few_on_submission?(champ)).to be(false)
+      end
+    end
+
+    context "when the only value of a row is in a hidden child" do
+      include Logic
+
+      let(:children) { [{ type: :text, libelle: "Nom", stable_id: 901, mandatory: false }, { type: :text, libelle: "Détail", stable_id: 902, mandatory: false, condition: ds_eq(champ_value(901), constant("oui")) }] }
+      let(:min_rep) { 1 }
+      let(:max_rep) { nil }
+
+      before do
+        champ_for_update(champ.rows.first.flat_children.last).update(value: "masqué")
+      end
+
+      it "does not count the row" do
+        expect(too_few_on_submission?(champ)).to be(true)
+      end
+    end
+
+    context "when the only value of a row is an unchecked checkbox" do
+      let(:children) { [{ type: :checkbox, mandatory: false }] }
+      let(:min_rep) { 1 }
+      let(:max_rep) { nil }
+
+      it "does not count the row" do
+        champ_for_update(champ.rows.first.flat_children.first).update(value: "false")
+
+        expect(too_few_on_submission?(champ)).to be(true)
+      end
+
+      it "counts the row once the checkbox is checked" do
+        champ_for_update(champ.rows.first.flat_children.first).update(value: "true")
+
+        expect(too_few_on_submission?(champ)).to be(false)
+      end
+    end
+
+    context "when the only value of a row is a « Non » answer" do
+      let(:children) { [{ type: :yes_no, mandatory: false }] }
+      let(:min_rep) { 1 }
+      let(:max_rep) { nil }
+
+      it "counts the row" do
+        champ_for_update(champ.rows.first.flat_children.first).update(value: "false")
+
+        expect(too_few_on_submission?(champ)).to be(false)
+      end
+    end
+
+    context "when rows contain a map" do
+      let(:children) { [{ type: :carte, mandatory: false }] }
+      let(:min_rep) { 3 }
+      let(:max_rep) { nil }
+
+      before do
+        2.times { champ.add_row(updated_by: "test") }
+        champ.rows.each { champ_for_update(it.flat_children.first).geo_areas.create!(attributes_for(:geo_area, :polygon)) }
+      end
+
+      it "loads the geo areas of every row in a single query" do
+        fresh_champ = DossierPreloader.load_one(Dossier.find(dossier.id)).root_champs_public.find(&:repetition?)
+
+        queries = count_queries(matching: /FROM "geo_areas"/) { expect(too_few_on_submission?(fresh_champ)).to be(false) }
+
+        expect(queries).to eq(1)
+      end
+    end
+
+    context "when count exceeds max in a block of pieces justificatives" do
+      let(:children) { [{ type: :piece_justificative }] }
+      let(:min_rep) { 1 }
+      let(:max_rep) { 1 }
+
+      before do
+        champ.add_row(updated_by: "test")
+        champ.rows.each do |row|
+          champ_for_update(row.flat_children.first).piece_justificative_file.attach(io: StringIO.new("toto"), filename: "toto.txt", content_type: "text/plain")
+        end
+      end
+
+      it "adds a repetition_too_many error" do
+        champ.valid?(:champ_value)
+        expect(champ.errors.where(:value, :repetition_too_many)).to be_present
       end
     end
 
@@ -150,8 +283,44 @@ describe Champs::RepetitionChamp do
       end
 
       it "does not add any errors" do
-        champ.valid?(:champ_value)
+        champ.valid?([:champ_value, :champ_completeness])
         expect(champ.errors).to be_empty
+      end
+    end
+  end
+
+  describe "repetition limits validation on a private repetition" do
+    let(:procedure) do
+      create(:procedure,
+        private_type_de_champs: [
+          {
+            type: :repetition,
+            children: [{ type: :text }],
+            libelle: "Annotation",
+            mandatory: true,
+            limit_repetitions: '1',
+            min_repetitions: min_rep,
+          },
+        ])
+    end
+    let(:dossier) { create(:dossier, procedure:) }
+    let(:champ) { dossier.root_champs_private.find(&:repetition?) }
+
+    before { champ.valid?([:champ_value, :champ_completeness]) }
+
+    context "when the min is reached with empty rows" do
+      let(:min_rep) { 1 }
+
+      it "counts every row, filled or not" do
+        expect(champ.errors.where(:value, :repetition_too_few)).to be_empty
+      end
+    end
+
+    context "when there are fewer rows than the min" do
+      let(:min_rep) { 2 }
+
+      it "adds a repetition_too_few error" do
+        expect(champ.errors.where(:value, :repetition_too_few)).to be_present
       end
     end
   end

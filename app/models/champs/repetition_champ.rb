@@ -50,26 +50,40 @@ class Champs::RepetitionChamp < ChampData
     row_ids.count >= type_de_champ.max_repetitions.to_i
   end
 
-  validate :validate_repetition_limits, if: :should_validate_in_current_context?
+  def min_repetitions?
+    type_de_champ.limit_repetitions? && type_de_champ.min_repetitions.present?
+  end
+
+  validate :validate_repetition_min, on: :champ_completeness, if: :visible?
+  validate :validate_repetition_max, if: :should_validate_in_current_context?
 
   private
 
-  def validate_repetition_limits
-    return if !type_de_champ.limit_repetitions?
-    # Only skip validation when no rows have been filled AND no minimum is required.
-    # When a minimum is configured, always validate so that submitting with 0 rows is caught.
-    return if type_de_champ.min_repetitions.blank? && rows.none? { |row| row.flat_children.any? { it.value.present? } }
+  def counted_rows_count
+    return row_ids.count if type_de_champ.private?
 
-    count = row_ids.count
+    current_rows = rows
+    cartes = current_rows.flat_map(&:flat_children).filter { it.carte? && it.persisted? }
+    ActiveRecord::Associations::Preloader.new(records: cartes, associations: :geo_areas).call
+    current_rows.count { filled_row?(it) }
+  end
+
+  def filled_row?(row)
+    row.flat_children.compact_blank.any? { it.visible? && !it.type_de_champ.typed_champ_blank_or_invalid?(it) } &&
+      row.flat_children.none? { it.required? && it.mandatory_blank? }
+  end
+
+  def validate_repetition_min
+    return if !min_repetitions?
+
     min = type_de_champ.min_repetitions.to_i
+    errors.add(:value, :repetition_too_few, min:, libelle: type_de_champ.libelle) if counted_rows_count < min
+  end
+
+  def validate_repetition_max
+    return if !type_de_champ.limit_repetitions? || type_de_champ.max_repetitions.blank?
+
     max = type_de_champ.max_repetitions.to_i
-
-    if type_de_champ.min_repetitions.present? && count < min
-      errors.add(:value, :repetition_too_few, min: min, libelle: type_de_champ.libelle)
-    end
-
-    if type_de_champ.max_repetitions.present? && count > max
-      errors.add(:value, :repetition_too_many, max: max, libelle: type_de_champ.libelle)
-    end
+    errors.add(:value, :repetition_too_many, max:, libelle: type_de_champ.libelle) if row_ids.count > max
   end
 end
