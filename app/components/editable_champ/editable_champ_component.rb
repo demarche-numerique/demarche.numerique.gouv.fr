@@ -94,11 +94,11 @@ class EditableChamp::EditableChampComponent < ApplicationComponent
 
   def turbo_poll_url_value
     if @champ.private?
-      annotation_instructeur_dossier_path(@champ.dossier.procedure, @champ.dossier, @champ.stable_id, row_id: @champ.row_id)
+      annotation_instructeur_dossier_path(@champ.dossier.procedure, @champ.dossier, @champ.public_id)
     elsif @champ.dossier.instructeur_buffer_stream?
-      champ_instructeur_dossier_path(@champ.dossier.procedure, @champ.dossier, @champ.stable_id, row_id: @champ.row_id)
+      champ_instructeur_dossier_path(@champ.dossier.procedure, @champ.dossier, @champ.public_id)
     else
-      champ_dossier_path(@champ.dossier, @champ.stable_id, row_id: @champ.row_id)
+      champ_dossier_path(@champ.dossier, @champ.public_id)
     end
   end
 

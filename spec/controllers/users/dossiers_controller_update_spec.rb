@@ -669,7 +669,7 @@ describe Users::DossiersController, type: :controller do
       sign_in(user)
     end
 
-    subject { get :champ, params: { id: dossier.id, stable_id:, row_id: nil }, format: :turbo_stream }
+    subject { get :champ, params: { id: dossier.id, public_id: stable_id }, format: :turbo_stream }
 
     context 'when the user owns the dossier' do
       it 'renders the turbo_stream update template' do
@@ -687,6 +687,18 @@ describe Users::DossiersController, type: :controller do
         subject
         expect(response).to redirect_to(root_path)
         expect(flash[:alert]).to include("Vous n’avez pas accès à ce dossier")
+      end
+    end
+
+    context 'when the champ is a child of a repetition' do
+      let(:public_type_de_champs) { [{ type: :repetition, children: [{ type: :text, stable_id: }] }] }
+      let(:champ) { dossier.champ_data.find { it.stable_id == stable_id } }
+
+      subject { get :champ, params: { id: dossier.id, public_id: champ.public_id }, format: :turbo_stream }
+
+      it 'renders the champ of its row' do
+        subject
+        expect(assigns(:to_update)).to include(champ)
       end
     end
 
@@ -770,7 +782,7 @@ describe Users::DossiersController, type: :controller do
           it 'inclut le champ principal et les champs pré-remplis dans @to_update' do
             dossier.champ_data.find(&:referentiel?).update_external_data!(data: { ok: 'valeur préremplie', repetition: [{ nom: 'Jeanne' }, { nom: "Bob" }, {}] })
 
-            get :champ, params: { id: dossier.id, stable_id: referentiel_stable_id }, format: :turbo_stream
+            get :champ, params: { id: dossier.id, public_id: referentiel_stable_id }, format: :turbo_stream
 
             expect(assigns(:to_update).size).to eq(3)
             expect(dossier.reload.champs.map(&:value)).to include('valeur préremplie')

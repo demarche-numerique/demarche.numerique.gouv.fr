@@ -54,8 +54,8 @@ module Instructeurs
     end
 
     def champ
-      type_de_champ = dossier.find_type_de_champ_by_stable_id!(params[:stable_id], :public, row_id: params[:row_id])
-      champ = dossier.project_champ(type_de_champ, row_id: params[:row_id])
+      type_de_champ, row_id = dossier.find_type_de_champ_by_public_id!(champ_public_id_param, :public)
+      champ = dossier.project_champ(type_de_champ, row_id:)
       champ.validate(:champ_value) if champ.external_data_settled?
 
       respond_to do |format|
