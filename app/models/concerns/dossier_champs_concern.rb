@@ -95,11 +95,6 @@ module DossierChampsConcern
     end.find { _1.stable_id == stable_id.to_i }
   end
 
-  # Same lookup, for callers that cannot do anything useful without a type de champ.
-  def find_type_de_champ_by_stable_id!(stable_id, scope = nil, row_id: nil)
-    find_type_de_champ_by_stable_id(stable_id, scope) || raise(ChampNotInRevisionError.new(TypeDeChamp.public_id(stable_id, row_id)))
-  end
-
   # A public_id designates a champ: its stable_id, followed by its row_id inside a repetition.
   def find_type_de_champ_by_public_id!(public_id, scope = nil)
     stable_id, row_id = public_id.to_s.split('-', 2)

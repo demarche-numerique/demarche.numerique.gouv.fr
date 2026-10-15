@@ -85,27 +85,6 @@ RSpec.describe DossierChampsConcern do
     end
   end
 
-  describe "#find_type_de_champ_by_stable_id!" do
-    it "finds a type de champ like the non-bang version" do
-      expect(dossier.find_type_de_champ_by_stable_id!(992, :public).libelle).to eq("Un champ yes no")
-    end
-
-    it "raises for an unknown stable id, carrying the public_id of the orphaned input" do
-      expect { dossier.find_type_de_champ_by_stable_id!(1234567) }
-        .to raise_error(DossierChampsConcern::ChampNotInRevisionError) { expect(it.public_id).to eq("1234567") }
-    end
-
-    it "includes the row_id in the public_id when the champ is inside a repetition" do
-      expect { dossier.find_type_de_champ_by_stable_id!(1234567, :public, row_id: "01J") }
-        .to raise_error(DossierChampsConcern::ChampNotInRevisionError) { expect(it.public_id).to eq("1234567-01J") }
-    end
-
-    it "raises when the champ exists but outside the requested scope" do
-      expect { dossier.find_type_de_champ_by_stable_id!(995, :public) }
-        .to raise_error(DossierChampsConcern::ChampNotInRevisionError)
-    end
-  end
-
   describe "#find_type_de_champ_by_public_id!" do
     it "returns the type de champ without a row outside a repetition" do
       type_de_champ, row_id = dossier.find_type_de_champ_by_public_id!("992", :public)
