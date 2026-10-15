@@ -15,9 +15,9 @@ logger.warn = (msg, options) => {
   originalWarn(msg, options);
 };
 
-// Vitest shares this config without the plugins: the tests mock the Lingui
-// macro, and vite-plugin-ruby would move the root, the port and the base to the
-// values of config/vite.json.
+// Vitest shares this config and its plugins, minus the Rails integration:
+// vite-plugin-ruby would move the root, the port and the base to the values of
+// config/vite.json.
 const vitest = Boolean(process.env.VITEST);
 
 export default defineConfig({
@@ -34,15 +34,11 @@ export default defineConfig({
     transformer: 'lightningcss',
     lightningcss: { errorRecovery: true }
   },
-  plugins: lazyPlugins(() =>
-    vitest
+  plugins: lazyPlugins(() => [
+    ...(vitest
       ? []
       : [
           ruby(),
-          react(),
-          babel({
-            presets: [reactCompilerPreset(), linguiTransformerBabelPreset()]
-          }),
           fullReload(
             [
               'config/routes.rb',
@@ -50,13 +46,18 @@ export default defineConfig({
               'app/components/**/*.{haml,erb}'
             ],
             { delay: 200 }
-          ),
-          optimizeLocales.vite({ locales: ['en-US', 'fr-FR'] }),
-          lingui()
-        ]
-  ),
+          )
+        ]),
+    react(),
+    babel({
+      presets: [reactCompilerPreset(), linguiTransformerBabelPreset()]
+    }),
+    optimizeLocales.vite({ locales: ['en-US', 'fr-FR'] }),
+    lingui()
+  ]),
   test: {
     globals: true,
+    setupFiles: ['./app/javascript/test/setup.ts'],
     // Les fichiers de test partagent la même page (une iframe chacun) alors
     // que la souris et le clavier Playwright sont globaux à la page : deux
     // tests interactifs simultanés se volent le focus et ferment mutuellement

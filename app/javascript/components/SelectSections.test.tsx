@@ -1,9 +1,8 @@
 // Reproduit la MÊME structure que Select.tsx avec des sections (AriaSelect +
-// Autocomplete + Virtualizer + Collection de sections) — Select.tsx ne peut pas
-// être importé directement ici car il dépend de la macro Lingui, non configurée
-// dans vitest (même contrainte que ComboBoxSections.test.tsx). Vérifie que les
-// en-têtes de section s'affichent, que le filtre masque les sections vides et
-// que la sélection fonctionne.
+// Autocomplete + Virtualizer + Collection de sections) sans passer par
+// Select.tsx, comme ComboBoxSections.test.tsx. Vérifie que les en-têtes de
+// section s'affichent, que le filtre masque les sections vides et que la
+// sélection fonctionne.
 import './process-env-shim';
 import { suite, test, expect, beforeEach, afterEach } from 'vite-plus/test';
 import { userEvent, page } from 'vite-plus/test/browser/context';

@@ -1,17 +1,11 @@
 import './process-env-shim';
 import '@gouvfr/dsfr/dist/core/core.min.css';
 import '@gouvfr/dsfr/dist/component/select/select.min.css';
-import { vi, suite, test, expect, beforeEach, afterEach } from 'vite-plus/test';
+import { suite, test, expect, beforeEach, afterEach } from 'vite-plus/test';
 import { userEvent, page } from 'vite-plus/test/browser/context';
-import { createRoot, type Root } from 'react-dom/client';
+import type { Root } from 'react-dom/client';
+import { createAppRoot } from '../test/react';
 import { MultipleSelect, SingleSelect } from './Select';
-
-vi.mock('@lingui/react/macro', () => ({
-  useLingui: () => ({ t: (s: TemplateStringsArray | string) => String(s) }),
-  Trans: ({ children }: { children: React.ReactNode }) => children,
-  Plural: ({ _0, value }: { _0: React.ReactNode; value: number }) =>
-    value === 0 ? _0 : `${value} choix sélectionnés`
-}));
 
 const sections = [
   {
@@ -31,7 +25,7 @@ suite('MultipleSelect with sections', () => {
   beforeEach(() => {
     container = document.createElement('div');
     document.body.appendChild(container);
-    root = createRoot(container);
+    root = createAppRoot(container);
   });
 
   afterEach(() => {
@@ -122,7 +116,7 @@ suite('MultipleSelect labelled by a Rails label', () => {
     document.body.appendChild(container);
     const mount = document.createElement('div');
     container.appendChild(mount);
-    root = createRoot(mount);
+    root = createAppRoot(mount);
     root.render(
       <MultipleSelect
         name="champs[]"
@@ -202,7 +196,7 @@ suite('SingleSelect with a section id equal to an item value', () => {
   beforeEach(() => {
     container = document.createElement('div');
     document.body.appendChild(container);
-    root = createRoot(container);
+    root = createAppRoot(container);
   });
 
   afterEach(() => {
@@ -249,7 +243,7 @@ suite('SingleSelect search', () => {
   beforeEach(async () => {
     container = document.createElement('div');
     document.body.appendChild(container);
-    root = createRoot(container);
+    root = createAppRoot(container);
     root.render(
       <SingleSelect
         name="type"
@@ -306,7 +300,7 @@ suite('SingleSelect inside a form', () => {
   beforeEach(() => {
     container = document.createElement('div');
     document.body.appendChild(container);
-    root = createRoot(container);
+    root = createAppRoot(container);
   });
 
   afterEach(() => {
@@ -364,7 +358,7 @@ suite('SingleSelect with icons and descriptions', () => {
   beforeEach(() => {
     container = document.createElement('div');
     document.body.appendChild(container);
-    root = createRoot(container);
+    root = createAppRoot(container);
   });
 
   afterEach(() => {
