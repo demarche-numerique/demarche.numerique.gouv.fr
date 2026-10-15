@@ -106,6 +106,30 @@ RSpec.describe DossierChampsConcern do
     end
   end
 
+  describe "#find_type_de_champ_by_public_id!" do
+    it "returns the type de champ without a row outside a repetition" do
+      type_de_champ, row_id = dossier.find_type_de_champ_by_public_id!("992", :public)
+
+      expect([type_de_champ.libelle, row_id]).to eq(["Un champ yes no", nil])
+    end
+
+    it "returns the row_id of a champ inside a repetition" do
+      type_de_champ, row_id = dossier.find_type_de_champ_by_public_id!("994-01J", :public)
+
+      expect([type_de_champ.libelle, row_id]).to eq(["Nom", "01J"])
+    end
+
+    it "raises for an unknown stable id, carrying the public_id of the orphaned input" do
+      expect { dossier.find_type_de_champ_by_public_id!("1234567-01J", :public) }
+        .to raise_error(DossierChampsConcern::ChampNotInRevisionError) { expect(it.public_id).to eq("1234567-01J") }
+    end
+
+    it "raises when the champ exists but outside the requested scope" do
+      expect { dossier.find_type_de_champ_by_public_id!("995", :public) }
+        .to raise_error(DossierChampsConcern::ChampNotInRevisionError)
+    end
+  end
+
   # A tab still showing a form whose champ a newly published revision removed keeps
   # autosaving it; the dossier has since been rebased onto the new revision.
   describe "#public_champ_for_update on a champ removed from the revision" do

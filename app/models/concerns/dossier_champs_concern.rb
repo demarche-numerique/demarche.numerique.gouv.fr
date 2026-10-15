@@ -12,8 +12,8 @@ module DossierChampsConcern
   class ChampNotInRevisionError < StandardError
     attr_reader :public_id
 
-    def initialize(stable_id, row_id = nil)
-      @public_id = TypeDeChamp.public_id(stable_id, row_id)
+    def initialize(public_id)
+      @public_id = public_id.to_s
       super("Champ #{@public_id} is not in the dossier revision")
     end
   end
@@ -97,7 +97,14 @@ module DossierChampsConcern
 
   # Same lookup, for callers that cannot do anything useful without a type de champ.
   def find_type_de_champ_by_stable_id!(stable_id, scope = nil, row_id: nil)
-    find_type_de_champ_by_stable_id(stable_id, scope) || raise(ChampNotInRevisionError.new(stable_id, row_id))
+    find_type_de_champ_by_stable_id(stable_id, scope) || raise(ChampNotInRevisionError.new(TypeDeChamp.public_id(stable_id, row_id)))
+  end
+
+  # A public_id designates a champ: its stable_id, followed by its row_id inside a repetition.
+  def find_type_de_champ_by_public_id!(public_id, scope = nil)
+    stable_id, row_id = public_id.to_s.split('-', 2)
+    type_de_champ = find_type_de_champ_by_stable_id(stable_id, scope) || raise(ChampNotInRevisionError.new(public_id))
+    [type_de_champ, row_id]
   end
 
   def public_type_de_champs_all
@@ -132,14 +139,12 @@ module DossierChampsConcern
   end
 
   def public_champ_for_update(public_id, updated_by:)
-    stable_id, row_id = public_id.split('-')
-    type_de_champ = find_type_de_champ_by_stable_id!(stable_id, :public, row_id:)
+    type_de_champ, row_id = find_type_de_champ_by_public_id!(public_id, :public)
     champ_for_update(type_de_champ, row_id:, updated_by:)
   end
 
   def private_champ_for_update(public_id, updated_by:)
-    stable_id, row_id = public_id.split('-')
-    type_de_champ = find_type_de_champ_by_stable_id!(stable_id, :private, row_id:)
+    type_de_champ, row_id = find_type_de_champ_by_public_id!(public_id, :private)
     champ_for_update(type_de_champ, row_id:, updated_by:)
   end
 
