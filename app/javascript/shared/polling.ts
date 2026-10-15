@@ -1,5 +1,9 @@
 export type PollingStrategy =
-  'fixed' | 'linear' | 'exponential' | 'fibonacci' | 'randomized';
+  | 'fixed'
+  | 'linear'
+  | 'exponential'
+  | 'fibonacci'
+  | 'randomized';
 
 export interface PollOptions {
   strategy: PollingStrategy;
