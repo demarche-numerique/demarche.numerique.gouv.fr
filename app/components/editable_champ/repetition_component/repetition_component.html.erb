@@ -9,7 +9,13 @@
 <% end %>
 
 <% if show_limits_description? %>
-  <p class="fr-message fr-message--info fr-mt-1w"><%= limits_description %></p>
+  <div class="fr-fieldset__element" id="<%= limits_description_id %>">
+    <%= render Dsfr::AlertComponent.new(state: :info, size: :sm) do |c| %>
+      <% c.with_body do %>
+        <p><%= limits_description %></p>
+      <% end %>
+    <% end %>
+  </div>
 <% end %>
 
 <div
