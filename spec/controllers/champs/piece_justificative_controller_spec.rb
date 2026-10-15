@@ -14,7 +14,7 @@ describe Champs::PieceJustificativeController, type: :controller do
     before { sign_in user }
 
     it 'returns not found when the champ is not a piece_justificative' do
-      put :update, params: { dossier_id: champ.dossier_id, stable_id: champ.stable_id }, format: :turbo_stream
+      put :update, params: { dossier_id: champ.dossier_id, public_id: champ.public_id }, format: :turbo_stream
       expect(response).to have_http_status(:not_found)
     end
   end
@@ -27,7 +27,7 @@ describe Champs::PieceJustificativeController, type: :controller do
       let(:champ) { dossier.root_champs_public.first }
 
       it 'returns not found' do
-        put :update, params: { dossier_id: champ.dossier_id, stable_id: champ.stable_id }, format: :turbo_stream
+        put :update, params: { dossier_id: champ.dossier_id, public_id: champ.public_id }, format: :turbo_stream
         expect(response).to have_http_status(:not_found)
       end
     end
@@ -37,7 +37,7 @@ describe Champs::PieceJustificativeController, type: :controller do
       let(:champ) { dossier.root_champs_public.first }
 
       it 'returns not found' do
-        put :update, params: { dossier_id: champ.dossier_id, stable_id: champ.stable_id }, format: :turbo_stream
+        put :update, params: { dossier_id: champ.dossier_id, public_id: champ.public_id }, format: :turbo_stream
         expect(response).to have_http_status(:not_found)
       end
     end
@@ -51,7 +51,7 @@ describe Champs::PieceJustificativeController, type: :controller do
       let(:champ) { dossier.root_champs_private.first }
 
       it 'returns not found' do
-        put :update, params: { dossier_id: champ.dossier_id, stable_id: champ.stable_id }, format: :turbo_stream
+        put :update, params: { dossier_id: champ.dossier_id, public_id: champ.public_id }, format: :turbo_stream
         expect(response).to have_http_status(:not_found)
       end
     end
@@ -69,7 +69,7 @@ describe Champs::PieceJustificativeController, type: :controller do
     let(:file) { fixture_file_upload('spec/fixtures/files/piece_justificative_0.pdf', 'application/pdf') }
 
     it 'dispatches the limits respected event once the file makes the row filled' do
-      put :update, params: { dossier_id: dossier.id, stable_id: child.stable_id, row_id: child.row_id, blob_signed_id: file }, format: :turbo_stream
+      put :update, params: { dossier_id: dossier.id, public_id: child.public_id, blob_signed_id: file }, format: :turbo_stream
 
       expect(response.body).to include('repetition:limits-respected')
     end
@@ -88,7 +88,7 @@ describe Champs::PieceJustificativeController, type: :controller do
     end
 
     it 'still finds the champ' do
-      get :template, params: { dossier_id: dossier.id, stable_id: child.stable_id, row_id: child.row_id }
+      get :template, params: { dossier_id: dossier.id, public_id: child.public_id }
 
       expect(response).to have_http_status(:found)
     end
@@ -125,7 +125,7 @@ describe Champs::PieceJustificativeController, type: :controller do
     end
 
     it 'evaluates the block on the buffer stream, where the row misses a mandatory value' do
-      put :update, params: { dossier_id: dossier.id, stable_id: 903, row_id:, blob_signed_id: file }, format: :turbo_stream
+      put :update, params: { dossier_id: dossier.id, public_id: TypeDeChamp.public_id(903, row_id), blob_signed_id: file }, format: :turbo_stream
 
       expect(response.body).not_to include('repetition:limits-respected')
     end
@@ -138,7 +138,7 @@ describe Champs::PieceJustificativeController, type: :controller do
     subject do
       put :update, params: {
         dossier_id: champ.dossier_id,
-        stable_id: champ.stable_id,
+        public_id: champ.public_id,
         blob_signed_id: file,
       }.compact, format: :turbo_stream
     end
@@ -243,6 +243,32 @@ describe Champs::PieceJustificativeController, type: :controller do
       end
     end
 
+    context 'when the champ is a child of a repetition' do
+      let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :repetition, children: [{ type: :piece_justificative }] }]) }
+      let(:champ) do
+        repetition = dossier.revision.public_root_type_de_champs.first
+        child = dossier.revision.children_of(repetition).first
+        dossier.champ_for_update(child, row_id: dossier.repetition_row_ids(repetition).first, updated_by: user.email)
+      end
+      let(:file) { fixture_file_upload('spec/fixtures/files/piece_justificative_0.pdf', 'application/pdf') }
+
+      it 'attaches the file to the champ of its row' do
+        subject
+        expect(champ.reload.piece_justificative_file.attached?).to be true
+      end
+
+      context 'when a page rendered before the deploy sends the row in the query' do
+        subject do
+          put :update, params: { dossier_id: champ.dossier_id, public_id: champ.stable_id, row_id: champ.row_id, blob_signed_id: file }, format: :turbo_stream
+        end
+
+        it 'still attaches the file to the champ of its row' do
+          subject
+          expect(champ.reload.piece_justificative_file.attached?).to be true
+        end
+      end
+    end
+
     context 'when the file is invalid' do
       let(:file) { fixture_file_upload('spec/fixtures/files/invalid_file_format.json', 'bad/bad') }
 
@@ -266,7 +292,7 @@ describe Champs::PieceJustificativeController, type: :controller do
     subject do
       get :template, params: {
         dossier_id: champ.dossier_id,
-        stable_id: champ.stable_id,
+        public_id: champ.public_id,
       }
     end
 

@@ -13,14 +13,14 @@ describe Champs::RepetitionController, type: :controller do
     let(:champ) { dossier.root_champs_public.first }
 
     it 'returns not found when the champ is not a repetition' do
-      post :add, params: { dossier_id: dossier, stable_id: champ.stable_id }, format: :turbo_stream
+      post :add, params: { dossier_id: dossier, public_id: champ.public_id }, format: :turbo_stream
       expect(response).to have_http_status(:not_found)
     end
 
     # stable_id comes straight from the path here, so an unknown one is reachable both by
     # a stale tab and by hand. An error page would wipe out the form the user is filling.
     it 'removes the orphaned input instead of erroring when the stable_id is not in the revision' do
-      post :add, params: { dossier_id: dossier, stable_id: 1234567 }, format: :turbo_stream
+      post :add, params: { dossier_id: dossier, public_id: 1234567 }, format: :turbo_stream
 
       expect(response).to have_http_status(:ok)
       expect(response.body).to include('action="remove"')
@@ -36,7 +36,7 @@ describe Champs::RepetitionController, type: :controller do
       before { sign_in instructeur.user }
 
       it 'works' do
-        post :add, params: { dossier_id: dossier, stable_id: repetition.stable_id }, format: :turbo_stream
+        post :add, params: { dossier_id: dossier, public_id: repetition.public_id }, format: :turbo_stream
         expect(response).not_to have_http_status(:not_found)
       end
     end
@@ -57,7 +57,7 @@ describe Champs::RepetitionController, type: :controller do
     end
 
     it 'dispatches the limits respected event once the new row reaches the min' do
-      post :add, params: { dossier_id: dossier, stable_id: repetition.stable_id }, format: :turbo_stream
+      post :add, params: { dossier_id: dossier, public_id: repetition.public_id }, format: :turbo_stream
 
       expect(response.body).to include('repetition:limits-respected')
     end
@@ -74,7 +74,7 @@ describe Champs::RepetitionController, type: :controller do
     end
 
     it 'dispatches the limits respected event once back under the max' do
-      delete :remove, params: { dossier_id: dossier, stable_id: repetition.stable_id, row_id: repetition.row_ids.last }, format: :turbo_stream
+      delete :remove, params: { dossier_id: dossier, public_id: repetition.public_id, row_id: repetition.row_ids.last }, format: :turbo_stream
 
       expect(response.body).to include('repetition:limits-respected')
     end
@@ -83,7 +83,7 @@ describe Champs::RepetitionController, type: :controller do
   describe '#remove' do
     let(:row) { dossier.champ_data.find(&:row?) }
 
-    subject { delete :remove, params: { dossier_id: dossier, stable_id: repetition.stable_id, row_id: row.row_id }, format: :turbo_stream }
+    subject { delete :remove, params: { dossier_id: dossier, public_id: repetition.public_id, row_id: row.row_id }, format: :turbo_stream }
 
     context 'removes repetition' do
       it { expect { subject }.not_to change { dossier.reload.champ_data.size } }
@@ -107,7 +107,7 @@ describe Champs::RepetitionController, type: :controller do
   end
 
   describe '#add' do
-    subject { post :add, params: { dossier_id: dossier, stable_id: repetition.stable_id }, format: :turbo_stream }
+    subject { post :add, params: { dossier_id: dossier, public_id: repetition.public_id }, format: :turbo_stream }
 
     context 'add repetition' do
       it { expect { subject }.to change { dossier.reload.champ_data.size } }

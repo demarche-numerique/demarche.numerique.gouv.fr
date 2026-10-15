@@ -220,6 +220,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Pages rendered before the champ routes took a public_id still send the row in
+  # ?row_id=. TODO: remove once those tabs are gone, a release later.
+  def champ_public_id_param
+    public_id = params.require(:public_id)
+    return public_id if public_id.include?('-') || params[:row_id].blank?
+
+    TypeDeChamp.public_id(public_id, params[:row_id])
+  end
+
   def set_active_storage_host
     ActiveStorage::Current.url_options ||= {}
     ActiveStorage::Current.url_options[:host] = request.base_url
