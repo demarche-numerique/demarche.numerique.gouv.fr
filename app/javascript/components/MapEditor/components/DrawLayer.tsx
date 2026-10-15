@@ -51,8 +51,7 @@ export function DrawLayer({
         }
       });
       // We use mapbox-draw plugin with maplibre. They are compatible but types are not.
-      // oxlint-disable-next-line @typescript-eslint/no-explicit-any
-      const control = draw as any as IControl;
+      const control = draw as unknown as IControl;
       map.addControl(control, 'top-left');
       draw.set(
         filterFeatureCollection(featureCollection, SOURCE_SELECTION_UTILISATEUR)
@@ -65,8 +64,7 @@ export function DrawLayer({
     return () => {
       if (drawRef.current) {
         // We use mapbox-draw plugin with maplibre. They are compatible but types are not.
-        // oxlint-disable-next-line @typescript-eslint/no-explicit-any
-        map.removeControl(drawRef.current as any);
+        map.removeControl(drawRef.current as unknown as IControl);
         drawRef.current = null;
       }
     };

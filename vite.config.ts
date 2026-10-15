@@ -133,7 +133,7 @@ export default defineConfig({
       'no-unsafe-optional-chaining': 'error',
       'no-unused-labels': 'error',
       'no-unused-private-class-members': 'error',
-      'no-unused-vars': 'error',
+      'no-unused-vars': ['error', { ignoreRestSiblings: true }],
       'no-useless-assignment': 'error',
       'no-useless-backreference': 'error',
       'no-useless-catch': 'error',
