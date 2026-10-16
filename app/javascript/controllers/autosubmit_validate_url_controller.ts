@@ -23,6 +23,6 @@ export class AutosubmitValidateUrlController extends ApplicationController {
     if (!form || !this.urlValue) return;
 
     const formData = new FormData(form);
-    httpRequest(this.urlValue, { method: 'POST', body: formData }).turbo();
+    void httpRequest(this.urlValue, { method: 'POST', body: formData }).turbo();
   }
 }

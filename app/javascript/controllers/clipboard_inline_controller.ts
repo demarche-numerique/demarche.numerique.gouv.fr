@@ -54,7 +54,7 @@ export class ClipboardInlineController extends Controller {
 
     if (!document.hasFocus()) return;
 
-    navigator.clipboard.writeText(this.toCopyValue).then(() => {
+    void navigator.clipboard.writeText(this.toCopyValue).then(() => {
       const label = this.labelTarget;
       label.textContent = this.copiedTextValue;
 

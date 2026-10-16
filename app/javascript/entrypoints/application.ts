@@ -25,5 +25,5 @@ registerControllers(application);
 ActiveStorage.start();
 Turbo.session.drive = false;
 
-import('../shared/track/matomo');
-import('../shared/track/sentry');
+void import('../shared/track/matomo');
+void import('../shared/track/sentry');

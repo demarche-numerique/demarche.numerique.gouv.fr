@@ -18,7 +18,7 @@ demarche.numerique.gouv.fr (formerly demarches-simplifiees.fr) — French govern
 
 ### Lint
 - `bin/rake lint` — everything. `lint:ruby` / `lint:js` / `lint:security` run one group (CI runs the three as parallel jobs; `lint:security` is Brakeman and by far the slowest)
-- Individually: `bundle exec rubocop --parallel`, `bun lint:js`, `bun lint:types`, `bun lint:css` (`bun lint:css:fix`), `bun lint:herb` (`bun format:herb`), `bundle exec i18n-tasks health`
+- Individually: `bundle exec rubocop --parallel`, `bun lint:js` (Vite+ `vp check`: Oxfmt, Oxlint and the TypeScript type check over `app/javascript` and the stylesheets; `bun lint:js:fix` applies the fixes), `bun lint:herb` (`bun format:herb`), `bundle exec i18n-tasks health`
 - Brakeman reads `config/brakeman.yml` automatically, so a bare `brakeman` matches CI. Every `config/brakeman.ignore` entry must carry a note saying why the warning is not exploitable, and entries that no longer match any code must be deleted — `lint:security` fails on either.
 
 ### Generators

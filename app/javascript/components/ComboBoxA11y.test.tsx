@@ -1,7 +1,7 @@
 import './process-env-shim';
-import { suite, test, expect, beforeEach, afterEach } from 'vitest';
+import { suite, test, expect, beforeEach, afterEach } from 'vite-plus/test';
 import { createRoot, type Root } from 'react-dom/client';
-import { page } from '@vitest/browser/context';
+import { page } from 'vite-plus/test/browser/context';
 import {
   ComboBox as AriaComboBox,
   Select as AriaSelect,

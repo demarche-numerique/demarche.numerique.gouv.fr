@@ -42,7 +42,7 @@ export function ParcelleLayer({
     map.addControl(control, 'top-left');
     // Syncing the imperatively-created control's container into state is the
     // intended pattern here; the container only exists after addControl.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+    // oxlint-disable-next-line react-hooks/set-state-in-effect
     setControlElement(control.container);
 
     return () => {

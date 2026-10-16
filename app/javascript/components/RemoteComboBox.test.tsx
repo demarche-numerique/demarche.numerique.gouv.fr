@@ -6,19 +6,13 @@
 // jeton pour la même donnée : resélectionner une suggestion soumet le plus récent,
 // le serveur refusant un jeton expiré.
 import './process-env-shim';
-import { vi, suite, test, expect, beforeEach, afterEach } from 'vitest';
-import { userEvent, page } from '@vitest/browser/context';
-import { createRoot, type Root } from 'react-dom/client';
+import { suite, test, expect, beforeEach, afterEach } from 'vite-plus/test';
+import { userEvent, page } from 'vite-plus/test/browser/context';
+import type { Root } from 'react-dom/client';
+import { createAppRoot } from '../test/react';
 
 import { RemoteComboBox, ComboBoxValueSlot } from './ComboBox';
 import type { Loader } from './react-aria/hooks';
-
-vi.mock('@lingui/react/macro', () => ({
-  useLingui: () => ({ t: (s: TemplateStringsArray | string) => String(s) }),
-  Trans: ({ children }: { children: React.ReactNode }) => children,
-  Plural: ({ _0, value }: { _0: React.ReactNode; value: number }) =>
-    value === 0 ? _0 : `${value} choix sélectionnés`
-}));
 
 let searches: number;
 const loader: Loader = async ({ filterText }) => ({
@@ -59,7 +53,7 @@ let changes: number;
 beforeEach(() => {
   container = document.createElement('div');
   document.body.appendChild(container);
-  root = createRoot(container);
+  root = createAppRoot(container);
   changes = 0;
   searches = 0;
   container.addEventListener('change', () => changes++);

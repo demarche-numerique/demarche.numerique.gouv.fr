@@ -1,36 +1,14 @@
-// Reproduit la MÊME structure que Select.tsx avec des sections (AriaSelect +
-// Autocomplete + Virtualizer + Collection de sections) — Select.tsx ne peut pas
-// être importé directement ici car il dépend de la macro Lingui, non configurée
-// dans vitest (même contrainte que ComboBoxSections.test.tsx). Vérifie que les
-// en-têtes de section s'affichent, que le filtre masque les sections vides et
-// que la sélection fonctionne.
+// Vérifie qu'un Select à sections affiche les en-têtes de section, que le
+// filtre masque les sections vides, que la sélection fonctionne et qu'un item
+// désactivé reste lisible sans être sélectionnable.
 import './process-env-shim';
-import { suite, test, expect, beforeEach, afterEach } from 'vitest';
-import { userEvent, page } from '@vitest/browser/context';
-import { useState, type Key } from 'react';
-import { createRoot, type Root } from 'react-dom/client';
-import {
-  Select as AriaSelect,
-  Autocomplete,
-  SelectValue,
-  Button,
-  Popover,
-  Virtualizer,
-  ListLayout,
-  ListBoxSection,
-  Collection,
-  Header,
-  useFilter
-} from 'react-aria-components';
+import { suite, test, expect, beforeEach, afterEach } from 'vite-plus/test';
+import { userEvent, page } from 'vite-plus/test/browser/context';
+import type { Root } from 'react-dom/client';
 
-import { SearchField } from './react-aria/components/SearchField';
-import {
-  DropdownListBox as SelectListBox,
-  DropdownItem as SelectItem
-} from './react-aria/components/ListBox';
-
-type Item = { label: string; value: string };
-type Section = { label: string; items: Item[] };
+import { SingleSelect } from './Select';
+import type { Section } from './react-aria/props';
+import { createAppRoot } from '../test/react';
 
 const sections: Section[] = [
   {
@@ -57,42 +35,14 @@ const sections: Section[] = [
 const disabledKeys = ['ambassades-vide'];
 
 function SelectWithSections() {
-  const [value, setValue] = useState<string | null>(null);
-  const { contains } = useFilter({ sensitivity: 'base', numeric: true });
-
   return (
-    <AriaSelect
+    <SingleSelect
+      name="organisme"
       aria-label="Organisme"
-      selectionMode="single"
-      value={value}
+      value={null}
+      sections={sections}
       disabledKeys={disabledKeys}
-      onChange={(key: Key | null) => setValue(key ? String(key) : null)}
-    >
-      <Button className="fr-select">
-        <SelectValue />
-      </Button>
-      <Popover>
-        <Autocomplete<Item> filter={contains}>
-          <SearchField autoFocus />
-          <Virtualizer layout={ListLayout}>
-            <SelectListBox>
-              <Collection items={sections}>
-                {(section) => (
-                  <ListBoxSection id={section.label}>
-                    <Header>{section.label}</Header>
-                    <Collection items={section.items}>
-                      {(item) => (
-                        <SelectItem id={item.value}>{item.label}</SelectItem>
-                      )}
-                    </Collection>
-                  </ListBoxSection>
-                )}
-              </Collection>
-            </SelectListBox>
-          </Virtualizer>
-        </Autocomplete>
-      </Popover>
-    </AriaSelect>
+    />
   );
 }
 
@@ -103,7 +53,7 @@ suite('Select avec sections', () => {
   beforeEach(() => {
     container = document.createElement('div');
     document.body.appendChild(container);
-    root = createRoot(container);
+    root = createAppRoot(container);
   });
 
   afterEach(() => {
@@ -122,7 +72,10 @@ suite('Select avec sections', () => {
   test('affiche les sections, filtre et sélectionne une option', async () => {
     root.render(<SelectWithSections />);
 
-    const button = page.getByRole('button', { name: 'Organisme' });
+    const button = page.getByRole('button', {
+      name: 'Organisme',
+      exact: false
+    });
     await userEvent.click(button);
 
     // les deux sections et leurs options sont visibles à l'ouverture
@@ -144,16 +97,17 @@ suite('Select avec sections', () => {
     ).toBeNull();
 
     // la sélection met à jour la valeur du select
-    await userEvent.click(
-      page.getByRole('option', { name: 'Préfecture du Rhône' })
-    );
-    await expect.element(button).toHaveTextContent('Préfecture du Rhône');
+    await userEvent.keyboard('{ArrowDown}{Enter}');
+    await expect.element(button).toMatchTextContent('Préfecture du Rhône');
   });
 
   test('affiche un item désactivé sans permettre de le sélectionner', async () => {
     root.render(<SelectWithSections />);
 
-    const button = page.getByRole('button', { name: 'Organisme' });
+    const button = page.getByRole('button', {
+      name: 'Organisme',
+      exact: false
+    });
     await userEvent.click(button);
 
     // l'item est lisible, annoncé désactivé, et donc hors de portée du clic
