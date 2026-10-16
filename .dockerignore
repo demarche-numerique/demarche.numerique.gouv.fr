@@ -1,0 +1,14 @@
+.git
+.github
+.claude
+.env.local.docker
+coverage
+log/*
+tmp/*
+node_modules
+public/assets
+public/vite
+public/vite-dev
+public/vite-test
+storage/*
+vendor/bundle
