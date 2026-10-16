@@ -28,6 +28,16 @@ class TypeDeChamps::LibelleValidator < ActiveModel::EachValidator
     )
   end
 
-  # read off the loaded draft: another request may have removed the coordinate since
-  def position_of(draft, tdc) = draft.coordinate_for(tdc).position + 1
+  # read off the loaded draft: another request may have removed the type de champ since
+  def position_of(draft, tdc)
+    siblings = if (parent = draft.parent_of(tdc))
+      draft.children_of(parent)
+    elsif tdc.public?
+      draft.public_root_type_de_champs
+    else
+      draft.private_root_type_de_champs
+    end
+
+    siblings.index { it.stable_id == tdc.stable_id } + 1
+  end
 end

@@ -121,7 +121,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       let(:tdc) { procedure.draft_revision.type_de_champs.first }
 
       before do
-        tdc.update!(pj_limit_formats: true, pj_format_families: ['document_texte'])
+        coordinate.type_de_champ.update!(pj_limit_formats: true, pj_format_families: ['document_texte'])
         render_inline(component)
       end
 
@@ -134,7 +134,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       let(:tdc) { procedure.draft_revision.type_de_champs.first }
 
       before do
-        tdc.update!(nature: 'titre_identite')
+        coordinate.type_de_champ.update!(nature: 'titre_identite')
         render_inline(component)
       end
 
@@ -153,7 +153,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       let(:tdc) { procedure.draft_revision.type_de_champs.first }
 
       before do
-        tdc.update!(nature: 'rib')
+        coordinate.type_de_champ.update!(nature: 'rib')
         render_inline(component)
       end
 

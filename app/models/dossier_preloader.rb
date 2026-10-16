@@ -76,13 +76,25 @@ class DossierPreloader
     missing_ids = dossiers.flat_map { [it.revision_id, it.submitted_revision_id] }.compact.uniq - @revisions.keys
     @revisions.merge!(ProcedureRevision.where(id: missing_ids).index_by(&:id))
 
-    templates = pj_template ? { piece_justificative_template_attachment: :blob, notice_explicative_attachment: :blob } : []
-    ActiveRecord::Associations::Preloader.new(
-      records: @revisions.except(*known_ids).values,
-      associations: [:procedure, { revision_type_de_champs: { type_de_champ: templates } }]
-    ).call
+    new_revisions = @revisions.except(*known_ids).values
+    ActiveRecord::Associations::Preloader.new(records: new_revisions, associations: [:procedure, :revision_type_de_champs]).call
+    preload_type_de_champs(new_revisions, pj_template:)
 
     @revisions
+  end
+
+  # A revision lays out its own types de champ: better here, in one query,
+  # than wherever the first champ of each is read.
+  def preload_type_de_champs(revisions, pj_template:)
+    ProcedureRevision.preload_type_de_champs(revisions)
+    type_de_champs = revisions.flat_map(&:type_de_champs)
+
+    if pj_template && type_de_champs.any?
+      ::ActiveRecord::Associations::Preloader.new(
+        records: type_de_champs,
+        associations: { piece_justificative_template_attachment: :blob, notice_explicative_attachment: :blob }
+      ).call
+    end
   end
 
   def load_dossiers(dossiers, pj_template: false)
