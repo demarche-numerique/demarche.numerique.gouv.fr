@@ -24,6 +24,8 @@ fr:
     fetching: "Recherche de l’adresse « %{value} » en cours."
     error: "Une erreur est survenue lors de la recherche de l’adresse."
   prefilled: "Donnée remplie automatiquement."
+  linked_drop_down_list:
+    secondary_available: "Liste « %{libelle} » disponible"
   pj:
     info: "Contenu du fichier en cours d’analyse…"
     warning_html: "Notre système n’a pas pu identifier le numéro IBAN.<br>Vérifiez votre document ou ne tenez pas compte de ce message si vous êtes sûr(e) de votre fichier."

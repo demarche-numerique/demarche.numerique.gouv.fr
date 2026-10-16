@@ -62,6 +62,27 @@ describe Dsfr::InputStatusMessageComponent, type: :component do
     end
   end
 
+  describe 'a linked drop-down champ' do
+    before_all { seed "cases/champs" }
+
+    let(:dossier) { dossiers.tous_champs }
+    let(:champ) { dossier.root_champs_public.find(&:linked_drop_down_list?) }
+
+    subject { render_inline(described_class.new(champ:, as_announcement: true)).text.strip }
+
+    context 'when a primary value opens the secondary list' do
+      before { champ.value = ['primary', ''].to_json }
+
+      it { is_expected.to eq('Liste « Valeur secondaire dépendant de la première » disponible') }
+    end
+
+    context 'once the secondary value is chosen' do
+      before { champ.value = ['primary', 'secondary'].to_json }
+
+      it { is_expected.to be_empty }
+    end
+  end
+
   describe 'a degraded rna champ' do
     let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :rna }]) }
 

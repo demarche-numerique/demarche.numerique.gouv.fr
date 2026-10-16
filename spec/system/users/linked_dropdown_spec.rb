@@ -86,6 +86,46 @@ describe 'linked dropdown lists', js: true do
     end
   end
 
+  context 'accessibility' do
+    let(:mandatory) { false }
+
+    scenario 'the appearance of the secondary list is announced without moving the focus' do
+      log_in(user.email, password, procedure)
+      fill_individual
+
+      primary_id = find_field('linked dropdown')['id']
+      page.execute_script('document.getElementById(arguments[0]).focus()', primary_id)
+      select('Primary 2', from: 'linked dropdown')
+
+      expect(page).to have_select('Valeur secondaire dépendant de la première')
+      expect(page).to have_css("##{primary_id}-aria-live[aria-live='polite']", text: 'Liste « Valeur secondaire dépendant de la première » disponible', visible: :all)
+      expect(page.evaluate_script('document.activeElement.id')).to eq(primary_id)
+
+      select('Secondary 2.1', from: 'Valeur secondaire dépendant de la première')
+      expect(page).to have_css("##{primary_id}-aria-live", exact_text: '', visible: :all)
+    end
+
+    context 'in a repetition' do
+      let(:procedure) do
+        create(:procedure, :published, :for_individual, public_type_de_champs: [
+          { type: :repetition, libelle: 'Enfants', children: [{ type: :linked_drop_down_list, libelle: 'linked dropdown', options: }] },
+        ])
+      end
+
+      scenario 'the secondary list is named by its own label' do
+        log_in(user.email, password, procedure)
+        fill_individual
+
+        select('Primary 2', from: 'linked dropdown')
+        secondary = find_field('Valeur secondaire dépendant de la première')
+
+        accessible_name = secondary['aria-labelledby'].split.map { find_by_id(it, visible: :all).text }.join(' ')
+        expect(accessible_name).to include('Valeur secondaire dépendant de la première')
+        expect(accessible_name).not_to include('linked dropdown')
+      end
+    end
+  end
+
   private
 
   def log_in(email, password, procedure)

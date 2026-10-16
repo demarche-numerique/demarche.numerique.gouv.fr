@@ -22,6 +22,12 @@ module Dsfr
       statutable? && statut_message.present?
     end
 
+    # The secondary list of a linked drop-down appears once a primary value is
+    # chosen: it is announced instead of moving the focus (RGAA 7.4).
+    def secondary_list_announcement?
+      type_de_champ.linked_drop_down_list? && @champ.secondary_awaiting_choice?
+    end
+
     def statutable?
       siret_support_status? ||
       rna_support_statut? ||

@@ -45,12 +45,16 @@ class Champs::LinkedDropDownListChamp < ChampData
     primary_value.present? && secondary_options[primary_value]&.any?(&:present?)
   end
 
+  def secondary_awaiting_choice?
+    has_secondary_options_for_primary? && secondary_value.blank?
+  end
+
+  def secondary_libelle
+    drop_down_secondary_libelle.presence || I18n.t('shared.champs.linked_drop_down_list.secondary_default_libelle')
+  end
+
   def libelle_for_error
-    if primary_value.blank?
-      libelle
-    else
-      drop_down_secondary_libelle.presence || I18n.t('shared.champs.linked_drop_down_list.secondary_default_libelle')
-    end
+    primary_value.blank? ? libelle : secondary_libelle
   end
 
   # Validate each sub-input independently so the error targets the right select,
