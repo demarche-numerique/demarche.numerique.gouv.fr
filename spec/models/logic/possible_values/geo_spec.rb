@@ -38,4 +38,37 @@ describe Logic::PossibleValues::Geo do
     expect(values.restrict(Logic::Eq, '75').restrict(Logic::NotEq, '75')).to be_empty
     expect(values.restrict(Logic::Eq, '75').restrict(Logic::InRegionOperator, '84')).to be_empty
   end
+
+  describe '#regions' do
+    include_examples 'possible values regions', [[Logic::InDepartementOperator, '01'], [Logic::NotInDepartementOperator, '75'], [Logic::InRegionOperator, '84'], [Logic::NotInRegionOperator, '11'], [Logic::InRegionOperator, '75'], [Logic::Eq, '69']]
+
+    it 'isolates departements, then the rest of the regions, then the rest' do
+      regions = values.regions([[Logic::InDepartementOperator, '01'], [Logic::InRegionOperator, '84']])
+
+      expect(regions.size).to eq(3)
+      expect(regions.first.codes).to eq(Set['01'])
+      expect(regions.second.codes).to include('69')
+      expect(regions.second.codes).not_to include('01')
+      expect(regions.third.codes).to include('75')
+      expect(regions.third.codes).not_to include('01', '69')
+    end
+
+    it 'tells a departement code from the same region code' do
+      # 75 is Paris as a departement and Nouvelle-Aquitaine as a region
+      comparisons = [[Logic::InDepartementOperator, '75'], [Logic::InRegionOperator, '75']]
+
+      expect(values.regions(comparisons).map(&:codes)).to eq([Set['75'], values.restrict(Logic::InRegionOperator, '75').codes, values.codes - ['75'] - values.restrict(Logic::InRegionOperator, '75').codes])
+      expect(values.max_regions(comparisons)).to eq(3)
+    end
+
+    it 'isolates Etranger as a region' do
+      regions = values.regions([[Logic::InRegionOperator, '99']])
+
+      expect(regions.map(&:codes)).to eq([Set['99'], values.codes - ['99']])
+    end
+
+    it 'is the whole values without comparisons' do
+      expect(values.regions([])).to eq([values])
+    end
+  end
 end
