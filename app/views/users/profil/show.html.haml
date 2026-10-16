@@ -45,6 +45,11 @@
       = render Dsfr::InputComponent.new(form: f, attribute: :email, input_type: :email_field, opts: { value: nil, placeholder: t('.new_email_address') })
       = f.submit t('.change_address'), class: 'fr-btn fr-btn--secondary'
 
+  .card
+    .card-title= t('.password_title')
+    %p= t('.password_explication')
+    = link_to t('.change_password'), edit_profil_password_path(context: params[:context]), class: 'fr-btn fr-btn--secondary'
+
   - if !instructeur_signed_in?
     .card
       .card-title= t('.transfer_title')
