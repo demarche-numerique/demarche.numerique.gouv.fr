@@ -6,6 +6,8 @@ module ProcedurePublishConcern
   def publish_or_reopen!(administrateur, path)
     new_revision = false
     transaction do
+      return if draft_published_meanwhile?
+
       if brouillon?
         reset!
       elsif draft_changed?
@@ -33,9 +35,12 @@ module ProcedurePublishConcern
   end
 
   def publish_revision!(administrateur)
-    reset!
+    transaction do
+      return if draft_published_meanwhile?
 
-    transaction { publish_new_revision(administrateur) }
+      reset!
+      publish_new_revision(administrateur)
+    end
 
     dossiers
       .state_not_termine
@@ -102,6 +107,12 @@ module ProcedurePublishConcern
   end
 
   private
+
+  # A double submit: another request published the draft this one loaded.
+  # The lock, held until the end of the transaction, serializes publications.
+  def draft_published_meanwhile?
+    Procedure.lock('FOR NO KEY UPDATE').where(id:).pick(:draft_revision_id) != draft_revision_id
+  end
 
   def publish_new_revision(administrateur)
     # the last edit of the draft: the tree it leaves is the published one, and
