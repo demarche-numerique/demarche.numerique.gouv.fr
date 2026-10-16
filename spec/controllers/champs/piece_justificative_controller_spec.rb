@@ -141,9 +141,10 @@ describe Champs::PieceJustificativeController, type: :controller do
         expect(response.body).to include(%(<turbo-stream action="focus" targets="#persisted_row_attachment_#{attachment.id} [data-attachment-delete-button]">))
       end
 
-      it 'does not push any aria-live announcement for a plain PJ (no visual equivalent)' do
+      it 'announces nothing for a plain PJ (no visual equivalent), clearing any stale status' do
         subject
-        expect(response.body).not_to include(%(<turbo-stream action="update" target="#{champ.focusable_input_id}-aria-live">))
+        region = Nokogiri::HTML5.fragment(response.body).at_css(%(turbo-stream[action="update"][target="#{champ.focusable_input_id}-aria-live"] template))
+        expect(region.inner_html.strip).to be_empty
       end
     end
 
