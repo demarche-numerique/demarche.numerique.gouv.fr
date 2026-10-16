@@ -15,33 +15,33 @@
     if champ.text != none { heading(level: champ.level, champ.text) }
     if champ.at("description", default: none) != none { rich-text(champ.description, style: "italic") }
   } else if champ.type == "explication" {
-    vide-label(champ.libelle)
+    champ-label(champ.libelle)
     condition-instruction(champ)
     if champ.at("text", default: none) != none { rich-text(champ.text) }
   } else if champ.type == "piece_justificative" {
-    vide-label(champ.label)
+    champ-label(champ.label)
     options-list((( label: champ.option ),))
     if champ.at("description", default: none) != none { rich-text(champ.description, style: "italic") }
   } else if champ.type == "checkboxes" {
-    vide-label(champ.libelle)
+    champ-label(champ.libelle)
     condition-instruction(champ)
     if champ.at("description", default: none) != none { rich-text(champ.description, style: "italic") }
     if champ.at("explanation", default: none) != none { block(above: 1mm, below: 1.5mm, text(style: "italic")[#champ.explanation]) }
     options-list(champ.options)
   } else if champ.type == "box" {
-    vide-label(champ.libelle)
+    champ-label(champ.libelle)
     condition-instruction(champ)
     if champ.at("description", default: none) != none { rich-text(champ.description, style: "italic") }
     if champ.at("explanation", default: none) != none { block(above: 1mm, below: 1.5mm, text(style: "italic")[#champ.explanation]) }
     fillable-box(champ.box)
   } else if champ.type == "establishment" {
-    vide-label(champ.libelle)
+    champ-label(champ.libelle)
     condition-instruction(champ)
     field-pair("SIRET")
     field-pair("Dénomination")
     field-pair("Forme juridique")
   } else if champ.type == "repetition" {
-    vide-label(champ.libelle)
+    champ-label(champ.libelle)
     condition-instruction(champ)
     for occurrence in champ.occurrences {
       block(inset: (left: 3mm), below: 5mm, {

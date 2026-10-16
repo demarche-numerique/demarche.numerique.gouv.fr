@@ -34,3 +34,6 @@
 
 // Paragraph texts, in document order.
 #let paragraphs() = query(par).map(plain)
+
+// Images as their alt texts, in document order.
+#let images() = query(image).map(i => (alt: i.alt))
