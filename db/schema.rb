@@ -911,6 +911,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_15_120000) do
   end
 
   create_table "instructeurs_procedures", force: :cascade do |t|
+    t.boolean "archive_warning_dismissed", default: false, null: false
     t.datetime "created_at", null: false
     t.boolean "daily_email_summary", default: false, null: false
     t.string "display_annotation_instructeur_notifications", default: "followed", null: false

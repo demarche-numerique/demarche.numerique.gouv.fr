@@ -1,0 +1,44 @@
+<%= render Dsfr::ModalComponent.new(id: modal_id, data: { controller: 'modal-escape' }) do |modal| %>
+  <% modal.with_title { t('.title') } %>
+
+  <% modal.with_footer do %>
+    <div class="fr-btns-group fr-btns-group--left fr-btns-group--inline-lg">
+      <button
+        type="button"
+        class="fr-btn fr-btn--secondary"
+        aria-controls="<%= modal_id %>"
+      >
+        <%= t('.cancel') %>
+      </button>
+
+      <button type="submit" class="fr-btn" form="<%= form_id %>">
+        <%= t('.confirm') %>
+      </button>
+    </div>
+  <% end %>
+
+  <%= form_with(**form_options) do %>
+    <%= render Dsfr::NoticeComponent.new(extra_class_names: 'fr-mb-3w') do |notice| %>
+      <% notice.with_title { t('.notice_title') } %>
+      <% notice.with_desc { t('.notice_desc') } %>
+    <% end %>
+
+    <div class="fr-checkbox-group fr-mb-3w">
+      <input
+        type="checkbox"
+        id="<%= checkbox_id %>"
+        name="dismiss_archive_warning"
+        value="1"
+        data-action="keydown.esc->modal-escape#close"
+      >
+
+      <label class="fr-label" for="<%= checkbox_id %>">
+        <%= t('.dismiss') %>
+      </label>
+    </div>
+
+    <% if batch? %>
+      <%= hidden_field_tag 'batch_operation[operation]', BatchOperation.operations.fetch(:archiver), id: nil %>
+    <% end %>
+  <% end %>
+<% end %>
