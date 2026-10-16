@@ -3,7 +3,7 @@ import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
 import type { FeatureCollection } from 'geojson';
 
 import { MapLibre } from '../shared/maplibre/MapLibre';
-import { getParcellesSource } from '../shared/maplibre/utils';
+import { getParcelleLayer, PARCELLE_LAYERS } from '../shared/maplibre/styles';
 import { useFeatureCollection } from './hooks';
 import { DrawLayer } from './components/DrawLayer';
 import { ParcelleLayer } from './components/ParcelleLayer';
@@ -36,7 +36,9 @@ export default function MapEditor({
     { url }
   );
 
-  const parcellesSource = getParcellesSource(options.layers);
+  const parcelleLayer = getParcelleLayer(options.layers);
+  const parcellesSource =
+    parcelleLayer && PARCELLE_LAYERS[parcelleLayer].source;
 
   return (
     <>

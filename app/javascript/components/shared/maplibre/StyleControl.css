@@ -1,0 +1,39 @@
+@import '../../react-aria/components/Popover.css';
+
+.map-layers-popover {
+  --overlay-background: var(--background-overlap-grey);
+
+  display: flex;
+  width: 22rem;
+  max-width: calc(100vw - 2rem);
+  border-radius: 0;
+}
+
+.map-layers {
+  flex: 1;
+  padding: 1rem 1rem 0;
+  overflow-y: auto;
+  outline: none;
+
+  .fr-fieldset {
+    margin-bottom: 0;
+  }
+
+  /* Lines the slider up with the label of its checkbox. */
+  .react-aria-Slider {
+    box-sizing: border-box;
+    padding-left: 1.5rem;
+  }
+}
+
+/* From the sm breakpoint of the DSFR on, the layers go in two columns. */
+@media (min-width: 36em) {
+  .map-layers-popover--wide {
+    width: 38rem;
+
+    .fr-fieldset__element:has(.fr-checkbox-group) {
+      flex: 1 1 50%;
+      max-width: 50%;
+    }
+  }
+}

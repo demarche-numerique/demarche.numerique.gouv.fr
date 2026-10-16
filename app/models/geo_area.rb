@@ -70,10 +70,8 @@ class GeoArea < ApplicationRecord
 
   def label
     case source
-    when GeoArea.sources.fetch(:cadastre)
-      I18n.t("cadastre", scope: 'geo_area.label', numero: numero, prefixe: prefixe, section: section, surface: surface&.round, commune: commune)
-    when GeoArea.sources.fetch(:rpg)
-      I18n.t("rpg", scope: 'geo_area.label', numero:, surface: surface_hectares)
+    when GeoArea.sources.fetch(:cadastre), GeoArea.sources.fetch(:rpg)
+      parcelle_label
     when GeoArea.sources.fetch(:selection_utilisateur)
       if polygon?
         if area > 0
@@ -259,9 +257,45 @@ class GeoArea < ApplicationRecord
 
   private
 
-  def surface_hectares
-    return if surface.nil?
-    surface.round / 10_000
+  # What it knows of the parcelle and nothing else, as the map tells it on
+  # hover (Map/parcelle.ts).
+  def parcelle_label
+    parts = [
+      parcelle_numero_label,
+      parcelle_feuille_label,
+      parcelle_surface_label,
+      (I18n.t('geo_area.label.commune', commune:) if commune.present?),
+    ]
+    parts.compact.join(' – ')
+  end
+
+  def parcelle_numero_label
+    numero = self.numero.presence || cid
+    if numero.present?
+      I18n.t('geo_area.label.parcelle', numero:)
+    else
+      I18n.t(source, scope: 'activerecord.attributes.geo_area.source')
+    end
+  end
+
+  def parcelle_feuille_label
+    if section.present?
+      I18n.t('geo_area.label.feuille', feuille: [prefixe, section].compact_blank.join("\u00A0"))
+    end
+  end
+
+  def parcelle_surface_label
+    if surface.nil?
+      nil
+    elsif rpg?
+      hectares = (surface / 10_000.0).round(2)
+      # 2 rather than 2,0
+      hectares = hectares.to_i if hectares == hectares.to_i
+      I18n.t('geo_area.label.surface_hectares', surface: number_with_delimiter(hectares))
+    else
+      # a legacy surface may be a string
+      I18n.t('geo_area.label.surface_m2', surface: number_with_delimiter(surface.to_f.round))
+    end
   end
 
   def set_default_uuid
