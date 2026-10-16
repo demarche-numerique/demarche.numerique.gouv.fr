@@ -90,15 +90,29 @@ class Avis < ApplicationRecord
   def revoke_by!(revocator)
     return false if !revokable_by?(revocator)
 
-    if answer.present?
-      update!(revoked_at: Time.zone.now)
-    else
-      destroy!
+    transaction do
+      if answer.present?
+        update!(revoked_at: Time.zone.now)
+      else
+        destroy!
+      end
+
+      dossier.publish_event(Events::AvisRevoque, author: revocator, avis_id: id)
     end
   end
 
   def remind_by!(revocator)
     return false if !remindable_by?(revocator) || answer.present?
     update_column(:reminded_at, Time.zone.now)
+  end
+
+  def submit_answer(params)
+    newly_answered = answer.nil?
+
+    transaction do
+      saved = update(params)
+      dossier.publish_event(Events::AvisRepondu, author: expert, avis_id: id) if saved && newly_answered
+      saved
+    end
   end
 end

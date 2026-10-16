@@ -9,6 +9,9 @@ module DossierStateConcern
     self.submitted_revision_id = revision_id
     save!
 
+    # before routing, which may record dossier_route
+    publish_event(Events::DossierModifie, author: user, revision_id: submitted_revision_id, checkpoint:)
+
     RoutingEngine.compute(self)
 
     resolve_pending_correction!
@@ -29,6 +32,9 @@ module DossierStateConcern
     traitement = self.traitements.instructeur_submit_en_construction(instructeur:, checkpoint:, motivation:)
     save!
 
+    # before routing, which may record dossier_route
+    publish_event(Events::DossierModifie, author: instructeur, revision_id: submitted_revision_id, checkpoint:)
+
     RoutingEngine.compute(self)
     render_carte_champs_later!
     Message::DossierModifierParInstructeurComponent.create_commentaire(traitement) if notify
@@ -43,6 +49,9 @@ module DossierStateConcern
     self.submitted_revision_id = revision_id
 
     save!
+
+    # before routing and the automatic transitions, which record their own events
+    publish_event(Events::DossierDepose, author: user, revision_id: submitted_revision_id, groupe_instructeur_id:)
 
     RoutingEngine.compute(self)
 
@@ -109,6 +118,7 @@ module DossierStateConcern
     resolve_pending_correction!
 
     log_dossier_operation(instructeur, :passer_en_instruction)
+    publish_event(Events::DossierEnInstruction, author: instructeur)
   end
 
   def after_commit_passer_en_instruction(h)
@@ -148,6 +158,8 @@ module DossierStateConcern
     else
       log_automatic_dossier_operation(:passer_en_instruction)
     end
+
+    publish_event(Events::DossierEnInstruction)
   end
 
   def after_commit_passer_automatiquement_en_instruction(h = {})
@@ -177,6 +189,7 @@ module DossierStateConcern
     save!
 
     log_dossier_operation(instructeur, :repasser_en_construction)
+    publish_event(Events::DossierRepasseEnConstruction, author: instructeur)
   end
 
   def after_commit_repasser_en_construction
@@ -204,6 +217,7 @@ module DossierStateConcern
     EmailTemplatePresenterService.create_commentaire_for_state(self, Dossier.states.fetch(:accepte))
 
     log_dossier_operation(instructeur, :accepter, self)
+    publish_event(Events::DossierAccepte, author: instructeur)
   end
 
   def after_commit_accepter(h)
@@ -248,6 +262,7 @@ module DossierStateConcern
     EmailTemplatePresenterService.create_commentaire_for_state(self, state)
 
     log_automatic_dossier_operation(:accepter, self)
+    publish_event(Events::DossierAccepte)
   end
 
   def after_commit_accepter_automatiquement
@@ -282,6 +297,7 @@ module DossierStateConcern
     EmailTemplatePresenterService.create_commentaire_for_state(self, Dossier.states.fetch(:refuse))
 
     log_dossier_operation(instructeur, :refuser, self)
+    publish_event(Events::DossierRefuse, author: instructeur)
   end
 
   def after_commit_refuser(h)
@@ -319,6 +335,7 @@ module DossierStateConcern
     EmailTemplatePresenterService.create_commentaire_for_state(self, Dossier.states.fetch(:refuse))
 
     log_automatic_dossier_operation(:refuser, self)
+    publish_event(Events::DossierRefuse)
   end
 
   def after_commit_refuser_automatiquement
@@ -351,6 +368,7 @@ module DossierStateConcern
     EmailTemplatePresenterService.create_commentaire_for_state(self, Dossier.states.fetch(:sans_suite))
 
     log_dossier_operation(instructeur, :classer_sans_suite, self)
+    publish_event(Events::DossierSansSuite, author: instructeur)
   end
 
   def after_commit_classer_sans_suite(h)
@@ -395,6 +413,7 @@ module DossierStateConcern
     EmailTemplatePresenterService.create_commentaire_for_state(self, DossierOperationLog.operations.fetch(:repasser_en_instruction))
 
     log_dossier_operation(instructeur, :repasser_en_instruction)
+    publish_event(Events::DossierRepasseEnInstruction, author: instructeur)
   end
 
   def after_commit_repasser_en_instruction(h)

@@ -121,6 +121,7 @@ namespace :manager do
     mount Flipper::UI.app(-> { Flipper.instance }) => "/features", as: :flipper
     mount MaintenanceTasks::Engine => "/maintenance_tasks"
     mount Sidekiq::Web => "/sidekiq"
+    mount RailsEventStore::Browser => "/event_store", as: :event_store
   end
 
   get 'data_exports' => 'administrateurs#data_exports'

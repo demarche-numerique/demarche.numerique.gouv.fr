@@ -7,6 +7,21 @@ RSpec.describe Avis, type: :model do
     end
   end
 
+  describe '#submit_answer' do
+    it 'saves the answer' do
+      expect(avis.pending.submit_answer(answer: 'Avis favorable.')).to be(true)
+      expect(avis.pending.reload.answer).to eq('Avis favorable.')
+    end
+
+    it 'refuses a blank answer' do
+      pending_avis = avis.pending
+
+      expect(pending_avis.submit_answer(answer: ' ')).to be(false)
+      expect(pending_avis.errors).to be_of_kind(:answer, :blank)
+      expect(pending_avis.reload.answer).to be_nil
+    end
+  end
+
   describe '.by_latest' do
     context 'with 3 avis on the same dossier' do
       let!(:avis2) { create(:avis, dossier: dossiers.en_instruction, experts_procedure: experts_procedures.default, updated_at: 4.hours.ago) }

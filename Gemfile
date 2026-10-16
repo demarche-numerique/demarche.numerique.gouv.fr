@@ -71,6 +71,7 @@ gem 'premailer-rails'
 gem 'puma' # Use Puma as the app server
 gem 'pundit'
 gem 'rack-attack'
+gem 'rails_event_store', '~> 3.2'
 gem 'rails-i18n' # Locales par défaut
 gem 'rails-pg-extras'
 gem 'reactionview'
@@ -121,6 +122,7 @@ group :test do
   gem 'rails-controller-testing'
   gem 'rspec_junit_formatter'
   gem 'rspec-retry'
+  gem 'ruby_event_store-rspec'
   gem 'shoulda-matchers', require: false
   gem 'simplecov', require: false
   gem 'simplecov-cobertura', require: false

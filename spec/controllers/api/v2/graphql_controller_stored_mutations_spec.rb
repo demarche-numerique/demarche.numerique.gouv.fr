@@ -759,7 +759,7 @@ describe API::V2::GraphqlController do
 
     context 'dossierAjouterLabel' do
       let(:label) { create(:label, procedure:) }
-      let(:variables) { { input: { dossierId: dossier.to_typed_id, labelId: label.to_typed_id } } }
+      let(:variables) { { input: { dossierId: dossier.to_typed_id, labelId: label.to_typed_id, instructeurId: instructeur.to_typed_id } } }
       let(:operation_name) { 'dossierAjouterLabel' }
 
       it {
@@ -769,7 +769,29 @@ describe API::V2::GraphqlController do
         expect(gql_data[:dossierAjouterLabel][:dossier][:labels]).to eq([{ id: label.to_typed_id, name: label.name, color: label.color }])
         expect(gql_data[:dossierAjouterLabel][:label]).to eq(id: label.to_typed_id, name: label.name, color: label.color)
         expect(dossier.labels).to match_array([label])
+        expect(Events.store).to have_published(
+          an_event(Events::DossierLabelAjoute).with_metadata(actor: { type: 'Instructeur', id: instructeur.id })
+        ).in_stream(Events.dossier_stream(dossier.id))
       }
+
+      context 'without instructeur, as the integrators of the first version send it' do
+        let(:variables) { { input: { dossierId: dossier.to_typed_id, labelId: label.to_typed_id } } }
+
+        it 'adds the label and records the event without actor' do
+          expect(gql_errors).to be_nil
+          expect(dossier.labels).to match_array([label])
+          expect(Events.store.read.stream(Events.dossier_stream(dossier.id)).to_a.last.metadata.to_h).not_to have_key(:actor)
+        end
+      end
+
+      context 'with an instructeur who cannot see the dossier' do
+        let(:variables) { { input: { dossierId: dossier.to_typed_id, labelId: label.to_typed_id, instructeurId: create(:instructeur).to_typed_id } } }
+
+        it {
+          expect(gql_data[:dossierAjouterLabel][:errors]).to eq([{ message: 'L’instructeur n’a pas les droits d’accès à ce dossier' }])
+          expect(dossier.labels).to be_empty
+        }
+      end
 
       # The same global id is legitimate in labelId. Handed to dossierId it used to resolve
       # as a Dossier, and DossierType.authorized? then raised on Label#revision.
@@ -818,7 +840,7 @@ describe API::V2::GraphqlController do
 
     context 'dossierSupprimerLabel' do
       let(:label) { create(:label, procedure:) }
-      let(:variables) { { input: { dossierId: dossier.to_typed_id, labelId: label.to_typed_id } } }
+      let(:variables) { { input: { dossierId: dossier.to_typed_id, labelId: label.to_typed_id, instructeurId: instructeur.to_typed_id } } }
       let(:operation_name) { 'dossierSupprimerLabel' }
 
       context 'success' do
@@ -831,6 +853,9 @@ describe API::V2::GraphqlController do
           expect(gql_data[:dossierSupprimerLabel][:dossier][:labels]).to eq([])
           expect(gql_data[:dossierSupprimerLabel][:label]).to eq(id: label.to_typed_id, name: label.name, color: label.color)
           expect(dossier.reload.labels).to be_empty
+          expect(Events.store).to have_published(
+            an_event(Events::DossierLabelSupprime).with_metadata(actor: { type: 'Instructeur', id: instructeur.id })
+          ).in_stream(Events.dossier_stream(dossier.id))
         }
       end
 

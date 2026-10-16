@@ -91,11 +91,10 @@ module Instructeurs
       @dossier = dossier
 
       requested_label_ids = params[:label_id]&.map(&:to_i) || []
-      labels = @dossier.procedure.labels.where(id: requested_label_ids).pluck(:id)
+      requested_labels = @dossier.procedure.labels.where(id: requested_label_ids)
 
-      labels.each { |label_id| DossierLabel.find_or_create_by(dossier_id: @dossier.id, label_id:) }
-
-      @dossier.dossier_labels.where.not(label_id: labels).destroy_all
+      requested_labels.each { @dossier.add_label(it, author: current_instructeur) }
+      @dossier.labels.unscope(:order).where.not(id: requested_labels.ids).find_each { @dossier.remove_label(it, author: current_instructeur) }
 
       render :change_state
     end
@@ -199,7 +198,7 @@ module Instructeurs
     end
 
     def unarchive
-      dossier.desarchiver!
+      dossier.desarchiver!(current_instructeur)
       redirect_back_or_to(instructeur_procedure_path(procedure))
     end
 

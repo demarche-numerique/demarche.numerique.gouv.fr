@@ -6,6 +6,8 @@ module ProcedurePublishConcern
   def publish_or_reopen!(administrateur, path)
     new_revision = false
     transaction do
+      was_publiee = publiee?
+
       if brouillon?
         reset!
       elsif draft_changed?
@@ -16,13 +18,16 @@ module ProcedurePublishConcern
       other_procedure = other_procedure_with_path(path)
       claim_path!(administrateur, path)
       if other_procedure.present?
-        other_procedure.unpublish! if other_procedure.may_unpublish?
+        other_procedure.unpublish!(administrateur) if other_procedure.may_unpublish?
 
         # may_publish? is false on replay: the procedure is already publiee
         publish!(administrateur, other_procedure.canonical_procedure || other_procedure) if may_publish?
       elsif may_publish?
         publish!(administrateur, nil)
       end
+
+      # a transition records its own event
+      publish_event(Events::DemarcheRepubliee, author: administrateur, revision_id: published_revision_id) if was_publiee && new_revision
     end
 
     if new_revision
@@ -35,7 +40,10 @@ module ProcedurePublishConcern
   def publish_revision!(administrateur)
     reset!
 
-    transaction { publish_new_revision(administrateur) }
+    transaction do
+      publish_new_revision(administrateur)
+      publish_event(Events::DemarcheRepubliee, author: administrateur, revision_id: published_revision_id)
+    end
 
     dossiers
       .state_not_termine
@@ -73,18 +81,22 @@ module ProcedurePublishConcern
 
     touch(:published_at)
     publish_new_revision(administrateur)
+    publish_event(Events::DemarchePubliee, author: administrateur, revision_id: published_revision_id)
   end
 
   def after_republish(administrateur, canonical_procedure = nil)
     touch(:published_at)
+    publish_event(Events::DemarcheRepubliee, author: administrateur, revision_id: published_revision_id)
   end
 
-  def after_close
+  def after_close(author = nil)
     touch(:closed_at)
+    publish_event(Events::DemarcheClose, author:)
   end
 
-  def after_unpublish
+  def after_unpublish(author = nil)
     touch(:unpublished_at)
+    publish_event(Events::DemarcheDepubliee, author:)
   end
 
   def create_new_revision(revision = nil)
