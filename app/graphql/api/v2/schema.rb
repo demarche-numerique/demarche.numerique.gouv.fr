@@ -15,7 +15,19 @@ class API::V2::Schema < GraphQL::Schema
   DEFAULT_MAX_COMPLEXITY = 60_000
   MAX_COMPLEXITY = ENV['GRAPHQL_MAX_COMPLEXITY'].presence&.to_i || DEFAULT_MAX_COMPLEXITY
   max_complexity MAX_COMPLEXITY.nonzero?
+  # graphql-ruby 2.5.3 fixed how complexity merges across query branches, behind an opt-in
+  # until it becomes the default. Both modes score our stored queries identically
+  # (see the budget spec), so opt in now rather than log a deprecation on every analysis.
+  complexity_cost_calculation_mode(:future)
   max_depth 15
+  # Parsing runs before validate_timeout and the analyzers, so a giant query string is
+  # the one input nothing else bounds. The cap is a ceiling against abuse, not a fit to
+  # our usage: parsing costs ~1 µs per token, so 20 000 tokens is ~7 ms of work, and the
+  # value only has to stop multi-megabyte bodies. For scale, the whole stored document
+  # (6 operations, 28 shared fragments) lexes to ~2 300 tokens, and a client that inlines
+  # those fragments at every use runs several times larger. Lowering the cap later would
+  # break integrators; raising it would not.
+  max_query_string_tokens 20_000
 
   query Types::QueryType
   mutation Types::MutationType
