@@ -1,0 +1,17 @@
+fr:
+  activerecord:
+    models:
+      webhook: 'Webhook'
+    attributes:
+      webhook:
+        url: "URL"
+        label: "Libellé"
+        event_types: "Types d’évènements"
+    errors:
+      models:
+        webhook:
+          attributes:
+            base:
+              webhooks_limit_reached: "Le nombre maximum de webhooks (%{limit}) est atteint pour cette démarche"
+            event_types:
+              invalid: "contient des types d’évènements inconnus"

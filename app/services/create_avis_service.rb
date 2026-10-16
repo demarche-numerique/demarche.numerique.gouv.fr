@@ -88,6 +88,8 @@ class CreateAvisService
       # log operation
       persisted.each { |avis| avis.dossier.demander_un_avis!(avis) }
 
+      persisted.each { it.dossier.emit_webhook_event(:avis_cree) }
+
       sent_emails = persisted.filter { it.dossier == dossier }.map do |avis|
         if avis.experts_procedure.notify_on_new_avis? && !batch
           avis.expert.user.invite_expert_and_send_avis!(avis)

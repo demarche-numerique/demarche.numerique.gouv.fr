@@ -25,7 +25,7 @@ class ApplicationRecord < ActiveRecord::Base
 
   # Models the GraphQL API v2 resolves from a client-supplied global id (`loads:` arguments),
   # besides Dossier which is scoped to what the administration may see.
-  TYPED_ID_MODELS = ['Commentaire', 'GroupeInstructeur', 'Instructeur', 'Label'].freeze
+  TYPED_ID_MODELS = ['Commentaire', 'GroupeInstructeur', 'Instructeur', 'Label', 'Webhook'].freeze
 
   def self.record_from_typed_id(id)
     class_name, record_id = GraphQL::Schema::UniqueWithinType.decode(id)
