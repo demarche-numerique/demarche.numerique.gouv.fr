@@ -73,8 +73,11 @@ describe EmptyFileValidator do
       champ.reload
     end
 
-    it "keeps the record valid" do
-      expect(champ.valid?(:champ_value)).to be true
+    it "keeps the record valid without reading its attachments" do
+      preloaded_champ = DossierPreloader.load_one(dossier).root_champs_public.first
+
+      expect(count_queries(matching: /active_storage/) { preloaded_champ.validate(:champ_value) }).to eq(0)
+      expect(preloaded_champ.errors).to be_empty
     end
 
     it "still rejects a newly added empty file" do
