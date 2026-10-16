@@ -39,8 +39,6 @@ module Types
           Types::Champs::Descriptor::DateChampDescriptorType
         when TypeDeChamp.type_champs.fetch(:datetime)
           Types::Champs::Descriptor::DatetimeChampDescriptorType
-        when TypeDeChamp.type_champs.fetch(:number)
-          Types::Champs::Descriptor::NumberChampDescriptorType
         when TypeDeChamp.type_champs.fetch(:decimal_number)
           Types::Champs::Descriptor::DecimalNumberChampDescriptorType
         when TypeDeChamp.type_champs.fetch(:integer_number)

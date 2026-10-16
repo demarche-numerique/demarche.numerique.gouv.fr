@@ -4695,6 +4695,11 @@ type Mutation {
   ): GroupeInstructeurSupprimerInstructeursPayload
 }
 
+"""
+Obsolète : plus aucun champ n’est de ce type depuis leur conversion en nombre
+entier ou décimal (voir `IntegerNumberChampDescriptor` et
+`DecimalNumberChampDescriptor`). Conservé pour ne pas invalider les requêtes existantes.
+"""
 type NumberChampDescriptor implements ChampDescriptor {
   """
   Description des champs d’un bloc répétable.
@@ -5944,11 +5949,6 @@ enum TypeDeChamp {
   Choix multiple
   """
   multiple_drop_down_list
-
-  """
-  Nombre
-  """
-  number
 
   """
   Pays

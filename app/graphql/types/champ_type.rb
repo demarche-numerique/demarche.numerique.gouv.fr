@@ -86,7 +86,7 @@ module Types
           end
         when ::Champs::CarteChamp
           Types::Champs::CarteChampType
-        when ::Champs::NumberChamp, ::Champs::IntegerNumberChamp
+        when ::Champs::IntegerNumberChamp
           Types::Champs::IntegerNumberChampType
         when ::Champs::DecimalNumberChamp
           Types::Champs::DecimalNumberChampType

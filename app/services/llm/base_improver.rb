@@ -34,7 +34,6 @@ module LLM
       # Champs saisie
       'text' => "pour des champs texte courts.",
       'textarea' => "pour des champs texte longs.",
-      'number' => "pour des nombres (entiers ou décimaux).",
       'decimal_number' => "pour des nombres décimaux.",
       'integer_number' => "pour des nombres entiers.",
       'formatted' => "pour des champs texte formatés (avec masques).",
@@ -63,7 +62,7 @@ module LLM
     FIELD_GROUPS = {
       "Champs structurels" => ["header_section", "repetition", "explication"],
       "Champs personnels" => ["civilite", "email", "phone", "address", "communes", "departements", "regions", "pays", "iban", "siret"],
-      "Champs saisie" => ["text", "textarea", "number", "decimal_number", "integer_number", "formatted", "date", "datetime", "piece_justificative", "checkbox", "drop_down_list", "multiple_drop_down_list", "linked_drop_down_list", "yes_no", "dossier_link"],
+      "Champs saisie" => ["text", "textarea", "decimal_number", "integer_number", "formatted", "date", "datetime", "piece_justificative", "checkbox", "drop_down_list", "multiple_drop_down_list", "linked_drop_down_list", "yes_no", "dossier_link"],
       "Champs référentiels" => ["annuaire_education", "rna", "rnf", "carte", "epci", "referentiel", "engagement_juridique"],
     }.freeze
 
