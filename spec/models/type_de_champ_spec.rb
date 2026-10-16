@@ -194,6 +194,14 @@ describe TypeDeChamp do
         expect(tdc2.pj_auto_purge?).to be false
       end
     end
+
+    describe '#rib_account_holder_match?' do
+      it 'reflects the option on a RIB only' do
+        expect(build(:type_de_champ_piece_justificative, nature: 'rib', rib_account_holder_match: '1').rib_account_holder_match?).to be true
+        expect(build(:type_de_champ_piece_justificative, nature: 'rib', rib_account_holder_match: '0').rib_account_holder_match?).to be false
+        expect(build(:type_de_champ_piece_justificative, nature: 'avis_impot', rib_account_holder_match: '1').rib_account_holder_match?).to be false
+      end
+    end
   end
 
   describe "validate_regexp" do

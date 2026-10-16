@@ -1,6 +1,22 @@
 # frozen_string_literal: true
 
 describe Procedure::RevisionChangesComponent, type: :component do
+  describe 'rib account holder match changes' do
+    let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :piece_justificative, nature: 'rib', libelle: 'RIB' }]) }
+    let(:new_revision) { procedure.create_new_revision }
+
+    before do
+      stable_id = procedure.active_revision.public_root_type_de_champs.first.stable_id
+      new_revision.find_and_ensure_exclusive_use(stable_id).update!(rib_account_holder_match: '1')
+    end
+
+    it 'displays the activation message' do
+      render_inline(described_class.new(new_revision: new_revision.reload, previous_revision: procedure.active_revision))
+
+      expect(page).to have_text(/Le titulaire du RIB du champ\W+RIB\W+est désormais comparé à l’identité du demandeur\./)
+    end
+  end
+
   describe 'dossier_link changes' do
     let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :dossier_link, libelle: 'Dossier lié' }]) }
     let(:new_revision) { procedure.create_new_revision }
