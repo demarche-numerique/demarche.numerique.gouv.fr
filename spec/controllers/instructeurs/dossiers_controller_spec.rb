@@ -1465,6 +1465,20 @@ describe Instructeurs::DossiersController, type: :controller do
     end
   end
 
+  describe "#update_annotations in a repetition with min items" do
+    let(:procedure) { create(:procedure, :published, private_type_de_champs: [{ type: :repetition, mandatory: true, children: [{ libelle: 'Nom' }] }], instructeurs: procedure_instructeurs) }
+    let(:dossier) { create(:dossier, :en_construction, procedure:) }
+    let(:child) { dossier.root_champs_private.first.rows.first.flat_children.first }
+
+    before { procedure.active_revision.private_root_type_de_champs.first.update!(limit_repetitions: '1', min_repetitions: '1') }
+
+    it 'dispatches the limits respected event when the block is valid' do
+      patch :update_annotations, params: { procedure_id: procedure.id, dossier_id: dossier.id, dossier: { champs_private_attributes: { child.public_id => { value: 'Ada' } } } }, format: :turbo_stream
+
+      expect(response.body).to include('repetition:limits-respected')
+    end
+  end
+
   describe "#update_annotations" do
     let(:procedure) do
       create(:procedure, :published, public_type_de_champs:, private_type_de_champs:, instructeurs: procedure_instructeurs)

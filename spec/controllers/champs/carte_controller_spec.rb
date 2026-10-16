@@ -298,4 +298,24 @@ describe Champs::CarteController, type: :controller do
       end
     end
   end
+
+  describe '#index in a repetition with min items' do
+    render_views
+
+    let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :repetition, mandatory: true, libelle: 'bloc carte', children: [{ type: :carte, libelle: 'zone' }] }]) }
+    let(:dossier) { create(:dossier, user:, procedure:) }
+    let(:child) { dossier.root_champs_public.first.rows.first.flat_children.first }
+
+    before do
+      sign_in user
+      procedure.active_revision.public_root_type_de_champs.first.update!(limit_repetitions: '1', min_repetitions: '1')
+      dossier.champ_for_update(child.type_de_champ, row_id: child.row_id, updated_by: user.email).geo_areas.create!(attributes_for(:geo_area, :polygon).merge(source: GeoArea.sources.fetch(:selection_utilisateur)))
+    end
+
+    it 'dispatches the limits respected event once the map fills the row' do
+      get :index, params: { dossier_id: dossier.id, stable_id: child.stable_id, row_id: child.row_id }, format: :turbo_stream
+
+      expect(response.body).to include('repetition:limits-respected')
+    end
+  end
 end

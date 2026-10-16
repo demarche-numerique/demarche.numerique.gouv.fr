@@ -326,4 +326,46 @@ describe AttachmentsController, type: :controller do
       end
     end
   end
+
+  describe '#destroy in a repetition with min items edited in the user buffer stream' do
+    include Logic
+    render_views
+
+    let(:procedure) do
+      children = [
+        { type: :drop_down_list, libelle: 'type', stable_id: 901, mandatory: false, options: ['oui', 'non'] },
+        { type: :text, libelle: 'detail', stable_id: 902, mandatory: true, condition: ds_eq(champ_value(901), constant('oui')) },
+        { type: :piece_justificative, libelle: 'pj', stable_id: 903, mandatory: false },
+      ]
+      create(:procedure, :published, public_type_de_champs: [{ type: :repetition, mandatory: true, libelle: 'bloc', stable_id: 900, children: }])
+        .tap { it.active_revision.public_root_type_de_champs.first.update!(limit_repetitions: '1', min_repetitions: '1') }
+    end
+    let(:dossier) { create(:dossier, user:, procedure:) }
+    let(:repetition_type_de_champ) { procedure.active_revision.public_root_type_de_champs.first }
+    let(:children) { procedure.active_revision.children_of(repetition_type_de_champ) }
+    let(:row_id) { dossier.repetition_row_ids(repetition_type_de_champ).first }
+    let(:attachment) { ActiveStorage::Attachment.find_by(record_id: buffered_pj.id) }
+    let(:buffered_pj) do
+      dossier.champ_for_update(children.first, row_id:, updated_by: user.email).update!(value: 'non')
+      dossier.champ_for_update(children.second, row_id:, updated_by: user.email).update!(value: 'x')
+      dossier.update_columns(state: 'en_construction', en_construction_at: Time.zone.now, depose_at: Time.zone.now)
+      buffered = DossierPreloader.load_one(Dossier.find(dossier.id))
+      buffered.with_update_stream(user)
+      buffered.champ_for_update(children.first, row_id:, updated_by: user.email).update!(value: 'oui')
+      buffered.champ_for_update(children.second, row_id:, updated_by: user.email).update!(value: '')
+      buffered.champ_for_update(children.third, row_id:, updated_by: user.email).tap do
+        it.piece_justificative_file.attach(io: StringIO.new('toto'), filename: 'toto.txt', content_type: 'text/plain')
+        it.save!
+      end
+    end
+
+    before { sign_in(user) }
+
+    it 'evaluates the block on the buffer stream, where the row misses a mandatory value' do
+      delete :destroy, params: { id: attachment.id, signed_id: attachment.blob.signed_id }, format: :turbo_stream
+
+      expect(response).to have_http_status(200)
+      expect(response.body).not_to include('repetition:limits-respected')
+    end
+  end
 end

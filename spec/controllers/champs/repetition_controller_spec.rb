@@ -42,6 +42,44 @@ describe Champs::RepetitionController, type: :controller do
     end
   end
 
+  describe '#add on a private repetition with min items' do
+    render_views
+
+    let(:instructeur) { create(:instructeur) }
+    let(:gi) { create(:groupe_instructeur, instructeurs: [instructeur]) }
+    let(:procedure) { create(:procedure, private_type_de_champs: [{ type: :repetition, mandatory: true, children: [{ libelle: 'Nom' }] }], groupe_instructeurs: [gi]) }
+    let(:dossier) { create(:dossier, :en_instruction, procedure:) }
+    let(:repetition) { dossier.root_champs_private.find(&:repetition?) }
+
+    before do
+      sign_in instructeur.user
+      procedure.active_revision.private_root_type_de_champs.first.update!(limit_repetitions: '1', min_repetitions: '2')
+    end
+
+    it 'dispatches the limits respected event once the new row reaches the min' do
+      post :add, params: { dossier_id: dossier, stable_id: repetition.stable_id }, format: :turbo_stream
+
+      expect(response.body).to include('repetition:limits-respected')
+    end
+  end
+
+  describe '#remove from a repetition above its max' do
+    render_views
+
+    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :repetition, mandatory: true, children: [{ libelle: 'Nom', mandatory: false }] }]) }
+
+    before do
+      procedure.active_revision.public_root_type_de_champs.first.update!(limit_repetitions: '1', max_repetitions: '1')
+      repetition.add_row(updated_by: dossier.user.email)
+    end
+
+    it 'dispatches the limits respected event once back under the max' do
+      delete :remove, params: { dossier_id: dossier, stable_id: repetition.stable_id, row_id: repetition.row_ids.last }, format: :turbo_stream
+
+      expect(response.body).to include('repetition:limits-respected')
+    end
+  end
+
   describe '#remove' do
     let(:row) { dossier.champ_data.find(&:row?) }
 

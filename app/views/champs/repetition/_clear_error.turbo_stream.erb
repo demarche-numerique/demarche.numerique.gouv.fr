@@ -1,0 +1,4 @@
+<% repetition = repetition_with_resolved_errors(champ) %>
+<% if repetition %>
+  <%= turbo_stream.dispatch 'repetition:limits-respected', error_id: repetition.error_id(:value) %>
+<% end %>
