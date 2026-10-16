@@ -191,9 +191,6 @@ RSpec.describe PrefillChamps do
       context "when the procedure kept the IBAN prefill" do
         before do
           Flipper.enable(:prefill_iban, procedure)
-          # types de champ predating the column have no procedure: the flag must not depend on it
-          TypeDeChamp.where(id: [type_de_champ.id, type_de_champ_child.id]).update_all(procedure_id: nil)
-          procedure.reload
         end
 
         it "prefills both" do

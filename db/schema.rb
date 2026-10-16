@@ -1435,7 +1435,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_15_120000) do
     t.text "nature"
     t.jsonb "options"
     t.boolean "private", default: false, null: false
-    t.bigint "procedure_id"
+    t.bigint "procedure_id", null: false
     t.bigint "referentiel_id"
     t.bigint "stable_id"
     t.string "type_champ"
