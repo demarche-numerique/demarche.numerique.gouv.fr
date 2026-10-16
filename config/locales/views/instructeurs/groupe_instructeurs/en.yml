@@ -1,0 +1,13 @@
+en:
+  instructeurs:
+    groupe_instructeurs:
+      add_instructeurs:
+        assignment:
+          one: "The instructor %{emails} was assigned to the group « %{groupe} »."
+          other: "The instructors %{emails} were assigned to the group « %{groupe} »."
+        wrong_address:
+          one: "%{emails} is not a valid email address"
+          other: "%{emails} are not valid email addresses"
+        wrong_domain:
+          one: "%{emails} cannot be added because it does not belong to the domain: %{domain}"
+          other: "%{emails} cannot be added because they do not belong to the domain: %{domain}"

@@ -30,7 +30,8 @@
       groupe_instructeur: @groupe_instructeur,
       instructeurs: @instructeurs,
       disabled_as_super_admin: false,
-      available_instructeur_emails: [] }
+      available_instructeur_emails: [],
+      restrict_to_domain: current_instructeur.email_domain }
 
   - if @procedure.routing_enabled?
     = render partial: 'shared/groupe_instructeurs/contact_information',
