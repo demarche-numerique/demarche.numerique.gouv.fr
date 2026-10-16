@@ -240,6 +240,31 @@ describe Champs::ReferentielChamp, type: :model do
     end
   end
 
+  describe '#update_external_data! prefilling a siret already fetched' do
+    let(:mapping) { { "$.siret" => { prefill: "1", prefill_stable_id: 201 } } }
+    let(:public_type_de_champs) do
+      [
+        { type: :referentiel, stable_id: 100, referentiel:, referentiel_mapping: mapping },
+        { type: :siret, stable_id: 201, mandatory: false },
+      ]
+    end
+
+    def prefill(siret)
+      Dossier.find(dossier.id).champs.find(&:referentiel?).update_external_data!(data: { siret: })
+    end
+
+    def siret_champ = Dossier.find(dossier.id).champs.find(&:siret?)
+
+    it 'fetches the establishment of a new siret again' do
+      prefill('41816609600069')
+      siret_champ.update_columns(external_state: 'fetched')
+
+      prefill('13002526500013')
+
+      expect(siret_champ).to have_attributes(external_id: '13002526500013', external_state: 'waiting_for_job', prefilled: true)
+    end
+  end
+
   describe '#fetch_external_data' do
     subject { referentiel_champ.update_external_data!(data:) }
 
