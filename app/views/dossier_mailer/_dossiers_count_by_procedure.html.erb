@@ -1,0 +1,8 @@
+<ul>
+  <% counts.each do |procedure_id, libelle, count| %>
+    <li>
+      <%= t('.procedure', libelle:, number: procedure_id) %>&nbsp;:
+      <%= link_to(t('.dossiers', count:), instructeur_procedure_url(procedure_id, statut:)) %>
+    </li>
+  <% end %>
+</ul>

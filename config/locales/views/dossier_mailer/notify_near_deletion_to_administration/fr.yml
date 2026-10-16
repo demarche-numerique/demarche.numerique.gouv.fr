@@ -1,7 +1,7 @@
 fr:
   dossier_mailer:
     notify_near_deletion_to_administration:
-      subject_termine:
+      subject:
         one: Un dossier traité va bientôt être supprimé
         other: Des dossiers traités vont bientôt être supprimés
       header_termine_html:

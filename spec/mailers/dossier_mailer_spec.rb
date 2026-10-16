@@ -208,28 +208,57 @@ RSpec.describe DossierMailer, type: :mailer do
   end
 
   describe '.notify_automatic_deletion_to_administration' do
-    let(:hidden_dossier) { create(:dossier, :accepte, hidden_by_expired_at: Time.zone.now, hidden_by_reason: 'expired') }
+    let(:procedure) { create(:procedure, libelle: 'Subvention') }
+    let(:hidden_dossiers) { create_list(:dossier, 2, :accepte, procedure:, hidden_by_expired_at: Time.zone.now, hidden_by_reason: 'expired') }
 
-    subject { described_class.notify_automatic_deletion_to_administration([hidden_dossier], hidden_dossier.user.email) }
+    subject { described_class.notify_automatic_deletion_to_administration(hidden_dossiers.map(&:id), to_email) }
 
-    it 'verifies subject and body content for automatic deletion notification' do
-      expect(subject.subject).to eq("Un dossier a été mis à la corbeille")
-      expect(subject.body).to include("n° #{hidden_dossier.id} (#{hidden_dossier.procedure.libelle})")
+    it 'lists each dossier with its procedure, up to as many as the mail lists' do
+      stub_const("#{described_class}::ADMINISTRATION_MAIL_MAX_DOSSIERS", 2)
+
+      expect(subject.subject).to eq("Des dossiers ont été mis à la corbeille")
+      expect(subject.body).to include("n° #{hidden_dossiers.first.id} (Subvention)")
+      expect(subject.body).to include("n° #{hidden_dossiers.second.id} (Subvention)")
       expect(subject.body).to include(I18n.l(Dossier::REMAINING_WEEKS_BEFORE_DELETION.weeks.from_now.to_date, format: :long).to_s)
+    end
+
+    context 'with more dossiers than the mail lists' do
+      before { stub_const("#{described_class}::ADMINISTRATION_MAIL_MAX_DOSSIERS", 1) }
+
+      it 'counts the dossiers of each procedure and links to its trash' do
+        expect(subject.body).to include("Subvention (démarche n° #{procedure.id})")
+        expect(subject.body).to include(%(<a href="#{instructeur_procedure_url(procedure, statut: 'supprimes')}">2 dossiers</a>))
+        expect(subject.body).not_to include("n° #{hidden_dossiers.first.id}")
+      end
     end
   end
 
   describe '.notify_near_deletion_to_administration' do
-    describe 'termine' do
-      let(:dossier) { create(:dossier, :accepte) }
+    let(:procedure) { create(:procedure, libelle: 'Subvention') }
+    let(:dossiers) { [create(:dossier, :accepte, procedure:)] }
 
-      subject { described_class.notify_near_deletion_to_administration([dossier], dossier.user.email) }
+    subject { described_class.notify_near_deletion_to_administration(dossiers.map(&:id), to_email) }
 
-      it 'verifies subject and body content for near deletion notification of completed cases' do
-        expect(subject.subject).to eq("Un dossier traité va bientôt être supprimé")
-        expect(subject.body).to include("N° #{dossier.id} ")
-        expect(subject.body).to include(dossier.procedure.libelle)
-        expect(subject.body).to include(I18n.l(Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks.from_now.to_date, format: :long).to_s)
+    it 'links to each dossier and its PDF' do
+      dossier = dossiers.first
+
+      expect(subject.subject).to eq("Un dossier traité va bientôt être supprimé")
+      expect(subject.body).to include(%(<a href="#{instructeur_dossier_url(procedure, dossier)}">N° #{dossier.id} (Subvention)</a>))
+      expect(subject.body).to include(%(<a href="#{instructeur_dossier_url(procedure, dossier, format: :pdf)}">PDF</a>))
+      expect(subject.body).to include(I18n.l(Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks.from_now.to_date, format: :long).to_s)
+    end
+
+    context 'with more dossiers and procedures than the mail lists' do
+      let(:other_procedure) { create(:procedure, libelle: 'Permis') }
+      let(:dossiers) { create_list(:dossier, 2, :accepte, procedure:) + [create(:dossier, :accepte, procedure: other_procedure)] }
+
+      before { stub_const("#{described_class}::ADMINISTRATION_MAIL_MAX_DOSSIERS", 1) }
+
+      it 'counts the dossiers of each procedure and links to its expirant tab' do
+        expect(subject.subject).to eq("Des dossiers traités vont bientôt être supprimés")
+        expect(subject.body.to_s).to match(/Subvention \(démarche n° #{procedure.id}\).*Permis \(démarche n° #{other_procedure.id}\)/m)
+        expect(subject.body).to include(%(<a href="#{instructeur_procedure_url(procedure, statut: 'expirant')}">2 dossiers</a>))
+        expect(subject.body).to include(%(<a href="#{instructeur_procedure_url(other_procedure, statut: 'expirant')}">1 dossier</a>))
       end
     end
   end

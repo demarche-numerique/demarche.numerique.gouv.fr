@@ -40,8 +40,12 @@ class DossierMailerPreview < ActionMailer::Preview
     DossierMailer.notify_near_deletion_to_user([dossier_accepte, dossier_accepte], usager_email)
   end
 
+  def notify_termine_near_deletion_to_administration_one
+    DossierMailer.notify_near_deletion_to_administration(Dossier.state_termine.limit(1).ids, administration_email)
+  end
+
   def notify_termine_near_deletion_to_administration
-    DossierMailer.notify_near_deletion_to_administration([dossier_accepte, dossier_accepte], administration_email)
+    DossierMailer.notify_near_deletion_to_administration(Dossier.state_termine.limit(50).ids, administration_email)
   end
 
   def notify_brouillon_deletion
@@ -62,11 +66,11 @@ class DossierMailerPreview < ActionMailer::Preview
   end
 
   def notify_automatic_deletion_to_administration_one
-    DossierMailer.notify_automatic_deletion_to_administration([dossier], administration_email)
+    DossierMailer.notify_automatic_deletion_to_administration(Dossier.state_termine.limit(1).ids, administration_email)
   end
 
   def notify_automatic_deletion_to_administration_multiple
-    DossierMailer.notify_automatic_deletion_to_administration([dossier, dossier], administration_email)
+    DossierMailer.notify_automatic_deletion_to_administration(Dossier.state_termine.limit(50).ids, administration_email)
   end
 
   def notify_brouillon_not_submitted

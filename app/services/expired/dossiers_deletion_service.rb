@@ -6,9 +6,9 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
   TERMINE_NOTICES_LIMIT_PER_DAY = ENV.fetch("TERMINE_NOTICES_LIMIT_PER_DAY", 50_000).to_i
   TERMINE_DELETION_LIMIT_PER_DAY = ENV.fetch("TERMINE_DELETION_LIMIT_PER_DAY", 50_000).to_i
   # Termine dossiers are flagged or hidden, expired brouillons deleted, then
-  # mailed, batch by batch: what a failure mid-run can lose is bounded to one
-  # batch (a retry starts over from the scopes, which no longer match the
-  # dossiers already processed).
+  # mailed to their users, batch by batch: what a failure mid-run can lose is
+  # bounded to one batch (a retry starts over from the scopes, which no longer
+  # match the dossiers already processed).
   # A batch grows past this size rather than splitting a user's dossiers.
   BATCH_SIZE = 1000
 
@@ -55,8 +55,10 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
       .limit(TERMINE_NOTICES_LIMIT_PER_DAY)
       .pluck(:id, :user_id)
 
-    each_batch_by_user(ids_and_user_ids, Dossier.state_termine) do |dossiers|
-      send_expiration_notices(dossiers, :termine_close_to_expiration_notice_sent_at)
+    notify_administration_once(:notify_near_deletion_to_administration) do |administration_dossier_ids|
+      each_batch_by_user(ids_and_user_ids, Dossier.state_termine) do |dossiers|
+        send_expiration_notices(dossiers, :termine_close_to_expiration_notice_sent_at, administration_dossier_ids)
+      end
     end
   end
 
@@ -100,8 +102,10 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
       .limit(TERMINE_DELETION_LIMIT_PER_DAY)
       .pluck(:id, :user_id)
 
-    each_batch_by_user(ids_and_user_ids, Dossier.state_termine) do |dossiers|
-      delete_expired_and_notify(dossiers, notify_on_closed_procedures_to_user: true)
+    notify_administration_once(:notify_automatic_deletion_to_administration) do |administration_dossier_ids|
+      each_batch_by_user(ids_and_user_ids, Dossier.state_termine) do |dossiers|
+        delete_expired_and_notify(dossiers, administration_dossier_ids, notify_on_closed_procedures_to_user: true)
+      end
     end
   end
 
@@ -123,7 +127,19 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
     end
   end
 
-  def send_expiration_notices(dossiers_close_to_expiration, close_to_expiration_flag)
+  # An instructeur follows the dossiers of many users, hence of many batches:
+  # their mail waits for the end of the run. When a batch fails, it still goes
+  # out for the batches processed before, which a retry no longer matches.
+  def notify_administration_once(mail_method)
+    dossier_ids_by_email = Hash.new { |h, k| h[k] = [] }
+    yield dossier_ids_by_email
+  ensure
+    dossier_ids_by_email.each do |email, dossier_ids|
+      send_with_delay(DossierMailer.public_send(mail_method, dossier_ids, email))
+    end
+  end
+
+  def send_expiration_notices(dossiers_close_to_expiration, close_to_expiration_flag, administration_dossier_ids)
     user_notifications = group_by_user_email(dossiers_close_to_expiration)
     tiers_notifications = group_by_tiers_email(dossiers_close_to_expiration)
     administration_notifications = group_by_administration_email(dossiers_close_to_expiration, preference: :instant_email_dossier_expiration)
@@ -140,6 +156,10 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
       DossierNotification.create_notifications_for_non_customisable_type(dossiers_close_to_expiration, :dossier_expirant)
     end
 
+    administration_notifications.each do |(email, dossiers)|
+      administration_dossier_ids[email].concat(dossiers.map(&:id))
+    end
+
     user_notifications.each do |(email, dossiers)|
       mail = DossierMailer.notify_near_deletion_to_user(dossiers, email)
       send_with_delay(mail)
@@ -148,13 +168,9 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
       mail = DossierMailer.notify_near_deletion_for_tiers(dossiers, email)
       send_with_delay(mail)
     end
-    administration_notifications.each do |(email, dossiers)|
-      mail = DossierMailer.notify_near_deletion_to_administration(dossiers, email)
-      send_with_delay(mail)
-    end
   end
 
-  def delete_expired_and_notify(dossiers_to_remove, notify_on_closed_procedures_to_user: false)
+  def delete_expired_and_notify(dossiers_to_remove, administration_dossier_ids, notify_on_closed_procedures_to_user: false)
     user_notifications = group_by_user_email(dossiers_to_remove, notify_on_closed_procedures_to_user: notify_on_closed_procedures_to_user)
       .map { |(email, dossiers)| [email, dossiers.map(&:id)] }
     tiers_notifications = group_by_tiers_email(dossiers_to_remove, notify_on_closed_procedures_to_user: notify_on_closed_procedures_to_user)
@@ -167,6 +183,11 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
     dossiers_to_remove.find_each do |dossier|
       dossier.hide_and_keep_track!(:automatic, :expired)
       hidden_dossier_ids << dossier.id
+    end
+
+    administration_notifications.each do |(email, dossier_ids)|
+      dossier_ids = dossier_ids.intersection(hidden_dossier_ids)
+      administration_dossier_ids[email].concat(dossier_ids) if dossier_ids.present?
     end
 
     user_notifications.each do |(email, dossier_ids)|
@@ -184,17 +205,6 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
       dossier_ids = dossier_ids.intersection(hidden_dossier_ids)
       if dossier_ids.present?
         mail = DossierMailer.notify_automatic_deletion_for_tiers(
-          Dossier.where(id: dossier_ids).to_a,
-          email
-        )
-        send_with_delay(mail)
-      end
-    end
-
-    administration_notifications.each do |(email, dossier_ids)|
-      dossier_ids = dossier_ids.intersection(hidden_dossier_ids)
-      if dossier_ids.present?
-        mail = DossierMailer.notify_automatic_deletion_to_administration(
           Dossier.where(id: dossier_ids).to_a,
           email
         )

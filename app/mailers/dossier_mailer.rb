@@ -4,6 +4,8 @@
 class DossierMailer < ApplicationMailer
   class AbortDeliveryError < StandardError; end
 
+  ADMINISTRATION_MAIL_MAX_DOSSIERS = 10
+
   helper ServiceHelper
   helper ProcedureHelper
 
@@ -137,8 +139,8 @@ class DossierMailer < ApplicationMailer
   end
 
   def notify_automatic_deletion_to_administration(hidden_dossiers, to_email)
-    @subject = default_i18n_subject(count: hidden_dossiers.size)
-    @hidden_dossiers = hidden_dossiers
+    assign_administration_dossiers(hidden_dossiers)
+    @subject = default_i18n_subject(count: @dossiers_count)
     @deletion_date = Dossier::REMAINING_WEEKS_BEFORE_DELETION.weeks.from_now
 
     mail(to: to_email, subject: @subject)
@@ -167,8 +169,8 @@ class DossierMailer < ApplicationMailer
   end
 
   def notify_near_deletion_to_administration(dossiers, to_email)
-    @subject = default_i18n_subject(count: dossiers.size, state: dossiers.first.state)
-    @dossiers = dossiers
+    assign_administration_dossiers(dossiers)
+    @subject = default_i18n_subject(count: @dossiers_count)
     @expiration_date = Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks.from_now
 
     mail(to: to_email, subject: @subject)
@@ -225,6 +227,18 @@ class DossierMailer < ApplicationMailer
 
     if commentaire&.discarded? || dossier&.skip_user_notification_email?
       mail.perform_deliveries = false
+    end
+  end
+
+  def assign_administration_dossiers(dossiers)
+    @dossiers_count_by_procedure = Dossier.where(id: dossiers).joins(:procedure)
+      .group('procedures.id', 'procedures.libelle').count
+      .map { |(procedure_id, libelle), count| [procedure_id, libelle, count] }
+      .sort_by { |_, libelle, count| [-count, libelle] }
+    @dossiers_count = @dossiers_count_by_procedure.sum(&:last)
+
+    if @dossiers_count <= ADMINISTRATION_MAIL_MAX_DOSSIERS
+      @dossiers = Dossier.where(id: dossiers).includes(:procedure).order(:id).to_a
     end
   end
 

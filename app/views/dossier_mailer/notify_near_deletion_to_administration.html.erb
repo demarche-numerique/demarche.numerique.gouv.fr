@@ -3,8 +3,10 @@
 <p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
 
 <p>
-  <%= t('.header_termine_html', count: @dossiers.size, expiration_date: human_date(@expiration_date.to_date)) %>
+  <%= t('.header_termine_html', count: @dossiers_count, expiration_date: human_date(@expiration_date.to_date)) %>
+</p>
 
+<% if @dossiers %>
   <ul>
     <% @dossiers.each do |d| %>
       <li>
@@ -14,6 +16,8 @@
       </li>
     <% end %>
   </ul>
-</p>
+<% else %>
+  <%= render "dossiers_count_by_procedure", counts: @dossiers_count_by_procedure, statut: 'expirant' %>
+<% end %>
 
 <%= render partial: "layouts/mailers/signature" %>

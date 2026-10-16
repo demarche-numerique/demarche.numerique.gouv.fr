@@ -1,0 +1,7 @@
+fr:
+  dossier_mailer:
+    dossiers_count_by_procedure:
+      procedure: "%{libelle} (démarche n° %{number})"
+      dossiers:
+        one: "%{count} dossier"
+        other: "%{count} dossiers"
