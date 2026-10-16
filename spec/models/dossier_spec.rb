@@ -43,6 +43,23 @@ describe Dossier, type: :model do
       it { is_expected.to match_array([dossier]) }
     end
 
+    describe '.for_procedure' do
+      let_it_be(:procedure) { create(:procedure) }
+      let_it_be(:other_groupe) { create(:groupe_instructeur, procedure:) }
+      let_it_be(:dossier_in_default_groupe) { create(:dossier, :en_construction, procedure:) }
+      let_it_be(:dossier_in_other_groupe) { create(:dossier, :en_construction, procedure:, groupe_instructeur: other_groupe) }
+      let_it_be(:brouillon_without_groupe) { create(:dossier, procedure:, groupe_instructeur: nil) }
+
+      it 'reaches the dossiers of every groupe of the procedure' do
+        expect(Dossier.for_procedure(procedure)).to match_array([dossier_in_default_groupe, dossier_in_other_groupe])
+      end
+
+      it 'leaves out a brouillon that has no groupe yet' do
+        expect(procedure.dossiers).to include(brouillon_without_groupe)
+        expect(Dossier.for_procedure(procedure)).not_to include(brouillon_without_groupe)
+      end
+    end
+
     describe '.without_followers' do
       empty_seeds Dossier
 
