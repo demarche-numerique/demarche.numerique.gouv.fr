@@ -48,6 +48,7 @@ describe TagsSubstitutionConcern, type: :model do
           ["dossier_number", "n° de dossier"],
           ["dossier_depose_at", "date de dépôt"],
           ["dossier_processed_at", "date d’instruction"],
+          ["dossier_processed_at_with_time", "date et heure de décision"],
           ["dossier_procedure_libelle", "Nom de la démarche"],
           ["tdc_123", "Un champ"],
         ])
@@ -58,10 +59,18 @@ describe TagsSubstitutionConcern, type: :model do
           "dossier_number" => dossier.id.to_s,
           "dossier_depose_at" => "15/01/2024",
           "dossier_processed_at" => "",
+          "dossier_processed_at_with_time" => "",
           "dossier_procedure_libelle" => procedure.libelle,
           "tdc_123" => "Un champ"
         )
       end
+    end
+
+    context 'when the dossier has been processed' do
+      let(:dossier) { create(:dossier, :accepte, procedure:, processed_at: Time.zone.local(2024, 3, 5, 9, 7)) }
+      let(:tags) { Set.new([["dossier_processed_at_with_time", "date et heure de décision"]]) }
+
+      it { is_expected.to eq("dossier_processed_at_with_time" => "05/03/2024 à 09:07") }
     end
 
     context 'when the dossier has a motivation' do
@@ -472,7 +481,7 @@ describe TagsSubstitutionConcern, type: :model do
         travel_to Time.zone.local(2004, 5, 6)
         dossier.passer_en_instruction!(instructeur: instructeur)
 
-        travel_to Time.zone.local(2007, 8, 9)
+        travel_to Time.zone.local(2007, 8, 9, 14, 30)
         dossier.accepter!(instructeur: instructeur)
       end
 
@@ -480,6 +489,7 @@ describe TagsSubstitutionConcern, type: :model do
         expect(template_concern.send(:replace_tags, '--date de dépôt--', dossier)).to eq('03/02/2001')
         expect(template_concern.send(:replace_tags, '--date de passage en instruction--', dossier)).to eq('06/05/2004')
         expect(template_concern.send(:replace_tags, '--date de décision--', dossier)).to eq('09/08/2007')
+        expect(template_concern.send(:replace_tags, '--date et heure de décision--', dossier)).to eq('09/08/2007 à 14:30')
         expect(template_concern.send(:replace_tags, '--date de mise à jour--', dossier)).to eq('03/01/2003')
       end
     end
@@ -622,12 +632,14 @@ describe TagsSubstitutionConcern, type: :model do
       # dossier terminé includes motivation, date de décision, public and privé
       expect(tags_accepte).to include(include({ libelle: 'motivation' }))
       expect(tags_accepte).to include(include({ libelle: 'date de décision' }))
+      expect(tags_accepte).to include(include({ libelle: 'date et heure de décision' }))
       expect(tags_accepte).to include(include({ libelle: 'public' }))
       expect(tags_accepte).to include(include({ libelle: 'privé' }))
 
       # dossier en instruction excludes motivation/date de décision, includes public and privé
       expect(tags_instruction).not_to include(include({ libelle: 'motivation' }))
       expect(tags_instruction).not_to include(include({ libelle: 'date de décision' }))
+      expect(tags_instruction).not_to include(include({ libelle: 'date et heure de décision' }))
       expect(tags_instruction).to include(include({ libelle: 'public' }))
       expect(tags_instruction).to include(include({ libelle: 'privé' }))
 
