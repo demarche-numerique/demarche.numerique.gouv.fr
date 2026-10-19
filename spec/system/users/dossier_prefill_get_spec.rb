@@ -187,7 +187,7 @@ describe 'Prefilling a dossier (with a GET request):', js: true do
           clear_emails
           perform_enqueued_jobs do
             click_on "Renvoyer un email de confirmation"
-            expect(page).to have_content("vous recevrez sous quelques minutes un message")
+            expect(page).to have_content("vous recevrez sous quelques minutes un email avec des instructions pour activer votre compte")
           end
 
           click_confirmation_link_for user_email, in_another_browser: true

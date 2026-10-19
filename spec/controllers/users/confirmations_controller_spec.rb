@@ -138,6 +138,8 @@ describe Users::ConfirmationsController, type: :controller do
 
       expect(response.body).to have_text("votre adresse électronique #{email}.")
       expect(response.body).to have_text("nous pouvons vous le renvoyer")
+      expect(response.body).to have_text("Pour activer votre compte, nous avons besoin de vérifier votre adresse électronique #{email}.")
+      expect(response.body).to have_text('Ouvrez votre boîte email et cliquez sur le lien d’activation dans le message que vous avez reçu.')
     end
 
     context 'when signed email is invalid' do
@@ -219,6 +221,13 @@ describe Users::ConfirmationsController, type: :controller do
         expect_mailed_context(procedure_after_confirmation: nil, prefill_token: nil)
         expect(response).not_to redirect_to(root_path)
       end
+    end
+
+    it 'answers the same notice whether the address exists or not' do
+      post :create, params: { user: { email: 'inconnue@example.com' } }
+
+      expect(response).to redirect_to(new_user_session_path)
+      expect(flash[:notice]).to eq('Si votre adresse électronique existe dans notre base de données, vous recevrez sous quelques minutes un email avec des instructions pour activer votre compte.')
     end
   end
 end
