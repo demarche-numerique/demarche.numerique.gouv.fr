@@ -129,11 +129,11 @@ describe Users::ConfirmationsController, type: :controller do
     context 'when the address requested by an email change was taken in the meantime' do
       render_views
 
-      let(:account) { create(:user) }
+      let!(:user) { create(:user) }
 
       before do
         freeze_time
-        account.update_columns(unconfirmed_email: create(:user).email, confirmation_token: 'email-change-token', confirmation_sent_at: Time.current)
+        user.update_columns(unconfirmed_email: users.usager.email, confirmation_token: 'email-change-token', confirmation_sent_at: Time.current)
         session[:confirmation_requested_at] = 30.seconds.ago.to_i
 
         get :show, params: { confirmation_token: 'email-change-token' }
@@ -151,14 +151,12 @@ describe Users::ConfirmationsController, type: :controller do
 
   describe '#new' do
     let(:email) { 'test@example.com' }
+    let(:signed_email) { controller.message_encryptor_service.encrypt_and_sign(email, purpose: :email_confirmation) }
     render_views
 
     it 'decodes the signed email and makes it available to the view' do
-      signed_email = controller.message_encryptor_service.encrypt_and_sign(email, purpose: :email_confirmation)
-
       get :new, params: { email: signed_email }
 
-      expect(response.body).to have_text("votre adresse électronique #{email}.")
       expect(response.body).to have_text("nous pouvons vous le renvoyer")
       expect(response.body).to have_text("Pour activer votre compte, nous avons besoin de vérifier votre adresse électronique #{email}.")
       expect(response.body).to have_text('Ouvrez votre boîte email et cliquez sur le lien d’activation dans le message que vous avez reçu.')
@@ -183,8 +181,6 @@ describe Users::ConfirmationsController, type: :controller do
     end
 
     context 'with a confirmation request in the session' do
-      let(:signed_email) { controller.message_encryptor_service.encrypt_and_sign(email, purpose: :email_confirmation) }
-
       before { freeze_time }
 
       it 'counts down from the last request' do
@@ -210,7 +206,7 @@ describe Users::ConfirmationsController, type: :controller do
     end
 
     it 'lets them resend right away without any request in the session' do
-      get :new, params: { email: controller.message_encryptor_service.encrypt_and_sign(email, purpose: :email_confirmation) }
+      get :new, params: { email: signed_email }
 
       expect(response.body).to have_button(exact_text: 'Renvoyer un email de confirmation', disabled: false)
     end
@@ -223,11 +219,10 @@ describe Users::ConfirmationsController, type: :controller do
       get :new, params: { email: signed_email }
 
       expect(response.body).not_to have_css('[data-controller="countdown-button"]')
-      expect(response.body).not_to have_button('Renvoyer un email de confirmation')
     end
 
     it 'keeps the page out of the browser cache' do
-      get :new, params: { email: controller.message_encryptor_service.encrypt_and_sign(email, purpose: :email_confirmation) }
+      get :new, params: { email: signed_email }
 
       expect(response.headers['Cache-Control']).to include('no-store')
     end

@@ -131,12 +131,12 @@ describe 'the session failure app', type: :request do
   end
 
   context 'when the account has never been confirmed' do
-    let(:unconfirmed) { create(:user, :unconfirmed, password: SECURE_PASSWORD) }
+    let_it_be(:unconfirmed) { create(:user, :unconfirmed, password: SECURE_PASSWORD) }
     let(:signed_email) { Rack::Utils.parse_nested_query(URI.parse(response.location).query)['email'] }
     let(:decrypted_email) { MessageEncryptorService.new.decrypt_and_verify(signed_email, purpose: :email_confirmation) }
 
     it 'sends the right password to the email confirmation page' do
-      post user_session_path, params: { user: { email: unconfirmed.email, password: SECURE_PASSWORD } }
+      post_user_session(unconfirmed, password: SECURE_PASSWORD)
 
       expect(response).to redirect_to(%r{/users/confirmation/new\?email=})
       expect(decrypted_email).to eq(unconfirmed.email)
@@ -156,7 +156,7 @@ describe 'the session failure app', type: :request do
     end
 
     it 'leaves a wrong password on the sign in form' do
-      post user_session_path, params: { user: { email: unconfirmed.email, password: 'not-the-password' } }
+      post_user_session(unconfirmed, password: 'not-the-password')
 
       expect(response).to have_http_status(:unprocessable_content)
     end
