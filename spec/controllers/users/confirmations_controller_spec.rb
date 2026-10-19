@@ -229,5 +229,13 @@ describe Users::ConfirmationsController, type: :controller do
       expect(response).to redirect_to(new_user_session_path)
       expect(flash[:notice]).to eq('Si votre adresse électronique existe dans notre base de données, vous recevrez sous quelques minutes un email avec des instructions pour activer votre compte.')
     end
+
+    it 'remembers the request, even for an unknown address' do
+      freeze_time
+
+      post :create, params: { user: { email: 'inconnue@example.com' } }
+
+      expect(session[:confirmation_requested_at]).to eq(Time.current.to_i)
+    end
   end
 end

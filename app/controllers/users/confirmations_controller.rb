@@ -2,6 +2,7 @@
 
 class Users::ConfirmationsController < Devise::ConfirmationsController
   include ProcedureContextConcern
+  include ConfirmationResendDelayConcern
 
   # GET /resource/confirmation/new
   def new
@@ -47,9 +48,10 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   end
 
   # The path used after resending confirmation instructions.
-  # def after_resending_confirmation_instructions_path_for(resource_name)
-  #   super(resource_name)
-  # end
+  def after_resending_confirmation_instructions_path_for(resource_name)
+    remember_confirmation_request
+    super(resource_name)
+  end
 
   # If the user clicks the confirmation link before the maximum delay,
   # they will be signed in directly.

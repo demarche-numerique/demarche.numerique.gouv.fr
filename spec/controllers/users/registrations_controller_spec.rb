@@ -174,5 +174,35 @@ describe Users::RegistrationsController, type: :controller do
         end
       end
     end
+
+    describe 'remembering the confirmation request' do
+      before { freeze_time }
+
+      it 'remembers it when the account is created' do
+        subject
+
+        expect(session[:confirmation_requested_at]).to eq(Time.current.to_i)
+      end
+
+      context 'when the form is invalid' do
+        let(:user) { { email: '', password: password } }
+
+        it 'remembers nothing' do
+          subject
+
+          expect(session[:confirmation_requested_at]).to be_nil
+        end
+      end
+
+      context 'when the address already has an account' do
+        let!(:existing_user) { create(:user, email: email, password: password, confirmed_at: nil) }
+
+        it 'remembers it all the same' do
+          subject
+
+          expect(session[:confirmation_requested_at]).to eq(Time.current.to_i)
+        end
+      end
+    end
   end
 end
