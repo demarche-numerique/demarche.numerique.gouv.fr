@@ -4,6 +4,8 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   include ProcedureContextConcern
   include ConfirmationResendDelayConcern
 
+  before_action :no_store, only: [:new, :show]
+
   # GET /resource/confirmation/new
   def new
     # Allow displaying the user email in the message

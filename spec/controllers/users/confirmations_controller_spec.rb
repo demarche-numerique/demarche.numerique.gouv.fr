@@ -142,6 +142,10 @@ describe Users::ConfirmationsController, type: :controller do
       it 'shows the resend form with the remaining time' do
         expect(response.body).to have_button('Renvoyer un email de confirmation (90 secondes)', disabled: true)
       end
+
+      it 'keeps the page out of the browser cache' do
+        expect(response.headers['Cache-Control']).to include('no-store')
+      end
     end
   end
 
@@ -220,6 +224,12 @@ describe Users::ConfirmationsController, type: :controller do
 
       expect(response.body).not_to have_css('[data-controller="countdown-button"]')
       expect(response.body).not_to have_button('Renvoyer un email de confirmation')
+    end
+
+    it 'keeps the page out of the browser cache' do
+      get :new, params: { email: controller.message_encryptor_service.encrypt_and_sign(email, purpose: :email_confirmation) }
+
+      expect(response.headers['Cache-Control']).to include('no-store')
     end
   end
 
