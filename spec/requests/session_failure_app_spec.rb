@@ -170,6 +170,24 @@ describe 'the session failure app', type: :request do
       expect(flash[:alert]).to eq(I18n.t('devise.failure.unconfirmed'))
     end
 
+    it 'keeps the current answer when the sign in page is only read' do
+      login_as(unconfirmed, scope: :user)
+
+      get new_user_session_path
+
+      expect(response).to redirect_to(new_user_session_path)
+      expect(flash[:alert]).to eq(I18n.t('devise.failure.unconfirmed'))
+    end
+
+    it 'keeps the current answer for a post that is not the sign in form' do
+      login_as(unconfirmed, scope: :user)
+
+      post transfer_all_dossiers_path
+
+      expect(response).to redirect_to(new_user_session_path)
+      expect(flash[:alert]).to eq(I18n.t('devise.failure.unconfirmed'))
+    end
+
     it 'keeps the 401 Devise gives an XHR client' do
       post user_session_path, params: { user: { email: unconfirmed.email, password: SECURE_PASSWORD } }, xhr: true
 

@@ -19,7 +19,10 @@ RSpec.describe Users::ResendConfirmationButtonComponent, type: :component do
       expect(wrapper['data-countdown-button-other-value']).to eq('Renvoyer un email de confirmation (# secondes)')
       expect(wrapper['data-countdown-button-label-value']).to eq('Renvoyer un email de confirmation')
       expect(wrapper['data-countdown-button-available-value']).to eq('Vous pouvez maintenant renvoyer l’email de confirmation.')
+      expect(wrapper['data-action']).to eq('visibilitychange@document->countdown-button#refresh pageshow@window->countdown-button#restore')
       expect(page.find('[role="status"].fr-sr-only').text).to be_empty
+      expect(page).to have_css('button[data-countdown-button-target="button"]')
+      expect(page).to have_css('[role="status"][data-countdown-button-target="status"]')
     end
   end
 

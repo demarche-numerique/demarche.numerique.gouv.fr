@@ -134,17 +134,28 @@ describe Users::ConfirmationsController, type: :controller do
       before do
         freeze_time
         user.update_columns(unconfirmed_email: users.usager.email, confirmation_token: 'email-change-token', confirmation_sent_at: Time.current)
-        session[:confirmation_requested_at] = 30.seconds.ago.to_i
+      end
 
+      context 'with a confirmation request in the session' do
+        before do
+          session[:confirmation_requested_at] = 30.seconds.ago.to_i
+
+          get :show, params: { confirmation_token: 'email-change-token' }
+        end
+
+        it 'shows the resend form with the remaining time' do
+          expect(response.body).to have_button('Renvoyer un email de confirmation (90 secondes)', disabled: true)
+        end
+
+        it 'keeps the page out of the browser cache' do
+          expect(response.headers['Cache-Control']).to include('no-store')
+        end
+      end
+
+      it 'lets them resend right away without any request in the session' do
         get :show, params: { confirmation_token: 'email-change-token' }
-      end
 
-      it 'shows the resend form with the remaining time' do
-        expect(response.body).to have_button('Renvoyer un email de confirmation (90 secondes)', disabled: true)
-      end
-
-      it 'keeps the page out of the browser cache' do
-        expect(response.headers['Cache-Control']).to include('no-store')
+        expect(response.body).to have_button(exact_text: 'Renvoyer un email de confirmation', disabled: false)
       end
     end
   end
@@ -290,19 +301,35 @@ describe Users::ConfirmationsController, type: :controller do
       end
     end
 
-    it 'answers the same notice whether the address exists or not' do
-      post :create, params: { user: { email: 'inconnue@example.com' } }
+    shared_examples 'the same answer for any address' do
+      before do
+        freeze_time
 
-      expect(response).to redirect_to(new_user_session_path)
-      expect(flash[:notice]).to eq('Si votre adresse électronique existe dans notre base de données, vous recevrez sous quelques minutes un email avec des instructions pour activer votre compte.')
+        post :create, params: { user: { email: } }
+      end
+
+      it 'redirects to the sign in page with the generic notice' do
+        expect(response).to redirect_to(new_user_session_path)
+        expect(flash[:notice]).to eq('Si votre adresse électronique existe dans notre base de données, vous recevrez sous quelques minutes un email avec des instructions pour activer votre compte.')
+      end
+
+      it 'remembers the request' do
+        expect(session[:confirmation_requested_at]).to eq(Time.current.to_i)
+      end
     end
 
-    it 'remembers the request, even for an unknown address' do
-      freeze_time
+    context 'when the address exists' do
+      let(:email) { user.email }
+      let(:stored_path) { nil }
 
-      post :create, params: { user: { email: 'inconnue@example.com' } }
+      it_behaves_like 'the same answer for any address'
+    end
 
-      expect(session[:confirmation_requested_at]).to eq(Time.current.to_i)
+    context 'when the address is unknown' do
+      let(:email) { 'inconnue@example.com' }
+      let(:stored_path) { nil }
+
+      it_behaves_like 'the same answer for any address'
     end
   end
 end
