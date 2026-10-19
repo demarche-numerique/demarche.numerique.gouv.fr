@@ -325,6 +325,40 @@ describe APIToken, type: :model do
       end
 
       it { is_expected.to be_nil }
+
+      context 'which matches the bcrypt hash' do
+        before { api_token.update_column(:encrypted_token, BCrypt::Password.create('wrong')) }
+
+        it { is_expected.to be_nil }
+      end
+    end
+
+    context 'with a bearer token without plain_token' do
+      let(:bearer_token) { Base64.urlsafe_encode64(api_token.id) }
+
+      it { is_expected.to be_nil }
+    end
+
+    context 'with a token created before token_digest' do
+      before { api_token.update_column(:token_digest, nil) }
+
+      it 'authenticates with bcrypt once, then with the digest' do
+        expect(subject).to eq(api_token)
+
+        api_token.update_column(:encrypted_token, BCrypt::Password.create('wrong'))
+        expect(APIToken.authenticate(bearer_token)).to eq(api_token)
+      end
+
+      context "with the wrong plain_token" do
+        let(:bearer_token) do
+          APIToken::BearerToken.new(api_token.id, 'wrong').to_string
+        end
+
+        it 'does not store a digest' do
+          expect(subject).to be_nil
+          expect(api_token.reload.token_digest).to be_nil
+        end
+      end
     end
   end
 
