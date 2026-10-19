@@ -3,6 +3,8 @@
     <%= content_tag(@heading_level, resolved_title, class: "fr-h6 fr-mb-0") %>
   <% end %>
 
+  <p class="fr-text--sm fr-mb-0"><%= t('.deployment_notice') %></p>
+
   <div class="fr-connect-group fr-my-2w">
     <%= link_to @url, class: "fr-btn fr-connect fr-proconnect" do %>
       <span class="fr-connect__login"><%= t('.login_button') %></span>
