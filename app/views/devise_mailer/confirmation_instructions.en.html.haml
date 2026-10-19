@@ -1,11 +1,11 @@
 -# ugly hack to know if the mail is creation confirmation or a password change confirmation
 - if @user.unconfirmed_email.nil?
-  - content_for(:title, 'Activate account')
+  - content_for(:title, @subject)
 
   %p= t(:hello, scope: [:views, :shared, :greetings])
 
   %p
-    You have entered your details to create an account on #{APPLICATION_NAME}. To confirm your email and finish creating your account, select the following link:
+    To confirm your email address and activate your account on #{APPLICATION_NAME}, select the following link:
     - link = confirmation_url(@user, confirmation_token: @token, procedure_id: @procedure&.id)
     = link_to(link, link)
 
