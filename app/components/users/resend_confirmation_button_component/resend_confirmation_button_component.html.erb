@@ -1,0 +1,4 @@
+<%= tag.div(data: wrapper_data) do %>
+  <%= tag.button(label, type: 'submit', class: 'fr-btn fr-btn--secondary', disabled: seconds_remaining.positive?, data: { countdown_button_target: 'button' }) %>
+  <%= tag.p(class: 'fr-sr-only', role: 'status', data: { countdown_button_target: 'status' }) %>
+<% end %>

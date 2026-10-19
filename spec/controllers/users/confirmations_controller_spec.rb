@@ -125,6 +125,24 @@ describe Users::ConfirmationsController, type: :controller do
         expect(subject).to redirect_to(new_user_session_path)
       end
     end
+
+    context 'when the address requested by an email change was taken in the meantime' do
+      render_views
+
+      let(:account) { create(:user) }
+
+      before do
+        freeze_time
+        account.update_columns(unconfirmed_email: create(:user).email, confirmation_token: 'email-change-token', confirmation_sent_at: Time.current)
+        session[:confirmation_requested_at] = 30.seconds.ago.to_i
+
+        get :show, params: { confirmation_token: 'email-change-token' }
+      end
+
+      it 'shows the resend form with the remaining time' do
+        expect(response.body).to have_button('Renvoyer un email de confirmation (90 secondes)', disabled: true)
+      end
+    end
   end
 
   describe '#new' do
@@ -158,6 +176,50 @@ describe Users::ConfirmationsController, type: :controller do
         expect(response.body).to have_text("cliquez sur le lien d’activation")
         expect(response.body).not_to have_text("nous pouvons vous le renvoyer")
       end
+    end
+
+    context 'with a confirmation request in the session' do
+      let(:signed_email) { controller.message_encryptor_service.encrypt_and_sign(email, purpose: :email_confirmation) }
+
+      before { freeze_time }
+
+      it 'counts down from the last request' do
+        session[:confirmation_requested_at] = 30.seconds.ago.to_i
+        get :new, params: { email: signed_email }
+
+        expect(response.body).to have_button('Renvoyer un email de confirmation (90 secondes)', disabled: true)
+      end
+
+      it 'lets them resend once two minutes have passed' do
+        session[:confirmation_requested_at] = 3.minutes.ago.to_i
+        get :new, params: { email: signed_email }
+
+        expect(response.body).to have_button(exact_text: 'Renvoyer un email de confirmation', disabled: false)
+      end
+
+      it 'never waits more than two minutes when server clocks drift' do
+        session[:confirmation_requested_at] = 10.seconds.from_now.to_i
+        get :new, params: { email: signed_email }
+
+        expect(response.body).to have_button('Renvoyer un email de confirmation (120 secondes)', disabled: true)
+      end
+    end
+
+    it 'lets them resend right away without any request in the session' do
+      get :new, params: { email: controller.message_encryptor_service.encrypt_and_sign(email, purpose: :email_confirmation) }
+
+      expect(response.body).to have_button(exact_text: 'Renvoyer un email de confirmation', disabled: false)
+    end
+
+    it 'shows no button once the page address has expired, even after a recent request' do
+      signed_email = controller.message_encryptor_service.encrypt_and_sign(email, purpose: :email_confirmation, expires_in: 1.hour)
+      travel 2.hours
+      session[:confirmation_requested_at] = 30.seconds.ago.to_i
+
+      get :new, params: { email: signed_email }
+
+      expect(response.body).not_to have_css('[data-controller="countdown-button"]')
+      expect(response.body).not_to have_button('Renvoyer un email de confirmation')
     end
   end
 
