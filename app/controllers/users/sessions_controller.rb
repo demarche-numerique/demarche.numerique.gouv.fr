@@ -25,7 +25,6 @@ class Users::SessionsController < Devise::SessionsController
       if resource.administrateur&.pro_connect_required?
         sign_out(resource)
         flash.discard(:notice)
-        remember_administrateur_device
         return redirect_to_pro_connect_required
       end
 
