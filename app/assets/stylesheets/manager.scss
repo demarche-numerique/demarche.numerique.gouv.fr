@@ -145,3 +145,44 @@
     }
   }
 }
+
+.api-status {
+  &__state {
+    display: inline-block;
+    width: 0.7rem;
+    height: 0.7rem;
+    margin-right: 0.5rem;
+    border-radius: 50%;
+    background-color: #929292;
+
+    &--up {
+      background-color: #18753c;
+    }
+
+    &--down {
+      background-color: #ce0500;
+    }
+  }
+
+  &__summary {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  table {
+    width: auto;
+    margin-bottom: 2rem;
+  }
+
+  th,
+  td {
+    padding: 0.4rem 1.5rem 0.4rem 0;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .number {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+}

@@ -25,6 +25,8 @@ namespace :manager do
 
   resources :banners, only: [:index, :update]
 
+  resource :api_entreprise_status, only: :show, controller: :api_entreprise_status
+
   resources :archives, only: [:index, :show]
 
   resources :dossiers, only: [:index, :show] do
