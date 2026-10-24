@@ -420,9 +420,10 @@ describe User, type: :model do
     it 'resets inactive_close_to_expiration_notice_sent_at on sign in' do
       user = create(:user, inactive_close_to_expiration_notice_sent_at: 1.week.ago)
 
-      user.update_tracked_fields!(ActionDispatch::TestRequest.create)
+      user.update_tracked_fields!(instance_double(ActionDispatch::Request, remote_ip: '127.0.0.1'))
 
       expect(user.reload.inactive_close_to_expiration_notice_sent_at).to be_nil
+      expect(user.kept_after_deletion_notice?).to be(true)
     end
   end
 

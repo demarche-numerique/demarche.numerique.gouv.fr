@@ -64,7 +64,7 @@ describe Users::SessionsController, type: :controller do
         it 'confirms that the account is kept' do
           subject
 
-          expect(flash[:notice]).to eq("Votre compte est conservé. Il reste actif tant que vous vous connectez au moins une fois tous les 2 ans.")
+          expect(flash[:notice]).to eq(I18n.t('devise.sessions.inactive_account_kept'))
           expect(user.reload.inactive_close_to_expiration_notice_sent_at).to be_nil
         end
       end

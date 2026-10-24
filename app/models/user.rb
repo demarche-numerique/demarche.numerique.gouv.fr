@@ -239,9 +239,10 @@ class User < ApplicationRecord
     return if inactive_close_to_expiration_notice_sent_at.nil?
 
     self.inactive_close_to_expiration_notice_sent_at = nil
-    # Devise passes a bare Rack::Request from its Warden hook: rewrap it to reach the flash.
-    ActionDispatch::Request.new(request.env).flash[:notice] = I18n.t('devise.sessions.inactive_account_kept')
+    @kept_after_deletion_notice = true
   end
+
+  def kept_after_deletion_notice? = @kept_after_deletion_notice.present?
 
   def administrateur?
     administrateur.present?
