@@ -55,7 +55,7 @@ describe Users::SessionsController, type: :controller do
       it 'does not tell a user without a deletion notice that the account is kept' do
         subject
 
-        expect(flash[:notice]).not_to eq(I18n.t('devise.sessions.inactive_account_kept'))
+        expect(flash[:notice]).not_to eq(I18n.t('devise.sessions.inactive_account_kept', years: Expired::INACTIVE_USER_RETENTION_IN_YEAR))
       end
 
       context 'when the user was notified of the deletion of the inactive account' do
@@ -64,7 +64,7 @@ describe Users::SessionsController, type: :controller do
         it 'confirms that the account is kept' do
           subject
 
-          expect(flash[:notice]).to eq(I18n.t('devise.sessions.inactive_account_kept'))
+          expect(flash[:notice]).to eq(I18n.t('devise.sessions.inactive_account_kept', years: Expired::INACTIVE_USER_RETENTION_IN_YEAR))
           expect(user.reload.inactive_close_to_expiration_notice_sent_at).to be_nil
         end
       end

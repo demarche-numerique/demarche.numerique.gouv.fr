@@ -1,46 +1,38 @@
 <% content_for(:title, @subject) %>
 <% has_dossiers = @user.dossiers.not_brouillon.exists? %>
 
-<p>Bonjour,</p>
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
 
 <p>
-  Cela fait plus de deux ans que vous ne vous êtes pas connecté(e) à votre
-  <strong>compte <%= application_name_without_link %></strong> avec l’adresse
-  <%= @user.email %>.
+  <%= t('.inactive_html', years: Expired::INACTIVE_USER_RETENTION_IN_YEAR, application_name: application_name_without_link, email: @user.email) %>
+
   <% unless has_dossiers %>
-    Vous n’avez plus de dossier sur la plateforme.
+    <%= t('.no_dossier') %>
   <% end %>
 </p>
 
 <p>
-  Dans le respect du règlement général sur la protection des données, nous
-  allons
-  <strong>supprimer votre compte d’ici <%= distance_of_time_in_words(Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks) %></strong>.
+  <%= t('.deletion_html', delay: distance_of_time_in_words(Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks)) %>
 </p>
 
 <% if has_dossiers %>
   <p>
-    <strong>Ne vous en faites pas,</strong> vos dossiers traités sont conservés
-    par l’administration. Aussi, à tout moment vous pourrez re-créer un compte
-    sur notre plateforme. Au besoin, vous pouvez télécharger vos dossiers en
-    suivant ce lien&nbsp;: <%= link_to dossiers_url, dossiers_url %>
+    <%= t('.dossiers_kept_html', dossiers_link: link_to(dossiers_url, dossiers_url)) %>
   </p>
 <% end %>
 
 <h2 style="font-size: 18px; line-height: 24px; margin: 24px 0 4px;">
-  Vous souhaitez conserver votre compte ?
+  <%= t('.keep_title') %>
 </h2>
 
-<p style="margin-top: 0;">
-  Connectez-vous avec vos identifiants en cliquant sur le bouton ci-dessous :
-</p>
+<p style="margin-top: 0;"><%= t('.keep_explanation') %></p>
 
-<%= dsfr_button("Conserver mon compte #{APPLICATION_NAME}", new_user_session_url, :primary) %>
+<%= dsfr_button(t('.keep_button', application_name: application_name_without_link), new_user_session_url, :primary) %>
 
 <h2 style="font-size: 18px; line-height: 24px; margin: 24px 0 4px;">
-  Vous ne souhaitez pas conserver votre compte ?
+  <%= t('.dont_keep_title') %>
 </h2>
 
-<p style="margin-top: 0;">Il sera automatiquement désactivé et supprimé.</p>
+<p style="margin-top: 0;"><%= t('.dont_keep_explanation') %></p>
 
 <%= render partial: "layouts/mailers/signature" %>

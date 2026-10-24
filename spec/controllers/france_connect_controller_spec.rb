@@ -137,7 +137,7 @@ describe FranceConnectController, type: :controller do
             it 'confirms that the account is kept' do
               subject
 
-              expect(flash[:notice]).to eq(I18n.t('devise.sessions.inactive_account_kept'))
+              expect(flash[:notice]).to eq(I18n.t('devise.sessions.inactive_account_kept', years: Expired::INACTIVE_USER_RETENTION_IN_YEAR))
               expect(fc_user.reload.inactive_close_to_expiration_notice_sent_at).to be_nil
             end
           end

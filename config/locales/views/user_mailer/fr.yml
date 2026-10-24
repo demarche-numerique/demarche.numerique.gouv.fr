@@ -24,6 +24,15 @@ fr:
       subject: Votre archive est disponible
     notify_inactive_close_to_deletion:
       subject: "Votre compte Démarche Numérique sera supprimé dans %{remaining_weeks} semaines"
+      inactive_html: "Cela fait plus de %{years} ans que vous ne vous êtes pas connecté(e) à votre <strong>compte %{application_name}</strong> avec l’adresse %{email}."
+      no_dossier: Vous n’avez plus de dossier sur la plateforme.
+      deletion_html: "Dans le respect du règlement général sur la protection des données, nous allons <strong>supprimer votre compte d’ici %{delay}</strong>."
+      dossiers_kept_html: "<strong>Ne vous en faites pas,</strong> vos dossiers traités sont conservés par l’administration. Aussi, à tout moment vous pourrez re-créer un compte sur notre plateforme. Au besoin, vous pouvez télécharger vos dossiers en suivant ce lien : %{dossiers_link}"
+      keep_title: Vous souhaitez conserver votre compte ?
+      keep_explanation: "Connectez-vous avec vos identifiants en cliquant sur le bouton ci-dessous :"
+      keep_button: Conserver mon compte %{application_name}
+      dont_keep_title: Vous ne souhaitez pas conserver votre compte ?
+      dont_keep_explanation: Il sera automatiquement désactivé et supprimé.
     notify_after_closing:
       subject: "Clôture d’une démarche sur %{application_name}"
     password_changed:

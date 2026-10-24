@@ -145,7 +145,7 @@ class ApplicationController < ActionController::Base
   def confirm_account_kept_after_deletion_notice
     return unless warden.user(:user)&.kept_after_deletion_notice?
 
-    flash[:notice] = t('devise.sessions.inactive_account_kept') # rubocop:disable Rails/ActionControllerFlashBeforeRender -- after_action: meant for the page the sign in redirects to
+    flash[:notice] = t('devise.sessions.inactive_account_kept', years: Expired::INACTIVE_USER_RETENTION_IN_YEAR) # rubocop:disable Rails/ActionControllerFlashBeforeRender -- after_action: meant for the page the sign in redirects to
   end
 
   def display_csrf_retry_message

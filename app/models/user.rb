@@ -242,7 +242,7 @@ class User < ApplicationRecord
     @kept_after_deletion_notice = true
   end
 
-  def kept_after_deletion_notice? = @kept_after_deletion_notice.present?
+  def kept_after_deletion_notice? = @kept_after_deletion_notice == true
 
   def administrateur?
     administrateur.present?
