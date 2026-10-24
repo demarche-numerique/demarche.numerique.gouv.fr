@@ -150,11 +150,29 @@ RSpec.describe UserMailer, type: :mailer do
   end
 
   describe '.notify_inactive_close_to_deletion' do
+    let(:body) { Capybara.string(subject.body.to_s) }
+
     subject { described_class.notify_inactive_close_to_deletion(user) }
 
-    it 'alerts user of inactivity with correct recipient and message' do
+    it 'says which account is deleted and how to keep it' do
       expect(subject.to).to eq([user.email])
-      expect(subject.body).to have_text("Cela fait plus de deux ans que vous ne vous êtes pas connecté à #{APPLICATION_NAME}\navec le compte #{user.email} .")
+      expect(subject.subject).to eq("Votre compte Démarche Numérique sera supprimé dans 2 semaines")
+      expect(body).to have_text("à votre compte #{APPLICATION_NAME} avec l’adresse #{user.email}", normalize_ws: true)
+      expect(body).to have_text("Vous n’avez plus de dossier sur la plateforme.")
+      expect(body).to have_text("règlement général sur la protection des données")
+      expect(body).to have_text("supprimer votre compte d’ici 14 jours", normalize_ws: true)
+      expect(body).to have_link("Conserver mon compte #{APPLICATION_NAME}", href: new_user_session_url)
+      expect(body).to have_text("Vous ne souhaitez pas conserver votre compte ?")
+      expect(body).to have_text("Il sera automatiquement désactivé et supprimé.")
+    end
+
+    context 'when the user has processed dossiers' do
+      let(:user) { dossiers.accepte.user }
+
+      it 'reassures about the dossiers kept by the administration' do
+        expect(body).not_to have_text("Vous n’avez plus de dossier")
+        expect(body).to have_text("vos dossiers traités sont conservés par l’administration", normalize_ws: true)
+      end
     end
 
     context 'when perform_later is called' do

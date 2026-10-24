@@ -23,7 +23,7 @@ fr:
     send_archive:
       subject: Votre archive est disponible
     notify_inactive_close_to_deletion:
-      subject: "Votre compte sera supprimé dans %{remaining_weeks} semaines"
+      subject: "Votre compte Démarche Numérique sera supprimé dans %{remaining_weeks} semaines"
     notify_after_closing:
       subject: "Clôture d’une démarche sur %{application_name}"
     password_changed:

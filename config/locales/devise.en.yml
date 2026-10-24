@@ -17,6 +17,7 @@ en:
       new:
         request_new_password: Request new password
     sessions:
+      inactive_account_kept: Your account has been kept. It stays active as long as you sign in at least once every 2 years.
       signed_in_multiple_profile: "You are connected ! You can switch between your multiple profiles : %{roles}."
       signed_out: You are now disconnected.
   users:

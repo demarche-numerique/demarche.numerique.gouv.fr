@@ -131,6 +131,17 @@ describe FranceConnectController, type: :controller do
             expect(fc_user.preferred_domain_demarche_numerique_gouv_fr?).to be_truthy
           end
 
+          context 'and the user was notified of the deletion of the inactive account' do
+            before { fc_user.update!(inactive_close_to_expiration_notice_sent_at: 1.week.ago) }
+
+            it 'confirms that the account is kept' do
+              subject
+
+              expect(flash[:notice]).to eq(I18n.t('devise.sessions.inactive_account_kept'))
+              expect(fc_user.reload.inactive_close_to_expiration_notice_sent_at).to be_nil
+            end
+          end
+
           context 'and the user has a stored location' do
             let(:stored_location) { '/plip/plop' }
             before { controller.store_location_for(:user, stored_location) }

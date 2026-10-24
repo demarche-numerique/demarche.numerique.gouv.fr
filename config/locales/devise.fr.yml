@@ -17,6 +17,7 @@ fr:
       new:
         request_new_password: Demander un nouveau mot de passe
     sessions:
+      inactive_account_kept: Votre compte est conservé. Il reste actif tant que vous vous connectez au moins une fois tous les 2 ans.
       signed_in_multiple_profile: "Vous êtes connecté(e) ! Vous pouvez à tout moment alterner entre vos différents profils : %{roles}."
       signed_out: Vous êtes maintenant déconnecté(e).
   users:

@@ -236,7 +236,11 @@ class User < ApplicationRecord
   # a returning user is never deleted without a fresh notice.
   def update_tracked_fields(request)
     super
+    return if inactive_close_to_expiration_notice_sent_at.nil?
+
     self.inactive_close_to_expiration_notice_sent_at = nil
+    # Devise passes a bare Rack::Request from its Warden hook: rewrap it to reach the flash.
+    ActionDispatch::Request.new(request.env).flash[:notice] = I18n.t('devise.sessions.inactive_account_kept')
   end
 
   def administrateur?
