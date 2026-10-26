@@ -4,6 +4,8 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   include ProcedureContextConcern
   include ConfirmationResendDelayConcern
 
+  helper_method :seconds_before_confirmation_resend
+
   before_action :no_store, only: [:new, :show]
 
   # GET /resource/confirmation/new

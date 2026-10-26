@@ -5,10 +5,6 @@ module ConfirmationResendDelayConcern
 
   RESEND_DELAY = 2.minutes
 
-  included do
-    helper_method :seconds_before_confirmation_resend
-  end
-
   private
 
   def remember_confirmation_request
