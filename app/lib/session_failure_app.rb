@@ -50,9 +50,8 @@ class SessionFailureApp < Devise::FailureApp
 
   def redirect_to_email_confirmation
     email = User.normalize_value_for(:email, params.dig(:user, :email).to_s)
-    signed_email = MessageEncryptorService.new.encrypt_and_sign(email, purpose: :email_confirmation, expires_in: 1.hour)
 
-    redirect_to new_user_confirmation_path(email: signed_email)
+    redirect_to new_user_confirmation_path(email: SignedConfirmationEmail.sign(email))
   end
 
   # The reason exists on the first rejected request only: the scope is logged

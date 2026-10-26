@@ -108,8 +108,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def after_inactive_sign_up_path_for(resource)
     remember_confirmation_request
     flash.discard(:notice) # Remove devise's default message (as we have a custom page to explain it)
-    signed_email = message_encryptor_service.encrypt_and_sign(resource.email, purpose: :email_confirmation, expires_in: 1.hour)
-    new_user_confirmation_path(email: signed_email)
+    new_user_confirmation_path(email: SignedConfirmationEmail.sign(resource.email))
   end
 
   private
