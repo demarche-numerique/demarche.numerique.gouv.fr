@@ -21,6 +21,8 @@ describe Manager::APIEntrepriseStatusController, type: :controller do
   render_views
 
   it 'shows the providers down and what waits in the parking' do
+    create(:dossier, procedure: create(:procedure, :published, public_type_de_champs: [{ type: :siret }]))
+      .champ_data.first.update_columns(external_state: 'degraded')
     Kredis.redis.set(APIEntreprise::HealthChecker.cache_key('banque_de_france/bilans'), 'bad_gateway', ex: 300)
     ParkedAPIEntrepriseFetch.park!(etablissement_id: etablissement.id, job: 'BilansBdfJob', procedure_id: procedures.entreprise.id,
       arguments: [etablissement.id, procedures.entreprise.id], code: 503)
@@ -28,7 +30,7 @@ describe Manager::APIEntrepriseStatusController, type: :controller do
     get :show
 
     expect(response).to have_http_status(:ok)
-    expect(response.body.squish).to include('1 fournisseur en panne', 'Bilans (Banque de France)', 'bad_gateway', 'BilansBdfJob')
+    expect(response.body.squish).to include('1 fournisseur en panne', 'Bilans (Banque de France)', 'bad_gateway', 'BilansBdfJob', 'Champ SIRET&nbsp;:')
     expect(response.body).to include(APIEntreprise::Status::STATUS_PAGE_URL)
   end
 end

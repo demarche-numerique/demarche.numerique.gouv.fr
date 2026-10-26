@@ -15,6 +15,8 @@ class APIEntreprise::Status
     banque_de_france_bilans: "Bilans (Banque de France)",
   }.freeze
 
+  DEMANDEUR_SIRET_LABEL = "SIRET lié au dossier"
+
   Provider = Data.define(:label, :ping_key, :raw_status, :checked_at) do
     def state
       return :unknown if raw_status.nil?
@@ -48,6 +50,15 @@ class APIEntreprise::Status
     Pending.new(count:, oldest_at: oldest_at&.in_time_zone) if count.positive?
   end
 
+  def degraded_data
+    degraded_champs_by_type_champ
+      .transform_keys { "Champ #{it.upcase}" }
+      .merge(DEMANDEUR_SIRET_LABEL => degraded_demandeur_sirets_count)
+      .filter { |_, count| count.positive? }
+      .sort_by { -it.last }
+      .to_h
+  end
+
   def parked_by_job
     ParkedAPIEntrepriseFetch.group(:job, :code)
       .pluck(:job, :code, Arel.star.count, Arel.sql("COUNT(*) FILTER (WHERE daily_failures IS NOT NULL)"), Arel.sql("MIN(created_at)"))
@@ -67,6 +78,27 @@ class APIEntreprise::Status
   def token = Procedure.instance_api_entreprise_token
 
   private
+
+  def degraded_champs_by_type_champ
+    ChampData
+      .degraded
+      .joins(dossier: :procedure)
+      .merge(Procedure.kept)
+      .where(champs: { stream: Dossier::NON_HISTORY_STREAMS })
+      .where(dossiers: { hidden_by_administration_at: nil, hidden_by_expired_at: nil })
+      .group(:type)
+      .count
+      .transform_keys { TypeDeChamp::CHAMP_TYPE_TO_TYPE_CHAMP.fetch(it) }
+  end
+
+  def degraded_demandeur_sirets_count
+    DemandeurSiret
+      .degraded
+      .joins(dossier: :procedure)
+      .merge(Procedure.kept)
+      .where(dossiers: { hidden_by_administration_at: nil, hidden_by_expired_at: nil })
+      .count
+  end
 
   # The health check writes each status with CACHE_TTL: what is left of it
   # tells when it ran.

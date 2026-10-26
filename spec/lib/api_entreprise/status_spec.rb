@@ -40,6 +40,30 @@ RSpec.describe APIEntreprise::Status do
     end
   end
 
+  describe '#degraded_data' do
+    let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :siret }, { type: :rna }, { type: :siret }]) }
+    let(:dossier) { create(:dossier, procedure:) }
+    let(:history_dossier) { create(:dossier, procedure:) }
+    let(:hidden_dossier) { create(:dossier, procedure:, hidden_by_administration_at: Time.current) }
+
+    def count(label) = status.degraded_data.fetch(label, 0)
+
+    def degrade_demandeur_siret(dossier)
+      DemandeurSiret.create!(dossier:, siret: '30613890001294').update_columns(external_state: 'degraded')
+    end
+
+    it 'counts the degraded champs by type and the degraded demandeur SIRETs a cron still replays' do
+      expect {
+        dossier.champ_data.each { it.update_columns(external_state: 'degraded') }
+        history_dossier.champ_data.each { it.update_columns(external_state: 'degraded', stream: 'history:1') }
+        degrade_demandeur_siret(dossier)
+        degrade_demandeur_siret(hidden_dossier)
+      }.to change { count('Champ SIRET') }.by(2)
+        .and change { count('Champ RNA') }.by(1)
+        .and change { count('SIRET lié au dossier') }.by(1)
+    end
+  end
+
   describe '#pending and #parked_by_job' do
     empty_seeds ParkedAPIEntrepriseFetch
 

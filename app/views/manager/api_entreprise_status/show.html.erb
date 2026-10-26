@@ -45,6 +45,25 @@
     </tbody>
   </table>
 
+  <% degraded_data = @status.degraded_data %>
+
+  <% if degraded_data.any? %>
+    <p>
+      <strong>Données en mode dégradé</strong><br>
+      (rattrapées automatiquement dès que le fournisseur répond à nouveau)
+    </p>
+    <ul>
+      <% degraded_data.each do |label, count| %>
+        <li>
+          <%= label %>&nbsp;:
+          <strong><%= number_with_delimiter(count) %></strong>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>Aucune donnée en mode dégradé.</p>
+  <% end %>
+
   <h2>Données complémentaires en attente</h2>
 
   <% pending = @status.pending %>
