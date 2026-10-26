@@ -13,6 +13,7 @@ fr:
   collapsible_explanation_text_label: "Texte complémentaire"
   notice_explicative_label: "Notice explicative"
   format_accepted_legend: "Format accepté"
+  numeric_type_champ_label: "Ce nombre peut comprendre des chiffres après la virgule (décimal)"
   positive_number_label: "Ce nombre doit être positif"
   range_number_label: "Ce nombre doit être compris entre des valeurs limites"
   min_number_label: "valeur minimale"

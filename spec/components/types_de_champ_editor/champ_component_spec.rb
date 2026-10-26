@@ -74,6 +74,30 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       end
     end
 
+    describe 'tdc number' do
+      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: type_champ }]) }
+      let(:coordinate) { procedure.draft_revision.public_revision_type_de_champs.first }
+      let(:decimals_toggle) { 'Ce nombre peut comprendre des chiffres après la virgule (décimal)' }
+
+      context 'when it is an integer' do
+        let(:type_champ) { :integer_number }
+
+        it { expect(page).to have_unchecked_field(decimals_toggle) }
+      end
+
+      context 'when it is a decimal' do
+        let(:type_champ) { :decimal_number }
+
+        it { expect(page).to have_checked_field(decimals_toggle) }
+      end
+
+      context 'when it is not a number' do
+        let(:type_champ) { :text }
+
+        it { expect(page).not_to have_field(decimals_toggle) }
+      end
+    end
+
     describe 'tdc quotient familial' do
       let(:procedure) { create(:procedure, public_type_de_champs:, private_type_de_champs: [{ type: :text }]) }
 

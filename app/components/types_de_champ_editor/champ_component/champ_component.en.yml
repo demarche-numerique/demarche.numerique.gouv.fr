@@ -12,6 +12,7 @@ en:
   collapsible_explanation_text_label: "Additional text"
   notice_explicative_label: "Explanatory notice"
   format_accepted_legend: "Accepted format"
+  numeric_type_champ_label: "This number may include digits after the decimal point (decimal)"
   positive_number_label: "This number must be positive"
   range_number_label: "This number must be within limit values"
   min_number_label: "minimum value"

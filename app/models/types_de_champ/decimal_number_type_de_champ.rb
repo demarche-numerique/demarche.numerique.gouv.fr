@@ -29,6 +29,10 @@ class TypesDeChamp::DecimalNumberTypeDeChamp < TypeDeChamp
     0
   end
 
+  def numeric_type_champ
+    'decimal_number'
+  end
+
   private
 
   def champ_formatted_value(champ)

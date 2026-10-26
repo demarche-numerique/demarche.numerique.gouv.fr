@@ -235,7 +235,8 @@ module Administrateurs
     end
 
     def type_de_champ_update_params
-      params.required(:type_de_champ).permit(:type_champ,
+      permitted = params.required(:type_de_champ).permit(:type_champ,
+        :numeric_type_champ,
         :libelle,
         :description,
         :mandatory,
@@ -291,6 +292,15 @@ module Administrateurs
           :zones_humides,
           :znieff,
         ])
+      permitted[:type_champ] = resolved_type_champ(permitted[:type_champ]) if permitted.key?(:type_champ)
+      permitted
+    end
+
+    def resolved_type_champ(type_champ)
+      return type_champ if type_champ != 'numeric'
+
+      toggle_type_champ = params.dig(:type_de_champ, :numeric_type_champ)
+      ['integer_number', 'decimal_number'].include?(toggle_type_champ) ? toggle_type_champ : 'integer_number'
     end
 
     def draft

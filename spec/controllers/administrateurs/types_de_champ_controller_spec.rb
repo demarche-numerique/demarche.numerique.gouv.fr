@@ -191,6 +191,71 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       end
     end
 
+    describe 'the « Nombre » menu entry' do
+      def type_champ_of(coordinate) = TypeDeChamp.where(id: coordinate.type_de_champ.id).pick(:type_champ)
+
+      context 'choosing it on a text field' do
+        let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text, libelle: 'l1' }]) }
+        let(:params) { { procedure_id: procedure.id, stable_id: first_coordinate.stable_id, type_de_champ: { type_champ: 'numeric' } } }
+
+        it 'makes it an integer, the toggle not being displayed yet' do
+          is_expected.to have_http_status(:ok)
+          expect(type_champ_of(first_coordinate)).to eq('integer_number')
+        end
+      end
+
+      context 'turning the decimals toggle on' do
+        let(:params) { default_params.deep_merge(type_de_champ: { type_champ: 'numeric', numeric_type_champ: 'decimal_number' }) }
+
+        it 'makes the integer a decimal' do
+          is_expected.to have_http_status(:ok)
+          expect(type_champ_of(second_coordinate)).to eq('decimal_number')
+        end
+      end
+
+      context 'turning the decimals toggle off' do
+        let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :decimal_number, libelle: 'l1' }]) }
+        let(:params) { { procedure_id: procedure.id, stable_id: first_coordinate.stable_id, type_de_champ: { type_champ: 'numeric', numeric_type_champ: 'integer_number' } } }
+
+        it 'makes the decimal an integer' do
+          is_expected.to have_http_status(:ok)
+          expect(type_champ_of(first_coordinate)).to eq('integer_number')
+        end
+      end
+
+      context 'choosing another type while the toggle is still displayed' do
+        let(:params) { default_params.deep_merge(type_de_champ: { type_champ: 'text', numeric_type_champ: 'integer_number' }) }
+
+        it 'follows the menu and ignores the toggle' do
+          is_expected.to have_http_status(:ok)
+          expect(type_champ_of(second_coordinate)).to eq('text')
+        end
+      end
+
+      context 'with an unexpected toggle value' do
+        let(:params) { default_params.deep_merge(type_de_champ: { type_champ: 'numeric', numeric_type_champ: 'siret' }) }
+
+        it 'falls back to an integer' do
+          is_expected.to have_http_status(:ok)
+          expect(type_champ_of(second_coordinate)).to eq('integer_number')
+        end
+      end
+
+      context 'editing the libelle of a number used by routing' do
+        let(:params) { default_params.deep_merge(type_de_champ: { type_champ: 'numeric', numeric_type_champ: 'integer_number' }) }
+
+        before do
+          allow_any_instance_of(ProcedureRevisionTypeDeChamp).to receive(:used_by_routing_rules?).and_return(true)
+        end
+
+        it 'saves it, the type being unchanged' do
+          is_expected.to have_http_status(:ok)
+          expect(flash.alert).to be_nil
+          expect(second_coordinate.libelle).to eq('updated')
+        end
+      end
+    end
+
     context 'rejected if type changed and routing involved' do
       let(:params) do
         default_params.deep_merge(type_de_champ: { type_champ: 'text', stable_id: third_coordinate.stable_id })

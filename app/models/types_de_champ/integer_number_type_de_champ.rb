@@ -29,6 +29,10 @@ class TypesDeChamp::IntegerNumberTypeDeChamp < TypeDeChamp
     0
   end
 
+  def numeric_type_champ
+    'integer_number'
+  end
+
   private
 
   def champ_formatted_value(champ)
