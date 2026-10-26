@@ -34,7 +34,7 @@ suite('CountdownButtonController', () => {
       'Vous pouvez maintenant renvoyer.'
     );
     element.innerHTML = `
-      <button type="submit" data-countdown-button-target="button"${seconds > 0 ? ' disabled' : ''}>Texte serveur</button>
+      <button type="submit" data-countdown-button-target="button">Texte serveur</button>
       <p class="fr-sr-only" role="status" data-countdown-button-target="status"></p>
     `;
     document.body.appendChild(element);

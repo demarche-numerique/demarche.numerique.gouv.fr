@@ -9,16 +9,6 @@ class Users::ResendConfirmationButtonComponent < ApplicationComponent
 
   attr_reader :seconds_remaining
 
-  def label
-    if seconds_remaining == 1
-      t('.countdown_one')
-    elsif seconds_remaining > 1
-      t('.countdown_other').sub('#', seconds_remaining.to_s)
-    else
-      resend_label
-    end
-  end
-
   def resend_label
     t('views.confirmation.new.resent')
   end

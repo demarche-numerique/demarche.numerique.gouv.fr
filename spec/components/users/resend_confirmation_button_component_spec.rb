@@ -8,8 +8,8 @@ RSpec.describe Users::ResendConfirmationButtonComponent, type: :component do
   context 'while the delay runs' do
     let(:seconds_remaining) { 119 }
 
-    it 'disables the button and shows the remaining time' do
-      expect(page).to have_button('Renvoyer un email de confirmation (119 secondes)', disabled: true)
+    it 'renders the button enabled with its plain label' do
+      expect(page).to have_button(exact_text: 'Renvoyer un email de confirmation', disabled: false)
     end
 
     it 'hands the countdown its labels' do
@@ -26,12 +26,6 @@ RSpec.describe Users::ResendConfirmationButtonComponent, type: :component do
     end
   end
 
-  context 'at the last second' do
-    let(:seconds_remaining) { 1 }
-
-    it { expect(page).to have_button('Renvoyer un email de confirmation (1 seconde)', disabled: true) }
-  end
-
   context 'when nothing was requested lately' do
     let(:seconds_remaining) { 0 }
 
@@ -42,6 +36,9 @@ RSpec.describe Users::ResendConfirmationButtonComponent, type: :component do
     let(:locale) { :en }
     let(:seconds_remaining) { 5 }
 
-    it { expect(page).to have_button('Resend the confirmation email (5 seconds)', disabled: true) }
+    it 'renders the button enabled with its plain label and hands the countdown its labels' do
+      expect(page).to have_button(exact_text: 'Resend the confirmation email', disabled: false)
+      expect(page.find('[data-controller="countdown-button"]')['data-countdown-button-other-value']).to eq('Resend the confirmation email (# seconds)')
+    end
   end
 end

@@ -143,8 +143,9 @@ describe Users::ConfirmationsController, type: :controller do
           get :show, params: { confirmation_token: 'email-change-token' }
         end
 
-        it 'shows the resend form with the remaining time' do
-          expect(response.body).to have_button('Renvoyer un email de confirmation (90 secondes)', disabled: true)
+        it 'hands the remaining time to the countdown, button enabled' do
+          expect(response.body).to have_button(exact_text: 'Renvoyer un email de confirmation', disabled: false)
+          expect(response.body).to have_css('[data-countdown-button-seconds-value="90"]')
         end
 
         it 'keeps the page out of the browser cache' do
@@ -156,6 +157,7 @@ describe Users::ConfirmationsController, type: :controller do
         get :show, params: { confirmation_token: 'email-change-token' }
 
         expect(response.body).to have_button(exact_text: 'Renvoyer un email de confirmation', disabled: false)
+        expect(response.body).to have_css('[data-countdown-button-seconds-value="0"]')
       end
     end
   end
@@ -194,11 +196,12 @@ describe Users::ConfirmationsController, type: :controller do
     context 'with a confirmation request in the session' do
       before { freeze_time }
 
-      it 'counts down from the last request' do
+      it 'hands the remaining time since the last request to the countdown' do
         session[:confirmation_requested_at] = 30.seconds.ago.to_i
         get :new, params: { email: signed_email }
 
-        expect(response.body).to have_button('Renvoyer un email de confirmation (90 secondes)', disabled: true)
+        expect(response.body).to have_button(exact_text: 'Renvoyer un email de confirmation', disabled: false)
+        expect(response.body).to have_css('[data-countdown-button-seconds-value="90"]')
       end
 
       it 'lets them resend once two minutes have passed' do
@@ -206,13 +209,15 @@ describe Users::ConfirmationsController, type: :controller do
         get :new, params: { email: signed_email }
 
         expect(response.body).to have_button(exact_text: 'Renvoyer un email de confirmation', disabled: false)
+        expect(response.body).to have_css('[data-countdown-button-seconds-value="0"]')
       end
 
       it 'never waits more than two minutes when server clocks drift' do
         session[:confirmation_requested_at] = 10.seconds.from_now.to_i
         get :new, params: { email: signed_email }
 
-        expect(response.body).to have_button('Renvoyer un email de confirmation (120 secondes)', disabled: true)
+        expect(response.body).to have_button(exact_text: 'Renvoyer un email de confirmation', disabled: false)
+        expect(response.body).to have_css('[data-countdown-button-seconds-value="120"]')
       end
     end
 
@@ -220,6 +225,7 @@ describe Users::ConfirmationsController, type: :controller do
       get :new, params: { email: signed_email }
 
       expect(response.body).to have_button(exact_text: 'Renvoyer un email de confirmation', disabled: false)
+      expect(response.body).to have_css('[data-countdown-button-seconds-value="0"]')
     end
 
     it 'shows no button once the page address has expired, even after a recent request' do
