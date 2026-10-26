@@ -37,8 +37,8 @@ describe TypesDeChampEditor::TypeDeChampSelectorComponent, type: :component do
       expect(page).not_to have_text('Aucun type de champ autorisé')
     end
 
-    it 'leaves out the legacy number type and the types behind a disabled flag' do
-      expect(values).not_to include('number', 'pre_rempli')
+    it 'leaves out the legacy number type' do
+      expect(values).not_to include('number')
     end
   end
 
@@ -58,10 +58,11 @@ describe TypesDeChampEditor::TypeDeChampSelectorComponent, type: :component do
     end
   end
 
-  describe 'a type behind an enabled feature flag' do
-    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text }]).tap { Flipper.enable(:pre_rempli_type_de_champ, _1) } }
+  describe 'a type behind a disabled feature flag' do
+    let(:procedure) { create(:procedure, private_type_de_champs: [{ type: :text }]) }
+    let(:coordinate) { procedure.draft_revision.private_revision_type_de_champs.first }
 
-    it { expect(values).to include('pre_rempli') }
+    it { expect(values).not_to include('engagement_juridique') }
   end
 
   describe 'public-only and private-only types' do

@@ -11,7 +11,6 @@ describe 'Pre-rempli champ:', js: true do
     let(:tdc) { procedure.active_revision.public_root_type_de_champs.first }
 
     before do
-      Flipper.enable(:pre_rempli_type_de_champ, procedure)
       dossier.project_champ(tdc).update!(value: 'REF-42')
       login_as user, scope: :user
     end
@@ -50,10 +49,6 @@ describe 'Pre-rempli champ:', js: true do
     let(:procedure) { create(:procedure, :published, :for_individual, public_type_de_champs: [{ type: :pre_rempli, libelle: 'Code projet' }]) }
     let(:tdc) { procedure.active_revision.public_root_type_de_champs.first }
 
-    before do
-      Flipper.enable(:pre_rempli_type_de_champ, procedure)
-    end
-
     it 'assigns the value from prefill URL parameters' do
       visit "/users/sign_in"
       sign_in_with user.email, password
@@ -88,7 +83,6 @@ describe 'Pre-rempli champ:', js: true do
     let(:tdc) { procedure.active_revision.public_root_type_de_champs.first }
 
     before do
-      Flipper.enable(:pre_rempli_type_de_champ, procedure)
       dossier.project_champ(tdc).update!(value: 'REF-INSTR-99')
       login_as instructeur.user, scope: :user
     end
@@ -110,7 +104,6 @@ describe 'Pre-rempli champ:', js: true do
     let!(:avis) { create(:avis, dossier:, claimant: instructeur, experts_procedure:) }
 
     before do
-      Flipper.enable(:pre_rempli_type_de_champ, procedure)
       dossier.project_champ(tdc).update!(value: 'EXP-VALUE')
       login_as expert.user, scope: :user
     end
