@@ -5,6 +5,13 @@
 # (and their champs) is materialized at a time. Mirrors XlsxExport without its
 # secondary sheets — the CSV is single-sheet, établissement columns inline.
 class ProcedureExportService::CsvExport
+  # Spreadsheets read a cell starting with = or @ (or their full-width forms)
+  # as a formula. A formula can only call a function or a reference through a
+  # name, so only values containing a letter get a leading apostrophe, which
+  # makes the spreadsheet display them as typed.
+  FORMULA = /\A[=@\uFF1D\uFF20].*\p{L}/m
+  AS_TEXT = -> (value) { value.is_a?(String) && value.match?(FORMULA) ? "'#{value}" : value }
+
   def initialize(procedure:, dossiers:, export_template:)
     @procedure = procedure
     @dossiers = dossiers
@@ -12,7 +19,7 @@ class ProcedureExportService::CsvExport
   end
 
   def write_to(io)
-    csv = CSV.new(io)
+    csv = CSV.new(io, write_converters: [AS_TEXT])
     headers_written = false
 
     DossierPreloader
