@@ -81,13 +81,7 @@ module Dsfr
       private
 
       def dossier_errors_for_champ
-        object.dossier.errors
-          .filter do |error|
-            # Match nested errors where the champ public_id matches this champ's public_id
-            error.is_a?(ActiveModel::NestedError) &&
-            error.inner_error.base.respond_to?(:public_id) &&
-            error.inner_error.base.public_id == object.public_id
-          end.map(&:message)
+        object.dossier_nested_errors.map(&:message)
       end
 
       # lookup for edge case from `form.rich_text_area`

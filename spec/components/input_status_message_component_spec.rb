@@ -154,6 +154,34 @@ RSpec.describe Dsfr::InputStatusMessageComponent, type: :component do
           end
         end
       end
+
+      context "when announced to screen readers" do
+        let(:component) { described_class.new(champ:, as_announcement: true) }
+
+        it "announces the linked dossier" do
+          expect(subject.text).to include(linked_dossier.procedure.libelle)
+        end
+
+        context "when the validation rejected the number" do
+          before { champ.errors.add(:value, :not_in_allowed_procedures) }
+
+          it "announces nothing, as the visible region shows the error" do
+            expect(subject.text.strip).to be_empty
+          end
+        end
+
+        context "when the validation put the error on another instance of the champ" do
+          before do
+            other_instance = ChampData.find(champ.id)
+            other_instance.errors.add(:value, :not_in_allowed_procedures)
+            champ.dossier.errors.objects.append(DossierValidateConcern::ChampNestedError.new(champ.dossier, other_instance.errors.first))
+          end
+
+          it "announces nothing" do
+            expect(subject.text.strip).to be_empty
+          end
+        end
+      end
     end
 
     context 'with referentiel champs' do
