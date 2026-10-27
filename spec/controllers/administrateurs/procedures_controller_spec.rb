@@ -821,6 +821,21 @@ describe Administrateurs::ProceduresController, type: :controller do
       end
     end
 
+    context 'when the dossier submitted message was edited with the tiptap editor' do
+      let(:json_body) { { "type" => "doc", "content" => [{ "type" => "paragraph", "content" => [{ "type" => "text", "text" => "Merci pour votre dépôt" }] }] } }
+
+      before do
+        procedure.active_revision.update!(dossier_submitted_message: create(:dossier_submitted_message, json_body:, message_on_submit_by_usager: "Ancien texte"))
+      end
+
+      it 'shows the current message in the hint' do
+        subject
+
+        expect(response.body).to include("(Message personnalisé) Merci pour votre dépôt")
+        expect(response.body).not_to include("Ancien texte")
+      end
+    end
+
     context 'when the procedure is declarative and kept on the legacy emails' do
       before do
         procedure.update!(declarative_with_state: :accepte)

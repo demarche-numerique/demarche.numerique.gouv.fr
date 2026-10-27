@@ -30,6 +30,11 @@ class DossierSubmittedMessage < ApplicationRecord
     json_body.present?
   end
 
+  def body_as_text
+    return nil if json_body.blank?
+    TiptapService.to_plain_text(json_body.deep_symbolize_keys).squish
+  end
+
   private
 
   # Provisoire : en attendant la MT T20260114backfillDossierSubmittedMessageJSONBodyTask

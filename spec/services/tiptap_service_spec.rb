@@ -579,6 +579,20 @@ RSpec.describe TiptapService do
     end
   end
 
+  describe '.to_plain_text' do
+    it 'joins the inline nodes of a paragraph and separates the blocks with a space' do
+      json = {
+        type: 'doc',
+        content: [
+          { type: 'paragraph', content: [{ type: 'text', text: 'Merci pour votre ' }, { type: 'text', text: 'dépôt', marks: [{ type: 'bold' }] }, { type: 'text', text: '.' }] },
+          { type: 'bulletList', content: [{ type: 'listItem', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Réponse sous 15 jours' }] }] }] },
+        ],
+      }
+
+      expect(described_class.to_plain_text(json)).to eq('Merci pour votre dépôt. Réponse sous 15 jours')
+    end
+  end
+
   describe '.to_texts_and_tags' do
     subject { described_class.new.to_texts_and_tags(json, substitutions) }
 

@@ -283,7 +283,7 @@
                 <%= t('shared.dossier_submitted_message.title') %>
 
                 <div class="fr-hint-text">
-                  <%= t('administrateurs.procedures.clone.dossier_submitted_message_hint', message: @procedure.active_revision.dossier_submitted_message&.message_on_submit_by_usager) %>
+                  <%= t('administrateurs.procedures.clone.dossier_submitted_message_hint', message: @procedure.active_revision.dossier_submitted_message.body_as_text) %>
                 </div>
               <% end %>
             </div>

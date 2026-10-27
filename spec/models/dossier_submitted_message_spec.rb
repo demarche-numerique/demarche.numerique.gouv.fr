@@ -63,4 +63,20 @@ RSpec.describe DossierSubmittedMessage do
       end
     end
   end
+
+  describe '#body_as_text' do
+    subject { build(:dossier_submitted_message, json_body:, message_on_submit_by_usager: "Ancien texte").body_as_text }
+
+    context 'when json_body is present' do
+      let(:json_body) { { "type" => "doc", "content" => [{ "type" => "paragraph", "content" => [{ "type" => "text", "text" => "Merci pour votre dépôt." }] }] } }
+
+      it { is_expected.to eq("Merci pour votre dépôt.") }
+    end
+
+    context 'when json_body is nil' do
+      let(:json_body) { nil }
+
+      it { is_expected.to be_nil }
+    end
+  end
 end

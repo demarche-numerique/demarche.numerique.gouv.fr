@@ -107,6 +107,19 @@ class TiptapService
     node in { type: 'text', text: '' }
   end
 
+  def self.to_plain_text(node)
+    case node
+    in { type: 'text', text: }
+      text
+    in { type: 'hardBreak' }
+      ' '
+    in { type:, content: Array => content }
+      content.map { to_plain_text(it) }.join(type == 'paragraph' ? '' : ' ')
+    else
+      ''
+    end
+  end
+
   private_class_method :resolve_blocks, :resolve_block, :resolve_inline, :block?, :empty_text?
 
   def to_html(node, substitutions = {})
