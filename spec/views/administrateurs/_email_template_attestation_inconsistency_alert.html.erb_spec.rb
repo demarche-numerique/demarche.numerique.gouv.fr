@@ -53,9 +53,14 @@ describe 'admin/_email_template_attestation_inconsistency_alert', type: :view do
       end
 
       it 'explains how to insert the tag with the editor' do
-        alert = render_alert(procedure, mail_type).squish
+        alert = strip_tags(render_alert(procedure, mail_type)).squish
         expect(alert).to include("insérez la balise « lien attestation » dans l’accusé d’acceptation (tapez @ dans le corps de l’email)")
         expect(alert).not_to include("--lien attestation--")
+      end
+
+      it 'includes mail template edit link' do
+        expect(render_alert(procedure, mail_type))
+          .to include(edit_admin_procedure_email_template_path(procedure, 'accepte'))
       end
 
       context 'when procedure is draft' do
@@ -63,6 +68,22 @@ describe 'admin/_email_template_attestation_inconsistency_alert', type: :view do
           expect(render_alert(procedure, mail_type))
             .to include(edit_admin_procedure_attestation_template_v2_path(procedure, attestation_kind: :acceptation))
         end
+      end
+    end
+
+    context 'when only the combined declarative template misses the attestation tag' do
+      let(:attestation) { build(:attestation_template, activated: true, kind: :acceptation) }
+      let(:procedure) { create(:procedure, declarative_with_state: :accepte, attestation_acceptation_template: attestation) }
+
+      before do
+        create(:email_accepte, procedure:, body: '--lien attestation--')
+        create(:email_depose_et_accepte, procedure:, body: 'aucun tag ici')
+        procedure.reload
+      end
+
+      it 'links to the combined template edit page' do
+        expect(render_alert(procedure, mail_type))
+          .to include(edit_admin_procedure_email_template_path(procedure, Emails::DeposeEtAccepte::SLUG))
       end
     end
   end
@@ -107,6 +128,11 @@ describe 'admin/_email_template_attestation_inconsistency_alert', type: :view do
       it 'includes missing_tag alert text' do
         expect(render_alert(procedure, mail_type).squish)
           .to include("Cette démarche comporte une attestation, mais l’accusé de refus ne la mentionne pas :")
+      end
+
+      it 'includes mail template edit link' do
+        expect(render_alert(procedure, mail_type))
+          .to include(edit_admin_procedure_email_template_path(procedure, 'refuse'))
       end
 
       it 'includes attestation edit link' do

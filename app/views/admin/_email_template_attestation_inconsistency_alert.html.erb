@@ -17,7 +17,7 @@
         <%= link_to(t(".disable_attestation"), edit_admin_procedure_attestation_template_v2_path(procedure, attestation_kind: :refus)) %>
         <%= t(".or_word") %>
       <% end -%>
-      <%= t(".add_tag") %>
+      <%= link_to(t(".add_tag"), edit_admin_procedure_email_template_path(procedure, inconsistency[:email_slug])) %>
       <%= t(".attestation_tag") %>
       <%= t(".to_word") %>
       <%= t("views.administrateurs.mail_#{mail_type}") %>
