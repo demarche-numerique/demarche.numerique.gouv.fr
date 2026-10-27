@@ -137,6 +137,40 @@ describe EmailTemplate do
     it_behaves_like "can replace tokens in template"
   end
 
+  describe '#mentions_attestation?' do
+    let(:mention) { { type: 'mention', attrs: { id: 'dossier_attestation_url', label: 'lien attestation' } } }
+
+    subject { Emails::Accepte.new(procedure:, body:, json_body:).mentions_attestation? }
+
+    context 'with a tiptap body holding the lien attestation mention' do
+      let(:body) { nil }
+      let(:json_body) { { type: 'doc', content: [{ type: 'paragraph', content: [mention] }] } }
+
+      it { is_expected.to be true }
+    end
+
+    context 'with a tiptap body without the mention, the legacy body still holding the tag' do
+      let(:body) { '--lien attestation--' }
+      let(:json_body) { { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: '--lien attestation--' }] }] } }
+
+      it { is_expected.to be false }
+    end
+
+    context 'with a legacy body holding the tag' do
+      let(:body) { 'Votre attestation : --lien attestation--' }
+      let(:json_body) { nil }
+
+      it { is_expected.to be true }
+    end
+
+    context 'with a legacy body holding the tag with spaces inside the delimiters' do
+      let(:body) { '<p>Votre attestation : -- lien attestation --</p>' }
+      let(:json_body) { nil }
+
+      it { is_expected.to be true }
+    end
+  end
+
   describe 'tags' do
     describe 'in initiated mail' do
       it "does not treat date de passage en instruction as a tag" do

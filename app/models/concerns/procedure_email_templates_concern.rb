@@ -3,8 +3,6 @@
 module ProcedureEmailTemplatesConcern
   extend ActiveSupport::Concern
 
-  ATTESTATION_TAG = '--lien attestation--'
-
   included do
     has_many :custom_email_templates, class_name: "EmailTemplate", dependent: :destroy
     # validate: false — la validation passe uniquement par le
@@ -133,7 +131,7 @@ module ProcedureEmailTemplatesConcern
     emails, attestation = attestation_inconsistency_scope(email_type)
     expected_tag = attestation&.activated? || false
 
-    inconsistent = emails.find { it.body.to_s.include?(ATTESTATION_TAG) != expected_tag }
+    inconsistent = emails.find { it.mentions_attestation? != expected_tag }
     return if inconsistent.nil?
 
     { email_slug: inconsistent.class.const_get(:SLUG), kind: expected_tag ? :missing_tag : :extraneous_tag }

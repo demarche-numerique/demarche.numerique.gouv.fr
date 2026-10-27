@@ -359,6 +359,27 @@ describe ProcedureEmailTemplatesConcern do
       it { is_expected.to eq(email_slug: Emails::DeposeEtAccepte::SLUG, kind: :missing_tag) }
     end
 
+    context 'when the combined template was edited with the tiptap editor' do
+      let(:mention) { { type: 'mention', attrs: { id: 'dossier_attestation_url', label: 'lien attestation' } } }
+      let(:json_body) { { type: 'doc', content: [{ type: 'paragraph', content: paragraph }] } }
+
+      before { create(:email_depose_et_accepte, procedure:, body: legacy_body, json_body:) }
+
+      context 'with a lien attestation mention' do
+        let(:legacy_body) { 'aucun tag ici' }
+        let(:paragraph) { [{ type: 'text', text: 'Votre attestation : ' }, mention] }
+
+        it { is_expected.to be_nil }
+      end
+
+      context 'without a lien attestation mention, the legacy body still holding the tag' do
+        let(:legacy_body) { '--lien attestation--' }
+        let(:paragraph) { [{ type: 'text', text: 'aucun tag ici' }] }
+
+        it { is_expected.to include(kind: :missing_tag) }
+      end
+    end
+
     context 'when the procedure doesn’t have an attestation' do
       let(:attestation) { nil }
 

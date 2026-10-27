@@ -133,6 +133,8 @@ module TagsSubstitutionConcern
     },
   ].push(DOSSIER_ID_TAG)
 
+  DOSSIER_ATTESTATION_URL_TAG_ID = 'dossier_attestation_url'
+
   DOSSIER_TAGS_FOR_MAIL = [
     {
       id: 'dossier_url',
@@ -143,7 +145,7 @@ module TagsSubstitutionConcern
       escapable: false,
     },
     {
-      id: 'dossier_attestation_url',
+      id: DOSSIER_ATTESTATION_URL_TAG_ID,
       libelle: 'lien attestation',
       description: '',
       lambda: -> (d) { external_link(attestation_dossier_url(d, host:)) },
