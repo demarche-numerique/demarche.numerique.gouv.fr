@@ -471,6 +471,7 @@ describe Users::DossiersController, type: :controller do
       allow_any_instance_of(APIEntrepriseToken).to receive(:roles)
         .and_return(["attestations_fiscales", "attestations_sociales", "bilans_entreprise_bdf"])
       allow_any_instance_of(APIEntrepriseToken).to receive(:expired?).and_return(token_expired)
+      allow(APIEntreprise::HealthChecker).to receive(:provider_up?).and_return(true)
       allow(APIEntreprise::HealthChecker).to receive(:provider_up?).with(:insee_sirene).and_return(provider_up)
       travel_to(2.minutes.ago)
     end

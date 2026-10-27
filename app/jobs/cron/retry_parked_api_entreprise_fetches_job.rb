@@ -43,7 +43,7 @@ class Cron::RetryParkedAPIEntrepriseFetchesJob < Cron::CronJob
   def replay(pool, job_classes)
     return if APIEntreprise::RateLimiter.throttled?(pool)
 
-    job_classes_by_name = job_classes.filter { provider_up?(it) }.index_by { it.name.demodulize }
+    job_classes_by_name = job_classes.reject(&:provider_down?).index_by { it.name.demodulize }
     return if job_classes_by_name.empty?
 
     batch = not_in_queue
@@ -76,10 +76,5 @@ class Cron::RetryParkedAPIEntrepriseFetchesJob < Cron::CronJob
   def due_for_replay
     ParkedAPIEntrepriseFetch.where(daily_failures: nil, updated_at: ..REPLAYED_EVERY.ago)
       .or(ParkedAPIEntrepriseFetch.where.not(daily_failures: nil).where(updated_at: ..RETRIED_DAILY_EVERY.ago))
-  end
-
-  def provider_up?(job_class)
-    ping_key = job_class.new.ping_key_for_job
-    ping_key.nil? || APIEntreprise::HealthChecker.provider_up?(ping_key)
   end
 end

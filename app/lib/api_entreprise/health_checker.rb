@@ -26,6 +26,8 @@ module APIEntreprise::HealthChecker
     status = cached_status(ping_key)
     return true if status.nil? # fail-open: cache empty or Redis down
     status.in?(UP_STATUSES)
+  rescue Redis::BaseError
+    true
   end
 
   def self.refresh_all!

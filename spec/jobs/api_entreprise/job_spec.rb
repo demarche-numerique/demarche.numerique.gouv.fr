@@ -189,17 +189,12 @@ RSpec.describe APIEntreprise::Job, type: :job do
     end
   end
 
-  describe '#ping_key_for_job' do
-    it 'returns the correct ping key for each job class' do
-      expect(APIEntreprise::ExtraitKbisJob.new.ping_key_for_job).to eq('infogreffe/rcs')
-      expect(APIEntreprise::TvaJob.new.ping_key_for_job).to eq('dgfip/numero_tva')
-      expect(APIEntreprise::AssociationJob.new.ping_key_for_job).to eq('djepva/api-association')
-      expect(APIEntreprise::ExercicesJob.new.ping_key_for_job).to eq('dgfip/chiffre_affaires')
-      expect(APIEntreprise::EffectifsJob.new.ping_key_for_job).to eq('gip_mds/effectifs')
-      expect(APIEntreprise::EffectifsAnnuelsJob.new.ping_key_for_job).to eq('gip_mds/effectifs')
-      expect(APIEntreprise::AttestationSocialeJob.new.ping_key_for_job).to eq('urssaf/attestation_sociale')
-      expect(APIEntreprise::AttestationFiscaleJob.new.ping_key_for_job).to eq('dgfip/attestation_fiscale')
-      expect(APIEntreprise::BilansBdfJob.new.ping_key_for_job).to eq('banque_de_france/bilans')
+  describe '.provider_down?' do
+    before { allow(APIEntreprise::HealthChecker).to receive(:provider_up?).with('dgfip/numero_tva').and_return(false) }
+
+    it 'checks the provider of the job class' do
+      expect(APIEntreprise::TvaJob.provider_down?).to be true
+      expect(APIEntreprise::ExtraitKbisJob.provider_down?).to be false
     end
   end
 

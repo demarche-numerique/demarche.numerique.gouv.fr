@@ -19,6 +19,7 @@ RSpec.describe Cron::RetryDegradedExternalDataJob, type: :job do
 
     before do
       champ.update_columns(external_id: '30613890001294', value: '30613890001294', external_state:)
+      allow(APIEntreprise::HealthChecker).to receive(:provider_up?).and_return(true)
       allow(APIEntreprise::HealthChecker).to receive(:provider_up?).with(:insee_sirene).and_return(insee_up)
     end
 

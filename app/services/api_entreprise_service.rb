@@ -12,11 +12,11 @@ class APIEntrepriseService
       jobs << APIEntreprise::AttestationSocialeJob if token.can_fetch_attestation_sociale?
       jobs << APIEntreprise::BilansBdfJob if token.can_fetch_bilans_bdf?
       jobs.each do |job|
-        job.set(wait:).perform_later(etablissement.id, procedure_id)
+        job.perform_later_or_park(etablissement.id, procedure_id, wait:)
       end
 
       if token.can_fetch_attestation_fiscale?
-        APIEntreprise::AttestationFiscaleJob.set(wait:).perform_later(etablissement.id, procedure_id, user_id)
+        APIEntreprise::AttestationFiscaleJob.perform_later_or_park(etablissement.id, procedure_id, user_id, wait:)
       end
     end
   end
