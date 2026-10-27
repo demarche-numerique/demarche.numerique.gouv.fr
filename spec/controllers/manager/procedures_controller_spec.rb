@@ -61,6 +61,34 @@ describe Manager::ProceduresController, type: :controller do
       expect(response.body).to include(add_administrateur_and_instructeur_edit_manager_procedure_path(procedure))
     end
 
+    context 'when an email template was edited with the tiptap editor' do
+      let(:mention) { { type: 'mention', attrs: { id: 'dossier_number', label: 'numéro du dossier' } } }
+      let(:email_accepte) do
+        build(:email_accepte,
+          subject: 'Ancien sujet',
+          body: 'Ancien corps',
+          json_subject: { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Nouveau sujet ' }, mention] }] },
+          json_body: { type: 'doc', content: [{ type: 'paragraph', content: [{ type: 'text', text: 'Nouveau corps' }] }] })
+      end
+      let(:procedure) { create(:procedure, email_accepte:) }
+
+      it 'shows the tiptap subject and body' do
+        expect(response.body).to include('Nouveau sujet --numéro du dossier--')
+        expect(response.body).to include('Nouveau corps')
+        expect(response.body).not_to include('Ancien sujet')
+        expect(response.body).not_to include('Ancien corps')
+      end
+    end
+
+    context 'when the attestation template is a v2' do
+      let(:procedure) { create(:procedure, attestation_acceptation_template: build(:attestation_template, :v2)) }
+
+      it 'shows the tiptap body' do
+        expect(response.body).to include('Mon titre pour --libellé démarche--')
+        expect(response.body).to include('Dossier: n° --numéro du dossier--')
+      end
+    end
+
     context 'when sorting a has_many sub-table by an association column' do
       let(:procedure) { create(:procedure, administrateurs: [administrateur]) }
 

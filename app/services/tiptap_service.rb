@@ -33,6 +33,10 @@ class TiptapService
     tags
   end
 
+  def self.label_placeholders(node)
+    used_tags_and_libelle_for(node).to_h { |id, label| [id, "--#{label}--"] }
+  end
+
   # Replaces every mention by its substitution and returns a document that
   # follows the tiptap schema, so that renderers (HTML, Typst) never have to
   # know about mentions:

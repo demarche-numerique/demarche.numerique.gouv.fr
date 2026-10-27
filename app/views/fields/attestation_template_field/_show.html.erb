@@ -9,14 +9,19 @@
       Aucun
     <% end %>
   </p>
-  <strong>Titre</strong>
-  <pre style="white-space: pre-wrap;">
-    <%= field.data.title %>
-  </pre>
-  <strong>Corps</strong>
-  <pre style="white-space: pre-wrap;">
-    <%= field.data.body %>
-  </pre>
+  <% if field.data.version == 2 %>
+    <strong>Corps</strong>
+    <div><%= sanitize(field.body_html) %></div>
+  <% else %>
+    <strong>Titre</strong>
+    <pre style="white-space: pre-wrap;">
+      <%= field.data.title %>
+    </pre>
+    <strong>Corps</strong>
+    <pre style="white-space: pre-wrap;">
+      <%= field.data.body %>
+    </pre>
+  <% end %>
   <strong>Signature</strong>
   <p>
     <% if field.data.signature.attached? %>
