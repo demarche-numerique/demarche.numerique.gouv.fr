@@ -15,11 +15,11 @@ RSpec.describe Instructeurs::ArchiveModalComponent, type: :component do
     end
 
     it 'renders the warning modal with a PATCH form waiting for its action' do
-      expect(subject).to have_selector('dialog#modal-archive[aria-labelledby="modal-archive-title"][data-controller="modal-escape"]', visible: :all)
+      expect(subject).to have_selector('dialog#modal-archive[aria-labelledby="modal-archive-title"]', visible: :all)
       expect(subject).to have_selector('h2#modal-archive-title', text: 'Déplacer dans « à archiver »', visible: :all)
       expect(subject).to have_selector('.fr-notice.fr-notice--info', text: 'Information importante', visible: :all)
       expect(subject).to have_selector('form#modal-archive-form[action=""] input[name="_method"][value="patch"]', visible: :all)
-      expect(subject).to have_selector('input#modal-archive-dismiss[type="checkbox"][name="dismiss_archive_warning"][value="1"][data-action="keydown.esc->modal-escape#close"]', visible: :all)
+      expect(subject).to have_selector('input#modal-archive-dismiss[type="checkbox"][name="dismiss_archive_warning"][value="1"]', visible: :all)
       expect(subject).to have_selector('label[for="modal-archive-dismiss"]', text: 'Ne plus afficher cette information', visible: :all)
       expect(subject).to have_selector('button[type="button"][aria-controls="modal-archive"]', text: 'Annuler', visible: :all)
       expect(subject).to have_selector('button[type="submit"][form="modal-archive-form"]', text: 'Confirmer', visible: :all)

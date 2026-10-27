@@ -64,17 +64,6 @@ describe 'Archive warning modal', js: true do
     expect(archive_warning_dismissed_on(procedure)).to be(false)
   end
 
-  scenario 'Escape from the dismiss checkbox closes the modal and gives focus back' do
-    visit instructeur_dossier_path(procedure, dossier_1)
-
-    open_dsfr_modal('#modal-archive') { click_on 'Déplacer dans “à archiver“' }
-    find('#modal-archive-dismiss', visible: :all).send_keys(:escape)
-
-    expect(page).to have_no_selector('#modal-archive', visible: :visible)
-    expect(page).to have_selector('button.fr-icon-folder-2-line[aria-controls="modal-archive"]:focus')
-    expect(dossier_1.reload.archived).to be(false)
-  end
-
   scenario 'batch archiving shows the modal instead of the browser confirm' do
     suppress_turbo_poll
     visit instructeur_procedure_path(procedure, statut: 'traites')

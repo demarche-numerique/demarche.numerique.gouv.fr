@@ -1,4 +1,4 @@
-<%= render Dsfr::ModalComponent.new(id: modal_id, data: { controller: 'modal-escape' }) do |modal| %>
+<%= render Dsfr::ModalComponent.new(id: modal_id) do |modal| %>
   <% modal.with_title { t('.title') } %>
 
   <% modal.with_footer do %>
@@ -29,7 +29,6 @@
         id="<%= checkbox_id %>"
         name="dismiss_archive_warning"
         value="1"
-        data-action="keydown.esc->modal-escape#close"
       >
 
       <label class="fr-label" for="<%= checkbox_id %>">
