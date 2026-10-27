@@ -173,8 +173,8 @@
               = paginate @filtered_sorted_paginated_ids, views_prefix: 'shared'
             .fr-table__footer--end.flex-no-grow
 
-      - if @statut.in?(%w[traites tous])
-        = render Instructeurs::ArchiveModalComponent.new(procedure: @procedure)
+      = content_for(:archive_modals)
+
 
     - else
       %h2.empty-text

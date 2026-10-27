@@ -18,19 +18,19 @@ describe 'Archive warning modal', js: true do
   scenario 'archiving from the dossier page warns until the instructeur asks to stop on this procedure' do
     visit instructeur_dossier_path(procedure, dossier_1)
 
-    open_dsfr_modal('#modal-archive') { click_on 'Déplacer dans “à archiver“' }
-    within('#modal-archive') do
+    open_dsfr_modal("#modal-archive-#{dossier_1.id}") { click_on 'Déplacer dans “à archiver“' }
+    within("#modal-archive-#{dossier_1.id}") do
       expect(page).to have_content('Information importante')
       check('Ne plus afficher cette information', allow_label_click: true)
       click_on 'Annuler'
     end
-    expect(page).to have_no_selector('#modal-archive', visible: :visible)
+    expect(page).to have_no_selector("#modal-archive-#{dossier_1.id}", visible: :visible)
     expect(page).to have_button('Déplacer dans “à archiver“')
     expect(dossier_1.reload.archived).to be(false)
     expect(archive_warning_dismissed_on(procedure)).to be(false)
 
-    open_dsfr_modal('#modal-archive') { click_on 'Déplacer dans “à archiver“' }
-    within('#modal-archive') do
+    open_dsfr_modal("#modal-archive-#{dossier_1.id}") { click_on 'Déplacer dans “à archiver“' }
+    within("#modal-archive-#{dossier_1.id}") do
       check('Ne plus afficher cette information', allow_label_click: true)
       click_on 'Confirmer'
     end
@@ -39,7 +39,7 @@ describe 'Archive warning modal', js: true do
     expect(archive_warning_dismissed_on(procedure)).to be(true)
 
     visit instructeur_dossier_path(procedure, dossier_2)
-    expect(page).not_to have_selector('#modal-archive', visible: :all)
+    expect(page).not_to have_selector("#modal-archive-#{dossier_2.id}", visible: :all)
     click_on 'Déplacer dans “à archiver“'
     expect(page).to have_button('Replacer dans “traités”')
     expect(dossier_2.reload.archived).to be(true)
@@ -47,16 +47,16 @@ describe 'Archive warning modal', js: true do
     other_procedure = create(:simple_procedure, :published, instructeurs: [instructeur], administrateurs: [administrateurs.default])
     other_dossier = create(:dossier, :accepte, procedure: other_procedure)
     visit instructeur_dossier_path(other_procedure, other_dossier)
-    open_dsfr_modal('#modal-archive') { click_on 'Déplacer dans “à archiver“' }
-    expect(page).to have_selector('#modal-archive', visible: :visible)
+    open_dsfr_modal("#modal-archive-#{other_dossier.id}") { click_on 'Déplacer dans “à archiver“' }
+    expect(page).to have_selector("#modal-archive-#{other_dossier.id}", visible: :visible)
   end
 
   scenario 'archiving from the traites table targets the clicked dossier', :allow_forgery_protection do
     visit instructeur_procedure_path(procedure, statut: 'traites')
 
     row = find("##{dom_id(BatchOperation.new, "checkbox_#{dossier_2.id}")}").ancestor('tr')
-    open_dsfr_modal('#modal-archive') { within(row) { click_on 'Déplacer dans “à archiver“' } }
-    within('#modal-archive') { click_on 'Confirmer' }
+    open_dsfr_modal("#modal-archive-#{dossier_2.id}") { within(row) { click_on 'Déplacer dans “à archiver“' } }
+    within("#modal-archive-#{dossier_2.id}") { click_on 'Confirmer' }
 
     expect(page).not_to have_selector("##{dom_id(BatchOperation.new, "checkbox_#{dossier_2.id}")}")
     expect(dossier_2.reload.archived).to be(true)

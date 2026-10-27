@@ -57,5 +57,4 @@
     .header-actions.fr-ml-auto
       = render partial: 'instructeurs/dossiers/header_actions', locals: { dossier: }
 
-  - if dossier.termine?
-    = render Instructeurs::ArchiveModalComponent.new(procedure: dossier.procedure)
+  = content_for(:archive_modals)
