@@ -296,20 +296,16 @@ module Administrateurs
     end
 
     def resolved_type_champ(type_champ, type_de_champ)
-      return type_champ if type_champ != 'numeric'
+      return type_champ if type_champ != TypeDeChamp::NUMERIC_MENU_VALUE
 
       toggle_type_champ = params.dig(:type_de_champ, :numeric_type_champ)
-      already_numeric = numeric_type_champ?(type_de_champ.type_champ)
+      already_numeric = TypeDeChamp.numeric_type_champ?(type_de_champ.type_champ)
       toggle_locked = already_numeric && toggle_type_champ.nil?
 
       return type_de_champ.type_champ if toggle_locked
-      return toggle_type_champ if numeric_type_champ?(toggle_type_champ)
+      return toggle_type_champ if TypeDeChamp.numeric_type_champ?(toggle_type_champ)
 
       'integer_number'
-    end
-
-    def numeric_type_champ?(type_champ)
-      ['integer_number', 'decimal_number'].include?(type_champ)
     end
 
     def draft

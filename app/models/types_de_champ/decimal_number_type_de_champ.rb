@@ -5,6 +5,7 @@ class TypesDeChamp::DecimalNumberTypeDeChamp < TypeDeChamp
   def self.option_keys = [:positive_number, :min_number, :max_number, :range_number]
   def self.column_type = :decimal
   def self.conditionable? = true
+  def self.menu_value = NUMERIC_MENU_VALUE
 
   def prefillable? = true
   def customizable? = true

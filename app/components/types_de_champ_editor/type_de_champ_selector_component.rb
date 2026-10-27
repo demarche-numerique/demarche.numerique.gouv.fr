@@ -21,18 +21,13 @@ class TypesDeChampEditor::TypeDeChampSelectorComponent < ApplicationComponent
   def select_props
     {
       name: form.field_name(:type_champ),
-      value:,
+      value: type_de_champ.class.menu_value,
       sections:,
       disabledKeys: disabled_keys,
       isDisabled: disabled?,
       triggerId: trigger_id,
       labelId: label_id,
     }
-  end
-
-  def value
-    return 'numeric' if type_de_champ.type_champ == 'integer_number' || type_de_champ.type_champ == 'decimal_number'
-    type_de_champ.type_champ
   end
 
   def sections
@@ -46,22 +41,17 @@ class TypesDeChampEditor::TypeDeChampSelectorComponent < ApplicationComponent
           id: category,
           label: t(category, scope: cat_scope),
           items: klasses.map do |klass|
-            if klass == TypesDeChamp::IntegerNumberTypeDeChamp || klass == TypesDeChamp::DecimalNumberTypeDeChamp
-              { value: 'numeric', label: t('numeric', scope: tdc_scope, app_name: APPLICATION_NAME), icon: klass.icon }
-            else
-              { value: klass.sti_name, label: t(klass.sti_name, scope: tdc_scope, app_name: APPLICATION_NAME), icon: klass.icon }
-            end
+            { value: klass.menu_value, label: t(klass.menu_value, scope: tdc_scope, app_name: APPLICATION_NAME), icon: klass.icon }
           end.uniq,
         }
       end
   end
 
   def disabled_keys
-    disabled_keys = available_types.map(&:sti_name) - accepted_type_champs
-    if disabled_keys.include?('integer_number') || disabled_keys.include?('decimal_number')
-      disabled_keys.push('numeric')
-    end
-    disabled_keys
+    available_types
+      .reject { accepted_type_champs.include?(it.sti_name) }
+      .map(&:menu_value)
+      .uniq
   end
 
   def available_types

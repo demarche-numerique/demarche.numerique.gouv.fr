@@ -29,10 +29,17 @@ class TypeDeChamp < ApplicationRecord
     'referentiel', 'pre_rempli', 'engagement_juridique',
   ].freeze
 
+  NUMERIC_MENU_VALUE = 'numeric'
+
+  def self.numeric_type_champ?(type_champ)
+    type_champs.value?(type_champ) && find_sti_class(type_champ).menu_value == NUMERIC_MENU_VALUE
+  end
+
   def self.category = STANDARD
   # DSFR icon class shown next to the type in the editor menu
   def self.icon = nil
   def self.menu_position = [CATEGORIES.index(category), MENU_ORDER.index(sti_name) || MENU_ORDER.size]
+  def self.menu_value = sti_name
   def self.feature_flag = nil
   def self.private_only? = false
   def self.public_only? = false
