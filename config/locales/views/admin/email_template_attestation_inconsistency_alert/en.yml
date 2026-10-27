@@ -8,10 +8,11 @@ en:
       disable_attestation: "disable the attestation"
       enable_attestation: "enable the attestation"
       remove_tag: "remove the tag"
-      add_tag: "add the tag"
-      attestation_tag: "\"--attestation link--\""
+      add_tag: "insert the tag"
+      attestation_tag: "\"lien attestation\""
       or_word: or
-      to_word: to
+      to_word: into
+      insert_tag_hint: "(type @ in the email body)"
       from_word: from
   views:
     administrateurs:

@@ -18,9 +18,10 @@
         <%= t(".or_word") %>
       <% end -%>
       <%= t(".add_tag") %>
-      <code style="white-space: pre-wrap;"><%= t(".attestation_tag") %></code>
+      <%= t(".attestation_tag") %>
       <%= t(".to_word") %>
       <%= t("views.administrateurs.mail_#{mail_type}") %>
+      <%= t(".insert_tag_hint") %>
     <% when :extraneous_tag -%>
       <%= t(".extraneous_tag_intro") %>
       <%= t("views.administrateurs.mail_#{mail_type}") %>
@@ -34,7 +35,7 @@
       <% end -%>
       <%= t(".or_word") %>
       <%= link_to(t(".remove_tag"), edit_admin_procedure_email_template_path(procedure, inconsistency[:email_slug])) %>
-      <code style="white-space: pre-wrap;"><%= t(".attestation_tag") %></code>
+      <%= t(".attestation_tag") %>
       <%= t(".from_word") %>
       <%= t("views.administrateurs.mail_#{mail_type}") %>
     <% end -%>

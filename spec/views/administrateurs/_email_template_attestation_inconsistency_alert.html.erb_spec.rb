@@ -52,6 +52,12 @@ describe 'admin/_email_template_attestation_inconsistency_alert', type: :view do
           .to include("Cette démarche comporte une attestation, mais l’accusé d’acceptation ne la mentionne pas")
       end
 
+      it 'explains how to insert the tag with the editor' do
+        alert = render_alert(procedure, mail_type).squish
+        expect(alert).to include("insérez la balise « lien attestation » dans l’accusé d’acceptation (tapez @ dans le corps de l’email)")
+        expect(alert).not_to include("--lien attestation--")
+      end
+
       context 'when procedure is draft' do
         it 'can disable attestation' do
           expect(render_alert(procedure, mail_type))
