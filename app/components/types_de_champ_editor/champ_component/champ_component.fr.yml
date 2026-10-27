@@ -20,6 +20,7 @@ fr:
   max_number_label: "valeur maximale"
   birthdate_label: "Ce champ est une date de naissance"
   birthdate_hint: "La date devra être comprise entre le 1er janvier 1900 et aujourd’hui"
+  numeric_type_champ_locked_hint: "Ce champ est utilisé pour le routage ou l’éligibilité des dossiers : vous ne pouvez pas changer ce réglage."
   prefill_fc_birthdate_label: "Préremplir avec la date de naissance FranceConnect"
   prefill_fc_locked_hint: "Un autre champ date utilise déjà cette option. Il ne peut y avoir qu’un seul champ date prérempli par FranceConnect par démarche."
   prefill_fc_hint: "Le champ sera prérempli avec la date de naissance de l’usager connecté via FranceConnect qui crée le dossier. La valeur reste modifiable."

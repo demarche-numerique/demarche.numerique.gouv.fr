@@ -254,6 +254,22 @@ describe Administrateurs::TypesDeChampController, type: :controller do
           expect(second_coordinate.libelle).to eq('updated')
         end
       end
+
+      context 'editing the libelle of a decimal used by routing, its locked toggle sending nothing' do
+        let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :decimal_number, libelle: 'l1' }]) }
+        let(:params) { { procedure_id: procedure.id, stable_id: first_coordinate.stable_id, type_de_champ: { type_champ: 'numeric', libelle: 'updated' } } }
+
+        before do
+          allow_any_instance_of(ProcedureRevisionTypeDeChamp).to receive(:used_by_routing_rules?).and_return(true)
+        end
+
+        it 'keeps it a decimal and saves the libelle' do
+          is_expected.to have_http_status(:ok)
+          expect(flash.alert).to be_nil
+          expect(type_champ_of(first_coordinate)).to eq('decimal_number')
+          expect(TypeDeChamp.where(id: first_coordinate.type_de_champ.id).pick(:libelle)).to eq('updated')
+        end
+      end
     end
 
     context 'rejected if type changed and routing involved' do

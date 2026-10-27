@@ -29,19 +29,18 @@ module Administrateurs
       type_de_champ = draft.find_and_ensure_exclusive_use(params[:stable_id])
       @coordinate = draft.coordinate_for(type_de_champ)
       was_prefill_with_fc_information = type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?
+      update_params = type_de_champ_update_params(type_de_champ)
 
-      if @coordinate.used_by_routing_rules? && changing_of_type?(type_de_champ)
+      if @coordinate.used_by_routing_rules? && changing_of_type?(type_de_champ, update_params)
         errors = "« #{type_de_champ.libelle} » est utilisé pour le routage, vous ne pouvez pas modifier son type."
         @morphed = [champ_component_from(@coordinate, focused: false, errors:)]
         flash.alert = errors
-      elsif @coordinate.used_by_referentiel_urls? && changing_of_type?(type_de_champ)
+      elsif @coordinate.used_by_referentiel_urls? && changing_of_type?(type_de_champ, update_params)
         errors = "« #{type_de_champ.libelle} » est utilisé par un référentiel, vous ne pouvez pas modifier son type."
         @morphed = [champ_component_from(@coordinate, focused: false, errors:)]
         flash.alert = errors
       else
-        update_params = type_de_champ_update_params
-
-        if changing_of_type?(type_de_champ)
+        if changing_of_type?(type_de_champ, update_params)
           type_de_champ = type_de_champ.becomes_type(update_params['type_champ'])
         end
 
@@ -209,8 +208,8 @@ module Administrateurs
 
     private
 
-    def changing_of_type?(type_de_champ)
-      type_de_champ_update_params['type_champ'].present? && (type_de_champ_update_params['type_champ'] != type_de_champ.type_champ)
+    def changing_of_type?(type_de_champ, update_params)
+      update_params['type_champ'].present? && update_params['type_champ'] != type_de_champ.type_champ
     end
 
     def champ_components_starting_at(coordinate, offset = 0)
@@ -234,7 +233,7 @@ module Administrateurs
         .permit(:type_champ, :parent_stable_id, :private, :libelle, :after_stable_id)
     end
 
-    def type_de_champ_update_params
+    def type_de_champ_update_params(type_de_champ)
       permitted = params.required(:type_de_champ).permit(:type_champ,
         :numeric_type_champ,
         :libelle,
@@ -292,15 +291,25 @@ module Administrateurs
           :zones_humides,
           :znieff,
         ])
-      permitted[:type_champ] = resolved_type_champ(permitted[:type_champ]) if permitted.key?(:type_champ)
+      permitted[:type_champ] = resolved_type_champ(permitted[:type_champ], type_de_champ) if permitted.key?(:type_champ)
       permitted
     end
 
-    def resolved_type_champ(type_champ)
+    def resolved_type_champ(type_champ, type_de_champ)
       return type_champ if type_champ != 'numeric'
 
       toggle_type_champ = params.dig(:type_de_champ, :numeric_type_champ)
-      ['integer_number', 'decimal_number'].include?(toggle_type_champ) ? toggle_type_champ : 'integer_number'
+      already_numeric = numeric_type_champ?(type_de_champ.type_champ)
+      toggle_locked = already_numeric && toggle_type_champ.nil?
+
+      return type_de_champ.type_champ if toggle_locked
+      return toggle_type_champ if numeric_type_champ?(toggle_type_champ)
+
+      'integer_number'
+    end
+
+    def numeric_type_champ?(type_champ)
+      ['integer_number', 'decimal_number'].include?(type_champ)
     end
 
     def draft

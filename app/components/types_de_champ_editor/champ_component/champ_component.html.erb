@@ -115,9 +115,21 @@
                     <%= t(".format_accepted_legend") %>
                   </legend>
 
+                  <% numeric_type_champ_hint_id = dom_id(type_de_champ, :numeric_type_champ_hint) %>
+                  <% type_champ_locked = coordinate.type_champ_locked? %>
+
                   <div class="fr-toggle fr-toggle--no-label">
-                    <%= form.check_box :numeric_type_champ, { id: dom_id(type_de_champ, :numeric_type_champ), class: 'fr-toggle__input' }, 'decimal_number', 'integer_number' %>
+                    <%= form.check_box :numeric_type_champ, { id: dom_id(type_de_champ, :numeric_type_champ), class: 'fr-toggle__input', disabled: type_champ_locked, 'aria-describedby': (numeric_type_champ_hint_id if type_champ_locked) }, 'decimal_number', 'integer_number' %>
                     <%= form.label :numeric_type_champ, t(".numeric_type_champ_label"), for: dom_id(type_de_champ, :numeric_type_champ), class: "fr-toggle__label fr-label" %>
+
+                    <% if type_champ_locked %>
+                      <p
+                        class="fr-hint-text"
+                        id="<%= numeric_type_champ_hint_id %>"
+                      >
+                        <%= t(".numeric_type_champ_locked_hint") %>
+                      </p>
+                    <% end %>
                   </div>
 
                   <div class="cell fr-mt-2w">

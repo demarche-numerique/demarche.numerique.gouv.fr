@@ -19,6 +19,7 @@ en:
   max_number_label: "maximum value"
   birthdate_label: "This field is a birth date"
   birthdate_hint: "The date must be between January 1st, 1900 and today"
+  numeric_type_champ_locked_hint: "This field is used for routing or determining the eligibility of applications; you cannot change this setting."
   prefill_fc_birthdate_label: "Prefill with FranceConnect birth date"
   prefill_fc_locked_hint: "Another date field already uses this option. Only one date field per procedure can be prefilled by FranceConnect."
   prefill_fc_hint: "The field will be prefilled with the birth date of the user connected via FranceConnect who creates the dossier. The value remains editable."

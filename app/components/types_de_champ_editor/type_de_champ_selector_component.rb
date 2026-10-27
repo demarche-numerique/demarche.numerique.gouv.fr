@@ -88,7 +88,7 @@ class TypesDeChampEditor::TypeDeChampSelectorComponent < ApplicationComponent
   end
 
   def disabled?
-    coordinate.used_by_routing_rules? || coordinate.used_by_ineligibilite_rules? || accepted_type_champs.size == 1
+    coordinate.type_champ_locked? || accepted_type_champs.size == 1
   end
 
   def filter_block_type_champ(klass)
