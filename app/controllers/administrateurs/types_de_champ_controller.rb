@@ -299,7 +299,7 @@ module Administrateurs
       return type_champ if type_champ != TypeDeChamp::NUMERIC_MENU_VALUE
 
       toggle_type_champ = params.dig(:type_de_champ, :numeric_type_champ)
-      already_numeric = TypeDeChamp.numeric_type_champ?(type_de_champ.type_champ)
+      already_numeric = type_de_champ.is_a?(TypesDeChamp::NumericTypeDeChamp)
       toggle_locked = already_numeric && toggle_type_champ.nil?
 
       return type_de_champ.type_champ if toggle_locked
