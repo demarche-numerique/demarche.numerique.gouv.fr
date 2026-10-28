@@ -21,6 +21,7 @@ class Dossier < ApplicationRecord
   include DossierChampsConcern
   include DossierExportConcern
   include DossierValidateConcern
+  include EventStreamConcern
 
   enum :state, {
     brouillon:       'brouillon',
@@ -758,12 +759,37 @@ class Dossier < ApplicationRecord
 
   def extend_conservation_and_restore(conservation_extension, author)
     extend_conservation(conservation_extension)
-    update(hidden_by_expired_at: nil, hidden_by_reason: nil)
-    restore(author)
+    # with_lock in restore raises on unsaved changes
+    return if has_changes_to_save?
+
+    restore(author, expired: true)
   end
 
   def show_procedure_state_warning?
     procedure.discarded? || (brouillon? && !procedure.dossier_can_transition_to_en_construction?)
+  end
+
+  def add_label(label, author: nil)
+    transaction do
+      dossier_label = dossier_labels.find_or_create_by(label:)
+      publish_event(Events::DossierLabelAjoute, author:, label_id: label.id) if dossier_label.previously_new_record?
+      dossier_label
+    end
+  end
+
+  def remove_label(label, author: nil)
+    dossier_label = dossier_labels.find_by(label:)
+    return if dossier_label.nil?
+
+    transaction do
+      dossier_label.destroy
+      publish_event(Events::DossierLabelSupprime, author:, label_id: label.id) if dossier_label.destroyed?
+      dossier_label
+    end
+  end
+
+  def publish_event(event_class, author: nil, **data)
+    super(event_class, author:, procedure_id: revision.procedure_id, **data)
   end
 
   def assign_to_groupe_instructeur(groupe_instructeur, mode, author = nil)
@@ -774,27 +800,39 @@ class Dossier < ApplicationRecord
 
     track_assigned_dossier_without_groupe_instructeur if groupe_instructeur.nil?
 
-    update!(groupe_instructeur:, groupe_instructeur_updated_at: Time.zone.now)
-    update!(forced_groupe_instructeur: true) if mode == DossierAssignment.modes.fetch(:manual)
+    transaction do
+      update!(groupe_instructeur:, groupe_instructeur_updated_at: Time.zone.now)
+      update!(forced_groupe_instructeur: true) if mode == DossierAssignment.modes.fetch(:manual)
 
-    create_assignment(mode, previous_groupe_instructeur, groupe_instructeur, author&.email)
+      create_assignment(mode, previous_groupe_instructeur, groupe_instructeur, author&.email)
 
-    if !brouillon?
-      unfollow_stale_instructeurs
-      update_notifications(previous_groupe_instructeur, groupe_instructeur) if previous_groupe_instructeur.present?
+      if !brouillon?
+        unfollow_stale_instructeurs
+        update_notifications(previous_groupe_instructeur, groupe_instructeur) if previous_groupe_instructeur.present?
 
-      if author.present?
-        log_dossier_operation(author, :changer_groupe_instructeur, self)
+        if author.present?
+          log_dossier_operation(author, :changer_groupe_instructeur, self)
+        end
+      end
+
+      if !brouillon? && previous_groupe_instructeur != groupe_instructeur
+        publish_event(Events::DossierRoute, author:, groupe_instructeur_id: groupe_instructeur.id, mode: mode.to_s)
       end
     end
   end
 
   def archiver!(instructeur)
-    update!(archived: true, archived_at: Time.zone.now, archived_by: instructeur.email)
+    transaction do
+      update!(archived: true, archived_at: Time.zone.now, archived_by: instructeur.email)
+      publish_event(Events::DossierArchive, author: instructeur)
+    end
   end
 
-  def desarchiver!
-    update!(archived: false, archived_at: nil, archived_by: nil)
+  def desarchiver!(instructeur = nil)
+    transaction do
+      update!(archived: false, archived_at: nil, archived_by: nil)
+      publish_event(Events::DossierDesarchive, author: instructeur)
+    end
   end
 
   def text_summary
@@ -949,23 +987,32 @@ class Dossier < ApplicationRecord
   end
 
   def hide_and_keep_track!(author, reason)
-    transaction do
-      if is_administration?(author) && can_be_deleted_by_administration?(reason)
+    # serializes concurrent hides and restores, so the visibility change is recorded once
+    with_lock do
+      was_visible_by_administration = Dossier.visible_by_administration.exists?(id)
+
+      event_class = if is_administration?(author) && can_be_deleted_by_administration?(reason)
         update(hidden_by_administration_at: Time.zone.now, hidden_by_reason: reason)
         log_dossier_operation(author, :supprimer, self)
         DossierNotification.create_notifications_for_non_customisable_type(self, :dossier_suppression) if hidden_by_user?
+        Events::DossierSupprimeParAdministration
       elsif is_user?(author) && can_be_deleted_by_user?
         update(hidden_by_user_at: Time.zone.now, dossier_transfer_id: nil, hidden_by_reason: reason)
         log_dossier_operation(author, :supprimer, self)
         DossierNotification.create_notifications_for_non_customisable_type(self, :dossier_suppression) if hidden_by_administration?
+        Events::DossierSupprimeParUsager
       elsif is_automatic?(author) && can_be_deleted_by_automatic?(reason)
         update(hidden_by_expired_at: Time.zone.now, hidden_by_reason: reason)
         log_automatic_dossier_operation(:supprimer, self)
         DossierNotification.destroy_notifications_by_dossier_and_type(self, :dossier_expirant)
         DossierNotification.create_notifications_for_non_customisable_type(self, :dossier_suppression)
+        Events::DossierExpire
       else
         raise "Unauthorized dossier hide attempt Dossier##{id} by #{author} for reason #{reason}"
       end
+
+      hidden_from_administration = was_visible_by_administration && !Dossier.visible_by_administration.exists?(id)
+      publish_event(event_class, author:, reason: reason.to_s, hidden_from_administration:)
     end
 
     if en_construction? && !hidden_by_administration?
@@ -977,8 +1024,13 @@ class Dossier < ApplicationRecord
     end
   end
 
-  def restore(author)
-    transaction do
+  def restore(author, expired: false)
+    with_lock do
+      was_visible_by_administration = Dossier.visible_by_administration.exists?(id)
+      reason = hidden_by_reason
+
+      update(hidden_by_expired_at: nil, hidden_by_reason: nil) if expired
+
       if is_administration?(author)
         update(hidden_by_administration_at: nil)
         DossierNotification.destroy_notifications_by_dossier_and_type(self, :dossier_suppression)
@@ -997,6 +1049,10 @@ class Dossier < ApplicationRecord
       end
 
       log_dossier_operation(author, :restaurer, self)
+
+      event_class = is_administration?(author) ? Events::DossierRestaureParAdministration : Events::DossierRestaureParUsager
+      restored_to_administration = !was_visible_by_administration && Dossier.visible_by_administration.exists?(id)
+      publish_event(event_class, author:, reason:, restored_to_administration:)
     end
   end
 
@@ -1040,6 +1096,7 @@ class Dossier < ApplicationRecord
 
   def demander_un_avis!(avis)
     log_dossier_operation(avis.claimant, :demander_un_avis, avis)
+    publish_event(Events::AvisCree, author: avis.claimant, avis_id: avis.id)
   end
 
   def linked_dossiers_for(instructeur_or_expert)

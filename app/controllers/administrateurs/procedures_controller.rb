@@ -183,7 +183,7 @@ module Administrateurs
       procedure = current_administrateur.procedures.find(params[:procedure_id])
 
       if procedure.update(closing_params)
-        procedure.close!
+        procedure.close!(current_administrateur)
         if (procedure.dossiers.not_archived.state_brouillon.present? || procedure.dossiers.not_archived.state_en_construction_ou_instruction.present?)
           redirect_to admin_procedure_closing_notification_path
         else

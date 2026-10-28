@@ -1499,6 +1499,10 @@ RSpec.describe DossierChampsConcern do
 
       expect(dossier.root_champs_public.find { _1.stable_id == 99 }).to be_new_record
     end
+
+    it "forwards its options, as lock! relies on" do
+      expect { dossier.with_lock { dossier.touch } }.not_to raise_error
+    end
   end
 
   describe "#merge_user_buffer_stream!" do

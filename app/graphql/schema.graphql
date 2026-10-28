@@ -2163,6 +2163,11 @@ input DossierAjouterLabelInput {
   dossierId: ID!
 
   """
+  Instructeur qui pose le label.
+  """
+  instructeurId: ID
+
+  """
   ID du label
   """
   labelId: ID!
@@ -3115,6 +3120,11 @@ input DossierSupprimerLabelInput {
   """
   clientMutationId: String
   dossierId: ID!
+
+  """
+  Instructeur qui retire le label.
+  """
+  instructeurId: ID
   labelId: ID!
 }
 

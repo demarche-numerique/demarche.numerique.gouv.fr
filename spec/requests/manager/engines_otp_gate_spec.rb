@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 # Regression: the engines mounted under the /manager namespace (Flipper UI,
-# MaintenanceTasks, Sidekiq::Web) bypass Manager::ApplicationController, so the
-# RequiresEnrolledSuperAdminOtp gate never runs for them. A super admin who is
-# signed in but has not enrolled OTP must not be able to reach them.
+# MaintenanceTasks, Sidekiq::Web, RailsEventStore::Browser) bypass
+# Manager::ApplicationController, so the RequiresEnrolledSuperAdminOtp gate
+# never runs for them. A super admin who is signed in but has not enrolled OTP
+# must not be able to reach them.
 #
-# /manager/features (Flipper::UI) stands in for all three: they share the same
+# /manager/features (Flipper::UI) stands in for all four: they share the same
 # `authenticate :super_admin` route block in config/routes/manager.rb.
 describe 'Manager mounted engines require an OTP-enrolled super admin', type: :request do
   subject { get '/manager/features' }

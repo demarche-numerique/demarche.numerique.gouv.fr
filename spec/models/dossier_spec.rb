@@ -454,6 +454,19 @@ describe Dossier, type: :model do
         end
       end
     end
+
+    context "when the dossier was hidden by its expiration" do
+      subject { dossier.restore(author, expired: true) }
+
+      let(:dossier) { dossiers.refuse.tap { it.update_columns(hidden_by_expired_at: 1.hour.ago, hidden_by_reason: :expired) } }
+      let(:author) { instructeurs.default }
+
+      it "clears the expired hide and its reason" do
+        subject
+        expect(dossier.reload.hidden_by_expired_at).to be_nil
+        expect(dossier.hidden_by_reason).to be_nil
+      end
+    end
   end
 
   describe 'methods' do
