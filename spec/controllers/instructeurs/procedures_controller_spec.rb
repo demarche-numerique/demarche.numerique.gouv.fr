@@ -1195,6 +1195,10 @@ describe Instructeurs::ProceduresController, type: :controller do
         expect(response.body).to include('target="export-banner"')
         expect(response.body).to include(polling_instructeur_export_banner_path)
       end
+
+      it 'moves the focus to the banner' do
+        expect(response.body).to include('turbo-stream action="focus" target="export-banner"')
+      end
     end
 
     context 'when an export_template_id from another procedure is supplied' do

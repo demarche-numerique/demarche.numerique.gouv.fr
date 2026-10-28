@@ -26,7 +26,7 @@ RSpec.describe Instructeurs::ExportBannerComponent, type: :component do
     let(:export) { nil }
 
     it 'renders an empty container' do
-      expect(page).to have_css('#export-banner', visible: :all)
+      expect(page).to have_css('#export-banner[tabindex="-1"]', visible: :all)
       expect(page).to have_no_css('#export-banner .alert')
     end
 
