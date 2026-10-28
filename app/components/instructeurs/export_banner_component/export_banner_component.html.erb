@@ -1,0 +1,9 @@
+<div id="export-banner">
+  <% if export.present? %>
+    <%= tag.div(class: banner_class, role: banner_role, data: banner_data) do %>
+      <%= message %>
+
+      <%= button_to t('.close'), instructeur_export_banner_path(export_id: export.id), method: :delete, class: 'fr-btn--close fr-btn', title: t('.close'), form: { class: 'export-banner__close', data: { turbo: true } } %>
+    <% end %>
+  <% end %>
+</div>
