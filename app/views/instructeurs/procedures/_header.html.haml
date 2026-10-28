@@ -82,5 +82,4 @@
             %li
               = link_to t('instructeurs.dossiers.header.banner.export_templates'), export_templates_instructeur_procedure_path(procedure), class: 'fr-nav__link'
 
-  #last-export-alert
-    = render partial: "instructeurs/procedures/last_export_alert", locals: { export: @last_export, statut: @statut }
+  - content_for(:export_banner) { render Instructeurs::ExportBannerComponent.new(instructeur: current_instructeur) }

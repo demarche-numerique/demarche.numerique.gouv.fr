@@ -152,8 +152,6 @@ module Instructeurs
         .merge(dossiers.visible_by_administration)
         .pluck(:id)
 
-      @last_export = last_export_for(statut)
-
       begin
         @filtered_sorted_ids = DossierFilterService.filtered_sorted_ids(dossiers, statut, procedure_presentation.filters_for(statut), procedure_presentation.sorted_column, current_instructeur, count: dossiers_count)
 
@@ -249,44 +247,20 @@ module Instructeurs
         .where(procedure: procedure)
 
       export = Export.find_or_create_fresh_export(export_format, groupe_instructeurs, current_instructeur, **export_options)
+      current_instructeur.request_export!(export)
 
       @procedure = procedure
-      @statut = export_options[:statut]
       @dossiers_count = export.count
 
-      @last_export = last_export_for(@statut)
-
-      if export.available?
-        respond_to do |format|
-          format.turbo_stream do
-            flash.notice = t('instructeurs.procedures.export_available_html', file_format: export.format, file_url: export.file.url)
-          end
-
-          format.html do
+      respond_to do |format|
+        format.turbo_stream
+        format.html do
+          if export.available?
             redirect_to url_from(export.file.url)
+          else
+            redirect_to exports_instructeur_procedure_path(procedure)
           end
         end
-      else
-        respond_to do |format|
-          format.turbo_stream do
-            if !params[:no_progress_notification]
-              flash.notice = t('instructeurs.procedures.export_pending_html', url: exports_instructeur_procedure_path(procedure))
-            end
-          end
-          format.html do
-            redirect_to exports_instructeur_procedure_path(procedure), notice: t('instructeurs.procedures.export_pending_html', url: exports_instructeur_procedure_path(procedure))
-          end
-        end
-      end
-    end
-
-    def polling_last_export
-      @statut = statut
-      @last_export = last_export_for(@statut)
-      if @last_export&.available?
-        flash.notice = t('instructeurs.procedures.export_available_html', file_format: @last_export.format, file_url: @last_export.file.url)
-      else
-        flash.notice = t('instructeurs.procedures.export_pending_html', url: exports_instructeur_procedure_path(procedure))
       end
     end
 
@@ -551,10 +525,6 @@ module Instructeurs
       return false if instructeur_procedure.last_revision_seen_id.blank?
 
       instructeur_procedure.last_revision_seen_id < procedure.published_revision_id
-    end
-
-    def last_export_for(statut)
-      Export.where(user_profile: current_instructeur, statut: statut, updated_at: 1.hour.ago..).last
     end
 
     def ordered_procedure_ids_params
