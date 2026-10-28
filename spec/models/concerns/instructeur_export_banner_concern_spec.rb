@@ -117,6 +117,25 @@ describe InstructeurExportBannerConcern do
       expect(instructeur.reload.export_for_banner(pro_connect: false)).to eq(newer)
     end
 
+    context 'when the procedure is deleted' do
+      before { procedure.discard! }
+
+      [true, false].each do |pro_connect|
+        context "with pro_connect: #{pro_connect}" do
+          it 'hides an own export' do
+            export = ready(create(:export, groupe_instructeurs: [gi], user_profile: instructeur))
+            instructeur.request_export!(export)
+            expect(instructeur.reload.export_for_banner(pro_connect:)).to be_nil
+          end
+
+          it 'hides a colleague export' do
+            ready(create(:export, groupe_instructeurs: [gi], user_profile: colleague))
+            expect(instructeur.export_for_banner(pro_connect:)).to be_nil
+          end
+        end
+      end
+    end
+
     context 'when the procedure is restricted to ProConnect' do
       before { procedure.update!(pro_connect_restriction: :instructeurs) }
 
