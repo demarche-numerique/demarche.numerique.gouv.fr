@@ -6,7 +6,7 @@ class Procedure::Card::RdvComponent < ApplicationComponent
   end
 
   def render?
-    feature_enabled?(:rdv)
+    RdvService.enabled?
   end
 
   private

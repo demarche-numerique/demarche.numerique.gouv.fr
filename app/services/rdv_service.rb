@@ -11,6 +11,10 @@ class RdvService
     @rdv_connection = rdv_connection
   end
 
+  def self.enabled?
+    ENV['RDV_SERVICE_PUBLIC_OAUTH_APP_ID'].present?
+  end
+
   def self.rdv_sp_host_url
     ENV["RDV_SERVICE_PUBLIC_URL"]
   end
