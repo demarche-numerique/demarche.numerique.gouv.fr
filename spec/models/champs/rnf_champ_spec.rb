@@ -47,6 +47,14 @@ describe Champs::RNFChamp, type: :model do
       end
     end
 
+    context 'when the champ is degraded' do
+      before { champ.update_columns(external_id: '075-FDD-00003-01', external_state: 'degraded') }
+
+      it 'lets the usager submit with the identifier alone' do
+        expect(champ.validate(:champ_value)).to be_truthy
+      end
+    end
+
     context 'when fetch_external_data_exceptions contains a non-retryable error' do
       let(:error) { ExternalDataException.new(error: 'Not retryable', code: 404) }
 
@@ -192,22 +200,25 @@ describe Champs::RNFChamp, type: :model do
       }
     end
 
-    context 'failure (http 500)' do
+    context 'when the RNF API is down' do
       let(:status) { 500 }
       let(:response_type) { 'invalid' }
-      it {
-        expect(subject.failure.retryable).to be_truthy
-        expect(subject.failure.error).to be_a(API::Client::HTTPError)
-      }
+
+      it 'degrades instead of failing: the usager has no hold on it' do
+        expect(subject.failure).to include(degraded: true, code: 500)
+      end
     end
 
-    context 'failure (http 401)' do
+    context 'when the RNF API refuses our token' do
       let(:status) { 401 }
       let(:response_type) { 'invalid' }
-      it {
-        expect(subject.failure.retryable).to be_falsey
-        expect(subject.failure.error).to be_a(API::Client::HTTPError)
-      }
+
+      before { allow(Sentry).to receive(:capture_message) }
+
+      it 'degrades too, and tells operations' do
+        expect(subject.failure).to include(degraded: true, code: 401)
+        expect(Sentry).to have_received(:capture_message).with("RNF token is refused", level: :error, extra: { code: 401 })
+      end
     end
 
     context 'failure (http 400)' do
