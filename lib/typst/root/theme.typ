@@ -317,3 +317,162 @@
   })
   par(message.body)
 })
+
+// --------------------------------------------------------------------------
+// Attestation (the decision letter an administration authors in the tiptap
+// editor, laid out by Typst::Tiptap): the administration's own letterhead
+// (its bloc-marque or logo, direction, footer) rather than the instance's,
+// and the body's blocks as the editor shows them, at the historical 10pt.
+
+#let attestation-text-size = 10pt
+
+// The vertical rhythm of the historical (HTML) rendering: a text line of room
+// between blocks (1em margins), list items 0.25rem apart, the rows of a
+// repetition 5mm apart. HTML measured those gaps between line boxes where
+// typst measures from a baseline to the next cap height, hence the extra
+// half text size.
+#let attestation-gap(html-gap) = html-gap + 0.5 * attestation-text-size
+#let attestation-block-gap = attestation-gap(attestation-text-size)
+#let attestation-item-gap = attestation-gap(3pt)
+#let attestation-row-gap = attestation-gap(5mm)
+
+// An image no larger than the given box, keeping its proportions (a logo or a
+// signature uploaded by the administration).
+#let bounded-image(asset, width: none, height: auto) = context {
+  let tall = asset-image(path: asset.path, alt: asset.alt, height: height)
+  if asset.path != none and width != none and measure(tall).width > width {
+    asset-image(path: asset.path, alt: asset.alt, width: width)
+  } else {
+    tall
+  }
+}
+
+// The official bloc-marque of the issuing administration: the Marianne, its
+// name, the devise (the charte's bloc-marque, the name lines authored).
+#let bloc-marque(intitule) = {
+  set par(spacing: 0pt, leading: 0.3em)
+  image("/images/centered_marianne.svg", alt: "République française", height: 4.25mm)
+  v(1mm)
+  block(text(size: 12pt, weight: "bold", intitule.join(linebreak())))
+  v(1mm)
+  image("/images/liberte2.svg", alt: "Liberté Égalité Fraternité", height: 8.5mm)
+}
+
+// First-page head: the bloc-marque (official layout) or the administration's
+// logo on the left; the co-emitter logo and the direction lines on the right.
+#let attestation-header(official: true, intitule: (), logo: none, direction: ()) = block(width: 100%, below: 14mm, grid(
+  columns: (auto, 1fr, auto),
+  align: (left + top, center, right + top),
+  if official { bloc-marque(intitule) } else if logo != none { bounded-image(logo, width: 50mm, height: 50mm) },
+  [],
+  grid(
+    columns: 2,
+    column-gutter: 5mm,
+    align: (right + top, right + top),
+    if official and logo != none { bounded-image(logo, height: 28mm) },
+    if direction.len() > 0 {
+      block(inset: (top: 5.25mm), {
+        set par(spacing: 0pt, leading: 0.35em)
+        set align(right)
+        text(size: 12pt, weight: "bold", direction.join(linebreak()))
+      })
+    },
+  ),
+))
+
+// Every page: the authored footer lines bottom left in small light type, the
+// page number bottom right, both resting on the bottom margin.
+#let attestation-footer(lines) = block(width: 100%, height: footer-height, align(bottom, grid(
+  columns: (1fr, auto),
+  column-gutter: 8mm,
+  align: (left + bottom, right + bottom),
+  {
+    set text(size: 7pt, weight: "light")
+    if lines.len() > 0 { par(lines.join(linebreak())) }
+  },
+  text(size: 8pt, context counter(page).display("1 / 1", both: true)),
+)))
+
+// Document shell.
+#let attestation-page(title: none, footer: (), doc) = {
+  set document(title: title)
+  set page(
+    paper: "a4",
+    margin: (x: page-margin, top: page-margin, bottom: page-margin + footer-height),
+    footer: attestation-footer(footer),
+    footer-descent: 0pt,
+  )
+  set text(font: "Marianne", size: attestation-text-size, lang: "fr", fill: ink)
+  set par(justify: false)
+  show heading: set block(sticky: true)
+  doc
+}
+
+#let aligned(alignment, body) = {
+  if alignment == "center" { align(center, body) }
+  else if alignment == "right" { align(right, body) }
+  else if alignment == "justify" { set par(justify: true); body }
+  else { body }
+}
+
+// The tiptap header: one column per authored column, the first flush left,
+// the last flush right, the blocks laid out inside each as authored (render
+// is the block renderer, which this header is itself a block of), its
+// paragraphs the lines of an address.
+#let attestation-columns(columns, render) = block(below: 14mm, grid(
+  columns: columns.map(_ => auto).intersperse(1fr),
+  align: (left + top, center, right + top),
+  ..columns.map(blocks => box({
+    set par(spacing: 0.65em)
+    blocks.map(render).join()
+  })).intersperse([]),
+))
+
+// A heading: its outline level structures the PDF, the style the admin gave
+// it in the editor sets its look (the title and section headings in 12pt,
+// sub-headings at text size), the title with the letterhead's room around it.
+#let attestation-heading(node) = block(
+  sticky: true,
+  above: if node.style == "title" { attestation-gap(14mm) } else { attestation-block-gap },
+  below: if node.style == "title" { attestation-gap(12.6mm) } else { attestation-block-gap },
+  heading(level: node.level, text(size: if node.style == "subsection" { attestation-text-size } else { 12pt }, rich-inlines(node.content))),
+)
+
+#let attestation-block(node) = {
+  if node.type == "header" { attestation-columns(node.columns, attestation-block) }
+  else if node.type == "heading" { aligned(node.align, attestation-heading(node)) }
+  else if node.type == "paragraph" { aligned(node.align, par(rich-inlines(node.content))) }
+  else if node.type == "list" {
+    // The blocks of an item (a nested list) sit as close as the items; the
+    // rows of a repetition keep their room.
+    let items = node.items.map(item => {
+      set par(spacing: attestation-item-gap)
+      item.map(attestation-block).join()
+    })
+    let repetition = node.items.any(item => item.any(block => block.type == "details"))
+    let spacing = if repetition { attestation-row-gap } else { attestation-item-gap }
+    if node.ordered { enum(tight: false, spacing: spacing, start: node.start, ..items) } else { list(tight: false, spacing: spacing, ..items) }
+  }
+  else if node.type == "details" {
+    // (a repetition row: its term/value pairs, the first level with the item
+    // number)
+    table(
+      columns: (auto, 1fr),
+      stroke: none,
+      inset: 0pt,
+      row-gutter: attestation-item-gap,
+      column-gutter: 10mm,
+      ..node.rows.flatten(),
+    )
+  }
+  else if node.type == "pagebreak" { pagebreak(weak: true) }
+  else { panic("unknown attestation block type: " + node.type) }
+}
+
+// The body: blocks a text line apart, lists indented as on the web.
+#let attestation-body(blocks) = {
+  set par(spacing: attestation-block-gap)
+  set list(indent: 10mm)
+  set enum(indent: 8.5mm)
+  for node in blocks { attestation-block(node) }
+}
