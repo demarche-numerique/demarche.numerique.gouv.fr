@@ -157,6 +157,8 @@ class APIEntreprise::API
     when 500, 502, 503, 504
       if raw_response && unavailable_for_entity?(raw_response)
         Failure(type: :unavailable_for_entity, code:, retryable: true, raw_response:)
+      elsif raw_response && unknown_provider_error?(raw_response)
+        Failure(type: :unknown_provider_error, code:, retryable: true, raw_response:)
       elsif raw_response && service_unavailable?(raw_response)
         Failure(type: :service_unavailable, code:, retryable: true, raw_response:)
       else
@@ -179,6 +181,14 @@ class APIEntreprise::API
   def unavailable_for_entity?(raw_response)
     raw_response.code == 502 &&
       parse_response_errors(raw_response).any? { _1.is_a?(Hash) && _1[:code]&.in?(UNAVAILABLE_FOR_ENTITY_ERRORS) }
+  end
+
+  # 03999 "Erreur inconnue du fournisseur de données": the DGFIP answers with something
+  # API Entreprise cannot read, for every etablissement of some entities.
+  UNKNOWN_PROVIDER_ERRORS = ["03999"]
+  def unknown_provider_error?(raw_response)
+    raw_response.code == 502 &&
+      parse_response_errors(raw_response).any? { _1.is_a?(Hash) && _1[:code]&.in?(UNKNOWN_PROVIDER_ERRORS) }
   end
 
   def parse_response_errors(raw_response)
