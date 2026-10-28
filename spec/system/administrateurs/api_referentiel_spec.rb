@@ -718,8 +718,6 @@ describe 'Referentiel API:' do
 
     let(:dossier) { create(:dossier, :en_instruction, procedure:) }
 
-    before { Flipper.enable(:annotation_prefill_champs_public, procedure) }
-
     def public_champs_with(stable_id)
       dossier.reload.flat_champs_public.filter { it.stable_id == stable_id }
     end
