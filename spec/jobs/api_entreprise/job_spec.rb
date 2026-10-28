@@ -142,6 +142,23 @@ RSpec.describe APIEntreprise::Job, type: :job do
       end
     end
 
+    context 'when the provider answers something API Entreprise cannot read' do
+      let(:result) { Dry::Monads::Failure(type: :unknown_provider_error, code: 502, retryable: true, raw_response: nil) }
+
+      it 'waits in the table to be retried once a day' do
+        expect { perform }.not_to raise_error
+        expect(fetch).to have_attributes(code: 502, daily_failures: 1)
+      end
+
+      it 'gives up once the three daily retries failed' do
+        3.times { ParkedAPIEntrepriseFetch.park!(etablissement_id: etablissement.id, job: 'ExercicesJob', procedure_id: procedure.id, arguments: [etablissement.id, procedure.id], code: 502, retried_daily: true) }
+
+        perform
+
+        expect(fetch).to be_nil
+      end
+    end
+
     context 'when API Entreprise refuses the token or the scope' do
       let(:result) { Dry::Monads::Failure(type: :forbidden, code: 403, retryable: false, raw_response: nil) }
 
