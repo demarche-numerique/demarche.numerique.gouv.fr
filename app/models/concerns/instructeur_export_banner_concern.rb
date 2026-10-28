@@ -29,14 +29,13 @@ module InstructeurExportBannerConcern
   private
 
   def banner_groupe_instructeur_ids(pro_connect:)
-    assignments = assign_to.where(manager: [false, nil])
+    procedures = Procedure.kept
+    procedures = procedures.pro_connect_restriction_none if !pro_connect
 
-    if !pro_connect
-      unrestricted_procedures = Procedure.with_discarded.pro_connect_restriction_none
-      assignments = assignments.where(groupe_instructeur: GroupeInstructeur.where(procedure: unrestricted_procedures))
-    end
-
-    assignments.pluck(:groupe_instructeur_id)
+    assign_to
+      .where(manager: [false, nil])
+      .where(groupe_instructeur: GroupeInstructeur.where(procedure: procedures))
+      .pluck(:groupe_instructeur_id)
   end
 
   def own_export_for_banner(groupe_instructeur_ids)
