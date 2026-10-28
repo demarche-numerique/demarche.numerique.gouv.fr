@@ -14,13 +14,14 @@ class Instructeurs::ExportBannerComponent < ApplicationComponent
   end
 
   def state
-    if export.failed?
-      :failed
-    elsif export.available?
-      :available
-    else
-      :pending
-    end
+    @state ||=
+      if export.failed?
+        :failed
+      elsif export.available?
+        :available
+      else
+        :pending
+      end
   end
 
   def polling? = state == :pending
