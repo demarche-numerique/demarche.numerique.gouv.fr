@@ -21,6 +21,12 @@ describe Instructeurs::ExportBannersController, type: :controller do
       expect(response.body).to include('Votre dernier export est en cours de création.')
     end
 
+    it 'does not move the focus' do
+      get :polling, format: :turbo_stream
+
+      expect(response.body).not_to include('action="focus"')
+    end
+
     it 'hides a ready colleague export of a ProConnect restricted procedure without a ProConnect session' do
       colleague = create(:instructeur, groupe_instructeurs: [gi])
       colleague_export = create(:export, groupe_instructeurs: [gi], user_profile: colleague)
@@ -43,6 +49,7 @@ describe Instructeurs::ExportBannersController, type: :controller do
 
       expect(instructeur.reload.last_requested_export_dismissed_at).to be_present
       expect(response.body).to include('turbo-stream action="update" target="export-banner"')
+      expect(response.body).not_to include('action="focus"')
     end
 
     it 'redirects back without JavaScript' do
