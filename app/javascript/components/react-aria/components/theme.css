@@ -2,6 +2,7 @@
 .react-aria-Select,
 .fr-ds-select_multiple,
 .select-popover,
+.map-layers-popover,
 .fr-ds-combobox__menu {
   --text-color: var(--text-label-grey);
   --text-color-heading: var(--text-title-grey);

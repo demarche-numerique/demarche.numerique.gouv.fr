@@ -8,22 +8,22 @@ RSpec.describe Dossiers::GeoAreaComponent, type: :component do
 
   before { render_inline(described_class.new(geo_area:, editing:)) }
 
-  shared_examples 'exposes the geojson feature id' do
-    it "matches the id of the map's geojson feature so clicking it can zoom to the right shape" do
-      expect(page.find("[data-controller='geo-area']")['data-geo-area-id-value'])
-        .to eq(geo_area.to_feature[:properties][:id])
-    end
-  end
+  let(:feature_id) { geo_area.to_feature[:properties][:id] }
 
   context 'when editing' do
     let(:editing) { true }
 
-    include_examples 'exposes the geojson feature id'
+    it "matches the id of the map's geojson feature so clicking it can zoom to the right shape" do
+      expect(page.find("[data-controller='geo-area']")['data-geo-area-id-value']).to eq(feature_id)
+    end
   end
 
   context 'when not editing' do
     let(:editing) { false }
 
-    include_examples 'exposes the geojson feature id'
+    it "matches the id of the map's geojson feature so clicking it can zoom to the right shape" do
+      link = page.find("react-component[name='Map/FeatureLink']", text: geo_area.label)
+      expect(JSON.parse(link['props'])).to eq('id' => feature_id)
+    end
   end
 end
