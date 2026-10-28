@@ -40,6 +40,10 @@ class EmailTemplate < ApplicationRecord
     nil
   end
 
+  def mentions_attestation?
+    TiptapService.used_tags_and_libelle_for(tiptap_body_doc.deep_symbolize_keys).any? { it.first == DOSSIER_ATTESTATION_URL_TAG_ID }
+  end
+
   def tiptap_body
     json_body&.to_json
   end
