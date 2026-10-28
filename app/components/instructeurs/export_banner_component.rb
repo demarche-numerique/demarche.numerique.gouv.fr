@@ -6,7 +6,11 @@ class Instructeurs::ExportBannerComponent < ApplicationComponent
   attr_reader :export
 
   def initialize(instructeur:)
-    @export = instructeur.export_for_banner
+    @instructeur = instructeur
+  end
+
+  def before_render
+    @export = @instructeur.export_for_banner(pro_connect: helpers.logged_in_with_pro_connect?)
   end
 
   def state

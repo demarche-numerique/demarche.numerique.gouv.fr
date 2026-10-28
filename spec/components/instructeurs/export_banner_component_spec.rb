@@ -6,6 +6,7 @@ RSpec.describe Instructeurs::ExportBannerComponent, type: :component do
   let(:instructeur) { instructeurs.default }
   let(:procedure) { procedures.individual }
   let(:gi) { procedure.defaut_groupe_instructeur }
+  let(:pro_connect) { false }
 
   def ready(export)
     export.file.attach(io: StringIO.new('x'), filename: 'e.csv')
@@ -16,6 +17,7 @@ RSpec.describe Instructeurs::ExportBannerComponent, type: :component do
   around { |example| freeze_time { example.run } }
 
   before do
+    allow_any_instance_of(ApplicationController).to receive(:logged_in_with_pro_connect?).and_return(pro_connect)
     allow(instructeur).to receive(:export_for_banner).and_return(export)
     render_inline(described_class.new(instructeur:))
   end
@@ -26,6 +28,16 @@ RSpec.describe Instructeurs::ExportBannerComponent, type: :component do
     it 'renders an empty container' do
       expect(page).to have_css('#export-banner', visible: :all)
       expect(page).to have_no_css('#export-banner .alert')
+    end
+
+    it 'looks the export up without ProConnect when the session is not a ProConnect one' do
+      expect(instructeur).to have_received(:export_for_banner).with(pro_connect: false)
+    end
+
+    context 'with a ProConnect session' do
+      let(:pro_connect) { true }
+
+      it { expect(instructeur).to have_received(:export_for_banner).with(pro_connect: true) }
     end
   end
 

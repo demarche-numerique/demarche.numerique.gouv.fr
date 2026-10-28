@@ -20,6 +20,21 @@ describe Instructeurs::ExportBannersController, type: :controller do
       expect(response.body).to include('turbo-stream action="replace" target="export-banner"')
       expect(response.body).to include('Votre dernier export est en cours de création.')
     end
+
+    it 'hides a ready colleague export of a ProConnect restricted procedure without a ProConnect session' do
+      colleague = create(:instructeur, groupe_instructeurs: [gi])
+      colleague_export = create(:export, groupe_instructeurs: [gi], user_profile: colleague)
+      colleague_export.file.attach(io: StringIO.new('x'), filename: 'e.csv')
+      colleague_export.update!(job_status: :generated)
+      instructeur.update!(last_requested_export_id: nil)
+      procedure.update!(pro_connect_restriction: :instructeurs)
+
+      get :polling, format: :turbo_stream
+
+      expect(response.body).to include('turbo-stream action="replace" target="export-banner"')
+      expect(response.body).not_to include(colleague_export.file.url)
+      expect(response.body).not_to include('est prêt')
+    end
   end
 
   describe '#destroy' do
