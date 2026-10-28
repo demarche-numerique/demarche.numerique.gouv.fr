@@ -39,6 +39,7 @@ features = [
   :ami_recipient_fc_hash_v2,
   :brevo_api_delivery,
   :dossier_vide_weasyprint,
+  :dossier_vide_typst,
   :attestation_depot_typst,
   :s3_storage,
 ]
