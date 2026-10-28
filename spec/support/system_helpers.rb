@@ -153,7 +153,7 @@ module SystemHelpers
 
   # Only the polling actions: the Vite dev server also serves the poll
   # controller's module (`/vite-test/shared/polling.ts`), which must load.
-  POLLING_URL_PATTERN = %r{/polling_(last_export|batch_operation)}
+  POLLING_URL_PATTERN = %r{/(polling_batch_operation|export_banner/polling)}
 
   def blur
     if page.has_css?('body', wait: 0)
