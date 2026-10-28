@@ -16,5 +16,6 @@ fr:
       from_word: de
   views:
     administrateurs:
-      mail_acceptation: "l’accusé d’acceptation"
-      mail_refus: "l’accusé de refus"
+      mail_accepte: "l’accusé d’acceptation"
+      mail_depose: "l’accusé de réception avec passage automatique au statut « accepté »"
+      mail_refuse: "l’accusé de refus"

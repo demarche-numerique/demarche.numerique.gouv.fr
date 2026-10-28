@@ -85,6 +85,11 @@ describe 'admin/_email_template_attestation_inconsistency_alert', type: :view do
         expect(render_alert(procedure, mail_type))
           .to include(edit_admin_procedure_email_template_path(procedure, Emails::DeposeEtAccepte::SLUG))
       end
+
+      it 'names the combined template' do
+        expect(render_alert(procedure, mail_type).squish)
+          .to include("mais l’accusé de réception avec passage automatique au statut « accepté » ne la mentionne pas")
+      end
     end
   end
 

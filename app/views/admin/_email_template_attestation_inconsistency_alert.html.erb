@@ -5,7 +5,7 @@
     <% case inconsistency[:kind] -%>
     <% when :missing_tag -%>
       <%= t(".missing_tag_intro") %>
-      <%= t("views.administrateurs.mail_#{mail_type}") %>
+      <%= t("views.administrateurs.mail_#{inconsistency[:email_slug]}") %>
       <%= t(".missing_tag_suffix") %>
       <% if !procedure.locked? && mail_type == 'acceptation' && attestation_template_v1 -%>
         <%= link_to(t(".disable_attestation"), edit_admin_procedure_attestation_template_path(procedure)) %>
@@ -20,11 +20,11 @@
       <%= link_to(t(".add_tag"), edit_admin_procedure_email_template_path(procedure, inconsistency[:email_slug])) %>
       <%= t(".attestation_tag") %>
       <%= t(".to_word") %>
-      <%= t("views.administrateurs.mail_#{mail_type}") %>
+      <%= t("views.administrateurs.mail_#{inconsistency[:email_slug]}") %>
       <%= t(".insert_tag_hint") %>
     <% when :extraneous_tag -%>
       <%= t(".extraneous_tag_intro") %>
-      <%= t("views.administrateurs.mail_#{mail_type}") %>
+      <%= t("views.administrateurs.mail_#{inconsistency[:email_slug]}") %>
       <%= t(".extraneous_tag_suffix") %>
       <% if mail_type == 'acceptation' && attestation_template_v1 -%>
         <%= link_to(t(".enable_attestation"), edit_admin_procedure_attestation_template_path(procedure)) %>
@@ -37,7 +37,7 @@
       <%= link_to(t(".remove_tag"), edit_admin_procedure_email_template_path(procedure, inconsistency[:email_slug])) %>
       <%= t(".attestation_tag") %>
       <%= t(".from_word") %>
-      <%= t("views.administrateurs.mail_#{mail_type}") %>
+      <%= t("views.administrateurs.mail_#{inconsistency[:email_slug]}") %>
     <% end -%>
   </div>
 </div>

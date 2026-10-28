@@ -16,5 +16,6 @@ en:
       from_word: from
   views:
     administrateurs:
-      mail_acceptation: "the acceptance receipt"
-      mail_refus: "the refusal receipt"
+      mail_accepte: "the acceptance receipt"
+      mail_depose: "the receipt with automatic switch to the \"Accepted\" status"
+      mail_refuse: "the refusal receipt"
