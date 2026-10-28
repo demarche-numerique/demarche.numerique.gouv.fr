@@ -62,6 +62,8 @@ class API::V2::Schema < GraphQL::Schema
       Types::GroupeInstructeurType
     when Label
       Types::LabelType
+    when Webhook
+      Types::WebhookType
     else
       type_definition
     end
