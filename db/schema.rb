@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_15_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_28_153130) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_catalog.plpgsql"
@@ -1189,6 +1189,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_15_120000) do
     t.boolean "robots_indexable", default: true, null: false
     t.boolean "routing_alert", default: false, null: false
     t.boolean "routing_enabled"
+    t.boolean "self_management_restricted_to_email_domain", default: true, null: false
     t.bigint "service_id"
     t.jsonb "sva_svr", default: {}, null: false
     t.boolean "template", default: false, null: false
