@@ -37,6 +37,12 @@ RSpec.describe APIEntreprise::HealthChecker do
     context 'when cache is empty (fail-open)' do
       it { expect(described_class.provider_up?(ping_key)).to be true }
     end
+
+    context 'when Redis is unreachable (fail-open)' do
+      before { allow(Kredis.redis).to receive(:get).and_raise(Redis::CannotConnectError) }
+
+      it { expect(described_class.provider_up?(ping_key)).to be true }
+    end
   end
 
   describe '.refresh_all!' do

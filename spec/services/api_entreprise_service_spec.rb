@@ -6,7 +6,10 @@ describe APIEntrepriseService do
 
     subject { APIEntrepriseService.perform_later_fetch_jobs(etablissement, procedures.entreprise.id, users.usager.id) }
 
-    before { allow_any_instance_of(APIEntrepriseToken).to receive(:roles).and_return(roles) }
+    before do
+      allow_any_instance_of(APIEntrepriseToken).to receive(:roles).and_return(roles)
+      allow(APIEntreprise::HealthChecker).to receive(:provider_up?).and_return(true)
+    end
 
     context 'when the token holds no role' do
       let(:roles) { [] }
@@ -29,6 +32,44 @@ describe APIEntrepriseService do
         expect(APIEntreprise::AttestationSocialeJob).to have_been_enqueued
         expect(APIEntreprise::AttestationFiscaleJob).to have_been_enqueued
         expect(APIEntreprise::BilansBdfJob).to have_been_enqueued
+      end
+    end
+
+    context 'with a delay' do
+      let(:roles) { [] }
+
+      it 'enqueues the jobs after it' do
+        freeze_time do
+          APIEntrepriseService.perform_later_fetch_jobs(etablissement, procedures.entreprise.id, users.usager.id, wait: 10.minutes)
+
+          expect(APIEntreprise::TvaJob).to have_been_enqueued.at(10.minutes.from_now)
+        end
+      end
+    end
+
+    context 'while the provider of a job is down' do
+      let(:roles) { ['attestation_fiscale'] }
+
+      before do
+        allow(APIEntreprise::HealthChecker).to receive(:provider_up?).with('dgfip/numero_tva').and_return(false)
+        allow(APIEntreprise::HealthChecker).to receive(:provider_up?).with('dgfip/attestation_fiscale').and_return(false)
+      end
+
+      it 'parks it for the cron instead of enqueuing it' do
+        subject
+
+        expect(APIEntreprise::TvaJob).not_to have_been_enqueued
+        expect(APIEntreprise::AttestationFiscaleJob).not_to have_been_enqueued
+        expect(ParkedAPIEntrepriseFetch.find_by(etablissement:, job: 'TvaJob'))
+          .to have_attributes(code: 503, procedure_id: procedures.entreprise.id, job_arguments: [etablissement.id, procedures.entreprise.id])
+        expect(ParkedAPIEntrepriseFetch.find_by(etablissement:, job: 'AttestationFiscaleJob').job_arguments)
+          .to eq([etablissement.id, procedures.entreprise.id, users.usager.id])
+      end
+
+      it 'still enqueues the jobs of the other providers' do
+        subject
+
+        expect(APIEntreprise::ExercicesJob).to have_been_enqueued.with(etablissement.id, procedures.entreprise.id)
       end
     end
 

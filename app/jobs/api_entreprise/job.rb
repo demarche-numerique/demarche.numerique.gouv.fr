@@ -47,6 +47,23 @@ class APIEntreprise::Job < ApplicationJob
 
   attr_reader :etablissement
 
+  def self.perform_later_or_park(*arguments, wait: nil)
+    if provider_down?
+      park(arguments, code: 503)
+    else
+      set(wait:).perform_later(*arguments)
+    end
+  end
+
+  def self.park(arguments, code:, retried_daily: false)
+    ParkedAPIEntrepriseFetch.park!(etablissement_id: arguments.first, job: name.demodulize, procedure_id: arguments.second, arguments:, code:, retried_daily:)
+  end
+
+  def self.provider_down?
+    ping_key = PING_KEY_BY_JOB[name.demodulize]
+    ping_key.present? && !APIEntreprise::HealthChecker.provider_up?(ping_key)
+  end
+
   def find_etablissement(etablissement_id)
     @etablissement = Etablissement.find(etablissement_id)
   end
@@ -84,12 +101,6 @@ class APIEntreprise::Job < ApplicationJob
     POOL_BY_JOB.fetch(self.class.name.demodulize, APIEntreprise::API::DEFAULT_POOL)
   end
 
-  # Ping key derived from job class name via PING_KEY_BY_JOB.
-  # Returns nil for unknown jobs (fail-open).
-  def ping_key_for_job
-    PING_KEY_BY_JOB[self.class.name.demodulize]
-  end
-
   private
 
   def etablissement_id = arguments.first
@@ -97,7 +108,7 @@ class APIEntreprise::Job < ApplicationJob
   def procedure = @procedure ||= Procedure.find(arguments.second)
 
   def api_unavailable_code
-    return 503 if ping_key_for_job && !APIEntreprise::HealthChecker.provider_up?(ping_key_for_job)
+    return 503 if self.class.provider_down?
 
     429 if APIEntreprise::RateLimiter.throttled?(api_pool)
   end
@@ -110,7 +121,7 @@ class APIEntreprise::Job < ApplicationJob
   end
 
   def park_fetch(code, retried_daily: false)
-    ParkedAPIEntrepriseFetch.park!(etablissement_id:, job: self.class.name.demodulize, procedure_id: arguments.second, arguments:, code:, retried_daily:)
+    self.class.park(arguments, code:, retried_daily:)
   end
 
   def retry_daily(code)
