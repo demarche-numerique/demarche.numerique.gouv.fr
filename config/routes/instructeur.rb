@@ -142,7 +142,6 @@ scope module: 'instructeurs', as: 'instructeur', defaults: { nav_bar_profile: :i
       get 'apercu'
       get 'download_export'
       post 'download_export'
-      get 'polling_last_export'
       get 'polling_batch_operation'
       get 'stats'
       get 'exports'
