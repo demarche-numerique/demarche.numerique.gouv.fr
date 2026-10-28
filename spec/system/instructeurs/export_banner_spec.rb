@@ -19,6 +19,7 @@ describe 'Export banner:', js: true do
       click_on "Demander l’export"
     end
     expect(page).to have_css('#export-banner .alert-info')
+    expect(page).to have_css('#export-banner:focus')
 
     visit instructeur_procedure_path(other_procedure)
     expect(page).to have_css('#export-banner .alert-info', text: 'Votre dernier export est en cours de création.')
