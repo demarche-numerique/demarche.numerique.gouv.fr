@@ -55,6 +55,15 @@ RSpec.describe Dossiers::RNFComponent, type: :component do
     end
   end
 
+  context 'when the champ is waiting for the API to come back' do
+    let(:external_state) { 'degraded' }
+    let(:rnf_data) { nil }
+
+    it 'tells the instructeur the data will come later' do
+      expect(subject).to have_text('Les données pour l’identifiant « 075-FDD-00003-01 » n’ont pas pu être récupérées')
+    end
+  end
+
   context 'when the champ is in external error with a 404' do
     let(:external_state) { 'external_error' }
     let(:rnf_data) { nil }
