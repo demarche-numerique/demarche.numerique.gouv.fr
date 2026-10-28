@@ -1144,13 +1144,16 @@ describe Instructeurs::ProceduresController, type: :controller do
     end
 
     context 'when the export is not ready' do
-      before do
-        create(:export, groupe_instructeurs: [gi_1])
-      end
+      let!(:export) { create(:export, groupe_instructeurs: [gi_1]) }
 
       it 'redirects without a flash notice' do
         is_expected.to redirect_to(exports_instructeur_procedure_url(procedure))
         expect(flash.notice).to be_nil
+      end
+
+      it 'points the banner to the reused export' do
+        expect { subject }.not_to change { Export.count }
+        expect(instructeur.reload.last_requested_export).to eq(export)
       end
     end
 
@@ -1164,6 +1167,11 @@ describe Instructeurs::ProceduresController, type: :controller do
       it 'displays the download link' do
         subject
         expect(response.headers['Location']).to start_with("http://test.host/rails/active_storage/disk")
+      end
+
+      it 'points the banner to the reused export' do
+        subject
+        expect(instructeur.reload.last_requested_export).to eq(export)
       end
     end
 
