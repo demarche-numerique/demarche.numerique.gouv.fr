@@ -27,6 +27,8 @@ class ProcedureDashboard < Administrate::BaseDashboard
     description: Field::String,
     zones: Field::HasMany,
     lien_site_web: Field::String, # TODO: use Field::Url when administrate-v0.12 will be released
+    cadre_juridique: Field::String,
+    deliberation: AttachmentField,
     organisation: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
@@ -97,6 +99,8 @@ class ProcedureDashboard < Administrate::BaseDashboard
     :description,
     :template,
     :lien_site_web,
+    :cadre_juridique,
+    :deliberation,
     :organisation,
     :zones,
     :service,

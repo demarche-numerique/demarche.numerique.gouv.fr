@@ -70,6 +70,19 @@ describe Manager::ProceduresController, type: :controller do
 
       it { expect(response).to have_http_status(:ok) }
     end
+
+    context 'with a cadre juridique and a deliberation' do
+      let(:procedure) do
+        create(:procedure,
+          cadre_juridique: 'https://www.legifrance.gouv.fr/loi-de-la-demarche',
+          deliberation: fixture_file_upload('spec/fixtures/files/piece_justificative_0.pdf', 'application/pdf'))
+      end
+
+      it 'displays them' do
+        expect(response.body).to include('https://www.legifrance.gouv.fr/loi-de-la-demarche')
+        expect(response.body).to include('piece_justificative_0.pdf')
+      end
+    end
   end
 
   describe '#discard' do
