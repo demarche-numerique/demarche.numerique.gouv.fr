@@ -1,0 +1,192 @@
+<% content_for(:title) { "API Entreprise" } %>
+<% state_labels = { up: "fonctionnel", down: "en panne", unknown: "inconnu" } %>
+<% down_count = @status.down_providers.size %>
+<% unknown_count = @status.unknown_providers.size %>
+<% summary_state = if down_count.positive? then :down elsif unknown_count.positive? then :unknown else :up end %>
+
+<header class="main-content__header">
+  <h1 class="main-content__page-title"><%= content_for(:title) %></h1>
+
+  <%= link_to "État officiel sur status.entreprise.api.gouv.fr", APIEntreprise::Status::STATUS_PAGE_URL, target: "_blank", rel: "noopener" %>
+</header>
+
+<section class="main-content__body api-status">
+  <p class="api-status__summary">
+    <span class="api-status__state api-status__state--<%= summary_state %>"></span>
+
+    <% case summary_state %>
+    <% when :down %>
+      <%= down_count %>
+      <%= "fournisseur".pluralize(down_count) %>
+      en panne
+    <% when :unknown %>
+      État inconnu pour
+      <%= unknown_count %>
+      <%= "fournisseur".pluralize(unknown_count) %>
+      (health-check arrêté ?)
+    <% else %>
+      Tout fonctionne
+    <% end %>
+  </p>
+
+  <h2>Fournisseurs</h2>
+
+  <table>
+    <tbody>
+      <% @status.providers.each do |provider| %>
+        <tr>
+          <td>
+            <span class="api-status__state api-status__state--<%= provider.state %>"></span><%= provider.label %>
+          </td>
+
+          <td><%= state_labels.fetch(provider.state) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <% degraded_data = @status.degraded_data %>
+
+  <% if degraded_data.any? %>
+    <p>
+      <strong>Données en mode dégradé</strong><br>
+      (rattrapées automatiquement dès que le fournisseur répond à nouveau)
+    </p>
+    <ul>
+      <% degraded_data.each do |label, count| %>
+        <li>
+          <%= label %>&nbsp;:
+          <strong><%= number_with_delimiter(count) %></strong>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>Aucune donnée en mode dégradé.</p>
+  <% end %>
+
+  <h2>Données complémentaires en attente</h2>
+
+  <% pending = @status.pending %>
+
+  <% if pending %>
+    <p>
+      <strong><%= number_with_delimiter(pending.count) %></strong>
+      <%= pending.count == 1 ? "donnée complémentaire (Kbis, TVA, bilans…) attend depuis le" : "données complémentaires (Kbis, TVA, bilans…) attendent, la plus ancienne depuis le" %>
+      <%= l(pending.oldest_at, format: "%d/%m/%Y à %H:%M") %>. Le rattrapage
+      est automatique dès que le fournisseur répond à nouveau.
+    </p>
+  <% else %>
+    <p>Aucune donnée complémentaire en attente.</p>
+  <% end %>
+</section>
+
+<hr>
+
+<section class="main-content__body api-status">
+  <h2>Détail technique</h2>
+
+  <h3>Health-check (<code>/ping</code>)</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Clé</th>
+        <th>Statut brut</th>
+        <th>Vérifié</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @status.providers.each do |provider| %>
+        <tr>
+          <td><code><%= provider.ping_key %></code></td>
+          <td><code><%= provider.raw_status || "—" %></code></td>
+
+          <td>
+            <%= provider.checked_at ? "il y a #{time_ago_in_words(provider.checked_at)}" : "clé expirée (cron arrêté ?)" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <h3>Parking (<code>parked_api_entreprise_fetches</code>)</h3>
+
+  <% parked = @status.parked_by_job %>
+
+  <% if parked.empty? %>
+    <p>Vide.</p>
+  <% else %>
+    <table>
+      <thead>
+        <tr>
+          <th>Job</th>
+          <th class="number">Lignes</th>
+          <th>Codes HTTP</th>
+          <th class="number">Relances quotidiennes</th>
+          <th>Plus ancienne ligne</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% parked.each do |row| %>
+          <tr>
+            <td><code><%= row.job %></code></td>
+            <td class="number"><%= number_with_delimiter(row.count) %></td>
+
+            <td>
+              <%= row.count_by_code.sort_by { -it.last }.map { |code, count| "#{code} × #{number_with_delimiter(count)}" }.join(", ") %>
+            </td>
+
+            <td class="number">
+              <%= number_with_delimiter(row.retried_daily) %>
+            </td>
+
+            <td><%= l(row.oldest_at, format: "%d/%m/%Y à %H:%M") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
+  <h3>Quotas (appels restants par minute)</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th class="number">Pool</th>
+        <th class="number">Restants</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @status.pools.each do |pool| %>
+        <tr>
+          <td class="number"><%= pool.size %></td>
+          <td class="number"><%= pool.remaining || "—" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <h3>Jeton global</h3>
+
+  <% token = @status.token %>
+
+  <table>
+    <tbody>
+      <tr>
+        <td>Utilisable</td>
+        <td><%= token.usable? ? "oui" : "non (#{token.unusable_reason})" %></td>
+      </tr>
+
+      <tr>
+        <td>Expire le</td>
+
+        <td>
+          <%= token.expires_at ? l(token.expires_at, format: "%d/%m/%Y") : "—" %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</section>
