@@ -7,8 +7,10 @@ module InstructeurExportBannerConcern
     belongs_to :last_requested_export, class_name: 'Export', optional: true
   end
 
-  def export_for_banner
-    own_export_for_banner || colleague_export_for_banner
+  def export_for_banner(pro_connect:)
+    groupe_instructeurs = banner_groupe_instructeurs(pro_connect:)
+
+    own_export_for_banner(groupe_instructeurs) || colleague_export_for_banner(groupe_instructeurs)
   end
 
   def request_export!(export)
@@ -25,25 +27,32 @@ module InstructeurExportBannerConcern
 
   private
 
-  def banner_groupe_instructeurs
-    assign_to.where(manager: [false, nil]).select(:groupe_instructeur_id)
+  def banner_groupe_instructeurs(pro_connect:)
+    assignments = assign_to.where(manager: [false, nil])
+
+    if !pro_connect
+      unrestricted_procedures = Procedure.with_discarded.pro_connect_restriction_none
+      assignments = assignments.where(groupe_instructeur: GroupeInstructeur.where(procedure: unrestricted_procedures))
+    end
+
+    assignments.select(:groupe_instructeur_id)
   end
 
-  def own_export_for_banner
+  def own_export_for_banner(groupe_instructeurs)
     return if last_requested_export_id.nil?
 
-    export = Export.for_groupe_instructeurs(banner_groupe_instructeurs).find_by(id: last_requested_export_id)
+    export = Export.for_groupe_instructeurs(groupe_instructeurs).find_by(id: last_requested_export_id)
 
     if export && (last_requested_export_dismissed_at.nil? || (export.available? && export.updated_at > last_requested_export_dismissed_at))
       export
     end
   end
 
-  def colleague_export_for_banner
+  def colleague_export_for_banner(groupe_instructeurs)
     exports = Export.generated
       .where(user_profile_type: 'Instructeur')
       .where.not(user_profile_id: id)
-      .for_groupe_instructeurs(banner_groupe_instructeurs)
+      .for_groupe_instructeurs(groupe_instructeurs)
 
     if colleague_exports_dismissed_at
       exports = exports.where(Export.arel_table[:updated_at].gt(colleague_exports_dismissed_at))
