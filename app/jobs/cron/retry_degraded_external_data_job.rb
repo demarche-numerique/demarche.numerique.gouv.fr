@@ -20,8 +20,7 @@ class Cron::RetryDegradedExternalDataJob < Cron::CronJob
   end
 
   def perform(*args)
-    return if !APIEntreprise::HealthChecker.provider_up?(health_provider)
-    return if APIEntreprise::RateLimiter.throttled?(APIEntreprise::API::DEFAULT_POOL)
+    return if !provider_ready?
 
     retryable_batch.find_each do |record|
       record.fix_degraded!(wait: rand(0..spread_over)) if record.may_fix_degraded?
@@ -30,14 +29,21 @@ class Cron::RetryDegradedExternalDataJob < Cron::CronJob
 
   private
 
-  # Whatever blocks the token blocks every retry it covers, so it is filtered
-  # here rather than discovered champ by champ once the batch is already full.
+  def provider_ready?
+    APIEntreprise::HealthChecker.provider_up?(health_provider) &&
+      !APIEntreprise::RateLimiter.throttled?(APIEntreprise::API::DEFAULT_POOL)
+  end
+
   def retryable_batch
     degraded_records
-      .merge(Procedure.with_usable_api_entreprise_token)
+      .merge(replayable_procedures)
       .limit(batch_size)
       .preload(dossier: :procedure)
   end
+
+  # Whatever blocks the token blocks every retry it covers, so it is filtered
+  # here rather than discovered champ by champ once the batch is already full.
+  def replayable_procedures = Procedure.with_usable_api_entreprise_token
 
   def degraded_records
     champ_class
