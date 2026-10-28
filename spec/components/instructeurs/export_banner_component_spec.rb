@@ -50,6 +50,10 @@ RSpec.describe Instructeurs::ExportBannerComponent, type: :component do
       expect(page).to have_css("[data-controller='turbo-poll'][data-turbo-poll-url-value='#{polling_instructeur_export_banner_path}'][data-turbo-poll-interval-value='5000']")
     end
 
+    it 'identifies the banner by its export so a new export restarts the polling' do
+      expect(page).to have_css("#export-banner > .alert#export-banner-#{export.id}")
+    end
+
     it 'closes through a DELETE form' do
       expect(page).to have_css("form[action='#{instructeur_export_banner_path(export_id: export.id)}'] input[name='_method'][value='delete']", visible: :all)
       expect(page).to have_css('form[data-turbo="true"]', visible: :all)
