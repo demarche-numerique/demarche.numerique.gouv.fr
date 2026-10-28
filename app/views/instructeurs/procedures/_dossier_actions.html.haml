@@ -28,8 +28,14 @@
       = button_to repasser_en_instruction_instructeur_dossier_path(procedure_id, dossier_id, statut: params[:statut]), method: :post, class: 'fr-btn fr-btn--secondary fr-icon-edit-line', form: { data: { turbo: turbo ? 'true' : 'false' } } do
         Repasser en instruction
 
-      = button_to archive_instructeur_dossier_path(procedure_id, dossier_id, statut: params[:statut]), method: :patch, class: 'fr-btn fr-icon-folder-2-line' do
-        Déplacer dans “à archiver“
+      - if current_instructeur.archive_warning_dismissed_for?(procedure_id)
+        = button_to archive_instructeur_dossier_path(procedure_id, dossier_id, statut: params[:statut]), method: :patch, class: 'fr-btn fr-icon-folder-2-line' do
+          Déplacer dans “à archiver“
+      - else
+        %button.fr-btn.fr-icon-folder-2-line{ type: 'button', aria: { controls: "modal-archive-#{dossier_id}", haspopup: 'dialog' }, data: { 'fr-opened': 'false' } }
+          Déplacer dans “à archiver“
+        - content_for(:archive_modals) do
+          = render Instructeurs::ArchiveModalComponent.new(procedure_id:, dossier_id:)
 
       = button_to instructeur_dossier_path(procedure_id, dossier_id, statut: params[:statut]), method: :delete, class: 'fr-btn fr-btn--secondary fr-icon-delete-line icon-only danger', title: t('views.instructeurs.dossiers.delete_dossier') do
         = ""
