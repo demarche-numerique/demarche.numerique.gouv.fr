@@ -66,6 +66,13 @@ describe InstructeurExportBannerConcern do
       expect(instructeur.reload.export_for_banner(pro_connect: false)).to be_nil
     end
 
+    it 'returns nil when the own export also covers a group the instructeur is not in' do
+      other_gi = create(:groupe_instructeur, procedure:, instructeurs: [colleague])
+      export = create(:export, :pending, groupe_instructeurs: [gi, other_gi], user_profile: instructeur)
+      instructeur.request_export!(export)
+      expect(instructeur.reload.export_for_banner(pro_connect: false)).to be_nil
+    end
+
     it 'returns the most recently ready colleague export' do
       travel_to(2.minutes.ago) { ready(create(:export, groupe_instructeurs: [gi], user_profile: colleague)) }
       latest = ready(create(:export, groupe_instructeurs: [gi], user_profile: colleague))
