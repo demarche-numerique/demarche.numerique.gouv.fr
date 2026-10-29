@@ -3,7 +3,7 @@
 module Instructeurs
   class ExportBannersController < InstructeurController
     def polling
-      render turbo_stream: turbo_stream.replace('export-banner', Instructeurs::ExportBannerComponent.new(instructeur: current_instructeur))
+      render turbo_stream: turbo_stream.replace('export-banner', ExportBannerComponent.new(instructeur: current_instructeur))
     end
 
     def destroy
