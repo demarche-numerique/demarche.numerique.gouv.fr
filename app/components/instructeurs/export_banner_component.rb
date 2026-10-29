@@ -2,6 +2,7 @@
 
 class Instructeurs::ExportBannerComponent < ApplicationComponent
   POLLING_INTERVAL = 5_000
+  FLASH_LEVELS = { pending: 'info', available: 'notice', failed: 'alert' }.freeze
 
   attr_reader :export
 
@@ -29,30 +30,25 @@ class Instructeurs::ExportBannerComponent < ApplicationComponent
   private
 
   def banner_class
-    class_names(
-      'alert fr-icon--sm fr-text--sm fr-mb-0 fr-py-2w export-banner',
-      {
-        pending: 'alert-info fr-icon-information-line',
-        available: 'alert-success fr-icon-success-line',
-        failed: 'alert-danger fr-icon-error-line',
-      }.fetch(state)
-    )
+    "alert #{helpers.flash_class(flash_level)} fr-py-2w export-banner"
   end
 
   def banner_role
-    state == :failed ? 'alert' : 'status'
+    helpers.flash_role(flash_level)
+  end
+
+  def flash_level
+    FLASH_LEVELS.fetch(state)
   end
 
   def banner_data
-    if polling?
-      {
-        controller: 'turbo-poll',
-        turbo_poll_url_value: polling_instructeur_export_banner_path,
-        turbo_poll_interval_value: POLLING_INTERVAL,
-      }
-    else
-      {}
-    end
+    return {} if !polling?
+
+    {
+      controller: 'turbo-poll',
+      turbo_poll_url_value: polling_instructeur_export_banner_path,
+      turbo_poll_interval_value: POLLING_INTERVAL,
+    }
   end
 
   def message

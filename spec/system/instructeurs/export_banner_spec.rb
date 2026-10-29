@@ -45,7 +45,6 @@ describe 'Export banner:', js: true do
 
     expect(page).to have_css('#flash_messages', text: 'Dossier suivi')
     expect(page).to have_css('#export-banner .alert-info')
-    following = page.evaluate_script("document.querySelector('#flash_messages').compareDocumentPosition(document.querySelector('#export-banner')) & Node.DOCUMENT_POSITION_FOLLOWING")
-    expect(following).to be_positive
+    expect(page).to have_css('#flash_messages + #export-banner')
   end
 end
