@@ -22,7 +22,7 @@ module Maintenance
     end
 
     def raw_type_champ(id)
-      TypeDeChamp.where(id:).pick(:type_champ)
+      TypeDeChamp.connection.select_value("SELECT type_champ FROM types_de_champ WHERE id = #{id}")
     end
 
     def raw_champs

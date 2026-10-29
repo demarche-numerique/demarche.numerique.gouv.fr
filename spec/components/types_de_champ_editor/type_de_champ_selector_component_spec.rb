@@ -36,10 +36,6 @@ describe TypesDeChampEditor::TypeDeChampSelectorComponent, type: :component do
       expect(page).to have_css("label[for=\"#{ActionView::RecordIdentifier.dom_id(tdc, :type_champ)}\"]", text: 'Type de champ')
       expect(page).not_to have_text('Aucun type de champ autorisé')
     end
-
-    it 'leaves out the legacy number type' do
-      expect(values).not_to include('number')
-    end
   end
 
   describe 'the dossier_link type' do
@@ -47,14 +43,6 @@ describe TypesDeChampEditor::TypeDeChampSelectorComponent, type: :component do
 
     it 'names the instance, so it does not read as a link to any dossier out there' do
       expect(items.find { it['value'] == 'dossier_link' }['label']).to eq("Lien vers un autre dossier #{APPLICATION_NAME}")
-    end
-  end
-
-  describe 'the legacy number type' do
-    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text }, { type: :number }]) }
-
-    it 'stays available while the revision still has one' do
-      expect(values).to include('number')
     end
   end
 

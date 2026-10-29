@@ -303,7 +303,6 @@ describe TypeDeChamp do
     it_behaves_like "a prefillable type de champ", :type_de_champ_dossier_link
     it_behaves_like "a prefillable type de champ", :type_de_champ_siret
 
-    it_behaves_like "a non-prefillable type de champ", :type_de_champ_number
     it_behaves_like "a non-prefillable type de champ", :type_de_champ_iban
     it_behaves_like "a non-prefillable type de champ", :type_de_champ_linked_drop_down_list
     it_behaves_like "a non-prefillable type de champ", :type_de_champ_header_section
