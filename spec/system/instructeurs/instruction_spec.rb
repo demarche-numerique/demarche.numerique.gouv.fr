@@ -214,7 +214,7 @@ describe 'Instructing a dossier:', js: true do
     end
 
     with_turbo_poll do
-      expect(page).to have_css('#export-banner .alert-success', text: 'L’export au format csv est prêt.')
+      expect(page).to have_css('#export-banner .alert-success', text: 'Le dernier export au format csv est prêt.')
     end
 
     within('#export-banner') { click_on 'Masquer le message' }

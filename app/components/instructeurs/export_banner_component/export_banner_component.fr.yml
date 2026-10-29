@@ -1,6 +1,6 @@
 ---
 fr:
   pending_html: Votre dernier export est en cours de création. Vous pouvez retrouver tous vos exports sur la <a href="%{url}">liste des exports</a>.
-  available_html: L’export au format %{file_format} est prêt. Vous pouvez le <a href="%{file_url}">télécharger</a>.
-  failed: Votre dernier export au format %{file_format} n’a pas fonctionné.
+  available_html: Le dernier export au format %{file_format} est prêt. Vous pouvez le <a href="%{file_url}">télécharger</a>.
+  failed: Votre dernier export au format %{file_format} n’a pas pu être créé.
   close: Masquer le message

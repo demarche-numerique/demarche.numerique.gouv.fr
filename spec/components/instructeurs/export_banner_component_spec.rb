@@ -71,7 +71,7 @@ RSpec.describe Instructeurs::ExportBannerComponent, type: :component do
     let(:export) { ready(create(:export, format: :xlsx, groupe_instructeurs: [gi])) }
 
     it 'offers the download without polling' do
-      expect(page).to have_css('.alert.alert-success[role="status"]', text: 'L’export au format xlsx est prêt.')
+      expect(page).to have_css('.alert.alert-success[role="status"]', text: 'Le dernier export au format xlsx est prêt.')
       expect(page).to have_link('télécharger', href: export.file.url)
       expect(page).to have_no_css('[data-controller="turbo-poll"]')
     end
@@ -81,7 +81,7 @@ RSpec.describe Instructeurs::ExportBannerComponent, type: :component do
     let(:export) { create(:export, :failed, format: :xlsx, groupe_instructeurs: [gi]) }
 
     it 'warns without polling' do
-      expect(page).to have_css('.alert.alert-danger[role="alert"]', text: 'Votre dernier export au format xlsx n’a pas fonctionné.')
+      expect(page).to have_css('.alert.alert-danger[role="alert"]', text: 'Votre dernier export au format xlsx n’a pas pu être créé.')
       expect(page).to have_no_css('[data-controller="turbo-poll"]')
     end
   end
