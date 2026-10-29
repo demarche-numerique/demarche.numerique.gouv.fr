@@ -185,7 +185,7 @@ module Users
         flash.notice = t('.identity_saved')
 
         if dossier.en_construction?
-          DossierNotification.create_notification(dossier, :dossier_modifie)
+          @dossier.usager_update_identity_en_construction!
           redirect_to demande_dossier_path(@dossier)
         else
           redirect_to brouillon_dossier_path(@dossier)

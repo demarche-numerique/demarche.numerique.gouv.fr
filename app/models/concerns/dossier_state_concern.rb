@@ -411,6 +411,12 @@ module DossierStateConcern
     rebase_later
   end
 
+  def usager_update_identity_en_construction!
+    resolve_pending_correction!
+    process_sva_svr!
+    DossierNotification.create_notification(self, :dossier_modifie)
+  end
+
   def clean_champs_after_submit!
     remove_not_in_revision_champs!
     remove_discarded_rows!
