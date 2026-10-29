@@ -34,7 +34,7 @@ describe 'Export banner:', js: true do
     export.file.attach(io: StringIO.new('x'), filename: 'e.csv')
     export.update!(job_status: :generated)
     visit instructeur_procedure_path(other_procedure)
-    expect(page).to have_css('#export-banner .alert-success', text: 'L’export au format csv est prêt.')
+    expect(page).to have_css('#export-banner .alert-success', text: 'Le dernier export au format csv est prêt.')
   end
 
   scenario 'an action flash stacks above the export banner' do
