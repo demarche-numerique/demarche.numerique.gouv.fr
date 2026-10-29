@@ -38,4 +38,15 @@ describe Logic::PossibleValues::Enum do
     expect(boolean.restrict(Logic::Eq, true).restrict(Logic::Eq, false)).to be_empty
     expect(boolean.restrict(Logic::NotEq, true).restrict(Logic::Eq, false)).not_to be_empty
   end
+
+  describe '#regions' do
+    include_examples 'possible values regions', [[Logic::Eq, 'a'], [Logic::NotEq, 'b']]
+
+    it 'isolates the mentioned options' do
+      expect(values.regions([[Logic::Eq, 'a'], [Logic::NotEq, 'b']])).to eq([described_class.new(['a']), described_class.new(['b']), described_class.new(['c'])])
+      expect(values.regions([[Logic::Eq, 'a']])).to eq([described_class.new(['a']), described_class.new(['b', 'c'])])
+      expect(values.regions([[Logic::Eq, 'unknown']])).to eq([values])
+      expect(values.regions([])).to eq([values])
+    end
+  end
 end
