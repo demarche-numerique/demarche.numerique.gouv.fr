@@ -144,10 +144,12 @@ class APIToken < ApplicationRecord
     def generate(administrateur, expires_at: max_expires_at)
       plain_token = generate_unique_secure_token
       encrypted_token = BCrypt::Password.create(plain_token)
-      api_token = create!(administrateur:, encrypted_token:, expires_at:, name: Date.today.strftime('Jeton d’API généré le %d/%m/%Y'))
+      api_token = create!(administrateur:, encrypted_token:, token_digest: digest(plain_token), expires_at:, name: Date.today.strftime('Jeton d’API généré le %d/%m/%Y'))
       bearer = BearerToken.new(api_token.id, plain_token)
       [api_token, bearer.to_string]
     end
+
+    def digest(plain_token) = Digest::SHA256.hexdigest(plain_token)
 
     def authenticate(bearer_string)
       bearer = BearerToken.from_string(bearer_string)
@@ -158,12 +160,21 @@ class APIToken < ApplicationRecord
 
       return if api_token.nil?
 
-      BCrypt::Password.new(api_token.encrypted_token) == bearer.plain_token ? api_token : nil
+      api_token.matches?(bearer.plain_token) ? api_token : nil
     end
   end
 
   def last_used_at
     last_v2_authenticated_at || last_v1_authenticated_at
+  end
+
+  def matches?(plain_token)
+    if token_digest.present?
+      ActiveSupport::SecurityUtils.secure_compare(token_digest, self.class.digest(plain_token))
+    elsif BCrypt::Password.new(encrypted_token) == plain_token
+      update_column(:token_digest, self.class.digest(plain_token))
+      true
+    end
   end
 
   private
@@ -187,7 +198,7 @@ class APIToken < ApplicationRecord
       return if bearer_token.nil?
 
       api_token_id, plain_token = Base64.urlsafe_decode64(bearer_token).split(';')
-      BearerToken.new(api_token_id, plain_token)
+      BearerToken.new(api_token_id, plain_token) if plain_token
     rescue ArgumentError
     end
   end
