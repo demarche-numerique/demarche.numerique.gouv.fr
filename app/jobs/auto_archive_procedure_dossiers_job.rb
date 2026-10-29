@@ -5,6 +5,7 @@ class AutoArchiveProcedureDossiersJob < ApplicationJob
     procedure
       .dossiers
       .state_en_construction
+      .visible_by_user
       .find_each do |d|
         next unless d.may_passer_automatiquement_en_instruction?
 
