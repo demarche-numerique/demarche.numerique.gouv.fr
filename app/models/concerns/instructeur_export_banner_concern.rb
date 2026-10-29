@@ -15,7 +15,7 @@ module InstructeurExportBannerConcern
   end
 
   def request_export!(export)
-    update!(last_requested_export_id: export.id, last_requested_export_dismissed_at: nil)
+    update!(last_requested_export: export, last_requested_export_dismissed_at: nil)
   end
 
   def dismiss_export_banner!(export_id)
@@ -29,8 +29,7 @@ module InstructeurExportBannerConcern
   private
 
   def banner_groupe_instructeur_ids(pro_connect:)
-    procedures = Procedure.kept
-    procedures = procedures.pro_connect_restriction_none if !pro_connect
+    procedures = pro_connect ? Procedure.all : Procedure.pro_connect_restriction_none
 
     assign_to
       .where(manager: [false, nil])
@@ -44,13 +43,11 @@ module InstructeurExportBannerConcern
     export = Export.includes(:groupe_instructeurs).find_by(id: last_requested_export_id)
     return if export.nil? || !within_groupe_instructeurs?(export, groupe_instructeur_ids)
 
-    if last_requested_export_dismissed_at.nil? || (export.available? && export.updated_at > last_requested_export_dismissed_at)
-      export
-    end
+    export if last_requested_export_dismissed_at.nil? || (export.updated_at > last_requested_export_dismissed_at && export.available?)
   end
 
   def within_groupe_instructeurs?(export, groupe_instructeur_ids)
-    export_groupe_instructeur_ids = export.groupe_instructeurs.map(&:id)
+    export_groupe_instructeur_ids = export.groupe_instructeur_ids
 
     export_groupe_instructeur_ids.present? && (export_groupe_instructeur_ids - groupe_instructeur_ids).empty?
   end
@@ -61,14 +58,9 @@ module InstructeurExportBannerConcern
       .where.not(user_profile_id: id)
       .for_groupe_instructeurs(groupe_instructeur_ids)
 
-    if colleague_exports_dismissed_at
-      exports = exports.where(Export.arel_table[:updated_at].gt(colleague_exports_dismissed_at))
-    end
+    exports = exports.where(Export.arel_table[:updated_at].gt(colleague_exports_dismissed_at)) if colleague_exports_dismissed_at
 
     export = exports.ante_chronological.first
-
-    if export&.available?
-      export
-    end
+    export if export&.available?
   end
 end

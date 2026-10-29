@@ -1,0 +1,44 @@
+.export-banner {
+  position: relative;
+  padding-left: 3.25rem;
+  padding-right: 3.25rem;
+  text-align: center;
+
+  a:focus-visible,
+  .fr-btn--close:focus-visible {
+    outline-color: currentcolor;
+  }
+
+  @media (max-width: 48em) {
+    padding-left: 1rem;
+    text-align: left;
+  }
+}
+
+.export-banner__close {
+  position: absolute;
+  top: 50%;
+  right: 0.25rem;
+  transform: translateY(-50%);
+
+  @media (max-width: 48em) {
+    top: 0.25rem;
+    transform: none;
+  }
+
+  .fr-btn--close {
+    min-width: 2.75rem;
+    max-width: 2.75rem;
+    min-height: 2.75rem;
+    max-height: 2.75rem;
+    padding: 0 0 0 0.875rem;
+    overflow: hidden;
+    white-space: nowrap;
+    color: inherit;
+
+    &::after {
+      order: -1;
+      margin: 0 0.875rem 0 0;
+    }
+  }
+}

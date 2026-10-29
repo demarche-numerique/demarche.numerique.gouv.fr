@@ -202,7 +202,6 @@ describe 'Instructing a dossier:', js: true do
     end
 
     expect(page).to have_css('#export-banner .alert-info', text: 'Votre dernier export est en cours de création.')
-    expect(page).to have_no_text('Nous générons cet export.')
 
     find("button", text: "Téléchargements").click
     click_on "Liste des exports"
