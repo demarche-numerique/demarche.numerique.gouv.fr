@@ -1,0 +1,4 @@
+fr:
+  devise_user_mailer:
+    confirmation_instructions:
+      subject: Activez votre compte Démarche Numérique

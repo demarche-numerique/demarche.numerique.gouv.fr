@@ -18,6 +18,41 @@ describe 'Signing up:', js: true do
     expect(page).to have_current_path dossiers_path
   end
 
+  scenario 'a new user waits two minutes before asking for another confirmation email, wherever they come back from' do
+    visit new_user_registration_path
+    sign_up_with user_email, user_password
+
+    countdown = /\ARenvoyer un email de confirmation \((1[01]\d|120) secondes\)\z/
+    first_label = find_button(disabled: true, text: countdown).text
+    expect(page).not_to have_button(first_label, disabled: true)
+
+    page.go_back
+    expect(page).to have_current_path(new_user_registration_path)
+    expect(page).to have_field(:user_email)
+    travel 3.minutes
+    page.go_forward
+    expect(page).to have_current_path(%r{/users/confirmation/new\?email=})
+    expect(page).to have_button(exact_text: 'Renvoyer un email de confirmation', disabled: false)
+
+    clear_emails
+    perform_enqueued_jobs do
+      click_on 'Renvoyer un email de confirmation'
+      expect(page).to have_content('Si votre adresse électronique existe dans notre base de données, vous recevrez sous quelques minutes un email avec des instructions pour activer votre compte.')
+    end
+    expect(emails_sent_to(user_email).map(&:subject)).to eq(['Activez votre compte Démarche Numérique'])
+
+    fill_in :user_email, with: user_email
+    fill_in :user_password, with: user_password
+    click_on 'Se connecter'
+
+    expect(page).to have_current_path(%r{/users/confirmation/new\?email=})
+    expect(page).to have_button(disabled: true, text: countdown)
+
+    travel 3.minutes
+    visit current_url
+    expect(page).to have_button(exact_text: 'Renvoyer un email de confirmation', disabled: false)
+  end
+
   context 'when the user makes a typo in their email address' do
     let(:procedure) { procedures.individual }
 
@@ -108,7 +143,7 @@ describe 'Signing up:', js: true do
 
       # The confirmation email is sent again
       confirmation_email = open_email(user_email)
-      expect(confirmation_email.body).to have_text('Pour activer votre compte')
+      expect(confirmation_email.body).to have_text('Pour confirmer votre adresse électronique et activer votre compte')
 
       click_confirmation_link_for(user_email, in_another_browser: true)
 

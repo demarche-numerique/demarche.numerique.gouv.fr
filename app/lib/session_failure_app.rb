@@ -42,6 +42,18 @@ class SessionFailureApp < Devise::FailureApp
 
   private
 
+  def unconfirmed_sign_in?
+    warden_message == :unconfirmed &&
+      request.post? &&
+      attempted_path.to_s.partition('?').first == user_session_path
+  end
+
+  def redirect_to_email_confirmation
+    email = User.normalize_value_for(:email, params.dig(:user, :email).to_s)
+
+    redirect_to new_user_confirmation_path(email: SignedConfirmationEmail.sign(email))
+  end
+
   # The reason exists on the first rejected request only: the scope is logged
   # out by then, so nothing recomputes it. The client that gets this 401 throws
   # the body away and reloads, and that reload is another failure -- which would
@@ -54,6 +66,8 @@ class SessionFailureApp < Devise::FailureApp
 
   # The marker is not kept, so the message survives exactly one hop.
   def redirect
+    return redirect_to_email_confirmation if unconfirmed_sign_in?
+
     return super if !request.flash[SESSION_ENDED_KEY]
 
     request.flash.keep(:alert)

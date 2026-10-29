@@ -129,4 +129,78 @@ describe 'the session failure app', type: :request do
     expect(response).to have_http_status(:unprocessable_content)
     expect(response.body).to include('user[password]')
   end
+
+  context 'when the account has never been confirmed' do
+    let_it_be(:unconfirmed) { create(:user, :unconfirmed, password: SECURE_PASSWORD) }
+    let(:signed_email) { Rack::Utils.parse_nested_query(URI.parse(response.location).query)['email'] }
+    let(:decrypted_email) { MessageEncryptorService.new.decrypt_and_verify(signed_email, purpose: :email_confirmation) }
+
+    it 'sends the right password to the email confirmation page' do
+      post_user_session(unconfirmed, password: SECURE_PASSWORD)
+
+      expect(response).to redirect_to(%r{/users/confirmation/new\?email=})
+      expect(decrypted_email).to eq(unconfirmed.email)
+      expect(flash[:alert]).to be_nil
+    end
+
+    it 'keeps the redirection when the form posts with a query string' do
+      post user_session_path(with_particulier: true), params: { user: { email: unconfirmed.email, password: SECURE_PASSWORD } }
+
+      expect(response).to redirect_to(%r{/users/confirmation/new\?email=})
+    end
+
+    it 'hands over the address as stored, whatever its case and spaces' do
+      post user_session_path, params: { user: { email: "  #{unconfirmed.email.upcase} ", password: SECURE_PASSWORD } }
+
+      expect(decrypted_email).to eq(unconfirmed.email)
+    end
+
+    it 'leaves a wrong password on the sign in form' do
+      post_user_session(unconfirmed, password: 'not-the-password')
+
+      expect(response).to have_http_status(:unprocessable_content)
+    end
+
+    it 'keeps the current answer outside the sign in form' do
+      login_as(unconfirmed, scope: :user)
+
+      get profil_path
+
+      expect(response).to redirect_to(new_user_session_path)
+      expect(flash[:alert]).to eq(I18n.t('devise.failure.unconfirmed'))
+    end
+
+    it 'keeps the current answer when the sign in page is only read' do
+      login_as(unconfirmed, scope: :user)
+
+      get new_user_session_path
+
+      expect(response).to redirect_to(new_user_session_path)
+      expect(flash[:alert]).to eq(I18n.t('devise.failure.unconfirmed'))
+    end
+
+    it 'keeps the current answer for a post that is not the sign in form' do
+      login_as(unconfirmed, scope: :user)
+
+      post transfer_all_dossiers_path
+
+      expect(response).to redirect_to(new_user_session_path)
+      expect(flash[:alert]).to eq(I18n.t('devise.failure.unconfirmed'))
+    end
+
+    it 'keeps the 401 Devise gives an XHR client' do
+      post user_session_path, params: { user: { email: unconfirmed.email, password: SECURE_PASSWORD } }, xhr: true
+
+      expect(response).to have_http_status(:unauthorized)
+    end
+
+    it 'keeps the 401 a turbo frame gets' do
+      post user_session_path,
+        params: { user: { email: unconfirmed.email, password: SECURE_PASSWORD } },
+        headers: { 'Turbo-Frame' => 'a-modal' }
+
+      expect(response).to have_http_status(:unauthorized)
+      expect(response.headers['X-Sign-In-Path']).to end_with(new_user_session_path)
+    end
+  end
 end

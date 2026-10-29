@@ -137,19 +137,17 @@ describe 'Signin in:' do
   context 'when a user is not confirmed yet' do
     let!(:user) { create(:user, password: password, confirmed_at: nil) }
 
-    # Ideally, when signing-in with an unconfirmed account,
-    # the user would be redirected to the "resend email confirmation" page.
-    #
-    # However the check for unconfirmed accounts is made by Warden every time a page is loaded –
-    # and much earlier than SessionsController#create.
-    #
-    # For now only test the default behavior (an error message is displayed).
-    scenario 'they get an error message' do
+    scenario 'they land on the email confirmation page, ready to ask for a new email' do
       visit root_path
       click_on 'Se connecter', match: :first
 
       try_sign_in_with user.email, password
-      expect(page).to have_content('Vous devez confirmer votre compte par email.')
+
+      expect(page).to have_current_path(%r{/users/confirmation/new\?email=})
+      expect(page).to have_content("votre adresse électronique #{user.email}")
+      expect(page).to have_button('Renvoyer un email de confirmation', disabled: false)
+      expect(page).to have_css('[data-countdown-button-seconds-value="0"]')
+      expect(page).not_to have_content('Vous devez confirmer votre compte par email.')
     end
   end
 

@@ -25,12 +25,22 @@ RSpec.describe DeviseUserMailer, type: :mailer do
       end
     end
 
+    describe 'subject' do
+      context 'when an email change is being confirmed' do
+        before { user.update_column(:unconfirmed_email, 'nouvelle@adresse.fr') }
+
+        it { expect(subject.subject).to eq('Instructions de confirmation') }
+      end
+    end
+
     describe "i18n" do
       context "when locale is fr" do
         let(:user) { create(:user, locale: :fr) }
 
         it "uses fr locale" do
-          expect(subject.body).to include("Activez votre compte")
+          expect(subject.subject).to eq('Activez votre compte Démarche Numérique')
+          expect(subject.body).to include('Activez votre compte Démarche Numérique')
+          expect(subject.body).to include('Pour confirmer votre adresse électronique et activer votre compte sur')
         end
       end
 
@@ -38,7 +48,9 @@ RSpec.describe DeviseUserMailer, type: :mailer do
         let(:user) { create(:user, locale: :en) }
 
         it "uses en locale" do
-          expect(subject.body).to include("Activate account")
+          expect(subject.subject).to eq('Activate your Démarche Numérique account')
+          expect(subject.body).to include('Activate your Démarche Numérique account')
+          expect(subject.body).to include('To confirm your email address and activate your account on')
         end
       end
     end

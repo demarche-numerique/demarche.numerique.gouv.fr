@@ -1,0 +1,4 @@
+en:
+  devise_user_mailer:
+    confirmation_instructions:
+      subject: Activate your Démarche Numérique account

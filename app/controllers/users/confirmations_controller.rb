@@ -2,11 +2,16 @@
 
 class Users::ConfirmationsController < Devise::ConfirmationsController
   include ProcedureContextConcern
+  include ConfirmationResendDelayConcern
+
+  helper_method :seconds_before_confirmation_resend
+
+  before_action :no_store, only: [:new, :show]
 
   # GET /resource/confirmation/new
   def new
     # Allow displaying the user email in the message
-    decoded_email = message_encryptor_service.decrypt_and_verify(params[:email], purpose: :email_confirmation) rescue nil
+    decoded_email = SignedConfirmationEmail.read(params[:email])
     self.resource = resource_class.new(email: decoded_email)
   end
 
@@ -47,9 +52,10 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   end
 
   # The path used after resending confirmation instructions.
-  # def after_resending_confirmation_instructions_path_for(resource_name)
-  #   super(resource_name)
-  # end
+  def after_resending_confirmation_instructions_path_for(resource_name)
+    remember_confirmation_request
+    super(resource_name)
+  end
 
   # If the user clicks the confirmation link before the maximum delay,
   # they will be signed in directly.

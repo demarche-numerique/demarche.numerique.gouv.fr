@@ -1,0 +1,5 @@
+---
+en:
+  countdown_one: Resend the confirmation email (1 second)
+  countdown_other: "Resend the confirmation email (# seconds)"
+  available: You can now resend the confirmation email.
