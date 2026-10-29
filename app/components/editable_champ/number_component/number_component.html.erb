@@ -1,1 +1,0 @@
-<%= @form.text_field(:value, input_opts(id: @champ.focusable_input_id, aria: { **labelledby_id_attr, describedby: "#{@champ.describedby_id} #{@champ.error_id(:value)}" }, required: @champ.required?, pattern: "-?[0-9]*", inputmode: :decimal)) %>

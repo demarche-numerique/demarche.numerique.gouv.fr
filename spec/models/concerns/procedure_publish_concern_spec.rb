@@ -115,7 +115,7 @@ describe ProcedurePublishConcern do
   describe "#publish_revision!" do
     let(:administrateur) { create(:administrateur) }
     let(:procedure) { create(:procedure, :published, administrateurs: [administrateur]) }
-    let(:tdc_attributes) { { type_champ: :number, libelle: 'libelle 1' } }
+    let(:tdc_attributes) { { type_champ: :integer_number, libelle: 'libelle 1' } }
     let(:publication_date) { Time.zone.local(2021, 1, 1, 12, 00, 00) }
 
     before do
@@ -256,7 +256,7 @@ describe ProcedurePublishConcern do
 
   describe "#reset_draft_revision!" do
     let(:procedure) { procedures.brouillon }
-    let(:tdc_attributes) { { type_champ: :number, libelle: 'libelle 1' } }
+    let(:tdc_attributes) { { type_champ: :integer_number, libelle: 'libelle 1' } }
     let(:publication_date) { Time.zone.local(2021, 1, 1, 12, 00, 00) }
 
     context "brouillon procedure" do

@@ -50,7 +50,7 @@ module LLM
           { stable_id: 10, libelle: "Email", position: 0, type: "email" },
           { stable_id: 20, libelle: "Nom", position: 1, type: "text" },
           { stable_id: 30, libelle: "Prénom", position: 2, type: "text" },
-          { stable_id: 40, libelle: "Montant demandé", position: 3, type: "number" }
+          { stable_id: 40, libelle: "Montant demandé", position: 3, type: "decimal_number" }
         ]
 
         Analyse :
@@ -68,7 +68,7 @@ module LLM
           { stable_id: 30, libelle: "SIRET", position: 2, type: "siret" },
           { stable_id: 40, libelle: "Adresse siège", position: 3, type: "address" },
           { stable_id: 50, libelle: "Téléphone entreprise", position: 4, type: "phone" },
-          { stable_id: 60, libelle: "Montant demandé", position: 5, type: "number" }
+          { stable_id: 60, libelle: "Montant demandé", position: 5, type: "decimal_number" }
         ]
 
         Analyse :

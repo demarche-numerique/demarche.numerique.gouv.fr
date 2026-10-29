@@ -248,7 +248,6 @@ RSpec.describe PrefillChamps do
 
     it_behaves_like "a champ public value that is unauthorized", :decimal_number, "non decimal string"
     it_behaves_like "a champ public value that is unauthorized", :integer_number, "non integer string"
-    it_behaves_like "a champ public value that is unauthorized", :number, "value"
     it_behaves_like "a champ public value that is unauthorized", :dossier_link, "value"
     it_behaves_like "a champ public value that is unauthorized", :civilite, "value"
     it_behaves_like "a champ public value that is unauthorized", :date, "value"

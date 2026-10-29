@@ -19,7 +19,6 @@ describe 'The user', js: true do
     fill_in('date', with: '2012-12-12', match: :first)
 
     fill_in('datetime', with: '2023-01-06T07:05')
-    # fill_in('number', with: '42'), deadchamp, should be migrated to textchamp
     fill_in('decimal_number', with: '17')
     fill_in('integer_number', with: '12')
     scroll_to(find_field('checkbox'), align: :center)
@@ -68,7 +67,6 @@ describe 'The user', js: true do
     expect(champ_value_for('textarea')).to eq('super textarea')
     expect(champ_value_for('date')).to eq('2012-12-12')
     expect(champ_value_for('datetime')).to eq(Time.zone.parse('2023-01-06T07:05:00').iso8601)
-    # expect(champ_value_for('number')).to eq('42'), deadchamp, should be migrated to textchamp
     expect(champ_value_for('decimal_number')).to eq('17')
     expect(champ_value_for('integer_number')).to eq('12')
     expect(champ_value_for('checkbox')).to eq('true')
@@ -93,7 +91,6 @@ describe 'The user', js: true do
     expect(page).to have_field('textarea', with: 'super textarea')
     expect(page).to have_field('date', with: '2012-12-12')
     expect(page).to have_field('datetime', with: '2023-01-06T07:05')
-    # expect(page).to have_field('number', with: '42'), deadchamp, should be migrated to textchamp
     expect(page).to have_checked_field('checkbox')
     expect(page).to have_checked_field('Madame')
     expect(page).to have_field('email', with: 'loulou@yopmail.com')

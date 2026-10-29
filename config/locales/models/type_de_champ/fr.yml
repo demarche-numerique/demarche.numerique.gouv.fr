@@ -29,7 +29,6 @@ fr:
           siret: 'Numéro SIRET'
           text: 'Texte court'
           textarea: 'Texte long'
-          number: 'Nombre'
           decimal_number: 'Nombre décimal'
           integer_number: 'Nombre entier'
           date: 'Date'

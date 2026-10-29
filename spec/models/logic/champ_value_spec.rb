@@ -182,7 +182,7 @@ describe Logic::ChampValue do
     end
 
     describe 'errors' do
-      let(:tdc_type) { :number }
+      let(:tdc_type) { :integer_number }
       let(:champ) { Champs::IntegerNumberChamp.new(value: nil, stable_id: tdc.stable_id, dossier:) }
 
       it do
@@ -192,7 +192,7 @@ describe Logic::ChampValue do
     end
 
     describe '#sources' do
-      let(:tdc_type) { :number }
+      let(:tdc_type) { :integer_number }
       let(:champ) { Champs::IntegerNumberChamp.new(value: nil, stable_id: tdc.stable_id, dossier:) }
 
       it { expect(champ_value(champ.stable_id).sources).to eq([champ.stable_id]) }
