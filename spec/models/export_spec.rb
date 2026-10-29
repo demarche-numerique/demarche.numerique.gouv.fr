@@ -37,8 +37,9 @@ RSpec.describe Export, type: :model do
     let!(:stale_export_generated) { create(:export, :generated, updated_at: stale_date) }
     let!(:stale_export_failed) { create(:export, :failed, updated_at: stale_date) }
     let!(:stale_export_pending) { create(:export, :pending, updated_at: stale_date) }
+    let!(:stale_export_too_large) { create(:export, :too_large, updated_at: stale_date) }
 
-    it { expect(Export.stale(Export::MAX_DUREE_CONSERVATION_EXPORT)).to match_array([stale_export_generated, stale_export_failed]) }
+    it { expect(Export.stale(Export::MAX_DUREE_CONSERVATION_EXPORT)).to match_array([stale_export_generated, stale_export_failed, stale_export_too_large]) }
   end
 
   describe '.stuck' do
@@ -121,6 +122,22 @@ RSpec.describe Export, type: :model do
         end
       end
 
+      context 'export refused as too large a moment ago' do
+        before { find_or_create.update!(job_status: :too_large, updated_at: 1.second.ago) }
+
+        it 'returns it' do
+          expect { find_or_create }.not_to change { Export.count }
+        end
+      end
+
+      context 'export refused as too large an hour ago' do
+        before { find_or_create.update!(job_status: :too_large, updated_at: 1.hour.ago) }
+
+        it 'returns a new export' do
+          expect { find_or_create }.to change { Export.count }.by(1)
+        end
+      end
+
       context 'pending export' do
         before { find_or_create.update!(updated_at: 1.hour.ago) }
 
@@ -157,6 +174,39 @@ RSpec.describe Export, type: :model do
 
       it 'creates a new export for the requesting procedure' do
         expect { requesting_export }.to change { Export.count }.by(1)
+      end
+    end
+  end
+
+  describe '#compute_estimated_files_size' do
+    let(:procedure) { create(:procedure, :published, :with_instructeur, public_type_de_champs: [{ type: :piece_justificative, stable_id: 10 }, { type: :piece_justificative, stable_id: 20 }]) }
+    let(:dossier) { create(:dossier, :en_construction, :with_populated_champs, procedure:) }
+    let(:export) { create(:export, format: :zip, groupe_instructeurs: procedure.groupe_instructeurs, export_template:) }
+
+    before do
+      dossier.champs.each { |champ| champ.piece_justificative_file_blobs.each { it.update!(byte_size: champ.stable_id) } }
+      create(:commentaire, :with_file, dossier:).piece_jointe.first.blob.update!(byte_size: 1, virus_scan_result: ActiveStorage::VirusScanner::SAFE)
+      create(:attestation, :with_pdf, dossier:).pdf.blob.update!(byte_size: 2, virus_scan_result: ActiveStorage::VirusScanner::SAFE)
+    end
+
+    context 'without export template' do
+      let(:export_template) { nil }
+
+      it { expect(export.compute_estimated_files_size).to eq(ExportedFilesSizeConcern::DOSSIER_PDF_WEIGHT + 10 + 20 + 1 + 2) }
+    end
+
+    context 'with an export template' do
+      let(:export_template) do
+        build(:export_template, groupe_instructeur: procedure.defaut_groupe_instructeur).tap do |template|
+          template.export_pdf = ExportItem.default(prefix: 'export', enabled: false)
+          template.attestation = ExportItem.default(prefix: 'attestation', enabled: false)
+          template.pjs = [ExportItem.default(prefix: 'pj', enabled: true, stable_id: 10)]
+          template.save!
+        end
+      end
+
+      it 'counts only the files the template ships' do
+        expect(export.compute_estimated_files_size).to eq(10)
       end
     end
   end

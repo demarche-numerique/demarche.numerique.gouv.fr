@@ -4,13 +4,14 @@ class Dossiers::ExportLinkComponent < ApplicationComponent
   include ApplicationHelper
   include TabsHelper
 
-  def initialize(procedure:, exports:, statut: nil, count: nil, class_btn: nil, export_url: nil)
+  def initialize(procedure:, exports:, statut: nil, count: nil, class_btn: nil, export_url: nil, administrateur: false)
     @procedure = procedure
     @exports = exports
     @statut = statut
     @count = count
     @class_btn = class_btn
     @export_url = export_url
+    @administrateur = administrateur
   end
 
   def download_export_path(export_format:, statut:, export_template_id: nil, no_progress_notification: nil)
@@ -48,6 +49,8 @@ class Dossiers::ExportLinkComponent < ApplicationComponent
       content_tag(:span, t(".success_label"), { class: "fr-badge fr-badge--success fr-text-right" })
     elsif export.failed?
       content_tag(:span, t(".failed_label"), { class: "fr-badge fr-badge--warning fr-text-right" })
+    elsif export.too_large?
+      content_tag(:span, t(".too_large_label"), { class: "fr-badge fr-badge--warning fr-text-right" })
     else
       content_tag(:span, t(".pending_label"), { class: "fr-badge fr-badge--info fr-text-right" })
     end
@@ -59,6 +62,14 @@ class Dossiers::ExportLinkComponent < ApplicationComponent
     elsif export.pending?
       content_tag(:a, t('.refresh_page'), { href: "", class: 'fr-btn fr-btn--sm fr-btn--tertiary' })
     end
+  end
+
+  def too_large_message(export)
+    t(".too_large", estimated_size: helpers.number_to_human_size(export.estimated_files_size))
+  end
+
+  def too_large_advice
+    @administrateur ? t(".too_large_advice_administrateur") : t(".too_large_advice_instructeur")
   end
 
   def refresh_button_options(export)

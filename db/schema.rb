@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_15_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_20_140727) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_catalog.plpgsql"
@@ -721,6 +721,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_15_120000) do
   create_table "exports", force: :cascade do |t|
     t.datetime "created_at", precision: nil, null: false
     t.integer "dossiers_count"
+    t.bigint "estimated_files_size"
     t.bigint "export_template_id"
     t.jsonb "filtered_columns", default: [], null: false, array: true
     t.string "format", null: false

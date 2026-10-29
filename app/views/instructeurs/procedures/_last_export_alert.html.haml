@@ -1,10 +1,12 @@
 - if export.present?
-  %div{ data: !export.available? && !export.failed? ? { controller: "turbo-poll", turbo_poll_url_value: polling_last_export_instructeur_procedure_path(export_format: export.format, statut: statut), turbo_poll_interval_value: 5_000 } : {} }
+  %div{ data: !export.available? && !export.failed? && !export.too_large? ? { controller: "turbo-poll", turbo_poll_url_value: polling_last_export_instructeur_procedure_path(export_format: export.format, statut: statut), turbo_poll_interval_value: 5_000 } : {} }
     = render Dsfr::AlertComponent.new(state: :info, size: :sm, extra_class_names: 'fr-my-2w') do |c|
       - c.with_body do
         %p
           - if export.failed?
             = t('instructeurs.procedures.last_export_failed', file_format: export.format)
+          - elsif export.too_large?
+            = t('instructeurs.procedures.last_export_too_large_html', url: exports_instructeur_procedure_path(export.procedure))
           - elsif export.available?
             = t('instructeurs.procedures.last_export_available_html', file_format: export.format, file_url: export.file.url)
           - else

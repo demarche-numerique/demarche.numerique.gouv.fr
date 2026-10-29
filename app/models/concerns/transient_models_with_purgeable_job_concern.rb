@@ -15,12 +15,14 @@ module TransientModelsWithPurgeableJobConcern
       pending: 'pending',
       generated: 'generated',
       failed: 'failed',
+      too_large: 'too_large',
     }
 
     aasm whiny_persistence: true, column: :job_status, enum: true do
       state :pending, initial: true
       state :generated
       state :failed
+      state :too_large
 
       event :make_available do
         transitions from: :pending, to: :generated
@@ -31,10 +33,13 @@ module TransientModelsWithPurgeableJobConcern
       event :fail do
         transitions from: :pending, to: :failed
       end
+      event :mark_too_large do
+        transitions from: :pending, to: :too_large
+      end
     end
 
     scope :stale, lambda { |duration|
-      where(job_status: [job_statuses.fetch(:generated), job_statuses.fetch(:failed)])
+      where(job_status: job_statuses.values_at(:generated, :failed, :too_large))
         .where(updated_at: ...(Time.zone.now - duration))
     }
 
@@ -49,10 +54,10 @@ module TransientModelsWithPurgeableJobConcern
   end
 
   def compute_with_safe_stale_for_purge(&block)
-    return if generated? # idempotent on retry after success
+    return if generated? || too_large? # idempotent on retry after success
     restart! if failed? # restart for AASM
     yield
-    make_available!
+    make_available! if pending?
   rescue => e
     fail!         # fail for observability
     raise e       # re-raise for retryable behaviour

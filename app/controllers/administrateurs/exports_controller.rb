@@ -9,7 +9,14 @@ module Administrateurs
       export = Export.find_or_create_fresh_export(export_format, all_groupe_instructeurs, current_administrateur, **export_options)
       @dossiers_count = export.count
 
-      if export.available?
+      if export.too_large?
+        alert = t('administrateurs.exports.export_too_large', estimated_size: helpers.number_to_human_size(export.estimated_files_size))
+
+        respond_to do |format|
+          format.turbo_stream { flash.alert = alert }
+          format.html { redirect_to admin_procedure_archives_url(@procedure), alert: }
+        end
+      elsif export.available?
         respond_to do |format|
           format.turbo_stream do
             flash.notice = t('administrateurs.exports.export_available_html', file_format: export.format, file_url: export.file.url)

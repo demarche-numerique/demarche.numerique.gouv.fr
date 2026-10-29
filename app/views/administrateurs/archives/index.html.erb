@@ -18,7 +18,7 @@
 </div>
 
 <div class="fr-container">
-  <%= render Dossiers::ExportLinkComponent.new(procedure: @procedure, exports: @exports, export_url: method(:download_admin_procedure_exports_path)) %>
+  <%= render Dossiers::ExportLinkComponent.new(procedure: @procedure, exports: @exports, export_url: method(:download_admin_procedure_exports_path), administrateur: true) %>
 
   <%= render partial: "shared/archives/notice", locals: { with_bills: true } %>
   <%= render partial: "shared/archives/table", locals: { count_dossiers_termines_by_month: @count_dossiers_termines_by_month, archives: @archives, average_dossier_weight: @average_dossier_weight, procedure: @procedure } %>

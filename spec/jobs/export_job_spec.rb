@@ -27,5 +27,34 @@ describe ExportJob do
     it 'does not try to identify file' do
       expect { subject }.not_to raise_error
     end
+
+    context 'when its files exceed the limit' do
+      before do
+        create(:dossier, :en_construction, procedure:)
+        stub_const('Export::MAX_FILES_SIZE', 100.kilobytes)
+      end
+
+      it 'flags the export instead of building it' do
+        subject
+
+        expect(export.reload).to have_attributes(job_status: 'too_large', estimated_files_size: 110.kilobytes)
+        expect(export.file).not_to be_attached
+      end
+    end
+  end
+
+  context 'csv whose dossiers carry files over the limit' do
+    let(:format) { :csv }
+
+    before do
+      create(:dossier, :en_construction, procedure:)
+      stub_const('Export::MAX_FILES_SIZE', 100.kilobytes)
+    end
+
+    it 'builds the export' do
+      subject
+
+      expect(export.reload.job_status).to eq('generated')
+    end
   end
 end

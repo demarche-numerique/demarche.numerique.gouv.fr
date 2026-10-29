@@ -6,6 +6,8 @@ en:
       last_export_available_html: Your last export in %{file_format} format is ready. You can <a href="%{file_url}">download it</a>
       last_export_failed: Your last export in %{file_format} failed.
       last_export_pending: Your last export is in process.
+      last_export_too_large_html: Your last export is too large to be generated. Find how to reduce its size on <a href="%{url}">the exports list</a>.
+      export_too_large_html: "This export is too large to be generated: its files are estimated at %{estimated_size}. Find how to reduce its size on <a href=\"%{url}\">the exports list</a>."
       exports:
         title: Exports list
         export_description: |

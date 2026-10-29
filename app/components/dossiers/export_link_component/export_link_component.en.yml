@@ -4,6 +4,7 @@ en:
   refresh_old_export: Regenerate this export
   success_label: Ready
   failed_label: Failed
+  too_large_label: Too large
   pending_label: In progress
   refresh_page: Refresh page
   export_title_everything: Export .%{export_format} of all files
@@ -15,3 +16,6 @@ en:
     other: Export .%{export_format} of %{count} files
   ready_link_label_time_info: " generated %{export_time} ago"
   not_ready_link_label_time_info: " asked %{export_time} ago"
+  too_large: "The files of this export are estimated at %{estimated_size}: the export is too large to be generated."
+  too_large_advice_administrateur: The monthly archives below only contain decided applications. For the other applications, the reviewer interface reduces the size of the export with a tab, filters or an export template with fewer attachments.
+  too_large_advice_instructeur: Narrow the selection with a tab or more restrictive filters, or use an export template with fewer attachments. The monthly download, in the Downloads menu, provides the decided applications month by month.

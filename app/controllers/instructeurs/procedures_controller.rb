@@ -256,7 +256,14 @@ module Instructeurs
 
       @last_export = last_export_for(@statut)
 
-      if export.available?
+      if export.too_large?
+        alert = export_too_large_message(export)
+
+        respond_to do |format|
+          format.turbo_stream { flash.alert = alert }
+          format.html { redirect_to exports_instructeur_procedure_path(procedure), alert: }
+        end
+      elsif export.available?
         respond_to do |format|
           format.turbo_stream do
             flash.notice = t('instructeurs.procedures.export_available_html', file_format: export.format, file_url: export.file.url)
@@ -285,6 +292,8 @@ module Instructeurs
       @last_export = last_export_for(@statut)
       if @last_export&.available?
         flash.notice = t('instructeurs.procedures.export_available_html', file_format: @last_export.format, file_url: @last_export.file.url)
+      elsif @last_export&.too_large?
+        flash.alert = export_too_large_message(@last_export)
       else
         flash.notice = t('instructeurs.procedures.export_pending_html', url: exports_instructeur_procedure_path(procedure))
       end
@@ -551,6 +560,10 @@ module Instructeurs
       return false if instructeur_procedure.last_revision_seen_id.blank?
 
       instructeur_procedure.last_revision_seen_id < procedure.published_revision_id
+    end
+
+    def export_too_large_message(export)
+      t('instructeurs.procedures.export_too_large_html', estimated_size: helpers.number_to_human_size(export.estimated_files_size), url: exports_instructeur_procedure_path(export.procedure))
     end
 
     def last_export_for(statut)

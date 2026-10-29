@@ -51,6 +51,20 @@ describe Administrateurs::ExportsController, type: :controller do
         end
       end
 
+      context 'when the export was refused as too large' do
+        subject { get :download, params: { export_format: :zip, procedure_id: procedure.id } }
+
+        before do
+          create(:export, :too_large, format: :zip, estimated_files_size: 1.terabyte, groupe_instructeurs: procedure.groupe_instructeurs, user_profile: administrateur)
+        end
+
+        it 'says so instead of announcing a new export' do
+          expect { subject }.not_to change(Export, :count)
+          expect(subject).to redirect_to(admin_procedure_archives_url(procedure))
+          expect(flash.alert).to include('estimés à 1 To')
+        end
+      end
+
       context 'when the turbo_stream format is used' do
         before do
           post :download,

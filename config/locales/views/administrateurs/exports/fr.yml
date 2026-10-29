@@ -3,3 +3,4 @@ fr:
     exports:
       export_available_html: L’export au format %{file_format} est prêt. Vous pouvez le <a href="%{file_url}">télécharger</a>
       export_pending: Nous générons cet export. Veuillez revenir dans quelques minutes pour le télécharger.
+      export_too_large: "Cet export est trop volumineux pour être généré : ses fichiers sont estimés à %{estimated_size}. Les archives mensuelles ne contiennent que les dossiers terminés ; pour les autres dossiers, l’interface instructeur permet de réduire la taille de l’export avec un onglet, des filtres ou un modèle d’export."

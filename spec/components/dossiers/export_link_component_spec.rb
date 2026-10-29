@@ -82,5 +82,26 @@ RSpec.describe Dossiers::ExportLinkComponent, type: :component do
         expect(subject).to include("Regénérer")
       end
     end
+
+    context "when the export is too large" do
+      let(:export) { create(:export, :too_large, format: :zip, estimated_files_size: 1.terabyte) }
+
+      context "on the archives page of an administrateur" do
+        let(:component) { described_class.new(procedure:, exports: [export], export_url:, administrateur: true) }
+
+        it "gives the estimated size and points to the reviewer interface" do
+          expect(subject).to include("Trop volumineux")
+          expect(subject).to include("estimés à 1 To")
+          expect(subject).to include("ne contiennent que les dossiers terminés")
+        end
+      end
+
+      context "on the exports page of an instructeur" do
+        it "suggests a narrower selection" do
+          expect(subject).to include("estimés à 1 To")
+          expect(subject).to include("Réduisez la sélection")
+        end
+      end
+    end
   end
 end

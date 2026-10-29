@@ -1219,6 +1219,19 @@ describe Instructeurs::ProceduresController, type: :controller do
       end
     end
 
+    context 'when the export was refused as too large' do
+      subject { get :download_export, params: { export_format: :zip, procedure_id: procedure.id } }
+
+      before do
+        create(:export, :too_large, format: :zip, estimated_files_size: 1.terabyte, groupe_instructeurs: [gi_1, gi_0], user_profile: instructeur)
+      end
+
+      it 'says so instead of announcing a new export' do
+        expect { subject }.not_to change(Export, :count)
+        expect(flash.alert).to include('estimés à 1 To')
+      end
+    end
+
     context 'when another export is ready' do
       let(:export) { create(:export, groupe_instructeurs: [gi_0]) }
 
@@ -1293,6 +1306,19 @@ describe Instructeurs::ProceduresController, type: :controller do
 
         expect(response).to have_http_status(:ok)
         expect(assigns(:last_export)).to be_nil
+      end
+    end
+
+    context 'when the last export was refused as too large' do
+      before do
+        create(:export, :too_large, format: :zip, estimated_files_size: 1.terabyte, groupe_instructeurs: [gi_0], user_profile: instructeur)
+      end
+
+      it 'says so instead of announcing the export' do
+        get :polling_last_export, params: { procedure_id: procedure.id, statut: 'tous' }, format: :turbo_stream
+
+        expect(flash.alert).to include('estimés à 1 To')
+        expect(flash.notice).to be_nil
       end
     end
   end

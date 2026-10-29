@@ -2,9 +2,15 @@
 
 class Export < ApplicationRecord
   include TransientModelsWithPurgeableJobConcern
+  include ExportedFilesSizeConcern
 
   MAX_DUREE_CONSERVATION_EXPORT = 32.hours
   MAX_DUREE_GENERATION = 16.hours
+
+  MAX_FILES_SIZE = 100.gigabytes
+
+  # Bounds the id lists of the estimate queries: the largest procedure has 750 k dossiers.
+  FILES_SIZE_BATCH_SIZE = 10_000
 
   enum :format, {
     csv: 'csv',
@@ -60,7 +66,16 @@ class Export < ApplicationRecord
   def compute
     self.dossiers_count = dossiers_for_export.count
 
+    if format_zip?
+      self.estimated_files_size = compute_estimated_files_size
+      return mark_too_large! if estimated_files_size > MAX_FILES_SIZE
+    end
+
     file.attach(blob.signed_id) # attaching a blob directly might run identify/virus scanner and wipe it
+  end
+
+  def compute_estimated_files_size
+    dossiers_for_export.ids.each_slice(FILES_SIZE_BATCH_SIZE).sum { exported_files_size(it, export_template:) }
   end
 
   def since
@@ -81,7 +96,7 @@ class Export < ApplicationRecord
     }
 
     recent_export = pending
-      .or(generated.where(updated_at: (5.minutes.ago)..))
+      .or(generated.or(too_large).where(updated_at: (5.minutes.ago)..))
       .for_groupe_instructeurs(groupe_instructeurs.map(&:id))
       .where(user_profile: user_profile)
       .includes(:procedure_presentation)

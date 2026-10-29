@@ -4,6 +4,7 @@ fr:
   refresh_old_export: Regénérer cet export
   success_label: Prêt
   failed_label: Erreur
+  too_large_label: Trop volumineux
   pending_label: En préparation
   refresh_page: Recharger la page
   export_title_everything: "Export .%{export_format} de tous les dossiers"
@@ -15,3 +16,6 @@ fr:
     other: "Export .%{export_format} de %{count} dossiers"
   ready_link_label_time_info: " généré il y a %{export_time}"
   not_ready_link_label_time_info: " demandé il y a %{export_time}"
+  too_large: "Les fichiers de cet export sont estimés à %{estimated_size} : l’export est trop volumineux pour être généré."
+  too_large_advice_administrateur: Les archives mensuelles ci-dessous ne contiennent que les dossiers terminés. Pour les autres dossiers, l’interface instructeur permet de réduire la taille de l’export avec un onglet, des filtres ou un modèle d’export qui inclut moins de pièces jointes.
+  too_large_advice_instructeur: Réduisez la sélection avec un onglet ou des filtres plus restreints, ou un modèle d’export qui inclut moins de pièces jointes. Le téléchargement mensuel, dans le menu Téléchargements, propose les dossiers terminés mois par mois.

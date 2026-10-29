@@ -13,6 +13,10 @@
         .fr-ml-auto
           = badge(export)
 
+      - if export.too_large?
+        %p.fr-text--sm.fr-mb-1w= too_large_message(export)
+        %p.fr-text--sm= too_large_advice
+
       .flex.flex-gap-2
         = export_button(export)
 
