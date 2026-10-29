@@ -46,6 +46,7 @@ module ProcedureCloneConcern
     'experts_require_administrateur_invitation',
     'routing_enabled',
     'instructeurs_self_management_enabled',
+    'self_management_restricted_to_email_domain',
     'instructeurs_can_edit_dossiers',
     'zone_id',
     'lien_dpo',
@@ -224,6 +225,7 @@ module ProcedureCloneConcern
     if !options[:clone_instructeurs] || !same_admin?(admin)
       procedure.routing_enabled = false
       procedure.instructeurs_self_management_enabled = false
+      procedure.self_management_restricted_to_email_domain = true
       procedure.instructeurs_can_edit_dossiers = false
     end
 
