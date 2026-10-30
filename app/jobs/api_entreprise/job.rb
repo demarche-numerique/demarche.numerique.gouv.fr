@@ -83,7 +83,7 @@ class APIEntreprise::Job < ApplicationJob
       yield params
     in Success
       release_parked_fetch
-    in Failure(type: :unavailable_for_entity, code:, **)
+    in Failure(type: :unavailable_for_entity | :unknown_provider_error, code:, **)
       retry_daily(code)
     in Failure(retryable: true, code:, **)
       park_fetch(code)
