@@ -15,7 +15,9 @@ class Instructeurs::OCRViewerComponent < ApplicationComponent
     d = if doc.is_a?(RIB)
       h = doc.attributes.slice('account_holder', 'iban', 'bic', 'bank_name')
       h['account_holder'] = format_multiline(h['account_holder'])
-      h.map { |k, v| [k, v || processing_error_message, copy: v.present?] }
+      rows = h.map { |k, v| [k, v || processing_error_message, copy: v.present?] }
+      rows.insert(1, ['account_holder_match', account_holder_match_badge, copy: false]) if account_holder_match?
+      rows
 
     elsif doc.is_a?(JustificatifDomicile)
       h = doc.attributes.slice('beneficiary', 'label', 'issue_date')
@@ -40,6 +42,16 @@ class Instructeurs::OCRViewerComponent < ApplicationComponent
   private
 
   def format_multiline(text) = sanitize(text&.split("\n")&.join('<br>'))
+
+  def account_holder_match? = champ.type_de_champ.rib_account_holder_match? && champ.value_json&.key?('account_holder_match')
+
+  def account_holder_match_badge
+    case champ.value_json['account_holder_match']
+    in true then tag.span(t('.account_holder_match.yes'), class: 'fr-badge fr-badge--sm fr-badge--success')
+    in false then tag.span(t('.account_holder_match.no'), class: 'fr-badge fr-badge--sm fr-badge--warning')
+    in nil then tag.span(t('.account_holder_match.unknown'), class: 'fr-badge fr-badge--sm')
+    end
+  end
 
   def processing_error_message
     content_tag(:span, class: "fr-hint-text fr-text-default--warning font-weight-normal") do

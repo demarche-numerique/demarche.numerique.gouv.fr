@@ -4,6 +4,10 @@ en:
     attributes:
       rib:
         account_holder: Account Holder
+        account_holder_match: Match with the applicant’s identity
+        account_holder_match_values:
+          'true': Matches
+          'false': Does not match
         iban: IBAN
         bic: BIC Code
         bank_name: Bank Name

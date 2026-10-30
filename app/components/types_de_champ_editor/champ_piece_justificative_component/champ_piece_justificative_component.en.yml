@@ -20,6 +20,10 @@ en:
     rib_html: "The file uploaded by the user will be automatically analyzed to extract and display to the instructor the following information: <strong>Account holder name, Account holder address</strong> (if present on the file), <strong>IBAN, BIC code, Bank name</strong>."
     justificatif_domicile_html: "If the document bears a <strong>2D-Doc</strong> electronic stamp, its content will be automatically analyzed to extract and display to the instructor the following information: <strong>Beneficiary name, Address, Issue date</strong>."
     avis_impot_html: "If the document bears a <strong>2D-Doc</strong> electronic stamp, its content will be automatically analyzed to extract and display to the instructor the following information: <strong>Declarant(s), Reference tax income, Number of tax shares, Income year, Address</strong>."
+  account_holder_match:
+    individual: "Check that the account holder matches the applicant’s first and last name"
+    entreprise: "Check that the account holder matches the applicant’s company name"
+    hint: "The result is shown to the instructor with the data extracted from the attachment."
   ocr_formats:
     title: "ACCEPTED FORMATS"
     desc_html: "Accepted formats for this document are only <strong>.pdf, .doc, .docx, .jpg, .jpeg, .png</strong>."

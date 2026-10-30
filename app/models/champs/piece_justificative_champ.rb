@@ -18,6 +18,9 @@ class Champs::PieceJustificativeChamp < ChampData
   validate :validate_dynamic_piece_justificative_rules,
     if: -> { should_validate_in_current_context? && piece_justificative_file.attached? }
 
+  before_save :match_rib_account_holder,
+    if: -> { value_json_changed? && value_json.present? && type_de_champ.rib_account_holder_match? }
+
   def main_value_name
     :piece_justificative_file
   end
@@ -44,6 +47,20 @@ class Champs::PieceJustificativeChamp < ChampData
   end
 
   private
+
+  def match_rib_account_holder
+    value_json = self.value_json.deep_stringify_keys
+    value_json['account_holder_match'] = RIB.new(value_json['rib']).account_holder_matches?(**applicant)
+    self.value_json = value_json
+  end
+
+  def applicant
+    if procedure.for_individual?
+      { first_name: dossier.individual.prenom, last_name: dossier.individual.nom }
+    else
+      { raison_sociale: dossier.etablissement&.entreprise_raison_sociale }
+    end
+  end
 
   def fetch_external_data_later(wait: nil)
     nil # the job is already enqueued by the BlobProcessorJob when the blob is attached
