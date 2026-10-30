@@ -408,13 +408,14 @@ class User < ApplicationRecord
 
   private
 
-  # The trusted device cookie is self-asserting: bumping the version is the only
-  # thing that reaches it. Pending email tokens open a session, so they go too.
+  # The cookie is self-asserting, so bumping the version is the only thing that
+  # reaches it. Only the tokens that can still open a session go: the older rows
+  # are what the renewal job joins on, and the two sets never overlap.
   def revoke_account_wide!(reason)
     return if !TOTAL_REVOCATION_REASONS.include?(reason.to_sym)
 
     increment!(:trusted_device_version)
-    instructeur&.trusted_device_tokens&.delete_all
+    instructeur&.trusted_device_tokens&.usable_as_login_link&.delete_all
   end
 
   def does_not_merge_on_self
