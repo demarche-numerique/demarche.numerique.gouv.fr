@@ -61,27 +61,16 @@ class SessionFailureApp < Devise::FailureApp
     redirect_to redirect_url
   end
 
-  # The frame URL is a modal fragment; what the user was looking at is the page
-  # around it. Devise's GET-only rule does not apply: the destination is the
+  # Devise's GET-only rule does not apply to a frame: the destination is the
   # referer, a page the browser just rendered.
   def store_location!
-    return super if !turbo_frame_request?
+    location = PageAroundTheFrame.location(request)
 
-    location = page_around_the_frame
-
-    # An unusable referer is no reason to store nothing: without this the sign
-    # in lands on the root rather than where the person was.
+    # Not a frame, or an unusable referer -- which is no reason to store nothing:
+    # without this the sign in lands on the root rather than where they were.
     return super if location.blank?
 
     store_location_for(scope, location)
-  end
-
-  def page_around_the_frame
-    uri = SameOriginUri.parse(request.referer, request)
-
-    return if uri.nil? || uri.path.blank?
-
-    [uri.path, uri.query].compact.join('?')
   end
 
   # Frames only, not every Turbo request: a form submission or a stream follows

@@ -120,6 +120,19 @@ describe 'the session failure app', type: :request do
     expect(flash[:alert]).to eq(I18n.t('devise.failure.unauthenticated'))
   end
 
+  # Agent pages redirect from their own filter, not from the failure app, and
+  # must not send them back to the fragment either.
+  it 'sends an instructeur back to the page around the frame after signing in' do
+    post_user_session(instructeurs.default.user)
+    instructeurs.default.user.revoke_sessions!(reason: :logout_all)
+
+    get synthese_instructeur_procedures_path,
+      headers: { 'Turbo-Frame' => 'synthese-content', 'Referer' => "http://www.example.com#{instructeur_procedures_path}" }
+
+    expect(response).to redirect_to(new_user_session_path)
+    expect(session['user_return_to']).to eq(instructeur_procedures_path)
+  end
+
   # The failure app sees every authentication failure, ordinary ones included.
   it 'leaves a wrong password on the sign in form, without a 401' do
     post user_session_path, params: { user: { email: usager.email, password: 'not-the-password' } }
