@@ -206,6 +206,48 @@ describe ProConnectController, type: :controller do
           end
         end
 
+        context 'and the user is an administrateur' do
+          let(:administrateur) { administrateurs.default }
+          let(:email) { administrateur.user.email }
+          let(:amr) { ['pwd', 'mfa'] }
+
+          before do
+            allow(ProConnectService).to receive(:enabled?).and_return(true)
+            freeze_time
+          end
+
+          context 'of the ProConnect wave' do
+            before { Flipper.enable(:pro_connect_required_for_all_administrateurs) }
+
+            it 'requires ProConnect from now on' do
+              subject
+
+              expect(controller.current_user).to eq(administrateur.user)
+              expect(administrateur.reload.pro_connect_required_at).to eq(Time.zone.now)
+            end
+
+            context 'but blocked' do
+              before { administrateur.user.update!(blocked_at: Time.zone.now) }
+
+              it 'is refused without being tied to ProConnect' do
+                subject
+
+                expect(controller.current_user).to be_nil
+                expect(administrateur.reload.pro_connect_required_at).to be_nil
+              end
+            end
+          end
+
+          context 'outside the wave' do
+            it 'keeps its password' do
+              subject
+
+              expect(controller.current_user).to eq(administrateur.user)
+              expect(administrateur.reload.pro_connect_required_at).to be_nil
+            end
+          end
+        end
+
         context 'and the user is an administrateur subject to ProConnect' do
           let(:administrateur) { administrateurs.default }
           let(:email) { administrateur.user.email }

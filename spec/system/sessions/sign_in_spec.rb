@@ -41,7 +41,7 @@ describe 'Signin in:' do
       Flipper.enable(:pro_connect_required_for_all_administrateurs)
     end
 
-    scenario 'the password is refused and ProConnect is offered instead' do
+    scenario 'the password is refused and ProConnect is offered instead, without marking the browser' do
       visit root_path
       click_on 'Se connecter', match: :first
 
@@ -55,11 +55,13 @@ describe 'Signin in:' do
         expect(page).not_to have_link('Se connecter')
         expect(page).not_to have_link('Professionnel')
       end
+
+      visit new_user_session_path
+      expect(page).to have_field(:user_password)
     end
 
-    scenario 'the browser then offers only ProConnect, unless a citizen asks for the full form' do
-      visit new_user_session_path
-      try_sign_in_with admin.email, users.default_password
+    scenario 'a ProConnect sign in makes the browser offer only ProConnect, unless a citizen asks for the full form' do
+      mark_browser_with_a_pro_connect_sign_in
 
       visit root_path
       within('.fr-header__tools') { expect(page).to have_link('Se connecter', href: pro_connect_path) }
@@ -86,10 +88,17 @@ describe 'Signin in:' do
     scenario 'the announcement shows on the sign-in pages, on a marked browser too' do
       expect_announcement_on_sign_in_pages
 
-      visit new_user_session_path
-      try_sign_in_with admin.email, users.default_password
+      mark_browser_with_a_pro_connect_sign_in
 
       expect_announcement_on_sign_in_pages
+    end
+
+    def mark_browser_with_a_pro_connect_sign_in
+      stub_pro_connect(email: admin.email)
+      visit pro_connect_path
+      click_on 'S’identifier avec ProConnect'
+      expect(page).to have_text('Voir mon profil')
+      click_on 'Se déconnecter'
     end
 
     def expect_announcement_on_sign_in_pages
