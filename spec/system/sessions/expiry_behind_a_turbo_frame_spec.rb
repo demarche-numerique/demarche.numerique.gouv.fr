@@ -1,15 +1,8 @@
 # frozen_string_literal: true
 
-# A session can die between two Turbo requests. The server answers those with a
-# bare 401 rather than a redirect, because a sign in page rendered inside a
-# frame would land in a corner of the layout.
-#
-# Two mechanisms carry the browser out of that frame: `session-expiry.ts`, which
-# follows the sign in path the 401 carries, and the `turbo:frame-missing`
-# handler on the frame, which reloads. This asserts the outcome they share --
-# nobody is left on a dead frame -- and stays true if either one goes.
-#
-# What the sign in page then says is covered by
+# A session can die between two Turbo requests. The frame follows the redirect
+# to the sign in page, which carries turbo-visit-control: Turbo leaves the frame
+# and loads it as a whole page. What that page says is covered by
 # spec/requests/session_failure_app_spec.rb.
 describe 'a session that dies behind a turbo frame', js: true do
   # The seeded procedure is published and already assigned to this instructeur,

@@ -161,28 +161,28 @@ class ApplicationController < ActionController::Base
 
   def authenticate_instructeur!
     if !instructeur_signed_in?
-      store_location_for(:user, request.fullpath)
+      store_location_for(:user, page_to_come_back_to)
       redirect_to new_user_session_path
     end
   end
 
   def authenticate_expert!
     if !expert_signed_in?
-      store_location_for(:user, request.fullpath)
+      store_location_for(:user, page_to_come_back_to)
       redirect_to new_user_session_path
     end
   end
 
   def authenticate_instructeur_or_expert!
     if !instructeur_signed_in? && !expert_signed_in?
-      store_location_for(:user, request.fullpath)
+      store_location_for(:user, page_to_come_back_to)
       redirect_to new_user_session_path
     end
   end
 
   def authenticate_administrateur!
     if !administrateur_signed_in?
-      store_location_for(:user, request.fullpath)
+      store_location_for(:user, page_to_come_back_to)
       redirect_to new_user_session_path
     end
   end
@@ -192,6 +192,10 @@ class ApplicationController < ActionController::Base
       redirect_to new_user_session_path
     end
   end
+
+  # Agent pages bypass the failure app, so they store the page around a frame
+  # themselves: the frame follows the redirect and leaves for the sign in page.
+  def page_to_come_back_to = PageAroundTheFrame.location(request) || request.fullpath
 
   def after_sign_out_path_for(_resource_or_scope)
     stored_location_for(:user) || super
@@ -338,7 +342,7 @@ class ApplicationController < ActionController::Base
       # return at this location
       # after the device is trusted
       if get_stored_location_for(:user).blank?
-        store_location_for(:user, request.fullpath)
+        store_location_for(:user, page_to_come_back_to)
       end
 
       send_login_token_or_bufferize(current_instructeur)
