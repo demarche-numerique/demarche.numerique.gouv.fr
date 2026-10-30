@@ -360,6 +360,21 @@ describe 'As an administrateur I can edit types de champ', js: true do
     expect(page).to have_content('Un menu')
   end
 
+  scenario "adding a number champ accepting decimals" do
+    add_champ
+    hide_autonotice_message
+
+    select_type_de_champ('Nombre')
+    check 'Ce nombre peut comprendre des chiffres après la virgule (décimal)', allow_label_click: true
+    expect(page).to have_content('Formulaire enregistré')
+
+    wait_until { procedure.active_revision.reload.public_root_type_de_champs.first&.decimal_number? }
+
+    page.refresh
+
+    expect(page).to have_checked_field('Ce nombre peut comprendre des chiffres après la virgule (décimal)')
+  end
+
   context "estimated duration visible" do
     scenario "displaying the estimated fill duration" do
       # It doesn't display anything when there are no champs

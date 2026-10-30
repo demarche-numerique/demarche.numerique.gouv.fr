@@ -74,6 +74,63 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       end
     end
 
+    describe 'tdc number' do
+      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: type_champ }]) }
+      let(:coordinate) { procedure.draft_revision.public_revision_type_de_champs.first }
+      let(:decimals_toggle) { 'Ce nombre peut comprendre des chiffres après la virgule (décimal)' }
+      let(:locked_hint) { 'Ce champ est utilisé pour le routage ou l’éligibilité des dossiers : vous ne pouvez pas changer ce réglage.' }
+      let(:toggle_id) { ActionView::RecordIdentifier.dom_id(coordinate.type_de_champ, :numeric_type_champ) }
+      let(:hint_id) { ActionView::RecordIdentifier.dom_id(coordinate.type_de_champ, :numeric_type_champ_hint) }
+
+      context 'when it is an integer' do
+        let(:type_champ) { :integer_number }
+
+        it 'offers the toggle without any hint' do
+          expect(page).to have_unchecked_field(decimals_toggle)
+          expect(page).not_to have_text(locked_hint)
+          expect(page).not_to have_text('FranceConnect')
+          expect(page).not_to have_css("##{toggle_id}[aria-describedby]")
+        end
+      end
+
+      context 'when it is a decimal' do
+        let(:type_champ) { :decimal_number }
+
+        it 'offers the toggle without any hint' do
+          expect(page).to have_checked_field(decimals_toggle)
+          expect(page).not_to have_text(locked_hint)
+          expect(page).not_to have_text('FranceConnect')
+        end
+      end
+
+      context 'when it is not a number' do
+        let(:type_champ) { :text }
+
+        it { expect(page).not_to have_field(decimals_toggle) }
+      end
+
+      context 'when it is used by routing' do
+        let(:type_champ) { :decimal_number }
+        let(:routing_rules_stable_ids) { [coordinate.stable_id] }
+
+        it 'locks the toggle and says why' do
+          expect(page).to have_checked_field(decimals_toggle, disabled: true)
+          expect(page).to have_css("##{toggle_id}[aria-describedby='#{hint_id}']")
+          expect(page).to have_css("##{hint_id}", text: locked_hint)
+        end
+      end
+
+      context 'when it is used by eligibility rules' do
+        let(:type_champ) { :integer_number }
+        let(:ineligibilite_rules_used?) { true }
+
+        it 'locks the toggle and says why' do
+          expect(page).to have_unchecked_field(decimals_toggle, disabled: true)
+          expect(page).to have_text(locked_hint)
+        end
+      end
+    end
+
     describe 'tdc quotient familial' do
       let(:procedure) { create(:procedure, public_type_de_champs:, private_type_de_champs: [{ type: :text }]) }
 

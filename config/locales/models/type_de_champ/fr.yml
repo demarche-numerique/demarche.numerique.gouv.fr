@@ -31,6 +31,7 @@ fr:
           textarea: 'Texte long'
           decimal_number: 'Nombre décimal'
           integer_number: 'Nombre entier'
+          numeric: 'Nombre'
           date: 'Date'
           datetime: 'Date et heure'
           piece_justificative: 'Pièce à joindre'
