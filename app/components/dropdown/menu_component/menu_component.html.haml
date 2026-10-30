@@ -1,5 +1,5 @@
 = content_tag(@wrapper, wrapper_options) do
-  %button{ class: button_class_names, id: button_id, disabled: disabled?, title: title, data: data, "aria-expanded": "false", 'aria-haspopup': 'true', 'aria-controls': menu_id }
+  %button{ class: button_class_names, id: button_id, disabled: disabled?, title: title, data: data, "aria-expanded": "false", 'aria-haspopup': menu? ? 'menu' : nil, 'aria-controls': menu_id }
     = button_inner_html
     %span.fr-ml-2v{ 'aria-hidden': 'true' }
 
@@ -8,7 +8,7 @@
 
     -# the dropdown can be a menu with a list of item
     - if items?
-      %ul.dropdown-items{ role: 'none' }
+      %ul.dropdown-items{ menu? ? { role: 'none' } : {} }
         - items.each do |dropdown_item|
           = dropdown_item
     -# the dropdown can be a menu with forms

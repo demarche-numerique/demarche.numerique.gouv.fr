@@ -70,6 +70,8 @@ export class MenuButtonController extends ApplicationController {
   private open(focusMenuItem: 'first' | 'last' = 'first') {
     this.buttonTarget.setAttribute('aria-expanded', 'true');
     this.menuTarget.parentElement?.classList.add('open');
+    // a disclosure keeps the focus on its button
+    if (!this.isMenu) return;
     this.menuTarget.focus();
 
     requestAnimationFrame(() => {
@@ -165,8 +167,10 @@ export class MenuButtonController extends ApplicationController {
         break;
       case 'ArrowDown':
       case 'Down':
-        this.open();
-        stopPropagation = true;
+        if (this.isMenu) {
+          this.open();
+          stopPropagation = true;
+        }
         break;
       case 'Esc':
       case 'Escape':
@@ -175,8 +179,10 @@ export class MenuButtonController extends ApplicationController {
         break;
       case 'Up':
       case 'ArrowUp':
-        this.open('last');
-        stopPropagation = true;
+        if (this.isMenu) {
+          this.open('last');
+          stopPropagation = true;
+        }
         break;
       default:
         break;
