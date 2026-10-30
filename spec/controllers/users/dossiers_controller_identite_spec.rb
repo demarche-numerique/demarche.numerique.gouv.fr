@@ -167,6 +167,17 @@ describe Users::DossiersController, type: :controller do
       end
     end
 
+    context 'when the dossier en_construction has a pending correction' do
+      let(:dossier) { create(:dossier, :en_construction, :with_individual, user:, procedure:) }
+      let(:dossier_params) { { individual_attributes: { gender: 'M', nom: 'Mouse', prenom: 'Mickey' } } }
+      let!(:correction) { create(:dossier_correction, dossier:) }
+
+      it 'resolves the correction' do
+        expect { subject }.to change { correction.reload.resolved? }.from(false).to(true)
+        expect(response).to redirect_to(demande_dossier_path(dossier))
+      end
+    end
+
     context 'when the identite cannot be updated by the user' do
       let(:dossier) { dossiers.en_instruction }
       let(:dossier_params) { { individual_attributes: { gender: 'M', nom: 'Mouse', prenom: 'Mickey' } } }

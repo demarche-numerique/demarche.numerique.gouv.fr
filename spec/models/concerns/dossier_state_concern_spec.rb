@@ -386,6 +386,34 @@ RSpec.describe DossierStateConcern do
     end
   end
 
+  describe '#usager_update_identity_en_construction!' do
+    let(:dossier) { create(:dossier, :en_construction, :with_individual, procedure:) }
+
+    subject(:update_identity) do
+      dossier.usager_update_identity_en_construction!
+      dossier.reload
+    end
+
+    it 'resolves the pending correction' do
+      create(:dossier_correction, dossier:)
+
+      expect { update_identity }.to change { dossier.pending_correction? }.from(true).to(false)
+    end
+
+    context 'via a sva procedure' do
+      let(:procedure) { procedures.sva }
+      let(:dossier) { create(:dossier, :en_construction, :with_individual, procedure:, sva_svr_decision_on: 10.days.from_now) }
+
+      it 'restarts the sva process once the correction is resolved' do
+        create(:dossier_correction, dossier:)
+
+        update_identity
+
+        expect(dossier).to be_en_instruction
+      end
+    end
+  end
+
   describe '#instructeur_submit_en_construction!' do
     let(:dossier) { dossiers.en_construction }
 

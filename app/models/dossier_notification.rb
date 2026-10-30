@@ -450,9 +450,8 @@ class DossierNotification < ApplicationRecord
         .or(dossiers.hidden_by_administration.hidden_by_user)
     when :dossier_modifie
       dossiers
-        .select(:id, :last_champ_updated_at, :depose_at)
-        .where.not(last_champ_updated_at: nil)
-        .where("last_champ_updated_at > depose_at")
+        .select(:id, :last_champ_updated_at, :identity_updated_at, :depose_at)
+        .where("last_champ_updated_at > depose_at OR identity_updated_at > depose_at")
     when :message
       dossiers
         .select(:id)
@@ -495,7 +494,7 @@ class DossierNotification < ApplicationRecord
     when :dossier_suppression
       (dossier.hidden_by_expired? || (dossier.hidden_by_administration? && dossier.hidden_by_user?)) ? instructeur_ids : []
     when :dossier_modifie
-      dossier.last_champ_updated_at.present? && dossier.last_champ_updated_at > dossier.depose_at ? instructeur_ids : []
+      [dossier.last_champ_updated_at, dossier.identity_updated_at].compact.any? { it > dossier.depose_at } ? instructeur_ids : []
     when :message
       commentaires = dossier
         .commentaires
