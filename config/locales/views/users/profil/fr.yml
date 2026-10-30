@@ -1,5 +1,19 @@
 fr:
   users:
+    profil_passwords:
+      edit:
+        title: Modifier mon mot de passe
+        forgot_title: Vous ne connaissez pas votre mot de passe actuel ?
+        forgot_current_password: Réinitialiser mon mot de passe
+        forgot_hint: Vous serez déconnecté, puis vous recevrez un lien par e-mail pour choisir un nouveau mot de passe.
+        france_connect_title: Votre connexion FranceConnect n’est pas concernée
+        france_connect_body: Ce changement ne porte que sur le mot de passe de votre compte. Votre connexion via FranceConnect continuera de fonctionner à l’identique.
+        submit: Changer le mot de passe
+        submit_loading: Modification en cours…
+      forgot:
+        signed_out: Vous avez été déconnecté. Saisissez votre adresse électronique pour recevoir un lien de réinitialisation.
+      update:
+        success: Votre mot de passe a bien été modifié. Toute autre session ouverte sur votre compte a été déconnectée.
     profil:
       show:
         profile: Profil
@@ -7,6 +21,9 @@ fr:
         new_email_address: Nouvelle adresse électronique
         your_email: Votre adresse électronique actuelle
         change_address: Changer mon adresse
+        password_title: Mot de passe
+        password_explication: Vous pouvez modifier à tout moment le mot de passe de votre compte. Toute autre session ouverte sera alors déconnectée.
+        change_password: Modifier mon mot de passe
         transfer_title: Transférer tous vos dossiers
         transfer_explication_html: "<p>Cette fonctionnalité vous permet de changer le propriétaire de tous vos dossiers. C’est généralement utile lors d’un changement de poste ou si vous souhaitez fusionner plusieurs comptes.</p>"
         transfer_next_owner_label: "Adresse électronique du prochain propriétaire de tous vos dossiers"
