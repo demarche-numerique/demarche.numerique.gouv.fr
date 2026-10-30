@@ -5,6 +5,8 @@ class RIB
   include ActiveModel::Attributes
 
   attribute :account_holder, :string
+  attribute :account_holder_name, :string
+  attribute :account_holder_address, :string
   attribute :bank_name, :string
   attribute :bic, :string
   attribute :iban, :string
