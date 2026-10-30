@@ -1,11 +1,7 @@
 <strong>Sujet</strong>
 
-<pre style="white-space: pre-wrap;">
-  <%= field.data.subject %>
-</pre>
+<p><%= field.subject_text %></p>
 
 <strong>Corps</strong>
 
-<pre style="white-space: pre-wrap;">
-  <%= field.data.body %>
-</pre>
+<div><%= sanitize(field.body_html) %></div>
