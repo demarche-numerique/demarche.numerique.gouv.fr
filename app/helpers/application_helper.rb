@@ -40,6 +40,8 @@ module ApplicationHelper
     case level
     when 'notice'
       class_names << 'alert-success fr-icon-success-line fr-icon--sm fr-text--sm fr-mb-0'
+    when 'info'
+      class_names << 'alert-info fr-icon-information-line fr-icon--sm fr-text--sm fr-mb-0'
     when 'alert', 'error'
       class_names << 'alert-danger fr-icon-error-line fr-icon--sm fr-text--sm fr-mb-0'
     end
@@ -53,7 +55,7 @@ module ApplicationHelper
   end
 
   def flash_role(level)
-    return "status" if level == "notice"
+    return "status" if level.in?(["notice", "info"])
 
     'alert'
   end

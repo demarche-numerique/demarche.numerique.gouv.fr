@@ -5,6 +5,7 @@ class Instructeur < ApplicationRecord
 
   include UserFindByConcern
   include GrantsSessionLifetimeConcern
+  include InstructeurExportBannerConcern
   has_and_belongs_to_many :administrateurs
 
   has_many :assign_to, dependent: :destroy

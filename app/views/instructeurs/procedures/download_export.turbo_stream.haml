@@ -1,2 +1,2 @@
-= turbo_stream.update "last-export-alert" do
-  = render partial: "last_export_alert", locals: { export: @last_export, statut: @statut }
+= turbo_stream.replace "export-banner", render(Instructeurs::ExportBannerComponent.new(instructeur: current_instructeur))
+= turbo_stream.focus 'export-banner'

@@ -97,6 +97,7 @@
 
       <main id="contenu" role="main">
         <%= render partial: "layouts/flash_messages" %>
+        <%= yield(:export_banner) %>
 
         <%= content_for?(:content) ? yield(:content) : yield %>
       </main>

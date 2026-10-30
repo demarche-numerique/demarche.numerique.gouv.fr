@@ -778,77 +778,20 @@ describe Instructeurs::ProceduresController, type: :controller do
         end
       end
 
-      context 'exports alert' do
-        context 'without generated export' do
-          let(:statut) { 'tous' }
-          let!(:export) { create(:export, :pending, groupe_instructeurs: [gi_2]) }
-          render_views
-          before do
-            subject
-          end
+      context 'export banner' do
+        render_views
+        let(:statut) { 'tous' }
+        let!(:export) { create(:export, :pending, groupe_instructeurs: [gi_2], user_profile: instructeur) }
 
-          it do
-            expect(assigns(:last_export)).to eq(export)
-            expect(response.body).to include("Votre dernier export est en cours de création")
-          end
-
-          context 'when export is generated but file not yet attached' do
-            let!(:export) { create(:export, :generated, groupe_instructeurs: [gi_2]) }
-            it { expect(response.body).to include("Votre dernier export est en cours de création") }
-          end
+        before do
+          instructeur.request_export!(export)
+          subject
         end
 
-        context 'with recent generated export' do
-          let(:statut) { 'tous' }
-          let!(:export) { create(:export, :generated, groupe_instructeurs: [gi_2], updated_at: 1.minute.ago) }
-          render_views
-          before do
-            export.file.attach(io: StringIO.new('export'), filename: 'file.csv')
-            subject
-          end
-
-          it do
-            expect(assigns(:last_export)).to eq(export)
-            expect(response.body).to include("Votre dernier export au format csv est prêt")
-          end
-        end
-
-        context 'with failed export ' do
-          let(:statut) { 'tous' }
-          let!(:export) { create(:export, :failed, groupe_instructeurs: [gi_2], updated_at: 1.minute.ago) }
-          render_views
-          before do
-            subject
-          end
-
-          it do
-            expect(assigns(:last_export)).to eq(export)
-            expect(response.body).to include("Votre dernier export au format csv n’a pas fonctionné")
-          end
-        end
-
-        context 'with export more than hour ago' do
-          let(:statut) { 'tous' }
-          let!(:export) { create(:export, :generated, groupe_instructeurs: [gi_2], updated_at: 2.hours.ago) }
-          before do
-            subject
-          end
-
-          it { expect(assigns(:last_export)).to eq(nil) }
-        end
-
-        context 'logged in with another instructeur' do
-          let(:instructeur_2) { create(:instructeur) }
-          let(:statut) { 'tous' }
-          let!(:export) { create(:export, :generated, groupe_instructeurs: [gi_2], updated_at: 1.minute.ago) }
-
-          before do
-            sign_in(instructeur_2.user)
-            instructeur_2.groupe_instructeurs << gi_2
-            subject
-          end
-
-          it { expect(assigns(:last_export)).to eq(nil) }
+        it 'renders the transverse banner instead of the contextual alert' do
+          expect(response.body).to include('id="export-banner"')
+          expect(response.body).to include('Votre dernier export est en cours de création.')
+          expect(response.body).not_to include('last-export-alert')
         end
       end
 
@@ -1175,12 +1118,17 @@ describe Instructeurs::ProceduresController, type: :controller do
     end
 
     context 'when the export does not exist' do
-      it 'displays an notice' do
+      it 'redirects without a flash notice' do
         is_expected.to redirect_to(exports_instructeur_procedure_url(procedure))
-        expect(flash.notice).to be_present
+        expect(flash.notice).to be_nil
       end
 
       it { expect { subject }.to change { Export.where(user_profile: instructeur).count }.by(1) }
+
+      it 'points the banner to the requested export' do
+        subject
+        expect(instructeur.reload.last_requested_export).to eq(Export.find_by(user_profile: instructeur))
+      end
 
       context 'with an export template' do
         let(:export_template) { create(:export_template, groupe_instructeur: gi_0) }
@@ -1188,21 +1136,24 @@ describe Instructeurs::ProceduresController, type: :controller do
           get :download_export, params: { export_template_id: export_template.id, procedure_id: procedure.id }
         end
 
-        it 'displays an notice' do
+        it 'redirects without a flash notice' do
           is_expected.to redirect_to(exports_instructeur_procedure_url(procedure))
-          expect(flash.notice).to be_present
+          expect(flash.notice).to be_nil
         end
       end
     end
 
     context 'when the export is not ready' do
-      before do
-        create(:export, groupe_instructeurs: [gi_1])
+      let!(:export) { create(:export, groupe_instructeurs: [gi_1]) }
+
+      it 'redirects without a flash notice' do
+        is_expected.to redirect_to(exports_instructeur_procedure_url(procedure))
+        expect(flash.notice).to be_nil
       end
 
-      it 'displays an notice' do
-        is_expected.to redirect_to(exports_instructeur_procedure_url(procedure))
-        expect(flash.notice).to be_present
+      it 'points the banner to the reused export' do
+        expect { subject }.not_to change { Export.count }
+        expect(instructeur.reload.last_requested_export).to eq(export)
       end
     end
 
@@ -1217,6 +1168,11 @@ describe Instructeurs::ProceduresController, type: :controller do
         subject
         expect(response.headers['Location']).to start_with("http://test.host/rails/active_storage/disk")
       end
+
+      it 'points the banner to the reused export' do
+        subject
+        expect(instructeur.reload.last_requested_export).to eq(export)
+      end
     end
 
     context 'when another export is ready' do
@@ -1226,9 +1182,9 @@ describe Instructeurs::ProceduresController, type: :controller do
         export.file.attach(io: StringIO.new('export'), filename: 'file.csv')
       end
 
-      it 'displays an notice' do
+      it 'redirects without a flash notice' do
         is_expected.to redirect_to(exports_instructeur_procedure_url(procedure))
-        expect(flash.notice).to be_present
+        expect(flash.notice).to be_nil
       end
     end
 
@@ -1244,7 +1200,12 @@ describe Instructeurs::ProceduresController, type: :controller do
       it 'responds in the correct format' do
         expect(response.media_type).to eq('text/vnd.turbo-stream.html')
         expect(response).to have_http_status(:ok)
-        expect(response.body).to include(polling_last_export_instructeur_procedure_path(procedure))
+        expect(response.body).to include('target="export-banner"')
+        expect(response.body).to include(polling_instructeur_export_banner_path)
+      end
+
+      it 'moves the focus to the banner' do
+        expect(response.body).to include('turbo-stream action="focus" target="export-banner"')
       end
     end
 
@@ -1276,24 +1237,6 @@ describe Instructeurs::ProceduresController, type: :controller do
     context 'when logged in through super admin' do
       let(:manager) { true }
       it { is_expected.to have_http_status(:forbidden) }
-    end
-  end
-
-  describe '#polling_last_export' do
-    let(:instructeur) { create(:instructeur) }
-    let!(:procedure) { create(:procedure) }
-    let!(:assign_to) { create(:assign_to, instructeur: instructeur, groupe_instructeur: build(:groupe_instructeur, procedure: procedure)) }
-    let(:gi_0) { assign_to.groupe_instructeur }
-
-    before { sign_in(instructeur.user) }
-
-    context 'when no recent export exists (last_export_for returns nil)' do
-      it 'does not raise and responds successfully' do
-        get :polling_last_export, params: { procedure_id: procedure.id, statut: 'tous' }, format: :turbo_stream
-
-        expect(response).to have_http_status(:ok)
-        expect(assigns(:last_export)).to be_nil
-      end
     end
   end
 
