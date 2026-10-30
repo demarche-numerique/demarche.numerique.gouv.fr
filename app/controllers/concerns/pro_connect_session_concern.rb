@@ -20,6 +20,13 @@ module ProConnectSessionConcern
     }
   end
 
+  def sign_in_with_pro_connect(user, id_token:, mfa:)
+    user.instructeur&.update!(pro_connect_id_token: id_token)
+    set_pro_connect_session_info_cookie(user.id, mfa:)
+    sign_in(:user, user)
+    user.update_preferred_domain(Current.host)
+  end
+
   def logged_in_with_pro_connect?
     pro_connect_session.present?
   end

@@ -36,6 +36,10 @@ class ProConnectController < ApplicationController
     cookies.delete NONCE_COOKIE_NAME
 
     email = santized_email(user_info)
+    mfa = ProConnectService.mfa?(amr:, acr:)
+    mfa_already_forced = cookies.encrypted[MFA_FORCED_COOKIE_NAME] == email
+    cookies.delete MFA_FORCED_COOKIE_NAME
+
     user = User.find_by(email:)
 
     if user.nil?
@@ -50,30 +54,13 @@ class ProConnectController < ApplicationController
       user.update!(email_verified_at: Time.current) if user.email_verified_at.nil?
     end
 
-    pro_connect_info = ProConnectInformation.find_or_initialize_by(user:, sub: user_info['sub'])
-    pro_connect_info.update!(
-      user_info.slice('given_name', 'usual_name', 'email', 'sub', 'siret', 'organizational_unit', 'belonging_population', 'phone')
-      .merge(amr:, acr:)
-    )
-
-    mfa = ProConnectService.mfa?(amr:, acr:)
-    mfa_already_forced = cookies.encrypted[MFA_FORCED_COOKIE_NAME] == email
-    cookies.delete MFA_FORCED_COOKIE_NAME
+    ProConnectInformation.record!(user:, user_info:, amr:, acr:)
 
     remember_administrateur_device if user.administrateur&.pro_connect_required?
 
-    if !mfa && must_force_mfa?(user, user_info)
-      return redirect_pro_connect_mfa_failed if mfa_already_forced
+    return enforce_mfa(email, already_forced: mfa_already_forced) if !mfa && must_force_mfa?(user, user_info)
 
-      return redirect_to_forced_mfa(email)
-    end
-
-    user.instructeur&.update!(pro_connect_id_token: id_token)
-
-    set_pro_connect_session_info_cookie(user.id, mfa:)
-
-    sign_in(:user, user)
-    user.update_preferred_domain(Current.host)
+    sign_in_with_pro_connect(user, id_token:, mfa:)
     redirect_to stored_location_for(:user) || root_path
 
   rescue Rack::OAuth2::Client::Error => e
@@ -91,6 +78,10 @@ class ProConnectController < ApplicationController
   def must_force_mfa?(user, user_info)
     user.administrateur&.pro_connect_required? ||
       (user.instructeur? && user_info['idp_id'] == MON_COMPTE_PRO_IDP_ID)
+  end
+
+  def enforce_mfa(email, already_forced:)
+    already_forced ? redirect_pro_connect_mfa_failed : redirect_to_forced_mfa(email)
   end
 
   def redirect_to_forced_mfa(email)
