@@ -253,6 +253,24 @@ describe Champs::PieceJustificativeChamp do
           expect(champ.ocr_result).to be_a(RIB)
           expect(champ.ocr_result.iban).to eq('FR7612345678901234567890123')
         end
+
+        context 'with the holder split into name and address' do
+          let(:value_json) do
+            {
+              'rib' => {
+                'account_holder' => "MME KAHLO FRIDA\n58 BD ROBERT",
+                'account_holder_name' => 'MME KAHLO FRIDA',
+                'account_holder_address' => '58 BD ROBERT',
+                'iban' => 'FR7612345678901234567890123',
+              },
+            }
+          end
+
+          it do
+            expect(champ.ocr_result.account_holder_name).to eq('MME KAHLO FRIDA')
+            expect(champ.ocr_result.account_holder_address).to eq('58 BD ROBERT')
+          end
+        end
       end
 
       context 'when in external_error' do
