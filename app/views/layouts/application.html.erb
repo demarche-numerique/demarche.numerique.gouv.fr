@@ -67,6 +67,8 @@
     <% if content_for?(:meta_robots) %>
       <meta name="robots" content="<%= content_for(:meta_robots) %>">
     <% end %>
+
+    <%= yield :head %>
   </head>
 
   <body

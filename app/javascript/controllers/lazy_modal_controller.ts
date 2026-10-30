@@ -18,10 +18,10 @@ export default class LazyModalController extends ApplicationController {
 
     const src = button.getAttribute('src');
     if (src) {
-      // Une session expirée n'arrive plus jusqu'ici : shared/session-expiry
-      // intercepte le 401 en amont. Reste le cas d'une réponse qui ne contient
-      // pas le frame attendu — on recharge la page courante plutôt que d'afficher
-      // un fragment orphelin.
+      // Une session expirée n'arrive jamais jusqu'ici : la page de connexion
+      // porte turbo-visit-control, et Turbo quitte le frame pour elle. Reste le
+      // cas d'une réponse qui ne contient pas le frame attendu — on recharge la
+      // page courante plutôt que d'afficher un fragment orphelin.
       frame.addEventListener(
         'turbo:frame-missing',
         (event) => {

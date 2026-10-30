@@ -1,0 +1,10 @@
+<%#
+  A frame whose session died follows the redirect here, but cannot show a
+  sign in page. The meta makes Turbo load it again as a whole page, and the
+  flash is kept for that second load: this one is never shown.
+%>
+
+<% if turbo_frame_request? %>
+  <% turbo_page_requires_reload %>
+  <% flash.keep %>
+<% end %>
