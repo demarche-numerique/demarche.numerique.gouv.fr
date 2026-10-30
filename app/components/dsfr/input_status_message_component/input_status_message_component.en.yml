@@ -6,6 +6,7 @@ en:
     pending: "Search in progress for RNA %{value}…"
     success: "This RNA number is linked to: %{title}, %{address}."
   rnf:
+    degraded: "RNF %{value} is saved. Foundation information will arrive later: you can carry on."
     error: "No foundation found"
     pending: "RNF verification pending"
     success: "This RNF matches: %{title}, %{address}"
