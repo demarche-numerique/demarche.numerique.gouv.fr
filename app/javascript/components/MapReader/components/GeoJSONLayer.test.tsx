@@ -1,4 +1,4 @@
-import { vi, suite, test, expect, beforeEach, afterEach } from 'vitest';
+import { vi, suite, test, expect, beforeEach, afterEach } from 'vite-plus/test';
 import { createRoot, type Root } from 'react-dom/client';
 import { Popup } from 'maplibre-gl';
 import type { FeatureCollection } from 'geojson';

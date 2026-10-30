@@ -1,14 +1,7 @@
 import { Application } from '@hotwired/stimulus';
-import { afterEach, beforeEach, expect, suite, test, vi } from 'vitest';
+import { afterEach, beforeEach, expect, suite, test } from 'vite-plus/test';
 
 import { FileInputResetController } from './file_input_reset_controller';
-
-vi.mock('@lingui/core/macro', () => ({
-  t: (strings: TemplateStringsArray, ...values: unknown[]) =>
-    strings.raw.reduce(
-      (message, part, index) => message + String(values[index - 1] ?? '') + part
-    )
-}));
 
 const nextFrame = () => new Promise(requestAnimationFrame);
 

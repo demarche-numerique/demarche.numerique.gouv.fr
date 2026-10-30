@@ -43,7 +43,7 @@ export default class extends ApplicationController {
   }
 
   private onConceal = (): void => {
-    this.reset();
+    void this.reset();
   };
 
   private reset = async (): Promise<void> => {

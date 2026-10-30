@@ -76,3 +76,4 @@ lefthook-local.yml
 
 # git worktrees
 .worktrees/
+.vitest/
