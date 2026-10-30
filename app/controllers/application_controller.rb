@@ -27,6 +27,8 @@ class ApplicationController < ActionController::Base
   before_action :setup_tracking
   before_action :set_customizable_view_path
   before_action :display_csrf_retry_message
+  # After the action, so that its own sign in notice does not override this one.
+  after_action :confirm_account_kept_after_deletion_notice
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   rescue_from DossierChampsConcern::ChampNotInRevisionError, with: :champ_not_in_revision
@@ -138,6 +140,13 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  # warden.user rather than current_user: no strategy run on anonymous requests.
+  def confirm_account_kept_after_deletion_notice
+    return unless warden.user(:user)&.kept_after_deletion_notice?
+
+    flash[:notice] = t('devise.sessions.inactive_account_kept', years: Expired::INACTIVE_USER_RETENTION_IN_YEAR) # rubocop:disable Rails/ActionControllerFlashBeforeRender -- after_action: meant for the page the sign in redirects to
+  end
 
   def display_csrf_retry_message
     return unless params[:csrf_retry] == '1'

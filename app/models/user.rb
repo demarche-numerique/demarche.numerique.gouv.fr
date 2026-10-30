@@ -236,8 +236,13 @@ class User < ApplicationRecord
   # a returning user is never deleted without a fresh notice.
   def update_tracked_fields(request)
     super
+    return if inactive_close_to_expiration_notice_sent_at.nil?
+
     self.inactive_close_to_expiration_notice_sent_at = nil
+    @kept_after_deletion_notice = true
   end
+
+  def kept_after_deletion_notice? = @kept_after_deletion_notice == true
 
   def administrateur?
     administrateur.present?

@@ -23,7 +23,16 @@ en:
     send_archive:
       subject: Your archive is available
     notify_inactive_close_to_deletion:
-      subject: "Your account will be deleted in %{remaining_weeks} weeks"
+      subject: "Your Démarche Numérique account will be deleted in %{remaining_weeks} weeks"
+      inactive_html: "You have not signed in to your <strong>%{application_name} account</strong> with the address %{email} for more than %{years} years."
+      no_dossier: You no longer have any application on the platform.
+      deletion_html: "In accordance with the General Data Protection Regulation, we will <strong>delete your account within %{delay}</strong>."
+      dossiers_kept_html: "<strong>Don’t worry,</strong> your processed applications are kept by the administration, and you can create a new account on our platform at any time. If needed, you can download your applications from this link: %{dossiers_link}"
+      keep_title: Do you want to keep your account?
+      keep_explanation: "Sign in with your credentials by clicking the button below:"
+      keep_button: Keep my %{application_name} account
+      dont_keep_title: You don’t want to keep your account?
+      dont_keep_explanation: It will be automatically deactivated and deleted.
     notify_after_closing:
       subject: "Closing of a procedure on %{application_name}"
     password_changed:

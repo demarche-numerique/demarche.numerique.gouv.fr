@@ -1,0 +1,38 @@
+<% content_for(:title, @subject) %>
+<% has_dossiers = @user.dossiers.not_brouillon.exists? %>
+
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+
+<p>
+  <%= t('.inactive_html', years: Expired::INACTIVE_USER_RETENTION_IN_YEAR, application_name: application_name_without_link, email: @user.email) %>
+
+  <% unless has_dossiers %>
+    <%= t('.no_dossier') %>
+  <% end %>
+</p>
+
+<p>
+  <%= t('.deletion_html', delay: distance_of_time_in_words(Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks)) %>
+</p>
+
+<% if has_dossiers %>
+  <p>
+    <%= t('.dossiers_kept_html', dossiers_link: link_to(dossiers_url, dossiers_url)) %>
+  </p>
+<% end %>
+
+<h2 style="font-size: 18px; line-height: 24px; margin: 24px 0 4px;">
+  <%= t('.keep_title') %>
+</h2>
+
+<p style="margin-top: 0;"><%= t('.keep_explanation') %></p>
+
+<%= dsfr_button(t('.keep_button', application_name: application_name_without_link), new_user_session_url, :primary) %>
+
+<h2 style="font-size: 18px; line-height: 24px; margin: 24px 0 4px;">
+  <%= t('.dont_keep_title') %>
+</h2>
+
+<p style="margin-top: 0;"><%= t('.dont_keep_explanation') %></p>
+
+<%= render partial: "layouts/mailers/signature" %>
