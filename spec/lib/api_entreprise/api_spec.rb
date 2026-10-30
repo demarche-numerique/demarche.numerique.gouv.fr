@@ -159,6 +159,16 @@ describe APIEntreprise::API do
       end
     end
 
+    context 'when bad gateway (502) with error code 03999' do
+      let(:status) { 502 }
+      let(:body) { fixture_file('error_code_03999.json') }
+
+      it 'returns a Failure with type :unknown_provider_error' do
+        expect(subject).to be_failure
+        expect(subject.failure).to include(type: :unknown_provider_error, code: 502, retryable: true)
+      end
+    end
+
     context 'when bad gateway (502) with error code 01000' do
       let(:status) { 502 }
       let(:body) { fixture_file('error_code_01000.json') }
