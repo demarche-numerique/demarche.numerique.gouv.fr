@@ -1,5 +1,7 @@
 - if @as_announcement
-  - if status_announcement?
+  - if secondary_list_announcement?
+    = t('.linked_drop_down_list.secondary_available', libelle: @champ.secondary_libelle)
+  - elsif status_announcement?
     = sanitize(statut_message[:text])
 - else
   .fr-messages-group{ id: @error_id, aria: { live: (@error_full_messages.size > 0 ? :assertive : nil) } }
