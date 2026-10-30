@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 RSpec.describe APIEntreprise::HealthChecker do
-  before do
-    APIEntreprise::HealthChecker::PROVIDERS.each_value do |key|
-      Kredis.redis.del(APIEntreprise::HealthChecker.cache_key(key))
-    end
+  around do |example|
+    clear_health_checks
+    example.run
+    clear_health_checks
   end
 
   describe '.provider_up?' do
@@ -128,6 +128,12 @@ RSpec.describe APIEntreprise::HealthChecker do
   end
 
   private
+
+  def clear_health_checks
+    described_class::PROVIDERS.each_value do |key|
+      Kredis.redis.del(described_class.cache_key(key))
+    end
+  end
 
   def cache_status(ping_key, status)
     Kredis.redis.set(described_class.cache_key(ping_key), status, ex: 300)
