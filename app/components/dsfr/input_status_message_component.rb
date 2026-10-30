@@ -104,6 +104,8 @@ module Dsfr
           { state: :info, text: t(".rnf.pending") }
         elsif @champ.external_error?
           { state: :warning, text: t(".rnf.error") }
+        elsif @champ.awaiting_fix?
+          { state: :warning, text: t(".rnf.degraded", value: @champ.value) }
         elsif @champ.data.present?
           { state: :info, text: t(".rnf.success", title: @champ.title, address: @champ.full_address) }
         end

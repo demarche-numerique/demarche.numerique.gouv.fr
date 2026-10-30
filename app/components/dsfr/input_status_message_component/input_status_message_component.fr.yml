@@ -6,6 +6,7 @@ fr:
     pending: "Recherche en cours pour le RNA %{value}…"
     success: "Ce RNA correspond à : %{title}, %{address}"
   rnf:
+    degraded: "Le RNF %{value} est bien enregistré. Les informations sur la fondation arriveront plus tard : vous pouvez continuer."
     error: "Aucune fondation trouvée"
     pending: "Vérification du RNF en cours"
     success: "Ce RNF correspond à : %{title}, %{address}"
