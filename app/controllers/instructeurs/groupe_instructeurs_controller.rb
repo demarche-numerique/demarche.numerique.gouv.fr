@@ -7,6 +7,7 @@ module Instructeurs
     include InstructeurProcedureConcern
     include InstructeurEmailNotificationConcern
     before_action :ensure_allowed!
+    helper_method :restricted_email_domain
 
     ITEMS_PER_PAGE = 25
 
@@ -26,7 +27,7 @@ module Instructeurs
     def add_instructeurs
       emails, maybe_typos, errors = parse_emails
 
-      added_instructeurs, invalid_emails, invalid_domain_emails = groupe_instructeur.add_instructeurs(emails:, restrict_to_domain: current_instructeur.email_domain)
+      added_instructeurs, invalid_emails, invalid_domain_emails = groupe_instructeur.add_instructeurs(emails:, restrict_to_domain: restricted_email_domain)
 
       if invalid_emails.present?
         errors += [
@@ -41,7 +42,7 @@ module Instructeurs
           t('.wrong_domain',
             count: invalid_domain_emails.size,
             emails: emails_for_flash(invalid_domain_emails),
-            domain: current_instructeur.email_domain),
+            domain: restricted_email_domain),
         ]
       end
 
@@ -86,8 +87,12 @@ module Instructeurs
 
     private
 
+    def restricted_email_domain
+      current_instructeur.email_domain if procedure.self_management_restricted_to_email_domain?
+    end
+
     def procedure
-      current_instructeur
+      @procedure ||= current_instructeur
         .procedures
         .includes(:groupe_instructeurs)
         .find(params[:procedure_id])

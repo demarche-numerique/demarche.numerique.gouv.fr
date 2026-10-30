@@ -83,7 +83,22 @@ describe Instructeurs::GroupeInstructeursController, type: :controller do
       it { expect(response).to have_http_status(:ok) }
 
       it 'tells which email domain can be added' do
+        expect(response.body).to have_selector('#instructeur-emails-domain-hint')
         expect(response.body).to include("Seules les adresses du même domaine que la vôtre (@#{instructeur.email_domain}) peuvent être ajoutées.")
+      end
+    end
+
+    context 'as an instructeur of a group, with the email domain restriction disabled' do
+      let(:instructeur) { create(:instructeur) }
+
+      before do
+        procedure.update(instructeurs_self_management_enabled: true, self_management_restricted_to_email_domain: false)
+        get :show, params: { procedure_id: procedure.id, id: gi_1_2.id }
+      end
+
+      it 'does not tell which email domain can be added' do
+        expect(response).to have_http_status(:ok)
+        expect(response.body).not_to have_selector('#instructeur-emails-domain-hint')
       end
     end
   end
@@ -205,6 +220,22 @@ describe Instructeurs::GroupeInstructeursController, type: :controller do
         expect(gi_1_2.reload.instructeurs.map(&:email)).to include(good)
         expect(gi_1_2.instructeurs.map(&:email)).not_to include(bad)
         expect(flash.alert).to include(bad)
+      end
+    end
+
+    context 'when the email domain restriction is disabled' do
+      let(:instructeur) { create(:instructeur, email: 'moi@interieur.gouv.fr') }
+      let(:procedure) { create(:procedure, :published, instructeurs_self_management_enabled: true, self_management_restricted_to_email_domain: false) }
+      let(:new_instructeur_email) { 'quelquun@gmail.com' }
+
+      before { subject }
+
+      it 'adds the instructeur from another domain' do
+        expect(gi_1_2.instructeurs.map(&:email)).to include(new_instructeur_email)
+        expect(flash.notice).to be_present
+        expect(subject).to redirect_to(instructeur_groupe_path(procedure, gi_1_2))
+        expect(GroupeInstructeurMailer).to have_received(:confirm_and_notify_added_instructeur).with(instance_of(Instructeur), gi_1_2, anything)
+        expect(GroupeInstructeurMailer).not_to have_received(:notify_added_instructeurs)
       end
     end
 
