@@ -341,6 +341,11 @@ describe ProcedureCloneConcern, type: :model do
         expect(subject.instructeurs_can_edit_dossiers).to eq(false)
       end
 
+      it 'should restrict instructeurs to their email domain' do
+        procedure.update!(self_management_restricted_to_email_domain: false)
+        expect(subject.self_management_restricted_to_email_domain).to eq(true)
+      end
+
       it 'should have a default groupe instructeur' do
         expect(subject.groupe_instructeurs.size).to eq(1)
         expect(subject.groupe_instructeurs.first.label).to eq(GroupeInstructeur::DEFAUT_LABEL)
