@@ -37,9 +37,10 @@ export default class LazyFrameController extends ApplicationController {
     // Already showing the current filter state: nothing to reload.
     if (frame.getAttribute('src') === src) return;
 
-    // An expired session no longer reaches this: shared/session-expiry catches
-    // the 401 first. What is left is a response that simply has no such frame --
-    // reload rather than leave the drawer on its loading placeholder.
+    // An expired session never reaches this: the sign in page carries
+    // turbo-visit-control, and Turbo leaves the frame for it. What is left is a
+    // response that simply has no such frame -- reload rather than leave the
+    // drawer on its loading placeholder.
     frame.addEventListener(
       'turbo:frame-missing',
       (event) => {

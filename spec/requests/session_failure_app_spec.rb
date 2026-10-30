@@ -20,27 +20,25 @@ describe 'the session failure app', type: :request do
       expect(flash[:alert]).to eq(I18n.t('devise.failure.logout_all'))
     end
 
-    # A stream or a form submission follows a redirect perfectly well; only a
-    # frame cannot, so only a frame is answered with a 401.
     it 'redirects a turbo stream request, like any other' do
       get profil_path, headers: { 'Accept' => 'text/vnd.turbo-stream.html' }
 
       expect(response).to redirect_to(new_user_session_path)
     end
 
-    it 'answers a bare 401 inside a turbo frame, and nothing else' do
+    # The frame follows the redirect with its header; the sign in page it gets
+    # asks Turbo to load it again as a whole page, and keeps the flash for it.
+    it 'leaves a turbo frame for the sign in page, and still says why' do
       get profil_path, headers: { 'Turbo-Frame' => 'a-modal' }
+      expect(response).to redirect_to(new_user_session_path)
 
-      expect(response).to have_http_status(:unauthorized)
-      expect(response.body).to be_empty
-    end
+      follow_redirect!(headers: { 'Turbo-Frame' => 'a-modal' })
+      expect(response.body).to include('<meta name="turbo-visit-control" content="reload">')
 
-    # The client must not invent the path: each Warden scope has its own sign in
-    # page, and /users/sign_in is not /super_admins/sign_in.
-    it 'tells the browser where to go, in a header' do
-      get profil_path, headers: { 'Turbo-Frame' => 'a-modal' }
+      get new_user_session_path
 
-      expect(response.headers['X-Sign-In-Path']).to end_with(new_user_session_path)
+      expect(response.body).to include(I18n.t('devise.failure.logout_all'))
+      expect(response.body).not_to include('turbo-visit-control')
     end
 
     it 'still explains itself after the turbo path, and does not repeat itself' do
@@ -131,6 +129,12 @@ describe 'the session failure app', type: :request do
 
     expect(response).to redirect_to(new_user_session_path)
     expect(session['user_return_to']).to eq(instructeur_procedures_path)
+  end
+
+  it 'makes the super admin sign in page leave a turbo frame too' do
+    get new_super_admin_session_path, headers: { 'Turbo-Frame' => 'a-modal' }
+
+    expect(response.body).to include('<meta name="turbo-visit-control" content="reload">')
   end
 
   # The failure app sees every authentication failure, ordinary ones included.

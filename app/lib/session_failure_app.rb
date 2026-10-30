@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class SessionFailureApp < Devise::FailureApp
-  REDIRECT_HEADER = 'X-Sign-In-Path'
-
   # Marks a flash that explains why a session ended, so the next failure keeps
   # it instead of writing the generic message over it.
   SESSION_ENDED_KEY = :session_ended
@@ -17,21 +15,9 @@ class SessionFailureApp < Devise::FailureApp
     # Devise's 401 body goes to a client that reloads and discards it -- and by
     # then the scope is logged out, so no later request recomputes why. The
     # flash is the only thing that reaches the page they land on.
-    if http_auth?
-      remember_why! if @end_reason.present?
+    remember_why! if http_auth? && @end_reason.present?
 
-      return super
-    end
-
-    return super if !turbo_frame_request?
-
-    request.flash[:alert] = i18n_message
-    store_location!
-
-    headers[REDIRECT_HEADER] = scope_url
-    self.status = :unauthorized
-    self.content_type = 'text/plain'
-    self.response_body = ''
+    super
   end
 
   def i18n_message(default = nil)
@@ -71,13 +57,5 @@ class SessionFailureApp < Devise::FailureApp
     return super if location.blank?
 
     store_location_for(scope, location)
-  end
-
-  # Frames only, not every Turbo request: a form submission or a stream follows
-  # a redirect perfectly well, and answering those with a 401 would put their
-  # recovery in the hands of the JavaScript. A frame cannot -- the sign in page
-  # would render inside it.
-  def turbo_frame_request?
-    request.headers['Turbo-Frame'].present?
   end
 end
