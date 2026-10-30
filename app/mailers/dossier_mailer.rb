@@ -13,7 +13,7 @@ class DossierMailer < ApplicationMailer
   default from: NO_REPLY_EMAIL
 
   before_action :abort_perform_deliveries, only: [:notify_transfer]
-  after_action :prevent_perform_deliveries, only: [:notify_new_draft, :notify_new_answer, :notify_pending_correction, :notify_transfer]
+  before_action :prevent_perform_deliveries, only: [:notify_new_draft, :notify_new_answer, :notify_pending_correction, :notify_transfer]
 
   # when we don't want to render the view
   rescue_from AbortDeliveryError, with: -> {}
@@ -226,7 +226,7 @@ class DossierMailer < ApplicationMailer
     dossier = commentaire&.dossier || params[:dossier]
 
     if commentaire&.discarded? || dossier&.skip_user_notification_email?
-      mail.perform_deliveries = false
+      raise AbortDeliveryError
     end
   end
 

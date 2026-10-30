@@ -86,6 +86,20 @@ RSpec.describe DossierMailer, type: :mailer do
     it { expect(subject.perform_deliveries).to be_falsy }
   end
 
+  describe '.notify_new_answer when the usager deleted their account after the message' do
+    let(:dossier) { dossiers.en_construction }
+    let(:commentaire) { create(:commentaire, dossier:) }
+
+    before do
+      commentaire
+      dossier.update_columns(user_id: nil, deleted_user_email_never_send: dossier.user.email)
+    end
+
+    subject { described_class.with(commentaire:).notify_new_answer }
+
+    it { expect { subject.deliver_now }.not_to change(ActionMailer::Base.deliveries, :count) }
+  end
+
   describe '.notify_new_answer with dossier brouillon on a declarative procedure' do
     let(:procedure) { create(:simple_procedure, declarative_with_state: 'en_instruction') }
     let(:dossier) { create(:dossier, :brouillon, procedure:) }
@@ -358,6 +372,15 @@ RSpec.describe DossierMailer, type: :mailer do
         expect(subject.body).not_to include("Ouvrir la messagerie")
         expect(subject.body).not_to include("translation missing")
       end
+    end
+
+    context 'when the usager deleted their account after the message' do
+      before do
+        commentaire
+        dossier.update_columns(user_id: nil, deleted_user_email_never_send: dossier.user.email)
+      end
+
+      it { expect { subject.deliver_now }.not_to change(ActionMailer::Base.deliveries, :count) }
     end
 
     context 'sva with reason is incorrect' do
