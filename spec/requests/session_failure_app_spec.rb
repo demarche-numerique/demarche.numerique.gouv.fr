@@ -35,14 +35,6 @@ describe 'the session failure app', type: :request do
       expect(response.body).to be_empty
     end
 
-    # The client must not invent the path: each Warden scope has its own sign in
-    # page, and /users/sign_in is not /super_admins/sign_in.
-    it 'tells the browser where to go, in a header' do
-      get profil_path, headers: { 'Turbo-Frame' => 'a-modal' }
-
-      expect(response.headers['X-Sign-In-Path']).to end_with(new_user_session_path)
-    end
-
     it 'still explains itself after the turbo path, and does not repeat itself' do
       get profil_path, headers: { 'Turbo-Frame' => 'a-modal' }
       expect(flash[:alert]).to eq(I18n.t('devise.failure.logout_all'))
@@ -62,27 +54,14 @@ describe 'the session failure app', type: :request do
       expect(response.body).to eq(I18n.t('devise.failure.logout_all'))
     end
 
-    # The frame URL is a fragment; where they were is the page around it.
-    it 'sends them back to the page around the frame after signing in' do
-      get profil_path,
-        headers: { 'Turbo-Frame' => 'a-modal', 'Referer' => "http://www.example.com#{dossiers_path}?page=2" }
-
-      expect(session['user_return_to']).to eq("#{dossiers_path}?page=2")
-    end
-
-    it 'refuses a referer pointing somewhere else entirely' do
-      get profil_path,
-        headers: { 'Turbo-Frame' => 'a-modal', 'Referer' => 'https://evil.example.org/phishing' }
-
-      expect(session['user_return_to']).to eq(profil_path)
-    end
-
-    # Storing nothing would send them to the root after signing in; Devise's own
-    # rule -- the path they attempted -- is a better answer than none.
-    it 'falls back to the attempted path when the referer is unusable' do
+    # The frame URL is a fragment; the reload asks for the page around it, and
+    # Devise's own rule stores that over the fragment.
+    it 'sends them back to the page the reload asks for' do
       get profil_path, headers: { 'Turbo-Frame' => 'a-modal' }
 
-      expect(session['user_return_to']).to eq(profil_path)
+      get dossiers_path
+
+      expect(session['user_return_to']).to eq(dossiers_path)
     end
 
     # The reason exists only on the first rejected request: the scope is logged
@@ -94,6 +73,19 @@ describe 'the session failure app', type: :request do
 
       # What the fetch helper does with that 401: reload, and land on the sign
       # in page through one more failure that has no reason left to compute.
+      get profil_path
+      follow_redirect!
+
+      expect(response.body).to include(I18n.t('devise.failure.logout_all'))
+    end
+
+    # A page of lazy frames fails once per frame, and only the first has a reason
+    # to compute.
+    it 'keeps its reason through the failures a page of frames produces' do
+      get profil_path, headers: { 'Turbo-Frame' => 'a-modal' }
+      expect(flash[:alert]).to eq(I18n.t('devise.failure.logout_all'))
+
+      get profil_path, headers: { 'Turbo-Frame' => 'a-sibling-modal' }
       get profil_path
       follow_redirect!
 
