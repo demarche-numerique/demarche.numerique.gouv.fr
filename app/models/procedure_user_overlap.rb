@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ProcedureUserOverlap < ApplicationRecord
-  USERS_FLOOR = ENV.fetch('CHAMP_MATCHING_USERS_FLOOR') { 50 }.to_i
+  include ChampMatchingConcern
 
   belongs_to :left_procedure, class_name: 'Procedure', inverse_of: :procedure_user_overlaps_as_left
   belongs_to :right_procedure, class_name: 'Procedure', inverse_of: :procedure_user_overlaps_as_right
@@ -12,5 +12,6 @@ class ProcedureUserOverlap < ApplicationRecord
            inverse_of: :procedure_user_overlap,
            dependent: :delete_all
 
+  scope :within, -> (procedure_ids) { where(left_procedure_id: procedure_ids, right_procedure_id: procedure_ids) }
   scope :champs_pending, -> { where(champs_computed_at: nil) }
 end

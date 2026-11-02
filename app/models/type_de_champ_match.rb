@@ -18,6 +18,7 @@ class TypeDeChampMatch < ApplicationRecord
              foreign_key: [:left_procedure_id, :right_procedure_id],
              inverse_of: :type_de_champ_matches
 
+  scope :within, -> (procedure_ids) { where(left_procedure_id: procedure_ids, right_procedure_id: procedure_ids) }
   scope :by_score, -> { order(Arel.sql("#{SCORE_SQL} DESC")) }
 
   # Lower bound of the Wilson interval: the most pessimistic ratio the
