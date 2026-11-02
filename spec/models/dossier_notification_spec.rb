@@ -188,6 +188,16 @@ RSpec.describe DossierNotification, type: :model do
         notification = DossierNotification.first
         expect(notification.notification_type).to eq('dossier_modifie')
       end
+
+      context 'when only the identity was modified after the submission' do
+        let(:dossier_to_notify) { create(:dossier, :en_construction, identity_updated_at: Time.zone.now, depose_at: Time.zone.yesterday) }
+
+        it "create notification" do
+          subject
+
+          expect(DossierNotification.pluck(:notification_type)).to eq(['dossier_modifie'])
+        end
+      end
     end
 
     context "when the instructeur never wants notifications" do
@@ -267,10 +277,11 @@ RSpec.describe DossierNotification, type: :model do
       let(:notification_type) { :dossier_modifie }
       let!(:dossier_to_notify) { create(:dossier, depose_at: 2.days.ago, last_champ_updated_at: 1.day.ago) }
       let!(:dossier_not_to_notify_1) { create(:dossier, depose_at: 1.day.ago, last_champ_updated_at: nil) }
-      let!(:dossier_not_to_notify_2) { create(:dossier, depose_at: 1.day.ago, last_champ_updated_at: 2.days.ago) }
+      let!(:dossier_not_to_notify_2) { create(:dossier, depose_at: 1.day.ago, last_champ_updated_at: 2.days.ago, identity_updated_at: 2.days.ago) }
+      let!(:dossier_identity_to_notify) { create(:dossier, depose_at: 2.days.ago, identity_updated_at: 1.day.ago) }
 
       it "returns only dossiers modified after the submission" do
-        expect(subject).to contain_exactly(dossier_to_notify)
+        expect(subject).to contain_exactly(dossier_to_notify, dossier_identity_to_notify)
       end
     end
 
