@@ -128,6 +128,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_28_153130) do
     t.string "name", null: false
     t.boolean "requires_ip_filtering", default: true, null: false
     t.inet "stored_ips", default: [], array: true
+    t.string "token_digest"
     t.datetime "updated_at", null: false
     t.integer "version", default: 3, null: false
     t.boolean "write_access", default: true, null: false
