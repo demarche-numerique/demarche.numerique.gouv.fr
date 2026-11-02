@@ -31,4 +31,24 @@ describe ProConnectMigrationsController, type: :controller do
       expect(response).to redirect_to(new_user_session_path)
     end
   end
+
+  describe '#completed' do
+    render_views
+
+    before { sign_in(account) }
+
+    it 'confirms the migration with the address of the account' do
+      account.administrateur.update!(pro_connect_required_at: Time.zone.now)
+
+      get :completed
+
+      expect(response.body).to include('Migration terminée', "<strong>#{account.email}</strong>")
+    end
+
+    it 'sends an administrateur not tied to ProConnect to their procedures' do
+      get :completed
+
+      expect(response).to redirect_to(admin_procedures_path)
+    end
+  end
 end

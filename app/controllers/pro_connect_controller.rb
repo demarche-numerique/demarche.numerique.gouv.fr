@@ -72,7 +72,8 @@ class ProConnectController < ApplicationController
 
     sign_in_with_pro_connect(user, id_token: auth.id_token, mfa: auth.mfa?)
     user.administrateur&.persist_pro_connect_requirement!
-    redirect_to stored_location_for(:user) || root_path
+    return_to = stored_location_for(:user) || root_path
+    redirect_to(migration&.same_email? ? pro_connect_migration_completed_path : return_to)
 
   rescue Rack::OAuth2::Client::Error => e
     Rails.logger.error e.message

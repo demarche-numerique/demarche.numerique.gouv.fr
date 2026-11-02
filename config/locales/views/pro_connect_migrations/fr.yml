@@ -19,3 +19,9 @@ fr:
       request: Je ne peux pas effectuer de façon autonome la migration de mon compte %{application_name} "%{source_email}" vers mon compte ProConnect "%{pro_connect_email}".
       copied: La demande est copiée
       home: Accueil %{application_name}
+    completed:
+      title: Migrer vers ProConnect
+      alert_title: Migration terminée !
+      signed_in_html: Vous êtes bien connecté(e) à votre espace administrateur <strong>%{email}</strong> via ProConnect.
+      pro_connect_only_html: Désormais, vous devrez vous connecter à votre espace administrateur uniquement <strong>via ProConnect</strong>.
+      procedures: Voir mes démarches

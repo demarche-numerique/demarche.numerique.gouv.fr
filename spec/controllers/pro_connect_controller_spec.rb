@@ -394,11 +394,15 @@ describe ProConnectController, type: :controller do
           context 'with the address of the account' do
             let(:email) { administrateur.email }
 
-            it 'signs the account in, for good' do
+            it 'signs the account in, for good, and confirms the migration' do
+              controller.store_location_for(:user, admin_procedures_path)
+
               subject
 
               expect(controller.current_user).to eq(administrateur.user)
               expect(administrateur.reload.pro_connect_required_at).not_to be_nil
+              expect(response).to redirect_to(pro_connect_migration_completed_path)
+              expect(controller.stored_location_for(:user)).to be_nil
             end
           end
 

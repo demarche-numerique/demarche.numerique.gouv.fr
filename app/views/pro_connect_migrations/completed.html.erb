@@ -1,0 +1,21 @@
+<% content_for(:title, t('.alert_title')) %>
+
+<div class="fr-container fr-py-5w">
+  <h1><%= t('.title') %></h1>
+
+  <%= render Dsfr::AlertComponent.new(state: :success, title: t('.alert_title'), heading_level: 'h2', extra_class_names: 'fr-mb-3w') do |c| %>
+    <% c.with_body do %>
+      <p><%= t('.signed_in_html', email: current_user.email) %></p>
+    <% end %>
+  <% end %>
+
+  <%= render Dsfr::AlertComponent.new(state: :info, with_prefix: false) do |c| %>
+    <% c.with_body do %>
+      <p><%= t('.pro_connect_only_html') %></p>
+    <% end %>
+  <% end %>
+
+  <div class="fr-mt-5w">
+    <%= link_to t('.procedures'), admin_procedures_path, class: 'fr-btn fr-btn--secondary' %>
+  </div>
+</div>

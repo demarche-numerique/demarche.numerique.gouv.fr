@@ -19,3 +19,9 @@ en:
       request: I cannot switch my %{application_name} account "%{source_email}" to my ProConnect account "%{pro_connect_email}" on my own.
       copied: The request is copied
       home: "%{application_name} home"
+    completed:
+      title: Switch to ProConnect
+      alert_title: Switch complete!
+      signed_in_html: You are signed in to your administrator space <strong>%{email}</strong> with ProConnect.
+      pro_connect_only_html: From now on, you must sign in to your administrator space <strong>with ProConnect</strong> only.
+      procedures: See my procedures
