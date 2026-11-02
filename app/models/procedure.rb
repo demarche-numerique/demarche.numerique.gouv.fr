@@ -79,6 +79,10 @@ class Procedure < ApplicationRecord
   has_many :bulk_messages, dependent: :destroy
   has_many :labels, -> { order(:position, :id) }, dependent: :destroy, inverse_of: :procedure
 
+  # destroy and not delete_all: the foreign key refuses to leave champ matches behind.
+  has_many :procedure_user_overlaps_as_left, class_name: 'ProcedureUserOverlap', foreign_key: :left_procedure_id, dependent: :destroy, inverse_of: :left_procedure
+  has_many :procedure_user_overlaps_as_right, class_name: 'ProcedureUserOverlap', foreign_key: :right_procedure_id, dependent: :destroy, inverse_of: :right_procedure
+
   has_many :instructeurs_procedures, dependent: :destroy
 
   def active_dossier_submitted_message
