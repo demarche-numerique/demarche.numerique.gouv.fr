@@ -2,24 +2,16 @@
 
 class IPService
   class << self
-    def ip_trusted?(ip)
+    def ip_trusted?(ip) = ip_in_networks?(ip, ENV['TRUSTED_NETWORKS'])
+
+    # `networks`: CIDRs separated by spaces, "10.0.0.0/8 192.168.0.0/16"
+    def ip_in_networks?(ip, networks)
       ip_address = parse_address(ip)
 
-      trusted_networks.any? { |network| network.include?(ip_address) }
+      networks.to_s.split.filter_map { parse_address(it) }.any? { it.include?(ip_address) }
     end
 
     private
-
-    def trusted_networks
-      if ENV['TRUSTED_NETWORKS'].present?
-        ENV['TRUSTED_NETWORKS']
-          .split
-          .filter_map { |string| parse_address(string) }
-
-      else
-        []
-      end
-    end
 
     def parse_address(address)
       begin
