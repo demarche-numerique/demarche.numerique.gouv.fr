@@ -2,6 +2,7 @@
 
 class WebhookController < ActionController::Base
   before_action :verify_crisp_signature!, only: [:crisp]
+  before_action :verify_brevo_network!, only: [:brevo]
   before_action :verify_brevo_token!, only: [:brevo]
   skip_before_action :verify_authenticity_token
 
@@ -17,6 +18,12 @@ class WebhookController < ActionController::Base
   end
 
   private
+
+  def verify_brevo_network!
+    return if ENV['BREVO_WEBHOOK_NETWORKS'].blank?
+
+    head :forbidden if !IPService.ip_in_networks?(request.remote_ip, ENV.fetch('BREVO_WEBHOOK_NETWORKS'))
+  end
 
   def verify_brevo_token!
     return head :unauthorized if ENV['BREVO_WEBHOOK_TOKEN'].blank?

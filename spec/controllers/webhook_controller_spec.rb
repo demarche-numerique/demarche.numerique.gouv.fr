@@ -105,5 +105,30 @@ describe WebhookController, type: :controller do
       expect(response).to have_http_status(:unauthorized)
       expect(user.reload.brevo_last_blocked_at).to be_nil
     end
+
+    context 'when the networks of Brevo are configured' do
+      before do
+        stub_const('ENV', ENV.to_hash.merge('BREVO_WEBHOOK_TOKEN' => 'testtoken', 'BREVO_WEBHOOK_NETWORKS' => '1.179.112.0/20 172.246.240.0/20'))
+        request.headers['Authorization'] = 'Bearer testtoken'
+      end
+
+      it 'accepts a request from one of them' do
+        request.remote_addr = '172.246.241.7'
+
+        post :brevo, params: payload, as: :json
+
+        expect(response).to have_http_status(:ok)
+        expect(user.reload.brevo_blocked_reason).to eq('hard_bounce')
+      end
+
+      it 'rejects a request from elsewhere, even with the token' do
+        request.remote_addr = '203.0.113.7'
+
+        post :brevo, params: payload, as: :json
+
+        expect(response).to have_http_status(:forbidden)
+        expect(user.reload.brevo_last_blocked_at).to be_nil
+      end
+    end
   end
 end
