@@ -453,7 +453,7 @@ class TypeDeChamp < ApplicationRecord
 
     def find_sti_class(type_name) = type_champ_to_class_name(type_name.to_s).constantize
 
-    def type_champ_classes = type_champs.values.map { find_sti_class(_1) }
+    def type_champ_classes = @type_champ_classes ||= type_champs.values.map { find_sti_class(_1) }.freeze
 
     def conditionable_types = type_champ_classes.filter(&:conditionable?)
 
