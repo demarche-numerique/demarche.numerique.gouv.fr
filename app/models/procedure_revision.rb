@@ -32,12 +32,19 @@ class ProcedureRevision < ApplicationRecord
     def indexes?(coordinates) = @coordinates.equal?(coordinates) && @size == coordinates.size
 
     def children_of(coordinate) = @children_by_parent.fetch(coordinate.persisted? ? coordinate.id : coordinate, [].freeze)
+
+    def prefilling_type_de_champs
+      @prefilling_type_de_champs ||= @coordinates.map(&:type_de_champ).filter(&:referentiel?).each_with_object({}) do |referentiel, prefilling|
+        referentiel.referentiel_mapping_prefillable_stable_ids.each { prefilling[it.to_s] ||= referentiel }
+      end
+    end
   end
   private_constant :CoordinatesIndex
 
   def public_revision_type_de_champs = coordinates_index.public_roots
   def private_revision_type_de_champs = coordinates_index.private_roots
   def child_coordinates(coordinate) = coordinates_index.children_of(coordinate)
+  def prefilling_type_de_champ(coordinate) = coordinates_index.prefilling_type_de_champs[coordinate.stable_id.to_s]
   def type_de_champs = revision_type_de_champs.map(&:type_de_champ)
   def public_root_type_de_champs = public_revision_type_de_champs.map(&:type_de_champ)
   def private_root_type_de_champs = private_revision_type_de_champs.map(&:type_de_champ)

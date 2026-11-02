@@ -128,6 +128,28 @@ describe ProcedureRevisionTypeDeChamp do
     end
   end
 
+  describe '#prefilled_by_type_de_champ' do
+    let(:referentiel) { create(:api_referentiel, :exact_match) }
+    let(:procedure) do
+      create(:procedure,
+             public_type_de_champs: [
+               { type: :referentiel, libelle: 'r1', referentiel:, referentiel_mapping: { "$.a" => { prefill: "1", prefill_stable_id: 10 } } },
+               { type: :referentiel, libelle: 'r2', referentiel:, referentiel_mapping: { "$.a" => { prefill: "1", prefill_stable_id: 10 }, "$.b" => { prefill: "1", prefill_stable_id: 11 } } },
+               { libelle: 'p10', stable_id: 10 },
+               { libelle: 'p11', stable_id: 11 },
+               { libelle: 'p12', stable_id: 12 },
+             ])
+    end
+
+    def prefilled_by(libelle)
+      procedure.draft_revision.revision_type_de_champs.find { it.libelle == libelle }.prefilled_by_type_de_champ&.libelle
+    end
+
+    it 'is the first referentiel prefilling the champ' do
+      expect(['p10', 'p11', 'p12'].map { prefilled_by(it) }).to eq(['r1', 'r2', nil])
+    end
+  end
+
   describe '#prefill_target_coordinates' do
     let(:procedure) do
       create(:procedure,

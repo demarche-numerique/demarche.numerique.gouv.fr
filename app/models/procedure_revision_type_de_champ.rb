@@ -117,11 +117,7 @@ class ProcedureRevisionTypeDeChamp < ApplicationRecord
     revision.ineligibilite_enabled? && stable_id.in?(revision.ineligibilite_rules&.sources || [])
   end
 
-  def prefilled_by_type_de_champ
-    revision.type_de_champs
-      .filter(&:referentiel?)
-      .find { stable_id.to_s.in?(it.referentiel_mapping_prefillable_stable_ids.map(&:to_s)) }
-  end
+  def prefilled_by_type_de_champ = revision.prefilling_type_de_champ(self)
 
   # Dans son propre bloc, seules les coordonnées qui suivent ; dans l'autre, toutes :
   # l'ordre entre le formulaire et les annotations n'a pas de sens.
