@@ -49,6 +49,9 @@ en:
       see_avis: Read opinions
       ask_avis: Ask for an opinion
       ask_new_avis: Ask for another opinion
+      given_avis_count:
+        one: 1 opinion given
+        other: "%{count} opinions given"
     information_text:
       no_new_avis_text: The file has been proceed
       no_new_avis_text_detail: Opinion requests are closed
