@@ -17,11 +17,13 @@ class EmailTemplate < ApplicationRecord
   validates :subject, tags: true, if: -> { json_subject.blank? }
 
   def subject_for_dossier(dossier)
-    if json_subject.present?
+    rendered = if json_subject.present?
       render_tiptap_text(json_subject, dossier)
     else
-      replace_tags(subject, dossier, escape: false).presence || replace_tags(self.class::DEFAULT_SUBJECT, dossier, escape: false)
+      replace_tags(subject, dossier, escape: false)
     end
+
+    rendered.presence || replace_tags(self.class::DEFAULT_SUBJECT, dossier, escape: false)
   end
 
   def body_for_dossier(dossier)

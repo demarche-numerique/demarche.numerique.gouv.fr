@@ -405,6 +405,11 @@ describe EmailTemplate do
       }
       expect(mail.subject_for_dossier(dossier)).to eq("Dossier #{dossier.id}")
     end
+
+    it 'subject_for_dossier retombe sur l’objet par défaut quand json_subject est vide une fois rendu' do
+      mail.json_subject = { "type" => "doc", "content" => [{ "type" => "paragraph" }] }
+      expect(mail.subject_for_dossier(dossier)).to include(dossier.id.to_s)
+    end
   end
 
   describe 'validation des tags JSON' do
