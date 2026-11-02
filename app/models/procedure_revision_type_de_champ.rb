@@ -19,7 +19,7 @@ class ProcedureRevisionTypeDeChamp < ApplicationRecord
 
   default_scope { eager_load(:type_de_champ) }
 
-  def revision_type_de_champs = revision.revision_type_de_champs.filter { _1.persisted? ? _1.parent_id == id : _1.parent == self }.sort_by(&:position)
+  def revision_type_de_champs = revision.child_coordinates(self)
   def type_de_champs = revision_type_de_champs.map(&:type_de_champ)
 
   # significant perf gain when accessed hundreds of thousands of times in API or export context
@@ -49,7 +49,7 @@ class ProcedureRevisionTypeDeChamp < ApplicationRecord
 
   def siblings
     if child?
-      parent.revision_type_de_champs
+      revision.child_coordinates(parent)
     elsif private?
       revision.private_revision_type_de_champs
     else

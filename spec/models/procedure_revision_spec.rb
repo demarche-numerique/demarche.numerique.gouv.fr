@@ -769,6 +769,62 @@ describe ProcedureRevision do
     end
   end
 
+  describe 'coordinates index' do
+    let(:procedure) do
+      create(:procedure,
+        public_type_de_champs: [{ libelle: 'a' }, { type: :repetition, libelle: 'r', children: [{ libelle: 'r1' }, { libelle: 'r2' }] }, { libelle: 'b' }],
+        private_type_de_champs: [{ libelle: 'p1' }, { libelle: 'p2' }])
+    end
+
+    def stable_id(libelle) = draft.revision_type_de_champs.find { it.libelle == libelle }.stable_id
+
+    def layout(revision = draft)
+      repetition = revision.public_revision_type_de_champs.find(&:repetition?)
+
+      {
+        public: revision.public_revision_type_de_champs.map(&:libelle),
+        private: revision.private_revision_type_de_champs.map(&:libelle),
+        children: repetition.revision_type_de_champs.map(&:libelle),
+      }
+    end
+
+    it 'sorts the roots by position, public and private apart, the children under their repetition' do
+      expect(layout).to eq(public: ['a', 'r', 'b'], private: ['p1', 'p2'], children: ['r1', 'r2'])
+      expect(draft.public_flat_type_de_champs.map(&:libelle)).to eq(['a', 'r', 'r1', 'r2', 'b'])
+      expect(draft.revision_type_de_champs.find { it.libelle == 'r2' }.siblings.map(&:libelle)).to eq(['r1', 'r2'])
+    end
+
+    {
+      'move_type_de_champ' => [-> { draft.move_type_de_champ(stable_id('b'), 0) }, { public: ['b', 'a', 'r'] }],
+      'move_type_de_champ_after' => [-> { draft.move_type_de_champ_after(stable_id('a'), 2) }, { public: ['r', 'b', 'a'] }],
+      'move_up_type_de_champ' => [-> { draft.move_up_type_de_champ(stable_id('r2')) }, { children: ['r2', 'r1'] }],
+      'move_down_type_de_champ' => [-> { draft.move_down_type_de_champ(stable_id('p1')) }, { private: ['p2', 'p1'] }],
+      'update_type_de_champ' => [-> { draft.update_type_de_champ(draft.find_and_ensure_exclusive_use(stable_id('b')), libelle: 'z') }, { public: ['a', 'r', 'z'] }],
+    }.each do |operation, (edit, changes)|
+      it "follows #{operation}" do
+        before = layout
+        instance_exec(&edit)
+
+        expect(layout).to eq(before.merge(changes))
+      end
+    end
+
+    it 'follows a coordinate created through the association' do
+      layout
+      draft.revision_type_de_champs.create!(type_de_champ: create(:type_de_champ_text, libelle: 'c', procedure:, no_coordinate: true), position: 3)
+
+      expect(layout[:public]).to eq(['a', 'r', 'b', 'c'])
+    end
+
+    it 'follows a revision built in memory once saved' do
+      procedure = build(:procedure, public_type_de_champs: [{ type: :repetition, libelle: 'r', children: [{ libelle: 'r1' }] }])
+
+      expect(layout(procedure.draft_revision)[:children]).to eq(['r1'])
+      procedure.save!
+      expect(layout(procedure.draft_revision)[:children]).to eq(['r1'])
+    end
+  end
+
   describe '#estimated_fill_duration' do
     let(:mandatory) { true }
     let(:description) { nil }

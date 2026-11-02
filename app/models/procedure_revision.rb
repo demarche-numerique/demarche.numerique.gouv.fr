@@ -12,8 +12,32 @@ class ProcedureRevision < ApplicationRecord
   has_many :dossiers, inverse_of: :revision, foreign_key: :revision_id
   has_many :revision_type_de_champs, -> { order(:position, :id) }, class_name: 'ProcedureRevisionTypeDeChamp', foreign_key: :revision_id, dependent: :destroy, inverse_of: :revision
 
-  def public_revision_type_de_champs = revision_type_de_champs.filter { _1.root? && _1.public? }.sort_by(&:position)
-  def private_revision_type_de_champs = revision_type_de_champs.filter { _1.root? && _1.private? }.sort_by(&:position)
+  class CoordinatesIndex
+    attr_reader :public_roots, :private_roots
+
+    def initialize(coordinates)
+      @coordinates, @size = coordinates, coordinates.size
+      roots, children = coordinates.partition(&:root?)
+      public_roots, private_roots = roots.partition(&:public?)
+
+      @public_roots = public_roots.sort_by(&:position).freeze
+      @private_roots = private_roots.sort_by(&:position).freeze
+      @children_by_parent = children
+        .group_by { it.persisted? ? it.parent_id : it.parent }
+        .transform_values { it.sort_by(&:position).freeze }
+    end
+
+    # The association replaces its array when it is loaded, reloaded or
+    # preloaded, and adds a coordinate created through it in place.
+    def indexes?(coordinates) = @coordinates.equal?(coordinates) && @size == coordinates.size
+
+    def children_of(coordinate) = @children_by_parent.fetch(coordinate.persisted? ? coordinate.id : coordinate, [].freeze)
+  end
+  private_constant :CoordinatesIndex
+
+  def public_revision_type_de_champs = coordinates_index.public_roots
+  def private_revision_type_de_champs = coordinates_index.private_roots
+  def child_coordinates(coordinate) = coordinates_index.children_of(coordinate)
   def type_de_champs = revision_type_de_champs.map(&:type_de_champ)
   def public_root_type_de_champs = public_revision_type_de_champs.map(&:type_de_champ)
   def private_root_type_de_champs = private_revision_type_de_champs.map(&:type_de_champ)
@@ -372,6 +396,17 @@ class ProcedureRevision < ApplicationRecord
   end
 
   private
+
+  # A new coordinate is grouped under its parent, under its parent_id once
+  # saved, the array left the same.
+  def coordinates_index
+    coordinates = revision_type_de_champs.load_target
+    return @coordinates_index if @coordinates_index&.indexes?(coordinates)
+
+    CoordinatesIndex.new(coordinates).tap do |index|
+      @coordinates_index = index if coordinates.all?(&:persisted?)
+    end
+  end
 
   # Under the lock, on the coordinate as committed by the previous edits. nil
   # when the type de champ is no longer in the revision: a replayed request
