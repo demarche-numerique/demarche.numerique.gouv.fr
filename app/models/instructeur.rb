@@ -199,8 +199,10 @@ class Instructeur < ApplicationRecord
     trusted_device_token.token
   end
 
+  # Only a link still waiting in the mailbox holds the next one back: the token a
+  # password reset activates on the spot was never sent.
   def young_login_token?
-    trusted_device_token = trusted_device_tokens.order(created_at: :desc).first
+    trusted_device_token = trusted_device_tokens.where(activated_at: nil).order(created_at: :desc).first
     trusted_device_token&.token_young?
   end
 
