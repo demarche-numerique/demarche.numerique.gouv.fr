@@ -25,7 +25,8 @@ class ProConnectController < ApplicationController
     cookies.delete MFA_FORCED_FOR_COOKIE_NAME
     forget_pro_connect_migration if !params[:migration]
 
-    uri, state, nonce = ProConnectService.authorization_uri
+    migration = pro_connect_migration_in_session(ProConnectMigration.pending)
+    uri, state, nonce = ProConnectService.authorization_uri(login_hint: migration&.source_email)
 
     cookies.encrypted[STATE_COOKIE_NAME] = { value: state, secure: Rails.env.production?, httponly: true }
     cookies.encrypted[NONCE_COOKIE_NAME] = { value: nonce, secure: Rails.env.production?, httponly: true }

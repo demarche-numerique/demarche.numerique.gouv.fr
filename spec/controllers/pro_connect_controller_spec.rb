@@ -16,7 +16,7 @@ describe ProConnectController, type: :controller do
     let(:state) { 'state' }
     let(:nonce) { 'nonce' }
 
-    before { expect(ProConnectService).to receive(:authorization_uri).and_return([uri, state, nonce]) }
+    before { allow(ProConnectService).to receive(:authorization_uri).and_return([uri, state, nonce]) }
 
     it do
       get :login
@@ -42,16 +42,18 @@ describe ProConnectController, type: :controller do
 
       before { session[ProConnectMigrationConcern::SESSION_KEY] = migration.id }
 
-      it 'keeps it from the migration page' do
+      it 'keeps it and suggests the address of the account from the migration page' do
         get :login, params: { migration: true }
 
         expect(session[ProConnectMigrationConcern::SESSION_KEY]).to eq(migration.id)
+        expect(ProConnectService).to have_received(:authorization_uri).with(login_hint: account.email)
       end
 
       it 'forgets it when ProConnect is not started from the migration page' do
         get :login
 
         expect(session[ProConnectMigrationConcern::SESSION_KEY]).to be_nil
+        expect(ProConnectService).to have_received(:authorization_uri).with(login_hint: nil)
       end
     end
   end
