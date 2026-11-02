@@ -30,7 +30,6 @@ features = [
   :pro_connect_restricted,
   :pro_connect_required_for_all_administrateurs,
   :prefill_iban,
-  :rdv,
   :sva,
   :switch_domain,
   :llm_nightly_improve_procedure,
