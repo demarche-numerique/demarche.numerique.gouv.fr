@@ -333,6 +333,8 @@ class Champs::ReferentielChamp < ChampData
       .to_assignable_attributes(prefill_champ, normalized)
     return prefill_champ if attributes.nil?
 
+    # A new identifier makes the fetched data stale: back to idle, so that the dossier fetches it again.
+    prefill_champ.reset_external_data! if prefill_champ.has_async_external_data? && attributes.key?(:external_id) && prefill_champ.external_id != attributes[:external_id]
     attributes[:prefilled] = true
     prefill_champ.update(attributes.merge(prefilled_original_value: attributes.except(:prefilled)))
     prefill_champ
