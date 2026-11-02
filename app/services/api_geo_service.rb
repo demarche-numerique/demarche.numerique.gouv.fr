@@ -97,7 +97,11 @@ class APIGeoService
     end
 
     def departement_options
-      departements.map { ["#{_1[:code]} – #{_1[:name]}", _1[:code]] }
+      departements.map { [departement_label(it[:code], it[:name]), it[:code]] }
+    end
+
+    def departement_label(code, name = departement_name(code))
+      "#{code} – #{name}" if name
     end
 
     def departement_name(code)
