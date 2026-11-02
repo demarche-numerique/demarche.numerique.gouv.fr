@@ -9,6 +9,9 @@ module DossierStateConcern
     self.submitted_revision_id = revision_id
     save!
 
+    # before routing, which may emit groupe_instructeur_change
+    emit_webhook_event(:dossier_modifie)
+
     RoutingEngine.compute(self)
 
     resolve_pending_correction!
@@ -29,6 +32,9 @@ module DossierStateConcern
     traitement = self.traitements.instructeur_submit_en_construction(instructeur:, checkpoint:, motivation:)
     save!
 
+    # before routing, which may emit groupe_instructeur_change
+    emit_webhook_event(:dossier_modifie)
+
     RoutingEngine.compute(self)
     render_carte_champs_later!
     Message::DossierModifierParInstructeurComponent.create_commentaire(traitement) if notify
@@ -43,6 +49,9 @@ module DossierStateConcern
     self.submitted_revision_id = revision_id
 
     save!
+
+    # before routing and the automatic transitions, which emit their own events
+    emit_webhook_event(:dossier_depose)
 
     RoutingEngine.compute(self)
 
@@ -109,6 +118,7 @@ module DossierStateConcern
     resolve_pending_correction!
 
     log_dossier_operation(instructeur, :passer_en_instruction)
+    emit_webhook_event(:dossier_en_instruction)
   end
 
   def after_commit_passer_en_instruction(h)
@@ -148,6 +158,8 @@ module DossierStateConcern
     else
       log_automatic_dossier_operation(:passer_en_instruction)
     end
+
+    emit_webhook_event(:dossier_en_instruction)
   end
 
   def after_commit_passer_automatiquement_en_instruction(h = {})
@@ -177,6 +189,7 @@ module DossierStateConcern
     save!
 
     log_dossier_operation(instructeur, :repasser_en_construction)
+    emit_webhook_event(:dossier_repasse_en_construction)
   end
 
   def after_commit_repasser_en_construction
@@ -204,6 +217,7 @@ module DossierStateConcern
     EmailTemplatePresenterService.create_commentaire_for_state(self, Dossier.states.fetch(:accepte))
 
     log_dossier_operation(instructeur, :accepter, self)
+    emit_webhook_event(:dossier_accepte)
   end
 
   def after_commit_accepter(h)
@@ -248,6 +262,7 @@ module DossierStateConcern
     EmailTemplatePresenterService.create_commentaire_for_state(self, state)
 
     log_automatic_dossier_operation(:accepter, self)
+    emit_webhook_event(:dossier_accepte)
   end
 
   def after_commit_accepter_automatiquement
@@ -282,6 +297,7 @@ module DossierStateConcern
     EmailTemplatePresenterService.create_commentaire_for_state(self, Dossier.states.fetch(:refuse))
 
     log_dossier_operation(instructeur, :refuser, self)
+    emit_webhook_event(:dossier_refuse)
   end
 
   def after_commit_refuser(h)
@@ -319,6 +335,7 @@ module DossierStateConcern
     EmailTemplatePresenterService.create_commentaire_for_state(self, Dossier.states.fetch(:refuse))
 
     log_automatic_dossier_operation(:refuser, self)
+    emit_webhook_event(:dossier_refuse)
   end
 
   def after_commit_refuser_automatiquement
@@ -351,6 +368,7 @@ module DossierStateConcern
     EmailTemplatePresenterService.create_commentaire_for_state(self, Dossier.states.fetch(:sans_suite))
 
     log_dossier_operation(instructeur, :classer_sans_suite, self)
+    emit_webhook_event(:dossier_sans_suite)
   end
 
   def after_commit_classer_sans_suite(h)
@@ -395,6 +413,7 @@ module DossierStateConcern
     EmailTemplatePresenterService.create_commentaire_for_state(self, DossierOperationLog.operations.fetch(:repasser_en_instruction))
 
     log_dossier_operation(instructeur, :repasser_en_instruction)
+    emit_webhook_event(:dossier_repasse_en_instruction)
   end
 
   def after_commit_repasser_en_instruction(h)
@@ -422,6 +441,19 @@ module DossierStateConcern
   def clean_champs_after_instruction!
     remove_discarded_rows!
     clear_auto_purged_piece_justificatives!
+  end
+
+  # Call inside the business transaction, in causal order: events are
+  # recorded at commit in call order. Not from an aasm after_commit callback,
+  # where a nested transition commits first.
+  def emit_webhook_event(event_type)
+    if !Webhook::EVENT_TYPES.include?(event_type.to_s)
+      raise ArgumentError, "unknown webhook event type: #{event_type}"
+    end
+
+    ActiveRecord.after_all_transactions_commit do
+      Webhooks::EmitEventService.call(dossier: self, event_type:)
+    end
   end
 
   private

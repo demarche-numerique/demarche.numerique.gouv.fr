@@ -101,4 +101,13 @@ class Avis < ApplicationRecord
     return false if !remindable_by?(revocator) || answer.present?
     update_column(:reminded_at, Time.zone.now)
   end
+
+  def submit_answer(params)
+    newly_answered = answer.nil?
+
+    return false if !update(params)
+
+    dossier.emit_webhook_event(:avis_repondu) if newly_answered
+    true
+  end
 end
