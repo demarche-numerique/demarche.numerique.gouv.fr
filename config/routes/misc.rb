@@ -35,6 +35,7 @@ get "mentions-legales", to: "static_pages#legal_notice"
 get "declaration-accessibilite", to: "static_pages#accessibility_statement"
 
 post "webhooks/crisp", to: "webhook#crisp"
+post "webhooks/brevo", to: "webhook#brevo"
 
 resources :release_notes, only: [:index]
 
