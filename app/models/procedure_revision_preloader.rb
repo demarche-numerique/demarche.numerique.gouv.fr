@@ -28,10 +28,13 @@ class ProcedureRevisionPreloader
 
     coordinates_by_revision_id.each_pair do |revision_id, coordinates|
       revision = revisions_by_id[revision_id]
+      coordinates_by_id = coordinates.index_by(&:id)
 
       coordinates.each do |coordinate|
         coordinate.association(:revision).target = revision
         coordinate.association(:procedure).target = revision.procedure
+        parent = coordinates_by_id[coordinate.parent_id]
+        coordinate.association(:parent).target = parent if parent
       end
     end
 

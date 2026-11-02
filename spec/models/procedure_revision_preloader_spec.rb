@@ -46,6 +46,17 @@ describe ProcedureRevisionPreloader do
       expect_relation_is_preloaded_sorted(original, procedure, :private_root_type_de_champs)
     end
 
+    context 'with a repetition' do
+      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :repetition, children: [{ type: :text }] }]) }
+
+      it 'gives a child coordinate its parent from the revision' do
+        subject
+        child = revision.revision_type_de_champs.find(&:child?)
+
+        expect(child.parent).to equal(revision.public_revision_type_de_champs.first)
+      end
+    end
+
     def expect_relation_is_preloaded_sorted(original, preloaded, association)
       expect(original.draft_revision.send(association).map(&:id)).to eq(preloaded.draft_revision.send(association).map(&:id))
     end
