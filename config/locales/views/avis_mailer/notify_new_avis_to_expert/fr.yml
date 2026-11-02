@@ -1,0 +1,6 @@
+fr:
+  avis_mailer:
+    notify_new_avis_to_expert:
+      subject: Nouvel avis rendu sur le dossier n° %{dossier_id}
+      body: Un nouvel avis a été rendu par un expert sur le dossier n° %{dossier_id} de la démarche %{libelle_demarche}
+      see_avis: Voir l’avis

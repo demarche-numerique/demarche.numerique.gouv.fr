@@ -127,6 +127,7 @@ module Experts
             .each do |instructeur|
             DossierMailer.notify_new_avis_to_instructeur(@avis, instructeur.email).deliver_later
           end
+          @avis.notify_other_experts
         end
         redirect_to instruction_expert_avis_path(@avis.procedure, @avis)
       else

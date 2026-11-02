@@ -978,4 +978,74 @@ describe Experts::AvisController, type: :controller do
       end
     end
   end
+
+  describe '#update notifying the other experts of the dossier' do
+    let(:dossier) { dossiers.en_instruction }
+    let(:author_avis) { avis.pending }
+    let(:other_expert_procedure) { create(:experts_procedure, procedure: procedures.individual) }
+
+    before { sign_in(author_avis.expert.user) }
+
+    subject { patch :update, params: { procedure_id: dossier.procedure.id, id: author_avis.id, avis: { answer: 'Avis favorable' } } }
+
+    it 'emails every other expert, confidential or already answered, with a link to their own avis' do
+      answered_avis = create(:avis, dossier:, experts_procedure: other_expert_procedure, answer: 'Déjà répondu')
+
+      expect { subject }
+        .to have_enqueued_mail(AvisMailer, :notify_new_avis_to_expert).with(avis.confidentiel)
+        .and have_enqueued_mail(AvisMailer, :notify_new_avis_to_expert).with(answered_avis)
+    end
+
+    it 'does not email the author, even on another of their avis on the dossier' do
+      create(:avis, dossier:, experts_procedure: experts_procedures.default)
+
+      expect { subject }.to have_enqueued_mail(AvisMailer, :notify_new_avis_to_expert).once
+    end
+
+    it 'emails an expert with two avis on the dossier only once' do
+      create(:avis, dossier:, experts_procedure: experts_procedures.second)
+
+      expect { subject }.to have_enqueued_mail(AvisMailer, :notify_new_avis_to_expert).once
+    end
+
+    it 'does not email an expert whose avis was revoked' do
+      create(:avis, dossier:, experts_procedure: other_expert_procedure, answer: 'Révoqué', revoked_at: Time.zone.now)
+
+      expect { subject }.to have_enqueued_mail(AvisMailer, :notify_new_avis_to_expert).once
+    end
+
+    it 'does not email an expert revoked from the procedure' do
+      procedures.individual.update!(experts_require_administrateur_invitation: true)
+      create(:avis, dossier:, experts_procedure: create(:experts_procedure, procedure: procedures.individual, revoked_at: Time.zone.now))
+
+      expect { subject }.to have_enqueued_mail(AvisMailer, :notify_new_avis_to_expert).once
+    end
+
+    context 'when the avis is confidential' do
+      let(:author_avis) { avis.confidentiel }
+
+      it 'emails nobody' do
+        expect { subject }.not_to have_enqueued_mail(AvisMailer, :notify_new_avis_to_expert)
+      end
+    end
+
+    context 'when the answer was edited less than 30 minutes ago' do
+      before { author_avis.update!(answer: 'Premier avis') }
+
+      it 'does not email the other experts again' do
+        expect { subject }.not_to have_enqueued_mail(AvisMailer, :notify_new_avis_to_expert)
+      end
+    end
+
+    context 'when the answer was edited more than 30 minutes ago' do
+      before do
+        author_avis.update!(answer: 'Premier avis')
+        author_avis.update_column(:updated_at, 31.minutes.ago)
+      end
+
+      it 'emails the other experts again' do
+        expect { subject }.to have_enqueued_mail(AvisMailer, :notify_new_avis_to_expert).with(avis.confidentiel)
+      end
+    end
+  end
 end

@@ -70,6 +70,19 @@ class AvisMailer < ApplicationMailer
     end
   end
 
+  # avis is the recipient's own avis on the dossier, not the one just given.
+  def notify_new_avis_to_expert(avis)
+    return if not_revoked_avis(avis).empty?
+
+    I18n.with_locale(avis.dossier.user_locale) do
+      @dossier = avis.dossier
+      @avis = avis
+      @subject = default_i18n_subject(dossier_id: @dossier.id)
+
+      mail(to: avis.expert.email, subject: @subject)
+    end
+  end
+
   def self.critical_email?(action_name)
     action_name == "avis_invitation_and_confirm_email"
   end
