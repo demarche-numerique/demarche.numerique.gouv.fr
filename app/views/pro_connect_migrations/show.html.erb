@@ -1,0 +1,25 @@
+<% content_for(:title, t('.title')) %>
+<% content_for(:hide_header_signin, true) %>
+
+<div class="fr-container fr-py-5w">
+  <h1><%= t('.title') %></h1>
+
+  <%= render Dsfr::NoticeComponent.new(extra_class_names: 'fr-mb-5w') do |c| %>
+    <% c.with_title { t('.notice_title') } %>
+    <% c.with_desc { t('.notice_desc') } %>
+  <% end %>
+
+  <h2 class="fr-h5"><%= t('.what_next') %></h2>
+
+  <ul>
+    <li><%= t('.sign_in_html') %></li>
+
+    <li>
+      <%= t('.sign_up_html') %>
+      <p class="fr-mb-0"><%= t('.nominative_html') %></p>
+      <%= link_to t('.who_can_sign_up'), 'https://proconnect.crisp.help/fr/article/qui-peut-se-creer-un-compte-proconnect-1eyk8et/', title: new_tab_suffix(t('.who_can_sign_up')), **external_link_attributes %>
+    </li>
+  </ul>
+
+  <%= link_to t('.migrate'), pro_connect_login_path, class: 'fr-btn fr-mt-3w' %>
+</div>

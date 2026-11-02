@@ -1,0 +1,12 @@
+en:
+  pro_connect_migrations:
+    show:
+      title: Switch to ProConnect
+      notice_title: Important information
+      notice_desc: From January 1st, 2027, signing in to your administrator space with an email address and a password will no longer be possible. Only ProConnect will be accepted.
+      what_next: 'By clicking the "Switch to ProConnect" button below, you will be able to:'
+      sign_in_html: "<strong>Sign in</strong> if you already have a ProConnect account"
+      sign_up_html: "<strong>Sign up</strong> if you do not have a ProConnect account yet"
+      nominative_html: ProConnect requires a <strong>nominative</strong> identity tied to a professional email address and an active SIRET number (personal, anonymous or purely generic addresses with no named person are generally not accepted).
+      who_can_sign_up: Who can create a ProConnect account?
+      migrate: Switch to ProConnect

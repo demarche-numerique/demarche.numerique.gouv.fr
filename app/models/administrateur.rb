@@ -67,6 +67,10 @@ class Administrateur < ApplicationRecord
     update!(pro_connect_required_at: Time.zone.now) if !pro_connect_required_at? && pro_connect_required?
   end
 
+  def may_migrate_to_pro_connect?
+    pro_connect_required? && !pro_connect_required_at? && Flipper.enabled?(:administrateur_pro_connect_migration, user)
+  end
+
   def owns?(procedure)
     procedure.administrateurs.include?(self)
   end

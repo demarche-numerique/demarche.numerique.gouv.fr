@@ -189,6 +189,30 @@ describe Users::SessionsController, type: :controller do
           expect(flash.alert).to eq('Adresse électronique ou mot de passe incorrect.')
         end
       end
+
+      context 'when the migration to ProConnect is open' do
+        before { Flipper.enable(:administrateur_pro_connect_migration) }
+
+        it 'signs out and starts a migration' do
+          subject
+
+          migration = ProConnectMigration.find_by!(user:, source_email: user.email)
+          expect(response).to redirect_to(pro_connect_migration_path)
+          expect(controller.current_user).to be_nil
+          expect(session[ProConnectMigrationConcern::SESSION_KEY]).to eq(migration.id)
+        end
+
+        context 'but ProConnect is already required for good' do
+          before { user.administrateur.update!(pro_connect_required_at: 1.day.ago) }
+
+          it 'refuses the password as before' do
+            subject
+
+            expect(response).to redirect_to(pro_connect_path(force_pro_connect: true))
+            expect(ProConnectMigration.where(user:)).to be_empty
+          end
+        end
+      end
     end
 
     context 'when the browser is marked as an administrateur one' do

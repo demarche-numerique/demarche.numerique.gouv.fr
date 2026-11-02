@@ -43,3 +43,7 @@ get 'pro_connect' => 'pro_connect#index'
 get 'pro_connect/login' => 'pro_connect#login'
 get 'pro_connect/callback' => 'pro_connect#callback'
 get 'pro_connect/required' => 'pro_connect#required'
+
+scope 'pro_connect/migration', as: :pro_connect_migration, controller: :pro_connect_migrations do
+  get '/' => :show
+end

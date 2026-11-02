@@ -1,0 +1,12 @@
+fr:
+  pro_connect_migrations:
+    show:
+      title: Migration vers ProConnect
+      notice_title: Information importante
+      notice_desc: À partir du 1er janvier 2027, la connexion à votre espace administrateur par adresse électronique et mot de passe ne sera plus possible. Seule la connexion avec ProConnect sera autorisée.
+      what_next: "En cliquant sur le bouton « Migrer vers ProConnect » ci-dessous, vous pourrez :"
+      sign_in_html: "<strong>Vous connecter</strong> si vous avez déjà un compte ProConnect"
+      sign_up_html: "<strong>Vous inscrire</strong> si vous n’avez pas encore de compte ProConnect"
+      nominative_html: ProConnect exige une identité <strong>nominative</strong> rattachée à une adresse électronique professionnelle et à un numéro SIRET actif (les adresses personnelles, anonymes ou purement génériques sans rattachement nominatif ne sont généralement pas acceptées).
+      who_can_sign_up: Qui peut se créer un compte ProConnect ?
+      migrate: Migrer vers ProConnect

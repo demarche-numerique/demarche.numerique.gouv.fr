@@ -60,6 +60,18 @@ describe 'Signin in:' do
       expect(page).to have_field(:user_password)
     end
 
+    context 'when the migration to ProConnect is open' do
+      before { Flipper.enable(:administrateur_pro_connect_migration) }
+
+      scenario 'the password opens the migration page' do
+        visit new_user_session_path
+        try_sign_in_with admin.email, users.default_password
+
+        expect(page).to have_current_path(pro_connect_migration_path)
+        expect(page).to have_link('Migrer vers ProConnect')
+      end
+    end
+
     scenario 'a ProConnect sign in makes the browser offer only ProConnect, unless a citizen asks for the full form' do
       mark_browser_with_a_pro_connect_sign_in
 
