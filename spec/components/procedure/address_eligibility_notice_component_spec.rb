@@ -12,14 +12,14 @@ describe Procedure::AddressEligibilityNoticeComponent, type: :component do
   def territories_for(departements: [], regions: []) = { departements:, regions: }
 
   [
-    [{ departements: ['50'] }, "La démarche n'est éligible qu'aux adresses situées dans le département 50 – Manche."],
-    [{ departements: ['50', '14'] }, "La démarche n'est éligible qu'aux adresses situées dans l'un des départements suivants : 50 – Manche, 14 – Calvados."],
-    [{ regions: ['28'] }, "La démarche n'est éligible qu'aux adresses situées dans la région Normandie."],
-    [{ regions: ['28', '53'] }, "La démarche n'est éligible qu'aux adresses situées dans l'une des régions suivantes : Normandie, Bretagne."],
-    [{ departements: ['50'], regions: ['53'] }, "La démarche n'est éligible qu'aux adresses situées dans le département 50 – Manche ou dans la région Bretagne."],
-    [{ departements: ['50'], regions: ['53', '52'] }, "La démarche n'est éligible qu'aux adresses situées dans le département 50 – Manche ou dans l'une des régions suivantes : Bretagne, Pays de la Loire."],
-    [{ departements: ['50', '76'], regions: ['53'] }, "La démarche n'est éligible qu'aux adresses situées dans l'un des départements suivants : 50 – Manche, 76 – Seine-Maritime, ou dans la région Bretagne."],
-    [{ departements: ['50', '76'], regions: ['53', '52'] }, "La démarche n'est éligible qu'aux adresses situées dans l'un des départements suivants : 50 – Manche, 76 – Seine-Maritime, ou dans l'une des régions suivantes : Bretagne, Pays de la Loire."],
+    [{ departements: ['50'] }, "La démarche n’est éligible qu’aux adresses situées dans le département 50 – Manche."],
+    [{ departements: ['50', '14'] }, "La démarche n’est éligible qu’aux adresses situées dans l’un des départements suivants : 50 – Manche, 14 – Calvados."],
+    [{ regions: ['28'] }, "La démarche n’est éligible qu’aux adresses situées dans la région Normandie."],
+    [{ regions: ['28', '53'] }, "La démarche n’est éligible qu’aux adresses situées dans l’une des régions suivantes : Normandie, Bretagne."],
+    [{ departements: ['50'], regions: ['53'] }, "La démarche n’est éligible qu’aux adresses situées dans le département 50 – Manche ou dans la région Bretagne."],
+    [{ departements: ['50'], regions: ['53', '52'] }, "La démarche n’est éligible qu’aux adresses situées dans le département 50 – Manche ou dans l’une des régions suivantes : Bretagne, Pays de la Loire."],
+    [{ departements: ['50', '76'], regions: ['53'] }, "La démarche n’est éligible qu’aux adresses situées dans l’un des départements suivants : 50 – Manche, 76 – Seine-Maritime, ou dans la région Bretagne."],
+    [{ departements: ['50', '76'], regions: ['53', '52'] }, "La démarche n’est éligible qu’aux adresses situées dans l’un des départements suivants : 50 – Manche, 76 – Seine-Maritime, ou dans l’une des régions suivantes : Bretagne, Pays de la Loire."],
   ].each do |codes, sentence|
     context "with #{codes}" do
       let(:territories) { territories_for(**codes) }

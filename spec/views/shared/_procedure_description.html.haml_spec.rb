@@ -123,7 +123,7 @@ describe 'shared/_procedure_description', type: :view do
 
     it 'shows the eligible departement under the description' do
       subject
-      expect(rendered).to have_css('#accordion-114 .address-eligibility-notice', text: "La démarche n'est éligible qu'aux adresses situées dans le département 50 – Manche.")
+      expect(rendered).to have_css('#accordion-114 .address-eligibility-notice', text: "La démarche n’est éligible qu’aux adresses situées dans le département 50 – Manche.")
     end
   end
 
