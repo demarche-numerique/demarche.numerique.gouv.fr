@@ -15,4 +15,8 @@ module ProConnectMigrationConcern
   def pro_connect_migration_in_session(scope)
     scope.find_by(id: session[SESSION_KEY])
   end
+
+  def forget_pro_connect_migration
+    session.delete(SESSION_KEY)
+  end
 end

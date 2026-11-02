@@ -1,9 +1,6 @@
 <span data-controller="clipboard" data-clipboard-text-value="<%= @text %>">
   <button
-    class="
-      fr-btn fr-icon-clipboard-line fr-btn--sm fr-btn--tertiary-no-outline
-      align-middle
-    "
+    class="<%= class_names('fr-btn fr-icon-clipboard-line fr-btn--sm fr-btn--tertiary-no-outline align-middle', 'fr-btn--icon-left' => @title_visible) %>"
     data-action="clipboard#copy"
     title="<%= @title %>"
   >

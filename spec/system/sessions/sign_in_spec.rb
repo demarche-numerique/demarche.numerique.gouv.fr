@@ -68,7 +68,7 @@ describe 'Signin in:' do
         try_sign_in_with admin.email, users.default_password
 
         expect(page).to have_current_path(pro_connect_migration_path)
-        expect(page).to have_link('Migrer vers ProConnect')
+        expect(page).to have_link('Migrer vers ProConnect', href: pro_connect_login_path(migration: true))
       end
     end
 

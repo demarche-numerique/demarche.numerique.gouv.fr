@@ -10,3 +10,12 @@ fr:
       nominative_html: ProConnect exige une identité <strong>nominative</strong> rattachée à une adresse électronique professionnelle et à un numéro SIRET actif (les adresses personnelles, anonymes ou purement génériques sans rattachement nominatif ne sont généralement pas acceptées).
       who_can_sign_up: Qui peut se créer un compte ProConnect ?
       migrate: Migrer vers ProConnect
+    support:
+      title: Migrer vers ProConnect
+      alert_title: Migration impossible
+      security: Pour des raisons de sécurité, il n’est pas possible d’effectuer cette migration de façon autonome.
+      contact_html: Veuillez nous contacter à %{contact_link} <strong>en précisant bien la demande ci-dessous</strong>.
+      request_intro: "Voici la demande à copier-coller dans votre message :"
+      request: Je ne peux pas effectuer de façon autonome la migration de mon compte %{application_name} "%{source_email}" vers mon compte ProConnect "%{pro_connect_email}".
+      copied: La demande est copiée
+      home: Accueil %{application_name}

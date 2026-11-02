@@ -10,3 +10,12 @@ en:
       nominative_html: ProConnect requires a <strong>nominative</strong> identity tied to a professional email address and an active SIRET number (personal, anonymous or purely generic addresses with no named person are generally not accepted).
       who_can_sign_up: Who can create a ProConnect account?
       migrate: Switch to ProConnect
+    support:
+      title: Switch to ProConnect
+      alert_title: Switch not possible
+      security: For security reasons, this switch cannot be done on your own.
+      contact_html: Please contact us at %{contact_link} <strong>with the request below</strong>.
+      request_intro: "Here is the request to copy and paste into your message:"
+      request: I cannot switch my %{application_name} account "%{source_email}" to my ProConnect account "%{pro_connect_email}" on my own.
+      copied: The request is copied
+      home: "%{application_name} home"

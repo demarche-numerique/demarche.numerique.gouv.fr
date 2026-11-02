@@ -35,6 +35,25 @@ describe ProConnectController, type: :controller do
         expect(cookies.encrypted[ProConnectController::MFA_FORCED_FOR_COOKIE_NAME]).to be_nil
       end
     end
+
+    context 'during a migration to ProConnect' do
+      let(:account) { administrateurs.default.user }
+      let(:migration) { ProConnectMigration.create!(user: account, source_email: account.email) }
+
+      before { session[ProConnectMigrationConcern::SESSION_KEY] = migration.id }
+
+      it 'keeps it from the migration page' do
+        get :login, params: { migration: true }
+
+        expect(session[ProConnectMigrationConcern::SESSION_KEY]).to eq(migration.id)
+      end
+
+      it 'forgets it when ProConnect is not started from the migration page' do
+        get :login
+
+        expect(session[ProConnectMigrationConcern::SESSION_KEY]).to be_nil
+      end
+    end
   end
 
   describe '#callback' do
@@ -328,6 +347,81 @@ describe ProConnectController, type: :controller do
 
               expect(controller.current_user).to eq(administrateur.user)
               expect(cookies[ProConnectSessionConcern::ADMINISTRATEUR_DEVICE_COOKIE_NAME]).to be_nil
+            end
+          end
+        end
+
+        context 'and a migration to ProConnect is pending' do
+          let(:administrateur) { administrateurs.default }
+          let(:migration) { ProConnectMigration.create!(user: administrateur.user, source_email: administrateur.email) }
+          let(:amr) { ['pwd', 'mfa'] }
+
+          before do
+            allow(ProConnectService).to receive(:enabled?).and_return(true)
+            Flipper.enable(:pro_connect_required_for_all_administrateurs)
+            session[ProConnectMigrationConcern::SESSION_KEY] = migration.id
+          end
+
+          context 'without MFA' do
+            let(:amr) { ['pwd'] }
+            let(:email) { 'camille.dupont@ailleurs.fr' }
+
+            it 'enforces the MFA before looking at the address' do
+              expect(ProConnectService).to receive(:authorization_uri)
+                .with(force_mfa: true, login_hint: email)
+                .and_return(['https://mfa.proconnect.gouv.fr', original_state, nonce])
+
+              subject
+
+              expect(migration.reload).to be_started
+              expect(User.exists?(email:)).to be false
+            end
+
+            context 'after the MFA was already enforced once' do
+              before { cookies.encrypted[ProConnectController::MFA_FORCED_FOR_COOKIE_NAME] = email }
+
+              it 'gives up back on the migration page' do
+                subject
+
+                expect(response).to redirect_to(pro_connect_migration_path)
+                expect(flash.alert).to eq(I18n.t('errors.messages.pro_connect.mfa_failed'))
+              end
+            end
+          end
+
+          context 'with the address of the account' do
+            let(:email) { administrateur.email }
+
+            it 'signs the account in, for good' do
+              subject
+
+              expect(controller.current_user).to eq(administrateur.user)
+              expect(administrateur.reload.pro_connect_required_at).not_to be_nil
+            end
+          end
+
+          context 'from another domain' do
+            let(:email) { 'camille.dupont@ailleurs.fr' }
+
+            it 'sends to the support page without creating an account' do
+              subject
+
+              expect(response).to redirect_to(pro_connect_migration_support_path)
+              expect(User.exists?(email:)).to be false
+              expect(controller.current_user).to be_nil
+            end
+          end
+
+          context 'started too long ago' do
+            let(:email) { 'camille.dupont@ailleurs.fr' }
+
+            before { migration.update!(created_at: 31.minutes.ago) }
+
+            it 'is ignored' do
+              subject
+
+              expect(migration.reload).to be_started
+              expect(User.exists?(email:)).to be true
             end
           end
         end
