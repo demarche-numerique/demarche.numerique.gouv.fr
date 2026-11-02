@@ -43,6 +43,7 @@
 
         <div id="accordion-114" class="fr-collapse">
           <%= h render(SimpleFormatComponent.new(procedure.description, allow_a: true)) %>
+          <%= render Procedure::AddressEligibilityNoticeComponent.new(procedure:) %>
         </div>
       </section>
 

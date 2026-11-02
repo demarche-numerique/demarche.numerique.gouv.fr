@@ -1,0 +1,9 @@
+fr:
+  departements_one_html: "La démarche n'est éligible qu'aux adresses situées dans le département %{departements}."
+  departements_many_html: "La démarche n'est éligible qu'aux adresses situées dans l'un des départements suivants : %{departements}."
+  regions_one_html: "La démarche n'est éligible qu'aux adresses situées dans la région %{regions}."
+  regions_many_html: "La démarche n'est éligible qu'aux adresses situées dans l'une des régions suivantes : %{regions}."
+  departements_one_regions_one_html: "La démarche n'est éligible qu'aux adresses situées dans le département %{departements} ou dans la région %{regions}."
+  departements_one_regions_many_html: "La démarche n'est éligible qu'aux adresses situées dans le département %{departements} ou dans l'une des régions suivantes : %{regions}."
+  departements_many_regions_one_html: "La démarche n'est éligible qu'aux adresses situées dans l'un des départements suivants : %{departements}, ou dans la région %{regions}."
+  departements_many_regions_many_html: "La démarche n'est éligible qu'aux adresses situées dans l'un des départements suivants : %{departements}, ou dans l'une des régions suivantes : %{regions}."

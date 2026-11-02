@@ -112,6 +112,21 @@ describe 'shared/_procedure_description', type: :view do
     end
   end
 
+  context 'when the ineligibility rules restrict the address to a departement' do
+    include Logic
+
+    let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :address, stable_id: 100 }]) }
+
+    before do
+      procedure.published_revision.update!(ineligibilite_enabled: true, ineligibilite_message: 'Hors Manche', ineligibilite_rules: ds_not_in_departement(champ_value(100), constant('50')))
+    end
+
+    it 'shows the eligible departement under the description' do
+      subject
+      expect(rendered).to have_css('#accordion-114 .address-eligibility-notice', text: "La démarche n'est éligible qu'aux adresses situées dans le département 50 – Manche.")
+    end
+  end
+
   context 'caching', caching: true do
     it "works" do
       expect(procedure).to receive(:public_wrapped_partionned_pjs).once
@@ -129,6 +144,25 @@ describe 'shared/_procedure_description', type: :view do
 
       render partial: 'shared/procedure_description', locals: { procedure: }
       expect(rendered).to have_text('new pj')
+    end
+
+    context 'with an address' do
+      include Logic
+
+      let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :address, stable_id: 100 }]) }
+
+      it 'follows the ineligibility rules of the published revision' do
+        render partial: 'shared/procedure_description', locals: { procedure: }
+        expect(rendered).not_to have_css('.address-eligibility-notice')
+
+        travel(1.minute)
+
+        procedure.draft_revision.update!(ineligibilite_enabled: true, ineligibilite_message: 'Hors Manche', ineligibilite_rules: ds_not_in_departement(champ_value(100), constant('50')))
+        procedure.publish_revision!(procedure.administrateurs.first)
+
+        render partial: 'shared/procedure_description', locals: { procedure: }
+        expect(rendered).to have_css('.address-eligibility-notice', text: '50 – Manche')
+      end
     end
 
     context 'draft procedure' do

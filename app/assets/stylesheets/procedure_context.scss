@@ -48,6 +48,11 @@ $procedure-context-breakpoint: $two-columns-breakpoint;
   }
 }
 
+// the notice brings the gap after the description
+.fr-collapse > :has(+ .address-eligibility-notice) {
+  margin-bottom: 0;
+}
+
 .procedure-context-content {
   @media (max-width: $procedure-context-breakpoint) {
     input[type='submit'] {

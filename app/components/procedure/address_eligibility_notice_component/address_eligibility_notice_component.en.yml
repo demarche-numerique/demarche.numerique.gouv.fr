@@ -1,0 +1,9 @@
+en:
+  departements_one_html: "This procedure is only open to addresses located in the department %{departements}."
+  departements_many_html: "This procedure is only open to addresses located in one of the following departments: %{departements}."
+  regions_one_html: "This procedure is only open to addresses located in the region %{regions}."
+  regions_many_html: "This procedure is only open to addresses located in one of the following regions: %{regions}."
+  departements_one_regions_one_html: "This procedure is only open to addresses located in the department %{departements} or in the region %{regions}."
+  departements_one_regions_many_html: "This procedure is only open to addresses located in the department %{departements} or in one of the following regions: %{regions}."
+  departements_many_regions_one_html: "This procedure is only open to addresses located in one of the following departments: %{departements}, or in the region %{regions}."
+  departements_many_regions_many_html: "This procedure is only open to addresses located in one of the following departments: %{departements}, or in one of the following regions: %{regions}."
