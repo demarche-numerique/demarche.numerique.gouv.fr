@@ -54,7 +54,7 @@ scope module: 'instructeurs', as: 'instructeur', defaults: { nav_bar_profile: :i
             patch 'modifier' => 'edit#submit', as: :submit
             patch 'modifier/valider' => 'edit#validate', as: :validate_edit
             patch 'update' => 'edit#update', as: :update
-            get 'champs/:stable_id' => 'edit#champ', as: :champ
+            get 'champs/:public_id' => 'edit#champ', as: :champ
             get 'next'
             get 'previous'
             post 'repousser-expiration' => 'dossiers#extend_conservation'
@@ -112,7 +112,7 @@ scope module: 'instructeurs', as: 'instructeur', defaults: { nav_bar_profile: :i
           get 'print' => 'dossiers#print'
           patch 'annotations' => 'dossiers#update_annotations'
           patch 'annotations/proposition' => 'dossiers#proposition', as: :proposition
-          get 'annotations/:stable_id', to: 'dossiers#annotation', as: :annotation
+          get 'annotations/:public_id', to: 'dossiers#annotation', as: :annotation
           get 'geo_data'
           get 'apercu_attestation'
           get 'bilans_bdf'

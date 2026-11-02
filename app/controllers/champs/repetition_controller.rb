@@ -20,10 +20,6 @@ class Champs::RepetitionController < Champs::ChampController
 
   private
 
-  def params_row_id
-    nil
-  end
-
   def policy_class
     Champs::RepetitionChampPolicy
   end

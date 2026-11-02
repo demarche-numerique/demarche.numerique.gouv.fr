@@ -13,7 +13,7 @@ describe Champs::CarteController, type: :controller do
       },
       position: '1',
       dossier_id: champ.dossier_id,
-      stable_id: champ.stable_id,
+      public_id: champ.public_id,
     }
   end
   let(:champ) { dossier.champ_data.first }
@@ -30,7 +30,7 @@ describe Champs::CarteController, type: :controller do
       let(:champ) { dossier.root_champs_public.first }
 
       it 'returns not found' do
-        get :index, params: { dossier_id: champ.dossier_id, stable_id: champ.stable_id }, format: :turbo_stream
+        get :index, params: { dossier_id: champ.dossier_id, public_id: champ.public_id }, format: :turbo_stream
         expect(response).to have_http_status(:not_found)
       end
     end
@@ -53,7 +53,7 @@ describe Champs::CarteController, type: :controller do
         let(:params) do
           {
             dossier_id: champ.dossier_id,
-            stable_id: champ.stable_id,
+            public_id: champ.public_id,
             feature: feature,
             source: GeoArea.sources.fetch(:selection_utilisateur),
           }
@@ -69,7 +69,7 @@ describe Champs::CarteController, type: :controller do
         let(:params) do
           {
             dossier_id: champ.dossier_id,
-            stable_id: champ.stable_id,
+            public_id: champ.public_id,
             feature: feature,
             source: GeoArea.sources.fetch(:cadastre),
           }
@@ -90,7 +90,7 @@ describe Champs::CarteController, type: :controller do
         let(:params) do
           {
             dossier_id: champ.dossier_id,
-            stable_id: champ.stable_id,
+            public_id: champ.public_id,
             feature: feature,
             source: GeoArea.sources.fetch(:selection_utilisateur),
           }
@@ -107,7 +107,7 @@ describe Champs::CarteController, type: :controller do
       let(:params) do
         {
           dossier_id: champ.dossier_id,
-          stable_id: champ.stable_id,
+          public_id: champ.public_id,
           id: geo_area.to_feature[:properties][:id],
           feature: feature,
         }
@@ -152,7 +152,7 @@ describe Champs::CarteController, type: :controller do
       let(:params) do
         {
           dossier_id: champ.dossier_id,
-          stable_id: champ.stable_id,
+          public_id: champ.public_id,
           id: geo_area.to_feature[:properties][:id],
         }
       end
@@ -194,7 +194,7 @@ describe Champs::CarteController, type: :controller do
         let(:params) do
           {
             dossier_id: champ.dossier_id,
-            stable_id: champ.stable_id,
+            public_id: champ.public_id,
             feature: feature,
             source: GeoArea.sources.fetch(:selection_utilisateur),
           }
@@ -212,7 +212,7 @@ describe Champs::CarteController, type: :controller do
         let(:params) do
           {
             dossier_id: champ.dossier_id,
-            stable_id: champ.stable_id,
+            public_id: champ.public_id,
             id: geo_area.to_feature[:properties][:id],
             feature: feature,
           }
@@ -244,7 +244,7 @@ describe Champs::CarteController, type: :controller do
         let(:params) do
           {
             dossier_id: champ.dossier_id,
-            stable_id: champ.stable_id,
+            public_id: champ.public_id,
             id: geo_area.to_feature[:properties][:id],
           }
         end
@@ -271,7 +271,7 @@ describe Champs::CarteController, type: :controller do
         let(:params) do
           {
             dossier_id: champ.dossier_id,
-            stable_id: champ.stable_id,
+            public_id: champ.public_id,
           }
         end
 
@@ -285,7 +285,7 @@ describe Champs::CarteController, type: :controller do
         let(:params) do
           {
             dossier_id: champ.dossier_id,
-            stable_id: champ.stable_id,
+            public_id: champ.public_id,
             focus: true,
           }
         end
@@ -313,7 +313,7 @@ describe Champs::CarteController, type: :controller do
     end
 
     it 'dispatches the limits respected event once the map fills the row' do
-      get :index, params: { dossier_id: dossier.id, stable_id: child.stable_id, row_id: child.row_id }, format: :turbo_stream
+      get :index, params: { dossier_id: dossier.id, public_id: child.public_id }, format: :turbo_stream
 
       expect(response.body).to include('repetition:limits-respected')
     end

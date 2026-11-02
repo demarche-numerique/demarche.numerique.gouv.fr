@@ -1866,7 +1866,7 @@ describe Instructeurs::DossiersController, type: :controller do
     let(:dossier) { create(:dossier, :en_construction, :with_populated_annotations, procedure:) }
 
     subject do
-      get :annotation, params: { procedure_id: procedure.id, dossier_id: dossier.id, stable_id: async_stable_id, row_id: nil }, format: :turbo_stream
+      get :annotation, params: { procedure_id: procedure.id, dossier_id: dossier.id, public_id: async_stable_id }, format: :turbo_stream
     end
 
     context 'when a conditional annotation exists alongside the polled annotation' do
