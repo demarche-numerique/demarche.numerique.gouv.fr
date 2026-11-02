@@ -1,0 +1,6 @@
+fr:
+  activerecord:
+    attributes:
+      email_template:
+        json_subject: Objet de l’email
+        json_body: Corps de l’email

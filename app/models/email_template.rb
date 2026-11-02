@@ -15,6 +15,7 @@ class EmailTemplate < ApplicationRecord
   validates :json_subject, tags: true, if: -> { json_subject.present? }
   validates :body, tags: true, if: -> { json_body.blank? }
   validates :subject, tags: true, if: -> { json_subject.blank? }
+  validate :json_subject_has_content, if: -> { json_subject.present? }
 
   def subject_for_dossier(dossier)
     rendered = if json_subject.present?
@@ -115,6 +116,15 @@ class EmailTemplate < ApplicationRecord
   end
 
   private
+
+  # Without substitutions a tag renders as its label, so only a subject with
+  # neither text nor tag comes out blank.
+  def json_subject_has_content
+    node = json_subject.deep_symbolize_keys
+    return if node[:content].present? && TiptapService.new.to_texts_and_tags(node).present?
+
+    errors.add(:json_subject, :blank)
+  end
 
   def legacy_html_to_tiptap(html)
     memoize_tags_by_libelle do

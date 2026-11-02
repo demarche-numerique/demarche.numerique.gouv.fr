@@ -1,0 +1,6 @@
+en:
+  activerecord:
+    attributes:
+      email_template:
+        json_subject: Email subject
+        json_body: Email body
