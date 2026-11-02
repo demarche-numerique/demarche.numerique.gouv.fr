@@ -983,6 +983,17 @@ describe User, type: :model do
         expect(two.reload).to be_unusable
       end
 
+      # The version bump killed the cookie this row stands for: left in place, it
+      # would have the renewal job warn about it, with a fresh link.
+      it 'leaves the renewal job nothing to warn about' do
+        instructeur = create(:instructeur)
+        create(:trusted_device_token, instructeur:, activated_at: 25.days.ago)
+
+        instructeur.user.revoke_sessions!(reason: :logout_all)
+
+        expect(TrustedDeviceToken.expiring_in_one_week.where(instructeur:)).not_to exist
+      end
+
       # A statement timeout on `user_sessions` is the realistic failure: without
       # one transaction the account would be half signed out and told it failed.
       it 'breaks nothing when the rows cannot be revoked' do
