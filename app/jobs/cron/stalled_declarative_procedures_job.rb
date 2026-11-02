@@ -7,7 +7,7 @@ class Cron::StalledDeclarativeProceduresJob < Cron::CronJob
     recent_or_open = Procedure.where(aasm_state: [:publiee, :depubliee])
       .or(Procedure.where(closed_at: 24.hours.ago..))
 
-    Dossier.state_en_construction
+    Dossier.state_en_construction.visible_by_user
       .where(declarative_triggered_at: nil)
       .joins(:procedure).merge(Procedure.declarative.merge(recent_or_open))
       .find_each { ProcessStalledDeclarativeDossierJob.perform_later(it) }
