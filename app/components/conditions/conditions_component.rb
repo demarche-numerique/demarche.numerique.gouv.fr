@@ -105,7 +105,7 @@ class Conditions::ConditionsComponent < ApplicationComponent
   def index_by_top_section(tdcs)
     last_section = nil
     tdcs.each_with_object(Hash.new { |h, k| h[k] = [] }) do |tdc, h|
-      if tdc.header_section? && tdc.header_section_level_value == 1
+      if top_section?(tdc)
         last_section = tdc
       else
         h[last_section] << tdc
@@ -113,16 +113,14 @@ class Conditions::ConditionsComponent < ApplicationComponent
     end
   end
 
-  def to_sources(tdcs) = column_mode? ? to_champ_column_values(tdcs) : to_champ_values(tdcs)
+  def top_section?(tdc) = tdc.header_section? && tdc.header_section_level_value == 1
 
-  SUPPORTED_TYPES = [:integer, :decimal, :enum, :enums, :boolean].freeze
+  def to_sources(tdcs) = column_mode? ? to_champ_column_values(tdcs) : to_champ_values(tdcs)
 
   def to_champ_column_values(tdcs)
     tdcs
       .reject(&:repetition?)
-      .flat_map { it.columns(procedure_id: @procedure.id) }
-      .filter(&:filterable)
-      .filter { it.type.in?(SUPPORTED_TYPES) }
+      .flat_map { it.condition_columns(procedure_id: @procedure.id) }
       .map { |column| [column.label, champ_column_value(column)] }
   end
 
@@ -267,7 +265,7 @@ class Conditions::ConditionsComponent < ApplicationComponent
   end
 
   def render?
-    @condition.present? || sources_by_visibility.values.any?(&:present?)
+    @condition.present? || @source_tdcs.any? { !top_section?(it) && to_sources([it]).present? }
   end
 
   def input_name_for(name)

@@ -410,6 +410,16 @@ class TypeDeChamp < ApplicationRecord
     [canonical_column(procedure_id:, displayable:, prefix:)].compact
   end
 
+  CONDITION_COLUMN_TYPES = [:integer, :decimal, :enum, :enums, :boolean].freeze
+
+  # Kept on the instance: only read while rendering a condition, once the
+  # request has written.
+  def condition_columns(procedure_id:)
+    (@condition_columns ||= {})[procedure_id] ||= columns(procedure_id:)
+      .filter { it.filterable && it.type.in?(CONDITION_COLUMN_TYPES) }
+      .freeze
+  end
+
   def customization_column(procedure_id:)
     columns(procedure_id:).find(&:displayable)
   end
