@@ -26,7 +26,7 @@
       - dossier_ids.each do |id|
         = hidden_field_tag 'batch_operation[dossier_ids][]', id
 
-    = hidden_field_tag 'batch_operation[statut]', params[:statut]
+    = hidden_field_tag 'batch_operation[statut]', statut
 
     %ul.fr-btns-group.fr-btns-group--inline-md
       %li

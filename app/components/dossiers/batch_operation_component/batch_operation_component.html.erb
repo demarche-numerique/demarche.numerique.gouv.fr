@@ -80,7 +80,7 @@
       <% end %>
 
       <div data-batch-operation-target="commentaireFormContainer">
-        <%= render partial: "instructeurs/batch_operations/commentaire_form", locals: { url: create_batch_commentaire_instructeur_batch_operations_path(procedure_id: procedure.id), commentaire: Commentaire.new, procedure:, dossier_ids: @ids } %>
+        <%= render partial: "instructeurs/batch_operations/commentaire_form", locals: { url: create_batch_commentaire_instructeur_batch_operations_path(procedure_id: procedure.id), commentaire: Commentaire.new, procedure:, dossier_ids: @ids, statut: } %>
       </div>
 
       <div class="hidden" data-batch-operation-target="commentaireWarning">
