@@ -10,3 +10,30 @@ jobs:
     - uses: actions/checkout@v7
     - name: Block Fixup Commit Merge
       uses: 13rac1/block-fixup-merge-action@v2.0.0
+
+  verify-signatures:
+    runs-on: ubuntu-24.04
+
+    steps:
+    - uses: actions/checkout@v7
+      with:
+        ref: ${{ github.event.pull_request.head.sha }}
+        fetch-depth: 0
+        filter: blob:none
+    - name: Verify commits are signed by an authorized key
+      shell: bash
+      env:
+        BASE_SHA: ${{ github.event.pull_request.base.sha }}
+      run: |
+        export GNUPGHOME=$(mktemp -d)
+        # Keys come from the base branch: a PR cannot authorize its own key
+        git show "$BASE_SHA:.gpg_authorized_keys" | gpg --quiet --import
+        commits=$(git rev-list "$BASE_SHA..HEAD")
+        status=0
+        for commit in $commits; do
+          if ! git verify-commit "$commit" 2>/dev/null; then
+            echo "::error::$(git log -1 --format='%h (signature %G? %GK)' "$commit") is not signed by a key in .gpg_authorized_keys"
+            status=1
+          fi
+        done
+        exit $status
