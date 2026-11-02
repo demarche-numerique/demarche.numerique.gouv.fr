@@ -23,7 +23,7 @@ en:
     send_archive:
       subject: Your archive is available
     notify_inactive_close_to_deletion:
-      subject: "Your Démarche Numérique account will be deleted in %{remaining_weeks} weeks"
+      subject: "Your %{application_name} account will be deleted in %{remaining_weeks} weeks"
       inactive_html: "You have not signed in to your <strong>%{application_name} account</strong> with the address %{email} for more than %{years} years."
       no_dossier: You no longer have any application on the platform.
       deletion_html: "In accordance with the General Data Protection Regulation, we will <strong>delete your account within %{delay}</strong>."

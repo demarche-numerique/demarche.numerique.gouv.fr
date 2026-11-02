@@ -23,7 +23,7 @@ fr:
     send_archive:
       subject: Votre archive est disponible
     notify_inactive_close_to_deletion:
-      subject: "Votre compte Démarche Numérique sera supprimé dans %{remaining_weeks} semaines"
+      subject: "Votre compte %{application_name} sera supprimé dans %{remaining_weeks} semaines"
       inactive_html: "Cela fait plus de %{years} ans que vous ne vous êtes pas connecté(e) à votre <strong>compte %{application_name}</strong> avec l’adresse %{email}."
       no_dossier: Vous n’avez plus de dossier sur la plateforme.
       deletion_html: "Dans le respect du règlement général sur la protection des données, nous allons <strong>supprimer votre compte d’ici %{delay}</strong>."

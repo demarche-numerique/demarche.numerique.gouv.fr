@@ -156,7 +156,7 @@ RSpec.describe UserMailer, type: :mailer do
 
     it 'says which account is deleted and how to keep it' do
       expect(subject.to).to eq([user.email])
-      expect(subject.subject).to eq("Votre compte Démarche Numérique sera supprimé dans 2 semaines")
+      expect(subject.subject).to eq("Votre compte #{APPLICATION_NAME} sera supprimé dans 2 semaines")
       expect(body).to have_text("à votre compte #{ApplicationController.helpers.application_name_without_link} avec l’adresse #{user.email}", normalize_ws: true)
       expect(body).to have_text("Vous n’avez plus de dossier sur la plateforme.")
       expect(body).to have_link("Conserver mon compte #{ApplicationController.helpers.application_name_without_link}", href: new_user_session_url)
