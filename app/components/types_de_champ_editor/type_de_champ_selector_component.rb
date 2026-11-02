@@ -21,9 +21,9 @@ class TypesDeChampEditor::TypeDeChampSelectorComponent < ApplicationComponent
   def select_props
     {
       name: form.field_name(:type_champ),
-      value: type_de_champ.type_champ,
+      value: type_de_champ.class.menu_value,
       sections:,
-      disabledKeys: available_types.map(&:sti_name) - accepted_type_champs,
+      disabledKeys: disabled_keys,
       isDisabled: disabled?,
       triggerId: trigger_id,
       labelId: label_id,
@@ -40,9 +40,18 @@ class TypesDeChampEditor::TypeDeChampSelectorComponent < ApplicationComponent
         {
           id: category,
           label: t(category, scope: cat_scope),
-          items: klasses.map { { value: it.sti_name, label: t(it.sti_name, scope: tdc_scope, app_name: APPLICATION_NAME), icon: it.icon } },
+          items: klasses.map do |klass|
+            { value: klass.menu_value, label: t(klass.menu_value, scope: tdc_scope, app_name: APPLICATION_NAME), icon: klass.icon }
+          end.uniq,
         }
       end
+  end
+
+  def disabled_keys
+    available_types
+      .reject { accepted_type_champs.include?(it.sti_name) }
+      .map(&:menu_value)
+      .uniq
   end
 
   def available_types
@@ -69,7 +78,7 @@ class TypesDeChampEditor::TypeDeChampSelectorComponent < ApplicationComponent
   end
 
   def disabled?
-    coordinate.used_by_routing_rules? || coordinate.used_by_ineligibilite_rules? || accepted_type_champs.size == 1
+    coordinate.type_champ_locked? || accepted_type_champs.size == 1
   end
 
   def filter_block_type_champ(klass)

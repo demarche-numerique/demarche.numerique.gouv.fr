@@ -24,7 +24,7 @@ describe TypesDeChampEditor::TypeDeChampSelectorComponent, type: :component do
         'Structure du formulaire', 'Champs standards', 'Choix', 'Identification et coordonnées', 'Localisation', 'Champs automatisés FranceConnect', 'Référentiel',
       ])
       expect(props['sections'].first['items'].map { it['label'] }).to eq(['Titre de section', 'Explication'])
-      expect(props['sections'].second['items'].map { it['value'] }).to start_with('text', 'textarea', 'integer_number', 'decimal_number', 'formatted')
+      expect(props['sections'].second['items'].map { it['value'] }).to start_with('text', 'textarea', 'numeric', 'formatted')
       expect(items.map { it['icon'] }).to all(start_with('fr-icon-'))
     end
 
@@ -35,6 +35,29 @@ describe TypesDeChampEditor::TypeDeChampSelectorComponent, type: :component do
       expect(props['isDisabled']).to be(false)
       expect(page).to have_css("label[for=\"#{ActionView::RecordIdentifier.dom_id(tdc, :type_champ)}\"]", text: 'Type de champ')
       expect(page).not_to have_text('Aucun type de champ autorisé')
+    end
+  end
+
+  describe 'the « Nombre » entry' do
+    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: type_champ }]) }
+    let(:type_champ) { :text }
+
+    it 'stands for both the integer and the decimal types' do
+      expect(values.count('numeric')).to eq(1)
+      expect(values).not_to include('integer_number', 'decimal_number')
+      expect(items.find { it['value'] == 'numeric' }['label']).to eq('Nombre')
+    end
+
+    context 'on an integer field' do
+      let(:type_champ) { :integer_number }
+
+      it { expect(props['value']).to eq('numeric') }
+    end
+
+    context 'on a decimal field' do
+      let(:type_champ) { :decimal_number }
+
+      it { expect(props['value']).to eq('numeric') }
     end
   end
 
@@ -112,8 +135,16 @@ describe TypesDeChampEditor::TypeDeChampSelectorComponent, type: :component do
 
     it 'greys out the types the field cannot be converted to' do
       expect(props['isDisabled']).to be(false)
-      expect(props['disabledKeys']).to include('integer_number', 'drop_down_list')
+      expect(props['disabledKeys']).to include('numeric', 'drop_down_list')
       expect(props['disabledKeys']).not_to include('date', 'datetime', 'text')
+    end
+
+    context 'when the field can become a number' do
+      let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :text }]) }
+
+      it 'keeps the « Nombre » entry available' do
+        expect(props['disabledKeys']).not_to include('numeric')
+      end
     end
 
     context 'when no conversion is allowed' do

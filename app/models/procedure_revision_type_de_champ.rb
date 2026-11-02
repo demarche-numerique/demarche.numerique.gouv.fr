@@ -117,6 +117,10 @@ class ProcedureRevisionTypeDeChamp < ApplicationRecord
     revision.ineligibilite_enabled? && stable_id.in?(revision.ineligibilite_rules&.sources || [])
   end
 
+  def type_champ_locked?
+    used_by_routing_rules? || used_by_ineligibilite_rules?
+  end
+
   def prefilled_by_type_de_champ
     revision.type_de_champs
       .filter(&:referentiel?)

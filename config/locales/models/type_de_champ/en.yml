@@ -31,6 +31,7 @@ en:
           textarea: 'Text area'
           decimal_number: 'Decimal number'
           integer_number: 'Integer number'
+          numeric: 'Number'
           date: 'Date'
           datetime: 'Date and time'
           piece_justificative: 'Supporting document'
