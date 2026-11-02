@@ -1,4 +1,4 @@
-import { suite, test, expect } from 'vitest';
+import { suite, test, expect } from 'vite-plus/test';
 
 import { getMapStyle, type MapStyle } from './index';
 
@@ -29,9 +29,10 @@ suite('getMapStyle', () => {
 
         for (const layer of style.layers) {
           if ('source' in layer) {
-            expect(sources, `${id} / [${selection}] / ${layer.id}`).toContain(
-              layer.source
-            );
+            expect(
+              sources,
+              `${id} / [${selection.join(', ')}] / ${layer.id}`
+            ).toContain(layer.source);
           }
         }
       }

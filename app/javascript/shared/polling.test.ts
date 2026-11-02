@@ -1,5 +1,5 @@
 import '@ungap/with-resolvers';
-import { expect, suite, test } from 'vitest';
+import { expect, suite, test } from 'vite-plus/test';
 
 import { initNextDelay, startPolling } from './polling';
 

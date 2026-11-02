@@ -131,7 +131,7 @@ export class TiptapController extends ApplicationController {
     const formData = new FormData();
     formData.append(this.inputTarget.name, this.inputTarget.value);
 
-    httpRequest(this.previewUrlValue, {
+    void httpRequest(this.previewUrlValue, {
       method: 'POST',
       body: formData
     }).turbo();

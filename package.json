@@ -35,7 +35,7 @@
     "@tiptap/pm": "^2.27.3",
     "@tiptap/suggestion": "^2.27.3",
     "@tmcw/togeojson": "^6.0.1",
-    "@vitest/browser-playwright": "^4.1.8",
+    "@vitest/browser-playwright": "5.0.4",
     "chartkick": "^5.0.1",
     "coldwired": "^0.18.4",
     "core-js": "^3.49.0",
@@ -62,7 +62,6 @@
     "usehooks-ts": "^3.1.1"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
     "@herb-tools/formatter": "^0.10.2",
     "@herb-tools/linter": "^0.10.2",
     "@lingui/cli": "^6.2.0",
@@ -83,35 +82,25 @@
     "axe-core": "^4.12.1",
     "babel-plugin-react-compiler": "^1.0.0",
     "del-cli": "^7.0.0",
-    "eslint": "^10.8.0",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.6",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^7.1.1",
-    "globals": "^17.6.0",
-    "jiti": "^2.7.0",
-    "lightningcss": "^1.32.0",
+    "lightningcss": "^1.33.0",
     "playwright": "^1.60.0",
-    "prettier": "^3.9.6",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.65.0",
-    "vite": "^8.0.16",
+    "vite": "npm:@voidzero-dev/vite-plus-core@1.2.0",
     "vite-plugin-full-reload": "^1.2.0",
     "vite-plugin-ruby": "^5.2.4",
-    "vitest": "^4.1.8"
+    "vitest": "5.0.4",
+    "vite-plus": "1.2.0"
   },
   "scripts": {
     "clean": "del tmp public/graphql && bin/vite clobber",
-    "lint": "bun run --parallel --no-exit-on-error lint:herb check-format:herb lint:js lint:types lint:css",
-    "lint:js": "eslint ./app/javascript *.ts",
-    "lint:types": "tsc",
+    "lint": "bun run --parallel --no-exit-on-error lint:herb check-format:herb lint:js",
+    "lint:js": "bunx --bun vp check",
+    "lint:js:fix": "bunx --bun vp check --fix",
     "lint:herb": "herb-lint 'app/**/*.html.erb'",
-    "lint:css": "prettier app/assets/stylesheets --check",
-    "lint:css:fix": "prettier app/assets/stylesheets --write",
     "format:herb": "herb-format 'app/**/*.html.erb'",
     "check-format:herb": "herb-format 'app/**/*.html.erb' --check",
-    "test": "vitest run",
-    "coverage": "vitest run --coverage",
+    "test": "bunx --bun vp test run",
+    "coverage": "bunx --bun vp test run --coverage",
     "vite-bundle-visualizer": "bunx --bun vite-bundle-visualizer",
     "graphql:doc:build": "magidoc generate -c",
     "magidoc:dev": "magidoc dev -m bun -p 4000",
@@ -124,12 +113,12 @@
     "esbuild",
     "rollup"
   ],
-  "prettier": {
-    "singleQuote": true,
-    "trailingComma": "none"
-  },
   "patchedDependencies": {
     "@hotwired/turbo@7.3.0": "patches/@hotwired%2Fturbo@7.3.0.patch",
     "react-dom@19.2.7": "patches/react-dom@19.2.7.patch"
+  },
+  "overrides": {
+    "vite": "npm:@voidzero-dev/vite-plus-core@1.2.0",
+    "vitest": "5.0.4"
   }
 }

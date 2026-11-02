@@ -10,7 +10,7 @@ export class StreamLoaderController extends ApplicationController {
   declare urlValue: string;
 
   connect() {
-    this.loadStream();
+    void this.loadStream();
   }
 
   private async loadStream() {

@@ -69,7 +69,7 @@ export class TurboController extends ApplicationController {
     // They allow us to preserve certain HTML changes across mutations.
     this.#actions.observe();
 
-    this.#actions.ready().then(() => {
+    void this.#actions.ready().then(() => {
       document.body.classList.add('dom-ready');
     });
 
