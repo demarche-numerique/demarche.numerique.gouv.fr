@@ -65,7 +65,7 @@ class CreateAvisService
           }
         end
       end
-        .map { |params| Avis.create(params) }
+        .map { |params| Avis.transaction { Avis.create(params).tap { it.dossier.demander_un_avis!(it) if it.persisted? } } }
         .partition(&:persisted?)
 
       failed_emails += failed.map { |avis| { email: avis.expert.email, messages: avis.errors.full_messages } }
@@ -84,9 +84,6 @@ class CreateAvisService
       end
 
       dossier.avis.reload
-
-      # log operation
-      persisted.each { |avis| avis.dossier.demander_un_avis!(avis) }
 
       sent_emails = persisted.filter { it.dossier == dossier }.map do |avis|
         if avis.experts_procedure.notify_on_new_avis? && !batch

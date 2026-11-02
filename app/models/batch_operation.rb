@@ -107,7 +107,7 @@ class BatchOperation < ApplicationRecord
     when BatchOperation.operations.fetch(:archiver)
       dossier.archiver!(instructeur)
     when BatchOperation.operations.fetch(:desarchiver)
-      dossier.desarchiver!
+      dossier.desarchiver!(instructeur)
     when BatchOperation.operations.fetch(:passer_en_instruction)
       dossier.passer_en_instruction!(instructeur: instructeur)
     when BatchOperation.operations.fetch(:accepter)

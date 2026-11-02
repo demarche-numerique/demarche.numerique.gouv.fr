@@ -102,7 +102,7 @@ module Administrateurs
     end
 
     def destroy
-      @api_token.destroy
+      @api_token.revoke!
 
       render turbo_stream: turbo_stream.remove(dom_id(@api_token))
     end

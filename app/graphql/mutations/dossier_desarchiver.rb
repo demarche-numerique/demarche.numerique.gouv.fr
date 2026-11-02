@@ -11,7 +11,7 @@ module Mutations
     field :errors, [Types::ValidationErrorType], null: true
 
     def resolve(dossier:, instructeur:)
-      dossier.desarchiver!
+      dossier.desarchiver!(instructeur)
 
       { dossier: }
     end

@@ -19,17 +19,24 @@ module DossierCorrectableConcern
     return unless may_flag_as_pending_correction?
 
     reason ||= :incorrect
+    newly_created_commentaire = commentaire.new_record?
 
-    commentaire.dossier_correction = corrections.build(commentaire:, reason:)
-    commentaire.dossier_correction.save!
+    transaction do
+      commentaire.dossier_correction = corrections.build(commentaire:, reason:)
+      commentaire.dossier_correction.save!
 
-    create_dossier_notifications(commentaire.instructeur)
+      commentaire.record_message_cree if newly_created_commentaire
 
-    log_pending_correction_operation(commentaire, reason) if sva_svr_rule_applies?
+      create_dossier_notifications(commentaire.instructeur)
 
-    return if en_construction?
+      log_pending_correction_operation(commentaire, reason) if sva_svr_rule_applies?
 
-    repasser_en_construction_with_pending_correction!(instructeur: commentaire.instructeur)
+      if !en_construction?
+        repasser_en_construction_with_pending_correction!(instructeur: commentaire.instructeur)
+      end
+
+      publish_event(Events::CorrectionDemandee, author: commentaire.instructeur, correction_id: commentaire.dossier_correction.id, reason: reason.to_s)
+    end
   end
 
   def may_flag_as_pending_correction?

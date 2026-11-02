@@ -26,7 +26,7 @@ module Instructeurs
     def cancel_correction
       if commentaire.sent_by?(current_instructeur)
         if commentaire.dossier_correction&.pending?
-          commentaire.cancel_correction!
+          commentaire.cancel_correction!(current_instructeur)
           set_notifications if instructeur_of_dossier?
           flash.notice = t('.notice')
         else

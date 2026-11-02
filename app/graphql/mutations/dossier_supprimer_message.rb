@@ -16,9 +16,9 @@ module Mutations
     field :message, Types::MessageType, null: true
     field :errors, [Types::ValidationErrorType], null: true
 
-    def resolve(message:, cancel_correction:, **args)
+    def resolve(message:, instructeur:, cancel_correction:, **args)
       if cancel_correction && message.dossier_correction&.pending?
-        message.cancel_correction!
+        message.cancel_correction!(instructeur)
       end
 
       message.soft_delete!

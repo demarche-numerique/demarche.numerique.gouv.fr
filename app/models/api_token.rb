@@ -144,7 +144,11 @@ class APIToken < ApplicationRecord
     def generate(administrateur, expires_at: max_expires_at)
       plain_token = generate_unique_secure_token
       encrypted_token = BCrypt::Password.create(plain_token)
-      api_token = create!(administrateur:, encrypted_token:, expires_at:, name: Date.today.strftime('Jeton d’API généré le %d/%m/%Y'))
+      api_token = transaction do
+        create!(administrateur:, encrypted_token:, expires_at:, name: Date.today.strftime('Jeton d’API généré le %d/%m/%Y')).tap do
+          administrateur.publish_event(Events::JetonAPICree, author: administrateur, api_token_id: it.id, expires_at: it.expires_at)
+        end
+      end
       bearer = BearerToken.new(api_token.id, plain_token)
       [api_token, bearer.to_string]
     end
@@ -164,6 +168,13 @@ class APIToken < ApplicationRecord
 
   def last_used_at
     last_v2_authenticated_at || last_v1_authenticated_at
+  end
+
+  def revoke!(author = administrateur)
+    transaction do
+      destroy!
+      administrateur.publish_event(Events::JetonAPIRevoque, author:, api_token_id: id)
+    end
   end
 
   private

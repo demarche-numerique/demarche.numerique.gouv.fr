@@ -112,8 +112,21 @@ class Commentaire < ApplicationRecord
       sent_by_instructeur?
   end
 
-  def cancel_correction!
-    dossier_correction&.cancel!
+  # Once saved; system messages are not recorded.
+  def record_message_cree
+    return if sent_by_system?
+
+    author = instructeur || expert || User.find_by(email:)
+    dossier.publish_event(Events::MessageCree, author:, commentaire_id: id)
+  end
+
+  def cancel_correction!(author = instructeur)
+    return if dossier_correction.nil?
+
+    transaction do
+      dossier_correction.cancel!
+      dossier.publish_event(Events::CorrectionAnnulee, author:, correction_id: dossier_correction.id)
+    end
   end
 
   def soft_delete!
@@ -121,6 +134,7 @@ class Commentaire < ApplicationRecord
       discard!
       dossier_pending_response&.respond!
       update! body: ''
+      dossier.publish_event(Events::MessageSupprime, author: instructeur || expert, commentaire_id: id)
     end
 
     piece_jointe.each(&:purge_later) if piece_jointe.attached?

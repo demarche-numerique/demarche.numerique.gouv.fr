@@ -10,8 +10,8 @@ module Mutations
     field :message, Types::MessageType, null: true
     field :errors, [Types::ValidationErrorType], null: true
 
-    def resolve(message:, **args)
-      message.cancel_correction!
+    def resolve(message:, instructeur:, **args)
+      message.cancel_correction!(instructeur)
 
       { message: }
     end

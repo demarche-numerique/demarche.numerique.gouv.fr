@@ -40,4 +40,22 @@ describe DossierLabel do
         .to(change { dossier.reload.updated_at })
     end
   end
+
+  describe 'Dossier#add_label and #remove_label' do
+    let(:label) { procedure.labels.first }
+
+    it 'adds a label once' do
+      expect { 2.times { dossier.add_label(label) } }
+        .to change { dossier.labels.count }.by(1)
+      expect(dossier.add_label(label)).not_to be_previously_new_record
+    end
+
+    it 'removes a label, returning nil when it is not on the dossier' do
+      dossier.add_label(label)
+
+      expect { expect(dossier.remove_label(label)).to be_destroyed }
+        .to change { dossier.labels.count }.by(-1)
+      expect(dossier.remove_label(label)).to be_nil
+    end
+  end
 end
