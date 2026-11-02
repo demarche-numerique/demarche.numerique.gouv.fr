@@ -172,6 +172,15 @@ RSpec.describe UserMailer, type: :mailer do
       end
     end
 
+    context 'when the user only has brouillons' do
+      before { create(:dossier, user:) }
+
+      it 'warns that the brouillons are deleted with the account' do
+        expect(body).not_to have_text("Vous n’avez plus de dossier")
+        expect(body).to have_text("Vos dossiers en brouillon, jamais déposés, seront supprimés avec votre compte.")
+      end
+    end
+
     context 'when perform_later is called' do
       let(:custom_queue) { 'default' }
       it 'enqueues email is custom queue for non critical delivery' do

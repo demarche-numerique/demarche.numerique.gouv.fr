@@ -1,12 +1,15 @@
 <% content_for(:title, @subject) %>
 <% has_dossiers = @user.dossiers.not_brouillon.exists? %>
+<% has_brouillons = @user.dossiers.state_brouillon.exists? %>
 
 <p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
 
 <p>
   <%= t('.inactive_html', years: Expired::INACTIVE_USER_RETENTION_IN_YEAR, application_name: application_name_without_link, email: @user.email) %>
 
-  <% unless has_dossiers %>
+  <% if has_brouillons %>
+    <%= t('.brouillons_deleted') %>
+  <% elsif !has_dossiers %>
     <%= t('.no_dossier') %>
   <% end %>
 </p>

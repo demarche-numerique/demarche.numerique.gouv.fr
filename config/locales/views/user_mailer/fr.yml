@@ -26,6 +26,7 @@ fr:
       subject: "Votre compte %{application_name} sera supprimé dans %{remaining_weeks} semaines"
       inactive_html: "Cela fait plus de %{years} ans que vous ne vous êtes pas connecté(e) à votre <strong>compte %{application_name}</strong> avec l’adresse %{email}."
       no_dossier: Vous n’avez plus de dossier sur la plateforme.
+      brouillons_deleted: Vos dossiers en brouillon, jamais déposés, seront supprimés avec votre compte.
       deletion_html: "Dans le respect du règlement général sur la protection des données, nous allons <strong>supprimer votre compte d’ici %{delay}</strong>."
       dossiers_kept_html: "<strong>Ne vous en faites pas,</strong> vos dossiers traités sont conservés par l’administration. Aussi, à tout moment vous pourrez re-créer un compte sur notre plateforme. Au besoin, vous pouvez télécharger vos dossiers en suivant ce lien : %{dossiers_link}"
       keep_title: Vous souhaitez conserver votre compte ?
