@@ -6,6 +6,38 @@ class Conditions::ConditionsComponent < ApplicationComponent
 
   SUPPORTED_TYPES = [:integer, :decimal, :enum, :enums, :boolean].freeze
 
+  # What a condition reads from a source it can target
+  TargetOption = Data.define(:key, :label, :type, :options, :possible_values)
+
+  def self.target_options_for(tdc, procedure)
+    if procedure.champ_value_in_condition?
+      sources_for([tdc], procedure_id: procedure.id, column_mode: false).map do |label, source|
+        TargetOption.new(key: source.to_json, label:, type: source.type([tdc]), options: source.options([tdc]), possible_values: source.possible_values([tdc]))
+      end
+    else
+      # Read off the columns rather than the terms, which rebuild every column
+      # of the champ on each call: a drop-down list backed by a referentiel
+      # reads all its rows to do so
+      conditionable_columns([tdc], procedure_id: procedure.id).map do |column|
+        TargetOption.new(
+          key: champ_column_value(column).to_json,
+          label: column.label,
+          type: column.type,
+          options: column.options_for_select,
+          possible_values: Logic::PossibleValues.for_column(column, tdc)
+        )
+      end
+    end
+  end
+
+  # The disabled entry that groups, in the target menu, the sources of a
+  # top-level section, as [key, label]
+  def self.section_heading_for(tdc)
+    ["section-#{tdc.stable_id}", tdc.libelle] if top_level_section?(tdc)
+  end
+
+  def self.top_level_section?(tdc) = tdc.header_section? && tdc.header_section_level_value == 1
+
   def self.sources_for(tdcs, procedure_id:, column_mode:)
     if column_mode
       conditionable_columns(tdcs, procedure_id:).map { |column| [column.label, champ_column_value(column)] }
@@ -15,8 +47,6 @@ class Conditions::ConditionsComponent < ApplicationComponent
         .map { |tdc| [tdc.libelle, champ_value(tdc.stable_id)] }
     end
   end
-
-  def self.top_level_section?(tdc) = tdc.header_section? && tdc.header_section_level_value == 1
 
   def self.conditionable_columns(tdcs, procedure_id:)
     tdcs

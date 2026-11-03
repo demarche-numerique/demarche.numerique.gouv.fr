@@ -40,6 +40,8 @@ module Administrateurs
         @morphed = [champ_component_from(@coordinate, focused: false, errors:)]
         flash.alert = errors
       else
+        dependencies_before = dependencies_of(type_de_champ)
+
         if changing_of_type?(type_de_champ, update_params)
           type_de_champ = type_de_champ.becomes_type(update_params['type_champ'])
         end
@@ -50,10 +52,12 @@ module Administrateurs
 
         if draft.update_type_de_champ(type_de_champ, update_params)
           reload_procedure_with_includes
-          @morphed = if was_prefill_with_fc_information != (type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?)
-            draft.revision_type_de_champs.map { |c| champ_component_from(c) }
+          if was_prefill_with_fc_information != (type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?)
+            @morphed = draft.revision_type_de_champs.map { |c| champ_component_from(c) }
           else
-            champ_components_starting_at(@coordinate)
+            @coordinate = draft.coordinate_for(type_de_champ)
+            refresh_following(@coordinate, @coordinate.siblings_starting_at(1),
+              before: dependencies_before, after: dependencies_of(@coordinate.type_de_champ), rerendered: [@coordinate])
           end
         else
           flash.alert = type_de_champ.errors.full_messages
@@ -210,6 +214,87 @@ module Administrateurs
 
     def changing_of_type?(type_de_champ, update_params)
       update_params['type_champ'].present? && update_params['type_champ'] != type_de_champ.type_champ
+    end
+
+    # What the champs below a type de champ display of it
+    Dependencies = Data.define(:libelle, :type_champ, :section_heading, :target_options, :header_section_level, :prefilled_stable_ids) do
+      def target_menu_entries = [section_heading, *target_options.map { [it.key, it.label] }].compact
+      def read_by_conditions = [type_champ, target_options]
+    end
+
+    def dependencies_of(type_de_champ)
+      Dependencies.new(
+        libelle: type_de_champ.libelle,
+        type_champ: type_de_champ.type_champ,
+        section_heading: Conditions::ConditionsComponent.section_heading_for(type_de_champ),
+        target_options: Conditions::ConditionsComponent.target_options_for(type_de_champ, @procedure),
+        header_section_level: (type_de_champ.header_section_level_value if type_de_champ.header_section?),
+        prefilled_stable_ids: type_de_champ.referentiel? ? type_de_champ.referentiel_mapping_prefillable_stable_ids.map(&:to_s) : []
+      )
+    end
+
+    # The levels a header section offers depend on the closest one above it, a
+    # champ prefilled by a referentiel names it, and the target menu of a
+    # condition block lists every champ above it.
+    def refresh_following(coordinate, following, before:, after:, rerendered:)
+      with_children = following.flat_map { it.repetition? ? [it, *it.revision_type_de_champs] : [it] }
+
+      rerendered |= following if conditions_may_appear_or_vanish?(coordinate, before, after)
+      rerendered |= following.filter(&:header_section?).first(1) if before.header_section_level != after.header_section_level
+      if [before.libelle, before.prefilled_stable_ids] != [after.libelle, after.prefilled_stable_ids]
+        prefilled = before.prefilled_stable_ids | after.prefilled_stable_ids
+        rerendered |= with_children.filter { it.stable_id.to_s.in?(prefilled) }
+      end
+      rerendered_ids = rerendered.map(&:id)
+
+      @morphed = rerendered.reject { rerendered_ids.include?(it.parent_id) }.map { champ_component_from(it) }
+      @conditions = condition_coordinates_to_refresh(coordinate, with_children, before, after)
+        .reject { rerendered_ids.include?(it.id) || rerendered_ids.include?(it.parent_id) }
+        .map { conditions_component_from(it) }
+    end
+
+    # A champ without a condition shows its condition block once a source is
+    # above it: only the first source of the block, added or removed, changes that
+    def conditions_may_appear_or_vanish?(coordinate, before, after)
+      before.target_options.empty? != after.target_options.empty? &&
+        Conditions::ConditionsComponent.sources_for(coordinate.condition_source_coordinates.map(&:type_de_champ),
+          procedure_id: @procedure.id, column_mode: !@procedure.champ_value_in_condition?).empty?
+    end
+
+    def condition_coordinates_to_refresh(coordinate, candidates, before, after)
+      if before.target_menu_entries != after.target_menu_entries
+        # a block without condition shows no target menu
+        candidates.filter { it.type_de_champ.condition? }
+      elsif before.read_by_conditions != after.read_by_conditions
+        conditions_depending_on(coordinate, candidates)
+      elsif before.libelle != after.libelle
+        candidates.filter { citing?(it, [coordinate.stable_id]) }
+      else
+        []
+      end
+    end
+
+    # A condition is also checked against the display condition of each champ
+    # it targets (Logic::DisplayConditions): it depends on what those target too
+    def conditions_depending_on(coordinate, candidates)
+      stable_ids = [coordinate.stable_id]
+      candidates.filter do |candidate|
+        next false if !citing?(candidate, stable_ids)
+
+        stable_ids << candidate.stable_id
+      end
+    end
+
+    def citing?(coordinate, stable_ids)
+      coordinate.type_de_champ.condition? && coordinate.type_de_champ.condition.sources.intersect?(stable_ids)
+    end
+
+    def conditions_component_from(coordinate)
+      Conditions::ChampsConditionsComponent.new(
+        tdc: coordinate.type_de_champ,
+        upper_tdcs: coordinate.condition_source_coordinates.map(&:type_de_champ),
+        procedure: @procedure
+      )
     end
 
     def champ_components_starting_at(coordinate, offset = 0)
