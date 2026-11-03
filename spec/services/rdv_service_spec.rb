@@ -143,6 +143,26 @@ describe RdvService do
       end
     end
 
+    context 'when a colleague created a more recent pending rdv plan' do
+      let!(:colleague_rdv) { create(:rdv, dossier:, rdv_plan_external_id: "20", rdv_external_id: nil, instructeur: create(:instructeur)) }
+
+      it 'syncs only the plan of the connected instructeur' do
+        expect { subject }.to change { pending_rdv.reload.rdv_external_id }.from(nil).to("10093")
+
+        expect(a_request(:get, described_class.update_pending_rdv_plan_url("20"))).not_to have_been_made
+      end
+    end
+
+    context 'when the only pending rdv plan belongs to a colleague' do
+      let!(:pending_rdv) { create(:rdv, dossier:, rdv_plan_external_id: "10", rdv_external_id: nil, instructeur: create(:instructeur)) }
+
+      it 'does not call RDV-SP' do
+        subject
+
+        expect(a_request(:get, described_class.update_pending_rdv_plan_url("10"))).not_to have_been_made
+      end
+    end
+
     context 'when the external API returns a non-numeric rdv id' do
       let(:rdv_plan_result) {
         {

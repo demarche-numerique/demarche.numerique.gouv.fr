@@ -89,7 +89,8 @@ class RdvService
   end
 
   def update_pending_rdv_plan!(dossier:)
-    pending_rdv_plan = dossier.rdvs.order(created_at: :desc).where(rdv_external_id: nil).first
+    # RDV-SP only exposes a plan to the agent who created it
+    pending_rdv_plan = dossier.rdvs.pending.where(instructeur: @rdv_connection.instructeur).order(created_at: :desc).first
 
     return if pending_rdv_plan.nil?
 
