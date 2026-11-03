@@ -104,6 +104,19 @@ describe Expired::DossiersDeletionService do
         expect(DossierMailer).to have_received(:notify_brouillon_near_deletion).with(match_array([dossier_1, dossier_2]), user.email)
       end
     end
+
+    context 'when the dossier left the scope after the selection' do
+      let!(:dossier) { create(:dossier, procedure: procedure, updated_at: (conservation_par_defaut - 2.weeks + 1.day).ago) }
+
+      before do
+        allow(service).to receive(:all_user_dossiers_brouillon_close_to_expiration).and_return(Dossier.none)
+        service.send_brouillon_expiration_notices
+      end
+
+      it 'sends no mail' do
+        expect(DossierMailer).not_to have_received(:notify_brouillon_near_deletion)
+      end
+    end
   end
 
   describe '#process_never_touched_dossiers_brouillon' do
