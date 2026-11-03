@@ -10,11 +10,13 @@ class UserSession < ApplicationRecord
   scope :usable, -> { where(revoked_at: nil, expires_at: [nil, Time.current..]) }
 
   # A calendar month counted on the Paris clock, the way Ruby counts it in
-  # `open_user_session!` -- both write the same column, so they have to agree.
+  # `open_user_session!`, which writes the same column.
   # `created_at` is a naive UTC timestamp and Postgres runs in UTC, so a bare
   # `created_at + interval` keeps the UTC hour and lands an hour off across a DST
   # boundary. Hence the round trip: read as UTC, shift to Paris, add the months
   # there, come back to UTC.
+  # A duration in hours would not agree: `PT24H` here is a day of wall clock,
+  # where `24.hours` is exactly 86_400 seconds.
   EXPIRY_FROM_CREATED_AT =
     "timezone('UTC', timezone(?, timezone(?, timezone('UTC', created_at)) + CAST(? AS interval)))"
 
