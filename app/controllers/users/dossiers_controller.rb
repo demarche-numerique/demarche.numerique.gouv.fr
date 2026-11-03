@@ -92,6 +92,7 @@ module Users
     def rendez_vous
       @dossier = dossier
       @rdv = @dossier.last_booked_rdv
+      redirect_to dossier_path(@dossier) if @rdv.nil?
     end
 
     def attestation

@@ -687,6 +687,26 @@ describe Users::DossiersController, type: :controller do
     end
   end
 
+  describe '#rendez_vous' do
+    render_views
+
+    let(:dossier) { dossiers.en_instruction }
+
+    before { sign_in(user) }
+
+    subject { get :rendez_vous, params: { id: dossier.id } }
+
+    context 'without a booked rdv' do
+      it { is_expected.to redirect_to(dossier_path(dossier)) }
+    end
+
+    context 'with a booked rdv' do
+      before { create(:rdv, :booked, dossier:, instructeur: instructeurs.default) }
+
+      it { is_expected.to have_http_status(:ok) }
+    end
+  end
+
   describe '#restore' do
     before { sign_in(user) }
     subject { patch :restore, params: { id: dossier.id } }
