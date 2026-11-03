@@ -32,19 +32,17 @@ class ProConnectController < ApplicationController
   end
 
   def callback
-    user_info, id_token, amr, acr = ProConnectService.user_info(params[:code], cookies.encrypted[NONCE_COOKIE_NAME])
+    auth = ProConnectService.authenticate(params[:code], cookies.encrypted[NONCE_COOKIE_NAME])
     cookies.delete NONCE_COOKIE_NAME
 
-    email = santized_email(user_info)
-    mfa = ProConnectService.mfa?(amr:, acr:)
     mfa_forced_for = cookies.encrypted[MFA_FORCED_FOR_COOKIE_NAME]
     cookies.delete MFA_FORCED_FOR_COOKIE_NAME
 
-    user = User.find_by(email:)
+    user = User.find_by(email: auth.email)
 
     if user.nil?
       user = User.create!(
-        email:,
+        email: auth.email,
         password: Devise.friendly_token[0, 20],
         confirmed_at: Time.current,
         email_verified_at: Time.current
@@ -54,13 +52,13 @@ class ProConnectController < ApplicationController
       user.update!(email_verified_at: Time.current) if user.email_verified_at.nil?
     end
 
-    ProConnectInformation.record!(user:, user_info:, amr:, acr:)
+    ProConnectInformation.record!(user:, auth:)
 
     remember_administrateur_device if user.administrateur&.pro_connect_required?
 
-    return enforce_mfa(email, mfa_forced_for:) if !mfa && must_force_mfa?(user, user_info)
+    return enforce_mfa(auth.email, mfa_forced_for:) if !auth.mfa? && must_force_mfa?(user, auth.user_info)
 
-    sign_in_with_pro_connect(user, id_token:, mfa:)
+    sign_in_with_pro_connect(user, id_token: auth.id_token, mfa: auth.mfa?)
     redirect_to stored_location_for(:user) || root_path
 
   rescue Rack::OAuth2::Client::Error => e
@@ -69,10 +67,6 @@ class ProConnectController < ApplicationController
   end
 
   private
-
-  def santized_email(user_info)
-    user_info['email'].strip.downcase
-  end
 
   # Mon Compte Pro is the one identity provider known to offer a second factor.
   def must_force_mfa?(user, user_info)

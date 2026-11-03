@@ -7,9 +7,9 @@ class ProConnectInformation < ApplicationRecord
 
   belongs_to :user
 
-  def self.record!(user:, user_info:, amr:, acr:)
-    find_or_initialize_by(user:, sub: user_info['sub'])
-      .update!(user_info.slice(*USER_INFO_KEYS).merge(amr:, acr:))
+  def self.record!(user:, auth:)
+    find_or_initialize_by(user:, sub: auth.user_info['sub'])
+      .update!(auth.user_info.slice(*USER_INFO_KEYS).merge(amr: auth.amr, acr: auth.acr))
   end
 
   def full_name

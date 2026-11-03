@@ -54,6 +54,7 @@ describe ProConnectController, type: :controller do
     let(:amr) { [] }
     let(:acr) { nil }
     let(:idp_id) { 'an_id' }
+    let(:auth) { ProConnectService::Authentication.new(user_info:, id_token:, amr:, acr:) }
     subject { get :callback, params: { code: code, state: state } }
 
     before do
@@ -65,9 +66,9 @@ describe ProConnectController, type: :controller do
       let(:code) { 'correct' }
       let(:state) { original_state }
 
-      context 'and user_info returns some info' do
+      context 'and authenticate returns some info' do
         before do
-          expect(ProConnectService).to receive(:user_info).with(code, nonce).and_return([user_info, id_token, amr, acr])
+          expect(ProConnectService).to receive(:authenticate).with(code, nonce).and_return(auth)
         end
 
         context 'and the user does not have an account yet' do
@@ -298,7 +299,7 @@ describe ProConnectController, type: :controller do
           let(:initial_instructeur_count) { Instructeur.count }
 
           before do
-            expect(ProConnectService).to receive(:user_info).with(code, nonce).and_return([user_info, id_token, amr, acr]).twice
+            expect(ProConnectService).to receive(:authenticate).with(code, nonce).and_return(auth).twice
             expect(controller).to receive(:sign_in).twice
           end
 
@@ -321,10 +322,10 @@ describe ProConnectController, type: :controller do
           end
 
           it 'does not create an instructeur' do
-            expect(ProConnectService).to receive(:user_info).with(code, nonce).and_return([user_info, id_token, amr, acr])
+            expect(ProConnectService).to receive(:authenticate).with(code, nonce).and_return(auth)
             get :callback, params: { code: code, state: state }
 
-            expect(ProConnectService).to receive(:user_info).with(code, nonce).and_return([user_info.merge('sub' => 'sub2'), id_token, amr, acr])
+            expect(ProConnectService).to receive(:authenticate).with(code, nonce).and_return(auth.with(user_info: user_info.merge('sub' => 'sub2')))
             get :callback, params: { code: code, state: state }
 
             expect(Instructeur.count).to eq(initial_instructeur_count)
@@ -336,7 +337,7 @@ describe ProConnectController, type: :controller do
         let(:initial_instructeur_count) { Instructeur.count }
 
         before do
-          expect(ProConnectService).to receive(:user_info).and_raise(Rack::OAuth2::Client::Error.new(500, error: 'Unknown'))
+          expect(ProConnectService).to receive(:authenticate).and_raise(Rack::OAuth2::Client::Error.new(500, error: 'Unknown'))
         end
 
         it 'aborts the process with the ProConnect error message' do
@@ -371,7 +372,7 @@ describe ProConnectController, type: :controller do
       subject { get :callback, params: { code: } }
 
       it 'rejects the callback (no nil == nil bypass)' do
-        expect(ProConnectService).not_to receive(:user_info)
+        expect(ProConnectService).not_to receive(:authenticate)
         expect { subject }.to change { User.count }.by(0)
         expect(response).to redirect_to(new_user_session_path)
       end
