@@ -50,8 +50,8 @@ class ApplicationController < ActionController::Base
   end
 
   def staging_authenticate
-    # FranceConnect sector identifier system does not support basic auth
-    return if request.path == france_connect_redirect_uris_path
+    # FranceConnect fetches its sector identifier and our encryption keys without basic auth
+    return if request.path.in?([france_connect_redirect_uris_path, france_connect_plus_keys_path])
 
     if StagingAuthService.enabled? && !authenticate_with_http_basic { |username, password| StagingAuthService.authenticate(username, password) }
       request_http_basic_authentication
