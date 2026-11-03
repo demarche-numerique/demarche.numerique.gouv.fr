@@ -28,7 +28,7 @@ module Administrateurs
 
       type_de_champ = draft.find_and_ensure_exclusive_use(params[:stable_id])
       @coordinate = draft.coordinate_for(type_de_champ)
-      was_prefill_with_fc_information = type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?
+      was_prefill_with_fc_information = prefills_france_connect_date?(type_de_champ)
       update_params = type_de_champ_update_params(type_de_champ)
 
       if @coordinate.used_by_routing_rules? && changing_of_type?(type_de_champ, update_params)
@@ -52,8 +52,8 @@ module Administrateurs
 
         if draft.update_type_de_champ(type_de_champ, update_params)
           reload_procedure_with_includes
-          if was_prefill_with_fc_information != (type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?)
-            @morphed = draft.revision_type_de_champs.map { |c| champ_component_from(c) }
+          if was_prefill_with_fc_information != prefills_france_connect_date?(type_de_champ)
+            @morphed = all_champ_components
           else
             @coordinate = draft.coordinate_for(type_de_champ)
             refresh_following(@coordinate, @coordinate.siblings_starting_at(1),
@@ -212,6 +212,9 @@ module Administrateurs
 
     private
 
+    # A date prefilled by FranceConnect locks the option on every other date
+    def prefills_france_connect_date?(type_de_champ) = type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?
+
     def changing_of_type?(type_de_champ, update_params)
       update_params['type_champ'].present? && update_params['type_champ'] != type_de_champ.type_champ
     end
@@ -296,6 +299,8 @@ module Administrateurs
         procedure: @procedure
       )
     end
+
+    def all_champ_components = draft.revision_type_de_champs.map { champ_component_from(it) }
 
     def champ_components_starting_at(coordinate, offset = 0)
       coordinate
