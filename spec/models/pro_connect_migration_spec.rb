@@ -144,4 +144,86 @@ describe ProConnectMigration do
       expect(account.reload.email).to eq(migration.source_email)
     end
   end
+
+  describe '#grant!' do
+    let(:auth) { ProConnectService::Authentication.new(user_info: { 'sub' => 'sub2', 'email' => email }, id_token: 'id_token', amr: ['mfa'], acr: nil) }
+    let(:procedure) { procedures.individual }
+    let(:discarded_procedure) { create(:procedure, administrateur: administrateurs.blank, hidden_at: Time.current) }
+    let(:groupe) { procedure.defaut_groupe_instructeur }
+    let(:other_groupe) { create(:groupe_instructeur, procedure:) }
+    let(:origin) do
+      ProConnectMigration.create!(
+        user: account, source_email: 'contact@exemple.fr', state: :renamed, shared: true,
+        procedure_ids: [procedure.id, discarded_procedure.id], groupe_instructeur_ids: [groupe.id, other_groupe.id]
+      )
+    end
+    let(:migration) do
+      ProConnectMigration.create!(
+        user: account, source_email: 'contact@exemple.fr', parent: origin, state: :awaiting_code,
+        pro_connect_email: email
+      )
+    end
+
+    context 'with a new address' do
+      let(:email) { 'dominique.martin@exemple.fr' }
+
+      it 'creates an administrateur of the recorded procedures, trashed ones included, and an instructeur of the recorded groups' do
+        migration.grant!(auth:)
+
+        target = User.find_by!(email:)
+        expect(target.administrateur.procedures.with_discarded).to contain_exactly(procedure, discarded_procedure)
+        expect(target.administrateur.pro_connect_required_at).not_to be_nil
+        expect(target.instructeur.groupe_instructeurs).to contain_exactly(groupe, other_groupe)
+        expect(target.pro_connect_informations.pluck(:sub)).to eq(['sub2'])
+        expect(migration).to have_attributes(state: 'granted', target_user: target)
+      end
+    end
+
+    context 'with the ProConnect identity of another address' do
+      let(:email) { 'dominique.martin@exemple.fr' }
+
+      it 'gives up' do
+        other = auth.with(user_info: { 'sub' => 'other', 'email' => 'claude.durand@exemple.fr' })
+
+        expect(migration.grant!(auth: other)).to be false
+        expect(User.exists?(email: email)).to be false
+      end
+    end
+
+    context 'with an address that already has an account' do
+      let(:email) { users.usager.email }
+
+      it 'completes it' do
+        migration.grant!(auth:)
+
+        expect(users.usager.reload.administrateur.procedures.with_discarded).to contain_exactly(procedure, discarded_procedure)
+      end
+    end
+
+    context 'with the address of an administrateur not tied to ProConnect yet' do
+      let(:administrateur) { administrateurs.blank }
+      let(:email) { administrateur.email }
+
+      it 'ties it to ProConnect for good' do
+        administrateur.update!(pro_connect_required_at: nil)
+
+        migration.grant!(auth:)
+
+        expect(administrateur.reload.pro_connect_required_at).not_to be_nil
+      end
+    end
+
+    context 'with the address of an instructeur' do
+      let(:instructeur) { instructeurs.default }
+      let(:email) { instructeur.email }
+
+      it 'merges the recorded groups with its own' do
+        own_groupes = instructeur.groupe_instructeurs.to_a
+
+        migration.grant!(auth:)
+
+        expect(instructeur.reload.groupe_instructeurs).to match_array((own_groupes + [groupe, other_groupe]).uniq)
+      end
+    end
+  end
 end

@@ -181,6 +181,31 @@ describe ProConnectMigrationsController, type: :controller do
     end
   end
 
+  context 'for a co-holder of a migrated address' do
+    let(:origin) { ProConnectMigration.create!(user: account, source_email: 'contact@exemple.fr', state: :renamed, shared: true, procedure_ids: [procedures.individual.id]) }
+    let(:migration) { ProConnectMigration.create!(user: account, source_email: 'contact@exemple.fr', parent: origin) }
+
+    before do
+      allow(SecureRandom).to receive(:random_number).with(1_000_000).and_return(123_456)
+      migration.update!(state: :awaiting_code, pro_connect_email: 'dominique.martin@exemple.fr')
+      migration.send_code!(Browser.new(''))
+      session[ProConnectMigrationConcern::SESSION_KEY] = migration.id
+      cookies.encrypted[ProConnectMigrationConcern::ID_TOKEN_COOKIE_NAME] = 'id_token'
+      cookies.encrypted[ProConnectMigrationConcern::IDENTITY_COOKIE_NAME] = { value: { user_info: { 'sub' => 'sub2', 'email' => 'dominique.martin@exemple.fr' }, amr: ['mfa'], acr: nil } }
+    end
+
+    it 'signs the co-holder in with their own account at once, without the question' do
+      post :verify_code, params: { code: '123456' }
+
+      co_holder = User.find_by!(email: 'dominique.martin@exemple.fr')
+      expect(controller.current_user).to eq(co_holder)
+      expect(co_holder.instructeur.pro_connect_id_token).to eq('id_token')
+      expect(cookies[ProConnectSessionConcern::ADMINISTRATEUR_DEVICE_COOKIE_NAME]).to be_present
+      expect(session[ProConnectMigrationConcern::SESSION_KEY]).to be_nil
+      expect(response).to redirect_to(pro_connect_migration_completed_path)
+    end
+  end
+
   describe '#completed' do
     render_views
 
@@ -226,6 +251,16 @@ describe ProConnectMigrationsController, type: :controller do
           expect(response.body).not_to include('Les autres personnes qui avaient accès')
         end
       end
+    end
+
+    it 'tells a co-holder that the others must migrate too, without the warning of the holder' do
+      origin = ProConnectMigration.create!(user: users.usager, source_email: 'contact@exemple.fr', state: :renamed, shared: true)
+      ProConnectMigration.create!(user: users.usager, source_email: 'contact@exemple.fr', parent: origin, state: :granted, target_user: account)
+
+      get :completed
+
+      expect(response.body).to include('et non plus avec l’adresse contact@exemple.fr', '<strong>Les autres personnes qui avaient accès')
+      expect(response.body).not_to include('Vous êtes maintenant la seule personne')
     end
 
     it 'sends an administrateur not tied to ProConnect to their procedures' do

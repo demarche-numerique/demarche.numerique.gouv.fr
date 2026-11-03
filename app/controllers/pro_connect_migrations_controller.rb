@@ -23,6 +23,7 @@ class ProConnectMigrationsController < ApplicationController
 
   def verify_code
     return retry_or_start_over if !@migration.verify_code(params[:code])
+    return complete_migration { @migration.grant!(auth: it) } if @migration.parent
 
     session[CODE_VERIFIED_SESSION_KEY] = @migration.id
     redirect_to pro_connect_migration_sharing_path
@@ -32,13 +33,8 @@ class ProConnectMigrationsController < ApplicationController
   end
 
   def update_sharing
-    auth = kept_pro_connect_authentication
-    forget_pro_connect_migration
-    return redirect_to new_user_session_path, alert: t('.conflict') if !@migration.rename!(auth:, shared: params.expect(:shared) == 'true')
-
-    sign_in_with_pro_connect(@migration.target_user, id_token: auth.id_token, mfa: true)
-    remember_administrateur_device
-    redirect_to pro_connect_migration_completed_path
+    shared = params.expect(:shared) == 'true'
+    complete_migration { @migration.rename!(auth: it, shared:) }
   end
 
   def resend_code
@@ -52,7 +48,7 @@ class ProConnectMigrationsController < ApplicationController
   def completed
     return redirect_to admin_procedures_path if !current_administrateur.pro_connect_required_at?
 
-    @migration = ProConnectMigration.renamed.where(target_user: current_user).last
+    @migration = ProConnectMigration.completed.where(target_user: current_user).last
   end
 
   private
@@ -74,6 +70,16 @@ class ProConnectMigrationsController < ApplicationController
 
   def redirect_to_code_until_verified
     redirect_to pro_connect_migration_code_path if !code_verified?
+  end
+
+  def complete_migration
+    auth = kept_pro_connect_authentication
+    forget_pro_connect_migration
+    return redirect_to new_user_session_path, alert: t('pro_connect_migrations.conflict') if !yield(auth)
+
+    sign_in_with_pro_connect(@migration.target_user, id_token: auth.id_token, mfa: true)
+    remember_administrateur_device
+    redirect_to pro_connect_migration_completed_path
   end
 
   def retry_or_start_over

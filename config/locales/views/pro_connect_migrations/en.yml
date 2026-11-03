@@ -59,8 +59,7 @@ en:
       not_shared_pro_connect_only_html: You will have to sign in to your administrator space with ProConnect only, with your address <strong>%{pro_connect_email}</strong>
       not_shared_closed_html: Access to this account with <strong>%{source_email}</strong> will be disabled
       submit: Complete my switch to ProConnect
-    update_sharing:
-      conflict: This account changed in the meantime. Sign in again to resume the switch.
     resend_code:
       sent: A new security code was sent to %{source_email}.
       too_soon: A code was just sent. Wait a minute before asking for a new one.
+    conflict: This account changed in the meantime. Sign in again to resume the switch.

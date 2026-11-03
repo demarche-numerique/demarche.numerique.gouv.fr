@@ -59,8 +59,7 @@ fr:
       not_shared_pro_connect_only_html: Vous devrez vous connecter à votre espace administrateur uniquement via ProConnect avec votre adresse <strong>%{pro_connect_email}</strong>
       not_shared_closed_html: L’accès à ce compte avec l’adresse <strong>%{source_email}</strong> sera désactivé
       submit: Terminer ma migration vers ProConnect
-    update_sharing:
-      conflict: Ce compte a changé entre-temps. Reconnectez-vous pour reprendre la migration.
     resend_code:
       sent: Un nouveau code de sécurité a été envoyé à %{source_email}.
       too_soon: Un code vient d’être envoyé. Patientez une minute avant d’en demander un nouveau.
+    conflict: Ce compte a changé entre-temps. Reconnectez-vous pour reprendre la migration.

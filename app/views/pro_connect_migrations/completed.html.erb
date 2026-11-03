@@ -17,7 +17,9 @@
         <p class="fr-mb-1w">
           <%= t('.pro_connect_only_with_address_html', email: current_user.email, source_email: @migration.source_email) %>
         </p>
-        <% if @migration.shared? %>
+        <% if @migration.granted? %>
+          <p><strong><%= t('.others_must_migrate') %></strong></p>
+        <% elsif @migration.shared? %>
           <p>
             <%= t('.notifications_html', email: current_user.email, source_email: @migration.source_email) %>
           </p>

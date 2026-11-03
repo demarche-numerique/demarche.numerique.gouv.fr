@@ -9,6 +9,7 @@ class ProConnectMigration < ApplicationRecord
 
   belongs_to :user
   belongs_to :target_user, class_name: 'User', optional: true
+  belongs_to :parent, class_name: 'ProConnectMigration', optional: true
 
   enum :state, {
     started: 'started',
@@ -17,11 +18,13 @@ class ProConnectMigration < ApplicationRecord
     existing_account: 'existing_account',
     awaiting_code: 'awaiting_code',
     renamed: 'renamed',
+    granted: 'granted',
   }
 
   scope :pending, -> { started.where(created_at: PENDING_FOR.ago..) }
   scope :sent_to_support, -> { where(state: SUPPORT_STATES, updated_at: PENDING_FOR.ago..) }
   scope :waiting_for_code, -> { awaiting_code.where(updated_at: PENDING_FOR.ago..) }
+  scope :completed, -> { where(state: [:renamed, :granted]) }
 
   def identify!(auth:)
     update!(pro_connect_email: auth.email, state: outcome_for(auth.email))
@@ -69,6 +72,27 @@ class ProConnectMigration < ApplicationRecord
       account.update!(email: pro_connect_email, email_verified_at: Time.current, unconfirmed_email: nil, requested_merge_into: nil)
       account.administrateur.update!(pro_connect_required_at: Time.current)
       ProConnectInformation.record!(user: account, auth:)
+      true
+    end
+  end
+
+  def grant!(auth:)
+    transaction do
+      next false if auth.email != pro_connect_email
+
+      target = User.find_or_create_for_pro_connect!(pro_connect_email)
+      target.create_instructeur! if target.instructeur.nil?
+      target.become_administrateur! if target.administrateur.nil?
+      administrateur = target.administrateur
+      administrateur.update!(pro_connect_required_at: Time.current) if !administrateur.pro_connect_required_at?
+
+      Procedure.with_discarded.where(id: parent.procedure_ids).find_each do |procedure|
+        AdministrateursProcedure.create_or_find_by!(administrateur:, procedure:)
+      end
+      GroupeInstructeur.where(id: parent.groupe_instructeur_ids).find_each { it.add(target.instructeur) }
+
+      ProConnectInformation.record!(user: target, auth:)
+      update!(state: :granted, target_user: target)
       true
     end
   end
