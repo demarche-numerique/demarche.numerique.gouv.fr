@@ -405,6 +405,11 @@ describe EmailTemplate do
       }
       expect(mail.subject_for_dossier(dossier)).to eq("Dossier #{dossier.id}")
     end
+
+    it 'subject_for_dossier retombe sur l’objet par défaut quand json_subject est vide une fois rendu' do
+      mail.json_subject = { "type" => "doc", "content" => [{ "type" => "paragraph" }] }
+      expect(mail.subject_for_dossier(dossier)).to include(dossier.id.to_s)
+    end
   end
 
   describe 'validation des tags JSON' do
@@ -436,6 +441,17 @@ describe EmailTemplate do
           expect(message).not_to match(/translation missing/i)
         end
       end
+    end
+
+    it 'invalide un json_subject sans texte ni balise' do
+      mail.json_subject = { "type" => "doc", "content" => [{ "type" => "paragraph", "content" => [{ "type" => "text", "text" => "  " }] }] }
+      expect(mail).not_to be_valid
+      expect(mail.errors).to be_of_kind(:json_subject, :blank)
+    end
+
+    it 'accepte un json_subject fait d’une seule balise' do
+      mail.json_subject = { "type" => "doc", "content" => [{ "type" => "paragraph", "content" => [{ "type" => "mention", "attrs" => { "id" => "dossier_number", "label" => "numéro du dossier" } }] }] }
+      expect(mail).to be_valid
     end
 
     it 'json_body vide reste valide' do
