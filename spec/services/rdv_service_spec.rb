@@ -144,7 +144,7 @@ describe RdvService do
     end
 
     context 'when a colleague created a more recent pending rdv plan' do
-      let!(:colleague_rdv) { create(:rdv, dossier:, rdv_plan_external_id: "20", rdv_external_id: nil, instructeur: create(:instructeur)) }
+      let!(:colleague_rdv) { create(:rdv, dossier:, rdv_plan_external_id: "20", rdv_external_id: nil, instructeur: instructeurs.default, created_at: 1.minute.from_now) }
 
       it 'syncs only the plan of the connected instructeur' do
         expect { subject }.to change { pending_rdv.reload.rdv_external_id }.from(nil).to("10093")
@@ -154,7 +154,7 @@ describe RdvService do
     end
 
     context 'when the only pending rdv plan belongs to a colleague' do
-      let!(:pending_rdv) { create(:rdv, dossier:, rdv_plan_external_id: "10", rdv_external_id: nil, instructeur: create(:instructeur)) }
+      let!(:pending_rdv) { create(:rdv, dossier:, rdv_plan_external_id: "10", rdv_external_id: nil, instructeur: instructeurs.default) }
 
       it 'does not call RDV-SP' do
         subject
