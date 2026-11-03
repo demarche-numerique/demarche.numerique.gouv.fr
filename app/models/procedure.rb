@@ -500,6 +500,12 @@ class Procedure < ApplicationRecord
     Flipper.enabled?(feature, self)
   end
 
+  # The flag is the perimeter: a procedure it names but that no longer exists
+  # drops out on its own.
+  def self.champ_matching_enabled
+    where(id: Flipper[:champ_matching].actors_value.filter_map { it[/\AProcedure;(\d+)\z/, 1] })
+  end
+
   def organisation_name
     service&.nom || organisation
   end
