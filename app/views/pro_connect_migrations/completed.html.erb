@@ -1,21 +1,51 @@
 <% content_for(:title, t('.alert_title')) %>
 
 <div class="fr-container fr-py-5w">
-  <h1><%= t('.title') %></h1>
+  <h1 class="fr-mb-15v" tabindex="-1" autofocus><%= t('.title') %></h1>
 
-  <%= render Dsfr::AlertComponent.new(state: :success, title: t('.alert_title'), heading_level: 'h2', extra_class_names: 'fr-mb-3w') do |c| %>
+  <%= render Dsfr::AlertComponent.new(state: :success, title: t('.alert_title'), heading_level: 'h2', extra_class_names: 'fr-mb-4w') do |c| %>
     <% c.with_body do %>
       <p><%= t('.signed_in_html', email: current_user.email) %></p>
     <% end %>
   <% end %>
 
-  <%= render Dsfr::AlertComponent.new(state: :info, with_prefix: false) do |c| %>
+  <%= render Dsfr::AlertComponent.new(state: :info, with_prefix: false, extra_class_names: 'fr-mb-4w') do |c| %>
     <% c.with_body do %>
-      <p><%= t('.pro_connect_only_html') %></p>
+      <% if @migration.nil? %>
+        <p><%= t('.pro_connect_only_html') %></p>
+      <% else %>
+        <p class="fr-mb-1w">
+          <%= t('.pro_connect_only_with_address_html', email: current_user.email, source_email: @migration.source_email) %>
+        </p>
+        <% if @migration.shared? %>
+          <p>
+            <%= t('.notifications_html', email: current_user.email, source_email: @migration.source_email) %>
+          </p>
+          <% if current_user.dossiers.visible_by_user.exists? %>
+            <p class="fr-mt-1w">
+              <%= t('.dossiers_html', email: current_user.email) %>
+            </p>
+          <% end %>
+        <% else %>
+          <p><%= t('.closed_html', source_email: @migration.source_email) %></p>
+        <% end %>
+      <% end %>
     <% end %>
   <% end %>
 
-  <div class="fr-mt-5w">
+  <% if @migration&.shared? %>
+    <%= render Dsfr::AlertComponent.new(state: :warning, with_prefix: false, extra_class_names: 'fr-mb-4w') do |c| %>
+      <% c.with_body do %>
+        <p class="fr-mb-1w">
+          <%= t('.only_holder_html', email: current_user.email) %>
+        </p>
+
+        <p><strong><%= t('.others_must_migrate') %></strong></p>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <div class="fr-mt-7w">
     <%= link_to t('.procedures'), admin_procedures_path, class: 'fr-btn fr-btn--secondary' %>
   </div>
 </div>

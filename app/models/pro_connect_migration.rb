@@ -55,14 +55,14 @@ class ProConnectMigration < ApplicationRecord
 
   def attempts_spent? = code_attempts >= MAX_CODE_ATTEMPTS
 
-  def rename!(auth:)
+  def rename!(auth:, shared:)
     transaction do
       # Without the default eager_load: PostgreSQL refuses FOR UPDATE on an outer join.
       account = User.unscope(:eager_load).lock.find(user_id)
       next false if account.email != source_email || auth.email != pro_connect_email || User.exists?(email: pro_connect_email)
 
       update!(
-        state: :renamed, target_user: account,
+        state: :renamed, target_user: account, shared:,
         procedure_ids: owned_procedure_ids(account), groupe_instructeur_ids: assigned_groupe_instructeur_ids(account)
       )
       account.skip_reconfirmation!

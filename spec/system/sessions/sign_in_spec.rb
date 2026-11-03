@@ -84,7 +84,12 @@ describe 'Signin in:' do
         fill_in 'Code de sécurité', with: open_email(old_email).body.to_s[/>\s*(\d{6})\s*</, 1]
         click_on 'Valider le code de sécurité'
 
+        expect(page).to have_text('Compte partagé ?')
+        choose 'Non'
+        click_on 'Terminer ma migration vers ProConnect'
+
         expect(page).to have_text('Migration terminée')
+        expect(page).to have_text("L’accès à ce compte avec l’adresse #{old_email} sera désactivé")
         expect(admin.user.reload.email).to eq('camille.dupont@exemple.fr')
       end
     end

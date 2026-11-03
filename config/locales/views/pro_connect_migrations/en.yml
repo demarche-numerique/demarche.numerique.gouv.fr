@@ -24,6 +24,12 @@ en:
       alert_title: Switch complete!
       signed_in_html: You are signed in to your administrator space <strong>%{email}</strong> with ProConnect.
       pro_connect_only_html: From now on, you must sign in to your administrator space <strong>with ProConnect</strong> only.
+      pro_connect_only_with_address_html: From now on, you must sign in to your administrator space <strong>with ProConnect</strong> only, with your address <strong>%{email}</strong> (and no longer with %{source_email}).
+      notifications_html: Email notifications will now be sent to <strong>%{email}</strong> (and no longer to %{source_email}).
+      dossiers_html: The applications submitted as an applicant from this account will now only be available from this account <strong>%{email}</strong>.
+      closed_html: Access to this account with %{source_email} will be <strong>disabled</strong>.
+      only_holder_html: You are now the only person with access to this account with ProConnect, with the address <strong>%{email}</strong>.
+      others_must_migrate: The other people who had access to this account as an administrator will also have to switch to ProConnect.
       procedures: See my procedures
     code:
       title: Switch to ProConnect
@@ -39,6 +45,21 @@ en:
       wrong_code: This security code is wrong.
       expired_code: This security code has expired. Ask for a new one with "Send a new code".
       attempts_spent: The security code was entered wrongly too many times. Sign in again to resume the switch.
+    sharing:
+      title: Switch to ProConnect
+      subtitle: Shared account?
+      question: Were the credentials of the %{application_name} account "%{source_email}" shared with other people?
+      hint: Answer "Yes" if several administrators signed in with this same account.
+      "yes": "Yes"
+      "no": "No"
+      consequences: "Once the switch to ProConnect is complete:"
+      shared_only_holder_html: You will be the only person with access to this account with ProConnect, with the address <strong>%{pro_connect_email}</strong>
+      shared_notifications_html: Email notifications will be sent to <strong>%{pro_connect_email}</strong> (and no longer to %{source_email})
+      shared_others_html: The other people who had access to this account as an administrator <strong>will also have to switch to ProConnect</strong>
+      not_shared_pro_connect_only_html: You will have to sign in to your administrator space with ProConnect only, with your address <strong>%{pro_connect_email}</strong>
+      not_shared_closed_html: Access to this account with <strong>%{source_email}</strong> will be disabled
+      submit: Complete my switch to ProConnect
+    update_sharing:
       conflict: This account changed in the meantime. Sign in again to resume the switch.
     resend_code:
       sent: A new security code was sent to %{source_email}.

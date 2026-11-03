@@ -99,7 +99,7 @@ describe ProConnectMigration do
     end
 
     it 'moves the account to the ProConnect address, silently, keeping its password' do
-      expect { migration.rename!(auth:) }.not_to have_enqueued_mail
+      expect { migration.rename!(auth:, shared: false) }.not_to have_enqueued_mail
 
       account.reload
       expect(account.email).to eq('camille.dupont@exemple.fr')
@@ -107,6 +107,7 @@ describe ProConnectMigration do
       expect(administrateur.reload.pro_connect_required_at).not_to be_nil
       expect(account.pro_connect_informations.pluck(:sub)).to eq(['sub'])
       expect(migration).to be_renamed
+      expect(migration.shared).to be false
       expect(migration.procedure_ids).to include(procedure.id)
       expect(migration.procedure_ids).not_to include(support_procedure.id)
       expect(migration.groupe_instructeur_ids).to eq([groupe.id])
@@ -115,7 +116,7 @@ describe ProConnectMigration do
     it 'drops the address change and the merge another holder left pending, and trusts the ProConnect address' do
       account.update_columns(unconfirmed_email: 'bob@exemple.fr', requested_merge_into_id: users.usager.id, email_verified_at: nil)
 
-      migration.rename!(auth:)
+      migration.rename!(auth:, shared: true)
 
       account.reload
       expect(account.unconfirmed_email).to be_nil
@@ -126,20 +127,20 @@ describe ProConnectMigration do
     it 'gives up when the address was taken in the meantime' do
       create(:user, email: 'camille.dupont@exemple.fr')
 
-      expect(migration.rename!(auth:)).to be false
+      expect(migration.rename!(auth:, shared: true)).to be false
       expect(account.reload.email).to eq(migration.source_email)
     end
 
     it 'gives up when the account was renamed in the meantime' do
       account.update_column(:email, 'autre@exemple.fr')
 
-      expect(migration.rename!(auth:)).to be false
+      expect(migration.rename!(auth:, shared: true)).to be false
     end
 
     it 'gives up with the ProConnect identity of another address' do
       other = auth.with(user_info: { 'sub' => 'other', 'email' => 'dominique.martin@exemple.fr' })
 
-      expect(migration.rename!(auth: other)).to be false
+      expect(migration.rename!(auth: other, shared: true)).to be false
       expect(account.reload.email).to eq(migration.source_email)
     end
   end

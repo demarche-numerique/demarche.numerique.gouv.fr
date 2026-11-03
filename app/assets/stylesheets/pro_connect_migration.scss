@@ -1,0 +1,6 @@
+.pro-connect-sharing:has(#shared_true:checked)
+  .pro-connect-sharing__consequences--shared,
+.pro-connect-sharing:has(#shared_false:checked)
+  .pro-connect-sharing__consequences--not-shared {
+  display: block;
+}

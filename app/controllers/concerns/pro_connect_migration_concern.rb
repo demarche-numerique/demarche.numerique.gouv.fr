@@ -4,6 +4,7 @@ module ProConnectMigrationConcern
   extend ActiveSupport::Concern
 
   SESSION_KEY = :pro_connect_migration_id
+  CODE_VERIFIED_SESSION_KEY = :pro_connect_migration_code_verified_id
   ID_TOKEN_COOKIE_NAME = :proConnect_migration_id_token
   IDENTITY_COOKIE_NAME = :proConnect_migration_identity
 
@@ -20,6 +21,7 @@ module ProConnectMigrationConcern
 
   def forget_pro_connect_migration
     session.delete(SESSION_KEY)
+    session.delete(CODE_VERIFIED_SESSION_KEY)
     cookies.delete(ID_TOKEN_COOKIE_NAME)
     cookies.delete(IDENTITY_COOKIE_NAME)
   end

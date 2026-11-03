@@ -50,5 +50,7 @@ scope 'pro_connect/migration', as: :pro_connect_migration, controller: :pro_conn
   get 'code'
   post 'code' => :verify_code
   post 'resend_code'
+  get 'sharing'
+  post 'sharing' => :update_sharing
   get 'completed'
 end

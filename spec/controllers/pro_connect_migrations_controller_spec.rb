@@ -48,16 +48,13 @@ describe ProConnectMigrationsController, type: :controller do
     describe '#verify_code' do
       render_views
 
-      it 'signs the renamed account in with its ProConnect session, and confirms the migration' do
+      it 'asks whether the account was shared before renaming it' do
         post :verify_code, params: { code: '123456' }
 
-        expect(controller.current_user).to eq(account)
-        expect(account.reload.email).to eq('camille.dupont@exemple.fr')
-        expect(account.pro_connect_informations.pluck(:sub, :amr, :acr)).to eq([['sub', ['pwd', 'mfa'], 'eidas1']])
-        expect(account.instructeur.pro_connect_id_token).to eq('id_token')
-        expect(JSON.parse(cookies.encrypted[ProConnectSessionConcern::SESSION_INFO_COOKIE_NAME])).to include('mfa' => true)
-        expect(cookies[ProConnectSessionConcern::ADMINISTRATEUR_DEVICE_COOKIE_NAME]).to be_present
-        expect(response).to redirect_to(pro_connect_migration_completed_path)
+        expect(response).to redirect_to(pro_connect_migration_sharing_path)
+        expect(controller.current_user).to be_nil
+        expect(account.reload.email).to eq(migration.source_email)
+        expect(session[ProConnectMigrationConcern::CODE_VERIFIED_SESSION_KEY]).to eq(migration.id)
       end
 
       it 'asks again after a wrong code' do
@@ -125,22 +122,115 @@ describe ProConnectMigrationsController, type: :controller do
         expect(flash.alert).to be_nil
       end
     end
+
+    context 'once the code is verified' do
+      before { session[ProConnectMigrationConcern::CODE_VERIFIED_SESSION_KEY] = migration.id }
+
+      it 'goes back to the question instead of the code page' do
+        get :code
+
+        expect(response).to redirect_to(pro_connect_migration_sharing_path)
+      end
+
+      describe '#sharing' do
+        render_views
+
+        it 'asks about the old address' do
+          get :sharing
+
+          expect(response.body).to include("&quot;#{account.email}&quot; étaient partagés")
+        end
+      end
+
+      describe '#update_sharing' do
+        it 'renames the account, records the answer and signs it in with its ProConnect session' do
+          post :update_sharing, params: { shared: 'true' }
+
+          expect(controller.current_user).to eq(account)
+          expect(account.reload.email).to eq('camille.dupont@exemple.fr')
+          expect(account.pro_connect_informations.pluck(:sub, :amr, :acr)).to eq([['sub', ['pwd', 'mfa'], 'eidas1']])
+          expect(migration.reload).to have_attributes(state: 'renamed', shared: true)
+          expect(account.instructeur.pro_connect_id_token).to eq('id_token')
+          expect(JSON.parse(cookies.encrypted[ProConnectSessionConcern::SESSION_INFO_COOKIE_NAME])).to include('mfa' => true)
+          expect(cookies[ProConnectSessionConcern::ADMINISTRATEUR_DEVICE_COOKIE_NAME]).to be_present
+          expect(session[ProConnectMigrationConcern::SESSION_KEY]).to be_nil
+          expect(response).to redirect_to(pro_connect_migration_completed_path)
+        end
+
+        it 'starts over 30 minutes after the ProConnect return' do
+          migration.update_columns(updated_at: 31.minutes.ago)
+
+          post :update_sharing, params: { shared: 'true' }
+
+          expect(response).to redirect_to(new_user_session_path)
+          expect(flash.alert).to eq(I18n.t('pro_connect_migrations.code.timed_out'))
+          expect(account.reload.email).to eq(migration.source_email)
+        end
+      end
+    end
+
+    describe '#update_sharing' do
+      it 'asks for the code first, even with the code of a previous migration verified' do
+        session[ProConnectMigrationConcern::CODE_VERIFIED_SESSION_KEY] = ProConnectMigration.create!(user: account, source_email: account.email).id
+
+        post :update_sharing, params: { shared: 'true' }
+
+        expect(response).to redirect_to(pro_connect_migration_code_path)
+        expect(account.reload.email).to eq(migration.source_email)
+      end
+    end
   end
 
   describe '#completed' do
     render_views
 
-    before { sign_in(account) }
+    before do
+      sign_in(account)
+      account.administrateur.update!(pro_connect_required_at: Time.zone.now)
+    end
 
     it 'confirms the migration with the address of the account' do
-      account.administrateur.update!(pro_connect_required_at: Time.zone.now)
-
       get :completed
 
       expect(response.body).to include('Migration terminée', "<strong>#{account.email}</strong>")
+      expect(response.body).not_to include('et non plus avec l’adresse')
+    end
+
+    context 'after a rename' do
+      let(:shared) { true }
+
+      before { ProConnectMigration.create!(user: account, source_email: 'contact@exemple.fr', state: :renamed, target_user: account, shared:) }
+
+      it 'warns the holder of a shared address that the others must migrate too' do
+        get :completed
+
+        expect(response.body).to include('et non plus avec l’adresse contact@exemple.fr', 'Les autres personnes qui avaient accès')
+        expect(response.body).not_to include('Les dossiers déposés en tant qu’usager')
+      end
+
+      it 'tells the holder of a shared address where its applications are' do
+        dossiers.en_construction.update!(user: account)
+
+        get :completed
+
+        expect(response.body).to include('Les dossiers déposés en tant qu’usager')
+      end
+
+      context 'of an address that was not shared' do
+        let(:shared) { false }
+
+        it 'says the old address is closed' do
+          get :completed
+
+          expect(response.body).to include('contact@exemple.fr sera <strong>désactivé</strong>')
+          expect(response.body).not_to include('Les autres personnes qui avaient accès')
+        end
+      end
     end
 
     it 'sends an administrateur not tied to ProConnect to their procedures' do
+      account.administrateur.update!(pro_connect_required_at: nil)
+
       get :completed
 
       expect(response).to redirect_to(admin_procedures_path)

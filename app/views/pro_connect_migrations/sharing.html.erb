@@ -1,0 +1,61 @@
+<% content_for(:title, t('.subtitle')) %>
+<% content_for(:hide_header_signin, true) %>
+
+<div class="fr-container fr-py-5w">
+  <h1 class="fr-mb-5w" tabindex="-1" autofocus><%= t('.title') %></h1>
+
+  <h2 class="fr-h4"><%= t('.subtitle') %></h2>
+
+  <%= form_with url: pro_connect_migration_sharing_path, method: :post, class: 'pro-connect-sharing', data: { turbo: true } do |f| %>
+    <div class="card fr-px-4w fr-pb-0 fr-mb-0">
+      <%= render Dsfr::RadioButtonListComponent.new(form: f, target: :shared, inline: true, buttons: [{ label: t('.yes'), value: 'true', required: true }, { label: t('.no'), value: 'false' }]) do %>
+        <%= t('.question', application_name: Current.application_name, source_email: @migration.source_email) %>
+        <span class="fr-hint-text"><%= t('.hint') %></span>
+      <% end %>
+    </div>
+
+    <div role="status">
+      <div class="pro-connect-sharing__consequences--shared" hidden>
+        <%= render Dsfr::AlertComponent.new(state: :info, with_prefix: false, extra_class_names: 'fr-mt-3w') do |c| %>
+          <% c.with_body do %>
+            <p class="fr-mb-0"><%= t('.consequences') %></p>
+
+            <ul class="fr-my-0">
+              <li>
+                <%= t('.shared_only_holder_html', pro_connect_email: @migration.pro_connect_email) %>
+              </li>
+
+              <li>
+                <%= t('.shared_notifications_html', pro_connect_email: @migration.pro_connect_email, source_email: @migration.source_email) %>
+              </li>
+
+              <li><%= t('.shared_others_html') %></li>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="pro-connect-sharing__consequences--not-shared" hidden>
+        <%= render Dsfr::AlertComponent.new(state: :info, with_prefix: false, extra_class_names: 'fr-mt-3w') do |c| %>
+          <% c.with_body do %>
+            <p class="fr-mb-0"><%= t('.consequences') %></p>
+
+            <ul class="fr-my-0">
+              <li>
+                <%= t('.not_shared_pro_connect_only_html', pro_connect_email: @migration.pro_connect_email) %>
+              </li>
+
+              <li>
+                <%= t('.not_shared_closed_html', source_email: @migration.source_email) %>
+              </li>
+            </ul>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="fr-mt-5w">
+      <%= f.submit t('.submit'), class: 'fr-btn' %>
+    </div>
+  <% end %>
+</div>
