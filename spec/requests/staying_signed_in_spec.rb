@@ -85,6 +85,30 @@ describe 'staying signed in', type: :request do
 
   # One duration for everyone. What differs per role is the row, and the row
   # is what actually cuts.
+  # `set_user` rewrites Warden's key but keeps the per-scope hash, so the choice
+  # has to be rewritten too: otherwise the incoming account inherits a 15-day
+  # cookie on a machine it may not own, without anyone ticking anything.
+  context 'another account signed in on the same browser, with no sign out' do
+    let(:other) { administrateurs.blank.user }
+
+    it 'does not inherit the choice the previous one made' do
+      post_user_session(usager, remember_me: true)
+      expect(session_cookie_expiry).to be_present
+
+      patch users_activate_path, params: {
+        user: {
+          reset_password_token: other.send_reset_password_instructions,
+          password: '{An0ther-$3cure-p4ssWord}',
+        },
+      }
+
+      get profil_path
+
+      expect(controller.current_user).to eq(other)
+      expect(session_cookie_expiry).to be_nil
+    end
+  end
+
   context 'an agent' do
     let(:agent) { instructeurs.default.user }
 
