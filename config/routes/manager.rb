@@ -112,6 +112,7 @@ namespace :manager do
 
   resources :email_events, only: [:index, :show]
 
+  resources :champ_matching_results, only: [:index]
   resources :dubious_procedures, only: [:index]
   resources :published_procedures, only: [:index]
   resources :safe_mailers

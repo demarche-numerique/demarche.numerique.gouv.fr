@@ -1,0 +1,52 @@
+<% content_for(:title) { "Champs appariés" } %>
+
+<header class="main-content__header">
+  <h1 class="main-content__page-title" id="page-title">
+    <%= content_for(:title) %>
+  </h1>
+</header>
+
+<section class="main-content__body">
+  <p>
+    <strong><%= sections.total_count %> démarche(s) appariée(s).</strong> Chaque
+    appariement est listé sous les deux démarches qu'il relie.
+    <strong>matching_users_count</strong> compte les usagers dont les deux
+    champs portent la même valeur, parmi les
+    <strong>common_users_count</strong> qui ont répondu aux deux. Le
+    <strong>score</strong> est la borne basse de Wilson, confirmé à partir de
+    <%= TypeDeChampMatch::MIN_SCORE %>.
+  </p>
+
+  <% sections.each do |procedure| %>
+    <section class="champ-matching__procedure">
+      <h2 class="champ-matching__procedure-title">
+        <%= link_to("#{procedure.procedure_id} — #{procedure.libelle}", manager_procedure_path(procedure.procedure_id)) %>
+      </h2>
+
+      <p class="champ-matching__summary">
+        <%= procedure.partners.size %> démarche(s) partenaire(s),
+        <%= procedure.couples_count %> couple(s) de champs,
+        <%= procedure.confirmed_count %> confirmé(s)
+      </p>
+
+      <% procedure.partners.each do |partner| %>
+        <h3
+          class="champ-matching__partner-title"
+          id="pair-<%= procedure.procedure_id %>-<%= partner.procedure_id %>"
+        >
+          <%= link_to("#{partner.procedure_id} — #{partner.libelle}", manager_procedure_path(partner.procedure_id)) %>
+          — <%= partner.common_users_count %> usagers communs
+        </h3>
+
+        <%= render("collection",
+            collection_presenter: page,
+            collection_field_name: resource_name,
+            page: page,
+            resources: partner.couples,
+            table_title: "pair-#{procedure.procedure_id}-#{partner.procedure_id}") %>
+      <% end %>
+    </section>
+  <% end %>
+
+  <%= render("pagination", resources: sections) %>
+</section>

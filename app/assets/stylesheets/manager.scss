@@ -146,6 +146,38 @@
   }
 }
 
+.champ-matching {
+  &__procedure {
+    margin-top: 3rem;
+  }
+
+  &__procedure:first-of-type {
+    margin-top: 0;
+  }
+
+  &__procedure-title {
+    margin: 0;
+    padding: 0.75rem 1rem;
+    background-color: #000091;
+    color: white;
+
+    a {
+      color: white;
+    }
+  }
+
+  &__summary {
+    margin: 0 0 1.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #cccccc;
+  }
+
+  &__partner-title {
+    margin-top: 1.5rem;
+  }
+}
+
 .api-status {
   &__state {
     display: inline-block;
