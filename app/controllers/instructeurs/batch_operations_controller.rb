@@ -199,6 +199,7 @@ module Instructeurs
           commentaire: commentaire,
           procedure: @procedure,
           dossier_ids: @ids,
+          statut: batch_operation_commentaire_params[:statut],
         })
     end
   end

@@ -388,7 +388,11 @@ describe 'BatchOperation a dossier:', js: true do
       # stream re-renders the form, and the typed body and the selected file
       # must survive it
       competing_batch = create(:batch_operation, operation: :passer_en_instruction, instructeur:, dossiers: [dossier_1])
+      # the re-rendered form looks like the current one: mark the current one to
+      # wait for its replacement, not assert against it and click a detached button
+      page.execute_script("document.getElementById('modal-commentaire-batch-form').dataset.submitted = 'true'")
       click_on "Envoyer le message"
+      expect(page).to have_selector('#modal-commentaire-batch-form:not([data-submitted])')
 
       within('#modal-commentaire-batch') do
         expect(page).to have_content('piece_justificative_0.pdf')
