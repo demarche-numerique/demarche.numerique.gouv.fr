@@ -701,9 +701,12 @@ describe Users::DossiersController, type: :controller do
     end
 
     context 'with a booked rdv' do
-      before { create(:rdv, :booked, dossier:, instructeur: instructeurs.default) }
+      let!(:rdv) { create(:rdv, :booked, dossier:, instructeur: instructeurs.default) }
 
-      it { is_expected.to have_http_status(:ok) }
+      it 'links to the rdv on RDV Service Public' do
+        expect(subject).to have_http_status(:ok)
+        expect(response.body).to include(RdvService.rdv_sp_rdv_user_url(rdv.rdv_external_id))
+      end
     end
   end
 
