@@ -11,7 +11,7 @@ class ProConnectController < ApplicationController
 
   STATE_COOKIE_NAME = :proConnect_state
   NONCE_COOKIE_NAME = :proConnect_nonce
-  MFA_FORCED_COOKIE_NAME = :proConnect_mfa_forced
+  MFA_FORCED_FOR_COOKIE_NAME = :proConnect_mfa_forced_for
 
   def index
   end
@@ -21,7 +21,7 @@ class ProConnectController < ApplicationController
   def login
     # A forced MFA round trip abandoned on the ProConnect screen never reaches
     # the callback, so its marker is still there.
-    cookies.delete MFA_FORCED_COOKIE_NAME
+    cookies.delete MFA_FORCED_FOR_COOKIE_NAME
 
     uri, state, nonce = ProConnectService.authorization_uri
 
@@ -37,8 +37,8 @@ class ProConnectController < ApplicationController
 
     email = santized_email(user_info)
     mfa = ProConnectService.mfa?(amr:, acr:)
-    mfa_already_forced = cookies.encrypted[MFA_FORCED_COOKIE_NAME] == email
-    cookies.delete MFA_FORCED_COOKIE_NAME
+    mfa_forced_for = cookies.encrypted[MFA_FORCED_FOR_COOKIE_NAME]
+    cookies.delete MFA_FORCED_FOR_COOKIE_NAME
 
     user = User.find_by(email:)
 
@@ -58,7 +58,7 @@ class ProConnectController < ApplicationController
 
     remember_administrateur_device if user.administrateur&.pro_connect_required?
 
-    return enforce_mfa(email, already_forced: mfa_already_forced) if !mfa && must_force_mfa?(user, user_info)
+    return enforce_mfa(email, mfa_forced_for:) if !mfa && must_force_mfa?(user, user_info)
 
     sign_in_with_pro_connect(user, id_token:, mfa:)
     redirect_to stored_location_for(:user) || root_path
@@ -80,8 +80,8 @@ class ProConnectController < ApplicationController
       (user.instructeur? && user_info['idp_id'] == MON_COMPTE_PRO_IDP_ID)
   end
 
-  def enforce_mfa(email, already_forced:)
-    already_forced ? redirect_pro_connect_mfa_failed : redirect_to_forced_mfa(email)
+  def enforce_mfa(email, mfa_forced_for:)
+    mfa_forced_for == email ? redirect_pro_connect_mfa_failed : redirect_to_forced_mfa(email)
   end
 
   def redirect_to_forced_mfa(email)
@@ -89,7 +89,7 @@ class ProConnectController < ApplicationController
 
     cookies.encrypted[STATE_COOKIE_NAME] = { value: state, secure: Rails.env.production?, httponly: true }
     cookies.encrypted[NONCE_COOKIE_NAME] = { value: nonce, secure: Rails.env.production?, httponly: true }
-    cookies.encrypted[MFA_FORCED_COOKIE_NAME] = { value: email, secure: Rails.env.production?, httponly: true }
+    cookies.encrypted[MFA_FORCED_FOR_COOKIE_NAME] = { value: email, secure: Rails.env.production?, httponly: true }
 
     redirect_to uri, allow_other_host: true
   end

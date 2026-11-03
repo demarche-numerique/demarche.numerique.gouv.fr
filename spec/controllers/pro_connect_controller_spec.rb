@@ -27,12 +27,12 @@ describe ProConnectController, type: :controller do
     end
 
     context 'when a forced MFA round trip was left behind' do
-      before { cookies.encrypted[ProConnectController::MFA_FORCED_COOKIE_NAME] = 'someone@example.com' }
+      before { cookies.encrypted[ProConnectController::MFA_FORCED_FOR_COOKIE_NAME] = 'someone@example.com' }
 
       it 'clears its marker so the next callback is not read as a failure' do
         get :login
 
-        expect(cookies.encrypted[ProConnectController::MFA_FORCED_COOKIE_NAME]).to be_nil
+        expect(cookies.encrypted[ProConnectController::MFA_FORCED_FOR_COOKIE_NAME]).to be_nil
       end
     end
   end
@@ -227,7 +227,7 @@ describe ProConnectController, type: :controller do
 
               expect(response).to redirect_to(uri)
               expect(controller.current_user).to be_nil
-              expect(cookies.encrypted[ProConnectController::MFA_FORCED_COOKIE_NAME]).to eq(email)
+              expect(cookies.encrypted[ProConnectController::MFA_FORCED_FOR_COOKIE_NAME]).to eq(email)
               expect(cookies[ProConnectSessionConcern::ADMINISTRATEUR_DEVICE_COOKIE_NAME]).to be_present
             end
           end
@@ -235,7 +235,7 @@ describe ProConnectController, type: :controller do
           context 'without MFA, after the MFA was enforced for another account' do
             let(:uri) { 'https://mfa.proconnect.gouv.fr' }
 
-            before { cookies.encrypted[ProConnectController::MFA_FORCED_COOKIE_NAME] = 'someone.else@example.com' }
+            before { cookies.encrypted[ProConnectController::MFA_FORCED_FOR_COOKIE_NAME] = 'someone.else@example.com' }
 
             it 'enforces the MFA for this one too' do
               expect(ProConnectService).to receive(:authorization_uri)
@@ -249,7 +249,7 @@ describe ProConnectController, type: :controller do
           end
 
           context 'without MFA, after the MFA was already enforced once' do
-            before { cookies.encrypted[ProConnectController::MFA_FORCED_COOKIE_NAME] = email }
+            before { cookies.encrypted[ProConnectController::MFA_FORCED_FOR_COOKIE_NAME] = email }
 
             it 'gives up with a message instead of looping' do
               expect(ProConnectService).not_to receive(:authorization_uri)
@@ -265,13 +265,13 @@ describe ProConnectController, type: :controller do
           context 'with MFA, after it was enforced' do
             let(:acr) { 'eidas1-mfa' }
 
-            before { cookies.encrypted[ProConnectController::MFA_FORCED_COOKIE_NAME] = email }
+            before { cookies.encrypted[ProConnectController::MFA_FORCED_FOR_COOKIE_NAME] = email }
 
             it 'signs it in instead of reporting a failed MFA' do
               subject
 
               expect(controller.current_user).to eq(administrateur.user)
-              expect(cookies.encrypted[ProConnectController::MFA_FORCED_COOKIE_NAME]).to be_nil
+              expect(cookies.encrypted[ProConnectController::MFA_FORCED_FOR_COOKIE_NAME]).to be_nil
             end
           end
 
