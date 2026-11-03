@@ -160,17 +160,22 @@ class FranceConnectController < ApplicationController
 
   # OpenIdConnect use a special endpoint to retrieve the list of redirect URIs
   # in case of multiple domains sharing the same sub by user
+  # FranceConnect and FranceConnect+ share this sector, so a person gets the same sub on both
   # see https://docs.partenaires.franceconnect.gouv.fr/fs/fs-technique/fs-technique-sector_identifier
   def redirect_uris
     # rubocop:disable DS/ApplicationName
     ds_dev_redirect_uris = [
       'https://dev.demarches-simplifiees.fr/france_connect/callback',
       'https://dev.demarche.numerique.gouv.fr/france_connect/callback',
+      'https://dev.demarches-simplifiees.fr/france_connect_plus/callback',
+      'https://dev.demarche.numerique.gouv.fr/france_connect_plus/callback',
     ]
 
     ds_prod_redirect_uris = [
       'https://www.demarches-simplifiees.fr/france_connect/callback',
       'https://demarche.numerique.gouv.fr/france_connect/callback',
+      'https://www.demarches-simplifiees.fr/france_connect_plus/callback',
+      'https://demarche.numerique.gouv.fr/france_connect_plus/callback',
     ]
 
     is_ds_dev = Current.host.include?('dev.demarches-simplifiees.fr') ||
