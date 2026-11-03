@@ -72,7 +72,8 @@ class AvisMailer < ApplicationMailer
 
   # avis is the recipient's own avis on the dossier, not the one just given.
   def notify_new_avis_to_expert(avis)
-    return if not_revoked_avis(avis).empty?
+    # Checked at delivery: the dossier may be deleted between enqueue and a retry.
+    return if not_revoked_avis(avis).empty? || !avis.dossier.visible_by_administration?
 
     I18n.with_locale(avis.dossier.user_locale) do
       @dossier = avis.dossier

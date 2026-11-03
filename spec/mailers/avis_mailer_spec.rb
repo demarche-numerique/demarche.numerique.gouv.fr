@@ -162,5 +162,11 @@ RSpec.describe AvisMailer, type: :mailer do
 
       expect(mail.message).to be_a(ActionMailer::Base::NullMail)
     end
+
+    it "sends nothing once the administration deleted the dossier" do
+      recipient_avis.dossier.update!(hidden_by_administration_at: 1.hour.ago)
+
+      expect(mail.message).to be_a(ActionMailer::Base::NullMail)
+    end
   end
 end
