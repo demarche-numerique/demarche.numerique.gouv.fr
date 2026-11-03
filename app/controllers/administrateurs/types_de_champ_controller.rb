@@ -4,6 +4,7 @@ module Administrateurs
   class TypesDeChampController < AdministrateurController
     include ActiveSupport::NumberHelper
     include CsvParsingConcern
+    include TurboTypesDeChampConcern
 
     before_action :retrieve_procedure
 
@@ -40,6 +41,8 @@ module Administrateurs
         @morphed = [champ_component_from(@coordinate, focused: false, errors:)]
         flash.alert = errors
       else
+        dependencies_before = dependencies_of(type_de_champ)
+
         if changing_of_type?(type_de_champ, update_params)
           type_de_champ = type_de_champ.becomes_type(update_params['type_champ'])
         end
@@ -50,10 +53,11 @@ module Administrateurs
 
         if draft.update_type_de_champ(type_de_champ, update_params)
           reload_procedure_with_includes
-          @morphed = if was_prefill_with_fc_information != (type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?)
-            draft.revision_type_de_champs.map { |c| champ_component_from(c) }
+          if was_prefill_with_fc_information != (type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?)
+            @morphed = draft.revision_type_de_champs.map { |c| champ_component_from(c) }
           else
-            champ_components_starting_at(@coordinate)
+            @coordinate = draft.coordinate_for(type_de_champ)
+            refresh_below_updated(@coordinate, before: dependencies_before)
           end
         else
           flash.alert = type_de_champ.errors.full_messages

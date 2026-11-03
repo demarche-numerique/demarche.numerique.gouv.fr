@@ -93,14 +93,91 @@ describe Administrateurs::TypesDeChampController, type: :controller do
     subject { post :update, params: params, format: :turbo_stream }
 
     # l1, l2, l3 => l1, updated, l3
-    # morphed: (updated, [l1]), (l3, [l1, updated])
     it do
       is_expected.to have_http_status(:ok)
       expect(flash.alert).to eq(nil)
       expect(second_coordinate.libelle).to eq('updated')
 
       expect(assigns(:coordinate)).to eq(second_coordinate)
-      expect(morpheds).to eq([['updated', ['l1']], ['l3', ['l1', 'updated']]])
+      expect(morpheds).to eq([['updated', ['l1']]])
+    end
+
+    describe 'what is sent back for the champs below' do
+      include Logic
+      include ActionView::RecordIdentifier
+      render_views
+
+      let_it_be(:referentiel) { create(:api_referentiel, :exact_match) }
+      let_it_be(:procedure, refind: true) do
+        create(:procedure, public_type_de_champs: [
+          { type: :header_section, libelle: 'Demandeur', level: 1 },
+          { type: :drop_down_list, libelle: 'Vous êtes', options: ['Particulier', 'Entreprise'] },
+          { type: :yes_no, libelle: 'Société cotée' },
+          { type: :text, libelle: 'Raison sociale' },
+          { type: :referentiel, libelle: 'Numéro', referentiel:, referentiel_mapping: { '$.nom' => { prefill: '1', prefill_stable_id: 99, type: 'string' } } },
+          { type: :text, libelle: 'Nom', stable_id: 99 },
+          { type: :header_section, libelle: 'Annexes', level: 2 },
+          { type: :header_section, libelle: 'Pièces', level: 2 },
+        ])
+      end
+
+      def coordinate(libelle) = procedure.draft_revision.reload.revision_type_de_champs.find { it.libelle == libelle }
+      def champ(libelle) = ['replace', dom_id(coordinate(libelle), :type_de_champ_editor)]
+      def conditions(libelle) = ['replace', dom_id(coordinate(libelle).type_de_champ, :condition)]
+
+      def condition_on(libelle, value)
+        ds_eq(champ_column_value(coordinate(libelle).type_de_champ.columns(procedure_id: procedure.id).first), constant(value))
+      end
+
+      # the parts of the page every edit sends back (errors, summary…) aside
+      def champ_streams
+        Nokogiri::HTML5.fragment(response.body).css('turbo-stream')
+          .map { [it['action'], it['target']] }
+          .filter { |_, target| target.start_with?('type_de_champ_editor_', 'condition_') }
+      end
+
+      def update(libelle, attributes)
+        post :update, params: { procedure_id: procedure.id, stable_id: coordinate(libelle).stable_id, type_de_champ: attributes }, format: :turbo_stream
+      end
+
+      before_all do
+        coordinate('Société cotée').type_de_champ.update!(condition: condition_on('Vous êtes', 'Entreprise'))
+        coordinate('Raison sociale').type_de_champ.update!(condition: condition_on('Société cotée', true))
+      end
+
+      it 'sends the champ alone when nothing below displays what changed' do
+        update('Vous êtes', description: 'Votre statut')
+        expect(champ_streams).to eq([champ('Vous êtes')])
+      end
+
+      it 'refreshes the conditions below a source whose options change' do
+        update('Vous êtes', drop_down_options_from_text: "Particulier\nEntreprise\nAssociation")
+        expect(champ_streams).to eq([champ('Vous êtes'), conditions('Société cotée'), conditions('Raison sociale')])
+      end
+
+      it 'refreshes the conditions below a champ still cited, though no source any more' do
+        coordinate('Nom').type_de_champ.update!(condition: condition_on('Vous êtes', 'Entreprise'))
+        coordinate('Société cotée').type_de_champ.update_column(:type_champ, 'text')
+
+        update('Société cotée', libelle: 'Société en bourse')
+        expect(champ_streams).to eq([champ('Société en bourse'), conditions('Raison sociale'), conditions('Nom')])
+      end
+
+      it 'refreshes the next header section when a level changes' do
+        update('Annexes', header_section_level: '1')
+        expect(champ_streams).to eq([champ('Annexes'), champ('Pièces')])
+      end
+
+      it 'refreshes the champs a renamed referentiel prefills' do
+        update('Numéro', libelle: 'SIREN')
+        expect(champ_streams).to eq([champ('SIREN'), champ('Nom')])
+      end
+
+      it 'sends every champ below when the first source of the form appears' do
+        update('Demandeur', type_champ: 'yes_no')
+        following = ['Vous êtes', 'Société cotée', 'Raison sociale', 'Numéro', 'Nom', 'Annexes', 'Pièces']
+        expect(champ_streams).to eq([champ('Demandeur'), *following.map { champ(it) }])
+      end
     end
 
     context 'when the champ was already removed (replayed autosave)' do

@@ -38,6 +38,10 @@
   = turbo_stream.replace dom_id(champ_component.coordinate, :type_de_champ_editor) do
     - render champ_component
 
+- @conditions&.each do |conditions_component|
+  = turbo_stream.replace dom_id(conditions_component.tdc, :condition) do
+    - render conditions_component
+
 - if @coordinate.present?
   = turbo_stream.replace dom_id(@coordinate.revision, :estimated_fill_duration) do
     - render TypesDeChampEditor::EstimatedFillDurationComponent.new(revision: @coordinate.revision, is_annotation: @coordinate.private?)
