@@ -6,6 +6,9 @@ en:
     title: Instructor self-management
     hint: Instructor self-management allows instructors to manage the list of instructors for the procedure themselves.
     hint_recommendation: We recommend leaving instructor self-management enabled.
+  self_management_other_email_domains:
+    label: Allow reviewers to add email addresses from another domain
+    hint: "By default, a reviewer can only add addresses from their own domain (example: @interieur.gouv.fr)."
   can_edit_dossiers:
     title: Editing of user files by instructors
     hint: This option allows instructors to edit user files themselves. Any change made by an instructor to a user's file will be logged and shown in the "Involved people" tab of the file. The user will also be notified of the details of the changes made.

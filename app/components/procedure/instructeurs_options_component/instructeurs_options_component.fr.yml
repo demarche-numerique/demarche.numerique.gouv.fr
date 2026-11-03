@@ -6,6 +6,9 @@ fr:
     title: Autogestion des instructeurs
     hint: L’autogestion des instructeurs permet aux instructeurs de gérer eux-mêmes la liste des instructeurs de la démarche.
     hint_recommendation: Nous recommandons de laisser l’autogestion des instructeurs activée.
+  self_management_other_email_domains:
+    label: Autoriser les instructeurs à ajouter des adresses électroniques d’un autre domaine
+    hint: "Par défaut, un instructeur ne peut ajouter que des adresses de son domaine (exemple : @interieur.gouv.fr)."
   can_edit_dossiers:
     title: Modification des dossiers usagers par les instructeurs
     hint: Cette option permet aux instructeurs de modifier eux-mêmes les dossiers des usagers. Toute modification effectuée par un instructeur sur le dossier d’un usager sera historisée et indiquée dans l’onglet « Personnes impliquées » du dossier. L’usager sera également notifié du détail des modifications effectuées.

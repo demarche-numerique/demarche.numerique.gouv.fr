@@ -105,4 +105,23 @@ describe 'Manage procedure instructeurs', js: true do
       expect(procedure.reload.routing_enabled).to be_truthy
     end
   end
+
+  context 'when allowing self-managing instructeurs to add instructeurs from another email domain' do
+    let(:procedure) { create(:procedure, instructeurs_self_management_enabled: true) }
+    let(:label) { 'Autoriser les instructeurs à ajouter des adresses électroniques d’un autre domaine' }
+
+    scenario 'the option can be checked then unchecked' do
+      visit options_admin_procedure_groupe_instructeurs_path(procedure)
+
+      check label, allow_label_click: true
+      expect(page).to have_content('Les instructeurs peuvent ajouter des adresses électroniques d’un autre domaine.')
+      expect(page).to have_checked_field(label)
+      expect(procedure.reload.self_management_restricted_to_email_domain).to be(false)
+
+      uncheck label, allow_label_click: true
+      expect(page).to have_content('Les instructeurs ne peuvent ajouter que des adresses de leur domaine.')
+      expect(page).to have_unchecked_field(label)
+      expect(procedure.reload.self_management_restricted_to_email_domain).to be(true)
+    end
+  end
 end

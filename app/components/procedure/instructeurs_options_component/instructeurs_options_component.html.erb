@@ -3,9 +3,32 @@
 <% if @state.nil? %>
   <h1 class="fr-h2"><%= t('.page_title') %></h1>
   <ul class="fr-toggle__list">
-    <li>
+    <li class="fr-toggle--border-bottom fr-mb-4v">
       <%= form_for @procedure, method: :patch, url: update_instructeurs_self_management_enabled_admin_procedure_groupe_instructeurs_path(@procedure), data: { controller: 'autosubmit', turbo: 'true' } do |f| %>
-        <%= render Dsfr::ToggleComponent.new(form: f, target: :instructeurs_self_management_enabled, title: t('.self_management.title'), hint: "#{t('.self_management.hint')}#{ t('.self_management.hint_recommendation') if @procedure.routing_enabled? }", disabled: false, extra_class_names: 'fr-toggle--label-left fr-toggle--border-bottom') %>
+        <%= render Dsfr::ToggleComponent.new(form: f, target: :instructeurs_self_management_enabled, title: t('.self_management.title'), hint: "#{t('.self_management.hint')}#{ t('.self_management.hint_recommendation') if @procedure.routing_enabled? }", disabled: false, extra_class_names: 'fr-toggle--label-left') %>
+      <% end %>
+
+      <% if @procedure.instructeurs_self_management_enabled? %>
+        <div class="fr-notice fr-notice--info fr-px-3v fr-mt-3v">
+          <div class="fr-notice__body">
+            <%= form_for @procedure, method: :patch, url: update_self_management_restricted_to_email_domain_admin_procedure_groupe_instructeurs_path(@procedure), data: { controller: 'autosubmit', turbo: 'true' } do |f| %>
+              <div class="fr-checkbox-group fr-checkbox-group--sm">
+                <%= f.check_box :self_management_restricted_to_email_domain, { checked: !@procedure.self_management_restricted_to_email_domain?, id: 'self_management_other_email_domains' }, '0', '1' %>
+
+                <label
+                  class="fr-label"
+                  for="self_management_other_email_domains"
+                >
+                  <%= t('.self_management_other_email_domains.label') %>
+
+                  <span class="fr-hint-text">
+                    <%= t('.self_management_other_email_domains.hint') %>
+                  </span>
+                </label>
+              </div>
+            <% end %>
+          </div>
+        </div>
       <% end %>
     </li>
 
