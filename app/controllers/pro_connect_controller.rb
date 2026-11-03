@@ -53,19 +53,7 @@ class ProConnectController < ApplicationController
       forget_pro_connect_migration
     end
 
-    user = User.find_by(email: auth.email)
-
-    if user.nil?
-      user = User.create!(
-        email: auth.email,
-        password: Devise.friendly_token[0, 20],
-        confirmed_at: Time.current,
-        email_verified_at: Time.current
-      )
-      user.after_confirmation
-    else
-      user.update!(email_verified_at: Time.current) if user.email_verified_at.nil?
-    end
+    user = User.find_or_create_for_pro_connect!(auth.email)
 
     ProConnectInformation.record!(user:, auth:)
 

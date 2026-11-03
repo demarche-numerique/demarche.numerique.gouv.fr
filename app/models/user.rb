@@ -218,6 +218,19 @@ class User < ApplicationRecord
     user
   end
 
+  def self.find_or_create_for_pro_connect!(email)
+    user = find_by(email:)
+
+    if user.nil?
+      user = create!(email:, password: Devise.friendly_token[0, 20], confirmed_at: Time.current, email_verified_at: Time.current)
+      user.after_confirmation
+    elsif user.email_verified_at.nil?
+      user.update!(email_verified_at: Time.current)
+    end
+
+    user
+  end
+
   def self.create_or_promote_to_expert(email, password)
     user = User.unscope(:eager_load)
       .create_with(password: password, confirmed_at: Time.zone.now)
