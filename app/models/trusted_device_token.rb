@@ -7,6 +7,13 @@ class TrustedDeviceToken < ApplicationRecord
   belongs_to :instructeur, optional: false
   has_secure_token
 
+  # A token is a live credential for as long as it can open a session, which is
+  # what a revocation has to take away. Past that it is only what the renewal
+  # warning reads, weeks after the fact.
+  def self.login_link_horizon = LOGIN_TOKEN_VALIDITY.ago
+
+  scope :usable_as_login_link, -> { where(created_at: login_link_horizon..) }
+
   scope :expiring_in_one_week, -> do
     window_start = TrustedDeviceConcern::TRUSTED_DEVICE_PERIOD.ago
     window_end = (TrustedDeviceConcern::TRUSTED_DEVICE_PERIOD - 1.week).ago
@@ -21,7 +28,7 @@ class TrustedDeviceToken < ApplicationRecord
   end
 
   def token_valid?
-    LOGIN_TOKEN_VALIDITY.ago < created_at
+    self.class.login_link_horizon < created_at
   end
 
   def token_valid_until
