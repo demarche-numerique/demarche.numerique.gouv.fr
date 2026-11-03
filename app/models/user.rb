@@ -27,6 +27,10 @@ class User < ApplicationRecord
   # cookie lifetime now instead of issuing a cookie of its own.
   attr_accessor :remember_me
 
+  # Set when an authentication clears a pending deletion notice, so the request
+  # can confirm to the user that their account is kept. Virtual, not persisted.
+  attribute :kept_after_deletion_notice, :boolean, default: false
+
   # We should never cascade delete dossiers. In normal case we call delete_and_keep_track_dossiers
   # before deleting a user (which dissociate dossiers from the user).
   # Destroying a user with dossier is always a mistake.
@@ -236,7 +240,10 @@ class User < ApplicationRecord
   # a returning user is never deleted without a fresh notice.
   def update_tracked_fields(request)
     super
+    return if inactive_close_to_expiration_notice_sent_at.nil?
+
     self.inactive_close_to_expiration_notice_sent_at = nil
+    self.kept_after_deletion_notice = true
   end
 
   def administrateur?

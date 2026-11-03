@@ -119,7 +119,7 @@ class UserMailer < ApplicationMailer
 
   def notify_inactive_close_to_deletion(user)
     @user = user
-    @subject = default_i18n_subject(remaining_weeks: Expired::REMAINING_WEEKS_BEFORE_EXPIRATION)
+    @subject = default_i18n_subject(remaining_weeks: Expired::REMAINING_WEEKS_BEFORE_EXPIRATION, application_name: APPLICATION_NAME)
 
     mail(to: user.email, subject: @subject)
   end
