@@ -21,6 +21,7 @@ describe 'Editing a champ keeps the champs below it up to date', js: true do
 
   def tdc(libelle) = procedure.draft_revision.reload.type_de_champs.find { it.libelle == libelle }
   def editor_of(libelle) = "##{dom_id(procedure.draft_revision.coordinate_for(tdc(libelle)), :type_de_champ_editor)}"
+  def footer_of(libelle) = "#{editor_of(libelle)} > .type-de-champ-container > .footer"
 
   def condition_on(source, value)
     ds_eq(champ_column_value(source.columns(procedure_id: procedure.id).first), constant(value))
@@ -32,11 +33,11 @@ describe 'Editing a champ keeps the champs below it up to date', js: true do
       Array.from(document.querySelectorAll('li.type-de-champ')).map((li) => {
         const own = (selector) => Array.from(li.querySelectorAll(`:scope > .type-de-champ-container > ${selector}`));
         const option = (o) => [o.textContent.trim(), o.selected, o.disabled];
+        const shown = (e) => getComputedStyle(e).display != 'none';
         const condition = '[id^="condition_"]';
         return {
           id: li.id,
-          first: li.classList.contains('first'),
-          last: li.classList.contains('last'),
+          moves: own('.footer :is(.move-up, .move-down)').map(shown),
           position: own('.footer .position').map((e) => e.textContent.trim()),
           levels: own('.head select[name$="[header_section_level]"] option').map(option),
           condition: own(condition).length,
@@ -64,6 +65,15 @@ describe 'Editing a champ keeps the champs below it up to date', js: true do
     login_as procedure.administrateurs.first.user, scope: :user
     visit champs_admin_procedure_path(procedure)
     expect(page).to have_css('body.dom-ready')
+  end
+
+  scenario 'adding and removing champs' do
+    expect(page).to have_css("#{footer_of('Demandeur')} .move-up", visible: :hidden)
+    expect(page).to have_css("#{footer_of('Liste des associés')} .move-down", visible: :hidden)
+
+    within("#{editor_of('Liste des associés')} > .type-de-champ-add-button") { add_champ }
+    expect(page).to have_css("#{footer_of('Liste des associés')} .move-down", visible: :visible)
+    expect_the_state_of_a_reload
   end
 
   scenario 'editing sources cited below' do
