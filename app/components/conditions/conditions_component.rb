@@ -2,6 +2,29 @@
 
 class Conditions::ConditionsComponent < ApplicationComponent
   include Logic
+  extend Logic
+
+  SUPPORTED_TYPES = [:integer, :decimal, :enum, :enums, :boolean].freeze
+
+  def self.sources_for(tdcs, procedure_id:, column_mode:)
+    if column_mode
+      conditionable_columns(tdcs, procedure_id:).map { |column| [column.label, champ_column_value(column)] }
+    else
+      tdcs
+        .filter(&:conditionable?)
+        .map { |tdc| [tdc.libelle, champ_value(tdc.stable_id)] }
+    end
+  end
+
+  def self.top_level_section?(tdc) = tdc.header_section? && tdc.header_section_level_value == 1
+
+  def self.conditionable_columns(tdcs, procedure_id:)
+    tdcs
+      .reject(&:repetition?)
+      .flat_map { it.columns(procedure_id:) }
+      .filter(&:filterable)
+      .filter { it.type.in?(SUPPORTED_TYPES) }
+  end
 
   private
 
@@ -105,7 +128,7 @@ class Conditions::ConditionsComponent < ApplicationComponent
   def index_by_top_section(tdcs)
     last_section = nil
     tdcs.each_with_object(Hash.new { |h, k| h[k] = [] }) do |tdc, h|
-      if tdc.header_section? && tdc.header_section_level_value == 1
+      if self.class.top_level_section?(tdc)
         last_section = tdc
       else
         h[last_section] << tdc
@@ -113,24 +136,7 @@ class Conditions::ConditionsComponent < ApplicationComponent
     end
   end
 
-  def to_sources(tdcs) = column_mode? ? to_champ_column_values(tdcs) : to_champ_values(tdcs)
-
-  SUPPORTED_TYPES = [:integer, :decimal, :enum, :enums, :boolean].freeze
-
-  def to_champ_column_values(tdcs)
-    tdcs
-      .reject(&:repetition?)
-      .flat_map { it.columns(procedure_id: @procedure.id) }
-      .filter(&:filterable)
-      .filter { it.type.in?(SUPPORTED_TYPES) }
-      .map { |column| [column.label, champ_column_value(column)] }
-  end
-
-  def to_champ_values(tdcs)
-    tdcs
-      .filter(&:conditionable?)
-      .map { |tdc| [tdc.libelle, champ_value(tdc.stable_id)] }
-  end
+  def to_sources(tdcs) = self.class.sources_for(tdcs, procedure_id: @procedure.id, column_mode: column_mode?)
 
   def operator_tag(operator_name, targeted_champ, row_index)
     operators_for_select = compatibles_operators_for_select(targeted_champ)
