@@ -396,6 +396,13 @@ module Administrateurs
       notice: "L’autogestion des instructeurs est #{procedure.instructeurs_self_management_enabled? ? "activée" : "désactivée"}."
     end
 
+    def update_self_management_restricted_to_email_domain
+      procedure.update!(self_management_restricted_to_email_domain_params)
+
+      redirect_to options_admin_procedure_groupe_instructeurs_path(procedure),
+      notice: procedure.self_management_restricted_to_email_domain? ? t('.restricted') : t('.unrestricted')
+    end
+
     def update_instructeurs_can_edit_dossiers
       procedure.update!(instructeurs_can_edit_dossiers_params)
 
@@ -650,6 +657,10 @@ module Administrateurs
 
     def instructeurs_self_management_enabled_params
       params.require(:procedure).permit(:instructeurs_self_management_enabled)
+    end
+
+    def self_management_restricted_to_email_domain_params
+      params.require(:procedure).permit(:self_management_restricted_to_email_domain)
     end
 
     def instructeurs_can_edit_dossiers_params

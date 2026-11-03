@@ -134,6 +134,7 @@ scope module: 'administrateurs', path: 'admin', as: 'admin', defaults: { nav_bar
         post 'create_simple_routing'
         delete 'destroy_all_groups_but_defaut'
         patch 'update_instructeurs_self_management_enabled'
+        patch 'update_self_management_restricted_to_email_domain'
         patch 'update_instructeurs_can_edit_dossiers'
         post 'import'
         get 'export_groupe_instructeurs'
