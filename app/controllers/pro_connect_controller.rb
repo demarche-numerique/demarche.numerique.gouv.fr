@@ -11,7 +11,7 @@ class ProConnectController < ApplicationController
 
   STATE_COOKIE_NAME = :proConnect_state
   NONCE_COOKIE_NAME = :proConnect_nonce
-  MFA_FORCED_COOKIE_NAME = :proConnect_mfa_forced
+  MFA_FORCED_FOR_COOKIE_NAME = :proConnect_mfa_forced_for
 
   def index
   end
@@ -21,7 +21,7 @@ class ProConnectController < ApplicationController
   def login
     # A forced MFA round trip abandoned on the ProConnect screen never reaches
     # the callback, so its marker is still there.
-    cookies.delete MFA_FORCED_COOKIE_NAME
+    cookies.delete MFA_FORCED_FOR_COOKIE_NAME
 
     uri, state, nonce = ProConnectService.authorization_uri
 
@@ -32,15 +32,17 @@ class ProConnectController < ApplicationController
   end
 
   def callback
-    user_info, id_token, amr, acr = ProConnectService.user_info(params[:code], cookies.encrypted[NONCE_COOKIE_NAME])
+    auth = ProConnectService.authenticate(params[:code], cookies.encrypted[NONCE_COOKIE_NAME])
     cookies.delete NONCE_COOKIE_NAME
 
-    email = santized_email(user_info)
-    user = User.find_by(email:)
+    mfa_forced_for = cookies.encrypted[MFA_FORCED_FOR_COOKIE_NAME]
+    cookies.delete MFA_FORCED_FOR_COOKIE_NAME
+
+    user = User.find_by(email: auth.email)
 
     if user.nil?
       user = User.create!(
-        email:,
+        email: auth.email,
         password: Devise.friendly_token[0, 20],
         confirmed_at: Time.current,
         email_verified_at: Time.current
@@ -50,30 +52,13 @@ class ProConnectController < ApplicationController
       user.update!(email_verified_at: Time.current) if user.email_verified_at.nil?
     end
 
-    pro_connect_info = ProConnectInformation.find_or_initialize_by(user:, sub: user_info['sub'])
-    pro_connect_info.update!(
-      user_info.slice('given_name', 'usual_name', 'email', 'sub', 'siret', 'organizational_unit', 'belonging_population', 'phone')
-      .merge(amr:, acr:)
-    )
-
-    mfa = ProConnectService.mfa?(amr:, acr:)
-    mfa_already_forced = cookies.encrypted[MFA_FORCED_COOKIE_NAME] == email
-    cookies.delete MFA_FORCED_COOKIE_NAME
+    ProConnectInformation.record!(user:, auth:)
 
     remember_administrateur_device if user.administrateur&.pro_connect_required?
 
-    if !mfa && must_force_mfa?(user, user_info)
-      return redirect_pro_connect_mfa_failed if mfa_already_forced
+    return enforce_mfa(auth.email, mfa_forced_for:) if !auth.mfa? && must_force_mfa?(user, auth.user_info)
 
-      return redirect_to_forced_mfa(email)
-    end
-
-    user.instructeur&.update!(pro_connect_id_token: id_token)
-
-    set_pro_connect_session_info_cookie(user.id, mfa:)
-
-    sign_in(:user, user)
-    user.update_preferred_domain(Current.host)
+    sign_in_with_pro_connect(user, id_token: auth.id_token, mfa: auth.mfa?)
     redirect_to stored_location_for(:user) || root_path
 
   rescue Rack::OAuth2::Client::Error => e
@@ -83,14 +68,14 @@ class ProConnectController < ApplicationController
 
   private
 
-  def santized_email(user_info)
-    user_info['email'].strip.downcase
-  end
-
   # Mon Compte Pro is the one identity provider known to offer a second factor.
   def must_force_mfa?(user, user_info)
     user.administrateur&.pro_connect_required? ||
       (user.instructeur? && user_info['idp_id'] == MON_COMPTE_PRO_IDP_ID)
+  end
+
+  def enforce_mfa(email, mfa_forced_for:)
+    mfa_forced_for == email ? redirect_pro_connect_mfa_failed : redirect_to_forced_mfa(email)
   end
 
   def redirect_to_forced_mfa(email)
@@ -98,7 +83,7 @@ class ProConnectController < ApplicationController
 
     cookies.encrypted[STATE_COOKIE_NAME] = { value: state, secure: Rails.env.production?, httponly: true }
     cookies.encrypted[NONCE_COOKIE_NAME] = { value: nonce, secure: Rails.env.production?, httponly: true }
-    cookies.encrypted[MFA_FORCED_COOKIE_NAME] = { value: email, secure: Rails.env.production?, httponly: true }
+    cookies.encrypted[MFA_FORCED_FOR_COOKIE_NAME] = { value: email, secure: Rails.env.production?, httponly: true }
 
     redirect_to uri, allow_other_host: true
   end

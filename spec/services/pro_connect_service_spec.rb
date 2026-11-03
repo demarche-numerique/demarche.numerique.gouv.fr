@@ -63,14 +63,24 @@ describe ProConnectService do
     end
   end
 
-  describe '.mfa?' do
+  describe 'Authentication#email' do
+    it 'is stripped and downcased' do
+      auth = described_class::Authentication.new(user_info: { 'email' => ' Jean.Dupont@Example.com ' }, id_token: 'id_token', amr: [], acr: nil)
+
+      expect(auth.email).to eq('jean.dupont@example.com')
+    end
+  end
+
+  describe 'Authentication#mfa?' do
+    def mfa?(amr:, acr:) = described_class::Authentication.new(user_info: {}, id_token: 'id_token', amr:, acr:).mfa?
+
     it 'is true when amr or acr asserts a multi factor authentication' do
-      expect(described_class.mfa?(amr: ['pwd', 'mail', 'mfa'], acr: nil)).to be true
-      expect(described_class.mfa?(amr: ['pwd'], acr: 'eidas1-mfa')).to be true
+      expect(mfa?(amr: ['pwd', 'mail', 'mfa'], acr: nil)).to be true
+      expect(mfa?(amr: ['pwd'], acr: 'eidas1-mfa')).to be true
     end
 
     it 'is false otherwise' do
-      expect(described_class.mfa?(amr: ['pwd'], acr: 'eidas1')).to be false
+      expect(mfa?(amr: ['pwd'], acr: 'eidas1')).to be false
     end
   end
 end

@@ -27,12 +27,12 @@ describe ProConnectController, type: :controller do
     end
 
     context 'when a forced MFA round trip was left behind' do
-      before { cookies.encrypted[ProConnectController::MFA_FORCED_COOKIE_NAME] = 'someone@example.com' }
+      before { cookies.encrypted[ProConnectController::MFA_FORCED_FOR_COOKIE_NAME] = 'someone@example.com' }
 
       it 'clears its marker so the next callback is not read as a failure' do
         get :login
 
-        expect(cookies.encrypted[ProConnectController::MFA_FORCED_COOKIE_NAME]).to be_nil
+        expect(cookies.encrypted[ProConnectController::MFA_FORCED_FOR_COOKIE_NAME]).to be_nil
       end
     end
   end
@@ -54,6 +54,7 @@ describe ProConnectController, type: :controller do
     let(:amr) { [] }
     let(:acr) { nil }
     let(:idp_id) { 'an_id' }
+    let(:auth) { ProConnectService::Authentication.new(user_info:, id_token:, amr:, acr:) }
     subject { get :callback, params: { code: code, state: state } }
 
     before do
@@ -65,9 +66,9 @@ describe ProConnectController, type: :controller do
       let(:code) { 'correct' }
       let(:state) { original_state }
 
-      context 'and user_info returns some info' do
+      context 'and authenticate returns some info' do
         before do
-          expect(ProConnectService).to receive(:user_info).with(code, nonce).and_return([user_info, id_token, amr, acr])
+          expect(ProConnectService).to receive(:authenticate).with(code, nonce).and_return(auth)
         end
 
         context 'and the user does not have an account yet' do
@@ -227,7 +228,7 @@ describe ProConnectController, type: :controller do
 
               expect(response).to redirect_to(uri)
               expect(controller.current_user).to be_nil
-              expect(cookies.encrypted[ProConnectController::MFA_FORCED_COOKIE_NAME]).to eq(email)
+              expect(cookies.encrypted[ProConnectController::MFA_FORCED_FOR_COOKIE_NAME]).to eq(email)
               expect(cookies[ProConnectSessionConcern::ADMINISTRATEUR_DEVICE_COOKIE_NAME]).to be_present
             end
           end
@@ -235,7 +236,7 @@ describe ProConnectController, type: :controller do
           context 'without MFA, after the MFA was enforced for another account' do
             let(:uri) { 'https://mfa.proconnect.gouv.fr' }
 
-            before { cookies.encrypted[ProConnectController::MFA_FORCED_COOKIE_NAME] = 'someone.else@example.com' }
+            before { cookies.encrypted[ProConnectController::MFA_FORCED_FOR_COOKIE_NAME] = 'someone.else@example.com' }
 
             it 'enforces the MFA for this one too' do
               expect(ProConnectService).to receive(:authorization_uri)
@@ -249,7 +250,7 @@ describe ProConnectController, type: :controller do
           end
 
           context 'without MFA, after the MFA was already enforced once' do
-            before { cookies.encrypted[ProConnectController::MFA_FORCED_COOKIE_NAME] = email }
+            before { cookies.encrypted[ProConnectController::MFA_FORCED_FOR_COOKIE_NAME] = email }
 
             it 'gives up with a message instead of looping' do
               expect(ProConnectService).not_to receive(:authorization_uri)
@@ -265,13 +266,13 @@ describe ProConnectController, type: :controller do
           context 'with MFA, after it was enforced' do
             let(:acr) { 'eidas1-mfa' }
 
-            before { cookies.encrypted[ProConnectController::MFA_FORCED_COOKIE_NAME] = email }
+            before { cookies.encrypted[ProConnectController::MFA_FORCED_FOR_COOKIE_NAME] = email }
 
             it 'signs it in instead of reporting a failed MFA' do
               subject
 
               expect(controller.current_user).to eq(administrateur.user)
-              expect(cookies.encrypted[ProConnectController::MFA_FORCED_COOKIE_NAME]).to be_nil
+              expect(cookies.encrypted[ProConnectController::MFA_FORCED_FOR_COOKIE_NAME]).to be_nil
             end
           end
 
@@ -298,7 +299,7 @@ describe ProConnectController, type: :controller do
           let(:initial_instructeur_count) { Instructeur.count }
 
           before do
-            expect(ProConnectService).to receive(:user_info).with(code, nonce).and_return([user_info, id_token, amr, acr]).twice
+            expect(ProConnectService).to receive(:authenticate).with(code, nonce).and_return(auth).twice
             expect(controller).to receive(:sign_in).twice
           end
 
@@ -321,10 +322,10 @@ describe ProConnectController, type: :controller do
           end
 
           it 'does not create an instructeur' do
-            expect(ProConnectService).to receive(:user_info).with(code, nonce).and_return([user_info, id_token, amr, acr])
+            expect(ProConnectService).to receive(:authenticate).with(code, nonce).and_return(auth)
             get :callback, params: { code: code, state: state }
 
-            expect(ProConnectService).to receive(:user_info).with(code, nonce).and_return([user_info.merge('sub' => 'sub2'), id_token, amr, acr])
+            expect(ProConnectService).to receive(:authenticate).with(code, nonce).and_return(auth.with(user_info: user_info.merge('sub' => 'sub2')))
             get :callback, params: { code: code, state: state }
 
             expect(Instructeur.count).to eq(initial_instructeur_count)
@@ -336,7 +337,7 @@ describe ProConnectController, type: :controller do
         let(:initial_instructeur_count) { Instructeur.count }
 
         before do
-          expect(ProConnectService).to receive(:user_info).and_raise(Rack::OAuth2::Client::Error.new(500, error: 'Unknown'))
+          expect(ProConnectService).to receive(:authenticate).and_raise(Rack::OAuth2::Client::Error.new(500, error: 'Unknown'))
         end
 
         it 'aborts the process with the ProConnect error message' do
@@ -371,7 +372,7 @@ describe ProConnectController, type: :controller do
       subject { get :callback, params: { code: } }
 
       it 'rejects the callback (no nil == nil bypass)' do
-        expect(ProConnectService).not_to receive(:user_info)
+        expect(ProConnectService).not_to receive(:authenticate)
         expect { subject }.to change { User.count }.by(0)
         expect(response).to redirect_to(new_user_session_path)
       end

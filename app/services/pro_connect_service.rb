@@ -11,12 +11,14 @@ class ProConnectService
     "eidas3",     # Identité : Élevée, Auth: MFA matérielle (géré par l'organisation), Orga: Lien certifié par une source officielle
   ].freeze
 
-  def self.enabled?
-    ENV['PRO_CONNECT_BASE_URL'].present?
+  Authentication = Data.define(:user_info, :id_token, :amr, :acr) do
+    def email = user_info['email'].strip.downcase
+
+    def mfa? = amr.include?('mfa') || MFA_ACR_VALUES.include?(acr)
   end
 
-  def self.mfa?(amr:, acr:)
-    amr.include?('mfa') || MFA_ACR_VALUES.include?(acr)
+  def self.enabled?
+    ENV['PRO_CONNECT_BASE_URL'].present?
   end
 
   def self.authorization_uri(force_mfa: false, login_hint: nil)
@@ -54,7 +56,7 @@ class ProConnectService
     [uri, state, nonce]
   end
 
-  def self.user_info(code, nonce)
+  def self.authenticate(code, nonce)
     client = OpenIDConnect::Client.new(conf)
     client.authorization_code = code
 
@@ -65,7 +67,7 @@ class ProConnectService
 
     amr = id_token.amr.present? ? JSON.parse(id_token.amr) : []
 
-    [access_token.userinfo!.raw_attributes, access_token.id_token, amr, id_token.acr]
+    Authentication.new(user_info: access_token.userinfo!.raw_attributes, id_token: access_token.id_token, amr:, acr: id_token.acr)
   end
 
   def self.logout_url(id_token, host_with_port:)
