@@ -48,11 +48,13 @@
       align-items: center;
     }
 
-    &.first .move-up {
+    // its own buttons, not the ones of the champs a repetition holds
+    &:first-child > .type-de-champ-container > .footer .move-up {
       display: none;
     }
 
-    &.last .move-down {
+    // the last child of a block is the hidden template of its position menu
+    &:nth-last-child(2) > .type-de-champ-container > .footer .move-down {
       display: none;
     }
 

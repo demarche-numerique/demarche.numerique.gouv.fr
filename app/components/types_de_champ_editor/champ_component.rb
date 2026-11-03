@@ -15,13 +15,7 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
   delegate :libelle_configurable?, :description_configurable?, :revision, to: :type_de_champ
   delegate :procedure, to: :revision
 
-  def siblings
-    @siblings ||= type_de_champ.flat_siblings
-  end
-
-  def index
-    @index ||= siblings.index(type_de_champ)
-  end
+  def index = type_de_champ.flat_siblings.index(type_de_champ)
 
   def mandatory_configurable?
     type_de_champ.fillable? && !type_de_champ.must_be_mandatory? && !type_de_champ.cannot_be_mandatory?
@@ -34,9 +28,7 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
   def html_options
     {
       id: dom_id(type_de_champ, :type_de_champ_editor),
-      class: class_names('type-header-section': type_de_champ.header_section?,
-        first: index.zero?,
-        last: index == siblings.size - 1),
+      class: class_names('type-header-section': type_de_champ.header_section?),
       data: {
         controller: 'type-de-champ-editor',
         type_de_champ_editor_move_up_url_value: move_up_admin_procedure_type_de_champ_path(procedure, type_de_champ.stable_id),
