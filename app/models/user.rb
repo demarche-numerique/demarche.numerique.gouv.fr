@@ -158,6 +158,13 @@ class User < ApplicationRecord
     end
   end
 
+  def become_administrateur!
+    pro_connect_required_at = Time.zone.now if ProConnectService.enabled?
+    create_administrateur!(pro_connect_required_at:)
+    france_connect_informations.delete_all
+    AdminUpdateDefaultZonesJob.perform_later(administrateur)
+  end
+
   def self.create_or_promote_to_instructeur(email, password, administrateurs: [], pro_connect: false)
     if pro_connect
       user = User
@@ -207,14 +214,7 @@ class User < ApplicationRecord
 
   def self.create_or_promote_to_administrateur(email, password)
     user = User.create_or_promote_to_instructeur(email, password)
-
-    if user.valid? && user.administrateur.nil?
-      pro_connect_required_at = Time.zone.now if ProConnectService.enabled?
-      user.create_administrateur!(pro_connect_required_at:)
-      user.france_connect_informations.delete_all
-      AdminUpdateDefaultZonesJob.perform_later(user.administrateur)
-    end
-
+    user.become_administrateur! if user.valid? && user.administrateur.nil?
     user
   end
 
