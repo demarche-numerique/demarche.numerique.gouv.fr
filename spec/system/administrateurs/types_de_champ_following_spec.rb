@@ -116,4 +116,25 @@ describe 'Editing a champ keeps the champs below it up to date', js: true do
     within(editor_of('Vous êtes')) { expect(page).to have_text('Logique conditionnelle') }
     expect_the_state_of_a_reload
   end
+
+  scenario 'adding a champ in the middle' do
+    within("#{editor_of('Vous êtes')} > .type-de-champ-add-button") { add_champ }
+
+    within("#{editor_of('Majeur')} .footer") { expect(page).to have_css('.position', exact_text: '4') }
+    expect_the_state_of_a_reload
+  end
+
+  scenario 'removing a source cited below' do
+    within(editor_of('Majeur')) { accept_alert { click_on 'Supprimer' } }
+
+    within(editor_of('Nom')) { expect(page).to have_css('.errors-summary') }
+    expect_the_state_of_a_reload
+  end
+
+  scenario 'removing the first champ' do
+    within(editor_of('Demandeur')) { accept_alert { click_on 'Supprimer' } }
+
+    within("#{editor_of('Vous êtes')} > .type-de-champ-container > .footer") { expect(page).to have_css('.position', exact_text: '1') }
+    expect_the_state_of_a_reload
+  end
 end

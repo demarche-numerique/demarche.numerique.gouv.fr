@@ -38,6 +38,9 @@
   = turbo_stream.replace dom_id(champ_component.coordinate, :type_de_champ_editor) do
     - render champ_component
 
+- @renumbered&.each do |coordinate|
+  = turbo_stream.update dom_id(coordinate.type_de_champ, :editor_position), (coordinate.position + 1).to_s
+
 - @conditions&.each do |conditions_component|
   = turbo_stream.replace dom_id(conditions_component.tdc, :condition) do
     - render conditions_component
