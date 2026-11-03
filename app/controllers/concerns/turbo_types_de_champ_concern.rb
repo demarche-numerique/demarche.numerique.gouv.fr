@@ -7,6 +7,7 @@ module TurboTypesDeChampConcern
 
   # What the champs below a type de champ display of it
   Dependencies = Data.define(:attributes, :source, :in_target_menu, :header_section_level, :prefilled_stable_ids)
+  NO_DEPENDENCIES = Dependencies.new(attributes: {}, source: false, in_target_menu: false, header_section_level: nil, prefilled_stable_ids: [])
 
   private
 
@@ -22,8 +23,21 @@ module TurboTypesDeChampConcern
     )
   end
 
+  def refresh_below_created(coordinate)
+    following = coordinate.siblings_starting_at(1)
+    refresh_below(coordinate, following, before: NO_DEPENDENCIES, after: dependencies_of(coordinate.type_de_champ))
+    @renumbered = following - @morphed.map(&:coordinate)
+  end
+
   def refresh_below_updated(coordinate, before:)
     refresh_below(coordinate, coordinate.siblings_starting_at(1), before:, after: dependencies_of(coordinate.type_de_champ), rerendered: [coordinate])
+  end
+
+  # the champ below the removed one now holds its position
+  def refresh_below_destroyed(coordinate)
+    following = coordinate.siblings_starting_at(0)
+    refresh_below(coordinate, following, before: dependencies_of(coordinate.type_de_champ), after: NO_DEPENDENCIES)
+    @renumbered = following - @morphed.map(&:coordinate)
   end
 
   def refresh_below(coordinate, following, before:, after:, rerendered: [])

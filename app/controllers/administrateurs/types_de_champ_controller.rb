@@ -18,7 +18,7 @@ module Administrateurs
         @coordinate = draft.coordinate_for(type_de_champ)
         ProcedureRevisionPreloader.load_one(@coordinate.revision)
         @created = champ_component_from(@coordinate, focused: true)
-        @morphed = champ_components_starting_at(@coordinate, 1)
+        refresh_below_created(@coordinate)
       else
         flash.alert = type_de_champ.errors.full_messages
       end
@@ -156,7 +156,11 @@ module Administrateurs
         if @coordinate.present?
           ProcedureRevisionPreloader.load_one(@coordinate.revision)
           @destroyed = @coordinate
-          @morphed = champ_components_starting_at(@coordinate)
+          if prefills_france_connect_date?(@coordinate.type_de_champ)
+            @morphed = all_champ_components
+          else
+            refresh_below_destroyed(@coordinate)
+          end
         end
       end
     end

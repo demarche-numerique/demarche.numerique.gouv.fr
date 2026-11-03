@@ -55,14 +55,26 @@ describe Administrateurs::TypesDeChampController, type: :controller do
     context "create type_de_champ text" do
       let(:type_champ) { TypeDeChamp.type_champs.fetch(:text) }
 
-      # l1, l2, l3 => l1, l1.5, l2, l3
-      # created: (l1.5, [l1]), morphed: (l2, [l1, l1.5]), (l3, [l1, l1.5, l2])
+      # l1, l2, l3 => l1, l1.5, l2, l3: l2 and l3 are renumbered
       it do
         is_expected.to have_http_status(:ok)
         expect(flash.alert).to eq(nil)
         expect(assigns(:coordinate)).to eq(second_coordinate)
         expect(extract_libelle(assigns(:created))).to eq(['l1.5', ['l1']])
-        expect(morpheds).to eq([['l2', ['l1', 'l1.5']], ['l3', ['l1', 'l1.5', 'l2']]])
+        expect(morpheds).to eq([])
+        expect(assigns(:renumbered).map(&:libelle)).to eq(['l2', 'l3'])
+      end
+
+      context 'creating the first source of the form' do
+        let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text, libelle: 'l1' }, { type: :text, libelle: 'l2' }]) }
+        let(:type_champ) { TypeDeChamp.type_champs.fetch(:yes_no) }
+
+        # the champs below show a condition block
+        it do
+          subject
+          expect(morpheds).to eq([['l2', ['l1', 'l1.5']]])
+          expect(assigns(:renumbered)).to eq([])
+        end
       end
     end
 
@@ -638,8 +650,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
     end
   end
 
-  # l1, l2, l3 => l1, l3
-  # destroyed: l2, morphed: (l3, [l1])
+  # l1, l2, l3 => l1, l3: l3 is renumbered
   describe '#destroy' do
     let(:params) do
       { procedure_id: procedure.id, stable_id: second_coordinate.stable_id }
@@ -654,7 +665,33 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       expect(flash.alert).to eq(nil)
       expect(assigns(:coordinate)).to eq(used_to_be_second_coordinate)
       expect(assigns(:destroyed).libelle).to eq('l2')
-      expect(morpheds).to eq([['l3', ['l1']]])
+      expect(morpheds).to eq([])
+      expect(assigns(:renumbered).map(&:libelle)).to eq(['l3'])
+    end
+
+    context 'removing the only source of the form' do
+      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text, libelle: 'l1' }, { type: :yes_no, libelle: 'l2' }, { type: :text, libelle: 'l3' }]) }
+
+      # the champs below lose their condition block
+      it do
+        subject
+        expect(morpheds).to eq([['l3', ['l1']]])
+        expect(assigns(:renumbered)).to eq([])
+      end
+    end
+
+    context 'removing the date prefilled by FranceConnect' do
+      let(:procedure) do
+        create(:procedure, public_type_de_champs: [
+          { type: :date, libelle: 'autre date' },
+          { type: :date, libelle: 'date de naissance', birthdate: true, prefill_with_france_connect_information: true },
+        ])
+      end
+
+      it 'unlocks the other dates' do
+        subject
+        expect(morpheds.map(&:first)).to eq(['autre date'])
+      end
     end
 
     context 'when the champ was already removed (replayed double click)' do
