@@ -35,14 +35,6 @@ class ProcedureRevisionTypeDeChamp < ApplicationRecord
     parent_id.present?
   end
 
-  def first?
-    position == 0
-  end
-
-  def last?
-    siblings.last == self
-  end
-
   def empty?
     revision_type_de_champs.empty?
   end

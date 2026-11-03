@@ -25,9 +25,7 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
   def html_options
     {
       id: dom_id(coordinate, :type_de_champ_editor),
-      class: class_names('type-header-section': type_de_champ.header_section?,
-        first: coordinate.first?,
-        last: coordinate.last?),
+      class: class_names('type-header-section': type_de_champ.header_section?),
       data: {
         controller: 'type-de-champ-editor',
         type_de_champ_editor_move_up_url_value: move_up_admin_procedure_type_de_champ_path(procedure, type_de_champ.stable_id),

@@ -32,11 +32,11 @@ describe 'Editing a champ keeps the champs below it up to date', js: true do
       Array.from(document.querySelectorAll('li.type-de-champ')).map((li) => {
         const own = (selector) => Array.from(li.querySelectorAll(`:scope > .type-de-champ-container > ${selector}`));
         const option = (o) => [o.textContent.trim(), o.selected, o.disabled];
+        const shown = (e) => getComputedStyle(e).display != 'none';
         const condition = '[id^="condition_"]';
         return {
           id: li.id,
-          first: li.classList.contains('first'),
-          last: li.classList.contains('last'),
+          moves: own('.footer :is(.move-up, .move-down)').map(shown),
           position: own('.footer .position').map((e) => e.textContent.trim()),
           levels: own('.head select[name$="[header_section_level]"] option').map(option),
           condition: own(condition).length,
@@ -62,6 +62,17 @@ describe 'Editing a champ keeps the champs below it up to date', js: true do
     login_as procedure.administrateurs.first.user, scope: :user
     visit champs_admin_procedure_path(procedure)
     expect(page).to have_css('body.dom-ready')
+  end
+
+  scenario 'adding a champ at the end' do
+    move_down = "#{editor_of('Liste des associés')} > .type-de-champ-container > .footer .move-down"
+    expect(page).to have_css("#{editor_of('Demandeur')} > .type-de-champ-container > .footer .move-up", visible: :hidden)
+    expect(page).to have_css(move_down, visible: :hidden)
+
+    within("#{editor_of('Liste des associés')} > .type-de-champ-add-button") { add_champ }
+
+    expect(page).to have_css(move_down, visible: :visible)
+    expect_the_state_of_a_reload
   end
 
   scenario 'renaming a source cited below' do
