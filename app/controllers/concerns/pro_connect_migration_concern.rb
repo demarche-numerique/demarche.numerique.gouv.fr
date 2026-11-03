@@ -10,8 +10,8 @@ module ProConnectMigrationConcern
 
   private
 
-  def start_pro_connect_migration(user)
-    session[SESSION_KEY] = ProConnectMigration.create!(user:, source_email: user.email).id
+  def start_pro_connect_migration(user, source_email: user.email, parent: nil)
+    session[SESSION_KEY] = ProConnectMigration.create!(user:, source_email:, parent:).id
     redirect_to pro_connect_migration_path
   end
 

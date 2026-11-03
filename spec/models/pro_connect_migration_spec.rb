@@ -31,6 +31,29 @@ describe ProConnectMigration do
 
       it { subject; expect(migration).to be_awaiting_code }
     end
+
+    context 'for a co-holder' do
+      let(:origin) { ProConnectMigration.create!(user: account, source_email: 'contact@exemple.fr', state: :renamed, shared: true) }
+      let(:migration) { ProConnectMigration.create!(user: account, source_email: 'contact@exemple.fr', parent: origin) }
+
+      context 'with an address that already has an account' do
+        let(:email) { users.usager.email }
+
+        it { subject; expect(migration).to be_awaiting_code }
+      end
+
+      context 'with the old address itself' do
+        let(:email) { 'contact@exemple.fr' }
+
+        it { subject; expect(migration).to be_awaiting_code }
+      end
+
+      context 'from another domain' do
+        let(:email) { 'camille.dupont@ailleurs.fr' }
+
+        it { subject; expect(migration).to be_domain_mismatch }
+      end
+    end
   end
 
   describe '#verify_code' do

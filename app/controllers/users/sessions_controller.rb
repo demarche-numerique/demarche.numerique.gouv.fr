@@ -28,6 +28,9 @@ class Users::SessionsController < Devise::SessionsController
         flash.discard(:notice)
         return start_pro_connect_migration(resource) if resource.administrateur.may_migrate_to_pro_connect?
 
+        origin = ProConnectMigration.joinable_for(User.normalize_value_for(:email, sign_in_params[:email]))
+        return start_pro_connect_migration(resource, source_email: origin.source_email, parent: origin) if origin&.user_id == resource.id
+
         return redirect_to_pro_connect_required
       end
 

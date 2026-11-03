@@ -231,6 +231,12 @@ class User < ApplicationRecord
     user
   end
 
+  # Devise looks the account up here for the password sign in only: the old
+  # address of a migrated account still leads its co-holders to it.
+  def self.find_for_database_authentication(conditions)
+    super || ProConnectMigration.renamed_account_for(normalize_value_for(:email, conditions[:email]))
+  end
+
   def self.create_or_promote_to_expert(email, password)
     user = User.unscope(:eager_load)
       .create_with(password: password, confirmed_at: Time.zone.now)

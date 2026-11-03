@@ -71,9 +71,42 @@ describe 'Signin in:' do
         expect(page).to have_link('Migrer vers ProConnect', href: pro_connect_login_path(migration: true))
       end
 
-      scenario 'a nominative address of the same domain takes the account over with the code sent to the old one' do
+      scenario 'a nominative address of the same domain takes the account over with the code sent to the old one, and a "no" closes the old address' do
         old_email = admin.email
-        stub_pro_connect(email: 'camille.dupont@exemple.fr')
+        migrate(old_email, pro_connect_email: 'camille.dupont@exemple.fr')
+
+        expect(page).to have_text('Compte partagé ?')
+        choose 'Non'
+        click_on 'Terminer ma migration vers ProConnect'
+
+        expect(page).to have_text('Migration terminée')
+        expect(page).to have_text("L’accès à ce compte avec l’adresse #{old_email} sera désactivé")
+        expect(admin.user.reload.email).to eq('camille.dupont@exemple.fr')
+
+        Capybara.reset_sessions!
+        visit new_user_session_path
+        try_sign_in_with old_email, users.default_password
+        expect(page).to have_text('Adresse électronique ou mot de passe incorrect.')
+      end
+
+      scenario 'after a "yes", a co-holder migrates in turn with the old address and gets its procedures' do
+        old_email = admin.email
+        migrate(old_email, pro_connect_email: 'camille.dupont@exemple.fr')
+        choose 'Oui'
+        click_on 'Terminer ma migration vers ProConnect'
+        expect(page).to have_text('Vous êtes maintenant la seule personne')
+
+        Capybara.reset_sessions!
+        ActionMailer::Base.deliveries.clear
+        migrate(old_email, pro_connect_email: 'dominique.martin@exemple.fr')
+
+        expect(page).to have_text('Migration terminée')
+        expect(page).to have_text('Les autres personnes qui avaient accès')
+        expect(User.find_by!(email: 'dominique.martin@exemple.fr').administrateur.procedures).to match_array(admin.reload.procedures)
+      end
+
+      def migrate(old_email, pro_connect_email:)
+        stub_pro_connect(email: pro_connect_email)
 
         visit new_user_session_path
         try_sign_in_with old_email, users.default_password
@@ -83,14 +116,6 @@ describe 'Signin in:' do
         expect(page).to have_text('Vérification de votre identité')
         fill_in 'Code de sécurité', with: open_email(old_email).body.to_s[/>\s*(\d{6})\s*</, 1]
         click_on 'Valider le code de sécurité'
-
-        expect(page).to have_text('Compte partagé ?')
-        choose 'Non'
-        click_on 'Terminer ma migration vers ProConnect'
-
-        expect(page).to have_text('Migration terminée')
-        expect(page).to have_text("L’accès à ce compte avec l’adresse #{old_email} sera désactivé")
-        expect(admin.user.reload.email).to eq('camille.dupont@exemple.fr')
       end
     end
 

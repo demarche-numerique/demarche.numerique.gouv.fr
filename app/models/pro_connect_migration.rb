@@ -25,6 +25,16 @@ class ProConnectMigration < ApplicationRecord
   scope :sent_to_support, -> { where(state: SUPPORT_STATES, updated_at: PENDING_FOR.ago..) }
   scope :waiting_for_code, -> { awaiting_code.where(updated_at: PENDING_FOR.ago..) }
   scope :completed, -> { where(state: [:renamed, :granted]) }
+  scope :joinable, -> { renamed.where(shared: true) }
+
+  def self.joinable_for(email) = joinable.where(source_email: email).last
+
+  # Only an account ProConnect binds, while the migration is open to it:
+  # sessions#create then signs it out at once.
+  def self.renamed_account_for(email)
+    account = joinable_for(email)&.user
+    account if account&.administrateur&.pro_connect_required? && Flipper.enabled?(:administrateur_pro_connect_migration, account)
+  end
 
   def identify!(auth:)
     update!(pro_connect_email: auth.email, state: outcome_for(auth.email))
@@ -100,10 +110,12 @@ class ProConnectMigration < ApplicationRecord
   private
 
   def outcome_for(email)
-    if email == source_email
-      :same_email
-    elsif domain(email) != domain(source_email)
+    if domain(email) != domain(source_email)
       :domain_mismatch
+    elsif parent
+      :awaiting_code
+    elsif email == source_email
+      :same_email
     elsif User.exists?(email:)
       :existing_account
     else
