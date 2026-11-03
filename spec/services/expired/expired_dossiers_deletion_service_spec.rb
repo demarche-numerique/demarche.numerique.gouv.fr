@@ -110,13 +110,14 @@ describe Expired::DossiersDeletionService do
 
       before do
         allow(service).to receive(:group_by_user_email).and_wrap_original do |group_by_user_email, *args|
-          group_by_user_email.call(*args).tap { dossier.update_columns(state: Dossier.states.fetch(:en_construction)) }
+          group_by_user_email.call(*args).tap { dossier.update_column(:state, :en_construction) }
         end
         service.send_brouillon_expiration_notices
       end
 
-      it 'sends no mail' do
+      it 'neither mails nor flags it' do
         expect(DossierMailer).not_to have_received(:notify_brouillon_near_deletion)
+        expect(dossier.reload.brouillon_close_to_expiration_notice_sent_at).to be_nil
       end
     end
   end
