@@ -105,11 +105,13 @@ describe Expired::DossiersDeletionService do
       end
     end
 
-    context 'when the dossier left the scope after the selection' do
+    context 'when the dossier was submitted after the selection' do
       let!(:dossier) { create(:dossier, procedure: procedure, updated_at: (conservation_par_defaut - 2.weeks + 1.day).ago) }
 
       before do
-        allow(service).to receive(:all_user_dossiers_brouillon_close_to_expiration).and_return(Dossier.none)
+        allow(service).to receive(:group_by_user_email).and_wrap_original do |group_by_user_email, *args|
+          group_by_user_email.call(*args).tap { dossier.update_columns(state: Dossier.states.fetch(:en_construction)) }
+        end
         service.send_brouillon_expiration_notices
       end
 
