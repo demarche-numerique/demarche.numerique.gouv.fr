@@ -15,7 +15,7 @@ Rails.application.configure do
 
     # Javascript: allow us, Brevo and Matomo.
     # We need unsafe_inline because miniprofiler and us have some inline buttons :(
-    scripts_whitelist = ["client.crisp.chat", "cdn.jsdelivr.net", "static.suite.anct.gouv.fr"]
+    scripts_whitelist = ["client.crisp.chat", "static.suite.anct.gouv.fr"]
     scripts_whitelist << URI(MATOMO_IFRAME_URL).host if MATOMO_IFRAME_URL.present?
     policy.script_src(:self, :unsafe_eval, :unsafe_inline, :blob, *scripts_whitelist)
 
@@ -46,7 +46,7 @@ Rails.application.configure do
 
     # Everything else: allow us
     # Add the error source in the violation notification
-    default_whitelist = ["static.suite.anct.gouv.fr", "fonts.gstatic.com", "in-automate.sendinblue.com", "player.vimeo.com", "app.franceconnect.gouv.fr", "client.crisp.chat", "image.crisp.chat", "storage.crisp.chat", "*.crisp.help", "*.sibautomation.com", "sibautomation.com", "data"]
+    default_whitelist = ["static.suite.anct.gouv.fr", "fonts.gstatic.com", "in-automate.sendinblue.com", "player.vimeo.com", "app.franceconnect.gouv.fr", "client.crisp.chat", "image.crisp.chat", "storage.crisp.chat", "*.crisp.help", "*.sibautomation.com", "sibautomation.com"]
     default_whitelist += ENV.values_at('SENTRY_DSN_JS', 'SENTRY_DSN_RAILS').compact_blank.map { URI(it).host }.uniq
     default_whitelist << URI(DS_PROXY_URL).host if DS_PROXY_URL.present?
     policy.default_src(:self, :data, :blob, :report_sample, *default_whitelist)
