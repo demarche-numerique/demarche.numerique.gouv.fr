@@ -6,6 +6,16 @@ class ProConnectMigration < ApplicationRecord
   CODE_VALIDITY = 10.minutes
   MAX_CODE_ATTEMPTS = 5
   RESEND_AFTER = 1.minute
+  # Measured on the .gouv.fr addresses of the service-public directory. A nominative address
+  # caught here only costs its owner typing it on the ProConnect email page.
+  FUNCTIONAL_MAILBOX_PREFIXES = [
+    'service', 'contact', 'accueil', 'secretariat', 'secretaire', 'communication', 'courrier', 'direct', 'prefecture',
+    'souspref', 'sousdir', 'admin', 'info', 'webmaster', 'webmestre', 'noreply', 'postmaster', 'association', 'archive',
+    'mission', 'consulat', 'ambafrance', 'chancellerie', 'commissariat', 'police', 'academie', 'rectorat', 'conciliateur',
+    'codefi', 'droitsdesfemmes', 'guichet', 'cabinet', 'support', 'assistance', 'gestion', 'plateforme', 'cellule',
+  ].freeze
+  # Acronyms of services and words close to a surname: only as a whole word, so that cedric.martin keeps the hint.
+  FUNCTIONAL_MAILBOX_WORD = /\A(?:ce|sgc|sgar|sgae|sg|sp|pref|ddt|ddtm|ddets|ddetspp|ddcs|ddcspp|ddpp|ddfip|drfip|dfip|ddsp|dreal|dreets|deets|draaf|daaf|drac|deal|ars|dsden|udap|sdap|spfe|spf|sdif|sie|sip|sde|cad|dgs|dgas|dga|dgt|dgos|dg|drh|rh|dsi|dsn|dnum|dircofi|dir|dmd|ud|ggd|dares|drari|prs|sec|com|bureau|pole|bal|demarches?|demat|dematerialisation|teleservices?|t\d+)(?![a-z])/
 
   belongs_to :user
   belongs_to :target_user, class_name: 'User', optional: true
@@ -36,6 +46,12 @@ class ProConnectMigration < ApplicationRecord
   def self.renamed_account_for(email)
     account = joinable_for(email)&.user
     account if account&.administrateur&.pro_connect_required? && Flipper.enabled?(:administrateur_pro_connect_migration, account)
+  end
+
+  # ProConnect skips its email page when given a hint, and sends the agent straight to the
+  # provider of the domain under that address: a shared mailbox is not theirs to use.
+  def login_hint
+    source_email if !functional_mailbox?
   end
 
   def identify!(auth:)
@@ -118,6 +134,11 @@ class ProConnectMigration < ApplicationRecord
   def granted_to?(user) = children.granted.exists?(target_user: user)
 
   private
+
+  def functional_mailbox?
+    local_part = source_email.split('@').first
+    local_part.delete('._-').start_with?(*FUNCTIONAL_MAILBOX_PREFIXES) || local_part.match?(FUNCTIONAL_MAILBOX_WORD)
+  end
 
   def outcome_for(email)
     if domain(email) != domain(source_email)
