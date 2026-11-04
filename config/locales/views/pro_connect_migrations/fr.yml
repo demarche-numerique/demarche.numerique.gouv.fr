@@ -34,9 +34,11 @@ fr:
       submit: Valider le code de sécurité
       not_received: "Vous n’avez pas reçu le code ? Pensez à vérifier votre dossier de spam ou d’indésirables."
       resend: Renvoyer un nouveau code
+      timed_out: Le délai pour finaliser la migration vers ProConnect est dépassé. Reconnectez-vous pour la reprendre.
     verify_code:
       wrong_code: Ce code de sécurité est incorrect.
-      expired_code: Ce code de sécurité a expiré ou a été trop souvent mal saisi. Reconnectez-vous pour reprendre la migration.
+      expired_code: Ce code de sécurité a expiré. Demandez-en un nouveau avec « Renvoyer un nouveau code ».
+      attempts_spent: Le code de sécurité a été trop souvent mal saisi. Reconnectez-vous pour reprendre la migration.
       conflict: Ce compte a changé entre-temps. Reconnectez-vous pour reprendre la migration.
     resend_code:
       sent: Un nouveau code de sécurité a été envoyé à %{source_email}.

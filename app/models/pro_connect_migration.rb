@@ -51,9 +51,9 @@ class ProConnectMigration < ApplicationRecord
     claimed
   end
 
-  def code_usable?
-    awaiting_code? && code_sent_at > CODE_VALIDITY.ago && code_attempts < MAX_CODE_ATTEMPTS
-  end
+  def code_expired? = code_sent_at <= CODE_VALIDITY.ago
+
+  def attempts_spent? = code_attempts >= MAX_CODE_ATTEMPTS
 
   def rename!(auth:)
     transaction do

@@ -67,6 +67,16 @@ describe ProConnectMigrationsController, type: :controller do
         expect(controller.current_user).to be_nil
       end
 
+      it 'keeps the migration once the code has expired, for a new code' do
+        migration.update!(code_sent_at: 11.minutes.ago)
+
+        post :verify_code, params: { code: '123456' }
+
+        expect(response).to have_http_status(:unprocessable_content)
+        expect(response.body).to include('Ce code de sécurité a expiré')
+        expect(session[ProConnectMigrationConcern::SESSION_KEY]).to eq(migration.id)
+      end
+
       it 'starts over once the attempts are spent' do
         migration.update!(code_attempts: 4)
 
@@ -94,6 +104,25 @@ describe ProConnectMigrationsController, type: :controller do
         expect { post :resend_code }.not_to have_enqueued_mail
 
         expect(response).to redirect_to(pro_connect_migration_code_path)
+      end
+
+      it 'says why it starts over 30 minutes after the ProConnect return' do
+        migration.update_columns(code_sent_at: 2.minutes.ago, updated_at: 31.minutes.ago)
+
+        expect { post :resend_code }.not_to have_enqueued_mail
+
+        expect(response).to redirect_to(new_user_session_path)
+        expect(flash.alert).to eq(I18n.t('pro_connect_migrations.code.timed_out'))
+        expect(session[ProConnectMigrationConcern::SESSION_KEY]).to be_nil
+      end
+
+      it 'says nothing to whom has no migration any more' do
+        session.delete(ProConnectMigrationConcern::SESSION_KEY)
+
+        post :resend_code
+
+        expect(response).to redirect_to(new_user_session_path)
+        expect(flash.alert).to be_nil
       end
     end
   end

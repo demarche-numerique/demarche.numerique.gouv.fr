@@ -47,16 +47,20 @@ class ProConnectMigrationsController < ApplicationController
 
   def set_migration_waiting_for_code
     @migration = pro_connect_migration_in_session(ProConnectMigration.waiting_for_code)
-    redirect_to new_user_session_path if @migration.nil?
+    return if @migration.present?
+
+    flash.alert = t('pro_connect_migrations.code.timed_out') if session[SESSION_KEY].present?
+    forget_pro_connect_migration
+    redirect_to new_user_session_path
   end
 
   def retry_or_start_over
-    if @migration.reload.code_usable?
-      @error = t('pro_connect_migrations.verify_code.wrong_code')
-      render :code, status: :unprocessable_content
-    else
+    if @migration.reload.attempts_spent?
       forget_pro_connect_migration
-      redirect_to new_user_session_path, alert: t('pro_connect_migrations.verify_code.expired_code')
+      redirect_to new_user_session_path, alert: t('pro_connect_migrations.verify_code.attempts_spent')
+    else
+      @error = @migration.code_expired? ? t('pro_connect_migrations.verify_code.expired_code') : t('pro_connect_migrations.verify_code.wrong_code')
+      render :code, status: :unprocessable_content
     end
   end
 end

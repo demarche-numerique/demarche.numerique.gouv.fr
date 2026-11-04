@@ -34,9 +34,11 @@ en:
       submit: Confirm the security code
       not_received: Did not receive the code? Check your spam or junk folder.
       resend: Send a new code
+      timed_out: The time to complete the switch to ProConnect is over. Sign in again to resume it.
     verify_code:
       wrong_code: This security code is wrong.
-      expired_code: This security code has expired or was entered wrongly too many times. Sign in again to resume the switch.
+      expired_code: This security code has expired. Ask for a new one with "Send a new code".
+      attempts_spent: The security code was entered wrongly too many times. Sign in again to resume the switch.
       conflict: This account changed in the meantime. Sign in again to resume the switch.
     resend_code:
       sent: A new security code was sent to %{source_email}.
