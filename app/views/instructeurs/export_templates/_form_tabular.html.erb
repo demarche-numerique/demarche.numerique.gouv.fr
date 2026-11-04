@@ -1,13 +1,3 @@
-<div class="fr-my-4w" id="export_template-edit">
-  <div class="fr-mb-6w">
-    <%= render Dsfr::AlertComponent.new(state: :info, title: "Nouvel éditeur de modèle d’export", heading_level: 'h3') do |c| %>
-      <% c.with_body do %>
-        <%= t('.info_html', mailto: mail_to(CONTACT_EMAIL, subject: 'Editeur de modèle d’export')) %>
-      <% end %>
-    <% end %>
-  </div>
-</div>
-
 <div class="fr-grid-row fr-grid-row--gutters">
   <div class="fr-col-12 fr-col-md-8">
     <%= form_with model: [:instructeur, procedure, export_template], local: true, data: { turbo: true } do |f| %>

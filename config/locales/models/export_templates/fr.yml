@@ -28,10 +28,6 @@ fr:
   instructeurs:
     export_templates:
       form_tabular:
-        info_html: |
-          Cette page permet d’éditer un modèle d’export tabulaire et ainsi sélectionner les champs que vous souhaitez exporter.
-          Essayez-le et donnez-nous votre avis
-          en nous envoyant un email à %{mailto}.
         warning: Si vous modifiez ce modèle, il sera également modifié pour tous les instructeurs qui ont accès à ce modèle.
         cancel: Annuler
         submit: Enregistrer
