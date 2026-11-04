@@ -18,6 +18,11 @@ module ProcedureExportOrderConcern
     in_export_order(main_sheet_type_de_champs)
   end
 
+  # The columns of the main sheet when the repetitions are flattened in it
+  def type_de_champs_with_repetitions_for_procedure_export
+    in_export_order(aggregated_type_de_champs.root_type_de_champs.filter(&:fillable?))
+  end
+
   def repetition_type_de_champs_for_procedure_export
     in_export_order(repetition_type_de_champs)
   end
