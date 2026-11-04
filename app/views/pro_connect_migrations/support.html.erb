@@ -1,0 +1,27 @@
+<% content_for(:title, t('.alert_title')) %>
+<% content_for(:hide_header_signin, true) %>
+
+<div class="fr-container fr-py-5w">
+  <h1><%= t('.title') %></h1>
+
+  <%= render Dsfr::AlertComponent.new(state: :warning, title: t('.alert_title'), with_prefix: false, heading_level: 'h2', extra_class_names: 'fr-mb-3w') do |c| %>
+    <% c.with_body do %>
+      <p><%= t('.security') %></p>
+
+      <p>
+        <%= t('.contact_html', contact_link: mail_to(Current.contact_email)) %>
+      </p>
+    <% end %>
+  <% end %>
+
+  <% support_request = t('.request', application_name: Current.application_name, source_email: @migration.source_email, pro_connect_email: @migration.pro_connect_email) %>
+
+  <p class="fr-mb-1w"><%= t('.request_intro') %></p>
+  <p class="fr-p-2w fr-mb-1w fr-background-alt--grey"><%= support_request %></p>
+
+  <%= render Dsfr::CopyButtonComponent.new(text: support_request, title: t('clipboard.copy'), success: t('.copied'), title_visible: true) %>
+
+  <div class="fr-mt-5w">
+    <%= link_to t('.home', application_name: Current.application_name), root_path, class: 'fr-btn fr-btn--secondary' %>
+  </div>
+</div>

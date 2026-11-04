@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_28_153130) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_02_113238) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_catalog.plpgsql"
@@ -1050,6 +1050,27 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_28_153130) do
     t.index ["job", "created_at"], name: "index_parked_api_entreprise_fetches_on_job_and_created_at"
   end
 
+  create_table "pro_connect_migrations", force: :cascade do |t|
+    t.integer "code_attempts", default: 0, null: false
+    t.string "code_digest"
+    t.datetime "code_sent_at"
+    t.datetime "created_at", null: false
+    t.bigint "groupe_instructeur_ids", array: true
+    t.bigint "parent_id"
+    t.string "pro_connect_email"
+    t.bigint "procedure_ids", array: true
+    t.boolean "shared"
+    t.string "source_email", null: false
+    t.string "state", default: "started", null: false
+    t.bigint "target_user_id"
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["parent_id"], name: "index_pro_connect_migrations_on_parent_id"
+    t.index ["source_email"], name: "index_pro_connect_migrations_on_source_email", where: "((state)::text = 'renamed'::text)"
+    t.index ["target_user_id"], name: "index_pro_connect_migrations_on_target_user_id"
+    t.index ["user_id"], name: "index_pro_connect_migrations_on_user_id"
+  end
+
   create_table "procedure_paths", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "path"
@@ -1604,6 +1625,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_28_153130) do
   add_foreign_key "llm_rule_suggestions", "procedure_revisions"
   add_foreign_key "merge_logs", "users"
   add_foreign_key "parked_api_entreprise_fetches", "etablissements", on_delete: :cascade
+  add_foreign_key "pro_connect_migrations", "pro_connect_migrations", column: "parent_id", on_delete: :cascade
+  add_foreign_key "pro_connect_migrations", "users", column: "target_user_id", on_delete: :nullify
+  add_foreign_key "pro_connect_migrations", "users", on_delete: :cascade
   add_foreign_key "procedure_paths", "procedures"
   add_foreign_key "procedure_presentations", "assign_tos"
   add_foreign_key "procedure_revision_types_de_champ", "procedure_revision_types_de_champ", column: "parent_id"

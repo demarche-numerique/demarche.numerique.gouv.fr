@@ -20,6 +20,7 @@ end
 # A list of features to be deployed on first push
 features = [
   :administrateur_pro_connect_exempted,
+  :administrateur_pro_connect_migration,
   :administrateur_web_hook,
   :annotation_condition_champs_public,
   :blocking_pending_correction,

@@ -3,6 +3,7 @@
 # doc: https://github.com/numerique-gouv/proconnect-documentation/tree/main
 class ProConnectController < ApplicationController
   include ProConnectSessionConcern
+  include ProConnectMigrationConcern
 
   before_action :redirect_to_login_if_fc_aborted, only: [:callback]
   before_action :check_state, only: [:callback]
@@ -22,8 +23,10 @@ class ProConnectController < ApplicationController
     # A forced MFA round trip abandoned on the ProConnect screen never reaches
     # the callback, so its marker is still there.
     cookies.delete MFA_FORCED_FOR_COOKIE_NAME
+    forget_pro_connect_migration if !params[:migration]
 
-    uri, state, nonce = ProConnectService.authorization_uri
+    migration = pro_connect_migration_in_session(ProConnectMigration.pending)
+    uri, state, nonce = ProConnectService.authorization_uri(login_hint: migration&.source_email)
 
     cookies.encrypted[STATE_COOKIE_NAME] = { value: state, secure: Rails.env.production?, httponly: true }
     cookies.encrypted[NONCE_COOKIE_NAME] = { value: nonce, secure: Rails.env.production?, httponly: true }
@@ -37,6 +40,15 @@ class ProConnectController < ApplicationController
 
     mfa_forced_for = cookies.encrypted[MFA_FORCED_FOR_COOKIE_NAME]
     cookies.delete MFA_FORCED_FOR_COOKIE_NAME
+
+    if (migration = pro_connect_migration_in_session(ProConnectMigration.pending))
+      return enforce_mfa(auth.email, mfa_forced_for:, failure_path: pro_connect_migration_path) if !auth.mfa?
+
+      migration.identify!(auth:)
+      return redirect_to pro_connect_migration_support_path if migration.sent_to_support?
+
+      forget_pro_connect_migration
+    end
 
     user = User.find_by(email: auth.email)
 
@@ -60,7 +72,8 @@ class ProConnectController < ApplicationController
 
     sign_in_with_pro_connect(user, id_token: auth.id_token, mfa: auth.mfa?)
     user.administrateur&.persist_pro_connect_requirement!
-    redirect_to stored_location_for(:user) || root_path
+    return_to = stored_location_for(:user) || root_path
+    redirect_to(migration&.same_email? ? pro_connect_migration_completed_path : return_to)
 
   rescue Rack::OAuth2::Client::Error => e
     Rails.logger.error e.message
@@ -75,8 +88,8 @@ class ProConnectController < ApplicationController
       (user.instructeur? && user_info['idp_id'] == MON_COMPTE_PRO_IDP_ID)
   end
 
-  def enforce_mfa(email, mfa_forced_for:)
-    mfa_forced_for == email ? redirect_pro_connect_mfa_failed : redirect_to_forced_mfa(email)
+  def enforce_mfa(email, mfa_forced_for:, failure_path: pro_connect_path)
+    mfa_forced_for == email ? redirect_pro_connect_mfa_failed(failure_path) : redirect_to_forced_mfa(email)
   end
 
   def redirect_to_forced_mfa(email)
@@ -89,9 +102,9 @@ class ProConnectController < ApplicationController
     redirect_to uri, allow_other_host: true
   end
 
-  def redirect_pro_connect_mfa_failed
+  def redirect_pro_connect_mfa_failed(path)
     flash.alert = t('errors.messages.pro_connect.mfa_failed')
-    redirect_to pro_connect_path
+    redirect_to path
   end
 
   def redirect_to_login_if_fc_aborted

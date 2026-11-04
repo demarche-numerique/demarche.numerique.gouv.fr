@@ -6,6 +6,7 @@ class Users::SessionsController < Devise::SessionsController
   include ActionView::Helpers::DateHelper
   include FranceConnectConcern
   include ProConnectSessionConcern
+  include ProConnectMigrationConcern
 
   layout 'login', only: [:new, :create]
 
@@ -25,6 +26,8 @@ class Users::SessionsController < Devise::SessionsController
       if resource.administrateur&.pro_connect_required?
         sign_out(resource)
         flash.discard(:notice)
+        return start_pro_connect_migration(resource) if resource.administrateur.may_migrate_to_pro_connect?
+
         return redirect_to_pro_connect_required
       end
 
