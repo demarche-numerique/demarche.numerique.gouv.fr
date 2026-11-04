@@ -25,7 +25,7 @@ en:
         warning_html: "You are about to delete the super admin account of <strong>%{email}</strong>."
         access: "They lose access to the Manager immediately, open sessions included. No other super admin is notified."
         irreversible: "The account cannot be created again from the Manager: it takes a command on a server."
-        account: "Only the Manager access is deleted: platform accounts with the same address, administrateur or reviewer, are left untouched and have to be handled separately."
+        account: "Only the Manager access is deleted: platform accounts with the same address, administrator or reviewer, are left untouched and have to be handled separately."
         submit: "Delete the super admin"
       delete:
         success: "The super admin account of %{email} has been deleted."
@@ -40,7 +40,7 @@ en:
         submit: "Delete the gestionnaire"
     instructeurs:
       show:
-        cannot_be_deleted: "This reviewer cannot be deleted: they are an administrateur, or one of their procedures has a single reviewer in its default group."
+        cannot_be_deleted: "This reviewer cannot be deleted: they are an administrator, or one of their procedures has a single reviewer in its default group."
       delete_edit:
         title: "Delete reviewer %{id}"
         warning_html: "You are about to delete the reviewer role of <strong>%{email}</strong>. Their assignments to teams, their dossier follows, their bulk messages, their exports and their archives are destroyed."

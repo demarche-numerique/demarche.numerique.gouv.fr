@@ -8,7 +8,7 @@ en:
         title: File submitted
         body: "Find your procedure «\u00A0%{libelle_demarche}\u00A0» no.\u00A0%{dossier_id}."
       en_instruction:
-        title: File being processed
+        title: File under review
         body: "Find your procedure «\u00A0%{libelle_demarche}\u00A0» no.\u00A0%{dossier_id}."
       repasser_en_instruction:
         title: File under review

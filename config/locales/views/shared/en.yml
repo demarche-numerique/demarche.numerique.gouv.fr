@@ -4,7 +4,7 @@ en:
       notification: "presence of one or more unread notifications"
       dossiers:
         identite_entreprise:
-          warning_for_private_info: "The establishment SIRET %{siret} applied his right to not publish information regarding his identity. These informaiton won't be visible from reviewing services."
+          warning_for_private_info: "The establishment SIRET %{siret} applied his right to not publish information regarding his identity. This information will therefore only be visible to reviewers."
           non_diffusible: "Non-disclosable"
       avis:
         demande_envoyee_le: "Feedback send at %{date}"

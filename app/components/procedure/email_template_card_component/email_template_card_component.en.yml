@@ -47,6 +47,6 @@ en:
         This email is sent to the user **when the reviewer closes their file without follow-up**, **if it had been reopened for review**.
     repasse_en_instruction:
       default: |-
-        This email is sent to the user **when the reviewer re-examines** their file, **after a decision has already been made**.
+        This email is sent to the user **when the reviewer reopens the review** of their file, **after a decision has already been made**.
       accepte: |-
-        This email is sent to the user **when the reviewer re-examines** their file, **after the "Accept" decision has been automatically made**.
+        This email is sent to the user **when the reviewer reopens the review** of their file, **after the "Accept" decision has been automatically made**.

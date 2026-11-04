@@ -34,7 +34,7 @@ en:
         for_each_avis_submitted:
           title: Receive a notification for each avis requested from you
           notice_1: This email alerts you that an avis is requested from you.
-          notice_2: It is sent each time a reviewer asks you for an avis.
+          notice_2: It is sent each time a reviewer asks you for an opinion.
         for_each_message_submitted:
           title: Receive a notification for each message received
           notice_1: This email notifies you that a new message is available in the messaging system.

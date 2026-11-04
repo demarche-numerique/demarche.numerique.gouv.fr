@@ -4,4 +4,4 @@ en:
       email:
         passe_en_instruction:
           default_subject: Your file n° %{dossier_number} will be examined (%{procedure_libelle})
-          under_instruction: Acknowledgment of being under review
+          under_instruction: Acknowledgment of review start
