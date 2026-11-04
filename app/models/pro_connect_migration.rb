@@ -4,6 +4,7 @@ class ProConnectMigration < ApplicationRecord
   PENDING_FOR = 30.minutes
   SUPPORT_STATES = ['domain_mismatch', 'existing_account'].freeze
   CODE_VALIDITY = 10.minutes
+  MAX_CODE_ATTEMPTS = 5
 
   belongs_to :user
 
@@ -28,6 +29,15 @@ class ProConnectMigration < ApplicationRecord
     code = SecureRandom.random_number(1_000_000).to_s.rjust(6, '0')
     update!(code_digest: digest(code), code_sent_at: Time.current)
     UserMailer.pro_connect_migration_code(self, code, browser_description(browser)).deliver_later
+  end
+
+  # Counted in one statement: two requests in flight cannot both pass the last attempt.
+  def verify_code(code)
+    counted = self.class.awaiting_code
+      .where(id:, code_sent_at: CODE_VALIDITY.ago.., code_attempts: ...MAX_CODE_ATTEMPTS)
+      .update_counters(code_attempts: 1) == 1
+
+    counted && ActiveSupport::SecurityUtils.secure_compare(code_digest, digest(code.to_s.gsub(/\s/, '')))
   end
 
   private
