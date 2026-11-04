@@ -217,6 +217,18 @@ describe BlobProcessorJob, :external_deps, type: :job do
         expect(watermark_service).to have_received(:apply).with(an_instance_of(Vips::Image), format: blob.content_type)
         expect(blob.watermarked_at).to be_present
       end
+
+      context 'when the filename extension does not match the content type' do
+        before { blob.update_columns(filename: 'scan.jpg') }
+
+        it 'applies watermark and sets watermarked_at' do
+          expect {
+            described_class.perform_now(blob)
+          }.to change { blob.reload.checksum }
+
+          expect(blob.watermarked_at).to be_present
+        end
+      end
     end
 
     context 'when the blob is the titre identite of a champ' do

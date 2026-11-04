@@ -98,7 +98,7 @@ class BlobProcessorJob < ApplicationJob
 
     write_opts = uninterlace_needed ? { interlace: false } : {}
 
-    Tempfile.create(["processed", File.extname(path)]) do |output|
+    Tempfile.create(["processed", Rack::Mime::MIME_TYPES.key(blob.content_type)]) do |output|
       if watermark_needed
         decode(path, autorotate: autorotate_needed) do |image|
           WatermarkService.new.apply(image, format: blob.content_type).write_to_file(output.path, **write_opts)
