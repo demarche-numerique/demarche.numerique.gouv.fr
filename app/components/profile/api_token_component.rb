@@ -33,4 +33,12 @@ class Profile::APITokenComponent < ApplicationComponent
 
     "#{use} #{expiration}"
   end
+
+  def expiration_badge
+    if @api_token.expired?
+      tag.span(t(".expired"), class: 'fr-badge fr-badge--sm fr-badge--error')
+    elsif @api_token.expiring_soon?
+      tag.span(t(".expiring_soon"), class: 'fr-badge fr-badge--sm fr-badge--warning')
+    end
+  end
 end

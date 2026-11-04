@@ -7,15 +7,14 @@ module Administrateurs
     # Removing a procedure only narrows the token, it stays possible without ProConnect.
     skip_before_action :ensure_pro_connect_if_required!, only: :remove_procedure
     before_action :set_api_token, only: [:edit, :update, :destroy, :remove_procedure]
-
-    helper_method :targets
+    before_action :set_api_token_params, only: [:nom, :autorisations, :securite, :create]
 
     def nom
-      @name = name
+      @name = @api_token_params.name
     end
 
     def autorisations
-      @name = name
+      @name = @api_token_params.name
       @libelle_id_procedures = libelle_id_procedures
     end
 
@@ -24,22 +23,22 @@ module Administrateurs
 
     def create
       if params[:target] == "custom" && allowed_procedure_ids.empty?
-        return redirect_to autorisations_admin_api_tokens_path(all_params.merge(noProcedure: true))
+        return redirect_to autorisations_admin_api_tokens_path(@api_token_params.to_h.merge(noProcedure: true))
       end
 
       if params[:networkFiltering] == "customNetworks" && invalid_network?
-        return redirect_to securite_admin_api_tokens_path(all_params.merge(invalidNetwork: true))
+        return redirect_to securite_admin_api_tokens_path(@api_token_params.to_h.merge(invalidNetwork: true))
       end
 
       expires_at = requested_expires_at
 
       if expires_at.nil?
-        return redirect_to securite_admin_api_tokens_path(all_params.merge(invalidLifetime: true))
+        return redirect_to securite_admin_api_tokens_path(@api_token_params.to_h.merge(invalidLifetime: true))
       end
 
       @api_token, @packed_token = APIToken.generate(current_administrateur, expires_at:)
 
-      @api_token.update!(name:, write_access:,
+      @api_token.update!(name: @api_token_params.name, write_access:,
                          allowed_procedure_ids:, authorized_networks:,
                          requires_ip_filtering: true)
 
@@ -74,7 +73,9 @@ module Administrateurs
         h[:authorized_networks] = networks
       end
 
-      if procedure_to_add.present?
+      if params[:restore_full_access].present?
+        h[:allowed_procedure_ids] = nil
+      elsif procedure_to_add.present?
         to_add = current_administrateur
           .procedure_ids
           .intersection([procedure_to_add])
@@ -84,7 +85,7 @@ module Administrateurs
       end
 
       if params[:name].present?
-        h[:name] = name
+        h[:name] = params[:name]
       end
 
       @api_token.update!(h)
@@ -94,11 +95,12 @@ module Administrateurs
 
     def remove_procedure
       procedure_id = params[:procedure_id].to_i
-      @api_token.allowed_procedure_ids =
-        (@api_token.allowed_procedure_ids || @api_token.procedure_ids) - [procedure_id]
+      remaining_ids = (@api_token.allowed_procedure_ids || @api_token.procedure_ids) - [procedure_id]
+      @api_token.allowed_procedure_ids = remaining_ids
       @api_token.save!
 
-      render turbo_stream: turbo_stream.remove("authorized_procedure_#{procedure_id}")
+      @libelle_id_procedures = libelle_id_procedures
+      render turbo_stream: turbo_stream.update("tokenUpdate", partial: "administrateurs/api_tokens/edit_form", locals: { api_token: @api_token, libelle_id_procedures: @libelle_id_procedures, invalid_network_message: nil })
     end
 
     def destroy
@@ -125,11 +127,6 @@ module Administrateurs
         .order(:libelle)
         .pluck(:libelle, :id)
         .map { |libelle, id| ["#{id} - #{libelle}", id] }
-    end
-
-    def all_params
-      [:name, :access, :target, :targets, :networkFiltering, :networks, :lifetime, :customLifetime]
-        .index_with { |param| params[param] }
     end
 
     def authorized_networks
@@ -164,17 +161,12 @@ module Administrateurs
       @api_token = current_administrateur.api_tokens.find(params[:id])
     end
 
-    def name
-      params[:name]
+    def set_api_token_params
+      @api_token_params = APITokenParams.new(params)
     end
 
     def procedure_to_add
       params[:procedure_to_add]&.to_i
-    end
-
-    # Permitting an array drops a forged string or hash value.
-    def targets
-      params.permit(targets: []).fetch(:targets, [])
     end
 
     def write_access
@@ -185,7 +177,7 @@ module Administrateurs
       if params[:target] == "custom"
         current_administrateur
           .procedure_ids
-          .intersection(targets.map(&:to_i))
+          .intersection(@api_token_params.targets.map(&:to_i))
       else
         nil
       end
