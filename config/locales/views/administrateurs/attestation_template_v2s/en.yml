@@ -4,3 +4,4 @@ en:
       form:
         preview_dossier_label: Application used for the preview
         preview_dossier_option: "No. %{number} – %{owner} – %{state}"
+        preview_dossier_search: Filter by number or name
