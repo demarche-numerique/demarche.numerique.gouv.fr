@@ -36,6 +36,7 @@ features = [
   :ami_notifications,
   :ami_recipient_fc_hash_v2,
   :brevo_api_delivery,
+  :champ_matching,
   :dossier_vide_weasyprint,
   :s3_storage,
 ]

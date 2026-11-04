@@ -79,6 +79,10 @@ class Procedure < ApplicationRecord
   has_many :bulk_messages, dependent: :destroy
   has_many :labels, -> { order(:position, :id) }, dependent: :destroy, inverse_of: :procedure
 
+  # destroy and not delete_all: the foreign key refuses to leave champ matches behind.
+  has_many :procedure_user_overlaps_as_left, class_name: 'ProcedureUserOverlap', foreign_key: :left_procedure_id, dependent: :destroy, inverse_of: :left_procedure
+  has_many :procedure_user_overlaps_as_right, class_name: 'ProcedureUserOverlap', foreign_key: :right_procedure_id, dependent: :destroy, inverse_of: :right_procedure
+
   has_many :instructeurs_procedures, dependent: :destroy
 
   def active_dossier_submitted_message
@@ -494,6 +498,12 @@ class Procedure < ApplicationRecord
 
   def feature_enabled?(feature)
     Flipper.enabled?(feature, self)
+  end
+
+  # The flag is the perimeter: a procedure it names but that no longer exists
+  # drops out on its own.
+  def self.champ_matching_enabled
+    where(id: Flipper[:champ_matching].actors_value.filter_map { it[/\AProcedure;(\d+)\z/, 1] })
   end
 
   def organisation_name

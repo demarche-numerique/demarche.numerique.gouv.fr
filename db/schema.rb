@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_28_153130) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_02_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_catalog.plpgsql"
@@ -1122,6 +1122,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_28_153130) do
     t.index ["procedure_tag_id", "procedure_id"], name: "index_procedures_tags_on_tag_id_and_procedure_id"
   end
 
+  create_table "procedure_user_overlaps", force: :cascade do |t|
+    t.datetime "champs_computed_at"
+    t.integer "common_users_count", null: false
+    t.datetime "created_at", null: false
+    t.bigint "left_procedure_id", null: false
+    t.bigint "right_procedure_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["left_procedure_id", "right_procedure_id"], name: "index_procedure_user_overlaps_on_pair", unique: true
+    t.index ["right_procedure_id"], name: "index_procedure_user_overlaps_on_right_procedure_id"
+    t.check_constraint "left_procedure_id < right_procedure_id", name: "procedure_user_overlaps_canonical_order"
+  end
+
   create_table "procedures", id: :serial, force: :cascade do |t|
     t.string "aasm_state", default: "brouillon"
     t.boolean "accuse_lecture", default: false, null: false
@@ -1429,6 +1441,18 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_28_153130) do
     t.check_constraint "instructeur_id IS NOT NULL", name: "trusted_device_tokens_instructeur_id_null"
   end
 
+  create_table "type_de_champ_matches", force: :cascade do |t|
+    t.integer "common_users_count", null: false
+    t.datetime "created_at", null: false
+    t.bigint "left_procedure_id", null: false
+    t.bigint "left_stable_id", null: false
+    t.integer "matching_users_count", null: false
+    t.bigint "right_procedure_id", null: false
+    t.bigint "right_stable_id", null: false
+    t.datetime "updated_at", null: false
+    t.index ["left_procedure_id", "right_procedure_id", "left_stable_id", "right_stable_id"], name: "index_type_de_champ_matches_on_champ_couple", unique: true
+  end
+
   create_table "types_de_champ", id: :serial, force: :cascade do |t|
     t.jsonb "condition"
     t.datetime "created_at", precision: nil
@@ -1611,6 +1635,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_28_153130) do
   add_foreign_key "procedure_revision_types_de_champ", "types_de_champ"
   add_foreign_key "procedure_revisions", "dossier_submitted_messages"
   add_foreign_key "procedure_revisions", "procedures"
+  add_foreign_key "procedure_user_overlaps", "procedures", column: "left_procedure_id"
+  add_foreign_key "procedure_user_overlaps", "procedures", column: "right_procedure_id"
   add_foreign_key "procedures", "groupe_instructeurs", column: "defaut_groupe_instructeur_id"
   add_foreign_key "procedures", "procedure_presentations", column: "admin_default_procedure_presentation_id"
   add_foreign_key "procedures", "procedure_revisions", column: "draft_revision_id"
@@ -1628,6 +1654,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_28_153130) do
   add_foreign_key "traitements", "dossiers"
   add_foreign_key "traitements", "procedure_revisions", column: "revision_id"
   add_foreign_key "trusted_device_tokens", "instructeurs"
+  add_foreign_key "type_de_champ_matches", "procedure_user_overlaps", column: ["left_procedure_id", "right_procedure_id"], primary_key: ["left_procedure_id", "right_procedure_id"]
   add_foreign_key "types_de_champ", "procedures"
   add_foreign_key "types_de_champ", "referentiels"
   add_foreign_key "users", "users", column: "requested_merge_into_id"
