@@ -36,6 +36,9 @@ class Expired::DossiersDeletionService < Expired::MailRateLimiter
 
     user_notifications.each do |(email, dossiers)|
       all_user_dossiers = all_user_dossiers_brouillon_close_to_expiration(dossiers.first.user).to_a
+      # Edited, submitted or deleted since the selection
+      next if all_user_dossiers.empty?
+
       mail = DossierMailer.notify_brouillon_near_deletion(
         all_user_dossiers,
         email
