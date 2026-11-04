@@ -194,6 +194,9 @@ FactoryBot.define do
     factory :type_de_champ_epci do
       type_champ { TypeDeChamp.type_champs.fetch(:epci) }
     end
+    factory :type_de_champ_link do
+      type_champ { TypeDeChamp.type_champs.fetch(:link) }
+    end
     factory :type_de_champ_engagement_juridique do
       type_champ { TypeDeChamp.type_champs.fetch(:engagement_juridique) }
     end
