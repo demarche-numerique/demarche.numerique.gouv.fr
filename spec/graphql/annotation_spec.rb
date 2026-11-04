@@ -16,6 +16,7 @@ RSpec.describe Mutations::DossierModifierAnnotations, type: :graphql do
       { type: :decimal_number, libelle: 'Montant' },
       {},
       { type: :email },
+      { type: :link },
     ]
   end
   let(:dossiers) { [] }
@@ -231,6 +232,25 @@ RSpec.describe Mutations::DossierModifierAnnotations, type: :graphql do
           annotations: [],
           errors: [{ message: "L‘annotation \"#{annotation.to_typed_id}\" n’est pas de type attendu" }],
         })
+      end
+    end
+
+    context 'with a link annotation' do
+      let(:annotation) { champs_private.find(&:link?) }
+      let(:value) { { link: 'https://outil-metier.gouv.fr/dossiers/42' } }
+
+      it 'updates the url' do
+        expect(data[:dossierModifierAnnotations][:errors]).to be_nil
+        expect(annotation.reload.value).to eq('https://outil-metier.gouv.fr/dossiers/42')
+      end
+
+      context 'with a javascript: url' do
+        let(:value) { { link: 'javascript:alert(1)' } }
+
+        it 'rejects it' do
+          expect(data[:dossierModifierAnnotations][:errors]).to eq([{ message: 'n’est pas un lien valide' }])
+          expect(annotation.reload.value).not_to start_with('javascript')
+        end
       end
     end
 

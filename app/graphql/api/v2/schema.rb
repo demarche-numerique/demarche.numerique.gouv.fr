@@ -119,6 +119,7 @@ class API::V2::Schema < GraphQL::Schema
     Types::Champs::Descriptor::HeaderSectionChampDescriptorType,
     Types::Champs::Descriptor::IbanChampDescriptorType,
     Types::Champs::Descriptor::IntegerNumberChampDescriptorType,
+    Types::Champs::Descriptor::LinkChampDescriptorType,
     Types::Champs::Descriptor::LinkedDropDownListChampDescriptorType,
     Types::Champs::Descriptor::MultipleDropDownListChampDescriptorType,
     Types::Champs::Descriptor::NumberChampDescriptorType,
