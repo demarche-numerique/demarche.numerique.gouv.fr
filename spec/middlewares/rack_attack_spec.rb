@@ -55,6 +55,18 @@ describe Rack::Attack, type: :request do
     end
   end
 
+  context '/pro_connect/migration/code' do
+    before do
+      10.times { Rack::Attack.cache.count("/pro_connect/migration/code/ip:#{ip}", 60) }
+    end
+
+    it 'throttles the codes tried from one IP address' do
+      post '/pro_connect/migration/code', headers: { 'X-Forwarded-For': ip }
+
+      expect(response).to have_http_status(:too_many_requests)
+    end
+  end
+
   # La création de dossier préremplie est anonyme : son throttle est la seule limite.
   context '/api/public/v1/demarches/:id/dossiers' do
     let(:limit) { 15 }
