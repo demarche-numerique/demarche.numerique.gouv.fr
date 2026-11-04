@@ -1031,7 +1031,7 @@ DEPENDENCIES
   rack-attack
   rack-mini-profiler
   rack_session_access
-  rails (~> 8.1.3)
+  rails (~> 8.1.4)
   rails-controller-testing
   rails-erd
   rails-i18n
