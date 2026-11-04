@@ -687,6 +687,29 @@ describe Users::DossiersController, type: :controller do
     end
   end
 
+  describe '#rendez_vous' do
+    render_views
+
+    let(:dossier) { dossiers.en_instruction }
+
+    before { sign_in(user) }
+
+    subject { get :rendez_vous, params: { id: dossier.id } }
+
+    context 'without a booked rdv' do
+      it { is_expected.to redirect_to(dossier_path(dossier)) }
+    end
+
+    context 'with a booked rdv' do
+      let!(:rdv) { create(:rdv, :booked, dossier:, instructeur: instructeurs.default) }
+
+      it 'links to the rdv on RDV Service Public' do
+        expect(subject).to have_http_status(:ok)
+        expect(response.body).to include(RdvService.rdv_sp_rdv_user_url(rdv.rdv_external_id))
+      end
+    end
+  end
+
   describe '#restore' do
     before { sign_in(user) }
     subject { patch :restore, params: { id: dossier.id } }
