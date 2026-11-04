@@ -70,6 +70,23 @@ describe 'Signin in:' do
         expect(page).to have_current_path(pro_connect_migration_path)
         expect(page).to have_link('Migrer vers ProConnect', href: pro_connect_login_path(migration: true))
       end
+
+      scenario 'a nominative address of the same domain takes the account over with the code sent to the old one' do
+        old_email = admin.email
+        stub_pro_connect(email: 'camille.dupont@exemple.fr')
+
+        visit new_user_session_path
+        try_sign_in_with old_email, users.default_password
+        click_on 'Migrer vers ProConnect'
+        perform_enqueued_jobs
+
+        expect(page).to have_text('Vérification de votre identité')
+        fill_in 'Code de sécurité', with: open_email(old_email).body.to_s[/>\s*(\d{6})\s*</, 1]
+        click_on 'Valider le code de sécurité'
+
+        expect(page).to have_text('Migration terminée')
+        expect(admin.user.reload.email).to eq('camille.dupont@exemple.fr')
+      end
     end
 
     scenario 'a ProConnect sign in makes the browser offer only ProConnect, unless a citizen asks for the full form' do

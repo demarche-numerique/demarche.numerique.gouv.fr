@@ -47,5 +47,8 @@ get 'pro_connect/required' => 'pro_connect#required'
 scope 'pro_connect/migration', as: :pro_connect_migration, controller: :pro_connect_migrations do
   get '/' => :show
   get 'support'
+  get 'code'
+  post 'code' => :verify_code
+  post 'resend_code'
   get 'completed'
 end

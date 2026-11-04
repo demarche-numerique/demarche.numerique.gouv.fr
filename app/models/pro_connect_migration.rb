@@ -3,24 +3,75 @@
 class ProConnectMigration < ApplicationRecord
   PENDING_FOR = 30.minutes
   SUPPORT_STATES = ['domain_mismatch', 'existing_account'].freeze
+  CODE_VALIDITY = 10.minutes
+  MAX_CODE_ATTEMPTS = 5
+  RESEND_AFTER = 1.minute
 
   belongs_to :user
+  belongs_to :target_user, class_name: 'User', optional: true
 
   enum :state, {
     started: 'started',
     same_email: 'same_email',
     domain_mismatch: 'domain_mismatch',
     existing_account: 'existing_account',
+    awaiting_code: 'awaiting_code',
+    renamed: 'renamed',
   }
 
   scope :pending, -> { started.where(created_at: PENDING_FOR.ago..) }
   scope :sent_to_support, -> { where(state: SUPPORT_STATES, updated_at: PENDING_FOR.ago..) }
+  scope :waiting_for_code, -> { awaiting_code.where(updated_at: PENDING_FOR.ago..) }
 
   def identify!(auth:)
     update!(pro_connect_email: auth.email, state: outcome_for(auth.email))
   end
 
   def sent_to_support? = state.in?(SUPPORT_STATES)
+
+  def send_code!(browser)
+    code = SecureRandom.random_number(1_000_000).to_s.rjust(6, '0')
+    # Leaves updated_at at the ProConnect return, which bounds waiting_for_code.
+    update_columns(code_digest: digest(code), code_sent_at: Time.current)
+    UserMailer.pro_connect_migration_code(self, code, browser_description(browser)).deliver_later
+  end
+
+  # Counted in one statement: two requests in flight cannot both pass the last attempt.
+  def verify_code(code)
+    counted = self.class.awaiting_code
+      .where(id:, code_sent_at: CODE_VALIDITY.ago.., code_attempts: ...MAX_CODE_ATTEMPTS)
+      .update_counters(code_attempts: 1) == 1
+
+    counted && ActiveSupport::SecurityUtils.secure_compare(code_digest, digest(code.to_s.gsub(/\s/, '')))
+  end
+
+  def resend_code!(browser)
+    claimed = self.class.awaiting_code.where(id:, code_sent_at: ..RESEND_AFTER.ago).update_all(code_sent_at: Time.current) == 1
+    send_code!(browser) if claimed
+    claimed
+  end
+
+  def code_expired? = code_sent_at <= CODE_VALIDITY.ago
+
+  def attempts_spent? = code_attempts >= MAX_CODE_ATTEMPTS
+
+  def rename!(auth:)
+    transaction do
+      # Without the default eager_load: PostgreSQL refuses FOR UPDATE on an outer join.
+      account = User.unscope(:eager_load).lock.find(user_id)
+      next false if account.email != source_email || auth.email != pro_connect_email || User.exists?(email: pro_connect_email)
+
+      update!(
+        state: :renamed, target_user: account,
+        procedure_ids: owned_procedure_ids(account), groupe_instructeur_ids: assigned_groupe_instructeur_ids(account)
+      )
+      account.skip_reconfirmation!
+      account.update!(email: pro_connect_email, email_verified_at: Time.current, unconfirmed_email: nil, requested_merge_into: nil)
+      account.administrateur.update!(pro_connect_required_at: Time.current)
+      ProConnectInformation.record!(user: account, auth:)
+      true
+    end
+  end
 
   private
 
@@ -32,9 +83,27 @@ class ProConnectMigration < ApplicationRecord
     elsif User.exists?(email:)
       :existing_account
     else
-      :started
+      :awaiting_code
     end
   end
 
   def domain(email) = email.split('@').last
+
+  def digest(code)
+    key = Rails.application.key_generator.generate_key('pro_connect_migration_code')
+    OpenSSL::HMAC.hexdigest('SHA256', key, "#{id}:#{code}")
+  end
+
+  def browser_description(browser)
+    "#{browser.name} #{browser.full_version} (#{browser.platform.name})" if browser.known?
+  end
+
+  # The manager rows are the support accesses of super admins.
+  def owned_procedure_ids(account)
+    account.administrateur.administrateurs_procedures.where(manager: [false, nil]).pluck(:procedure_id)
+  end
+
+  def assigned_groupe_instructeur_ids(account)
+    AssignTo.where(instructeur: account.instructeur, manager: [false, nil]).pluck(:groupe_instructeur_id)
+  end
 end

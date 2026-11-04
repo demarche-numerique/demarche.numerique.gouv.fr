@@ -25,7 +25,9 @@ class ProConnectController < ApplicationController
     cookies.delete MFA_FORCED_FOR_COOKIE_NAME
     forget_pro_connect_migration if !params[:migration]
 
-    migration = pro_connect_migration_in_session(ProConnectMigration.pending)
+    migration = pro_connect_migration_in_session(ProConnectMigration.pending.or(ProConnectMigration.waiting_for_code))
+    return redirect_to pro_connect_migration_code_path if migration&.awaiting_code?
+
     uri, state, nonce = ProConnectService.authorization_uri(login_hint: migration&.source_email)
 
     cookies.encrypted[STATE_COOKIE_NAME] = { value: state, secure: Rails.env.production?, httponly: true }
@@ -46,6 +48,7 @@ class ProConnectController < ApplicationController
 
       migration.identify!(auth:)
       return redirect_to pro_connect_migration_support_path if migration.sent_to_support?
+      return ask_for_pro_connect_migration_code(migration, auth) if migration.awaiting_code?
 
       forget_pro_connect_migration
     end
@@ -86,6 +89,12 @@ class ProConnectController < ApplicationController
   def must_force_mfa?(user, user_info)
     user.administrateur&.pro_connect_required? ||
       (user.instructeur? && user_info['idp_id'] == MON_COMPTE_PRO_IDP_ID)
+  end
+
+  def ask_for_pro_connect_migration_code(migration, auth)
+    migration.send_code!(browser)
+    keep_pro_connect_authentication(auth)
+    redirect_to pro_connect_migration_code_path
   end
 
   def enforce_mfa(email, mfa_forced_for:, failure_path: pro_connect_path)

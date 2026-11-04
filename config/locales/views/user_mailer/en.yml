@@ -40,3 +40,5 @@ en:
       subject: Your account password has been changed
     account_reactivated:
       subject: Your account has been reactivated
+    pro_connect_migration_code:
+      subject: Security code to complete the switch to ProConnect

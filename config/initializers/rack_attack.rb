@@ -15,6 +15,12 @@ class Rack::Attack
     end
   end
 
+  throttle('/pro_connect/migration/code/ip', limit: 10, period: 1.minute) do |req|
+    if req.path == '/pro_connect/migration/code' && req.post? && rack_attack_enabled?
+      req.remote_ip
+    end
+  end
+
   throttle('stats/ip', limit: 5, period: 15.seconds) do |req|
     if req.path == '/stats' && rack_attack_enabled?
       req.remote_ip
