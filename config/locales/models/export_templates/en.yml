@@ -31,6 +31,9 @@ en:
         warning: If you modify this template, it will also be modified for all reviewers who have access to this template.
         cancel: Cancel
         submit: Save
+      repetition_csv_notice:
+        message: If you select fields from a repeatable block, the spreadsheet may have a large number of columns (depending on the maximum number of items an applicant has added to the repeatable block).
+        private_message: If you select fields from a repeatable block, the spreadsheet may have a large number of columns (depending on the maximum number of items a reviewer has added to the repeatable block).
       form_zip:
         cancel: Cancel
         submit: Save
