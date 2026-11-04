@@ -50,6 +50,44 @@ describe Manager::UsersController, type: :controller do
         expect(response.body).to include("Réactiver le compte")
       end
     end
+
+    context 'when the account went through a ProConnect migration' do
+      let(:holder) { administrateurs.default.user }
+      let(:shared) { true }
+      let(:origin) do
+        ProConnectMigration.create!(
+          user: holder, source_email: 'contact@exemple.fr', pro_connect_email: holder.email,
+          state: :renamed, target_user: holder, shared:
+        )
+      end
+
+      context 'as the holder of an address open to the co-holders' do
+        let(:user) { origin.target_user }
+
+        it { expect(response.body).to include('contact@exemple.fr', 'ouverte aux co-titulaires') }
+      end
+
+      context 'as the holder of a closed address' do
+        let(:shared) { false }
+        let(:user) { origin.target_user }
+
+        it { expect(response.body).to include('contact@exemple.fr', 'fermée aux co-titulaires') }
+      end
+
+      context 'as a co-holder' do
+        let(:user) do
+          create(:user).tap { ProConnectMigration.create!(user: holder, source_email: origin.source_email, parent: origin, state: :granted, target_user: it) }
+        end
+
+        it { expect(response.body).to include('contact@exemple.fr', 'ce compte en a reçu les droits') }
+      end
+
+      context 'as the account that took the old address' do
+        let(:user) { create(:user, email: origin.source_email) }
+
+        it { expect(response.body).to include(manager_pro_connect_migration_path(origin), 'ce compte a repris') }
+      end
+    end
   end
 
   describe '#index' do

@@ -2,7 +2,21 @@ en:
   manager:
     fresh_otp:
       invalid_code: "Invalid or missing OTP code. The operation has been cancelled."
+    pro_connect_migrations:
+      shared:
+        open: "open to co-holders"
+        closed: "closed to co-holders"
+      show:
+        taken_by_co_holder_html: "Account %{account}, opened by a co-holder who stayed on this address in ProConnect, took the old address. The next co-holders see the wrong password message and can no longer migrate. To unblock them, ask this co-holder to move to a personal address in ProConnect, then change the address of this account to it: as long as they come back from ProConnect with the old address, an empty account would be created there again."
+        taken_by_other_html: "Account %{account}, unrelated to this migration, took the old address."
+        next_co_holders_blocked: "The next co-holders see the wrong password message and can no longer migrate. To unblock them, change the address of this account, or delete it if it is empty; a ProConnect sign-in with the old address would create an empty account again."
     users:
+      pro_connect_migrations:
+        title: "ProConnect migrations"
+        open: "old address of this account, open to co-holders"
+        closed: "old address of this account, closed to co-holders"
+        granted: "address of a migrated account: this account received its rights"
+        taken: "this account took the old address of a migrated account"
       delete_edit:
         title: "Delete user %{id}"
         warning_html: "You are about to permanently delete the account of <strong>%{email}</strong>. This deletion cannot be undone."

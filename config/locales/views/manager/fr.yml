@@ -2,6 +2,14 @@ fr:
   manager:
     fresh_otp:
       invalid_code: "Code OTP invalide ou manquant. L’opération a été annulée."
+    pro_connect_migrations:
+      shared:
+        open: "ouvert aux co-titulaires"
+        closed: "fermé aux co-titulaires"
+      show:
+        taken_by_co_holder_html: "Le compte %{account}, ouvert par un co-titulaire resté sur cette adresse côté ProConnect, a repris l’ancienne adresse. Les co-titulaires suivants voient le message de mot de passe incorrect et ne peuvent plus migrer. Pour les débloquer, demander à ce co-titulaire de passer côté ProConnect à une adresse nominative, puis changer l’adresse de ce compte vers celle-ci : tant qu’il revient de ProConnect avec l’ancienne adresse, un compte vide y serait recréé."
+        taken_by_other_html: "Le compte %{account}, sans lien avec cette migration, a repris l’ancienne adresse."
+        next_co_holders_blocked: "Les co-titulaires suivants voient le message de mot de passe incorrect et ne peuvent plus migrer. Pour les débloquer, changer l’adresse de ce compte, ou le supprimer s’il est vide ; une connexion ProConnect avec l’ancienne adresse recréerait un compte vide."
     gestionnaires:
       manage_root_groupe_gestionnaire: Gestion du groupe racine
       show:
@@ -28,6 +36,12 @@ fr:
         duration: "L’accès est retiré automatiquement lors de la purge quotidienne de 2 h 45."
         submit: "Devenir administrateur et instructeur"
     users:
+      pro_connect_migrations:
+        title: "Migrations ProConnect"
+        open: "ancienne adresse de ce compte, ouverte aux co-titulaires"
+        closed: "ancienne adresse de ce compte, fermée aux co-titulaires"
+        granted: "adresse d’un compte migré : ce compte en a reçu les droits"
+        taken: "ce compte a repris l’ancienne adresse d’un compte migré"
       delete_edit:
         title: "Supprimer l’utilisateur n° %{id}"
         warning_html: "Vous allez supprimer définitivement le compte de <strong>%{email}</strong>. Cette suppression est irréversible."

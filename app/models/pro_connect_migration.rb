@@ -10,6 +10,7 @@ class ProConnectMigration < ApplicationRecord
   belongs_to :user
   belongs_to :target_user, class_name: 'User', optional: true
   belongs_to :parent, class_name: 'ProConnectMigration', optional: true
+  has_many :children, class_name: 'ProConnectMigration', foreign_key: :parent_id, inverse_of: :parent, dependent: nil
 
   enum :state, {
     started: 'started',
@@ -26,6 +27,7 @@ class ProConnectMigration < ApplicationRecord
   scope :waiting_for_code, -> { awaiting_code.where(updated_at: PENDING_FOR.ago..) }
   scope :completed, -> { where(state: [:renamed, :granted]) }
   scope :joinable, -> { renamed.where(shared: true) }
+  scope :shown_on_account, -> (user) { completed.where(target_user: user).or(renamed.where(source_email: user.email)) }
 
   def self.joinable_for(email) = joinable.where(source_email: email).last
 
@@ -106,6 +108,14 @@ class ProConnectMigration < ApplicationRecord
       true
     end
   end
+
+  # The account of a co-holder who kept the old address on ProConnect, or an unrelated one.
+  # Either way User.find_for_database_authentication now finds it instead of the renamed account.
+  def address_taken_by
+    User.find_by(email: source_email) if renamed?
+  end
+
+  def granted_to?(user) = children.granted.exists?(target_user: user)
 
   private
 
