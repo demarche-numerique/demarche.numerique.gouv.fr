@@ -111,6 +111,7 @@ const SelectProps = s.partial(
     alwaysShowKey: s.string(),
     disabledKeys: s.array(s.string()),
     emptyHint: s.optional(s.string()),
+    searchPlaceholder: s.string(),
     selectedLabels: s.object({ one: s.string(), other: s.string() })
   })
 );

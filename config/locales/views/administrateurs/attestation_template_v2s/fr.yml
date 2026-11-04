@@ -4,6 +4,7 @@ fr:
       form:
         preview_dossier_label: Dossier utilisé pour l’aperçu
         preview_dossier_option: "N° %{number} – %{owner} – %{state}"
+        preview_dossier_search: Filtrer par numéro ou nom
         attestation_acceptation_title: Attestation d’acceptation
         attestation_refus_title: Attestation de refus
         attestation_acceptation_description: L’attestation est émise au moment où un dossier est accepté, elle est jointe à l’email d’accusé d’acceptation.
