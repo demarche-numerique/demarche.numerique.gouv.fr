@@ -55,6 +55,15 @@ describe ProConnectController, type: :controller do
         expect(session[ProConnectMigrationConcern::SESSION_KEY]).to be_nil
         expect(ProConnectService).to have_received(:authorization_uri).with(login_hint: nil)
       end
+
+      it 'goes back to the code page, without ProConnect, while a code is waiting' do
+        migration.update!(state: :awaiting_code)
+
+        get :login, params: { migration: true }
+
+        expect(response).to redirect_to(pro_connect_migration_code_path)
+        expect(ProConnectService).not_to have_received(:authorization_uri)
+      end
     end
   end
 
@@ -415,6 +424,23 @@ describe ProConnectController, type: :controller do
               expect(response).to redirect_to(pro_connect_migration_support_path)
               expect(User.exists?(email:)).to be false
               expect(controller.current_user).to be_nil
+            end
+          end
+
+          context 'with a free address of the same domain' do
+            let(:email) { 'camille.dupont@exemple.fr' }
+
+            it 'mails a code to the old address and asks for it, keeping the ProConnect session for the sign out' do
+              request.headers['User-Agent'] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.7444.60 Safari/537.36'
+
+              expect { subject }.to have_enqueued_mail(UserMailer, :pro_connect_migration_code)
+                .with(migration, a_string_matching(/\A\d{6}\z/), 'Chrome 142.0.7444.60 (macOS)')
+
+              expect(response).to redirect_to(pro_connect_migration_code_path)
+              expect(controller.current_user).to be_nil
+              expect(User.exists?(email:)).to be false
+              expect(cookies.encrypted[ProConnectMigrationConcern::ID_TOKEN_COOKIE_NAME]).to eq(id_token)
+              expect(cookies.encrypted[ProConnectMigrationConcern::IDENTITY_COOKIE_NAME]).to eq('user_info' => user_info.except('idp_id'), 'amr' => amr, 'acr' => acr)
             end
           end
 
