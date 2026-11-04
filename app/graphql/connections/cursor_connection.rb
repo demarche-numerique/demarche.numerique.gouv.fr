@@ -131,7 +131,11 @@ module Connections
     end
 
     def cursor_from_column(item, column)
-      encode([item.read_attribute(column).utc.strftime("%Y-%m-%dT%H:%M:%S.%NZ"), item.id].join(';'))
+      cursor_from_timestamp(item.read_attribute(column), item.id)
+    end
+
+    def cursor_from_timestamp(timestamp, id)
+      encode([timestamp.utc.strftime("%Y-%m-%dT%H:%M:%S.%NZ"), id].join(';'))
     end
 
     def order_column

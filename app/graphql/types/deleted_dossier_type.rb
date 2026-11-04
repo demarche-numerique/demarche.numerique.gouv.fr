@@ -24,7 +24,7 @@ module Types
 
     def date_supression
       if object.is_a?(Dossier)
-        object.hidden_by_administration_at || object.hidden_by_user_at
+        object.hidden_by_administration_at || object.hidden_by_user_at || object.hidden_by_expired_at
       else
         object.deleted_at
       end
@@ -40,7 +40,8 @@ module Types
 
     def reason
       if object.is_a?(Dossier)
-        object.hidden_by_reason
+        # restore by the administration clears the reason but keeps an expired dossier hidden
+        object.hidden_by_reason || ('expired' if object.hidden_by_expired?)
       else
         object.reason
       end

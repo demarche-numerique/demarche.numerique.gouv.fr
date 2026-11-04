@@ -885,7 +885,10 @@ describe API::V2::GraphqlController do
 
       context 'include pending deleted Dossiers' do
         def cursor_for(item)
-          cursor = [(item.reload.en_construction? ? item.hidden_by_user_at : item.hidden_by_administration_at).utc.strftime("%Y-%m-%dT%H:%M:%S.%NZ"), item.id].join(';')
+          item.reload
+          # Historical key, extended only where it was nil: changing it breaks the cursors stored by integrators.
+          hidden_at = (item.en_construction? ? item.hidden_by_user_at : item.hidden_by_administration_at) || item.hidden_by_expired_at
+          cursor = [hidden_at.utc.strftime("%Y-%m-%dT%H:%M:%S.%NZ"), item.id].join(';')
           API::V2::Schema.cursor_encoder.encode(cursor, nonce: true)
         end
 
@@ -1002,6 +1005,62 @@ describe API::V2::GraphqlController do
               expect(nodes.size).to eq(2)
               expect(page_info).to eq(hasNextPage: false, hasPreviousPage: true, startCursor: start_cursor, endCursor: end_cursor)
             }
+          end
+        end
+
+        context 'with a dossier hidden on expiration' do
+          let(:expired_dossier) do
+            create(:dossier, :accepte, :with_individual, procedure:).tap do
+              it.hide_and_keep_track!(:automatic, :expired)
+              it.update(hidden_by_expired_at: 1.hour.ago)
+            end
+          end
+
+          before { expired_dossier }
+
+          it {
+            expect(gql_errors).to be_nil
+            expect(nodes.size).to eq(5)
+            expect(nodes.last).to include(
+              number: expired_dossier.id,
+              dateSupression: expired_dossier.hidden_by_expired_at.iso8601,
+              reason: 'expired'
+            )
+          }
+
+          context 'after the last cursor of the other ones' do
+            let(:variables) { { demarcheNumber: procedure.id, includePendingDeletedDossiers: true, pendingDeletedAfter: cursor_for(pending_deleted_dossier3) } }
+
+            it {
+              expect(gql_errors).to be_nil
+              expect(nodes.map { it[:number] }).to eq([expired_dossier.id])
+              expect(page_info[:endCursor]).to eq(cursor_for(expired_dossier))
+            }
+          end
+
+          context 'deleted since its expiration' do
+            let(:variables) { { demarcheNumber: procedure.id, includePendingDeletedDossiers: true, pendingDeletedSince: 2.hours.ago.iso8601 } }
+
+            it { expect(nodes.map { it[:number] }).to eq([expired_dossier.id]) }
+          end
+
+          context 'restored by an instructeur, which clears its reason' do
+            before { expired_dossier.restore(instructeur) }
+
+            it {
+              expect(gql_errors).to be_nil
+              expect(nodes.last).to include(number: expired_dossier.id, reason: 'expired')
+            }
+          end
+        end
+
+        context 'with a dossier hidden by the administration that expired before' do
+          before { pending_deleted_dossier1.update(hidden_by_expired_at: 5.days.ago) }
+
+          it 'keeps its deletion date and its position' do
+            expect(gql_errors).to be_nil
+            expect(nodes.map { it[:number] }).to eq([dossier, dossier_accepte, dossier1, dossier_accepte1].map(&:id))
+            expect(nodes.second[:dateSupression]).to eq(pending_deleted_dossier1.hidden_by_administration_at.iso8601)
           end
         end
       end
