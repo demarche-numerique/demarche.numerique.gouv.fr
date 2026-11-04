@@ -33,4 +33,21 @@ describe 'experts/avis/instruction', type: :view do
     let(:current_avis) { create(:avis, question_label: "", claimant: instructeurs.default, experts_procedure: experts_procedures.default, dossier: dossiers.en_instruction) }
     it { is_expected.not_to have_unchecked_field("oui") }
   end
+
+  describe 'given avis counter on "Voir les avis"' do
+    let(:current_avis) { avis.pending }
+
+    context 'when avis visible to the expert have been given' do
+      before do
+        current_avis.update_columns(answer: "Mon avis")
+        create(:avis, dossier: current_avis.dossier, claimant: instructeurs.default, experts_procedure: experts_procedures.second, confidentiel: false, answer: "Avis partagé")
+        avis.confidentiel.update_columns(answer: "Avis confidentiel")
+      end
+
+      it 'counts them, ignoring the confidential avis of another expert' do
+        is_expected.to have_css(".fr-sidemenu__count", text: "(2)")
+        is_expected.to have_css(".fr-sr-only", text: "2 avis rendus")
+      end
+    end
+  end
 end

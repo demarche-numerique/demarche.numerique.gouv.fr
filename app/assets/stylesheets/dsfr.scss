@@ -111,6 +111,11 @@ input[type='radio'] {
   color: var(--text-disabled-grey);
 }
 
+.fr-sidemenu__count {
+  margin-left: 0.25rem;
+  color: var(--text-default-error);
+}
+
 // on veut ferrer à droite le dropdown de sélecteur de langue
 @media (min-width: 62em) {
   .fr-nav__item.custom-fr-translate-flex-end {

@@ -1,2 +1,3 @@
+- given_avis_count = @dossier.avis_for_expert(current_expert).with_answer.count
 = render(Dsfr::SidemenuComponent.new) do |component|
-  - component.with_links([{ name: t('helpers.sidemenu.give_avis'), url: instruction_expert_avis_path(@avis.procedure, @avis) }, { name: t('helpers.sidemenu.see_avis'), url: avis_list_expert_avis_path(@avis.procedure, @avis) }, { name: t('helpers.sidemenu.ask_new_avis'), url: avis_new_expert_avis_path(@avis.procedure, @avis) }])
+  - component.with_links([{ name: t('helpers.sidemenu.give_avis'), url: instruction_expert_avis_path(@avis.procedure, @avis) }, { name: t('helpers.sidemenu.see_avis'), url: avis_list_expert_avis_path(@avis.procedure, @avis), count: given_avis_count, count_label: t('helpers.sidemenu.given_avis_count', count: given_avis_count) }, { name: t('helpers.sidemenu.ask_new_avis'), url: avis_new_expert_avis_path(@avis.procedure, @avis) }])

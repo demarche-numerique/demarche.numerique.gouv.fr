@@ -22,6 +22,15 @@
               <% end %>
 
               <%= link.name %>
+
+              <% if link.count? %>
+                <span class="fr-sidemenu__count" aria-hidden="true">
+                  (<%= link.count %>)
+                </span>
+                <% if link.count_label.present? %>
+                  <span class="fr-sr-only">, <%= link.count_label %></span>
+                <% end %>
+              <% end %>
             <% end %>
           </li>
         <% end %>

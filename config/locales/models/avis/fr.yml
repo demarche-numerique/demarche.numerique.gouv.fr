@@ -49,6 +49,9 @@ fr:
       see_avis: Voir les avis
       ask_avis: Demander un avis
       ask_new_avis: Demander un autre avis
+      given_avis_count:
+        one: 1 avis rendu
+        other: "%{count} avis rendus"
     information_text:
       no_new_avis_text: Le dossier a été traité
       no_new_avis_text_detail: Les demandes d’avis ne sont plus autorisées
