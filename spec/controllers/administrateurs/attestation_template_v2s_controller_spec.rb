@@ -49,6 +49,33 @@ describe Administrateurs::AttestationTemplateV2sController, type: :controller do
         end
       end
 
+      context 'with a chosen dossier' do
+        subject do
+          get :show, params: { procedure_id: procedure.id, format:, attestation_kind: :acceptation, dossier_id: chosen.id }
+          response.body
+        end
+
+        let!(:preview_dossier) { create(:dossier, :en_construction, procedure:, for_procedure_preview: true) }
+
+        context 'of the procedure' do
+          let(:chosen) { create(:dossier, :en_instruction, procedure:) }
+
+          it { is_expected.to include("n° #{chosen.id}") }
+        end
+
+        context 'of another procedure' do
+          let(:chosen) { dossiers.accepte }
+
+          it { is_expected.not_to include("n° #{chosen.id}") }
+        end
+
+        context 'still a brouillon' do
+          let(:chosen) { create(:dossier, :brouillon, procedure:) }
+
+          it { is_expected.not_to include("n° #{chosen.id}") }
+        end
+      end
+
       context 'without preview dossier' do
         it do
           is_expected.to include("Mon titre pour --dossier_procedure_libelle--")

@@ -214,4 +214,28 @@ describe 'As an administrateur, I want to manage the procedure’s attestation',
       end
     end
   end
+
+  context 'Preview dossier picker' do
+    let(:procedure) { procedures.individual }
+
+    scenario 'the preview and the full-size link follow the chosen dossier, across autosaves' do
+      preselected, *, other = procedure.attestation_templates.build(kind: :acceptation).preview_dossiers
+      # NFKC turns the state labels' non-breaking spaces into the plain ones Capybara reads
+      label = -> (dossier) { "N° #{dossier.id} – Jeanne DUPONT – #{Dossier.human_attribute_name("state.#{dossier.state}").upcase}".unicode_normalize(:nfkc) }
+
+      visit edit_admin_procedure_attestation_template_v2_path(procedure, attestation_kind: :acceptation)
+
+      expect(page).to have_button(label.(preselected))
+      expect(page).to have_css("iframe.attestation-preview[src*='dossier_id=#{preselected.id}']")
+
+      select_react_option(label.(other), from: "Dossier utilisé pour l’aperçu")
+
+      expect(page).to have_css("iframe.attestation-preview[src*='dossier_id=#{other.id}']")
+      expect(page).to have_link("Prévisualiser en taille réelle", href: /dossier_id=#{other.id}/)
+
+      fill_in "Intitulé de votre institution", with: "Ministère des specs"
+      expect(page).to have_content("Attestation enregistrée")
+      expect(page).to have_css("iframe.attestation-preview[src*='dossier_id=#{other.id}']")
+    end
+  end
 end

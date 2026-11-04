@@ -122,6 +122,31 @@ class AttestationTemplate < ApplicationRecord
     attestation_template
   end
 
+  PREVIEW_DOSSIER_STATES = {
+    'acceptation' => ['en_construction', 'en_instruction', 'accepte'],
+    'refus' => ['en_construction', 'en_instruction', 'refuse'],
+  }.freeze
+
+  # The latest deposits of each state, picked by rank so that every state shows up,
+  # listed active revision first: its dossiers know every tag of the attestation.
+  def preview_dossiers(limit: 20)
+    latest_by_state = PREVIEW_DOSSIER_STATES.fetch(kind).map do |state|
+      Dossier.visible_by_administration
+        .where(groupe_instructeur_id: procedure.groupe_instructeur_ids, state:)
+        .order_by_depose_at
+        .includes(:individual, :etablissement)
+        .limit(limit)
+        .to_a
+    end
+
+    active_revision_id = procedure.active_revision.id
+    latest_by_state
+      .flat_map { it.each_with_index.to_a }
+      .min_by(limit, &:last)
+      .map(&:first)
+      .sort_by { [it.revision_id == active_revision_id ? 0 : 1, -it.depose_at.to_f] }
+  end
+
   def logo_url
     if logo.attached?
       logo_variant = logo.variant(resize_to_limit: [400, 400])
