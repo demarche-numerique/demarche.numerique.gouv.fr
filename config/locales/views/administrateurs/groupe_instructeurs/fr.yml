@@ -32,6 +32,9 @@ fr:
         routing_alert_with_invalid_rules_html: "Il y a <strong>%{count} dossiers</strong> déposés et en attente de traitement sur cette démarche. Ces dossiers n’ont <strong>pas encore été routés</strong>. Une fois que vous aurez configuré vos règles de routage, vous devrez lancer le routage pour les répartir dans les différents groupes."
         bulk_route: Lancer le routage
         bulk_routing_confirm: "Êtes-vous sûr de vouloir lancer le routage pour les dossiers déposés et en attente de traitement ?"
+      update_self_management_restricted_to_email_domain:
+        restricted: "Les instructeurs ne peuvent ajouter que des adresses de leur domaine."
+        unrestricted: "Les instructeurs peuvent ajouter des adresses électroniques d’un autre domaine."
       add_instructeur_to_all_groupes:
         wrong_address:
           one: "%{emails} nʼest pas une adresse électronique valide"

@@ -1202,6 +1202,71 @@ describe Administrateurs::GroupeInstructeursController, type: :controller do
         end
       end
     end
+
+    context 'other email domains checkbox' do
+      let(:selector) { 'input[type=checkbox][name="procedure[self_management_restricted_to_email_domain]"]' }
+
+      before { get :options, params: { procedure_id: procedure.id } }
+
+      context 'when instructeurs_self_management_enabled is false' do
+        let!(:procedure) { create(:procedure, administrateurs: [admin], instructeurs_self_management_enabled: false) }
+
+        it 'does not render the checkbox' do
+          expect(response).to have_http_status(:ok)
+          expect(response.body).not_to have_selector(selector)
+        end
+      end
+
+      context 'when the email domain restriction is enabled' do
+        let!(:procedure) { create(:procedure, administrateurs: [admin], instructeurs_self_management_enabled: true) }
+
+        it 'renders the checkbox as unchecked' do
+          expect(response.body).to have_selector(selector)
+          expect(response.body).not_to have_selector("#{selector}[checked=checked]")
+        end
+      end
+
+      context 'when the email domain restriction is disabled' do
+        let!(:procedure) { create(:procedure, administrateurs: [admin], instructeurs_self_management_enabled: true, self_management_restricted_to_email_domain: false) }
+
+        it 'renders the checkbox as checked' do
+          expect(response.body).to have_selector("#{selector}[checked=checked]")
+        end
+      end
+    end
+  end
+
+  describe '#update_self_management_restricted_to_email_domain' do
+    let!(:procedure) { create(:procedure, administrateurs: [admin], instructeurs_self_management_enabled: true, self_management_restricted_to_email_domain:) }
+
+    subject do
+      patch :update_self_management_restricted_to_email_domain, params: {
+        procedure_id: procedure.id,
+        procedure: { self_management_restricted_to_email_domain: value },
+      }
+    end
+
+    context 'when the admin checks the checkbox' do
+      let(:self_management_restricted_to_email_domain) { true }
+      let(:value) { '0' }
+
+      it 'disables the email domain restriction' do
+        expect { subject }.to change { procedure.reload.self_management_restricted_to_email_domain? }.from(true).to(false)
+        expect(response).to redirect_to(options_admin_procedure_groupe_instructeurs_path(procedure))
+        expect(flash.notice).to eq('Les instructeurs peuvent ajouter des adresses électroniques d’un autre domaine.')
+      end
+    end
+
+    context 'when the admin unchecks the checkbox' do
+      let(:self_management_restricted_to_email_domain) { false }
+      let(:value) { '1' }
+
+      it 'enables the email domain restriction' do
+        expect { subject }.to change { procedure.reload.self_management_restricted_to_email_domain? }.from(false).to(true)
+        expect(response).to redirect_to(options_admin_procedure_groupe_instructeurs_path(procedure))
+        expect(flash.notice).to eq('Les instructeurs ne peuvent ajouter que des adresses de leur domaine.')
+      end
+    end
   end
 
   describe '#update_instructeurs_can_edit_dossiers' do
