@@ -7,6 +7,7 @@ class ProConnectMigration < ApplicationRecord
   MAX_CODE_ATTEMPTS = 5
 
   belongs_to :user
+  belongs_to :target_user, class_name: 'User', optional: true
 
   enum :state, {
     started: 'started',
@@ -14,6 +15,7 @@ class ProConnectMigration < ApplicationRecord
     domain_mismatch: 'domain_mismatch',
     existing_account: 'existing_account',
     awaiting_code: 'awaiting_code',
+    renamed: 'renamed',
   }
 
   scope :pending, -> { started.where(created_at: PENDING_FOR.ago..) }
@@ -40,6 +42,24 @@ class ProConnectMigration < ApplicationRecord
     counted && ActiveSupport::SecurityUtils.secure_compare(code_digest, digest(code.to_s.gsub(/\s/, '')))
   end
 
+  def rename!(auth:)
+    transaction do
+      # Without the default eager_load: PostgreSQL refuses FOR UPDATE on an outer join.
+      account = User.unscope(:eager_load).lock.find(user_id)
+      next false if account.email != source_email || auth.email != pro_connect_email || User.exists?(email: pro_connect_email)
+
+      update!(
+        state: :renamed, target_user: account,
+        procedure_ids: owned_procedure_ids(account), groupe_instructeur_ids: assigned_groupe_instructeur_ids(account)
+      )
+      account.skip_reconfirmation!
+      account.update!(email: pro_connect_email, email_verified_at: Time.current, unconfirmed_email: nil, requested_merge_into: nil)
+      account.administrateur.update!(pro_connect_required_at: Time.current)
+      ProConnectInformation.record!(user: account, auth:)
+      true
+    end
+  end
+
   private
 
   def outcome_for(email)
@@ -63,5 +83,14 @@ class ProConnectMigration < ApplicationRecord
 
   def browser_description(browser)
     "#{browser.name} #{browser.full_version} (#{browser.platform.name})" if browser.known?
+  end
+
+  # The manager rows are the support accesses of super admins.
+  def owned_procedure_ids(account)
+    account.administrateur.administrateurs_procedures.where(manager: [false, nil]).pluck(:procedure_id)
+  end
+
+  def assigned_groupe_instructeur_ids(account)
+    AssignTo.where(instructeur: account.instructeur, manager: [false, nil]).pluck(:groupe_instructeur_id)
   end
 end
