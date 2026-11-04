@@ -28,9 +28,6 @@ en:
   instructeurs:
     export_templates:
       form_tabular:
-        info_html: |
-          This page allows you to edit a tabular export template and select fields that you want to export.
-          Try it and let us know what you think by sending an e-mail to %{mailto}.
         warning: If you modify this template, it will also be modified for all instructors who have access to this template.
         cancel: Cancel
         submit: Save
