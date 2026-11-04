@@ -267,6 +267,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_13_180000) do
     t.string "external_id"
     t.string "external_state"
     t.string "fetch_external_data_exceptions", array: true
+    t.bigint "new_id"
     t.boolean "prefilled"
     t.jsonb "prefilled_original_value"
     t.boolean "private", default: false, null: false
