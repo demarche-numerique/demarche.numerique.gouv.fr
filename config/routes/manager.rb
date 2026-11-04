@@ -67,6 +67,8 @@ namespace :manager do
 
   resources :experts, only: [:index, :show]
 
+  resources :pro_connect_migrations, only: [:index, :show]
+
   resources :instructeurs, only: [:index, :show, :edit, :update] do
     member do
       post :reinvite

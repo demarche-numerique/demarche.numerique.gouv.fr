@@ -1,0 +1,17 @@
+<% migration = page.resource %>
+<% taker = migration.address_taken_by %>
+
+<% if taker %>
+  <% content_for(:before_main) do %>
+    <p class="flash-error">
+      <% if migration.granted_to?(taker) %>
+        <%= t('.taken_by_co_holder_html', account: link_to(taker.email, manager_user_path(taker))) %>
+      <% else %>
+        <%= t('.taken_by_other_html', account: link_to(taker.email, manager_user_path(taker))) %>
+        <%= t('.next_co_holders_blocked') if migration.shared? %>
+      <% end %>
+    </p>
+  <% end %>
+<% end %>
+
+<%= render template: 'administrate/application/show', locals: { page: } %>

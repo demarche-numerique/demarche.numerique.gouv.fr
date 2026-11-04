@@ -1,0 +1,30 @@
+en:
+  activerecord:
+    models:
+      pro_connect_migration:
+        one: ProConnect migration
+        other: ProConnect migrations
+    attributes:
+      pro_connect_migration:
+        source_email: Old address
+        pro_connect_email: ProConnect address
+        state: State
+        shared: Access through the old address
+        user: Original account
+        target_user: Resulting account
+        parent: Migration of the holder
+        children: Migrations of the co-holders
+        procedure_ids: Procedures recorded at the renaming
+        groupe_instructeur_ids: Teams recorded at the renaming
+        code_sent_at: Last code sent on
+        code_attempts: Code attempts
+        created_at: Started on
+        updated_at: Last step on
+        states:
+          started: Started
+          same_email: Same address
+          domain_mismatch: Other domain, sent to support
+          existing_account: Existing account, sent to support
+          awaiting_code: Code sent
+          renamed: Account renamed
+          granted: Rights granted to a co-holder

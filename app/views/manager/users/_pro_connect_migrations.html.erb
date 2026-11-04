@@ -1,0 +1,27 @@
+<% migrations = ProConnectMigration.shown_on_account(user).order(:id) %>
+
+<% if migrations.present? %>
+  <dl>
+    <dt class="attribute-label"><%= t('.title') %></dt>
+
+    <dd class="attribute-data">
+      <ul>
+        <% migrations.each do |migration| %>
+          <li>
+            <%= link_to migration.source_email, manager_pro_connect_migration_path(migration) %>
+
+            <% if migration.target_user_id != user.id %>
+              <%= t('.taken') %>
+            <% elsif migration.granted? %>
+              <%= t('.granted') %>
+            <% elsif migration.shared? %>
+              <%= t('.open') %>
+            <% else %>
+              <%= t('.closed') %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </dd>
+  </dl>
+<% end %>

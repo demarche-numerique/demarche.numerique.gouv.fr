@@ -69,6 +69,8 @@
 
   <%= render partial: 'manager/application/user_meta', locals: { user: user } %>
 
+  <%= render partial: 'manager/users/pro_connect_migrations', locals: { user: user } %>
+
   <dl>
     <% page.attributes.each do |title, attributes| %>
       <fieldset class="<%= "field-unit--nested" if title.present? %>">
