@@ -10,5 +10,5 @@ en:
         declarative_notice:
           title: Declarative procedure
           presentation: presentation page
-          en_instruction_html: This procedure is declarative, with an <strong>automatic switch to instruction</strong>. You can change this setting in the advanced options of the procedure’s %{link}.
+          en_instruction_html: This procedure is declarative, with an <strong>automatic start of review</strong>. You can change this setting in the advanced options of the procedure’s %{link}.
           accepte_html: This procedure is declarative, with an <strong>automatic switch to the "Accepted" status</strong>. You can change this setting in the advanced options of the procedure’s %{link}.

@@ -4,11 +4,11 @@ en:
     tabs_en_cours_html: <strong>“in progress”</strong> tab brings together published procedures as well as closed procedures that still have files to process.
     tabs_en_test_html: <strong>“in testing”</strong> tab groups together the procedures which have not yet been published. Files submitted during the test phase are deleted when the procedure’s settings are modified or when it is published.
     tabs_close_html: <strong>“finished”</strong> tab groups together closed procedures with no more files to process.
-    tabs_a_suivre_html: <strong>“to follow”</strong> tab contains all the files which are not followed by any instructor. To assign the file, simply click on “Follow” the file.
-    tabs_suivis_html: <strong>“followed by me“</strong> tab contains the files followed by you. When you (or another instructor) follow a folder, that folder no longer appears in the “to follow” folders. You can discuss with the applicant until you can accept, refuse and close their file without further action.
-    tabs_traites_html: <strong>“processed”</strong> tab contains the files on which one or more instructors have ruled and made a decision (accepted, refused or closed without further action).
-    tabs_tous_html: <strong>“total”</strong> tab contains all the files submitted for this procedure, whatever their status (“to follow”, “followed by me”, “processed”). If the files are routed in instructor groups, you will only find in this tab the files of the group(s) of which you are a part.
-    tabs_supprimes_html: '<strong>"trash"</strong> tab contains: <br>- files whose retention period has expired (the retention period of files is set by the administrator).<br>- "processed" files which have been put in the trash by instructors. <br>From the date the files were put in the trash, you have %{days_part} to download / restore / extend their retention period %{months_part}. After this period, these files will be permanently deleted.'
+    tabs_a_suivre_html: <strong>“to follow”</strong> tab contains all the files which are not followed by any reviewer. To assign the file, simply click on “Follow” the file.
+    tabs_suivis_html: <strong>“followed by me“</strong> tab contains the files followed by you. When you (or another reviewer) follow a folder, that folder no longer appears in the “to follow” folders. You can discuss with the applicant until you can accept, refuse and close their file without further action.
+    tabs_traites_html: <strong>“processed”</strong> tab contains the files on which one or more reviewers have ruled and made a decision (accepted, refused or closed without further action).
+    tabs_tous_html: <strong>“total”</strong> tab contains all the files submitted for this procedure, whatever their status (“to follow”, “followed by me”, “processed”). If the files are routed in teams, you will only find in this tab the files of the team(s) of which you are a part.
+    tabs_supprimes_html: '<strong>"trash"</strong> tab contains: <br>- files whose retention period has expired (the retention period of files is set by the administrator).<br>- "processed" files which have been put in the trash by reviewers. <br>From the date the files were put in the trash, you have %{days_part} to download / restore / extend their retention period %{months_part}. After this period, these files will be permanently deleted.'
     tabs_supprimes_days:
       one: "%{count} day"
       other: "%{count} days"
@@ -19,5 +19,5 @@ en:
       "4": "by four months"
       "5": "by five months"
       "6": "by six months"
-    tabs_archives_html: <strong>“to archive”</strong> tab contains the files which were formerly in the “processed” tab (they were moved by an instructor to this “to archive” tab). User messaging is automatically deactivated on the file as soon as it is “to archive”. These files will be deleted when their retention period in %{app_name} has expired. To save and archive your files on your server, you must download them.
+    tabs_archives_html: <strong>“to archive”</strong> tab contains the files which were formerly in the “processed” tab (they were moved by a reviewer to this “to archive” tab). User messaging is automatically deactivated on the file as soon as it is “to archive”. These files will be deleted when their retention period in %{app_name} has expired. To save and archive your files on your server, you must download them.
     tabs_expirant_html: <strong>“expiring”</strong> tab contains the files whose retention period will soon expire (the retention period of the files is set by the administrator of the process).

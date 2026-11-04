@@ -23,7 +23,7 @@ en:
         released_on: Publication date
       release_note/categories:
         administrateur: Administrator
-        instructeur: Instructor
+        instructeur: Reviewer
         expert: Expert
         api: API
         usager: User

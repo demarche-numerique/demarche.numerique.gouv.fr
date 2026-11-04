@@ -42,7 +42,7 @@ en:
         estimated_duration_visible: Show estimated fill time
         estimated_processing_duration_visible: Show estimated processing delay
         for_tiers_enabled: Enable a third party to submit a file
-        hide_instructeurs_email: Hide instructeurs email address
+        hide_instructeurs_email: Hide reviewers’ email addresses
         api_state:
           brouillon: Draft
           publiee: Published
@@ -58,12 +58,12 @@ en:
         kind_usager:
           individual: Individual
           personne_morale: 'Legal entity'
-        declarative_with_state/en_instruction: Instruction
+        declarative_with_state/en_instruction: Under review
         declarative_with_state/accepte: Accepted
         api_entreprise_token: Token API Entreprise
         api_particulier_token: Token API Particulier
         email_depose: The “Acknowledgement of receipt” email template
-        email_passe_en_instruction: The “Acknowledgement of processing” email template
+        email_passe_en_instruction: The “Review started” email template
         email_accepte: The “Acceptance” email template
         email_refuse: The “Refusal” email template
         email_classe_sans_suite: The “Closed with no further action” email template

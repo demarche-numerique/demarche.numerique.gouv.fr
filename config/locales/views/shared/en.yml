@@ -4,7 +4,7 @@ en:
       notification: "presence of one or more unread notifications"
       dossiers:
         identite_entreprise:
-          warning_for_private_info: "The establishment SIRET %{siret} applied his right to not publish information regarding his identity. These informaiton won't be visible from instructor services."
+          warning_for_private_info: "The establishment SIRET %{siret} applied his right to not publish information regarding his identity. These informaiton won't be visible from reviewing services."
           non_diffusible: "Non-disclosable"
       avis:
         demande_envoyee_le: "Feedback send at %{date}"
@@ -34,17 +34,17 @@ en:
       piece_justificative:
         name: "Download template"
       groupe_instructeurs:
-        title: Assign a new instructor
-        table_title: Instructors
+        title: Assign a new reviewer
+        table_title: Reviewers
         assigned_instructeur:
-          one: "%{count} instructor assigned"
-          other: "%{count} instructors assigned"
-        instructeur_assignation: Instructors assignment
+          one: "%{count} reviewer assigned"
+          other: "%{count} reviewers assigned"
+        instructeur_assignation: Reviewers assignment
         assign: Assign
         remove: Remove
         instructeur_emails: Email addresses
         copy_paste_hint: "You can enter addresses individually, or copy-paste a list of addresses separated by semicolons into the field below (example: adress1@mail.com; adress2@mail.com; adress3@mail.com)."
         domain_restriction_hint: "Only addresses from the same domain as yours (@%{domain}) can be added."
         actions: Action
-        notification_alert_html: Even if your procedure is still in test / not published, all the instructors you will add to the procedure <strong>will be notified by email</strong>.
-        notification_alert_publiee_html: All the instructors you will add to the procedure <strong>will be notified by email</strong>.
+        notification_alert_html: Even if your procedure is still in test / not published, all the reviewers you will add to the procedure <strong>will be notified by email</strong>.
+        notification_alert_publiee_html: All the reviewers you will add to the procedure <strong>will be notified by email</strong>.

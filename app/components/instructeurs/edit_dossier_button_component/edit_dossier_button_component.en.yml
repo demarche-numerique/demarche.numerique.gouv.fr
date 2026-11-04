@@ -4,4 +4,4 @@ en:
   title:
      en_instruction: "You cannot edit this file because it is under review"
      termine: "You cannot edit this file because it has been processed"
-     owner_is_self: "You cannot edit this file as an instructeur because it was submitted by the same account"
+     owner_is_self: "You cannot edit this file as a reviewer because it was submitted by the same account"

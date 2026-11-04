@@ -17,9 +17,9 @@ en:
     desc_html: "As part of GDPR, the identity document will be <strong>watermarked</strong> and <strong>automatically deleted once the file is processed</strong> (accepted, refused or closed)."
     note_html: "Note: the identity document will not be available in dossier ZIP exports nor downloadable via API."
   ocr_notice:
-    rib_html: "The file uploaded by the user will be automatically analyzed to extract and display to the instructor the following information: <strong>Account holder name, Account holder address</strong> (if present on the file), <strong>IBAN, BIC code, Bank name</strong>."
-    justificatif_domicile_html: "If the document bears a <strong>2D-Doc</strong> electronic stamp, its content will be automatically analyzed to extract and display to the instructor the following information: <strong>Beneficiary name, Address, Issue date</strong>."
-    avis_impot_html: "If the document bears a <strong>2D-Doc</strong> electronic stamp, its content will be automatically analyzed to extract and display to the instructor the following information: <strong>Declarant(s), Reference tax income, Number of tax shares, Income year, Address</strong>."
+    rib_html: "The file uploaded by the user will be automatically analyzed to extract and display to the reviewer the following information: <strong>Account holder name, Account holder address</strong> (if present on the file), <strong>IBAN, BIC code, Bank name</strong>."
+    justificatif_domicile_html: "If the document bears a <strong>2D-Doc</strong> electronic stamp, its content will be automatically analyzed to extract and display to the reviewer the following information: <strong>Beneficiary name, Address, Issue date</strong>."
+    avis_impot_html: "If the document bears a <strong>2D-Doc</strong> electronic stamp, its content will be automatically analyzed to extract and display to the reviewer the following information: <strong>Declarant(s), Reference tax income, Number of tax shares, Income year, Address</strong>."
   ocr_formats:
     title: "ACCEPTED FORMATS"
     desc_html: "Accepted formats for this document are only <strong>.pdf, .doc, .docx, .jpg, .jpeg, .png</strong>."

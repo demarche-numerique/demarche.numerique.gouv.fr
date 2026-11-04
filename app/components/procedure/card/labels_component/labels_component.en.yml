@@ -1,7 +1,7 @@
 ---
 en:
   title: Labels
-  subtitle: Manage the labels instructors can use
+  subtitle: Manage the labels reviewers can use
   badge:
     configured: Configured
     todo: To configure

@@ -11,12 +11,12 @@ en:
             updated_at: Updated on
             depose_at: First submission on
             en_construction_at: Submitted on
-            en_instruction_at: Instructed on
+            en_instruction_at: Review started on
             processed_at: Done on
             depose_since: First Submission since
             updated_since: Updated since
             en_construction_since: Submitted since
-            en_instruction_since: Instructed since
+            en_instruction_since: Under review since
             processed_since: Finished since
             sva_decision_on: Date décision %{type}
             sva_decision_before: SVA decision date before
@@ -38,9 +38,9 @@ en:
             referentiel_prog: Référentiel De Programmation
             centre_de_cout: Centre De Coût
           followers_instructeurs:
-            email: Email instructeur
+            email: Reviewer email
           traitements:
-            instructeur_email: Email address of an agent who took part in the instruction of the file
+            instructeur_email: Email address of an agent who took part in the review of the file
           groupe_instructeur:
             id: Team
             label: Team

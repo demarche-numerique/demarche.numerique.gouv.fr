@@ -3,7 +3,7 @@ en:
   operations:
     archiver: 'Archive selected files'
     desarchiver: 'Unarchive selected files'
-    passer_en_instruction: 'Change selected files to instructing'
+    passer_en_instruction: 'Start review of selected files'
     repousser_expiration: Keep for one more month
     supprimer: Delete seleted files
     restaurer: Restore seleted files

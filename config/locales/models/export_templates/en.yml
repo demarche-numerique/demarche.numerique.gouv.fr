@@ -5,7 +5,7 @@ en:
     attributes:
       export_template:
         hints:
-          name: The name will be visible by you and the other instructors
+          name: The name will be visible by you and the other reviewers
           dossier_folder: How would you like to name the directory containing the documents of a folder?
           export_pdf: How would you like to name the pdf file containing all the user's answers?
         name: Template's name
@@ -28,7 +28,7 @@ en:
   instructeurs:
     export_templates:
       form_tabular:
-        warning: If you modify this template, it will also be modified for all instructors who have access to this template.
+        warning: If you modify this template, it will also be modified for all reviewers who have access to this template.
         cancel: Cancel
         submit: Save
       form_zip:

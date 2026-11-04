@@ -1,14 +1,14 @@
 ---
 en:
   title:
-    zero: Instructors
-    one: Instructor
-    other: Instructors
+    zero: Reviewers
+    one: Reviewer
+    other: Reviewers
   routee:
     title:
-      zero: Instructor groups
-      one: Instructor group
-      other: Instructor groups
+      zero: Teams
+      one: Team
+      other: Teams
   subtitle: File follow-up
   badge:
     todo: To do

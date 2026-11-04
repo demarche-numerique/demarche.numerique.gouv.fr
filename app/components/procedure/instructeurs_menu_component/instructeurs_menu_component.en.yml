@@ -1,5 +1,5 @@
 ---
 en:
   instructeurs:
-    one: "%{count} instructor"
-    other: "%{count} instructors"
+    one: "%{count} reviewer"
+    other: "%{count} reviewers"

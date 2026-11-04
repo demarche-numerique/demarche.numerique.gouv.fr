@@ -9,7 +9,7 @@ en:
       exports:
         title: Exports list
         export_description: |
-          This list of exports contains the last exports you requested as well as those requested by instructors belonging to the same group.
+          This list of exports contains the last exports you requested as well as those requested by reviewers belonging to the same group.
           They are available for %{expiration_time} hours after generation.
         title_zip: A problem with the zip format ?
         export_description_zip_html: |
@@ -19,7 +19,7 @@ en:
         no_export_html: You have no export at the moment. <br> Can't find an export? It may have expired, exports are deleted after %{expiration_time} hours.
       export_templates:
         export_template_list_description_html: |
-          Each instructor can <b>configure an export template</b> to customize exports (attachments name for a zip export, columns selection for a tabular export). It will be made <b>available to all instructors</b> assigned to the procedure.</br>
+          Each reviewer can <b>configure an export template</b> to customize exports (attachments name for a zip export, columns selection for a tabular export). It will be made <b>available to all reviewers</b> assigned to the procedure.</br>
           <a href="%{doc_template_url}" target="_blank" rel="noopener noreferrer">Find out more about export template configuration</a>
         new_zip_export_template: Create ZIP export template
         new_tabular_export_template: Create tabular export template
@@ -27,9 +27,9 @@ en:
         no_existing_template: No export templates have been created yet. Use the buttons above to get started.
         template_format: Format
         template_creation_date: Creation date
-        template_owned_by: Owned by instructor group
-        template_shared_with: Shared with (instructor groups)
+        template_owned_by: Owned by team
+        template_shared_with: Shared with (teams)
         modify_template: Edit
         delete_template: Delete
-        delete_template_alert: Are you sure you want to delete this template? It will be removed for all instructors in the group
+        delete_template_alert: Are you sure you want to delete this template? It will be removed for all reviewers in the group
         actions: Actions

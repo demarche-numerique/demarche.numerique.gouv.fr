@@ -21,8 +21,8 @@ en:
           one: "%{emails} is not a valid email address"
           other: "%{emails} are not valid email addresses"
         assignment:
-          one: "The instructor %{emails} was assigned to the group « %{groupe} »."
-          other: "The instructors %{emails} were assigned to the group « %{groupe} »."
+          one: "The reviewer %{emails} was assigned to the group « %{groupe} »."
+          other: "The reviewers %{emails} were assigned to the group « %{groupe} »."
       routing_alert_sticky_header:
         routing_alert_html: "<strong>%{count} files</strong> have been deposited and are waiting to be processed on this procedure. These files have <strong>not been routed according to the configured routing</strong>. You must launch the routing to distribute them to the different groups."
         routing_alert_with_invalid_rules_html: "<strong>%{count} files</strong> have been deposited and are waiting to be processed on this procedure. These files have <strong>not yet been routed</strong>. Once you have configured your routing rules, you will need to launch the routing to distribute them to the different groups."
@@ -36,15 +36,15 @@ en:
           one: "%{emails} is not a valid email address"
           other: "%{emails} are not valid email addresses"
         add_all_groupes_assignment:
-          one: "The instructor %{emails} was assigned to all groups."
-          other: "The instructors %{emails} were assigned to all groups."
+          one: "The reviewer %{emails} was assigned to all groups."
+          other: "The reviewers %{emails} were assigned to all groups."
       remove_instructeur_from_all_groupes:
         remove_all_groupes_assignment:
-          one: "The instructor %{emails} was removed from all groups."
-          other: "The instructors %{emails} were removed from all groups."
+          one: "The reviewer %{emails} was removed from all groups."
+          other: "The reviewers %{emails} were removed from all groups."
         remove_all_groupes_partial:
-          one: "The instructor %{emails} was not removed from all groups because they are the only instructor in some groups."
-          other: "The instructors %{emails} were not removed from all groups because they are the only instructors in some groups."
+          one: "The reviewer %{emails} was not removed from all groups because they are the only reviewer in some groups."
+          other: "The reviewers %{emails} were not removed from all groups because they are the only reviewers in some groups."
       reaffectation:
         title: "Reassign files from group « %{label} »"
         hint:

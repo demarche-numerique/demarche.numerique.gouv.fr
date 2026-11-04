@@ -11,7 +11,7 @@ en:
         procedure_management: "This procedure is managed by:"
         ask_question: "Ask a question about your file:"
         by_messagerie: "Messaging :"
-        by_messagerie_link: send a message directly to the instructor
+        by_messagerie_link: send a message directly to the reviewer
         by_contact_link: "Contact page :"
         by_email: "Email :"
         by_phone: "Phone :"

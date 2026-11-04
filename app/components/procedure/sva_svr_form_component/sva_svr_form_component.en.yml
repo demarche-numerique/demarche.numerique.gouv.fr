@@ -8,20 +8,20 @@ en:
     days: days
   resume_method: How to calculate the delay when the applicant resubmits their corrected file?
   resume_intro: |
-    When an instructor asks for a file to be corrected, the countdown of the delay is interrupted.
+    When a reviewer asks for a file to be corrected, the countdown of the delay is interrupted.
     The delay resumes when the applicant resubmits their file stating that they have made the requested corrections.
     If the file has been declared incomplete, the delay will be reset, regardless of the configuration below.
   decision_buttons:
     disabled: "Disabled"
     sva:  "Silence Equals Acceptation (SVA)"
-    sva_hint: "A file is automatically accepted if no instructor has pronounced before the allotted time"
+    sva_hint: "A file is automatically accepted if no reviewer has pronounced before the allotted time"
     svr: "Silence Equals Rejection (SVR)"
-    svr_hint: "A file is automatically rejected if no instructor has pronounced before the allotted time"
+    svr_hint: "A file is automatically rejected if no reviewer has pronounced before the allotted time"
   resume_buttons:
     continue_label: "Resume countdown from where it stopped"
-    continue_hint: "Example: if the instructor requests corrections to a complete file with 10 days to go before the automatic decision, and the file is resubmitted on April 15, it will be automatically accepted on April 25, unless the instructor makes a decision by then or requests corrections again. On the other hand, if the inspector asks for the file to be completed, the deadline will be reset."
+    continue_hint: "Example: if the reviewer requests corrections to a complete file with 10 days to go before the automatic decision, and the file is resubmitted on April 15, it will be automatically accepted on April 25, unless the reviewer makes a decision by then or requests corrections again. On the other hand, if the reviewer asks for the file to be completed, the deadline will be reset."
     reset_label: "Reset the delay"
-    reset_hint: "Example: if the file is resubmitted on April 15 and the delay is 2 months, the decision will be automatically made on June 15, unless the instructor pronounces in the meantime or asks for corrections again."
+    reset_hint: "Example: if the file is resubmitted on April 15 and the delay is 2 months, the decision will be automatically made on June 15, unless the reviewer pronounces in the meantime or asks for corrections again."
   notice_new_files_only: "Information: if you activate this rule, only the newly submitted files will be subject to it."
   notice_edit_denied: "Settings can no longer be changed. Only disabling remains possible, and it is permanent."
   disable: "Disable automatic decision (%{rule})"
