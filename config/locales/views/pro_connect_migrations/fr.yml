@@ -25,3 +25,14 @@ fr:
       signed_in_html: Vous êtes bien connecté(e) à votre espace administrateur <strong>%{email}</strong> via ProConnect.
       pro_connect_only_html: Désormais, vous devrez vous connecter à votre espace administrateur uniquement <strong>via ProConnect</strong>.
       procedures: Voir mes démarches
+    code:
+      title: Migrer vers ProConnect
+      subtitle: Vérification de votre identité
+      explanation_html: "Pour finaliser votre migration vers ProConnect, veuillez renseigner le code de sécurité envoyé par email à l’adresse <strong>%{source_email}</strong>&nbsp;:"
+      label: Code de sécurité
+      hint: "Format attendu : 6 chiffres"
+      submit: Valider le code de sécurité
+    verify_code:
+      wrong_code: Ce code de sécurité est incorrect.
+      expired_code: Ce code de sécurité a expiré ou a été trop souvent mal saisi. Reconnectez-vous pour reprendre la migration.
+      conflict: Ce compte a changé entre-temps. Reconnectez-vous pour reprendre la migration.

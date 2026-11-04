@@ -20,6 +20,7 @@ class ProConnectMigration < ApplicationRecord
 
   scope :pending, -> { started.where(created_at: PENDING_FOR.ago..) }
   scope :sent_to_support, -> { where(state: SUPPORT_STATES, updated_at: PENDING_FOR.ago..) }
+  scope :waiting_for_code, -> { awaiting_code.where(updated_at: PENDING_FOR.ago..) }
 
   def identify!(auth:)
     update!(pro_connect_email: auth.email, state: outcome_for(auth.email))
@@ -40,6 +41,10 @@ class ProConnectMigration < ApplicationRecord
       .update_counters(code_attempts: 1) == 1
 
     counted && ActiveSupport::SecurityUtils.secure_compare(code_digest, digest(code.to_s.gsub(/\s/, '')))
+  end
+
+  def code_usable?
+    awaiting_code? && code_sent_at > CODE_VALIDITY.ago && code_attempts < MAX_CODE_ATTEMPTS
   end
 
   def rename!(auth:)

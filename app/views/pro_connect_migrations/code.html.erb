@@ -1,0 +1,29 @@
+<% content_for(:title, t('.subtitle')) %>
+<% content_for(:hide_header_signin, true) %>
+
+<div class="fr-container fr-py-5w">
+  <h1 class="fr-mb-5w"><%= t('.title') %></h1>
+
+  <h2 class="fr-h4"><%= t('.subtitle') %></h2>
+
+  <p><%= t('.explanation_html', source_email: @migration.source_email) %></p>
+
+  <div class="card fr-px-4w">
+    <%= form_with url: pro_connect_migration_code_path, method: :post, id: 'pro_connect_migration_code' do |f| %>
+      <div class="fr-input-group <%= class_names('fr-input-group--error': @error.present?) %>">
+        <%= f.label :code, class: 'fr-label' do %>
+          <%= t('.label') %>
+          <span class="fr-hint-text"><%= t('.hint') %></span>
+        <% end %>
+
+        <%= f.text_field :code, class: 'fr-input width-33-desktop', placeholder: '123456', autocomplete: 'one-time-code', inputmode: 'numeric', required: true, autofocus: @error.present?, aria: { describedby: ('code-error' if @error.present?) } %>
+
+        <% if @error.present? %>
+          <p id="code-error" class="fr-error-text"><%= @error %></p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <%= submit_tag t('.submit'), class: 'fr-btn', form: 'pro_connect_migration_code' %>
+</div>

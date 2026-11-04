@@ -25,3 +25,14 @@ en:
       signed_in_html: You are signed in to your administrator space <strong>%{email}</strong> with ProConnect.
       pro_connect_only_html: From now on, you must sign in to your administrator space <strong>with ProConnect</strong> only.
       procedures: See my procedures
+    code:
+      title: Switch to ProConnect
+      subtitle: Identity check
+      explanation_html: "To complete your switch to ProConnect, please enter the security code sent by email to <strong>%{source_email}</strong>:"
+      label: Security code
+      hint: "Expected format: 6 digits"
+      submit: Confirm the security code
+    verify_code:
+      wrong_code: This security code is wrong.
+      expired_code: This security code has expired or was entered wrongly too many times. Sign in again to resume the switch.
+      conflict: This account changed in the meantime. Sign in again to resume the switch.
