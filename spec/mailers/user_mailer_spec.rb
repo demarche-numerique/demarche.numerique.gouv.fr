@@ -270,4 +270,21 @@ RSpec.describe UserMailer, type: :mailer do
       expect(described_class.critical_email?('password_changed')).to be true
     end
   end
+
+  describe '.pro_connect_migration_code' do
+    let(:migration) do
+      ProConnectMigration.new(
+        id: 1, user: administrateurs.default.user, created_at: Time.zone.local(2026, 10, 22, 18, 22),
+        source_email: 'contact@exemple.fr', pro_connect_email: 'camille.dupont@exemple.fr'
+      )
+    end
+
+    subject { described_class.pro_connect_migration_code(migration, '123456', 'Chrome 155.0.8059.85 (macOS)') }
+
+    it 'goes to the old address, even without an account, and says who takes it over from where' do
+      expect(subject.to).to eq(['contact@exemple.fr'])
+      expect(subject[BalancerDeliveryMethod::CRITICAL_HEADER]).to be_present
+      expect(subject.body).to include('123456', 'camille.dupont@exemple.fr', '22/10/2026 à 18:22', 'Chrome 155.0.8059.85 (macOS)')
+    end
+  end
 end

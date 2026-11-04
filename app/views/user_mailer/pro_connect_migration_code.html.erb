@@ -1,0 +1,38 @@
+<%- content_for(:title, @subject) %>
+
+<p>Bonjour,</p>
+
+<p>
+  Une migration ProConnect de votre compte <%= APPLICATION_NAME %> est en cours
+  depuis l’adresse <strong><%= @migration.source_email %></strong> vers
+  l’adresse <strong><%= @migration.pro_connect_email %></strong>.
+</p>
+
+<p>
+  Voici le code de sécurité à 6 chiffres qui vous permettra de confirmer votre
+  identité et finaliser la migration vers ProConnect&nbsp;:
+</p>
+
+<div
+  class="darkmode-3"
+  style="padding: 16px 24px; color: #3A3A3A; background-color: #F5F5FE;"
+>
+  <p style="font-size: 24px; font-weight: bold;"><%= @code %></p>
+
+  <p>
+    Ce code est valable
+    <strong><%= distance_of_time_in_words(ProConnectMigration::CODE_VALIDITY) %></strong>.
+  </p>
+</div>
+
+<p>
+  Cette migration ProConnect a été initiée le&nbsp;:
+  <strong><%= l(@migration.created_at, format: '%d/%m/%Y à %H:%M') %> (heure de Paris)</strong>
+  <% if @browser.present? %>
+    <br>
+    Navigateur&nbsp;:
+    <strong><%= @browser %></strong>
+  <% end %>
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>

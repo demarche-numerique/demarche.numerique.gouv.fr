@@ -60,6 +60,11 @@ class UserMailerPreview < ActionMailer::Preview
     UserMailer.password_changed(user)
   end
 
+  def pro_connect_migration_code
+    migration = ProConnectMigration.new(id: 1, created_at: Time.zone.now, source_email: 'contact@mairie.fr', pro_connect_email: 'camille.dupont@mairie.fr')
+    UserMailer.pro_connect_migration_code(migration, '123456', 'Chrome 142.0.7444.60 (macOS)')
+  end
+
   private
 
   def user

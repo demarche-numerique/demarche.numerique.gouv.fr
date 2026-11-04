@@ -147,6 +147,15 @@ class UserMailer < ApplicationMailer
     mail(to: user.email, subject: @subject)
   end
 
+  def pro_connect_migration_code(migration, code, browser)
+    @migration = migration
+    @code = code
+    @browser = browser
+    @subject = default_i18n_subject
+
+    mail(to: migration.source_email, subject: @subject)
+  end
+
   def self.critical_email?(action_name)
     [
       'france_connect_merge_confirmation',
@@ -158,6 +167,7 @@ class UserMailer < ApplicationMailer
       "custom_confirmation_instructions",
       "reset_password_via_pro_connect",
       "password_changed",
+      "pro_connect_migration_code",
     ].include?(action_name)
   end
 end

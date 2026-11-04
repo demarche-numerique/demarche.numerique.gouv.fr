@@ -3,6 +3,7 @@
 class ProConnectMigration < ApplicationRecord
   PENDING_FOR = 30.minutes
   SUPPORT_STATES = ['domain_mismatch', 'existing_account'].freeze
+  CODE_VALIDITY = 10.minutes
 
   belongs_to :user
 
@@ -11,6 +12,7 @@ class ProConnectMigration < ApplicationRecord
     same_email: 'same_email',
     domain_mismatch: 'domain_mismatch',
     existing_account: 'existing_account',
+    awaiting_code: 'awaiting_code',
   }
 
   scope :pending, -> { started.where(created_at: PENDING_FOR.ago..) }
@@ -22,6 +24,12 @@ class ProConnectMigration < ApplicationRecord
 
   def sent_to_support? = state.in?(SUPPORT_STATES)
 
+  def send_code!(browser)
+    code = SecureRandom.random_number(1_000_000).to_s.rjust(6, '0')
+    update!(code_digest: digest(code), code_sent_at: Time.current)
+    UserMailer.pro_connect_migration_code(self, code, browser_description(browser)).deliver_later
+  end
+
   private
 
   def outcome_for(email)
@@ -32,9 +40,18 @@ class ProConnectMigration < ApplicationRecord
     elsif User.exists?(email:)
       :existing_account
     else
-      :started
+      :awaiting_code
     end
   end
 
   def domain(email) = email.split('@').last
+
+  def digest(code)
+    key = Rails.application.key_generator.generate_key('pro_connect_migration_code')
+    OpenSSL::HMAC.hexdigest('SHA256', key, "#{id}:#{code}")
+  end
+
+  def browser_description(browser)
+    "#{browser.name} #{browser.full_version} (#{browser.platform.name})" if browser.known?
+  end
 end

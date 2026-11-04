@@ -29,12 +29,7 @@ describe ProConnectMigration do
     context 'with a free address of the same domain' do
       let(:email) { 'camille.dupont@exemple.fr' }
 
-      it 'keeps the address for later' do
-        subject
-
-        expect(migration).to be_started
-        expect(migration.pro_connect_email).to eq(email)
-      end
+      it { subject; expect(migration).to be_awaiting_code }
     end
   end
 end
