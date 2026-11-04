@@ -158,6 +158,13 @@ class User < ApplicationRecord
     end
   end
 
+  def become_administrateur!
+    pro_connect_required_at = Time.zone.now if ProConnectService.enabled?
+    create_administrateur!(pro_connect_required_at:)
+    france_connect_informations.delete_all
+    AdminUpdateDefaultZonesJob.perform_later(administrateur)
+  end
+
   def self.create_or_promote_to_instructeur(email, password, administrateurs: [], pro_connect: false)
     if pro_connect
       user = User
@@ -207,15 +214,27 @@ class User < ApplicationRecord
 
   def self.create_or_promote_to_administrateur(email, password)
     user = User.create_or_promote_to_instructeur(email, password)
+    user.become_administrateur! if user.valid? && user.administrateur.nil?
+    user
+  end
 
-    if user.valid? && user.administrateur.nil?
-      pro_connect_required_at = Time.zone.now if ProConnectService.enabled?
-      user.create_administrateur!(pro_connect_required_at:)
-      user.france_connect_informations.delete_all
-      AdminUpdateDefaultZonesJob.perform_later(user.administrateur)
+  def self.find_or_create_for_pro_connect!(email)
+    user = find_by(email:)
+
+    if user.nil?
+      user = create!(email:, password: Devise.friendly_token[0, 20], confirmed_at: Time.current, email_verified_at: Time.current)
+      user.after_confirmation
+    elsif user.email_verified_at.nil?
+      user.update!(email_verified_at: Time.current)
     end
 
     user
+  end
+
+  # Devise looks the account up here for the password sign in only: the old
+  # address of a migrated account still leads its co-holders to it.
+  def self.find_for_database_authentication(conditions)
+    super || ProConnectMigration.renamed_account_for(normalize_value_for(:email, conditions[:email]))
   end
 
   def self.create_or_promote_to_expert(email, password)

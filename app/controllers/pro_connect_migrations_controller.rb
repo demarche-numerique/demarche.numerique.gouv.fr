@@ -4,7 +4,9 @@ class ProConnectMigrationsController < ApplicationController
   include ProConnectMigrationConcern
 
   before_action :authenticate_administrateur!, only: :completed
-  before_action :set_migration_waiting_for_code, only: [:code, :verify_code, :resend_code]
+  before_action :set_migration_waiting_for_code, only: [:code, :verify_code, :resend_code, :sharing, :update_sharing]
+  before_action :redirect_to_sharing_once_code_verified, only: [:code, :verify_code, :resend_code]
+  before_action :redirect_to_code_until_verified, only: [:sharing, :update_sharing]
 
   def show
     @migration = pro_connect_migration_in_session(ProConnectMigration.pending)
@@ -21,14 +23,18 @@ class ProConnectMigrationsController < ApplicationController
 
   def verify_code
     return retry_or_start_over if !@migration.verify_code(params[:code])
+    return complete_migration { @migration.grant!(auth: it) } if @migration.parent
 
-    auth = kept_pro_connect_authentication
-    forget_pro_connect_migration
-    return redirect_to new_user_session_path, alert: t('.conflict') if !@migration.rename!(auth:)
+    session[CODE_VERIFIED_SESSION_KEY] = @migration.id
+    redirect_to pro_connect_migration_sharing_path
+  end
 
-    sign_in_with_pro_connect(@migration.target_user, id_token: auth.id_token, mfa: true)
-    remember_administrateur_device
-    redirect_to pro_connect_migration_completed_path
+  def sharing
+  end
+
+  def update_sharing
+    shared = params.expect(:shared) == 'true'
+    complete_migration { @migration.rename!(auth: it, shared:) }
   end
 
   def resend_code
@@ -40,7 +46,9 @@ class ProConnectMigrationsController < ApplicationController
   end
 
   def completed
-    redirect_to admin_procedures_path if !current_administrateur.pro_connect_required_at?
+    return redirect_to admin_procedures_path if !current_administrateur.pro_connect_required_at?
+
+    @migration = ProConnectMigration.completed.where(target_user: current_user).last
   end
 
   private
@@ -52,6 +60,26 @@ class ProConnectMigrationsController < ApplicationController
     flash.alert = t('pro_connect_migrations.code.timed_out') if session[SESSION_KEY].present?
     forget_pro_connect_migration
     redirect_to new_user_session_path
+  end
+
+  def code_verified? = session[CODE_VERIFIED_SESSION_KEY] == @migration.id
+
+  def redirect_to_sharing_once_code_verified
+    redirect_to pro_connect_migration_sharing_path if code_verified?
+  end
+
+  def redirect_to_code_until_verified
+    redirect_to pro_connect_migration_code_path if !code_verified?
+  end
+
+  def complete_migration
+    auth = kept_pro_connect_authentication
+    forget_pro_connect_migration
+    return redirect_to new_user_session_path, alert: t('pro_connect_migrations.conflict') if !yield(auth)
+
+    sign_in_with_pro_connect(@migration.target_user, id_token: auth.id_token, mfa: true)
+    remember_administrateur_device
+    redirect_to pro_connect_migration_completed_path
   end
 
   def retry_or_start_over

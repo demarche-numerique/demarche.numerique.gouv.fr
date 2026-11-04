@@ -9,6 +9,7 @@ class ProConnectMigration < ApplicationRecord
 
   belongs_to :user
   belongs_to :target_user, class_name: 'User', optional: true
+  belongs_to :parent, class_name: 'ProConnectMigration', optional: true
 
   enum :state, {
     started: 'started',
@@ -17,11 +18,23 @@ class ProConnectMigration < ApplicationRecord
     existing_account: 'existing_account',
     awaiting_code: 'awaiting_code',
     renamed: 'renamed',
+    granted: 'granted',
   }
 
   scope :pending, -> { started.where(created_at: PENDING_FOR.ago..) }
   scope :sent_to_support, -> { where(state: SUPPORT_STATES, updated_at: PENDING_FOR.ago..) }
   scope :waiting_for_code, -> { awaiting_code.where(updated_at: PENDING_FOR.ago..) }
+  scope :completed, -> { where(state: [:renamed, :granted]) }
+  scope :joinable, -> { renamed.where(shared: true) }
+
+  def self.joinable_for(email) = joinable.where(source_email: email).last
+
+  # Only an account ProConnect binds, while the migration is open to it:
+  # sessions#create then signs it out at once.
+  def self.renamed_account_for(email)
+    account = joinable_for(email)&.user
+    account if account&.administrateur&.pro_connect_required? && Flipper.enabled?(:administrateur_pro_connect_migration, account)
+  end
 
   def identify!(auth:)
     update!(pro_connect_email: auth.email, state: outcome_for(auth.email))
@@ -55,14 +68,14 @@ class ProConnectMigration < ApplicationRecord
 
   def attempts_spent? = code_attempts >= MAX_CODE_ATTEMPTS
 
-  def rename!(auth:)
+  def rename!(auth:, shared:)
     transaction do
       # Without the default eager_load: PostgreSQL refuses FOR UPDATE on an outer join.
       account = User.unscope(:eager_load).lock.find(user_id)
       next false if account.email != source_email || auth.email != pro_connect_email || User.exists?(email: pro_connect_email)
 
       update!(
-        state: :renamed, target_user: account,
+        state: :renamed, target_user: account, shared:,
         procedure_ids: owned_procedure_ids(account), groupe_instructeur_ids: assigned_groupe_instructeur_ids(account)
       )
       account.skip_reconfirmation!
@@ -73,13 +86,36 @@ class ProConnectMigration < ApplicationRecord
     end
   end
 
+  def grant!(auth:)
+    transaction do
+      next false if auth.email != pro_connect_email
+
+      target = User.find_or_create_for_pro_connect!(pro_connect_email)
+      target.create_instructeur! if target.instructeur.nil?
+      target.become_administrateur! if target.administrateur.nil?
+      administrateur = target.administrateur
+      administrateur.update!(pro_connect_required_at: Time.current) if !administrateur.pro_connect_required_at?
+
+      Procedure.with_discarded.where(id: parent.procedure_ids).find_each do |procedure|
+        AdministrateursProcedure.create_or_find_by!(administrateur:, procedure:)
+      end
+      GroupeInstructeur.where(id: parent.groupe_instructeur_ids).find_each { it.add(target.instructeur) }
+
+      ProConnectInformation.record!(user: target, auth:)
+      update!(state: :granted, target_user: target)
+      true
+    end
+  end
+
   private
 
   def outcome_for(email)
-    if email == source_email
-      :same_email
-    elsif domain(email) != domain(source_email)
+    if domain(email) != domain(source_email)
       :domain_mismatch
+    elsif parent
+      :awaiting_code
+    elsif email == source_email
+      :same_email
     elsif User.exists?(email:)
       :existing_account
     else

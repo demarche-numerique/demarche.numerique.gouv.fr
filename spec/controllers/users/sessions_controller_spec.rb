@@ -212,6 +212,66 @@ describe Users::SessionsController, type: :controller do
             expect(ProConnectMigration.where(user:)).to be_empty
           end
         end
+
+        context 'when a co-holder signs in with the old address of a migrated account' do
+          let(:email) { 'contact@exemple.fr' }
+          let(:shared) { true }
+          let!(:origin) { ProConnectMigration.create!(user:, source_email: email, state: :renamed, shared:) }
+
+          before { user.administrateur.update!(pro_connect_required_at: 1.day.ago) }
+
+          it 'opens a migration attached to the first one' do
+            subject
+
+            expect(response).to redirect_to(pro_connect_migration_path)
+            expect(controller.current_user).to be_nil
+            expect(ProConnectMigration.find_by!(parent: origin)).to have_attributes(user:, source_email: email)
+          end
+
+          context 'with a wrong password' do
+            let(:send_password) { 'wrong_password' }
+
+            it 'counts the failure on the migrated account' do
+              subject
+
+              expect(flash.alert).to eq('Adresse électronique ou mot de passe incorrect.')
+              expect(user.reload.failed_attempts).to eq(1)
+            end
+          end
+
+          context 'once the holder answered that the address was not shared' do
+            let(:shared) { false }
+
+            it 'does not know the address' do
+              subject
+
+              expect(flash.alert).to eq('Adresse électronique ou mot de passe incorrect.')
+              expect(ProConnectMigration.where(parent: origin)).to be_empty
+            end
+          end
+
+          context 'when the migration is not open to this account' do
+            before { Flipper.disable(:administrateur_pro_connect_migration) }
+
+            it 'does not know the address' do
+              subject
+
+              expect(flash.alert).to eq('Adresse électronique ou mot de passe incorrect.')
+              expect(controller.current_user).to be_nil
+            end
+          end
+
+          context 'when ProConnect is disabled' do
+            before { allow(ProConnectService).to receive(:enabled?).and_return(false) }
+
+            it 'never opens the migrated account' do
+              subject
+
+              expect(controller.current_user).to be_nil
+              expect(flash.alert).to eq('Adresse électronique ou mot de passe incorrect.')
+            end
+          end
+        end
       end
     end
 
