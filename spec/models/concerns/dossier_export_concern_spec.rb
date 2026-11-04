@@ -189,4 +189,75 @@ describe DossierExportConcern do
       it { expect(dossier.spreadsheet_columns(type_de_champs: [])).to include(["Date décision SVR", :sva_svr_decision_on]) }
     end
   end
+
+  describe 'spreadsheet_columns_csv with inline repetitions' do
+    let(:procedure) do
+      create(:procedure, public_type_de_champs: [
+        { type: :text, libelle: 'Nom', stable_id: 1 },
+        {
+          type: :repetition, libelle: 'Enfants', stable_id: 10, children: [
+            { type: :text, libelle: 'Prénom', stable_id: 11 },
+            { type: :integer_number, libelle: 'Âge', stable_id: 12 },
+          ],
+        },
+        { type: :text, libelle: 'Commune', stable_id: 2 },
+      ])
+    end
+    let(:dossier) { create(:dossier, procedure:) }
+    let(:bloc) { dossier.find_type_de_champ_by_stable_id(10) }
+    let(:children) { procedure.all_revisions_type_de_champs(parent: bloc).to_a }
+    let(:export_template) do
+      exported_columns = [
+        ExportedColumn.new(libelle: 'Nom', column: procedure.find_column(label: 'Nom')),
+        ExportedColumn.new(libelle: '(Bloc répétable Enfants) – Prénom', column: procedure.find_column(label: 'Enfants – Prénom')),
+        ExportedColumn.new(libelle: '(Bloc répétable Enfants) – Âge', column: procedure.find_column(label: 'Enfants – Âge')),
+        ExportedColumn.new(libelle: 'Commune', column: procedure.find_column(label: 'Commune')),
+      ]
+      build(:export_template, kind: 'csv', exported_columns:, groupe_instructeur: procedure.defaut_groupe_instructeur)
+    end
+    let(:max_rows) { 2 }
+    let(:columns_by_child) { children.index_with { export_template.columns_for_stable_id(it.stable_id) } }
+    let(:inline_repetitions) { { 10 => ProcedureExportService::InlineRepetition.new(max_rows:, columns_by_child:) } }
+
+    subject(:columns) do
+      dossier.spreadsheet_columns_csv(type_de_champs: procedure.all_revisions_type_de_champs.to_a, export_template:, inline_repetitions:)
+    end
+
+    before do
+      row_id = dossier.repetition_row_ids(bloc).first
+      dossier.public_champ_for_update("11-#{row_id}", updated_by: 'test').update!(value: 'Léa')
+      dossier.public_champ_for_update("12-#{row_id}", updated_by: 'test').update!(value: '7')
+    end
+
+    it 'puts the flattened columns at the position of the repetition, grouped by row' do
+      expect(columns.map(&:first)).to eq([
+        'Nom',
+        '(Bloc répétable Enfants) – Prénom [1]', '(Bloc répétable Enfants) – Âge [1]',
+        '(Bloc répétable Enfants) – Prénom [2]', '(Bloc répétable Enfants) – Âge [2]',
+        'Commune',
+      ])
+    end
+
+    it 'leaves the cells of a missing row empty' do
+      expect(columns.map(&:second)).to eq([nil, 'Léa', 7, nil, nil, nil])
+    end
+
+    context 'when the dossier has more rows than the maximum' do
+      let(:max_rows) { 1 }
+
+      before { dossier.repetition_add_row(bloc, updated_by: 'test') }
+
+      it 'keeps only the first rows' do
+        expect(columns.map(&:first)).to eq(['Nom', '(Bloc répétable Enfants) – Prénom [1]', '(Bloc répétable Enfants) – Âge [1]', 'Commune'])
+      end
+    end
+
+    context 'without inline repetition' do
+      let(:inline_repetitions) { {} }
+
+      it 'exports no column for the repetition' do
+        expect(columns.map(&:first)).to eq(['Nom', 'Commune'])
+      end
+    end
+  end
 end
