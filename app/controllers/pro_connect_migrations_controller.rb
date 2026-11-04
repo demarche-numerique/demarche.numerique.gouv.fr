@@ -4,7 +4,7 @@ class ProConnectMigrationsController < ApplicationController
   include ProConnectMigrationConcern
 
   before_action :authenticate_administrateur!, only: :completed
-  before_action :set_migration_waiting_for_code, only: [:code, :verify_code]
+  before_action :set_migration_waiting_for_code, only: [:code, :verify_code, :resend_code]
 
   def show
     @migration = pro_connect_migration_in_session(ProConnectMigration.pending)
@@ -29,6 +29,14 @@ class ProConnectMigrationsController < ApplicationController
     sign_in_with_pro_connect(@migration.target_user, id_token: auth.id_token, mfa: true)
     remember_administrateur_device
     redirect_to pro_connect_migration_completed_path
+  end
+
+  def resend_code
+    if @migration.resend_code!(browser)
+      redirect_to pro_connect_migration_code_path, notice: t('.sent', source_email: @migration.source_email)
+    else
+      redirect_to pro_connect_migration_code_path, alert: t('.too_soon')
+    end
   end
 
   def completed

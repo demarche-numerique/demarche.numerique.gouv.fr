@@ -78,6 +78,24 @@ describe ProConnectMigrationsController, type: :controller do
         expect(cookies[ProConnectMigrationConcern::IDENTITY_COOKIE_NAME]).to be_nil
       end
     end
+
+    describe '#resend_code' do
+      it 'mails a new code, without giving the attempts back nor more time' do
+        migration.update_columns(code_sent_at: 2.minutes.ago, code_attempts: 2, updated_at: 20.minutes.ago)
+
+        expect { post :resend_code }.to have_enqueued_mail(UserMailer, :pro_connect_migration_code)
+
+        expect(response).to redirect_to(pro_connect_migration_code_path)
+        expect(migration.reload.code_attempts).to eq(2)
+        expect(migration.updated_at).to be < 19.minutes.ago
+      end
+
+      it 'waits a minute between two codes' do
+        expect { post :resend_code }.not_to have_enqueued_mail
+
+        expect(response).to redirect_to(pro_connect_migration_code_path)
+      end
+    end
   end
 
   describe '#completed' do

@@ -65,6 +65,23 @@ describe ProConnectMigration do
     end
   end
 
+  describe '#resend_code!' do
+    let(:email) { 'camille.dupont@exemple.fr' }
+
+    before do
+      migration.identify!(auth: ProConnectService::Authentication.new(user_info:, id_token: 'id_token', amr: ['mfa'], acr: nil))
+      migration.send_code!(Browser.new(''))
+      migration.update_columns(code_sent_at: 2.minutes.ago)
+    end
+
+    it 'sends one code for two requests in flight' do
+      in_flight = ProConnectMigration.find(migration.id)
+
+      expect(migration.resend_code!(Browser.new(''))).to be true
+      expect(in_flight.resend_code!(Browser.new(''))).to be false
+    end
+  end
+
   describe '#rename!' do
     let(:administrateur) { administrateurs.default }
     let!(:migration) do

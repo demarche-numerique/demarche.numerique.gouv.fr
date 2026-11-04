@@ -5,6 +5,7 @@ class ProConnectMigration < ApplicationRecord
   SUPPORT_STATES = ['domain_mismatch', 'existing_account'].freeze
   CODE_VALIDITY = 10.minutes
   MAX_CODE_ATTEMPTS = 5
+  RESEND_AFTER = 1.minute
 
   belongs_to :user
   belongs_to :target_user, class_name: 'User', optional: true
@@ -30,7 +31,8 @@ class ProConnectMigration < ApplicationRecord
 
   def send_code!(browser)
     code = SecureRandom.random_number(1_000_000).to_s.rjust(6, '0')
-    update!(code_digest: digest(code), code_sent_at: Time.current)
+    # Leaves updated_at at the ProConnect return, which bounds waiting_for_code.
+    update_columns(code_digest: digest(code), code_sent_at: Time.current)
     UserMailer.pro_connect_migration_code(self, code, browser_description(browser)).deliver_later
   end
 
@@ -41,6 +43,12 @@ class ProConnectMigration < ApplicationRecord
       .update_counters(code_attempts: 1) == 1
 
     counted && ActiveSupport::SecurityUtils.secure_compare(code_digest, digest(code.to_s.gsub(/\s/, '')))
+  end
+
+  def resend_code!(browser)
+    claimed = self.class.awaiting_code.where(id:, code_sent_at: ..RESEND_AFTER.ago).update_all(code_sent_at: Time.current) == 1
+    send_code!(browser) if claimed
+    claimed
   end
 
   def code_usable?

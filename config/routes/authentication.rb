@@ -49,5 +49,6 @@ scope 'pro_connect/migration', as: :pro_connect_migration, controller: :pro_conn
   get 'support'
   get 'code'
   post 'code' => :verify_code
+  post 'resend_code'
   get 'completed'
 end

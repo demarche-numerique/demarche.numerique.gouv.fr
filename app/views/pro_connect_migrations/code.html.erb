@@ -23,6 +23,9 @@
         <% end %>
       </div>
     <% end %>
+
+    <p class="fr-mt-2w fr-mb-0"><%= t('.not_received') %></p>
+    <%= button_to t('.resend'), pro_connect_migration_resend_code_path, class: 'fr-link', data: { href: true } %>
   </div>
 
   <%= submit_tag t('.submit'), class: 'fr-btn', form: 'pro_connect_migration_code' %>
