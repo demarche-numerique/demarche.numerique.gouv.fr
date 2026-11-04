@@ -242,6 +242,51 @@ suite('SingleSelect with a section id equal to an item value', () => {
   });
 });
 
+suite('SingleSelect search placeholder', () => {
+  let container: HTMLDivElement;
+  let root: Root;
+
+  beforeEach(() => {
+    container = document.createElement('div');
+    document.body.appendChild(container);
+    root = createRoot(container);
+  });
+
+  afterEach(() => {
+    root.unmount();
+    container.remove();
+  });
+
+  const renderWith = (searchPlaceholder?: string) =>
+    root.render(
+      <SingleSelect
+        name="dossier"
+        value={null}
+        aria-label="Dossier"
+        searchPlaceholder={searchPlaceholder}
+        items={[{ label: 'N° 1', value: '1' }]}
+      />
+    );
+
+  test('defaults to a generic placeholder', async () => {
+    renderWith();
+    await userEvent.click(page.getByRole('button'));
+
+    await expect
+      .element(page.getByRole('searchbox'))
+      .toHaveAttribute('placeholder', 'Rechercher');
+  });
+
+  test('uses the given placeholder', async () => {
+    renderWith('Filtrer par numéro ou nom');
+    await userEvent.click(page.getByRole('button'));
+
+    await expect
+      .element(page.getByRole('searchbox'))
+      .toHaveAttribute('placeholder', 'Filtrer par numéro ou nom');
+  });
+});
+
 suite('SingleSelect search', () => {
   let container: HTMLDivElement;
   let root: Root;

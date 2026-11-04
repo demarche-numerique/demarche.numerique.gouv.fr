@@ -56,6 +56,7 @@ type SelectProps<M extends SelectionMode = 'single'> = AriaSelectProps<
   ariaLabelledbyPrefix?: string;
   alwaysShowKey?: string;
   emptyHint?: string;
+  searchPlaceholder?: string;
   selectedLabels?: { one: string; other: string };
   data?: Record<string, string>;
 };
@@ -71,6 +72,7 @@ function Select<M extends SelectionMode = 'single'>({
   ariaLabelledbyPrefix,
   alwaysShowKey,
   emptyHint,
+  searchPlaceholder,
   selectedLabels,
   id: _id, // eslint-disable-line @typescript-eslint/no-unused-vars -- intentionally discarded to prevent AriaSelect from putting it on a hidden <select>
   ...props
@@ -137,7 +139,7 @@ function Select<M extends SelectionMode = 'single'>({
             autoFocus
             aria-label={labelId ? undefined : t`Rechercher dans la liste`}
             aria-labelledby={labelId}
-            placeholder={t`Rechercher`}
+            placeholder={searchPlaceholder ?? t`Rechercher`}
             style={{ margin: 4 }}
           />
           <Virtualizer layout={ListLayout}>
