@@ -26,7 +26,7 @@ class ProcedureExportService::CsvExport
       .new(@dossiers.ordered_for_export)
       .in_batches(includes: DossierPreloader::SHEET_EXPORT_INCLUDES) do |batch|
       batch.each do |dossier|
-        columns = dossier.spreadsheet_columns_csv(type_de_champs:, export_template: @export_template)
+        columns = dossier.spreadsheet_columns_csv(type_de_champs:, export_template: @export_template, inline_repetitions:)
 
         unless headers_written
           csv << columns.map(&:first)
@@ -48,5 +48,36 @@ class ProcedureExportService::CsvExport
     end
   end
 
-  def type_de_champs = @type_de_champs ||= @procedure.type_de_champs_for_procedure_export.to_a
+  def type_de_champs
+    @type_de_champs ||= if @export_template.present?
+      @procedure.all_revisions_type_de_champs.to_a
+    else
+      @procedure.type_de_champs_for_procedure_export.to_a
+    end
+  end
+
+  def inline_repetitions
+    return {} if @export_template.nil?
+
+    @inline_repetitions ||= begin
+      max_rows = ProcedureExportService::RepetitionMaxRows.new(dossiers: @dossiers, stable_ids: repetition_columns.keys).to_h
+
+      repetition_columns.to_h do |stable_id, children_columns|
+        [stable_id, ProcedureExportService::InlineRepetition.new(max_rows: max_rows.fetch(stable_id, 0), columns_by_child: children_columns)]
+      end
+    end
+  end
+
+  def repetition_columns
+    @repetition_columns ||= type_de_champs
+      .filter(&:repetition?)
+      .to_h { [it.stable_id, columns_by_child(it)] }
+      .filter { |_, children_columns| children_columns.any? }
+  end
+
+  def columns_by_child(repetition)
+    @procedure.all_revisions_type_de_champs(parent: repetition)
+      .index_with { @export_template.columns_for_stable_id(it.stable_id) }
+      .filter { |_, exported_columns| exported_columns.any? }
+  end
 end

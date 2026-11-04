@@ -306,4 +306,64 @@ describe ProcedureExportService do
       end
     end
   end
+
+  describe 'to_csv' do
+    let(:export_template) { create(:export_template, kind: 'csv', exported_columns:, groupe_instructeur: procedure.defaut_groupe_instructeur) }
+    let(:csv) { service.to_csv.open { |f| CSV.read(f.path, headers: true) } }
+    let(:bloc) { procedure.active_revision.public_root_type_de_champs.find(&:repetition?) }
+    let(:child_libelle) { 'Champ répétable – child second champ' }
+
+    before do
+      create(:dossier, :en_instruction, :with_populated_champs, :with_individual, procedure:)
+      dossier = create(:dossier, :en_instruction, :with_populated_champs, :with_individual, procedure:)
+      dossier.repetition_remove_row(bloc, dossier.repetition_row_ids(bloc).last, updated_by: 'test')
+    end
+
+    context 'with a checked child column' do
+      let(:exported_columns) do
+        [
+          ExportedColumn.new(libelle: 'first champ', column: procedure.find_column(label: 'first champ')),
+          ExportedColumn.new(libelle: child_libelle, column: procedure.find_column(label: child_libelle)),
+        ]
+      end
+
+      it 'flattens the repetition in the single sheet' do
+        expect(csv.headers).to eq(['first champ', "#{child_libelle} [1]", "#{child_libelle} [2]"])
+      end
+
+      it 'leaves the cells of the missing rows empty' do
+        expect(csv.map { it["#{child_libelle} [2]"] }).to contain_exactly('text', nil)
+      end
+    end
+
+    context 'without checked child column' do
+      let(:exported_columns) { [ExportedColumn.new(libelle: 'first champ', column: procedure.find_column(label: 'first champ'))] }
+
+      it 'exports no repetition column' do
+        expect(csv.headers).to eq(['first champ'])
+      end
+    end
+
+    context 'without export template' do
+      let(:export_template) { nil }
+
+      it 'exports no repetition column' do
+        expect(csv.headers.grep(/child/)).to be_empty
+      end
+    end
+
+    context 'with a repetition in the private annotations' do
+      let(:procedure) do
+        create(:procedure, for_individual:, instructeurs: [instructeur],
+          public_type_de_champs: [{ type: :text, libelle: 'first champ', stable_id: 1 }],
+          private_type_de_champs: [{ type: :repetition, libelle: 'Suivi', stable_id: 40, children: [{ type: :text, libelle: 'Étape', stable_id: 41 }] }])
+      end
+      let(:bloc) { procedure.active_revision.private_root_type_de_champs.find(&:repetition?) }
+      let(:exported_columns) { [ExportedColumn.new(libelle: 'Suivi – Étape', column: procedure.find_column(label: 'Suivi – Étape'))] }
+
+      it 'flattens it too' do
+        expect(csv.headers).to eq(['Suivi – Étape [1]'])
+      end
+    end
+  end
 end
