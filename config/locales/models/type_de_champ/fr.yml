@@ -16,6 +16,7 @@ fr:
           header_section: 'Titre de section'
           repetition: 'Bloc répétable'
           dossier_link: 'Lien vers un autre dossier %{app_name}'
+          link: 'Lien (URL)'
           explication: 'Explication'
           civilite: 'Civilité'
           email: 'Adresse électronique'

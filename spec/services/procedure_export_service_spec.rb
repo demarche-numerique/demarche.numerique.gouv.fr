@@ -104,6 +104,7 @@ describe ProcedureExportService do
             "pays",
             "pays (Code)",
             "dossier_link",
+            "link",
             "piece_justificative",
             "rna",
             "carte",

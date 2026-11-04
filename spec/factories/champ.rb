@@ -149,6 +149,10 @@ FactoryBot.define do
       value_json { AddressProxy::ADDRESS_PARTS.index_by(&:itself).merge(title: "LA PRÉVENTION ROUTIERE", department_code: 'department_code') }
     end
 
+    factory :champ_do_not_use_link, class: 'Champs::LinkChamp' do
+      value { 'https://outil-metier.gouv.fr/dossiers/42' }
+    end
+
     factory :champ_do_not_use_engagement_juridique, class: 'Champs::EngagementJuridiqueChamp' do
       value { 'EJ' }
     end
