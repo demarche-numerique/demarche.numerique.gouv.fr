@@ -129,10 +129,13 @@ class AttestationTemplate < ApplicationRecord
 
   # The latest deposits of each state, picked by rank so that every state shows up,
   # listed active revision first: its dossiers know every tag of the attestation.
+  # ponytail: a procedure spread over many groups top-N sorts its dossiers of each state;
+  # add a partial (groupe_instructeur_id, state, depose_at, id) index if the plan hurts.
   def preview_dossiers(limit: 20)
     latest_by_state = PREVIEW_DOSSIER_STATES.fetch(kind).map do |state|
       Dossier.visible_by_administration
         .where(groupe_instructeur_id: procedure.groupe_instructeur_ids, state:)
+        .where.not(depose_at: nil)
         .order_by_depose_at
         .includes(:individual, :etablissement)
         .limit(limit)
