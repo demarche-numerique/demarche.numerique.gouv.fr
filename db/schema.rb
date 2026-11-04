@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_28_153130) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_04_160000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_catalog.plpgsql"
@@ -267,6 +267,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_28_153130) do
     t.string "external_id"
     t.string "external_state"
     t.string "fetch_external_data_exceptions", array: true
+    t.bigint "new_id"
     t.boolean "prefilled"
     t.jsonb "prefilled_original_value"
     t.boolean "private", default: false, null: false
