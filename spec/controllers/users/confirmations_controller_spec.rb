@@ -125,6 +125,23 @@ describe Users::ConfirmationsController, type: :controller do
         expect(subject).to redirect_to(new_user_session_path)
       end
     end
+
+    context 'when the address requested by an email change was taken in the meantime' do
+      render_views
+
+      let!(:user) { create(:user) }
+
+      before do
+        freeze_time
+        user.update_columns(unconfirmed_email: users.usager.email, confirmation_token: 'email-change-token', confirmation_sent_at: Time.current)
+      end
+
+      it 'points them to the activation email, the only one that can still succeed' do
+        get :show, params: { confirmation_token: 'email-change-token' }
+
+        expect(response.body).to have_text('Ouvrez votre boîte email et cliquez sur le bouton d’activation dans le message que vous avez reçu.')
+      end
+    end
   end
 
   describe '#new' do
@@ -138,14 +155,14 @@ describe Users::ConfirmationsController, type: :controller do
 
       expect(response.body).to have_text("nous pouvons vous le renvoyer")
       expect(response.body).to have_text("Pour activer votre compte, nous avons besoin de vérifier votre adresse électronique #{email}.")
-      expect(response.body).to have_text('Ouvrez votre boîte email et cliquez sur le lien d’activation dans le message que vous avez reçu.')
+      expect(response.body).to have_text('Ouvrez votre boîte email et cliquez sur le bouton d’activation dans le message que vous avez reçu.')
     end
 
     context 'when signed email is invalid' do
       it 'does not fail' do
         get :new, params: { email: 'invalid_token' }
 
-        expect(response.body).to have_text("cliquez sur le lien d’activation")
+        expect(response.body).to have_text("cliquez sur le bouton d’activation")
         expect(response.body).not_to have_text("nous pouvons vous le renvoyer")
       end
     end
@@ -154,7 +171,7 @@ describe Users::ConfirmationsController, type: :controller do
       it 'does not fail' do
         get :new
 
-        expect(response.body).to have_text("cliquez sur le lien d’activation")
+        expect(response.body).to have_text("cliquez sur le bouton d’activation")
         expect(response.body).not_to have_text("nous pouvons vous le renvoyer")
       end
     end
