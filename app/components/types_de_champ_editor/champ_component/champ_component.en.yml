@@ -71,7 +71,7 @@ en:
       simple: Simple mode
       advanced: Advanced mode
   pre_rempli:
-    options_label: "List options"
+    options_label: "Referential values to use for conditional logic"
     hidden_label: "Hide this field from the user form"
   drop_down_list:
     labels:
