@@ -1,0 +1,7 @@
+---
+fr:
+  counter_one: "(1 seconde)"
+  counter_other: "(# secondes)"
+  announcement_one: Renvoi de l’email possible dans 1 seconde.
+  announcement_other: "Renvoi de l’email possible dans # secondes."
+  available: Vous pouvez maintenant renvoyer l’email de confirmation.

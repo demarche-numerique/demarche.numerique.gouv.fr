@@ -146,6 +146,7 @@ describe 'Signin in:' do
       expect(page).to have_current_path(%r{/users/confirmation/new\?email=})
       expect(page).to have_content("votre adresse électronique #{user.email}")
       expect(page).to have_button('Renvoyer un email de confirmation', disabled: false)
+      expect(page).to have_css('[data-countdown-button-seconds-value="0"]')
       expect(page).not_to have_content('Vous devez confirmer votre compte par email.')
     end
   end

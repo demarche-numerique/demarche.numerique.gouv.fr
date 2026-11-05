@@ -184,6 +184,10 @@ describe 'Prefilling a dossier (with a GET request):', js: true do
           sign_up_with user_email, password
           expect(page).to have_content "nous avons besoin de vérifier votre adresse électronique #{user_email}"
 
+          travel 3.minutes
+          visit current_url
+          expect(page).to have_button(exact_text: 'Renvoyer un email de confirmation', disabled: false)
+
           clear_emails
           perform_enqueued_jobs do
             click_on "Renvoyer un email de confirmation"
