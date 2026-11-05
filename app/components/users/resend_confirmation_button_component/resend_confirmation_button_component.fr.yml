@@ -5,3 +5,4 @@ fr:
   announcement_one: Renvoi de l’email possible dans 1 seconde.
   announcement_other: "Renvoi de l’email possible dans # secondes."
   available: Vous pouvez maintenant renvoyer l’email de confirmation.
+  hide_counter: Masquer le décompte

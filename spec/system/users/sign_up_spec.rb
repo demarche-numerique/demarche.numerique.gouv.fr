@@ -27,6 +27,11 @@ describe 'Signing up:', js: true do
     expect(page).to have_css('[role="status"]', text: /\ARenvoi de l’email possible dans (1[01]\d|120) secondes\.\z/, visible: :all)
     expect(page).not_to have_button(first_label, disabled: true)
 
+    find('label', text: 'Masquer le décompte').click
+    expect(page).to have_css('[data-countdown-button-target="counter"]', visible: :hidden)
+    find('label', text: 'Masquer le décompte').click
+    expect(page).to have_css('[data-countdown-button-target="counter"]', visible: true)
+
     page.go_back
     expect(page).to have_current_path(new_user_registration_path)
     expect(page).to have_field(:user_email)

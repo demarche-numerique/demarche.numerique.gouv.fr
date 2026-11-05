@@ -10,7 +10,7 @@ document.addEventListener('turbo:before-fetch-response', () => {
 });
 
 export class CountdownButtonController extends Controller {
-  static targets = ['button', 'counter', 'status'];
+  static targets = ['button', 'counter', 'toggle', 'checkbox', 'status'];
   static values = {
     seconds: Number,
     counterOne: String,
@@ -22,6 +22,8 @@ export class CountdownButtonController extends Controller {
 
   declare readonly buttonTarget: HTMLButtonElement;
   declare readonly counterTarget: HTMLElement;
+  declare readonly toggleTarget: HTMLElement;
+  declare readonly checkboxTarget: HTMLInputElement;
   declare readonly statusTarget: HTMLElement;
   declare readonly secondsValue: number;
   declare readonly counterOneValue: string;
@@ -41,12 +43,21 @@ export class CountdownButtonController extends Controller {
         Date.now() + this.secondsValue * 1000 - this.#elapsedSinceResponse();
       this.#announcedStep = 0;
       this.#timer = setInterval(() => this.refresh(), 1000);
+      this.toggleTarget.classList.remove('fr-hidden');
+      this.toggleCounter();
       this.#update(false);
     }
   }
 
   refresh(): void {
     this.#update(true);
+  }
+
+  toggleCounter(): void {
+    this.counterTarget.classList.toggle(
+      'fr-hidden',
+      this.checkboxTarget.checked
+    );
   }
 
   #update(announce: boolean): void {
@@ -74,6 +85,7 @@ export class CountdownButtonController extends Controller {
       this.#stop();
       this.buttonTarget.disabled = false;
       this.counterTarget.textContent = '';
+      this.#removeToggle();
       this.statusTarget.textContent = this.availableValue;
     }
   }
@@ -101,6 +113,14 @@ export class CountdownButtonController extends Controller {
       lastTurboResponseAt
     );
     return responseAt > 0 ? Math.max(0, performance.now() - responseAt) : 0;
+  }
+
+  #removeToggle(): void {
+    const hadFocus = document.activeElement === this.checkboxTarget;
+    this.toggleTarget.classList.add('fr-hidden');
+    if (hadFocus) {
+      this.buttonTarget.focus();
+    }
   }
 
   #inflect(count: number, one: string, other: string): string {
