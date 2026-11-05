@@ -4,7 +4,7 @@
 
   %p= t(:hello, scope: [:views, :shared, :greetings])
 
-  - link = confirmation_url(@user, confirmation_token: @token, procedure_id: @procedure&.id)
+  - link = confirmation_url(@user, confirmation_token: @token, procedure_id: @procedure&.id, prefill_token: @prefill_token)
 
   %p
     To confirm your email address and activate your account on #{APPLICATION_NAME}, select the button below:

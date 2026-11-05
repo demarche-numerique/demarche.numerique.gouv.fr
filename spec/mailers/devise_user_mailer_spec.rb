@@ -67,6 +67,11 @@ RSpec.describe DeviseUserMailer, type: :mailer do
           expect(subject.body).to have_text('If the button above does not work, copy and paste the following link into your browser:')
           expect(subject.body).to have_link(link, href: link)
         end
+
+        it 'keeps the prefill token in the activation link' do
+          mail = described_class.confirmation_instructions(user, token, prefill_token: 'prefill-token')
+          expect(mail.body).to have_link('Activate my account', href: user_confirmation_url(confirmation_token: token, prefill_token: 'prefill-token'))
+        end
       end
     end
   end
