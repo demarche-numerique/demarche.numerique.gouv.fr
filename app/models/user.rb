@@ -6,6 +6,7 @@ class User < ApplicationRecord
   # migration.
   self.ignored_columns += [:remember_created_at]
 
+  include BrevoBlockableConcern
   include DomainMigratableConcern
   include EmailSanitizableConcern
   include PasswordComplexityConcern

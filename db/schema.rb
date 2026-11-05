@@ -1490,6 +1490,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_02_120000) do
     t.datetime "announces_seen_at"
     t.datetime "blocked_at"
     t.text "blocked_reason"
+    t.string "brevo_blocked_reason"
+    t.datetime "brevo_blocked_reason_at"
+    t.datetime "brevo_last_blocked_at"
+    t.datetime "brevo_unblocked_at"
     t.datetime "confirmation_sent_at", precision: nil
     t.string "confirmation_token"
     t.datetime "confirmed_at", precision: nil
