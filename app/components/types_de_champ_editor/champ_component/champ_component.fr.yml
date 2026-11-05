@@ -76,7 +76,7 @@ fr:
       simple: 'Mode simple'
       advanced: 'Mode avancé'
   pre_rempli:
-    options_label: "Options de la liste"
+    options_label: "Valeurs du référentiel à utiliser pour le conditionnel"
     hidden_label: "Masquer ce champ dans le formulaire usager"
   france_connect:
     quotient_familial: "Ce champ permet de récupérer automatiquement et de façon fiable les données d’identité, le quotient familial CAF ou MSA et la composition familiale de l’usager connecté via FranceConnect"

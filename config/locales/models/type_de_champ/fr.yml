@@ -57,7 +57,7 @@ fr:
           aah: 'Statut allocation adulte handicapé'
           aeeh: "Statut allocation d’éducation de l’enfant handicapé"
           ars: "Statut allocation de rentrée scolaire"
-          pre_rempli: 'Champ pré-rempli'
+          pre_rempli: 'Champ pré-rempli non modifiable'
         default_libelle:
           annuaire_education: Établissement
           communes: Commune
