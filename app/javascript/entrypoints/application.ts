@@ -9,7 +9,6 @@ import '../shared/activestorage/ujs';
 import '../shared/safari-11-empty-file-workaround';
 import '../shared/toggle-target';
 import '../shared/intl-listformat';
-import '../shared/session-expiry';
 
 import { registerControllers } from '../shared/stimulus-loader';
 
