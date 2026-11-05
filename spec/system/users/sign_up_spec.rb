@@ -108,7 +108,7 @@ describe 'Signing up:', js: true do
 
       # The confirmation email is sent again
       confirmation_email = open_email(user_email)
-      expect(confirmation_email.body).to have_text('Pour activer votre compte')
+      expect(confirmation_email.body).to have_text('Pour confirmer votre adresse électronique et activer votre compte')
 
       click_confirmation_link_for(user_email, in_another_browser: true)
 
