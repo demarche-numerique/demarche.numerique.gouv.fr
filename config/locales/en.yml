@@ -348,8 +348,8 @@ en:
     confirmation:
       new:
         title: 'Confirm your email address'
-        email_cta_html: "Before filling your file, we have to validate your email address <strong>%{email}</strong>."
-        email_guidelines_html: "Open your mailbox and <strong>click on the activation link</strong> within the mail we just sent you."
+        email_cta_html: "To activate your account, we need to verify your email address <strong>%{email}</strong>."
+        email_guidelines_html: "Open your mailbox and <strong>click the activation link</strong> in the email you received."
         email_missing: "If you have not received our email (have you checked your spam ?), we can resend it."
         resent: 'Resend the confirmation email'
     invites:

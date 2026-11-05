@@ -1,5 +1,7 @@
 fr:
   devise:
+    confirmations:
+      send_paranoid_instructions: Si votre adresse électronique existe dans notre base de données, vous recevrez sous quelques minutes un email avec des instructions pour activer votre compte.
     mailer:
       email_changed:
         subject: Changement de l’adresse électronique de votre compte

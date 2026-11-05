@@ -348,8 +348,8 @@ fr:
     confirmation:
       new:
         title: 'Confirmez votre adresse électronique'
-        email_cta_html: "Avant d’effectuer votre démarche, nous avons besoin de vérifier votre adresse électronique <strong>%{email}</strong>."
-        email_guidelines_html: "Ouvrez votre boîte email, et <strong>cliquez sur le lien d’activation</strong> dans le message que vous avez reçu."
+        email_cta_html: "Pour activer votre compte, nous avons besoin de vérifier votre adresse électronique <strong>%{email}</strong>."
+        email_guidelines_html: "Ouvrez votre boîte email et <strong>cliquez sur le lien d’activation</strong> dans le message que vous avez reçu."
         email_missing: "Si vous n’avez pas reçu notre message (avez-vous vérifié les indésirables ?), nous pouvons vous le renvoyer."
         resent: 'Renvoyer un email de confirmation'
     invites:
