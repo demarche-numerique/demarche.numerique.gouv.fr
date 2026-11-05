@@ -27,6 +27,15 @@ RSpec.describe Users::ResendConfirmationButtonComponent, type: :component do
       expect(page).to have_css('button[data-countdown-button-target="button"]')
       expect(page).to have_css('[role="status"][data-countdown-button-target="status"]')
     end
+
+    it 'renders the checkbox hidden, for the countdown to reveal it' do
+      expect(page).to have_css('.fr-checkbox-group.fr-checkbox-group--sm.fr-hidden[data-countdown-button-target="toggle"]')
+      expect(page).to have_unchecked_field('Masquer le décompte')
+      checkbox = page.find_field('Masquer le décompte')
+      expect(checkbox[:name]).to be_nil
+      expect(checkbox['data-action']).to eq('change->countdown-button#toggleCounter')
+      expect(checkbox['data-countdown-button-target']).to eq('checkbox')
+    end
   end
 
   context 'in english' do
@@ -38,6 +47,7 @@ RSpec.describe Users::ResendConfirmationButtonComponent, type: :component do
       wrapper = page.find('[data-controller="countdown-button"]')
       expect(wrapper['data-countdown-button-counter-other-value']).to eq('(# seconds)')
       expect(wrapper['data-countdown-button-announcement-other-value']).to eq('You can resend the email in # seconds.')
+      expect(page).to have_unchecked_field('Hide the countdown')
     end
   end
 end

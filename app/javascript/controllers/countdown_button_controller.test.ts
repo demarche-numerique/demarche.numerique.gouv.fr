@@ -13,7 +13,7 @@ suite('CountdownButtonController', () => {
   let application: Application;
   let element: HTMLElement;
 
-  const mount = async (seconds: number) => {
+  const mount = async (seconds: number, { checked = false } = {}) => {
     element = document.createElement('div');
     element.setAttribute('data-controller', 'countdown-button');
     element.setAttribute(
@@ -32,6 +32,10 @@ suite('CountdownButtonController', () => {
     );
     element.innerHTML = `
       <button type="submit" data-countdown-button-target="button"><span>Renvoyer<span aria-hidden="true" data-countdown-button-target="counter"></span></span></button>
+      <div class="fr-hidden" data-countdown-button-target="toggle">
+        <input type="checkbox" id="hide-countdown" ${checked ? 'checked' : ''} data-countdown-button-target="checkbox" data-action="change->countdown-button#toggleCounter">
+        <label for="hide-countdown">Masquer</label>
+      </div>
       <p class="fr-sr-only" role="status" data-countdown-button-target="status"></p>
     `;
     document.body.appendChild(element);
@@ -42,6 +46,12 @@ suite('CountdownButtonController', () => {
         '[data-countdown-button-target="counter"]'
       ) as HTMLElement,
       status: element.querySelector('[role="status"]') as HTMLElement,
+      toggle: element.querySelector(
+        '[data-countdown-button-target="toggle"]'
+      ) as HTMLElement,
+      checkbox: element.querySelector(
+        'input[type="checkbox"]'
+      ) as HTMLInputElement,
       controller: application.getControllerForElementAndIdentifier(
         element,
         'countdown-button'
@@ -135,11 +145,40 @@ suite('CountdownButtonController', () => {
   });
 
   test('leaves an enabled button alone', async () => {
-    const { button, counter, status } = await mount(0);
+    const { button, counter, status, toggle } = await mount(0);
     expect(button.disabled).toBe(false);
     expect(counter.textContent).toBe('');
     expect(status.textContent).toBe('');
+    expect(toggle.classList.contains('fr-hidden')).toBe(true);
     expect(vi.getTimerCount()).toBe(0);
+  });
+
+  test('lets the user hide and show the counter while it counts down', async () => {
+    const { button, counter, toggle, checkbox } = await mount(3);
+    expect(toggle.classList.contains('fr-hidden')).toBe(false);
+    expect(counter.classList.contains('fr-hidden')).toBe(false);
+    checkbox.click();
+    expect(counter.classList.contains('fr-hidden')).toBe(true);
+    vi.advanceTimersByTime(1000);
+    expect(counter.classList.contains('fr-hidden')).toBe(true);
+    expect(button.disabled).toBe(true);
+    expect(accessibleButton('Renvoyer')).toBe(button);
+    checkbox.click();
+    expect(counter.classList.contains('fr-hidden')).toBe(false);
+    expect(counter.textContent).toBe(' (2 secondes)');
+  });
+
+  test('keeps the counter hidden when the browser restores a ticked box', async () => {
+    const { counter } = await mount(3, { checked: true });
+    expect(counter.classList.contains('fr-hidden')).toBe(true);
+  });
+
+  test('removes the toggle once the delay is over and moves its focus to the resend button', async () => {
+    const { button, toggle, checkbox } = await mount(2);
+    checkbox.focus();
+    vi.advanceTimersByTime(2000);
+    expect(toggle.classList.contains('fr-hidden')).toBe(true);
+    expect(document.activeElement).toBe(button);
   });
 
   test('shows and announces the real remaining time after the page was suspended', async () => {
