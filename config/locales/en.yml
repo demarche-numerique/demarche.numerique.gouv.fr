@@ -707,6 +707,8 @@ en:
         link_sent:
           consult_help_page_html: If you're seeing this page too often, <a target="_blank" rel="noopener noreferrer" href="%{href}">please consult our help page</a>.
           email_cta_html: "We have to validate your email address <strong>%{email}</strong>."
+          email_guidelines_html: "Open your mailbox and <strong>click the activation link</strong> in the email you received."
+          email_missing: "If you have not received our email (have you checked your spam ?), we can resend it."
         trusted_device_renewal_notice:
           one: "Your secure connection has been renewed. Your browser is authenticated for %{count} day."
           other: "Your secure connection has been renewed. Your browser is authenticated for %{count} days."
