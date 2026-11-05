@@ -350,7 +350,7 @@ en:
         title: 'Confirm your email address'
         email_cta_html: "To activate your account, we need to verify your email address <strong>%{email}</strong>."
         email_guidelines_html: "Open your mailbox and <strong>click the activation button</strong> in the email you received."
-        email_missing: "If you have not received our email (have you checked your spam ?), we can resend it."
+        email_missing: "If you have not received our email (have you checked your spam ?), we can resend it every 2 minutes."
         resent: 'Resend the confirmation email'
     invites:
       create:
