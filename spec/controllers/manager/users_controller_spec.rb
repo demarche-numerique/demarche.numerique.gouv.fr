@@ -73,6 +73,21 @@ describe Manager::UsersController, type: :controller do
         expect(reception).to include('Désinscrit')
       end
     end
+
+    context 'when we sent mails to the user' do
+      let(:user) do
+        create(:email_event, to: users.usager.email, subject: 'Votre dossier est accepté')
+        create(:email_event, to: 'quelquun@exemple.fr', subject: 'Un autre dossier')
+        users.usager
+      end
+
+      it 'lists the mails sent to its address only' do
+        events = response.parsed_body.at_css('.user-mails__events').text
+
+        expect(events).to include('Votre dossier est accepté')
+        expect(events).not_to include('Un autre dossier')
+      end
+    end
   end
 
   describe '#emails' do

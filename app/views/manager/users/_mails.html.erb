@@ -144,13 +144,46 @@ Bien cordialement,</pre>
     </details>
   </div>
 
+  <h3 class="user-mails__subtitle">Nos envois</h3>
+
+  <% email_events = EmailEvent.where(to: user.email).order(processed_at: :desc).limit(50) %>
+
+  <% if email_events.any? %>
+    <table class="user-mails__events">
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Objet</th>
+          <th scope="col">Prestataire</th>
+          <th scope="col">Envoi</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% email_events.each do |email_event| %>
+          <tr class="<%= "email-blocked" if email_event.dispatch_error? %>">
+            <td>
+              <%= l(email_event.processed_at, format: :long_with_time) if email_event.processed_at %>
+            </td>
+
+            <td><%= email_event.subject %></td>
+            <td><%= email_event.method %></td>
+            <td><%= email_event.status %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>Aucun envoi vers cette adresse depuis un mois.</p>
+  <% end %>
+
+  <p>
+    <%= link_to "Voir tous nos envois vers cette adresse", manager_email_events_path("search" => user.email) %>
+  </p>
+
   <h3 class="user-mails__subtitle">Historique chez les prestataires</h3>
 
   <%= turbo_frame_tag "user-sent-mails", src: emails_manager_user_path(user), loading: :lazy, target: "_top" do %>
     <p>Chargement de l’historique…</p>
   <% end %>
-
-  <p>
-    <%= link_to "Voir aussi les événements d’email", manager_email_events_path("search" => user.email) %>
-  </p>
 </section>
