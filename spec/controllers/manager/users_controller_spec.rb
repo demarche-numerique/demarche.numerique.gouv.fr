@@ -56,6 +56,23 @@ describe Manager::UsersController, type: :controller do
 
       expect(frame.to_h).to include('src' => emails_manager_user_path(user), 'loading' => 'lazy')
     end
+
+    it 'says Brevo reported no block' do
+      expect(response.parsed_body.at_css('.user-mails__reception').text).to include('Aucun blocage signalé par Brevo')
+    end
+
+    context 'when Brevo blocked the user for a spam complaint' do
+      let(:user) do
+        users.usager.tap { it.record_brevo_block!(at: Time.zone.parse('2026-11-03 14:00'), event: 'spam') }
+      end
+
+      it 'shows the block, its reason and the unsubscription' do
+        reception = response.parsed_body.at_css('.user-mails__reception').text.squish
+
+        expect(reception).to include('Bloquée chez Brevo depuis le 03 novembre 2026 à 14:00 (signalement comme spam)')
+        expect(reception).to include('Désinscrit')
+      end
+    end
   end
 
   describe '#emails' do

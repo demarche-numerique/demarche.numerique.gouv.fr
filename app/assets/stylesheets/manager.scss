@@ -192,6 +192,26 @@
     margin: 1.5rem 0 0.5rem;
   }
 
+  &__reception {
+    margin: 0 0 1rem;
+    padding-left: 1.5rem;
+    list-style: disc;
+
+    li {
+      margin-bottom: 0.25rem;
+    }
+
+    .button_to {
+      display: inline;
+      margin-left: 0.5rem;
+    }
+  }
+
+  &__warning {
+    color: #ce0500;
+    font-weight: 600;
+  }
+
   &__issue {
     margin-bottom: 1rem;
 

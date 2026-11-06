@@ -1,15 +1,53 @@
 <section id="emails" class="user-mails">
   <h2 class="user-mails__title">Mails</h2>
 
-  <h3 class="user-mails__subtitle">Problèmes potentiels</h3>
+  <h3 class="user-mails__subtitle">Réception</h3>
 
-  <% if user.unverified_email? %>
-    <div class="user-mails__issue">
-      <strong>Adresse non vérifiée.</strong> Nos mails non critiques ne lui sont
-      pas envoyés.
-      <%= button_to("Débloquer mails", [:unblock_mails, :manager, user], method: :post, class: "button") %>
-    </div>
-  <% end %>
+  <% brevo_reasons = { "hard_bounce" => "rejet définitif par le serveur destinataire", "spam" => "signalement comme spam", "unsubscribed" => "désinscription", "invalid_email" => "adresse invalide" } %>
+
+  <ul class="user-mails__reception">
+    <% if user.unverified_email? %>
+      <li class="user-mails__warning">
+        Adresse non vérifiée&nbsp;: nos mails non critiques ne lui sont pas
+        envoyés.
+        <%= button_to("Débloquer mails", [:unblock_mails, :manager, user], method: :post, class: "button") %>
+      </li>
+    <% else %>
+      <li>
+        Adresse vérifiée le
+        <%= l(user.email_verified_at, format: :long_with_time) %>
+      </li>
+    <% end %>
+
+    <% if user.email_unsubscribed? %>
+      <li class="user-mails__warning">
+        Désinscrit&nbsp;: ne reçoit plus que les mails critiques et les
+        invitations.
+      </li>
+    <% end %>
+
+    <% if user.brevo_blocked? %>
+      <li class="user-mails__warning">
+        Bloquée chez Brevo depuis le
+        <%= l(user.brevo_last_blocked_at, format: :long_with_time) %>
+        (<%= brevo_reasons.fetch(user.brevo_blocked_reason, "motif inconnu") %>)
+      </li>
+    <% else %>
+      <li>
+        Aucun blocage signalé par Brevo.
+        <small>Ceux d’avant le branchement de son webhook ne nous sont pas connus.</small>
+      </li>
+    <% end %>
+
+    <% if user.brevo_unblocked_at? %>
+      <li>
+        Dernier déblocage chez Brevo le
+        <%= l(user.brevo_unblocked_at, format: :long_with_time) %>
+      </li>
+    <% end %>
+  </ul>
+
+  <h3 class="user-mails__subtitle">Problèmes potentiels</h3>
 
   <% if user.confirmed? %>
     <div class="user-mails__issue">
@@ -72,6 +110,7 @@ Cordialement</pre>
     </strong>
 
     <%= button_to("Débloquer chez Brevo", manager_user_unblock_email_path(user), method: :put, class: "button") %>
+    <small>Le déblocage le réabonne aussi à nos notifications.</small>
 
     <details>
       <summary>Suggestion de réponse</summary>
