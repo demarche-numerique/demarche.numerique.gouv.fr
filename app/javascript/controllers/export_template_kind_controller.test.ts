@@ -9,6 +9,7 @@ suite('ExportTemplateKindController', () => {
   let application: Application;
 
   const notice = () => document.querySelector<HTMLElement>('#notice')!;
+  const layout = () => document.querySelector<HTMLElement>('#layout')!;
 
   const choose = async (kind: string) => {
     const input = document.querySelector<HTMLInputElement>(`#${kind}`)!;
@@ -23,6 +24,7 @@ suite('ExportTemplateKindController', () => {
         <input type="radio" name="kind" id="xlsx" value="xlsx" checked data-export-template-kind-target="kind">
         <input type="radio" name="kind" id="csv" value="csv" data-export-template-kind-target="kind">
         <div id="notice" class="hidden" data-export-template-kind-target="csvOnly"></div>
+        <fieldset id="layout" data-export-template-kind-target="spreadsheetOnly"></fieldset>
       </form>
     `;
     application = Application.start();
@@ -55,5 +57,16 @@ suite('ExportTemplateKindController', () => {
     await nextFrame();
 
     expect(notice().classList.contains('hidden')).toBe(false);
+  });
+
+  test('hides the spreadsheet only elements when csv is chosen', async () => {
+    await choose('csv');
+    expect(layout().classList.contains('hidden')).toBe(true);
+  });
+
+  test('shows the spreadsheet only elements again when another kind is chosen', async () => {
+    await choose('csv');
+    await choose('xlsx');
+    expect(layout().classList.contains('hidden')).toBe(false);
   });
 });
