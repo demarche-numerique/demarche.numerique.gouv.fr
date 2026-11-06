@@ -57,7 +57,7 @@ en:
           aah: 'Adult disability allowance status'
           aeeh: "Disabled child education allowance status"
           ars: "Back to school allowance status"
-          pre_rempli: 'Pre-filled field'
+          pre_rempli: 'Non-editable pre-filled field'
         default_libelle:
           annuaire_education: Educational institution
           dossier_link: File number submitted on %{app_name}

@@ -5966,7 +5966,7 @@ enum TypeDeChamp {
   piece_justificative
 
   """
-  Champ pré-rempli
+  Champ pré-rempli non modifiable
   """
   pre_rempli
 

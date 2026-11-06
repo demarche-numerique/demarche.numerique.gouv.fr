@@ -8,7 +8,7 @@ describe TypesDeChamp::ByCategoryListComponent, type: :component do
       "« Nombre entier », « Nombre décimal »",
       "« Choix simple », « Choix multiple », « Oui/Non », « Case à cocher seule »",
       "« Adresse », « Commune française actuelle », « Département », « Région », « Pays », « EPCI »",
-      "« Champ pré-rempli »",
+      "« Champ pré-rempli non modifiable »",
     ])
   end
 end
