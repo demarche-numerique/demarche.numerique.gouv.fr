@@ -1,11 +1,21 @@
 import { suite, test, expect } from 'vitest';
 
-import { getMapStyle, type MapStyle } from './index';
+import {
+  ANCHORS,
+  buildOptionalLayers,
+  getMapStyle,
+  type MapStyle
+} from './index';
 
 const STYLES: MapStyle[] = ['ortho', 'vector', 'ign'];
 // `cadastres` and `rpg` share layer ids, so they are never enabled together.
 const SELECTIONS = [[], ['cadastres'], ['rpg']];
 const OPACITY = { cadastres: 70, rpg: 70 };
+
+// What a credit reads once rendered, without its link.
+function creditText(credit: string) {
+  return new DOMParser().parseFromString(credit, 'text/html').body.textContent;
+}
 
 suite('getMapStyle', () => {
   test('declares a parcelle source only when its layer is enabled', () => {
@@ -36,5 +46,81 @@ suite('getMapStyle', () => {
         }
       }
     }
+  });
+
+  test('credits every source, each credit spelled the same everywhere', () => {
+    const style = getMapStyle('vector', ['cadastres', 'unesco'], {
+      cadastres: 70,
+      unesco: 70
+    });
+    const credits = new Set<string>();
+
+    for (const [id, source] of Object.entries(style.sources)) {
+      expect(source, id).toHaveProperty('attribution');
+      for (const credit of (
+        source as { attribution: string }
+      ).attribution.split(/(?<=<\/a>) /)) {
+        expect(credit, id).toContain('target="_blank"');
+        credits.add(credit);
+      }
+    }
+
+    expect([...credits].map(creditText)).toEqual([
+      '© DINUM (data.gouv.fr)',
+      '© Contributeurs OpenStreetMap',
+      '© OpenMapTiles',
+      '© IGN',
+      '© PatriNat (OFB-MNHN-CNRS-IRD)'
+    ]);
+  });
+
+  test('closes every basemap with the anchors, in order', () => {
+    for (const id of STYLES) {
+      const ids = getMapStyle(id, ['cadastres'], OPACITY).layers.map(
+        (layer) => layer.id
+      );
+      expect(ids.slice(-3), id).toEqual([
+        ANCHORS.rasters,
+        ANCHORS.optionalLayers,
+        ANCHORS.selections
+      ]);
+    }
+  });
+
+  test('highlights the parcelles of the dossier by their id property', () => {
+    const highlight = (layers: string[]) =>
+      buildOptionalLayers(layers, OPACITY, ['a', 'b']).find(
+        (layer) => layer.id == 'parcelle-highlighted'
+      );
+
+    expect(highlight(['cadastres'])).toHaveProperty('filter', [
+      'in',
+      ['get', 'id'],
+      ['literal', ['a', 'b']]
+    ]);
+    expect(highlight(['rpg'])).toHaveProperty('filter', [
+      'in',
+      ['get', 'ID_PARCEL'],
+      ['literal', ['a', 'b']]
+    ]);
+  });
+
+  test('highlights a parcelle under its numero', () => {
+    const ids = buildOptionalLayers(['cadastres'], OPACITY).map(
+      (layer) => layer.id
+    );
+
+    expect(ids.indexOf('parcelle-highlighted')).toBeGreaterThan(
+      ids.indexOf('parcelles-fill')
+    );
+    expect(ids.indexOf('parcelle-highlighted')).toBeLessThan(
+      ids.indexOf('parcelles-labels')
+    );
+  });
+
+  test('refuses both parcelle layers at once', () => {
+    expect(() => buildOptionalLayers(['cadastres', 'rpg'], OPACITY)).toThrow(
+      /one parcelle layer/
+    );
   });
 });
