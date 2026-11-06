@@ -38,6 +38,8 @@
               <% elsif etablissement.present? %>
                 <%= render Dossiers::IdentiteEntrepriseComponent.new(champ:, avis: @avis) %>
               <% end %>
+            <% when TypeDeChamp.type_champs.fetch(:link) %>
+              <%= render Dossiers::LinkComponent.new(champ:) %>
             <% when TypeDeChamp.type_champs.fetch(:iban) %>
               <%= render partial: "shared/champs/iban/show", locals: { champ: champ } %>
             <% when TypeDeChamp.type_champs.fetch(:annuaire_education) %>
