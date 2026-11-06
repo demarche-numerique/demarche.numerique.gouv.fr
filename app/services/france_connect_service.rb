@@ -15,6 +15,10 @@ class FranceConnectService
     ENV.fetch("FRANCE_CONNECT_ENABLED", "enabled") == "enabled" && ENV['FC_PARTICULIER_BASE_URL_V2'].present?
   end
 
+  def self.config = FranceConnectConfig
+
+  def self.acr_values = 'eidas1'
+
   def self.authorization_uri
     client = OpenIDConnect::Client.new(conf)
 
@@ -25,7 +29,7 @@ class FranceConnectService
       scope: [:identite_pivot, :email],
       state:,
       nonce:,
-      acr_values: 'eidas1'
+      acr_values:
     )
 
     [uri, state, nonce]
@@ -55,31 +59,37 @@ class FranceConnectService
 
     access_token = client.access_token!(client_auth_method: :secret)
 
-    id_token = OpenIDConnect::ResponseObject::IdToken.decode(access_token.id_token, FranceConnectConfig.jwks_for(access_token.id_token))
+    id_token = verified_id_token(access_token.id_token, nonce)
 
-    id_token.verify!(conf.merge(nonce:))
-
-    user_info = access_token.userinfo!.raw_attributes
-
-    [user_info, access_token.id_token]
+    [user_info(access_token), id_token]
   rescue OpenIDConnect::HttpError => e
     Sentry.set_extras(france_connect_status: e.status, france_connect_body: e.response.body)
     raise
   end
+
+  # Returns the id token to send back on logout
+  def self.verified_id_token(raw_id_token, nonce)
+    id_token = OpenIDConnect::ResponseObject::IdToken.decode(raw_id_token, config.jwks_for(raw_id_token))
+    id_token.verify!(conf.merge(nonce:))
+
+    raw_id_token
+  end
+
+  def self.user_info(access_token) = access_token.userinfo!.raw_attributes
 
   # rubocop:disable DS/ApplicationName
   ALLOWED_HOSTS = %w[demarche.numerique.gouv.fr www.demarches-simplifiees.fr].freeze
   # rubocop:enable DS/ApplicationName
 
   def self.conf
-    config = FranceConnectConfig.client_config
+    client_config = config.client_config
 
     # TODO: remove this block when migration to new domain is done
     # dirty hack to redirect to the right domain
     if !Rails.env.test? && Current.host != ENV.fetch("APP_HOST") && ALLOWED_HOSTS.include?(Current.host)
-      config[:redirect_uri] = config[:redirect_uri].sub("//#{ENV.fetch("APP_HOST")}/", "//#{Current.host}/")
+      client_config[:redirect_uri] = client_config[:redirect_uri].sub("//#{ENV.fetch("APP_HOST")}/", "//#{Current.host}/")
     end
 
-    config
+    client_config
   end
 end
