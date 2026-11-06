@@ -29,5 +29,16 @@ RSpec.describe Cron::OidcConfigRefreshJob, type: :job do
 
       subject
     end
+
+    it "refreshes FranceConnectPlusConfig once configured" do
+      ENV['FC_PLUS_BASE_URL'] = "https://fc-plus.test"
+      allow(FranceConnectConfig).to receive(:refresh!)
+      allow(ProConnectConfig).to receive(:refresh!)
+      expect(FranceConnectPlusConfig).to receive(:refresh!)
+
+      subject
+    ensure
+      ENV.delete('FC_PLUS_BASE_URL')
+    end
   end
 end

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class FranceConnectController < ApplicationController
+  include FranceConnectConcern
   include ProConnectSessionConcern
 
   before_action :redirect_to_login_if_fc_aborted, only: [:callback]
@@ -96,6 +97,7 @@ class FranceConnectController < ApplicationController
     @fci.user.update!(email_verified_at: Time.current)
 
     sign_in(@fci.user)
+    remember_france_connect_plus
 
     redirect_to destination_path(@fci.user), notice: t('france_connect.flash.connection_done', application_name: Current.application_name)
   end
@@ -200,9 +202,19 @@ class FranceConnectController < ApplicationController
 
   def service = FranceConnectService
 
-  # Sent back on logout
+  # Sent back on logout, to the provider of the last authentication only
   def keep_id_token(id_token)
+    cookies.delete(FranceConnectPlusController::ID_TOKEN_COOKIE_NAME)
     cookies.encrypted[ID_TOKEN_COOKIE_NAME] = { value: id_token, secure: Rails.env.production?, httponly: true }
+  end
+
+  # The identity was authenticated by FranceConnect+, in this browser
+  def remember_france_connect_plus
+    id_token = cookies.encrypted[FranceConnectPlusController::ID_TOKEN_COOKIE_NAME]
+    return if id_token.nil?
+    return if JSON::JWT.decode(id_token, :skip_verification)['sub'] != @fci.france_connect_particulier_id
+
+    warden.session(:user)[FRANCE_CONNECT_PLUS_SESSION_KEY] = true
   end
 
   def set_user_by_confirmation_token
@@ -265,6 +277,7 @@ class FranceConnectController < ApplicationController
   def connect_france_connect(user)
     sign_out :user if user_signed_in?
     sign_in user
+    remember_france_connect_plus
 
     user.update_attribute('loged_in_with_france_connect', User.loged_in_with_france_connects.fetch(:particulier))
     user.update_preferred_domain(Current.host)
