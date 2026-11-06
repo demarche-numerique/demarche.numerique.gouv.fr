@@ -23,4 +23,4 @@
 
       = form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { class: 'fr-mb-6w'}) do |f|
         = f.hidden_field :email
-        = f.submit t('views.confirmation.new.resent'), class: 'fr-btn fr-btn--secondary'
+        = render Users::ResendConfirmationButtonComponent.new(seconds_remaining: seconds_before_confirmation_resend)
