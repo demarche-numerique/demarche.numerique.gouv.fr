@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_02_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_06_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_catalog.plpgsql"
@@ -605,6 +605,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_02_120000) do
     t.string "subject", null: false
     t.string "to", null: false
     t.datetime "updated_at", null: false
+    t.index ["to"], name: "index_email_events_on_to"
   end
 
   create_table "email_templates", force: :cascade do |t|

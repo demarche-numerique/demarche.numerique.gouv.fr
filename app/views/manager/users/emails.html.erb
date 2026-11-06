@@ -1,102 +1,28 @@
-<% content_for(:title) { "Emails vers #{@user.email}" } %>
-
-<style>
-  .hidden { display: none }
-  .email-sent { color: green !important}
-  .email-blocked { color: red }
-</style>
-
-<script type="text/javascript" charset="utf-8">
-  function reveal_email(id) {
-      document.querySelector(id).classList.toggle('hidden');
-  }
-</script>
-
-<header class="main-content__header" role="banner">
-  <h1 class="main-content__page-title"><%= content_for(:title) %></h1>
-</header>
-
-<section class="main-content__body">
-  <h2 style="font-size: 1.3em; margin: 24px 0 8px 0">Historique des emails</h2>
-
+<%= turbo_frame_tag "user-sent-mails" do %>
   <% if @sent_mails.present? %>
     <p>
-      Cet historique contient les 30 derniers jours. Pour un recherche plus
-      fine, il faut fouiller les
+      Les 30 derniers jours. Pour une recherche plus fine, il faut fouiller les
       <a href="https://app.brevo.com/transactional/email/logs">logs de Brevo</a>.
     </p>
     <table>
       <thead>
         <tr>
-          <th
-            class="cell-label cell-label--string cell-label--false"
-            scope="col"
-            role="columnheader"
-            aria-sort="none"
-          >
-            Émetteur
-          </th>
-
-          <th
-            class="cell-label cell-label--string cell-label--false"
-            scope="col"
-            role="columnheader"
-            aria-sort="none"
-          >
-            Objet
-          </th>
-
-          <th
-            class="cell-label cell-label--string cell-label--false"
-            scope="col"
-            role="columnheader"
-            aria-sort="none"
-          >
-            Date
-          </th>
-
-          <th
-            class="cell-label cell-label--string cell-label--false"
-            scope="col"
-            role="columnheader"
-            aria-sort="none"
-          >
-            Statut
-          </th>
-
-          <th
-            class="cell-label cell-label--string cell-label--false"
-            scope="col"
-            role="columnheader"
-            aria-sort="none"
-          >
-            Prestataire
-          </th>
+          <th scope="col">Émetteur</th>
+          <th scope="col">Objet</th>
+          <th scope="col">Date</th>
+          <th scope="col">Statut</th>
+          <th scope="col">Prestataire</th>
         </tr>
       </thead>
 
       <tbody>
         <% @sent_mails.each do |email| %>
           <tr class="<%= status_color_code(email.status) %>">
-            <td class="cell-data cell-data--string" style="">
-              <%= email.from %>
-            </td>
-
-            <td class="cell-data cell-data--string" style="">
-              <%= email.subject %>
-            </td>
-
-            <td class="cell-data cell-data--string" style="text-align: center;">
-              <%= l(email.delivered_at, format: :long_with_time) %>
-            </td>
-
-            <td class="cell-data cell-data--string" style="text-align: center;">
-              <%= email.status %>
-            </td>
-
-            <td class="cell-data cell-data--string" style="">
-              <%= link_to email.service_name, email.external_url, style: 'text-decoration: underline' %>
-            </td>
+            <td><%= email.from %></td>
+            <td><%= email.subject %></td>
+            <td><%= l(email.delivered_at, format: :long_with_time) %></td>
+            <td><%= email.status %></td>
+            <td><%= link_to email.service_name, email.external_url %></td>
           </tr>
         <% end %>
       </tbody>
@@ -109,106 +35,4 @@
       <a href="https://app.brevo.com/transactional/email/logs">logs de Brevo</a>.
     </p>
   <% end %>
-
-  <%= link_to "Voir aussi les événements d’email", manager_email_events_path("search" => @user.email) %>
-
-  <h2 style="font-size: 1.3em; margin: 24px 0 8px 0">Problèmes potentiel</h2>
-
-  <% if @user.confirmed? %>
-    <p>
-      <strong>Compte activé, n’arrive pas à se connecter</strong>?
-      <button
-        class="btn btn-secondary btn-small"
-        onclick="reveal_email('#activated-cant-connect')"
-      >
-        Voir la suggestion d’email
-      </button>
-    </p>
-    <pre class="hidden" id="activated-cant-connect">
-Bonjour,
-votre compte est activé de notre côté.
-Vous pouvez vous connecter à votre compte de deux manières :
-- à cette adresse, afin de consulter vos dossiers : https://demarche.numerique.gouv.fr/users/sign_in
-- depuis la page de démarrage d’une démarche qu’on vous a communiqué, afin de déposer un dossier.
-
-Si vous avez oublié votre mot de passe, vous pouvez aussi en demander un nouveau via:
-https://demarche.numerique.gouv.fr/users/password/new
-
-Bien cordialement</pre>
-  <% else %>
-    <p>
-      <strong>Ce compte n’est pas activé</strong>. Vous pouvez lui
-      <%= button_to('renvoyer l’email de confirmation', [:resend_confirmation_instructions, namespace, :user], method: :post, class: 'button') %>,
-      puis un email.
-      <button
-        class="btn btn-secondary btn-small"
-        onclick="reveal_email('#not-activated')"
-      >
-        Voir la suggestion d’email
-      </button>
-    </p>
-    <pre class="hidden" id="not-activated">
-Bonjour,
-
-Votre compte n’a pas été confirmé. Je vous ai transmis à nouveau un code de confirmation
-dans un email séparé ; après avoir cliqué sur le lien qui s’y trouve, vous pourrez vous connecter
-à votre compte, voir les dossiers déposés et en déposer de nouveaux.
-
-Si vous avez oublié votre mot de passe, vous pouvez aussi en demander un autre via:
-https://demarche.numerique.gouv.fr/users/password/new
-
-Cordialement</pre>
-  <% end %>
-
-  <p>
-    <strong>Mot de passe perdu ?</strong> Vous pouvez
-    <%= button_to('renvoyer l’email de réinitialisation', [:resend_reset_password_instructions, namespace, :user], method: :post, class: 'button') %>
-
-    <small>Attention au téléscopage: cet email invalide les liens des emails similaires précédents.</small>
-  </p>
-
-  <p>
-    <strong>Compte <a href="https://app.brevo.com/transactional/email/settings/blocked-contacts">bloqué</a> chez Brevo?</strong>
-    Vous pouvez le
-    <%= button_to('débloquer', manager_user_unblock_email_path(@user), method: :put, class: 'button') %>
-    puis lui envoyer
-    <button
-      class="btn btn-secondary btn-small"
-      onclick="reveal_email('#unblock_email')"
-    >
-      le mail suivant
-    </button>
-  </p>
-
-  <pre class="hidden" id="unblock_email">
-Bonjour,
-
-votre adresse électronique était bloqué par notre prestataire.
-Je l’ai débloqué, vous devriez recevoir les mails à venir.
-
-Cela peut arriver si vous, ou ceux qui gèrent vos emails, marquent nos emails comme spam.
-
-Nous vous invitons donc à autoriser les emails émis depuis demarche.numerique.gouv.fr
-
-Bien cordialement
-  </pre>
-
-  <p>
-    <strong>Problème chez Brevo ?</strong> Regardez leur
-    <a href="https://status.brevo.com/">page de status</a>.
-    <button
-      class="btn btn-secondary btn-small"
-      onclick="reveal_email('#pb-brevo')"
-    >
-      Voir la suggestion d’email
-    </button>
-  </p>
-
-  <pre class="hidden" id="pb-brevo">
-Bonjour,
-Désolé, notre prestataire d’envoi d’email subit actuellement des soucis avec sa plateforme ;
-vous allez recevoir cet email sous peu.
-
-Bien cordialement,
-  </pre>
-</section>
+<% end %>
