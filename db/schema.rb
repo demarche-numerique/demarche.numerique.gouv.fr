@@ -607,6 +607,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_13_180000) do
     t.string "subject", null: false
     t.string "to", null: false
     t.datetime "updated_at", null: false
+    t.index ["to"], name: "index_email_events_on_to"
   end
 
   create_table "email_templates", force: :cascade do |t|

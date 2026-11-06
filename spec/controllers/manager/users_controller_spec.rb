@@ -77,6 +77,35 @@ describe Manager::UsersController, type: :controller do
         expect(reception.at_css("form[action='#{manager_user_unblock_email_path(user)}'] button").text).to eq('Débloquer chez Brevo')
       end
     end
+
+    context 'when we sent mails to the user' do
+      let(:user) do
+        create(:email_event, to: users.usager.email, subject: 'Votre dossier est accepté')
+        create(:email_event, to: 'quelquun@exemple.fr', subject: 'Un autre dossier')
+        users.usager
+      end
+
+      it 'lists the mails sent to its address only' do
+        events = response.parsed_body.at_css('.user-mails__events').text
+
+        expect(events).to include('Votre dossier est accepté')
+        expect(events).not_to include('Un autre dossier')
+      end
+    end
+
+    context 'when an older mail of the user was never processed' do
+      let(:user) do
+        create(:email_event, to: users.usager.email, subject: 'Ancien mail en attente', status: 'pending', processed_at: nil, created_at: Time.zone.parse('2026-11-02 09:05'))
+        create(:email_event, to: users.usager.email, subject: 'Mail récent', processed_at: Time.zone.parse('2026-11-05 10:00'), created_at: Time.zone.parse('2026-11-05 10:00'))
+        users.usager
+      end
+
+      it 'lists the most recent mail first, dated even when never processed' do
+        rows = response.parsed_body.css('.user-mails__events tbody tr').map { |row| row.css('td').first(2).map { it.text.strip } }
+
+        expect(rows).to eq([['05 novembre 2026 à 10:00', 'Mail récent'], ['02 novembre 2026 à 09:05', 'Ancien mail en attente']])
+      end
+    end
   end
 
   describe '#emails' do
