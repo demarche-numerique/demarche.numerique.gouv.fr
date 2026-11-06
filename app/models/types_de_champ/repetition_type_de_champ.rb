@@ -51,6 +51,7 @@ class TypesDeChamp::RepetitionTypeDeChamp < TypeDeChamp
   end
 
   def typed_champ_blank?(champ) = champ.dossier.repetition_row_ids(self).blank?
+  def block_level_tag? = true
 
   private
 
