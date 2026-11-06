@@ -235,6 +235,33 @@ describe Manager::UsersController, type: :controller do
     end
   end
 
+  describe '#unblock_email' do
+    let(:user) { users.usager }
+    let(:brevo) { instance_double(Brevo::API, unblock_user:) }
+
+    before do
+      allow(Brevo::API).to receive(:new).and_return(brevo)
+      user.update_columns(email_unsubscribed: true)
+      put :unblock_email, params: { user_id: user.id }
+    end
+
+    context 'when Brevo unblocks the address' do
+      let(:unblock_user) { true }
+
+      it 'subscribes the user again' do
+        expect(user.reload.email_unsubscribed).to be(false)
+      end
+    end
+
+    context 'when Brevo refuses' do
+      let(:unblock_user) { false }
+
+      it 'keeps the user unsubscribed' do
+        expect(user.reload.email_unsubscribed).to be(true)
+      end
+    end
+  end
+
   describe '#reactivate' do
     subject { put :reactivate, params: { id: user.id } }
 
