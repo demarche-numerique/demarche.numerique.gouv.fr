@@ -25,7 +25,9 @@ describe BrevoBlockableConcern do
       expect(user.reload.brevo_blocked_reason).to eq('spam')
     end
 
-    it 'ignores an event that leaves the address open' do
+    it 'reports an unhandled event to Sentry and records nothing' do
+      expect(Sentry).to receive(:capture_message).with("Brevo webhook: unhandled event", extra: { event: 'delivered' })
+
       User.record_brevo_event(email: user.email, event: 'delivered', at: earlier)
 
       expect(user.reload.brevo_last_blocked_at).to be_nil
