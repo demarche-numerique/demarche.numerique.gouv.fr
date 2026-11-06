@@ -20,6 +20,7 @@ class BalancerDeliveryMethod
   FORCE_DELIVERY_METHOD_HEADER = 'X-deliver-with'
   CRITICAL_HEADER = 'x-critical'
   BREVO_API_FEATURE = :brevo_api_delivery
+  BREVO_DELIVERY_METHODS = [:brevo, :brevo_api].freeze
   # Allows configuring the random number generator used for selecting a delivery method,
   # mostly for testing purposes.
   mattr_accessor :random, default: Random.new
@@ -32,6 +33,7 @@ class BalancerDeliveryMethod
     return if prevent_delivery?(mail)
 
     balanced_delivery_method = delivery_method(mail)
+    unblock_brevo_recipient(mail) if balanced_delivery_method.in?(BREVO_DELIVERY_METHODS)
     ApplicationMailer.wrap_delivery_behavior(mail, balanced_delivery_method)
 
     # Because we don't want to invoke observers or interceptors twice,
@@ -46,6 +48,12 @@ class BalancerDeliveryMethod
   end
 
   private
+
+  def unblock_brevo_recipient(mail)
+    return if mail[CRITICAL_HEADER].blank? || mail.to.blank?
+
+    User.find_by(email: mail.to.first)&.unblock_brevo_for_critical_mail!
+  end
 
   def prevent_delivery?(mail)
     return false if mail[BYPASS_UNVERIFIED_MAIL_PROTECTION].present?
