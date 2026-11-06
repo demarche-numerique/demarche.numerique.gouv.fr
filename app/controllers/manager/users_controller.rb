@@ -114,6 +114,8 @@ module Manager
       end.each(&:join)
 
       @sent_mails.sort_by!(&:delivered_at).reverse!
+
+      render layout: false
     end
 
     def unblock_email
@@ -124,7 +126,7 @@ module Manager
       else
         flash.alert = "Impossible de débloquer cette adresse électronique auprès de Brevo"
       end
-      redirect_to emails_manager_user_path(@user)
+      redirect_to manager_user_path(@user, anchor: 'emails')
     end
 
     def reactivate

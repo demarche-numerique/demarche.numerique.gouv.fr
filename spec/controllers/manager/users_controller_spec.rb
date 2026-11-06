@@ -50,6 +50,35 @@ describe Manager::UsersController, type: :controller do
         expect(response.body).to include("Réactiver le compte")
       end
     end
+
+    it 'loads the mails sent through the providers on demand' do
+      frame = response.parsed_body.at_css('turbo-frame#user-sent-mails')
+
+      expect(frame.to_h).to include('src' => emails_manager_user_path(user), 'loading' => 'lazy')
+    end
+  end
+
+  describe '#emails' do
+    render_views
+
+    let(:user) { users.usager }
+    let(:sent_mail) do
+      SentMail.new(from: 'contact@exemple.fr', to: user.email, subject: 'Votre dossier', delivered_at: Time.zone.parse('2026-11-05 10:00'), status: 'delivered', service_name: 'Brevo', external_url: 'https://app.brevo.com/transactional/email/logs')
+    end
+
+    before do
+      allow(Brevo::API).to receive(:new).and_return(instance_double(Brevo::API, properly_configured?: true, sent_mails: [sent_mail]))
+      allow(Scaleway::API).to receive(:new).and_return(instance_double(Scaleway::API, properly_configured?: false))
+
+      get :emails, params: { id: user.id }
+    end
+
+    it 'renders the mails in the frame of the user page, without layout' do
+      frame = response.parsed_body.at_css('turbo-frame#user-sent-mails')
+
+      expect(frame.text).to include('Votre dossier')
+      expect(response.body).not_to include('main-content__header')
+    end
   end
 
   describe '#index' do
@@ -252,6 +281,7 @@ describe Manager::UsersController, type: :controller do
 
       it 'subscribes the user again and records the unblock' do
         expect(user.reload).to have_attributes(email_unsubscribed: false, brevo_unblocked_at: now)
+        expect(response).to redirect_to(manager_user_path(user, anchor: 'emails'))
       end
     end
 
