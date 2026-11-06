@@ -1,5 +1,5 @@
 - if @as_announcement
-  - if status_announcement?
+  - if announceable?
     = sanitize(statut_message[:text])
 - else
   .fr-messages-group{ id: @error_id, aria: { live: (@error_full_messages.size > 0 ? :assertive : nil) } }
