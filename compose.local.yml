@@ -1,0 +1,86 @@
+services:
+  db:
+    image: postgis/postgis:17-3.5
+    environment:
+      POSTGRES_DB: tps_development
+      POSTGRES_USER: tps_development
+      POSTGRES_PASSWORD: tps_development
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tps_development -d tps_development"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    command: redis-server --save 60 1 --loglevel warning
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    entrypoint: ["bash", "/app/docker/local-entrypoint.sh"]
+    env_file:
+      - .env.local.docker
+    environment:
+      RAILS_ENV: development
+      CHOKIDAR_USEPOLLING: "true"
+      LISTEN_GEM_USE_POLLING: "true"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: >
+      bash -c "bin/rails db:create db:migrate && bundle exec rails server -b 0.0.0.0 -p 3000"
+    ports:
+      - "3000:3000"
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/app
+      - bundle_data:/usr/local/bundle
+      - node_modules:/app/node_modules
+      - rails_storage:/app/storage
+
+  vite:
+    build:
+      context: .
+      dockerfile: Dockerfile.local
+    entrypoint: ["bash", "/app/docker/local-entrypoint.sh"]
+    env_file:
+      - .env.local.docker
+    environment:
+      RAILS_ENV: development
+      CHOKIDAR_USEPOLLING: "true"
+      LISTEN_GEM_USE_POLLING: "true"
+    command: >
+      bash -c "bin/bun_vite dev --host 0.0.0.0 --port 3036"
+    ports:
+      - "3036:3036"
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/app
+      - bundle_data:/usr/local/bundle
+      - node_modules:/app/node_modules
+
+volumes:
+  bundle_data:
+  node_modules:
+  postgres_data:
+  rails_storage:
+  redis_data:
