@@ -100,6 +100,15 @@ describe Instructeurs::ExportTemplatesController, type: :controller do
       end
     end
 
+    context 'with a repetition layout' do
+      let(:create_params) { export_template_params.merge(kind: 'xlsx', repetition_layout: 'inline') }
+
+      it 'saves the layout' do
+        subject
+        expect(ExportTemplate.find_by(name: 'coucou')).to be_repetition_layout_inline
+      end
+    end
+
     context 'with procedure not accessible by current instructeur' do
       let(:another_procedure) { create(:procedure) }
       subject { post :create, params: { procedure_id: another_procedure.id, export_template: export_template_params } }
