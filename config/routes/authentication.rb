@@ -39,6 +39,10 @@ scope 'france_connect', as: :france_connect, controller: :france_connect do
   get 'redirect_uris'
 end
 
+scope 'france_connect_plus', as: :france_connect_plus, controller: :france_connect_plus do
+  get 'keys'
+end
+
 get 'pro_connect' => 'pro_connect#index'
 get 'pro_connect/login' => 'pro_connect#login'
 get 'pro_connect/callback' => 'pro_connect#callback'
