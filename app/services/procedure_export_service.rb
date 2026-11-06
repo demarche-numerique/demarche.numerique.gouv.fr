@@ -27,8 +27,11 @@ class ProcedureExportService
   end
 
   def to_ods
+    @inline_repetitions = InlineRepetitionsBuilder.new(procedure:, dossiers: @dossiers, export_template: @export_template)
+    @inline_repetitions.to_h
     @dossiers = @dossiers.downloadable_sorted_batch
-    tables = [:dossiers, :etablissements, :avis] + champs_repetables_options(format: :ods)
+    tables = [:dossiers, :etablissements, :avis]
+    tables += champs_repetables_options(format: :ods) if !@inline_repetitions.enabled?
 
     # We recursively build multi page spreadsheet
     io = StringIO.new(tables.reduce(nil) do |spreadsheet, table|
@@ -152,10 +155,11 @@ class ProcedureExportService
   end
 
   def spreadsheet_columns(format)
-    type_de_champs = procedure.type_de_champs_for_procedure_export.to_a
+    type_de_champs = @inline_repetitions.type_de_champs
+    inline_repetitions = @inline_repetitions.to_h
 
     Proc.new do |instance|
-      instance.send(:"spreadsheet_columns_#{format}", type_de_champs: type_de_champs, export_template: @export_template)
+      instance.send(:"spreadsheet_columns_#{format}", type_de_champs:, export_template: @export_template, inline_repetitions:)
     end
   end
 end

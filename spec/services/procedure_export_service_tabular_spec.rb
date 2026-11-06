@@ -305,6 +305,61 @@ describe ProcedureExportService do
         expect(repetition_sheet.data.size).to eq 4
       end
     end
+
+    describe 'Repetitions in the Dossiers sheet' do
+      let(:child_libelle) { 'Champ répétable – child second champ' }
+      let(:export_template) { create(:export_template, kind:, exported_columns:, repetition_layout: 'inline', groupe_instructeur: procedure.defaut_groupe_instructeur) }
+      let(:exported_columns) do
+        [
+          ExportedColumn.new(libelle: 'first champ', column: procedure.find_column(label: 'first champ')),
+          ExportedColumn.new(libelle: child_libelle, column: procedure.find_column(label: child_libelle)),
+        ]
+      end
+
+      before { create(:dossier, :en_instruction, :with_populated_champs, :with_individual, procedure:) }
+
+      it 'has no sheet for the repetition' do
+        expect(subject.sheets.map(&:name)).to eq(['Dossiers', 'Etablissements', 'Avis'])
+      end
+
+      it 'flattens the repetition in the Dossiers sheet' do
+        expect(dossiers_sheet.headers).to eq(['first champ', "#{child_libelle} [1]", "#{child_libelle} [2]"])
+      end
+    end
+  end
+
+  describe 'to_ods' do
+    include ZipHelpers
+
+    let(:child_libelle) { 'Champ répétable – child second champ' }
+    let(:exported_columns) do
+      [
+        ExportedColumn.new(libelle: 'first champ', column: procedure.find_column(label: 'first champ')),
+        ExportedColumn.new(libelle: child_libelle, column: procedure.find_column(label: child_libelle)),
+      ]
+    end
+    let(:export_template) { create(:export_template, kind: 'ods', exported_columns:, repetition_layout:, groupe_instructeur: procedure.defaut_groupe_instructeur) }
+    let(:content) { service.to_ods.open { read_zip_file_content(it.path, 'content.xml').force_encoding('UTF-8') } }
+
+    before { create(:dossier, :en_instruction, :with_populated_champs, :with_individual, procedure:) }
+
+    context 'in the Dossiers sheet' do
+      let(:repetition_layout) { 'inline' }
+
+      it 'flattens the repetition without a sheet for it' do
+        expect(content).to include("#{child_libelle} [2]")
+        expect(content).not_to include('table:name="(7)')
+      end
+    end
+
+    context 'in a separate sheet' do
+      let(:repetition_layout) { 'sheet' }
+
+      it 'keeps a sheet for the repetition' do
+        expect(content).to include('table:name="(7)')
+        expect(content).not_to include("#{child_libelle} [1]")
+      end
+    end
   end
 
   describe 'to_csv' do

@@ -7,7 +7,7 @@ class ProcedureExportService::InlineRepetitionsBuilder
     @export_template = export_template
   end
 
-  def enabled? = @export_template.present?
+  def enabled? = @export_template.present? && @export_template.inline_repetitions?
 
   def type_de_champs
     @type_de_champs ||= if enabled?
