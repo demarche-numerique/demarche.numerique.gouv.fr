@@ -45,6 +45,15 @@ describe Champs::PhoneChamp do
       expect(champ_with_value("88473500").validate(:champ_value)).to be_truthy
       expect(champ_with_value("89473500").validate(:champ_value)).to be_truthy
     end
+
+    it 'translates the error in the current locale' do
+      champ_with_value("0123456789 0123456789")
+
+      champ.validate(:champ_value)
+
+      expect(champ.errors).to be_of_kind(:value, :not_a_phone)
+      expect(I18n.with_locale(:en) { champ.errors.messages_for(:value) }).to eq(["is invalid. Enter a valid phone number. Example: (+33)\u00a06\u00a012\u00a034\u00a056\u00a078"])
+    end
   end
 
   describe '#to_s' do
