@@ -18,7 +18,11 @@ module BrevoBlockableConcern
 
   class_methods do
     def record_brevo_event(email:, event:, at:)
-      return if !known_event?(event)
+      # the webhook subscribes to the blocking events only: any other one is a misconfiguration
+      if !known_event?(event)
+        Sentry.capture_message("Brevo webhook: unhandled event", extra: { event: })
+        return
+      end
 
       find_by(email:)&.record_brevo_block!(at:, event:)
     end
