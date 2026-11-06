@@ -67,6 +67,7 @@ class TypesDeChamp::DepartementTypeDeChamp < TypesDeChamp::TextTypeDeChamp
         type: :enum,
         displayable: false,
         filterable: false,
+        deprecated: true,
         options_for_select:,
         mandatory: mandatory?
       ),

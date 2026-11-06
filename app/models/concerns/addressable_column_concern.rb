@@ -16,12 +16,7 @@ module AddressableColumnConcern
 
     column_specs = column_specs.filter { only.include?(_1.first) }
 
-    # legacy: kept resolvable for procedure_presentations / export_templates saved before the jsonpath fix
-    if deprecated_columns
-      column_specs << [:region_name_legacy, "Région", '$.region_name', :enum, APIGeoService.region_options, false, false]
-    end
-
-    column_specs.map do |(_key, label, jsonpath, type, options_for_select, column_displayable, column_filterable)|
+    columns = column_specs.map do |(_key, label, jsonpath, type, options_for_select, column_displayable, column_filterable)|
       Columns::JSONPathColumn.new(
         procedure_id:,
         stable_id:,
@@ -35,5 +30,27 @@ module AddressableColumnConcern
         mandatory: mandatory?
       )
     end
+
+    # legacy: kept resolvable for procedure_presentations / export_templates saved before the jsonpath fix
+    columns << region_name_legacy_column(procedure_id:, prefix:) if deprecated_columns
+    columns
+  end
+
+  private
+
+  def region_name_legacy_column(procedure_id:, prefix:)
+    Columns::JSONPathColumn.new(
+      procedure_id:,
+      stable_id:,
+      tdc_type: type_champ,
+      label: "#{libelle_with_prefix(prefix)} – Région",
+      jsonpath: '$.region_name',
+      displayable: false,
+      filterable: false,
+      deprecated: true,
+      options_for_select: APIGeoService.region_options,
+      type: :enum,
+      mandatory: mandatory?
+    )
   end
 end

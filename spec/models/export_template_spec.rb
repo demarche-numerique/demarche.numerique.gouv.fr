@@ -20,6 +20,38 @@ describe ExportTemplate do
     end
   end
 
+  describe '#selectable_columns' do
+    deprecated_column_ids = {
+      address: ['$.region_name'],
+      siret: ['$.region_name'],
+      rna: ['$.region_name'],
+      rnf: ['$.region_name'],
+      communes: [nil, '$.code_postal', '$.code_departement'],
+      departements: [nil],
+      regions: [nil],
+    }
+
+    deprecated_column_ids.each do |type_champ, jsonpaths|
+      context "with a #{type_champ} champ" do
+        let(:type_de_champ) { build(:type_de_champ, type_champ:, stable_id: 42) }
+        let(:deprecated_ids) { jsonpaths.map { ['type_de_champ/42', it].compact.join('-') } }
+        let(:column_ids) { export_template.selectable_columns(type_de_champ).map { it.h_id[:column_id] } }
+
+        it 'leaves out the deprecated columns' do
+          expect(column_ids).to be_present
+          expect(column_ids).not_to include(*deprecated_ids)
+        end
+
+        it 'keeps a deprecated column already in the export template' do
+          deprecated_column = type_de_champ.columns(procedure_id: procedure.id).find { it.h_id[:column_id] == deprecated_ids.first }
+          export_template.exported_columns = [ExportedColumn.new(column: deprecated_column, libelle: 'Ancienne')]
+
+          expect(column_ids).to include(deprecated_ids.first)
+        end
+      end
+    end
+  end
+
   describe '#pj' do
     context 'when pj exists' do
       subject { export_template.pj(double(stable_id: 3)) }

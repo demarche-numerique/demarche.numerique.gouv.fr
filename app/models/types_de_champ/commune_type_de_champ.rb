@@ -67,6 +67,7 @@ class TypesDeChamp::CommuneTypeDeChamp < TypeDeChamp
         type: :text,
         displayable: false,
         filterable: false,
+        deprecated: true,
         options_for_select:,
         mandatory: mandatory?
       ),
@@ -83,6 +84,7 @@ class TypesDeChamp::CommuneTypeDeChamp < TypeDeChamp
         jsonpath:,
         displayable: false,
         filterable: false,
+        deprecated: true,
         type:,
         mandatory: mandatory?
       )

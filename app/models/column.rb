@@ -9,10 +9,10 @@ class Column
   TYPE_DE_CHAMP_TABLE = 'type_de_champ'
   NOT_FILLED_VALUE = 'nil'
 
-  attr_reader :table, :column, :label, :type, :filterable, :displayable, :mandatory
+  attr_reader :table, :column, :label, :type, :filterable, :displayable, :deprecated, :mandatory
   attr_accessor :options_for_select
 
-  def initialize(procedure_id:, table:, column:, label: nil, type: :text, filterable: true, displayable: true, options_for_select: [], mandatory: true)
+  def initialize(procedure_id:, table:, column:, label: nil, type: :text, filterable: true, displayable: true, deprecated: false, options_for_select: [], mandatory: true)
     @procedure_id = procedure_id
     @table = table
     @column = column
@@ -20,6 +20,7 @@ class Column
     @type = type
     @filterable = filterable
     @displayable = displayable
+    @deprecated = deprecated
     # A boolean column is rendered as radio buttons built from these options,
     # so oui/non is the default; checkbox passes its own coché/non coché pair.
     @options_for_select = if type == :boolean && options_for_select.blank?
