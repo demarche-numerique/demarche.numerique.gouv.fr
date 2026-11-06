@@ -3,4 +3,4 @@ en:
     attributes:
       champs/phone_champ:
         hints:
-          value: "Expected format: A valid telephone number. Example: 0612345678"
+          value: "Expected format: A valid telephone number. Example: (+33) 6 12 34 56 78"

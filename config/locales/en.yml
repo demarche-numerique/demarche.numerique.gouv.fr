@@ -772,7 +772,7 @@ en:
 
     errors:
       messages:
-        not_a_phone: 'is invalid. Enter a valid phone number. Example: 0612345678'
+        not_a_phone: 'is invalid. Enter a valid phone number. Example: (+33) 6 12 34 56 78'
         url: 'is not a valid link'
         private_ip_url: 'must not point to a local or private address'
         invalid_email_format: 'is invalid. Enter a valid email. Example: address@mail.com'

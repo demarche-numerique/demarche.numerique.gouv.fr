@@ -239,5 +239,14 @@ RSpec.describe EditableChamp::ChampLabelContentComponent, type: :component do
       expect(hint).to be_html_safe
       expect(hint).to include("<span aria-hidden='true'>075-FDD-00003-01</span>")
     end
+
+    context "for a phone champ" do
+      let(:champ) { dossiers.tous_champs.champ_data.find(&:phone?) }
+
+      it "gives a national example in French and an international one in English" do
+        expect(I18n.with_locale(:fr) { component.default_hint }).to end_with("Exemple : 06 12 34 56 78")
+        expect(I18n.with_locale(:en) { component.default_hint }).to end_with("Example: (+33) 6 12 34 56 78")
+      end
+    end
   end
 end

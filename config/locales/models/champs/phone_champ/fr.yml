@@ -3,4 +3,4 @@ fr:
     attributes:
       champs/phone_champ:
         hints:
-          value: "Format attendu  : Un numéro de téléphone valide. Exemple : 0612345678"
+          value: "Format attendu  : Un numéro de téléphone valide. Exemple : 06 12 34 56 78"
