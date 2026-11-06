@@ -1,0 +1,11 @@
+<% content_for(:title, @subject) %>
+
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+
+<p>
+  <%= t('.body', dossier_id: @dossier.id, libelle_demarche: @dossier.procedure.libelle) %>
+</p>
+
+<%= dsfr_button(t('.see_avis'), avis_list_expert_avis_url(@dossier.procedure, @avis), :primary) %>
+
+<%= render partial: "layouts/mailers/signature" %>

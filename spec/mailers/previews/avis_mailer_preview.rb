@@ -34,4 +34,8 @@ class AvisMailerPreview < ActionMailer::Preview
       avis_with_verified_user
     )
   end
+
+  def notify_new_avis_to_expert
+    AvisMailer.notify_new_avis_to_expert(Avis.not_revoked.first!)
+  end
 end

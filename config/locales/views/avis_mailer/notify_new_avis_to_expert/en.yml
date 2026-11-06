@@ -1,0 +1,6 @@
+en:
+  avis_mailer:
+    notify_new_avis_to_expert:
+      subject: New opinion submitted on application no. %{dossier_id}
+      body: A new opinion has been submitted by an expert on application no. %{dossier_id} of the procedure %{libelle_demarche}
+      see_avis: See the opinion

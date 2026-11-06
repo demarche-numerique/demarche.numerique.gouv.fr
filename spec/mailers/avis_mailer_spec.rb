@@ -141,4 +141,32 @@ RSpec.describe AvisMailer, type: :mailer do
       expect { subject }.not_to change { ActionMailer::Base.deliveries.size }
     end
   end
+
+  describe ".notify_new_avis_to_expert" do
+    let(:recipient_avis) { avis.confidentiel }
+    let(:mail) { described_class.notify_new_avis_to_expert(recipient_avis) }
+
+    it "tells the expert a new avis was given, with a link to their own avis" do
+      dossier = dossiers.en_instruction
+      body = mail.deliver_now.html_part.body.to_s
+
+      expect(mail.to).to eq([experts.second.email])
+      expect(mail.subject).to eq("Nouvel avis rendu sur le dossier n° #{dossier.id}")
+      expect(body).to include("Un nouvel avis a été rendu par un expert sur le dossier n° #{dossier.id} de la démarche #{dossier.procedure.libelle}")
+      expect(body).to include(avis_list_expert_avis_url(dossier.procedure, recipient_avis))
+      expect(body).to include("Voir l’avis")
+    end
+
+    it "sends nothing once the recipient's avis is revoked" do
+      recipient_avis.update!(answer: "Avis favorable", revoked_at: Time.zone.now)
+
+      expect(mail.message).to be_a(ActionMailer::Base::NullMail)
+    end
+
+    it "sends nothing once the administration deleted the dossier" do
+      recipient_avis.dossier.update!(hidden_by_administration_at: 1.hour.ago)
+
+      expect(mail.message).to be_a(ActionMailer::Base::NullMail)
+    end
+  end
 end
