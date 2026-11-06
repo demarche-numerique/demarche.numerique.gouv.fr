@@ -50,6 +50,42 @@ describe Manager::UsersController, type: :controller do
         expect(response.body).to include("Réactiver le compte")
       end
     end
+
+    it 'puts the lazy frame of the providers history in a closed details' do
+      frame = response.parsed_body.at_css('details:not([open]) turbo-frame#user-sent-mails')
+
+      expect(frame.to_h).to include('src' => emails_manager_user_path(user), 'loading' => 'lazy')
+    end
+  end
+
+  describe '#emails' do
+    render_views
+
+    let(:user) { users.usager }
+    let(:sent_mail) do
+      SentMail.new(from: 'contact@exemple.fr', to: user.email, subject: 'Votre dossier', delivered_at: Time.zone.parse('2026-11-05 10:00'), status: 'delivered', service_name: 'Brevo', external_url: 'https://app.brevo.com/transactional/email/logs')
+    end
+
+    before do
+      allow(Brevo::API).to receive(:new).and_return(instance_double(Brevo::API, properly_configured?: true, sent_mails: [sent_mail]))
+      allow(Scaleway::API).to receive(:new).and_return(instance_double(Scaleway::API, properly_configured?: false))
+    end
+
+    it 'renders the mails in the frame of the user page, without layout' do
+      request.headers['Turbo-Frame'] = 'user-sent-mails'
+      get :emails, params: { id: user.id }
+
+      frame = response.parsed_body.at_css('turbo-frame#user-sent-mails')
+
+      expect(frame.text).to include('Votre dossier')
+      expect(response.body).not_to include('main-content__header')
+    end
+
+    it 'sends a direct visit, from an old link, to the mails section of the user page' do
+      get :emails, params: { id: user.id }
+
+      expect(response).to redirect_to(manager_user_path(user, anchor: 'emails'))
+    end
   end
 
   describe '#index' do
@@ -90,6 +126,7 @@ describe Manager::UsersController, type: :controller do
     it 'sends the Devise instructions' do
       expect { subject }.to have_enqueued_mail(DeviseUserMailer, :reset_password_instructions)
       expect(flash[:notice]).to eq("L’email de réinitialisation du mot de passe a été renvoyé.")
+      expect(response).to redirect_to(manager_user_path(user, anchor: 'emails'))
     end
 
     context 'when the administrateur must use ProConnect' do
@@ -101,6 +138,16 @@ describe Manager::UsersController, type: :controller do
       it 'sends the ProConnect invitation' do
         expect { subject }.to have_enqueued_mail(UserMailer, :reset_password_via_pro_connect)
         expect(flash[:notice]).to eq("L’email d’invitation à se connecter avec ProConnect a été envoyé.")
+      end
+    end
+  end
+
+  [:unblock_mails, :resend_confirmation_instructions].each do |action|
+    describe "##{action}" do
+      it 'brings the super admin back to the mails section' do
+        post action, params: { id: users.usager.id }
+
+        expect(response).to redirect_to(manager_user_path(users.usager, anchor: 'emails'))
       end
     end
   end
@@ -252,6 +299,7 @@ describe Manager::UsersController, type: :controller do
 
       it 'subscribes the user again and records the unblock' do
         expect(user.reload).to have_attributes(email_unsubscribed: false, brevo_unblocked_at: now, updated_at: now)
+        expect(response).to redirect_to(manager_user_path(user, anchor: 'emails'))
       end
     end
 

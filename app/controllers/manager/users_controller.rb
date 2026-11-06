@@ -38,14 +38,14 @@ module Manager
       user = User.find(params[:id])
       user.update!(email_verified_at: Time.current)
       flash[:notice] = "Les emails ont été débloqués."
-      redirect_to manager_user_path(user)
+      redirect_to manager_user_path(user, anchor: 'emails')
     end
 
     def resend_confirmation_instructions
       user = User.find(params[:id])
       user.resend_confirmation_instructions
       flash[:notice] = "L’email d’activation de votre compte a été renvoyé."
-      redirect_to manager_user_path(user)
+      redirect_to manager_user_path(user, anchor: 'emails')
     end
 
     def resend_reset_password_instructions
@@ -56,7 +56,7 @@ module Manager
       else
         "L’email de réinitialisation du mot de passe a été renvoyé."
       end
-      redirect_to manager_user_path(user)
+      redirect_to manager_user_path(user, anchor: 'emails')
     end
 
     # Only the administrateur dashboard currently exposes FeaturesField;
@@ -99,6 +99,7 @@ module Manager
 
     def emails
       @user = User.find(params[:id])
+      return redirect_to manager_user_path(@user, anchor: 'emails') if !turbo_frame_request?
 
       email_services = [
         Brevo::API.new,
@@ -114,6 +115,8 @@ module Manager
       end.each(&:join)
 
       @sent_mails.sort_by!(&:delivered_at).reverse!
+
+      render layout: false
     end
 
     def unblock_email
@@ -124,7 +127,7 @@ module Manager
       else
         flash.alert = "Impossible de débloquer cette adresse électronique auprès de Brevo"
       end
-      redirect_to emails_manager_user_path(@user)
+      redirect_to manager_user_path(@user, anchor: 'emails')
     end
 
     def reactivate
