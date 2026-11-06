@@ -54,4 +54,21 @@ describe "procedure exports" do
       expect(all('input[type=checkbox]').none?(&:checked?)).to be_truthy
     end
   end
+
+  context 'with a repeatable block' do
+    let(:public_type_de_champs) { [{ type: :repetition, libelle: 'Enfants', children: [{ type: :text, libelle: 'Prénom' }] }] }
+    let(:notice) { '[data-export-template-kind-target="csvOnly"]' }
+
+    scenario 'show the repeatable block notice only for the csv kind', js: true do
+      visit new_instructeur_procedure_export_template_path(procedure)
+
+      expect(page).to have_no_css(notice, visible: true)
+
+      choose 'csv', allow_label_click: true
+      expect(page).to have_css(notice, visible: true, text: 'Si vous sélectionnez des champs issus d’un bloc répétable')
+
+      choose 'xlsx', allow_label_click: true
+      expect(page).to have_no_css(notice, visible: true)
+    end
+  end
 end

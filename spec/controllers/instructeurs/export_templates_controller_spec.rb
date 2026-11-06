@@ -34,6 +34,32 @@ describe Instructeurs::ExportTemplatesController, type: :controller do
       subject
       expect(assigns(:export_template)).to be_present
     end
+
+    context 'with repeatable blocks in the form and in the private annotations' do
+      render_views
+
+      let(:procedure_with_blocks) do
+        create(
+          :procedure, instructeurs: [instructeur],
+          public_type_de_champs: [{ type: :repetition, children: [{ type: :text }] }],
+          private_type_de_champs: [{ type: :repetition, children: [{ type: :text }] }]
+        )
+      end
+
+      subject { get :new, params: { procedure_id: procedure_with_blocks.id, kind: 'xlsx' } }
+
+      it 'warns about the column count under both sections' do
+        subject
+        expect(response.body.scan('Si vous sélectionnez des champs issus d’un bloc répétable').size).to eq(2)
+        expect(response.body).to include('qu’un usager aura ajoutés')
+        expect(response.body).to include('qu’un instructeur aura ajoutés')
+      end
+
+      it 'announces the warning to screen readers when it appears' do
+        subject
+        expect(response.parsed_body.css('[aria-live="polite"] > [data-export-template-kind-target="csvOnly"]').size).to eq(2)
+      end
+    end
   end
 
   describe '#create' do
