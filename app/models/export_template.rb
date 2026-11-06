@@ -81,8 +81,13 @@ class ExportTemplate < ApplicationRecord
   end
 
   def in_export?(exported_column)
-    @template_exported_columns ||= exported_columns.map(&:column)
-    @template_exported_columns.include?(exported_column.column)
+    exported_column_ids.include?(exported_column.column.h_id)
+  end
+
+  def selectable_columns(type_de_champ, prefix: nil)
+    type_de_champ
+      .columns(procedure_id: procedure.id, prefix:)
+      .filter { !it.deprecated || exported_column_ids.include?(it.h_id) }
   end
 
   # Filter out stale column references (e.g. type_de_champ removed from procedure after template was saved)
@@ -98,6 +103,8 @@ class ExportTemplate < ApplicationRecord
   end
 
   private
+
+  def exported_column_ids = @exported_column_ids ||= exported_columns.to_set { it.column.h_id }
 
   def ensure_pjs_are_legit
     legitimate_pj_stable_ids = procedure.exportables_pieces_jointes_for_all_versions.map(&:stable_id)

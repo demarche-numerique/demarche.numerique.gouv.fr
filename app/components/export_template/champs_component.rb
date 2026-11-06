@@ -37,7 +37,7 @@ class ExportTemplate::ChampsComponent < ApplicationComponent
 
   def tdc_to_columns(type_de_champ)
     prefix = type_de_champ.repetition? ? "Bloc répétable" : nil
-    type_de_champ.columns(procedure_id: export_template.procedure.id, prefix:).map do |column|
+    export_template.selectable_columns(type_de_champ, prefix:).map do |column|
       ExportedColumn.new(column:,
                          libelle: historical_libelle(column))
     end
