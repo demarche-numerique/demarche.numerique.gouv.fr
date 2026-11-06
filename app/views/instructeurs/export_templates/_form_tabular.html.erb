@@ -50,6 +50,34 @@
         </div>
       </fieldset>
 
+      <% if procedure.all_revisions_type_de_champs.repetition.any? %>
+        <fieldset
+          class="<%= class_names('fr-fieldset', 'hidden' => export_template.template_csv?) %>"
+          id="repetition-layout"
+          data-export-template-kind-target="spreadsheetOnly"
+        >
+          <legend class="fr-fieldset__legend fr-text--regular">
+            <%= t('.repetition_layout.legend') %> <%= asterisk %>
+          </legend>
+
+          <% ExportTemplate.repetition_layouts.each_key do |layout| %>
+            <div class="fr-fieldset__element">
+              <div class="fr-radio-group">
+                <%= f.radio_button :repetition_layout, layout, id: "repetition_layout_#{layout}", required: true %>
+
+                <label class="fr-label" for="repetition_layout_<%= layout %>">
+                  <%= t(".repetition_layout.#{layout}.label") %>
+
+                  <span class="fr-hint-text">
+                    <%= t(".repetition_layout.#{layout}.hint") %>
+                  </span>
+                </label>
+              </div>
+            </div>
+          <% end %>
+        </fieldset>
+      <% end %>
+
       <h2>Contenu de l’export</h2>
 
       <p>

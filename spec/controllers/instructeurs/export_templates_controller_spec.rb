@@ -55,6 +55,11 @@ describe Instructeurs::ExportTemplatesController, type: :controller do
         expect(response.body).to include('qu’un instructeur aura ajoutés')
       end
 
+      it 'marks the repetition layout as required' do
+        subject
+        expect(response.parsed_body.css('input[name="export_template[repetition_layout]"][required]').size).to eq(2)
+      end
+
       it 'announces the warning to screen readers when it appears' do
         subject
         expect(response.parsed_body.css('[aria-live="polite"] > [data-export-template-kind-target="csvOnly"]').size).to eq(2)
@@ -97,6 +102,15 @@ describe Instructeurs::ExportTemplatesController, type: :controller do
         expect(ExportTemplate.last.commentaires_attachments).to be_truthy
         expect(ExportTemplate.last.avis_attachments).to be_truthy
         expect(ExportTemplate.last.justificatif_motivation).to be_truthy
+      end
+    end
+
+    context 'with a repetition layout' do
+      let(:create_params) { export_template_params.merge(kind: 'xlsx', repetition_layout: 'inline') }
+
+      it 'saves the layout' do
+        subject
+        expect(ExportTemplate.find_by(name: 'coucou')).to be_repetition_layout_inline
       end
     end
 
