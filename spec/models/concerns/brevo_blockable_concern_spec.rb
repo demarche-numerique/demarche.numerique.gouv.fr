@@ -61,6 +61,20 @@ describe BrevoBlockableConcern do
 
       expect(user.reload.brevo_last_blocked_at).to eq(later)
     end
+
+    it 'unsubscribes the user on an unsubscription or a spam complaint' do
+      other = users.instructeur
+      user.record_brevo_block!(at: earlier, event: 'unsubscribed')
+      other.record_brevo_block!(at: earlier, event: 'spam')
+
+      expect([user.reload.email_unsubscribed, other.reload.email_unsubscribed]).to eq([true, true])
+    end
+
+    it 'keeps the user subscribed on a hard bounce' do
+      user.record_brevo_block!(at: earlier, event: 'hard_bounce')
+
+      expect(user.reload.email_unsubscribed).to be(false)
+    end
   end
 
   describe '#brevo_blocked?' do
