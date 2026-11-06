@@ -17,6 +17,16 @@ describe ProcedurePublishConcern do
       end
     end
 
+    context 'on a double submit, loaded before the first publication committed' do
+      it 'publishes once' do
+        stale_procedure = Procedure.find(procedure.id)
+        procedure.publish_or_reopen!(administrateur, procedure.path)
+
+        expect { stale_procedure.publish_or_reopen!(administrateur, procedure.path) }.not_to change(ProcedureRevision, :count)
+        expect(procedure.reload.revisions.where(published_at: nil)).to eq([procedure.draft_revision])
+      end
+    end
+
     context 'when publishing over a previous canonical procedure' do
       before do
         travel_to(now) do
@@ -148,6 +158,14 @@ describe ProcedurePublishConcern do
 
       expect(procedure.published_revision.administrateur).to eq(administrateur)
       expect(procedure.draft_revision.administrateur).to be_nil
+    end
+
+    it 'does not publish twice on a double submit, loaded before the first one committed' do
+      stale_procedure = Procedure.find(procedure.id)
+      subject
+
+      expect { stale_procedure.publish_revision!(administrateur) }.not_to change(ProcedureRevision, :count)
+      expect(procedure.reload.revisions.where(published_at: nil)).to eq([procedure.draft_revision])
     end
 
     it 'stores the type de champ tree on the published revision and on the new draft' do
