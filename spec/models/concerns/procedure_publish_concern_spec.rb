@@ -173,6 +173,19 @@ describe ProcedurePublishConcern do
       expect(procedure.draft_revision.reload.revision_type_de_champs.map(&:type_de_champ_id)).to eq([edited.id])
     end
 
+    it 'lays out what the database holds, whatever the draft laid out before' do
+      subject
+
+      draft_revision = procedure.draft_revision
+      expect(draft_revision.type_de_champs.map(&:libelle)).to eq(['libelle 1'])
+      Procedure.find(procedure.id).draft_revision.add_type_de_champ(type_champ: :text, libelle: 'libelle 2')
+
+      procedure.publish_revision!(administrateur)
+
+      expect(procedure.published_revision).to equal(draft_revision)
+      expect(procedure.published_revision.type_de_champs.map(&:libelle)).to eq(['libelle 2', 'libelle 1'])
+    end
+
     it 'publishes the draft under the lock the editor takes' do
       allow(procedure.draft_revision).to receive(:lock!).and_call_original
 
