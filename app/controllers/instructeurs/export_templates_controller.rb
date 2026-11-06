@@ -67,6 +67,7 @@ module Instructeurs
         .permit(
           :name,
           :kind,
+          :repetition_layout,
           :shared,
           :groupe_instructeur_id,
           :commentaires_attachments,

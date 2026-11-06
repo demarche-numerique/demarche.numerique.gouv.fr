@@ -31,6 +31,14 @@ fr:
         warning: Si vous modifiez ce modèle, il sera également modifié pour tous les instructeurs qui ont accès à ce modèle.
         cancel: Annuler
         submit: Enregistrer
+        repetition_layout:
+          legend: Format de présentation des données issues d’un champ « bloc répétable »
+          sheet:
+            label: Dans une feuille dédiée du classeur
+            hint: Votre classeur comportera une feuille pour chaque bloc répétable du formulaire, en plus de la feuille « Dossiers ».
+          inline:
+            label: Dans la feuille « Dossiers » du classeur
+            hint: "Les données du bloc répétable seront présentées avec les autres données du dossier. Attention : le tableur pourra comporter un nombre important de colonnes (lié au nombre d’éléments maximum qu’un usager aura ajoutés dans le bloc répétable)."
       repetition_csv_notice:
         message: Si vous sélectionnez des champs issus d’un bloc répétable, le tableur pourra comporter un nombre important de colonnes (lié au nombre maximal d’éléments qu’un usager aura ajoutés dans le bloc répétable).
         private_message: Si vous sélectionnez des champs issus d’un bloc répétable, le tableur pourra comporter un nombre important de colonnes (lié au nombre maximal d’éléments qu’un instructeur aura ajoutés dans le bloc répétable).
