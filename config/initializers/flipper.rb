@@ -38,6 +38,7 @@ features = [
   :brevo_api_delivery,
   :champ_matching,
   :dossier_vide_weasyprint,
+  :dossier_vide_typst,
   :attestation_depot_typst,
   :s3_storage,
 ]

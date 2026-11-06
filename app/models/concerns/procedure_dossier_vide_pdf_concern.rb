@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-# Caches the generated "dossier vide" PDF (the printable empty form) in Active Storage
+# Caches the generated "dossier vide" PDF (the printable empty form) in
+# Active Storage, behind the cache key DossierVidePdfService computes.
 module ProcedureDossierVidePdfConcern
   extend ActiveSupport::Concern
 
@@ -9,14 +10,7 @@ module ProcedureDossierVidePdfConcern
   end
 
   CACHE_KEY_METADATA = 'dossier_vide_pdf_cache_key'
-  # Bump when the PDF rendering changes (component, helpers, stylesheet) and the
-  # already cached PDF should be invalidated without waiting for the expiration.
-  CACHE_VERSION = 1
   CACHE_EXPIRATION = 1.week
-
-  def dossier_vide_pdf_cache_key_for(revision)
-    ["v#{CACHE_VERSION}", *[self, revision, service].compact.map(&:cache_key_with_version)].join('/')
-  end
 
   def dossier_vide_pdf_fresh?(cache_key)
     blob = dossier_vide_pdf.blob
