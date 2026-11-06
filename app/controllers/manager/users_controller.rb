@@ -119,7 +119,7 @@ module Manager
     def unblock_email
       @user = User.find(params[:user_id])
       if Brevo::API.new.unblock_user(@user.email)
-        @user.update_columns(email_unsubscribed: false)
+        @user.update_columns(email_unsubscribed: false, brevo_unblocked_at: Time.current)
         flash.notice = "L’adresse électronique a été débloquée auprès de Brevo"
       else
         flash.alert = "Impossible de débloquer cette adresse électronique auprès de Brevo"
