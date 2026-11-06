@@ -780,7 +780,7 @@ fr:
 
     errors:
       messages:
-        not_a_phone: 'est invalide. Saisissez un numéro de téléphone valide. Exemple : 06 12 34 56 78'
+        not_a_phone: 'est invalide. Saisissez un numéro de téléphone valide. Exemple : 06 12 34 56 78'
         not_a_number: "n’est pas un nombre"
         invalid: "n’est pas valide"
         inclusion: "n’est pas inclus(e) dans la liste"
