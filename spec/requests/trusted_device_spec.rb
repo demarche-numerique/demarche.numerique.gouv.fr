@@ -253,6 +253,28 @@ describe 'Trusted device (second factor by email link)', type: :request do
       expect(response).to have_http_status(:ok)
     end
 
+    # The link clicked in `before` is under a week old, so the revocation took its
+    # row: without a new one the job would let this cookie expire unannounced.
+    it 'warns a week before the reissued cookie expires' do
+      reset_password!
+      expiring = -> { TrustedDeviceToken.expiring_in_one_week.where(instructeur:) }
+
+      travel_to(20.days.from_now) { expect(expiring.call).not_to exist }
+      travel_to(25.days.from_now) { expect(expiring.call).to exist }
+    end
+
+    # The token the reset activates was never sent: it must not hold back a link
+    # asked for from another browser.
+    it 'still sends a link asked for right after' do
+      reset_password!
+      reset! # another browser: no session, no trusted device cookie
+
+      post_user_session(instructeur.user, password: new_password)
+
+      expect { get instructeur_procedures_path }
+        .to have_enqueued_mail(InstructeurMailer, :send_login_token)
+    end
+
     it 'still closes the other devices' do
       expect { reset_password! }
         .to change { instructeur.user.reload.trusted_device_version }
