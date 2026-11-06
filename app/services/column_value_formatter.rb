@@ -13,8 +13,11 @@ module ColumnValueFormatter
     when :boolean
       if column.type_de_champ? && column.tdc_type == 'checkbox'
         raw_value ? I18n.t('activerecord.attributes.type_de_champ.type_champs.checkbox_true') : ''
-      else
+      elsif column.options_for_select == Champs::YesNoChamp.options
         raw_value ? I18n.t('utils.yes') : I18n.t('utils.no')
+      else
+        # its own labels, as in the filter: "Correspond" / "Ne correspond pas"
+        column.label_for_value(raw_value)
       end
     when :attachments
       raw_value.present? ? 'présent' : 'absent'

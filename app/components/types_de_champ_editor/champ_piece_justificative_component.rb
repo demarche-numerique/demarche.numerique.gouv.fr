@@ -2,7 +2,7 @@
 
 class TypesDeChampEditor::ChampPieceJustificativeComponent < TypesDeChampEditor::BaseChampComponent
   delegate :titre_identite?, :rib?, :pj_limit_formats?, :ocr_compatible?,
-    :nature, to: :type_de_champ
+    :rib_account_holder_match?, :nature, to: :type_de_champ
 
   def render?
     type_de_champ.piece_justificative?

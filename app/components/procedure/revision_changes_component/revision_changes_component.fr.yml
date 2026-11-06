@@ -102,6 +102,8 @@ fr:
     update_pj_limit_formats: "La limitation des formats du champ « %{label} » a été modifiée."
     update_pj_format_families: "Les familles de formats acceptés du champ « %{label} » ont été modifiées."
     update_pj_auto_purge: "La suppression automatique du champ « %{label} » a été modifiée."
+    enable_rib_account_holder_match: "Le titulaire du RIB du champ « %{label} » est désormais comparé à l’identité du demandeur."
+    disable_rib_account_holder_match: "Le titulaire du RIB du champ « %{label} » n’est plus comparé à l’identité du demandeur."
     add_procedures_limit: L’option « Limiter à certaines démarches » a été activée pour le champ « %{label} ».
     remove_procedures_limit: L’option « Limiter à certaines démarches » a été désactivée pour le champ « %{label} ».
     update_procedures: "Les démarches autorisées pour le champ « %{label} » ont été modifiées :"
@@ -193,6 +195,8 @@ fr:
     update_pj_limit_formats: "La limitation des formats de l’annotation privée « %{label} » a été modifiée."
     update_pj_format_families: "Les familles de formats acceptés de l’annotation privée « %{label} » ont été modifiées."
     update_pj_auto_purge: "La suppression automatique de l’annotation privée « %{label} » a été modifiée."
+    enable_rib_account_holder_match: "Le titulaire du RIB de l’annotation privée « %{label} » est désormais comparé à l’identité du demandeur."
+    disable_rib_account_holder_match: "Le titulaire du RIB de l’annotation privée « %{label} » n’est plus comparé à l’identité du demandeur."
     add_procedures_limit: "L’option « Limiter à certaines démarches » a été activée pour l’annotation privée « %{label} »."
     remove_procedures_limit: "L’option « Limiter à certaines démarches » a été désactivée pour l’annotation privée « %{label} »."
     update_procedures: "Les démarches autorisées pour l’annotation privée « %{label} » ont été modifiées :"
