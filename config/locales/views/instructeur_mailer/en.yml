@@ -1,7 +1,7 @@
 en:
   instructeur_mailer:
     user_to_instructeur:
-      subject: You have been appointed instructor
+      subject: You have been appointed reviewer
     last_week_overview:
       subject: Your weekly activity
     send_dossier:

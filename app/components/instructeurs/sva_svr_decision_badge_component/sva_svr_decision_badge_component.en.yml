@@ -1,10 +1,10 @@
 ---
  en:
-  manual_decision: Manual instruction
-  manual_decision_title: The file must be processed by an instructor, either because it was submitted before the %{decision} configuration, or because it has been returned to the instruction stage.
+  manual_decision: Manual review
+  manual_decision_title: The file must be processed by a reviewer, either because it was submitted before the %{decision} configuration, or because it has been returned to the review stage.
   depose_before_configuration: Submitted before %{decision}
   depose_before_configuration_title: This file was submitted before the %{decision} configuration.
-  previously_termine_title: The file has been returned to the instruction stage. It must now be processed by an instructor.
+  previously_termine_title: The file has been returned to the review stage. It must now be processed by a reviewer.
   in_days:
     zero: Today
     one: Tomorrow

@@ -4,4 +4,4 @@ en:
       email:
         repasse_en_instruction:
           default_subject: Your file n° %{dossier_number} will be examined (%{procedure_libelle})
-          under_re_instruction: Acknowledgment of being under instruction
+          under_re_instruction: Review reopened

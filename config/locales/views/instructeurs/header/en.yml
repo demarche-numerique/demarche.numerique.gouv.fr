@@ -22,7 +22,7 @@ en:
           export_templates: Export templates
           exports_notification_label: A new export is ready to download
           statistics: Statistics
-          instructeurs: Instructors
+          instructeurs: Reviewers
           contact_users: Contact users with a draft file
           downloads: Downloads
           user_support: User support

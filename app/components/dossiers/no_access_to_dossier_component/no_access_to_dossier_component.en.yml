@@ -2,5 +2,5 @@
 en:
   link: "File nº %{id}"
   title: "You don't have access to this file"
-  content_html: "To access this file, you should <strong>contact one of the administrators</strong> of the procedure « %{procedure_name} » and ask them to <strong>add you as an instructor</strong>:"
+  content_html: "To access this file, you should <strong>contact one of the administrators</strong> of the procedure « %{procedure_name} » and ask them to <strong>add you as a reviewer</strong>:"
   no_matching_admin_html: "Contact the department in charge of the procedure « %{procedure_name} » to take the necessary steps if you need to access this file:"

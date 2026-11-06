@@ -13,10 +13,10 @@ en:
         flash_notice: "Your notification badge preferences have been saved. They are currently being adjusted."
         subtitle_html: On this page, configure <strong>the events you want to be reported</strong> on the files for this procedure.
         legend_content:
-          dossier_depose: Be notified when a file has been submitted for at least %{days} days and is not being followed up by an instructor
+          dossier_depose: Be notified when a file has been submitted for at least %{days} days and is not being followed up by a reviewer
           dossier_modifie: Be informed when a user's file has been modified
           message: Be informed when there is a new message in the file's messaging
-          annotation_instructeur: Be informed when an instructor has entered one or more private annotations on the file
+          annotation_instructeur: Be informed when a reviewer has entered one or more private annotations on the file
           avis_externe: Be informed when an external opinion has been given on the file
           attente_correction: Be informed when a correction request has been sent to the user
           attente_avis: Be informed when an external opinion has been sent on the file

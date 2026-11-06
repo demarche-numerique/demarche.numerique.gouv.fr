@@ -8,8 +8,8 @@ en:
   file_information: File information
   user_information: User information
   user_form: User form
-  private_annotations: Private annotations (instructors)
+  private_annotations: Private annotations (reviewers)
   file_section: File
-  instructors_section: Instructors
+  instructors_section: Reviewers
   selection_title: Your criteria selection
   apply_to_all_tabs_label: Apply this customization to all tabs (to follow, followed by me…)

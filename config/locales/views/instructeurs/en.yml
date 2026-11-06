@@ -6,9 +6,9 @@ en:
       index:
         title: "Procedures"
         page:
-          title: "Instructor procedures in progress"
-          brouillons_title: "Instructor procedures in testing"
-          archivees_title: "Instructor finished procedures"
+          title: "Reviewer procedures in progress"
+          brouillons_title: "Reviewer procedures in testing"
+          archivees_title: "Reviewer finished procedures"
       notifications_button:
         notifications_details: Notifications details
     procedure:
@@ -32,7 +32,7 @@ en:
         back: "Go back to file"
       filterable_state:
         en_construction: 'In progress'
-        en_instruction: 'Processing'
+        en_instruction: 'Under review'
         accepte: 'Accepted'
         refuse: 'Refused'
         sans_suite: 'No further action'

@@ -1,6 +1,6 @@
 en:
   layouts:
-    instructeur: instructor
+    instructeur: reviewer
     administrateur: admin
     gestionnaire: admins group manager
     superadmin: super-admin

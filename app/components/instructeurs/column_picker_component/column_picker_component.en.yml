@@ -1,7 +1,7 @@
 ---
 en:
   save: 'Save'
-  apply_to_all_instructeurs: 'Apply this customization to all instructeurs'
+  apply_to_all_instructeurs: 'Apply this customization to all reviewers'
   already_applied_by: 'Customization already applied by %{email}'
   customized_hint: 'You are currently displaying your columns instead of the ones set by the administrator %{email}'
   reset_to_admin_default: 'Replace my columns with the administrator’s'

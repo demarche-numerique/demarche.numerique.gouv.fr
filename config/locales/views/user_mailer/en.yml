@@ -9,7 +9,7 @@ en:
     custom_confirmation_instructions:
       subject: Confirm your email address
     invite_instructeur:
-      subject: Activate your instructor account
+      subject: Activate your reviewer account
     invite_tiers:
       subject: Verify your email address
     resend_confirmation_email:
