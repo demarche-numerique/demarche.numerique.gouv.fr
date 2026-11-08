@@ -1,8 +1,11 @@
 <% if champ.geometry? -%>
   <react-fragment class="width-100">
-    <%= render ReactComponent.new("MapReader", feature_collection: champ.to_feature_collection, options: champ.render_options) %>
+    <%= render ReactComponent.new("Map/Reader", feature_collection: champ.to_feature_collection) do %>
+      <%= render ReactComponent.new("Map/Canvas", layers: champ.optional_layers) %>
+
+      <div class="geo-areas fr-mt-3w">
+        <%= render Dossiers::GeoAreasComponent.new(champ:, editing: false) %>
+      </div>
+    <% end %>
   </react-fragment>
-  <div class="geo-areas">
-    <%= render Dossiers::GeoAreasComponent.new(champ:, editing: false) %>
-  </div>
 <% end -%>
