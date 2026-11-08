@@ -1,8 +1,7 @@
-import { Application } from '@hotwired/stimulus';
+import type { Application, ControllerConstructor } from '@hotwired/stimulus';
 import invariant from 'tiny-invariant';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type Module = { [key: string]: any };
+type Module = Record<string, unknown>;
 type Loader = () => Promise<Module>;
 
 const controllerAttribute = 'data-controller';
@@ -107,7 +106,7 @@ function registerController(
 ) {
   if (module.default) {
     console.debug(`Registered default export for "${name}" controller`);
-    application.register(name, module.default);
+    application.register(name, module.default as ControllerConstructor);
   } else {
     const exports = Object.entries(module);
     invariant(
@@ -118,7 +117,7 @@ function registerController(
     console.debug(
       `Registered named export "${exportName}" for "${name}" controller`
     );
-    application.register(name, exportModule);
+    application.register(name, exportModule as ControllerConstructor);
   }
 }
 

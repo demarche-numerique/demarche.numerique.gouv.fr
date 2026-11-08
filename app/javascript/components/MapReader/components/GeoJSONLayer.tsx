@@ -124,7 +124,7 @@ function useExternalEvents(featureCollection: FeatureCollection) {
   useEffect(() => {
     fitBounds(featureCollection.bbox as LngLatBoundsLike);
     // We only want to zoom on bbox on component mount.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // oxlint-disable-next-line react-hooks/exhaustive-deps
   }, [fitBounds]);
 
   useEvent('map:feature:focus', onFeatureFocus);

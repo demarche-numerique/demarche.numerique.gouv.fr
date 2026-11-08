@@ -24,7 +24,7 @@ export class EnableSubmitIfFormChangesController extends ApplicationController {
 
     const entries = Array.from(formData.entries())
       .filter(([key]) => !ignoredKeys.includes(key))
-      .sort();
+      .sort(([a], [b]) => a.localeCompare(b));
 
     return JSON.stringify(entries);
   }

@@ -1,0 +1,7 @@
+#!/bin/sh
+# vite_ruby entry point (config/vite.json viteBinPath): the Vite+ core package
+# ships no `vite` binary, so route the Vite CLI calls to `vp`, kept on the Bun runtime.
+case "$1" in
+  build | preview | optimize) exec bun x --bun vp "$@" ;;
+  *) exec bun x --bun vp dev "$@" ;;
+esac

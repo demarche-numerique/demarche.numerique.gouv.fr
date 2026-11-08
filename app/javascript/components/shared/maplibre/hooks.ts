@@ -4,6 +4,7 @@ import type {
   LngLatBoundsLike,
   LngLatLike,
   MapEventType,
+  Listener,
   MapLayerEventType,
   StyleSpecification
 } from 'maplibre-gl';
@@ -72,21 +73,27 @@ export function useMapEvent(
   return useEffect(() => {
     if (target) {
       // event typing is hard
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      map.on(eventName as keyof MapLayerEventType, target, callback as any);
+      map.on(
+        eventName as keyof MapLayerEventType,
+        target,
+        callback as unknown as Listener
+      );
     } else {
       // draw.* events come from mapbox-gl-draw and are unknown to MapEventType
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      map.on(eventName as keyof MapEventType, callback as any);
+      map.on(eventName as keyof MapEventType, callback as unknown as Listener);
     }
     return () => {
       if (target) {
-        // event typing is hard
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        map.off(eventName as keyof MapLayerEventType, target, callback as any);
+        map.off(
+          eventName as keyof MapLayerEventType,
+          target,
+          callback as unknown as Listener
+        );
       } else {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        map.off(eventName as keyof MapEventType, callback as any);
+        map.off(
+          eventName as keyof MapEventType,
+          callback as unknown as Listener
+        );
       }
     };
   }, [map, eventName, target, callback]);

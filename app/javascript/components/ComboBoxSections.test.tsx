@@ -8,8 +8,8 @@
 // si le patch n'est plus appliqué (typiquement après un bump de react-dom dont
 // la clé `patchedDependencies` n'a pas suivi).
 import './process-env-shim';
-import { suite, test, expect, beforeEach, afterEach } from 'vitest';
-import { userEvent, page } from '@vitest/browser/context';
+import { suite, test, expect, beforeEach, afterEach } from 'vite-plus/test';
+import { userEvent, page } from 'vite-plus/test/browser/context';
 import { useState } from 'react';
 import { createRoot, type Root } from 'react-dom/client';
 import {

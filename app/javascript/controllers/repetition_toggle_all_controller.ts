@@ -33,7 +33,7 @@ export class RepetitionToggleAllController extends ApplicationController {
     // Listen to accordion changes to update button state
     this.rowsContainerTarget.addEventListener(
       'click',
-      this.handleAccordionClick.bind(this),
+      this.handleAccordionClick,
       true
     );
 
@@ -59,7 +59,7 @@ export class RepetitionToggleAllController extends ApplicationController {
 
     this.rowsContainerTarget.removeEventListener(
       'click',
-      this.handleAccordionClick.bind(this),
+      this.handleAccordionClick,
       true
     );
     this.mutationObserver?.disconnect();
@@ -95,7 +95,8 @@ export class RepetitionToggleAllController extends ApplicationController {
     }, 100);
   }
 
-  private handleAccordionClick(event: Event) {
+  // An arrow function keeps the same reference for removeEventListener.
+  private handleAccordionClick = (event: Event) => {
     // Check if the click was on an accordion button
     const target = event.target as HTMLElement;
     if (target.closest('.fr-accordion__btn')) {
@@ -104,7 +105,7 @@ export class RepetitionToggleAllController extends ApplicationController {
         this.updateButtonState();
       }, 100);
     }
-  }
+  };
 
   private areAllExpanded(): boolean {
     const accordionButtons =

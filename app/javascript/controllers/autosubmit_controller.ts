@@ -59,7 +59,7 @@ export class AutosubmitController extends ApplicationController {
 
     matchInputElement(target, {
       date: () => {
-        Promise.resolve().then(() => {
+        queueMicrotask(() => {
           if (this.#dateTimeChangedInputs.has(target)) {
             this.submitNow();
           }
