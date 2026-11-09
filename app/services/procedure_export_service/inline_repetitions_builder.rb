@@ -22,14 +22,29 @@ class ProcedureExportService::InlineRepetitionsBuilder
 
     @to_h ||= begin
       max_rows = ProcedureExportService::RepetitionMaxRows.new(dossiers: @dossiers, stable_ids: repetition_columns.keys).to_h
+      max_repetitions = max_repetitions_set_by_administrateur
 
       repetition_columns.to_h do |stable_id, children_columns|
-        [stable_id, ProcedureExportService::InlineRepetition.new(max_rows: max_rows.fetch(stable_id, 0), columns_by_child: children_columns)]
+        rows_count = [max_rows.fetch(stable_id, 0), max_repetitions.fetch(stable_id, 0)].max
+        [stable_id, ProcedureExportService::InlineRepetition.new(max_rows: rows_count, columns_by_child: children_columns)]
       end
     end
   end
 
   private
+
+  def max_repetitions_set_by_administrateur
+    stable_ids = type_de_champs
+      .filter { it.repetition? && it.max_repetitions? && repetition_columns.key?(it.stable_id) }
+      .map(&:stable_id)
+
+    TypeDeChamp
+      .joins(:revision_type_de_champs)
+      .where(stable_id: stable_ids, type_champ: TypeDeChamp.type_champs.fetch(:repetition), revision_type_de_champs: { revision_id: @procedure.all_revision_ids })
+      .filter(&:max_repetitions?)
+      .group_by(&:stable_id)
+      .transform_values { |versions| versions.map { it.max_repetitions.to_i }.max }
+  end
 
   def repetition_columns
     @repetition_columns ||= type_de_champs

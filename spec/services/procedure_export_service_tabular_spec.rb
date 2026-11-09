@@ -391,6 +391,72 @@ describe ProcedureExportService do
       end
     end
 
+    context 'with a maximum number of rows set by the administrateur' do
+      let(:repetition_limits) { { limit_repetitions: true, max_repetitions: 3 } }
+      let(:public_type_de_champs) do
+        [
+          { type: :text, libelle: 'first champ', stable_id: 1 },
+          {
+            type: :repetition, stable_id: 7, libelle: 'Champ répétable', **repetition_limits, children:
+            [
+              { type: 'text', libelle: 'child first champ', stable_id: 8 },
+              { type: 'text', libelle: 'child second champ', stable_id: 9 },
+            ],
+          },
+        ]
+      end
+      let(:exported_columns) { [ExportedColumn.new(libelle: child_libelle, column: procedure.find_column(label: child_libelle))] }
+      let(:repetition_headers) { csv.headers.grep(/\A#{child_libelle} \[/) }
+
+      it 'exports as many columns as the maximum' do
+        expect(repetition_headers).to eq((1..3).map { "#{child_libelle} [#{it}]" })
+      end
+
+      context 'when a dossier has more rows than the maximum' do
+        let(:repetition_limits) { { limit_repetitions: true, max_repetitions: 1 } }
+
+        it 'keeps every row' do
+          expect(repetition_headers).to eq(["#{child_libelle} [1]", "#{child_libelle} [2]"])
+        end
+      end
+
+      context 'with only a minimum' do
+        let(:repetition_limits) { { mandatory: true, limit_repetitions: true, min_repetitions: 1 } }
+
+        it 'exports as many columns as the largest dossier' do
+          expect(repetition_headers).to eq(["#{child_libelle} [1]", "#{child_libelle} [2]"])
+        end
+      end
+
+      context 'when the maximum was lowered in a later revision' do
+        let(:procedure) { create(:procedure, :published, public_type_de_champs:, for_individual:, instructeurs: [instructeur]) }
+        let(:repetition_limits) { { limit_repetitions: true, max_repetitions: 5 } }
+
+        before do
+          procedure.draft_revision.find_and_ensure_exclusive_use(7).update!(max_repetitions: 3)
+          procedure.publish_revision!(procedure.administrateurs.first)
+        end
+
+        it 'exports as many columns as the highest maximum' do
+          expect(repetition_headers).to eq((1..5).map { "#{child_libelle} [#{it}]" })
+        end
+      end
+
+      context 'when the limit was removed in a later revision' do
+        let(:procedure) { create(:procedure, :published, public_type_de_champs:, for_individual:, instructeurs: [instructeur]) }
+        let(:repetition_limits) { { limit_repetitions: true, max_repetitions: 5 } }
+
+        before do
+          procedure.draft_revision.find_and_ensure_exclusive_use(7).update!(limit_repetitions: false)
+          procedure.publish_revision!(procedure.administrateurs.first)
+        end
+
+        it 'exports as many columns as the largest dossier' do
+          expect(repetition_headers).to eq(["#{child_libelle} [1]", "#{child_libelle} [2]"])
+        end
+      end
+    end
+
     context 'without checked child column' do
       let(:exported_columns) { [ExportedColumn.new(libelle: 'first champ', column: procedure.find_column(label: 'first champ'))] }
 
