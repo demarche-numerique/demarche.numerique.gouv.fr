@@ -229,7 +229,7 @@ class BatchOperation < ApplicationRecord
 
     avis = Avis
       .includes(experts_procedure: :expert)
-      .where(dossier: dossiers)
+      .where(dossier: dossiers, claimant: instructeur, created_at: created_at..)
 
     avis.group_by { |a| a.experts_procedure.expert }
       .each do |expert, expert_avis|
