@@ -98,4 +98,8 @@ class Users::PasswordsController < Devise::PasswordsController
 
     UserMailer.password_changed(resource).deliver_later
   end
+
+  # Devise signs the user in after the reset with no way to say how: by the
+  # password just chosen.
+  def sign_in(resource_or_scope, *args) = super(resource_or_scope, *args, login_method: :password)
 end
