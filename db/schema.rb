@@ -714,6 +714,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_13_100000) do
     t.string "kind", null: false
     t.string "name", null: false
     t.jsonb "pjs", default: [], null: false, array: true
+    t.string "repetition_layout", default: "sheet", null: false
     t.boolean "shared", default: false, null: false
     t.datetime "updated_at", null: false
     t.index ["groupe_instructeur_id"], name: "index_export_templates_on_groupe_instructeur_id"
