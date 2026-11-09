@@ -178,6 +178,18 @@ describe Instructeurs::ExportTemplatesController, type: :controller do
           expect(ExportTemplate.last.exported_columns.map(&:libelle)).to match_array ['Demandeur', 'Date du dernier évènement']
         end
       end
+
+      context 'with an invalid repetition layout' do
+        render_views
+
+        let(:create_params) { super().merge(repetition_layout: 'foo') }
+
+        it 'renders the form again' do
+          subject
+          expect(response).to have_http_status(:unprocessable_content)
+          expect(response.parsed_body.css('input[name="export_template[name]"]')).to be_present
+        end
+      end
     end
   end
 
@@ -285,6 +297,18 @@ describe Instructeurs::ExportTemplatesController, type: :controller do
           expect(response).to redirect_to(export_templates_instructeur_procedure_path(procedure))
           expect(flash.notice).to eq "Le modèle d’export ExportODS a bien été modifié"
           expect(ExportTemplate.last.exported_columns.map(&:libelle)).to match_array ['Demandeur', 'Date du dernier évènement']
+        end
+      end
+
+      context 'with an invalid repetition layout' do
+        render_views
+
+        let(:export_template_params) { super().merge(repetition_layout: 'foo') }
+
+        it 'renders the form again' do
+          subject
+          expect(response).to have_http_status(:unprocessable_content)
+          expect(response.parsed_body.css('input[name="export_template[name]"]')).to be_present
         end
       end
     end
