@@ -121,6 +121,12 @@ class ProcedureRevisionTypeDeChamp < ApplicationRecord
     used_by_routing_rules? || used_by_ineligibilite_rules? || used_by_referentiel_urls?
   end
 
+  def referentiel_type_de_champ_using_url
+    revision.type_de_champs
+      .filter(&:referentiel?)
+      .find { it.referentiel.is_a?(Referentiels::APIReferentiel) && stable_id.in?(it.referentiel.tiptap_mention_stable_ids) }
+  end
+
   def prefilled_by_type_de_champ
     revision.type_de_champs
       .filter(&:referentiel?)

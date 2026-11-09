@@ -51,6 +51,8 @@ en:
   routing_link: "routing"
   used_for_ineligibilite_html: "used for\n%{link}"
   ineligibilite_link: "dossier eligibility"
+  used_for_referentiel_html: "used by\n%{link}"
+  referentiel_link: "an advanced reference dataset"
   layers:
     cadastres: Cadastres
     rpg: RPG
