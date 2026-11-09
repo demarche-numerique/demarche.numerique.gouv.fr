@@ -76,11 +76,11 @@ fr:
       simple: 'Mode simple'
       advanced: 'Mode avancé'
   pre_rempli:
-    notice_title: "L’usager ne peut pas remplir ce champ. Sa valeur doit venir :"
-    notice_referentiel_html: "d’un champ %{link} du formulaire usager ou des annotations privées ;"
+    notice_title: "Vous pouvez utiliser ce champ dans votre formulaire uniquement si :"
+    notice_referentiel_html: "Le formulaire usager ou celui des annotations privées comporte un champ %{link}."
     notice_referentiel_link: "Référentiel configurable (avancé)"
-    notice_prefill_html: "ou du %{link}, par lien ou par API, si vous comptez préremplir les dossiers de vos usagers."
-    notice_prefill_link: "préremplissage"
+    notice_prefill_html: "(ou) Vous avez créé un dossier prérempli en brouillon pour les usagers via l’%{link}."
+    notice_prefill_link: "API de préremplissage"
     options_label: "Valeurs du référentiel à utiliser pour le conditionnel"
     hidden_label: "Masquer ce champ dans le formulaire usager"
   france_connect:

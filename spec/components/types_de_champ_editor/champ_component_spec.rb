@@ -149,9 +149,9 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       let(:coordinate) { procedure.draft_revision.public_revision_type_de_champs.first }
 
       it 'explains when the field can be used, with links to the doc' do
-        expect(page).to have_css('.fr-notice--info', text: 'L’usager ne peut pas remplir ce champ. Sa valeur doit venir :')
+        expect(page).to have_css('.fr-notice--info', text: 'Vous pouvez utiliser ce champ dans votre formulaire uniquement si :')
         expect(page).to have_link('Référentiel configurable (avancé)', href: DOC_REFERENTIEL_URL)
-        expect(page).to have_link('préremplissage', href: DOC_PREFILL_URL)
+        expect(page).to have_link('API de préremplissage', href: DOC_PREFILL_URL)
         expect(page).to have_field('Valeurs du référentiel à utiliser pour le conditionnel')
       end
     end
