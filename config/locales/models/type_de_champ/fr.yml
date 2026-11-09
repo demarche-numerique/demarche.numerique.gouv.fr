@@ -97,6 +97,8 @@ fr:
           update:
             used_by_routing_rules: "« %{type_de_champ} » est utilisé pour le routage, vous ne pouvez pas modifier son type."
             used_by_referentiel_urls: "« %{type_de_champ} » est utilisé par un référentiel, vous ne pouvez pas modifier son type."
+            used_by_ineligibilite_rules: "« %{type_de_champ} » est utilisé par les règles d’inéligibilité, vous ne pouvez pas modifier son type."
           destroy:
             used_by_routing_rules: "« %{type_de_champ} » est utilisé pour le routage, vous ne pouvez pas le supprimer."
             used_by_referentiel_urls: "« %{type_de_champ} » est utilisé par un référentiel, vous ne pouvez pas le supprimer."
+            used_by_ineligibilite_rules: "« %{type_de_champ} » est utilisé par les règles d’inéligibilité, vous ne pouvez pas le supprimer."

@@ -118,7 +118,7 @@ class ProcedureRevisionTypeDeChamp < ApplicationRecord
   end
 
   def type_champ_locked?
-    used_by_routing_rules? || used_by_ineligibilite_rules?
+    used_by_routing_rules? || used_by_ineligibilite_rules? || used_by_referentiel_urls?
   end
 
   def prefilled_by_type_de_champ

@@ -1,6 +1,25 @@
 # frozen_string_literal: true
 
 describe ProcedureRevisionTypeDeChamp do
+  describe '#type_champ_locked?' do
+    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text, stable_id: 100 }, { type: :text, stable_id: 101 }, { type: :referentiel, stable_id: 200 }]) }
+    let(:revision) { procedure.draft_revision }
+    let(:used_coordinate) { revision.public_revision_type_de_champs.find { it.type_de_champ.stable_id == 100 } }
+    let(:unused_coordinate) { revision.public_revision_type_de_champs.find { it.type_de_champ.stable_id == 101 } }
+
+    before do
+      revision.type_de_champs.find { it.stable_id == 200 }.update!(referentiel: create(:api_referentiel, :exact_match, mentioned_stable_id: 100))
+    end
+
+    it 'locks a field used in a reference dataset url' do
+      expect(used_coordinate.type_champ_locked?).to be(true)
+    end
+
+    it 'does not lock a field the reference dataset does not use' do
+      expect(unused_coordinate.type_champ_locked?).to be(false)
+    end
+  end
+
   describe '#upper_coordinates' do
     context 'when the coordinate is in a bloc bellow another coordinate' do
       let(:procedure) do
