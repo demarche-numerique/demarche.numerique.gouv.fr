@@ -28,7 +28,17 @@ module SessionRegistrableConcern
 
   USER_AGENT_MAX_LENGTH = 500
 
+  CURRENT_KEY_PREFIX = 'ds.user_session.'
+
   def self.end_reason_key(scope) = "#{END_REASON_KEY_PREFIX}#{scope}"
+
+  def self.current_key(scope) = "#{CURRENT_KEY_PREFIX}#{scope}"
+
+  def self.current(warden, scope) = warden.request.env[current_key(scope)]
+
+  def self.set_current(warden, scope, user_session)
+    warden.request.env[current_key(scope)] = user_session
+  end
 
   # Not `warden.session(scope)`: it checks `authenticated?`, which refetches the
   # user, which fires the fetch hook again. Infinite recursion.
@@ -40,12 +50,16 @@ module SessionRegistrableConcern
   end
 
   def self.open_session!(record, warden, scope, login_method: nil)
-    request = warden.request
-    session = warden.session(scope)
+    user_agent, remote_ip = warden.request.user_agent, warden.request.remote_ip
 
-    session[LAST_SEEN_KEY] = Date.current.iso8601
+    # in db
+    user_session = record.open_user_session!(user_agent, remote_ip, login_method:)
 
-    session[SESSION_KEY] = record.open_user_session!(request.user_agent, request.remote_ip, login_method:).id
+    # in cookie
+    warden.session(scope).merge!(LAST_SEEN_KEY => Date.current.iso8601, SESSION_KEY => user_session.id)
+
+    # in current request
+    set_current(warden, scope, user_session)
   end
 
   # Read from the signed cookie, so the client cannot push the date forward.
@@ -114,7 +128,10 @@ module SessionRegistrableConcern
         :inactivity
       end
 
-    return if reason.nil?
+    if reason.nil?
+      set_current(warden, scope, user_session)
+      return
+    end
 
     # Before the logout: `before_logout` would otherwise find the row usable and
     # stamp it `sign_out`, as if the user had left on purpose.
