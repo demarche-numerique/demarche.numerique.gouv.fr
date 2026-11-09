@@ -6,7 +6,7 @@
       const hintUrl = "#{request.protocol}#{ApplicationHelper::APP_HOST}/favicon.ico"
 
       fetch(hintUrl, { mode: 'cors' }).then(() => {
-        window.location = '#{new_host_url}';
+        window.location = #{new_host_url.to_json};
       }).catch((e) => {
         const error = new Error("Connection test on new host failed: " + e);
         const event = new CustomEvent("sentry:capture-exception", { detail: error });
