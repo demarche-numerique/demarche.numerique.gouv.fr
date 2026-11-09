@@ -26,7 +26,7 @@ en:
         brouillon: "Draft"
         en_construction: "In progress"
         depose: "Submitted"
-        en_instruction: "Processing"
+        en_instruction: "Under review"
         accepte: "Accepted"
         refuse: "Refused"
         sans_suite: "No further action"

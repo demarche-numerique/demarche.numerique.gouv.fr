@@ -36,7 +36,7 @@ en:
       close:
         page_title: Close the procedure
         replacement_procedure_callout_title: You are about to close a procedure
-        replacement_procedure_callout_content: Files  « in construction » or  « instructing » can be instructed, but no new files can be filed.
+        replacement_procedure_callout_content: Files  « in construction » or  « under review » can still be reviewed, but no new files can be filed.
         actions:
           close_procedure: Close procedure
           notify_after_closing: Notify users
@@ -53,22 +53,22 @@ en:
         email_toggle_en_cours:
           one: You want to send an email to the user with a submitted file
           other: You want to send an email to %{count} users with a submitted file
-        email_content_en_cours: You want to send an email to users with a file « in construction » or « instructing »
+        email_content_en_cours: You want to send an email to users with a file « in construction » or « under review »
       preview_unavailable: Preview is unavailable due to procedure misconfiguration
       modifications:
-        dossiers_en_construction_and_dossiers_en_instruction: "%{en_construction_count} files « in construction » and %{en_instruction_count} files « instructing » on this procedure version."
+        dossiers_en_construction_and_dossiers_en_instruction: "%{en_construction_count} files « in construction » and %{en_instruction_count} files « under review » on this procedure version."
         dossier_en_construction_and_dossiers_en_instruction:
-          one: One file « in construction » and one file « instructing » on this procedure version.
-          other: One file « in construction » and %{count} files « instructing » on this procedure version.
+          one: One file « in construction » and one file « under review » on this procedure version.
+          other: One file « in construction » and %{count} files « under review » on this procedure version.
         dossier_en_instruction_and_dossiers_en_construction:
-          one: One file « instructing » and one file « in construction » on this procedure version.
-          other: One file « instructing » and %{count} files « in construction » on this procedure version.
+          one: One file « under review » and one file « in construction » on this procedure version.
+          other: One file « under review » and %{count} files « in construction » on this procedure version.
         dossiers_en_construction:
           one: One file « in construction » on this procedure version.
           other: "%{count} files « in construction » on this procedure version."
         dossiers_en_instruction:
-          one: One file « instructing » on this procedure version.
-          other: "%{count} files « instructing » on this procedure version."
+          one: One file « under review » on this procedure version.
+          other: "%{count} files « under review » on this procedure version."
       publication:
         publish_title: Publish your procedure
         confirmation: Your procedure is now published !
@@ -81,7 +81,7 @@ en:
         missing_information_title: missing information
         missing_information_content: "To be able to publish this procedure, you must first assign it:"
         missing_information_service: You must provide the contact details of your Administrative Department before you can publish your procedure.
-        missing_information_instructeurs: You must assign instructors before you can publish your procedure.
+        missing_information_instructeurs: You must assign reviewers before you can publish your procedure.
         missing_link: This procedure does not yet have a link, and is not accessible to the public.
         dubious_fields: "Please note that some fields cannot be requested by the administration. Here are the fields that look suspicious to us:"
         click_here: Click here
@@ -123,11 +123,11 @@ en:
         administrateurs_count:
           one: "%{count} administrator"
           other: "%{count} administrators"
-        instructeurs: Instructors
+        instructeurs: Reviewers
         instructeurs_count:
-          zero: No instructor
-          one: "%{count} instructor"
-          other: "%{count} instructors"
+          zero: No reviewer
+          one: "%{count} reviewer"
+          other: "%{count} reviewers"
         attestation_acceptation_template: Certificate of acceptance of the file
         attestation_refus_template: Certificate of refusal of the file
         attestation_template_hint: Activated

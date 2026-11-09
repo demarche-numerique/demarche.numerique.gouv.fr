@@ -81,7 +81,7 @@ en:
       close: 'Closed procedures'
       discarded: 'Deleted procedures'
     commentaire:
-      send_message_to_instructeur: "Send a message to the instructor"
+      send_message_to_instructeur: "Send a message to the reviewer"
       reply_in_mailbox: "Reply in mailbox"
   skiplinks:
     quick: Quick access
@@ -400,8 +400,8 @@ en:
         form:
           submitted_at: "Submitted on %{datetime}"
           user_updated_at: "Updated by user on %{datetime}"
-          instructeur_updated_at: "Updated by instructor on %{datetime}"
-          switched_to_instruction_at: "Switched to instruction on %{datetime}"
+          instructeur_updated_at: "Updated by reviewer on %{datetime}"
+          switched_to_instruction_at: "Review started on %{datetime}"
           revert_to_submitted_at: "Correction requested on on %{datetime}"
           download_attestation: "Download attestation"
           acceptee_at: "Accepted on %{datetime}"
@@ -466,15 +466,15 @@ en:
           enabled: "Add file %{dossier_id} to the selection for the bulk operation"
           disabled: "Impossible to add file %{dossier_id} to the selection because it is already in a bulk operation"
         customize: Customize the table
-        passer_en_instruction: Switch to instruction
+        passer_en_instruction: Start review
         repasser_en_construction: Revert to submitted
         show_deleted_dossiers: Show deleted files
         follow_file: Follow-up the file
         stop_follow: No longer follow
         no_file: No file
         passer_en_instruction_blocked_by_pending_correction: |
-          It is not possible to switch to instruction while the file is awaiting correction.
-          If necessary, the instructor who requested the correction can delete the corresponding message.
+          It is not possible to start the review while the file is awaiting correction.
+          If necessary, the reviewer who requested the correction can delete the corresponding message.
         archives_notice_title: Files archiving
         archives_notice_html: |
           These files will be deleted when their retention period in %{app_name} (%{duration_months} months) expires.
@@ -484,7 +484,7 @@ en:
       avis:
         introduction_file_explaination: "File attached to the request for advice"
       search:
-        dossier_not_in_instructor_group: "File no. %{dossier_id} of the procedure “%{procedure_libelle}” matches your search but it is attached to another instructor group."
+        dossier_not_in_instructor_group: "File no. %{dossier_id} of the procedure “%{procedure_libelle}” matches your search but it is attached to another team."
         deleted_dossier: "The File no. %{dossier_id} of the procedure “%{procedure_libelle}” matches your search but it was deleted on %{deleted_at}. You can find a record of it in the "
         deleted_dossier_link: "deleted files history"
         hidden_dossier: "The File no. %{dossier_id} of the procedure “%{procedure_libelle}” matches your search but it was move to the "
@@ -529,7 +529,7 @@ en:
           status_overview:
             status_draft: draft
             status_in_progress: submitted
-            en_construction_html: Your file is submitted. It means that <strong>you can still edit it</strong>. You will no longer be able to edit the file when the administration will switch it to "processing".
+            en_construction_html: Your file is submitted. It means that <strong>you can still edit it</strong>. You will no longer be able to edit the file when the administration will start its review.
             status_review: undergoing review
             admin_review: The administration is reviewing your file. You are no longer able to edit it.
             delay_title:
@@ -558,7 +558,7 @@ en:
           navigate_to_rdv_sp: "See my appointment on RDV Service Public"
         demande:
           edit_dossier: Edit my file
-          edit_dossier_title: "Edit my file - You can modify your file as long as it has not been sent for processing"
+          edit_dossier_title: "Edit my file - You can modify your file as long as its review has not started"
         search:
           search_file: Search a file (by file number, keywords…)
           simple: Search
@@ -894,7 +894,7 @@ en:
         mfa_failed: "ProConnect could not verify your two-factor authentication. Try again, then contact support if the problem persists."
       france_connect:
         connexion: "Error trying to connect to FranceConnect."
-        forbidden_html: "Only citizen can use FranceConnect. As an instructor or administrator, please identify yourself with ProConnect or log in with your %{app_name} account."
+        forbidden_html: "Only citizen can use FranceConnect. As a reviewer or administrator, please identify yourself with ProConnect or log in with your %{app_name} account."
         internal_error: "Error trying to connect to FranceConnect. Please try another way to connect."
       missing_range_rules: The minimum and maximum values ​​must be specified.
       invalid_range_rules: The minimum value must be less than the maximum value.
@@ -1027,7 +1027,7 @@ en:
         individual: Complete the identity of the applicant to continue.
         siret: Complete the identification of the establishment to continue.
       create_commentaire:
-        message_send: "Your message has been sent to the instructor in charge of your file."
+        message_send: "Your message has been sent to the reviewer in charge of your file."
       cloned_success: "Your file has been duplicated. Please review it then you can submit it"
       ask_deletion:
         undergoingreview: "Your file is undergoing review. It is no longer possible to delete your file. To cancel the undergoingreview contact the adminitration via the mailbox."
@@ -1069,8 +1069,8 @@ en:
         file_submitted_at: "File submission date"
         dossier_state: "File status"
         states:
-          en_construction: "submitted, pending processing"
-          en_instruction: "processing"
+          en_construction: "submitted, pending review"
+          en_instruction: "under review"
           accepte: "accepted"
           refuse: "declined"
           sans_suite: "closed, no further action"
@@ -1099,7 +1099,7 @@ en:
       unverified_demandeur: the applicant's SIRET
       aasm_error_annotations_no_url: The private annotations have not been filled in correctly; they are essential to make a decision.
       aasm_error_annotations: The private annotations have not been filled in correctly; they are essential to make a decision. <a href="%{url}">Edit annotations</a>.
-      aasm_error_pending_correction: The folder is awaiting a correction from the user; it is not possible to change it to in instruction.
+      aasm_error_pending_correction: The folder is awaiting a correction from the user; it is not possible to start its review.
       aasm_error_other: "The folder is currently %{originating_state}: it is not possible to change it to %{target_state}."
       alert_error_annotations_html: 'The following private annotations <strong>were not filled out correctly</strong> and are <strong>necessary</strong> to make a decision on the file <span aria-hidden="true">:</span>'
       alert_error_annotations_link: Complete the private annotations

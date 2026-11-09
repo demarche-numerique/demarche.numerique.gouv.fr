@@ -20,12 +20,12 @@ en:
   passer_en_instruction:
     finish:
       text_success:
-        one: "%{success_count}/1 file has been changed to instructing"
-        other: "%{success_count}/%{count} files have been changed to instructing"
+        one: "%{success_count}/1 file has been put under review"
+        other: "%{success_count}/%{count} files have been put under review"
     in_progress:
       text_success:
-        one: "1 is being changed to instructing"
-        other: "%{success_count}/%{count} files have been changed to instructing"
+        one: "1 file is being put under review"
+        other: "%{success_count}/%{count} files have been put under review"
   repousser_expiration:
     finish:
       text_success:

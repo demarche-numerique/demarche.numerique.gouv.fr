@@ -5,7 +5,7 @@ en:
         title: Labels
         back_to_labels: Labels list
         heading_html: Customize the order of %{count} labels
-        description: "Move labels in the list to set their display order for instructors:"
+        description: "Move labels in the list to set their display order for reviewers:"
         cancel: Cancel
         submit: Submit
       delete_labels:

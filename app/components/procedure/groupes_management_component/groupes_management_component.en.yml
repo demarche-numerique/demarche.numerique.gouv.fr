@@ -13,7 +13,7 @@ en:
     defaut: Default group
     groupes: Groups
     dossiers: Files
-    instructeurs: Instructors
+    instructeurs: Reviewers
     inactif: Inactive
     regle_nil: No rule
     regle_invalide: Invalid rule
@@ -28,18 +28,18 @@ en:
     submit: Add
   export_dropdown:
     title: Export
-    export_instructeurs: Export groups / instructors list (.csv)
+    export_instructeurs: Export groups / reviewers list (.csv)
     export_contact_informations: Export contact information by groups (.csv)
   bulk_assignment:
     default_label: "If no rule matches, route to:"
-    title: Bulk instructor assignment (all groups)
-    notification_alert_html: All instructors you add / remove from the procedure <strong>will be notified by email</strong>.
+    title: Bulk reviewer assignment (all teams)
+    notification_alert_html: All reviewers you add / remove from the procedure <strong>will be notified by email</strong>.
     tab_add: Add
-    add_title: Add an instructor to all groups
+    add_title: Add a reviewer to all teams
     add_submit: Add to all groups
     typo_confirm_title: Before adding the email address to all groups, please confirm
-    confirm_add_message: All instructors added to the procedure will be notified by email. Do you want to continue?
+    confirm_add_message: All reviewers added to the procedure will be notified by email. Do you want to continue?
     tab_remove: Remove
-    remove_title: Remove an instructor from all groups
+    remove_title: Remove a reviewer from all teams
     remove_submit: Remove from all groups
-    confirm_remove_message: All instructors removed from the procedure will be notified by email. Do you want to continue?
+    confirm_remove_message: All reviewers removed from the procedure will be notified by email. Do you want to continue?

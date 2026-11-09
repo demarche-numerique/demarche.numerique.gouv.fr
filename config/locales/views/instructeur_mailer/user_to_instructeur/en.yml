@@ -1,4 +1,4 @@
 en:
   instructeur_mailer:
     user_to_instructeur:
-      subject: "You have been appointed as instructor"
+      subject: "You have been appointed as reviewer"

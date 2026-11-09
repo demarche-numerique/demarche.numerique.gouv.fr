@@ -1,7 +1,7 @@
 ---
 en:
-  subject: "Your file no. %{dossier_number} has been modified by an instructor (%{demarche_title})"
+  subject: "Your file no. %{dossier_number} has been modified by a reviewer (%{demarche_title})"
   greeting: Hello,
-  body_with_known_changes: "In order to continue reviewing it, an instructor has made the following changes to your file no. %{dossier_number} on the procedure « %{demarche_title} »:"
-  body_with_unknown_changes: "In order to continue reviewing it, an instructor has made changes to your file no. %{dossier_number} on the procedure « %{demarche_title} »."
+  body_with_known_changes: "In order to continue reviewing it, a reviewer has made the following changes to your file no. %{dossier_number} on the procedure « %{demarche_title} »:"
+  body_with_unknown_changes: "In order to continue reviewing it, a reviewer has made changes to your file no. %{dossier_number} on the procedure « %{demarche_title} »."
   farewell_html: Sincerely,<br>%{service_name}

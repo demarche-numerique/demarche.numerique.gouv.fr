@@ -121,7 +121,7 @@ RSpec.describe Ami::CreateNotificationService do
       allow(dossier).to receive(:user_locale).and_return(:en)
       payload = described_class.new(dossier:, trigger: :dossier_state_change, state: nil).create_notification_payload(event_date:)
 
-      expect(payload).to include(content_title: "File being processed")
+      expect(payload).to include(content_title: "File under review")
     end
 
     context 'when dossier is brouillon' do

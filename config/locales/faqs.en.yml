@@ -10,9 +10,9 @@ en:
         name: User (file application)
         description: Help users submit and follow up on files, including resolving common problems.
       instructeur:
-        short_name: Instructor
-        name: Instructor (file processing)
-        description: For instructors on accessing and managing files.
+        short_name: Reviewer
+        name: Reviewer (file review)
+        description: For reviewers on accessing and managing files.
       administrateur:
         short_name: Administrator
         name: Administrator (form creation)
@@ -32,7 +32,7 @@ en:
       instructeur_account:
         name: Login to my account
       instruction:
-        name: Instruction
+        name: Review
       create_procedure:
         name: I want to create an online procedure
         description: How do you create a new procedure?

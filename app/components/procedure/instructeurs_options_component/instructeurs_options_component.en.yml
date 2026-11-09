@@ -1,24 +1,24 @@
 ---
 en:
   title: Options
-  page_title: Options concerning instruction
+  page_title: Review options
   self_management:
-    title: Instructor self-management
-    hint: Instructor self-management allows instructors to manage the list of instructors for the procedure themselves.
-    hint_recommendation: We recommend leaving instructor self-management enabled.
+    title: Reviewer self-management
+    hint: Reviewer self-management allows reviewers to manage the list of reviewers for the procedure themselves.
+    hint_recommendation: We recommend leaving reviewer self-management enabled.
   self_management_other_email_domains:
     label: Allow reviewers to add email addresses from another domain
     hint: "By default, a reviewer can only add addresses from their own domain (example: @interieur.gouv.fr)."
   can_edit_dossiers:
-    title: Editing of user files by instructors
-    hint: This option allows instructors to edit user files themselves. Any change made by an instructor to a user's file will be logged and shown in the "Involved people" tab of the file. The user will also be notified of the details of the changes made.
+    title: Editing of user files by reviewers
+    hint: This option allows reviewers to edit user files themselves. Any change made by a reviewer to a user's file will be logged and shown in the "Involved people" tab of the file. The user will also be notified of the details of the changes made.
   routing: Routing
   routing_configuration_notice_1:
-    Routing allows you to route files to different instructor groups.
+    Routing allows you to route files to different teams.
   routing_not_configured:
     You have not configured routing.
   routing_configured_html:
-    You have configured routing with <strong>%{groupe_instructeurs_count} instructor groups.</strong>
+    You have configured routing with <strong>%{groupe_instructeurs_count} teams.</strong>
   routing_configuration_notice_2_html: |
     To configure it, your form must contain
     at least one <strong>"routable field"</strong>, i.e., a field of the following type:
@@ -27,9 +27,9 @@ en:
   configure_routing: Configure routing
   delete_routing: Delete routing
   deleting: Deleting…
-  delete_title: No files will be deleted. Instructor groups will be deleted. Only instructors in the "%{defaut_label}" group will remain assigned to the process.
+  delete_title: No files will be deleted. Teams will be deleted. Only reviewers in the "%{defaut_label}" team will remain assigned to the process.
   delete_confirmation: |
-    Please note: All files will be moved to the "%{defaut_label}" group, and only instructors in this group will remain assigned to the process. Do you wish to continue?
+    Please note: All files will be moved to the "%{defaut_label}" team, and only reviewers in this team will remain assigned to the process. Do you wish to continue?
   routing_configuration_title: Routing configuration
   routing_configuration_subtitle: Choice of configuration type
   configuration: Configuration
@@ -47,8 +47,8 @@ en:
     learn_more: "Learn more about"
     link_text: "routing configuration"
   anonymisation_callout:
-    title: Instructor Identity
+    title: Reviewer Identity
     content_part_1: Any decision made by an administration includes the signature of its author as well as the first name, last name, and title of the person making the decision in legible characters.
-    content_part_2_html: To activate the option to <strong>not disclose the identity of instructors</strong> during email communications with users, contact us at %{contact_email}, stating your procedure number (%{id}).
+    content_part_2_html: To activate the option to <strong>not disclose the identity of reviewers</strong> during email communications with users, contact us at %{contact_email}, stating your procedure number (%{id}).
     link_text: Text on LegiFrance
     link_url: https://www.legifrance.gouv.fr/codes/section_lc/LEGITEXT000031366350/LEGISCTA000031367523/

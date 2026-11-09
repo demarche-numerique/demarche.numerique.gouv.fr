@@ -1,7 +1,7 @@
 en:
   go_superadmin: 'Switch to super-admin'
   go_user: 'Switch to user'
-  go_instructor: 'Switch to instructor'
+  go_instructor: 'Switch to reviewer'
   go_expert: 'Switch to expert'
   go_admin: 'Switch to administrator'
   go_gestionnaire: 'Switch to admins group manager'

@@ -32,10 +32,10 @@ en:
           '<p>Are you sure that all the mandatory fields (<span class= mandatory> * </span>) are properly filled?
           <p>If you have questions about the information requested, <a href="%{link_procedure_info}">contact the service in charge of the procedure (FAQ)</a>.</p>'
       instruction_info:
-        question: I have a question about the instruction of my application
+        question: I have a question about the review of my application
         answer_html:
-          '<p>If you have questions about the instruction of your application (response delay for example), <a href="%{link_instruction_info}">contact directly the instructor via our mail system (FAQ)</a>.</p>
-          <p>If you are facing technical issues on the website, use the form below. We will not be able to inform you about the instruction of your application.</p>'
+          '<p>If you have questions about the review of your application (response delay for example), <a href="%{link_instruction_info}">contact directly the reviewer via our mail system (FAQ)</a>.</p>
+          <p>If you are facing technical issues on the website, use the form below. We will not be able to inform you about the review of your application.</p>'
       product:
         question: I have an idea to improve the website
         answer_html:

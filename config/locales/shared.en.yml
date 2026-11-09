@@ -17,7 +17,7 @@ en:
         expires_at:
           brouillon: "Expires on %{date} (%{duree_conservation_totale} months after this file was created)"
           en_construction: "This file is in progress, it will not expire"
-          en_instruction: "This file is being instructed, the administration will answer as soon as possible"
+          en_instruction: "This file is under review, the administration will answer as soon as possible"
           accepte: "Expires on %{date} (%{duree_conservation_totale} months after this file was processed)"
           refuse: "Expires on %{date} (%{duree_conservation_totale} months after this file was processed)"
           sans_suite: "Expires on %{date} (%{duree_conservation_totale} months after this file was processed)"

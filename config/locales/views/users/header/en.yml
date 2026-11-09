@@ -13,7 +13,7 @@ en:
           new_procedure_content: "A new procedure is available, consult it here:"
           contact_service_html: For more information, please contact the service %{service_name}, available at  %{service_phone_number} or by email to <a href="mailto:%{service_email}">%{service_email}</a>
           states:
-            brouillon: Your file is still in draft and will soon expire. So it will be deleted soon without being instructed. If you want to pursue your procedure you can submit it now. Otherwise you are able to delay its expiration by clicking on the underneath button.
+            brouillon: Your file is still in draft and will soon expire. So it will be deleted soon without being reviewed. If you want to pursue your procedure you can submit it now. Otherwise you are able to delay its expiration by clicking on the underneath button.
             termine: Your file had been processed and will soon expire. So it will be deleted soon. If you want to keep it, you can dowload a PDF file of it.
           button_delay_expiration:
             one: "Keep for %{count} more month"

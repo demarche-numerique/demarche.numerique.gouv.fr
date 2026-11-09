@@ -7,7 +7,7 @@ en:
         title: "Delete user %{id}"
         warning_html: "You are about to permanently delete the account of <strong>%{email}</strong>. This deletion cannot be undone."
         purged_dossiers: "Their brouillon and en construction dossiers are destroyed along with their attachments."
-        detached_dossiers: "Their other dossiers are detached from the account: completed ones are hidden, those still under instruction remain instructable."
+        detached_dossiers: "Their other dossiers are detached from the account: completed ones are hidden, those still under review can still be reviewed."
         submit: "Delete the user"
     super_admins:
       self_otp_reset_forbidden: "You cannot reset your own two-factor authentication from this screen."
@@ -25,7 +25,7 @@ en:
         warning_html: "You are about to delete the super admin account of <strong>%{email}</strong>."
         access: "They lose access to the Manager immediately, open sessions included. No other super admin is notified."
         irreversible: "The account cannot be created again from the Manager: it takes a command on a server."
-        account: "Only the Manager access is deleted: platform accounts with the same address, administrateur or instructeur, are left untouched and have to be handled separately."
+        account: "Only the Manager access is deleted: platform accounts with the same address, administrator or reviewer, are left untouched and have to be handled separately."
         submit: "Delete the super admin"
       delete:
         success: "The super admin account of %{email} has been deleted."
@@ -40,12 +40,12 @@ en:
         submit: "Delete the gestionnaire"
     instructeurs:
       show:
-        cannot_be_deleted: "This instructeur cannot be deleted: they are an administrateur, or one of their procedures has a single instructeur in its default group."
+        cannot_be_deleted: "This reviewer cannot be deleted: they are an administrator, or one of their procedures has a single reviewer in its default group."
       delete_edit:
-        title: "Delete instructeur %{id}"
-        warning_html: "You are about to delete the instructeur role of <strong>%{email}</strong>. Their assignments to instructeur groups, their dossier follows, their bulk messages, their exports and their archives are destroyed."
-        account: "Their sign-in account is not deleted: only the instructeur role is. The messages they wrote in the mailboxes stay visible."
-        submit: "Delete the instructeur"
+        title: "Delete reviewer %{id}"
+        warning_html: "You are about to delete the reviewer role of <strong>%{email}</strong>. Their assignments to teams, their dossier follows, their bulk messages, their exports and their archives are destroyed."
+        account: "Their sign-in account is not deleted: only the reviewer role is. The messages they wrote in the mailboxes stay visible."
+        submit: "Delete the reviewer"
     administrateurs:
       show:
         cannot_be_deleted: "This administrateur cannot be deleted: they are the only administrateur of a procedure that has dossiers."
@@ -59,8 +59,8 @@ en:
     procedures:
       administrateur_already_added: "This administrator has already been added to this procedure."
       add_administrateur_and_instructeur_edit:
-        title: "Become administrator and instructeur of procedure %{id}"
-        warning_html: "You are about to grant yourself administrator and instructeur access to <strong>%{libelle}</strong>. This access opens every dossier of the procedure, their attachments, the messaging and the private annotations."
+        title: "Become administrator and reviewer of procedure %{id}"
+        warning_html: "You are about to grant yourself administrator and reviewer access to <strong>%{libelle}</strong>. This access opens every dossier of the procedure, their attachments, the messaging and the private annotations."
         administrateurs: "Current administrators: %{emails}. They are not notified of this access."
         duration: "The access is removed automatically by the daily 2:45 am purge."
-        submit: "Become administrator and instructeur"
+        submit: "Become administrator and reviewer"
