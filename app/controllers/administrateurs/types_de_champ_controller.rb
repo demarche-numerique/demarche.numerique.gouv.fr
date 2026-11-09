@@ -31,12 +31,8 @@ module Administrateurs
       was_prefill_with_fc_information = type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?
       update_params = type_de_champ_update_params(type_de_champ)
 
-      if @coordinate.used_by_routing_rules? && changing_of_type?(type_de_champ, update_params)
-        errors = t("activerecord.errors.type_de_champ.locked.update.used_by_routing_rules", type_de_champ: type_de_champ.libelle)
-        @morphed = [champ_component_from(@coordinate, focused: false, errors:)]
-        flash.alert = errors
-      elsif @coordinate.used_by_referentiel_urls? && changing_of_type?(type_de_champ, update_params)
-        errors = t("activerecord.errors.type_de_champ.locked.update.used_by_referentiel_urls", type_de_champ: type_de_champ.libelle)
+      if @coordinate.type_champ_locked? && changing_of_type?(type_de_champ, update_params)
+        errors = locked_type_change_message(@coordinate, type_de_champ)
         @morphed = [champ_component_from(@coordinate, focused: false, errors:)]
         flash.alert = errors
       else
@@ -138,12 +134,8 @@ module Administrateurs
     def destroy
       coordinate, type_de_champ = draft.coordinate_and_tdc(params[:stable_id])
 
-      if coordinate&.used_by_referentiel_urls?
-        errors = t("activerecord.errors.type_de_champ.locked.destroy.used_by_referentiel_urls", type_de_champ: type_de_champ.libelle)
-        @morphed = [champ_component_from(coordinate, focused: false, errors:)]
-        flash.alert = errors
-      elsif coordinate&.used_by_routing_rules?
-        errors = t("activerecord.errors.type_de_champ.locked.destroy.used_by_routing_rules", type_de_champ: type_de_champ.libelle)
+      if coordinate&.type_champ_locked?
+        errors = locked_destroy_message(coordinate, type_de_champ)
         @morphed = [champ_component_from(coordinate, focused: false, errors:)]
         flash.alert = errors
       else
@@ -225,6 +217,26 @@ module Administrateurs
         focused: focused,
         errors:
       )
+    end
+
+    def locked_type_change_message(coordinate, type_de_champ)
+      if coordinate.used_by_routing_rules?
+        t("activerecord.errors.type_de_champ.locked.update.used_by_routing_rules", type_de_champ: type_de_champ.libelle)
+      elsif coordinate.used_by_referentiel_urls?
+        t("activerecord.errors.type_de_champ.locked.update.used_by_referentiel_urls", type_de_champ: type_de_champ.libelle)
+      elsif coordinate.used_by_ineligibilite_rules?
+        t("activerecord.errors.type_de_champ.locked.update.used_by_ineligibilite_rules", type_de_champ: type_de_champ.libelle)
+      end
+    end
+
+    def locked_destroy_message(coordinate, type_de_champ)
+      if coordinate.used_by_routing_rules?
+        t("activerecord.errors.type_de_champ.locked.destroy.used_by_routing_rules", type_de_champ: type_de_champ.libelle)
+      elsif coordinate.used_by_referentiel_urls?
+        t("activerecord.errors.type_de_champ.locked.destroy.used_by_referentiel_urls", type_de_champ: type_de_champ.libelle)
+      elsif coordinate.used_by_ineligibilite_rules?
+        t("activerecord.errors.type_de_champ.locked.destroy.used_by_ineligibilite_rules", type_de_champ: type_de_champ.libelle)
+      end
     end
 
     def type_de_champ_create_params
