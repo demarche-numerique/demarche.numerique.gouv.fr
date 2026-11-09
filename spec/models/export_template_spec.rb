@@ -35,6 +35,15 @@ describe ExportTemplate do
     end
   end
 
+  describe '#inline_repetitions?' do
+    it 'is true for csv and for spreadsheets in the Dossiers sheet' do
+      expect(build(:export_template, kind: 'csv')).to be_inline_repetitions
+      expect(build(:export_template, kind: 'xlsx')).not_to be_inline_repetitions
+      expect(build(:export_template, kind: 'ods', repetition_layout: 'inline')).to be_inline_repetitions
+      expect(build(:export_template, kind: 'zip', repetition_layout: 'inline')).not_to be_inline_repetitions
+    end
+  end
+
   describe '#pj' do
     context 'when pj exists' do
       subject { export_template.pj(double(stable_id: 3)) }
