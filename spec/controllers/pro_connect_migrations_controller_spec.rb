@@ -3,6 +3,32 @@
 describe ProConnectMigrationsController, type: :controller do
   let(:account) { administrateurs.default.user }
 
+  describe '#show' do
+    render_views
+
+    before { session[ProConnectMigrationConcern::SESSION_KEY] = ProConnectMigration.create!(user: account, source_email:).id }
+
+    context 'from what looks like a functional mailbox' do
+      let(:source_email) { 'contact@exemple.fr' }
+
+      it 'asks for a nominative address' do
+        get :show
+
+        expect(response.body).to include('et non l’adresse contact@exemple.fr')
+      end
+    end
+
+    context 'from a nominative address, suggested to ProConnect' do
+      let(:source_email) { 'camille.dupont@exemple.fr' }
+
+      it 'does not ask for another address' do
+        get :show
+
+        expect(response.body).not_to include('et non l’adresse')
+      end
+    end
+  end
+
   describe '#support' do
     render_views
 

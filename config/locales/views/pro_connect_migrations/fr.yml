@@ -9,6 +9,7 @@ fr:
       sign_up_html: "<strong>Vous inscrire</strong> si vous n’avez pas encore de compte ProConnect"
       nominative_html: ProConnect exige une identité <strong>nominative</strong> rattachée à une adresse électronique professionnelle et à un numéro SIRET actif (les adresses personnelles, anonymes ou purement génériques sans rattachement nominatif ne sont généralement pas acceptées).
       who_can_sign_up: Qui peut se créer un compte ProConnect ?
+      nominative_address_html: Sur ProConnect, saisissez votre adresse électronique professionnelle <strong>nominative</strong>, souvent de la forme prenom.nom@…, et non l’adresse %{source_email}.
       migrate: Migrer vers ProConnect
     support:
       title: Migrer vers ProConnect

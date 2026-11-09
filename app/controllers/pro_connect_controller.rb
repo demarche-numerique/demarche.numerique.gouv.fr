@@ -28,7 +28,7 @@ class ProConnectController < ApplicationController
     migration = pro_connect_migration_in_session(ProConnectMigration.pending.or(ProConnectMigration.waiting_for_code))
     return redirect_to pro_connect_migration_code_path if migration&.awaiting_code?
 
-    uri, state, nonce = ProConnectService.authorization_uri(login_hint: migration&.source_email)
+    uri, state, nonce = ProConnectService.authorization_uri(login_hint: migration&.login_hint)
 
     cookies.encrypted[STATE_COOKIE_NAME] = { value: state, secure: Rails.env.production?, httponly: true }
     cookies.encrypted[NONCE_COOKIE_NAME] = { value: nonce, secure: Rails.env.production?, httponly: true }

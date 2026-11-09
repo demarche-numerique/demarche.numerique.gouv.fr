@@ -38,15 +38,27 @@ describe ProConnectController, type: :controller do
 
     context 'during a migration to ProConnect' do
       let(:account) { administrateurs.default.user }
-      let(:migration) { ProConnectMigration.create!(user: account, source_email: account.email) }
+      let(:source_email) { 'camille.dupont@exemple.fr' }
+      let(:migration) { ProConnectMigration.create!(user: account, source_email:) }
 
       before { session[ProConnectMigrationConcern::SESSION_KEY] = migration.id }
 
-      it 'keeps it and suggests the address of the account from the migration page' do
+      it 'keeps it and suggests its old address from the migration page' do
         get :login, params: { migration: true }
 
         expect(session[ProConnectMigrationConcern::SESSION_KEY]).to eq(migration.id)
-        expect(ProConnectService).to have_received(:authorization_uri).with(login_hint: account.email)
+        expect(ProConnectService).to have_received(:authorization_uri).with(login_hint: source_email)
+      end
+
+      context 'with what looks like a functional mailbox' do
+        let(:source_email) { 'contact@exemple.fr' }
+
+        it 'keeps it without suggesting the address' do
+          get :login, params: { migration: true }
+
+          expect(session[ProConnectMigrationConcern::SESSION_KEY]).to eq(migration.id)
+          expect(ProConnectService).to have_received(:authorization_uri).with(login_hint: nil)
+        end
       end
 
       it 'forgets it when ProConnect is not started from the migration page' do

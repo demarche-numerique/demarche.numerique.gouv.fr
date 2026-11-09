@@ -21,5 +21,11 @@
     </li>
   </ul>
 
+  <% if @migration.login_hint.nil? %>
+    <p class="fr-mt-3w">
+      <%= t('.nominative_address_html', source_email: @migration.source_email) %>
+    </p>
+  <% end %>
+
   <%= link_to t('.migrate'), pro_connect_login_path(migration: true), class: 'fr-btn fr-mt-3w' %>
 </div>

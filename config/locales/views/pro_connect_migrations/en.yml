@@ -9,6 +9,7 @@ en:
       sign_up_html: "<strong>Sign up</strong> if you do not have a ProConnect account yet"
       nominative_html: ProConnect requires a <strong>nominative</strong> identity tied to a professional email address and an active SIRET number (personal, anonymous or purely generic addresses with no named person are generally not accepted).
       who_can_sign_up: Who can create a ProConnect account?
+      nominative_address_html: On ProConnect, enter your own <strong>nominative</strong> professional email address, often in the form firstname.lastname@…, not the address %{source_email}.
       migrate: Switch to ProConnect
     support:
       title: Switch to ProConnect

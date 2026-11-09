@@ -5,6 +5,21 @@ describe ProConnectMigration do
   let(:migration) { ProConnectMigration.create!(user: account, source_email: account.email) }
   let(:user_info) { { 'sub' => 'sub', 'email' => email, 'given_name' => 'Camille', 'usual_name' => 'Dupont' } }
 
+  describe '#login_hint' do
+    it 'suggests an address that looks nominative' do
+      expect(ProConnectMigration.new(source_email: 'cedric.martin@exemple.gouv.fr').login_hint).to eq('cedric.martin@exemple.gouv.fr')
+    end
+
+    it 'does not suggest what looks like a functional mailbox' do
+      expect(ProConnectMigration.new(source_email: 'service_rh@exemple.gouv.fr').login_hint).to be_nil
+      expect(ProConnectMigration.new(source_email: 'ddt-sg@exemple.gouv.fr').login_hint).to be_nil
+    end
+
+    it 'does not suggest the address to a co-holder' do
+      expect(ProConnectMigration.new(source_email: 'cedric.martin@exemple.gouv.fr', parent_id: 1).login_hint).to be_nil
+    end
+  end
+
   describe '#identify!' do
     subject { migration.identify!(auth: ProConnectService::Authentication.new(user_info:, id_token: 'id_token', amr: ['mfa'], acr: nil)) }
 
