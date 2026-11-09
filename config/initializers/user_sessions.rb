@@ -23,8 +23,13 @@ Warden::Manager.after_set_user do |record, warden, options|
   # alone -- what `after_authentication` does -- would leave every path on the
   # second line without one: invisible while sessions without a row are still
   # adopted, a sign in loop the moment they no longer are.
-  in :authentication | :set_user
-    SessionRegistrableConcern.open_session!(record, warden, scope)
+  #
+  # The form only knows passwords; application code says how it signed the
+  # person in: `sign_in(user, login_method: :france_connect)`.
+  in :authentication
+    SessionRegistrableConcern.open_session!(record, warden, scope, login_method: :password)
+  in :set_user
+    SessionRegistrableConcern.open_session!(record, warden, scope, login_method: options[:login_method])
 
   # :fetch -- read back from the cookie on every later request, so the row it
   # names has to still be good.

@@ -39,13 +39,13 @@ module SessionRegistrableConcern
     warden.raw_session["warden.user.#{scope}.session"] ||= {}
   end
 
-  def self.open_session!(record, warden, scope)
+  def self.open_session!(record, warden, scope, login_method: nil)
     request = warden.request
     session = warden.session(scope)
 
     session[LAST_SEEN_KEY] = Date.current.iso8601
 
-    session[SESSION_KEY] = record.open_user_session!(request.user_agent, request.remote_ip).id
+    session[SESSION_KEY] = record.open_user_session!(request.user_agent, request.remote_ip, login_method:).id
   end
 
   # Read from the signed cookie, so the client cannot push the date forward.
