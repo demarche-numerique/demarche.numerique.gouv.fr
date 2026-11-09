@@ -5,7 +5,7 @@ class Champs::PhoneChamp < Champs::TextChamp
     phone: {
       possible: true,
       allow_blank: true,
-      message: I18n.t(:not_a_phone, scope: 'activerecord.errors.messages'),
+      message: :not_a_phone,
     },
     if: -> { should_validate_in_current_context? && !Phonelib.valid_for_countries?(value, TypesDeChamp::PhoneTypeDeChamp::DEFAULT_COUNTRY_CODES) }
 end
