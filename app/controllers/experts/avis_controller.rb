@@ -172,7 +172,7 @@ module Experts
         # Read before sign_in stamps last_sign_in_at.
         trust_browser = trust_browser_after_invitation?(user, avis)
 
-        sign_in(user)
+        sign_in(user, login_method: :password)
         trust_device(Time.zone.now, user.instructeur) if trust_browser
         user.update!(email_verified_at: Time.zone.now) if user.unverified_email?
         redirect_to url_for(expert_all_avis_path)
