@@ -603,7 +603,7 @@ class TypeDeChamp < ApplicationRecord
   end
 
   def type_champ_locked?
-    used_by_routing_rules? || used_by_ineligibilite_rules?
+    used_by_routing_rules? || used_by_ineligibilite_rules? || used_by_referentiel_urls?
   end
 
   def prefilled_by_type_de_champ
@@ -642,6 +642,10 @@ class TypeDeChamp < ApplicationRecord
     end
 
     sources
+  end
+
+  def stable_ids_used_in_referentiel_url
+    referentiel.is_a?(Referentiels::APIReferentiel) ? referentiel.tiptap_mention_stable_ids : []
   end
 
   private
