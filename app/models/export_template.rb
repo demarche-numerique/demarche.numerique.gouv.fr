@@ -46,6 +46,10 @@ class ExportTemplate < ApplicationRecord
     kind != 'zip'
   end
 
+  def inline_repetitions?
+    template_csv? || (tabular? && repetition_layout_inline?)
+  end
+
   def tags
     tags_categorized.slice(:individual, :etablissement, :dossier).values.flatten
   end

@@ -7,12 +7,12 @@ module DossierExportConcern
     spreadsheet_columns(with_etablissement: true, type_de_champs:, export_template:, format: :csv, inline_repetitions:)
   end
 
-  def spreadsheet_columns_xlsx(type_de_champs:, export_template: nil)
-    spreadsheet_columns(type_de_champs:, export_template:, format: :xlsx)
+  def spreadsheet_columns_xlsx(type_de_champs:, export_template: nil, inline_repetitions: {})
+    spreadsheet_columns(type_de_champs:, export_template:, format: :xlsx, inline_repetitions:)
   end
 
-  def spreadsheet_columns_ods(type_de_champs:, export_template: nil)
-    spreadsheet_columns(type_de_champs:, export_template:, format: :ods)
+  def spreadsheet_columns_ods(type_de_champs:, export_template: nil, inline_repetitions: {})
+    spreadsheet_columns(type_de_champs:, export_template:, format: :ods, inline_repetitions:)
   end
 
   def champ_values_for_export(type_de_champs, row_id: nil, export_template: nil, format:, inline_repetitions: {})
