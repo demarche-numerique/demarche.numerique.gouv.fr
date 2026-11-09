@@ -74,6 +74,19 @@ RSpec.describe TypeDeChamps::LibelleValidator do
     end
   end
 
+  context 'with a champ in a header section' do
+    let(:types) { [{ type: :text, libelle: 'a' }, { type: :header_section, level: 1, libelle: 'h' }, { type: :text, libelle: 'b' }] }
+
+    before { procedure.draft_revision.public_root_type_de_champs.third.update(libelle: '') }
+
+    it 'reports the number the editor shows' do
+      subject
+
+      expect(procedure.errors.messages_for(:public_draft_type_de_champs))
+        .to include(I18n.t('activerecord.errors.models.procedure.attributes.public_draft_type_de_champs.missing_libelle', position: 3))
+    end
+  end
+
   context 'with linked drop down list type de champ' do
     let(:types) { [type: :linked_drop_down_list] }
     context 'when libelle is filled' do

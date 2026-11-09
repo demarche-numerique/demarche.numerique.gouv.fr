@@ -87,10 +87,10 @@ describe Champs::PieceJustificativeController, type: :controller do
       draft.update_type_de_champ(repetition.becomes_type('text'), type_champ: 'text')
     end
 
-    it 'still finds the champ' do
+    it 'is out of the revision: the tree only nests children under a repetition' do
       get :template, params: { dossier_id: dossier.id, public_id: child.public_id }
 
-      expect(response).to have_http_status(:found)
+      expect(response).to have_http_status(:not_found)
     end
   end
 

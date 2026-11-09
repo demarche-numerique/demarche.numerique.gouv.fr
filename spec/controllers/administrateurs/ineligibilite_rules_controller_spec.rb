@@ -83,7 +83,7 @@ describe Administrateurs::IneligibiliteRulesController, type: :controller do
 
     context 'simple tdc' do
       let(:public_type_de_champs) { [{ type: :yes_no }] }
-      let(:yes_no_tdc) { procedure.draft_revision.type_de_champs_for(scope: :public).first }
+      let(:yes_no_tdc) { procedure.draft_revision.public_flat_type_de_champs.first }
       let(:targeted_champ) { champ_value(yes_no_tdc.stable_id).to_json }
 
       describe '#change_targeted_champ' do
@@ -131,7 +131,7 @@ describe Administrateurs::IneligibiliteRulesController, type: :controller do
 
     context 'repetition tdc' do
       let(:public_type_de_champs) { [{ type: :repetition, children: [{ type: :yes_no }] }] }
-      let(:yes_no_tdc) { procedure.draft_revision.type_de_champs_for(scope: :public).find { _1.type_champ == 'yes_no' } }
+      let(:yes_no_tdc) { procedure.draft_revision.public_flat_type_de_champs.find { _1.type_champ == 'yes_no' } }
       let(:targeted_champ) { champ_value(yes_no_tdc.stable_id).to_json }
       let(:condition_form) do
         {

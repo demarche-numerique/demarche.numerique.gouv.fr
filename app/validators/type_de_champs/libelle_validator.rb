@@ -28,6 +28,11 @@ class TypeDeChamps::LibelleValidator < ActiveModel::EachValidator
     )
   end
 
-  # read off the loaded draft: another request may have removed the coordinate since
-  def position_of(draft, tdc) = draft.coordinate_for(tdc).position + 1
+  # the number the editor shows, not TypeDeChamp#position: header sections do not restart it.
+  # read off the loaded draft: another request may have removed the type de champ since
+  def position_of(draft, tdc)
+    siblings = tdc.enclosing_repetition&.flat_children || (tdc.public? ? draft.public_root_type_de_champs : draft.private_root_type_de_champs)
+
+    siblings.index { it.stable_id == tdc.stable_id } + 1
+  end
 end
