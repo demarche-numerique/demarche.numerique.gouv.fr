@@ -20,6 +20,21 @@ describe ExportTemplate do
     end
   end
 
+  describe 'repetition_layout' do
+    let(:export_template) { build(:export_template, kind: 'xlsx', groupe_instructeur:) }
+
+    it 'defaults to a separate sheet' do
+      expect(export_template).to be_repetition_layout_sheet
+    end
+
+    it 'rejects an unknown layout' do
+      export_template.repetition_layout = 'unknown'
+
+      expect(export_template).not_to be_valid
+      expect(export_template.errors).to be_of_kind(:repetition_layout, :inclusion)
+    end
+  end
+
   describe '#pj' do
     context 'when pj exists' do
       subject { export_template.pj(double(stable_id: 3)) }
