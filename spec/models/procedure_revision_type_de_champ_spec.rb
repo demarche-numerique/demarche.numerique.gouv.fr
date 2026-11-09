@@ -21,6 +21,36 @@ describe ProcedureRevisionTypeDeChamp do
       end
     end
 
+    describe '#type_champ_lock_reason' do
+      it 'is the reference dataset for a field used in its url' do
+        expect(used_coordinate.type_champ_lock_reason).to eq(:used_by_referentiel_urls)
+      end
+
+      it 'is nil for a field nothing uses' do
+        expect(unused_coordinate.type_champ_lock_reason).to be_nil
+      end
+    end
+
+    describe '#type_change_locked_message' do
+      it 'says the field is used by a reference dataset' do
+        expect(used_coordinate.type_change_locked_message).to eq(I18n.t("activerecord.errors.type_de_champ.locked.update.used_by_referentiel_urls", type_de_champ: used_coordinate.libelle))
+      end
+
+      it 'is nil for a field nothing uses' do
+        expect(unused_coordinate.type_change_locked_message).to be_nil
+      end
+    end
+
+    describe '#deletion_locked_message' do
+      it 'says the field is used by a reference dataset' do
+        expect(used_coordinate.deletion_locked_message).to eq(I18n.t("activerecord.errors.type_de_champ.locked.destroy.used_by_referentiel_urls", type_de_champ: used_coordinate.libelle))
+      end
+
+      it 'is nil for a field nothing uses' do
+        expect(unused_coordinate.deletion_locked_message).to be_nil
+      end
+    end
+
     describe '#referentiel_type_de_champ_using_url' do
       it 'returns the referentiel field whose url mentions the field' do
         expect(used_coordinate.referentiel_type_de_champ_using_url.stable_id).to eq(200)

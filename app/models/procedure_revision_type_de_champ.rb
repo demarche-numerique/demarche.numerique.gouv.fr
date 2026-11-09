@@ -117,8 +117,40 @@ class ProcedureRevisionTypeDeChamp < ApplicationRecord
     revision.ineligibilite_enabled? && stable_id.in?(revision.ineligibilite_rules&.sources || [])
   end
 
+  def type_champ_lock_reason
+    if used_by_routing_rules?
+      :used_by_routing_rules
+    elsif used_by_referentiel_urls?
+      :used_by_referentiel_urls
+    elsif used_by_ineligibilite_rules?
+      :used_by_ineligibilite_rules
+    end
+  end
+
   def type_champ_locked?
-    used_by_routing_rules? || used_by_ineligibilite_rules? || used_by_referentiel_urls?
+    type_champ_lock_reason.present?
+  end
+
+  def type_change_locked_message
+    case type_champ_lock_reason
+    when :used_by_routing_rules
+      I18n.t("activerecord.errors.type_de_champ.locked.update.used_by_routing_rules", type_de_champ: libelle)
+    when :used_by_referentiel_urls
+      I18n.t("activerecord.errors.type_de_champ.locked.update.used_by_referentiel_urls", type_de_champ: libelle)
+    when :used_by_ineligibilite_rules
+      I18n.t("activerecord.errors.type_de_champ.locked.update.used_by_ineligibilite_rules", type_de_champ: libelle)
+    end
+  end
+
+  def deletion_locked_message
+    case type_champ_lock_reason
+    when :used_by_routing_rules
+      I18n.t("activerecord.errors.type_de_champ.locked.destroy.used_by_routing_rules", type_de_champ: libelle)
+    when :used_by_referentiel_urls
+      I18n.t("activerecord.errors.type_de_champ.locked.destroy.used_by_referentiel_urls", type_de_champ: libelle)
+    when :used_by_ineligibilite_rules
+      I18n.t("activerecord.errors.type_de_champ.locked.destroy.used_by_ineligibilite_rules", type_de_champ: libelle)
+    end
   end
 
   def referentiel_type_de_champ_using_url
