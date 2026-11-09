@@ -298,7 +298,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
       it do
         is_expected.to have_http_status(:ok)
-        expect(flash.alert).to include("utilisé pour le routage")
+        expect(flash.alert).to eq(I18n.t("activerecord.errors.type_de_champ.locked.update.used_by_routing_rules", type_de_champ: 'l2'))
       end
     end
 
@@ -313,7 +313,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
       it do
         is_expected.to have_http_status(:ok)
-        expect(flash.alert).to include("utilisé par un référentiel")
+        expect(flash.alert).to eq(I18n.t("activerecord.errors.type_de_champ.locked.update.used_by_referentiel_urls", type_de_champ: 'l2'))
       end
     end
 
@@ -643,7 +643,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
       it do
         is_expected.to have_http_status(:ok)
-        expect(flash.alert).to include("utilisé pour le routage")
+        expect(flash.alert).to eq(I18n.t("activerecord.errors.type_de_champ.locked.destroy.used_by_routing_rules", type_de_champ: 'l3'))
       end
     end
 
@@ -658,7 +658,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
       it do
         is_expected.to have_http_status(:ok)
-        expect(flash.alert).to include("utilisé par un référentiel")
+        expect(flash.alert).to eq(I18n.t("activerecord.errors.type_de_champ.locked.destroy.used_by_referentiel_urls", type_de_champ: 'l3'))
       end
     end
   end

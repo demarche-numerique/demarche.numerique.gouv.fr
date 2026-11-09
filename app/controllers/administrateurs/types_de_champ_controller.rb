@@ -28,9 +28,9 @@ module Administrateurs
       update_params = type_de_champ_update_params(type_de_champ)
 
       if type_de_champ.used_by_routing_rules? && changing_of_type?(type_de_champ, update_params)
-        refuse(type_de_champ, "« #{type_de_champ.libelle} » est utilisé pour le routage, vous ne pouvez pas modifier son type.")
+        refuse(type_de_champ, t("activerecord.errors.type_de_champ.locked.update.used_by_routing_rules", type_de_champ: type_de_champ.libelle))
       elsif type_de_champ.used_by_referentiel_urls? && changing_of_type?(type_de_champ, update_params)
-        refuse(type_de_champ, "« #{type_de_champ.libelle} » est utilisé par un référentiel, vous ne pouvez pas modifier son type.")
+        refuse(type_de_champ, t("activerecord.errors.type_de_champ.locked.update.used_by_referentiel_urls", type_de_champ: type_de_champ.libelle))
       else
         if changing_of_type?(type_de_champ, update_params)
           type_de_champ = type_de_champ.becomes_type(update_params['type_champ'])
@@ -125,9 +125,9 @@ module Administrateurs
       type_de_champ = draft.type_de_champ(params[:stable_id])
 
       if type_de_champ&.used_by_referentiel_urls?
-        refuse(type_de_champ, "« #{type_de_champ.libelle} » est utilisé par un référentiel, vous ne pouvez pas le supprimer.")
+        refuse(type_de_champ, t("activerecord.errors.type_de_champ.locked.destroy.used_by_referentiel_urls", type_de_champ: type_de_champ.libelle))
       elsif type_de_champ&.used_by_routing_rules?
-        refuse(type_de_champ, "« #{type_de_champ.libelle} » est utilisé pour le routage, vous ne pouvez pas le supprimer.")
+        refuse(type_de_champ, t("activerecord.errors.type_de_champ.locked.destroy.used_by_routing_rules", type_de_champ: type_de_champ.libelle))
       elsif type_de_champ.present?
         index = type_de_champ.flat_siblings.index(type_de_champ)
         # nil in case of replay (double click, champ already removed)
