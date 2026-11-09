@@ -238,6 +238,19 @@ describe Users::DossiersController, type: :controller do
       end
     end
 
+    context 'when the payload carries an id for the champ' do
+      let(:forged_id) { ChampData.maximum(:id) + 1_000 }
+      let(:champs_public_attributes) { { first_champ.public_id => { id: forged_id, value: } } }
+
+      it 'keeps the champ primary key' do
+        original_id = first_champ.id
+        subject
+
+        expect(ChampData.exists?(forged_id)).to be false
+        expect(ChampData.find(original_id).value).to eq(value)
+      end
+    end
+
     # RAILS-JYN: the admin published a revision removing this champ while the usager still
     # had the form open, and the dossier was rebased onto it. The autosave keeps coming.
     context 'when a newly published revision removed the champ' do

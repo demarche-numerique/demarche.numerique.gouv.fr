@@ -1525,6 +1525,22 @@ describe Instructeurs::DossiersController, type: :controller do
     let(:champ_datetime) { dossier.root_champs_private.third }
     let(:champ_drop_down_list) { dossier.root_champs_private.fifth }
 
+    context 'when the payload carries an id for the annotation' do
+      let(:forged_id) { ChampData.maximum(:id) + 1_000 }
+
+      it 'keeps the champ primary key' do
+        original_id = champ_datetime.id
+        patch :update_annotations, params: {
+          procedure_id: procedure.id,
+          dossier_id: dossier.id,
+          dossier: { champs_private_attributes: { champ_datetime.public_id => { id: forged_id, value: '2019-12-21T13:17' } } },
+        }, format: :turbo_stream
+
+        expect(ChampData.exists?(forged_id)).to be false
+        expect(ChampData.find(original_id).value).to eq(Time.zone.parse('2019-12-21T13:17:00').iso8601)
+      end
+    end
+
     context 'when no invalid champs_public' do
       context "with new values for champs_private" do
         before do
