@@ -71,7 +71,12 @@ en:
       simple: Simple mode
       advanced: Advanced mode
   pre_rempli:
-    options_label: "Referential values to use for conditional logic"
+    notice_title: "Applicants cannot fill in this field. Its value must come from:"
+    notice_referentiel_html: "a %{link} field in the applicant form or the internal fields;"
+    notice_referentiel_link: "configurable reference dataset (advanced)"
+    notice_prefill_html: "or %{link}, by link or by API, if you plan to prefill your applicants’ applications."
+    notice_prefill_link: "prefill"
+    options_label: "Reference dataset values to use in conditional logic"
     hidden_label: "Hide this field from the user form"
   drop_down_list:
     labels:

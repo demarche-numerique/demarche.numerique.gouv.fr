@@ -49,6 +49,8 @@ ARCHIVAGE_DOC_URL = [DOC_URL, "pour-aller-plus-loin", "archivage-longue-duree-de
 DOC_INTEGRATION_MONAVIS_URL = [DOC_URL, "tutoriels", "integration-du-bouton-mon-avis"].join("/")
 DOC_PROCEDURE_EXPIRES_URL = [DOC_URL, "expiration-et-suppression-des-dossiers"].join("/")
 DOC_EXPORT_TEMPLATE_URL = [DOC_URL, "tutoriels/tutoriel-instructeur#c.-personnaliser-les-exports"].join("/")
+DOC_REFERENTIEL_URL = [DOC_URL, "tutoriels", "champ-referentiel-avance-a-configurer"].join("/")
+DOC_PREFILL_URL = [DOC_URL, "pour-aller-plus-loin", "api-de-preremplissage"].join("/")
 
 STATUS_PAGE_URL = ENV.fetch("STATUS_PAGE_URL", "https://status.demarche.numerique.gouv.fr")
 DEMANDE_INSCRIPTION_ADMIN_PAGE_URL = ENV.fetch("DEMANDE_INSCRIPTION_ADMIN_PAGE_URL", "https://demarche.numerique.gouv.fr/commencer/demande-d-inscription-a-demarches-simplifiees")
