@@ -2,6 +2,7 @@
 
 describe TypesDeChampEditor::TypeDeChampSelectorComponent, type: :component do
   let(:routing_rules_stable_ids) { [] }
+  let(:referentiel_urls_stable_ids) { [] }
   let(:ineligibilite_rules_used?) { false }
   let(:tdc) { procedure.draft_revision.type_de_champs.first }
   let(:coordinate) { procedure.draft_revision.coordinate_for(tdc) }
@@ -12,6 +13,7 @@ describe TypesDeChampEditor::TypeDeChampSelectorComponent, type: :component do
 
   before do
     allow_any_instance_of(Procedure).to receive(:stable_ids_used_by_routing_rules).and_return(routing_rules_stable_ids)
+    allow_any_instance_of(Procedure).to receive(:stable_ids_used_by_referentiel_urls).and_return(referentiel_urls_stable_ids)
     allow_any_instance_of(ProcedureRevisionTypeDeChamp).to receive(:used_by_ineligibilite_rules?).and_return(ineligibilite_rules_used?)
     render_inline(described_class.new(coordinate:, form:))
   end
@@ -114,18 +116,28 @@ describe TypesDeChampEditor::TypeDeChampSelectorComponent, type: :component do
     context 'routing rules' do
       let(:routing_rules_stable_ids) { [tdc.stable_id] }
 
-      it 'locks the menu' do
+      it 'locks the menu and says why' do
         expect(props['isDisabled']).to be(true)
-        expect(page).to have_text('Aucun type de champ autorisé pour transformer ce champ')
+        expect(page).to have_text(I18n.t("activerecord.errors.type_de_champ.locked.update.used_by_routing_rules", type_de_champ: 'Votre ville'))
+        expect(page).not_to have_text('Aucun type de champ autorisé pour transformer ce champ')
+      end
+    end
+
+    context 'reference dataset url' do
+      let(:referentiel_urls_stable_ids) { [tdc.stable_id] }
+
+      it 'locks the menu and says why' do
+        expect(props['isDisabled']).to be(true)
+        expect(page).to have_text(I18n.t("activerecord.errors.type_de_champ.locked.update.used_by_referentiel_urls", type_de_champ: 'Votre ville'))
       end
     end
 
     context 'eligibility rules' do
       let(:ineligibilite_rules_used?) { true }
 
-      it 'locks the menu' do
+      it 'locks the menu and says why' do
         expect(props['isDisabled']).to be(true)
-        expect(page).to have_text('Aucun type de champ autorisé pour transformer ce champ')
+        expect(page).to have_text(I18n.t("activerecord.errors.type_de_champ.locked.update.used_by_ineligibilite_rules", type_de_champ: 'Votre ville'))
       end
     end
   end
