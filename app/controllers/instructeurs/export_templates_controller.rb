@@ -18,6 +18,7 @@ module Instructeurs
         redirect_to [:export_templates, :instructeur, @procedure], notice: "Le modèle d’export #{@export_template.name} a bien été créé"
       else
         flash[:alert] = @export_template.errors.full_messages
+        set_type_de_champs
         render :new, status: :unprocessable_content
       end
     end
@@ -30,6 +31,7 @@ module Instructeurs
         redirect_to [:export_templates, :instructeur, @procedure], notice: "Le modèle d’export #{@export_template.name} a bien été modifié"
       else
         flash[:alert] = @export_template.errors.full_messages
+        set_type_de_champs
         render :edit, status: :unprocessable_content
       end
     end
