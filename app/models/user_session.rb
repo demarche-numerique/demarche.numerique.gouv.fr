@@ -5,6 +5,14 @@ class UserSession < ApplicationRecord
 
   belongs_to :sessionable, polymorphic: true
 
+  # How the session was opened. Nil on the rows opened before it was recorded.
+  enum :login_method, {
+    password: 'password',
+    email_link: 'email_link',
+    france_connect: 'france_connect',
+    pro_connect: 'pro_connect',
+  }, prefix: :via
+
   validates :revoked_reason, inclusion: { in: REVOCATION_REASONS }, allow_nil: true
 
   scope :usable, -> { where(revoked_at: nil, expires_at: [nil, Time.current..]) }

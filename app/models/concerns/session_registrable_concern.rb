@@ -146,10 +146,11 @@ module SessionRegistrableConcern
   # The raw user-agent and not a label: deriving it at display time means a
   # better parser later also improves old rows. The address is never rewritten
   # afterwards -- reading a row on every request must stay a read.
-  def open_user_session!(user_agent, ip_address = nil)
+  def open_user_session!(user_agent, ip_address = nil, login_method: nil)
     user_sessions.create!(
       user_agent: sanitized_user_agent(user_agent),
       ip_address:,
+      login_method:,
       expires_at: session_max_lifetime&.from_now
     )
   end
