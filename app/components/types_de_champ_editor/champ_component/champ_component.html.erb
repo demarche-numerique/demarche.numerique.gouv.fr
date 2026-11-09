@@ -480,6 +480,8 @@
           <%= tag.span(t(".used_for_routing_html", link: link_to(t(".routing_link"), admin_procedure_groupe_instructeurs_path(revision.procedure_id, anchor: "routing-rules")))) %>
         <% elsif coordinate.used_by_ineligibilite_rules? %>
           <%= tag.span(t(".used_for_ineligibilite_html", link: link_to(t(".ineligibilite_link"), edit_admin_procedure_ineligibilite_rules_path(revision.procedure_id)))) %>
+        <% elsif coordinate.used_by_referentiel_urls? %>
+          <%= tag.span(t(".used_for_referentiel_html", link: link_to(t(".referentiel_link"), edit_admin_procedure_referentiel_path(revision.procedure_id, coordinate.referentiel_type_de_champ_using_url.stable_id), data: { turbo: false }))) %>
         <% else %>
           <% if coordinate.prefilled_by_type_de_champ %>
             <span><%= t(".prefilled_referentiel") %></span>

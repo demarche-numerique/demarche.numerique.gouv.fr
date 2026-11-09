@@ -40,6 +40,33 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
         end
       end
 
+      context 'drop down tdc used by a reference dataset url' do
+        let(:public_type_de_champs) do
+          [
+            { type: :drop_down_list, stable_id: 2, libelle: 'Votre ville', options: ['Paris', 'Lyon'] },
+            {
+              type: :referentiel,
+              stable_id: 3,
+              referentiel: create(:api_referentiel, :exact_match, mentioned_stable_id: 2),
+            },
+          ]
+        end
+        let(:coordinate) { procedure.draft_revision.coordinate_and_tdc(2).first }
+
+        it 'links to the reference dataset instead of offering to delete it' do
+          expect(page).to have_text(/utilisé par\nun référentiel avancé/)
+          expect(page).to have_link('un référentiel avancé', href: Rails.application.routes.url_helpers.edit_admin_procedure_referentiel_path(procedure, 3))
+          expect(page).not_to have_css('.fr-icon-delete-line')
+        end
+      end
+
+      context 'drop down tdc not used by a reference dataset url' do
+        it 'offers to delete it' do
+          expect(page).not_to have_text('un référentiel avancé')
+          expect(page).to have_css('.fr-icon-delete-line')
+        end
+      end
+
       context 'tdc used for prefill' do
         let(:public_type_de_champs) do
           [

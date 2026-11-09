@@ -52,6 +52,8 @@ fr:
   routing_link: "le routage"
   used_for_ineligibilite_html: "utilisé pour\n%{link}"
   ineligibilite_link: "l’éligibilité des dossiers"
+  used_for_referentiel_html: "utilisé par\n%{link}"
+  referentiel_link: "un référentiel avancé"
   layers:
     cadastres: Cadastres
     rpg: RPG
