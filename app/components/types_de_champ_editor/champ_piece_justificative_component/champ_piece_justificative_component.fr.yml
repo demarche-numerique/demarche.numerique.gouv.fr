@@ -20,6 +20,10 @@ fr:
     rib_html: "Le contenu du fichier joint par l’usager sera analysé automatiquement afin de récupérer et retranscrire à l’instructeur les informations suivantes : <strong>Nom du titulaire, Adresse du titulaire</strong> (si présente sur le fichier), <strong>IBAN, Code BIC, Nom de la banque</strong>."
     justificatif_domicile_html: "Si le document comporte un cachet électronique <strong>2D-Doc</strong>, son contenu sera analysé automatiquement afin de récupérer et retranscrire à l’instructeur les informations suivantes : <strong>Nom du bénéficiaire, Adresse, Date d’émission</strong>."
     avis_impot_html: "Si le document comporte un cachet électronique <strong>2D-Doc</strong>, son contenu sera analysé automatiquement afin de récupérer et retranscrire à l’instructeur les informations suivantes : <strong>Déclarant(s), Revenu fiscal de référence, Nombre de parts, Année des revenus, Adresse</strong>."
+  account_holder_match:
+    individual: "Vérifier que le titulaire du compte correspond au nom et au prénom du demandeur"
+    entreprise: "Vérifier que le titulaire du compte correspond à la raison sociale du demandeur"
+    hint: "Le résultat est affiché à l’instructeur avec les données récupérées depuis la pièce jointe."
   ocr_formats:
     title: "FORMATS ACCEPTÉS"
     desc_html: "Les formats acceptés pour cette pièce seront uniquement <strong>.pdf, .doc, .docx, .jpg, .jpeg, .png</strong>."

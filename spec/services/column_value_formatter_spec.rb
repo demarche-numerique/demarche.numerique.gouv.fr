@@ -15,6 +15,13 @@ RSpec.describe ColumnValueFormatter do
     expect(described_class.format(column: text_column, raw_value: 'Presse Océan')).to eq('Presse Océan')
   end
 
+  it 'formats a boolean as Oui / Non' do
+    boolean_column = procedure.columns.find { it.type == :boolean && !it.type_de_champ? }
+
+    expect(described_class.format(column: boolean_column, raw_value: true)).to eq('Oui')
+    expect(described_class.format(column: boolean_column, raw_value: false)).to eq('Non')
+  end
+
   it 'returns nil when raw_value is nil' do
     expect(described_class.format(column: text_column, raw_value: nil)).to be_nil
   end

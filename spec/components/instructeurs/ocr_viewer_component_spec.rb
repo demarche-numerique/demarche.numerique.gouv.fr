@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 RSpec.describe Instructeurs::OCRViewerComponent, type: :component do
-  let(:champ) { double('champ', ocr_result: doc, dossier_id:, public_id:) }
+  let(:champ) { double('champ', ocr_result: doc, dossier_id:, public_id:, value_json:, type_de_champ:) }
+  let(:type_de_champ) { double('type_de_champ', rib_account_holder_match?: rib_account_holder_match) }
   let(:component) { described_class.new(champ:) }
+  let(:value_json) { nil }
+  let(:rib_account_holder_match) { true }
 
   let(:dossier_id) { 1 }
   let(:public_id) { 'public-id-123' }
@@ -36,6 +39,7 @@ RSpec.describe Instructeurs::OCRViewerComponent, type: :component do
         expect(subject).to have_css('.champ-content', text: 'FR7612345678901234567890123')
         expect(subject).to have_css('.champ-content', text: 'ABCD1234')
         expect(subject).to have_css('.champ-content', text: 'Banque de Test')
+        expect(subject).not_to have_text('Correspondance avec l’identité du demandeur')
       end
 
       it 'renders header with title and edit button' do
@@ -60,6 +64,25 @@ RSpec.describe Instructeurs::OCRViewerComponent, type: :component do
         expect(subject).to have_css('.fr-icon-alert-line[aria-hidden="true"]', count: 1)
         expect(subject).to have_css('.champ-content', text: 'FR7612345678901234567890123')
       end
+    end
+
+    [
+      [true, '.fr-badge--success', 'Correspond'],
+      [false, '.fr-badge--warning', 'Ne correspond pas'],
+      [nil, '.fr-badge', 'Non vérifiable'],
+    ].each do |match, badge, text|
+      context "when the account holder match is #{match.inspect}" do
+        let(:value_json) { { 'rib' => {}, 'account_holder_match' => match } }
+
+        it { expect(subject).to have_css(".champ-row:nth-child(2) #{badge}", text:) }
+      end
+    end
+
+    context 'when the admin no longer asks for the check' do
+      let(:value_json) { { 'rib' => {}, 'account_holder_match' => true } }
+      let(:rib_account_holder_match) { false }
+
+      it { expect(subject).not_to have_text('Correspondance avec l’identité du demandeur') }
     end
   end
 

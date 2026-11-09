@@ -4,6 +4,10 @@ fr:
     attributes:
       rib:
         account_holder: Titulaire
+        account_holder_match: Correspondance avec l’identité du demandeur
+        account_holder_match_values:
+          'true': Correspond
+          'false': Ne correspond pas
         iban: IBAN
         bic: Code BIC
         bank_name: Nom de la banque
