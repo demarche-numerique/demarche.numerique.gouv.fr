@@ -28,7 +28,7 @@ module Administrateurs
       update_params = type_de_champ_update_params(type_de_champ)
 
       if type_de_champ.type_champ_locked? && changing_of_type?(type_de_champ, update_params)
-        refuse(type_de_champ, locked_type_change_message(type_de_champ))
+        refuse(type_de_champ, type_de_champ.type_change_locked_message)
       else
         referentiel_url_stable_ids = []
 
@@ -126,7 +126,7 @@ module Administrateurs
       type_de_champ = draft.type_de_champ(params[:stable_id])
 
       if type_de_champ&.type_champ_locked?
-        refuse(type_de_champ, locked_destroy_message(type_de_champ))
+        refuse(type_de_champ, type_de_champ.deletion_locked_message)
       elsif type_de_champ.present?
         index = type_de_champ.flat_siblings.index(type_de_champ)
         referentiel_url_stable_ids = type_de_champ.stable_ids_used_in_referentiel_url
@@ -234,26 +234,6 @@ module Administrateurs
       TypeDeChamp.preload_attachments(type_de_champs.flat_map { [it, *it.flat_children] })
 
       type_de_champs.map { TypesDeChampEditor::ChampComponent.new(type_de_champ: it, focused:, errors:) }
-    end
-
-    def locked_type_change_message(type_de_champ)
-      if type_de_champ.used_by_routing_rules?
-        t("activerecord.errors.type_de_champ.locked.update.used_by_routing_rules", type_de_champ: type_de_champ.libelle)
-      elsif type_de_champ.used_by_referentiel_urls?
-        t("activerecord.errors.type_de_champ.locked.update.used_by_referentiel_urls", type_de_champ: type_de_champ.libelle)
-      elsif type_de_champ.used_by_ineligibilite_rules?
-        t("activerecord.errors.type_de_champ.locked.update.used_by_ineligibilite_rules", type_de_champ: type_de_champ.libelle)
-      end
-    end
-
-    def locked_destroy_message(type_de_champ)
-      if type_de_champ.used_by_routing_rules?
-        t("activerecord.errors.type_de_champ.locked.destroy.used_by_routing_rules", type_de_champ: type_de_champ.libelle)
-      elsif type_de_champ.used_by_referentiel_urls?
-        t("activerecord.errors.type_de_champ.locked.destroy.used_by_referentiel_urls", type_de_champ: type_de_champ.libelle)
-      elsif type_de_champ.used_by_ineligibilite_rules?
-        t("activerecord.errors.type_de_champ.locked.destroy.used_by_ineligibilite_rules", type_de_champ: type_de_champ.libelle)
-      end
     end
 
     def type_de_champ_create_params
