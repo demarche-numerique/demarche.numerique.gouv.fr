@@ -51,7 +51,7 @@ en:
           carte: 'Card'
           epci: 'EPCI'
           formatted: 'Formatted field'
-          referentiel: 'External data to configure (advanced)'
+          referentiel: 'Configurable reference dataset (advanced)'
           quotient_familial: 'Family quotient'
           etudiant_boursier: 'Student grant recipient status'
           aah: 'Adult disability allowance status'
