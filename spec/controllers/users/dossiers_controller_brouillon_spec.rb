@@ -42,6 +42,16 @@ describe Users::DossiersController, type: :controller do
         is_expected.to redirect_to(identite_dossier_path(dossier))
         expect(flash.alert).to eq(I18n.t('users.dossiers.fill_identity.individual'))
       end
+
+      context 'when an invite opens it' do
+        let(:invite_user) { create(:user) }
+        before do
+          create(:invite, dossier:, user: invite_user)
+          sign_in(invite_user)
+        end
+
+        it { is_expected.to render_template(:brouillon) }
+      end
     end
 
     context 'when the siret is pending because API Entreprise is unavailable' do

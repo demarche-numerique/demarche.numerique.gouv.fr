@@ -624,7 +624,8 @@ module Users
     end
 
     def ensure_brouillon_identity_complete
-      redirect_to_identity_step if dossier.brouillon? && !dossier.identity_complete?
+      # Invites cannot open the identity step (owner only).
+      redirect_to_identity_step if dossier.brouillon? && current_user.owns?(dossier) && !dossier.identity_complete?
     end
 
     def redirect_to_identity_step
