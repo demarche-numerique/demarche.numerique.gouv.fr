@@ -76,13 +76,22 @@ describe ProConnectController, type: :controller do
           let(:user) { users.usager }
           let(:email) { user.email }
 
-          before { sign_in(user, login_method: :password) }
+          before do
+            user.remember_me = true
+            sign_in(user, login_method: :password)
+          end
 
           it 'opens a ProConnect session in place of the password one' do
             subject
 
             expect(UserSession.where(sessionable: user).pluck(:login_method, :revoked_reason))
               .to contain_exactly(['password', 'sign_out'], ['pro_connect', nil])
+          end
+
+          it 'keeps the choice to stay signed in' do
+            subject
+
+            expect(warden.session(:user)[SessionRegistrableConcern::PERSISTENT_KEY]).to be(true)
           end
         end
 
