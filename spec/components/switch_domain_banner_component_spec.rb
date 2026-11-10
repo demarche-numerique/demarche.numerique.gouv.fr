@@ -58,5 +58,18 @@ RSpec.describe SwitchDomainBannerComponent, type: :component do
           href: "//demarche.numerique.gouv.fr/procedures/123/dossiers")
       end
     end
+
+    context "when the stored location contains a quote and the user is signed out" do
+      let(:user) { nil }
+
+      before do
+        allow_any_instance_of(ApplicationController).to receive(:get_stored_location_for)
+          .with(:user).and_return(%{/procedures/1/avis/l'avis "1"</script>})
+      end
+
+      it "writes the redirect URL as a JS string literal" do
+        expect(rendered.to_html).to include(%{window.location = "//demarche.numerique.gouv.fr/procedures/1/avis/l'avis \\"1\\"\\u003c/script\\u003e";})
+      end
+    end
   end
 end
