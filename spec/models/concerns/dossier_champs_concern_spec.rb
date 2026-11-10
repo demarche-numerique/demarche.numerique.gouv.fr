@@ -137,6 +137,13 @@ RSpec.describe DossierChampsConcern do
 
       it { is_expected.to be_persisted }
 
+      it "projects a stored champ on the dossier projecting it" do
+        fresh_dossier = Dossier.find(dossier.id)
+        champ = fresh_dossier.with_update_stream(dossier.user).project_champ(fresh_dossier.find_type_de_champ_by_stable_id(99))
+
+        expect(champ.dossier).to equal(fresh_dossier)
+      end
+
       context "in repetition" do
         let(:type_de_champ_public) { dossier.find_type_de_champ_by_stable_id(994) }
         let(:row_id) { dossier.project_champ(type_de_champ_repetition).row_ids.first }

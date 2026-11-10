@@ -18,6 +18,8 @@ module DossierChampsConcern
     end
   end
 
+  # The champ's dossier is this one, on this stream: champ_data has no
+  # inverse, and would load another.
   def project_champ(type_de_champ, row_id: nil)
     check_valid_row_id_on_read?(type_de_champ, row_id)
     data = champ_data_by_public_id[type_de_champ.public_id(row_id)]
@@ -27,6 +29,7 @@ module DossierChampsConcern
       rebased_at = data&.rebased_at
       type_de_champ.build_champ(dossier: self, row_id:, updated_at:, rebased_at:, value:, stream:)
     else
+      data.association(:dossier).target = self
       data.type_de_champ = type_de_champ
       data
     end
