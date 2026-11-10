@@ -73,6 +73,12 @@ describe ApplicationController, type: :controller do
       it { is_expected.to eq(:en) }
     end
 
+    context 'with an empty leading entry' do
+      let(:accept_language) { ',en-US,en' }
+
+      it { is_expected.to eq(:en) }
+    end
+
     context 'with bytes that are not valid UTF-8' do
       let(:accept_language) { "en\xC0\xA7,fr".dup.force_encoding(Encoding::UTF_8) }
 
