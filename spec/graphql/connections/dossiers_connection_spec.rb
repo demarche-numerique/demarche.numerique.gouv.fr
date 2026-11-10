@@ -58,7 +58,7 @@ RSpec.describe Connections::DossiersConnection, type: :graphql do
       linked_procedure = create(:procedure, :published, :for_individual, administrateurs: [admin])
       linked_dossier = create(:dossier, :en_construction, :with_individual, procedure: linked_procedure)
       dossier = create(:dossier, :en_construction, :with_individual, :with_populated_champs, procedure: procedure_with_link)
-      dossier.root_champs_public.first.update(value: linked_dossier.id)
+      dossier.public_root_champs.first.update(value: linked_dossier.id)
     end
 
     it 'does not run one query per linked dossier' do

@@ -415,8 +415,8 @@ describe DossierFilterService do
         let(:filter) { ["rna – Code postal (5 chiffres)", value] }
 
         before do
-          kept_dossier.root_champs_public.find { _1.stable_id == 1 }.update(value_json: { "postal_code" => value })
-          create(:dossier, procedure:).root_champs_public.find { _1.stable_id == 1 }.update(value_json: { "postal_code" => "unknown" })
+          kept_dossier.public_root_champs.find { _1.stable_id == 1 }.update(value_json: { "postal_code" => value })
+          create(:dossier, procedure:).public_root_champs.find { _1.stable_id == 1 }.update(value_json: { "postal_code" => "unknown" })
         end
 
         it { is_expected.to contain_exactly(kept_dossier.id) }
@@ -432,8 +432,8 @@ describe DossierFilterService do
         let(:filter) { ["rna – Département", value] }
 
         before do
-          kept_dossier.root_champs_public.find { _1.stable_id == 1 }.update(value_json: { "department_code" => value })
-          create(:dossier, procedure:).root_champs_public.find { _1.stable_id == 1 }.update(value_json: { "department_code" => "unknown" })
+          kept_dossier.public_root_champs.find { _1.stable_id == 1 }.update(value_json: { "department_code" => value })
+          create(:dossier, procedure:).public_root_champs.find { _1.stable_id == 1 }.update(value_json: { "department_code" => "unknown" })
         end
 
         it { is_expected.to contain_exactly(kept_dossier.id) }
@@ -449,8 +449,8 @@ describe DossierFilterService do
         let(:filter) { ["rna – Région", value] }
 
         before do
-          kept_dossier.root_champs_public.find { _1.stable_id == 1 }.update(value_json: { "region_code" => value })
-          create(:dossier, procedure:).root_champs_public.find { _1.stable_id == 1 }.update(value_json: { "region_code" => "unknown" })
+          kept_dossier.public_root_champs.find { _1.stable_id == 1 }.update(value_json: { "region_code" => value })
+          create(:dossier, procedure:).public_root_champs.find { _1.stable_id == 1 }.update(value_json: { "region_code" => "unknown" })
         end
 
         it { is_expected.to contain_exactly(kept_dossier.id) }

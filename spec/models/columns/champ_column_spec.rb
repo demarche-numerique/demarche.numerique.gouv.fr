@@ -722,8 +722,8 @@ describe Columns::ChampColumn do
         let(:tartine_dossier) { create(:dossier, procedure:) }
 
         before do
-          beurre_dossier.root_champs_public.first.update(value: 'beurre')
-          tartine_dossier.root_champs_public.first.update(value: 'tartine')
+          beurre_dossier.public_root_champs.first.update(value: 'beurre')
+          tartine_dossier.public_root_champs.first.update(value: 'tartine')
         end
 
         context 'asc' do
@@ -751,8 +751,8 @@ describe Columns::ChampColumn do
           nothing_dossier
           procedure.draft_revision.add_type_de_champ(tdc)
           procedure.publish_revision!(procedure.administrateurs.first)
-          beurre_dossier.root_champs_public.last.update(value: 'beurre')
-          tartine_dossier.root_champs_public.last.update(value: 'tartine')
+          beurre_dossier.public_root_champs.last.update(value: 'beurre')
+          tartine_dossier.public_root_champs.last.update(value: 'tartine')
         end
 
         context 'asc' do
@@ -774,8 +774,8 @@ describe Columns::ChampColumn do
       let(:vin_dossier) { create(:dossier, procedure:) }
 
       before do
-        biere_dossier.root_champs_private.first.update(value: 'biere')
-        vin_dossier.root_champs_private.first.update(value: 'vin')
+        biere_dossier.private_root_champs.first.update(value: 'biere')
+        vin_dossier.private_root_champs.first.update(value: 'vin')
       end
 
       context 'asc' do

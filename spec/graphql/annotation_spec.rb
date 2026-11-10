@@ -20,7 +20,7 @@ RSpec.describe Mutations::DossierModifierAnnotations, type: :graphql do
   end
   let(:dossiers) { [] }
   let(:instructeur) { create(:instructeur, followed_dossiers: dossiers) }
-  let(:champs_private) { dossier.root_champs_private }
+  let(:champs_private) { dossier.private_root_champs }
 
   let(:query) { '' }
   let(:context) { { administrateur_id: admin.id, procedure_ids: admin.procedure_ids, write_access: true } }

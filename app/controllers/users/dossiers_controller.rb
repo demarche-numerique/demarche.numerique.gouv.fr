@@ -353,7 +353,7 @@ module Users
 
       respond_to do |format|
         format.turbo_stream do
-          @to_show, @to_hide, @to_update = champs_to_turbo_update(champs_attributes_params(:public), dossier.flat_champs_public)
+          @to_show, @to_hide, @to_update = champs_to_turbo_update(champs_attributes_params(:public), dossier.public_flat_champs)
           render :update, layout: false
         end
       end
@@ -373,7 +373,7 @@ module Users
       champ.validate(:champ_value) if champ.external_data_settled?
       respond_to do |format|
         format.turbo_stream do
-          @to_show, @to_hide, @to_update = champ_to_turbo_update(champ, dossier.flat_champs_public)
+          @to_show, @to_hide, @to_update = champ_to_turbo_update(champ, dossier.public_flat_champs)
 
           render :update, layout: false
         end

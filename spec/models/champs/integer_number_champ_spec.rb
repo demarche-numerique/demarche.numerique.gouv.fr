@@ -4,7 +4,7 @@ describe Champs::IntegerNumberChamp do
   let(:public_type_de_champs) { [{ type: :integer_number }] }
   let(:procedure) { create(:procedure, public_type_de_champs:) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.root_champs_public.first.tap { _1.update(value:) } }
+  let(:champ) { dossier.public_root_champs.first.tap { _1.update(value:) } }
   let(:value) { nil }
   subject { champ.validate(:champ_value) }
 

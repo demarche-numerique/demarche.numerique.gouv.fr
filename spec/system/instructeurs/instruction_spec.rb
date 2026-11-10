@@ -274,7 +274,7 @@ describe 'Instructing a dossier:', js: true do
   context 'with dossiers having attached files' do
     let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :piece_justificative }], instructeurs: [instructeur]) }
     let(:dossier) { create(:dossier, :en_construction, procedure: procedure) }
-    let(:champ) { dossier.root_champs_public.first }
+    let(:champ) { dossier.public_root_champs.first }
     let(:path) { 'spec/fixtures/files/piece_justificative_0.pdf' }
     let(:commentaire) { create(:commentaire, instructeur: instructeur, dossier: dossier) }
 

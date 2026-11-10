@@ -176,10 +176,10 @@ describe 'Referentiel API:' do
             dossier = Dossier.last
 
             # check prefill values in db
-            expect(dossier.flat_champs_public.find { it.stable_id.to_s == referentiel_stable_id.to_s }.value).to eq("PG46YY6YWCX8")
-            expect(dossier.flat_champs_public.find { it.stable_id.to_s == prefill_text_stable_id.to_s }.value).to eq("constructed")
-            expect(dossier.flat_champs_public.find { it.stable_id.to_s == prefill_boolean_stable_id.to_s }.value).to eq("true")
-            repetition_values = dossier.flat_champs_public.filter { it.stable_id.to_s == prefill_repetition_children_stable_id.to_s }.map(&:value)
+            expect(dossier.public_flat_champs.find { it.stable_id.to_s == referentiel_stable_id.to_s }.value).to eq("PG46YY6YWCX8")
+            expect(dossier.public_flat_champs.find { it.stable_id.to_s == prefill_text_stable_id.to_s }.value).to eq("constructed")
+            expect(dossier.public_flat_champs.find { it.stable_id.to_s == prefill_boolean_stable_id.to_s }.value).to eq("true")
+            repetition_values = dossier.public_flat_champs.filter { it.stable_id.to_s == prefill_repetition_children_stable_id.to_s }.map(&:value)
             expect(repetition_values).to include("rue du puits")
             expect(repetition_values).to include("place de la bourse")
 
@@ -384,7 +384,7 @@ describe 'Referentiel API:' do
             expect(page).to have_content("Référence trouvée : PG46YY6YWCX8")
             dossier.reload
             # check prefill values in db
-            expect(dossier.flat_champs_private.find { it.stable_id.to_s == prefill_by_public_referentiel_stable_id.to_s }.value).to eq("constructed")
+            expect(dossier.private_flat_champs.find { it.stable_id.to_s == prefill_by_public_referentiel_stable_id.to_s }.value).to eq("constructed")
           end
           click_on("Déposer le dossier")
         end
@@ -494,11 +494,11 @@ describe 'Referentiel API:' do
           dossier.reload
 
           # check civilite was prefilled with normalized value
-          civilite_champ = dossier.flat_champs_public.find { it.stable_id.to_s == prefill_civilite_stable_id.to_s }
+          civilite_champ = dossier.public_flat_champs.find { it.stable_id.to_s == prefill_civilite_stable_id.to_s }
           expect(civilite_champ.value).to eq("M.")
 
           # check address was prefilled and resolved via BAN API
-          address_champ = dossier.flat_champs_public.find { it.stable_id.to_s == prefill_address_stable_id.to_s }
+          address_champ = dossier.public_flat_champs.find { it.stable_id.to_s == prefill_address_stable_id.to_s }
           expect(address_champ.external_id).to eq("20 avenue de Ségur, 75007 Paris")
           expect(address_champ.value).to be_present
           expect(address_champ.value_json).to be_present
@@ -584,7 +584,7 @@ describe 'Referentiel API:' do
             expect(page).to have_content("Référence trouvée : PG46YY6YWCX8")
             dossier.reload
             # check prefill values in db
-            expect(dossier.flat_champs_private.find { it.stable_id.to_s == prefill_by_private_referentiel_stable_id.to_s }.value).to eq("constructed")
+            expect(dossier.private_flat_champs.find { it.stable_id.to_s == prefill_by_private_referentiel_stable_id.to_s }.value).to eq("constructed")
           end
         end
       end
@@ -667,11 +667,11 @@ describe 'Referentiel API:' do
           dossier = Dossier.last
 
           # wait until selected key had been submitted to backend
-          wait_until { dossier.reload.flat_champs_private.find(&:repetition?).rows.first.flat_children.find(&:referentiel?).value&.match?(/010002699 CENTRE MEDICAL REGINA/) }
+          wait_until { dossier.reload.private_flat_champs.find(&:repetition?).rows.first.flat_children.find(&:referentiel?).value&.match?(/010002699 CENTRE MEDICAL REGINA/) }
 
           # wait until refreshed with prefilled values
           expect(page).to have_content("Donnée remplie automatiquement.", count: 2)
-          expect(dossier.reload.flat_champs_private.find(&:repetition?).rows.first.flat_children.map(&:value)).to include("010002699")
+          expect(dossier.reload.private_flat_champs.find(&:repetition?).rows.first.flat_children.map(&:value)).to include("010002699")
         end
       end
     end
@@ -719,7 +719,7 @@ describe 'Referentiel API:' do
     let(:dossier) { create(:dossier, :en_instruction, procedure:) }
 
     def public_champs_with(stable_id)
-      dossier.reload.flat_champs_public.filter { it.stable_id == stable_id }
+      dossier.reload.public_flat_champs.filter { it.stable_id == stable_id }
     end
 
     # Pas de `vcr: true` : sans fixture par exemple, VCR passerait en enregistrement

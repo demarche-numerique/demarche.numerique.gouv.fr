@@ -10,11 +10,11 @@ module Maintenance
     end
 
     def process(cloned_dossier)
-      cloned_dossier.root_champs_private
+      cloned_dossier.private_root_champs
         .filter { checkable_pj?(_1, cloned_dossier) }
         .map do |cloned_champ|
           parent_champ = cloned_dossier.parent_dossier
-            .root_champs_private
+            .private_root_champs
             .find { _1.stable_id == cloned_champ.stable_id }
 
           next if !parent_champ

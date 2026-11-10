@@ -14,7 +14,7 @@ describe RepetitionRow do
   let(:fresh_dossier) { Dossier.find(dossier.id) }
 
   # the repetition starts with one row
-  before { 3.times { dossier.root_champs_public.find(&:repetition?).add_row(updated_by: 'test') } }
+  before { 3.times { dossier.public_root_champs.find(&:repetition?).add_row(updated_by: 'test') } }
 
   describe '#flat_children' do
     it 'computes the revision children once for the whole repetition' do
@@ -25,7 +25,7 @@ describe RepetitionRow do
         original.call(*args)
       end
 
-      expect(fresh_dossier.flat_champs_public.size).to eq(9) # the repetition + 4 rows x 2 children
+      expect(fresh_dossier.public_flat_champs.size).to eq(9) # the repetition + 4 rows x 2 children
       expect(calls).to eq(1)
     end
   end

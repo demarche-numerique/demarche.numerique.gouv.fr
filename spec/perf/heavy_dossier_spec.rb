@@ -12,7 +12,7 @@ describe Users::DossiersController, type: :controller do
     let(:public_type_de_champs) { (0...nb_champ).map { |i| { type: :yes_no, libelle: "c_#{i}" } } }
     let(:dossier) { create(:dossier, user:, procedure:) }
 
-    let(:last_champ) { dossier.root_champs_public.last }
+    let(:last_champ) { dossier.public_root_champs.last }
 
     before do
       tdcs = procedure.active_revision.type_de_champs.to_a
@@ -24,7 +24,7 @@ describe Users::DossiersController, type: :controller do
       end
 
       # all champs are visible
-      dossier.root_champs_public.take((nb_champ - 1)).each { |champ| champ.update_columns(value: 'true') }
+      dossier.public_root_champs.take((nb_champ - 1)).each { |champ| champ.update_columns(value: 'true') }
       last_champ.update_columns(value: 'false')
     end
 
@@ -33,7 +33,7 @@ describe Users::DossiersController, type: :controller do
         preloaded_dossier = DossierPreloader.load_one(dossier)
         expect(preloaded_dossier.valid?).to eq(true)
 
-        expect(preloaded_dossier.root_champs_public.last.visible?).to eq(true)
+        expect(preloaded_dossier.public_root_champs.last.visible?).to eq(true)
         expect(last_champ.reload.true?).to eq(false)
       end
     end

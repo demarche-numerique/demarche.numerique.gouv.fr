@@ -199,7 +199,7 @@ RSpec.describe EditableChamp::ChampLabelContentComponent, type: :component do
   describe "rendering the modification date" do
     let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text, libelle: "Texte" }]) }
     let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-    let(:champ) { dossier.root_champs_public.first }
+    let(:champ) { dossier.public_root_champs.first }
     let(:value_updated_at) { 3.days.ago.change(usec: 0) }
     let(:seen_at) { 1.day.ago }
     let(:component) { described_class.new(form:, champ:, seen_at:) }

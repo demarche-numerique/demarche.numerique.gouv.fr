@@ -7,7 +7,7 @@ module Maintenance
     let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text }]) }
     let!(:dossier) do
       create(:dossier, procedure:, state: :en_construction).tap do |dossier|
-        dossier.root_champs_public.first.update!(value: 'Hélène pommes')
+        dossier.public_root_champs.first.update!(value: 'Hélène pommes')
       end
     end
 

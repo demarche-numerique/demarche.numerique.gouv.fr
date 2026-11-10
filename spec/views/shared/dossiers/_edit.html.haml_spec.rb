@@ -46,7 +46,7 @@ describe 'shared/dossiers/edit', type: :view do
     let(:public_type_de_champs) { [{ type: :textarea }] }
     let(:procedure) { create(:procedure, public_type_de_champs:) }
     let(:dossier) { create(:dossier, procedure:) }
-    let(:champ) { dossier.root_champs_public.first }
+    let(:champ) { dossier.public_root_champs.first }
 
     before do
       champ.update(value: 'This <strong>should be escaped</strong>')
@@ -60,7 +60,7 @@ describe 'shared/dossiers/edit', type: :view do
 
   context 'with a single-value list' do
     let(:public_type_de_champs) { [{ type: :drop_down_list, options:, mandatory: }] }
-    let(:champ) { dossier.root_champs_public.first }
+    let(:champ) { dossier.public_root_champs.first }
     let(:type_de_champ) { champ.type_de_champ }
     let(:enabled_options) { type_de_champ.drop_down_options }
     let(:mandatory) { true }

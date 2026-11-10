@@ -34,8 +34,8 @@ describe DossierExportConcern do
       let(:explication_type_de_champ) { procedure.active_revision.public_root_type_de_champs.find { |type_de_champ| type_de_champ.type_champ == TypeDeChamp.type_champs.fetch(:explication) } }
       let(:commune_type_de_champ) { procedure.active_revision.public_root_type_de_champs.find { |type_de_champ| type_de_champ.type_champ == TypeDeChamp.type_champs.fetch(:communes) } }
       let(:repetition_type_de_champ) { procedure.active_revision.public_root_type_de_champs.find { |type_de_champ| type_de_champ.type_champ == TypeDeChamp.type_champs.fetch(:repetition) } }
-      let(:repetition_champ) { dossier.root_champs_public.find(&:repetition?) }
-      let(:repetition_second_revision_champ) { dossier_second_revision.root_champs_public.find(&:repetition?) }
+      let(:repetition_champ) { dossier.public_root_champs.find(&:repetition?) }
+      let(:repetition_second_revision_champ) { dossier_second_revision.public_root_champs.find(&:repetition?) }
       let(:dossier) { create(:dossier, procedure: procedure) }
       let(:dossier_second_revision) { create(:dossier, procedure: procedure) }
       let(:dossier_champ_values_for_export) { dossier.champ_values_for_export(procedure.type_de_champs_for_procedure_export, format: :xlsx) }
@@ -107,14 +107,14 @@ describe DossierExportConcern do
       let(:dossier) { create(:dossier, procedure:) }
       let(:yes_no_tdc) { procedure.active_revision.public_root_type_de_champs.first }
       let(:text_tdc) { procedure.active_revision.public_root_type_de_champs.second }
-      let(:tdcs) { dossier.root_champs_public.map(&:type_de_champ) }
+      let(:tdcs) { dossier.public_root_champs.map(&:type_de_champ) }
 
       subject { dossier.champ_values_for_export(tdcs, format: :xlsx) }
 
       before do
         text_tdc.update(condition: ds_eq(champ_value(yes_no_tdc.stable_id), constant(true)))
 
-        yes_no, text = dossier.root_champs_public
+        yes_no, text = dossier.public_root_champs
         yes_no.update(value: yes_no_value)
         text.update(value: 'text')
       end
@@ -133,7 +133,7 @@ describe DossierExportConcern do
 
       context 'with another revision' do
         let(:tdc_from_another_revision) { create(:type_de_champ_communes, libelle: 'commune', condition: ds_eq(constant(true), constant(true))) }
-        let(:tdcs) { dossier.root_champs_public.map(&:type_de_champ) << tdc_from_another_revision }
+        let(:tdcs) { dossier.public_root_champs.map(&:type_de_champ) << tdc_from_another_revision }
         let(:yes_no_value) { 'true' }
 
         let(:expected) do

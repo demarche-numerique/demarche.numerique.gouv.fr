@@ -397,7 +397,7 @@ module Instructeurs
 
       respond_to do |format|
         format.turbo_stream do
-          @to_show, @to_hide, @to_update = champs_to_turbo_update(champs_attributes_params(:private), dossier.flat_champs_private)
+          @to_show, @to_hide, @to_update = champs_to_turbo_update(champs_attributes_params(:private), dossier.private_flat_champs)
         end
       end
     end
@@ -445,7 +445,7 @@ module Instructeurs
 
       respond_to do |format|
         format.turbo_stream do
-          @to_show, @to_hide, @to_update = champ_to_turbo_update(annotation, dossier.flat_champs_private)
+          @to_show, @to_hide, @to_update = champ_to_turbo_update(annotation, dossier.private_flat_champs)
 
           render :update_annotations, layout: false
         end

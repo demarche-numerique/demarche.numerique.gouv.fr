@@ -29,7 +29,7 @@ module Maintenance
 
       context "when a siret champ carries the etablissement" do
         let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :siret }]) }
-        let(:champ) { create(:dossier, procedure:).root_champs_public.first }
+        let(:champ) { create(:dossier, procedure:).public_root_champs.first }
 
         before { champ.update_columns(etablissement_id: etablissement.id) }
 

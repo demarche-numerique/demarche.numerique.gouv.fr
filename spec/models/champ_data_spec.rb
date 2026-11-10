@@ -33,7 +33,7 @@ describe ChampData do
       context 'when repetition blank' do
         let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :repetition, mandatory: false, children: [{ type: :text }] }]) }
         let(:dossier) { create(:dossier, procedure:) }
-        let(:champ) { dossier.root_champs_public.find(&:repetition?) }
+        let(:champ) { dossier.public_root_champs.find(&:repetition?) }
 
         it { expect(champ.blank?).to be(true) }
       end
@@ -58,7 +58,7 @@ describe ChampData do
     context 'when repetition not blank' do
       let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :repetition, children: [{ type: :text }] }]) }
       let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-      let(:champ) { dossier.root_champs_public.find(&:repetition?) }
+      let(:champ) { dossier.public_root_champs.find(&:repetition?) }
 
       it { expect(champ.blank?).to be(false) }
     end
@@ -106,8 +106,8 @@ describe ChampData do
     let(:dossier) { create(:dossier) }
 
     it 'partition public and private' do
-      expect(dossier.root_champs_public.count).to eq(1)
-      expect(dossier.root_champs_private.count).to eq(1)
+      expect(dossier.public_root_champs.count).to eq(1)
+      expect(dossier.private_root_champs.count).to eq(1)
     end
 
     it do
@@ -119,11 +119,11 @@ describe ChampData do
       it { expect(dossier.procedure.revisions.count).to eq(2) }
 
       it 'does not duplicate public champs' do
-        expect(dossier.root_champs_public.count).to eq(1)
+        expect(dossier.public_root_champs.count).to eq(1)
       end
 
       it 'does not duplicate private champs' do
-        expect(dossier.root_champs_private.count).to eq(1)
+        expect(dossier.private_root_champs.count).to eq(1)
       end
     end
   end
@@ -133,12 +133,12 @@ describe ChampData do
       create(:procedure, public_type_de_champs: [{}, { type: :header_section }, { type: :repetition, mandatory: true, children: [{ type: :header_section }] }], private_type_de_champs: [{}, { type: :header_section }])
     end
     let(:dossier) { create(:dossier, procedure: procedure) }
-    let(:public_champ) { dossier.root_champs_public.first }
-    let(:private_champ) { dossier.root_champs_private.first }
+    let(:public_champ) { dossier.public_root_champs.first }
+    let(:private_champ) { dossier.private_root_champs.first }
     let(:standalone_champ) { build(:champ, type_de_champ: build(:type_de_champ), dossier: build(:dossier)) }
-    let(:public_sections) { dossier.root_champs_public.filter(&:header_section?) }
-    let(:private_sections) { dossier.root_champs_private.filter(&:header_section?) }
-    let(:sections_in_repetition) { dossier.root_champs_public.find(&:repetition?).rows.flat_map(&:flat_children).filter(&:header_section?) }
+    let(:public_sections) { dossier.public_root_champs.filter(&:header_section?) }
+    let(:private_sections) { dossier.private_root_champs.filter(&:header_section?) }
+    let(:sections_in_repetition) { dossier.public_root_champs.find(&:repetition?).rows.flat_map(&:flat_children).filter(&:header_section?) }
 
     it 'returns the sibling sections of a champ' do
       expect(public_sections).not_to be_empty

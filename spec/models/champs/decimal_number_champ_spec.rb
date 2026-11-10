@@ -5,7 +5,7 @@ describe Champs::DecimalNumberChamp do
   let(:private_type_de_champs) { [] }
   let(:procedure) { create(:procedure, public_type_de_champs:, private_type_de_champs:) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.root_champs_public.first.tap { _1.update(value:) } }
+  let(:champ) { dossier.public_root_champs.first.tap { _1.update(value:) } }
   let(:value) { nil }
 
   describe 'validation' do
@@ -127,7 +127,7 @@ describe Champs::DecimalNumberChamp do
     context 'when the champ is private and the value is invalid' do
       let(:public_type_de_champs) { [] }
       let(:private_type_de_champs) { [{ type: :decimal_number }] }
-      let(:champ) { dossier.root_champs_private.first.tap { _1.update(value:) } }
+      let(:champ) { dossier.private_root_champs.first.tap { _1.update(value:) } }
       let(:value) { '2.6666' }
 
       it { is_expected.to be_falsey }

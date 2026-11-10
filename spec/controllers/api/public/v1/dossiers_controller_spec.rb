@@ -115,9 +115,9 @@ RSpec.describe API::Public::V1::DossiersController, type: :controller do
               expect { create_request }.not_to raise_error
               dossier = Dossier.last
 
-              first_row = dossier.root_champs_public.first.rows.first
-              second_row = dossier.root_champs_public.first.rows.last
-              expect(dossier.root_champs_public.first.rows.flat_map(&:flat_children).map(&:value)).to match_array(['Texte court', 'Texte court'])
+              first_row = dossier.public_root_champs.first.rows.first
+              second_row = dossier.public_root_champs.first.rows.last
+              expect(dossier.public_root_champs.first.rows.flat_map(&:flat_children).map(&:value)).to match_array(['Texte court', 'Texte court'])
             end
           end
         end

@@ -21,7 +21,7 @@ module Instructeurs
 
       respond_to do |format|
         format.turbo_stream do
-          @to_show, @to_hide, @to_update = champs_to_turbo_update(champs_attributes_params(:public), dossier.flat_champs_public)
+          @to_show, @to_hide, @to_update = champs_to_turbo_update(champs_attributes_params(:public), dossier.public_flat_champs)
           render layout: false
         end
       end
@@ -60,7 +60,7 @@ module Instructeurs
 
       respond_to do |format|
         format.turbo_stream do
-          @to_show, @to_hide, @to_update = champ_to_turbo_update(champ, dossier.flat_champs_public)
+          @to_show, @to_hide, @to_update = champ_to_turbo_update(champ, dossier.public_flat_champs)
           render :update, layout: false
         end
       end

@@ -18,7 +18,7 @@ module DossierSearchableConcern
 
     search_terms = [
       user&.email,
-      *root_champs_public.flat_map(&:search_terms),
+      *public_root_champs.flat_map(&:search_terms),
       *etablissement&.search_terms,
       *(demandeur_siret&.siret if etablissement.nil?),
       individual&.nom,
@@ -27,7 +27,7 @@ module DossierSearchableConcern
       mandataire_last_name,
     ].compact_blank.join(' ')
 
-    private_search_terms = root_champs_private.flat_map(&:search_terms).compact_blank.join(' ')
+    private_search_terms = private_root_champs.flat_map(&:search_terms).compact_blank.join(' ')
 
     all_search_terms = "#{search_terms} #{private_search_terms}"
 

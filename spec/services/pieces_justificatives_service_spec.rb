@@ -10,8 +10,8 @@ describe PiecesJustificativesService do
     let(:pj_service) { PiecesJustificativesService.new(user_profile:, export_template:) }
     let(:user_profile) { build(:administrateur) }
 
-    def pj_champ(d) = d.root_champs_public.find(&:piece_justificative?)
-    def repetition(d) = d.root_champs_public.find(&:repetition?)
+    def pj_champ(d) = d.public_root_champs.find(&:piece_justificative?)
+    def repetition(d) = d.public_root_champs.find(&:repetition?)
     def attachments(champ) = champ.piece_justificative_file.attachments
 
     before { attach_file_to_champ(pj_champ(witness)) }
@@ -115,7 +115,7 @@ describe PiecesJustificativesService do
       let(:user_profile) { build(:administrateur) }
       let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :piece_justificative }]) }
       let(:witness) { create(:dossier, procedure: procedure) }
-      def pj_champ(d) = d.root_champs_public.find(&:piece_justificative?)
+      def pj_champ(d) = d.public_root_champs.find(&:piece_justificative?)
 
       context 'with a single attachment' do
         before do
@@ -158,7 +158,7 @@ describe PiecesJustificativesService do
         let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :piece_justificative, nature: 'titre_identite' }]) }
         let(:dossier) { create(:dossier, procedure: procedure) }
 
-        let(:champ_identite) { dossier.root_champs_public.find(&:titre_identite?) }
+        let(:champ_identite) { dossier.public_root_champs.find(&:titre_identite?) }
 
         before { attach_file_to_champ(champ_identite) }
 
@@ -275,7 +275,7 @@ describe PiecesJustificativesService do
       let(:witness) { create(:dossier, procedure: procedure) }
 
       let!(:private_pj) { create(:type_de_champ_piece_justificative, procedure: procedure, private: true) }
-      def private_pj_champ(d) = d.root_champs_private.find(&:piece_justificative?)
+      def private_pj_champ(d) = d.private_root_champs.find(&:piece_justificative?)
 
       before do
         attach_file_to_champ(private_pj_champ(dossier))
@@ -526,7 +526,7 @@ describe PiecesJustificativesService do
     let(:dossier_1) { create(:dossier, :with_populated_champs, procedure:) }
     let(:champs) { dossier_1.champs }
 
-    def repetition(d, index:) = d.root_champs_public.filter(&:repetition?)[index]
+    def repetition(d, index:) = d.public_root_champs.filter(&:repetition?)[index]
 
     subject { PiecesJustificativesService.new(user_profile:, export_template: nil).send(:compute_champ_id_row_index, champs) }
 
@@ -555,7 +555,7 @@ describe PiecesJustificativesService do
     end
 
     it do
-      champs = dossier_1.root_champs_public
+      champs = dossier_1.public_root_champs
       repet_0 = champs[0]
       pj_0 = repet_0.rows.first.flat_children.first
       pj_1 = repet_0.rows.second.flat_children.first
@@ -576,13 +576,13 @@ describe PiecesJustificativesService do
   describe 'carte champ static map' do
     let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :carte }, { type: :piece_justificative }]) }
     let(:dossier) { create(:dossier, procedure:) }
-    let(:carte_champ) { dossier.root_champs_public.find(&:carte?) }
+    let(:carte_champ) { dossier.public_root_champs.find(&:carte?) }
     let(:documents) { PiecesJustificativesService.new(user_profile:, export_template: nil).liste_documents(Dossier.where(id: dossier.id)).map(&:first) }
 
     before do
       carte_champ.update(geo_areas: [build(:geo_area, :selection_utilisateur, :polygon)])
       carte_champ.attach_static_map(StringIO.new('map-bytes'), digest: 'abc')
-      attach_file_to_champ(dossier.root_champs_public.find(&:piece_justificative?))
+      attach_file_to_champ(dossier.public_root_champs.find(&:piece_justificative?))
     end
 
     [:administrateur, :instructeur, :expert].each do |profile|

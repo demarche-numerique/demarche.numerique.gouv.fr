@@ -120,7 +120,7 @@ class PiecesJustificativesService
   end
 
   def pjs_for_champs(dossiers)
-    champs = liste_documents_allows?(:with_champs_private) ? dossiers.flat_map(&:champs) : dossiers.flat_map(&:flat_champs_public)
+    champs = liste_documents_allows?(:with_champs_private) ? dossiers.flat_map(&:champs) : dossiers.flat_map(&:public_flat_champs)
     champs = champs.filter { it.piece_justificative? && !it.titre_identite? }
 
     champs_id_row_index = compute_champ_id_row_index(champs)

@@ -14,7 +14,7 @@ describe Users::DossiersController, type: :controller do
     let(:dossier) { create(:dossier, :en_construction, :with_individual, *dossier_traits, procedure:, user: owner).tap { _1.with_update_stream(_1.user) } }
     let(:now) { Time.current.change(usec: 0) }
     let(:params) { { id: dossier.id } }
-    let(:champs) { dossier.root_champs_public }
+    let(:champs) { dossier.public_root_champs }
     let(:make_changes) do
       champ = champs.first
       if champ.present?
@@ -205,10 +205,10 @@ describe Users::DossiersController, type: :controller do
     let(:public_type_de_champs) { [{}, { type: :piece_justificative }] }
     let(:procedure) { create(:procedure, :published, public_type_de_champs:) }
     let!(:dossier) { create(:dossier, :en_construction, user:, procedure:) }
-    let(:first_champ) { dossier.root_champs_public.first }
-    let(:first_champ_user_buffer) { dossier.with_update_stream(dossier.user) { dossier.root_champs_public.first } }
-    let(:piece_justificative_champ) { dossier.root_champs_public.last }
-    let(:piece_justificative_champ_user_buffer) { dossier.with_update_stream(dossier.user) { dossier.root_champs_public.last } }
+    let(:first_champ) { dossier.public_root_champs.first }
+    let(:first_champ_user_buffer) { dossier.with_update_stream(dossier.user) { dossier.public_root_champs.first } }
+    let(:piece_justificative_champ) { dossier.public_root_champs.last }
+    let(:piece_justificative_champ_user_buffer) { dossier.with_update_stream(dossier.user) { dossier.public_root_champs.last } }
     let(:value) { 'beautiful value' }
     let(:file) { fixture_file_upload('spec/fixtures/files/piece_justificative_0.pdf', 'application/pdf') }
     let(:now) { Time.current.change(usec: 0) }
@@ -244,7 +244,7 @@ describe Users::DossiersController, type: :controller do
 
     context 'when champ is pre_rempli (read-only guard)' do
       let(:public_type_de_champs) { [{ type: :pre_rempli }] }
-      let(:pre_rempli_champ) { dossier.root_champs_public.first }
+      let(:pre_rempli_champ) { dossier.public_root_champs.first }
 
       before { pre_rempli_champ.update_column(:value, 'original') }
 
@@ -488,17 +488,17 @@ describe Users::DossiersController, type: :controller do
         subject
 
         dossier.reload
-        annotation = dossier.root_champs_private.find { it.stable_id == 100 }
+        annotation = dossier.private_root_champs.find { it.stable_id == 100 }
         expect(annotation.value).to be_nil
 
         dossier.with_update_stream(dossier.user) do
-          referentiel = dossier.root_champs_public.find { it.stable_id == referentiel_stable_id }
+          referentiel = dossier.public_root_champs.find { it.stable_id == referentiel_stable_id }
           expect(referentiel.data.deep_symbolize_keys).to eq(data: [suggestion_data])
         end
 
         dossier.merge_user_buffer_stream!
         dossier.reload
-        annotation = dossier.root_champs_private.find { it.stable_id == 100 }
+        annotation = dossier.private_root_champs.find { it.stable_id == 100 }
         expect(annotation.value).to eq(suggestion_data[:finess])
         expect(annotation.stream).to eq(Dossier::MAIN_STREAM)
       end
@@ -526,7 +526,7 @@ describe Users::DossiersController, type: :controller do
 
           dossier.reload
           dossier.with_update_stream(dossier.user) do
-            referentiel = dossier.root_champs_public.find { it.stable_id == referentiel_stable_id }
+            referentiel = dossier.public_root_champs.find { it.stable_id == referentiel_stable_id }
             expect(referentiel.value).to be_nil
             expect(referentiel.data).to be_nil
           end
@@ -614,7 +614,7 @@ describe Users::DossiersController, type: :controller do
 
     let(:procedure) { create(:procedure, :published, :for_individual, public_type_de_champs: [{ type: :repetition, libelle: 'bloc', children: [{ libelle: 'sous champ' }] }]) }
     let!(:dossier) { create(:dossier, :with_individual, user:, procedure:) }
-    let(:repetition) { dossier.root_champs_public.first }
+    let(:repetition) { dossier.public_root_champs.first }
     let(:last_row_champ) { repetition.rows.last.flat_children.first }
 
     subject { patch :update, params: { id: dossier.id, dossier: { champs_public_attributes: { last_row_champ.public_id => { value: 'rempli' } } } }, format: :turbo_stream }
@@ -705,7 +705,7 @@ describe Users::DossiersController, type: :controller do
     context 'live announcement of a RIB status (polling anti-spam)' do
       render_views
       let(:public_type_de_champs) { [{ type: :piece_justificative, nature: 'rib', stable_id: }] }
-      let(:champ) { dossier.root_champs_public.first }
+      let(:champ) { dossier.public_root_champs.first }
       let(:region_id) { "#{champ.focusable_input_id}-aria-live" }
 
       def announced_region(body)
@@ -825,7 +825,7 @@ describe Users::DossiersController, type: :controller do
         it 'recomputes visibility of conditional champs after polling' do
           subject
 
-          explication_champ = assigns(:dossier).flat_champs_public
+          explication_champ = assigns(:dossier).public_flat_champs
             .find { _1.type_de_champ.stable_id == explication_stable_id }
           expect(assigns(:to_show)).to include("##{explication_champ.input_group_id}")
         end

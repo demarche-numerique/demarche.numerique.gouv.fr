@@ -4,7 +4,7 @@ describe Champs::DossierLinkChamp, type: :model do
   let(:public_type_de_champs) { [{ type: :dossier_link, mandatory: }] }
   let(:procedure) { create(:procedure, public_type_de_champs:) }
   let(:dossier) { create(:dossier, :en_construction, procedure:) }
-  let(:champ) { dossier.root_champs_public.first.tap { _1.update(value:) } }
+  let(:champ) { dossier.public_root_champs.first.tap { _1.update(value:) } }
   let(:value) { nil }
   let(:mandatory) { false }
 

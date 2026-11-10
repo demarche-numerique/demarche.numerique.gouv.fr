@@ -146,8 +146,8 @@ RSpec.describe Types::DossierType, type: :graphql do
     end
 
     before do
-      dossier.root_champs_public.find { _1.type_champ == TypeDeChamp.type_champs.fetch(:address) }.update(value_json: address)
-      dossier.root_champs_public.find { _1.type_champ == TypeDeChamp.type_champs.fetch(:rna) }.update(data: rna)
+      dossier.public_root_champs.find { _1.type_champ == TypeDeChamp.type_champs.fetch(:address) }.update(value_json: address)
+      dossier.public_root_champs.find { _1.type_champ == TypeDeChamp.type_champs.fetch(:rna) }.update(data: rna)
     end
 
     it '', :slow do
@@ -156,7 +156,7 @@ RSpec.describe Types::DossierType, type: :graphql do
       expect(data[:dossier][:champs][1][:commune][:code]).to eq('75119')
       expect(data[:dossier][:champs][1][:commune][:postalCode]).to eq('75019')
       expect(data[:dossier][:champs][1][:departement][:code]).to eq('75')
-      expect(data[:dossier][:champs][2][:etablissement][:siret]).to eq dossier.root_champs_public[2].etablissement.siret
+      expect(data[:dossier][:champs][2][:etablissement][:siret]).to eq dossier.public_root_champs[2].etablissement.siret
 
       expect(data[:dossier][:revision][:champDescriptors].map { _1[:level] }).to eq([nil, nil, nil, nil, 1, nil])
       expect(data[:dossier][:revision][:champDescriptors].map { _1[:__typename] }).to eq ["CommuneChampDescriptor", "AddressChampDescriptor", "SiretChampDescriptor", "RNAChampDescriptor", "HeaderSectionChampDescriptor", "ExplicationChampDescriptor"]
@@ -177,7 +177,7 @@ RSpec.describe Types::DossierType, type: :graphql do
 
     context 'with a degraded rna champ' do
       before do
-        dossier.root_champs_public.find { _1.type_champ == TypeDeChamp.type_champs.fetch(:rna) }
+        dossier.public_root_champs.find { _1.type_champ == TypeDeChamp.type_champs.fetch(:rna) }
           .update_columns(external_id: 'W173847273', value: 'W173847273', data: nil, external_state: 'degraded')
       end
 
@@ -189,7 +189,7 @@ RSpec.describe Types::DossierType, type: :graphql do
 
     context 'with an rna champ the API did not find' do
       before do
-        dossier.root_champs_public.find { _1.type_champ == TypeDeChamp.type_champs.fetch(:rna) }
+        dossier.public_root_champs.find { _1.type_champ == TypeDeChamp.type_champs.fetch(:rna) }
           .update_columns(external_id: 'W173847273', value: 'W173847273', data: nil, external_state: 'external_error')
       end
 
@@ -202,7 +202,7 @@ RSpec.describe Types::DossierType, type: :graphql do
 
     context 'not in ban' do
       before do
-        dossier.root_champs_public.find(&:address?).update_columns(value_json: not_in_ban_address)
+        dossier.public_root_champs.find(&:address?).update_columns(value_json: not_in_ban_address)
       end
 
       it 'should return address', :slow do
@@ -215,7 +215,7 @@ RSpec.describe Types::DossierType, type: :graphql do
 
     context 'international' do
       before do
-        dossier.root_champs_public.find(&:address?).update_columns(value_json: international_address)
+        dossier.public_root_champs.find(&:address?).update_columns(value_json: international_address)
       end
 
       it 'should return address', :slow do
@@ -258,7 +258,7 @@ RSpec.describe Types::DossierType, type: :graphql do
     let(:dossier) { create(:dossier, :en_construction, :with_populated_champs, procedure:) }
     let(:query) { DOSSIER_WITH_SELECTED_CHAMP_QUERY }
     let(:variables) { { number: dossier.id, id: champ.to_typed_id } }
-    let(:champ) { dossier.root_champs_public.last }
+    let(:champ) { dossier.public_root_champs.last }
 
     context 'when champ exists' do
       it {
@@ -285,7 +285,7 @@ RSpec.describe Types::DossierType, type: :graphql do
     let(:checkbox_value) { 'true' }
 
     before do
-      dossier.root_champs_public.first.update(value: checkbox_value)
+      dossier.public_root_champs.first.update(value: checkbox_value)
     end
 
     context 'when checkbox is true' do
@@ -338,7 +338,7 @@ RSpec.describe Types::DossierType, type: :graphql do
     let(:variables) { { number: dossier.id } }
 
     before do
-      dossier.root_champs_public.first.update(value: linked_dossier.id)
+      dossier.public_root_champs.first.update(value: linked_dossier.id)
     end
 
     context 'en_construction' do
@@ -367,7 +367,7 @@ RSpec.describe Types::DossierType, type: :graphql do
     let(:variables) { { number: dossier.id } }
 
     let(:rows) do
-      dossier.root_champs_public.first.rows.map do |row|
+      dossier.public_root_champs.first.rows.map do |row|
         { champs: row.flat_children.map { { id: it.to_typed_id } } }
       end
     end
@@ -388,7 +388,7 @@ RSpec.describe Types::DossierType, type: :graphql do
     let(:large_integer) { 3400936534933 }
 
     before do
-      integer_champ = dossier.root_champs_public.first
+      integer_champ = dossier.public_root_champs.first
       integer_champ.update(value: large_integer.to_s)
     end
 
@@ -619,8 +619,8 @@ RSpec.describe Types::DossierType, type: :graphql do
     let(:query) { DOSSIER_WITH_DATE_CHAMPS_QUERY }
     let(:variables) { { number: dossier.id } }
 
-    let(:champ_date) { dossier.root_champs_public.first }
-    let(:champ_datetime) { dossier.root_champs_public.second }
+    let(:champ_date) { dossier.public_root_champs.first }
+    let(:champ_datetime) { dossier.public_root_champs.second }
 
     before do
       champ_date.update(value: '2026-01-01')

@@ -433,7 +433,7 @@
       Note: direct upload, suppression ne marchent pas comme attendu ici.
     </span>
 
-    <%- champ = @dossier.root_champs_public.find { _1.type_champ == TypeDeChamp.type_champs.fetch(:piece_justificative) } -%>
+    <%- champ = @dossier.public_root_champs.find { _1.type_champ == TypeDeChamp.type_champs.fetch(:piece_justificative) } -%>
     <%- tdc = champ.type_de_champ -%>
     <%- avis = Avis.new -%>
 

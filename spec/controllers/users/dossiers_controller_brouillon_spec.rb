@@ -50,7 +50,7 @@ describe Users::DossiersController, type: :controller do
     let(:procedure) { create(:procedure, :published, public_type_de_champs:) }
     let(:public_type_de_champs) { [{ type: :text, mandatory: false }] }
     let!(:dossier) { create(:dossier, user:, procedure:) }
-    let(:first_champ) { dossier.root_champs_public.first }
+    let(:first_champ) { dossier.public_root_champs.first }
     let(:value) { 'beautiful value' }
     let(:now) { Time.current.change(usec: 0) }
     let(:payload) { { id: dossier.id } }
@@ -213,8 +213,8 @@ describe Users::DossiersController, type: :controller do
     let(:procedure) { create(:procedure, :published, public_type_de_champs:) }
     let(:public_type_de_champs) { [{}, { type: :piece_justificative, mandatory: false }] }
     let(:dossier) { create(:dossier, user:, procedure:, brouillon_close_to_expiration_notice_sent_at: 10.days.ago) }
-    let(:first_champ) { dossier.root_champs_public.first }
-    let(:piece_justificative_champ) { dossier.root_champs_public.last }
+    let(:first_champ) { dossier.public_root_champs.first }
+    let(:piece_justificative_champ) { dossier.public_root_champs.last }
     let(:value) { 'beautiful value' }
     let(:file) { fixture_file_upload('spec/fixtures/files/piece_justificative_0.pdf', 'application/pdf') }
     let(:now) { Time.current.change(usec: 0) }
@@ -559,8 +559,8 @@ describe Users::DossiersController, type: :controller do
       render_views
 
       let(:public_type_de_champs) { [{ type: :text }, { type: :integer_number }] }
-      let(:text_champ) { dossier.root_champs_public.first }
-      let(:number_champ) { dossier.root_champs_public.last }
+      let(:text_champ) { dossier.public_root_champs.first }
+      let(:number_champ) { dossier.public_root_champs.last }
       let(:validate) { "true" }
       let(:submit_payload) do
         {

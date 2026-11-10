@@ -32,16 +32,16 @@ module DossierChampsConcern
     end
   end
 
-  def root_champs_public
-    @root_champs_public ||= revision.public_root_type_de_champs.map { project_champ(_1) }
+  def public_root_champs
+    @public_root_champs ||= revision.public_root_type_de_champs.map { project_champ(_1) }
   end
 
-  def root_champs_private
-    @root_champs_private ||= revision.private_root_type_de_champs.map { project_champ(_1) }
+  def private_root_champs
+    @private_root_champs ||= revision.private_root_type_de_champs.map { project_champ(_1) }
   end
 
   def champs
-    flat_champs_public + flat_champs_private
+    public_flat_champs + private_flat_champs
   end
 
   # Les champs qu'un champ situé sur `row_id` peut référencer : ceux de sa propre
@@ -53,8 +53,8 @@ module DossierChampsConcern
     Array(champs_by_row_id[row_id]) + Array(champs_by_row_id[nil])
   end
 
-  def flat_champs_public
-    @flat_champs_public ||= root_champs_public.flat_map do |champ|
+  def public_flat_champs
+    @public_flat_champs ||= public_root_champs.flat_map do |champ|
       if champ.repetition?
         [champ] + champ.rows.flat_map(&:flat_children)
       else
@@ -63,8 +63,8 @@ module DossierChampsConcern
     end
   end
 
-  def flat_champs_private
-    @flat_champs_private ||= root_champs_private.flat_map do |champ|
+  def private_flat_champs
+    @private_flat_champs ||= private_root_champs.flat_map do |champ|
       if champ.repetition?
         [champ] + champ.rows.flat_map(&:flat_children)
       else
@@ -488,10 +488,10 @@ module DossierChampsConcern
     @champ_data_by_public_id = nil
     @discarded_champ_data_by_public_id = nil
     @champs_by_row_id = nil
-    @root_champs_public = nil
-    @root_champs_private = nil
-    @flat_champs_public = nil
-    @flat_champs_private = nil
+    @public_root_champs = nil
+    @private_root_champs = nil
+    @public_flat_champs = nil
+    @private_flat_champs = nil
     @repetition_row_ids = nil
     @revision_stable_ids = nil
     @champ_data_on_stream = nil
