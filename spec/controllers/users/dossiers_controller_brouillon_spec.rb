@@ -7,7 +7,7 @@ describe Users::DossiersController, type: :controller do
 
   describe '#brouillon' do
     before { sign_in(user) }
-    let!(:dossier) { create(:dossier, user: user, autorisation_donnees: true, procedure: procedures.entreprise) }
+    let!(:dossier) { create(:dossier, :with_entreprise, user: user, autorisation_donnees: true, procedure: procedures.entreprise) }
 
     subject { get :brouillon, params: { id: dossier.id } }
 
@@ -33,11 +33,33 @@ describe Users::DossiersController, type: :controller do
       let!(:dossier) { dossiers.en_construction }
       it { is_expected.to redirect_to(modifier_dossier_path(dossier)) }
     end
+
+    context 'when the dossier was switched to for_tiers without mandataire' do
+      let!(:dossier) { create(:dossier, :for_tiers_without_notification, user:, procedure: procedures.individual) }
+      before { dossier.update_columns(mandataire_first_name: nil, mandataire_last_name: nil) }
+
+      it do
+        is_expected.to redirect_to(identite_dossier_path(dossier))
+        expect(flash.alert).to eq(I18n.t('users.dossiers.fill_identity.individual'))
+      end
+    end
+
+    context 'when the siret is pending because API Entreprise is unavailable' do
+      let!(:dossier) { create(:dossier, :with_unverified_demandeur_siret, user:, procedure: procedures.entreprise) }
+
+      it { is_expected.to render_template(:brouillon) }
+    end
+
+    context 'when the dossier has no establishment' do
+      let!(:dossier) { create(:dossier, user:, procedure: procedures.entreprise) }
+
+      it { is_expected.to redirect_to(siret_dossier_path(dossier)) }
+    end
   end
 
   describe '#edit' do
     before { sign_in(user) }
-    let!(:dossier) { create(:dossier, user: user, procedure: procedures.entreprise) }
+    let!(:dossier) { create(:dossier, :with_entreprise, user: user, procedure: procedures.entreprise) }
 
     it 'returns the edit page' do
       get :brouillon, params: { id: dossier.id }
@@ -49,7 +71,7 @@ describe Users::DossiersController, type: :controller do
     before { sign_in(user) }
     let(:procedure) { create(:procedure, :published, public_type_de_champs:) }
     let(:public_type_de_champs) { [{ type: :text, mandatory: false }] }
-    let!(:dossier) { create(:dossier, user:, procedure:) }
+    let!(:dossier) { create(:dossier, :with_entreprise, user:, procedure:) }
     let(:first_champ) { dossier.public_root_champs.first }
     let(:value) { 'beautiful value' }
     let(:now) { Time.current.change(usec: 0) }
@@ -58,6 +80,18 @@ describe Users::DossiersController, type: :controller do
     subject do
       travel_to now
       post :submit_brouillon, params: payload
+    end
+
+    context 'when the dossier was switched to for_tiers without mandataire' do
+      let!(:dossier) { create(:dossier, :for_tiers_without_notification, user:, procedure: procedures.individual) }
+      before { dossier.update_columns(mandataire_first_name: nil, mandataire_last_name: nil) }
+
+      it 'redirects to the identity step' do
+        subject
+
+        expect(response).to redirect_to(identite_dossier_path(dossier))
+        expect(dossier.reload).to be_brouillon
+      end
     end
 
     context 'when the dossier cannot be updated by the user' do
@@ -149,7 +183,7 @@ describe Users::DossiersController, type: :controller do
 
     context 'when procedure has sva enabled' do
       let(:procedure) { create(:procedure, :sva) }
-      let!(:dossier) { create(:dossier, :brouillon, procedure:, user:) }
+      let!(:dossier) { create(:dossier, :brouillon, :with_entreprise, procedure:, user:) }
 
       it 'passe automatiquement en instruction' do
         delivery = double.tap { expect(_1).to receive(:deliver_later).with(no_args).twice }

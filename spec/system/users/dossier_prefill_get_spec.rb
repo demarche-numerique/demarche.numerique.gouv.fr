@@ -102,7 +102,7 @@ describe 'Prefilling a dossier (with a GET request):', js: true do
 
   context 'when authenticated with existing dossier and session params (ie: reload the page)' do
     let(:user) { create(:user, password: password) }
-    let(:dossier) { create(:dossier, :prefilled, procedure:, prefill_token: "token", user: nil) }
+    let(:dossier) { create(:dossier, :prefilled, :with_individual, procedure:, prefill_token: "token", user: nil) }
     let(:public_type_de_champs) { [{}] }
 
     before do

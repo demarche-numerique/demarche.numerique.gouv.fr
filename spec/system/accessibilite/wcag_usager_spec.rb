@@ -157,7 +157,7 @@ describe 'wcag rules for usager', js: true do
   end
 
   context "logged in, avec des dossiers déposés" do
-    let(:dossier) { create(:dossier, procedure: procedure, user: litteraire_user) }
+    let(:dossier) { create(:dossier, :with_individual, procedure: procedure, user: litteraire_user) }
     before do
       login_as litteraire_user, scope: :user
     end
