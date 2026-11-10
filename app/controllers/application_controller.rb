@@ -477,7 +477,7 @@ class ApplicationController < ActionController::Base
   def locale_from_accept_language
     Rack::Utils.q_values(request.accept_language.to_s.scrub)
       .sort_by.with_index { |(_, quality), index| [-quality, index] }
-      .filter_map { |language, _| available_locale(language.split('-').first.to_s.downcase) }
+      .filter_map { |language, _| available_locale(language.to_s.partition('-').first.downcase) }
       .first
   end
 
