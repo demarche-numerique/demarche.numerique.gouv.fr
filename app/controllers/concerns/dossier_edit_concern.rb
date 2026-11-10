@@ -99,7 +99,7 @@ module DossierEditConcern
 
   def champ_permitted_attributes(scope, not_in_ban:)
     [
-      :id, :value, :value_other, :external_id, :code,
+      :value, :value_other, :external_id, :code,
       :primary_value, :secondary_value, :piece_justificative_file,
       :code_departement, :accreditation_number, :accreditation_birthdate,
       :not_in_ban,
