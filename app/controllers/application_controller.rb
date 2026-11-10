@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   include Devise::StoreLocationExtension
   include ApplicationController::ErrorHandling
   include ProConnectSessionConcern
+  include LegacyLoginMethodConcern
 
   MAINTENANCE_MESSAGE = 'Le site est actuellement en maintenance. Il sera à nouveau disponible dans un court instant.'
 
@@ -27,6 +28,9 @@ class ApplicationController < ActionController::Base
   before_action :setup_tracking
   before_action :set_customizable_view_path
   before_action :display_csrf_retry_message
+  # After the guards: a request turned away by maintenance or the staging
+  # password writes nothing.
+  before_action :record_legacy_login_method
   # After the action, so that its own sign in notice does not override this one.
   after_action :confirm_account_kept_after_deletion_notice
 

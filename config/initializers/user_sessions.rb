@@ -25,11 +25,12 @@ Warden::Manager.after_set_user do |record, warden, options|
   # adopted, a sign in loop the moment they no longer are.
   #
   # The form only knows passwords; application code says how it signed the
-  # person in: `sign_in(user, login_method: :france_connect)`.
+  # person in: `sign_in(user, login_method: :france_connect)`. Fetched: a row
+  # without a method would take one from the provider cookies left in the browser.
   in :authentication
     SessionRegistrableConcern.open_session!(record, warden, scope, login_method: :password)
   in :set_user
-    SessionRegistrableConcern.open_session!(record, warden, scope, login_method: options[:login_method])
+    SessionRegistrableConcern.open_session!(record, warden, scope, login_method: options.fetch(:login_method))
 
   # :fetch -- read back from the cookie on every later request, so the row it
   # names has to still be good.
