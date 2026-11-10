@@ -247,8 +247,24 @@ describe FranceConnectController, type: :controller do
 
         expect(user.email).to eq(email.downcase)
         expect(user.email_verified_at).not_to be_nil
+        expect(user.loged_in_with_france_connect).to eq('particulier')
         expect(fci.reload.merge_token).to be_nil
         expect(response).to redirect_to(root_path(user))
+      end
+
+      context 'and another account is signed in' do
+        let(:other_user) { users.usager }
+
+        before { sign_in(other_user, login_method: :password) }
+
+        it 'closes its session before opening the new one' do
+          subject
+
+          expect(UserSession.where(sessionable: other_user).pluck(:login_method, :revoked_reason))
+            .to contain_exactly(['password', 'sign_out'])
+          expect(UserSession.where(sessionable: User.last).pluck(:login_method, :revoked_reason))
+            .to contain_exactly(['france_connect', nil])
+        end
       end
     end
 

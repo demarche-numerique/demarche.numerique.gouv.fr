@@ -95,9 +95,9 @@ class FranceConnectController < ApplicationController
     @fci.safely_associate_user!(@fci.email_france_connect)
     @fci.user.update!(email_verified_at: Time.current)
 
-    sign_in(@fci.user, login_method: :france_connect)
-
-    redirect_to destination_path(@fci.user), notice: t('france_connect.flash.connection_done', application_name: Current.application_name)
+    flash.notice = t('france_connect.flash.connection_done', application_name: Current.application_name)
+    connect_france_connect(@fci.user)
+    delete_pro_connect_session_info_cookie
   end
 
   def merge_using_password
