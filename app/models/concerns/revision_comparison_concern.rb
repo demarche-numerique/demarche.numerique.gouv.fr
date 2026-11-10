@@ -4,12 +4,10 @@ module RevisionComparisonConcern
   extend ActiveSupport::Concern
 
   def compare_type_de_champs(to_revision)
-    from_coordinates = revision_type_de_champs
-    to_coordinates = to_revision.revision_type_de_champs
-    return [] if from_coordinates == to_coordinates
+    return [] if self == to_revision
 
-    from_h = from_coordinates.index_by(&:stable_id)
-    to_h = to_coordinates.index_by(&:stable_id)
+    from_h = type_de_champs.index_by(&:stable_id)
+    to_h = to_revision.type_de_champs.index_by(&:stable_id)
 
     from_sids = from_h.keys
     to_sids = to_h.keys
@@ -21,12 +19,14 @@ module RevisionComparisonConcern
 
     moved = kept
       .map { [from_h[_1], to_h[_1]] }
-      .filter { |from, to| from.position != to.position }
+      .filter { |from, to| from.position != to.position || from.parent&.stable_id != to.parent&.stable_id }
       .map { |from, to| ProcedureRevisionChange::MoveChamp.new(from, from.position, to.position) }
+
+    preload_diffed_attachments(kept.flat_map { [from_h[_1], to_h[_1]] })
 
     changed = kept
       .map { [from_h[_1], to_h[_1]] }
-      .flat_map { |from, to| compare_type_de_champ(from.type_de_champ, to.type_de_champ, to_revision) }
+      .flat_map { |from, to| compare_type_de_champ(from, to, to_revision) }
 
     (removed + added + moved + changed).sort_by { _1.op == :remove ? from_sids.index(_1.stable_id) : to_sids.index(_1.stable_id) }
   end
@@ -53,6 +53,14 @@ module RevisionComparisonConcern
   end
 
   private
+
+  # The files TypeDeChamp#revision_diff_attributes reads, loaded at once where
+  # each type de champ would run its own queries.
+  def preload_diffed_attachments(type_de_champs)
+    { piece_justificative_template_attachment: :piece_justificative?, notice_explicative_attachment: :explication? }.each do |association, predicate|
+      ActiveRecord::Associations::Preloader.new(records: type_de_champs.filter(&predicate), associations: { association => :blob }).call
+    end
+  end
 
   # Diffs two versions of a type de champ over the attributes it declares in
   # TypeDeChamp#revision_diff_attributes. The keys of the new version drive
