@@ -15,7 +15,7 @@ module Users
       return render_blank_password if password_params[:password].blank?
 
       if current_user.update_with_password(password_params)
-        sign_in(current_user, scope: :user, force: true, login_method: current_login_method)
+        sign_in(current_user, scope: :user, force: true, login_method: recorded_login_method)
         UserMailer.password_changed(current_user).deliver_later
         flash.notice = t('.success')
         redirect_to profil_path(context: params[:context])

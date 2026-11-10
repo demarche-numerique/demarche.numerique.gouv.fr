@@ -18,8 +18,12 @@ module LoginMethodConcern
   def current_login_method
     return if !user_signed_in?
 
-    SessionRegistrableConcern.current(warden, :user)&.login_method || legacy_login_method
+    recorded_login_method || legacy_login_method
   end
+
+  # What the row says, without the legacy guess: what a session opened in place
+  # of this one carries over, so that a guess never becomes a record.
+  def recorded_login_method = SessionRegistrableConcern.current(warden, :user)&.login_method
 
   # Sessions opened before their row recorded how, read the way they used to be.
   # To delete once `UserSession.usable.where(login_method: nil)` is empty.

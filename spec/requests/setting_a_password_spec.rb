@@ -24,6 +24,10 @@ describe 'setting a password outside the reset form', type: :request do
     it 'opens exactly one session, in place of the revoked one' do
       expect(user.user_sessions.usable.count).to eq(1)
     end
+
+    it 'keeps how the session was opened' do
+      expect(user.user_sessions.usable.sole.login_method).to eq('password')
+    end
   end
 
   # Devise's `sign_in` does nothing when the visitor already is that user, so
@@ -62,5 +66,21 @@ describe 'setting a password outside the reset form', type: :request do
     end
 
     it_behaves_like 'a password set on a live session'
+  end
+
+  # The account-wide column would have the session read as a FranceConnect one
+  describe 'changing the password on a session opened before methods were recorded' do
+    def set_the_password
+      user.user_sessions.update_all(login_method: nil)
+      user.update!(loged_in_with_france_connect: 'particulier')
+
+      patch profil_password_path, params: {
+        user: { current_password: password, password: new_password, password_confirmation: new_password },
+      }
+    end
+
+    it 'does not record the method it could only guess' do
+      expect(user.user_sessions.usable.sole.login_method).to be_nil
+    end
   end
 end
