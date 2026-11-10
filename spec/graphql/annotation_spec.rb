@@ -62,6 +62,20 @@ RSpec.describe Mutations::DossierModifierAnnotations, type: :graphql do
       end
     end
 
+    context 'with an annotation id without separator' do
+      let(:annotation_id) { Base64.strict_encode64('Champ') }
+      let(:variables) do
+        { input: { dossierId: dossier.to_typed_id, annotationId: annotation_id, instructeurId: instructeur.to_typed_id } }
+      end
+
+      it 'return error' do
+        expect(data).to eq(dossierModifierAnnotationAjouterLigne: {
+          annotation: nil,
+          errors: [{ message: "L’annotation \"#{annotation_id}\" n’existe pas" }],
+        })
+      end
+    end
+
     it 'add row' do
       expect(annotation.row_ids.size).to eq(2)
       expect(data).to eq(dossierModifierAnnotationAjouterLigne: {
@@ -220,6 +234,17 @@ RSpec.describe Mutations::DossierModifierAnnotations, type: :graphql do
           annotations: [],
           errors: [{ message: "L‘annotation \"#{annotation_id}\" n’existe pas" }],
         })
+      end
+
+      context 'without separator' do
+        let(:annotation_id) { Base64.strict_encode64('Champ') }
+
+        it 'returns error' do
+          expect(data).to eq(dossierModifierAnnotations: {
+            annotations: [],
+            errors: [{ message: "L‘annotation \"#{annotation_id}\" n’existe pas" }],
+          })
+        end
       end
     end
 

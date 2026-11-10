@@ -167,8 +167,7 @@ module Types
     private
 
     def find_revision(revision)
-      revision_id = GraphQL::Schema::UniqueWithinType.decode(revision).second
-      object.revisions.find(revision_id)
+      object.revisions.find(ApplicationRecord.id_from_typed_id(revision))
     end
   end
 end
