@@ -13,7 +13,22 @@ module SignInOpensASessionRow
 
     return if !resource.is_a?(SessionRegistrableConcern)
 
-    warden.set_user(resource, scope: scope || Devise::Mapping.find_scope!(resource), event: :set_user, login_method:)
+    scope ||= Devise::Mapping.find_scope!(resource)
+    warden.set_user(resource, scope:, event: :set_user, login_method:)
+  end
+
+  # Production gives each request a new Warden proxy, which reads the user back
+  # from the session and fires the fetch hook that fills `Current` inside the
+  # executor wrapping the request. A controller spec keeps the proxy, and the
+  # controller its `current_user`, across the example: fire the fetch hook again,
+  # inside the executor, on the very users the example may have set expectations on.
+  private def wrap_execution
+    super do
+      warden.instance_variable_get(:@users).compact.each do |scope, user|
+        warden.set_user(user, scope:, event: :fetch)
+      end
+      yield
+    end
   end
 end
 

@@ -68,6 +68,8 @@ end
 Warden::Manager.before_logout do |record, warden, options|
   next unless record.is_a?(SessionRegistrableConcern)
 
+  Current.user_session = nil if options[:scope] == :user
+
   session_id = SessionRegistrableConcern.warden_session(warden, options[:scope])[SessionRegistrableConcern::SESSION_KEY]
   next if session_id.nil?
 

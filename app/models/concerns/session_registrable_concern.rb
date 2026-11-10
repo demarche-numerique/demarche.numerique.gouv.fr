@@ -40,12 +40,16 @@ module SessionRegistrableConcern
   end
 
   def self.open_session!(record, warden, scope, login_method: nil)
-    request = warden.request
-    session = warden.session(scope)
+    user_agent, remote_ip = warden.request.user_agent, warden.request.remote_ip
 
-    session[LAST_SEEN_KEY] = Date.current.iso8601
+    # in db
+    user_session = record.open_user_session!(user_agent, remote_ip, login_method:)
 
-    session[SESSION_KEY] = record.open_user_session!(request.user_agent, request.remote_ip, login_method:).id
+    # in cookie
+    warden.session(scope).merge!(LAST_SEEN_KEY => Date.current.iso8601, SESSION_KEY => user_session.id)
+
+    # in current request, the usager's only: the same request loads the super admin too
+    Current.user_session = user_session if scope == :user
   end
 
   # Read from the signed cookie, so the client cannot push the date forward.
@@ -114,7 +118,10 @@ module SessionRegistrableConcern
         :inactivity
       end
 
-    return if reason.nil?
+    if reason.nil?
+      Current.user_session = user_session if scope == :user
+      return
+    end
 
     # Before the logout: `before_logout` would otherwise find the row usable and
     # stamp it `sign_out`, as if the user had left on purpose.
