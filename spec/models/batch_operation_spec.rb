@@ -208,6 +208,28 @@ describe BatchOperation, type: :model do
     end
   end
 
+  describe '#after_all_processed (with create_avis)' do
+    let(:instructeur) { create(:instructeur) }
+    let(:batch_operation) do
+      create(:batch_operation, :create_avis, instructeur:, emails: ['nouvelle-experte@exemple.fr'], introduction: 'Merci')
+    end
+    let(:dossier) { batch_operation.dossiers.first }
+    let!(:previous_avis) { create(:avis, dossier:, claimant: instructeur, created_at: 1.year.ago) }
+
+    before do
+      allow(AvisMailer).to receive(:avis_invitation_and_confirm_email).and_call_original
+      batch_operation.dossiers.each { BatchOperationProcessOneJob.perform_now(batch_operation, it) }
+    end
+
+    it 'invites only the experts asked by this batch' do
+      new_expert_user = User.find_by!(email: 'nouvelle-experte@exemple.fr')
+
+      expect(AvisMailer).to have_received(:avis_invitation_and_confirm_email).once
+      expect(AvisMailer).to have_received(:avis_invitation_and_confirm_email)
+        .with(new_expert_user, anything, match_array(new_expert_user.expert.avis))
+    end
+  end
+
   describe '#dossiers_safe_scope (with passer_en_instruction)' do
     let(:instructeur) { instructeurs.default }
     let(:procedure) { procedures.individual }
