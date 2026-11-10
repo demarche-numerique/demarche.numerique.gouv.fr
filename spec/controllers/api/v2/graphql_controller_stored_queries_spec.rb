@@ -1039,6 +1039,27 @@ describe API::V2::GraphqlController do
           expect(gql_data[:groupeInstructeur][:id]).to eq(groupe_instructeur.to_typed_id)
           expect(gql_data[:groupeInstructeur][:dossiers][:nodes].map { _1[:id] }).to eq([dossier.to_typed_id])
         }
+
+        context 'filtered by revision' do
+          let(:variables) { { groupeInstructeurNumber: groupe_instructeur.id, includeDossiers: true, revision: procedure.active_revision.to_typed_id } }
+
+          it {
+            expect(gql_errors).to be_nil
+            expect(gql_data[:groupeInstructeur][:dossiers][:nodes].map { _1[:id] }).to eq([dossier.to_typed_id])
+          }
+        end
+
+        context 'filtered by minRevision' do
+          let(:query) { 'query($number: Int!, $minRevision: ID) { groupeInstructeur(number: $number) { dossiers(minRevision: $minRevision) { nodes { id } } } }' }
+          let(:variables) { { number: groupe_instructeur.id, minRevision: procedure.active_revision.to_typed_id } }
+
+          subject { post :execute, params: { query:, variables: }, as: :json }
+
+          it {
+            expect(gql_errors).to be_nil
+            expect(gql_data[:groupeInstructeur][:dossiers][:nodes].map { _1[:id] }).to eq([dossier.to_typed_id])
+          }
+        end
       end
 
       context 'include deleted Dossiers' do
