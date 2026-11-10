@@ -118,6 +118,28 @@ RSpec.describe DossierChampsConcern do
     end
   end
 
+  describe "#public_champ" do
+    it "projects the champ of a row, without writing it" do
+      champ = dossier.public_champ("994-01J")
+
+      expect([champ.stable_id, champ.row_id, champ.persisted?]).to eq([994, "01J", false])
+    end
+
+    it "raises for an annotation" do
+      expect { dossier.public_champ("995") }.to raise_error(DossierChampsConcern::ChampNotInRevisionError)
+    end
+  end
+
+  describe "#private_champ" do
+    it "projects the annotation" do
+      expect(dossier.private_champ("995")).to have_attributes(stable_id: 995, private?: true)
+    end
+
+    it "raises for a public champ" do
+      expect { dossier.private_champ("99") }.to raise_error(DossierChampsConcern::ChampNotInRevisionError)
+    end
+  end
+
   describe "#stable_id_in_revision?" do
     it "accepts an integer or a string, and rejects an unknown stable id" do
       expect(dossier.stable_id_in_revision?(99)).to be(true)

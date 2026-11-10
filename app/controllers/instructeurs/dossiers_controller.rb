@@ -439,8 +439,7 @@ module Instructeurs
 
     def annotation
       @dossier = dossier_with_champs
-      type_de_champ, row_id = @dossier.find_type_de_champ_by_public_id!(champ_public_id_param, :private)
-      annotation = @dossier.project_champ(type_de_champ, row_id:)
+      annotation = @dossier.private_champ(champ_public_id_param)
       annotation.validate(:champ_value) if annotation.external_data_settled?
 
       respond_to do |format|

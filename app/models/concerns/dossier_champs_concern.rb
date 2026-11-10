@@ -130,6 +130,16 @@ module DossierChampsConcern
     champ
   end
 
+  def public_champ(public_id)
+    type_de_champ, row_id = find_type_de_champ_by_public_id!(public_id, :public)
+    project_champ(type_de_champ, row_id:)
+  end
+
+  def private_champ(public_id)
+    type_de_champ, row_id = find_type_de_champ_by_public_id!(public_id, :private)
+    project_champ(type_de_champ, row_id:)
+  end
+
   def public_champ_for_update(public_id, updated_by:)
     type_de_champ, row_id = find_type_de_champ_by_public_id!(public_id, :public)
     champ_for_update(type_de_champ, row_id:, updated_by:)
