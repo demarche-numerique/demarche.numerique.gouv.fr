@@ -453,7 +453,7 @@ describe 'The user', js: true do
   end
 
   scenario 'extends dossier experation date more than one time, ' do
-    user_old_dossier = create(:dossier, procedure: simple_procedure, user: user, brouillon_close_to_expiration_notice_sent_at: 3.weeks.ago)
+    user_old_dossier = create(:dossier, :with_individual, procedure: simple_procedure, user: user, brouillon_close_to_expiration_notice_sent_at: 3.weeks.ago)
     login_as(user, scope: :user)
     visit brouillon_dossier_path(user_old_dossier)
 

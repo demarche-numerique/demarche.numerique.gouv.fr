@@ -1001,7 +1001,7 @@ describe Users::DossiersController, type: :controller do
   describe 'pro_connect_restriction' do
     let(:user) { create(:user) }
     let(:procedure) { create(:procedure, :for_individual, :published, pro_connect_restriction: :all) }
-    let(:brouillon) { create(:dossier, :brouillon, user:, procedure:) }
+    let(:brouillon) { create(:dossier, :brouillon, :with_individual, user:, procedure:) }
 
     before { sign_in user }
 
