@@ -108,7 +108,7 @@ describe 'Creating a new dossier:', js: true do
         let(:user) { create(:user, :with_pci) }
 
         before do
-          allow_any_instance_of(ProConnectSessionConcern).to receive(:logged_in_with_pro_connect?).and_return(true)
+          login_as(user, scope: :user, event: :set_user, login_method: :pro_connect)
         end
 
         it 'prefills and locks nom/prénom but lets the user pick the civilité' do

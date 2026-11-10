@@ -18,7 +18,7 @@ module Instructeurs
     private
 
     def ensure_pro_connect_if_required!
-      return if logged_in_with_pro_connect?
+      return if Current.user_session.via_pro_connect?
 
       procedure_ids = pro_connect_procedure_ids.compact_blank
       return if procedure_ids.empty?

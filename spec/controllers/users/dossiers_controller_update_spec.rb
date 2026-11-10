@@ -172,10 +172,7 @@ describe Users::DossiersController, type: :controller do
     end
 
     context 'when owner logged via france connect' do
-      before do
-        sign_in(owner)
-        owner.update!(loged_in_with_france_connect: 'particulier')
-      end
+      before { sign_in(owner, login_method: :france_connect) }
 
       it 'sets submitted_with_france_connect to true' do
         subject
@@ -184,10 +181,11 @@ describe Users::DossiersController, type: :controller do
       end
     end
 
+    # The account-wide column still says FranceConnect, from a session on another device
     context 'when owner not logged via france connect' do
       before do
-        sign_in(owner)
-        owner.update!(loged_in_with_france_connect: nil)
+        sign_in(owner, login_method: :password)
+        owner.update!(loged_in_with_france_connect: 'particulier')
         dossier.update!(submitted_with_france_connect: true)
       end
 

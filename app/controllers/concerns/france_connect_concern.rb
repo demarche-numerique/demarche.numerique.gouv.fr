@@ -3,7 +3,9 @@
 module FranceConnectConcern
   extend ActiveSupport::Concern
 
-  def logged_in_with_france_connect?
+  # Whether a provider session is left to close on sign out: the user may be
+  # signed out already, and the logout url needs the id token anyway.
+  def france_connect_id_token?
     cookies.encrypted[FranceConnectController::ID_TOKEN_COOKIE_NAME].present?
   end
 

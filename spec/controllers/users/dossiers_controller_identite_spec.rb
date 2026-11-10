@@ -84,7 +84,7 @@ describe Users::DossiersController, type: :controller do
       # would otherwise redirect before the action runs.
       before do
         create(:pro_connect_information, user:)
-        allow(controller).to receive(:logged_in_with_pro_connect?).and_return(true)
+        sign_in(user, login_method: :pro_connect)
       end
 
       context 'switching to for_tiers then back to for self' do
@@ -315,7 +315,7 @@ describe Users::DossiersController, type: :controller do
     context 'when the session is connected via ProConnect' do
       let(:user) { create(:user, :with_pci) }
 
-      before { allow(controller).to receive(:logged_in_with_pro_connect?).and_return(true) }
+      before { sign_in(user, login_method: :pro_connect) }
 
       context 'when dossier is for self' do
         let(:dossier) { create(:dossier, :with_individual, user:, procedure:) }
@@ -423,7 +423,7 @@ describe Users::DossiersController, type: :controller do
     context 'when the session is connected via ProConnect' do
       before do
         create(:pro_connect_information, user:, siret: '12345678901234')
-        allow_any_instance_of(ProConnectSessionConcern).to receive(:logged_in_with_pro_connect?).and_return(true)
+        sign_in(user, login_method: :pro_connect)
       end
 
       context 'and the user has no siret yet' do

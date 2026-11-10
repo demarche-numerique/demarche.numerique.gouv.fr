@@ -259,8 +259,8 @@ module Users
 
       if @dossier.errors.blank? && @dossier.can_passer_en_construction?
         begin
-          @dossier.submitted_with_france_connect = current_user.loged_in_with_france_connect.present?
-          @dossier.submitted_with_pro_connect = logged_in_with_pro_connect?
+          @dossier.submitted_with_france_connect = Current.user_session.via_france_connect?
+          @dossier.submitted_with_pro_connect = Current.user_session.via_pro_connect?
           @dossier.passer_en_construction!
           redirect_to merci_dossier_path(@dossier)
           return
@@ -304,8 +304,8 @@ module Users
       dossier.champs_public_valid?
 
       if dossier.errors.blank? && dossier.can_passer_en_construction?
-        dossier.submitted_with_france_connect = current_user.loged_in_with_france_connect.present?
-        dossier.submitted_with_pro_connect = logged_in_with_pro_connect?
+        dossier.submitted_with_france_connect = Current.user_session.via_france_connect?
+        dossier.submitted_with_pro_connect = Current.user_session.via_pro_connect?
         dossier.usager_submit_en_construction!
 
         redirect_to dossier_path(dossier)
@@ -645,7 +645,7 @@ module Users
     def ensure_pro_connect_for_procedure(procedure = dossier.procedure)
       return if procedure.blank?
       return if !procedure.pro_connect_restriction_all?
-      return if logged_in_with_pro_connect?
+      return if Current.user_session.via_pro_connect?
 
       redirect_to_pro_connect_required_for_procedure
     end

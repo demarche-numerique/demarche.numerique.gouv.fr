@@ -1006,9 +1006,7 @@ describe Users::DossiersController, type: :controller do
     before { sign_in user }
 
     context 'when user is ProConnected' do
-      before do
-        cookies.encrypted[:pro_connect_session_info] = { user_id: user.id }.to_json
-      end
+      before { sign_in(user, login_method: :pro_connect) }
 
       it 'allows creating a dossier' do
         post :new, params: { procedure_id: procedure.id }
