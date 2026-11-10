@@ -423,7 +423,7 @@ describe Users::DossiersController, type: :controller do
     context 'when the session is connected via ProConnect' do
       before do
         create(:pro_connect_information, user:, siret: '12345678901234')
-        allow_any_instance_of(ProConnectSessionConcern).to receive(:logged_in_with_pro_connect?).and_return(true)
+        allow_any_instance_of(LoginMethodConcern).to receive(:logged_in_with_pro_connect?).and_return(true)
       end
 
       context 'and the user has no siret yet' do

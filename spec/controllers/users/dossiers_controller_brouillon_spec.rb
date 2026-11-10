@@ -46,7 +46,8 @@ describe Users::DossiersController, type: :controller do
   end
 
   describe '#submit_brouillon' do
-    before { sign_in(user) }
+    before { sign_in(user, login_method:) }
+    let(:login_method) { :password }
     let(:procedure) { create(:procedure, :published, public_type_de_champs:) }
     let(:public_type_de_champs) { [{ type: :text, mandatory: false }] }
     let!(:dossier) { create(:dossier, user:, procedure:) }
@@ -167,7 +168,7 @@ describe Users::DossiersController, type: :controller do
     end
 
     context 'when user logged via france connect' do
-      before { user.update!(loged_in_with_france_connect: 'particulier') }
+      let(:login_method) { :france_connect }
 
       it 'sets submitted_with_france_connect to true' do
         subject
@@ -177,8 +178,6 @@ describe Users::DossiersController, type: :controller do
     end
 
     context 'when user not logged via france connect' do
-      before { user.update!(loged_in_with_france_connect: nil) }
-
       it 'sets submitted_with_france_connect to false' do
         subject
         dossier.reload
@@ -187,9 +186,7 @@ describe Users::DossiersController, type: :controller do
     end
 
     context 'when user logged via pro connect' do
-      before do
-        cookies.encrypted[ProConnectSessionConcern::SESSION_INFO_COOKIE_NAME] = { value: { user_id: user.id }.to_json }
-      end
+      let(:login_method) { :pro_connect }
 
       it 'sets submitted_with_pro_connect to true' do
         subject

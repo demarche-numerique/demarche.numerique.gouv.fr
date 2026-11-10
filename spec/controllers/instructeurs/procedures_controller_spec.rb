@@ -899,10 +899,8 @@ describe Instructeurs::ProceduresController, type: :controller do
           expect(flash[:alert]).to eq(I18n.t('errors.messages.pro_connect.procedure_required'))
         end
 
-        context "and the cookie is set" do
-          before do
-            cookies.encrypted[ProConnectSessionConcern::SESSION_INFO_COOKIE_NAME] = { value: { user_id: instructeur.user.id }.to_json }
-          end
+        context "and the instructeur signed in with ProConnect" do
+          before { sign_in(instructeur.user, login_method: :pro_connect) }
 
           it "does not redirect to sign_in" do
             subject

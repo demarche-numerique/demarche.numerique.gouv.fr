@@ -259,7 +259,7 @@ module Users
 
       if @dossier.errors.blank? && @dossier.can_passer_en_construction?
         begin
-          @dossier.submitted_with_france_connect = current_user.loged_in_with_france_connect.present?
+          @dossier.submitted_with_france_connect = logged_in_with_france_connect?
           @dossier.submitted_with_pro_connect = logged_in_with_pro_connect?
           @dossier.passer_en_construction!
           redirect_to merci_dossier_path(@dossier)
@@ -304,7 +304,7 @@ module Users
       dossier.champs_public_valid?
 
       if dossier.errors.blank? && dossier.can_passer_en_construction?
-        dossier.submitted_with_france_connect = current_user.loged_in_with_france_connect.present?
+        dossier.submitted_with_france_connect = logged_in_with_france_connect?
         dossier.submitted_with_pro_connect = logged_in_with_pro_connect?
         dossier.usager_submit_en_construction!
 

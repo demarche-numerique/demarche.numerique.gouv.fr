@@ -1925,7 +1925,7 @@ describe Administrateurs::ProceduresController, type: :controller do
 
     context 'when admin is connected to pro_connect' do
       before do
-        cookies.encrypted[ProConnectSessionConcern::SESSION_INFO_COOKIE_NAME] = { value: { user_id: admin.user.id }.to_json }
+        sign_in(admin.user, login_method: :pro_connect)
         subject
       end
 
@@ -2048,10 +2048,8 @@ describe Administrateurs::ProceduresController, type: :controller do
         expect(flash[:alert]).to eq(I18n.t('errors.messages.pro_connect.procedure_required'))
       end
 
-      context "and the cookie is set" do
-        before do
-          cookies.encrypted[ProConnectSessionConcern::SESSION_INFO_COOKIE_NAME] = { value: { user_id: admin.user.id }.to_json }
-        end
+      context "and the admin signed in with ProConnect" do
+        before { sign_in(admin.user, login_method: :pro_connect) }
 
         it "does not redirect to sign_in" do
           subject

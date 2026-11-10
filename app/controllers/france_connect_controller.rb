@@ -95,7 +95,7 @@ class FranceConnectController < ApplicationController
     @fci.safely_associate_user!(@fci.email_france_connect)
     @fci.user.update!(email_verified_at: Time.current)
 
-    sign_in(@fci.user)
+    sign_in(@fci.user, login_method: :france_connect)
 
     redirect_to destination_path(@fci.user), notice: t('france_connect.flash.connection_done', application_name: Current.application_name)
   end
@@ -257,7 +257,7 @@ class FranceConnectController < ApplicationController
 
   def connect_france_connect(user)
     sign_out :user if user_signed_in?
-    sign_in user
+    sign_in user, login_method: :france_connect
 
     user.update_attribute('loged_in_with_france_connect', User.loged_in_with_france_connects.fetch(:particulier))
     user.update_preferred_domain(Current.host)
