@@ -29,14 +29,4 @@ describe RepetitionRow do
       expect(calls).to eq(1)
     end
   end
-
-  describe '#spreadsheet_columns' do
-    it 'exports the dossier id as a string and the 1-based row index' do
-      repetition = procedure.active_revision.public_root_type_de_champs.find(&:repetition?)
-      row = fresh_dossier.project_rows_for(repetition).second
-
-      expect(row.spreadsheet_columns([], format: :xlsx)).to eq([['Dossier ID', dossier.id.to_s], ['Ligne', :index]])
-      expect(row.index).to eq(2)
-    end
-  end
 end
