@@ -7,7 +7,7 @@ describe 'Dossier Inéligibilité', js: true do
 
   let(:user) { create(:user) }
   let(:procedure) { create(:procedure, :published, public_type_de_champs:) }
-  let(:dossier) { create(:dossier, procedure:, user:) }
+  let(:dossier) { create(:dossier, :with_entreprise, procedure:, user:) }
 
   let(:published_revision) { procedure.published_revision }
   let(:first_tdc) { published_revision.type_de_champs.first }

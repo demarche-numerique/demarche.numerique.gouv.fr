@@ -199,6 +199,18 @@ describe Users::DossiersController, type: :controller do
       end
     end
 
+    context 'when a brouillon is sent for tiers without mandataire' do
+      let(:dossier_params) { { for_tiers: 'true', mandataire_first_name: '', mandataire_last_name: '', individual_attributes: { gender: 'M', nom: 'Mouse', prenom: 'Mickey', notification_method: 'no_notification' } } }
+      before { subject }
+
+      it 'rejects the form and flags the mandataire fields' do
+        expect(response).to render_template(:identite)
+        expect(assigns(:dossier).errors).to be_of_kind(:mandataire_first_name, :blank)
+        expect(assigns(:dossier).errors).to be_of_kind(:mandataire_last_name, :blank)
+        expect(dossier.reload.for_tiers).to be false
+      end
+    end
+
     context 'when a dossier is in brouillon, for_tiers and we want to update the individual' do
       let(:dossier) { create(:dossier, :for_tiers_without_notification, state: "brouillon", user: user, procedure: procedure) }
       let(:dossier_params) { { for_tiers: 'true', individual_attributes: { gender: 'M', nom: 'Mouse', prenom: 'Mickey', email: 'mickey@gmail.com', notification_method: 'email' } } }
