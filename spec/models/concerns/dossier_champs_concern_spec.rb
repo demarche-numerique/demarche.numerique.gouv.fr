@@ -174,6 +174,14 @@ RSpec.describe DossierChampsConcern do
           expect(subject).to be_new_record
           expect(subject.row_id).to eq(row_id)
         end
+
+        it "projects the same instance until the champs change" do
+          expect(dossier.project_champ(type_de_champ_public, row_id:)).to equal(subject)
+
+          dossier.champ_for_update(type_de_champ_public, row_id:, updated_by: 'test')
+
+          expect(dossier.project_champ(type_de_champ_public, row_id:)).to be_persisted
+        end
       end
 
       context "with a row_id on a champ outside any repetition" do
