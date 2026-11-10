@@ -17,7 +17,9 @@
     .fr-background-alt--blue-france.fr-p-4w
       = render ParticulierLoginComponent.new
   - else
-    = form_for resource, url: user_session_path(with_particulier: params[:with_particulier]) do |f|
+    = form_for resource, url: user_session_path do |f|
+      - if params[:with_particulier].present?
+        = hidden_field_tag :with_particulier, true
       = render partial: 'shared/france_connect_login', locals: { url: france_connect_path }
       - if invite_context || params[:with_proconnect]
         = render ProConnectLoginComponent.new
