@@ -3,7 +3,7 @@
     "name": "Allouville-Bellefosse",
     "code": "76001",
     "epci_code": "247600620",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76190"
   },
@@ -11,7 +11,7 @@
     "name": "Alvimare",
     "code": "76002",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76640"
   },
@@ -19,7 +19,7 @@
     "name": "Ambrumesnil",
     "code": "76004",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76550"
   },
@@ -27,7 +27,7 @@
     "name": "Amfreville-la-Mi-Voie",
     "code": "76005",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76920"
   },
@@ -35,7 +35,7 @@
     "name": "Amfreville-les-Champs",
     "code": "76006",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76560"
   },
@@ -43,7 +43,7 @@
     "name": "Anceaumeville",
     "code": "76007",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76710"
   },
@@ -51,7 +51,7 @@
     "name": "Ancourt",
     "code": "76008",
     "epci_code": "247600786",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76370"
   },
@@ -59,7 +59,7 @@
     "name": "Ancourteville-sur-Héricourt",
     "code": "76009",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76560"
   },
@@ -67,7 +67,7 @@
     "name": "Ancretiéville-Saint-Victor",
     "code": "76010",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76760"
   },
@@ -75,7 +75,7 @@
     "name": "Ancretteville-sur-Mer",
     "code": "76011",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76540"
   },
@@ -83,7 +83,7 @@
     "name": "Angerville-Bailleul",
     "code": "76012",
     "epci_code": "247600505",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76110"
   },
@@ -91,7 +91,7 @@
     "name": "Angerville-la-Martel",
     "code": "76013",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76540"
   },
@@ -99,7 +99,7 @@
     "name": "Angerville-l’Orcher",
     "code": "76014",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76280"
   },
@@ -107,7 +107,7 @@
     "name": "Angiens",
     "code": "76015",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76740"
   },
@@ -115,7 +115,7 @@
     "name": "Anglesqueville-la-Bras-Long",
     "code": "76016",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76740"
   },
@@ -123,7 +123,7 @@
     "name": "Anglesqueville-l’Esneval",
     "code": "76017",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76280"
   },
@@ -131,7 +131,7 @@
     "name": "Val-de-Saâne",
     "code": "76018",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76890"
   },
@@ -139,7 +139,7 @@
     "name": "Anneville-sur-Scie",
     "code": "76019",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76590"
   },
@@ -147,7 +147,7 @@
     "name": "Anneville-Ambourville",
     "code": "76020",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76480"
   },
@@ -155,7 +155,7 @@
     "name": "Annouville-Vilmesnil",
     "code": "76021",
     "epci_code": "247600505",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76110"
   },
@@ -163,7 +163,7 @@
     "name": "Anquetierville",
     "code": "76022",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76490"
   },
@@ -171,7 +171,7 @@
     "name": "Anvéville",
     "code": "76023",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76560"
   },
@@ -179,7 +179,7 @@
     "name": "Ardouval",
     "code": "76024",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76680"
   },
@@ -187,7 +187,7 @@
     "name": "Argueil",
     "code": "76025",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76780"
   },
@@ -195,7 +195,7 @@
     "name": "Arques-la-Bataille",
     "code": "76026",
     "epci_code": "247600786",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76880"
   },
@@ -203,7 +203,7 @@
     "name": "Aubéguimont",
     "code": "76028",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76390"
   },
@@ -211,7 +211,7 @@
     "name": "Aubermesnil-aux-Érables",
     "code": "76029",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76340"
   },
@@ -219,7 +219,7 @@
     "name": "Aubermesnil-Beaumais",
     "code": "76030",
     "epci_code": "247600786",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76550"
   },
@@ -227,7 +227,7 @@
     "name": "Auberville-la-Manuel",
     "code": "76032",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76450"
   },
@@ -235,7 +235,7 @@
     "name": "Auberville-la-Renault",
     "code": "76033",
     "epci_code": "247600505",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76110"
   },
@@ -243,7 +243,7 @@
     "name": "Val-de-Scie",
     "code": "76034",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76720"
   },
@@ -251,7 +251,7 @@
     "name": "Val-de-Scie",
     "code": "76034",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76850"
   },
@@ -259,7 +259,7 @@
     "name": "Aumale",
     "code": "76035",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76390"
   },
@@ -267,7 +267,7 @@
     "name": "Auppegard",
     "code": "76036",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76730"
   },
@@ -275,7 +275,7 @@
     "name": "Authieux-Ratiéville",
     "code": "76038",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76690"
   },
@@ -283,7 +283,7 @@
     "name": "Les Authieux-sur-le-Port-Saint-Ouen",
     "code": "76039",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76520"
   },
@@ -291,7 +291,7 @@
     "name": "Autigny",
     "code": "76040",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76740"
   },
@@ -299,7 +299,7 @@
     "name": "Les Hauts-de-Caux",
     "code": "76041",
     "epci_code": "247600620",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76190"
   },
@@ -307,7 +307,7 @@
     "name": "Auvilliers",
     "code": "76042",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76270"
   },
@@ -315,7 +315,7 @@
     "name": "Auzebosc",
     "code": "76043",
     "epci_code": "247600620",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76190"
   },
@@ -323,7 +323,7 @@
     "name": "Auzouville-l’Esneval",
     "code": "76045",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76760"
   },
@@ -331,7 +331,7 @@
     "name": "Auzouville-sur-Ry",
     "code": "76046",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76116"
   },
@@ -339,7 +339,7 @@
     "name": "Auzouville-sur-Saâne",
     "code": "76047",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76730"
   },
@@ -347,7 +347,7 @@
     "name": "Avesnes-en-Bray",
     "code": "76048",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76220"
   },
@@ -355,7 +355,7 @@
     "name": "Avesnes-en-Val",
     "code": "76049",
     "epci_code": "247600729",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76630"
   },
@@ -363,7 +363,7 @@
     "name": "Avremesnil",
     "code": "76050",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76730"
   },
@@ -371,7 +371,7 @@
     "name": "Bacqueville-en-Caux",
     "code": "76051",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76730"
   },
@@ -379,7 +379,7 @@
     "name": "Bailleul-Neuville",
     "code": "76052",
     "epci_code": "247600604",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76660"
   },
@@ -387,7 +387,7 @@
     "name": "Baillolet",
     "code": "76053",
     "epci_code": "247600604",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76660"
   },
@@ -395,7 +395,7 @@
     "name": "Bailly-en-Rivière",
     "code": "76054",
     "epci_code": "247600729",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76630"
   },
@@ -403,7 +403,7 @@
     "name": "Baons-le-Comte",
     "code": "76055",
     "epci_code": "247600620",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76190"
   },
@@ -411,7 +411,7 @@
     "name": "Bardouville",
     "code": "76056",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76480"
   },
@@ -419,7 +419,7 @@
     "name": "Barentin",
     "code": "76057",
     "epci_code": "247600646",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76360"
   },
@@ -427,7 +427,7 @@
     "name": "Baromesnil",
     "code": "76058",
     "epci_code": "247600588",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76260"
   },
@@ -435,7 +435,7 @@
     "name": "Bazinval",
     "code": "76059",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76340"
   },
@@ -443,7 +443,7 @@
     "name": "Beaubec-la-Rosière",
     "code": "76060",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76440"
   },
@@ -451,7 +451,7 @@
     "name": "Beaumont-le-Hareng",
     "code": "76062",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76850"
   },
@@ -459,7 +459,7 @@
     "name": "Beauval-en-Caux",
     "code": "76063",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76890"
   },
@@ -467,7 +467,7 @@
     "name": "Beaurepaire",
     "code": "76064",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76280"
   },
@@ -475,7 +475,7 @@
     "name": "Beaussault",
     "code": "76065",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76870"
   },
@@ -483,7 +483,7 @@
     "name": "Beautot",
     "code": "76066",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76890"
   },
@@ -491,7 +491,7 @@
     "name": "Beauvoir-en-Lyons",
     "code": "76067",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76220"
   },
@@ -499,7 +499,7 @@
     "name": "Bec-de-Mortagne",
     "code": "76068",
     "epci_code": "247600505",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76110"
   },
@@ -507,7 +507,7 @@
     "name": "Belbeuf",
     "code": "76069",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76240"
   },
@@ -515,7 +515,7 @@
     "name": "Bellencombre",
     "code": "76070",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76680"
   },
@@ -523,7 +523,7 @@
     "name": "Bellengreville",
     "code": "76071",
     "epci_code": "247600729",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76630"
   },
@@ -531,7 +531,7 @@
     "name": "Belleville-en-Caux",
     "code": "76072",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76890"
   },
@@ -539,7 +539,7 @@
     "name": "La Bellière",
     "code": "76074",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76440"
   },
@@ -547,7 +547,7 @@
     "name": "Belmesnil",
     "code": "76075",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76590"
   },
@@ -555,7 +555,7 @@
     "name": "Bénarville",
     "code": "76076",
     "epci_code": "247600505",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76110"
   },
@@ -563,7 +563,7 @@
     "name": "Bénesville",
     "code": "76077",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76560"
   },
@@ -571,7 +571,7 @@
     "name": "Bénouville",
     "code": "76079",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76790"
   },
@@ -579,7 +579,7 @@
     "name": "Bernières",
     "code": "76082",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76210"
   },
@@ -587,7 +587,7 @@
     "name": "Bertheauville",
     "code": "76083",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76450"
   },
@@ -595,7 +595,7 @@
     "name": "Bertreville",
     "code": "76084",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76450"
   },
@@ -603,7 +603,7 @@
     "name": "Bertreville-Saint-Ouen",
     "code": "76085",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76590"
   },
@@ -611,7 +611,7 @@
     "name": "Bertrimont",
     "code": "76086",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76890"
   },
@@ -619,7 +619,7 @@
     "name": "Berville-en-Caux",
     "code": "76087",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76560"
   },
@@ -627,7 +627,7 @@
     "name": "Berville-sur-Seine",
     "code": "76088",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76480"
   },
@@ -635,7 +635,7 @@
     "name": "Beuzeville-la-Grenier",
     "code": "76090",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76210"
   },
@@ -643,7 +643,7 @@
     "name": "Beuzeville-la-Guérard",
     "code": "76091",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76450"
   },
@@ -651,7 +651,7 @@
     "name": "Beuzevillette",
     "code": "76092",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76210"
   },
@@ -659,7 +659,7 @@
     "name": "Bézancourt",
     "code": "76093",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76220"
   },
@@ -667,7 +667,7 @@
     "name": "Bierville",
     "code": "76094",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76750"
   },
@@ -675,7 +675,7 @@
     "name": "Bihorel",
     "code": "76095",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76420"
   },
@@ -683,7 +683,7 @@
     "name": "Biville-la-Baignarde",
     "code": "76096",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76890"
   },
@@ -691,7 +691,7 @@
     "name": "Biville-la-Rivière",
     "code": "76097",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76730"
   },
@@ -699,7 +699,7 @@
     "name": "Blacqueville",
     "code": "76099",
     "epci_code": "247600646",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76190"
   },
@@ -707,7 +707,7 @@
     "name": "Blainville-Crevon",
     "code": "76100",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76116"
   },
@@ -715,7 +715,7 @@
     "name": "Blangy-sur-Bresle",
     "code": "76101",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76340"
   },
@@ -723,7 +723,7 @@
     "name": "Bonsecours",
     "code": "76103",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76240"
   },
@@ -731,7 +731,7 @@
     "name": "Blosseville",
     "code": "76104",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76460"
   },
@@ -739,7 +739,7 @@
     "name": "Le Bocasse",
     "code": "76105",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76690"
   },
@@ -747,7 +747,7 @@
     "name": "Bois-d’Ennebourg",
     "code": "76106",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76160"
   },
@@ -755,7 +755,7 @@
     "name": "Bois-Guilbert",
     "code": "76107",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76750"
   },
@@ -763,7 +763,7 @@
     "name": "Bois-Guillaume",
     "code": "76108",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76230"
   },
@@ -771,7 +771,7 @@
     "name": "Bois-Héroult",
     "code": "76109",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76750"
   },
@@ -779,7 +779,7 @@
     "name": "Bois-Himont",
     "code": "76110",
     "epci_code": "247600620",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76190"
   },
@@ -787,7 +787,7 @@
     "name": "Bois-l’Évêque",
     "code": "76111",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76160"
   },
@@ -795,7 +795,7 @@
     "name": "Le Bois-Robert",
     "code": "76112",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76590"
   },
@@ -803,7 +803,7 @@
     "name": "Boissay",
     "code": "76113",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76750"
   },
@@ -811,7 +811,7 @@
     "name": "Bolbec",
     "code": "76114",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76210"
   },
@@ -819,7 +819,7 @@
     "name": "Bolleville",
     "code": "76115",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76210"
   },
@@ -827,7 +827,7 @@
     "name": "Boos",
     "code": "76116",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76520"
   },
@@ -835,7 +835,7 @@
     "name": "Bordeaux-Saint-Clair",
     "code": "76117",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76790"
   },
@@ -843,7 +843,7 @@
     "name": "Bornambusc",
     "code": "76118",
     "epci_code": "247600505",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76110"
   },
@@ -851,7 +851,7 @@
     "name": "Bosc-Bérenger",
     "code": "76119",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76680"
   },
@@ -859,7 +859,7 @@
     "name": "Bosc-Bordel",
     "code": "76120",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76750"
   },
@@ -867,7 +867,7 @@
     "name": "Bosc-Édeline",
     "code": "76121",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76750"
   },
@@ -875,7 +875,7 @@
     "name": "Callengeville",
     "code": "76122",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76270"
   },
@@ -883,7 +883,7 @@
     "name": "Bosc-Guérard-Saint-Adrien",
     "code": "76123",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76710"
   },
@@ -891,7 +891,7 @@
     "name": "Bosc-Hyons",
     "code": "76124",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76220"
   },
@@ -899,7 +899,7 @@
     "name": "Bosc-le-Hard",
     "code": "76125",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76850"
   },
@@ -907,7 +907,7 @@
     "name": "Bosc-Mesnil",
     "code": "76126",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76680"
   },
@@ -915,7 +915,7 @@
     "name": "Bosville",
     "code": "76128",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76450"
   },
@@ -923,7 +923,7 @@
     "name": "Boudeville",
     "code": "76129",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76560"
   },
@@ -931,7 +931,7 @@
     "name": "Bouelles",
     "code": "76130",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76270"
   },
@@ -939,7 +939,7 @@
     "name": "La Bouille",
     "code": "76131",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76530"
   },
@@ -947,7 +947,7 @@
     "name": "Bourdainville",
     "code": "76132",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76760"
   },
@@ -955,7 +955,7 @@
     "name": "Le Bourg-Dun",
     "code": "76133",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76740"
   },
@@ -963,7 +963,7 @@
     "name": "Bourville",
     "code": "76134",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76740"
   },
@@ -971,7 +971,7 @@
     "name": "Bouville",
     "code": "76135",
     "epci_code": "247600646",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76360"
   },
@@ -979,7 +979,7 @@
     "name": "Brachy",
     "code": "76136",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76730"
   },
@@ -987,7 +987,7 @@
     "name": "Bracquetuit",
     "code": "76138",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76850"
   },
@@ -995,7 +995,7 @@
     "name": "Bradiancourt",
     "code": "76139",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76680"
   },
@@ -1003,7 +1003,7 @@
     "name": "Brametot",
     "code": "76140",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76740"
   },
@@ -1011,7 +1011,7 @@
     "name": "Bréauté",
     "code": "76141",
     "epci_code": "247600505",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76110"
   },
@@ -1019,7 +1019,7 @@
     "name": "Brémontier-Merval",
     "code": "76142",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76220"
   },
@@ -1027,7 +1027,7 @@
     "name": "Bretteville-du-Grand-Caux",
     "code": "76143",
     "epci_code": "247600505",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76110"
   },
@@ -1035,7 +1035,7 @@
     "name": "Bretteville-Saint-Laurent",
     "code": "76144",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76560"
   },
@@ -1043,7 +1043,7 @@
     "name": "Buchy",
     "code": "76146",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76750"
   },
@@ -1051,7 +1051,7 @@
     "name": "Bully",
     "code": "76147",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76270"
   },
@@ -1059,7 +1059,7 @@
     "name": "Bures-en-Bray",
     "code": "76148",
     "epci_code": "247600604",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76660"
   },
@@ -1067,7 +1067,7 @@
     "name": "Butot",
     "code": "76149",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76890"
   },
@@ -1075,7 +1075,7 @@
     "name": "Cailleville",
     "code": "76151",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76460"
   },
@@ -1083,7 +1083,7 @@
     "name": "Cailly",
     "code": "76152",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76690"
   },
@@ -1091,7 +1091,7 @@
     "name": "Calleville-les-Deux-Églises",
     "code": "76153",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76890"
   },
@@ -1099,7 +1099,7 @@
     "name": "Campneuseville",
     "code": "76154",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76340"
   },
@@ -1107,7 +1107,7 @@
     "name": "Canehan",
     "code": "76155",
     "epci_code": "247600729",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76260"
   },
@@ -1115,7 +1115,7 @@
     "name": "Canouville",
     "code": "76156",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76450"
   },
@@ -1123,7 +1123,7 @@
     "name": "Canteleu",
     "code": "76157",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76380"
   },
@@ -1131,7 +1131,7 @@
     "name": "Canville-les-Deux-Églises",
     "code": "76158",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76560"
   },
@@ -1139,7 +1139,7 @@
     "name": "Cany-Barville",
     "code": "76159",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76450"
   },
@@ -1147,7 +1147,7 @@
     "name": "Carville-la-Folletière",
     "code": "76160",
     "epci_code": "247600620",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76190"
   },
@@ -1155,7 +1155,7 @@
     "name": "Carville-Pot-de-Fer",
     "code": "76161",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76560"
   },
@@ -1163,7 +1163,7 @@
     "name": "Le Catelier",
     "code": "76162",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76590"
   },
@@ -1171,7 +1171,7 @@
     "name": "Catenay",
     "code": "76163",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76116"
   },
@@ -1179,7 +1179,7 @@
     "name": "Rives-en-Seine",
     "code": "76164",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76490"
   },
@@ -1187,7 +1187,7 @@
     "name": "Caudebec-lès-Elbeuf",
     "code": "76165",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76320"
   },
@@ -1195,7 +1195,7 @@
     "name": "Le Caule-Sainte-Beuve",
     "code": "76166",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76390"
   },
@@ -1203,7 +1203,7 @@
     "name": "Cauville-sur-Mer",
     "code": "76167",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76930"
   },
@@ -1211,7 +1211,7 @@
     "name": "Les Cent-Acres",
     "code": "76168",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76590"
   },
@@ -1219,7 +1219,7 @@
     "name": "La Cerlangue",
     "code": "76169",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76430"
   },
@@ -1227,7 +1227,7 @@
     "name": "La Chapelle-du-Bourgay",
     "code": "76170",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76590"
   },
@@ -1235,7 +1235,7 @@
     "name": "La Chapelle-Saint-Ouen",
     "code": "76171",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76780"
   },
@@ -1243,7 +1243,7 @@
     "name": "La Chapelle-sur-Dun",
     "code": "76172",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76740"
   },
@@ -1251,7 +1251,7 @@
     "name": "La Chaussée",
     "code": "76173",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76590"
   },
@@ -1259,7 +1259,7 @@
     "name": "Cideville",
     "code": "76174",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76570"
   },
@@ -1267,7 +1267,7 @@
     "name": "Clais",
     "code": "76175",
     "epci_code": "247600604",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76660"
   },
@@ -1275,7 +1275,7 @@
     "name": "Clasville",
     "code": "76176",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76450"
   },
@@ -1283,7 +1283,7 @@
     "name": "Claville-Motteville",
     "code": "76177",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76690"
   },
@@ -1291,7 +1291,7 @@
     "name": "Cléon",
     "code": "76178",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76410"
   },
@@ -1299,7 +1299,7 @@
     "name": "Clères",
     "code": "76179",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76690"
   },
@@ -1307,7 +1307,7 @@
     "name": "Cleuville",
     "code": "76180",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76450"
   },
@@ -1315,7 +1315,7 @@
     "name": "Cléville",
     "code": "76181",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76640"
   },
@@ -1323,7 +1323,7 @@
     "name": "Cliponville",
     "code": "76182",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76640"
   },
@@ -1331,7 +1331,7 @@
     "name": "Colleville",
     "code": "76183",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76400"
   },
@@ -1339,7 +1339,7 @@
     "name": "Colmesnil-Manneville",
     "code": "76184",
     "epci_code": "247600786",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76550"
   },
@@ -1347,7 +1347,7 @@
     "name": "Compainville",
     "code": "76185",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76440"
   },
@@ -1355,7 +1355,7 @@
     "name": "Conteville",
     "code": "76186",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76390"
   },
@@ -1363,7 +1363,7 @@
     "name": "Contremoulins",
     "code": "76187",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76400"
   },
@@ -1371,7 +1371,7 @@
     "name": "Cottévrard",
     "code": "76188",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76850"
   },
@@ -1379,7 +1379,7 @@
     "name": "Crasville-la-Mallet",
     "code": "76189",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76450"
   },
@@ -1387,7 +1387,7 @@
     "name": "Crasville-la-Rocquefort",
     "code": "76190",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76740"
   },
@@ -1395,7 +1395,7 @@
     "name": "Criel-sur-Mer",
     "code": "76192",
     "epci_code": "247600588",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76910"
   },
@@ -1403,7 +1403,7 @@
     "name": "La Crique",
     "code": "76193",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76850"
   },
@@ -1411,7 +1411,7 @@
     "name": "Criquebeuf-en-Caux",
     "code": "76194",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76111"
   },
@@ -1419,7 +1419,7 @@
     "name": "Criquetot-le-Mauconduit",
     "code": "76195",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76540"
   },
@@ -1427,7 +1427,7 @@
     "name": "Criquetot-l’Esneval",
     "code": "76196",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76280"
   },
@@ -1435,7 +1435,7 @@
     "name": "Criquetot-sur-Longueville",
     "code": "76197",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76590"
   },
@@ -1443,7 +1443,7 @@
     "name": "Criquetot-sur-Ouville",
     "code": "76198",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76760"
   },
@@ -1451,7 +1451,7 @@
     "name": "Criquiers",
     "code": "76199",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76390"
   },
@@ -1459,7 +1459,7 @@
     "name": "Critot",
     "code": "76200",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76680"
   },
@@ -1467,7 +1467,7 @@
     "name": "Croisy-sur-Andelle",
     "code": "76201",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76780"
   },
@@ -1475,7 +1475,7 @@
     "name": "Croixdalle",
     "code": "76202",
     "epci_code": "247600604",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76660"
   },
@@ -1483,7 +1483,7 @@
     "name": "Croix-Mare",
     "code": "76203",
     "epci_code": "247600620",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76190"
   },
@@ -1491,7 +1491,7 @@
     "name": "Cropus",
     "code": "76204",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76720"
   },
@@ -1499,7 +1499,7 @@
     "name": "Crosville-sur-Scie",
     "code": "76205",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76590"
   },
@@ -1507,7 +1507,7 @@
     "name": "Cuverville",
     "code": "76206",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76280"
   },
@@ -1515,7 +1515,7 @@
     "name": "Cuverville-sur-Yères",
     "code": "76207",
     "epci_code": "247600729",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76260"
   },
@@ -1523,7 +1523,7 @@
     "name": "Cuy-Saint-Fiacre",
     "code": "76208",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76220"
   },
@@ -1531,7 +1531,7 @@
     "name": "Dampierre-en-Bray",
     "code": "76209",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76220"
   },
@@ -1539,7 +1539,7 @@
     "name": "Dampierre-Saint-Nicolas",
     "code": "76210",
     "epci_code": "247600729",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76510"
   },
@@ -1547,7 +1547,7 @@
     "name": "Dancourt",
     "code": "76211",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76340"
   },
@@ -1555,7 +1555,7 @@
     "name": "Darnétal",
     "code": "76212",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76160"
   },
@@ -1563,7 +1563,7 @@
     "name": "Daubeuf-Serville",
     "code": "76213",
     "epci_code": "247600505",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76110"
   },
@@ -1571,7 +1571,7 @@
     "name": "Dénestanville",
     "code": "76214",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76590"
   },
@@ -1579,7 +1579,7 @@
     "name": "Déville-lès-Rouen",
     "code": "76216",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76250"
   },
@@ -1587,7 +1587,7 @@
     "name": "Dieppe",
     "code": "76217",
     "epci_code": "247600786",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76200"
   },
@@ -1595,7 +1595,7 @@
     "name": "Dieppe",
     "code": "76217",
     "epci_code": "247600786",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76370"
   },
@@ -1603,7 +1603,7 @@
     "name": "Doudeauville",
     "code": "76218",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76220"
   },
@@ -1611,7 +1611,7 @@
     "name": "Doudeville",
     "code": "76219",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76560"
   },
@@ -1619,7 +1619,7 @@
     "name": "Douvrend",
     "code": "76220",
     "epci_code": "247600729",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76630"
   },
@@ -1627,7 +1627,7 @@
     "name": "Drosay",
     "code": "76221",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76460"
   },
@@ -1635,7 +1635,7 @@
     "name": "Duclair",
     "code": "76222",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76480"
   },
@@ -1643,7 +1643,7 @@
     "name": "Écalles-Alix",
     "code": "76223",
     "epci_code": "247600620",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76190"
   },
@@ -1651,7 +1651,7 @@
     "name": "Écrainville",
     "code": "76224",
     "epci_code": "247600505",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76110"
   },
@@ -1659,7 +1659,7 @@
     "name": "Écretteville-lès-Baons",
     "code": "76225",
     "epci_code": "247600620",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76190"
   },
@@ -1667,7 +1667,7 @@
     "name": "Écretteville-sur-Mer",
     "code": "76226",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76540"
   },
@@ -1675,7 +1675,7 @@
     "name": "Ectot-l’Auber",
     "code": "76227",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76760"
   },
@@ -1683,7 +1683,7 @@
     "name": "Ectot-lès-Baons",
     "code": "76228",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76970"
   },
@@ -1691,7 +1691,7 @@
     "name": "Elbeuf-en-Bray",
     "code": "76229",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76220"
   },
@@ -1699,7 +1699,7 @@
     "name": "Elbeuf-sur-Andelle",
     "code": "76230",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76780"
   },
@@ -1707,7 +1707,7 @@
     "name": "Elbeuf",
     "code": "76231",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76500"
   },
@@ -1715,7 +1715,7 @@
     "name": "Életot",
     "code": "76232",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76540"
   },
@@ -1723,7 +1723,7 @@
     "name": "Ellecourt",
     "code": "76233",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76390"
   },
@@ -1731,7 +1731,7 @@
     "name": "Émanville",
     "code": "76234",
     "epci_code": "247600646",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76570"
   },
@@ -1739,7 +1739,7 @@
     "name": "Envermeu",
     "code": "76235",
     "epci_code": "247600729",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76630"
   },
@@ -1747,7 +1747,7 @@
     "name": "Envronville",
     "code": "76236",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76640"
   },
@@ -1755,7 +1755,7 @@
     "name": "Épinay-sur-Duclair",
     "code": "76237",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76480"
   },
@@ -1763,7 +1763,7 @@
     "name": "Épouville",
     "code": "76238",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76133"
   },
@@ -1771,7 +1771,7 @@
     "name": "Épretot",
     "code": "76239",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76430"
   },
@@ -1779,7 +1779,7 @@
     "name": "Épreville",
     "code": "76240",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76400"
   },
@@ -1787,7 +1787,7 @@
     "name": "Ermenouville",
     "code": "76241",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76740"
   },
@@ -1795,7 +1795,7 @@
     "name": "Ernemont-la-Villette",
     "code": "76242",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76220"
   },
@@ -1803,7 +1803,7 @@
     "name": "Ernemont-sur-Buchy",
     "code": "76243",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76750"
   },
@@ -1811,7 +1811,7 @@
     "name": "Esclavelles",
     "code": "76244",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76270"
   },
@@ -1819,7 +1819,7 @@
     "name": "Eslettes",
     "code": "76245",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76710"
   },
@@ -1827,7 +1827,7 @@
     "name": "Esteville",
     "code": "76247",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76690"
   },
@@ -1835,7 +1835,7 @@
     "name": "Étaimpuis",
     "code": "76249",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76850"
   },
@@ -1843,7 +1843,7 @@
     "name": "Étainhus",
     "code": "76250",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76430"
   },
@@ -1851,7 +1851,7 @@
     "name": "Étalleville",
     "code": "76251",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76560"
   },
@@ -1859,7 +1859,7 @@
     "name": "Étalondes",
     "code": "76252",
     "epci_code": "247600588",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76260"
   },
@@ -1867,7 +1867,7 @@
     "name": "Étoutteville",
     "code": "76253",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76190"
   },
@@ -1875,7 +1875,7 @@
     "name": "Étretat",
     "code": "76254",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76790"
   },
@@ -1883,7 +1883,7 @@
     "name": "Eu",
     "code": "76255",
     "epci_code": "247600588",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76260"
   },
@@ -1891,7 +1891,7 @@
     "name": "Fallencourt",
     "code": "76257",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76340"
   },
@@ -1899,7 +1899,7 @@
     "name": "Terres-de-Caux",
     "code": "76258",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76640"
   },
@@ -1907,7 +1907,7 @@
     "name": "Fécamp",
     "code": "76259",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76400"
   },
@@ -1915,7 +1915,7 @@
     "name": "Ferrières-en-Bray",
     "code": "76260",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76220"
   },
@@ -1923,7 +1923,7 @@
     "name": "La Ferté-Saint-Samson",
     "code": "76261",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76440"
   },
@@ -1931,7 +1931,7 @@
     "name": "Fesques",
     "code": "76262",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76270"
   },
@@ -1939,7 +1939,7 @@
     "name": "La Feuillie",
     "code": "76263",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76220"
   },
@@ -1947,7 +1947,7 @@
     "name": "Flamanville",
     "code": "76264",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76970"
   },
@@ -1955,7 +1955,7 @@
     "name": "Flamets-Frétils",
     "code": "76265",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76270"
   },
@@ -1963,7 +1963,7 @@
     "name": "Flocques",
     "code": "76266",
     "epci_code": "247600588",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76260"
   },
@@ -1971,7 +1971,7 @@
     "name": "Fongueusemare",
     "code": "76268",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76280"
   },
@@ -1979,7 +1979,7 @@
     "name": "Fontaine-en-Bray",
     "code": "76269",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76440"
   },
@@ -1987,7 +1987,7 @@
     "name": "Fontaine-la-Mallet",
     "code": "76270",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76290"
   },
@@ -1995,7 +1995,7 @@
     "name": "Fontaine-le-Bourg",
     "code": "76271",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76690"
   },
@@ -2003,7 +2003,7 @@
     "name": "Fontaine-le-Dun",
     "code": "76272",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76740"
   },
@@ -2011,7 +2011,7 @@
     "name": "Fontaine-sous-Préaux",
     "code": "76273",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76160"
   },
@@ -2019,7 +2019,7 @@
     "name": "La Fontelaye",
     "code": "76274",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76890"
   },
@@ -2027,7 +2027,7 @@
     "name": "Fontenay",
     "code": "76275",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76290"
   },
@@ -2035,7 +2035,7 @@
     "name": "Forges-les-Eaux",
     "code": "76276",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76440"
   },
@@ -2043,7 +2043,7 @@
     "name": "Foucarmont",
     "code": "76278",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76340"
   },
@@ -2051,7 +2051,7 @@
     "name": "Foucart",
     "code": "76279",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76640"
   },
@@ -2059,7 +2059,7 @@
     "name": "Fréauville",
     "code": "76280",
     "epci_code": "247600604",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76660"
   },
@@ -2067,7 +2067,7 @@
     "name": "La Frénaye",
     "code": "76281",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76170"
   },
@@ -2075,7 +2075,7 @@
     "name": "Freneuse",
     "code": "76282",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76410"
   },
@@ -2083,7 +2083,7 @@
     "name": "Fresles",
     "code": "76283",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76270"
   },
@@ -2091,7 +2091,7 @@
     "name": "Fresnay-le-Long",
     "code": "76284",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76850"
   },
@@ -2099,7 +2099,7 @@
     "name": "Fresne-le-Plan",
     "code": "76285",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76520"
   },
@@ -2107,7 +2107,7 @@
     "name": "Fresnoy-Folny",
     "code": "76286",
     "epci_code": "247600604",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76660"
   },
@@ -2115,7 +2115,7 @@
     "name": "Fresquiennes",
     "code": "76287",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76570"
   },
@@ -2123,7 +2123,7 @@
     "name": "Freulleville",
     "code": "76288",
     "epci_code": "247600729",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76510"
   },
@@ -2131,7 +2131,7 @@
     "name": "Saint Martin de l’If",
     "code": "76289",
     "epci_code": "247600620",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76190"
   },
@@ -2139,7 +2139,7 @@
     "name": "Frichemesnil",
     "code": "76290",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76690"
   },
@@ -2147,7 +2147,7 @@
     "name": "Froberville",
     "code": "76291",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76400"
   },
@@ -2155,7 +2155,7 @@
     "name": "Fry",
     "code": "76292",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76780"
   },
@@ -2163,7 +2163,7 @@
     "name": "Fultot",
     "code": "76293",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76560"
   },
@@ -2171,7 +2171,7 @@
     "name": "La Gaillarde",
     "code": "76294",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76740"
   },
@@ -2179,7 +2179,7 @@
     "name": "Gaillefontaine",
     "code": "76295",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76870"
   },
@@ -2187,7 +2187,7 @@
     "name": "Gainneville",
     "code": "76296",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76700"
   },
@@ -2195,7 +2195,7 @@
     "name": "Gancourt-Saint-Étienne",
     "code": "76297",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76220"
   },
@@ -2203,7 +2203,7 @@
     "name": "Ganzeville",
     "code": "76298",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76400"
   },
@@ -2211,7 +2211,7 @@
     "name": "Gerponville",
     "code": "76299",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76540"
   },
@@ -2219,7 +2219,7 @@
     "name": "Gerville",
     "code": "76300",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76790"
   },
@@ -2227,7 +2227,7 @@
     "name": "Goderville",
     "code": "76302",
     "epci_code": "247600505",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76110"
   },
@@ -2235,7 +2235,7 @@
     "name": "Gommerville",
     "code": "76303",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76430"
   },
@@ -2243,7 +2243,7 @@
     "name": "Gonfreville-Caillot",
     "code": "76304",
     "epci_code": "247600505",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76110"
   },
@@ -2251,7 +2251,7 @@
     "name": "Gonfreville-l’Orcher",
     "code": "76305",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76700"
   },
@@ -2259,7 +2259,7 @@
     "name": "Gonnetot",
     "code": "76306",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76730"
   },
@@ -2267,7 +2267,7 @@
     "name": "Gonneville-la-Mallet",
     "code": "76307",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76280"
   },
@@ -2275,7 +2275,7 @@
     "name": "Gonneville-sur-Scie",
     "code": "76308",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76590"
   },
@@ -2283,7 +2283,7 @@
     "name": "Gonzeville",
     "code": "76309",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76560"
   },
@@ -2291,7 +2291,7 @@
     "name": "Goupillières",
     "code": "76311",
     "epci_code": "247600646",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76570"
   },
@@ -2299,7 +2299,7 @@
     "name": "Gournay-en-Bray",
     "code": "76312",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76220"
   },
@@ -2307,7 +2307,7 @@
     "name": "Gouy",
     "code": "76313",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76520"
   },
@@ -2315,7 +2315,7 @@
     "name": "Graimbouville",
     "code": "76314",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76430"
   },
@@ -2323,7 +2323,7 @@
     "name": "Grainville-la-Teinturière",
     "code": "76315",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76450"
   },
@@ -2331,7 +2331,7 @@
     "name": "Grainville-sur-Ry",
     "code": "76316",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76116"
   },
@@ -2339,7 +2339,7 @@
     "name": "Grainville-Ymauville",
     "code": "76317",
     "epci_code": "247600505",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76110"
   },
@@ -2347,7 +2347,7 @@
     "name": "Grand-Camp",
     "code": "76318",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76170"
   },
@@ -2355,7 +2355,7 @@
     "name": "Grand-Couronne",
     "code": "76319",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76530"
   },
@@ -2363,7 +2363,7 @@
     "name": "Grandcourt",
     "code": "76320",
     "epci_code": "247600604",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76660"
   },
@@ -2371,7 +2371,7 @@
     "name": "Les Grandes-Ventes",
     "code": "76321",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76950"
   },
@@ -2379,7 +2379,7 @@
     "name": "Le Grand-Quevilly",
     "code": "76322",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76120"
   },
@@ -2387,7 +2387,7 @@
     "name": "Graval",
     "code": "76323",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76270"
   },
@@ -2395,7 +2395,7 @@
     "name": "Grèges",
     "code": "76324",
     "epci_code": "247600786",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76370"
   },
@@ -2403,7 +2403,7 @@
     "name": "Grémonville",
     "code": "76325",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76970"
   },
@@ -2411,7 +2411,7 @@
     "name": "Greuville",
     "code": "76327",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76810"
   },
@@ -2419,7 +2419,7 @@
     "name": "Grigneuseville",
     "code": "76328",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76850"
   },
@@ -2427,7 +2427,7 @@
     "name": "Gruchet-le-Valasse",
     "code": "76329",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76210"
   },
@@ -2435,7 +2435,7 @@
     "name": "Gruchet-Saint-Siméon",
     "code": "76330",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76810"
   },
@@ -2443,7 +2443,7 @@
     "name": "Grugny",
     "code": "76331",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76690"
   },
@@ -2451,7 +2451,7 @@
     "name": "Grumesnil",
     "code": "76332",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76440"
   },
@@ -2459,7 +2459,7 @@
     "name": "Guerville",
     "code": "76333",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76340"
   },
@@ -2467,7 +2467,7 @@
     "name": "Gueures",
     "code": "76334",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76730"
   },
@@ -2475,7 +2475,7 @@
     "name": "Gueutteville",
     "code": "76335",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76890"
   },
@@ -2483,7 +2483,7 @@
     "name": "Gueutteville-les-Grès",
     "code": "76336",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76460"
   },
@@ -2491,7 +2491,7 @@
     "name": "La Hallotière",
     "code": "76338",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76780"
   },
@@ -2499,7 +2499,7 @@
     "name": "Le Hanouard",
     "code": "76339",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76450"
   },
@@ -2507,7 +2507,7 @@
     "name": "Harcanville",
     "code": "76340",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76560"
   },
@@ -2515,7 +2515,7 @@
     "name": "Harfleur",
     "code": "76341",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76700"
   },
@@ -2523,7 +2523,7 @@
     "name": "Hattenville",
     "code": "76342",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76640"
   },
@@ -2531,7 +2531,7 @@
     "name": "Haucourt",
     "code": "76343",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76440"
   },
@@ -2539,7 +2539,7 @@
     "name": "Haudricourt",
     "code": "76344",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76390"
   },
@@ -2547,7 +2547,7 @@
     "name": "Haussez",
     "code": "76345",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76440"
   },
@@ -2555,7 +2555,7 @@
     "name": "Hautot-l’Auvray",
     "code": "76346",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76450"
   },
@@ -2563,7 +2563,7 @@
     "name": "Hautot-le-Vatois",
     "code": "76347",
     "epci_code": "247600620",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76190"
   },
@@ -2571,7 +2571,7 @@
     "name": "Hautot-Saint-Sulpice",
     "code": "76348",
     "epci_code": "247600620",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76190"
   },
@@ -2579,7 +2579,7 @@
     "name": "Hautot-sur-Mer",
     "code": "76349",
     "epci_code": "247600786",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76550"
   },
@@ -2587,7 +2587,7 @@
     "name": "Hautot-sur-Seine",
     "code": "76350",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76113"
   },
@@ -2595,7 +2595,7 @@
     "name": "Le Havre",
     "code": "76351",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76600"
   },
@@ -2603,7 +2603,7 @@
     "name": "Le Havre",
     "code": "76351",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76610"
   },
@@ -2611,7 +2611,7 @@
     "name": "Le Havre",
     "code": "76351",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76620"
   },
@@ -2619,7 +2619,7 @@
     "name": "La Haye",
     "code": "76352",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76780"
   },
@@ -2627,7 +2627,7 @@
     "name": "Héberville",
     "code": "76353",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76740"
   },
@@ -2635,7 +2635,7 @@
     "name": "Hénouville",
     "code": "76354",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76840"
   },
@@ -2643,7 +2643,7 @@
     "name": "Héricourt-en-Caux",
     "code": "76355",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76560"
   },
@@ -2651,7 +2651,7 @@
     "name": "Hermanville",
     "code": "76356",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76730"
   },
@@ -2659,7 +2659,7 @@
     "name": "Hermeville",
     "code": "76357",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76280"
   },
@@ -2667,7 +2667,7 @@
     "name": "Héronchelles",
     "code": "76359",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76750"
   },
@@ -2675,7 +2675,7 @@
     "name": "Heugleville-sur-Scie",
     "code": "76360",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76720"
   },
@@ -2683,7 +2683,7 @@
     "name": "Heuqueville",
     "code": "76361",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76280"
   },
@@ -2691,7 +2691,7 @@
     "name": "Heurteauville",
     "code": "76362",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76940"
   },
@@ -2699,7 +2699,7 @@
     "name": "Hodeng-au-Bosc",
     "code": "76363",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76340"
   },
@@ -2707,7 +2707,7 @@
     "name": "Hodeng-Hodenger",
     "code": "76364",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76780"
   },
@@ -2715,7 +2715,7 @@
     "name": "Houdetot",
     "code": "76365",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76740"
   },
@@ -2723,7 +2723,7 @@
     "name": "Le Houlme",
     "code": "76366",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76770"
   },
@@ -2731,7 +2731,7 @@
     "name": "Houppeville",
     "code": "76367",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76770"
   },
@@ -2739,7 +2739,7 @@
     "name": "Houquetot",
     "code": "76368",
     "epci_code": "247600505",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76110"
   },
@@ -2747,7 +2747,7 @@
     "name": "La Houssaye-Béranger",
     "code": "76369",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76690"
   },
@@ -2755,7 +2755,7 @@
     "name": "Hugleville-en-Caux",
     "code": "76370",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76570"
   },
@@ -2763,7 +2763,7 @@
     "name": "Les Ifs",
     "code": "76371",
     "epci_code": "247600729",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76630"
   },
@@ -2771,7 +2771,7 @@
     "name": "Illois",
     "code": "76372",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76390"
   },
@@ -2779,7 +2779,7 @@
     "name": "Imbleville",
     "code": "76373",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76890"
   },
@@ -2787,7 +2787,7 @@
     "name": "Incheville",
     "code": "76374",
     "epci_code": "247600588",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76117"
   },
@@ -2795,7 +2795,7 @@
     "name": "Ingouville",
     "code": "76375",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76460"
   },
@@ -2803,7 +2803,7 @@
     "name": "Isneauville",
     "code": "76377",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76230"
   },
@@ -2811,7 +2811,7 @@
     "name": "Jumièges",
     "code": "76378",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76480"
   },
@@ -2819,7 +2819,7 @@
     "name": "Lamberville",
     "code": "76379",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76730"
   },
@@ -2827,7 +2827,7 @@
     "name": "Lammerville",
     "code": "76380",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76730"
   },
@@ -2835,7 +2835,7 @@
     "name": "Landes-Vieilles-et-Neuves",
     "code": "76381",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76390"
   },
@@ -2843,7 +2843,7 @@
     "name": "Lanquetot",
     "code": "76382",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76210"
   },
@@ -2851,7 +2851,7 @@
     "name": "Lestanville",
     "code": "76383",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76730"
   },
@@ -2859,7 +2859,7 @@
     "name": "Lillebonne",
     "code": "76384",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76170"
   },
@@ -2867,7 +2867,7 @@
     "name": "Limésy",
     "code": "76385",
     "epci_code": "247600646",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76570"
   },
@@ -2875,7 +2875,7 @@
     "name": "Limpiville",
     "code": "76386",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76540"
   },
@@ -2883,7 +2883,7 @@
     "name": "Lindebeuf",
     "code": "76387",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76760"
   },
@@ -2891,7 +2891,7 @@
     "name": "Lintot",
     "code": "76388",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76210"
   },
@@ -2899,7 +2899,7 @@
     "name": "Lintot-les-Bois",
     "code": "76389",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76590"
   },
@@ -2907,7 +2907,7 @@
     "name": "Les Loges",
     "code": "76390",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76790"
   },
@@ -2915,7 +2915,7 @@
     "name": "La Londe",
     "code": "76391",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76500"
   },
@@ -2923,7 +2923,7 @@
     "name": "Londinières",
     "code": "76392",
     "epci_code": "247600604",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76660"
   },
@@ -2931,7 +2931,7 @@
     "name": "Longmesnil",
     "code": "76393",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76440"
   },
@@ -2939,7 +2939,7 @@
     "name": "Longroy",
     "code": "76394",
     "epci_code": "247600588",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76260"
   },
@@ -2947,7 +2947,7 @@
     "name": "Longueil",
     "code": "76395",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76860"
   },
@@ -2955,7 +2955,7 @@
     "name": "Longuerue",
     "code": "76396",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76750"
   },
@@ -2963,7 +2963,7 @@
     "name": "Longueville-sur-Scie",
     "code": "76397",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76590"
   },
@@ -2971,7 +2971,7 @@
     "name": "Louvetot",
     "code": "76398",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76490"
   },
@@ -2979,7 +2979,7 @@
     "name": "Lucy",
     "code": "76399",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76270"
   },
@@ -2987,7 +2987,7 @@
     "name": "Luneray",
     "code": "76400",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76810"
   },
@@ -2995,7 +2995,7 @@
     "name": "Arelaune-en-Seine",
     "code": "76401",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76940"
   },
@@ -3003,7 +3003,7 @@
     "name": "Malaunay",
     "code": "76402",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76770"
   },
@@ -3011,7 +3011,7 @@
     "name": "Malleville-les-Grès",
     "code": "76403",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76450"
   },
@@ -3019,7 +3019,7 @@
     "name": "Manéglise",
     "code": "76404",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76133"
   },
@@ -3027,7 +3027,7 @@
     "name": "Manéhouville",
     "code": "76405",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76590"
   },
@@ -3035,7 +3035,7 @@
     "name": "Maniquerville",
     "code": "76406",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76400"
   },
@@ -3043,7 +3043,7 @@
     "name": "Manneville-ès-Plains",
     "code": "76407",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76460"
   },
@@ -3051,7 +3051,7 @@
     "name": "Manneville-la-Goupil",
     "code": "76408",
     "epci_code": "247600505",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76110"
   },
@@ -3059,7 +3059,7 @@
     "name": "Mannevillette",
     "code": "76409",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76290"
   },
@@ -3067,7 +3067,7 @@
     "name": "Maromme",
     "code": "76410",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76150"
   },
@@ -3075,7 +3075,7 @@
     "name": "Marques",
     "code": "76411",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76390"
   },
@@ -3083,7 +3083,7 @@
     "name": "Martainville-Épreville",
     "code": "76412",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76116"
   },
@@ -3091,7 +3091,7 @@
     "name": "Martigny",
     "code": "76413",
     "epci_code": "247600786",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76880"
   },
@@ -3099,7 +3099,7 @@
     "name": "Martin-Église",
     "code": "76414",
     "epci_code": "247600786",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76370"
   },
@@ -3107,7 +3107,7 @@
     "name": "Massy",
     "code": "76415",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76270"
   },
@@ -3115,7 +3115,7 @@
     "name": "Mathonville",
     "code": "76416",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76680"
   },
@@ -3123,7 +3123,7 @@
     "name": "Maucomble",
     "code": "76417",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76680"
   },
@@ -3131,7 +3131,7 @@
     "name": "Maulévrier-Sainte-Gertrude",
     "code": "76418",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76490"
   },
@@ -3139,7 +3139,7 @@
     "name": "Mauny",
     "code": "76419",
     "epci_code": "200066405",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76530"
   },
@@ -3147,7 +3147,7 @@
     "name": "Mauquenchy",
     "code": "76420",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76440"
   },
@@ -3155,7 +3155,7 @@
     "name": "Mélamare",
     "code": "76421",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76170"
   },
@@ -3163,7 +3163,7 @@
     "name": "Melleville",
     "code": "76422",
     "epci_code": "247600588",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76260"
   },
@@ -3171,7 +3171,7 @@
     "name": "Ménerval",
     "code": "76423",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76220"
   },
@@ -3179,7 +3179,7 @@
     "name": "Ménonval",
     "code": "76424",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76270"
   },
@@ -3187,7 +3187,7 @@
     "name": "Mentheville",
     "code": "76425",
     "epci_code": "247600505",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76110"
   },
@@ -3195,7 +3195,7 @@
     "name": "Mésangueville",
     "code": "76426",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76780"
   },
@@ -3203,7 +3203,7 @@
     "name": "Mesnières-en-Bray",
     "code": "76427",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76270"
   },
@@ -3211,7 +3211,7 @@
     "name": "Le Mesnil-Durdent",
     "code": "76428",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76460"
   },
@@ -3219,7 +3219,7 @@
     "name": "Le Mesnil-Esnard",
     "code": "76429",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76240"
   },
@@ -3227,7 +3227,7 @@
     "name": "Mesnil-Follemprise",
     "code": "76430",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76660"
   },
@@ -3235,7 +3235,7 @@
     "name": "Le Mesnil-Lieubray",
     "code": "76431",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76780"
   },
@@ -3243,7 +3243,7 @@
     "name": "Mesnil-Mauger",
     "code": "76432",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76440"
   },
@@ -3251,7 +3251,7 @@
     "name": "Mesnil-Panneville",
     "code": "76433",
     "epci_code": "247600620",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76570"
   },
@@ -3259,7 +3259,7 @@
     "name": "Mesnil-Raoul",
     "code": "76434",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76520"
   },
@@ -3267,7 +3267,7 @@
     "name": "Le Mesnil-Réaume",
     "code": "76435",
     "epci_code": "247600588",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76260"
   },
@@ -3275,7 +3275,7 @@
     "name": "Le Mesnil-sous-Jumièges",
     "code": "76436",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76480"
   },
@@ -3283,7 +3283,7 @@
     "name": "Meulers",
     "code": "76437",
     "epci_code": "247600729",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76510"
   },
@@ -3291,7 +3291,7 @@
     "name": "Millebosc",
     "code": "76438",
     "epci_code": "247600588",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76260"
   },
@@ -3299,7 +3299,7 @@
     "name": "Mirville",
     "code": "76439",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76210"
   },
@@ -3307,7 +3307,7 @@
     "name": "Molagnies",
     "code": "76440",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76220"
   },
@@ -3315,7 +3315,7 @@
     "name": "Monchaux-Soreng",
     "code": "76441",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76340"
   },
@@ -3323,7 +3323,7 @@
     "name": "Monchy-sur-Eu",
     "code": "76442",
     "epci_code": "247600588",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76260"
   },
@@ -3331,7 +3331,7 @@
     "name": "Mont-Cauvaire",
     "code": "76443",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76690"
   },
@@ -3339,7 +3339,7 @@
     "name": "Montérolier",
     "code": "76445",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76680"
   },
@@ -3347,7 +3347,7 @@
     "name": "Montigny",
     "code": "76446",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76380"
   },
@@ -3355,7 +3355,7 @@
     "name": "Montivilliers",
     "code": "76447",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76290"
   },
@@ -3363,7 +3363,7 @@
     "name": "Montmain",
     "code": "76448",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76520"
   },
@@ -3371,7 +3371,7 @@
     "name": "Montreuil-en-Caux",
     "code": "76449",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76850"
   },
@@ -3379,7 +3379,7 @@
     "name": "Montroty",
     "code": "76450",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76220"
   },
@@ -3387,7 +3387,7 @@
     "name": "Mont-Saint-Aignan",
     "code": "76451",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76130"
   },
@@ -3395,7 +3395,7 @@
     "name": "Montville",
     "code": "76452",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76710"
   },
@@ -3403,7 +3403,7 @@
     "name": "Morgny-la-Pommeraye",
     "code": "76453",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76750"
   },
@@ -3411,7 +3411,7 @@
     "name": "Mortemer",
     "code": "76454",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76270"
   },
@@ -3419,7 +3419,7 @@
     "name": "Morville-le-Héron",
     "code": "76455",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76780"
   },
@@ -3427,7 +3427,7 @@
     "name": "Motteville",
     "code": "76456",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76970"
   },
@@ -3435,7 +3435,7 @@
     "name": "Moulineaux",
     "code": "76457",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76530"
   },
@@ -3443,7 +3443,7 @@
     "name": "Muchedent",
     "code": "76458",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76590"
   },
@@ -3451,7 +3451,7 @@
     "name": "Nesle-Hodeng",
     "code": "76459",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76270"
   },
@@ -3459,7 +3459,7 @@
     "name": "Nesle-Normandeuse",
     "code": "76460",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76340"
   },
@@ -3467,7 +3467,7 @@
     "name": "Neufbosc",
     "code": "76461",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76680"
   },
@@ -3475,7 +3475,7 @@
     "name": "Neufchâtel-en-Bray",
     "code": "76462",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76270"
   },
@@ -3483,7 +3483,7 @@
     "name": "Neuf-Marché",
     "code": "76463",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76220"
   },
@@ -3491,7 +3491,7 @@
     "name": "La Neuville-Chant-d’Oisel",
     "code": "76464",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76520"
   },
@@ -3499,7 +3499,7 @@
     "name": "Neuville-Ferrières",
     "code": "76465",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76270"
   },
@@ -3507,7 +3507,7 @@
     "name": "Néville",
     "code": "76467",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76460"
   },
@@ -3515,7 +3515,7 @@
     "name": "Nointot",
     "code": "76468",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76210"
   },
@@ -3523,7 +3523,7 @@
     "name": "Nolléval",
     "code": "76469",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76780"
   },
@@ -3531,7 +3531,7 @@
     "name": "Normanville",
     "code": "76470",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76640"
   },
@@ -3539,7 +3539,7 @@
     "name": "Norville",
     "code": "76471",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76330"
   },
@@ -3547,7 +3547,7 @@
     "name": "Notre-Dame-d’Aliermont",
     "code": "76472",
     "epci_code": "247600729",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76510"
   },
@@ -3555,7 +3555,7 @@
     "name": "Notre-Dame-de-Bliquetuit",
     "code": "76473",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76940"
   },
@@ -3563,7 +3563,7 @@
     "name": "Notre-Dame-de-Bondeville",
     "code": "76474",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76960"
   },
@@ -3571,7 +3571,7 @@
     "name": "Franqueville-Saint-Pierre",
     "code": "76475",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76520"
   },
@@ -3579,7 +3579,7 @@
     "name": "Port-Jérôme-sur-Seine",
     "code": "76476",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76170"
   },
@@ -3587,7 +3587,7 @@
     "name": "Port-Jérôme-sur-Seine",
     "code": "76476",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76330"
   },
@@ -3595,7 +3595,7 @@
     "name": "Notre-Dame-du-Bec",
     "code": "76477",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76133"
   },
@@ -3603,7 +3603,7 @@
     "name": "Notre-Dame-du-Parc",
     "code": "76478",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76590"
   },
@@ -3611,7 +3611,7 @@
     "name": "Nullemont",
     "code": "76479",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76390"
   },
@@ -3619,7 +3619,7 @@
     "name": "Ocqueville",
     "code": "76480",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76450"
   },
@@ -3627,7 +3627,7 @@
     "name": "Octeville-sur-Mer",
     "code": "76481",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76930"
   },
@@ -3635,7 +3635,7 @@
     "name": "Offranville",
     "code": "76482",
     "epci_code": "247600786",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76550"
   },
@@ -3643,7 +3643,7 @@
     "name": "Oherville",
     "code": "76483",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76560"
   },
@@ -3651,7 +3651,7 @@
     "name": "Oissel-sur-Seine",
     "code": "76484",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76350"
   },
@@ -3659,7 +3659,7 @@
     "name": "Omonville",
     "code": "76485",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76730"
   },
@@ -3667,7 +3667,7 @@
     "name": "Orival",
     "code": "76486",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76500"
   },
@@ -3675,7 +3675,7 @@
     "name": "Osmoy-Saint-Valery",
     "code": "76487",
     "epci_code": "247600604",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76660"
   },
@@ -3683,7 +3683,7 @@
     "name": "Ouainville",
     "code": "76488",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76450"
   },
@@ -3691,7 +3691,7 @@
     "name": "Oudalle",
     "code": "76489",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76430"
   },
@@ -3699,7 +3699,7 @@
     "name": "Ourville-en-Caux",
     "code": "76490",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76450"
   },
@@ -3707,7 +3707,7 @@
     "name": "Ouville-l’Abbaye",
     "code": "76491",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76760"
   },
@@ -3715,7 +3715,7 @@
     "name": "Ouville-la-Rivière",
     "code": "76492",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76860"
   },
@@ -3723,7 +3723,7 @@
     "name": "Paluel",
     "code": "76493",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76450"
   },
@@ -3731,7 +3731,7 @@
     "name": "Parc-d’Anxtot",
     "code": "76494",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76210"
   },
@@ -3739,7 +3739,7 @@
     "name": "Pavilly",
     "code": "76495",
     "epci_code": "247600646",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76570"
   },
@@ -3747,7 +3747,7 @@
     "name": "Petit-Couronne",
     "code": "76497",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76650"
   },
@@ -3755,7 +3755,7 @@
     "name": "Le Petit-Quevilly",
     "code": "76498",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76140"
   },
@@ -3763,7 +3763,7 @@
     "name": "Petiville",
     "code": "76499",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76330"
   },
@@ -3771,7 +3771,7 @@
     "name": "Pierrecourt",
     "code": "76500",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76340"
   },
@@ -3779,7 +3779,7 @@
     "name": "Pierrefiques",
     "code": "76501",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76280"
   },
@@ -3787,7 +3787,7 @@
     "name": "Pierreval",
     "code": "76502",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76750"
   },
@@ -3795,7 +3795,7 @@
     "name": "Pissy-Pôville",
     "code": "76503",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76360"
   },
@@ -3803,7 +3803,7 @@
     "name": "Pleine-Sève",
     "code": "76504",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76460"
   },
@@ -3811,7 +3811,7 @@
     "name": "Pommereux",
     "code": "76505",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76440"
   },
@@ -3819,7 +3819,7 @@
     "name": "Pommeréval",
     "code": "76506",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76680"
   },
@@ -3827,7 +3827,7 @@
     "name": "Ponts-et-Marais",
     "code": "76507",
     "epci_code": "247600588",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76260"
   },
@@ -3835,7 +3835,7 @@
     "name": "La Poterie-Cap-d’Antifer",
     "code": "76508",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76280"
   },
@@ -3843,7 +3843,7 @@
     "name": "Préaux",
     "code": "76509",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76160"
   },
@@ -3851,7 +3851,7 @@
     "name": "Prétot-Vicquemare",
     "code": "76510",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76560"
   },
@@ -3859,7 +3859,7 @@
     "name": "Preuseville",
     "code": "76511",
     "epci_code": "247600604",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76660"
   },
@@ -3867,7 +3867,7 @@
     "name": "Puisenval",
     "code": "76512",
     "epci_code": "247600604",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76660"
   },
@@ -3875,7 +3875,7 @@
     "name": "Quevillon",
     "code": "76513",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76840"
   },
@@ -3883,7 +3883,7 @@
     "name": "Quévreville-la-Poterie",
     "code": "76514",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76520"
   },
@@ -3891,7 +3891,7 @@
     "name": "Quiberville-sur-Mer",
     "code": "76515",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76860"
   },
@@ -3899,7 +3899,7 @@
     "name": "Quièvrecourt",
     "code": "76516",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76270"
   },
@@ -3907,7 +3907,7 @@
     "name": "Quincampoix",
     "code": "76517",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76230"
   },
@@ -3915,7 +3915,7 @@
     "name": "Raffetot",
     "code": "76518",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76210"
   },
@@ -3923,7 +3923,7 @@
     "name": "Rainfreville",
     "code": "76519",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76730"
   },
@@ -3931,7 +3931,7 @@
     "name": "Réalcamp",
     "code": "76520",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76340"
   },
@@ -3939,7 +3939,7 @@
     "name": "Rebets",
     "code": "76521",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76750"
   },
@@ -3947,7 +3947,7 @@
     "name": "La Remuée",
     "code": "76522",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76430"
   },
@@ -3955,7 +3955,7 @@
     "name": "Rétonval",
     "code": "76523",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76340"
   },
@@ -3963,7 +3963,7 @@
     "name": "Reuville",
     "code": "76524",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76560"
   },
@@ -3971,7 +3971,7 @@
     "name": "Ricarville-du-Val",
     "code": "76526",
     "epci_code": "247600729",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76510"
   },
@@ -3979,7 +3979,7 @@
     "name": "Richemont",
     "code": "76527",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76390"
   },
@@ -3987,7 +3987,7 @@
     "name": "Rieux",
     "code": "76528",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76340"
   },
@@ -3995,7 +3995,7 @@
     "name": "Riville",
     "code": "76529",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76540"
   },
@@ -4003,7 +4003,7 @@
     "name": "Robertot",
     "code": "76530",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76560"
   },
@@ -4011,7 +4011,7 @@
     "name": "Rocquefort",
     "code": "76531",
     "epci_code": "247600620",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76640"
   },
@@ -4019,7 +4019,7 @@
     "name": "Rocquemont",
     "code": "76532",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76680"
   },
@@ -4027,7 +4027,7 @@
     "name": "Rogerville",
     "code": "76533",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76700"
   },
@@ -4035,7 +4035,7 @@
     "name": "Rolleville",
     "code": "76534",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76133"
   },
@@ -4043,7 +4043,7 @@
     "name": "Roncherolles-en-Bray",
     "code": "76535",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76440"
   },
@@ -4051,7 +4051,7 @@
     "name": "Roncherolles-sur-le-Vivier",
     "code": "76536",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76160"
   },
@@ -4059,7 +4059,7 @@
     "name": "Ronchois",
     "code": "76537",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76390"
   },
@@ -4067,7 +4067,7 @@
     "name": "Rosay",
     "code": "76538",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76680"
   },
@@ -4075,7 +4075,7 @@
     "name": "Rouen",
     "code": "76540",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76000"
   },
@@ -4083,7 +4083,7 @@
     "name": "Rouen",
     "code": "76540",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76100"
   },
@@ -4091,7 +4091,7 @@
     "name": "Roumare",
     "code": "76541",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76480"
   },
@@ -4099,7 +4099,7 @@
     "name": "Routes",
     "code": "76542",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76560"
   },
@@ -4107,7 +4107,7 @@
     "name": "Rouville",
     "code": "76543",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76210"
   },
@@ -4115,7 +4115,7 @@
     "name": "Rouvray-Catillon",
     "code": "76544",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76440"
   },
@@ -4123,7 +4123,7 @@
     "name": "Rouxmesnil-Bouteilles",
     "code": "76545",
     "epci_code": "247600786",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76370"
   },
@@ -4131,7 +4131,7 @@
     "name": "Royville",
     "code": "76546",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76730"
   },
@@ -4139,7 +4139,7 @@
     "name": "La Rue-Saint-Pierre",
     "code": "76547",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76690"
   },
@@ -4147,7 +4147,7 @@
     "name": "Ry",
     "code": "76548",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76116"
   },
@@ -4155,7 +4155,7 @@
     "name": "Saâne-Saint-Just",
     "code": "76549",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76730"
   },
@@ -4163,7 +4163,7 @@
     "name": "Sahurs",
     "code": "76550",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76113"
   },
@@ -4171,7 +4171,7 @@
     "name": "Sainneville",
     "code": "76551",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76430"
   },
@@ -4179,7 +4179,7 @@
     "name": "Sainte-Adresse",
     "code": "76552",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76310"
   },
@@ -4187,7 +4187,7 @@
     "name": "Sainte-Agathe-d’Aliermont",
     "code": "76553",
     "epci_code": "247600604",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76660"
   },
@@ -4195,7 +4195,7 @@
     "name": "Saint-Aignan-sur-Ry",
     "code": "76554",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76116"
   },
@@ -4203,7 +4203,7 @@
     "name": "Saint-André-sur-Cailly",
     "code": "76555",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76690"
   },
@@ -4211,7 +4211,7 @@
     "name": "Saint-Antoine-la-Forêt",
     "code": "76556",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76170"
   },
@@ -4219,7 +4219,7 @@
     "name": "Saint-Arnoult",
     "code": "76557",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76490"
   },
@@ -4227,7 +4227,7 @@
     "name": "Saint-Aubin-Celloville",
     "code": "76558",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76520"
   },
@@ -4235,7 +4235,7 @@
     "name": "Saint-Aubin-de-Crétot",
     "code": "76559",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76190"
   },
@@ -4243,7 +4243,7 @@
     "name": "Saint-Aubin-Épinay",
     "code": "76560",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76160"
   },
@@ -4251,7 +4251,7 @@
     "name": "Saint-Aubin-lès-Elbeuf",
     "code": "76561",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76410"
   },
@@ -4259,7 +4259,7 @@
     "name": "Saint-Aubin-le-Cauf",
     "code": "76562",
     "epci_code": "247600729",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76510"
   },
@@ -4267,7 +4267,7 @@
     "name": "Saint-Aubin-Routot",
     "code": "76563",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76430"
   },
@@ -4275,7 +4275,7 @@
     "name": "Saint-Aubin-sur-Mer",
     "code": "76564",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76740"
   },
@@ -4283,7 +4283,7 @@
     "name": "Saint-Aubin-sur-Scie",
     "code": "76565",
     "epci_code": "247600786",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76550"
   },
@@ -4291,7 +4291,7 @@
     "name": "Sainte-Austreberthe",
     "code": "76566",
     "epci_code": "247600646",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76570"
   },
@@ -4299,7 +4299,7 @@
     "name": "Sainte-Beuve-en-Rivière",
     "code": "76567",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76270"
   },
@@ -4307,7 +4307,7 @@
     "name": "Saint-Clair-sur-les-Monts",
     "code": "76568",
     "epci_code": "247600620",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76190"
   },
@@ -4315,7 +4315,7 @@
     "name": "Sainte-Colombe",
     "code": "76569",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76460"
   },
@@ -4323,7 +4323,7 @@
     "name": "Saint-Crespin",
     "code": "76570",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76590"
   },
@@ -4331,7 +4331,7 @@
     "name": "Sainte-Croix-sur-Buchy",
     "code": "76571",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76750"
   },
@@ -4339,7 +4339,7 @@
     "name": "Saint-Denis-d’Aclon",
     "code": "76572",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76860"
   },
@@ -4347,7 +4347,7 @@
     "name": "Saint-Denis-le-Thiboult",
     "code": "76573",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76116"
   },
@@ -4355,7 +4355,7 @@
     "name": "Saint-Denis-sur-Scie",
     "code": "76574",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76890"
   },
@@ -4363,7 +4363,7 @@
     "name": "Saint-Étienne-du-Rouvray",
     "code": "76575",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76800"
   },
@@ -4371,7 +4371,7 @@
     "name": "Saint-Eustache-la-Forêt",
     "code": "76576",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76210"
   },
@@ -4379,7 +4379,7 @@
     "name": "Sainte-Foy",
     "code": "76577",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76590"
   },
@@ -4387,7 +4387,7 @@
     "name": "Sainte-Geneviève",
     "code": "76578",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76440"
   },
@@ -4395,7 +4395,7 @@
     "name": "Saint-Georges-sur-Fontaine",
     "code": "76580",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76690"
   },
@@ -4403,7 +4403,7 @@
     "name": "Saint-Germain-des-Essourts",
     "code": "76581",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76750"
   },
@@ -4411,7 +4411,7 @@
     "name": "Saint-Germain-d’Étables",
     "code": "76582",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76590"
   },
@@ -4419,7 +4419,7 @@
     "name": "Saint-Germain-sous-Cailly",
     "code": "76583",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76690"
   },
@@ -4427,7 +4427,7 @@
     "name": "Saint-Germain-sur-Eaulne",
     "code": "76584",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76270"
   },
@@ -4435,7 +4435,7 @@
     "name": "Saint-Gilles-de-Crétot",
     "code": "76585",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76490"
   },
@@ -4443,7 +4443,7 @@
     "name": "Saint-Gilles-de-la-Neuville",
     "code": "76586",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76430"
   },
@@ -4451,7 +4451,7 @@
     "name": "Sainte-Hélène-Bondeville",
     "code": "76587",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76400"
   },
@@ -4459,7 +4459,7 @@
     "name": "Saint-Hellier",
     "code": "76588",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76680"
   },
@@ -4467,7 +4467,7 @@
     "name": "Saint-Honoré",
     "code": "76589",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76590"
   },
@@ -4475,7 +4475,7 @@
     "name": "Saint-Jacques-d’Aliermont",
     "code": "76590",
     "epci_code": "247600729",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76510"
   },
@@ -4483,7 +4483,7 @@
     "name": "Saint-Jacques-sur-Darnétal",
     "code": "76591",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76160"
   },
@@ -4491,7 +4491,7 @@
     "name": "Saint-Jean-de-Folleville",
     "code": "76592",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76170"
   },
@@ -4499,7 +4499,7 @@
     "name": "Saint-Jean-de-la-Neuville",
     "code": "76593",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76210"
   },
@@ -4507,7 +4507,7 @@
     "name": "Saint-Jean-du-Cardonnay",
     "code": "76594",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76150"
   },
@@ -4515,7 +4515,7 @@
     "name": "Saint-Jouin-Bruneval",
     "code": "76595",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76280"
   },
@@ -4523,7 +4523,7 @@
     "name": "Saint-Laurent-de-Brèvedent",
     "code": "76596",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76700"
   },
@@ -4531,7 +4531,7 @@
     "name": "Saint-Laurent-en-Caux",
     "code": "76597",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76560"
   },
@@ -4539,7 +4539,7 @@
     "name": "Saint-Léger-aux-Bois",
     "code": "76598",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76340"
   },
@@ -4547,7 +4547,7 @@
     "name": "Saint-Léger-du-Bourg-Denis",
     "code": "76599",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76160"
   },
@@ -4555,7 +4555,7 @@
     "name": "Saint-Léonard",
     "code": "76600",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76400"
   },
@@ -4563,7 +4563,7 @@
     "name": "Saint-Lucien",
     "code": "76601",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76780"
   },
@@ -4571,7 +4571,7 @@
     "name": "Saint-Maclou-de-Folleville",
     "code": "76602",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76890"
   },
@@ -4579,7 +4579,7 @@
     "name": "Saint-Maclou-la-Brière",
     "code": "76603",
     "epci_code": "247600505",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76110"
   },
@@ -4587,7 +4587,7 @@
     "name": "Saint-Mards",
     "code": "76604",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76730"
   },
@@ -4595,7 +4595,7 @@
     "name": "Sainte-Marguerite-sur-Mer",
     "code": "76605",
     "epci_code": "247600786",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76119"
   },
@@ -4603,7 +4603,7 @@
     "name": "Morienne",
     "code": "76606",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76390"
   },
@@ -4611,7 +4611,7 @@
     "name": "Sainte-Marguerite-sur-Duclair",
     "code": "76608",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76480"
   },
@@ -4619,7 +4619,7 @@
     "name": "Sainte-Marie-au-Bosc",
     "code": "76609",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76280"
   },
@@ -4627,7 +4627,7 @@
     "name": "Sainte-Marie-des-Champs",
     "code": "76610",
     "epci_code": "247600620",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76190"
   },
@@ -4635,7 +4635,7 @@
     "name": "Saint-Martin-aux-Arbres",
     "code": "76611",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76760"
   },
@@ -4643,7 +4643,7 @@
     "name": "Saint-Martin-au-Bosc",
     "code": "76612",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76340"
   },
@@ -4651,7 +4651,7 @@
     "name": "Saint-Martin-aux-Buneaux",
     "code": "76613",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76450"
   },
@@ -4659,7 +4659,7 @@
     "name": "Saint-Martin-aux-Buneaux",
     "code": "76613",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76540"
   },
@@ -4667,7 +4667,7 @@
     "name": "Saint-Martin-de-Boscherville",
     "code": "76614",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76840"
   },
@@ -4675,7 +4675,7 @@
     "name": "Saint-Martin-du-Bec",
     "code": "76615",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76133"
   },
@@ -4683,7 +4683,7 @@
     "name": "Saint-Martin-du-Manoir",
     "code": "76616",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76290"
   },
@@ -4691,7 +4691,7 @@
     "name": "Saint-Martin-du-Vivier",
     "code": "76617",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76160"
   },
@@ -4699,7 +4699,7 @@
     "name": "Petit-Caux",
     "code": "76618",
     "epci_code": "247600729",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76370"
   },
@@ -4707,7 +4707,7 @@
     "name": "Petit-Caux",
     "code": "76618",
     "epci_code": "247600729",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76630"
   },
@@ -4715,7 +4715,7 @@
     "name": "Petit-Caux",
     "code": "76618",
     "epci_code": "247600729",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76910"
   },
@@ -4723,7 +4723,7 @@
     "name": "Saint-Martin-le-Gaillard",
     "code": "76619",
     "epci_code": "247600729",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76260"
   },
@@ -4731,7 +4731,7 @@
     "name": "Saint-Martin-l’Hortier",
     "code": "76620",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76270"
   },
@@ -4739,7 +4739,7 @@
     "name": "Saint-Martin-Osmonville",
     "code": "76621",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76680"
   },
@@ -4747,7 +4747,7 @@
     "name": "Saint-Maurice-d’Ételan",
     "code": "76622",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76330"
   },
@@ -4755,7 +4755,7 @@
     "name": "Saint-Michel-d’Halescourt",
     "code": "76623",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76440"
   },
@@ -4763,7 +4763,7 @@
     "name": "Saint-Nicolas-d’Aliermont",
     "code": "76624",
     "epci_code": "247600729",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76510"
   },
@@ -4771,7 +4771,7 @@
     "name": "Saint-Nicolas-de-la-Haie",
     "code": "76626",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76490"
   },
@@ -4779,7 +4779,7 @@
     "name": "Saint-Nicolas-de-la-Taille",
     "code": "76627",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76170"
   },
@@ -4787,7 +4787,7 @@
     "name": "Saint-Ouen-du-Breuil",
     "code": "76628",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76890"
   },
@@ -4795,7 +4795,7 @@
     "name": "Saint-Ouen-le-Mauger",
     "code": "76629",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76730"
   },
@@ -4803,7 +4803,7 @@
     "name": "Saint-Ouen-sous-Bailly",
     "code": "76630",
     "epci_code": "247600729",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76630"
   },
@@ -4811,7 +4811,7 @@
     "name": "Saint-Paër",
     "code": "76631",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76480"
   },
@@ -4819,7 +4819,7 @@
     "name": "Saint-Pierre-Bénouville",
     "code": "76632",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76890"
   },
@@ -4827,7 +4827,7 @@
     "name": "Saint-Pierre-de-Manneville",
     "code": "76634",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76113"
   },
@@ -4835,7 +4835,7 @@
     "name": "Saint-Pierre-des-Jonquières",
     "code": "76635",
     "epci_code": "247600604",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76660"
   },
@@ -4843,7 +4843,7 @@
     "name": "Saint-Pierre-de-Varengeville",
     "code": "76636",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76480"
   },
@@ -4851,7 +4851,7 @@
     "name": "Saint-Pierre-en-Port",
     "code": "76637",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76540"
   },
@@ -4859,7 +4859,7 @@
     "name": "Saint-Pierre-en-Val",
     "code": "76638",
     "epci_code": "247600588",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76260"
   },
@@ -4867,7 +4867,7 @@
     "name": "Saint-Pierre-lès-Elbeuf",
     "code": "76640",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76320"
   },
@@ -4875,7 +4875,7 @@
     "name": "Saint-Pierre-le-Vieux",
     "code": "76641",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76740"
   },
@@ -4883,7 +4883,7 @@
     "name": "Saint-Pierre-le-Viger",
     "code": "76642",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76740"
   },
@@ -4891,7 +4891,7 @@
     "name": "Saint-Rémy-Boscrocourt",
     "code": "76644",
     "epci_code": "247600588",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76260"
   },
@@ -4899,7 +4899,7 @@
     "name": "Saint-Riquier-en-Rivière",
     "code": "76645",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76340"
   },
@@ -4907,7 +4907,7 @@
     "name": "Saint-Riquier-ès-Plains",
     "code": "76646",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76460"
   },
@@ -4915,7 +4915,7 @@
     "name": "Saint-Romain-de-Colbosc",
     "code": "76647",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76430"
   },
@@ -4923,7 +4923,7 @@
     "name": "Saint-Saëns",
     "code": "76648",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76680"
   },
@@ -4931,7 +4931,7 @@
     "name": "Saint-Saire",
     "code": "76649",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76270"
   },
@@ -4939,7 +4939,7 @@
     "name": "Saint-Sauveur-d’Émalleville",
     "code": "76650",
     "epci_code": "247600505",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76110"
   },
@@ -4947,7 +4947,7 @@
     "name": "Saint-Sylvain",
     "code": "76651",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76460"
   },
@@ -4955,7 +4955,7 @@
     "name": "Saint-Vaast-d’Équiqueville",
     "code": "76652",
     "epci_code": "247600729",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76510"
   },
@@ -4963,7 +4963,7 @@
     "name": "Saint-Vaast-Dieppedalle",
     "code": "76653",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76450"
   },
@@ -4971,7 +4971,7 @@
     "name": "Saint-Vaast-du-Val",
     "code": "76654",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76890"
   },
@@ -4979,7 +4979,7 @@
     "name": "Saint-Valery-en-Caux",
     "code": "76655",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76460"
   },
@@ -4987,7 +4987,7 @@
     "name": "Saint-Victor-l’Abbaye",
     "code": "76656",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76890"
   },
@@ -4995,7 +4995,7 @@
     "name": "Saint-Vigor-d’Ymonville",
     "code": "76657",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76430"
   },
@@ -5003,7 +5003,7 @@
     "name": "Saint-Vincent-Cramesnil",
     "code": "76658",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76430"
   },
@@ -5011,7 +5011,7 @@
     "name": "Sandouville",
     "code": "76660",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76430"
   },
@@ -5019,7 +5019,7 @@
     "name": "Sassetot-le-Malgardé",
     "code": "76662",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76730"
   },
@@ -5027,7 +5027,7 @@
     "name": "Sassetot-le-Mauconduit",
     "code": "76663",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76540"
   },
@@ -5035,7 +5035,7 @@
     "name": "Sasseville",
     "code": "76664",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76450"
   },
@@ -5043,7 +5043,7 @@
     "name": "Sauchay",
     "code": "76665",
     "epci_code": "247600729",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76630"
   },
@@ -5051,7 +5051,7 @@
     "name": "Saumont-la-Poterie",
     "code": "76666",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76440"
   },
@@ -5059,7 +5059,7 @@
     "name": "Sauqueville",
     "code": "76667",
     "epci_code": "247600786",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76550"
   },
@@ -5067,7 +5067,7 @@
     "name": "Saussay",
     "code": "76668",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76760"
   },
@@ -5075,7 +5075,7 @@
     "name": "Sausseuzemare-en-Caux",
     "code": "76669",
     "epci_code": "247600505",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76110"
   },
@@ -5083,7 +5083,7 @@
     "name": "Senneville-sur-Fécamp",
     "code": "76670",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76400"
   },
@@ -5091,7 +5091,7 @@
     "name": "Sept-Meules",
     "code": "76671",
     "epci_code": "247600729",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76260"
   },
@@ -5099,7 +5099,7 @@
     "name": "Serqueux",
     "code": "76672",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76440"
   },
@@ -5107,7 +5107,7 @@
     "name": "Servaville-Salmonville",
     "code": "76673",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76116"
   },
@@ -5115,7 +5115,7 @@
     "name": "Sierville",
     "code": "76675",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76690"
   },
@@ -5123,7 +5123,7 @@
     "name": "Sigy-en-Bray",
     "code": "76676",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76780"
   },
@@ -5131,7 +5131,7 @@
     "name": "Smermesnil",
     "code": "76677",
     "epci_code": "247600604",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76660"
   },
@@ -5139,7 +5139,7 @@
     "name": "Sommery",
     "code": "76678",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76440"
   },
@@ -5147,7 +5147,7 @@
     "name": "Sommesnil",
     "code": "76679",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76560"
   },
@@ -5155,7 +5155,7 @@
     "name": "Sorquainville",
     "code": "76680",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76540"
   },
@@ -5163,7 +5163,7 @@
     "name": "Sotteville-lès-Rouen",
     "code": "76681",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76300"
   },
@@ -5171,7 +5171,7 @@
     "name": "Sotteville-sous-le-Val",
     "code": "76682",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76410"
   },
@@ -5179,7 +5179,7 @@
     "name": "Sotteville-sur-Mer",
     "code": "76683",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76740"
   },
@@ -5187,7 +5187,7 @@
     "name": "Tancarville",
     "code": "76684",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76430"
   },
@@ -5195,7 +5195,7 @@
     "name": "Thérouldeville",
     "code": "76685",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76540"
   },
@@ -5203,7 +5203,7 @@
     "name": "Theuville-aux-Maillots",
     "code": "76686",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76540"
   },
@@ -5211,7 +5211,7 @@
     "name": "Thiergeville",
     "code": "76688",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76540"
   },
@@ -5219,7 +5219,7 @@
     "name": "Thiétreville",
     "code": "76689",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76540"
   },
@@ -5227,7 +5227,7 @@
     "name": "Thil-Manneville",
     "code": "76690",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76730"
   },
@@ -5235,7 +5235,7 @@
     "name": "Le Thil-Riberpré",
     "code": "76691",
     "epci_code": "200069730",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76440"
   },
@@ -5243,7 +5243,7 @@
     "name": "Thiouville",
     "code": "76692",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76450"
   },
@@ -5251,7 +5251,7 @@
     "name": "Le Tilleul",
     "code": "76693",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76790"
   },
@@ -5259,7 +5259,7 @@
     "name": "Tocqueville-en-Caux",
     "code": "76694",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76730"
   },
@@ -5267,7 +5267,7 @@
     "name": "Tocqueville-les-Murs",
     "code": "76695",
     "epci_code": "247600505",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76110"
   },
@@ -5275,7 +5275,7 @@
     "name": "Torcy-le-Grand",
     "code": "76697",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76590"
   },
@@ -5283,7 +5283,7 @@
     "name": "Torcy-le-Petit",
     "code": "76698",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76590"
   },
@@ -5291,7 +5291,7 @@
     "name": "Le Torp-Mesnil",
     "code": "76699",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76560"
   },
@@ -5299,7 +5299,7 @@
     "name": "Tôtes",
     "code": "76700",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76890"
   },
@@ -5307,7 +5307,7 @@
     "name": "Touffreville-la-Corbeline",
     "code": "76702",
     "epci_code": "247600620",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76190"
   },
@@ -5315,7 +5315,7 @@
     "name": "Touffreville-sur-Eu",
     "code": "76703",
     "epci_code": "247600729",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76910"
   },
@@ -5323,7 +5323,7 @@
     "name": "Tourville-la-Rivière",
     "code": "76705",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76410"
   },
@@ -5331,7 +5331,7 @@
     "name": "Tourville-les-Ifs",
     "code": "76706",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76400"
   },
@@ -5339,7 +5339,7 @@
     "name": "Tourville-sur-Arques",
     "code": "76707",
     "epci_code": "247600786",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76550"
   },
@@ -5347,7 +5347,7 @@
     "name": "Toussaint",
     "code": "76708",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76400"
   },
@@ -5355,7 +5355,7 @@
     "name": "Le Trait",
     "code": "76709",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76580"
   },
@@ -5363,7 +5363,7 @@
     "name": "Trémauville",
     "code": "76710",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76640"
   },
@@ -5371,7 +5371,7 @@
     "name": "Le Tréport",
     "code": "76711",
     "epci_code": "247600588",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76470"
   },
@@ -5379,7 +5379,7 @@
     "name": "La Trinité-du-Mont",
     "code": "76712",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76170"
   },
@@ -5387,7 +5387,7 @@
     "name": "Les Trois-Pierres",
     "code": "76714",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76430"
   },
@@ -5395,7 +5395,7 @@
     "name": "Trouville-Alliquerville",
     "code": "76715",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76210"
   },
@@ -5403,7 +5403,7 @@
     "name": "Turretot",
     "code": "76716",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76280"
   },
@@ -5411,7 +5411,7 @@
     "name": "Val-de-la-Haye",
     "code": "76717",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76380"
   },
@@ -5419,7 +5419,7 @@
     "name": "Valliquerville",
     "code": "76718",
     "epci_code": "247600620",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76190"
   },
@@ -5427,7 +5427,7 @@
     "name": "Valmont",
     "code": "76719",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76540"
   },
@@ -5435,7 +5435,7 @@
     "name": "Varengeville-sur-Mer",
     "code": "76720",
     "epci_code": "247600786",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76119"
   },
@@ -5443,7 +5443,7 @@
     "name": "Varneville-Bretteville",
     "code": "76721",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76890"
   },
@@ -5451,7 +5451,7 @@
     "name": "Vassonville",
     "code": "76723",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76890"
   },
@@ -5459,7 +5459,7 @@
     "name": "Vatierville",
     "code": "76724",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76270"
   },
@@ -5467,7 +5467,7 @@
     "name": "Vattetot-sous-Beaumont",
     "code": "76725",
     "epci_code": "247600505",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76110"
   },
@@ -5475,7 +5475,7 @@
     "name": "Vattetot-sur-Mer",
     "code": "76726",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76111"
   },
@@ -5483,7 +5483,7 @@
     "name": "Vatteville-la-Rue",
     "code": "76727",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76940"
   },
@@ -5491,7 +5491,7 @@
     "name": "La Vaupalière",
     "code": "76728",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76150"
   },
@@ -5499,7 +5499,7 @@
     "name": "Veauville-lès-Quelles",
     "code": "76730",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76560"
   },
@@ -5507,7 +5507,7 @@
     "name": "Vénestanville",
     "code": "76731",
     "epci_code": "200068534",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76730"
   },
@@ -5515,7 +5515,7 @@
     "name": "Butot-Vénesville",
     "code": "76732",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76450"
   },
@@ -5523,7 +5523,7 @@
     "name": "Ventes-Saint-Rémy",
     "code": "76733",
     "epci_code": "200070068",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76680"
   },
@@ -5531,7 +5531,7 @@
     "name": "Vergetot",
     "code": "76734",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76280"
   },
@@ -5539,7 +5539,7 @@
     "name": "Veules-les-Roses",
     "code": "76735",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76980"
   },
@@ -5547,7 +5547,7 @@
     "name": "Veulettes-sur-Mer",
     "code": "76736",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76450"
   },
@@ -5555,7 +5555,7 @@
     "name": "Vibeuf",
     "code": "76737",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76760"
   },
@@ -5563,7 +5563,7 @@
     "name": "Vieux-Manoir",
     "code": "76738",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76750"
   },
@@ -5571,7 +5571,7 @@
     "name": "Vieux-Rouen-sur-Bresle",
     "code": "76739",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76390"
   },
@@ -5579,7 +5579,7 @@
     "name": "La Vieux-Rue",
     "code": "76740",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76160"
   },
@@ -5587,7 +5587,7 @@
     "name": "Villainville",
     "code": "76741",
     "epci_code": "200084952",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76280"
   },
@@ -5595,7 +5595,7 @@
     "name": "Villers-Écalles",
     "code": "76743",
     "epci_code": "247600646",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76360"
   },
@@ -5603,7 +5603,7 @@
     "name": "Villers-sous-Foucarmont",
     "code": "76744",
     "epci_code": "200069722",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76340"
   },
@@ -5611,7 +5611,7 @@
     "name": "Villy-sur-Yères",
     "code": "76745",
     "epci_code": "247600729",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76260"
   },
@@ -5619,7 +5619,7 @@
     "name": "Vinnemerville",
     "code": "76746",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76540"
   },
@@ -5627,7 +5627,7 @@
     "name": "Virville",
     "code": "76747",
     "epci_code": "247600505",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76110"
   },
@@ -5635,7 +5635,7 @@
     "name": "Vittefleur",
     "code": "76748",
     "epci_code": "200069839",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76450"
   },
@@ -5643,7 +5643,7 @@
     "name": "Wanchy-Capval",
     "code": "76749",
     "epci_code": "247600604",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76660"
   },
@@ -5651,7 +5651,7 @@
     "name": "Yainville",
     "code": "76750",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76480"
   },
@@ -5659,7 +5659,7 @@
     "name": "Yébleron",
     "code": "76751",
     "epci_code": "200010700",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76640"
   },
@@ -5667,7 +5667,7 @@
     "name": "Yerville",
     "code": "76752",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76760"
   },
@@ -5675,7 +5675,7 @@
     "name": "Ymare",
     "code": "76753",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76520"
   },
@@ -5683,7 +5683,7 @@
     "name": "Yport",
     "code": "76754",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76111"
   },
@@ -5691,7 +5691,7 @@
     "name": "Ypreville-Biville",
     "code": "76755",
     "epci_code": "200069821",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76540"
   },
@@ -5699,7 +5699,7 @@
     "name": "Yquebeuf",
     "code": "76756",
     "epci_code": "200070449",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76690"
   },
@@ -5707,7 +5707,7 @@
     "name": "Yvecrique",
     "code": "76757",
     "epci_code": "200069847",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76560"
   },
@@ -5715,7 +5715,7 @@
     "name": "Yvetot",
     "code": "76758",
     "epci_code": "247600620",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76190"
   },
@@ -5723,7 +5723,7 @@
     "name": "Yville-sur-Seine",
     "code": "76759",
     "epci_code": "200023414",
-    "departement_code": "76",
+    "department_code": "76",
     "region_code": "28",
     "postal_code": "76530"
   }

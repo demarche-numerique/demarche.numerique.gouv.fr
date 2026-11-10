@@ -3,7 +3,7 @@
     "name": "Aix-en-Provence",
     "code": "13001",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13090"
   },
@@ -11,7 +11,7 @@
     "name": "Aix-en-Provence",
     "code": "13001",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13080"
   },
@@ -19,7 +19,7 @@
     "name": "Aix-en-Provence",
     "code": "13001",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13100"
   },
@@ -27,7 +27,7 @@
     "name": "Aix-en-Provence",
     "code": "13001",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13290"
   },
@@ -35,7 +35,7 @@
     "name": "Aix-en-Provence",
     "code": "13001",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13540"
   },
@@ -43,7 +43,7 @@
     "name": "Allauch",
     "code": "13002",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13190"
   },
@@ -51,7 +51,7 @@
     "name": "Alleins",
     "code": "13003",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13980"
   },
@@ -59,7 +59,7 @@
     "name": "Arles",
     "code": "13004",
     "epci_code": "241300417",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13104"
   },
@@ -67,7 +67,7 @@
     "name": "Arles",
     "code": "13004",
     "epci_code": "241300417",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13123"
   },
@@ -75,7 +75,7 @@
     "name": "Arles",
     "code": "13004",
     "epci_code": "241300417",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13129"
   },
@@ -83,7 +83,7 @@
     "name": "Arles",
     "code": "13004",
     "epci_code": "241300417",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13200"
   },
@@ -91,7 +91,7 @@
     "name": "Arles",
     "code": "13004",
     "epci_code": "241300417",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13280"
   },
@@ -99,7 +99,7 @@
     "name": "Aubagne",
     "code": "13005",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13400"
   },
@@ -107,7 +107,7 @@
     "name": "Aureille",
     "code": "13006",
     "epci_code": "241300375",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13930"
   },
@@ -115,7 +115,7 @@
     "name": "Auriol",
     "code": "13007",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13390"
   },
@@ -123,7 +123,7 @@
     "name": "Aurons",
     "code": "13008",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13121"
   },
@@ -131,7 +131,7 @@
     "name": "La Barben",
     "code": "13009",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13330"
   },
@@ -139,7 +139,7 @@
     "name": "Barbentane",
     "code": "13010",
     "epci_code": "200035087",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13570"
   },
@@ -147,7 +147,7 @@
     "name": "Les Baux-de-Provence",
     "code": "13011",
     "epci_code": "241300375",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13520"
   },
@@ -155,7 +155,7 @@
     "name": "Beaurecueil",
     "code": "13012",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13100"
   },
@@ -163,7 +163,7 @@
     "name": "Belcodène",
     "code": "13013",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13720"
   },
@@ -171,7 +171,7 @@
     "name": "Berre-l’Étang",
     "code": "13014",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13130"
   },
@@ -179,7 +179,7 @@
     "name": "Bouc-Bel-Air",
     "code": "13015",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13320"
   },
@@ -187,7 +187,7 @@
     "name": "La Bouilladisse",
     "code": "13016",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13720"
   },
@@ -195,7 +195,7 @@
     "name": "Boulbon",
     "code": "13017",
     "epci_code": "241300417",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13150"
   },
@@ -203,7 +203,7 @@
     "name": "Cabannes",
     "code": "13018",
     "epci_code": "200035087",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13440"
   },
@@ -211,7 +211,7 @@
     "name": "Cabriès",
     "code": "13019",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13480"
   },
@@ -219,7 +219,7 @@
     "name": "Cadolive",
     "code": "13020",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13950"
   },
@@ -227,7 +227,7 @@
     "name": "Carry-le-Rouet",
     "code": "13021",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13620"
   },
@@ -235,7 +235,7 @@
     "name": "Cassis",
     "code": "13022",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13260"
   },
@@ -243,7 +243,7 @@
     "name": "Ceyreste",
     "code": "13023",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13600"
   },
@@ -251,7 +251,7 @@
     "name": "Charleval",
     "code": "13024",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13350"
   },
@@ -259,7 +259,7 @@
     "name": "Châteauneuf-le-Rouge",
     "code": "13025",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13790"
   },
@@ -267,7 +267,7 @@
     "name": "Châteauneuf-les-Martigues",
     "code": "13026",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13220"
   },
@@ -275,7 +275,7 @@
     "name": "Châteaurenard",
     "code": "13027",
     "epci_code": "200035087",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13160"
   },
@@ -283,7 +283,7 @@
     "name": "La Ciotat",
     "code": "13028",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13600"
   },
@@ -291,7 +291,7 @@
     "name": "Cornillon-Confoux",
     "code": "13029",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13250"
   },
@@ -299,7 +299,7 @@
     "name": "Cuges-les-Pins",
     "code": "13030",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13780"
   },
@@ -307,7 +307,7 @@
     "name": "La Destrousse",
     "code": "13031",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13112"
   },
@@ -315,7 +315,7 @@
     "name": "Éguilles",
     "code": "13032",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13510"
   },
@@ -323,7 +323,7 @@
     "name": "Ensuès-la-Redonne",
     "code": "13033",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13820"
   },
@@ -331,7 +331,7 @@
     "name": "Eygalières",
     "code": "13034",
     "epci_code": "241300375",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13810"
   },
@@ -339,7 +339,7 @@
     "name": "Eyguières",
     "code": "13035",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13430"
   },
@@ -347,7 +347,7 @@
     "name": "Eyragues",
     "code": "13036",
     "epci_code": "200035087",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13630"
   },
@@ -355,7 +355,7 @@
     "name": "La Fare-les-Oliviers",
     "code": "13037",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13580"
   },
@@ -363,7 +363,7 @@
     "name": "Fontvieille",
     "code": "13038",
     "epci_code": "241300375",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13990"
   },
@@ -371,7 +371,7 @@
     "name": "Fos-sur-Mer",
     "code": "13039",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13270"
   },
@@ -379,7 +379,7 @@
     "name": "Fuveau",
     "code": "13040",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13710"
   },
@@ -387,7 +387,7 @@
     "name": "Gardanne",
     "code": "13041",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13120"
   },
@@ -395,7 +395,7 @@
     "name": "Gémenos",
     "code": "13042",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13420"
   },
@@ -403,7 +403,7 @@
     "name": "Gignac-la-Nerthe",
     "code": "13043",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13180"
   },
@@ -411,7 +411,7 @@
     "name": "Grans",
     "code": "13044",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13450"
   },
@@ -419,7 +419,7 @@
     "name": "Graveson",
     "code": "13045",
     "epci_code": "200035087",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13690"
   },
@@ -427,7 +427,7 @@
     "name": "Gréasque",
     "code": "13046",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13850"
   },
@@ -435,7 +435,7 @@
     "name": "Istres",
     "code": "13047",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13118"
   },
@@ -443,7 +443,7 @@
     "name": "Istres",
     "code": "13047",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13800"
   },
@@ -451,7 +451,7 @@
     "name": "Jouques",
     "code": "13048",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13490"
   },
@@ -459,7 +459,7 @@
     "name": "Lamanon",
     "code": "13049",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13113"
   },
@@ -467,7 +467,7 @@
     "name": "Lambesc",
     "code": "13050",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13410"
   },
@@ -475,7 +475,7 @@
     "name": "Lançon-Provence",
     "code": "13051",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13680"
   },
@@ -483,7 +483,7 @@
     "name": "Maillane",
     "code": "13052",
     "epci_code": "200035087",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13910"
   },
@@ -491,7 +491,7 @@
     "name": "Mallemort",
     "code": "13053",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13370"
   },
@@ -499,7 +499,7 @@
     "name": "Marignane",
     "code": "13054",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13700"
   },
@@ -507,7 +507,7 @@
     "name": "Marseille",
     "code": "13055",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13001"
   },
@@ -515,7 +515,7 @@
     "name": "Marseille",
     "code": "13055",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13002"
   },
@@ -523,7 +523,7 @@
     "name": "Marseille",
     "code": "13055",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13003"
   },
@@ -531,7 +531,7 @@
     "name": "Marseille",
     "code": "13055",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13004"
   },
@@ -539,7 +539,7 @@
     "name": "Marseille",
     "code": "13055",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13005"
   },
@@ -547,7 +547,7 @@
     "name": "Marseille",
     "code": "13055",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13006"
   },
@@ -555,7 +555,7 @@
     "name": "Marseille",
     "code": "13055",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13007"
   },
@@ -563,7 +563,7 @@
     "name": "Marseille",
     "code": "13055",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13008"
   },
@@ -571,7 +571,7 @@
     "name": "Marseille",
     "code": "13055",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13009"
   },
@@ -579,7 +579,7 @@
     "name": "Marseille",
     "code": "13055",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13010"
   },
@@ -587,7 +587,7 @@
     "name": "Marseille",
     "code": "13055",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13011"
   },
@@ -595,7 +595,7 @@
     "name": "Marseille",
     "code": "13055",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13012"
   },
@@ -603,7 +603,7 @@
     "name": "Marseille",
     "code": "13055",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13013"
   },
@@ -611,7 +611,7 @@
     "name": "Marseille",
     "code": "13055",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13014"
   },
@@ -619,7 +619,7 @@
     "name": "Marseille",
     "code": "13055",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13015"
   },
@@ -627,7 +627,7 @@
     "name": "Marseille",
     "code": "13055",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13016"
   },
@@ -635,7 +635,7 @@
     "name": "Martigues",
     "code": "13056",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13500"
   },
@@ -643,7 +643,7 @@
     "name": "Martigues",
     "code": "13056",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13117"
   },
@@ -651,7 +651,7 @@
     "name": "Mas-Blanc-des-Alpilles",
     "code": "13057",
     "epci_code": "241300375",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13103"
   },
@@ -659,7 +659,7 @@
     "name": "Maussane-les-Alpilles",
     "code": "13058",
     "epci_code": "241300375",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13520"
   },
@@ -667,7 +667,7 @@
     "name": "Meyrargues",
     "code": "13059",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13650"
   },
@@ -675,7 +675,7 @@
     "name": "Meyreuil",
     "code": "13060",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13590"
   },
@@ -683,7 +683,7 @@
     "name": "Saint-Pierre-de-Mézoargues",
     "code": "13061",
     "epci_code": "241300417",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13150"
   },
@@ -691,7 +691,7 @@
     "name": "Mimet",
     "code": "13062",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13105"
   },
@@ -699,7 +699,7 @@
     "name": "Miramas",
     "code": "13063",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13140"
   },
@@ -707,7 +707,7 @@
     "name": "Mollégès",
     "code": "13064",
     "epci_code": "200035087",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13940"
   },
@@ -715,7 +715,7 @@
     "name": "Mouriès",
     "code": "13065",
     "epci_code": "241300375",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13890"
   },
@@ -723,7 +723,7 @@
     "name": "Noves",
     "code": "13066",
     "epci_code": "200035087",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13550"
   },
@@ -731,7 +731,7 @@
     "name": "Orgon",
     "code": "13067",
     "epci_code": "200035087",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13660"
   },
@@ -739,7 +739,7 @@
     "name": "Paradou",
     "code": "13068",
     "epci_code": "241300375",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13520"
   },
@@ -747,7 +747,7 @@
     "name": "Pélissanne",
     "code": "13069",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13330"
   },
@@ -755,7 +755,7 @@
     "name": "La Penne-sur-Huveaune",
     "code": "13070",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13821"
   },
@@ -763,7 +763,7 @@
     "name": "Les Pennes-Mirabeau",
     "code": "13071",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13170"
   },
@@ -771,7 +771,7 @@
     "name": "Peynier",
     "code": "13072",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13790"
   },
@@ -779,7 +779,7 @@
     "name": "Peypin",
     "code": "13073",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13124"
   },
@@ -787,7 +787,7 @@
     "name": "Peyrolles-en-Provence",
     "code": "13074",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13860"
   },
@@ -795,7 +795,7 @@
     "name": "Plan-de-Cuques",
     "code": "13075",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13380"
   },
@@ -803,7 +803,7 @@
     "name": "Plan-d’Orgon",
     "code": "13076",
     "epci_code": "200035087",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13750"
   },
@@ -811,7 +811,7 @@
     "name": "Port-de-Bouc",
     "code": "13077",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13110"
   },
@@ -819,7 +819,7 @@
     "name": "Port-Saint-Louis-du-Rhône",
     "code": "13078",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13230"
   },
@@ -827,7 +827,7 @@
     "name": "Puyloubier",
     "code": "13079",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13114"
   },
@@ -835,7 +835,7 @@
     "name": "Le Puy-Sainte-Réparade",
     "code": "13080",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13610"
   },
@@ -843,7 +843,7 @@
     "name": "Rognac",
     "code": "13081",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13340"
   },
@@ -851,7 +851,7 @@
     "name": "Rognes",
     "code": "13082",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13840"
   },
@@ -859,7 +859,7 @@
     "name": "Rognonas",
     "code": "13083",
     "epci_code": "200035087",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13870"
   },
@@ -867,7 +867,7 @@
     "name": "La Roque-d’Anthéron",
     "code": "13084",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13640"
   },
@@ -875,7 +875,7 @@
     "name": "Roquefort-la-Bédoule",
     "code": "13085",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13830"
   },
@@ -883,7 +883,7 @@
     "name": "Roquevaire",
     "code": "13086",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13360"
   },
@@ -891,7 +891,7 @@
     "name": "Rousset",
     "code": "13087",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13790"
   },
@@ -899,7 +899,7 @@
     "name": "Le Rove",
     "code": "13088",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13740"
   },
@@ -907,7 +907,7 @@
     "name": "Saint-Andiol",
     "code": "13089",
     "epci_code": "200035087",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13670"
   },
@@ -915,7 +915,7 @@
     "name": "Saint-Antonin-sur-Bayon",
     "code": "13090",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13100"
   },
@@ -923,7 +923,7 @@
     "name": "Saint-Cannat",
     "code": "13091",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13760"
   },
@@ -931,7 +931,7 @@
     "name": "Saint-Chamas",
     "code": "13092",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13250"
   },
@@ -939,7 +939,7 @@
     "name": "Saint-Estève-Janson",
     "code": "13093",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13610"
   },
@@ -947,7 +947,7 @@
     "name": "Saint-Étienne-du-Grès",
     "code": "13094",
     "epci_code": "241300375",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13103"
   },
@@ -955,7 +955,7 @@
     "name": "Saint-Marc-Jaumegarde",
     "code": "13095",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13100"
   },
@@ -963,7 +963,7 @@
     "name": "Saintes-Maries-de-la-Mer",
     "code": "13096",
     "epci_code": "241300417",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13460"
   },
@@ -971,7 +971,7 @@
     "name": "Saint-Martin-de-Crau",
     "code": "13097",
     "epci_code": "241300417",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13310"
   },
@@ -979,7 +979,7 @@
     "name": "Saint-Mitre-les-Remparts",
     "code": "13098",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13920"
   },
@@ -987,7 +987,7 @@
     "name": "Saint-Paul-lès-Durance",
     "code": "13099",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13115"
   },
@@ -995,7 +995,7 @@
     "name": "Saint-Rémy-de-Provence",
     "code": "13100",
     "epci_code": "241300375",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13210"
   },
@@ -1003,7 +1003,7 @@
     "name": "Saint-Savournin",
     "code": "13101",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13119"
   },
@@ -1011,7 +1011,7 @@
     "name": "Saint-Victoret",
     "code": "13102",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13730"
   },
@@ -1019,7 +1019,7 @@
     "name": "Salon-de-Provence",
     "code": "13103",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13300"
   },
@@ -1027,7 +1027,7 @@
     "name": "Sausset-les-Pins",
     "code": "13104",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13960"
   },
@@ -1035,7 +1035,7 @@
     "name": "Sénas",
     "code": "13105",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13560"
   },
@@ -1043,7 +1043,7 @@
     "name": "Septèmes-les-Vallons",
     "code": "13106",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13240"
   },
@@ -1051,7 +1051,7 @@
     "name": "Simiane-Collongue",
     "code": "13107",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13109"
   },
@@ -1059,7 +1059,7 @@
     "name": "Tarascon",
     "code": "13108",
     "epci_code": "241300417",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13150"
   },
@@ -1067,7 +1067,7 @@
     "name": "Le Tholonet",
     "code": "13109",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13100"
   },
@@ -1075,7 +1075,7 @@
     "name": "Trets",
     "code": "13110",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13530"
   },
@@ -1083,7 +1083,7 @@
     "name": "Vauvenargues",
     "code": "13111",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13126"
   },
@@ -1091,7 +1091,7 @@
     "name": "Velaux",
     "code": "13112",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13880"
   },
@@ -1099,7 +1099,7 @@
     "name": "Venelles",
     "code": "13113",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13770"
   },
@@ -1107,7 +1107,7 @@
     "name": "Ventabren",
     "code": "13114",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13122"
   },
@@ -1115,7 +1115,7 @@
     "name": "Vernègues",
     "code": "13115",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13116"
   },
@@ -1123,7 +1123,7 @@
     "name": "Verquières",
     "code": "13116",
     "epci_code": "200035087",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13670"
   },
@@ -1131,7 +1131,7 @@
     "name": "Vitrolles",
     "code": "13117",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13127"
   },
@@ -1139,7 +1139,7 @@
     "name": "Coudoux",
     "code": "13118",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13111"
   },
@@ -1147,119 +1147,119 @@
     "name": "Carnoux-en-Provence",
     "code": "13119",
     "epci_code": "200054807",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13470"
   },
   {
     "name": "Marseille 1er Arrondissement",
     "code": "13201",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13001"
   },
   {
     "name": "Marseille 2e Arrondissement",
     "code": "13202",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13002"
   },
   {
     "name": "Marseille 3e Arrondissement",
     "code": "13203",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13003"
   },
   {
     "name": "Marseille 4e Arrondissement",
     "code": "13204",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13004"
   },
   {
     "name": "Marseille 5e Arrondissement",
     "code": "13205",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13005"
   },
   {
     "name": "Marseille 6e Arrondissement",
     "code": "13206",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13006"
   },
   {
     "name": "Marseille 7e Arrondissement",
     "code": "13207",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13007"
   },
   {
     "name": "Marseille 8e Arrondissement",
     "code": "13208",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13008"
   },
   {
     "name": "Marseille 9e Arrondissement",
     "code": "13209",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13009"
   },
   {
     "name": "Marseille 10e Arrondissement",
     "code": "13210",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13010"
   },
   {
     "name": "Marseille 11e Arrondissement",
     "code": "13211",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13011"
   },
   {
     "name": "Marseille 12e Arrondissement",
     "code": "13212",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13012"
   },
   {
     "name": "Marseille 13e Arrondissement",
     "code": "13213",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13013"
   },
   {
     "name": "Marseille 14e Arrondissement",
     "code": "13214",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13014"
   },
   {
     "name": "Marseille 15e Arrondissement",
     "code": "13215",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13015"
   },
   {
     "name": "Marseille 16e Arrondissement",
     "code": "13216",
-    "departement_code": "13",
+    "department_code": "13",
     "region_code": "93",
     "postal_code": "13016"
   }

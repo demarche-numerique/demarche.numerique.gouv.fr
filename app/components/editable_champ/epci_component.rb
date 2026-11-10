@@ -15,7 +15,7 @@ class EditableChamp::EpciComponent < EditableChamp::EditableChampBaseComponent
 
   def epci_options
     if @champ.departement?
-      APIGeoService.epcis(@champ.code_departement).map { ["#{_1[:code]} – #{_1[:name]}", _1[:code]] }
+      APIGeoService.epcis(@champ.department_code).map { ["#{_1[:code]} – #{_1[:name]}", _1[:code]] }
     else
       []
     end

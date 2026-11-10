@@ -57,7 +57,7 @@ describe ProcedureExportService do
             ExportedColumn.new(libelle: 'Groupe instructeur', column: procedure.find_column(label: 'Groupe instructeur')),
             ExportedColumn.new(libelle: 'État du dossier', column: procedure.dossier_state_column),
             ExportedColumn.new(libelle: 'first champ', column: procedure.find_column(label: 'first champ')),
-            ExportedColumn.new(libelle: 'Commune', column: procedure.find_column(label: 'Commune')),
+            ExportedColumn.new(libelle: 'Commune', column: procedure.find_column(label: 'Commune – Commune')),
             ExportedColumn.new(libelle: 'PJ', column: procedure.find_column(label: 'PJ')),
           ]
         end

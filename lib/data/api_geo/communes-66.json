@@ -3,7 +3,7 @@
     "name": "L’Albère",
     "code": "66001",
     "epci_code": "246600373",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66480"
   },
@@ -11,7 +11,7 @@
     "name": "Alénya",
     "code": "66002",
     "epci_code": "246600282",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66200"
   },
@@ -19,7 +19,7 @@
     "name": "Amélie-les-Bains-Palalda",
     "code": "66003",
     "epci_code": "246600548",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66110"
   },
@@ -27,7 +27,7 @@
     "name": "Les Angles",
     "code": "66004",
     "epci_code": "246600464",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66210"
   },
@@ -35,7 +35,7 @@
     "name": "Angoustrine-Villeneuve-des-Escaldes",
     "code": "66005",
     "epci_code": "246600399",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66760"
   },
@@ -43,7 +43,7 @@
     "name": "Ansignan",
     "code": "66006",
     "epci_code": "246600423",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66220"
   },
@@ -51,7 +51,7 @@
     "name": "Arboussols",
     "code": "66007",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66320"
   },
@@ -59,7 +59,7 @@
     "name": "Argelès-sur-Mer",
     "code": "66008",
     "epci_code": "200043602",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66700"
   },
@@ -67,7 +67,7 @@
     "name": "Arles-sur-Tech",
     "code": "66009",
     "epci_code": "246600548",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66150"
   },
@@ -75,7 +75,7 @@
     "name": "Ayguatébia-Talau",
     "code": "66010",
     "epci_code": "246600464",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66360"
   },
@@ -83,7 +83,7 @@
     "name": "Bages",
     "code": "66011",
     "epci_code": "200043602",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66670"
   },
@@ -91,7 +91,7 @@
     "name": "Baho",
     "code": "66012",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66540"
   },
@@ -99,7 +99,7 @@
     "name": "Baillestavy",
     "code": "66013",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66320"
   },
@@ -107,7 +107,7 @@
     "name": "Baixas",
     "code": "66014",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66390"
   },
@@ -115,7 +115,7 @@
     "name": "Banyuls-dels-Aspres",
     "code": "66015",
     "epci_code": "246600449",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66300"
   },
@@ -123,7 +123,7 @@
     "name": "Banyuls-sur-Mer",
     "code": "66016",
     "epci_code": "200043602",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66650"
   },
@@ -131,7 +131,7 @@
     "name": "Le Barcarès",
     "code": "66017",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66420"
   },
@@ -139,7 +139,7 @@
     "name": "La Bastide",
     "code": "66018",
     "epci_code": "246600548",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66110"
   },
@@ -147,7 +147,7 @@
     "name": "Bélesta",
     "code": "66019",
     "epci_code": "246600415",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66720"
   },
@@ -155,7 +155,7 @@
     "name": "Bolquère",
     "code": "66020",
     "epci_code": "246600464",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66210"
   },
@@ -163,7 +163,7 @@
     "name": "Bompas",
     "code": "66021",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66430"
   },
@@ -171,7 +171,7 @@
     "name": "Boule-d’Amont",
     "code": "66022",
     "epci_code": "246600415",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66130"
   },
@@ -179,7 +179,7 @@
     "name": "Bouleternère",
     "code": "66023",
     "epci_code": "246600415",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66130"
   },
@@ -187,7 +187,7 @@
     "name": "Le Boulou",
     "code": "66024",
     "epci_code": "246600373",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66160"
   },
@@ -195,7 +195,7 @@
     "name": "Bourg-Madame",
     "code": "66025",
     "epci_code": "246600399",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66760"
   },
@@ -203,7 +203,7 @@
     "name": "Brouilla",
     "code": "66026",
     "epci_code": "246600449",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66620"
   },
@@ -211,7 +211,7 @@
     "name": "La Cabanasse",
     "code": "66027",
     "epci_code": "246600464",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66210"
   },
@@ -219,7 +219,7 @@
     "name": "Cabestany",
     "code": "66028",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66330"
   },
@@ -227,7 +227,7 @@
     "name": "Caixas",
     "code": "66029",
     "epci_code": "246600449",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66300"
   },
@@ -235,7 +235,7 @@
     "name": "Calce",
     "code": "66030",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66600"
   },
@@ -243,7 +243,7 @@
     "name": "Calmeilles",
     "code": "66032",
     "epci_code": "246600449",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66400"
   },
@@ -251,7 +251,7 @@
     "name": "Camélas",
     "code": "66033",
     "epci_code": "246600449",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66300"
   },
@@ -259,7 +259,7 @@
     "name": "Campôme",
     "code": "66034",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66500"
   },
@@ -267,7 +267,7 @@
     "name": "Campoussy",
     "code": "66035",
     "epci_code": "246600423",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66730"
   },
@@ -275,7 +275,7 @@
     "name": "Canaveilles",
     "code": "66036",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66360"
   },
@@ -283,7 +283,7 @@
     "name": "Canet-en-Roussillon",
     "code": "66037",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66140"
   },
@@ -291,7 +291,7 @@
     "name": "Canohès",
     "code": "66038",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66680"
   },
@@ -299,7 +299,7 @@
     "name": "Caramany",
     "code": "66039",
     "epci_code": "246600423",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66720"
   },
@@ -307,7 +307,7 @@
     "name": "Casefabre",
     "code": "66040",
     "epci_code": "246600415",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66130"
   },
@@ -315,7 +315,7 @@
     "name": "Cases-de-Pène",
     "code": "66041",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66600"
   },
@@ -323,7 +323,7 @@
     "name": "Cassagnes",
     "code": "66042",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66720"
   },
@@ -331,7 +331,7 @@
     "name": "Casteil",
     "code": "66043",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66820"
   },
@@ -339,7 +339,7 @@
     "name": "Castelnou",
     "code": "66044",
     "epci_code": "246600449",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66300"
   },
@@ -347,7 +347,7 @@
     "name": "Catllar",
     "code": "66045",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66500"
   },
@@ -355,7 +355,7 @@
     "name": "Caudiès-de-Fenouillèdes",
     "code": "66046",
     "epci_code": "246600423",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66220"
   },
@@ -363,7 +363,7 @@
     "name": "Caudiès-de-Conflent",
     "code": "66047",
     "epci_code": "246600464",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66360"
   },
@@ -371,7 +371,7 @@
     "name": "Cerbère",
     "code": "66048",
     "epci_code": "200043602",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66290"
   },
@@ -379,7 +379,7 @@
     "name": "Céret",
     "code": "66049",
     "epci_code": "246600373",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66400"
   },
@@ -387,7 +387,7 @@
     "name": "Claira",
     "code": "66050",
     "epci_code": "200070365",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66530"
   },
@@ -395,7 +395,7 @@
     "name": "Clara-Villerach",
     "code": "66051",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66500"
   },
@@ -403,7 +403,7 @@
     "name": "Codalet",
     "code": "66052",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66500"
   },
@@ -411,7 +411,7 @@
     "name": "Collioure",
     "code": "66053",
     "epci_code": "200043602",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66190"
   },
@@ -419,7 +419,7 @@
     "name": "Conat",
     "code": "66054",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66500"
   },
@@ -427,7 +427,7 @@
     "name": "Corbère",
     "code": "66055",
     "epci_code": "246600415",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66130"
   },
@@ -435,7 +435,7 @@
     "name": "Corbère-les-Cabanes",
     "code": "66056",
     "epci_code": "246600415",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66130"
   },
@@ -443,7 +443,7 @@
     "name": "Corneilla-de-Conflent",
     "code": "66057",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66820"
   },
@@ -451,7 +451,7 @@
     "name": "Corneilla-la-Rivière",
     "code": "66058",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66550"
   },
@@ -459,7 +459,7 @@
     "name": "Corneilla-del-Vercol",
     "code": "66059",
     "epci_code": "246600282",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66200"
   },
@@ -467,7 +467,7 @@
     "name": "Corsavy",
     "code": "66060",
     "epci_code": "246600548",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66150"
   },
@@ -475,7 +475,7 @@
     "name": "Coustouges",
     "code": "66061",
     "epci_code": "246600548",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66260"
   },
@@ -483,7 +483,7 @@
     "name": "Dorres",
     "code": "66062",
     "epci_code": "246600399",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66760"
   },
@@ -491,7 +491,7 @@
     "name": "Les Cluses",
     "code": "66063",
     "epci_code": "246600373",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66480"
   },
@@ -499,7 +499,7 @@
     "name": "Égat",
     "code": "66064",
     "epci_code": "246600399",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66120"
   },
@@ -507,7 +507,7 @@
     "name": "Elne",
     "code": "66065",
     "epci_code": "200043602",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66200"
   },
@@ -515,7 +515,7 @@
     "name": "Enveitg",
     "code": "66066",
     "epci_code": "246600399",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66760"
   },
@@ -523,7 +523,7 @@
     "name": "Err",
     "code": "66067",
     "epci_code": "246600399",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66800"
   },
@@ -531,7 +531,7 @@
     "name": "Escaro",
     "code": "66068",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66360"
   },
@@ -539,7 +539,7 @@
     "name": "Espira-de-l’Agly",
     "code": "66069",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66600"
   },
@@ -547,7 +547,7 @@
     "name": "Espira-de-Conflent",
     "code": "66070",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66320"
   },
@@ -555,7 +555,7 @@
     "name": "Estagel",
     "code": "66071",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66310"
   },
@@ -563,7 +563,7 @@
     "name": "Estavar",
     "code": "66072",
     "epci_code": "246600399",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66800"
   },
@@ -571,7 +571,7 @@
     "name": "Estoher",
     "code": "66073",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66320"
   },
@@ -579,7 +579,7 @@
     "name": "Eus",
     "code": "66074",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66500"
   },
@@ -587,7 +587,7 @@
     "name": "Eyne",
     "code": "66075",
     "epci_code": "246600464",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66800"
   },
@@ -595,7 +595,7 @@
     "name": "Feilluns",
     "code": "66076",
     "epci_code": "246600423",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66730"
   },
@@ -603,7 +603,7 @@
     "name": "Fenouillet",
     "code": "66077",
     "epci_code": "246600423",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66220"
   },
@@ -611,7 +611,7 @@
     "name": "Fillols",
     "code": "66078",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66820"
   },
@@ -619,7 +619,7 @@
     "name": "Finestret",
     "code": "66079",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66320"
   },
@@ -627,7 +627,7 @@
     "name": "Fontpédrouse",
     "code": "66080",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66360"
   },
@@ -635,7 +635,7 @@
     "name": "Fontrabiouse",
     "code": "66081",
     "epci_code": "246600464",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66210"
   },
@@ -643,7 +643,7 @@
     "name": "Formiguères",
     "code": "66082",
     "epci_code": "246600464",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66210"
   },
@@ -651,7 +651,7 @@
     "name": "Fosse",
     "code": "66083",
     "epci_code": "246600423",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66220"
   },
@@ -659,7 +659,7 @@
     "name": "Fourques",
     "code": "66084",
     "epci_code": "246600449",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66300"
   },
@@ -667,7 +667,7 @@
     "name": "Fuilla",
     "code": "66085",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66820"
   },
@@ -675,7 +675,7 @@
     "name": "Glorianes",
     "code": "66086",
     "epci_code": "246600415",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66320"
   },
@@ -683,7 +683,7 @@
     "name": "Ille-sur-Têt",
     "code": "66088",
     "epci_code": "246600415",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66130"
   },
@@ -691,7 +691,7 @@
     "name": "Joch",
     "code": "66089",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66320"
   },
@@ -699,7 +699,7 @@
     "name": "Jujols",
     "code": "66090",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66360"
   },
@@ -707,7 +707,7 @@
     "name": "Lamanère",
     "code": "66091",
     "epci_code": "246600548",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66230"
   },
@@ -715,7 +715,7 @@
     "name": "Lansac",
     "code": "66092",
     "epci_code": "246600423",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66720"
   },
@@ -723,7 +723,7 @@
     "name": "Laroque-des-Albères",
     "code": "66093",
     "epci_code": "200043602",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66740"
   },
@@ -731,7 +731,7 @@
     "name": "Latour-Bas-Elne",
     "code": "66094",
     "epci_code": "246600282",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66200"
   },
@@ -739,7 +739,7 @@
     "name": "Latour-de-Carol",
     "code": "66095",
     "epci_code": "246600399",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66760"
   },
@@ -747,7 +747,7 @@
     "name": "Latour-de-France",
     "code": "66096",
     "epci_code": "246600423",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66720"
   },
@@ -755,7 +755,7 @@
     "name": "Lesquerde",
     "code": "66097",
     "epci_code": "246600423",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66220"
   },
@@ -763,7 +763,7 @@
     "name": "La Llagonne",
     "code": "66098",
     "epci_code": "246600464",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66210"
   },
@@ -771,7 +771,7 @@
     "name": "Llauro",
     "code": "66099",
     "epci_code": "246600449",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66300"
   },
@@ -779,7 +779,7 @@
     "name": "Llo",
     "code": "66100",
     "epci_code": "246600399",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66800"
   },
@@ -787,7 +787,7 @@
     "name": "Llupia",
     "code": "66101",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66300"
   },
@@ -795,7 +795,7 @@
     "name": "Mantet",
     "code": "66102",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66360"
   },
@@ -803,7 +803,7 @@
     "name": "Marquixanes",
     "code": "66103",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66320"
   },
@@ -811,7 +811,7 @@
     "name": "Los Masos",
     "code": "66104",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66500"
   },
@@ -819,7 +819,7 @@
     "name": "Matemale",
     "code": "66105",
     "epci_code": "246600464",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66210"
   },
@@ -827,7 +827,7 @@
     "name": "Maureillas-las-Illas",
     "code": "66106",
     "epci_code": "246600373",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66480"
   },
@@ -835,7 +835,7 @@
     "name": "Maury",
     "code": "66107",
     "epci_code": "246600423",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66460"
   },
@@ -843,7 +843,7 @@
     "name": "Millas",
     "code": "66108",
     "epci_code": "246600415",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66170"
   },
@@ -851,7 +851,7 @@
     "name": "Molitg-les-Bains",
     "code": "66109",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66500"
   },
@@ -859,7 +859,7 @@
     "name": "Montalba-le-Château",
     "code": "66111",
     "epci_code": "246600415",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66130"
   },
@@ -867,7 +867,7 @@
     "name": "Montauriol",
     "code": "66112",
     "epci_code": "246600449",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66300"
   },
@@ -875,7 +875,7 @@
     "name": "Montbolo",
     "code": "66113",
     "epci_code": "246600548",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66110"
   },
@@ -883,7 +883,7 @@
     "name": "Montescot",
     "code": "66114",
     "epci_code": "246600282",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66200"
   },
@@ -891,7 +891,7 @@
     "name": "Montesquieu-des-Albères",
     "code": "66115",
     "epci_code": "200043602",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66740"
   },
@@ -899,7 +899,7 @@
     "name": "Montferrer",
     "code": "66116",
     "epci_code": "246600548",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66150"
   },
@@ -907,7 +907,7 @@
     "name": "Mont-Louis",
     "code": "66117",
     "epci_code": "246600464",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66210"
   },
@@ -915,7 +915,7 @@
     "name": "Montner",
     "code": "66118",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66720"
   },
@@ -923,7 +923,7 @@
     "name": "Mosset",
     "code": "66119",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66500"
   },
@@ -931,7 +931,7 @@
     "name": "Nahuja",
     "code": "66120",
     "epci_code": "246600399",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66340"
   },
@@ -939,7 +939,7 @@
     "name": "Néfiach",
     "code": "66121",
     "epci_code": "246600415",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66170"
   },
@@ -947,7 +947,7 @@
     "name": "Nohèdes",
     "code": "66122",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66500"
   },
@@ -955,7 +955,7 @@
     "name": "Nyer",
     "code": "66123",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66360"
   },
@@ -963,7 +963,7 @@
     "name": "Font-Romeu-Odeillo-Via",
     "code": "66124",
     "epci_code": "246600464",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66120"
   },
@@ -971,7 +971,7 @@
     "name": "Olette",
     "code": "66125",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66360"
   },
@@ -979,7 +979,7 @@
     "name": "Oms",
     "code": "66126",
     "epci_code": "246600449",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66400"
   },
@@ -987,7 +987,7 @@
     "name": "Opoul-Périllos",
     "code": "66127",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66600"
   },
@@ -995,7 +995,7 @@
     "name": "Oreilla",
     "code": "66128",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66360"
   },
@@ -1003,7 +1003,7 @@
     "name": "Ortaffa",
     "code": "66129",
     "epci_code": "200043602",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66560"
   },
@@ -1011,7 +1011,7 @@
     "name": "Osséja",
     "code": "66130",
     "epci_code": "246600399",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66340"
   },
@@ -1019,7 +1019,7 @@
     "name": "Palau-de-Cerdagne",
     "code": "66132",
     "epci_code": "246600399",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66340"
   },
@@ -1027,7 +1027,7 @@
     "name": "Palau-del-Vidre",
     "code": "66133",
     "epci_code": "200043602",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66690"
   },
@@ -1035,7 +1035,7 @@
     "name": "Passa",
     "code": "66134",
     "epci_code": "246600449",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66300"
   },
@@ -1043,7 +1043,7 @@
     "name": "Perpignan",
     "code": "66136",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66000"
   },
@@ -1051,7 +1051,7 @@
     "name": "Perpignan",
     "code": "66136",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66100"
   },
@@ -1059,7 +1059,7 @@
     "name": "Le Perthus",
     "code": "66137",
     "epci_code": "246600373",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66480"
   },
@@ -1067,7 +1067,7 @@
     "name": "Peyrestortes",
     "code": "66138",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66600"
   },
@@ -1075,7 +1075,7 @@
     "name": "Pézilla-de-Conflent",
     "code": "66139",
     "epci_code": "246600423",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66730"
   },
@@ -1083,7 +1083,7 @@
     "name": "Pézilla-la-Rivière",
     "code": "66140",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66370"
   },
@@ -1091,7 +1091,7 @@
     "name": "Pia",
     "code": "66141",
     "epci_code": "200070365",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66380"
   },
@@ -1099,7 +1099,7 @@
     "name": "Planès",
     "code": "66142",
     "epci_code": "246600464",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66210"
   },
@@ -1107,7 +1107,7 @@
     "name": "Planèzes",
     "code": "66143",
     "epci_code": "246600423",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66720"
   },
@@ -1115,7 +1115,7 @@
     "name": "Pollestres",
     "code": "66144",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66450"
   },
@@ -1123,7 +1123,7 @@
     "name": "Ponteilla",
     "code": "66145",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66300"
   },
@@ -1131,7 +1131,7 @@
     "name": "Porta",
     "code": "66146",
     "epci_code": "246600399",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66760"
   },
@@ -1139,7 +1139,7 @@
     "name": "Porté-Puymorens",
     "code": "66147",
     "epci_code": "246600399",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66760"
   },
@@ -1147,7 +1147,7 @@
     "name": "Port-Vendres",
     "code": "66148",
     "epci_code": "200043602",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66660"
   },
@@ -1155,7 +1155,7 @@
     "name": "Prades",
     "code": "66149",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66500"
   },
@@ -1163,7 +1163,7 @@
     "name": "Prats-de-Mollo-la-Preste",
     "code": "66150",
     "epci_code": "246600548",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66230"
   },
@@ -1171,7 +1171,7 @@
     "name": "Prats-de-Sournia",
     "code": "66151",
     "epci_code": "246600423",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66730"
   },
@@ -1179,7 +1179,7 @@
     "name": "Prugnanes",
     "code": "66152",
     "epci_code": "246600423",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66220"
   },
@@ -1187,7 +1187,7 @@
     "name": "Prunet-et-Belpuig",
     "code": "66153",
     "epci_code": "246600415",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66130"
   },
@@ -1195,7 +1195,7 @@
     "name": "Puyvalador",
     "code": "66154",
     "epci_code": "246600464",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66210"
   },
@@ -1203,7 +1203,7 @@
     "name": "Py",
     "code": "66155",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66360"
   },
@@ -1211,7 +1211,7 @@
     "name": "Rabouillet",
     "code": "66156",
     "epci_code": "246600423",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66730"
   },
@@ -1219,7 +1219,7 @@
     "name": "Railleu",
     "code": "66157",
     "epci_code": "246600464",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66360"
   },
@@ -1227,7 +1227,7 @@
     "name": "Rasiguères",
     "code": "66158",
     "epci_code": "246600423",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66720"
   },
@@ -1235,7 +1235,7 @@
     "name": "Réal",
     "code": "66159",
     "epci_code": "246600464",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66210"
   },
@@ -1243,7 +1243,7 @@
     "name": "Reynès",
     "code": "66160",
     "epci_code": "246600373",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66400"
   },
@@ -1251,7 +1251,7 @@
     "name": "Ria-Sirach",
     "code": "66161",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66500"
   },
@@ -1259,7 +1259,7 @@
     "name": "Rigarda",
     "code": "66162",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66320"
   },
@@ -1267,7 +1267,7 @@
     "name": "Rivesaltes",
     "code": "66164",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66600"
   },
@@ -1275,7 +1275,7 @@
     "name": "Rodès",
     "code": "66165",
     "epci_code": "246600415",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66320"
   },
@@ -1283,7 +1283,7 @@
     "name": "Sahorre",
     "code": "66166",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66360"
   },
@@ -1291,7 +1291,7 @@
     "name": "Saillagouse",
     "code": "66167",
     "epci_code": "246600399",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66800"
   },
@@ -1299,7 +1299,7 @@
     "name": "Saint-André",
     "code": "66168",
     "epci_code": "200043602",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66690"
   },
@@ -1307,7 +1307,7 @@
     "name": "Saint-Arnac",
     "code": "66169",
     "epci_code": "246600423",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66220"
   },
@@ -1315,7 +1315,7 @@
     "name": "Sainte-Colombe-de-la-Commanderie",
     "code": "66170",
     "epci_code": "246600449",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66300"
   },
@@ -1323,7 +1323,7 @@
     "name": "Saint-Cyprien",
     "code": "66171",
     "epci_code": "246600282",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66750"
   },
@@ -1331,7 +1331,7 @@
     "name": "Saint-Estève",
     "code": "66172",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66240"
   },
@@ -1339,7 +1339,7 @@
     "name": "Saint-Féliu-d’Amont",
     "code": "66173",
     "epci_code": "246600415",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66170"
   },
@@ -1347,7 +1347,7 @@
     "name": "Saint-Féliu-d’Avall",
     "code": "66174",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66170"
   },
@@ -1355,7 +1355,7 @@
     "name": "Saint-Génis-des-Fontaines",
     "code": "66175",
     "epci_code": "200043602",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66740"
   },
@@ -1363,7 +1363,7 @@
     "name": "Saint-Hippolyte",
     "code": "66176",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66510"
   },
@@ -1371,7 +1371,7 @@
     "name": "Saint-Jean-Lasseille",
     "code": "66177",
     "epci_code": "246600449",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66300"
   },
@@ -1379,7 +1379,7 @@
     "name": "Saint-Jean-Pla-de-Corts",
     "code": "66178",
     "epci_code": "246600373",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66490"
   },
@@ -1387,7 +1387,7 @@
     "name": "Saint-Laurent-de-Cerdans",
     "code": "66179",
     "epci_code": "246600548",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66260"
   },
@@ -1395,7 +1395,7 @@
     "name": "Saint-Laurent-de-la-Salanque",
     "code": "66180",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66250"
   },
@@ -1403,7 +1403,7 @@
     "name": "Sainte-Léocadie",
     "code": "66181",
     "epci_code": "246600399",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66800"
   },
@@ -1411,7 +1411,7 @@
     "name": "Sainte-Marie-la-Mer",
     "code": "66182",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66470"
   },
@@ -1419,7 +1419,7 @@
     "name": "Saint-Marsal",
     "code": "66183",
     "epci_code": "246600548",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66110"
   },
@@ -1427,7 +1427,7 @@
     "name": "Saint-Martin-de-Fenouillet",
     "code": "66184",
     "epci_code": "246600423",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66220"
   },
@@ -1435,7 +1435,7 @@
     "name": "Saint-Michel-de-Llotes",
     "code": "66185",
     "epci_code": "246600415",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66130"
   },
@@ -1443,7 +1443,7 @@
     "name": "Saint-Nazaire",
     "code": "66186",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66570"
   },
@@ -1451,7 +1451,7 @@
     "name": "Saint-Paul-de-Fenouillet",
     "code": "66187",
     "epci_code": "246600423",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66220"
   },
@@ -1459,7 +1459,7 @@
     "name": "Saint-Pierre-dels-Forcats",
     "code": "66188",
     "epci_code": "246600464",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66210"
   },
@@ -1467,7 +1467,7 @@
     "name": "Saleilles",
     "code": "66189",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66280"
   },
@@ -1475,7 +1475,7 @@
     "name": "Salses-le-Château",
     "code": "66190",
     "epci_code": "200070365",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66600"
   },
@@ -1483,7 +1483,7 @@
     "name": "Sansa",
     "code": "66191",
     "epci_code": "246600464",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66360"
   },
@@ -1491,7 +1491,7 @@
     "name": "Sauto",
     "code": "66192",
     "epci_code": "246600464",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66210"
   },
@@ -1499,7 +1499,7 @@
     "name": "Serdinya",
     "code": "66193",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66360"
   },
@@ -1507,7 +1507,7 @@
     "name": "Serralongue",
     "code": "66194",
     "epci_code": "246600548",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66230"
   },
@@ -1515,7 +1515,7 @@
     "name": "Le Soler",
     "code": "66195",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66270"
   },
@@ -1523,7 +1523,7 @@
     "name": "Sorède",
     "code": "66196",
     "epci_code": "200043602",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66690"
   },
@@ -1531,7 +1531,7 @@
     "name": "Souanyas",
     "code": "66197",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66360"
   },
@@ -1539,7 +1539,7 @@
     "name": "Sournia",
     "code": "66198",
     "epci_code": "246600423",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66730"
   },
@@ -1547,7 +1547,7 @@
     "name": "Taillet",
     "code": "66199",
     "epci_code": "246600373",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66400"
   },
@@ -1555,7 +1555,7 @@
     "name": "Tarerach",
     "code": "66201",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66320"
   },
@@ -1563,7 +1563,7 @@
     "name": "Targasonne",
     "code": "66202",
     "epci_code": "246600399",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66120"
   },
@@ -1571,7 +1571,7 @@
     "name": "Taulis",
     "code": "66203",
     "epci_code": "246600548",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66110"
   },
@@ -1579,7 +1579,7 @@
     "name": "Taurinya",
     "code": "66204",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66500"
   },
@@ -1587,7 +1587,7 @@
     "name": "Tautavel",
     "code": "66205",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66720"
   },
@@ -1595,7 +1595,7 @@
     "name": "Le Tech",
     "code": "66206",
     "epci_code": "246600548",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66230"
   },
@@ -1603,7 +1603,7 @@
     "name": "Terrats",
     "code": "66207",
     "epci_code": "246600449",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66300"
   },
@@ -1611,7 +1611,7 @@
     "name": "Théza",
     "code": "66208",
     "epci_code": "246600282",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66200"
   },
@@ -1619,7 +1619,7 @@
     "name": "Thuès-Entre-Valls",
     "code": "66209",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66360"
   },
@@ -1627,7 +1627,7 @@
     "name": "Thuir",
     "code": "66210",
     "epci_code": "246600449",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66300"
   },
@@ -1635,7 +1635,7 @@
     "name": "Tordères",
     "code": "66211",
     "epci_code": "246600449",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66300"
   },
@@ -1643,7 +1643,7 @@
     "name": "Torreilles",
     "code": "66212",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66440"
   },
@@ -1651,7 +1651,7 @@
     "name": "Toulouges",
     "code": "66213",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66350"
   },
@@ -1659,7 +1659,7 @@
     "name": "Tresserre",
     "code": "66214",
     "epci_code": "246600449",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66300"
   },
@@ -1667,7 +1667,7 @@
     "name": "Trévillach",
     "code": "66215",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66130"
   },
@@ -1675,7 +1675,7 @@
     "name": "Trilla",
     "code": "66216",
     "epci_code": "246600423",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66220"
   },
@@ -1683,7 +1683,7 @@
     "name": "Trouillas",
     "code": "66217",
     "epci_code": "246600449",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66300"
   },
@@ -1691,7 +1691,7 @@
     "name": "Ur",
     "code": "66218",
     "epci_code": "246600399",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66760"
   },
@@ -1699,7 +1699,7 @@
     "name": "Urbanya",
     "code": "66219",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66500"
   },
@@ -1707,7 +1707,7 @@
     "name": "Valcebollère",
     "code": "66220",
     "epci_code": "246600399",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66340"
   },
@@ -1715,7 +1715,7 @@
     "name": "Valmanya",
     "code": "66221",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66320"
   },
@@ -1723,7 +1723,7 @@
     "name": "Vernet-les-Bains",
     "code": "66222",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66820"
   },
@@ -1731,7 +1731,7 @@
     "name": "Villefranche-de-Conflent",
     "code": "66223",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66500"
   },
@@ -1739,7 +1739,7 @@
     "name": "Villelongue-de-la-Salanque",
     "code": "66224",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66410"
   },
@@ -1747,7 +1747,7 @@
     "name": "Villelongue-dels-Monts",
     "code": "66225",
     "epci_code": "200043602",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66740"
   },
@@ -1755,7 +1755,7 @@
     "name": "Villemolaque",
     "code": "66226",
     "epci_code": "246600449",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66300"
   },
@@ -1763,7 +1763,7 @@
     "name": "Villeneuve-de-la-Raho",
     "code": "66227",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66180"
   },
@@ -1771,7 +1771,7 @@
     "name": "Villeneuve-la-Rivière",
     "code": "66228",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66610"
   },
@@ -1779,7 +1779,7 @@
     "name": "Vinça",
     "code": "66230",
     "epci_code": "200049211",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66320"
   },
@@ -1787,7 +1787,7 @@
     "name": "Vingrau",
     "code": "66231",
     "epci_code": "200027183",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66600"
   },
@@ -1795,7 +1795,7 @@
     "name": "Vira",
     "code": "66232",
     "epci_code": "246600423",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66220"
   },
@@ -1803,7 +1803,7 @@
     "name": "Vivès",
     "code": "66233",
     "epci_code": "246600373",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66490"
   },
@@ -1811,7 +1811,7 @@
     "name": "Le Vivier",
     "code": "66234",
     "epci_code": "246600423",
-    "departement_code": "66",
+    "department_code": "66",
     "region_code": "76",
     "postal_code": "66730"
   }

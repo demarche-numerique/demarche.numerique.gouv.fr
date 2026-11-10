@@ -4,33 +4,33 @@ describe Champs::EpciChamp, type: :model do
   let(:public_type_de_champs) { [{ type: :epci }] }
   let(:procedure) { create(:procedure, public_type_de_champs:) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.root_champs_public.first.tap { _1.code_departement = code_departement } }
-  let(:code_departement) { nil }
+  let(:champ) { dossier.root_champs_public.first.tap { _1.department_code = department_code } }
+  let(:department_code) { nil }
 
   describe 'validations' do
     subject { champ.validate(:champ_value) }
 
-    describe 'code_departement' do
+    describe 'department_code' do
       context 'when nil' do
-        let(:code_departement) { nil }
+        let(:department_code) { nil }
 
         it { is_expected.to be_truthy }
       end
 
       context 'when empty' do
-        let(:code_departement) { '' }
+        let(:department_code) { '' }
 
         it { is_expected.to be_falsey }
       end
 
       context 'when included in the departement codes' do
-        let(:code_departement) { "01" }
+        let(:department_code) { "01" }
 
         it { is_expected.to be_truthy }
       end
 
       context 'when not included in the departement codes' do
-        let(:code_departement) { "totoro" }
+        let(:department_code) { "totoro" }
 
         it { is_expected.to be_falsey }
       end
@@ -38,21 +38,21 @@ describe Champs::EpciChamp, type: :model do
 
     describe 'external_id' do
       before do
-        champ.code_departement = code_departement
+        champ.department_code = department_code
         champ.external_id = nil
         champ.save!(validate: false)
         champ.update_columns(external_id: external_id)
       end
 
-      context 'when code_departement is nil' do
-        let(:code_departement) { nil }
+      context 'when department_code is nil' do
+        let(:department_code) { nil }
         let(:external_id) { nil }
 
         it { is_expected.to be_truthy }
       end
 
-      context 'when code_departement is not nil and valid' do
-        let(:code_departement) { "01" }
+      context 'when department_code is not nil and valid' do
+        let(:department_code) { "01" }
 
         context 'when external_id is nil' do
           let(:external_id) { nil }
@@ -83,14 +83,14 @@ describe Champs::EpciChamp, type: :model do
     describe 'value' do
       before do
         champ.value = nil
-        champ.code_departement = code_departement
+        champ.department_code = department_code
         champ.external_id = nil
         champ.save!(validate: false)
         champ.update_columns(external_id:, value:)
       end
 
-      context 'when code_departement is nil' do
-        let(:code_departement) { nil }
+      context 'when department_code is nil' do
+        let(:department_code) { nil }
         let(:external_id) { nil }
         let(:value) { nil }
 
@@ -98,15 +98,15 @@ describe Champs::EpciChamp, type: :model do
       end
 
       context 'when external_id is nil' do
-        let(:code_departement) { '01' }
+        let(:department_code) { '01' }
         let(:external_id) { nil }
         let(:value) { nil }
 
         it { is_expected.to be_truthy }
       end
 
-      context 'when code_departement and external_id are not nil and valid' do
-        let(:code_departement) { '01' }
+      context 'when department_code and external_id are not nil and valid' do
+        let(:department_code) { '01' }
         let(:external_id) { '200042935' }
 
         context 'when value is nil' do
@@ -140,7 +140,7 @@ describe Champs::EpciChamp, type: :model do
           let(:value) { 'totoro' }
 
           it 'is invalid' do
-            allow(APIGeoService).to receive(:epcis).with(champ.code_departement).and_return([])
+            allow(APIGeoService).to receive(:epcis).with(champ.department_code).and_return([])
             expect(subject).to be_falsey
           end
         end
@@ -153,7 +153,7 @@ describe Champs::EpciChamp, type: :model do
 
     it 'with departement and code' do
       allow(champ).to receive(:type_de_champ).and_return(build(:type_de_champ_epci))
-      champ.code_departement = '01'
+      champ.department_code = '01'
       champ.value = epci[:code]
       expect(champ.blank?).to be_falsey
       expect(champ.external_id).to eq(epci[:code])
@@ -165,13 +165,13 @@ describe Champs::EpciChamp, type: :model do
     end
 
     it 'with departement and name' do
-      champ.code_departement = '01'
+      champ.department_code = '01'
       champ.value = epci[:name]
       expect(champ).to have_attributes(external_id: epci[:code], value: epci[:name])
     end
 
     it 'with departement and code, once saved' do
-      champ.update!(code_departement: '01')
+      champ.update!(department_code: '01')
       champ.value = epci[:code]
       expect(champ.value).to eq(epci[:name])
       champ.save!
@@ -179,17 +179,14 @@ describe Champs::EpciChamp, type: :model do
     end
   end
 
-  describe 'double-write of canonical value_json keys' do
-    it 'mirrors code_departement to department_code' do
-      champ.code_departement = '01'
-      expect(champ.value_json['code_departement']).to eq('01')
-      expect(champ.value_json['department_code']).to eq('01')
-    end
+  describe 'canonical value_json keys' do
+    it 'stores department_code and region_code after save' do
+      champ.department_code = '01'
+      champ.save!
 
-    it 'mirrors code_region to region_code' do
-      champ.code_region = '84'
-      expect(champ.value_json['code_region']).to eq('84')
+      expect(champ.value_json['department_code']).to eq('01')
       expect(champ.value_json['region_code']).to eq('84')
+      expect(champ.value_json.keys).not_to include('code_departement', 'code_region')
     end
   end
 end

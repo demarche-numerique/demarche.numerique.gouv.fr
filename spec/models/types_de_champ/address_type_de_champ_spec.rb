@@ -13,7 +13,6 @@ describe TypesDeChamp::AddressTypeDeChamp do
         "addr – Commune",
         "addr – Département",
         "addr – Région",
-        "addr – Région",
       ]
 
       expect(columns.map(&:label)).to match_array(expected_columns)
@@ -39,25 +38,10 @@ describe TypesDeChamp::AddressTypeDeChamp do
       end
     end
 
-    context 'legacy region_name column (kept for backward compat)' do
-      let(:legacy_column) { columns.find { _1.is_a?(Columns::JSONPathColumn) && _1.jsonpath == '$.region_name' } }
+    it 'resolves the legacy region_name column id to $.region_code' do
+      h_id = { procedure_id: procedure.id, column_id: "type_de_champ/#{address_tdc.stable_id}-$.region_name" }
 
-      it 'is not displayable nor filterable' do
-        expect(legacy_column).to be_present
-        expect(legacy_column.displayable).to be(false)
-        expect(legacy_column.filterable).to be(false)
-      end
-
-      it 'is resolvable by procedure.find_column with its h_id' do
-        expect(procedure.find_column(h_id: legacy_column.h_id)).to eq(legacy_column)
-      end
-
-      it 'survives a ColumnType serialization round-trip' do
-        serialized = ColumnType.new.serialize(legacy_column)
-        deserialized = ColumnType.new.deserialize(serialized)
-
-        expect(deserialized).to eq(legacy_column)
-      end
+      expect(procedure.find_column(h_id:).jsonpath).to eq('$.region_code')
     end
 
     context 'pickers expose only the new region column' do

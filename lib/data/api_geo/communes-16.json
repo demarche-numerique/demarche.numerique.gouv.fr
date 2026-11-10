@@ -3,7 +3,7 @@
     "name": "Abzac",
     "code": "16001",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16500"
   },
@@ -11,7 +11,7 @@
     "name": "Les Adjots",
     "code": "16002",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16700"
   },
@@ -19,7 +19,7 @@
     "name": "Agris",
     "code": "16003",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16110"
   },
@@ -27,7 +27,7 @@
     "name": "Aigre",
     "code": "16005",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16140"
   },
@@ -35,7 +35,7 @@
     "name": "Alloue",
     "code": "16007",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16490"
   },
@@ -43,7 +43,7 @@
     "name": "Ambérac",
     "code": "16008",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16140"
   },
@@ -51,7 +51,7 @@
     "name": "Ambernac",
     "code": "16009",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16490"
   },
@@ -59,7 +59,7 @@
     "name": "Anais",
     "code": "16011",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16560"
   },
@@ -67,7 +67,7 @@
     "name": "Angeac-Champagne",
     "code": "16012",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16130"
   },
@@ -75,7 +75,7 @@
     "name": "Angeac-Charente",
     "code": "16013",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16120"
   },
@@ -83,7 +83,7 @@
     "name": "Angeduc",
     "code": "16014",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16300"
   },
@@ -91,7 +91,7 @@
     "name": "Angoulême",
     "code": "16015",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16000"
   },
@@ -99,7 +99,7 @@
     "name": "Ansac-sur-Vienne",
     "code": "16016",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16500"
   },
@@ -107,7 +107,7 @@
     "name": "Ars",
     "code": "16018",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16130"
   },
@@ -115,7 +115,7 @@
     "name": "Asnières-sur-Nouère",
     "code": "16019",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16290"
   },
@@ -123,7 +123,7 @@
     "name": "Aubeterre-sur-Dronne",
     "code": "16020",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16390"
   },
@@ -131,7 +131,7 @@
     "name": "Aunac-sur-Charente",
     "code": "16023",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16460"
   },
@@ -139,7 +139,7 @@
     "name": "Aussac-Vadalle",
     "code": "16024",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16560"
   },
@@ -147,7 +147,7 @@
     "name": "Baignes-Sainte-Radegonde",
     "code": "16025",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16360"
   },
@@ -155,7 +155,7 @@
     "name": "Balzac",
     "code": "16026",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16430"
   },
@@ -163,7 +163,7 @@
     "name": "Barbezières",
     "code": "16027",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16140"
   },
@@ -171,7 +171,7 @@
     "name": "Barbezieux-Saint-Hilaire",
     "code": "16028",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16300"
   },
@@ -179,7 +179,7 @@
     "name": "Bardenac",
     "code": "16029",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16210"
   },
@@ -187,7 +187,7 @@
     "name": "Barret",
     "code": "16030",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16300"
   },
@@ -195,7 +195,7 @@
     "name": "Barro",
     "code": "16031",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16700"
   },
@@ -203,7 +203,7 @@
     "name": "Bassac",
     "code": "16032",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16120"
   },
@@ -211,7 +211,7 @@
     "name": "Bazac",
     "code": "16034",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16210"
   },
@@ -219,7 +219,7 @@
     "name": "Beaulieu-sur-Sonnette",
     "code": "16035",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16450"
   },
@@ -227,7 +227,7 @@
     "name": "Bécheresse",
     "code": "16036",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16250"
   },
@@ -235,7 +235,7 @@
     "name": "Bellon",
     "code": "16037",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16210"
   },
@@ -243,7 +243,7 @@
     "name": "Benest",
     "code": "16038",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16350"
   },
@@ -251,7 +251,7 @@
     "name": "Bernac",
     "code": "16039",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16700"
   },
@@ -259,7 +259,7 @@
     "name": "Berneuil",
     "code": "16040",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16480"
   },
@@ -267,7 +267,7 @@
     "name": "Bessac",
     "code": "16041",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16250"
   },
@@ -275,7 +275,7 @@
     "name": "Bessé",
     "code": "16042",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16140"
   },
@@ -283,7 +283,7 @@
     "name": "Bioussac",
     "code": "16044",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16700"
   },
@@ -291,7 +291,7 @@
     "name": "Birac",
     "code": "16045",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16120"
   },
@@ -299,7 +299,7 @@
     "name": "Coteaux-du-Blanzacais",
     "code": "16046",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16250"
   },
@@ -307,7 +307,7 @@
     "name": "Blanzaguet-Saint-Cybard",
     "code": "16047",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16320"
   },
@@ -315,7 +315,7 @@
     "name": "Boisbreteau",
     "code": "16048",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16480"
   },
@@ -323,7 +323,7 @@
     "name": "Bonnes",
     "code": "16049",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16390"
   },
@@ -331,7 +331,7 @@
     "name": "Bonneuil",
     "code": "16050",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16120"
   },
@@ -339,7 +339,7 @@
     "name": "Bors (Canton de Tude-et-Lavalette)",
     "code": "16052",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16190"
   },
@@ -347,7 +347,7 @@
     "name": "Bors (Canton de Charente-Sud)",
     "code": "16053",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16360"
   },
@@ -355,7 +355,7 @@
     "name": "Le Bouchage",
     "code": "16054",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16350"
   },
@@ -363,7 +363,7 @@
     "name": "Bouëx",
     "code": "16055",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16410"
   },
@@ -371,7 +371,7 @@
     "name": "Bourg-Charente",
     "code": "16056",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16200"
   },
@@ -379,7 +379,7 @@
     "name": "Bouteville",
     "code": "16057",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16120"
   },
@@ -387,7 +387,7 @@
     "name": "Boutiers-Saint-Trojan",
     "code": "16058",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16100"
   },
@@ -395,7 +395,7 @@
     "name": "Brettes",
     "code": "16059",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16240"
   },
@@ -403,7 +403,7 @@
     "name": "Bréville",
     "code": "16060",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16370"
   },
@@ -411,7 +411,7 @@
     "name": "Brie",
     "code": "16061",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16590"
   },
@@ -419,7 +419,7 @@
     "name": "Brie-sous-Barbezieux",
     "code": "16062",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16300"
   },
@@ -427,7 +427,7 @@
     "name": "Brie-sous-Chalais",
     "code": "16063",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16210"
   },
@@ -435,7 +435,7 @@
     "name": "Brigueuil",
     "code": "16064",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16420"
   },
@@ -443,7 +443,7 @@
     "name": "Brillac",
     "code": "16065",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16500"
   },
@@ -451,7 +451,7 @@
     "name": "Brossac",
     "code": "16066",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16480"
   },
@@ -459,7 +459,7 @@
     "name": "Bunzac",
     "code": "16067",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16110"
   },
@@ -467,7 +467,7 @@
     "name": "Cellefrouin",
     "code": "16068",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16260"
   },
@@ -475,7 +475,7 @@
     "name": "Cellettes",
     "code": "16069",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16230"
   },
@@ -483,7 +483,7 @@
     "name": "Chabanais",
     "code": "16070",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16150"
   },
@@ -491,7 +491,7 @@
     "name": "Chabrac",
     "code": "16071",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16150"
   },
@@ -499,7 +499,7 @@
     "name": "Chadurie",
     "code": "16072",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16250"
   },
@@ -507,7 +507,7 @@
     "name": "Chalais",
     "code": "16073",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16210"
   },
@@ -515,7 +515,7 @@
     "name": "Challignac",
     "code": "16074",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16300"
   },
@@ -523,7 +523,7 @@
     "name": "Champagne-Vigny",
     "code": "16075",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16250"
   },
@@ -531,7 +531,7 @@
     "name": "Champagne-Mouton",
     "code": "16076",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16350"
   },
@@ -539,7 +539,7 @@
     "name": "Champmillon",
     "code": "16077",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16290"
   },
@@ -547,7 +547,7 @@
     "name": "Champniers",
     "code": "16078",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16430"
   },
@@ -555,7 +555,7 @@
     "name": "Chantillac",
     "code": "16079",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16360"
   },
@@ -563,7 +563,7 @@
     "name": "La Chapelle",
     "code": "16081",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16140"
   },
@@ -571,7 +571,7 @@
     "name": "Boisné-La Tude",
     "code": "16082",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16320"
   },
@@ -579,7 +579,7 @@
     "name": "Charmé",
     "code": "16083",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16140"
   },
@@ -587,7 +587,7 @@
     "name": "Charras",
     "code": "16084",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16380"
   },
@@ -595,7 +595,7 @@
     "name": "Chasseneuil-sur-Bonnieure",
     "code": "16085",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16260"
   },
@@ -603,7 +603,7 @@
     "name": "Chassenon",
     "code": "16086",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16150"
   },
@@ -611,7 +611,7 @@
     "name": "Chassiecq",
     "code": "16087",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16350"
   },
@@ -619,7 +619,7 @@
     "name": "Chassors",
     "code": "16088",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16200"
   },
@@ -627,7 +627,7 @@
     "name": "Châteaubernard",
     "code": "16089",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16100"
   },
@@ -635,7 +635,7 @@
     "name": "Châteauneuf-sur-Charente",
     "code": "16090",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16120"
   },
@@ -643,7 +643,7 @@
     "name": "Châtignac",
     "code": "16091",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16480"
   },
@@ -651,7 +651,7 @@
     "name": "Chazelles",
     "code": "16093",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16380"
   },
@@ -659,7 +659,7 @@
     "name": "Chenon",
     "code": "16095",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16460"
   },
@@ -667,7 +667,7 @@
     "name": "Cherves-Châtelars",
     "code": "16096",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16310"
   },
@@ -675,7 +675,7 @@
     "name": "Val-de-Cognac",
     "code": "16097",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16370"
   },
@@ -683,7 +683,7 @@
     "name": "La Chèvrerie",
     "code": "16098",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16240"
   },
@@ -691,7 +691,7 @@
     "name": "Chillac",
     "code": "16099",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16480"
   },
@@ -699,7 +699,7 @@
     "name": "Chirac",
     "code": "16100",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16150"
   },
@@ -707,7 +707,7 @@
     "name": "Claix",
     "code": "16101",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16440"
   },
@@ -715,7 +715,7 @@
     "name": "Cognac",
     "code": "16102",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16100"
   },
@@ -723,7 +723,7 @@
     "name": "Combiers",
     "code": "16103",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16320"
   },
@@ -731,7 +731,7 @@
     "name": "Condac",
     "code": "16104",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16700"
   },
@@ -739,7 +739,7 @@
     "name": "Condéon",
     "code": "16105",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16360"
   },
@@ -747,7 +747,7 @@
     "name": "Confolens",
     "code": "16106",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16500"
   },
@@ -755,7 +755,7 @@
     "name": "Coulgens",
     "code": "16107",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16560"
   },
@@ -763,7 +763,7 @@
     "name": "Coulonges",
     "code": "16108",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16330"
   },
@@ -771,7 +771,7 @@
     "name": "Courbillac",
     "code": "16109",
     "epci_code": "241600303",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16200"
   },
@@ -779,7 +779,7 @@
     "name": "Courcôme",
     "code": "16110",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16240"
   },
@@ -787,7 +787,7 @@
     "name": "Courcôme",
     "code": "16110",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16700"
   },
@@ -795,7 +795,7 @@
     "name": "Courgeac",
     "code": "16111",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16190"
   },
@@ -803,7 +803,7 @@
     "name": "Courlac",
     "code": "16112",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16210"
   },
@@ -811,7 +811,7 @@
     "name": "La Couronne",
     "code": "16113",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16400"
   },
@@ -819,7 +819,7 @@
     "name": "Couture",
     "code": "16114",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16460"
   },
@@ -827,7 +827,7 @@
     "name": "Criteuil-la-Magdeleine",
     "code": "16116",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16300"
   },
@@ -835,7 +835,7 @@
     "name": "Curac",
     "code": "16117",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16210"
   },
@@ -843,7 +843,7 @@
     "name": "Deviat",
     "code": "16118",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16190"
   },
@@ -851,7 +851,7 @@
     "name": "Dignac",
     "code": "16119",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16410"
   },
@@ -859,7 +859,7 @@
     "name": "Dirac",
     "code": "16120",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16410"
   },
@@ -867,7 +867,7 @@
     "name": "Douzat",
     "code": "16121",
     "epci_code": "241600303",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16290"
   },
@@ -875,7 +875,7 @@
     "name": "Ébréon",
     "code": "16122",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16140"
   },
@@ -883,7 +883,7 @@
     "name": "Échallat",
     "code": "16123",
     "epci_code": "241600303",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16170"
   },
@@ -891,7 +891,7 @@
     "name": "Écuras",
     "code": "16124",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16220"
   },
@@ -899,7 +899,7 @@
     "name": "Édon",
     "code": "16125",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16320"
   },
@@ -907,7 +907,7 @@
     "name": "Empuré",
     "code": "16127",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16240"
   },
@@ -915,7 +915,7 @@
     "name": "Épenède",
     "code": "16128",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16490"
   },
@@ -923,7 +923,7 @@
     "name": "Les Essards",
     "code": "16130",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16210"
   },
@@ -931,7 +931,7 @@
     "name": "Esse",
     "code": "16131",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16500"
   },
@@ -939,7 +939,7 @@
     "name": "Étagnac",
     "code": "16132",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16150"
   },
@@ -947,7 +947,7 @@
     "name": "Étriac",
     "code": "16133",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16250"
   },
@@ -955,7 +955,7 @@
     "name": "Exideuil-sur-Vienne",
     "code": "16134",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16150"
   },
@@ -963,7 +963,7 @@
     "name": "Eymouthiers",
     "code": "16135",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16220"
   },
@@ -971,7 +971,7 @@
     "name": "La Faye",
     "code": "16136",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16700"
   },
@@ -979,7 +979,7 @@
     "name": "Feuillade",
     "code": "16137",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16380"
   },
@@ -987,7 +987,7 @@
     "name": "Fléac",
     "code": "16138",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16730"
   },
@@ -995,7 +995,7 @@
     "name": "Fleurac",
     "code": "16139",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16200"
   },
@@ -1003,7 +1003,7 @@
     "name": "Fontenille",
     "code": "16141",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16230"
   },
@@ -1011,7 +1011,7 @@
     "name": "La Forêt-de-Tessé",
     "code": "16142",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16240"
   },
@@ -1019,7 +1019,7 @@
     "name": "Fouquebrune",
     "code": "16143",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16410"
   },
@@ -1027,7 +1027,7 @@
     "name": "Fouqueure",
     "code": "16144",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16140"
   },
@@ -1035,7 +1035,7 @@
     "name": "Foussignac",
     "code": "16145",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16200"
   },
@@ -1043,7 +1043,7 @@
     "name": "Garat",
     "code": "16146",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16410"
   },
@@ -1051,7 +1051,7 @@
     "name": "Genac-Bignac",
     "code": "16148",
     "epci_code": "241600303",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16170"
   },
@@ -1059,7 +1059,7 @@
     "name": "Gensac-la-Pallue",
     "code": "16150",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16130"
   },
@@ -1067,7 +1067,7 @@
     "name": "Genté",
     "code": "16151",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16130"
   },
@@ -1075,7 +1075,7 @@
     "name": "Gimeux",
     "code": "16152",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16130"
   },
@@ -1083,7 +1083,7 @@
     "name": "Mainxe-Gondeville",
     "code": "16153",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16200"
   },
@@ -1091,7 +1091,7 @@
     "name": "Gond-Pontouvre",
     "code": "16154",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16160"
   },
@@ -1099,7 +1099,7 @@
     "name": "Les Gours",
     "code": "16155",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16140"
   },
@@ -1107,7 +1107,7 @@
     "name": "Le Grand-Madieu",
     "code": "16157",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16450"
   },
@@ -1115,7 +1115,7 @@
     "name": "Grassac",
     "code": "16158",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16380"
   },
@@ -1123,7 +1123,7 @@
     "name": "Guimps",
     "code": "16160",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16300"
   },
@@ -1131,7 +1131,7 @@
     "name": "Guizengeard",
     "code": "16161",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16480"
   },
@@ -1139,7 +1139,7 @@
     "name": "Gurat",
     "code": "16162",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16320"
   },
@@ -1147,7 +1147,7 @@
     "name": "Hiersac",
     "code": "16163",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16290"
   },
@@ -1155,7 +1155,7 @@
     "name": "Hiesse",
     "code": "16164",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16490"
   },
@@ -1163,7 +1163,7 @@
     "name": "Houlette",
     "code": "16165",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16200"
   },
@@ -1171,7 +1171,7 @@
     "name": "L’Isle-d’Espagnac",
     "code": "16166",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16340"
   },
@@ -1179,7 +1179,7 @@
     "name": "Jarnac",
     "code": "16167",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16200"
   },
@@ -1187,7 +1187,7 @@
     "name": "Jauldes",
     "code": "16168",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16560"
   },
@@ -1195,7 +1195,7 @@
     "name": "Javrezac",
     "code": "16169",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16100"
   },
@@ -1203,7 +1203,7 @@
     "name": "Juignac",
     "code": "16170",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16190"
   },
@@ -1211,7 +1211,7 @@
     "name": "Juillac-le-Coq",
     "code": "16171",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16130"
   },
@@ -1219,7 +1219,7 @@
     "name": "Juillé",
     "code": "16173",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16230"
   },
@@ -1227,7 +1227,7 @@
     "name": "Julienne",
     "code": "16174",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16200"
   },
@@ -1235,7 +1235,7 @@
     "name": "Val des Vignes",
     "code": "16175",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16250"
   },
@@ -1243,7 +1243,7 @@
     "name": "Lachaise",
     "code": "16176",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16300"
   },
@@ -1251,7 +1251,7 @@
     "name": "Ladiville",
     "code": "16177",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16120"
   },
@@ -1259,7 +1259,7 @@
     "name": "Lagarde-sur-le-Né",
     "code": "16178",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16300"
   },
@@ -1267,7 +1267,7 @@
     "name": "Laprade",
     "code": "16180",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16390"
   },
@@ -1275,7 +1275,7 @@
     "name": "Lessac",
     "code": "16181",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16500"
   },
@@ -1283,7 +1283,7 @@
     "name": "Lesterps",
     "code": "16182",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16420"
   },
@@ -1291,7 +1291,7 @@
     "name": "Lésignac-Durand",
     "code": "16183",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16310"
   },
@@ -1299,7 +1299,7 @@
     "name": "Lichères",
     "code": "16184",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16460"
   },
@@ -1307,7 +1307,7 @@
     "name": "Ligné",
     "code": "16185",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16140"
   },
@@ -1315,7 +1315,7 @@
     "name": "Lignières-Ambleville",
     "code": "16186",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16130"
   },
@@ -1323,7 +1323,7 @@
     "name": "Lignières-Ambleville",
     "code": "16186",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16300"
   },
@@ -1331,7 +1331,7 @@
     "name": "Linars",
     "code": "16187",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16730"
   },
@@ -1339,7 +1339,7 @@
     "name": "Le Lindois",
     "code": "16188",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16310"
   },
@@ -1347,7 +1347,7 @@
     "name": "Londigny",
     "code": "16189",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16700"
   },
@@ -1355,7 +1355,7 @@
     "name": "Longré",
     "code": "16190",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16240"
   },
@@ -1363,7 +1363,7 @@
     "name": "Lonnes",
     "code": "16191",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16230"
   },
@@ -1371,7 +1371,7 @@
     "name": "Terres-de-Haute-Charente",
     "code": "16192",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16270"
   },
@@ -1379,7 +1379,7 @@
     "name": "Louzac-Saint-André",
     "code": "16193",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16100"
   },
@@ -1387,7 +1387,7 @@
     "name": "Lupsault",
     "code": "16194",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16140"
   },
@@ -1395,7 +1395,7 @@
     "name": "Lussac",
     "code": "16195",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16450"
   },
@@ -1403,7 +1403,7 @@
     "name": "Luxé",
     "code": "16196",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16230"
   },
@@ -1411,7 +1411,7 @@
     "name": "La Magdeleine",
     "code": "16197",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16240"
   },
@@ -1419,7 +1419,7 @@
     "name": "Magnac-lès-Gardes",
     "code": "16198",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16320"
   },
@@ -1427,7 +1427,7 @@
     "name": "Magnac-sur-Touvre",
     "code": "16199",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16600"
   },
@@ -1435,7 +1435,7 @@
     "name": "Maine-de-Boixe",
     "code": "16200",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16230"
   },
@@ -1443,7 +1443,7 @@
     "name": "Mainzac",
     "code": "16203",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16380"
   },
@@ -1451,7 +1451,7 @@
     "name": "Bellevigne",
     "code": "16204",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16120"
   },
@@ -1459,7 +1459,7 @@
     "name": "Manot",
     "code": "16205",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16500"
   },
@@ -1467,7 +1467,7 @@
     "name": "Mansle-les-Fontaines",
     "code": "16206",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16230"
   },
@@ -1475,7 +1475,7 @@
     "name": "Marcillac-Lanville",
     "code": "16207",
     "epci_code": "241600303",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16140"
   },
@@ -1483,7 +1483,7 @@
     "name": "Mareuil",
     "code": "16208",
     "epci_code": "241600303",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16170"
   },
@@ -1491,7 +1491,7 @@
     "name": "Marillac-le-Franc",
     "code": "16209",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16110"
   },
@@ -1499,7 +1499,7 @@
     "name": "Marsac",
     "code": "16210",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16570"
   },
@@ -1507,7 +1507,7 @@
     "name": "Marthon",
     "code": "16211",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16380"
   },
@@ -1515,7 +1515,7 @@
     "name": "Massignac",
     "code": "16212",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16310"
   },
@@ -1523,7 +1523,7 @@
     "name": "Mazerolles",
     "code": "16213",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16310"
   },
@@ -1531,7 +1531,7 @@
     "name": "Médillac",
     "code": "16215",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16210"
   },
@@ -1539,7 +1539,7 @@
     "name": "Mérignac",
     "code": "16216",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16200"
   },
@@ -1547,7 +1547,7 @@
     "name": "Merpins",
     "code": "16217",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16100"
   },
@@ -1555,7 +1555,7 @@
     "name": "Mesnac",
     "code": "16218",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16370"
   },
@@ -1563,7 +1563,7 @@
     "name": "Les Métairies",
     "code": "16220",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16200"
   },
@@ -1571,7 +1571,7 @@
     "name": "Mons",
     "code": "16221",
     "epci_code": "241600303",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16140"
   },
@@ -1579,7 +1579,7 @@
     "name": "Montboyer",
     "code": "16222",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16620"
   },
@@ -1587,7 +1587,7 @@
     "name": "Montbron",
     "code": "16223",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16220"
   },
@@ -1595,7 +1595,7 @@
     "name": "Montmérac",
     "code": "16224",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16300"
   },
@@ -1603,7 +1603,7 @@
     "name": "Montembœuf",
     "code": "16225",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16310"
   },
@@ -1611,7 +1611,7 @@
     "name": "Montignac-le-Coq",
     "code": "16227",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16390"
   },
@@ -1619,7 +1619,7 @@
     "name": "Montjean",
     "code": "16229",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16240"
   },
@@ -1627,7 +1627,7 @@
     "name": "Montmoreau",
     "code": "16230",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16190"
   },
@@ -1635,7 +1635,7 @@
     "name": "Montrollet",
     "code": "16231",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16420"
   },
@@ -1643,7 +1643,7 @@
     "name": "Mornac",
     "code": "16232",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16600"
   },
@@ -1651,7 +1651,7 @@
     "name": "Mosnac-Saint-Simeux",
     "code": "16233",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16120"
   },
@@ -1659,7 +1659,7 @@
     "name": "Moulidars",
     "code": "16234",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16290"
   },
@@ -1667,7 +1667,7 @@
     "name": "Mouthiers-sur-Boëme",
     "code": "16236",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16440"
   },
@@ -1675,7 +1675,7 @@
     "name": "Mouton",
     "code": "16237",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16460"
   },
@@ -1683,7 +1683,7 @@
     "name": "Mouzon",
     "code": "16239",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16310"
   },
@@ -1691,7 +1691,7 @@
     "name": "Nabinaud",
     "code": "16240",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16390"
   },
@@ -1699,7 +1699,7 @@
     "name": "Nanclars",
     "code": "16241",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16230"
   },
@@ -1707,7 +1707,7 @@
     "name": "Nanteuil-en-Vallée",
     "code": "16242",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16700"
   },
@@ -1715,7 +1715,7 @@
     "name": "Nercillac",
     "code": "16243",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16200"
   },
@@ -1723,7 +1723,7 @@
     "name": "Nersac",
     "code": "16244",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16440"
   },
@@ -1731,7 +1731,7 @@
     "name": "Nieuil",
     "code": "16245",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16270"
   },
@@ -1739,7 +1739,7 @@
     "name": "Nonac",
     "code": "16246",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16190"
   },
@@ -1747,7 +1747,7 @@
     "name": "Oradour",
     "code": "16248",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16140"
   },
@@ -1755,7 +1755,7 @@
     "name": "Oradour-Fanais",
     "code": "16249",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16500"
   },
@@ -1763,7 +1763,7 @@
     "name": "Orgedeuil",
     "code": "16250",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16220"
   },
@@ -1771,7 +1771,7 @@
     "name": "Oriolles",
     "code": "16251",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16480"
   },
@@ -1779,7 +1779,7 @@
     "name": "Orival",
     "code": "16252",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16210"
   },
@@ -1787,7 +1787,7 @@
     "name": "Paizay-Naudouin-Embourie",
     "code": "16253",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16240"
   },
@@ -1795,7 +1795,7 @@
     "name": "Palluaud",
     "code": "16254",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16390"
   },
@@ -1803,7 +1803,7 @@
     "name": "Parzac",
     "code": "16255",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16450"
   },
@@ -1811,7 +1811,7 @@
     "name": "Passirac",
     "code": "16256",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16480"
   },
@@ -1819,7 +1819,7 @@
     "name": "Pérignac",
     "code": "16258",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16250"
   },
@@ -1827,7 +1827,7 @@
     "name": "Pillac",
     "code": "16260",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16390"
   },
@@ -1835,7 +1835,7 @@
     "name": "Les Pins",
     "code": "16261",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16260"
   },
@@ -1843,7 +1843,7 @@
     "name": "Plassac-Rouffiac",
     "code": "16263",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16250"
   },
@@ -1851,7 +1851,7 @@
     "name": "Pleuville",
     "code": "16264",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16490"
   },
@@ -1859,7 +1859,7 @@
     "name": "Poullignac",
     "code": "16267",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16190"
   },
@@ -1867,7 +1867,7 @@
     "name": "Poursac",
     "code": "16268",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16700"
   },
@@ -1875,7 +1875,7 @@
     "name": "Pranzac",
     "code": "16269",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16110"
   },
@@ -1883,7 +1883,7 @@
     "name": "Pressignac",
     "code": "16270",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16150"
   },
@@ -1891,7 +1891,7 @@
     "name": "Puymoyen",
     "code": "16271",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16400"
   },
@@ -1899,7 +1899,7 @@
     "name": "Puyréaux",
     "code": "16272",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16230"
   },
@@ -1907,7 +1907,7 @@
     "name": "Raix",
     "code": "16273",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16240"
   },
@@ -1915,7 +1915,7 @@
     "name": "Ranville-Breuillaud",
     "code": "16275",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16140"
   },
@@ -1923,7 +1923,7 @@
     "name": "Reignac",
     "code": "16276",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16360"
   },
@@ -1931,7 +1931,7 @@
     "name": "Réparsac",
     "code": "16277",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16200"
   },
@@ -1939,7 +1939,7 @@
     "name": "Rioux-Martin",
     "code": "16279",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16210"
   },
@@ -1947,7 +1947,7 @@
     "name": "Rivières",
     "code": "16280",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16110"
   },
@@ -1955,7 +1955,7 @@
     "name": "La Rochefoucauld-en-Angoumois",
     "code": "16281",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16110"
   },
@@ -1963,7 +1963,7 @@
     "name": "La Rochette",
     "code": "16282",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16110"
   },
@@ -1971,7 +1971,7 @@
     "name": "Ronsenac",
     "code": "16283",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16320"
   },
@@ -1979,7 +1979,7 @@
     "name": "Rouffiac",
     "code": "16284",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16210"
   },
@@ -1987,7 +1987,7 @@
     "name": "Rougnac",
     "code": "16285",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16320"
   },
@@ -1995,7 +1995,7 @@
     "name": "Rouillac",
     "code": "16286",
     "epci_code": "241600303",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16170"
   },
@@ -2003,7 +2003,7 @@
     "name": "Roullet-Saint-Estèphe",
     "code": "16287",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16440"
   },
@@ -2011,7 +2011,7 @@
     "name": "Roussines",
     "code": "16289",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16310"
   },
@@ -2019,7 +2019,7 @@
     "name": "Rouzède",
     "code": "16290",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16220"
   },
@@ -2027,7 +2027,7 @@
     "name": "Ruelle-sur-Touvre",
     "code": "16291",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16600"
   },
@@ -2035,7 +2035,7 @@
     "name": "Ruffec",
     "code": "16292",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16700"
   },
@@ -2043,7 +2043,7 @@
     "name": "Saint-Adjutory",
     "code": "16293",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16310"
   },
@@ -2051,7 +2051,7 @@
     "name": "Saint-Amant-de-Boixe",
     "code": "16295",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16330"
   },
@@ -2059,7 +2059,7 @@
     "name": "Graves-Saint-Amant",
     "code": "16297",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16120"
   },
@@ -2067,7 +2067,7 @@
     "name": "Saint-Amant-de-Nouère",
     "code": "16298",
     "epci_code": "241600303",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16170"
   },
@@ -2075,7 +2075,7 @@
     "name": "Val-de-Bonnieure",
     "code": "16300",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16230"
   },
@@ -2083,7 +2083,7 @@
     "name": "Saint-Aulais-la-Chapelle",
     "code": "16301",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16300"
   },
@@ -2091,7 +2091,7 @@
     "name": "Saint-Avit",
     "code": "16302",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16210"
   },
@@ -2099,7 +2099,7 @@
     "name": "Saint-Bonnet",
     "code": "16303",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16300"
   },
@@ -2107,7 +2107,7 @@
     "name": "Saint-Brice",
     "code": "16304",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16100"
   },
@@ -2115,7 +2115,7 @@
     "name": "Saint-Christophe",
     "code": "16306",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16420"
   },
@@ -2123,7 +2123,7 @@
     "name": "Saint-Ciers-sur-Bonnieure",
     "code": "16307",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16230"
   },
@@ -2131,7 +2131,7 @@
     "name": "Saint-Claud",
     "code": "16308",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16450"
   },
@@ -2139,7 +2139,7 @@
     "name": "Saint-Coutant",
     "code": "16310",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16350"
   },
@@ -2147,7 +2147,7 @@
     "name": "Saint-Cybardeaux",
     "code": "16312",
     "epci_code": "241600303",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16170"
   },
@@ -2155,7 +2155,7 @@
     "name": "Saint-Félix",
     "code": "16315",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16480"
   },
@@ -2163,7 +2163,7 @@
     "name": "Saint-Fort-sur-le-Né",
     "code": "16316",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16130"
   },
@@ -2171,7 +2171,7 @@
     "name": "Saint-Fraigne",
     "code": "16317",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16140"
   },
@@ -2179,7 +2179,7 @@
     "name": "Saint-Front",
     "code": "16318",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16460"
   },
@@ -2187,7 +2187,7 @@
     "name": "Saint-Genis-d’Hiersac",
     "code": "16320",
     "epci_code": "241600303",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16570"
   },
@@ -2195,7 +2195,7 @@
     "name": "Saint-Georges",
     "code": "16321",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16700"
   },
@@ -2203,7 +2203,7 @@
     "name": "Saint-Germain-de-Montbron",
     "code": "16323",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16380"
   },
@@ -2211,7 +2211,7 @@
     "name": "Saint-Gourson",
     "code": "16325",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16700"
   },
@@ -2219,7 +2219,7 @@
     "name": "Saint-Groux",
     "code": "16326",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16230"
   },
@@ -2227,7 +2227,7 @@
     "name": "Saint-Laurent-de-Céris",
     "code": "16329",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16450"
   },
@@ -2235,7 +2235,7 @@
     "name": "Saint-Laurent-de-Cognac",
     "code": "16330",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16100"
   },
@@ -2243,7 +2243,7 @@
     "name": "Saint-Laurent-des-Combes",
     "code": "16331",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16480"
   },
@@ -2251,7 +2251,7 @@
     "name": "Saint-Martial",
     "code": "16334",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16190"
   },
@@ -2259,7 +2259,7 @@
     "name": "Saint-Martin-du-Clocher",
     "code": "16335",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16700"
   },
@@ -2267,7 +2267,7 @@
     "name": "Saint-Mary",
     "code": "16336",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16260"
   },
@@ -2275,7 +2275,7 @@
     "name": "Saint-Maurice-des-Lions",
     "code": "16337",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16500"
   },
@@ -2283,7 +2283,7 @@
     "name": "Saint-Médard",
     "code": "16338",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16300"
   },
@@ -2291,7 +2291,7 @@
     "name": "Val-d’Auge",
     "code": "16339",
     "epci_code": "241600303",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16170"
   },
@@ -2299,7 +2299,7 @@
     "name": "Saint-Même-les-Carrières",
     "code": "16340",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16720"
   },
@@ -2307,7 +2307,7 @@
     "name": "Saint-Michel",
     "code": "16341",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16470"
   },
@@ -2315,7 +2315,7 @@
     "name": "Saint-Palais-du-Né",
     "code": "16342",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16300"
   },
@@ -2323,7 +2323,7 @@
     "name": "Saint-Preuil",
     "code": "16343",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16130"
   },
@@ -2331,7 +2331,7 @@
     "name": "Saint-Quentin-sur-Charente",
     "code": "16345",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16150"
   },
@@ -2339,7 +2339,7 @@
     "name": "Saint-Quentin-de-Chalais",
     "code": "16346",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16210"
   },
@@ -2347,7 +2347,7 @@
     "name": "Saint-Romain",
     "code": "16347",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16210"
   },
@@ -2355,7 +2355,7 @@
     "name": "Saint-Saturnin",
     "code": "16348",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16290"
   },
@@ -2363,7 +2363,7 @@
     "name": "Sainte-Sévère",
     "code": "16349",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16200"
   },
@@ -2371,7 +2371,7 @@
     "name": "Saint-Séverin",
     "code": "16350",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16390"
   },
@@ -2379,7 +2379,7 @@
     "name": "Saint-Simon",
     "code": "16352",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16120"
   },
@@ -2387,7 +2387,7 @@
     "name": "Saint-Sornin",
     "code": "16353",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16220"
   },
@@ -2395,7 +2395,7 @@
     "name": "Sainte-Souline",
     "code": "16354",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16480"
   },
@@ -2403,7 +2403,7 @@
     "name": "Saint-Sulpice-de-Ruffec",
     "code": "16356",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16460"
   },
@@ -2411,7 +2411,7 @@
     "name": "Saint-Vallier",
     "code": "16357",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16480"
   },
@@ -2419,7 +2419,7 @@
     "name": "Saint-Yrieix-sur-Charente",
     "code": "16358",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16710"
   },
@@ -2427,7 +2427,7 @@
     "name": "Salles-d’Angles",
     "code": "16359",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16130"
   },
@@ -2435,7 +2435,7 @@
     "name": "Salles-de-Barbezieux",
     "code": "16360",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16300"
   },
@@ -2443,7 +2443,7 @@
     "name": "Salles-de-Villefagnan",
     "code": "16361",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16700"
   },
@@ -2451,7 +2451,7 @@
     "name": "Salles-Lavalette",
     "code": "16362",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16190"
   },
@@ -2459,7 +2459,7 @@
     "name": "Saulgond",
     "code": "16363",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16420"
   },
@@ -2467,7 +2467,7 @@
     "name": "Sauvagnac",
     "code": "16364",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16310"
   },
@@ -2475,7 +2475,7 @@
     "name": "Sauvignac",
     "code": "16365",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16480"
   },
@@ -2483,7 +2483,7 @@
     "name": "Segonzac",
     "code": "16366",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16130"
   },
@@ -2491,7 +2491,7 @@
     "name": "Sers",
     "code": "16368",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16410"
   },
@@ -2499,7 +2499,7 @@
     "name": "Sigogne",
     "code": "16369",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16200"
   },
@@ -2507,7 +2507,7 @@
     "name": "Sireuil",
     "code": "16370",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16440"
   },
@@ -2515,7 +2515,7 @@
     "name": "Souffrignac",
     "code": "16372",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16380"
   },
@@ -2523,7 +2523,7 @@
     "name": "Souvigné",
     "code": "16373",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16240"
   },
@@ -2531,7 +2531,7 @@
     "name": "Soyaux",
     "code": "16374",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16800"
   },
@@ -2539,7 +2539,7 @@
     "name": "Suaux",
     "code": "16375",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16260"
   },
@@ -2547,7 +2547,7 @@
     "name": "La Tâche",
     "code": "16377",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16260"
   },
@@ -2555,7 +2555,7 @@
     "name": "Taizé-Aizie",
     "code": "16378",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16700"
   },
@@ -2563,7 +2563,7 @@
     "name": "Taponnat-Fleurignac",
     "code": "16379",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16110"
   },
@@ -2571,7 +2571,7 @@
     "name": "Le Tâtre",
     "code": "16380",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16360"
   },
@@ -2579,7 +2579,7 @@
     "name": "Theil-Rabier",
     "code": "16381",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16240"
   },
@@ -2587,7 +2587,7 @@
     "name": "Torsac",
     "code": "16382",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16410"
   },
@@ -2595,7 +2595,7 @@
     "name": "Tourriers",
     "code": "16383",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16560"
   },
@@ -2603,7 +2603,7 @@
     "name": "Touvérac",
     "code": "16384",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16360"
   },
@@ -2611,7 +2611,7 @@
     "name": "Touvre",
     "code": "16385",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16600"
   },
@@ -2619,7 +2619,7 @@
     "name": "Triac-Lautrait",
     "code": "16387",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16200"
   },
@@ -2627,7 +2627,7 @@
     "name": "Trois-Palis",
     "code": "16388",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16730"
   },
@@ -2635,7 +2635,7 @@
     "name": "Turgon",
     "code": "16389",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16350"
   },
@@ -2643,7 +2643,7 @@
     "name": "Tusson",
     "code": "16390",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16140"
   },
@@ -2651,7 +2651,7 @@
     "name": "Valence",
     "code": "16392",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16460"
   },
@@ -2659,7 +2659,7 @@
     "name": "La Boixe",
     "code": "16393",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16330"
   },
@@ -2667,7 +2667,7 @@
     "name": "Vaux-Lavalette",
     "code": "16394",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16320"
   },
@@ -2675,7 +2675,7 @@
     "name": "Vaux-Rouillac",
     "code": "16395",
     "epci_code": "241600303",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16170"
   },
@@ -2683,7 +2683,7 @@
     "name": "Ventouse",
     "code": "16396",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16460"
   },
@@ -2691,7 +2691,7 @@
     "name": "Verdille",
     "code": "16397",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16140"
   },
@@ -2699,7 +2699,7 @@
     "name": "Verneuil",
     "code": "16398",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16310"
   },
@@ -2707,7 +2707,7 @@
     "name": "Verrières",
     "code": "16399",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16130"
   },
@@ -2715,7 +2715,7 @@
     "name": "Verteuil-sur-Charente",
     "code": "16400",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16510"
   },
@@ -2723,7 +2723,7 @@
     "name": "Vervant",
     "code": "16401",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16330"
   },
@@ -2731,7 +2731,7 @@
     "name": "Vibrac",
     "code": "16402",
     "epci_code": "200070514",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16120"
   },
@@ -2739,7 +2739,7 @@
     "name": "Le Vieux-Cérier",
     "code": "16403",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16350"
   },
@@ -2747,7 +2747,7 @@
     "name": "Vieux-Ruffec",
     "code": "16404",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16350"
   },
@@ -2755,7 +2755,7 @@
     "name": "Vignolles",
     "code": "16405",
     "epci_code": "200029734",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16300"
   },
@@ -2763,7 +2763,7 @@
     "name": "Moulins-sur-Tardoire",
     "code": "16406",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16110"
   },
@@ -2771,7 +2771,7 @@
     "name": "Moulins-sur-Tardoire",
     "code": "16406",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16220"
   },
@@ -2779,7 +2779,7 @@
     "name": "Villebois-Lavalette",
     "code": "16408",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16320"
   },
@@ -2787,7 +2787,7 @@
     "name": "Villefagnan",
     "code": "16409",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16240"
   },
@@ -2795,7 +2795,7 @@
     "name": "Villejoubert",
     "code": "16412",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16560"
   },
@@ -2803,7 +2803,7 @@
     "name": "Villiers-le-Roux",
     "code": "16413",
     "epci_code": "200043016",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16240"
   },
@@ -2811,7 +2811,7 @@
     "name": "Villognon",
     "code": "16414",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16230"
   },
@@ -2819,7 +2819,7 @@
     "name": "Vindelle",
     "code": "16415",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16430"
   },
@@ -2827,7 +2827,7 @@
     "name": "Vitrac-Saint-Vincent",
     "code": "16416",
     "epci_code": "200072049",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16310"
   },
@@ -2835,7 +2835,7 @@
     "name": "Vœuil-et-Giget",
     "code": "16418",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16400"
   },
@@ -2843,7 +2843,7 @@
     "name": "Vouharte",
     "code": "16419",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16330"
   },
@@ -2851,7 +2851,7 @@
     "name": "Voulgézac",
     "code": "16420",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16250"
   },
@@ -2859,7 +2859,7 @@
     "name": "Vouthon",
     "code": "16421",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16220"
   },
@@ -2867,7 +2867,7 @@
     "name": "Vouzan",
     "code": "16422",
     "epci_code": "200071827",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16410"
   },
@@ -2875,7 +2875,7 @@
     "name": "Xambes",
     "code": "16423",
     "epci_code": "200072023",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16330"
   },
@@ -2883,7 +2883,7 @@
     "name": "Yviers",
     "code": "16424",
     "epci_code": "200070282",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16210"
   },
@@ -2891,7 +2891,7 @@
     "name": "Yvrac-et-Malleyrand",
     "code": "16425",
     "epci_code": "200068914",
-    "departement_code": "16",
+    "department_code": "16",
     "region_code": "75",
     "postal_code": "16110"
   }

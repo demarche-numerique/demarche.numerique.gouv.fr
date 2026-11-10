@@ -3,7 +3,7 @@
     "name": "Aiglun",
     "code": "04001",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04510"
   },
@@ -11,7 +11,7 @@
     "name": "Allemagne-en-Provence",
     "code": "04004",
     "epci_code": "200034700",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04500"
   },
@@ -19,7 +19,7 @@
     "name": "Allons",
     "code": "04005",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04170"
   },
@@ -27,7 +27,7 @@
     "name": "Allos",
     "code": "04006",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04260"
   },
@@ -35,7 +35,7 @@
     "name": "Angles",
     "code": "04007",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04170"
   },
@@ -43,7 +43,7 @@
     "name": "Annot",
     "code": "04008",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04240"
   },
@@ -51,7 +51,7 @@
     "name": "Archail",
     "code": "04009",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04420"
   },
@@ -59,7 +59,7 @@
     "name": "Aubenas-les-Alpes",
     "code": "04012",
     "epci_code": "200071025",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04110"
   },
@@ -67,7 +67,7 @@
     "name": "Aubignosc",
     "code": "04013",
     "epci_code": "200071033",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04200"
   },
@@ -75,7 +75,7 @@
     "name": "Authon",
     "code": "04016",
     "epci_code": "200068765",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04200"
   },
@@ -83,7 +83,7 @@
     "name": "Auzet",
     "code": "04017",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04140"
   },
@@ -91,7 +91,7 @@
     "name": "Banon",
     "code": "04018",
     "epci_code": "200071025",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04150"
   },
@@ -99,7 +99,7 @@
     "name": "Barcelonnette",
     "code": "04019",
     "epci_code": "200072304",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04400"
   },
@@ -107,7 +107,7 @@
     "name": "Barles",
     "code": "04020",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04140"
   },
@@ -115,7 +115,7 @@
     "name": "Barras",
     "code": "04021",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04380"
   },
@@ -123,7 +123,7 @@
     "name": "Barrême",
     "code": "04022",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04330"
   },
@@ -131,7 +131,7 @@
     "name": "Bayons",
     "code": "04023",
     "epci_code": "200068765",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04250"
   },
@@ -139,7 +139,7 @@
     "name": "Beaujeu",
     "code": "04024",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04420"
   },
@@ -147,7 +147,7 @@
     "name": "Beauvezer",
     "code": "04025",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04370"
   },
@@ -155,7 +155,7 @@
     "name": "Bellaffaire",
     "code": "04026",
     "epci_code": "200068765",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04250"
   },
@@ -163,7 +163,7 @@
     "name": "Bevons",
     "code": "04027",
     "epci_code": "200071033",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04200"
   },
@@ -171,7 +171,7 @@
     "name": "Beynes",
     "code": "04028",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04270"
   },
@@ -179,7 +179,7 @@
     "name": "Blieux",
     "code": "04030",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04330"
   },
@@ -187,7 +187,7 @@
     "name": "Bras-d’Asse",
     "code": "04031",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04270"
   },
@@ -195,7 +195,7 @@
     "name": "Braux",
     "code": "04032",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04240"
   },
@@ -203,7 +203,7 @@
     "name": "Ubaye-Serre-Ponçon",
     "code": "04033",
     "epci_code": "200072304",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04340"
   },
@@ -211,7 +211,7 @@
     "name": "La Brillanne",
     "code": "04034",
     "epci_code": "200034700",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04700"
   },
@@ -219,7 +219,7 @@
     "name": "Brunet",
     "code": "04035",
     "epci_code": "200034700",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04210"
   },
@@ -227,7 +227,7 @@
     "name": "Le Brusquet",
     "code": "04036",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04420"
   },
@@ -235,7 +235,7 @@
     "name": "Le Caire",
     "code": "04037",
     "epci_code": "200068765",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04250"
   },
@@ -243,7 +243,7 @@
     "name": "Castellane",
     "code": "04039",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04120"
   },
@@ -251,7 +251,7 @@
     "name": "Le Castellard-Mélan",
     "code": "04040",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04380"
   },
@@ -259,7 +259,7 @@
     "name": "Le Castellet",
     "code": "04041",
     "epci_code": "200034700",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04700"
   },
@@ -267,7 +267,7 @@
     "name": "Castellet-lès-Sausses",
     "code": "04042",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04320"
   },
@@ -275,7 +275,7 @@
     "name": "Val-de-Chalvagne",
     "code": "04043",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04320"
   },
@@ -283,7 +283,7 @@
     "name": "Céreste-en-Luberon",
     "code": "04045",
     "epci_code": "200040624",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04280"
   },
@@ -291,7 +291,7 @@
     "name": "Le Chaffaut-Saint-Jurson",
     "code": "04046",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04510"
   },
@@ -299,7 +299,7 @@
     "name": "Champtercier",
     "code": "04047",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04660"
   },
@@ -307,7 +307,7 @@
     "name": "Château-Arnoux-Saint-Auban",
     "code": "04049",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04160"
   },
@@ -315,7 +315,7 @@
     "name": "Château-Arnoux-Saint-Auban",
     "code": "04049",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04600"
   },
@@ -323,7 +323,7 @@
     "name": "Châteaufort",
     "code": "04050",
     "epci_code": "200068765",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04250"
   },
@@ -331,7 +331,7 @@
     "name": "Châteauneuf-Miravail",
     "code": "04051",
     "epci_code": "200071033",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04200"
   },
@@ -339,7 +339,7 @@
     "name": "Châteauneuf-Val-Saint-Donat",
     "code": "04053",
     "epci_code": "200071033",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04200"
   },
@@ -347,7 +347,7 @@
     "name": "Châteauredon",
     "code": "04054",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04270"
   },
@@ -355,7 +355,7 @@
     "name": "Chaudon-Norante",
     "code": "04055",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04330"
   },
@@ -363,7 +363,7 @@
     "name": "Clamensane",
     "code": "04057",
     "epci_code": "200068765",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04250"
   },
@@ -371,7 +371,7 @@
     "name": "Claret",
     "code": "04058",
     "epci_code": "200067825",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "05110"
   },
@@ -379,7 +379,7 @@
     "name": "Clumanc",
     "code": "04059",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04330"
   },
@@ -387,7 +387,7 @@
     "name": "Colmars",
     "code": "04061",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04370"
   },
@@ -395,7 +395,7 @@
     "name": "La Condamine-Châtelard",
     "code": "04062",
     "epci_code": "200072304",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04530"
   },
@@ -403,7 +403,7 @@
     "name": "Corbières-en-Provence",
     "code": "04063",
     "epci_code": "200034700",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04220"
   },
@@ -411,7 +411,7 @@
     "name": "Cruis",
     "code": "04065",
     "epci_code": "240400440",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04230"
   },
@@ -419,7 +419,7 @@
     "name": "Curbans",
     "code": "04066",
     "epci_code": "200067825",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "05110"
   },
@@ -427,7 +427,7 @@
     "name": "Curel",
     "code": "04067",
     "epci_code": "200071033",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04200"
   },
@@ -435,7 +435,7 @@
     "name": "Dauphin",
     "code": "04068",
     "epci_code": "200071025",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04300"
   },
@@ -443,7 +443,7 @@
     "name": "Demandolx",
     "code": "04069",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04120"
   },
@@ -451,7 +451,7 @@
     "name": "Digne-les-Bains",
     "code": "04070",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04000"
   },
@@ -459,7 +459,7 @@
     "name": "Draix",
     "code": "04072",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04420"
   },
@@ -467,7 +467,7 @@
     "name": "Enchastrayes",
     "code": "04073",
     "epci_code": "200072304",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04400"
   },
@@ -475,7 +475,7 @@
     "name": "Entrages",
     "code": "04074",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04000"
   },
@@ -483,7 +483,7 @@
     "name": "Entrages",
     "code": "04074",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04270"
   },
@@ -491,7 +491,7 @@
     "name": "Entrepierres",
     "code": "04075",
     "epci_code": "200068765",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04200"
   },
@@ -499,7 +499,7 @@
     "name": "Entrevaux",
     "code": "04076",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04320"
   },
@@ -507,7 +507,7 @@
     "name": "Entrevennes",
     "code": "04077",
     "epci_code": "200034700",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04700"
   },
@@ -515,7 +515,7 @@
     "name": "L’Escale",
     "code": "04079",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04160"
   },
@@ -523,7 +523,7 @@
     "name": "Esparron-de-Verdon",
     "code": "04081",
     "epci_code": "200034700",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04800"
   },
@@ -531,7 +531,7 @@
     "name": "Estoublon",
     "code": "04084",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04270"
   },
@@ -539,7 +539,7 @@
     "name": "Faucon-du-Caire",
     "code": "04085",
     "epci_code": "200068765",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04250"
   },
@@ -547,7 +547,7 @@
     "name": "Faucon-de-Barcelonnette",
     "code": "04086",
     "epci_code": "200072304",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04400"
   },
@@ -555,7 +555,7 @@
     "name": "Fontienne",
     "code": "04087",
     "epci_code": "240400440",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04230"
   },
@@ -563,7 +563,7 @@
     "name": "Forcalquier",
     "code": "04088",
     "epci_code": "240400440",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04300"
   },
@@ -571,7 +571,7 @@
     "name": "Le Fugeret",
     "code": "04090",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04240"
   },
@@ -579,7 +579,7 @@
     "name": "Ganagobie",
     "code": "04091",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04310"
   },
@@ -587,7 +587,7 @@
     "name": "La Garde",
     "code": "04092",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04120"
   },
@@ -595,7 +595,7 @@
     "name": "Gigors",
     "code": "04093",
     "epci_code": "200068765",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04250"
   },
@@ -603,7 +603,7 @@
     "name": "Gréoux-les-Bains",
     "code": "04094",
     "epci_code": "200034700",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04800"
   },
@@ -611,7 +611,7 @@
     "name": "L’Hospitalet",
     "code": "04095",
     "epci_code": "200071025",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04150"
   },
@@ -619,7 +619,7 @@
     "name": "Jausiers",
     "code": "04096",
     "epci_code": "200072304",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04850"
   },
@@ -627,7 +627,7 @@
     "name": "La Javie",
     "code": "04097",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04000"
   },
@@ -635,7 +635,7 @@
     "name": "La Javie",
     "code": "04097",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04420"
   },
@@ -643,7 +643,7 @@
     "name": "Lambruisse",
     "code": "04099",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04170"
   },
@@ -651,7 +651,7 @@
     "name": "Lardiers",
     "code": "04101",
     "epci_code": "240400440",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04230"
   },
@@ -659,7 +659,7 @@
     "name": "Le Lauzet-Ubaye",
     "code": "04102",
     "epci_code": "200072304",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04340"
   },
@@ -667,7 +667,7 @@
     "name": "Limans",
     "code": "04104",
     "epci_code": "240400440",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04300"
   },
@@ -675,7 +675,7 @@
     "name": "Lurs",
     "code": "04106",
     "epci_code": "240400440",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04700"
   },
@@ -683,7 +683,7 @@
     "name": "Majastres",
     "code": "04107",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04270"
   },
@@ -691,7 +691,7 @@
     "name": "Malijai",
     "code": "04108",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04350"
   },
@@ -699,7 +699,7 @@
     "name": "Malijai",
     "code": "04108",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04510"
   },
@@ -707,7 +707,7 @@
     "name": "Mallefougasse-Augès",
     "code": "04109",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04230"
   },
@@ -715,7 +715,7 @@
     "name": "Mallemoisson",
     "code": "04110",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04510"
   },
@@ -723,7 +723,7 @@
     "name": "Mane",
     "code": "04111",
     "epci_code": "200071025",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04300"
   },
@@ -731,7 +731,7 @@
     "name": "Manosque",
     "code": "04112",
     "epci_code": "200034700",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04100"
   },
@@ -739,7 +739,7 @@
     "name": "Marcoux",
     "code": "04113",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04420"
   },
@@ -747,7 +747,7 @@
     "name": "Méailles",
     "code": "04115",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04240"
   },
@@ -755,7 +755,7 @@
     "name": "Les Mées",
     "code": "04116",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04190"
   },
@@ -763,7 +763,7 @@
     "name": "Melve",
     "code": "04118",
     "epci_code": "200068765",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04250"
   },
@@ -771,7 +771,7 @@
     "name": "Val d’Oronaye",
     "code": "04120",
     "epci_code": "200072304",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04530"
   },
@@ -779,7 +779,7 @@
     "name": "Mézel",
     "code": "04121",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04270"
   },
@@ -787,7 +787,7 @@
     "name": "Mirabeau",
     "code": "04122",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04510"
   },
@@ -795,7 +795,7 @@
     "name": "Mison",
     "code": "04123",
     "epci_code": "200068765",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04200"
   },
@@ -803,7 +803,7 @@
     "name": "Montagnac-Montpezat",
     "code": "04124",
     "epci_code": "200034700",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04500"
   },
@@ -811,7 +811,7 @@
     "name": "Montclar",
     "code": "04126",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04140"
   },
@@ -819,7 +819,7 @@
     "name": "Montfort",
     "code": "04127",
     "epci_code": "200071033",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04600"
   },
@@ -827,7 +827,7 @@
     "name": "Montfuron",
     "code": "04128",
     "epci_code": "200034700",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04110"
   },
@@ -835,7 +835,7 @@
     "name": "Montjustin",
     "code": "04129",
     "epci_code": "200071025",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04110"
   },
@@ -843,7 +843,7 @@
     "name": "Montlaux",
     "code": "04130",
     "epci_code": "240400440",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04230"
   },
@@ -851,7 +851,7 @@
     "name": "Montsalier",
     "code": "04132",
     "epci_code": "200071025",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04150"
   },
@@ -859,7 +859,7 @@
     "name": "Moriez",
     "code": "04133",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04170"
   },
@@ -867,7 +867,7 @@
     "name": "La Motte-du-Caire",
     "code": "04134",
     "epci_code": "200068765",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04250"
   },
@@ -875,7 +875,7 @@
     "name": "Moustiers-Sainte-Marie",
     "code": "04135",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04360"
   },
@@ -883,7 +883,7 @@
     "name": "La Mure-Argens",
     "code": "04136",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04170"
   },
@@ -891,7 +891,7 @@
     "name": "Nibles",
     "code": "04137",
     "epci_code": "200068765",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04250"
   },
@@ -899,7 +899,7 @@
     "name": "Niozelles",
     "code": "04138",
     "epci_code": "240400440",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04300"
   },
@@ -907,7 +907,7 @@
     "name": "Noyers-sur-Jabron",
     "code": "04139",
     "epci_code": "200071033",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04200"
   },
@@ -915,7 +915,7 @@
     "name": "Les Omergues",
     "code": "04140",
     "epci_code": "200071033",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04200"
   },
@@ -923,7 +923,7 @@
     "name": "Ongles",
     "code": "04141",
     "epci_code": "240400440",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04230"
   },
@@ -931,7 +931,7 @@
     "name": "Oppedette",
     "code": "04142",
     "epci_code": "200071025",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04110"
   },
@@ -939,7 +939,7 @@
     "name": "Oraison",
     "code": "04143",
     "epci_code": "200034700",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04700"
   },
@@ -947,7 +947,7 @@
     "name": "La Palud-sur-Verdon",
     "code": "04144",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04120"
   },
@@ -955,7 +955,7 @@
     "name": "Peipin",
     "code": "04145",
     "epci_code": "200071033",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04200"
   },
@@ -963,7 +963,7 @@
     "name": "Peyroules",
     "code": "04148",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04120"
   },
@@ -971,7 +971,7 @@
     "name": "Peyruis",
     "code": "04149",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04310"
   },
@@ -979,7 +979,7 @@
     "name": "Piégut",
     "code": "04150",
     "epci_code": "200067320",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "05130"
   },
@@ -987,7 +987,7 @@
     "name": "Pierrerue",
     "code": "04151",
     "epci_code": "240400440",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04300"
   },
@@ -995,7 +995,7 @@
     "name": "Pierrevert",
     "code": "04152",
     "epci_code": "200034700",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04860"
   },
@@ -1003,7 +1003,7 @@
     "name": "Pontis",
     "code": "04154",
     "epci_code": "200067742",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "05160"
   },
@@ -1011,7 +1011,7 @@
     "name": "Prads-Haute-Bléone",
     "code": "04155",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04420"
   },
@@ -1019,7 +1019,7 @@
     "name": "Puimichel",
     "code": "04156",
     "epci_code": "200034700",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04700"
   },
@@ -1027,7 +1027,7 @@
     "name": "Puimoisson",
     "code": "04157",
     "epci_code": "200034700",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04410"
   },
@@ -1035,7 +1035,7 @@
     "name": "Quinson",
     "code": "04158",
     "epci_code": "200034700",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04500"
   },
@@ -1043,7 +1043,7 @@
     "name": "Redortiers",
     "code": "04159",
     "epci_code": "200071025",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04150"
   },
@@ -1051,7 +1051,7 @@
     "name": "Reillanne",
     "code": "04160",
     "epci_code": "200071025",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04110"
   },
@@ -1059,7 +1059,7 @@
     "name": "Méolans-Revel",
     "code": "04161",
     "epci_code": "200072304",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04340"
   },
@@ -1067,7 +1067,7 @@
     "name": "Revest-des-Brousses",
     "code": "04162",
     "epci_code": "200071025",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04150"
   },
@@ -1075,7 +1075,7 @@
     "name": "Revest-du-Bion",
     "code": "04163",
     "epci_code": "200071025",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04150"
   },
@@ -1083,7 +1083,7 @@
     "name": "Revest-Saint-Martin",
     "code": "04164",
     "epci_code": "240400440",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04230"
   },
@@ -1091,7 +1091,7 @@
     "name": "Riez",
     "code": "04166",
     "epci_code": "200034700",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04500"
   },
@@ -1099,7 +1099,7 @@
     "name": "La Robine-sur-Galabre",
     "code": "04167",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04000"
   },
@@ -1107,7 +1107,7 @@
     "name": "La Rochegiron",
     "code": "04169",
     "epci_code": "200071025",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04150"
   },
@@ -1115,7 +1115,7 @@
     "name": "La Rochette",
     "code": "04170",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "06260"
   },
@@ -1123,7 +1123,7 @@
     "name": "Rougon",
     "code": "04171",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04120"
   },
@@ -1131,7 +1131,7 @@
     "name": "Roumoules",
     "code": "04172",
     "epci_code": "200034700",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04500"
   },
@@ -1139,7 +1139,7 @@
     "name": "Saint-André-les-Alpes",
     "code": "04173",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04170"
   },
@@ -1147,7 +1147,7 @@
     "name": "Saint-Benoît",
     "code": "04174",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04240"
   },
@@ -1155,7 +1155,7 @@
     "name": "Sainte-Croix-à-Lauze",
     "code": "04175",
     "epci_code": "200071025",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04110"
   },
@@ -1163,7 +1163,7 @@
     "name": "Sainte-Croix-du-Verdon",
     "code": "04176",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04500"
   },
@@ -1171,7 +1171,7 @@
     "name": "Hautes-Duyes",
     "code": "04177",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04380"
   },
@@ -1179,7 +1179,7 @@
     "name": "Saint-Étienne-les-Orgues",
     "code": "04178",
     "epci_code": "240400440",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04230"
   },
@@ -1187,7 +1187,7 @@
     "name": "Saint-Geniez",
     "code": "04179",
     "epci_code": "200068765",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04200"
   },
@@ -1195,7 +1195,7 @@
     "name": "Saint-Jacques",
     "code": "04180",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04330"
   },
@@ -1203,7 +1203,7 @@
     "name": "Saint-Jeannet",
     "code": "04181",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04270"
   },
@@ -1211,7 +1211,7 @@
     "name": "Saint-Julien-d’Asse",
     "code": "04182",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04270"
   },
@@ -1219,7 +1219,7 @@
     "name": "Saint-Julien-du-Verdon",
     "code": "04183",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04170"
   },
@@ -1227,7 +1227,7 @@
     "name": "Saint-Jurs",
     "code": "04184",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04410"
   },
@@ -1235,7 +1235,7 @@
     "name": "Saint-Laurent-du-Verdon",
     "code": "04186",
     "epci_code": "200034700",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04500"
   },
@@ -1243,7 +1243,7 @@
     "name": "Saint-Lions",
     "code": "04187",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04330"
   },
@@ -1251,7 +1251,7 @@
     "name": "Saint-Maime",
     "code": "04188",
     "epci_code": "200071025",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04300"
   },
@@ -1259,7 +1259,7 @@
     "name": "Saint-Martin-de-Brômes",
     "code": "04189",
     "epci_code": "200034700",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04800"
   },
@@ -1267,7 +1267,7 @@
     "name": "Saint-Martin-les-Eaux",
     "code": "04190",
     "epci_code": "200071025",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04300"
   },
@@ -1275,7 +1275,7 @@
     "name": "Saint-Martin-lès-Seyne",
     "code": "04191",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04140"
   },
@@ -1283,7 +1283,7 @@
     "name": "Saint-Michel-l’Observatoire",
     "code": "04192",
     "epci_code": "200071025",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04870"
   },
@@ -1291,7 +1291,7 @@
     "name": "Saint-Paul-sur-Ubaye",
     "code": "04193",
     "epci_code": "200072304",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04530"
   },
@@ -1299,7 +1299,7 @@
     "name": "Saint-Pierre",
     "code": "04194",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "06260"
   },
@@ -1307,7 +1307,7 @@
     "name": "Saint-Pons",
     "code": "04195",
     "epci_code": "200072304",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04400"
   },
@@ -1315,7 +1315,7 @@
     "name": "Sainte-Tulle",
     "code": "04197",
     "epci_code": "200034700",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04220"
   },
@@ -1323,7 +1323,7 @@
     "name": "Saint-Vincent-sur-Jabron",
     "code": "04199",
     "epci_code": "200071033",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04200"
   },
@@ -1331,7 +1331,7 @@
     "name": "Salignac",
     "code": "04200",
     "epci_code": "200071033",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04290"
   },
@@ -1339,7 +1339,7 @@
     "name": "Saumane",
     "code": "04201",
     "epci_code": "200071025",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04150"
   },
@@ -1347,7 +1347,7 @@
     "name": "Sausses",
     "code": "04202",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04320"
   },
@@ -1355,7 +1355,7 @@
     "name": "Selonnet",
     "code": "04203",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04140"
   },
@@ -1363,7 +1363,7 @@
     "name": "Senez",
     "code": "04204",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04270"
   },
@@ -1371,7 +1371,7 @@
     "name": "Senez",
     "code": "04204",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04330"
   },
@@ -1379,7 +1379,7 @@
     "name": "Seyne",
     "code": "04205",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04140"
   },
@@ -1387,7 +1387,7 @@
     "name": "Sigonce",
     "code": "04206",
     "epci_code": "240400440",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04300"
   },
@@ -1395,7 +1395,7 @@
     "name": "Sigoyer",
     "code": "04207",
     "epci_code": "200068765",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04200"
   },
@@ -1403,7 +1403,7 @@
     "name": "Simiane-la-Rotonde",
     "code": "04208",
     "epci_code": "200071025",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04150"
   },
@@ -1411,7 +1411,7 @@
     "name": "Sisteron",
     "code": "04209",
     "epci_code": "200068765",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04200"
   },
@@ -1419,7 +1419,7 @@
     "name": "Soleilhas",
     "code": "04210",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04120"
   },
@@ -1427,7 +1427,7 @@
     "name": "Sourribes",
     "code": "04211",
     "epci_code": "200071033",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04290"
   },
@@ -1435,7 +1435,7 @@
     "name": "Tartonne",
     "code": "04214",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04330"
   },
@@ -1443,7 +1443,7 @@
     "name": "Thèze",
     "code": "04216",
     "epci_code": "200068765",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04200"
   },
@@ -1451,7 +1451,7 @@
     "name": "Thoard",
     "code": "04217",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04380"
   },
@@ -1459,7 +1459,7 @@
     "name": "Thorame-Basse",
     "code": "04218",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04170"
   },
@@ -1467,7 +1467,7 @@
     "name": "Thorame-Haute",
     "code": "04219",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04170"
   },
@@ -1475,7 +1475,7 @@
     "name": "Les Thuiles",
     "code": "04220",
     "epci_code": "200072304",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04400"
   },
@@ -1483,7 +1483,7 @@
     "name": "Turriers",
     "code": "04222",
     "epci_code": "200068765",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04250"
   },
@@ -1491,7 +1491,7 @@
     "name": "Ubraye",
     "code": "04224",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04240"
   },
@@ -1499,7 +1499,7 @@
     "name": "Uvernet-Fours",
     "code": "04226",
     "epci_code": "200072304",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04400"
   },
@@ -1507,7 +1507,7 @@
     "name": "Vachères",
     "code": "04227",
     "epci_code": "200071025",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04110"
   },
@@ -1515,7 +1515,7 @@
     "name": "Valavoire",
     "code": "04228",
     "epci_code": "200068765",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04250"
   },
@@ -1523,7 +1523,7 @@
     "name": "Valbelle",
     "code": "04229",
     "epci_code": "200071033",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04200"
   },
@@ -1531,7 +1531,7 @@
     "name": "Valensole",
     "code": "04230",
     "epci_code": "200034700",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04210"
   },
@@ -1539,7 +1539,7 @@
     "name": "Valernes",
     "code": "04231",
     "epci_code": "200068765",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04200"
   },
@@ -1547,7 +1547,7 @@
     "name": "Vaumeilh",
     "code": "04233",
     "epci_code": "200068765",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04200"
   },
@@ -1555,7 +1555,7 @@
     "name": "Venterol",
     "code": "04234",
     "epci_code": "200067320",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "05130"
   },
@@ -1563,7 +1563,7 @@
     "name": "Verdaches",
     "code": "04235",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04140"
   },
@@ -1571,7 +1571,7 @@
     "name": "Vergons",
     "code": "04236",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04170"
   },
@@ -1579,7 +1579,7 @@
     "name": "Le Vernet",
     "code": "04237",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04140"
   },
@@ -1587,7 +1587,7 @@
     "name": "Villars-Colmars",
     "code": "04240",
     "epci_code": "200068625",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04370"
   },
@@ -1595,7 +1595,7 @@
     "name": "Villemus",
     "code": "04241",
     "epci_code": "200071025",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04110"
   },
@@ -1603,7 +1603,7 @@
     "name": "Villeneuve",
     "code": "04242",
     "epci_code": "200034700",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04180"
   },
@@ -1611,7 +1611,7 @@
     "name": "Volonne",
     "code": "04244",
     "epci_code": "200067437",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04290"
   },
@@ -1619,7 +1619,7 @@
     "name": "Volx",
     "code": "04245",
     "epci_code": "200034700",
-    "departement_code": "04",
+    "department_code": "04",
     "region_code": "93",
     "postal_code": "04130"
   }

@@ -3,7 +3,7 @@
     "name": "Antony",
     "code": "92002",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92160"
   },
@@ -11,7 +11,7 @@
     "name": "Asnières-sur-Seine",
     "code": "92004",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92600"
   },
@@ -19,7 +19,7 @@
     "name": "Bagneux",
     "code": "92007",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92220"
   },
@@ -27,7 +27,7 @@
     "name": "Bois-Colombes",
     "code": "92009",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92270"
   },
@@ -35,7 +35,7 @@
     "name": "Boulogne-Billancourt",
     "code": "92012",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92100"
   },
@@ -43,7 +43,7 @@
     "name": "Bourg-la-Reine",
     "code": "92014",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92340"
   },
@@ -51,7 +51,7 @@
     "name": "Châtenay-Malabry",
     "code": "92019",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92290"
   },
@@ -59,7 +59,7 @@
     "name": "Châtillon",
     "code": "92020",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92320"
   },
@@ -67,7 +67,7 @@
     "name": "Chaville",
     "code": "92022",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92370"
   },
@@ -75,7 +75,7 @@
     "name": "Clamart",
     "code": "92023",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92140"
   },
@@ -83,7 +83,7 @@
     "name": "Clichy",
     "code": "92024",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92110"
   },
@@ -91,7 +91,7 @@
     "name": "Colombes",
     "code": "92025",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92700"
   },
@@ -99,7 +99,7 @@
     "name": "Courbevoie",
     "code": "92026",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92400"
   },
@@ -107,7 +107,7 @@
     "name": "Fontenay-aux-Roses",
     "code": "92032",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92260"
   },
@@ -115,7 +115,7 @@
     "name": "Garches",
     "code": "92033",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92380"
   },
@@ -123,7 +123,7 @@
     "name": "La Garenne-Colombes",
     "code": "92035",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92250"
   },
@@ -131,7 +131,7 @@
     "name": "Gennevilliers",
     "code": "92036",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92230"
   },
@@ -139,7 +139,7 @@
     "name": "Issy-les-Moulineaux",
     "code": "92040",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92130"
   },
@@ -147,7 +147,7 @@
     "name": "Levallois-Perret",
     "code": "92044",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92300"
   },
@@ -155,7 +155,7 @@
     "name": "Malakoff",
     "code": "92046",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92240"
   },
@@ -163,7 +163,7 @@
     "name": "Marnes-la-Coquette",
     "code": "92047",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92430"
   },
@@ -171,7 +171,7 @@
     "name": "Meudon",
     "code": "92048",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92190"
   },
@@ -179,7 +179,7 @@
     "name": "Meudon",
     "code": "92048",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92360"
   },
@@ -187,7 +187,7 @@
     "name": "Montrouge",
     "code": "92049",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92120"
   },
@@ -195,7 +195,7 @@
     "name": "Nanterre",
     "code": "92050",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92000"
   },
@@ -203,7 +203,7 @@
     "name": "Neuilly-sur-Seine",
     "code": "92051",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92200"
   },
@@ -211,7 +211,7 @@
     "name": "Le Plessis-Robinson",
     "code": "92060",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92350"
   },
@@ -219,7 +219,7 @@
     "name": "Puteaux",
     "code": "92062",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92800"
   },
@@ -227,7 +227,7 @@
     "name": "Rueil-Malmaison",
     "code": "92063",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92500"
   },
@@ -235,7 +235,7 @@
     "name": "Saint-Cloud",
     "code": "92064",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92210"
   },
@@ -243,7 +243,7 @@
     "name": "Sceaux",
     "code": "92071",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92330"
   },
@@ -251,7 +251,7 @@
     "name": "Sèvres",
     "code": "92072",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92310"
   },
@@ -259,7 +259,7 @@
     "name": "Suresnes",
     "code": "92073",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92150"
   },
@@ -267,7 +267,7 @@
     "name": "Vanves",
     "code": "92075",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92170"
   },
@@ -275,7 +275,7 @@
     "name": "Vaucresson",
     "code": "92076",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92420"
   },
@@ -283,7 +283,7 @@
     "name": "Ville-d’Avray",
     "code": "92077",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92410"
   },
@@ -291,7 +291,7 @@
     "name": "Villeneuve-la-Garenne",
     "code": "92078",
     "epci_code": "200054781",
-    "departement_code": "92",
+    "department_code": "92",
     "region_code": "11",
     "postal_code": "92390"
   }

@@ -15,7 +15,7 @@ describe EditableChamp::EpciComponent, type: :component do
   end
 
   it 'shows « Sélectionnez » when the saved EPCI is not in the list of the departement' do
-    champ.update_columns(value_json: { 'code_departement' => '02' }, external_id: '200070308')
+    champ.update_columns(value_json: { 'department_code' => '02' }, external_id: '200070308')
 
     render
 

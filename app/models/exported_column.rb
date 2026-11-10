@@ -1,17 +1,18 @@
 # frozen_string_literal: true
 
 class ExportedColumn
-  attr_reader :column, :libelle
+  attr_reader :column, :libelle, :raw
 
-  def initialize(column:, libelle:)
+  def initialize(column:, libelle:, raw: false)
     @column = column
     @libelle = libelle
+    @raw = raw
   end
 
-  def id = { id: column.id, libelle: }.to_json
+  def id = { id: column.id, libelle:, raw: (true if raw) }.compact.to_json
 
   def libelle_with_value(champ_or_dossier, format:)
-    [libelle, ExportedColumnFormatter.format(column:, champ_or_dossier:, format:), spreadsheet_architect_type]
+    [libelle, ExportedColumnFormatter.format(column:, champ_or_dossier:, format:, raw:), spreadsheet_architect_type]
   end
 
   def spreadsheet_architect_type

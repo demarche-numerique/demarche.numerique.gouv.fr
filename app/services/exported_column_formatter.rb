@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 class ExportedColumnFormatter
-  def self.format(column:, champ_or_dossier:, format:)
+  def self.format(column:, champ_or_dossier:, format:, raw: false)
     return if champ_or_dossier.nil?
 
     raw_value = column.value(champ_or_dossier)
+    return raw_value if raw
 
     case column.type
     when :boolean

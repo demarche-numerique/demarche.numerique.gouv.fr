@@ -3,7 +3,7 @@
     "name": "Les Ableuvenettes",
     "code": "88001",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -11,7 +11,7 @@
     "name": "Ahéville",
     "code": "88002",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -19,7 +19,7 @@
     "name": "Aingeville",
     "code": "88003",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88140"
   },
@@ -27,7 +27,7 @@
     "name": "Ainvelle",
     "code": "88004",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88320"
   },
@@ -35,7 +35,7 @@
     "name": "Allarmont",
     "code": "88005",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88110"
   },
@@ -43,7 +43,7 @@
     "name": "Ambacourt",
     "code": "88006",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -51,7 +51,7 @@
     "name": "Ameuvelle",
     "code": "88007",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88410"
   },
@@ -59,7 +59,7 @@
     "name": "Anglemont",
     "code": "88008",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -67,7 +67,7 @@
     "name": "Anould",
     "code": "88009",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88650"
   },
@@ -75,7 +75,7 @@
     "name": "Aouze",
     "code": "88010",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -83,7 +83,7 @@
     "name": "Arches",
     "code": "88011",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88380"
   },
@@ -91,7 +91,7 @@
     "name": "Archettes",
     "code": "88012",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88380"
   },
@@ -99,7 +99,7 @@
     "name": "Aroffe",
     "code": "88013",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -107,7 +107,7 @@
     "name": "Arrentès-de-Corcieux",
     "code": "88014",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88430"
   },
@@ -115,7 +115,7 @@
     "name": "Attignéville",
     "code": "88015",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88300"
   },
@@ -123,7 +123,7 @@
     "name": "Attigny",
     "code": "88016",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88260"
   },
@@ -131,7 +131,7 @@
     "name": "Aulnois",
     "code": "88017",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88300"
   },
@@ -139,7 +139,7 @@
     "name": "Autigny-la-Tour",
     "code": "88019",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88300"
   },
@@ -147,7 +147,7 @@
     "name": "Autreville",
     "code": "88020",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88300"
   },
@@ -155,7 +155,7 @@
     "name": "Autrey",
     "code": "88021",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -163,7 +163,7 @@
     "name": "Auzainvilliers",
     "code": "88022",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88140"
   },
@@ -171,7 +171,7 @@
     "name": "Avillers",
     "code": "88023",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -179,7 +179,7 @@
     "name": "Avrainville",
     "code": "88024",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88130"
   },
@@ -187,7 +187,7 @@
     "name": "Avranville",
     "code": "88025",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88630"
   },
@@ -195,7 +195,7 @@
     "name": "Aydoilles",
     "code": "88026",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -203,7 +203,7 @@
     "name": "Badménil-aux-Bois",
     "code": "88027",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88330"
   },
@@ -211,7 +211,7 @@
     "name": "La Baffe",
     "code": "88028",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88460"
   },
@@ -219,7 +219,7 @@
     "name": "La Vôge-les-Bains",
     "code": "88029",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88240"
   },
@@ -227,7 +227,7 @@
     "name": "Bainville-aux-Saules",
     "code": "88030",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -235,7 +235,7 @@
     "name": "Balléville",
     "code": "88031",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -243,7 +243,7 @@
     "name": "Ban-de-Laveline",
     "code": "88032",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88520"
   },
@@ -251,7 +251,7 @@
     "name": "Ban-de-Sapt",
     "code": "88033",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88210"
   },
@@ -259,7 +259,7 @@
     "name": "Barbey-Seroux",
     "code": "88035",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88640"
   },
@@ -267,7 +267,7 @@
     "name": "Barville",
     "code": "88036",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88300"
   },
@@ -275,7 +275,7 @@
     "name": "Basse-sur-le-Rupt",
     "code": "88037",
     "epci_code": "200096634",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88120"
   },
@@ -283,7 +283,7 @@
     "name": "Battexey",
     "code": "88038",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88130"
   },
@@ -291,7 +291,7 @@
     "name": "Baudricourt",
     "code": "88039",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -299,7 +299,7 @@
     "name": "Bayecourt",
     "code": "88040",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88150"
   },
@@ -307,7 +307,7 @@
     "name": "Bazegney",
     "code": "88041",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -315,7 +315,7 @@
     "name": "Bazien",
     "code": "88042",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -323,7 +323,7 @@
     "name": "Bazoilles-et-Ménil",
     "code": "88043",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -331,7 +331,7 @@
     "name": "Bazoilles-sur-Meuse",
     "code": "88044",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88300"
   },
@@ -339,7 +339,7 @@
     "name": "Beaufremont",
     "code": "88045",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88300"
   },
@@ -347,7 +347,7 @@
     "name": "Beauménil",
     "code": "88046",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -355,7 +355,7 @@
     "name": "Begnécourt",
     "code": "88047",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -363,7 +363,7 @@
     "name": "Bellefontaine",
     "code": "88048",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88370"
   },
@@ -371,7 +371,7 @@
     "name": "Belmont-lès-Darney",
     "code": "88049",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88260"
   },
@@ -379,7 +379,7 @@
     "name": "Belmont-sur-Buttant",
     "code": "88050",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -387,7 +387,7 @@
     "name": "Belmont-sur-Vair",
     "code": "88051",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88800"
   },
@@ -395,7 +395,7 @@
     "name": "Belrupt",
     "code": "88052",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88260"
   },
@@ -403,7 +403,7 @@
     "name": "Belval",
     "code": "88053",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88210"
   },
@@ -411,7 +411,7 @@
     "name": "Bertrimoutier",
     "code": "88054",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88520"
   },
@@ -419,7 +419,7 @@
     "name": "Bettegney-Saint-Brice",
     "code": "88055",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88450"
   },
@@ -427,7 +427,7 @@
     "name": "Bettoncourt",
     "code": "88056",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -435,7 +435,7 @@
     "name": "Le Beulay",
     "code": "88057",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88490"
   },
@@ -443,7 +443,7 @@
     "name": "Biécourt",
     "code": "88058",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -451,7 +451,7 @@
     "name": "Biffontaine",
     "code": "88059",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88430"
   },
@@ -459,7 +459,7 @@
     "name": "Blémerey",
     "code": "88060",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -467,7 +467,7 @@
     "name": "Bleurville",
     "code": "88061",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88410"
   },
@@ -475,7 +475,7 @@
     "name": "Blevaincourt",
     "code": "88062",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88320"
   },
@@ -483,7 +483,7 @@
     "name": "Bocquegney",
     "code": "88063",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -491,7 +491,7 @@
     "name": "Bois-de-Champ",
     "code": "88064",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -499,7 +499,7 @@
     "name": "Bonvillet",
     "code": "88065",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88260"
   },
@@ -507,7 +507,7 @@
     "name": "Boulaincourt",
     "code": "88066",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -515,7 +515,7 @@
     "name": "La Bourgonce",
     "code": "88068",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88470"
   },
@@ -523,7 +523,7 @@
     "name": "Bouxières-aux-Bois",
     "code": "88069",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -531,7 +531,7 @@
     "name": "Bouxurulles",
     "code": "88070",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88130"
   },
@@ -539,7 +539,7 @@
     "name": "Bouzemont",
     "code": "88071",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -547,7 +547,7 @@
     "name": "Brantigny",
     "code": "88073",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88130"
   },
@@ -555,7 +555,7 @@
     "name": "Brechainville",
     "code": "88074",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88350"
   },
@@ -563,7 +563,7 @@
     "name": "La Bresse",
     "code": "88075",
     "epci_code": "200096634",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88250"
   },
@@ -571,7 +571,7 @@
     "name": "Brouvelieures",
     "code": "88076",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -579,7 +579,7 @@
     "name": "Brû",
     "code": "88077",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -587,7 +587,7 @@
     "name": "Bruyères",
     "code": "88078",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -595,7 +595,7 @@
     "name": "Bulgnéville",
     "code": "88079",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88140"
   },
@@ -603,7 +603,7 @@
     "name": "Bult",
     "code": "88080",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -611,7 +611,7 @@
     "name": "Bussang",
     "code": "88081",
     "epci_code": "200033868",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88540"
   },
@@ -619,7 +619,7 @@
     "name": "Celles-sur-Plaine",
     "code": "88082",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88110"
   },
@@ -627,7 +627,7 @@
     "name": "Certilleux",
     "code": "88083",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88300"
   },
@@ -635,7 +635,7 @@
     "name": "Chamagne",
     "code": "88084",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88130"
   },
@@ -643,7 +643,7 @@
     "name": "Champdray",
     "code": "88085",
     "epci_code": "200096642",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88640"
   },
@@ -651,7 +651,7 @@
     "name": "Champ-le-Duc",
     "code": "88086",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -659,7 +659,7 @@
     "name": "Chantraine",
     "code": "88087",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88000"
   },
@@ -667,7 +667,7 @@
     "name": "La Chapelle-aux-Bois",
     "code": "88088",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88240"
   },
@@ -675,7 +675,7 @@
     "name": "La Chapelle-devant-Bruyères",
     "code": "88089",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -683,7 +683,7 @@
     "name": "Charmes",
     "code": "88090",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88130"
   },
@@ -691,7 +691,7 @@
     "name": "Charmois-devant-Bruyères",
     "code": "88091",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88460"
   },
@@ -699,7 +699,7 @@
     "name": "Charmois-l’Orgueilleux",
     "code": "88092",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -707,7 +707,7 @@
     "name": "Châtas",
     "code": "88093",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88210"
   },
@@ -715,7 +715,7 @@
     "name": "Châtel-sur-Moselle",
     "code": "88094",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88330"
   },
@@ -723,7 +723,7 @@
     "name": "Châtenois",
     "code": "88095",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -731,7 +731,7 @@
     "name": "Châtillon-sur-Saône",
     "code": "88096",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88410"
   },
@@ -739,7 +739,7 @@
     "name": "Chauffecourt",
     "code": "88097",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -747,7 +747,7 @@
     "name": "Chaumousey",
     "code": "88098",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88390"
   },
@@ -755,7 +755,7 @@
     "name": "Chavelot",
     "code": "88099",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88150"
   },
@@ -763,7 +763,7 @@
     "name": "Chef-Haut",
     "code": "88100",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -771,7 +771,7 @@
     "name": "Cheniménil",
     "code": "88101",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88460"
   },
@@ -779,7 +779,7 @@
     "name": "Chermisey",
     "code": "88102",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88630"
   },
@@ -787,7 +787,7 @@
     "name": "Circourt",
     "code": "88103",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -795,7 +795,7 @@
     "name": "Circourt-sur-Mouzon",
     "code": "88104",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88300"
   },
@@ -803,7 +803,7 @@
     "name": "Claudon",
     "code": "88105",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88410"
   },
@@ -811,7 +811,7 @@
     "name": "Ban-sur-Meurthe-Clefcy",
     "code": "88106",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88230"
   },
@@ -819,7 +819,7 @@
     "name": "Clérey-la-Côte",
     "code": "88107",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88630"
   },
@@ -827,7 +827,7 @@
     "name": "Le Clerjus",
     "code": "88108",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88240"
   },
@@ -835,7 +835,7 @@
     "name": "Cleurie",
     "code": "88109",
     "epci_code": "200096634",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88120"
   },
@@ -843,7 +843,7 @@
     "name": "Clézentaine",
     "code": "88110",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -851,7 +851,7 @@
     "name": "Coinches",
     "code": "88111",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88100"
   },
@@ -859,7 +859,7 @@
     "name": "Combrimont",
     "code": "88113",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88490"
   },
@@ -867,7 +867,7 @@
     "name": "Contrexéville",
     "code": "88114",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88140"
   },
@@ -875,7 +875,7 @@
     "name": "Corcieux",
     "code": "88115",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88430"
   },
@@ -883,7 +883,7 @@
     "name": "Cornimont",
     "code": "88116",
     "epci_code": "200096634",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88310"
   },
@@ -891,7 +891,7 @@
     "name": "Courcelles-sous-Châtenois",
     "code": "88117",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -899,7 +899,7 @@
     "name": "Coussey",
     "code": "88118",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88630"
   },
@@ -907,7 +907,7 @@
     "name": "Crainvilliers",
     "code": "88119",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88140"
   },
@@ -915,7 +915,7 @@
     "name": "La Croix-aux-Mines",
     "code": "88120",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88520"
   },
@@ -923,7 +923,7 @@
     "name": "Damas-aux-Bois",
     "code": "88121",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88330"
   },
@@ -931,7 +931,7 @@
     "name": "Damas-et-Bettegney",
     "code": "88122",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -939,7 +939,7 @@
     "name": "Damblain",
     "code": "88123",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88320"
   },
@@ -947,7 +947,7 @@
     "name": "Darney",
     "code": "88124",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88260"
   },
@@ -955,7 +955,7 @@
     "name": "Darney-aux-Chênes",
     "code": "88125",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -963,7 +963,7 @@
     "name": "Darnieulles",
     "code": "88126",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88390"
   },
@@ -971,7 +971,7 @@
     "name": "Deinvillers",
     "code": "88127",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -979,7 +979,7 @@
     "name": "Denipaire",
     "code": "88128",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88210"
   },
@@ -987,7 +987,7 @@
     "name": "Derbamont",
     "code": "88129",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -995,7 +995,7 @@
     "name": "Destord",
     "code": "88130",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -1003,7 +1003,7 @@
     "name": "Deycimont",
     "code": "88131",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -1011,7 +1011,7 @@
     "name": "Deyvillers",
     "code": "88132",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88000"
   },
@@ -1019,7 +1019,7 @@
     "name": "Dignonville",
     "code": "88133",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88000"
   },
@@ -1027,7 +1027,7 @@
     "name": "Dinozé",
     "code": "88134",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88000"
   },
@@ -1035,7 +1035,7 @@
     "name": "Docelles",
     "code": "88135",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88460"
   },
@@ -1043,7 +1043,7 @@
     "name": "Dogneville",
     "code": "88136",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88000"
   },
@@ -1051,7 +1051,7 @@
     "name": "Dolaincourt",
     "code": "88137",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -1059,7 +1059,7 @@
     "name": "Dombasle-devant-Darney",
     "code": "88138",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88260"
   },
@@ -1067,7 +1067,7 @@
     "name": "Dombasle-en-Xaintois",
     "code": "88139",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -1075,7 +1075,7 @@
     "name": "Dombrot-le-Sec",
     "code": "88140",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88140"
   },
@@ -1083,7 +1083,7 @@
     "name": "Dombrot-sur-Vair",
     "code": "88141",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -1091,7 +1091,7 @@
     "name": "Domèvre-sur-Avière",
     "code": "88142",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88390"
   },
@@ -1099,7 +1099,7 @@
     "name": "Domèvre-sur-Durbion",
     "code": "88143",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88330"
   },
@@ -1107,7 +1107,7 @@
     "name": "Domèvre-sous-Montfort",
     "code": "88144",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -1115,7 +1115,7 @@
     "name": "Domfaing",
     "code": "88145",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -1123,7 +1123,7 @@
     "name": "Domjulien",
     "code": "88146",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88800"
   },
@@ -1131,7 +1131,7 @@
     "name": "Dommartin-aux-Bois",
     "code": "88147",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88390"
   },
@@ -1139,7 +1139,7 @@
     "name": "Dommartin-lès-Remiremont",
     "code": "88148",
     "epci_code": "200068377",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88200"
   },
@@ -1147,7 +1147,7 @@
     "name": "Dommartin-lès-Vallois",
     "code": "88149",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88260"
   },
@@ -1155,7 +1155,7 @@
     "name": "Dommartin-sur-Vraine",
     "code": "88150",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -1163,7 +1163,7 @@
     "name": "Dompaire",
     "code": "88151",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -1171,7 +1171,7 @@
     "name": "Dompierre",
     "code": "88152",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -1179,7 +1179,7 @@
     "name": "Domptail",
     "code": "88153",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -1187,7 +1187,7 @@
     "name": "Domrémy-la-Pucelle",
     "code": "88154",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88630"
   },
@@ -1195,7 +1195,7 @@
     "name": "Domvallier",
     "code": "88155",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -1203,7 +1203,7 @@
     "name": "Doncières",
     "code": "88156",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -1211,7 +1211,7 @@
     "name": "Dounoux",
     "code": "88157",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88220"
   },
@@ -1219,7 +1219,7 @@
     "name": "Éloyes",
     "code": "88158",
     "epci_code": "200068377",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88510"
   },
@@ -1227,7 +1227,7 @@
     "name": "Entre-deux-Eaux",
     "code": "88159",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88650"
   },
@@ -1235,7 +1235,7 @@
     "name": "Épinal",
     "code": "88160",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88000"
   },
@@ -1243,7 +1243,7 @@
     "name": "Escles",
     "code": "88161",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88260"
   },
@@ -1251,7 +1251,7 @@
     "name": "Esley",
     "code": "88162",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88260"
   },
@@ -1259,7 +1259,7 @@
     "name": "Essegney",
     "code": "88163",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88130"
   },
@@ -1267,7 +1267,7 @@
     "name": "Estrennes",
     "code": "88164",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -1275,7 +1275,7 @@
     "name": "Étival-Clairefontaine",
     "code": "88165",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88480"
   },
@@ -1283,7 +1283,7 @@
     "name": "Évaux-et-Ménil",
     "code": "88166",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88450"
   },
@@ -1291,7 +1291,7 @@
     "name": "Faucompierre",
     "code": "88167",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88460"
   },
@@ -1299,7 +1299,7 @@
     "name": "Fauconcourt",
     "code": "88168",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -1307,7 +1307,7 @@
     "name": "Fays",
     "code": "88169",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -1315,7 +1315,7 @@
     "name": "Ferdrupt",
     "code": "88170",
     "epci_code": "200033868",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88360"
   },
@@ -1323,7 +1323,7 @@
     "name": "Fignévelle",
     "code": "88171",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88410"
   },
@@ -1331,7 +1331,7 @@
     "name": "Fiménil",
     "code": "88172",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -1339,7 +1339,7 @@
     "name": "Florémont",
     "code": "88173",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88130"
   },
@@ -1347,7 +1347,7 @@
     "name": "Fomerey",
     "code": "88174",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88390"
   },
@@ -1355,7 +1355,7 @@
     "name": "Fontenay",
     "code": "88175",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -1363,7 +1363,7 @@
     "name": "Fontenoy-le-Château",
     "code": "88176",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88240"
   },
@@ -1371,7 +1371,7 @@
     "name": "La Forge",
     "code": "88177",
     "epci_code": "200096634",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88530"
   },
@@ -1379,7 +1379,7 @@
     "name": "Les Forges",
     "code": "88178",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88390"
   },
@@ -1387,7 +1387,7 @@
     "name": "Fouchécourt",
     "code": "88179",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88320"
   },
@@ -1395,7 +1395,7 @@
     "name": "Frain",
     "code": "88180",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88320"
   },
@@ -1403,7 +1403,7 @@
     "name": "Fraize",
     "code": "88181",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88230"
   },
@@ -1411,7 +1411,7 @@
     "name": "Frapelle",
     "code": "88182",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88490"
   },
@@ -1419,7 +1419,7 @@
     "name": "Frebécourt",
     "code": "88183",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88630"
   },
@@ -1427,7 +1427,7 @@
     "name": "Fremifontaine",
     "code": "88184",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -1435,7 +1435,7 @@
     "name": "Frenelle-la-Grande",
     "code": "88185",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -1443,7 +1443,7 @@
     "name": "Frenelle-la-Petite",
     "code": "88186",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -1451,7 +1451,7 @@
     "name": "Frénois",
     "code": "88187",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -1459,7 +1459,7 @@
     "name": "Fresse-sur-Moselle",
     "code": "88188",
     "epci_code": "200033868",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88160"
   },
@@ -1467,7 +1467,7 @@
     "name": "Fréville",
     "code": "88189",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88350"
   },
@@ -1475,7 +1475,7 @@
     "name": "Frizon",
     "code": "88190",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88440"
   },
@@ -1483,7 +1483,7 @@
     "name": "Gelvécourt-et-Adompt",
     "code": "88192",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -1491,7 +1491,7 @@
     "name": "Gemaingoutte",
     "code": "88193",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88520"
   },
@@ -1499,7 +1499,7 @@
     "name": "Gemmelaincourt",
     "code": "88194",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -1507,7 +1507,7 @@
     "name": "Gendreville",
     "code": "88195",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88140"
   },
@@ -1515,7 +1515,7 @@
     "name": "Gérardmer",
     "code": "88196",
     "epci_code": "200096642",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88400"
   },
@@ -1523,7 +1523,7 @@
     "name": "Gerbamont",
     "code": "88197",
     "epci_code": "200096634",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88120"
   },
@@ -1531,7 +1531,7 @@
     "name": "Gerbépal",
     "code": "88198",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88430"
   },
@@ -1539,7 +1539,7 @@
     "name": "Gignéville",
     "code": "88199",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88320"
   },
@@ -1547,7 +1547,7 @@
     "name": "Gigney",
     "code": "88200",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88390"
   },
@@ -1555,7 +1555,7 @@
     "name": "Girancourt",
     "code": "88201",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88390"
   },
@@ -1563,7 +1563,7 @@
     "name": "Gircourt-lès-Viéville",
     "code": "88202",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -1571,7 +1571,7 @@
     "name": "Girecourt-sur-Durbion",
     "code": "88203",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -1579,7 +1579,7 @@
     "name": "Girmont-Val-d’Ajol",
     "code": "88205",
     "epci_code": "200068377",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88340"
   },
@@ -1587,7 +1587,7 @@
     "name": "Gironcourt-sur-Vraine",
     "code": "88206",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -1595,7 +1595,7 @@
     "name": "Godoncourt",
     "code": "88208",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88410"
   },
@@ -1603,7 +1603,7 @@
     "name": "Golbey",
     "code": "88209",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88190"
   },
@@ -1611,7 +1611,7 @@
     "name": "Gorhey",
     "code": "88210",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -1619,7 +1619,7 @@
     "name": "Grand",
     "code": "88212",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88350"
   },
@@ -1627,7 +1627,7 @@
     "name": "La Grande-Fosse",
     "code": "88213",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88490"
   },
@@ -1635,7 +1635,7 @@
     "name": "Grandrupt-de-Bains",
     "code": "88214",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88240"
   },
@@ -1643,7 +1643,7 @@
     "name": "Grandrupt",
     "code": "88215",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88210"
   },
@@ -1651,7 +1651,7 @@
     "name": "Grandvillers",
     "code": "88216",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -1659,7 +1659,7 @@
     "name": "Granges-Aumontzey",
     "code": "88218",
     "epci_code": "200096642",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88640"
   },
@@ -1667,7 +1667,7 @@
     "name": "Greux",
     "code": "88219",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88630"
   },
@@ -1675,7 +1675,7 @@
     "name": "Grignoncourt",
     "code": "88220",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88410"
   },
@@ -1683,7 +1683,7 @@
     "name": "Gruey-lès-Surance",
     "code": "88221",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88240"
   },
@@ -1691,7 +1691,7 @@
     "name": "Gugnécourt",
     "code": "88222",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -1699,7 +1699,7 @@
     "name": "Gugney-aux-Aulx",
     "code": "88223",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88450"
   },
@@ -1707,7 +1707,7 @@
     "name": "Hadigny-les-Verrières",
     "code": "88224",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88330"
   },
@@ -1715,7 +1715,7 @@
     "name": "Hadol",
     "code": "88225",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88220"
   },
@@ -1723,7 +1723,7 @@
     "name": "Hagécourt",
     "code": "88226",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -1731,7 +1731,7 @@
     "name": "Hagnéville-et-Roncourt",
     "code": "88227",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88300"
   },
@@ -1739,7 +1739,7 @@
     "name": "Haillainville",
     "code": "88228",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88330"
   },
@@ -1747,7 +1747,7 @@
     "name": "Harchéchamp",
     "code": "88229",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88300"
   },
@@ -1755,7 +1755,7 @@
     "name": "Hardancourt",
     "code": "88230",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -1763,7 +1763,7 @@
     "name": "Haréville",
     "code": "88231",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88800"
   },
@@ -1771,7 +1771,7 @@
     "name": "Harmonville",
     "code": "88232",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88300"
   },
@@ -1779,7 +1779,7 @@
     "name": "Harol",
     "code": "88233",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -1787,7 +1787,7 @@
     "name": "La Haye",
     "code": "88236",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88240"
   },
@@ -1795,7 +1795,7 @@
     "name": "Hennecourt",
     "code": "88237",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -1803,7 +1803,7 @@
     "name": "Hennezel",
     "code": "88238",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88260"
   },
@@ -1811,7 +1811,7 @@
     "name": "Hergugney",
     "code": "88239",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88130"
   },
@@ -1819,7 +1819,7 @@
     "name": "Herpelmont",
     "code": "88240",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -1827,7 +1827,7 @@
     "name": "Houécourt",
     "code": "88241",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -1835,7 +1835,7 @@
     "name": "Houéville",
     "code": "88242",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88300"
   },
@@ -1843,7 +1843,7 @@
     "name": "Housseras",
     "code": "88243",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -1851,7 +1851,7 @@
     "name": "La Houssière",
     "code": "88244",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88430"
   },
@@ -1859,7 +1859,7 @@
     "name": "Hurbache",
     "code": "88245",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88210"
   },
@@ -1867,7 +1867,7 @@
     "name": "Hymont",
     "code": "88246",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -1875,7 +1875,7 @@
     "name": "Igney",
     "code": "88247",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88150"
   },
@@ -1883,7 +1883,7 @@
     "name": "Isches",
     "code": "88248",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88320"
   },
@@ -1891,7 +1891,7 @@
     "name": "Jainvillotte",
     "code": "88249",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88300"
   },
@@ -1899,7 +1899,7 @@
     "name": "Jarménil",
     "code": "88250",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88550"
   },
@@ -1907,7 +1907,7 @@
     "name": "Jeanménil",
     "code": "88251",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -1915,7 +1915,7 @@
     "name": "Jésonville",
     "code": "88252",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88260"
   },
@@ -1923,7 +1923,7 @@
     "name": "Jeuxey",
     "code": "88253",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88000"
   },
@@ -1931,7 +1931,7 @@
     "name": "Jorxey",
     "code": "88254",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -1939,7 +1939,7 @@
     "name": "Jubainville",
     "code": "88255",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88630"
   },
@@ -1947,7 +1947,7 @@
     "name": "Jussarupt",
     "code": "88256",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88640"
   },
@@ -1955,7 +1955,7 @@
     "name": "Juvaincourt",
     "code": "88257",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -1963,7 +1963,7 @@
     "name": "Lamarche",
     "code": "88258",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88320"
   },
@@ -1971,7 +1971,7 @@
     "name": "Landaville",
     "code": "88259",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88300"
   },
@@ -1979,7 +1979,7 @@
     "name": "Langley",
     "code": "88260",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88130"
   },
@@ -1987,7 +1987,7 @@
     "name": "Laval-sur-Vologne",
     "code": "88261",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -1995,7 +1995,7 @@
     "name": "Laveline-devant-Bruyères",
     "code": "88262",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -2003,7 +2003,7 @@
     "name": "Laveline-du-Houx",
     "code": "88263",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88640"
   },
@@ -2011,7 +2011,7 @@
     "name": "Légéville-et-Bonfays",
     "code": "88264",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -2019,7 +2019,7 @@
     "name": "Lemmecourt",
     "code": "88265",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88300"
   },
@@ -2027,7 +2027,7 @@
     "name": "Lépanges-sur-Vologne",
     "code": "88266",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -2035,7 +2035,7 @@
     "name": "Lerrain",
     "code": "88267",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88260"
   },
@@ -2043,7 +2043,7 @@
     "name": "Lesseux",
     "code": "88268",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88490"
   },
@@ -2051,7 +2051,7 @@
     "name": "Liézey",
     "code": "88269",
     "epci_code": "200096642",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88400"
   },
@@ -2059,7 +2059,7 @@
     "name": "Liffol-le-Grand",
     "code": "88270",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88350"
   },
@@ -2067,7 +2067,7 @@
     "name": "Lignéville",
     "code": "88271",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88800"
   },
@@ -2075,7 +2075,7 @@
     "name": "Lironcourt",
     "code": "88272",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88410"
   },
@@ -2083,7 +2083,7 @@
     "name": "Longchamp",
     "code": "88273",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88000"
   },
@@ -2091,7 +2091,7 @@
     "name": "Longchamp-sous-Châtenois",
     "code": "88274",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -2099,7 +2099,7 @@
     "name": "Lubine",
     "code": "88275",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88490"
   },
@@ -2107,7 +2107,7 @@
     "name": "Lusse",
     "code": "88276",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88490"
   },
@@ -2115,7 +2115,7 @@
     "name": "Luvigny",
     "code": "88277",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88110"
   },
@@ -2123,7 +2123,7 @@
     "name": "Maconcourt",
     "code": "88278",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -2131,7 +2131,7 @@
     "name": "Madecourt",
     "code": "88279",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -2139,7 +2139,7 @@
     "name": "Madegney",
     "code": "88280",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88450"
   },
@@ -2147,7 +2147,7 @@
     "name": "Madonne-et-Lamerey",
     "code": "88281",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -2155,7 +2155,7 @@
     "name": "Malaincourt",
     "code": "88283",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88140"
   },
@@ -2163,7 +2163,7 @@
     "name": "Mandray",
     "code": "88284",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88650"
   },
@@ -2171,7 +2171,7 @@
     "name": "Mandres-sur-Vair",
     "code": "88285",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88800"
   },
@@ -2179,7 +2179,7 @@
     "name": "Marainville-sur-Madon",
     "code": "88286",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88130"
   },
@@ -2187,7 +2187,7 @@
     "name": "Marey",
     "code": "88287",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88320"
   },
@@ -2195,7 +2195,7 @@
     "name": "Maroncourt",
     "code": "88288",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -2203,7 +2203,7 @@
     "name": "Martigny-les-Bains",
     "code": "88289",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88320"
   },
@@ -2211,7 +2211,7 @@
     "name": "Martigny-les-Gerbonvaux",
     "code": "88290",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88300"
   },
@@ -2219,7 +2219,7 @@
     "name": "Martinvelle",
     "code": "88291",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88410"
   },
@@ -2227,7 +2227,7 @@
     "name": "Mattaincourt",
     "code": "88292",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -2235,7 +2235,7 @@
     "name": "Maxey-sur-Meuse",
     "code": "88293",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88630"
   },
@@ -2243,7 +2243,7 @@
     "name": "Mazeley",
     "code": "88294",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88150"
   },
@@ -2251,7 +2251,7 @@
     "name": "Mazirot",
     "code": "88295",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -2259,7 +2259,7 @@
     "name": "Médonville",
     "code": "88296",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88140"
   },
@@ -2267,7 +2267,7 @@
     "name": "Méménil",
     "code": "88297",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -2275,7 +2275,7 @@
     "name": "Ménarmont",
     "code": "88298",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -2283,7 +2283,7 @@
     "name": "Ménil-en-Xaintois",
     "code": "88299",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -2291,7 +2291,7 @@
     "name": "Ménil-de-Senones",
     "code": "88300",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88210"
   },
@@ -2299,7 +2299,7 @@
     "name": "Ménil-sur-Belvitte",
     "code": "88301",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -2307,7 +2307,7 @@
     "name": "Le Ménil",
     "code": "88302",
     "epci_code": "200033868",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88160"
   },
@@ -2315,7 +2315,7 @@
     "name": "Midrevaux",
     "code": "88303",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88630"
   },
@@ -2323,7 +2323,7 @@
     "name": "Mirecourt",
     "code": "88304",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -2331,7 +2331,7 @@
     "name": "Moncel-sur-Vair",
     "code": "88305",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88630"
   },
@@ -2339,7 +2339,7 @@
     "name": "Le Mont",
     "code": "88306",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88210"
   },
@@ -2347,7 +2347,7 @@
     "name": "Mont-lès-Lamarche",
     "code": "88307",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88320"
   },
@@ -2355,7 +2355,7 @@
     "name": "Mont-lès-Neufchâteau",
     "code": "88308",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88300"
   },
@@ -2363,7 +2363,7 @@
     "name": "Monthureux-le-Sec",
     "code": "88309",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88800"
   },
@@ -2371,7 +2371,7 @@
     "name": "Monthureux-sur-Saône",
     "code": "88310",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88410"
   },
@@ -2379,7 +2379,7 @@
     "name": "Montmotier",
     "code": "88311",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88240"
   },
@@ -2387,7 +2387,7 @@
     "name": "Morelmaison",
     "code": "88312",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -2395,7 +2395,7 @@
     "name": "Moriville",
     "code": "88313",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88330"
   },
@@ -2403,7 +2403,7 @@
     "name": "Morizécourt",
     "code": "88314",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88320"
   },
@@ -2411,7 +2411,7 @@
     "name": "Mortagne",
     "code": "88315",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -2419,7 +2419,7 @@
     "name": "Morville",
     "code": "88316",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88140"
   },
@@ -2427,7 +2427,7 @@
     "name": "Moussey",
     "code": "88317",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88210"
   },
@@ -2435,7 +2435,7 @@
     "name": "Moyemont",
     "code": "88318",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -2443,7 +2443,7 @@
     "name": "Moyenmoutier",
     "code": "88319",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88420"
   },
@@ -2451,7 +2451,7 @@
     "name": "Nayemont-les-Fosses",
     "code": "88320",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88100"
   },
@@ -2459,7 +2459,7 @@
     "name": "Neufchâteau",
     "code": "88321",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88300"
   },
@@ -2467,7 +2467,7 @@
     "name": "La Neuveville-devant-Lépanges",
     "code": "88322",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -2475,7 +2475,7 @@
     "name": "La Neuveville-sous-Châtenois",
     "code": "88324",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -2483,7 +2483,7 @@
     "name": "La Neuveville-sous-Montfort",
     "code": "88325",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88800"
   },
@@ -2491,7 +2491,7 @@
     "name": "Neuvillers-sur-Fave",
     "code": "88326",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88100"
   },
@@ -2499,7 +2499,7 @@
     "name": "Nomexy",
     "code": "88327",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88440"
   },
@@ -2507,7 +2507,7 @@
     "name": "Nompatelize",
     "code": "88328",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88470"
   },
@@ -2515,7 +2515,7 @@
     "name": "Nonville",
     "code": "88330",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88260"
   },
@@ -2523,7 +2523,7 @@
     "name": "Nonzeville",
     "code": "88331",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -2531,7 +2531,7 @@
     "name": "Norroy",
     "code": "88332",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88800"
   },
@@ -2539,7 +2539,7 @@
     "name": "Nossoncourt",
     "code": "88333",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -2547,7 +2547,7 @@
     "name": "Oëlleville",
     "code": "88334",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -2555,7 +2555,7 @@
     "name": "Offroicourt",
     "code": "88335",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -2563,7 +2563,7 @@
     "name": "Ollainville",
     "code": "88336",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -2571,7 +2571,7 @@
     "name": "Ortoncourt",
     "code": "88338",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -2579,7 +2579,7 @@
     "name": "Padoux",
     "code": "88340",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -2587,7 +2587,7 @@
     "name": "Pair-et-Grandrupt",
     "code": "88341",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88100"
   },
@@ -2595,7 +2595,7 @@
     "name": "Pallegney",
     "code": "88342",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88330"
   },
@@ -2603,7 +2603,7 @@
     "name": "Parey-sous-Montfort",
     "code": "88343",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88800"
   },
@@ -2611,7 +2611,7 @@
     "name": "Pargny-sous-Mureau",
     "code": "88344",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88350"
   },
@@ -2619,7 +2619,7 @@
     "name": "La Petite-Fosse",
     "code": "88345",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88490"
   },
@@ -2627,7 +2627,7 @@
     "name": "La Petite-Raon",
     "code": "88346",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88210"
   },
@@ -2635,7 +2635,7 @@
     "name": "Pierrefitte",
     "code": "88347",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -2643,7 +2643,7 @@
     "name": "Pierrepont-sur-l’Arentèle",
     "code": "88348",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -2651,7 +2651,7 @@
     "name": "Plainfaing",
     "code": "88349",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88230"
   },
@@ -2659,7 +2659,7 @@
     "name": "Pleuvezain",
     "code": "88350",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -2667,7 +2667,7 @@
     "name": "Plombières-les-Bains",
     "code": "88351",
     "epci_code": "200068377",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88370"
   },
@@ -2675,7 +2675,7 @@
     "name": "Pompierre",
     "code": "88352",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88300"
   },
@@ -2683,7 +2683,7 @@
     "name": "Pont-lès-Bonfays",
     "code": "88353",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88260"
   },
@@ -2691,7 +2691,7 @@
     "name": "Pont-sur-Madon",
     "code": "88354",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -2699,7 +2699,7 @@
     "name": "Portieux",
     "code": "88355",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88330"
   },
@@ -2707,7 +2707,7 @@
     "name": "Les Poulières",
     "code": "88356",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -2715,7 +2715,7 @@
     "name": "Poussay",
     "code": "88357",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -2723,7 +2723,7 @@
     "name": "Pouxeux",
     "code": "88358",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88550"
   },
@@ -2731,7 +2731,7 @@
     "name": "Prey",
     "code": "88359",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -2739,7 +2739,7 @@
     "name": "Provenchères-lès-Darney",
     "code": "88360",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88260"
   },
@@ -2747,7 +2747,7 @@
     "name": "Provenchères-et-Colroy",
     "code": "88361",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88490"
   },
@@ -2755,7 +2755,7 @@
     "name": "Le Puid",
     "code": "88362",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88210"
   },
@@ -2763,7 +2763,7 @@
     "name": "Punerot",
     "code": "88363",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88630"
   },
@@ -2771,7 +2771,7 @@
     "name": "Puzieux",
     "code": "88364",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -2779,7 +2779,7 @@
     "name": "Racécourt",
     "code": "88365",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -2787,7 +2787,7 @@
     "name": "Rainville",
     "code": "88366",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -2795,7 +2795,7 @@
     "name": "Rambervillers",
     "code": "88367",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -2803,7 +2803,7 @@
     "name": "Ramecourt",
     "code": "88368",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -2811,7 +2811,7 @@
     "name": "Ramonchamp",
     "code": "88369",
     "epci_code": "200033868",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88160"
   },
@@ -2819,7 +2819,7 @@
     "name": "Rancourt",
     "code": "88370",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -2827,7 +2827,7 @@
     "name": "Raon-aux-Bois",
     "code": "88371",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88220"
   },
@@ -2835,7 +2835,7 @@
     "name": "Raon-l’Étape",
     "code": "88372",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88110"
   },
@@ -2843,7 +2843,7 @@
     "name": "Raon-sur-Plaine",
     "code": "88373",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88110"
   },
@@ -2851,7 +2851,7 @@
     "name": "Rapey",
     "code": "88374",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88130"
   },
@@ -2859,7 +2859,7 @@
     "name": "Raves",
     "code": "88375",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88520"
   },
@@ -2867,7 +2867,7 @@
     "name": "Rebeuville",
     "code": "88376",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88300"
   },
@@ -2875,7 +2875,7 @@
     "name": "Regnévelle",
     "code": "88377",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88410"
   },
@@ -2883,7 +2883,7 @@
     "name": "Regney",
     "code": "88378",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88450"
   },
@@ -2891,7 +2891,7 @@
     "name": "Rehaincourt",
     "code": "88379",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88330"
   },
@@ -2899,7 +2899,7 @@
     "name": "Rehaupal",
     "code": "88380",
     "epci_code": "200096642",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88640"
   },
@@ -2907,7 +2907,7 @@
     "name": "Relanges",
     "code": "88381",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88260"
   },
@@ -2915,7 +2915,7 @@
     "name": "Remicourt",
     "code": "88382",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -2923,7 +2923,7 @@
     "name": "Remiremont",
     "code": "88383",
     "epci_code": "200068377",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88200"
   },
@@ -2931,7 +2931,7 @@
     "name": "Remoncourt",
     "code": "88385",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88800"
   },
@@ -2939,7 +2939,7 @@
     "name": "Remomeix",
     "code": "88386",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88100"
   },
@@ -2947,7 +2947,7 @@
     "name": "Removille",
     "code": "88387",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -2955,7 +2955,7 @@
     "name": "Renauvoid",
     "code": "88388",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88390"
   },
@@ -2963,7 +2963,7 @@
     "name": "Repel",
     "code": "88389",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -2971,7 +2971,7 @@
     "name": "Robécourt",
     "code": "88390",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88320"
   },
@@ -2979,7 +2979,7 @@
     "name": "Rochesson",
     "code": "88391",
     "epci_code": "200096634",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88120"
   },
@@ -2987,7 +2987,7 @@
     "name": "Romain-aux-Bois",
     "code": "88394",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88320"
   },
@@ -2995,7 +2995,7 @@
     "name": "Romont",
     "code": "88395",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -3003,7 +3003,7 @@
     "name": "Les Rouges-Eaux",
     "code": "88398",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -3011,7 +3011,7 @@
     "name": "Le Roulier",
     "code": "88399",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88460"
   },
@@ -3019,7 +3019,7 @@
     "name": "Rouvres-en-Xaintois",
     "code": "88400",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -3027,7 +3027,7 @@
     "name": "Rouvres-la-Chétive",
     "code": "88401",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -3035,7 +3035,7 @@
     "name": "Roville-aux-Chênes",
     "code": "88402",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -3043,7 +3043,7 @@
     "name": "Rozerotte",
     "code": "88403",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -3051,7 +3051,7 @@
     "name": "Rozières-sur-Mouzon",
     "code": "88404",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88320"
   },
@@ -3059,7 +3059,7 @@
     "name": "Rugney",
     "code": "88406",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88130"
   },
@@ -3067,7 +3067,7 @@
     "name": "Ruppes",
     "code": "88407",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88630"
   },
@@ -3075,7 +3075,7 @@
     "name": "Rupt-sur-Moselle",
     "code": "88408",
     "epci_code": "200033868",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88360"
   },
@@ -3083,7 +3083,7 @@
     "name": "Saint-Amé",
     "code": "88409",
     "epci_code": "200068377",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88120"
   },
@@ -3091,7 +3091,7 @@
     "name": "Sainte-Barbe",
     "code": "88410",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -3099,7 +3099,7 @@
     "name": "Saint-Baslemont",
     "code": "88411",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88260"
   },
@@ -3107,7 +3107,7 @@
     "name": "Saint-Benoît-la-Chipotte",
     "code": "88412",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -3115,7 +3115,7 @@
     "name": "Saint-Dié-des-Vosges",
     "code": "88413",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88100"
   },
@@ -3123,7 +3123,7 @@
     "name": "Saint-Étienne-lès-Remiremont",
     "code": "88415",
     "epci_code": "200068377",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88200"
   },
@@ -3131,7 +3131,7 @@
     "name": "Saint-Genest",
     "code": "88416",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -3139,7 +3139,7 @@
     "name": "Saint-Gorgon",
     "code": "88417",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -3147,7 +3147,7 @@
     "name": "Sainte-Hélène",
     "code": "88418",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -3155,7 +3155,7 @@
     "name": "Saint-Jean-d’Ormont",
     "code": "88419",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88210"
   },
@@ -3163,7 +3163,7 @@
     "name": "Saint-Julien",
     "code": "88421",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88410"
   },
@@ -3171,7 +3171,7 @@
     "name": "Saint-Léonard",
     "code": "88423",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88650"
   },
@@ -3179,7 +3179,7 @@
     "name": "Sainte-Marguerite",
     "code": "88424",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88100"
   },
@@ -3187,7 +3187,7 @@
     "name": "Saint-Maurice-sur-Mortagne",
     "code": "88425",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -3195,7 +3195,7 @@
     "name": "Saint-Maurice-sur-Moselle",
     "code": "88426",
     "epci_code": "200033868",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88560"
   },
@@ -3203,7 +3203,7 @@
     "name": "Saint-Menge",
     "code": "88427",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -3211,7 +3211,7 @@
     "name": "Saint-Michel-sur-Meurthe",
     "code": "88428",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88470"
   },
@@ -3219,7 +3219,7 @@
     "name": "Saint-Nabord",
     "code": "88429",
     "epci_code": "200068377",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88200"
   },
@@ -3227,7 +3227,7 @@
     "name": "Saint-Ouen-lès-Parey",
     "code": "88430",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88140"
   },
@@ -3235,7 +3235,7 @@
     "name": "Saint-Paul",
     "code": "88431",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -3243,7 +3243,7 @@
     "name": "Saint-Pierremont",
     "code": "88432",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -3251,7 +3251,7 @@
     "name": "Saint-Prancher",
     "code": "88433",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -3259,7 +3259,7 @@
     "name": "Saint-Remimont",
     "code": "88434",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88800"
   },
@@ -3267,7 +3267,7 @@
     "name": "Saint-Remy",
     "code": "88435",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88480"
   },
@@ -3275,7 +3275,7 @@
     "name": "Saint-Stail",
     "code": "88436",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88210"
   },
@@ -3283,7 +3283,7 @@
     "name": "Saint-Vallier",
     "code": "88437",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -3291,7 +3291,7 @@
     "name": "La Salle",
     "code": "88438",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88470"
   },
@@ -3299,7 +3299,7 @@
     "name": "Sanchey",
     "code": "88439",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88390"
   },
@@ -3307,7 +3307,7 @@
     "name": "Sandaucourt",
     "code": "88440",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -3315,7 +3315,7 @@
     "name": "Sans-Vallois",
     "code": "88441",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88260"
   },
@@ -3323,7 +3323,7 @@
     "name": "Sapois",
     "code": "88442",
     "epci_code": "200096634",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88120"
   },
@@ -3331,7 +3331,7 @@
     "name": "Sartes",
     "code": "88443",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88300"
   },
@@ -3339,7 +3339,7 @@
     "name": "Le Saulcy",
     "code": "88444",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88210"
   },
@@ -3347,7 +3347,7 @@
     "name": "Saulcy-sur-Meurthe",
     "code": "88445",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88580"
   },
@@ -3355,7 +3355,7 @@
     "name": "Saulxures-lès-Bulgnéville",
     "code": "88446",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88140"
   },
@@ -3363,7 +3363,7 @@
     "name": "Saulxures-sur-Moselotte",
     "code": "88447",
     "epci_code": "200096634",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88290"
   },
@@ -3371,7 +3371,7 @@
     "name": "Sauville",
     "code": "88448",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88140"
   },
@@ -3379,7 +3379,7 @@
     "name": "Savigny",
     "code": "88449",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88130"
   },
@@ -3387,7 +3387,7 @@
     "name": "Senaide",
     "code": "88450",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88320"
   },
@@ -3395,7 +3395,7 @@
     "name": "Senones",
     "code": "88451",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88210"
   },
@@ -3403,7 +3403,7 @@
     "name": "Senonges",
     "code": "88452",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88260"
   },
@@ -3411,7 +3411,7 @@
     "name": "Seraumont",
     "code": "88453",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88630"
   },
@@ -3419,7 +3419,7 @@
     "name": "Sercœur",
     "code": "88454",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -3427,7 +3427,7 @@
     "name": "Serécourt",
     "code": "88455",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88320"
   },
@@ -3435,7 +3435,7 @@
     "name": "Serocourt",
     "code": "88456",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88320"
   },
@@ -3443,7 +3443,7 @@
     "name": "Sionne",
     "code": "88457",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88630"
   },
@@ -3451,7 +3451,7 @@
     "name": "Socourt",
     "code": "88458",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88130"
   },
@@ -3459,7 +3459,7 @@
     "name": "Soncourt",
     "code": "88459",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -3467,7 +3467,7 @@
     "name": "Soulosse-sous-Saint-Élophe",
     "code": "88460",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88630"
   },
@@ -3475,7 +3475,7 @@
     "name": "Suriauville",
     "code": "88461",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88140"
   },
@@ -3483,7 +3483,7 @@
     "name": "Le Syndicat",
     "code": "88462",
     "epci_code": "200096634",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88120"
   },
@@ -3491,7 +3491,7 @@
     "name": "Taintrux",
     "code": "88463",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88100"
   },
@@ -3499,7 +3499,7 @@
     "name": "Tendon",
     "code": "88464",
     "epci_code": "200096634",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88460"
   },
@@ -3507,7 +3507,7 @@
     "name": "Thaon-les-Vosges",
     "code": "88465",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88150"
   },
@@ -3515,7 +3515,7 @@
     "name": "They-sous-Montfort",
     "code": "88466",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88800"
   },
@@ -3523,7 +3523,7 @@
     "name": "Thiéfosse",
     "code": "88467",
     "epci_code": "200096634",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88290"
   },
@@ -3531,7 +3531,7 @@
     "name": "Le Thillot",
     "code": "88468",
     "epci_code": "200033868",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88160"
   },
@@ -3539,7 +3539,7 @@
     "name": "Thiraucourt",
     "code": "88469",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -3547,7 +3547,7 @@
     "name": "Le Tholy",
     "code": "88470",
     "epci_code": "200096642",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88530"
   },
@@ -3555,7 +3555,7 @@
     "name": "Les Thons",
     "code": "88471",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88410"
   },
@@ -3563,7 +3563,7 @@
     "name": "Thuillières",
     "code": "88472",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88260"
   },
@@ -3571,7 +3571,7 @@
     "name": "Tignécourt",
     "code": "88473",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88320"
   },
@@ -3579,7 +3579,7 @@
     "name": "Tilleux",
     "code": "88474",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88300"
   },
@@ -3587,7 +3587,7 @@
     "name": "Tollaincourt",
     "code": "88475",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88320"
   },
@@ -3595,7 +3595,7 @@
     "name": "Totainville",
     "code": "88476",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -3603,7 +3603,7 @@
     "name": "Trampot",
     "code": "88477",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88350"
   },
@@ -3611,7 +3611,7 @@
     "name": "Tranqueville-Graux",
     "code": "88478",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88300"
   },
@@ -3619,7 +3619,7 @@
     "name": "Trémonzey",
     "code": "88479",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88240"
   },
@@ -3627,7 +3627,7 @@
     "name": "Ubexy",
     "code": "88480",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88130"
   },
@@ -3635,7 +3635,7 @@
     "name": "Uriménil",
     "code": "88481",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88220"
   },
@@ -3643,7 +3643,7 @@
     "name": "Urville",
     "code": "88482",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88140"
   },
@@ -3651,7 +3651,7 @@
     "name": "Uxegney",
     "code": "88483",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88390"
   },
@@ -3659,7 +3659,7 @@
     "name": "Uzemain",
     "code": "88484",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88220"
   },
@@ -3667,7 +3667,7 @@
     "name": "La Vacheresse-et-la-Rouillie",
     "code": "88485",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88140"
   },
@@ -3675,7 +3675,7 @@
     "name": "Vagney",
     "code": "88486",
     "epci_code": "200096634",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88120"
   },
@@ -3683,7 +3683,7 @@
     "name": "Le Val-d’Ajol",
     "code": "88487",
     "epci_code": "200068377",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88340"
   },
@@ -3691,7 +3691,7 @@
     "name": "Valfroicourt",
     "code": "88488",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -3699,7 +3699,7 @@
     "name": "Valleroy-aux-Saules",
     "code": "88489",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -3707,7 +3707,7 @@
     "name": "Valleroy-le-Sec",
     "code": "88490",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88800"
   },
@@ -3715,7 +3715,7 @@
     "name": "Les Vallois",
     "code": "88491",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88260"
   },
@@ -3723,7 +3723,7 @@
     "name": "Le Valtin",
     "code": "88492",
     "epci_code": "200096642",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88230"
   },
@@ -3731,7 +3731,7 @@
     "name": "Varmonzey",
     "code": "88493",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88450"
   },
@@ -3739,7 +3739,7 @@
     "name": "Vaubexy",
     "code": "88494",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -3747,7 +3747,7 @@
     "name": "Vaudéville",
     "code": "88495",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88000"
   },
@@ -3755,7 +3755,7 @@
     "name": "Vaudoncourt",
     "code": "88496",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88140"
   },
@@ -3763,7 +3763,7 @@
     "name": "Vaxoncourt",
     "code": "88497",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88330"
   },
@@ -3771,7 +3771,7 @@
     "name": "Vecoux",
     "code": "88498",
     "epci_code": "200068377",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88200"
   },
@@ -3779,7 +3779,7 @@
     "name": "Velotte-et-Tatignécourt",
     "code": "88499",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -3787,7 +3787,7 @@
     "name": "Ventron",
     "code": "88500",
     "epci_code": "200096634",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88310"
   },
@@ -3795,7 +3795,7 @@
     "name": "Le Vermont",
     "code": "88501",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88210"
   },
@@ -3803,7 +3803,7 @@
     "name": "Vervezelle",
     "code": "88502",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -3811,7 +3811,7 @@
     "name": "Vexaincourt",
     "code": "88503",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88110"
   },
@@ -3819,7 +3819,7 @@
     "name": "Vicherey",
     "code": "88504",
     "epci_code": "245400510",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -3827,7 +3827,7 @@
     "name": "Vienville",
     "code": "88505",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88430"
   },
@@ -3835,7 +3835,7 @@
     "name": "Vieux-Moulin",
     "code": "88506",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88210"
   },
@@ -3843,7 +3843,7 @@
     "name": "Villers",
     "code": "88507",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -3851,7 +3851,7 @@
     "name": "Ville-sur-Illon",
     "code": "88508",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88270"
   },
@@ -3859,7 +3859,7 @@
     "name": "Villoncourt",
     "code": "88509",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88150"
   },
@@ -3867,7 +3867,7 @@
     "name": "Villotte",
     "code": "88510",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88320"
   },
@@ -3875,7 +3875,7 @@
     "name": "Villouxel",
     "code": "88511",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88350"
   },
@@ -3883,7 +3883,7 @@
     "name": "Viménil",
     "code": "88512",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88600"
   },
@@ -3891,7 +3891,7 @@
     "name": "Vincey",
     "code": "88513",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88450"
   },
@@ -3899,7 +3899,7 @@
     "name": "Viocourt",
     "code": "88514",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -3907,7 +3907,7 @@
     "name": "Vioménil",
     "code": "88515",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88260"
   },
@@ -3915,7 +3915,7 @@
     "name": "Vittel",
     "code": "88516",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88800"
   },
@@ -3923,7 +3923,7 @@
     "name": "Viviers-le-Gras",
     "code": "88517",
     "epci_code": "200068773",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88260"
   },
@@ -3931,7 +3931,7 @@
     "name": "Viviers-lès-Offroicourt",
     "code": "88518",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -3939,7 +3939,7 @@
     "name": "La Voivre",
     "code": "88519",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88470"
   },
@@ -3947,7 +3947,7 @@
     "name": "Les Voivres",
     "code": "88520",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88240"
   },
@@ -3955,7 +3955,7 @@
     "name": "Vomécourt",
     "code": "88521",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -3963,7 +3963,7 @@
     "name": "Vomécourt-sur-Madon",
     "code": "88522",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -3971,7 +3971,7 @@
     "name": "Vouxey",
     "code": "88523",
     "epci_code": "200068559",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88170"
   },
@@ -3979,7 +3979,7 @@
     "name": "Vrécourt",
     "code": "88524",
     "epci_code": "200068682",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88140"
   },
@@ -3987,7 +3987,7 @@
     "name": "Vroville",
     "code": "88525",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88500"
   },
@@ -3995,7 +3995,7 @@
     "name": "Wisembach",
     "code": "88526",
     "epci_code": "200071066",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88520"
   },
@@ -4003,7 +4003,7 @@
     "name": "Xaffévillers",
     "code": "88527",
     "epci_code": "200005957",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88700"
   },
@@ -4011,7 +4011,7 @@
     "name": "Xamontarupt",
     "code": "88528",
     "epci_code": "200042000",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88460"
   },
@@ -4019,7 +4019,7 @@
     "name": "Xaronval",
     "code": "88529",
     "epci_code": "200068369",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88130"
   },
@@ -4027,7 +4027,7 @@
     "name": "Xertigny",
     "code": "88530",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88220"
   },
@@ -4035,7 +4035,7 @@
     "name": "Xonrupt-Longemer",
     "code": "88531",
     "epci_code": "200096642",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88400"
   },
@@ -4043,7 +4043,7 @@
     "name": "Zincourt",
     "code": "88532",
     "epci_code": "200068757",
-    "departement_code": "88",
+    "department_code": "88",
     "region_code": "44",
     "postal_code": "88330"
   }

@@ -11,14 +11,14 @@ namespace :api_geo_data do
     get_from_api_geo('regions', 'regions')
     departements = get_from_api_geo('departements?zone=metro,drom,com', 'departements')
     departements.each do |departement|
-      departement_code = departement[:code]
-      epci_filename = "epcis-#{departement_code}"
-      if departement_code.start_with?('98')
+      department_code = departement[:code]
+      epci_filename = "epcis-#{department_code}"
+      if department_code.start_with?('98')
         PATH.join("#{epci_filename}.json").write(JSON.dump([]))
       else
-        get_from_api_geo("epcis?codeDepartement=#{departement_code}", epci_filename)
+        get_from_api_geo("epcis?codeDepartement=#{department_code}", epci_filename)
       end
-      get_from_api_geo("communes?codeDepartement=#{departement_code}&type=commune-actuelle,arrondissement-municipal", "communes-#{departement_code}")
+      get_from_api_geo("communes?codeDepartement=#{department_code}&type=commune-actuelle,arrondissement-municipal", "communes-#{department_code}")
     end
   end
 
@@ -31,7 +31,7 @@ namespace :api_geo_data do
           name: result[:nom].tr("'", '’'),
           code: result[:code],
           epci_code: result[:codeEpci],
-          departement_code: result[:codeDepartement],
+          department_code: result[:codeDepartement],
           region_code: result[:codeRegion],
         }.compact
 

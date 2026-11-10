@@ -23,4 +23,13 @@ describe ExportTemplate::ChampsComponent, type: :component do
     expect(page).to have_unchecked_field "Siret"
     expect(page).to have_unchecked_field "(Bloc répétable Amis) – Prénom"
   end
+
+  context 'when the template exports a raw column' do
+    let(:column) { procedure.find_column(label: 'Commune – Département') }
+    let(:export_template) { build(:export_template, kind: 'csv', groupe_instructeur:, exported_columns: [ExportedColumn.new(column:, libelle: 'Département', raw: true)]) }
+
+    it 'keeps the flag in the value posted by its checkbox' do
+      expect(JSON.parse(page.find_field('Département', exact: true, checked: true)[:value])).to include('raw' => true)
+    end
+  end
 end

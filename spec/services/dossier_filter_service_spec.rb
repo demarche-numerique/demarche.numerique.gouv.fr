@@ -259,7 +259,7 @@ describe DossierFilterService do
       end
 
       context 'with departement type_de_champ' do
-        let(:filter) { [type_de_champ.libelle, '13'] }
+        let(:filter) { ["#{type_de_champ.libelle} – Département", '13'] }
         let(:public_type_de_champs) { [{ type: :departements }] }
 
         before do
@@ -427,7 +427,7 @@ describe DossierFilterService do
         end
       end
 
-      context "when searching by departement_code (enum)" do
+      context "when searching by department_code (enum)" do
         let(:value) { "99" }
         let(:filter) { ["rna – Département", value] }
 

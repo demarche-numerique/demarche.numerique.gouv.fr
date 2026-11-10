@@ -3,7 +3,7 @@
     "name": "Aiglun",
     "code": "06001",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06910"
   },
@@ -11,7 +11,7 @@
     "name": "Amirat",
     "code": "06002",
     "epci_code": "200039857",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06910"
   },
@@ -19,7 +19,7 @@
     "name": "Andon",
     "code": "06003",
     "epci_code": "200039857",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06750"
   },
@@ -27,7 +27,7 @@
     "name": "Antibes",
     "code": "06004",
     "epci_code": "240600585",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06160"
   },
@@ -35,7 +35,7 @@
     "name": "Antibes",
     "code": "06004",
     "epci_code": "240600585",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06600"
   },
@@ -43,7 +43,7 @@
     "name": "Ascros",
     "code": "06005",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06260"
   },
@@ -51,7 +51,7 @@
     "name": "Aspremont",
     "code": "06006",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06790"
   },
@@ -59,7 +59,7 @@
     "name": "Auribeau-sur-Siagne",
     "code": "06007",
     "epci_code": "200039857",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06810"
   },
@@ -67,7 +67,7 @@
     "name": "Auvare",
     "code": "06008",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06260"
   },
@@ -75,7 +75,7 @@
     "name": "Bairols",
     "code": "06009",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06420"
   },
@@ -83,7 +83,7 @@
     "name": "Le Bar-sur-Loup",
     "code": "06010",
     "epci_code": "240600585",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06620"
   },
@@ -91,7 +91,7 @@
     "name": "Beaulieu-sur-Mer",
     "code": "06011",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06310"
   },
@@ -99,7 +99,7 @@
     "name": "Beausoleil",
     "code": "06012",
     "epci_code": "240600551",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06240"
   },
@@ -107,7 +107,7 @@
     "name": "Belvédère",
     "code": "06013",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06450"
   },
@@ -115,7 +115,7 @@
     "name": "Bendejun",
     "code": "06014",
     "epci_code": "240600593",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06390"
   },
@@ -123,7 +123,7 @@
     "name": "Berre-les-Alpes",
     "code": "06015",
     "epci_code": "240600593",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06390"
   },
@@ -131,7 +131,7 @@
     "name": "Beuil",
     "code": "06016",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06470"
   },
@@ -139,7 +139,7 @@
     "name": "Bézaudun-les-Alpes",
     "code": "06017",
     "epci_code": "240600585",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06510"
   },
@@ -147,7 +147,7 @@
     "name": "Biot",
     "code": "06018",
     "epci_code": "240600585",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06410"
   },
@@ -155,7 +155,7 @@
     "name": "Blausasc",
     "code": "06019",
     "epci_code": "240600593",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06440"
   },
@@ -163,7 +163,7 @@
     "name": "La Bollène-Vésubie",
     "code": "06020",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06450"
   },
@@ -171,7 +171,7 @@
     "name": "Bonson",
     "code": "06021",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06830"
   },
@@ -179,7 +179,7 @@
     "name": "Bouyon",
     "code": "06022",
     "epci_code": "240600585",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06510"
   },
@@ -187,7 +187,7 @@
     "name": "Breil-sur-Roya",
     "code": "06023",
     "epci_code": "240600551",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06540"
   },
@@ -195,7 +195,7 @@
     "name": "Briançonnet",
     "code": "06024",
     "epci_code": "200039857",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06850"
   },
@@ -203,7 +203,7 @@
     "name": "Le Broc",
     "code": "06025",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06510"
   },
@@ -211,7 +211,7 @@
     "name": "Cabris",
     "code": "06026",
     "epci_code": "200039857",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06530"
   },
@@ -219,7 +219,7 @@
     "name": "Cagnes-sur-Mer",
     "code": "06027",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06800"
   },
@@ -227,7 +227,7 @@
     "name": "Caille",
     "code": "06028",
     "epci_code": "200039857",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06750"
   },
@@ -235,7 +235,7 @@
     "name": "Cannes",
     "code": "06029",
     "epci_code": "200039915",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06150"
   },
@@ -243,7 +243,7 @@
     "name": "Cannes",
     "code": "06029",
     "epci_code": "200039915",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06400"
   },
@@ -251,7 +251,7 @@
     "name": "Le Cannet",
     "code": "06030",
     "epci_code": "200039915",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06110"
   },
@@ -259,7 +259,7 @@
     "name": "Cantaron",
     "code": "06031",
     "epci_code": "240600593",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06340"
   },
@@ -267,7 +267,7 @@
     "name": "Cap-d’Ail",
     "code": "06032",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06320"
   },
@@ -275,7 +275,7 @@
     "name": "Carros",
     "code": "06033",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06510"
   },
@@ -283,7 +283,7 @@
     "name": "Castagniers",
     "code": "06034",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06670"
   },
@@ -291,7 +291,7 @@
     "name": "Castellar",
     "code": "06035",
     "epci_code": "240600551",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06500"
   },
@@ -299,7 +299,7 @@
     "name": "Castillon",
     "code": "06036",
     "epci_code": "240600551",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06500"
   },
@@ -307,7 +307,7 @@
     "name": "Caussols",
     "code": "06037",
     "epci_code": "240600585",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06460"
   },
@@ -315,7 +315,7 @@
     "name": "Châteauneuf-Grasse",
     "code": "06038",
     "epci_code": "240600585",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06740"
   },
@@ -323,7 +323,7 @@
     "name": "Châteauneuf-Villevieille",
     "code": "06039",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06390"
   },
@@ -331,7 +331,7 @@
     "name": "Châteauneuf-d’Entraunes",
     "code": "06040",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06470"
   },
@@ -339,7 +339,7 @@
     "name": "Cipières",
     "code": "06041",
     "epci_code": "240600585",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06620"
   },
@@ -347,7 +347,7 @@
     "name": "Clans",
     "code": "06042",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06420"
   },
@@ -355,7 +355,7 @@
     "name": "Coaraze",
     "code": "06043",
     "epci_code": "240600593",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06390"
   },
@@ -363,7 +363,7 @@
     "name": "La Colle-sur-Loup",
     "code": "06044",
     "epci_code": "240600585",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06480"
   },
@@ -371,7 +371,7 @@
     "name": "Collongues",
     "code": "06045",
     "epci_code": "200039857",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06910"
   },
@@ -379,7 +379,7 @@
     "name": "Colomars",
     "code": "06046",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06670"
   },
@@ -387,7 +387,7 @@
     "name": "Conségudes",
     "code": "06047",
     "epci_code": "240600585",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06510"
   },
@@ -395,7 +395,7 @@
     "name": "Contes",
     "code": "06048",
     "epci_code": "240600593",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06390"
   },
@@ -403,7 +403,7 @@
     "name": "Courmes",
     "code": "06049",
     "epci_code": "240600585",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06620"
   },
@@ -411,7 +411,7 @@
     "name": "Coursegoules",
     "code": "06050",
     "epci_code": "240600585",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06140"
   },
@@ -419,7 +419,7 @@
     "name": "La Croix-sur-Roudoule",
     "code": "06051",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06260"
   },
@@ -427,7 +427,7 @@
     "name": "Cuébris",
     "code": "06052",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06910"
   },
@@ -435,7 +435,7 @@
     "name": "Daluis",
     "code": "06053",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06470"
   },
@@ -443,7 +443,7 @@
     "name": "Drap",
     "code": "06054",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06340"
   },
@@ -451,7 +451,7 @@
     "name": "Duranus",
     "code": "06055",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06670"
   },
@@ -459,7 +459,7 @@
     "name": "Entraunes",
     "code": "06056",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06470"
   },
@@ -467,7 +467,7 @@
     "name": "L’Escarène",
     "code": "06057",
     "epci_code": "240600593",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06440"
   },
@@ -475,7 +475,7 @@
     "name": "Escragnolles",
     "code": "06058",
     "epci_code": "200039857",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06460"
   },
@@ -483,7 +483,7 @@
     "name": "Èze",
     "code": "06059",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06360"
   },
@@ -491,7 +491,7 @@
     "name": "Falicon",
     "code": "06060",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06950"
   },
@@ -499,7 +499,7 @@
     "name": "Les Ferres",
     "code": "06061",
     "epci_code": "240600585",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06510"
   },
@@ -507,7 +507,7 @@
     "name": "Fontan",
     "code": "06062",
     "epci_code": "240600551",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06540"
   },
@@ -515,7 +515,7 @@
     "name": "Gars",
     "code": "06063",
     "epci_code": "200039857",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06850"
   },
@@ -523,7 +523,7 @@
     "name": "Gattières",
     "code": "06064",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06510"
   },
@@ -531,7 +531,7 @@
     "name": "La Gaude",
     "code": "06065",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06610"
   },
@@ -539,7 +539,7 @@
     "name": "Gilette",
     "code": "06066",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06830"
   },
@@ -547,7 +547,7 @@
     "name": "Gorbio",
     "code": "06067",
     "epci_code": "240600551",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06500"
   },
@@ -555,7 +555,7 @@
     "name": "Gourdon",
     "code": "06068",
     "epci_code": "240600585",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06620"
   },
@@ -563,7 +563,7 @@
     "name": "Grasse",
     "code": "06069",
     "epci_code": "200039857",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06130"
   },
@@ -571,7 +571,7 @@
     "name": "Grasse",
     "code": "06069",
     "epci_code": "200039857",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06520"
   },
@@ -579,7 +579,7 @@
     "name": "Gréolières",
     "code": "06070",
     "epci_code": "240600585",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06620"
   },
@@ -587,7 +587,7 @@
     "name": "Guillaumes",
     "code": "06071",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06470"
   },
@@ -595,7 +595,7 @@
     "name": "Ilonse",
     "code": "06072",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06420"
   },
@@ -603,7 +603,7 @@
     "name": "Isola",
     "code": "06073",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06420"
   },
@@ -611,7 +611,7 @@
     "name": "Lantosque",
     "code": "06074",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06450"
   },
@@ -619,7 +619,7 @@
     "name": "Levens",
     "code": "06075",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06670"
   },
@@ -627,7 +627,7 @@
     "name": "Lieuche",
     "code": "06076",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06260"
   },
@@ -635,7 +635,7 @@
     "name": "Lucéram",
     "code": "06077",
     "epci_code": "240600593",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06440"
   },
@@ -643,7 +643,7 @@
     "name": "Malaussène",
     "code": "06078",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06710"
   },
@@ -651,7 +651,7 @@
     "name": "Mandelieu-la-Napoule",
     "code": "06079",
     "epci_code": "200039915",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06210"
   },
@@ -659,7 +659,7 @@
     "name": "Marie",
     "code": "06080",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06420"
   },
@@ -667,7 +667,7 @@
     "name": "Le Mas",
     "code": "06081",
     "epci_code": "200039857",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06910"
   },
@@ -675,7 +675,7 @@
     "name": "Massoins",
     "code": "06082",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06710"
   },
@@ -683,7 +683,7 @@
     "name": "Menton",
     "code": "06083",
     "epci_code": "240600551",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06500"
   },
@@ -691,7 +691,7 @@
     "name": "Mouans-Sartoux",
     "code": "06084",
     "epci_code": "200039857",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06370"
   },
@@ -699,7 +699,7 @@
     "name": "Mougins",
     "code": "06085",
     "epci_code": "200039915",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06250"
   },
@@ -707,7 +707,7 @@
     "name": "Moulinet",
     "code": "06086",
     "epci_code": "240600551",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06380"
   },
@@ -715,7 +715,7 @@
     "name": "Les Mujouls",
     "code": "06087",
     "epci_code": "200039857",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06910"
   },
@@ -723,7 +723,7 @@
     "name": "Nice",
     "code": "06088",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06000"
   },
@@ -731,7 +731,7 @@
     "name": "Nice",
     "code": "06088",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06100"
   },
@@ -739,7 +739,7 @@
     "name": "Nice",
     "code": "06088",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06200"
   },
@@ -747,7 +747,7 @@
     "name": "Nice",
     "code": "06088",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06300"
   },
@@ -755,7 +755,7 @@
     "name": "Opio",
     "code": "06089",
     "epci_code": "240600585",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06650"
   },
@@ -763,7 +763,7 @@
     "name": "Pégomas",
     "code": "06090",
     "epci_code": "200039857",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06580"
   },
@@ -771,7 +771,7 @@
     "name": "Peille",
     "code": "06091",
     "epci_code": "240600593",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06440"
   },
@@ -779,7 +779,7 @@
     "name": "Peillon",
     "code": "06092",
     "epci_code": "240600593",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06440"
   },
@@ -787,7 +787,7 @@
     "name": "La Penne",
     "code": "06093",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06260"
   },
@@ -795,7 +795,7 @@
     "name": "Péone",
     "code": "06094",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06470"
   },
@@ -803,7 +803,7 @@
     "name": "Peymeinade",
     "code": "06095",
     "epci_code": "200039857",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06530"
   },
@@ -811,7 +811,7 @@
     "name": "Pierlas",
     "code": "06096",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06260"
   },
@@ -819,7 +819,7 @@
     "name": "Pierrefeu",
     "code": "06097",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06910"
   },
@@ -827,7 +827,7 @@
     "name": "Puget-Rostang",
     "code": "06098",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06260"
   },
@@ -835,7 +835,7 @@
     "name": "Puget-Théniers",
     "code": "06099",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06260"
   },
@@ -843,7 +843,7 @@
     "name": "Revest-les-Roches",
     "code": "06100",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06830"
   },
@@ -851,7 +851,7 @@
     "name": "Rigaud",
     "code": "06101",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06260"
   },
@@ -859,7 +859,7 @@
     "name": "Rimplas",
     "code": "06102",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06420"
   },
@@ -867,7 +867,7 @@
     "name": "Roquebillière",
     "code": "06103",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06450"
   },
@@ -875,7 +875,7 @@
     "name": "Roquebrune-Cap-Martin",
     "code": "06104",
     "epci_code": "240600551",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06190"
   },
@@ -883,7 +883,7 @@
     "name": "Roquefort-les-Pins",
     "code": "06105",
     "epci_code": "240600585",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06330"
   },
@@ -891,7 +891,7 @@
     "name": "Roquestéron",
     "code": "06106",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06910"
   },
@@ -899,7 +899,7 @@
     "name": "La Roque-en-Provence",
     "code": "06107",
     "epci_code": "240600585",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06910"
   },
@@ -907,7 +907,7 @@
     "name": "La Roquette-sur-Siagne",
     "code": "06108",
     "epci_code": "200039857",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06550"
   },
@@ -915,7 +915,7 @@
     "name": "La Roquette-sur-Var",
     "code": "06109",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06670"
   },
@@ -923,7 +923,7 @@
     "name": "Roubion",
     "code": "06110",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06420"
   },
@@ -931,7 +931,7 @@
     "name": "Roure",
     "code": "06111",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06420"
   },
@@ -939,7 +939,7 @@
     "name": "Le Rouret",
     "code": "06112",
     "epci_code": "240600585",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06650"
   },
@@ -947,7 +947,7 @@
     "name": "Sainte-Agnès",
     "code": "06113",
     "epci_code": "240600551",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06500"
   },
@@ -955,7 +955,7 @@
     "name": "Saint-André-de-la-Roche",
     "code": "06114",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06730"
   },
@@ -963,7 +963,7 @@
     "name": "Saint-Antonin",
     "code": "06115",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06260"
   },
@@ -971,7 +971,7 @@
     "name": "Saint-Auban",
     "code": "06116",
     "epci_code": "200039857",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06850"
   },
@@ -979,7 +979,7 @@
     "name": "Saint-Blaise",
     "code": "06117",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06670"
   },
@@ -987,7 +987,7 @@
     "name": "Saint-Cézaire-sur-Siagne",
     "code": "06118",
     "epci_code": "200039857",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06530"
   },
@@ -995,7 +995,7 @@
     "name": "Saint-Dalmas-le-Selvage",
     "code": "06119",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06660"
   },
@@ -1003,7 +1003,7 @@
     "name": "Saint-Étienne-de-Tinée",
     "code": "06120",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06660"
   },
@@ -1011,7 +1011,7 @@
     "name": "Saint-Jean-Cap-Ferrat",
     "code": "06121",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06230"
   },
@@ -1019,7 +1019,7 @@
     "name": "Saint-Jeannet",
     "code": "06122",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06640"
   },
@@ -1027,7 +1027,7 @@
     "name": "Saint-Laurent-du-Var",
     "code": "06123",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06700"
   },
@@ -1035,7 +1035,7 @@
     "name": "Saint-Léger",
     "code": "06124",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06260"
   },
@@ -1043,7 +1043,7 @@
     "name": "Saint-Martin-d’Entraunes",
     "code": "06125",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06470"
   },
@@ -1051,7 +1051,7 @@
     "name": "Saint-Martin-du-Var",
     "code": "06126",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06670"
   },
@@ -1059,7 +1059,7 @@
     "name": "Saint-Martin-Vésubie",
     "code": "06127",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06450"
   },
@@ -1067,7 +1067,7 @@
     "name": "Saint-Paul-de-Vence",
     "code": "06128",
     "epci_code": "240600585",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06570"
   },
@@ -1075,7 +1075,7 @@
     "name": "Saint-Sauveur-sur-Tinée",
     "code": "06129",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06420"
   },
@@ -1083,7 +1083,7 @@
     "name": "Saint-Vallier-de-Thiey",
     "code": "06130",
     "epci_code": "200039857",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06460"
   },
@@ -1091,7 +1091,7 @@
     "name": "Sallagriffon",
     "code": "06131",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06910"
   },
@@ -1099,7 +1099,7 @@
     "name": "Saorge",
     "code": "06132",
     "epci_code": "240600551",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06540"
   },
@@ -1107,7 +1107,7 @@
     "name": "Sauze",
     "code": "06133",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06470"
   },
@@ -1115,7 +1115,7 @@
     "name": "Séranon",
     "code": "06134",
     "epci_code": "200039857",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06750"
   },
@@ -1123,7 +1123,7 @@
     "name": "Sigale",
     "code": "06135",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06910"
   },
@@ -1131,7 +1131,7 @@
     "name": "Sospel",
     "code": "06136",
     "epci_code": "240600551",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06380"
   },
@@ -1139,7 +1139,7 @@
     "name": "Spéracèdes",
     "code": "06137",
     "epci_code": "200039857",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06530"
   },
@@ -1147,7 +1147,7 @@
     "name": "Théoule-sur-Mer",
     "code": "06138",
     "epci_code": "200039915",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06590"
   },
@@ -1155,7 +1155,7 @@
     "name": "Thiéry",
     "code": "06139",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06710"
   },
@@ -1163,7 +1163,7 @@
     "name": "Le Tignet",
     "code": "06140",
     "epci_code": "200039857",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06530"
   },
@@ -1171,7 +1171,7 @@
     "name": "Toudon",
     "code": "06141",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06830"
   },
@@ -1179,7 +1179,7 @@
     "name": "Touët-de-l’Escarène",
     "code": "06142",
     "epci_code": "240600593",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06440"
   },
@@ -1187,7 +1187,7 @@
     "name": "Touët-sur-Var",
     "code": "06143",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06710"
   },
@@ -1195,7 +1195,7 @@
     "name": "La Tour",
     "code": "06144",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06420"
   },
@@ -1203,7 +1203,7 @@
     "name": "Tourette-du-Château",
     "code": "06145",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06830"
   },
@@ -1211,7 +1211,7 @@
     "name": "Tournefort",
     "code": "06146",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06420"
   },
@@ -1219,7 +1219,7 @@
     "name": "Tourrette-Levens",
     "code": "06147",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06690"
   },
@@ -1227,7 +1227,7 @@
     "name": "Tourrettes-sur-Loup",
     "code": "06148",
     "epci_code": "240600585",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06140"
   },
@@ -1235,7 +1235,7 @@
     "name": "La Trinité",
     "code": "06149",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06340"
   },
@@ -1243,7 +1243,7 @@
     "name": "La Turbie",
     "code": "06150",
     "epci_code": "240600551",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06320"
   },
@@ -1251,7 +1251,7 @@
     "name": "Utelle",
     "code": "06151",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06450"
   },
@@ -1259,7 +1259,7 @@
     "name": "Valbonne",
     "code": "06152",
     "epci_code": "240600585",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06560"
   },
@@ -1267,7 +1267,7 @@
     "name": "Valdeblore",
     "code": "06153",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06420"
   },
@@ -1275,7 +1275,7 @@
     "name": "Valderoure",
     "code": "06154",
     "epci_code": "200039857",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06750"
   },
@@ -1283,7 +1283,7 @@
     "name": "Vallauris",
     "code": "06155",
     "epci_code": "240600585",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06220"
   },
@@ -1291,7 +1291,7 @@
     "name": "Venanson",
     "code": "06156",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06450"
   },
@@ -1299,7 +1299,7 @@
     "name": "Vence",
     "code": "06157",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06140"
   },
@@ -1307,7 +1307,7 @@
     "name": "Villars-sur-Var",
     "code": "06158",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06710"
   },
@@ -1315,7 +1315,7 @@
     "name": "Villefranche-sur-Mer",
     "code": "06159",
     "epci_code": "200030195",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06230"
   },
@@ -1323,7 +1323,7 @@
     "name": "Villeneuve-d’Entraunes",
     "code": "06160",
     "epci_code": "200039931",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06470"
   },
@@ -1331,7 +1331,7 @@
     "name": "Villeneuve-Loubet",
     "code": "06161",
     "epci_code": "240600585",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06270"
   },
@@ -1339,7 +1339,7 @@
     "name": "La Brigue",
     "code": "06162",
     "epci_code": "240600551",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06430"
   },
@@ -1347,7 +1347,7 @@
     "name": "Tende",
     "code": "06163",
     "epci_code": "240600551",
-    "departement_code": "06",
+    "department_code": "06",
     "region_code": "93",
     "postal_code": "06430"
   }

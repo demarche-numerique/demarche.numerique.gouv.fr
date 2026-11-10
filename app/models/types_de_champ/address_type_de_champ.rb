@@ -67,7 +67,7 @@ class TypesDeChamp::AddressTypeDeChamp < TypesDeChamp::TextTypeDeChamp
   end
 
   def columns(procedure_id:, displayable: true, prefix: nil)
-    super.concat(addressable_columns(procedure_id:, displayable:, prefix:, deprecated_columns: true))
+    super.concat(addressable_columns(procedure_id:, displayable:, prefix:))
   end
 
   def info_columns(procedure:)
