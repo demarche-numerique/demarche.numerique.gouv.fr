@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Champs::RepetitionChamp < ChampData
-  delegate :libelle_for_export, to: :type_de_champ
+  delegate :libelle_for_export, :limit_repetitions?, to: :type_de_champ
 
   def row_libelle
     children_types = dossier.revision.children_of(type_de_champ)
@@ -13,7 +13,7 @@ class Champs::RepetitionChamp < ChampData
   end
 
   def rows
-    dossier.project_rows_for(type_de_champ)
+    dossier.champ_layout.rows(self)
   end
 
   def row_ids

@@ -1,19 +1,25 @@
 # frozen_string_literal: true
 
 # One row of a repetition champ: the row id, its 1-based position, and the
-# champs projected on it (`flat_children`, built lazily).
+# champs it holds, laid out by the dossier's ChampLayout.
 class RepetitionRow
-  attr_reader :id, :index, :dossier, :type_de_champ
+  include ChampContainerConcern
 
-  def initialize(id:, index:, dossier:, type_de_champ:, children_type_de_champs:)
+  attr_reader :id, :index, :repetition, :children
+
+  def initialize(id:, index:, repetition:)
     @id = id
     @index = index
-    @dossier = dossier
-    @type_de_champ = type_de_champ
-    @children_type_de_champs = children_type_de_champs
+    @repetition = repetition
+  end
+
+  # Set once, by the layout that built the row.
+  def lay_out(children:)
+    @children = children.freeze
+    self
   end
 
   def flat_children
-    @flat_children ||= @children_type_de_champs.map { dossier.project_champ(it, row_id: id) }
+    @flat_children ||= super
   end
 end

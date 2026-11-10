@@ -19,7 +19,7 @@ class Champs::ChampController < ApplicationController
       DossierPreloader.load_one(dossier, pj_template: true)
       dossier.project_champ(type_de_champ)
     else
-      dossier.with_champs if type_de_champ.public? && dossier.revision.parent_of(type_de_champ)&.min_repetitions?
+      dossier.with_champs if type_de_champ.public? && type_de_champ.enclosing_repetition&.min_repetitions?
       dossier.champ_for_update(type_de_champ, row_id:, updated_by: current_user.email)
     end
   end

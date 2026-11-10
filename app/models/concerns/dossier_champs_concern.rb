@@ -39,57 +39,20 @@ module DossierChampsConcern
     end
   end
 
-  def public_root_champs
-    @public_root_champs ||= revision.public_root_type_de_champs.map { project_champ(_1) }
+  # The champs laid out as the types de champ of the revision are, until the
+  # champs change (reset_champs_cache).
+  def champ_layout
+    @champ_layout ||= ChampLayout.lay_out(self)
   end
 
-  def private_root_champs
-    @private_root_champs ||= revision.private_root_type_de_champs.map { project_champ(_1) }
-  end
-
-  def champs
-    public_flat_champs + private_flat_champs
-  end
-
-  # Les champs qu'un champ situé sur `row_id` peut référencer : ceux de sa propre
-  # ligne de répétition, plus ceux qui sont hors répétition. Un champ hors
-  # répétition (row_id nil) ne voit que ces derniers.
-  def champs_for_row(row_id)
-    return Array(champs_by_row_id[nil]) if row_id.nil?
-
-    Array(champs_by_row_id[row_id]) + Array(champs_by_row_id[nil])
-  end
-
-  def public_flat_champs
-    @public_flat_champs ||= public_root_champs.flat_map do |champ|
-      if champ.repetition?
-        [champ] + champ.rows.flat_map(&:flat_children)
-      else
-        champ
-      end
-    end
-  end
-
-  def private_flat_champs
-    @private_flat_champs ||= private_root_champs.flat_map do |champ|
-      if champ.repetition?
-        [champ] + champ.rows.flat_map(&:flat_children)
-      else
-        champ
-      end
-    end
-  end
-
-  def project_rows_for(type_de_champ)
-    row_ids = repetition_row_ids(type_de_champ)
-    return [] if row_ids.empty?
-
-    children_type_de_champs = revision.children_of(type_de_champ)
-
-    row_ids.map.with_index(1) do |row_id, index|
-      RepetitionRow.new(id: row_id, index:, dossier: self, type_de_champ:, children_type_de_champs:)
-    end
-  end
+  # public_champs and private_champs hold the top of the form, the rest being
+  # within the header sections (HeaderSectionChamp#children) and the rows of
+  # the repetitions (RepetitionChamp#rows). Root as in not within a repetition.
+  delegate :public_champs, :private_champs,
+    :public_flat_champs, :private_flat_champs,
+    :public_root_champs, :private_root_champs,
+    :champs, :champs_for_row,
+    to: :champ_layout
 
   def find_type_de_champ_by_stable_id(stable_id, scope = nil)
     type_de_champ = revision.type_de_champ(stable_id)
@@ -501,19 +464,11 @@ module DossierChampsConcern
     end
   end
 
-  def champs_by_row_id
-    @champs_by_row_id ||= champs.group_by(&:row_id)
-  end
-
   def reset_champs_cache
     @champ_data_by_public_id = nil
     @built_champs = nil
+    @champ_layout = nil
     @discarded_champ_data_by_public_id = nil
-    @champs_by_row_id = nil
-    @public_root_champs = nil
-    @private_root_champs = nil
-    @public_flat_champs = nil
-    @private_flat_champs = nil
     @repetition_row_ids = nil
     @revision_stable_ids = nil
     @champ_data_on_stream = nil
