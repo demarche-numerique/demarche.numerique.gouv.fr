@@ -22,7 +22,7 @@ module TurboChampsConcern
   end
 
   def champs_to_toggle(champs, to_update)
-    champs.filter { it.conditional? || it.child? }
+    champs.filter { it.conditional? || it.in_repetition? }
       .partition(&:visible?)
       .map { champs_to_one_selector(it - to_update) }
   end
