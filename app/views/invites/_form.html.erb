@@ -1,0 +1,64 @@
+<div id="dossier-invites-form-content">
+  <%= t('views.invites.form.edit_dossier_html', count: invites.size) %>
+
+  <% if invites.present? %>
+    <ul>
+      <% invites.each_with_index do |invite, index| %>
+        <li>
+          <span id="dossier-invite-<%= index %>"><%= invite.email %></span>
+
+          <span class="fr-text--sm">
+            <%= link_to t('views.invites.form.withdraw_permission'), invite_path(invite), data: { turbo_method: :delete, turbo_confirm: t('views.invites.form.want_to_withdraw_permission', email: invite.email) }, class: "fr-btn fr-btn--sm fr-btn--tertiary-no-outline", id: "dossier-invite-delete-#{index}", "aria-labelledby": "dossier-invite-delete-#{index} dossier-invite-#{index}" %>
+          </span>
+        </li>
+      <% end %>
+    </ul>
+    <div class="fr-alert fr-alert--info fr-mb-4w">
+      <p><%= t('views.invites.form.submit_dossier_yourself') %></p>
+    </div>
+  <% end %>
+
+  <hr class="fr-hr">
+
+  <fieldset class="fr-fieldset">
+    <legend class="fr-fieldset__legend">
+      <h3 class="fr-h6"><%= t('views.invites.form.title') %></h3>
+    </legend>
+
+    <p class="fr-highlight fr-text--sm">
+      <%= t('asterisk_html', scope: [:utils]) %>
+    </p>
+
+    <% if invite.errors.any? %>
+      <div class="fr-alert fr-alert--error fr-alert--sm fr-mb-3w" role="alert">
+        <ul>
+          <% invite.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="fr-fieldset__element">
+      <div class="fr-input-group">
+        <%= label_tag :invite_email, class: "fr-label" do %>
+          <%= t('views.invites.form.email') %>
+          <%= render EditableChamp::AsteriskMandatoryComponent.new %>
+
+          <span class="fr-hint-text">
+            <%= t('views.invites.form.email_hint') %>
+          </span>
+        <% end %>
+
+        <%= email_field_tag :invite_email, '', required: true, class: "fr-input" %>
+      </div>
+    </div>
+
+    <div class="fr-fieldset__element">
+      <div class="fr-input-group">
+        <%= label_tag :invite_message, t('views.invites.form.invite_message'), class: "fr-label" %>
+        <%= text_area_tag :invite_message, '', class: "fr-input" %>
+      </div>
+    </div>
+  </fieldset>
+</div>
