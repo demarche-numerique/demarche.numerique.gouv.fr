@@ -254,8 +254,7 @@ class ChampData < ApplicationRecord
   end
 
   def self.decode_typed_id(typed_id)
-    _, stable_id_with_maybe_row = GraphQL::Schema::UniqueWithinType.decode(typed_id)
-    stable_id_with_maybe_row.split('|')
+    id_from_typed_id(typed_id).to_s.split('|')
   end
 
   def html_label?
