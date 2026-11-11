@@ -58,6 +58,7 @@ module ProcedureCloneConcern
     'estimated_duration_visible',
     'estimated_processing_duration_visible',
     'estimated_dossiers_count',
+    'legacy_export_order',
     'dossiers_count_computed_at',
     'allow_expert_messaging',
     'defaut_groupe_instructeur_id',
@@ -170,6 +171,7 @@ module ProcedureCloneConcern
       procedure.max_duree_conservation_dossiers_dans_ds = NEW_MAX_DUREE_CONSERVATION
     end
     procedure.estimated_dossiers_count = 0
+    procedure.legacy_export_order = false
     procedure.published_revision = nil
     procedure.draft_revision.procedure = procedure
     procedure.ask_birthday = false # see issue #4242

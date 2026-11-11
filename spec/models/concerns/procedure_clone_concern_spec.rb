@@ -445,6 +445,12 @@ describe ProcedureCloneConcern, type: :model do
       expect(subject.estimated_dossiers_count).to eq(0)
     end
 
+    describe 'a clone of a procedure keeping the legacy export order' do
+      before { procedure.update!(legacy_export_order: true) }
+
+      it { expect(subject).not_to be_legacy_export_order }
+    end
+
     describe 'should not duplicate lien_notice' do
       let(:procedure) { create(:procedure, lien_notice: "http://toto.com") }
 
