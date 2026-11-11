@@ -15,4 +15,13 @@ class Columns::DossierLinkNumberColumn < Columns::ChampColumn
   protected
 
   def relabel(label) = @label = label
+
+  private
+
+  def sorted_dossiers(dossiers, order)
+    direction = order == 'desc' ? 'DESC' : 'ASC'
+    dossiers
+      .with_type_de_champ(stable_id)
+      .order(Arel.sql("CASE WHEN champs.value ~ '^[0-9]+$' THEN champs.value::numeric END #{direction}"), id: order)
+  end
 end
