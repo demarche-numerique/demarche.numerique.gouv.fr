@@ -396,6 +396,50 @@ describe Instructeurs::ProceduresController, type: :controller do
       end
     end
 
+    describe 'linked procedure column with pagination' do
+      render_views
+
+      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :dossier_link, libelle: 'Dossier lié' }], instructeurs: [instructeur]) }
+      let(:column) { procedure.find_column(label: 'Dossier lié – Intitulé de la démarche') }
+      let(:columns) { ['Dossier lié – N° dossier', 'Dossier lié – Date de dépôt du dossier', 'Dossier lié – Intitulé de la démarche', 'Dossier lié – Service porteur de la démarche'].map { procedure.find_column(label: it) } }
+      let(:targets) { Array.new(3) { create(:procedure, service: create(:service)) } }
+      let!(:dossiers) do
+        targets.map.with_index(1) do |target, day|
+          create(:dossier, :en_instruction, procedure:).tap { it.champ_data.first.update_columns(value: "4242#{day}", value_json: { procedure_id: target.id, submitted_on: "2026-03-0#{day}" }) }
+        end
+      end
+
+      before do
+        sign_in(instructeur.user)
+        instructeur.procedure_presentation_for_procedure_id(procedure.id).update!(displayed_columns: columns)
+        subject
+      end
+
+      def rendered_rows = response.parsed_body.css('tr[id^="table-dossiers-row-"]')
+
+      it 'keeps request count stable' do
+        stub_const('Instructeurs::ProceduresController::ITEMS_PER_PAGE', 2)
+        count_with_partial_page = count_queries { get :show, params: { procedure_id: procedure.id, statut: statut } }
+        expect(rendered_rows.size).to eq(2)
+
+        stub_const('Instructeurs::ProceduresController::ITEMS_PER_PAGE', 100)
+        count_with_all = count_queries { get :show, params: { procedure_id: procedure.id, statut: statut } }
+        expect(rendered_rows.size).to eq(dossiers.size)
+        dossiers.zip(targets).each.with_index(1) do |(dossier, target), day|
+          expect(response.body).to have_css("tr#table-dossiers-row-#{dossier.id}", text: /4242#{day}.*0#{day}\/03\/2026.*#{Regexp.escape(target.libelle)}.*#{Regexp.escape(target.service.nom)}/m)
+        end
+
+        expect(count_with_all).to eq(count_with_partial_page)
+      end
+
+      it 'does not query the observed procedures of an unlimited champ' do
+        observed_ids_query = /DISTINCT champs\.value_json->>'procedure_id'/
+        expect(count_queries(matching: observed_ids_query) { column.options_for_select }).to eq(1)
+
+        expect(count_queries(matching: observed_ids_query) { get :show, params: { procedure_id: procedure.id, statut: statut } }).to eq(0)
+      end
+    end
+
     context "when logged in, and belonging to gi_1, gi_2" do
       before do
         sign_in(instructeur.user)

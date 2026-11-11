@@ -243,6 +243,93 @@ describe "procedure filters" do
     end
   end
 
+  describe 'with dossier link' do
+    let(:public_type_de_champs) { [{ type: :dossier_link, libelle: 'Dossier lié' }] }
+    let(:column_label) { 'Dossier lié – Intitulé de la démarche' }
+    let(:column_labels) { ['Dossier lié – N° dossier', 'Dossier lié – Date de dépôt du dossier', column_label, 'Dossier lié – Service porteur de la démarche'] }
+    let(:first_target) { create(:procedure, libelle: 'Démarche cible Alpha', service: create(:service, nom: 'Service Alpha')) }
+    let(:second_target) { create(:procedure, libelle: 'Démarche cible Bravo', service: create(:service, nom: 'Service Bravo')) }
+
+    def linked_dossier(target, submitted_at) = create(:dossier, :en_construction, procedure: target).tap { it.update_columns(depose_at: submitted_at) }
+
+    scenario "should display, filter and export the linked dossier columns", js: true do
+      champ_2.update!(value: linked_dossier(second_target, Time.zone.local(2026, 5, 6, 10)).id)
+      champ.update!(value: linked_dossier(first_target, Time.zone.local(2026, 3, 4, 10)).id)
+      expect(champ_2.value.to_i).to be < champ.value.to_i
+      visit instructeur_procedure_path(procedure)
+
+      add_column(*column_labels)
+      within ".dossiers-table" do
+        column_labels.each { expect(page).to have_button(it) }
+        expect(page).to have_css('tr', text: /#{new_unfollow_dossier.id}.*#{champ.value}.*04\/03\/2026.*Démarche cible Alpha.*Service Alpha/)
+        expect(page).to have_css('tr', text: /#{new_unfollow_dossier_2.id}.*#{champ_2.value}.*06\/05\/2026.*Démarche cible Bravo.*Service Bravo/)
+      end
+      expect(page).to be_axe_clean
+
+      within(".dossiers-table") { click_button column_label }
+      within ".dossiers-table" do
+        expect(page).to have_css('th[aria-sort="ascending"]', text: column_label)
+        expect(find('tbody')).to have_text(/Démarche cible Alpha.*Démarche cible Bravo/m)
+      end
+
+      within(".dossiers-table") { click_button column_label }
+      within ".dossiers-table" do
+        expect(page).to have_css('th[aria-sort="descending"]', text: column_label)
+        expect(find('tbody')).to have_text(/Démarche cible Bravo.*Démarche cible Alpha/m)
+      end
+
+      click_on 'Personnaliser le tableau'
+      find(:by_label, 'Colonne à afficher', match: :first).click
+      page.active_element.send_keys(column_label)
+      expect(page).to have_css('.select-popover [role="option"]', text: column_label)
+      expect(page).to have_css(".select-popover [aria-activedescendant*='#{type_de_champ.stable_id}-$.procedure_id']")
+      expect(page).to be_axe_clean.excluding('.select-popover')
+      expect(page).to be_axe_clean.within('.select-popover').skipping('scrollable-region-focusable')
+      2.times { page.active_element.send_keys(:escape) }
+      expect(page).to have_no_css('.select-popover')
+      click_button "Enregistrer"
+
+      add_filter("formulaire-usager", column_label)
+      label_id = find('.fr-label', exact_text: column_label, match: :first)['id']
+      find("button[aria-labelledby~='#{label_id}']").click
+      expect(page).to have_css('.select-popover [role="option"]', text: 'Démarche cible Alpha')
+      expect(page).to be_axe_clean
+      page.active_element.send_keys(:escape)
+      expect(page).to have_no_css('.select-popover')
+      add_filter_value(column_label, 'Démarche cible Alpha', type: :multi_select)
+
+      within ".dossiers-table" do
+        expect(page).to have_link(new_unfollow_dossier.id.to_s, exact: true)
+        expect(page).not_to have_link(new_unfollow_dossier_2.id.to_s, exact: true)
+      end
+      expect(page).to have_button("#{column_label} : Démarche cible Alpha")
+      expect(page).to be_axe_clean
+
+      find("button", text: "Téléchargements").click
+      click_on "Modèles d’export"
+      click_on "Créer un modèle d’export tabulaire"
+      fill_in "Nom du modèle", with: "Modèle dossier lié"
+      find("label", text: "xlsx", exact_text: true).click
+      column_labels.each { find("label", text: it).click }
+      column_labels.each { expect(page).to have_checked_field(it) }
+      expect(page).to be_axe_clean
+      click_on "Enregistrer"
+      expect(page).to have_content("Modèle dossier lié")
+
+      export_template = ExportTemplate.find_by!(name: "Modèle dossier lié", groupe_instructeur: procedure.defaut_groupe_instructeur)
+
+      dossiers_sheet = ProcedureExportService.new(procedure, procedure.dossiers, instructeur, export_template)
+        .to_xlsx
+        .open { |f| SimpleXlsxReader.open(f.path).sheets.first.tap { it.rows.slurp } }
+
+      expect(dossiers_sheet.headers).to eq(column_labels)
+      expect(dossiers_sheet.data).to contain_exactly(
+        [champ.value, Date.new(2026, 3, 4), 'Démarche cible Alpha', 'Service Alpha'],
+        [champ_2.value, Date.new(2026, 5, 6), 'Démarche cible Bravo', 'Service Bravo']
+      )
+    end
+  end
+
   describe 'dossier labels' do
     scenario "should be able to filter by dossier labels", js: true do
       DossierLabel.create!(dossier_id: new_unfollow_dossier.id, label_id: procedure.labels.first.id)
@@ -343,9 +430,9 @@ describe "procedure filters" do
     click_button text: filter_value
   end
 
-  def add_column(column_name)
+  def add_column(*column_names)
     click_on 'Personnaliser le tableau'
-    select_autocomplete('Colonne à afficher', column_name)
+    column_names.each { select_autocomplete('Colonne à afficher', it) }
     click_button "Enregistrer"
   end
 

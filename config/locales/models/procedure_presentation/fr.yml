@@ -104,6 +104,12 @@ fr:
             telephone: Téléphone
             email: Adresse électronique
             site_internet: Site internet
+          dossier_link:
+            application_number: N° dossier
+            procedure_title: Intitulé de la démarche
+            submitted_on: Date de dépôt du dossier
+            procedure_agency: Service porteur de la démarche
+            deleted_procedure: Démarche supprimée (n° %{id})
           dossier_labels:
             label_id: Labels
           dossier_notifications:

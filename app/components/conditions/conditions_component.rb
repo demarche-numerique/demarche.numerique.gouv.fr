@@ -122,6 +122,7 @@ class Conditions::ConditionsComponent < ApplicationComponent
       .reject(&:repetition?)
       .flat_map { it.columns(procedure_id: @procedure.id) }
       .filter(&:filterable)
+      .filter(&:usable_in_conditions?)
       .filter { it.type.in?(SUPPORTED_TYPES) }
       .map { |column| [column.label, champ_column_value(column)] }
   end

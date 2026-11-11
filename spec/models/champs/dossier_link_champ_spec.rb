@@ -300,6 +300,7 @@ describe Champs::DossierLinkChamp, type: :model do
     let(:user) { create(:user) }
     let(:dossier) { create(:dossier, :brouillon, procedure:, user:) }
     let(:linked) { create(:dossier, :brouillon, user:) }
+    let(:date_column) { procedure.active_revision.public_root_type_de_champs.first.columns(procedure_id: procedure.id).second }
 
     def link!(target)
       dossier.with_update_stream(user) do
@@ -307,7 +308,7 @@ describe Champs::DossierLinkChamp, type: :model do
       end
     end
 
-    def main_champ = Dossier.find(dossier.id).champ_data.find { it.stable_id == dossier.root_champs_public.first.stable_id && it.stream == Dossier::MAIN_STREAM }
+    def main_champ = Dossier.find(dossier.id).champ_data.find { it.stable_id == date_column.stable_id && it.stream == Dossier::MAIN_STREAM }
 
     def submit(target)
       Dossier.find(target.id).tap { it.with_champs.passer_en_construction! }
@@ -326,6 +327,7 @@ describe Champs::DossierLinkChamp, type: :model do
       submit(dossier)
 
       expect(main_champ.value_json).to eq(completed(submitted_on))
+      expect(date_column.value(main_champ)).to eq(submitted_on)
       expect(main_champ.slice(:updated_at, :value_updated_at)).to eq(stamps)
     end
 
@@ -334,6 +336,7 @@ describe Champs::DossierLinkChamp, type: :model do
 
       expect { submit(dossier) }.not_to raise_error
       expect(main_champ.value_json).to eq('procedure_id' => linked.procedure.id)
+      expect(date_column.value(main_champ)).to be_nil
     end
 
     it 'completes the submission date when the dossier is submitted again after a correction' do
@@ -344,6 +347,7 @@ describe Champs::DossierLinkChamp, type: :model do
       Dossier.find(dossier.id).tap { it.with_champs.usager_submit_en_construction! }
 
       expect(main_champ.value_json).to eq(completed(submitted_on))
+      expect(date_column.value(main_champ)).to eq(submitted_on)
     end
 
     it 'keeps a complete link without querying the linked dossier' do

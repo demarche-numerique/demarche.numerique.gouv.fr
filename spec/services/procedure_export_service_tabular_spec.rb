@@ -189,6 +189,64 @@ describe ProcedureExportService do
         it { expect(dossiers_sheet.data.last.last).to be_an_instance_of(Date) }
       end
 
+      context 'with TypesDeChamp::DossierLinkTypeDeChamp' do
+        let(:public_type_de_champs) { [{ type: :dossier_link, libelle: "dossier_link" }] }
+        let(:labels) { ['dossier_link – N° dossier', 'dossier_link – Date de dépôt du dossier', 'dossier_link – Intitulé de la démarche', 'dossier_link – Service porteur de la démarche'] }
+        let(:exported_columns) { labels.map { ExportedColumn.new(libelle: it, column: procedure.find_column(label: it)) } }
+        let(:linked_procedure) { create(:procedure, libelle: 'Démarche liée', service: create(:service, nom: 'Service lié')) }
+        let(:linked_dossier) { create(:dossier, :en_construction, procedure: linked_procedure).tap { it.update_columns(depose_at: Time.zone.local(2026, 3, 4, 10)) } }
+        let(:champ) { create(:dossier, :en_construction, procedure:).champ_data.first }
+        before { champ.update!(value: linked_dossier.id) }
+        it do
+          expect(dossiers_sheet.headers.last(4)).to eq(labels)
+          expect(dossiers_sheet.data.last.last(4)).to eq([linked_dossier.id.to_s, Date.new(2026, 3, 4), 'Démarche liée', 'Service lié'])
+        end
+
+        context 'when the link has no resolved procedure' do
+          before { champ.update_columns(value: linked_dossier.id.to_s, value_json: nil) }
+          it { expect(dossiers_sheet.data.last.last(3)).to eq([nil, nil, nil]) }
+        end
+
+        context 'with dossiers linked to distinct procedures' do
+          def link_dossiers(count)
+            create_list(:procedure, count).each do |target|
+              create(:dossier, :en_construction, procedure:).champ_data.first.update_columns(value: '1', value_json: { procedure_id: target.id })
+            end
+          end
+
+          def count_export_queries(format, matching)
+            Current.reset
+            fresh_procedure = Procedure.find(procedure.id)
+            fresh_template = ExportTemplate.find(export_template.id)
+            count_queries(matching:) { ProcedureExportService.new(fresh_procedure, fresh_procedure.dossiers, instructeur, fresh_template).public_send(format) }
+          end
+
+          before do
+            export_template
+            link_dossiers(2)
+          end
+
+          it 'queries the procedures as often for twice as many dossiers' do
+            count_with_3 = count_export_queries(:to_xlsx, /"procedures"/)
+
+            link_dossiers(3)
+            count_with_6 = count_export_queries(:to_xlsx, /"procedures"/)
+
+            expect(procedure.dossiers.count).to eq(6)
+            expect(count_with_6).to eq(count_with_3)
+          end
+
+          it 'does not query the observed procedures of an unlimited champ' do
+            observed_ids_query = /DISTINCT champs\.value_json->>'procedure_id'/
+            expect(count_queries(matching: observed_ids_query) { procedure.find_column(label: 'dossier_link – Intitulé de la démarche').options_for_select }).to eq(1)
+
+            [:to_csv, :to_xlsx, :to_ods].each do |format|
+              expect(count_export_queries(format, observed_ids_query)).to eq(0), format.to_s
+            end
+          end
+        end
+      end
+
       context 'with DossierColumn as datetime' do
         let(:public_type_de_champs) { [] }
         let(:exported_columns) { [ExportedColumn.new(libelle: 'Date de passage en instruction', column: procedure.find_column(label: 'Date de passage en instruction'))] }
