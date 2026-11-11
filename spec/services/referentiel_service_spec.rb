@@ -256,6 +256,20 @@ RSpec.describe ReferentielService, type: :service do
       end
     end
 
+    context 'when the document holds more than the validated block' do
+      let(:url_tiptap) do
+        url_tiptap_for("tdc42").tap do |document|
+          document["content"].first["type"] = "heading"
+          document["content"] << { "type" => "paragraph", "content" => [{ "type" => "text", "text" => "https://example.com/" }] }
+        end
+      end
+
+      it 'resolves the validated block only' do
+        result = service.send(:resolve_tiptap_url, "search", { "tdc42" => "75" })
+        expect(result).to eq("https://api.gouv.fr/search/dep/75")
+      end
+    end
+
     context 'when url_tiptap is nil' do
       let(:url_tiptap) { nil }
       it { expect(service.send(:resolve_tiptap_url, "q", {})).to be_nil }
