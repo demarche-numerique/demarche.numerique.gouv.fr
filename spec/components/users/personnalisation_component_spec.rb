@@ -38,4 +38,22 @@ RSpec.describe Users::PersonnalisationComponent, type: :component do
       expect(props['items'].first).to include('label' => 'Nom', 'mandatory' => true)
     end
   end
+
+  context 'with a saved and reloaded dossier link customisation' do
+    let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :dossier_link, libelle: 'Dossier lié' }]) }
+    let(:column) { procedure.customizable_columns.first }
+    let(:personnalisation) do
+      saved = create(:dossiers_list_personnalisation, procedure:, displayed_columns: [column])
+      Current.reset
+      DossiersListPersonnalisation.find(saved.id)
+    end
+
+    it 'offers and selects the field under its bare libelle' do
+      render_inline(described_class.new(procedure:, personnalisation:))
+
+      props = JSON.parse(page.find('react-component')['props'])
+      expect(props['items']).to contain_exactly(include('label' => 'Dossier lié', 'value' => column.id))
+      expect(props['value']).to eq([column.id])
+    end
+  end
 end

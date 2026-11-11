@@ -42,6 +42,23 @@ RSpec.describe ChangedColumn do
       end
     end
 
+    context 'when a dossier link champ is changed' do
+      let(:public_type_de_champs) { [{ type: :dossier_link, libelle: 'Dossier lié', stable_id: 999 }] }
+      let(:linked) { create(:dossier, :en_construction) }
+
+      before do
+        dossier.with_instructeur_buffer_stream do
+          dossier.public_champ_for_update('999', updated_by: instructeur.email).assign_attributes(value: linked.id.to_s)
+        end
+        dossier.save!
+      end
+
+      it 'is labelled with the bare libelle' do
+        expect(columns.map(&:label)).to eq(['Dossier lié'])
+        expect(columns.first.value).to eq(linked.id.to_s)
+      end
+    end
+
     context 'when a champ is emptied' do
       before do
         dossier.with_instructeur_buffer_stream do

@@ -357,6 +357,70 @@ RSpec.describe Types::DossierType, type: :graphql do
         expect(data[:dossier][:champs].first[:dossier]).to be_nil
       }
     end
+
+    context 'with columns' do
+      let(:query) { DOSSIER_WITH_COLUMNS_QUERY }
+      let(:columns) { data[:dossier][:champs].first[:columns] }
+
+      it 'exposes the linked procedure id' do
+        expect(errors).to be_nil
+        enum_columns = columns.filter { it[:__typename] == 'EnumColumn' }
+        expect(enum_columns.map { it[:value] }).to eq([linked_dossier.procedure.id.to_s])
+      end
+
+      it 'exposes the linked dossier submission date' do
+        expect(errors).to be_nil
+        date_columns = columns.filter { it[:__typename] == 'DateColumn' }
+        expect(date_columns.map { it[:value] }).to eq([linked_dossier.depose_at.to_date.iso8601])
+      end
+
+      it 'keeps the bare libelle on the number column and suffixes the other columns' do
+        expect(errors).to be_nil
+        libelle = dossier.root_champs_public.first.libelle
+        expect(columns.map { it[:label] }).to eq([
+          libelle,
+          "#{libelle} – Date de dépôt du dossier",
+          "#{libelle} – Intitulé de la démarche",
+          "#{libelle} – Service porteur de la démarche",
+        ])
+      end
+
+      it 'exposes the linked procedure agency' do
+        expect(errors).to be_nil
+        agency_column = columns.find { it[:label].end_with?('Service porteur de la démarche') }
+        expect(agency_column).to include(__typename: 'TextColumn', value: linked_dossier.procedure.organisation_name)
+      end
+    end
+
+    context 'with columns on several dossiers linked to distinct procedures' do
+      let(:query) { DEMARCHE_DOSSIERS_WITH_COLUMNS_QUERY }
+      let(:variables) { { number: procedure.id } }
+
+      def link_another_dossier
+        linked = create(:dossier, :en_construction, procedure: create(:procedure, :with_service))
+        create(:dossier, :en_construction, procedure:).root_champs_public.first.update!(value: linked.id)
+        linked.procedure.organisation_name
+      end
+
+      def agencies_and_procedure_queries
+        Current.reset
+        result = nil
+        count = count_queries(matching: /"procedures"/) { result = API::V2::Schema.execute(query, variables:, context:) }
+        agencies = result['data']['demarche']['dossiers']['nodes'].flat_map { it['champs'].first['columns'] }.filter_map { it['value'] if it['label'].end_with?('Service porteur de la démarche') }
+        [agencies, count]
+      end
+
+      it 'loads the linked procedures once for the whole page' do
+        expected = [linked_dossier.procedure.organisation_name]
+        agencies, few = agencies_and_procedure_queries
+        expect(agencies).to match_array(expected)
+
+        expected << link_another_dossier
+        agencies, many = agencies_and_procedure_queries
+        expect(agencies).to match_array(expected)
+        expect(many).to eq(few)
+      end
+    end
   end
 
   describe 'dossier with repetition' do
@@ -887,6 +951,47 @@ RSpec.describe Types::DossierType, type: :graphql do
             value {
               geometry {
                 type
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  GRAPHQL
+
+  DOSSIER_WITH_COLUMNS_QUERY = <<-GRAPHQL
+  query($number: Int!) {
+    dossier(number: $number) {
+      champs {
+        columns {
+          __typename
+          label
+          ... on EnumColumn {
+            value
+          }
+          ... on DateColumn {
+            value
+          }
+          ... on TextColumn {
+            value
+          }
+        }
+      }
+    }
+  }
+  GRAPHQL
+
+  DEMARCHE_DOSSIERS_WITH_COLUMNS_QUERY = <<-GRAPHQL
+  query($number: Int!) {
+    demarche(number: $number) {
+      dossiers {
+        nodes {
+          champs {
+            columns {
+              label
+              ... on TextColumn {
+                value
               }
             }
           }

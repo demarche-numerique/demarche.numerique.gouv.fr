@@ -12,4 +12,5 @@ class Current < ActiveSupport::CurrentAttributes
   attribute :request_id
   attribute :user
   attribute :procedure_columns
+  attribute :dossier_link_procedures
 end
