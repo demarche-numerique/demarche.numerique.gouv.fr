@@ -3,6 +3,7 @@ fr:
   shared:
     champs:
       dossier_link:
+        application_link: "Dossier n° %{id}"
         hidden: "Dossier déposé le %{depose_at} sur la démarche « %{procedure_libelle} » mais supprimé le %{hidden_at}"
         expired: "Dossier déposé le %{depose_at} sur la démarche « %{procedure_libelle} » mais expiré le %{expired_at}"
         deleted: "Le dossier renseigné lors du dépôt sur la démarche « %{procedure_libelle} » n’existe plus"
