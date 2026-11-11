@@ -17,6 +17,7 @@ class Procedure < ApplicationRecord
   include ProcedureDossierVidePdfConcern
   include ProcedureEmailTemplatesConcern
   include ProcedureArchiveWeightConcern
+  include ProcedureExportOrderConcern
 
   include Discard::Model
   self.discard_column = :hidden_at
@@ -145,12 +146,6 @@ class Procedure < ApplicationRecord
       .reorder(:published_at, :id)
 
     [*past_revisions, published_revision]
-  end
-
-  # The columns of a spreadsheet export: what the dossiers may hold out of
-  # any repetition, each repetition having a sheet of its own.
-  def type_de_champs_for_procedure_export
-    aggregated_type_de_champs.root_type_de_champs.filter { it.fillable? && !it.repetition? }
   end
 
   # The template tag parser's vocabulary (mail templates, attestations,

@@ -63,6 +63,14 @@ describe DossierExportConcern do
           expect(dossier_champ_values_for_export).to eq(dossier_second_revision_champ_values_for_export)
         end
 
+        context 'with the legacy export order' do
+          before { procedure.update!(legacy_export_order: true) }
+
+          it "keeps the champ removed since at its last position" do
+            expect(dossier_champ_values_for_export.map { |(libelle)| libelle }).to eq([datetime_type_de_champ.libelle, text_type_de_champ.libelle, "Updated yes/no", "Commune de naissance", "Commune de naissance (Code INSEE)", "Commune de naissance (Département)", "New text field"])
+          end
+        end
+
         context 'within a repetition having a type de champs commune (multiple values for export)' do
           it 'works' do
             proc_test = create(:procedure)
