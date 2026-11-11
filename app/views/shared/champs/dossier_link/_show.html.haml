@@ -19,6 +19,8 @@
     %br
     .copy-zone
       %p= t('shared.champs.dossier_link.hidden', depose_at: l(dossier.depose_at.to_date), procedure_libelle: dossier.procedure.libelle, hidden_at: l(hidden_at.to_date))
+  - elsif dossier_link_card?(dossier)
+    = render Dossiers::ExternalChampComponent.new(data: dossier_link_card_rows(dossier), source: APPLICATION_NAME)
   - elsif !dossier.brouillon? && !instructeur_without_access
     .copy-zone
       %p= dossier_link_summary(dossier, current_instructeur || current_user)
