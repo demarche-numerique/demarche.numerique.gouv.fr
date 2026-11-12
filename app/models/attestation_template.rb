@@ -133,7 +133,6 @@ class AttestationTemplate < ApplicationRecord
     latest_by_state = PREVIEW_DOSSIER_STATES.fetch(kind).map do |state|
       Dossier.visible_by_administration
         .where(groupe_instructeur_id: procedure.groupe_instructeur_ids, state:)
-        .where.not(depose_at: nil)
         .order_by_depose_at
         .includes(:individual, :etablissement)
         .limit(limit)
