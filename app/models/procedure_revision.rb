@@ -123,9 +123,12 @@ class ProcedureRevision < ApplicationRecord
         # insertion of the new tdc
         revision_type_de_champs.create!(type_de_champ:, parent_id: parent_coordinate&.id, position:)
       end
-    end
 
-    type_de_champ
+      # as the draft lays it out by now: the lock of the edit reloaded it
+      type_de_champ(type_de_champ.stable_id)
+    else
+      type_de_champ
+    end
   rescue => e
     TypeDeChamp.new.tap { _1.errors.add(:base, e.message) }
   end
