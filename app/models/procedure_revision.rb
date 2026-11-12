@@ -126,9 +126,11 @@ class ProcedureRevision < ApplicationRecord
         # insertion of the new tdc
         revision_type_de_champs.create!(type_de_champ:, parent_id: parent_coordinate&.id, position:)
       end
-    end
 
-    type_de_champ
+      adopt(type_de_champ)
+    else
+      type_de_champ
+    end
   rescue => e
     TypeDeChamp.new.tap { _1.errors.add(:base, e.message) }
   end
@@ -433,6 +435,14 @@ class ProcedureRevision < ApplicationRecord
   #
   # They are laid out from the stored tree, and again once it is another
   # object: an edit writes it, a reload reads it again.
+  # An edit takes the lock, which reloads the revision and lays it out anew:
+  # the instance edited becomes the layout's own, the caller and the revision
+  # holding the same one.
+  def adopt(own)
+    lay_out_type_de_champs(own.id => own)
+    type_de_champ(own.stable_id)
+  end
+
   def type_de_champ_layout
     lay_out_type_de_champs if !@laid_out_type_de_champ_tree.equal?(type_de_champ_tree)
 

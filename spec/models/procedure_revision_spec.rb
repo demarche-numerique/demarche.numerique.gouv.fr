@@ -344,6 +344,11 @@ describe ProcedureRevision do
         expect(last_coordinate.type_de_champ).to eq(subject)
       end
 
+      it 'is the one the draft lays out' do
+        expect(draft.type_de_champ(subject.stable_id)).to equal(subject)
+        expect(subject.revision).to equal(draft)
+      end
+
       it 'attaches the type de champ to the procedure' do
         expect(subject.reload.procedure_id).to eq(procedure.id)
       end
