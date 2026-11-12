@@ -210,6 +210,18 @@ class ApplicationController < ActionController::Base
   # themselves: the frame follows the redirect and leaves for the sign in page.
   def page_to_come_back_to = PageAroundTheFrame.location(request) || request.fullpath
 
+  # A new session, even for the account already signed in: Devise's `sign_in`
+  # would otherwise do nothing, and leave it on a row opened another way.
+  def replace_session(user, login_method:)
+    if user_signed_in?
+      # The sign out drops "stay signed in" with the session, and providers never ask.
+      # Not for another account: on a shared computer, it never made that choice.
+      user.remember_me = SessionRegistrableConcern.persistent?(warden, :user) if current_user == user
+      sign_out(:user)
+    end
+    sign_in(:user, user, login_method:)
+  end
+
   def after_sign_out_path_for(_resource_or_scope)
     stored_location_for(:user) || super
   end

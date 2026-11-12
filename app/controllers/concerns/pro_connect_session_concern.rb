@@ -23,14 +23,7 @@ module ProConnectSessionConcern
   def sign_in_with_pro_connect(user, id_token:, mfa:)
     user.instructeur&.update!(pro_connect_id_token: id_token)
     set_pro_connect_session_info_cookie(user.id, mfa:)
-    # A new session, even for the account already signed in: Devise's `sign_in`
-    # would otherwise do nothing, and leave it on a row opened another way.
-    if user_signed_in?
-      # The sign out drops "stay signed in" with the session, and ProConnect never asks.
-      user.remember_me = SessionRegistrableConcern.persistent?(warden, :user)
-      sign_out(:user)
-    end
-    sign_in(:user, user, login_method: :pro_connect)
+    replace_session(user, login_method: :pro_connect)
     user.update_preferred_domain(Current.host)
   end
 
