@@ -91,12 +91,11 @@ class ReferentielService
     substitutions = build_substitutions(query_params, values_source, row_id)
     return nil if substitutions.nil?
 
-    return nil if referentiel.url_tiptap.blank?
+    # Pas referentiel.url_tiptap entier : seulement les nœuds que valide url_allowed?.
+    url_nodes = referentiel.tiptap_paragraph_nodes
+    return nil if url_nodes.empty?
 
-    TiptapService.new.to_texts_and_tags(
-      referentiel.url_tiptap.deep_symbolize_keys,
-      substitutions
-    )
+    TiptapService.new.to_texts_and_tags({ content: url_nodes }.deep_symbolize_keys, substitutions)
   end
 
   def build_substitutions(query_params, values_source, row_id = nil)
