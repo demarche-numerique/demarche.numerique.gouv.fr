@@ -158,7 +158,7 @@ RSpec.describe PrefillChamps do
     context "when the public type de champ is authorized (repetition)" do
       let(:public_type_de_champs) { [{ type: :repetition, children: [{ type: :text }] }] }
       let(:type_de_champ) { procedure.published_revision.public_root_type_de_champs.first }
-      let(:type_de_champ_child) { procedure.published_revision.children_of(type_de_champ).first }
+      let(:type_de_champ_child) { procedure.published_revision.type_de_champ(type_de_champ.stable_id).flat_children.first }
       let(:type_de_champ_child_value) { "value" }
       let(:type_de_champ_child_value2) { "value2" }
       let(:child_champs) { dossier.champ_data.where(stable_id: type_de_champ_child.stable_id) }
@@ -174,7 +174,7 @@ RSpec.describe PrefillChamps do
       let(:public_type_de_champs) { [{ type: :iban }, { type: :repetition, children: [{ type: :iban }] }] }
       let(:type_de_champ) { procedure.published_revision.public_root_type_de_champs.first }
       let(:repetition) { procedure.published_revision.public_root_type_de_champs.second }
-      let(:type_de_champ_child) { procedure.published_revision.children_of(repetition).first }
+      let(:type_de_champ_child) { procedure.published_revision.type_de_champ(repetition.stable_id).flat_children.first }
       let(:iban) { "FR7611315000011234567890138" }
 
       let(:params) do
@@ -231,7 +231,7 @@ RSpec.describe PrefillChamps do
     context "when the private type de champ is authorized (repetition)" do
       let(:private_type_de_champs) { [{ type: :repetition, children: [{ type: :text }] }] }
       let(:type_de_champ) { procedure.published_revision.private_root_type_de_champs.first }
-      let(:type_de_champ_child) { procedure.published_revision.children_of(type_de_champ).first }
+      let(:type_de_champ_child) { procedure.published_revision.type_de_champ(type_de_champ.stable_id).flat_children.first }
       let(:type_de_champ_child_value) { "value" }
       let(:type_de_champ_child_value2) { "value2" }
       let(:child_champs) { dossier.champ_data.where(stable_id: type_de_champ_child.stable_id) }
@@ -265,7 +265,7 @@ RSpec.describe PrefillChamps do
     context "when the public type de champ is unauthorized because of wrong value format (repetition)" do
       let(:public_type_de_champs) { [{ type: :repetition, children: [{ type: :text }] }] }
       let(:type_de_champ) { procedure.published_revision.public_root_type_de_champs.first }
-      let(:type_de_champ_child) { procedure.published_revision.children_of(type_de_champ).first }
+      let(:type_de_champ_child) { procedure.published_revision.type_de_champ(type_de_champ.stable_id).flat_children.first }
 
       let(:params) { { "champ_#{type_de_champ.to_typed_id_for_query}" => "value" } }
 
@@ -277,7 +277,7 @@ RSpec.describe PrefillChamps do
     context "when the public type de champ is unauthorized because of wrong value typed_id (repetition)" do
       let(:public_type_de_champs) { [{ type: :repetition, children: [{ type: :text }] }] }
       let(:type_de_champ) { procedure.published_revision.public_root_type_de_champs.first }
-      let(:type_de_champ_child) { procedure.published_revision.children_of(type_de_champ).first }
+      let(:type_de_champ_child) { procedure.published_revision.type_de_champ(type_de_champ.stable_id).flat_children.first }
 
       let(:params) { { "champ_#{type_de_champ.to_typed_id_for_query}" => ["{\"wrong\":\"value\"}", "{\"wrong\":\"value2\"}"] } }
 

@@ -29,7 +29,7 @@ class Referentiels::ReferentielPrefillComponent < Referentiels::MappingFormBase
     @source_tdcs ||= draft_revision
       .coordinate_for(type_de_champ)
       .prefill_target_coordinates
-      .map(&:type_de_champ)
+      .filter_map { draft_revision.type_de_champ(it.stable_id) }
   end
 
   def prefill_stable_id_tag(jsonpath, mapping_opts)
@@ -88,7 +88,7 @@ class Referentiels::ReferentielPrefillComponent < Referentiels::MappingFormBase
   end
 
   def tdc_option_for(tdc)
-    [tdc.libelle_with_parent(draft_revision), tdc.stable_id]
+    [tdc.libelle_with_parent, tdc.stable_id]
   end
 
   def render?
