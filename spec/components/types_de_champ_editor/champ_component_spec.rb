@@ -58,7 +58,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
             { type: :drop_down_list, stable_id: 2, libelle: 'Votre ville', options: ['Paris', 'Lyon'] },
           ]
         end
-        let(:coordinate) { procedure.draft_revision.coordinate_and_tdc(2).first }
+        let(:coordinate) { procedure.draft_revision.then { it.coordinate_for(it.type_de_champ(2)) } }
         it do
           expect(page).to have_text(/Champ prérempli/)
         end

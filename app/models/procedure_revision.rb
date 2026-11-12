@@ -115,8 +115,8 @@ class ProcedureRevision < ApplicationRecord
 
     if type_de_champ.save
       edit_type_de_champs do
-        parent_coordinate, _ = coordinate_and_tdc(parent_stable_id)
-        after_coordinate, _ = coordinate_and_tdc(after_stable_id)
+        parent_coordinate = coordinate_by_stable_id(parent_stable_id)
+        after_coordinate = coordinate_by_stable_id(after_stable_id)
         siblings = siblings_for(type_de_champ:, parent_coordinate:)
         position = next_position_for(after_coordinate:)
 
@@ -150,8 +150,7 @@ class ProcedureRevision < ApplicationRecord
       if tdc.only_present_on_draft?
         tdc
       else
-        coordinate, _ = coordinate_and_tdc(stable_id)
-        adopt(replace_type_de_champ_by_clone(coordinate))
+        adopt(replace_type_de_champ_by_clone(coordinate_by_stable_id(stable_id)))
       end
     end
   end
@@ -291,16 +290,6 @@ class ProcedureRevision < ApplicationRecord
     public_root_type_de_champs.any?(&:france_connect?)
   end
 
-  def coordinate_and_tdc(stable_id)
-    return [nil, nil] if stable_id.blank?
-
-    coordinate = revision_type_de_champs
-      .joins(:type_de_champ)
-      .find_by(type_de_champ: { stable_id: stable_id })
-
-    [coordinate, coordinate&.type_de_champ]
-  end
-
   def simple_routable_type_de_champs
     public_root_type_de_champs.filter(&:simple_routable?)
   end
@@ -350,7 +339,7 @@ class ProcedureRevision < ApplicationRecord
             end
           end
 
-          after_coordinate, _ = coordinate_and_tdc(after_stable_id)
+          after_coordinate = coordinate_by_stable_id(after_stable_id)
           if after_coordinate
             coordinate = move_type_de_champ_after(stable_id, after_coordinate.position)
             if payload.key?(:header_section_level) && coordinate.type_de_champ.header_section? && params.present?
@@ -403,12 +392,21 @@ class ProcedureRevision < ApplicationRecord
 
   private
 
+  # Read from the database: a coordinate the tree leaves out included.
+  def coordinate_by_stable_id(stable_id)
+    return if stable_id.blank?
+
+    revision_type_de_champs
+      .joins(:type_de_champ)
+      .find_by(type_de_champ: { stable_id: })
+  end
+
   # Under the lock, on the coordinate as committed by the previous edits. nil
   # when the type de champ is no longer in the revision: a replayed request
   # (double click, removed in another tab).
   def edit_coordinate(stable_id)
     edit_type_de_champs do
-      coordinate, _ = coordinate_and_tdc(stable_id)
+      coordinate = coordinate_by_stable_id(stable_id)
       next if coordinate.nil?
 
       yield coordinate
