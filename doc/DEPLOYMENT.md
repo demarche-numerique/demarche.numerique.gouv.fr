@@ -221,6 +221,11 @@ From now:
 - The services will automatically start at boot,
 - The web server is accessible on port 8080.
 
+> [!TIP]
+> When setting up a **staging** server, you may also want to include the services in `doc/dist-staging`.
+> These include `mailcatcher`, a locally-scoped mail server, for testing emails without actually sending messages
+> to the real world.
+
 ### 3.8 Setting up a reverse proxy
 
 It is recommended to use a dedicated web server (like `nginx` or `caddy`) as a proxy between the internet and the application.
