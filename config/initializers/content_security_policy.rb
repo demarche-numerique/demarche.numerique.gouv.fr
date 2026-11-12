@@ -51,6 +51,9 @@ Rails.application.configure do
     default_whitelist << URI(DS_PROXY_URL).host if DS_PROXY_URL.present?
     policy.default_src(:self, :data, :blob, :report_sample, *default_whitelist)
 
+    # base-uri does not fall back to default-src: an injected <base> would re-point every relative script
+    policy.base_uri(:self)
+
     if Rails.env.development?
       # Allow LiveReload requests
       policy.connect_src(*policy.connect_src, "ws://localhost:3035", "http://localhost:3035")
