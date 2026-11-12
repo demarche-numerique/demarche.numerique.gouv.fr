@@ -6,8 +6,9 @@ module Types::Champs::Descriptor
 
     field :level, Int, null: false
 
+    # the coordinate's own type de champ is not laid out: the revision's is
     def level
-      object.type_de_champ.level_for_revision(object.revision)
+      object.revision.type_de_champ(object.stable_id).absolute_level
     end
   end
 end

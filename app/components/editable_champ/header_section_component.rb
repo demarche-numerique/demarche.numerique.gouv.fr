@@ -10,11 +10,11 @@ class EditableChamp::HeaderSectionComponent < ApplicationComponent
   end
 
   def level
-    @champ.level + 2 # The first title level should be a <h3>
+    @champ.absolute_level + 2 # The first title level should be a <h3>
   end
 
   def collapsible?
-    @champ.level == 1
+    @champ.absolute_level == 1
   end
 
   def libelle

@@ -3,8 +3,7 @@
     %ul.fr-sidemenu__list
       - header_sections.each do |header_section|
         %li.fr-sidemenu__item
-          - level = header_section.header_section_level_value.to_i
-          - if level == 1
+          - if header_section.level == 1
             %a.fr-sidemenu__link{ href: href(header_section) }= header_section.libelle
           - else
-            %a.fr-sidemenu__link{ class: level >= 3 ? 'custom-link-grey': '', href: href(header_section) }= "-- #{header_section.libelle}"
+            %a.fr-sidemenu__link{ class: header_section.level >= 3 ? 'custom-link-grey': '', href: href(header_section) }= "-- #{header_section.libelle}"
