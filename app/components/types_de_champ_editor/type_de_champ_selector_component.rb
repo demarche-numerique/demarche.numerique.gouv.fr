@@ -78,7 +78,7 @@ class TypesDeChampEditor::TypeDeChampSelectorComponent < ApplicationComponent
   end
 
   def disabled?
-    coordinate.type_champ_locked? || accepted_type_champs.size == 1
+    revision.type_de_champ(type_de_champ.stable_id).type_champ_locked? || accepted_type_champs.size == 1
   end
 
   def filter_block_type_champ(klass)

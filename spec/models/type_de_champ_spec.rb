@@ -752,4 +752,52 @@ describe TypeDeChamp do
       end
     end
   end
+
+  describe '#prefill_targets' do
+    let(:procedure) do
+      create(:procedure,
+             public_type_de_champs: [
+               { libelle: 'p1' },
+               { libelle: 'p2' },
+               {
+                 type: :repetition, libelle: 'p3', children: [
+                   { libelle: 'p3.1' },
+                   { libelle: 'p3.2' },
+                 ],
+               },
+             ],
+             private_type_de_champs: [
+               { libelle: 'a1' },
+               { libelle: 'a2' },
+             ])
+    end
+
+    subject { procedure.draft_revision.type_de_champs.find { it.libelle == from }.prefill_targets.map(&:libelle) }
+
+    context 'from a public champ at root' do
+      let(:from) { 'p1' }
+
+      it 'takes the public types de champ after it, a repetition bringing its children, plus every annotation' do
+        expect(subject).to eq(['p2', 'p3', 'p3.1', 'p3.2', 'a1', 'a2'])
+      end
+    end
+
+    context 'from a public champ inside a repetition' do
+      let(:from) { 'p3.1' }
+
+      it 'stays within its own row, plus every annotation' do
+        expect(subject).to eq(['p3.2', 'a1', 'a2'])
+      end
+    end
+
+    context 'from an annotation' do
+      let(:from) { 'a1' }
+
+      # p1 est avant l'annotation dans son propre bloc : sa position ne doit pas
+      # être comparée à celle de l'annotation, qui vit dans l'autre bloc.
+      it 'takes every public champ, whatever its position' do
+        expect(subject).to eq(['p1', 'p2', 'p3', 'p3.1', 'p3.2', 'a2'])
+      end
+    end
+  end
 end

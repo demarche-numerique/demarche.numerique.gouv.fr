@@ -81,9 +81,14 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
     end
   end
 
+  # the one the coordinate holds is in no tree
+  def laid_out_type_de_champ
+    revision.type_de_champ(type_de_champ.stable_id)
+  end
+
   def turbo_confirm
-    if coordinate.prefilled_by_type_de_champ
-      t(".confirm_prefilled_removal", libelle: coordinate.prefilled_by_type_de_champ.libelle)
+    if (prefilled_by = laid_out_type_de_champ.prefilled_by_type_de_champ)
+      t(".confirm_prefilled_removal", libelle: prefilled_by.libelle)
     else
       t(".confirm_removal")
     end
