@@ -218,7 +218,7 @@
         class="fr-col-12 fr-col-lg-5 fr-background-alt--blue-france"
         id="preview-column"
       >
-        <% preselected = preview_dossiers.first %>
+        <% preselected = preview_dossiers.values.first&.first %>
         <% preview_path = admin_procedure_attestation_template_v2_path(procedure, format: :pdf, attestation_kind:, dossier_id: preselected&.id) %>
 
         <div class="sticky--top fr-px-1w" data-controller="sticky-top">
@@ -236,7 +236,12 @@
                 <%= render ReactComponent.new "Select/SingleSelect",
                   label: t('.preview_dossier_label'),
                   searchPlaceholder: t('.preview_dossier_search'),
-                  items: preview_dossiers.map { |dossier| [t('.preview_dossier_option', number: dossier.id, owner: attestation_depot_requester_identity(dossier), state: dossier_display_state(dossier).upcase), dossier.id.to_s] },
+                  sections: preview_dossiers.map { |revision, dossiers|
+                    {
+                      label: t(".preview_dossier_section.#{revision}"),
+                      items: dossiers.map { |dossier| [t('.preview_dossier_option', number: dossier.id, owner: attestation_depot_requester_identity(dossier), state: dossier_display_state(dossier).upcase), dossier.id.to_s] },
+                    }
+                  },
                   value: preselected.id.to_s,
                   data: { no_autosubmit: 'true', action: 'change->attestation#previewDossier' } %>
               </react-fragment>

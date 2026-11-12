@@ -6,26 +6,26 @@ describe AttestationTemplate, type: :model do
     let(:seeded) { procedure.dossiers.index_by(&:state) }
     let(:acceptation) { procedure.attestation_templates.build(kind: :acceptation) }
 
+    let(:states) { -> (template, **options) { template.preview_dossiers(**options).transform_values { it.map(&:state) } } }
+
     it 'offers the states an attestation of that kind can be issued from' do
-      expect(acceptation.preview_dossiers.map(&:state))
-        .to contain_exactly('en_construction', 'en_instruction', 'accepte')
-      expect(procedure.attestation_templates.build(kind: :refus).preview_dossiers.map(&:state))
-        .to contain_exactly('en_construction', 'en_instruction', 'refuse')
+      expect(states.(acceptation)).to eq(current: ['accepte', 'en_instruction', 'en_construction'])
+      expect(states.(procedure.attestation_templates.build(kind: :refus)))
+        .to eq(current: ['refuse', 'en_instruction', 'en_construction'])
     end
 
     it 'keeps every state within the limit' do
       create_list(:dossier, 2, :accepte, procedure:, depose_at: Time.current)
 
-      expect(acceptation.preview_dossiers(limit: 3).map(&:state))
-        .to contain_exactly('en_construction', 'en_instruction', 'accepte')
+      expect(states.(acceptation, limit: 3)).to eq(current: ['accepte', 'en_instruction', 'en_construction'])
     end
 
-    it 'lists the active revision first, then the most recent deposits' do
+    it 'splits off the dossiers of previous revisions, decided ones first, then the most recent deposits' do
       seeded.fetch('en_construction').update_columns(depose_at: 1.hour.ago)
-      seeded.fetch('accepte').update_columns(depose_at: Time.current, revision_id: procedure.draft_revision.id)
+      seeded.fetch('en_instruction').update_columns(depose_at: 2.hours.ago)
+      seeded.fetch('accepte').update_columns(depose_at: 3.hours.ago, revision_id: procedure.draft_revision.id)
 
-      expect(acceptation.preview_dossiers.map(&:state))
-        .to eq(['en_construction', 'en_instruction', 'accepte'])
+      expect(states.(acceptation)).to eq(current: ['en_construction', 'en_instruction'], previous: ['accepte'])
     end
   end
 
