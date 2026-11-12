@@ -140,7 +140,7 @@
                   </legend>
 
                   <% numeric_type_champ_hint_id = dom_id(type_de_champ, :numeric_type_champ_hint) %>
-                  <% type_champ_locked = coordinate.type_champ_locked? %>
+                  <% type_champ_locked = laid_out_type_de_champ.type_champ_locked? %>
 
                   <div class="fr-toggle fr-toggle--no-label">
                     <%= form.check_box :numeric_type_champ, { id: dom_id(type_de_champ, :numeric_type_champ), class: 'fr-toggle__input', disabled: type_champ_locked, 'aria-describedby': (numeric_type_champ_hint_id if type_champ_locked) }, 'decimal_number', 'integer_number' %>
@@ -500,12 +500,12 @@
       <%= render TypesDeChampEditor::SelectChampPositionComponent.new(revision:, coordinate:) %>
 
       <div class="flex right">
-        <% if coordinate.used_by_routing_rules? %>
+        <% if laid_out_type_de_champ.used_by_routing_rules? %>
           <%= tag.span(t(".used_for_routing_html", link: link_to(t(".routing_link"), admin_procedure_groupe_instructeurs_path(revision.procedure_id, anchor: "routing-rules")))) %>
-        <% elsif coordinate.used_by_ineligibilite_rules? %>
+        <% elsif laid_out_type_de_champ.used_by_ineligibilite_rules? %>
           <%= tag.span(t(".used_for_ineligibilite_html", link: link_to(t(".ineligibilite_link"), edit_admin_procedure_ineligibilite_rules_path(revision.procedure_id)))) %>
         <% else %>
-          <% if coordinate.prefilled_by_type_de_champ %>
+          <% if laid_out_type_de_champ.prefilled_by_type_de_champ %>
             <span><%= t(".prefilled_referentiel") %></span>
           <% end %>
           <%= button_to type_de_champ_path, class: 'fr-btn fr-btn--tertiary-no-outline fr-icon-delete-line', title: t(".delete_title"), method: :delete, form: { data: { turbo_confirm: } } do %>

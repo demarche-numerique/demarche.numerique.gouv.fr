@@ -26,10 +26,7 @@ class Referentiels::ReferentielPrefillComponent < Referentiels::MappingFormBase
   end
 
   def source_tdcs
-    @source_tdcs ||= draft_revision
-      .coordinate_for(type_de_champ)
-      .prefill_target_coordinates
-      .filter_map { draft_revision.type_de_champ(it.stable_id) }
+    @source_tdcs ||= draft_revision.type_de_champ(type_de_champ.stable_id).prefill_targets
   end
 
   def prefill_stable_id_tag(jsonpath, mapping_opts)

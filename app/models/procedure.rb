@@ -592,7 +592,7 @@ class Procedure < ApplicationRecord
   end
 
   def routing_champs
-    active_revision.public_revision_type_de_champs.filter(&:used_by_routing_rules?).map(&:libelle)
+    active_revision.public_root_type_de_champs.filter { used_by_routing_rules?(it) }.map(&:libelle)
   end
 
   def champ_value_in_condition?

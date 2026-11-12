@@ -485,12 +485,13 @@ class TypeDeChamp < ApplicationRecord
   # The types de champ the nodes of a tree stand for, each one given by the
   # block, laid out as the nodes are. A node the block has nothing for is left
   # out, with what it holds.
-  def self.laid_out(nodes, ancestors = [], &)
+  def self.laid_out(nodes, ancestors = [], revision: nil, &)
     nodes.each_with_object([]) do |node, laid_out_tdcs|
       type_de_champ = yield node
       next if type_de_champ.nil?
 
-      laid_out_tdcs << type_de_champ.lay_out(ancestors:, position: laid_out_tdcs.size, children: laid_out(node.children, [*ancestors, type_de_champ], &))
+      children = laid_out(node.children, [*ancestors, type_de_champ], revision:, &)
+      laid_out_tdcs << type_de_champ.lay_out(ancestors:, position: laid_out_tdcs.size, children:, revision:)
     end.freeze
   end
 
@@ -498,10 +499,11 @@ class TypeDeChamp < ApplicationRecord
   # its own instances from its tree (ProcedureRevision#type_de_champ and the
   # lists next to it): any other instance knows nothing of its surroundings,
   # and raises when asked.
-  def lay_out(ancestors:, position:, children:)
+  def lay_out(ancestors:, position:, children:, revision: nil)
     @ancestors = ancestors.freeze
     @position = position
     @children = children.freeze
+    @revision = revision
     self
   end
 
@@ -511,7 +513,14 @@ class TypeDeChamp < ApplicationRecord
     @ancestors = nil
     @position = nil
     @children = nil
+    @revision = nil
     super
+  end
+
+  # The revision that laid it out. The procedure lays out the aggregate of its
+  # revisions, which none of them owns: what depends on a revision raises there.
+  def revision
+    @revision || raise(NotLaidOutError, self)
   end
 
   # the header sections and the repetition holding it, outermost first
@@ -568,7 +577,47 @@ class TypeDeChamp < ApplicationRecord
     level + enclosing_repetition&.absolute_level.to_i
   end
 
+  def used_by_routing_rules?
+    revision.procedure.used_by_routing_rules?(self)
+  end
+
+  def used_by_referentiel_urls?
+    revision.procedure.used_by_referentiel_urls?(self)
+  end
+
+  def used_by_ineligibilite_rules?
+    revision.ineligibilite_enabled? && stable_id.in?(revision.ineligibilite_rules&.sources || [])
+  end
+
+  def type_champ_locked?
+    used_by_routing_rules? || used_by_ineligibilite_rules?
+  end
+
+  def prefilled_by_type_de_champ
+    revision.type_de_champs
+      .filter(&:referentiel?)
+      .find { stable_id.to_s.in?(it.referentiel_mapping_prefillable_stable_ids.map(&:to_s)) }
+  end
+
+  # Dans son propre bloc, seuls les types de champ qui suivent ; dans l'autre, tous :
+  # l'ordre entre le formulaire et les annotations n'a pas de sens.
+  def prefill_targets
+    public_type_de_champs, private_type_de_champs = revision.public_flat_type_de_champs, revision.private_flat_type_de_champs
+
+    if private?
+      public_type_de_champs + type_de_champs_after_self(private_type_de_champs)
+    else
+      type_de_champs_after_self(public_type_de_champs) + private_type_de_champs
+    end
+  end
+
   private
+
+  # within a repetition, the ones of its row only. By stable id: a later edit
+  # lays the revision out anew, without this instance.
+  def type_de_champs_after_self(type_de_champs)
+    (enclosing_repetition&.flat_children || type_de_champs).drop_while { it.stable_id != stable_id }.drop(1)
+  end
 
   def set_default_libelle
     old_default, new_default = [type_champ_was, type_champ].map do |type_champ|

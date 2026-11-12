@@ -50,7 +50,7 @@ class ProcedureRevision < ApplicationRecord
 
     tree = type_de_champ_tree
     # the layout first: were it to fail, the tree would say it is there
-    @type_de_champ_layout = TypeDeChampLayout.lay_out(tree, own_type_de_champs_by_id)
+    @type_de_champ_layout = TypeDeChampLayout.lay_out(tree, own_type_de_champs_by_id, revision: self)
     @laid_out_type_de_champ_tree = tree
 
     self
@@ -115,8 +115,8 @@ class ProcedureRevision < ApplicationRecord
 
     if type_de_champ.save
       edit_type_de_champs do
-        parent_coordinate, _ = coordinate_and_tdc(parent_stable_id)
-        after_coordinate, _ = coordinate_and_tdc(after_stable_id)
+        parent_coordinate = coordinate_by_stable_id(parent_stable_id)
+        after_coordinate = coordinate_by_stable_id(after_stable_id)
         siblings = siblings_for(type_de_champ:, parent_coordinate:)
         position = next_position_for(after_coordinate:)
 
@@ -126,9 +126,11 @@ class ProcedureRevision < ApplicationRecord
         # insertion of the new tdc
         revision_type_de_champs.create!(type_de_champ:, parent_id: parent_coordinate&.id, position:)
       end
-    end
 
-    type_de_champ
+      adopt(type_de_champ)
+    else
+      type_de_champ
+    end
   rescue => e
     TypeDeChamp.new.tap { _1.errors.add(:base, e.message) }
   end
@@ -138,7 +140,8 @@ class ProcedureRevision < ApplicationRecord
   # first along with its edit.
   def find_and_ensure_exclusive_use(stable_id)
     with_lock(TYPE_DE_CHAMP_TREE_LOCK) do
-      coordinate, tdc = coordinate_and_tdc(stable_id)
+      # read once locked: the lock lays the revision out anew
+      tdc = type_de_champ(stable_id)
 
       # replayed request targeting a tdc no longer in this revision (deleted in
       # another tab or by a previous request)
@@ -147,15 +150,21 @@ class ProcedureRevision < ApplicationRecord
       if tdc.only_present_on_draft?
         tdc
       else
-        replace_type_de_champ_by_clone(coordinate)
+        adopt(replace_type_de_champ_by_clone(coordinate_by_stable_id(stable_id)))
       end
     end
   end
 
   # The type (header section, repetition) and the header section level shape
   # the tree as much as the coordinates do.
+  # Once saved, the type de champ given becomes the layout's own: a copy of
+  # another type (becomes_type) included. An edit that failed is left out, and
+  # so is a type changed without becomes_type: the class of the instance would
+  # say the type it had.
   def update_type_de_champ(type_de_champ, params)
-    edit_type_de_champs { type_de_champ.update(params) }
+    edit_type_de_champs { type_de_champ.update(params) }.tap do |updated|
+      adopt(type_de_champ) if updated && type_de_champ.instance_of?(TypeDeChamp.find_sti_class(type_de_champ.type_champ))
+    end
   end
 
   def move_type_de_champ(stable_id, position)
@@ -281,16 +290,6 @@ class ProcedureRevision < ApplicationRecord
     public_root_type_de_champs.any?(&:france_connect?)
   end
 
-  def coordinate_and_tdc(stable_id)
-    return [nil, nil] if stable_id.blank?
-
-    coordinate = revision_type_de_champs
-      .joins(:type_de_champ)
-      .find_by(type_de_champ: { stable_id: stable_id })
-
-    [coordinate, coordinate&.type_de_champ]
-  end
-
   def simple_routable_type_de_champs
     public_root_type_de_champs.filter(&:simple_routable?)
   end
@@ -340,7 +339,7 @@ class ProcedureRevision < ApplicationRecord
             end
           end
 
-          after_coordinate, _ = coordinate_and_tdc(after_stable_id)
+          after_coordinate = coordinate_by_stable_id(after_stable_id)
           if after_coordinate
             coordinate = move_type_de_champ_after(stable_id, after_coordinate.position)
             if payload.key?(:header_section_level) && coordinate.type_de_champ.header_section? && params.present?
@@ -393,12 +392,21 @@ class ProcedureRevision < ApplicationRecord
 
   private
 
+  # Read from the database: a coordinate the tree leaves out included.
+  def coordinate_by_stable_id(stable_id)
+    return if stable_id.blank?
+
+    revision_type_de_champs
+      .joins(:type_de_champ)
+      .find_by(type_de_champ: { stable_id: })
+  end
+
   # Under the lock, on the coordinate as committed by the previous edits. nil
   # when the type de champ is no longer in the revision: a replayed request
   # (double click, removed in another tab).
   def edit_coordinate(stable_id)
     edit_type_de_champs do
-      coordinate, _ = coordinate_and_tdc(stable_id)
+      coordinate = coordinate_by_stable_id(stable_id)
       next if coordinate.nil?
 
       yield coordinate
@@ -433,6 +441,14 @@ class ProcedureRevision < ApplicationRecord
   #
   # They are laid out from the stored tree, and again once it is another
   # object: an edit writes it, a reload reads it again.
+  # An edit takes the lock, which reloads the revision and lays it out anew:
+  # the instance edited becomes the layout's own, the caller and the revision
+  # holding the same one.
+  def adopt(own)
+    lay_out_type_de_champs(own.id => own)
+    type_de_champ(own.stable_id)
+  end
+
   def type_de_champ_layout
     lay_out_type_de_champs if !@laid_out_type_de_champ_tree.equal?(type_de_champ_tree)
 

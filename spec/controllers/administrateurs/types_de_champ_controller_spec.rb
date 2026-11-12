@@ -245,7 +245,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         let(:params) { default_params.deep_merge(type_de_champ: { type_champ: 'numeric', numeric_type_champ: 'integer_number' }) }
 
         before do
-          allow_any_instance_of(ProcedureRevisionTypeDeChamp).to receive(:used_by_routing_rules?).and_return(true)
+          allow_any_instance_of(TypeDeChamp).to receive(:used_by_routing_rules?).and_return(true)
         end
 
         it 'saves it, the type being unchanged' do
@@ -260,7 +260,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         let(:params) { { procedure_id: procedure.id, stable_id: first_coordinate.stable_id, type_de_champ: { type_champ: 'numeric', libelle: 'updated' } } }
 
         before do
-          allow_any_instance_of(ProcedureRevisionTypeDeChamp).to receive(:used_by_routing_rules?).and_return(true)
+          allow_any_instance_of(TypeDeChamp).to receive(:used_by_routing_rules?).and_return(true)
         end
 
         it 'keeps it a decimal and saves the libelle' do
@@ -278,7 +278,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       end
 
       before do
-        allow_any_instance_of(ProcedureRevisionTypeDeChamp).to receive(:used_by_routing_rules?).and_return(true)
+        allow_any_instance_of(TypeDeChamp).to receive(:used_by_routing_rules?).and_return(true)
       end
 
       it do
@@ -293,7 +293,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       end
 
       before do
-        allow_any_instance_of(ProcedureRevisionTypeDeChamp).to receive(:used_by_referentiel_urls?).and_return(true)
+        allow_any_instance_of(TypeDeChamp).to receive(:used_by_referentiel_urls?).and_return(true)
       end
 
       it do
@@ -600,7 +600,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       end
 
       before do
-        allow_any_instance_of(ProcedureRevisionTypeDeChamp).to receive(:used_by_routing_rules?).and_return(true)
+        allow_any_instance_of(TypeDeChamp).to receive(:used_by_routing_rules?).and_return(true)
       end
 
       it do
@@ -615,7 +615,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       end
 
       before do
-        allow_any_instance_of(ProcedureRevisionTypeDeChamp).to receive(:used_by_referentiel_urls?).and_return(true)
+        allow_any_instance_of(TypeDeChamp).to receive(:used_by_referentiel_urls?).and_return(true)
       end
 
       it do

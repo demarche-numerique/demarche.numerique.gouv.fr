@@ -8,7 +8,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
 
     before do
       allow_any_instance_of(Procedure).to receive(:stable_ids_used_by_routing_rules).and_return(routing_rules_stable_ids)
-      allow_any_instance_of(ProcedureRevisionTypeDeChamp).to receive(:used_by_ineligibilite_rules?).and_return(ineligibilite_rules_used?)
+      allow_any_instance_of(TypeDeChamp).to receive(:used_by_ineligibilite_rules?).and_return(ineligibilite_rules_used?)
       render_inline(component)
     end
 
@@ -58,7 +58,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
             { type: :drop_down_list, stable_id: 2, libelle: 'Votre ville', options: ['Paris', 'Lyon'] },
           ]
         end
-        let(:coordinate) { procedure.draft_revision.coordinate_and_tdc(2).first }
+        let(:coordinate) { procedure.draft_revision.then { it.coordinate_for(it.type_de_champ(2)) } }
         it do
           expect(page).to have_text(/Champ prérempli/)
         end
@@ -173,7 +173,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
 
     before do
       allow_any_instance_of(Procedure).to receive(:stable_ids_used_by_routing_rules).and_return([])
-      allow_any_instance_of(ProcedureRevisionTypeDeChamp).to receive(:used_by_ineligibilite_rules?).and_return(false)
+      allow_any_instance_of(TypeDeChamp).to receive(:used_by_ineligibilite_rules?).and_return(false)
       render_inline(component)
     end
 
