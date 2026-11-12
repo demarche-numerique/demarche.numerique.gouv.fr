@@ -37,6 +37,7 @@ class Procedure < ApplicationRecord
 
   def public_draft_type_de_champs = draft_revision&.public_flat_type_de_champs || []
   def private_draft_type_de_champs = draft_revision&.private_flat_type_de_champs || []
+  def draft_type_de_champs = draft_revision&.type_de_champs || []
   def public_published_type_de_champs = published_revision&.public_flat_type_de_champs || []
   def private_published_type_de_champs = published_revision&.private_flat_type_de_champs || []
 
@@ -315,6 +316,11 @@ class Procedure < ApplicationRecord
     'type_de_champs/date': true,
     'type_de_champs/repetition': true,
     on: [:private_type_de_champs_editor, :publication]
+
+  # A cycle crosses both collections: validated once over both, from either editor.
+  validates :draft_type_de_champs,
+    'type_de_champs/condition_cycle': true,
+    on: [:public_type_de_champs_editor, :private_type_de_champs_editor, :publication]
 
   validate :check_juridique, on: [:create, :publication]
 
