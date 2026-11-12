@@ -95,7 +95,7 @@ module SessionRegistrableConcern
     session[LAST_SEEN_KEY] = today if session[LAST_SEEN_KEY] != today
   end
 
-  # Whether `continue_session!` -- or its rescue -- has just dropped this scope.
+  # Whether `continue_session!` has just dropped this scope.
   def self.signed_out?(warden, scope)
     warden.raw_session["warden.user.#{scope}.key"].nil?
   end
@@ -199,8 +199,7 @@ module SessionRegistrableConcern
   def revoke_account_wide!(reason) = nil
 
   # Client-controlled: invalid UTF-8 or a NUL makes Postgres refuse the INSERT,
-  # the hook rescues it, and the session opens with no row -- exempt from every
-  # deadline. Scrubbed rather than rejected.
+  # and the sign in fails on one header. Scrubbed rather than rejected.
   def sanitized_user_agent(user_agent)
     return if user_agent.nil?
 
