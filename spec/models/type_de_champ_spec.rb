@@ -800,4 +800,76 @@ describe TypeDeChamp do
       end
     end
   end
+
+  describe '#upper_type_de_champs' do
+    let(:procedure) do
+      create(:procedure,
+             public_type_de_champs: [
+               { libelle: 'l1' },
+               { type: :repetition, libelle: 'l2', children: [{ libelle: 'l2.1' }, { libelle: 'l2.2' }] },
+             ],
+             private_type_de_champs: [
+               { libelle: 'a1' },
+               { type: :repetition, libelle: 'a2', children: [{ libelle: 'a2.1' }, { libelle: 'a2.2' }] },
+             ])
+    end
+
+    subject { procedure.draft_revision.type_de_champs.find { it.libelle == from }.upper_type_de_champs.map(&:libelle) }
+
+    context 'inside a repetition' do
+      let(:from) { 'l2.2' }
+
+      it { is_expected.to eq(['l2.1', 'l1']) }
+    end
+
+    context 'from an annotation' do
+      let(:from) { 'a2' }
+
+      it 'takes the form outside its repetitions' do
+        is_expected.to eq(['a1', 'l1', 'l2'])
+      end
+    end
+
+    context 'from an annotation inside a repetition' do
+      let(:from) { 'a2.2' }
+
+      it 'takes the form once' do
+        is_expected.to eq(['a2.1', 'a1', 'l1', 'l2'])
+      end
+    end
+  end
+
+  describe '#condition_source_type_de_champs' do
+    let(:procedure) do
+      create(:procedure,
+             public_type_de_champs: [
+               { libelle: 'l1' },
+               { type: :repetition, libelle: 'l2', children: [{ libelle: 'l2.1' }, { libelle: 'l2.2' }] },
+             ],
+             private_type_de_champs: (1..6).map { { libelle: "a#{it}" } })
+    end
+    let(:annotations) { (1..6).map { "a#{it}" } }
+
+    def sources(libelle) = procedure.draft_revision.type_de_champs.find { it.libelle == libelle }.condition_source_type_de_champs.map(&:libelle)
+
+    context 'when the flag is off' do
+      it { expect(sources('l2')).to eq(['l1']) }
+    end
+
+    context 'when the flag is on' do
+      before { Flipper.enable(:annotation_condition_champs_public, procedure) }
+
+      it 'sees every annotation from the first public position' do
+        expect(sources('l1')).to eq(annotations)
+      end
+
+      it 'sees each annotation once from a repetition child' do
+        expect(sources('l2.2')).to eq(['l2.1', 'l1', *annotations])
+      end
+
+      it 'leaves upper_type_de_champs, read by the referentiel URL tags, unchanged' do
+        expect(procedure.draft_revision.type_de_champs.find { it.libelle == 'l2.2' }.upper_type_de_champs.map(&:libelle)).to eq(['l2.1', 'l1'])
+      end
+    end
+  end
 end

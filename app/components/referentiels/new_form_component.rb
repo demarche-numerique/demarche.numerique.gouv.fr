@@ -63,16 +63,12 @@ class Referentiels::NewFormComponent < Referentiels::MappingFormBase
     end
   end
 
-  def coordinate
-    @coordinate ||= @procedure.draft_revision.coordinate_for(@type_de_champ)
-  end
-
   def tags
     eligible_types = %w[text email phone number integer_number decimal_number formatted iban siret drop_down_list dossier_link rna rnf annuaire_education yes_no checkbox address]
 
-    field_tags = coordinate.upper_coordinates
-      .filter { eligible_types.include?(_1.type_champ) }
-      .map { |coord| { id: "tdc#{coord.stable_id}", libelle: coord.libelle } }
+    field_tags = @type_de_champ.upper_type_de_champs
+      .filter { eligible_types.include?(it.type_champ) }
+      .map { { id: "tdc#{it.stable_id}", libelle: it.libelle } }
 
     query_tag = { id: ReferentielService::USAGER_INPUT_TAG, libelle: "Valeur saisie par l’usager", highlight: true }
     dossier_number_tag = { id: ReferentielService::DOSSIER_NUMBER_TAG, libelle: "Numéro du dossier", highlight: true }

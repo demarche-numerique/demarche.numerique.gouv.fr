@@ -611,7 +611,32 @@ class TypeDeChamp < ApplicationRecord
     end
   end
 
+  # Ceux qui le précèdent dans sa ligne, puis ceux qui précèdent sa répétition ;
+  # une annotation voit en plus tout le formulaire hors répétitions.
+  def upper_type_de_champs
+    upper = preceding_type_de_champs
+    upper += enclosing_repetition.upper_type_de_champs if in_repetition?
+    upper += revision.public_root_type_de_champs if private? && !in_repetition?
+    upper
+  end
+
+  # Ceux qu'une condition portée par celui-ci peut citer.
+  def condition_source_type_de_champs
+    sources = upper_type_de_champs
+
+    if public? && revision.procedure.feature_enabled?(:annotation_condition_champs_public)
+      sources += revision.private_root_type_de_champs
+    end
+
+    sources
+  end
+
   private
+
+  def preceding_type_de_champs
+    row = enclosing_repetition&.flat_children || (private? ? revision.private_root_type_de_champs : revision.public_root_type_de_champs)
+    row.take_while { it.stable_id != stable_id }
+  end
 
   # within a repetition, the ones of its row only. By stable id: a later edit
   # lays the revision out anew, without this instance.
