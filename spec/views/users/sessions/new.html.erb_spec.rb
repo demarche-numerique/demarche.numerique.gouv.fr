@@ -40,6 +40,7 @@ describe 'users/sessions/new', type: :view do
 
       it 'renders ProConnect login button' do
         expect(rendered).to have_css('.pro-connect-login')
+        expect(rendered).to have_text('Tous les ministères et opérateurs peuvent l’utiliser à ce jour.')
       end
     end
   end
