@@ -50,7 +50,7 @@ class ProcedureRevision < ApplicationRecord
 
     tree = type_de_champ_tree
     # the layout first: were it to fail, the tree would say it is there
-    @type_de_champ_layout = TypeDeChampLayout.lay_out(tree, own_type_de_champs_by_id)
+    @type_de_champ_layout = TypeDeChampLayout.lay_out(tree, own_type_de_champs_by_id, revision: self)
     @laid_out_type_de_champ_tree = tree
 
     self

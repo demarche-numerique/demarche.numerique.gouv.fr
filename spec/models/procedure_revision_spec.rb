@@ -195,11 +195,17 @@ describe ProcedureRevision do
       expect(positions).to eq('a' => 0, 'h1' => 1, 'b' => 0, 'r' => 1, 'h2' => 2, 'c' => 0, 'rh1' => 0, 'r1' => 0, 'd' => 0)
     end
 
+    it 'tells each one the revision that laid it out' do
+      expect(laid_out('r1').revision).to equal(draft)
+      expect { procedure.aggregated_type_de_champs.type_de_champ(laid_out('r1').stable_id).revision }.to raise_error(TypeDeChamp::NotLaidOutError)
+    end
+
     it 'leaves the other instances alone' do
       expect { TypeDeChamp.find(laid_out('r').id).children }.to raise_error(TypeDeChamp::NotLaidOutError)
       expect { draft.coordinate_for(laid_out('r')).type_de_champ.ancestors }.to raise_error(TypeDeChamp::NotLaidOutError)
       expect { laid_out('r').dup.children }.to raise_error(TypeDeChamp::NotLaidOutError)
       expect { laid_out('r').dup.position }.to raise_error(TypeDeChamp::NotLaidOutError)
+      expect { laid_out('r').dup.revision }.to raise_error(TypeDeChamp::NotLaidOutError)
       expect { draft.dup.public_type_de_champs }.to raise_error(ArgumentError)
     end
 

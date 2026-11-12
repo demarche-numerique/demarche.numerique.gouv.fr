@@ -14,13 +14,13 @@ class TypeDeChampLayout < Data.define(
     # only, as it knows where it sits.
     #
     # A node whose type de champ is gone is left out, with what it held.
-    def lay_out(tree, type_de_champs_by_id = {})
+    def lay_out(tree, type_de_champs_by_id = {}, revision: nil)
       missing_ids = tree.type_de_champ_ids - type_de_champs_by_id.keys
       type_de_champs_by_id = type_de_champs_by_id.merge(TypeDeChamp.where(id: missing_ids).index_by(&:id)) if missing_ids.any?
 
       build(
-        public_type_de_champs: TypeDeChamp.laid_out(tree.public_children) { type_de_champs_by_id[it.type_de_champ_id] },
-        private_type_de_champs: TypeDeChamp.laid_out(tree.private_children) { type_de_champs_by_id[it.type_de_champ_id] }
+        public_type_de_champs: TypeDeChamp.laid_out(tree.public_children, revision:) { type_de_champs_by_id[it.type_de_champ_id] },
+        private_type_de_champs: TypeDeChamp.laid_out(tree.private_children, revision:) { type_de_champs_by_id[it.type_de_champ_id] }
       )
     end
 

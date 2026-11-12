@@ -485,12 +485,13 @@ class TypeDeChamp < ApplicationRecord
   # The types de champ the nodes of a tree stand for, each one given by the
   # block, laid out as the nodes are. A node the block has nothing for is left
   # out, with what it holds.
-  def self.laid_out(nodes, ancestors = [], &)
+  def self.laid_out(nodes, ancestors = [], revision: nil, &)
     nodes.each_with_object([]) do |node, laid_out_tdcs|
       type_de_champ = yield node
       next if type_de_champ.nil?
 
-      laid_out_tdcs << type_de_champ.lay_out(ancestors:, position: laid_out_tdcs.size, children: laid_out(node.children, [*ancestors, type_de_champ], &))
+      children = laid_out(node.children, [*ancestors, type_de_champ], revision:, &)
+      laid_out_tdcs << type_de_champ.lay_out(ancestors:, position: laid_out_tdcs.size, children:, revision:)
     end.freeze
   end
 
@@ -498,10 +499,11 @@ class TypeDeChamp < ApplicationRecord
   # its own instances from its tree (ProcedureRevision#type_de_champ and the
   # lists next to it): any other instance knows nothing of its surroundings,
   # and raises when asked.
-  def lay_out(ancestors:, position:, children:)
+  def lay_out(ancestors:, position:, children:, revision: nil)
     @ancestors = ancestors.freeze
     @position = position
     @children = children.freeze
+    @revision = revision
     self
   end
 
@@ -511,7 +513,14 @@ class TypeDeChamp < ApplicationRecord
     @ancestors = nil
     @position = nil
     @children = nil
+    @revision = nil
     super
+  end
+
+  # The revision that laid it out. The procedure lays out the aggregate of its
+  # revisions, which none of them owns: what depends on a revision raises there.
+  def revision
+    @revision || raise(NotLaidOutError, self)
   end
 
   # the header sections and the repetition holding it, outermost first
