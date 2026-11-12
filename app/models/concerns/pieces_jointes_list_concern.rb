@@ -13,10 +13,12 @@ module PiecesJointesListConcern
   end
 
   def exportables_pieces_jointes_for_all_versions
-    pieces_jointes(
-      exclude_titre_identite: true,
-      revision: revisions
-    ).sort_by { - _1.id }.uniq(&:stable_id)
+    all_revisions = revisions.to_a
+    ProcedureRevision.preload_type_de_champs(all_revisions)
+
+    all_revisions
+      .flat_map { pieces_jointes(exclude_titre_identite: true, revision: it) }
+      .sort_by { - _1.id }.uniq(&:stable_id)
   end
 
   def outdated_exportables_pieces_jointes
@@ -31,23 +33,18 @@ module PiecesJointesListConcern
     wrap_with_parent: false,
     revision: active_revision
   )
-    coordinates = ProcedureRevisionTypeDeChamp.where(revision:).includes(:type_de_champ, :parent)
+    type_de_champs = public_only ? revision.public_flat_type_de_champs : revision.type_de_champs
 
-    coordinates = coordinates.public_only if public_only
-
-    coordinates = coordinates.where(types_de_champ: { type_champ: 'piece_justificative' })
+    type_de_champs = type_de_champs.filter(&:piece_justificative?)
 
     # Exclude titre_identite (now piece_justificative with nature=titre_identite)
-    coordinates = coordinates.to_a
     if exclude_titre_identite
-      coordinates = coordinates.reject { _1.type_de_champ.titre_identite? }
+      type_de_champs = type_de_champs.reject(&:titre_identite?)
     end
 
-    return coordinates.map(&:type_de_champ) if !wrap_with_parent
+    return type_de_champs if !wrap_with_parent
 
     # we want pj in the form of [[pj1], [pj2, repetition], [pj3, repetition]]
-    coordinates
-      .map { |c| c.child? ? [c, c.parent] : [c] }
-      .map { |a| a.map(&:type_de_champ) }
+    type_de_champs.map { [it, it.enclosing_repetition].compact }
   end
 end

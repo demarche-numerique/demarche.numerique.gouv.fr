@@ -155,7 +155,8 @@ module Manager
     end
 
     def type_de_champ
-      procedure.draft_revision.revision_type_de_champs.find_by!(type_de_champ_id: params[:type_de_champ][:id]).type_de_champ
+      type_de_champ_id = params[:type_de_champ][:id].to_i
+      procedure.draft_revision.type_de_champs.find { it.id == type_de_champ_id } || raise(ActiveRecord::RecordNotFound)
     end
 
     def type_de_champ_params

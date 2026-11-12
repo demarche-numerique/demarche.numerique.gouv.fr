@@ -2,6 +2,8 @@
 
 describe ExportTemplateValidator do
   let(:validator) { ExportTemplateValidator.new }
+  # the pieces jointes are read from the laid-out revision, which must be saved
+  let(:groupe_instructeur) { procedures.brouillon.defaut_groupe_instructeur }
 
   describe 'validate' do
     let(:exportables_pieces_jointes) { [double('pj', stable_id: 3, libelle: 'libelle')] }
@@ -19,7 +21,7 @@ describe ExportTemplateValidator do
     end
 
     context 'with a default export template' do
-      let(:export_template) { build(:export_template) }
+      let(:export_template) { build(:export_template, groupe_instructeur:) }
 
       it { expect(export_template.errors.count).to eq(0) }
     end
@@ -27,20 +29,20 @@ describe ExportTemplateValidator do
     context 'with a invalid template' do
       let(:export_template) do
         export_pdf = { template: { is: 'invalid' }, enabled: true }
-        build(:export_template, export_pdf:)
+        build(:export_template, groupe_instructeur:, export_pdf:)
       end
 
       it { expect(errors(export_template)).to eq([[:base, "Un nom de fichier est invalide"]]) }
     end
 
     context 'with a empty export_pdf' do
-      let(:export_template) { build(:export_template, export_pdf: empty_template) }
+      let(:export_template) { build(:export_template, groupe_instructeur:, export_pdf: empty_template) }
 
       it { expect(errors(export_template)).to eq([[:export_pdf, "doit être rempli"]]) }
     end
 
     context 'with a empty export_pdf disabled' do
-      let(:export_template) { build(:export_template, export_pdf: empty_template(enabled: false)) }
+      let(:export_template) { build(:export_template, groupe_instructeur:, export_pdf: empty_template(enabled: false)) }
 
       it { expect(export_template.errors.count).to eq(0) }
     end
@@ -50,20 +52,20 @@ describe ExportTemplateValidator do
         dossier_folder = ExportItem.default(prefix: 'dossier')
         dossier_folder.template[:content][0][:content][1][:attrs][:id] = :other
 
-        build(:export_template, dossier_folder:)
+        build(:export_template, groupe_instructeur:, dossier_folder:)
       end
 
       it { expect(errors(export_template)).to eq([[:dossier_folder, "doit contenir le numéro du dossier"]]) }
     end
 
     context 'with a empty pj' do
-      let(:export_template) { build(:export_template, pjs: [empty_template(stable_id: 3)]) }
+      let(:export_template) { build(:export_template, groupe_instructeur:, pjs: [empty_template(stable_id: 3)]) }
 
       it { expect(errors(export_template)).to eq([[:libelle, "doit être rempli"]]) }
     end
 
     context 'with a empty pj disabled' do
-      let(:export_template) { build(:export_template, pjs: [empty_template(enabled: false)]) }
+      let(:export_template) { build(:export_template, groupe_instructeur:, pjs: [empty_template(enabled: false)]) }
 
       it { expect(export_template.errors.count).to eq(0) }
     end
@@ -72,7 +74,7 @@ describe ExportTemplateValidator do
       let(:export_item) { ExportItem.default(prefix: 'same') }
 
       let(:export_template) do
-        build(:export_template, export_pdf: export_item, pjs: [export_item])
+        build(:export_template, groupe_instructeur:, export_pdf: export_item, pjs: [export_item])
       end
 
       it { expect(errors(export_template)).to eq([[:base, "Les fichiers doivent avoir des noms différents"]]) }
@@ -96,7 +98,7 @@ describe ExportTemplateValidator do
       end
 
       let(:export_template) do
-        build(:export_template, pjs: [original_filename_template(stable_id: 3), original_filename_template(stable_id: 4)])
+        build(:export_template, groupe_instructeur:, pjs: [original_filename_template(stable_id: 3), original_filename_template(stable_id: 4)])
       end
 
       it { expect(export_template.errors.count).to eq(0) }
