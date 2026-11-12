@@ -140,7 +140,8 @@ class ProcedureRevision < ApplicationRecord
   # first along with its edit.
   def find_and_ensure_exclusive_use(stable_id)
     with_lock(TYPE_DE_CHAMP_TREE_LOCK) do
-      coordinate, tdc = coordinate_and_tdc(stable_id)
+      # read once locked: the lock lays the revision out anew
+      tdc = type_de_champ(stable_id)
 
       # replayed request targeting a tdc no longer in this revision (deleted in
       # another tab or by a previous request)
@@ -149,15 +150,22 @@ class ProcedureRevision < ApplicationRecord
       if tdc.only_present_on_draft?
         tdc
       else
-        replace_type_de_champ_by_clone(coordinate)
+        coordinate, _ = coordinate_and_tdc(stable_id)
+        adopt(replace_type_de_champ_by_clone(coordinate))
       end
     end
   end
 
   # The type (header section, repetition) and the header section level shape
   # the tree as much as the coordinates do.
+  # Once saved, the type de champ given becomes the layout's own: a copy of
+  # another type (becomes_type) included. An edit that failed is left out, and
+  # so is a type changed without becomes_type: the class of the instance would
+  # say the type it had.
   def update_type_de_champ(type_de_champ, params)
-    edit_type_de_champs { type_de_champ.update(params) }
+    edit_type_de_champs { type_de_champ.update(params) }.tap do |updated|
+      adopt(type_de_champ) if updated && type_de_champ.instance_of?(TypeDeChamp.find_sti_class(type_de_champ.type_champ))
+    end
   end
 
   def move_type_de_champ(stable_id, position)

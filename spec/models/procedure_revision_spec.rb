@@ -428,6 +428,16 @@ describe ProcedureRevision do
       expect(type_de_champ.reload.procedure_id).to eq(procedure.id)
     end
 
+    it 'returns the type de champ the draft lays out, cloned or not' do
+      own = draft.find_and_ensure_exclusive_use(draft.public_root_type_de_champs.first.stable_id)
+      expect(draft.type_de_champ(own.stable_id)).to equal(own)
+
+      procedure.publish_or_reopen!(procedure.administrateurs.first, 'demarche-publiee')
+      clone = procedure.draft_revision.find_and_ensure_exclusive_use(own.stable_id)
+      expect(clone).not_to eq(own)
+      expect(procedure.draft_revision.type_de_champ(own.stable_id)).to equal(clone)
+    end
+
     it 'raises RecordNotFound when the stable_id is no longer in the revision (RAILS-JZE)' do
       removed_stable_id = draft.public_root_type_de_champs.first.stable_id
       draft.remove_type_de_champ(removed_stable_id)
@@ -785,6 +795,24 @@ describe ProcedureRevision do
     let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :repetition, children: [{ type: :text }, { type: :integer_number }] }]) }
     let(:last_coordinate) { draft.revision_type_de_champs.last }
     let(:last_type_de_champ) { last_coordinate.type_de_champ }
+
+    it 'lays out the type de champ it saved, not the one it failed to' do
+      type_de_champ = draft.find_and_ensure_exclusive_use(last_type_de_champ.stable_id)
+
+      expect(draft.update_type_de_champ(type_de_champ, libelle: 'new libelle')).to be(true)
+      expect(draft.type_de_champ(type_de_champ.stable_id)).to equal(type_de_champ)
+
+      header_section = type_de_champ.becomes_type('header_section')
+      expect(draft.update_type_de_champ(header_section, type_champ: 'header_section', header_section_level: '1')).to be(true)
+      expect(draft.type_de_champ(type_de_champ.stable_id)).to equal(header_section)
+      expect(header_section.enclosing_repetition).to be_present
+
+      expect(draft.update_type_de_champ(header_section, type_champ: nil)).to be(false)
+      expect(draft.type_de_champ(type_de_champ.stable_id)).not_to equal(header_section)
+
+      expect(draft.update_type_de_champ(header_section, type_champ: 'text')).to be(true)
+      expect(draft.type_de_champ(type_de_champ.stable_id)).to be_a(TypesDeChamp::TextTypeDeChamp)
+    end
 
     context 'bug with duplicated repetition child' do
       before do
