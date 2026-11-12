@@ -19,7 +19,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
   def extract_libelle(champ_component)
     type_de_champ = champ_component.type_de_champ
-    [type_de_champ.libelle, type_de_champ.revision.coordinate_for(type_de_champ).upper_coordinates.map(&:libelle)]
+    [type_de_champ.libelle, type_de_champ.upper_type_de_champs.map(&:libelle)]
   end
 
   def siblings = assigns(:siblings)&.map(&:libelle)
