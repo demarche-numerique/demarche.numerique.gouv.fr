@@ -138,7 +138,8 @@ class ProcedureRevision < ApplicationRecord
   # first along with its edit.
   def find_and_ensure_exclusive_use(stable_id)
     with_lock(TYPE_DE_CHAMP_TREE_LOCK) do
-      coordinate, tdc = coordinate_and_tdc(stable_id)
+      # read once locked: the lock lays the revision out anew
+      tdc = type_de_champ(stable_id)
 
       # replayed request targeting a tdc no longer in this revision (deleted in
       # another tab or by a previous request)
@@ -147,13 +148,17 @@ class ProcedureRevision < ApplicationRecord
       if tdc.only_present_on_draft?
         tdc
       else
+        coordinate, _ = coordinate_and_tdc(stable_id)
         replace_type_de_champ_by_clone(coordinate)
+        type_de_champ(stable_id)
       end
     end
   end
 
   # The type (header section, repetition) and the header section level shape
   # the tree as much as the coordinates do.
+  # The lock lays the revision out anew: read the type de champ again
+  # (type_de_champ(stable_id)) rather than keep the one given.
   def update_type_de_champ(type_de_champ, params)
     edit_type_de_champs { type_de_champ.update(params) }
   end
