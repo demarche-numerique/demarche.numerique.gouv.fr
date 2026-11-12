@@ -136,7 +136,8 @@ module Administrateurs
     end
 
     def destroy
-      coordinate, type_de_champ = draft.coordinate_and_tdc(params[:stable_id])
+      type_de_champ = draft.type_de_champ(params[:stable_id])
+      coordinate = draft.coordinate_for(type_de_champ) if type_de_champ
 
       if coordinate&.used_by_referentiel_urls?
         errors = "« #{type_de_champ.libelle} » est utilisé par un référentiel, vous ne pouvez pas le supprimer."
