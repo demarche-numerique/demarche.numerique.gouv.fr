@@ -6,7 +6,7 @@ describe EditableChamp::ReferentielComponent, type: :component do
   let(:public_type_de_champs) { [{ type: :referentiel, referentiel:, referentiel_mapping: {} }] }
   let(:procedure) { create(:procedure, public_type_de_champs:) }
   let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-  let(:champ) { dossier.root_champs_public.first }
+  let(:champ) { dossier.public_root_champs.first }
   let(:form) do
     ActionView::Helpers::FormBuilder.new("dossier[champs_public_attributes]", champ, ActionController::Base.new.view_context, {})
   end

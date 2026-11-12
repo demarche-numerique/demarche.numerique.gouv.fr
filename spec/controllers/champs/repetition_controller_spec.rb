@@ -5,12 +5,12 @@ describe Champs::RepetitionController, type: :controller do
 
   let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :repetition, mandatory: true, children: [{ libelle: 'Nom' }, { type: :integer_number, libelle: 'Age' }] }]) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:repetition) { dossier.root_champs_public.find(&:repetition?) }
+  let(:repetition) { dossier.public_root_champs.find(&:repetition?) }
 
   describe 'ensure_legitimate_access' do
     let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text }]) }
     let(:dossier) { create(:dossier, procedure:) }
-    let(:champ) { dossier.root_champs_public.first }
+    let(:champ) { dossier.public_root_champs.first }
 
     it 'returns not found when the champ is not a repetition' do
       post :add, params: { dossier_id: dossier, public_id: champ.public_id }, format: :turbo_stream
@@ -32,7 +32,7 @@ describe Champs::RepetitionController, type: :controller do
       let(:gi) { create(:groupe_instructeur, instructeurs: [instructeur]) }
       let(:procedure) { create(:procedure, private_type_de_champs: [{ type: :repetition, children: [{ libelle: 'Nom' }] }], groupe_instructeurs: [gi]) }
       let(:dossier) { create(:dossier, :en_instruction, procedure:) }
-      let(:repetition) { dossier.root_champs_private.find(&:repetition?) }
+      let(:repetition) { dossier.private_root_champs.find(&:repetition?) }
       before { sign_in instructeur.user }
 
       it 'works' do
@@ -49,7 +49,7 @@ describe Champs::RepetitionController, type: :controller do
     let(:gi) { create(:groupe_instructeur, instructeurs: [instructeur]) }
     let(:procedure) { create(:procedure, private_type_de_champs: [{ type: :repetition, mandatory: true, children: [{ libelle: 'Nom' }] }], groupe_instructeurs: [gi]) }
     let(:dossier) { create(:dossier, :en_instruction, procedure:) }
-    let(:repetition) { dossier.root_champs_private.find(&:repetition?) }
+    let(:repetition) { dossier.private_root_champs.find(&:repetition?) }
 
     before do
       sign_in instructeur.user
@@ -87,7 +87,7 @@ describe Champs::RepetitionController, type: :controller do
 
     context 'removes repetition' do
       it { expect { subject }.not_to change { dossier.reload.champ_data.size } }
-      it { expect { subject }.to change { dossier.reload; dossier.root_champs_public.find(&:repetition?).row_ids.size }.from(1).to(0) }
+      it { expect { subject }.to change { dossier.reload; dossier.public_root_champs.find(&:repetition?).row_ids.size }.from(1).to(0) }
       it { expect { subject }.to change { row.reload.discarded_at }.from(nil).to(Time) }
       it { expect { subject }.to change { dossier.reload.last_champ_updated_at } }
     end

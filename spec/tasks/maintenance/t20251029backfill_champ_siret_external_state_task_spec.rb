@@ -7,7 +7,7 @@ module Maintenance
     describe "#process" do
       let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :siret }]) }
       let(:dossier) { create(:dossier, procedure:) }
-      let(:champ) { dossier.root_champs_public.first }
+      let(:champ) { dossier.public_root_champs.first }
 
       subject(:process) { described_class.process(Champs::SiretChamp.all) }
 

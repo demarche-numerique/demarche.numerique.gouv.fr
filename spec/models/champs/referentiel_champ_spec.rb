@@ -9,7 +9,7 @@ describe Champs::ReferentielChamp, type: :model do
   let(:procedure) { create(:procedure, public_type_de_champs:) }
   let(:dossier) { create(:dossier, procedure:) }
   let(:referentiel_champ) { dossier.champs.find(&:referentiel?) }
-  let(:champ) { dossier.root_champs_public.find(&:referentiel?) }
+  let(:champ) { dossier.public_root_champs.find(&:referentiel?) }
 
   describe '#valid?' do
     context 'when the champ is pending' do
@@ -533,16 +533,16 @@ describe Champs::ReferentielChamp, type: :model do
     let(:champ) { dossier.champ_data.find { it.stable_id == 88 } }
 
     def public_target
-      dossier.reload.flat_champs_public.find { it.stable_id == 99 }
+      dossier.reload.public_flat_champs.find { it.stable_id == 99 }
     end
 
     def private_target
-      dossier.reload.flat_champs_private.find { it.stable_id == 77 }
+      dossier.reload.private_flat_champs.find { it.stable_id == 77 }
     end
 
     def proposed_public_target
       dossier.reload.with_instructeur_buffer_stream do
-        dossier.flat_champs_public.find { it.stable_id == 99 }
+        dossier.public_flat_champs.find { it.stable_id == 99 }
       end
     end
 
@@ -584,7 +584,7 @@ describe Champs::ReferentielChamp, type: :model do
 
         def proposed_dirigeants
           dossier.reload.with_instructeur_buffer_stream do
-            dossier.flat_champs_public.filter { it.stable_id == 311 }.map(&:value)
+            dossier.public_flat_champs.filter { it.stable_id == 311 }.map(&:value)
           end
         end
 

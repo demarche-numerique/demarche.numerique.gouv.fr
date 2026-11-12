@@ -4,12 +4,12 @@ describe Champs::PieceJustificativeController, type: :controller do
   let(:user) { users.usager }
   let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :piece_justificative }], private_type_de_champs: [{ type: :piece_justificative }]) }
   let(:dossier) { create(:dossier, user: user, procedure: procedure) }
-  let(:champ) { dossier.root_champs_public.first }
+  let(:champ) { dossier.public_root_champs.first }
 
   describe 'ensure_legitimate_access' do
     let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :text }]) }
     let(:dossier) { create(:dossier, user: user, procedure: procedure) }
-    let(:champ) { dossier.root_champs_public.first }
+    let(:champ) { dossier.public_root_champs.first }
 
     before { sign_in user }
 
@@ -24,7 +24,7 @@ describe Champs::PieceJustificativeController, type: :controller do
 
     context 'when the dossier is en_instruction' do
       let(:dossier) { create(:dossier, :en_instruction, user: user, procedure: procedure) }
-      let(:champ) { dossier.root_champs_public.first }
+      let(:champ) { dossier.public_root_champs.first }
 
       it 'returns not found' do
         put :update, params: { dossier_id: champ.dossier_id, public_id: champ.public_id }, format: :turbo_stream
@@ -34,7 +34,7 @@ describe Champs::PieceJustificativeController, type: :controller do
 
     context 'when the dossier is accepte' do
       let(:dossier) { create(:dossier, :accepte, user: user, procedure: procedure) }
-      let(:champ) { dossier.root_champs_public.first }
+      let(:champ) { dossier.public_root_champs.first }
 
       it 'returns not found' do
         put :update, params: { dossier_id: champ.dossier_id, public_id: champ.public_id }, format: :turbo_stream
@@ -48,7 +48,7 @@ describe Champs::PieceJustificativeController, type: :controller do
 
     context 'when a non-instructeur user tries to access a private champ' do
       let(:dossier) { create(:dossier, user: user, procedure: procedure) }
-      let(:champ) { dossier.root_champs_private.first }
+      let(:champ) { dossier.private_root_champs.first }
 
       it 'returns not found' do
         put :update, params: { dossier_id: champ.dossier_id, public_id: champ.public_id }, format: :turbo_stream
@@ -65,7 +65,7 @@ describe Champs::PieceJustificativeController, type: :controller do
     end
 
     let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :repetition, mandatory: true, children: [{ type: :piece_justificative }] }]) }
-    let(:child) { dossier.root_champs_public.first.rows.first.flat_children.first }
+    let(:child) { dossier.public_root_champs.first.rows.first.flat_children.first }
     let(:file) { fixture_file_upload('spec/fixtures/files/piece_justificative_0.pdf', 'application/pdf') }
 
     it 'dispatches the limits respected event once the file makes the row filled' do
@@ -78,7 +78,7 @@ describe Champs::PieceJustificativeController, type: :controller do
   describe 'a row whose repetition became a text in the draft revision' do
     let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :repetition, children: [{ type: :piece_justificative }] }]) }
     let(:dossier) { create(:dossier, user:, procedure:) }
-    let!(:child) { dossier.root_champs_public.first.rows.first.flat_children.first }
+    let!(:child) { dossier.public_root_champs.first.rows.first.flat_children.first }
 
     before do
       sign_in user
@@ -183,7 +183,7 @@ describe Champs::PieceJustificativeController, type: :controller do
       let(:file) { fixture_file_upload('spec/fixtures/files/piece_justificative_0.pdf', 'application/pdf') }
       let(:instructeur) { instructeurs.default }
       let!(:dossier) { create(:dossier, :en_construction, user: user, procedure: procedure) }
-      let!(:champ) { dossier.root_champs_private.first }
+      let!(:champ) { dossier.private_root_champs.first }
 
       before do
         instructeur.assign_to_procedure(procedure)
@@ -198,7 +198,7 @@ describe Champs::PieceJustificativeController, type: :controller do
     context 'when the champ is public and the dossier is en_construction' do
       let(:file) { fixture_file_upload('spec/fixtures/files/piece_justificative_0.pdf', 'application/pdf') }
       let!(:dossier) { create(:dossier, :en_construction, user: user, procedure: procedure) }
-      let!(:champ) { dossier.root_champs_public.first }
+      let!(:champ) { dossier.public_root_champs.first }
 
       it 'renders the footer with submit button' do
         subject
@@ -224,7 +224,7 @@ describe Champs::PieceJustificativeController, type: :controller do
     context 'when the champ is a RIB whose content analysis is pending (#13104)' do
       let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :piece_justificative, nature: 'rib' }]) }
       let(:dossier) { create(:dossier, user: user, procedure: procedure) }
-      let(:champ) { dossier.root_champs_public.first }
+      let(:champ) { dossier.public_root_champs.first }
       let(:file) { fixture_file_upload('spec/fixtures/files/piece_justificative_0.pdf', 'application/pdf') }
 
       before do

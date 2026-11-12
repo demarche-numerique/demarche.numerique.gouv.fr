@@ -9,7 +9,7 @@ module Maintenance
 
       let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :siret }]) }
       let(:dossier) { create(:dossier, procedure:) }
-      let(:champ) { dossier.root_champs_public.first }
+      let(:champ) { dossier.public_root_champs.first }
       let(:element) { { "champ_id" => champ.id.to_s } }
       let(:task) { described_class.new }
       let(:csv_content) do

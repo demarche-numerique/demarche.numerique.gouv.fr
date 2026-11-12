@@ -8,7 +8,7 @@ module Maintenance
 
     def iban_champ_on(procedure, prefilled:, dossier_prefilled: prefilled)
       dossier = create(:dossier, procedure:, prefilled: dossier_prefilled)
-      dossier.root_champs_public.first.tap { it.update!(value: 'FR7630006000011234567890189', prefilled:) }
+      dossier.public_root_champs.first.tap { it.update!(value: 'FR7630006000011234567890189', prefilled:) }
     end
 
     describe "#collection" do

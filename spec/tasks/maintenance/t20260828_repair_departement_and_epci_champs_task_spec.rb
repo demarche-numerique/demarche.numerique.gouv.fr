@@ -6,8 +6,8 @@ module Maintenance
   RSpec.describe T20260828RepairDepartementAndEpciChampsTask do
     let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :departements }, { type: :epci }]) }
     let(:dossier) { create(:dossier, procedure:) }
-    let(:departement_champ) { dossier.root_champs_public.find { _1.is_a?(Champs::DepartementChamp) } }
-    let(:epci_champ) { dossier.root_champs_public.find { _1.is_a?(Champs::EpciChamp) } }
+    let(:departement_champ) { dossier.public_root_champs.find { _1.is_a?(Champs::DepartementChamp) } }
+    let(:epci_champ) { dossier.public_root_champs.find { _1.is_a?(Champs::EpciChamp) } }
     let(:epci) { APIGeoService.epcis('01').first }
     let(:during_incident) { Time.zone.parse('2026-08-27 10:00') }
 

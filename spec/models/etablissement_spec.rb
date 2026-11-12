@@ -278,7 +278,7 @@ describe Etablissement do
     it "touches dossier updated_at when etablissement is linked via champ only" do
       procedure = create(:procedure, public_type_de_champs: [{ type: :siret }])
       dossier = create(:dossier, procedure:)
-      champ = dossier.root_champs_public.find { |c| c.is_a?(Champs::SiretChamp) }
+      champ = dossier.public_root_champs.find { |c| c.is_a?(Champs::SiretChamp) }
       etablissement = create(:etablissement, siret: "44011762001530")
       champ.update!(etablissement:)
       previous_updated_at = dossier.updated_at

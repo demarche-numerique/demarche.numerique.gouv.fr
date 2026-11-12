@@ -9,7 +9,7 @@ module Maintenance
 
       let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :rna }]) }
       let(:dossier) { create(:dossier, procedure:) }
-      let(:champ) { dossier.root_champs_public.first }
+      let(:champ) { dossier.public_root_champs.first }
 
       context "quand le champ est idle avec une data déjà présente" do
         before do

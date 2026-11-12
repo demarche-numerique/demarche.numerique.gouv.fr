@@ -10,8 +10,8 @@ RSpec.describe Dossiers::InvalidIneligibiliteRulesComponent, type: :component do
     ])
   end
   let(:dossier) { create(:dossier, procedure:) }
-  let(:checkbox) { dossier.root_champs_public.first }
-  let(:texte) { dossier.root_champs_public.last }
+  let(:checkbox) { dossier.public_root_champs.first }
+  let(:texte) { dossier.public_root_champs.last }
   let(:updated_champ) { nil }
   let(:component) { described_class.new(dossier:, updated_champ:) }
 

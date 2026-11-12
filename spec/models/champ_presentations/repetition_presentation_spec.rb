@@ -15,7 +15,7 @@ describe ChampPresentations::RepetitionPresentation do
   }
 
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ_repetition) { dossier.root_champs_public.first }
+  let(:champ_repetition) { dossier.public_root_champs.first }
 
   before do
     champ_repetition.add_row(updated_by: 'test')

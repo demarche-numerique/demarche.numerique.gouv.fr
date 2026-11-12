@@ -1489,7 +1489,7 @@ describe Instructeurs::DossiersController, type: :controller do
   describe "#update_annotations in a repetition with min items" do
     let(:procedure) { create(:procedure, :published, private_type_de_champs: [{ type: :repetition, mandatory: true, children: [{ libelle: 'Nom' }] }], instructeurs: procedure_instructeurs) }
     let(:dossier) { create(:dossier, :en_construction, procedure:) }
-    let(:child) { dossier.root_champs_private.first.rows.first.flat_children.first }
+    let(:child) { dossier.private_root_champs.first.rows.first.flat_children.first }
 
     before { procedure.active_revision.private_root_type_de_champs.first.update!(limit_repetitions: '1', min_repetitions: '1') }
 
@@ -1518,12 +1518,12 @@ describe Instructeurs::DossiersController, type: :controller do
     let(:another_instructeur) { create(:instructeur) }
     let(:now) { Time.current.change(usec: 0) }
 
-    let(:champ_repetition) { dossier.root_champs_private.fourth }
+    let(:champ_repetition) { dossier.private_root_champs.fourth }
     let(:champ_text) { champ_repetition.rows.first.flat_children.first }
-    let(:champ_multiple_drop_down_list) { dossier.root_champs_private.first }
-    let(:champ_linked_drop_down_list) { dossier.root_champs_private.second }
-    let(:champ_datetime) { dossier.root_champs_private.third }
-    let(:champ_drop_down_list) { dossier.root_champs_private.fifth }
+    let(:champ_multiple_drop_down_list) { dossier.private_root_champs.first }
+    let(:champ_linked_drop_down_list) { dossier.private_root_champs.second }
+    let(:champ_datetime) { dossier.private_root_champs.third }
+    let(:champ_drop_down_list) { dossier.private_root_champs.fifth }
 
     context 'when the payload carries an id for the annotation' do
       let(:forged_id) { ChampData.maximum(:id) + 1_000 }
@@ -1741,7 +1741,7 @@ describe Instructeurs::DossiersController, type: :controller do
         ]
       end
 
-      let(:champ_decimal_number) { dossier.root_champs_public.first }
+      let(:champ_decimal_number) { dossier.public_root_champs.first }
 
       let(:params) do
         {
@@ -1800,8 +1800,8 @@ describe Instructeurs::DossiersController, type: :controller do
 
     context 'when the annotation value is invalid' do
       let(:private_type_de_champs) { [{ type: :dossier_link }, { type: :siret }] }
-      let(:dossier_link_annotation) { dossier.root_champs_private.first }
-      let(:siret_annotation) { dossier.root_champs_private.second }
+      let(:dossier_link_annotation) { dossier.private_root_champs.first }
+      let(:siret_annotation) { dossier.private_root_champs.second }
       let(:linked_dossier) { dossiers.en_construction }
 
       before { dossier_link_annotation.update_column(:value, linked_dossier.id.to_s) }
@@ -1840,7 +1840,7 @@ describe Instructeurs::DossiersController, type: :controller do
       let(:private_type_de_champs) { [{ type: :pre_rempli }] }
       let(:public_type_de_champs) { [] }
       let(:dossier) { create(:dossier, :en_construction, :with_populated_annotations, procedure:) }
-      let(:pre_rempli_annotation) { dossier.root_champs_private.first }
+      let(:pre_rempli_annotation) { dossier.private_root_champs.first }
 
       before { pre_rempli_annotation.update_column(:value, 'original') }
 
@@ -1894,7 +1894,7 @@ describe Instructeurs::DossiersController, type: :controller do
       it 'recomputes visibility of conditional annotations after polling' do
         subject
 
-        explication_annotation = assigns(:dossier).flat_champs_private
+        explication_annotation = assigns(:dossier).private_flat_champs
           .find { _1.type_de_champ.stable_id == explication_stable_id }
         expect(assigns(:to_show)).to include("##{explication_annotation.input_group_id}")
       end
@@ -2353,7 +2353,7 @@ describe Instructeurs::DossiersController, type: :controller do
       let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :piece_justificative }, { type: :carte }], instructeurs: procedure_instructeurs) }
 
       before do
-        carte_champ = dossier.root_champs_public.find(&:carte?)
+        carte_champ = dossier.public_root_champs.find(&:carte?)
         carte_champ.update(geo_areas: [build(:geo_area, :selection_utilisateur, :polygon)])
         carte_champ.attach_static_map(StringIO.new('map-bytes'), digest: 'abc')
 

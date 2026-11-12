@@ -5,8 +5,8 @@ describe ChampConditionalConcern do
 
   let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :decimal_number, stable_id: 99 }, { type: :decimal_number, stable_id: 999, condition: }]) }
   let(:dossier) { create(:dossier, :en_construction, :with_populated_champs, procedure:) }
-  let(:champ) { dossier.root_champs_public.find { _1.stable_id == 99 }.tap { _1.update_column(:value, '1.1234') } }
-  let(:last_champ) { dossier.root_champs_public.find { _1.stable_id == 999 }.tap { _1.update_column(:value, '1.1234') } }
+  let(:champ) { dossier.public_root_champs.find { _1.stable_id == 99 }.tap { _1.update_column(:value, '1.1234') } }
+  let(:last_champ) { dossier.public_root_champs.find { _1.stable_id == 999 }.tap { _1.update_column(:value, '1.1234') } }
   let(:condition) { nil }
 
   describe '#used_by_a_form_condition?' do
@@ -87,7 +87,7 @@ describe ChampConditionalConcern do
         ])
       end
       let(:dossier) { create(:dossier, procedure:) }
-      let(:conditional_champ) { dossier.root_champs_public.find { it.stable_id == 999 } }
+      let(:conditional_champ) { dossier.public_root_champs.find { it.stable_id == 999 } }
 
       it 'reads « Non »' do
         expect(conditional_champ.visible?).to be true
@@ -102,7 +102,7 @@ describe ChampConditionalConcern do
         ])
       end
       let(:dossier) { create(:dossier, procedure:) }
-      let(:conditional_champ) { dossier.root_champs_public.find { it.stable_id == 999 } }
+      let(:conditional_champ) { dossier.public_root_champs.find { it.stable_id == 999 } }
 
       before do
         dossier.champ_data.find { it.stable_id == 99 }.update_columns(type: 'Champs::YesNoChamp', value: 'true')
@@ -110,7 +110,7 @@ describe ChampConditionalConcern do
       end
 
       it 'reads the value the form displays' do
-        expect(dossier.root_champs_public.first).to be_true
+        expect(dossier.public_root_champs.first).to be_true
         expect(conditional_champ.visible?).to be true
       end
     end
@@ -123,7 +123,7 @@ describe ChampConditionalConcern do
         ])
       end
       let(:dossier) { create(:dossier, procedure:) }
-      let(:conditional_champ) { dossier.root_champs_public.find { it.stable_id == 999 } }
+      let(:conditional_champ) { dossier.public_root_champs.find { it.stable_id == 999 } }
 
       # the admin tests the draft procedure, then turns the champ the
       # condition reads into a yes/no: nothing rewrites the condition, and the

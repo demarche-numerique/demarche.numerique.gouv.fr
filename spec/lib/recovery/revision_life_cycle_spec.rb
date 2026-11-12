@@ -29,14 +29,14 @@ describe 'Recovery::Revision::LifeCycle' do
 
       it do
         expect { DossierPreloader.load_one(dossier) }.not_to raise_error
-        expect(dossier.root_champs_public.size).to eq(1)
+        expect(dossier.public_root_champs.size).to eq(1)
         expect(dossier.champ_data.size).to eq(2)
         importer.load
         # DossierPreloader reuses a revision already loaded with its types de
         # champ, so the imported one is only visible on a fresh dossier.
         imported_dossier = Dossier.find(dossier.id)
         expect { DossierPreloader.load_one(imported_dossier) }.not_to raise_error
-        expect(imported_dossier.root_champs_public.size).to eq(2)
+        expect(imported_dossier.public_root_champs.size).to eq(2)
         expect(procedure.published_revision.reload.read_attribute(:type_de_champ_tree).public_children.size).to eq(2)
       end
     end

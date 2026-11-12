@@ -27,7 +27,7 @@ describe ProcedureExportService::CsvExport do
   describe '#write_to' do
     let(:procedure) { procedures.individual }
     let(:dossier) { dossiers.en_construction }
-    let(:champ) { dossier.root_champs_public.find { it.libelle == 'Nom du projet' } }
+    let(:champ) { dossier.public_root_champs.find { it.libelle == 'Nom du projet' } }
 
     before do
       champ.type_de_champ.update!(libelle: '=Nom du projet')

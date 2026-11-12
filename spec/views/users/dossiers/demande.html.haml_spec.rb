@@ -146,7 +146,7 @@ describe 'users/dossiers/demande', type: :view do
     let(:public_type_de_champs) { [{ type: :textarea }] }
     let(:procedure) { create(:procedure, :published, public_type_de_champs:) }
     let(:dossier) { create(:dossier, :en_construction, procedure: procedure) }
-    let(:champ) { dossier.root_champs_public.first }
+    let(:champ) { dossier.public_root_champs.first }
 
     before do
       champ.update(value: '<strong>important</strong>')

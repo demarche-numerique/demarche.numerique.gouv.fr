@@ -1002,7 +1002,7 @@ describe Dossier, type: :model do
     before do
       procedure.attestation_acceptation_template = attestation_acceptation_template if attestation_acceptation_template
 
-      (dossier.root_champs_public + dossier.root_champs_private)
+      (dossier.public_root_champs + dossier.private_root_champs)
         .filter { |c| c.libelle.match?(/^specified/) }
         .each { |c| c.update_attribute(:value, "specified") }
     end
@@ -1096,7 +1096,7 @@ describe Dossier, type: :model do
     it { is_expected.not_to eq(modif_date) }
 
     context 'when a champ is modified' do
-      before { dossier.root_champs_public.first.update_attribute('value', 'yop') }
+      before { dossier.public_root_champs.first.update_attribute('value', 'yop') }
 
       it { is_expected.to eq(modif_date) }
     end
@@ -1836,7 +1836,7 @@ describe Dossier, type: :model do
     let(:max_character_length) { "" }
 
     before do
-      champ = dossier.root_champs_public.first
+      champ = dossier.public_root_champs.first
       champ.value = value
       dossier.save(context: :champs_public_value)
     end
@@ -1964,14 +1964,14 @@ describe Dossier, type: :model do
       let(:expression_reguliere_error_message) { "Le champ doit être composé de lettres majuscules" }
 
       before do
-        champ = dossier.root_champs_public.first
+        champ = dossier.public_root_champs.first
         champ.value = expression_reguliere_exemple_text
         dossier.save(context: :champs_public_value)
       end
 
       it 'should have errors' do
         expect(dossier.errors).not_to be_empty
-        expect(dossier.errors.full_messages.join(',')).to include(dossier.root_champs_public.first.expression_reguliere_error_message)
+        expect(dossier.errors.full_messages.join(',')).to include(dossier.public_root_champs.first.expression_reguliere_error_message)
       end
     end
 
@@ -1981,7 +1981,7 @@ describe Dossier, type: :model do
       let(:expression_reguliere_error_message) { "Le champ doit être composé de lettres majuscules" }
 
       before do
-        champ = dossier.root_champs_public.first
+        champ = dossier.public_root_champs.first
         champ.value = expression_reguliere_exemple_text
         dossier.save
       end

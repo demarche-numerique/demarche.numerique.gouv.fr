@@ -22,8 +22,8 @@ describe DossierSearchService do
       let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text }], private_type_de_champs: [{ type: :text }]) }
       let(:dossier) do
         create(:dossier, procedure:, state: :en_construction, user:, etablissement:).tap do |dossier|
-          dossier.root_champs_public.first.update!(value: 'Hélène mange des pommes')
-          dossier.root_champs_private.first.update!(value: 'annotations')
+          dossier.public_root_champs.first.update!(value: 'Hélène mange des pommes')
+          dossier.private_root_champs.first.update!(value: 'annotations')
         end
       end
 
@@ -111,8 +111,8 @@ describe DossierSearchService do
       let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text }], private_type_de_champs: [{ type: :text }]) }
       let!(:dossier) do
         create(:dossier, procedure:, state: :brouillon, user:).tap do |dossier|
-          dossier.root_champs_public.first.update!(value: 'pommes')
-          dossier.root_champs_private.first.update!(value: 'annotations')
+          dossier.public_root_champs.first.update!(value: 'pommes')
+          dossier.private_root_champs.first.update!(value: 'annotations')
         end
       end
 
@@ -144,7 +144,7 @@ describe DossierSearchService do
       let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text }]) }
       let!(:dossier) do
         create(:dossier, procedure:, state: :en_construction, user:).tap do |dossier|
-          dossier.root_champs_public.first.update!(value: 'pommes')
+          dossier.public_root_champs.first.update!(value: 'pommes')
         end
       end
 

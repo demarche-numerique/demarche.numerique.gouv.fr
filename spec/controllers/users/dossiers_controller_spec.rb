@@ -1109,7 +1109,7 @@ describe Users::DossiersController, type: :controller do
 
     let(:procedure) { create(:procedure, :published, public_type_de_champs: [{}]) }
     let(:dossier) { create(:dossier, user:, procedure:) }
-    let(:champ) { dossier.root_champs_public.first }
+    let(:champ) { dossier.public_root_champs.first }
 
     subject { patch :revert_prefill, params: { id: dossier.id, public_id: champ.public_id }, format: :turbo_stream }
 
@@ -1138,7 +1138,7 @@ describe Users::DossiersController, type: :controller do
 
     context 'when the champ is a child of a repetition' do
       let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :repetition, children: [{}] }]) }
-      let(:repetition) { dossier.root_champs_public.first.type_de_champ }
+      let(:repetition) { dossier.public_root_champs.first.type_de_champ }
       let(:champ) do
         child = dossier.revision.children_of(repetition).first
         dossier.champ_for_update(child, row_id: dossier.repetition_row_ids(repetition).first, updated_by: user.email)
@@ -1163,7 +1163,7 @@ describe Users::DossiersController, type: :controller do
       it 'reverts on the buffer stream champ and responds with turbo_stream' do
         subject
         dossier.reload
-        buffer_champ = dossier.with_update_stream(user) { dossier.root_champs_public.first }
+        buffer_champ = dossier.with_update_stream(user) { dossier.public_root_champs.first }
         expect(buffer_champ.value).to eq('original')
         expect(buffer_champ.prefilled_original_value).to eq({ 'value' => 'original' })
         expect(response).to have_http_status(:success)

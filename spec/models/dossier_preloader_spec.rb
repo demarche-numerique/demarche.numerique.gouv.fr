@@ -10,8 +10,8 @@ describe DossierPreloader do
   end
   let(:procedure) { create(:procedure, public_type_de_champs: type_de_champs) }
   let(:dossier) { create(:dossier, procedure: procedure) }
-  let(:repetition) { subject.root_champs_public.second }
-  let(:repetition_optional) { subject.root_champs_public.third }
+  let(:repetition) { subject.public_root_champs.second }
+  let(:repetition_optional) { subject.public_root_champs.third }
   let(:first_child) { repetition.rows.first.flat_children.first }
 
   describe 'all' do
@@ -25,20 +25,20 @@ describe DossierPreloader do
       callback = lambda { |*_args| count += 1 }
       ActiveSupport::Notifications.subscribed(callback, "sql.active_record") do
         expect(subject.id).to eq(dossier.id)
-        expect(subject.root_champs_public.size).to eq(type_de_champs.size)
+        expect(subject.public_root_champs.size).to eq(type_de_champs.size)
         expect(subject.changed?).to be false
 
         expect(first_child.type).to eq('Champs::TextChamp')
         expect(repetition).not_to eq(first_child)
         expect(subject.champ_data.first.dossier).to eq(subject)
         expect(subject.champ_data.find(&:public?).dossier).to eq(subject)
-        expect(subject.root_champs_public.first.dossier).to eq(subject)
+        expect(subject.public_root_champs.first.dossier).to eq(subject)
 
-        expect(subject.root_champs_public.first.type_de_champ.piece_justificative_template.attached?).to eq(false)
+        expect(subject.public_root_champs.first.type_de_champ.piece_justificative_template.attached?).to eq(false)
 
         expect(subject.champ_data.first.conditional?).to eq(false)
         expect(subject.champ_data.find(&:public?).conditional?).to eq(false)
-        expect(subject.root_champs_public.first.conditional?).to eq(false)
+        expect(subject.public_root_champs.first.conditional?).to eq(false)
 
         expect(repetition.rows.first.flat_children.first.public_id).to eq(first_child.public_id)
         expect(repetition_optional.row_ids).to be_empty
@@ -65,7 +65,7 @@ describe DossierPreloader do
 
       loaded_dossier = loaded_dossiers.first
       expect(loaded_dossier.revision.association(:procedure)).to be_loaded
-      expect(sql_touching('') { loaded_dossier.root_champs_public.map(&:type_de_champ) }).to be_empty
+      expect(sql_touching('') { loaded_dossier.public_root_champs.map(&:type_de_champ) }).to be_empty
     end
 
     it 'reuses a loaded revision and only loads its types de champ' do
@@ -75,7 +75,7 @@ describe DossierPreloader do
 
       expect(queries.grep(/"procedure_revisions"/)).to be_empty
       expect(queries.grep(/"procedure_revision_types_de_champ"/).size).to eq(1)
-      expect(sql_touching('') { loaded_dossiers.first.root_champs_public.map(&:type_de_champ) }).to be_empty
+      expect(sql_touching('') { loaded_dossiers.first.public_root_champs.map(&:type_de_champ) }).to be_empty
     end
 
     it 'reuses a loaded revision with pj_template and preloads its templates' do
@@ -83,7 +83,7 @@ describe DossierPreloader do
 
       expect(sql_touching('"procedure_revisions"') { DossierPreloader.new(loaded_dossiers).all(pj_template: true) }).to be_empty
 
-      templates_attached = -> { loaded_dossiers.first.root_champs_public.map { it.type_de_champ.piece_justificative_template.attached? } }
+      templates_attached = -> { loaded_dossiers.first.public_root_champs.map { it.type_de_champ.piece_justificative_template.attached? } }
       expect(sql_touching('', &templates_attached)).to be_empty
     end
 

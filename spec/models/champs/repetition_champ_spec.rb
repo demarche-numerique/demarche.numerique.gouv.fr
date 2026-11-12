@@ -11,7 +11,7 @@ describe Champs::RepetitionChamp do
       ])
   }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.root_champs_public.find(&:repetition?) }
+  let(:champ) { dossier.public_root_champs.find(&:repetition?) }
 
   describe "#row_libelle" do
     context "with a single child (monochamp)" do
@@ -95,7 +95,7 @@ describe Champs::RepetitionChamp do
     end
     let(:children) { [{ type: :text }] }
     let(:dossier) { create(:dossier, procedure:) }
-    let(:champ) { dossier.root_champs_public.find(&:repetition?) }
+    let(:champ) { dossier.public_root_champs.find(&:repetition?) }
 
     def too_few_on_submission?(champ)
       champ.valid?([:champ_value, :champ_completeness])
@@ -130,7 +130,7 @@ describe Champs::RepetitionChamp do
       end
 
       it "adds a repetition_too_few error even without any rows" do
-        fresh_champ = dossier.reload.root_champs_public.find(&:repetition?)
+        fresh_champ = dossier.reload.public_root_champs.find(&:repetition?)
         fresh_champ.valid?([:champ_value, :champ_completeness])
         expect(fresh_champ.errors.where(:value, :repetition_too_few)).to be_present
       end
@@ -232,7 +232,7 @@ describe Champs::RepetitionChamp do
       end
 
       it "loads the geo areas of every row in a single query" do
-        fresh_champ = DossierPreloader.load_one(Dossier.find(dossier.id)).root_champs_public.find(&:repetition?)
+        fresh_champ = DossierPreloader.load_one(Dossier.find(dossier.id)).public_root_champs.find(&:repetition?)
 
         queries = count_queries(matching: /FROM "geo_areas"/) { expect(too_few_on_submission?(fresh_champ)).to be(false) }
 
@@ -304,7 +304,7 @@ describe Champs::RepetitionChamp do
         ])
     end
     let(:dossier) { create(:dossier, procedure:) }
-    let(:champ) { dossier.root_champs_private.find(&:repetition?) }
+    let(:champ) { dossier.private_root_champs.find(&:repetition?) }
 
     before { champ.valid?([:champ_value, :champ_completeness]) }
 

@@ -16,7 +16,7 @@ class TypesDeChamp::RepetitionTypeDeChamp < TypeDeChamp
 
   def typed_champ_value_for_tag(champ, path = :value)
     return nil if path != :value
-    ChampPresentations::RepetitionPresentation.new(libelle, champ.dossier.project_rows_for(self))
+    ChampPresentations::RepetitionPresentation.new(libelle, champ.rows)
   end
 
   def estimated_fill_duration(revision)

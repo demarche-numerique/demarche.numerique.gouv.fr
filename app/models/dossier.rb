@@ -592,7 +592,7 @@ class Dossier < ApplicationRecord
   def can_passer_en_construction?
     return true if !revision.ineligibilite_enabled || !revision.ineligibilite_rules
 
-    !revision.ineligibilite_rules.compute(flat_champs_public)
+    !revision.ineligibilite_rules.compute(public_flat_champs)
   end
 
   def can_passer_en_instruction?
@@ -661,7 +661,7 @@ class Dossier < ApplicationRecord
   end
 
   def champs_awaiting_verification
-    flat_champs_public.filter(&:awaiting_fix?)
+    public_flat_champs.filter(&:awaiting_fix?)
   end
 
   def messagerie_available?

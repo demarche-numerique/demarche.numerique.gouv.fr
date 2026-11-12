@@ -3,7 +3,7 @@
 RSpec.describe TypesDeChamp::PrefillRepetitionTypeDeChamp, type: :model do
   let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :repetition, children: [{}, { type: :integer_number }, { type: :regions }] }]) }
   let(:dossier) { create(:dossier, procedure: procedure) }
-  let(:champ) { dossier.root_champs_public.first }
+  let(:champ) { dossier.public_root_champs.first }
   let(:type_de_champ) { champ.type_de_champ }
   let(:prefillable_subchamps) { TypesDeChamp::PrefillRepetitionTypeDeChamp.new(type_de_champ, procedure.active_revision).send(:prefillable_subchamps) }
   let(:text_repetition) { prefillable_subchamps.first }
@@ -78,7 +78,7 @@ RSpec.describe TypesDeChamp::PrefillRepetitionTypeDeChamp, type: :model do
         # the link goes through a query string, the API through a JSON body.
         def prefill_with(params)
           dossier.prefill!(PrefillChamps.new(dossier, params).to_a, {})
-          dossier.reload.root_champs_public.find(&:repetition?)
+          dossier.reload.public_root_champs.find(&:repetition?)
         end
 
         # A champ fetching its data asynchronously (address) is prefilled with an

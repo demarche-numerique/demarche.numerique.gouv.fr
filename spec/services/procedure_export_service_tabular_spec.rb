@@ -97,7 +97,7 @@ describe ProcedureExportService do
         let(:exported_columns) { [ExportedColumn.new(libelle: 'PJ', column: procedure.find_column(label: 'PJ'))] }
         before do
           dossier = create(:dossier, :en_instruction, :with_populated_champs, procedure:)
-          dossier.flat_champs_public
+          dossier.public_flat_champs
             .find { _1.is_a? Champs::PieceJustificativeChamp }
             .piece_justificative_file
             .attach(io: StringIO.new("toto"), filename: "toto.txt", content_type: "text/plain")
@@ -173,7 +173,7 @@ describe ProcedureExportService do
         let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
         before do
           dossier
-            .flat_champs_public
+            .public_flat_champs
             .first
             .update(value: "franco￾allemand")
         end

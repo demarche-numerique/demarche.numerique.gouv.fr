@@ -7,7 +7,7 @@ describe EditableChamp::ReferentielDisplayComponent, type: :component do
   let(:public_type_de_champs) { [{ type: :referentiel, referentiel:, referentiel_mapping: }] }
   let(:procedure) { create(:procedure, public_type_de_champs:) }
   let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-  let(:champ) { (dossier.root_champs_public).first }
+  let(:champ) { (dossier.public_root_champs).first }
 
   let(:referentiel_mapping) { {} }
   subject { render_inline(described_class.new(champ:)) }

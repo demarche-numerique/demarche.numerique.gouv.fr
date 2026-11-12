@@ -4,7 +4,7 @@ describe Champs::MultipleDropDownListChamp do
   let(:public_type_de_champs) { [{ type: :multiple_drop_down_list, options: ["val1", "val2", "val3", "[brackets] val4"] }] }
   let(:procedure) { create(:procedure, public_type_de_champs:) }
   let(:dossier) { create(:dossier, procedure:) }
-  let(:champ) { dossier.root_champs_public.first.tap { _1.update(value:) } }
+  let(:champ) { dossier.public_root_champs.first.tap { _1.update(value:) } }
   let(:value) { nil }
 
   describe 'validations' do
@@ -66,7 +66,7 @@ describe Champs::MultipleDropDownListChamp do
     let(:referentiel) { create(:csv_referentiel, :with_items) }
     let(:public_type_de_champs) { [{ type: :multiple_drop_down_list, drop_down_mode: "advanced", referentiel: }] }
     let(:item) { referentiel.items.first }
-    let(:champ) { dossier.root_champs_public.first }
+    let(:champ) { dossier.public_root_champs.first }
 
     it "accepts the ids of items before the champ is saved" do
       champ.value = [item.id.to_s]

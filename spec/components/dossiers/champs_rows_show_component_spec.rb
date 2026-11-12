@@ -7,7 +7,7 @@ RSpec.describe Dossiers::ChampsRowsShowComponent, type: :component do
     ])
   end
   let(:dossier) { create(:dossier, procedure:, populate_champs: true) }
-  let(:champs) { dossier.root_champs_public }
+  let(:champs) { dossier.public_root_champs }
 
   before { render_inline(component).to_html }
 
@@ -44,7 +44,7 @@ RSpec.describe Dossiers::ChampsRowsShowComponent, type: :component do
       end.reload
     end
     let(:champs) do
-      dossier.root_champs_public.tap { it.first.update_columns(champ_attributes) }
+      dossier.public_root_champs.tap { it.first.update_columns(champ_attributes) }
     end
     let(:component) { described_class.new(champs:, profile: "instructeur", seen_at: nil) }
 
@@ -79,7 +79,7 @@ RSpec.describe Dossiers::ChampsRowsShowComponent, type: :component do
     let(:dossier) { dossiers.en_construction }
     let(:prefill_attrs) { {} }
     let(:champs) do
-      dossier.root_champs_public.tap do |cs|
+      dossier.public_root_champs.tap do |cs|
         cs.first.update!(value: "ACME", **prefill_attrs)
       end
     end
@@ -161,7 +161,7 @@ RSpec.describe Dossiers::ChampsRowsShowComponent, type: :component do
     end
     let(:dossier) do
       create(:dossier, :en_construction, procedure:).tap do |dossier|
-        dossier.root_champs_public.find { it.libelle == "Statut interne" }.update!(value: "CONFIRME")
+        dossier.public_root_champs.find { it.libelle == "Statut interne" }.update!(value: "CONFIRME")
       end
     end
     let(:component) { described_class.new(champs:, profile:, seen_at: nil) }

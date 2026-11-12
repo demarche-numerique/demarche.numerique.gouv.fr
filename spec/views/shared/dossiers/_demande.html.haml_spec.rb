@@ -68,7 +68,7 @@ describe 'shared/dossiers/demande', type: :view do
     let(:procedure) { create(:procedure, :published, :with_type_de_champ) }
 
     it 'renders the champs' do
-      dossier.root_champs_public.each do |champ|
+      dossier.public_root_champs.each do |champ|
         expect(subject).to include(champ.libelle)
       end
     end
@@ -77,7 +77,7 @@ describe 'shared/dossiers/demande', type: :view do
   context 'when a champ is freshly build' do
     let(:procedure) { create(:procedure, :published, :with_type_de_champ) }
     before do
-      dossier.root_champs_public.first.destroy
+      dossier.public_root_champs.first.destroy
     end
 
     it 'renders without error' do

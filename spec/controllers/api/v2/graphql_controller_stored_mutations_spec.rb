@@ -1019,7 +1019,7 @@ describe API::V2::GraphqlController do
       let(:procedure) { create(:procedure, :published, :for_individual, administrateurs: [admin], private_type_de_champs:) }
       let(:private_type_de_champs) { [{ type: :text }, { type: :checkbox }, { type: :integer_number }, { type: :decimal_number }, { type: :date }] }
       let(:dossier) { create(:dossier, :en_construction, :with_individual, procedure:) }
-      let(:annotations) { dossier.root_champs_private }
+      let(:annotations) { dossier.private_root_champs }
       let(:date) { 1.day.from_now.to_date.iso8601 }
       let(:operation_name) { 'dossierModifierAnnotations' }
       let(:variables) do
@@ -1042,7 +1042,7 @@ describe API::V2::GraphqlController do
         expect(gql_errors).to be_nil
         expect(gql_data[:dossierModifierAnnotations][:errors]).to be_nil
         expect(gql_data[:dossierModifierAnnotations][:annotations].map { _1[:id] }).to match_array(annotations.map(&:to_typed_id))
-        expect(dossier.reload.root_champs_private.map(&:value)).to eq(['hello', 'true', '42', '42.1', date])
+        expect(dossier.reload.private_root_champs.map(&:value)).to eq(['hello', 'true', '42', '42.1', date])
       }
 
       context 'with a value of the wrong type' do

@@ -27,7 +27,7 @@ describe Champs::CarteController, type: :controller do
 
     context 'when the champ is not a carte' do
       let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :text }]) }
-      let(:champ) { dossier.root_champs_public.first }
+      let(:champ) { dossier.public_root_champs.first }
 
       it 'returns not found' do
         get :index, params: { dossier_id: champ.dossier_id, public_id: champ.public_id }, format: :turbo_stream
@@ -304,7 +304,7 @@ describe Champs::CarteController, type: :controller do
 
     let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :repetition, mandatory: true, libelle: 'bloc carte', children: [{ type: :carte, libelle: 'zone' }] }]) }
     let(:dossier) { create(:dossier, user:, procedure:) }
-    let(:child) { dossier.root_champs_public.first.rows.first.flat_children.first }
+    let(:child) { dossier.public_root_champs.first.rows.first.flat_children.first }
 
     before do
       sign_in user

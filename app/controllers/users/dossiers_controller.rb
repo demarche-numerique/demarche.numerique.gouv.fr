@@ -353,7 +353,7 @@ module Users
 
       respond_to do |format|
         format.turbo_stream do
-          @to_show, @to_hide, @to_update = champs_to_turbo_update(champs_attributes_params(:public), dossier.flat_champs_public)
+          @to_show, @to_hide, @to_update = champs_to_turbo_update(champs_attributes_params(:public), dossier.public_flat_champs)
           render :update, layout: false
         end
       end
@@ -367,13 +367,12 @@ module Users
     def champ
       @polling = true
       @dossier = dossier_with_champs(pj_template: false)
-      type_de_champ, row_id = dossier.find_type_de_champ_by_public_id!(champ_public_id_param, :public)
-      champ = dossier.project_champ(type_de_champ, row_id:)
+      champ = dossier.public_champ(champ_public_id_param)
 
       champ.validate(:champ_value) if champ.external_data_settled?
       respond_to do |format|
         format.turbo_stream do
-          @to_show, @to_hide, @to_update = champ_to_turbo_update(champ, dossier.flat_champs_public)
+          @to_show, @to_hide, @to_update = champ_to_turbo_update(champ, dossier.public_flat_champs)
 
           render :update, layout: false
         end

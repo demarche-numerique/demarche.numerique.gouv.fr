@@ -11,10 +11,9 @@ module ChampHelper
 
   def repetitions_with_resolved_errors(champs)
     champs
-      .map { it.child? ? it.parent : it.type_de_champ }
+      .map { it.enclosing_repetition || it }
       .uniq
       .filter { it.repetition? && it.limit_repetitions? }
-      .map { champs.first.dossier.project_champ(it) }
       .filter { it.validate([:champ_value, :champ_completeness]) }
   end
 

@@ -76,7 +76,7 @@ describe ProcedureExportService::RepetitionMaxRows do
 
     projected = dossiers.map do |dossier|
       dossier = Dossier.find(dossier.id)
-      dossier.project_rows_for(dossier.find_type_de_champ_by_stable_id(10)).size
+      ProcedureExportService::RepetitionRow.for(dossier, dossier.find_type_de_champ_by_stable_id(10)).size
     end
 
     expect(max_rows[10]).to eq(projected.max)

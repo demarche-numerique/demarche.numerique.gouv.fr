@@ -178,14 +178,37 @@ class ChampData < ApplicationRecord
     data&.dig("prefilled_from_france_connect_information") == true
   end
 
-  def child?
-    row_id.present? && !is_type?(TypeDeChamp.type_champs.fetch(:repetition))
+  # Where the champ sits in its dossier (Dossier#champ_layout): the header
+  # sections and the repetition holding it, outermost first. The repetition
+  # stands for the row, and the header sections within it are those of the
+  # champ's own row.
+  def ancestors
+    dossier.champ_layout.ancestors(self)
   end
 
   def parent
-    return nil if row_id.blank?
+    ancestors.last
+  end
 
-    dossier.revision.parent_of(type_de_champ)
+  def enclosing_section
+    ancestors.reverse_each.find(&:header_section?)
+  end
+
+  def enclosing_repetition
+    ancestors.reverse_each.find(&:repetition?)
+  end
+
+  # the RepetitionRow holding it, nil outside a repetition
+  def row
+    dossier.champ_layout.row(self)
+  end
+
+  def in_section?
+    type_de_champ.in_section?
+  end
+
+  def in_repetition?
+    type_de_champ.in_repetition?
   end
 
   def row?
