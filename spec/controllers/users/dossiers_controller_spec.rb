@@ -1140,7 +1140,7 @@ describe Users::DossiersController, type: :controller do
       let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :repetition, children: [{}] }]) }
       let(:repetition) { dossier.public_root_champs.first.type_de_champ }
       let(:champ) do
-        child = dossier.revision.children_of(repetition).first
+        child = dossier.revision.type_de_champ(repetition.stable_id).flat_children.first
         dossier.champ_for_update(child, row_id: dossier.repetition_row_ids(repetition).first, updated_by: user.email)
       end
 

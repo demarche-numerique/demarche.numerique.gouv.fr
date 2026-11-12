@@ -25,7 +25,7 @@ RSpec.describe EditableChamp::RevertPrefilledButtonComponent, type: :component d
     let(:champ) do
       repetition = dossier.revision.public_root_type_de_champs.first
       row_id = dossier.repetition_add_row(repetition, updated_by: 'test')
-      dossier.champ_for_update(dossier.revision.children_of(repetition).first, row_id:, updated_by: 'test')
+      dossier.champ_for_update(dossier.revision.type_de_champ(repetition.stable_id).flat_children.first, row_id:, updated_by: 'test')
     end
 
     before do

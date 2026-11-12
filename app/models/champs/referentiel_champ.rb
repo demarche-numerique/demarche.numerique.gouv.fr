@@ -118,7 +118,7 @@ class Champs::ReferentielChamp < ChampData
       dossier.private_root_champs
     end.filter do |champ|
       if champ.repetition?
-        dossier.revision.children_of(champ.type_de_champ).any? { _1.stable_id.in?(elligible_stable_ids) }
+        champ.type_de_champ.flat_children.any? { _1.stable_id.in?(elligible_stable_ids) }
       else
         champ.stable_id.in?(elligible_stable_ids)
       end
@@ -168,7 +168,7 @@ class Champs::ReferentielChamp < ChampData
 
   def propagate_to(targets)
     targets
-      .group_by { |_, type_de_champ| dossier.revision.parent_of(type_de_champ) }
+      .group_by { |_, type_de_champ| type_de_champ.enclosing_repetition }
       .flat_map do |repetition_type_de_champ, mappings|
         if repetition_type_de_champ.present?
           update_repetition_prefillable_champs(data, repetition_type_de_champ, mappings)
@@ -307,7 +307,7 @@ class Champs::ReferentielChamp < ChampData
     # Otherwise (root champ, or a champ of another repetition), create a new row for each array
     # element: reusing our own row_id would write a row of our repetition into another one, where
     # no row marker carries it — the data would be persisted but invisible to the whole app.
-    if dossier.revision.parent_of(type_de_champ) == repetition_type_de_champ
+    if type_de_champ.enclosing_repetition == repetition_type_de_champ
       self.row_id
     else
       dossier.repetition_add_row(repetition_type_de_champ, updated_by:)

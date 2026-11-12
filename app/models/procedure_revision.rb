@@ -233,18 +233,6 @@ class ProcedureRevision < ApplicationRecord
     dossier
   end
 
-  # The content of a repetition. A header section holds its content too, but
-  # it is not nested: its content sits among the root types de champ.
-  def children_of(tdc)
-    return [] unless tdc.repetition?
-
-    type_de_champ(tdc.stable_id)&.flat_children || []
-  end
-
-  def parent_of(tdc)
-    type_de_champ(tdc.stable_id)&.enclosing_repetition
-  end
-
   # Every Logic tree this champ's value feeds, beyond the visibility of another
   # question: the eligibility rules and the routing rules read it too, and a
   # repetition child can condition on it — which dependent_conditions, limited
