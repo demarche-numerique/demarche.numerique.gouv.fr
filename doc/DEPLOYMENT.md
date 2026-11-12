@@ -214,7 +214,7 @@ Finally, start and enable the new systemd services:
 
 ```
 systemctl daemon-reload
-systemctl enable --now dn-web dn-sidekiq
+systemctl enable --now dn-web dn-sidekiq dn-weasyprint
 ```
 
 From now:
