@@ -51,7 +51,6 @@ class FranceConnectController < ApplicationController
       if @fci.user.can_france_connect?
         @fci.update(updated_at: Time.zone.now)
         connect_france_connect(@fci.user)
-        delete_pro_connect_session_info_cookie
       else
         destroy_fci_and_redirect_to_login(@fci)
       end
@@ -95,9 +94,7 @@ class FranceConnectController < ApplicationController
     @fci.safely_associate_user!(@fci.email_france_connect)
     @fci.user.update!(email_verified_at: Time.current)
 
-    flash.notice = t('france_connect.flash.connection_done', application_name: Current.application_name)
-    connect_france_connect(@fci.user)
-    delete_pro_connect_session_info_cookie
+    connect_merged_france_connect(@fci.user)
   end
 
   def merge_using_password
@@ -110,9 +107,7 @@ class FranceConnectController < ApplicationController
     if user.present? && user.valid_for_authentication? { user.valid_password?(params[:password]) }
       @fci.safely_update_user(user:)
 
-      flash.notice = t('france_connect.flash.connection_done', application_name: Current.application_name)
-      connect_france_connect(user)
-      delete_pro_connect_session_info_cookie
+      connect_merged_france_connect(user)
     else
       flash.alert = t('france_connect.flash.invalid_password')
     end
@@ -133,9 +128,7 @@ class FranceConnectController < ApplicationController
 
     @fci.user.update(email_verified_at: Time.zone.now)
 
-    flash.notice = t('france_connect.flash.connection_done', application_name: Current.application_name)
-    connect_france_connect(@fci.user)
-    delete_pro_connect_session_info_cookie
+    connect_merged_france_connect(@fci.user)
   end
 
   # TODO mutualiser avec le controller Users::ActivateController
@@ -261,8 +254,14 @@ class FranceConnectController < ApplicationController
 
     user.update_attribute('loged_in_with_france_connect', User.loged_in_with_france_connects.fetch(:particulier))
     user.update_preferred_domain(Current.host)
+    delete_pro_connect_session_info_cookie
 
     redirect_to destination_path(current_user)
+  end
+
+  def connect_merged_france_connect(user)
+    flash.notice = t('france_connect.flash.connection_done', application_name: Current.application_name)
+    connect_france_connect(user)
   end
 
   def sanitized_email_params
