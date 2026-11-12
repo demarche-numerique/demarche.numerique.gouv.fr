@@ -70,6 +70,30 @@
               </div>
             <% end %>
 
+            <% if type_de_champ.pre_rempli? %>
+              <div class="cell fr-mt-2w">
+                <div class="fr-notice fr-notice--info">
+                  <div class="fr-container">
+                    <div class="fr-notice__body">
+                      <p class="fr-notice__title">
+                        <%= t('.pre_rempli.notice_title') %>
+                      </p>
+
+                      <ul class="fr-text--sm fr-mb-0">
+                        <li>
+                          <%= t('.pre_rempli.notice_referentiel_html', link: link_to(t('.pre_rempli.notice_referentiel_link'), DOC_REFERENTIEL_URL, title: helpers.new_tab_suffix(t('.pre_rempli.notice_referentiel_link')), **helpers.external_link_attributes)) %>
+                        </li>
+
+                        <li>
+                          <%= t('.pre_rempli.notice_prefill_html', link: link_to(t('.pre_rempli.notice_prefill_link'), DOC_PREFILL_URL, title: helpers.new_tab_suffix(t('.pre_rempli.notice_prefill_link')), **helpers.external_link_attributes)) %>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+
             <% if type_de_champ.header_section? %>
               <p class="fr-text--sm"><%= t(".header_section_hint") %></p>
               <div class="cell fr-mt-1w">

@@ -76,7 +76,12 @@ fr:
       simple: 'Mode simple'
       advanced: 'Mode avancé'
   pre_rempli:
-    options_label: "Options de la liste"
+    notice_title: "Vous pouvez utiliser ce champ dans votre formulaire uniquement si :"
+    notice_referentiel_html: "Le formulaire usager ou celui des annotations privées comporte un champ %{link}."
+    notice_referentiel_link: "Référentiel configurable (avancé)"
+    notice_prefill_html: "(ou) Vous avez créé un dossier prérempli en brouillon pour les usagers via l’%{link}."
+    notice_prefill_link: "API de préremplissage"
+    options_label: "Valeurs du référentiel à utiliser pour le conditionnel"
     hidden_label: "Masquer ce champ dans le formulaire usager"
   france_connect:
     quotient_familial: "Ce champ permet de récupérer automatiquement et de façon fiable les données d’identité, le quotient familial CAF ou MSA et la composition familiale de l’usager connecté via FranceConnect"

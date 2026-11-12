@@ -71,7 +71,12 @@ en:
       simple: Simple mode
       advanced: Advanced mode
   pre_rempli:
-    options_label: "List options"
+    notice_title: "You can only use this field in your form if:"
+    notice_referentiel_html: "The applicant form or the internal fields include a %{link} field."
+    notice_referentiel_link: "Configurable reference dataset (advanced)"
+    notice_prefill_html: "(or) You have created a pre-filled draft application for applicants through the %{link}."
+    notice_prefill_link: "prefill API"
+    options_label: "Reference dataset values to use in conditional logic"
     hidden_label: "Hide this field from the user form"
   drop_down_list:
     labels:

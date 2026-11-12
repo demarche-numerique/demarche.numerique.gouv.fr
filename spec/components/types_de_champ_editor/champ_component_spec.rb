@@ -144,6 +144,18 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       end
     end
 
+    describe 'tdc pre_rempli' do
+      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :pre_rempli, libelle: 'Statut' }]) }
+      let(:coordinate) { procedure.draft_revision.public_revision_type_de_champs.first }
+
+      it 'explains when the field can be used, with links to the doc' do
+        expect(page).to have_css('.fr-notice--info', text: 'Vous pouvez utiliser ce champ dans votre formulaire uniquement si :')
+        expect(page).to have_link('Référentiel configurable (avancé)', href: DOC_REFERENTIEL_URL)
+        expect(page).to have_link('API de préremplissage', href: DOC_PREFILL_URL)
+        expect(page).to have_field('Valeurs du référentiel à utiliser pour le conditionnel')
+      end
+    end
+
     describe 'select champ position' do
       let(:tdc) { procedure.draft_revision.type_de_champs.first }
       let(:coordinate) { procedure.draft_revision.public_revision_type_de_champs.first }
