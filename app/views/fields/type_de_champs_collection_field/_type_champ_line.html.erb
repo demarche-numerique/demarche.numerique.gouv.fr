@@ -14,7 +14,7 @@
   <td class="cell-data">
     <% if type_de_champ.type_champ == 'piece_justificative' %>
       <%= form_for type_de_champ, url: change_piece_justificative_template_manager_procedure_path, method: :post  do |form| %>
-        <%= form.hidden_field :id %>
+        <%= form.hidden_field :stable_id %>
         <%= form.file_field :piece_justificative_template %>
         <%= form.submit 'modifier' %>
       <% end %>

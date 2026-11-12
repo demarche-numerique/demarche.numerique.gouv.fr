@@ -81,7 +81,7 @@
 </div>
 
 <%= render Procedure::FixedFooterComponent.new(procedure: @procedure) do %>
-  <% if @procedure.draft_revision.public_revision_type_de_champs.count > 0 %>
+  <% if @procedure.draft_revision.public_root_type_de_champs.any? %>
     <%= link_to t('preview', scope: [:layouts, :breadcrumb]), apercu_admin_procedure_path(@procedure), target: "_blank", rel: "noopener", class: 'fr-link' %>
   <% end %>
 

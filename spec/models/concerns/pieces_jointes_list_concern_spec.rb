@@ -52,7 +52,27 @@ describe PiecesJointesListConcern do
       end
 
       it "returns the same list but for all versions" do
-        expect(procedure.exportables_pieces_jointes.map(&:libelle)).to match_array([pj1, pj2, pjcond, pj5, pjcond2, pj6].map(&:libelle))
+        expect(procedure.exportables_pieces_jointes_for_all_versions.map(&:libelle)).to match_array([pj1, pj2, pjcond, pj5, pjcond2, pj6].map(&:libelle))
+      end
+
+      context 'with header sections' do
+        let(:public_type_de_champs) do
+          [
+            { type: :header_section, level: 1, libelle: "Section", stable_id: 900 },
+            { type: :piece_justificative, libelle: "pj1", stable_id: 910 },
+            {
+              type: :repetition, libelle: "Répétition", stable_id: 920, children: [
+                { type: :header_section, level: 1, libelle: "Sous-section", stable_id: 925 },
+                { type: :piece_justificative, libelle: "pj2", stable_id: 921 },
+              ],
+            },
+          ]
+        end
+        let(:private_type_de_champs) { [] }
+
+        it "wraps a piece jointe with its repetition, never with a header section" do
+          expect(procedure.public_wrapped_partionned_pjs.first).to eq([[pj1], [pj2, repetition]])
+        end
       end
     end
   end
@@ -77,6 +97,19 @@ describe PiecesJointesListConcern do
       expect(procedure.exportables_pieces_jointes_for_all_versions.map(&:libelle)).to eq(["new", "kept", "outdated"])
       expect(procedure.exportables_pieces_jointes.map(&:libelle)).to match_array(["kept", "new"])
       expect(procedure.outdated_exportables_pieces_jointes.map(&:libelle)).to match_array(["outdated"])
+    end
+
+    context 'when a published piece jointe has since become another type' do
+      before do
+        type_de_champ = procedure.draft_revision.find_and_ensure_exclusive_use(2)
+        procedure.draft_revision.update_type_de_champ(type_de_champ.becomes_type(:text), type_champ: 'text')
+        procedure.publish_revision!(procedure.administrateurs.first)
+      end
+
+      it 'is still one of a previous version' do
+        expect(procedure.exportables_pieces_jointes.map(&:libelle)).to eq(["new"])
+        expect(procedure.outdated_exportables_pieces_jointes.map(&:libelle)).to match_array(["kept", "outdated"])
+      end
     end
   end
 end
