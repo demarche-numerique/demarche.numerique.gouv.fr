@@ -4,7 +4,7 @@ module Administrateurs
   class ConditionsController < AdministrateurController
     include Logic
 
-    before_action :retrieve_procedure, :retrieve_coordinate_and_uppers
+    before_action :retrieve_procedure, :retrieve_type_de_champ_and_sources
 
     def update
       condition = condition_form.to_condition
@@ -59,11 +59,9 @@ module Administrateurs
       ConditionForm.new(condition_params.merge({ source_tdcs: @upper_tdcs }))
     end
 
-    def retrieve_coordinate_and_uppers
-      ProcedureRevisionPreloader.load_one(draft_revision)
+    def retrieve_type_de_champ_and_sources
       @tdc = draft_revision.find_and_ensure_exclusive_use(params[:stable_id])
-      @coordinate = draft_revision.coordinate_for(@tdc)
-      @upper_tdcs = @coordinate.condition_source_coordinates.map(&:type_de_champ)
+      @upper_tdcs = @tdc.condition_source_type_de_champs
     end
 
     def draft_revision
