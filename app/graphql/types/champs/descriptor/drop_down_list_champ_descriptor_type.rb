@@ -8,15 +8,15 @@ module Types::Champs::Descriptor
     field :other_option, Boolean, "La selection contien l’option \"Autre\".", null: true
 
     def other_option
-      object.type_de_champ.drop_down_other?
+      object.drop_down_other?
     end
 
     def options
-      if object.type_de_champ.drop_down_advanced?
+      if object.drop_down_advanced?
         # referntiel can contain dosens of thousands of values, we don't want to expose them all
         []
       else
-        object.type_de_champ.drop_down_options
+        object.drop_down_options
       end
     end
   end
