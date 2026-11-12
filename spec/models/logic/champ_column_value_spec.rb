@@ -225,6 +225,28 @@ describe Logic::ChampColumnValue do
     end
   end
 
+  describe 'when the type de champ became a repetition' do
+    let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :yes_no, libelle: 'yes' }]) }
+    let(:repetition) { procedure.draft_revision.type_de_champs.first }
+    let(:champ) { double(stable_id: repetition.stable_id, visible?: true, type_de_champ: repetition) }
+
+    before do
+      procedure.draft_revision
+        .find_and_ensure_exclusive_use(column.stable_id)
+        .update(type_champ: 'repetition')
+    end
+
+    it 'is no longer available' do
+      draft_tdcs = procedure.draft_revision.reload.type_de_champs
+
+      expect(repetition).to be_repetition
+      expect(champ_column_value.errors(draft_tdcs)).to eq([{ type: :not_available }])
+      expect(champ_column_value.type(draft_tdcs)).to eq(:unmanaged)
+      expect(champ_column_value.possible_values(draft_tdcs)).to be_nil
+      expect(champ_column_value.compute([champ])).to be_nil
+    end
+  end
+
   describe 'when the underlying column has disappeared' do
     let(:h_id) { { procedure_id: 999_999, column_id: "type_de_champ/123" } }
     let(:broken) { Logic::ChampColumnValue.from_h({ "term" => "Logic::ChampColumnValue", "column_id" => h_id, "stable_id" => 1234 }) }
