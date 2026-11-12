@@ -443,7 +443,7 @@ class ProcedureRevision < ApplicationRecord
     public_root_type_de_champs.sum do |tdc|
       next tdc.estimated_read_duration unless tdc.fillable?
 
-      duration = tdc.estimated_read_duration + tdc.estimated_fill_duration(self)
+      duration = tdc.estimated_read_duration + tdc.estimated_fill_duration
       duration /= 2 unless tdc.mandatory?
 
       duration

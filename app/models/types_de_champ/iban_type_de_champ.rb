@@ -6,7 +6,7 @@ class TypesDeChamp::IbanTypeDeChamp < TypeDeChamp
 
   def customizable? = true
 
-  def estimated_fill_duration(revision)
+  def estimated_fill_duration
     FILL_DURATION_MEDIUM
   end
 

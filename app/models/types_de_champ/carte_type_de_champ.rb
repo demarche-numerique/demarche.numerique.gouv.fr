@@ -67,7 +67,7 @@ class TypesDeChamp::CarteTypeDeChamp < TypeDeChamp
     layers.each_slice((layers.size / 2.0).round).to_a
   end
 
-  def estimated_fill_duration(revision)
+  def estimated_fill_duration
     FILL_DURATION_LONG
   end
 
