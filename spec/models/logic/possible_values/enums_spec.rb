@@ -27,8 +27,21 @@ describe Logic::PossibleValues::Enums do
     expect(values.restrict(Logic::IncludeOperator, 'a').restrict(Logic::ExcludeOperator, 'a').restrict(Logic::IncludeOperator, 'b')).to be_empty
   end
 
-  it 'ignores operators that do not apply' do
-    expect(values.restrict(Logic::Eq, 'a').restrict(Logic::NotEq, 'a')).not_to be_empty
+  it 'answers the operators it does not take as Logic#compute does' do
+    # a condition written when the champ was a drop down: a list is never equal to a text
+    expect(values.restrict(Logic::Eq, 'a')).to be_empty
+    expect(values.restrict(Logic::Eq, true)).to be_empty
+    expect(values.restrict(Logic::NotEq, 'a')).to eq(values)
+    expect(values.restrict(Logic::GreaterThan, 1)).to be_empty
+  end
+
+  it 'cannot select an option it does not have' do
+    expect(values.restrict(Logic::IncludeOperator, 'removed')).to be_empty
+    expect(values.restrict(Logic::ExcludeOperator, 'removed')).not_to be_empty
+    expect(values.regions([[Logic::IncludeOperator, 'a'], [Logic::IncludeOperator, 'removed']])).to contain_exactly(
+      values.with(must_include: Set['a'], must_exclude: Set['removed']),
+      values.with(must_exclude: Set['a', 'removed'])
+    )
   end
 
   describe '#regions' do

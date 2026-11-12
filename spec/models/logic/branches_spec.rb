@@ -145,6 +145,22 @@ describe Logic::Branches do
     end
   end
 
+  context 'with conditions written before their source changed type' do
+    let(:drop_down) { build(:type_de_champ_drop_down_list, stable_id: 10, mandatory: true) }
+    let(:multiple) { build(:type_de_champ_multiple_drop_down_list, stable_id: 11, mandatory: true) }
+    let(:include_on_drop_down) { build(:type_de_champ_text, stable_id: 12, condition: ds_include(champ_value(10), constant('val1'))) }
+    let(:eq_on_multiple) { build(:type_de_champ_text, stable_id: 13, condition: ds_eq(champ_value(11), constant('val1'))) }
+    let(:removed_option) { build(:type_de_champ_text, stable_id: 14, condition: ds_include(champ_value(11), constant('removed'))) }
+    let(:type_de_champs) { [drop_down, multiple, include_on_drop_down, eq_on_multiple, removed_option] }
+
+    it 'displays the dependents when Logic#compute would' do
+      by_source = clusters.index_by { it.sources.first.type_de_champ }
+
+      expect(visible_sets(by_source[drop_down])).to contain_exactly([12], [])
+      expect(visible_sets(by_source[multiple])).to all(eq([]))
+    end
+  end
+
   context 'with a source gone from the form' do
     let(:type_de_champs) { [if_yes, plain] }
 

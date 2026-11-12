@@ -22,13 +22,19 @@ describe Logic::PossibleValues::Number do
 
   it { expect(described_class.new(integer: false)).not_to be_empty }
 
-  it 'ignores non numeric constants' do
-    expect(described_class.new(integer: true).restrict(Logic::Eq, 'abc')).not_to be_empty
-    expect(described_class.new(integer: true).restrict(Logic::Eq, '10').restrict(Logic::Eq, 11)).not_to be_empty
+  it 'answers non numeric constants as Logic#compute does: a number is never a text' do
+    expect(described_class.new(integer: true).restrict(Logic::Eq, 'abc')).to be_empty
+    expect(described_class.new(integer: true).restrict(Logic::Eq, '10')).to be_empty
+    expect(described_class.new(integer: true).restrict(Logic::NotEq, '10')).to eq(described_class.new(integer: true))
+    expect(described_class.new(integer: true).restrict(Logic::GreaterThan, 'abc')).to be_empty
   end
 
-  it 'ignores operators that do not apply to numbers' do
-    expect(described_class.new(integer: true).restrict(Logic::IncludeOperator, 1)).not_to be_empty
+  it 'answers operators that do not apply to numbers as Logic#compute does' do
+    expect(described_class.new(integer: true).restrict(Logic::IncludeOperator, 1)).to be_empty
+  end
+
+  it 'leaves a missing bound alone' do
+    expect(described_class.new(integer: true).restrict(Logic::GreaterThanEq, nil)).to eq(described_class.new(integer: true))
   end
 
   describe '.for' do

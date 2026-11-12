@@ -92,7 +92,8 @@ class Logic::PossibleValues::Number < Data.define(:integer, :intervals, :limits)
   def max_regions(comparisons) = 2 * cuts(comparisons).size + 1
 
   def restrict(operator_class, value)
-    return self if !value.is_a?(Numeric)
+    return self if value.nil? # no bound (see .for)
+    return foreign(operator_class, value) if !value.is_a?(Numeric)
 
     intersect(
       case operator_class.name
@@ -102,12 +103,16 @@ class Logic::PossibleValues::Number < Data.define(:integer, :intervals, :limits)
       when Logic::LessThanEq.name then [Interval.at_most(value, inclusive: true)]
       when Logic::GreaterThan.name then [Interval.at_least(value, inclusive: false)]
       when Logic::GreaterThanEq.name then [Interval.at_least(value, inclusive: true)]
-      else return self
+      else return foreign(operator_class, value)
       end
     )
   end
 
   private
+
+  # A number is never equal to a text, nor ordered against it, nor a list:
+  # the answer is the same whatever the number.
+  def foreign(operator_class, value) = Logic::PossibleValues.computes?(operator_class, 0, value) ? self : with(intervals: [])
 
   # The constants the comparisons mention, one cut per value whether it is
   # written as an integer or a decimal: 3 and 3.0 are the same cut.

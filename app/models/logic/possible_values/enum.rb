@@ -26,7 +26,7 @@ class Logic::PossibleValues::Enum < Data.define(:values)
     case operator_class.name
     when Logic::Eq.name then self.class.new(values & [value])
     when Logic::NotEq.name then self.class.new(values - [value])
-    else self
+    else self.class.new(values.filter { Logic::PossibleValues.computes?(operator_class, it, value) })
     end
   end
 end

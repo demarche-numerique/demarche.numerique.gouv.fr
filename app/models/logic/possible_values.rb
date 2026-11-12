@@ -35,6 +35,17 @@ module Logic::PossibleValues
     end
   end
 
+  # What Logic#compute answers for a filled champ holding `value`, for the
+  # operators and constants a champ does not take: a condition written before
+  # its champ changed type (`include?` on a drop down, `==` on a multiple
+  # choice, a number compared to a text) is still evaluated, through
+  # Logic::BinaryOperator#safe_apply.
+  def self.computes?(operator_class, value, constant)
+    operator_class.new(Logic::Constant.new(value), Logic::Constant.new(constant)).compute([])
+  rescue StandardError
+    false
+  end
+
   # A numeric column is the champ's own value only on a numeric champ, whose
   # validation limits then apply; on any other champ it is a facet with no
   # limits of its own.

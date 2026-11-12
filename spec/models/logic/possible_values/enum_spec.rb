@@ -27,8 +27,12 @@ describe Logic::PossibleValues::Enum do
     expect(values.restrict(Logic::NotEq, 'a').restrict(Logic::NotEq, 'b').restrict(Logic::NotEq, 'c')).to be_empty
   end
 
-  it 'ignores operators that do not apply' do
-    expect(values.restrict(Logic::IncludeOperator, 'a')).not_to be_empty
+  it 'answers the operators it does not take as Logic#compute does' do
+    # a condition written when the champ was a multiple choice: String#include?
+    expect(values.restrict(Logic::IncludeOperator, 'a')).to eq(described_class.new(['a']))
+    expect(values.restrict(Logic::IncludeOperator, 'unknown')).to be_empty
+    expect(described_class.new([true, false]).restrict(Logic::IncludeOperator, 'a')).to be_empty
+    expect(described_class.new([true, false]).restrict(Logic::GreaterThan, 1)).to be_empty
   end
 
   it 'models booleans' do
