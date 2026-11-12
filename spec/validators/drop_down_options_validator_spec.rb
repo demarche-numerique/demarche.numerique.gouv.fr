@@ -110,7 +110,7 @@ describe DropDownOptionsValidator do
     end
     let(:dossier) { create(:dossier, procedure:) }
     let(:repetition_tdc) { procedure.active_revision.public_root_type_de_champs.first }
-    let(:child_tdc) { procedure.active_revision.children_of(repetition_tdc).first }
+    let(:child_tdc) { procedure.active_revision.type_de_champ(repetition_tdc.stable_id).flat_children.first }
 
     def sql_touching(table, &block)
       queries = []

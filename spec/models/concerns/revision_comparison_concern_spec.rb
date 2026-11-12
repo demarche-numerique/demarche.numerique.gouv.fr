@@ -521,7 +521,7 @@ describe RevisionComparisonConcern do
         let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :repetition, children: [{ type: :text, libelle: 'sub type de champ' }, { type: :integer_number }] }]) }
 
         before do
-          child = new_draft.children_of(new_draft.public_root_type_de_champs.last).first
+          child = new_draft.public_root_type_de_champs.last.flat_children.first
           new_draft.find_and_ensure_exclusive_use(child.stable_id).becomes_type('drop_down_list').update(type_champ: :drop_down_list, drop_down_options: ['one', 'two'])
         end
 
@@ -534,7 +534,7 @@ describe RevisionComparisonConcern do
               private: false,
               from: "text",
               to: "drop_down_list",
-              stable_id: new_draft.children_of(new_draft.public_root_type_de_champs.last).first.stable_id,
+              stable_id: new_draft.public_root_type_de_champs.last.flat_children.first.stable_id,
             },
             {
               op: :update,
@@ -543,7 +543,7 @@ describe RevisionComparisonConcern do
               private: false,
               from: [],
               to: ["one", "two"],
-              stable_id: new_draft.children_of(new_draft.public_root_type_de_champs.last).first.stable_id,
+              stable_id: new_draft.public_root_type_de_champs.last.flat_children.first.stable_id,
             },
           ])
         end
@@ -553,7 +553,7 @@ describe RevisionComparisonConcern do
         let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :repetition, children: [{ type: :text, libelle: 'sub type de champ' }, { type: :integer_number }] }]) }
 
         before do
-          child = new_draft.children_of(new_draft.public_root_type_de_champs.last).first
+          child = new_draft.public_root_type_de_champs.last.flat_children.first
           new_draft.find_and_ensure_exclusive_use(child.stable_id).update(type_champ: :carte, options: { cadastres: true, znieff: true })
         end
 
@@ -566,7 +566,7 @@ describe RevisionComparisonConcern do
               private: false,
               from: "text",
               to: "carte",
-              stable_id: new_draft.children_of(new_draft.public_root_type_de_champs.last).first.stable_id,
+              stable_id: new_draft.public_root_type_de_champs.last.flat_children.first.stable_id,
             },
             {
               op: :update,
@@ -575,7 +575,7 @@ describe RevisionComparisonConcern do
               private: false,
               from: [],
               to: [:cadastres, :znieff],
-              stable_id: new_draft.children_of(new_draft.public_root_type_de_champs.last).first.stable_id,
+              stable_id: new_draft.public_root_type_de_champs.last.flat_children.first.stable_id,
             },
           ])
         end

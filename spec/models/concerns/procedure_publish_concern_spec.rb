@@ -218,7 +218,7 @@ describe ProcedurePublishConcern do
       let(:procedure) { create(:procedure, :published, administrateurs: [administrateur], public_type_de_champs: [{ type: :repetition, children: [{ type: :text }] }]) }
       let(:draft) { procedure.draft_revision }
       let(:repetition) { draft.public_root_type_de_champs.find(&:repetition?) }
-      let!(:child) { draft.children_of(repetition).first }
+      let!(:child) { draft.type_de_champ(repetition.stable_id).flat_children.first }
 
       before do
         text = draft.find_and_ensure_exclusive_use(repetition.stable_id).becomes_type('text')

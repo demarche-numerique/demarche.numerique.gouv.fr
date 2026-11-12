@@ -59,7 +59,7 @@ class EditableChamp::ProposedPrefillComponent < ApplicationComponent
 
   def libelle(column) = type_de_champ(column).libelle
 
-  def repetition(column) = @champ.dossier.revision.parent_of(type_de_champ(column))
+  def repetition(column) = type_de_champ(column).enclosing_repetition
 
   def type_de_champ(column) = @champ.dossier.find_type_de_champ_by_stable_id(column.stable_id, :public)
 end

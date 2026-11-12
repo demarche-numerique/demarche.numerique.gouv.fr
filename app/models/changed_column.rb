@@ -40,7 +40,7 @@ class ChangedColumn
       revision.public_root_type_de_champs.flat_map do |type_de_champ|
         if type_de_champ.repetition?
           prefix = type_de_champ.libelle
-          type_de_champs = revision.children_of(type_de_champ)
+          type_de_champs = type_de_champ.flat_children
           child_stable_ids = type_de_champs.map(&:stable_id).to_set
           row_ids = all_champs.filter { child_stable_ids.include?(it.stable_id) }.map(&:row_id).uniq.sort
           row_ids.flat_map do |row_id|

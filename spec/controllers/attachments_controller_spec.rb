@@ -342,7 +342,7 @@ describe AttachmentsController, type: :controller do
     end
     let(:dossier) { create(:dossier, user:, procedure:) }
     let(:repetition_type_de_champ) { procedure.active_revision.public_root_type_de_champs.first }
-    let(:children) { procedure.active_revision.children_of(repetition_type_de_champ) }
+    let(:children) { procedure.active_revision.type_de_champ(repetition_type_de_champ.stable_id).flat_children }
     let(:row_id) { dossier.repetition_row_ids(repetition_type_de_champ).first }
     let(:attachment) { ActiveStorage::Attachment.find_by(record_id: buffered_pj.id) }
     let(:buffered_pj) do
