@@ -19,12 +19,12 @@ class TypesDeChamp::RepetitionTypeDeChamp < TypeDeChamp
     ChampPresentations::RepetitionPresentation.new(libelle, champ.rows)
   end
 
-  def estimated_fill_duration(revision)
+  def estimated_fill_duration
     estimated_rows_in_repetition = 2.5
 
     children = flat_children
 
-    estimated_row_duration = children.map { _1.estimated_fill_duration(revision) }.sum
+    estimated_row_duration = children.map(&:estimated_fill_duration).sum
     estimated_children_read_duration = children.map(&:estimated_read_duration).sum
 
     # Count only once children read time for all rows
