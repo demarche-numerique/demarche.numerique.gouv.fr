@@ -96,8 +96,8 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
   end
 
   def turbo_confirm
-    if coordinate.prefilled_by_type_de_champ
-      t(".confirm_prefilled_removal", libelle: coordinate.prefilled_by_type_de_champ.libelle)
+    if (prefilled_by = type_de_champ.prefilled_by_type_de_champ)
+      t(".confirm_prefilled_removal", libelle: prefilled_by.libelle)
     else
       t(".confirm_removal")
     end

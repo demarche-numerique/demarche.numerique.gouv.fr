@@ -23,7 +23,7 @@ module Maintenance
 
       type_de_champ = revision.type_de_champ(stable_id)
 
-      if revision.coordinate_for(type_de_champ)&.used_by_routing_rules?
+      if type_de_champ.used_by_routing_rules?
         fail "#{typed_id} / #{type_de_champ.libelle} » est utilisé pour le routage, vous ne pouvez pas le supprimer."
       end
 

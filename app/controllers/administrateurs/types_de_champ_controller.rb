@@ -9,12 +9,9 @@ module Administrateurs
 
     include SimpliscoreConcern
 
-    before_action :reload_procedure_with_includes, only: [:destroy]
-
     def create
       type_de_champ = draft.add_type_de_champ(type_de_champ_create_params)
       if type_de_champ.valid?
-        reload_procedure_with_includes
         edited(type_de_champ)
         @created = champ_component_from(type_de_champ, focused: true)
         @morphed = champ_components_from(siblings_starting_at(type_de_champ, 1))
@@ -27,13 +24,12 @@ module Administrateurs
       import_referentiel and return if referentiel_file.present?
 
       type_de_champ = draft.find_and_ensure_exclusive_use(params[:stable_id])
-      coordinate = draft.coordinate_for(type_de_champ)
       was_prefill_with_fc_information = type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?
       update_params = type_de_champ_update_params(type_de_champ)
 
-      if coordinate.used_by_routing_rules? && changing_of_type?(type_de_champ, update_params)
+      if type_de_champ.used_by_routing_rules? && changing_of_type?(type_de_champ, update_params)
         refuse(type_de_champ, "« #{type_de_champ.libelle} » est utilisé pour le routage, vous ne pouvez pas modifier son type.")
-      elsif coordinate.used_by_referentiel_urls? && changing_of_type?(type_de_champ, update_params)
+      elsif type_de_champ.used_by_referentiel_urls? && changing_of_type?(type_de_champ, update_params)
         refuse(type_de_champ, "« #{type_de_champ.libelle} » est utilisé par un référentiel, vous ne pouvez pas modifier son type.")
       else
         if changing_of_type?(type_de_champ, update_params)
@@ -45,7 +41,6 @@ module Administrateurs
         update_params = update_params.except(*update_params.keys.reject { type_de_champ.respond_to?("#{it}=") })
 
         if draft.update_type_de_champ(type_de_champ, update_params)
-          reload_procedure_with_includes
           # as the draft lays it out by now, of another type or not
           type_de_champ = draft.type_de_champ(params[:stable_id])
           edited(type_de_champ)
@@ -66,7 +61,6 @@ module Administrateurs
       type_de_champ = draft.find_and_ensure_exclusive_use(params[:stable_id])
 
       if type_de_champ.piece_justificative_template.attach(params[:blob_signed_id])
-        reload_procedure_with_includes
         edited(type_de_champ)
         @morphed = [champ_component_from(type_de_champ)]
 
@@ -80,7 +74,6 @@ module Administrateurs
       type_de_champ = draft.find_and_ensure_exclusive_use(params[:stable_id])
 
       if type_de_champ.notice_explicative.attach(params[:blob_signed_id])
-        reload_procedure_with_includes
         edited(type_de_champ)
         @morphed = [champ_component_from(type_de_champ)]
 
@@ -96,7 +89,6 @@ module Administrateurs
       from = source_type_de_champ.flat_siblings.index(source_type_de_champ)
       after = draft.coordinate_for(target_type_de_champ).position
       type_de_champ = draft.move_type_de_champ_after(source_type_de_champ.stable_id, after)
-      reload_procedure_with_includes
       edited(type_de_champ)
       @destroyed = type_de_champ
       @created = champ_component_from(type_de_champ)
@@ -110,7 +102,6 @@ module Administrateurs
       # nil in case of replay (champ removed in another tab)
       return if type_de_champ.nil?
 
-      reload_procedure_with_includes
       edited(type_de_champ)
       @destroyed = type_de_champ
       @created = champ_component_from(type_de_champ)
@@ -123,7 +114,6 @@ module Administrateurs
       # nil in case of replay (champ removed in another tab)
       return if type_de_champ.nil?
 
-      reload_procedure_with_includes
       edited(type_de_champ)
       @destroyed = type_de_champ
       @created = champ_component_from(type_de_champ)
@@ -133,17 +123,15 @@ module Administrateurs
 
     def destroy
       type_de_champ = draft.type_de_champ(params[:stable_id])
-      coordinate = draft.coordinate_for(type_de_champ) if type_de_champ
 
-      if coordinate&.used_by_referentiel_urls?
+      if type_de_champ&.used_by_referentiel_urls?
         refuse(type_de_champ, "« #{type_de_champ.libelle} » est utilisé par un référentiel, vous ne pouvez pas le supprimer.")
-      elsif coordinate&.used_by_routing_rules?
+      elsif type_de_champ&.used_by_routing_rules?
         refuse(type_de_champ, "« #{type_de_champ.libelle} » est utilisé pour le routage, vous ne pouvez pas le supprimer.")
       elsif type_de_champ.present?
         index = type_de_champ.flat_siblings.index(type_de_champ)
         # nil in case of replay (double click, champ already removed)
         if draft.remove_type_de_champ(params[:stable_id]).present?
-          reload_procedure_with_includes
           edited(type_de_champ)
           @destroyed = type_de_champ
           # the ones that followed it
@@ -327,10 +315,6 @@ module Administrateurs
 
     def draft
       @procedure.draft_revision
-    end
-
-    def reload_procedure_with_includes
-      ProcedureRevisionPreloader.load_one(draft)
     end
 
     def referentiel_file
