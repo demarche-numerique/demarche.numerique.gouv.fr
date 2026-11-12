@@ -107,4 +107,50 @@ describe BrevoBlockableConcern do
       end
     end
   end
+
+  describe '#unblock_brevo_for_critical_mail!' do
+    let(:brevo) { instance_double(Brevo::API, unblock_user: true) }
+
+    before do
+      allow(Brevo::API).to receive(:new).and_return(brevo)
+      user.record_brevo_block!(at: earlier, event: 'spam')
+      user.reload
+    end
+
+    it 'unblocks the address at Brevo and records when' do
+      freeze_time do
+        user.unblock_brevo_for_critical_mail!
+
+        expect(brevo).to have_received(:unblock_user).with(user.email)
+        expect(user.reload.brevo_unblocked_at).to eq(Time.current)
+      end
+    end
+
+    it 'leaves an invalid address blocked' do
+      user.record_brevo_block!(at: later, event: 'invalid_email')
+
+      user.reload.unblock_brevo_for_critical_mail!
+
+      expect(brevo).not_to have_received(:unblock_user)
+    end
+
+    it 'unblocks once a day at most' do
+      user.update_columns(brevo_unblocked_at: Time.zone.parse('2026-11-02 10:00'))
+      user.record_brevo_block!(at: later, event: 'blocked')
+
+      travel_to(Time.zone.parse('2026-11-03 09:00')) { user.reload.unblock_brevo_for_critical_mail! }
+      expect(brevo).not_to have_received(:unblock_user)
+
+      travel_to(Time.zone.parse('2026-11-03 11:00')) { user.reload.unblock_brevo_for_critical_mail! }
+      expect(brevo).to have_received(:unblock_user).once
+    end
+
+    it 'records nothing when Brevo refuses' do
+      allow(brevo).to receive(:unblock_user).and_return(false)
+
+      user.unblock_brevo_for_critical_mail!
+
+      expect(user.reload.brevo_unblocked_at).to be_nil
+    end
+  end
 end
