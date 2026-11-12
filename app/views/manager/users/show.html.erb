@@ -30,14 +30,6 @@
   </h1>
 
   <div class="buttons">
-    <% if user.unverified_email? %>
-      <%= button_to(
-        "Débloquer mails",
-        [:unblock_mails, namespace, page.resource],
-        method: :post,
-        class: "button") %>
-    <% end %>
-
     <% if user.blocked_at %>
       <%= button_to(
         "Réactiver le compte",
@@ -57,10 +49,6 @@
                   delete_edit_manager_user_path(page.resource),
                   class: "button button--danger") %>
     <% end %>
-
-    <% if !user.confirmed? %>
-      <%= button_to('Renvoyer l’email de confirmation', [:resend_confirmation_instructions, namespace, page.resource], method: :post, class: 'button') %>
-    <% end %>
   </div>
 </header>
 
@@ -68,6 +56,8 @@
   <%= render Manager::DeletionBlockersComponent.new(user:) %>
 
   <%= render partial: 'manager/application/user_meta', locals: { user: user } %>
+
+  <%= render partial: 'mails', locals: { user: } %>
 
   <dl>
     <% page.attributes.each do |title, attributes| %>

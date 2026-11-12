@@ -105,7 +105,7 @@ module Crisp
     end
 
     def email_link
-      "[Emails envoyés](#{emails_manager_user_url})"
+      "[Emails envoyés](#{manager_user_url}#emails)"
     end
 
     def manager_user_url
@@ -118,10 +118,6 @@ module Crisp
 
     def manager_administrateur_url
       Rails.application.routes.url_helpers.manager_administrateur_url(administrateur, host:)
-    end
-
-    def emails_manager_user_url
-      Rails.application.routes.url_helpers.emails_manager_user_url(user, host:)
     end
 
     def truncate_values(data)

@@ -178,6 +178,70 @@
   }
 }
 
+.user-mails {
+  clear: both;
+  margin: 2rem 0;
+
+  &__title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  &__subtitle {
+    font-size: 1.2rem;
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  &__reception {
+    margin: 0 0 1rem;
+    padding-left: 1.5rem;
+    list-style: disc;
+
+    li {
+      margin-bottom: 0.25rem;
+    }
+
+    .button_to {
+      display: inline;
+      margin-left: 0.5rem;
+    }
+  }
+
+  &__warning {
+    color: #ce0500;
+    font-weight: 600;
+  }
+
+  &__issue {
+    margin-bottom: 1rem;
+
+    .button_to {
+      display: inline;
+      margin-left: 0.5rem;
+    }
+  }
+
+  &__events {
+    margin-bottom: 0.5rem;
+  }
+
+  summary {
+    cursor: pointer;
+  }
+
+  pre {
+    white-space: pre-wrap;
+  }
+
+  .email-sent {
+    color: #18753c;
+  }
+
+  .email-blocked {
+    color: #ce0500;
+  }
+}
+
 .api-status {
   &__state {
     display: inline-block;

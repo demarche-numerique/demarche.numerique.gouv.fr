@@ -1,0 +1,189 @@
+<section id="emails" class="user-mails">
+  <h2 class="user-mails__title">Mails</h2>
+
+  <h3 class="user-mails__subtitle">Réception</h3>
+
+  <% brevo_reasons = { "hard_bounce" => "rejet définitif par le serveur destinataire", "spam" => "signalement comme spam", "unsubscribed" => "désinscription", "invalid_email" => "adresse invalide" } %>
+
+  <ul class="user-mails__reception">
+    <% if user.unverified_email? %>
+      <li class="user-mails__warning">
+        Adresse non vérifiée&nbsp;: nos mails non critiques ne lui sont pas
+        envoyés.
+        <%= button_to("Débloquer mails", [:unblock_mails, :manager, user], method: :post, class: "button") %>
+      </li>
+    <% else %>
+      <li>
+        Adresse vérifiée le
+        <%= l(user.email_verified_at, format: :long_with_time) %>
+      </li>
+    <% end %>
+
+    <% if user.email_unsubscribed? %>
+      <li class="user-mails__warning">
+        Désinscrit&nbsp;: ne reçoit plus que les mails critiques et les
+        invitations.
+      </li>
+    <% end %>
+
+    <% if user.brevo_blocked? %>
+      <li class="user-mails__warning">
+        Bloquée chez Brevo depuis le
+        <%= l(user.brevo_last_blocked_at, format: :long_with_time) %>
+        (<%= brevo_reasons.fetch(user.brevo_blocked_reason, "motif inconnu") %>)
+      </li>
+    <% else %>
+      <li>
+        Aucun blocage signalé par Brevo.
+        <small>Ceux d’avant le branchement de son webhook ne nous sont pas connus.</small>
+      </li>
+    <% end %>
+
+    <% if user.brevo_unblocked_at? %>
+      <li>
+        Dernier déblocage chez Brevo le
+        <%= l(user.brevo_unblocked_at, format: :long_with_time) %>
+      </li>
+    <% end %>
+  </ul>
+
+  <h3 class="user-mails__subtitle">Problèmes potentiels</h3>
+
+  <% if user.confirmed? %>
+    <div class="user-mails__issue">
+      <strong>Compte activé, n’arrive pas à se connecter ?</strong>
+
+      <details>
+        <summary>Suggestion de réponse</summary>
+
+        <pre>
+Bonjour,
+votre compte est activé de notre côté.
+Vous pouvez vous connecter à votre compte de deux manières :
+- à cette adresse, afin de consulter vos dossiers : https://demarche.numerique.gouv.fr/users/sign_in
+- depuis la page de démarrage d’une démarche qu’on vous a communiqué, afin de déposer un dossier.
+
+Si vous avez oublié votre mot de passe, vous pouvez aussi en demander un nouveau via:
+https://demarche.numerique.gouv.fr/users/password/new
+
+Bien cordialement</pre>
+      </details>
+    </div>
+  <% else %>
+    <div class="user-mails__issue">
+      <strong>Ce compte n’est pas activé.</strong>
+      <%= button_to("Renvoyer l’email de confirmation", [:resend_confirmation_instructions, :manager, user], method: :post, class: "button") %>
+
+      <details>
+        <summary>Suggestion de réponse</summary>
+
+        <pre>
+Bonjour,
+
+Votre compte n’a pas été confirmé. Je vous ai transmis à nouveau un code de confirmation
+dans un email séparé ; après avoir cliqué sur le lien qui s’y trouve, vous pourrez vous connecter
+à votre compte, voir les dossiers déposés et en déposer de nouveaux.
+
+Si vous avez oublié votre mot de passe, vous pouvez aussi en demander un autre via:
+https://demarche.numerique.gouv.fr/users/password/new
+
+Cordialement</pre>
+      </details>
+    </div>
+  <% end %>
+
+  <div class="user-mails__issue">
+    <strong>Mot de passe perdu ?</strong>
+    <%= button_to("Renvoyer l’email de réinitialisation", [:resend_reset_password_instructions, :manager, user], method: :post, class: "button") %>
+
+    <small>
+      Attention au téléscopage : cet email invalide les liens des emails
+      similaires précédents.
+    </small>
+  </div>
+
+  <div class="user-mails__issue">
+    <strong>
+      Adresse
+      <a href="https://app.brevo.com/transactional/email/settings/blocked-contacts">bloquée</a>
+      chez Brevo&nbsp;?
+    </strong>
+
+    <%= button_to("Débloquer chez Brevo", manager_user_unblock_email_path(user), method: :put, class: "button") %>
+    <small>Le déblocage le réabonne aussi à nos notifications.</small>
+
+    <details>
+      <summary>Suggestion de réponse</summary>
+
+      <pre>
+Bonjour,
+
+votre adresse électronique était bloqué par notre prestataire.
+Je l’ai débloqué, vous devriez recevoir les mails à venir.
+
+Cela peut arriver si vous, ou ceux qui gèrent vos emails, marquent nos emails comme spam.
+
+Nous vous invitons donc à autoriser les emails émis depuis demarche.numerique.gouv.fr
+
+Bien cordialement</pre>
+    </details>
+  </div>
+
+  <div class="user-mails__issue">
+    <strong>Problème chez Brevo ?</strong> Regardez leur
+    <a href="https://status.brevo.com/">page de status</a>.
+    <details>
+      <summary>Suggestion de réponse</summary>
+
+      <pre>
+Bonjour,
+Désolé, notre prestataire d’envoi d’email subit actuellement des soucis avec sa plateforme ;
+vous allez recevoir cet email sous peu.
+
+Bien cordialement,</pre>
+    </details>
+  </div>
+
+  <h3 class="user-mails__subtitle">Nos envois</h3>
+
+  <% email_events = EmailEvent.where(to: user.email).order(processed_at: :desc).limit(50) %>
+
+  <% if email_events.any? %>
+    <table class="user-mails__events">
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Objet</th>
+          <th scope="col">Prestataire</th>
+          <th scope="col">Envoi</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% email_events.each do |email_event| %>
+          <tr class="<%= "email-blocked" if email_event.dispatch_error? %>">
+            <td>
+              <%= l(email_event.processed_at, format: :long_with_time) if email_event.processed_at %>
+            </td>
+
+            <td><%= email_event.subject %></td>
+            <td><%= email_event.method %></td>
+            <td><%= email_event.status %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>Aucun envoi vers cette adresse depuis un mois.</p>
+  <% end %>
+
+  <p>
+    <%= link_to "Voir tous nos envois vers cette adresse", manager_email_events_path("search" => user.email) %>
+  </p>
+
+  <h3 class="user-mails__subtitle">Historique chez les prestataires</h3>
+
+  <%= turbo_frame_tag "user-sent-mails", src: emails_manager_user_path(user), loading: :lazy, target: "_top" do %>
+    <p>Chargement de l’historique…</p>
+  <% end %>
+</section>
