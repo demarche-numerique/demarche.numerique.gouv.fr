@@ -23,26 +23,73 @@ describe Manager::ChampMatchingResultsController, type: :controller do
       ProcedureUserOverlap.find_each(&:refresh_champ_matches!)
     end
 
-    it 'montre la ligne, puis les valeurs saisies et normalisées de chaque usager' do
-      get :show, params: { id: "#{match.id}-#{right.id}" }
+    let(:administrateur) { create(:administrateur, email: super_admin.email) }
 
-      expect(response).to have_http_status(:ok)
-      expect(response.body).to include('Aide à la rénovation', 'Adresse du domicile', '12, Rue du PONT', '12 rue du pont')
-      expect(response.body.index('12, Rue du PONT')).to be < response.body.index('12 rue du Pont')
+    def administer(*procedures, manager: nil)
+      procedures.each { AdministrateursProcedure.create!(administrateur:, procedure: it, manager:) }
     end
 
-    it 'relie chaque valeur au dossier où elle a été saisie' do
-      get :show, params: { id: "#{match.id}-#{left.id}" }
+    shared_examples 'the values show' do
+      it 'montre les valeurs saisies' do
+        get :show, params: { id: "#{match.id}-#{left.id}" }
 
-      [left, right].each do |procedure|
-        expect(response.body).to include(instructeur_dossier_path(procedure_id: procedure.id, dossier_id: procedure.dossiers.sole.id))
+        expect(response.body).to include('12 rue du Pont', '12, Rue du PONT')
       end
     end
 
-    it 'filtre les comparaisons par verdict' do
-      get :show, params: { id: "#{match.id}-#{left.id}", verdict: 'differing' }
+    context 'when the super admin only opened manager sessions on both' do
+      before { administer(left, right, manager: true) }
 
-      expect(response.body).not_to include('12 rue du Pont')
+      it_behaves_like 'the values show'
+    end
+
+    context 'when the super admin administers both procedures' do
+      before { administer(left, right) }
+
+      it_behaves_like 'the values show'
+
+      it 'montre la ligne, puis les valeurs saisies et normalisées de chaque usager' do
+        get :show, params: { id: "#{match.id}-#{right.id}" }
+
+        expect(response).to have_http_status(:ok)
+        expect(response.body).to include('Aide à la rénovation', 'Adresse du domicile', '12, Rue du PONT', '12 rue du pont')
+        expect(response.body.index('12, Rue du PONT')).to be < response.body.index('12 rue du Pont')
+      end
+
+      it 'relie chaque valeur au dossier où elle a été saisie' do
+        get :show, params: { id: "#{match.id}-#{left.id}" }
+
+        [left, right].each do |procedure|
+          expect(response.body).to include(instructeur_dossier_path(procedure_id: procedure.id, dossier_id: procedure.dossiers.sole.id))
+        end
+      end
+
+      it 'filtre les comparaisons par verdict' do
+        get :show, params: { id: "#{match.id}-#{left.id}", verdict: 'differing' }
+
+        expect(response.body).not_to include('12 rue du Pont')
+      end
+    end
+
+    shared_examples 'the values stay hidden' do
+      it 'montre la ligne mais aucune valeur saisie' do
+        get :show, params: { id: "#{match.id}-#{left.id}" }
+
+        expect(response).to have_http_status(:ok)
+        expect(response.body).to include('Votre adresse', 'Adresse du domicile', 'administrateurs des deux démarches')
+        expect(response.body).not_to include('12 rue du Pont')
+        expect(response.body).not_to include('12, Rue du PONT')
+      end
+    end
+
+    context 'when the super admin administers neither procedure' do
+      it_behaves_like 'the values stay hidden'
+    end
+
+    context 'when the super admin administers only one of them' do
+      before { administer(left) }
+
+      it_behaves_like 'the values stay hidden'
     end
   end
 

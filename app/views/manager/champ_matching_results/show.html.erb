@@ -81,46 +81,52 @@
 
   <h2>Comparaisons usager par usager</h2>
 
-  <nav aria-label="Filtrer les comparaisons">
-    <% [[nil, "Toutes"], ["matching", "Concordantes"], ["differing", "Discordantes"]].each do |value, label| %>
-      <% if verdict == value %>
-        <strong aria-current="page"><%= label %></strong>
-      <% else %>
-        <%= link_to(label, manager_champ_matching_result_path(result, verdict: value)) %>
+  <% if values_visible %>
+    <nav aria-label="Filtrer les comparaisons">
+      <% [[nil, "Toutes"], ["matching", "Concordantes"], ["differing", "Discordantes"]].each do |value, label| %>
+        <% if verdict == value %>
+          <strong aria-current="page"><%= label %></strong>
+        <% else %>
+          <%= link_to(label, manager_champ_matching_result_path(result, verdict: value)) %>
+        <% end %>
       <% end %>
-    <% end %>
-  </nav>
-
-  <table>
-    <thead>
-      <tr>
-        <th scope="col">Usager</th>
-        <th scope="col"><%= result.libelle %></th>
-        <th scope="col"><%= result.partner_libelle %></th>
-        <th scope="col">Verdict</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% observations.each do |observation, rank| %>
+    </nav>
+    <table>
+      <thead>
         <tr>
-          <td><%= rank %></td>
-
-          <td>
-            <%= render("values", values: observation.values, shared: observation.shared_comparables, procedure_id: result.procedure_id) %>
-          </td>
-
-          <td>
-            <%= render("values", values: observation.partner_values, shared: observation.shared_comparables, procedure_id: result.partner_procedure_id) %>
-          </td>
-
-          <td>
-            <%= observation.matching? ? "Concorde" : "Diffère" %>
-          </td>
+          <th scope="col">Usager</th>
+          <th scope="col"><%= result.libelle %></th>
+          <th scope="col"><%= result.partner_libelle %></th>
+          <th scope="col">Verdict</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
 
-  <%= render("pagination", resources: observations) %>
+      <tbody>
+        <% observations.each do |observation, rank| %>
+          <tr>
+            <td><%= rank %></td>
+
+            <td>
+              <%= render("values", values: observation.values, shared: observation.shared_comparables, procedure_id: result.procedure_id) %>
+            </td>
+
+            <td>
+              <%= render("values", values: observation.partner_values, shared: observation.shared_comparables, procedure_id: result.partner_procedure_id) %>
+            </td>
+
+            <td>
+              <%= observation.matching? ? "Concorde" : "Diffère" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= render("pagination", resources: observations) %>
+  <% else %>
+    <p>
+      Les valeurs saisies par les usagers ne sont visibles que des super-admins
+      administrateurs des deux démarches, une session ouverte depuis le manager
+      suffisant.
+    </p>
+  <% end %>
 </section>
