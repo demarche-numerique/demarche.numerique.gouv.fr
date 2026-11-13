@@ -1,9 +1,14 @@
 name: Git Checks
 
-on: [pull_request]
+on:
+  pull_request:
+  # verify-signatures is a required check: the merge queue waits for it on its own ref
+  merge_group:
+    branches: [main]
 
 jobs:
   block-fixup:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-24.04
 
     steps:
@@ -12,6 +17,9 @@ jobs:
       uses: 13rac1/block-fixup-merge-action@v2.0.0
 
   verify-signatures:
+    # Verified on the pull request. Skipped in the queue, where GitHub adds its
+    # own merge commit that no authorized key signs; skipped counts as success.
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-24.04
 
     steps:
