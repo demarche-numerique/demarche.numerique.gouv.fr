@@ -1,14 +1,16 @@
-<% if dossier.can_update_as_instructeur?(current_user) %>
-  <%= link_to t('.label'), edit_instructeur_dossier_path(statut: params[:statut]), class: 'fr-btn fr-icon-edit-line fr-btn--icon-left fr-btn--sm fr-btn--secondary' %>
-<% else %>
-  <button
-    disabled
-    title="<%= title %>"
-    class="
-      fr-btn fr-icon-edit-line fr-btn--icon-left fr-btn--sm
-      fr-btn--secondary
-    "
-  >
-    <%= t('.label') %>
-  </button>
-<% end %>
+<div id="edit-dossier-button" class="fr-m-2v">
+  <% if dossier.can_update_as_instructeur?(current_user) %>
+    <%= link_to t('.label'), edit_instructeur_dossier_path(statut: params[:statut]), class: 'fr-btn fr-icon-edit-line fr-btn--icon-left fr-btn--sm fr-btn--secondary' %>
+  <% else %>
+    <button
+      disabled
+      title="<%= title %>"
+      class="
+        fr-btn fr-icon-edit-line fr-btn--icon-left fr-btn--sm
+        fr-btn--secondary
+      "
+    >
+      <%= t('.label') %>
+    </button>
+  <% end %>
+</div>
