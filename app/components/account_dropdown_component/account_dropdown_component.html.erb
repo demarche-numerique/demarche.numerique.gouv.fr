@@ -3,9 +3,9 @@
     <span class="fr-mr-1w"><%= current_email %></span>
 
     <%- if france_connected_plus? -%>
-      <span>&nbsp;<%= t('.via_france_connect_plus') %></span>
+      <span class="fr-mr-1w"><%= t('.via_france_connect_plus') %></span>
     <%- elsif france_connected? -%>
-      <span>&nbsp;<%= t('.via_france_connect') %></span>
+      <span class="fr-mr-1w"><%= t('.via_france_connect') %></span>
     <%- end -%>
 
     <%- if show_profile_badge? -%>
