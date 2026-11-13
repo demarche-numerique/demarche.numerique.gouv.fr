@@ -13,6 +13,7 @@ class TypesDeChamp::RepetitionTypeDeChamp < TypeDeChamp
   before_validation :reset_limits_if_disabled
 
   def min_repetitions? = limit_repetitions? && min_repetitions.present?
+  def max_repetitions? = limit_repetitions? && max_repetitions.present?
 
   def typed_champ_value_for_tag(champ, path = :value)
     return nil if path != :value

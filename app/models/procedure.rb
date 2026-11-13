@@ -150,6 +150,10 @@ class Procedure < ApplicationRecord
     end
   end
 
+  def all_revision_ids
+    brouillon? ? [draft_revision_id] : revisions.ids - [draft_revision_id]
+  end
+
   def type_de_champs_for_procedure_export
     all_revisions_type_de_champs.not_repetition
   end
@@ -816,8 +820,7 @@ class Procedure < ApplicationRecord
   end
 
   def published_revisions_type_de_champs(parent: nil, with_header_section: false)
-    # all published revisions
-    revision_ids = revisions.ids - [draft_revision_id]
+    revision_ids = all_revision_ids
     # fetch all parent types de champ
     parent_ids = if parent.present?
       ProcedureRevisionTypeDeChamp

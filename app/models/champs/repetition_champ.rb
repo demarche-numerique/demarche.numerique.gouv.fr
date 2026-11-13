@@ -45,8 +45,7 @@ class Champs::RepetitionChamp < ChampData
   end
 
   def max_reached?
-    return false if !type_de_champ.limit_repetitions?
-    return false if type_de_champ.max_repetitions.blank?
+    return false if !type_de_champ.max_repetitions?
     row_ids.count >= type_de_champ.max_repetitions.to_i
   end
 
@@ -77,7 +76,7 @@ class Champs::RepetitionChamp < ChampData
   end
 
   def validate_repetition_max
-    return if !type_de_champ.limit_repetitions? || type_de_champ.max_repetitions.blank?
+    return if !type_de_champ.max_repetitions?
 
     max = type_de_champ.max_repetitions.to_i
     errors.add(:value, :repetition_too_many, max:, libelle: type_de_champ.libelle) if row_ids.count > max
