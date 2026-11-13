@@ -7,7 +7,7 @@ Type=notify
 User=dn
 WorkingDirectory=/var/www/dn
 ExecStart=/home/dn/.rbenv/shims/bundle exec puma -C config/puma.rb -b tcp://127.0.0.1:8080
-ExecRestart=/bin/kill -SIGUSR2 $MAINPID
+ExecReload=/bin/kill -SIGUSR2 $MAINPID
 Environment="RAILS_ENV=production RAILS_LOG_TO_STDOUT=true"
 WatchdogSec=10
 Restart=always
