@@ -12,6 +12,7 @@ class ProcedureExportService::XlsxExport
     @procedure = procedure
     @dossiers = dossiers
     @export_template = export_template
+    @inline_repetitions = ProcedureExportService::InlineRepetitionsBuilder.new(procedure:, dossiers:, export_template:)
 
     @current_dossier_id = nil
   end
@@ -32,7 +33,7 @@ class ProcedureExportService::XlsxExport
   end
 
   def write_to(io)
-    buffers = SecondarySheetBuffers.new(procedure: @procedure)
+    buffers = SecondarySheetBuffers.new(procedure: @procedure, with_repetitions: !@inline_repetitions.enabled?)
 
     ProcedureExportService::XlsxStreamer.new(io).open do |writer|
       stream_dossiers_sheet(writer, buffers)
@@ -55,7 +56,7 @@ class ProcedureExportService::XlsxExport
       .in_batches(includes: DossierPreloader::SHEET_EXPORT_INCLUDES) do |batch|
       rows = batch.map do |dossier|
         @current_dossier_id = dossier.id
-        columns = dossier.spreadsheet_columns_xlsx(type_de_champs:, export_template: @export_template)
+        columns = dossier.spreadsheet_columns_xlsx(type_de_champs:, export_template: @export_template, inline_repetitions: @inline_repetitions.to_h)
         # En-têtes dérivés du 1er dossier streamé : mêmes `columns` que ses
         # valeurs, donc cohérence libellé ↔ valeur garantie par construction.
         headers ||= columns.map(&:first)
@@ -107,9 +108,7 @@ class ProcedureExportService::XlsxExport
     end
   end
 
-  def type_de_champs
-    @type_de_champs ||= @procedure.type_de_champs_for_procedure_export.to_a
-  end
+  def type_de_champs = @inline_repetitions.type_de_champs
 
   # Accumulates rows for the Etablissements, Avis and Repetition sheets while we
   # stream the main Dossiers sheet.
@@ -121,8 +120,9 @@ class ProcedureExportService::XlsxExport
     ETABLISSEMENT_HEADERS = Etablissement.new.spreadsheet_columns.map(&:first).freeze
     AVIS_HEADERS = Avis.new.spreadsheet_columns.map(&:first).freeze
 
-    def initialize(procedure:)
+    def initialize(procedure:, with_repetitions: true)
       @procedure = procedure
+      @with_repetitions = with_repetitions
       @etablissements_buffer = []
       @avis_buffer = []
       @repetition_buffers = {} # stable_id => { libelle:, headers:, rows: [] }
@@ -131,7 +131,7 @@ class ProcedureExportService::XlsxExport
     def collect_for_dossier(dossier, export_template)
       collect_etablissements(dossier)
       collect_avis(dossier)
-      collect_repetitions(dossier, export_template)
+      collect_repetitions(dossier, export_template) if @with_repetitions
     end
 
     def etablissements_headers = ETABLISSEMENT_HEADERS

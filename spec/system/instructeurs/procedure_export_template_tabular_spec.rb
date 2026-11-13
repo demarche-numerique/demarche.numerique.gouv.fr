@@ -70,5 +70,28 @@ describe "procedure exports" do
       choose 'xlsx', allow_label_click: true
       expect(page).to have_no_css(notice, visible: true)
     end
+
+    scenario 'choose to show the repeatable blocks in the Dossiers sheet', js: true do
+      visit new_instructeur_procedure_export_template_path(procedure)
+
+      fill_in 'Nom du modèle', with: 'Avec blocs'
+      expect(page).to have_checked_field('repetition_layout_sheet')
+
+      choose 'csv', allow_label_click: true
+      expect(page).to have_no_field('repetition_layout_inline', visible: true)
+
+      choose 'xlsx', allow_label_click: true
+      choose 'repetition_layout_inline', allow_label_click: true
+      click_on 'Enregistrer'
+
+      click_on 'Avec blocs'
+      expect(page).to have_checked_field('repetition_layout_inline')
+    end
+  end
+
+  scenario 'no repetition layout without repeatable block', js: true do
+    visit new_instructeur_procedure_export_template_path(procedure)
+
+    expect(page).not_to have_field('repetition_layout_sheet')
   end
 end
