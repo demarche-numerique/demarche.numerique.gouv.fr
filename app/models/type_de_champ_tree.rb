@@ -68,7 +68,60 @@ class TypeDeChampTree < Data.define(:public_children, :private_children)
       end
     end
 
+    # The order spreadsheet exports had before the aggregate, out of the same
+    # trees: per container (nil for the root, or a repetition's stable id), the
+    # stable ids sorted public first, then by their position in the newest
+    # revision holding their latest version, then the newest revision first.
+    # A position is the rank among the container's coordinates, where header
+    # sections hold nothing.
+    #
+    # The coordinates were not renumbered when a type de champ was removed,
+    # and the trees only keep the rank: a few procedures differ from the order
+    # their coordinates gave.
+    def legacy_export_order(trees)
+      repetition_ids = repetition_type_de_champ_ids(trees)
+      latest = {}
+
+      trees.each_with_index do |tree, rank|
+        [tree.public_children, tree.private_children].each_with_index do |nodes, private|
+          coordinates_of(nodes, repetition_ids).each_with_index do |node, position|
+            keep_latest(latest, nil, node, [private, position, -rank])
+            next if !repetition_ids.include?(node.type_de_champ_id)
+
+            flattened(node.children).each_with_index do |child, child_position|
+              keep_latest(latest, node.stable_id, child, [private, child_position, -rank])
+            end
+          end
+        end
+      end
+
+      latest
+        .group_by { |(container, _), _| container }
+        .transform_values { |entries| entries.sort_by { |(_, stable_id), (_, key)| [key, stable_id] }.map { |(_, stable_id), _| stable_id } }
+    end
+
     private
+
+    # the trees come oldest first: a later revision holding the same version wins
+    def keep_latest(latest, container, node, key)
+      kept = latest[[container, node.stable_id]]
+      latest[[container, node.stable_id]] = [node.type_de_champ_id, key] if kept.nil? || node.type_de_champ_id >= kept.first
+    end
+
+    # the root as coordinates lay it: header sections followed by what they hold
+    def coordinates_of(nodes, repetition_ids)
+      nodes.flat_map { repetition_ids.include?(it.type_de_champ_id) ? [it] : [it, *coordinates_of(it.children, repetition_ids)] }
+    end
+
+    def flattened(nodes) = nodes.flat_map { [it, *flattened(it.children)] }
+
+    # only a repetition or a header section has children to tell apart
+    def repetition_type_de_champ_ids(trees)
+      ids = trees.flat_map(&:nodes).reject { it.children.empty? }.map(&:type_de_champ_id).uniq
+      return Set.new if ids.empty?
+
+      TypeDeChamp.where(id: ids, type_champ: TypeDeChamp.type_champs.fetch(:repetition)).ids.to_set
+    end
 
     def merged(newest, aggregated, kinds)
       root = MergedNode.new(stable_id: nil, type_de_champ_id: nil, children: [], parent: nil)

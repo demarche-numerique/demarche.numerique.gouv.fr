@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_02_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_11_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_catalog.plpgsql"
@@ -1180,6 +1180,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_02_120000) do
     t.boolean "instructeurs_can_edit_dossiers", default: false, null: false
     t.boolean "instructeurs_self_management_enabled", default: false
     t.boolean "juridique_required", default: true
+    t.boolean "legacy_export_order", default: false, null: false
     t.string "libelle"
     t.string "lien_dpo"
     t.text "lien_dpo_error"
