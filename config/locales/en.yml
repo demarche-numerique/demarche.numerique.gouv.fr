@@ -895,6 +895,7 @@ en:
         mfa_failed: "ProConnect could not verify your two-factor authentication. Try again, then contact support if the problem persists."
       france_connect_plus:
         another_identity: "This application is bound to another FranceConnect+ identity than the one you signed in with: sign out, then sign in with FranceConnect+ as the application's owner."
+        merge_required: "Your account has applications on a procedure that requires FranceConnect+: sign in with FranceConnect+ to merge it with another account."
         procedure_required: "You must sign in with FranceConnect+ to access this procedure."
       france_connect:
         connexion: "Error trying to connect to FranceConnect."

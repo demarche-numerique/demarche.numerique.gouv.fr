@@ -94,8 +94,12 @@ class DataSources::ReferentielController < DataSources::BaseController
   def set_dossier
     return if params[:dossier_id].blank?
 
-    @dossier = current_user.dossiers.find_by(id: params[:dossier_id]) ||
-      current_user.instructeur&.dossiers&.find_by(id: params[:dossier_id])
+    # The URL tags take the dossier's champ values: a dossier requiring FranceConnect+ lends them
+    # to a session that may open it only
+    usager_dossier = current_user.dossiers.find_by(id: params[:dossier_id])
+    usager_dossier = nil if usager_dossier&.france_connect_plus_missing?(Current.user_session)
+
+    @dossier = usager_dossier || current_user.instructeur&.dossiers&.find_by(id: params[:dossier_id])
 
     DossierPreloader.load_one(@dossier) if @dossier
   end

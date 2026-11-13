@@ -121,6 +121,28 @@ describe DataSources::ReferentielController, type: :controller do
           end
         end
 
+        context 'when the procedure requires FranceConnect+' do
+          let(:procedure) { create(:procedure, :published, public_type_de_champs:, france_connect_plus_required: true) }
+          let(:service) { instance_double(ReferentielService) }
+
+          before { allow(ReferentielService).to receive(:new).and_return(service) }
+
+          it 'lends no champ value to a session opened another way' do
+            sign_in(user, login_method: :password)
+
+            expect(service).not_to receive(:call)
+            expect(subject).to have_http_status(:ok)
+            expect(response.parsed_body).to eq([])
+          end
+
+          it 'searches from a FranceConnect+ session' do
+            sign_in(user, login_method: :france_connect_plus)
+
+            expect(service).to receive(:call).and_return(Failure(code: 500))
+            expect(subject).to have_http_status(:ok)
+          end
+        end
+
         context 'when dossier belongs to another user' do
           let(:other_user) { create(:user) }
           let(:dossier) { create(:dossier, procedure:, user: other_user) }

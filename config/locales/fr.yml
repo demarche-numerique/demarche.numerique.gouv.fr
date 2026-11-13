@@ -900,6 +900,7 @@ fr:
         mfa_failed: "ProConnect n’a pas pu vérifier votre double authentification. Réessayez, puis contactez le support si le problème persiste."
       france_connect_plus:
         another_identity: "Ce dossier est lié à une autre identité FranceConnect+ que celle avec laquelle vous êtes connecté : déconnectez-vous, puis connectez-vous avec FranceConnect+ sous l’identité du titulaire du dossier."
+        merge_required: "Votre compte a des dossiers sur une démarche qui exige FranceConnect+ : connectez-vous avec FranceConnect+ pour le fusionner avec un autre compte."
         procedure_required: "Vous devez vous connecter avec FranceConnect+ pour accéder à cette démarche."
       france_connect:
         connexion: "Une erreur est survenue lors de la connexion avec FranceConnect. Veuillez réessayer."
