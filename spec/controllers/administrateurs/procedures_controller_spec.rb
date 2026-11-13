@@ -1977,6 +1977,16 @@ describe Administrateurs::ProceduresController, type: :controller do
           expect(flash.notice).to eq("La démarche est restreinte à ProConnect pour les administrateurs, instructeurs et dépositaires de dossiers")
           expect(response).to redirect_to(pro_connect_restricted_admin_procedure_path(procedure))
         end
+
+        context 'when the procedure requires FranceConnect+' do
+          let(:procedure) { create(:procedure, administrateurs: [admin], france_connect_plus_required: true) }
+
+          it 'keeps the restriction and says why' do
+            expect(procedure.reload.pro_connect_restriction_none?).to be true
+            expect(flash.alert).to eq(["Le champ « Exiger FranceConnect+ des usagers » n’est pas compatible avec une démarche réservée aux utilisateurs ProConnect"])
+            expect(response).to redirect_to(pro_connect_restricted_admin_procedure_path(procedure))
+          end
+        end
       end
     end
   end

@@ -292,6 +292,8 @@ module Administrateurs
       end
 
       redirect_to pro_connect_restricted_admin_procedure_path(@procedure)
+    rescue ActiveRecord::RecordInvalid => e
+      redirect_to pro_connect_restricted_admin_procedure_path(@procedure), alert: e.record.errors.full_messages
     end
 
     def rdv
