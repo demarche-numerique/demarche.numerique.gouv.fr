@@ -82,6 +82,7 @@ module ProcedureCloneConcern
     'no_gender',
     'pro_connect_restriction',
     'pro_connect_for_moral_procedure',
+    'france_connect_plus_required',
     'robots_indexable',
     'admin_default_procedure_presentation_active',
     'admin_default_procedure_presentation_id',

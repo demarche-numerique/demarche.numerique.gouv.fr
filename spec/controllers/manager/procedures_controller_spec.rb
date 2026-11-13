@@ -39,6 +39,24 @@ describe Manager::ProceduresController, type: :controller do
     it { expect(procedure.hidden_as_template?).to be_falsey }
   end
 
+  describe '#update' do
+    let(:procedure) { procedures.brouillon }
+
+    it 'requires FranceConnect+ from the applicants' do
+      patch :update, params: { id: procedure.id, procedure: { france_connect_plus_required: '1' } }
+
+      expect(procedure.reload).to be_france_connect_plus_required
+    end
+
+    it 'refuses it on a procedure restricted to ProConnect users' do
+      procedure.update!(pro_connect_restriction: :all)
+
+      patch :update, params: { id: procedure.id, procedure: { france_connect_plus_required: '1' } }
+
+      expect(procedure.reload).not_to be_france_connect_plus_required
+    end
+  end
+
   describe '#show' do
     render_views
 

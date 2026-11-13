@@ -14,7 +14,9 @@ module Users
 
     def update_email
       requested_user = User.find_by(email: requested_email)
-      if requested_user.present?
+      if requested_user.present? && france_connect_plus_dossiers_out_of_reach?
+        flash.alert = t('errors.messages.france_connect_plus.merge_required')
+      elsif requested_user.present?
         current_user.ask_for_merge(requested_user)
 
         flash.notice = t('devise.registrations.update_needs_confirmation')
@@ -38,11 +40,23 @@ module Users
       end
     end
 
+    # A merge moves the account's dossiers and invites: those of a procedure requiring
+    # FranceConnect+ move from a session that may open them only
+    def france_connect_plus_dossiers_out_of_reach?
+      Dossier
+        .where(id: current_user.dossiers).or(Dossier.where(id: current_user.dossiers_invites))
+        .france_connect_plus_out_of_reach_for(Current.user_session)
+        .exists?
+    end
+
     def transfer_all_dossiers
-      transfer = DossierTransfer.initiate(next_owner_email, current_user.dossiers)
+      # A procedure that requires FranceConnect+ lets its dossiers go from a FranceConnect+ session only
+      dossiers = current_user.dossiers
+        .where.not(id: current_user.dossiers.france_connect_plus_out_of_reach_for(Current.user_session).select(:id))
+      transfer = DossierTransfer.initiate(next_owner_email, dossiers)
 
       if transfer.valid?
-        flash.notice = t('.new_transfer', count: current_user.dossiers.count, email: next_owner_email)
+        flash.notice = t('.new_transfer', count: dossiers.count, email: next_owner_email)
       else
         flash.alert = transfer.errors.full_messages
       end

@@ -1,0 +1,5 @@
+fr:
+  france_connect_plus:
+    required:
+      title: "Connexion FranceConnect+ requise"
+      explanation: "Cette démarche exige une identification avec FranceConnect+, qui garantit un niveau de vérification d’identité renforcé. Connectez-vous avec FranceConnect+ pour accéder à vos dossiers : vous reviendrez ensuite sur cette page."

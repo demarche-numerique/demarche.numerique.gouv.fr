@@ -43,6 +43,40 @@ RSpec.describe Users::DossierFilterService do
     end
   end
 
+  describe '#base_scope with search under a procedure that requires FranceConnect+' do
+    let(:dossier) { create(:dossier, :en_construction, user:, procedure: create(:procedure, :published, france_connect_plus_required: true)) }
+    subject(:service) { described_class.new(user:, params: ActionController::Parameters.new(search: dossier.id.to_s)) }
+
+    it 'leaves the dossier out of a session opened another way' do
+      Current.user_session = UserSession.new(login_method: :password)
+      expect(service.base_scope).not_to include(dossier)
+    end
+
+    it 'finds it for a FranceConnect+ session' do
+      Current.user_session = UserSession.new(login_method: :france_connect_plus)
+      expect(service.base_scope).to include(dossier)
+    end
+
+    it 'leaves it out of a FranceConnect+ session of another identity than the bound one' do
+      dossier.update!(france_connect_plus_sub: 'owner_sub')
+      another_identity = create(:france_connect_information, user:, france_connect_particulier_id: 'another_sub')
+      Current.user_session = UserSession.new(sessionable: user, login_method: :france_connect_plus, france_connect_information: another_identity)
+
+      expect(service.base_scope).not_to include(dossier)
+    end
+
+    it 'finds it for an invite in a FranceConnect+ session of their own' do
+      dossier.update!(france_connect_plus_sub: 'owner_sub')
+      invited = create(:user)
+      create(:invite, dossier:, user: invited)
+      Current.user_session = UserSession.new(sessionable: invited, login_method: :france_connect_plus)
+
+      service = described_class.new(user: invited, params: ActionController::Parameters.new(search: dossier.id.to_s))
+
+      expect(service.base_scope).to include(dossier)
+    end
+  end
+
   describe '#dossiers with procedure_id filter' do
     let(:procedure_a) { procedures.individual }
     let(:procedure_b) { procedures.entreprise }

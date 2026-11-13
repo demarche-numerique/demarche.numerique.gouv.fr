@@ -146,6 +146,31 @@ describe Users::ProfilController, type: :controller do
       end
     end
 
+    context 'when the account has dossiers on a procedure that requires FranceConnect+' do
+      let(:existing_user) { create(:user) }
+
+      before do
+        create(:dossier, :en_construction, user:, procedure: create(:procedure, :published, france_connect_plus_required: true))
+      end
+
+      it 'refuses the merge from a session opened another way' do
+        sign_in(user, login_method: :password)
+
+        patch :update_email, params: { user: { email: existing_user.email } }
+
+        expect(user.reload.requested_merge_into).to be_nil
+        expect(flash.alert).to include('connectez-vous avec FranceConnect+')
+      end
+
+      it 'asks for the merge from a FranceConnect+ session' do
+        sign_in(user, login_method: :france_connect_plus)
+
+        patch :update_email, params: { user: { email: existing_user.email } }
+
+        expect(user.reload.requested_merge_into).to eq(existing_user)
+      end
+    end
+
     describe 'warning the current address' do
       let(:previous_email) { user.email }
 
@@ -271,6 +296,20 @@ describe Users::ProfilController, type: :controller do
       expect(flash.notice).to eq("Le transfert de 3 dossiers à #{next_owner} est en cours")
     end
 
+    context 'with a dossier of a procedure that requires FranceConnect+' do
+      let!(:dossiers) do
+        [
+          create(:dossier, user:),
+          create(:dossier, user:, procedure: create(:procedure, :published, france_connect_plus_required: true)),
+        ]
+      end
+
+      it 'leaves it out from a session opened another way' do
+        expect(created_transfer.dossiers).to eq([dossiers.first])
+        expect(flash.notice).to eq("Le transfert d’un dossier à #{next_owner} est en cours")
+      end
+    end
+
     context "next owner has an empty email" do
       let(:next_owner) { '' }
 
@@ -325,6 +364,14 @@ describe Users::ProfilController, type: :controller do
       subject
       expect(FranceConnectInformation.where(user: user).count).to eq(0)
       expect(response).to redirect_to(profil_path)
+    end
+
+    it 'keeps the sessions the identity opened' do
+      user_session = user.user_sessions.create!(login_method: :france_connect, france_connect_information: fci, expires_at: 1.day.from_now)
+
+      subject
+
+      expect(user_session.reload).to have_attributes(france_connect_information_id: nil, revoked_at: nil)
     end
 
     context 'when the fci does not exist (already deleted or unknown id)' do

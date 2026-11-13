@@ -2547,4 +2547,62 @@ describe Dossier, type: :model do
       end
     end
   end
+
+  describe 'FranceConnect+ identity' do
+    let(:owner) { create(:user) }
+    let(:procedure) { create(:procedure, :published, france_connect_plus_required: true) }
+    let(:dossier) { create(:dossier, :en_construction, user: owner, procedure:) }
+
+    def session_of(user, sub: nil, login_method: :france_connect_plus)
+      fci = create(:france_connect_information, user:, france_connect_particulier_id: sub) if sub
+      UserSession.new(sessionable: user, login_method:, france_connect_information: fci)
+    end
+
+    it 'binds the owner identity on its first FranceConnect+ session, then opens to it only' do
+      dossier.bind_france_connect_plus!(session_of(owner, sub: 'owner_sub'))
+
+      expect(dossier.reload.france_connect_plus_sub).to eq('owner_sub')
+      expect(dossier.france_connect_plus_missing?(session_of(owner, sub: 'owner_sub'))).to be(false)
+      expect(dossier.france_connect_plus_missing?(session_of(owner, sub: 'another_sub'))).to be(true)
+      expect(dossier.france_connect_plus_missing?(session_of(owner, login_method: :password))).to be(true)
+    end
+
+    it 'is not bound by an invite, who needs a FranceConnect+ session of their own' do
+      invite = create(:user)
+
+      dossier.bind_france_connect_plus!(session_of(invite, sub: 'invite_sub'))
+
+      expect(dossier.reload.france_connect_plus_sub).to be_nil
+      expect(dossier.france_connect_plus_missing?(session_of(invite, sub: 'invite_sub'))).to be(false)
+      expect(dossier.france_connect_plus_missing?(session_of(invite, login_method: :password))).to be(true)
+    end
+
+    it 'is not bound by a FranceConnect+ session without identity' do
+      dossier.bind_france_connect_plus!(session_of(owner))
+
+      expect(dossier.reload.france_connect_plus_sub).to be_nil
+    end
+
+    it 'keeps a dossier on the draft revision of a published procedure closed' do
+      test_dossier = create(:dossier, :brouillon, user: owner, procedure:, revision: procedure.draft_revision)
+
+      expect(test_dossier.france_connect_plus_missing?(session_of(owner, login_method: :password))).to be(true)
+    end
+
+    it 'leaves the test dossiers of a procedure not published yet open to any session' do
+      test_dossier = create(:dossier, :brouillon, user: owner, procedure: create(:procedure, france_connect_plus_required: true))
+
+      expect(test_dossier.france_connect_plus_missing?(session_of(owner, login_method: :password))).to be(false)
+    end
+
+    it 'finds in SQL the dossiers the session may not reach' do
+      dossier.update!(france_connect_plus_sub: 'owner_sub')
+      test_dossier = create(:dossier, :brouillon, user: owner, procedure: create(:procedure, france_connect_plus_required: true))
+      dossiers = Dossier.where(id: [dossier, test_dossier])
+
+      expect(dossiers.france_connect_plus_out_of_reach_for(session_of(owner, login_method: :password))).to contain_exactly(dossier)
+      expect(dossiers.france_connect_plus_out_of_reach_for(session_of(owner, sub: 'another_sub'))).to contain_exactly(dossier)
+      expect(dossiers.france_connect_plus_out_of_reach_for(session_of(owner, sub: 'owner_sub'))).to be_empty
+    end
+  end
 end

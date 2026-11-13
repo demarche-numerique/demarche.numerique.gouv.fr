@@ -39,11 +39,11 @@ module SessionRegistrableConcern
     warden.raw_session["warden.user.#{scope}.session"] ||= {}
   end
 
-  def self.open_session!(record, warden, scope, login_method: nil)
+  def self.open_session!(record, warden, scope, login_method: nil, france_connect_information: nil)
     user_agent, remote_ip = warden.request.user_agent, warden.request.remote_ip
 
     # in db
-    user_session = record.open_user_session!(user_agent, remote_ip, login_method:)
+    user_session = record.open_user_session!(user_agent, remote_ip, login_method:, france_connect_information:)
 
     # in cookie
     warden.session(scope).merge!(LAST_SEEN_KEY => Date.current.iso8601, SESSION_KEY => user_session.id)
@@ -155,11 +155,12 @@ module SessionRegistrableConcern
   # The raw user-agent and not a label: deriving it at display time means a
   # better parser later also improves old rows. The address is never rewritten
   # afterwards -- reading a row on every request must stay a read.
-  def open_user_session!(user_agent, ip_address = nil, login_method: nil)
+  def open_user_session!(user_agent, ip_address = nil, login_method: nil, france_connect_information: nil)
     user_sessions.create!(
       user_agent: sanitized_user_agent(user_agent),
       ip_address:,
       login_method:,
+      france_connect_information:,
       expires_at: session_max_lifetime&.from_now
     )
   end

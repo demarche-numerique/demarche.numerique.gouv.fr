@@ -1,0 +1,15 @@
+<div class="fr-container fr-py-5w">
+  <div class="fr-grid-row fr-grid-row--center">
+    <div class="fr-col-12 fr-col-md-8 fr-col-lg-6">
+      <%= render Dsfr::CalloutComponent.new(title: t('.title'), heading_level: 'h1') do |c| %>
+        <% c.with_body do %>
+          <p><%= t('.explanation') %></p>
+
+          <div class="fr-mt-3w">
+            <%= render partial: 'shared/france_connect_plus_login', locals: { url: france_connect_plus_path } %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

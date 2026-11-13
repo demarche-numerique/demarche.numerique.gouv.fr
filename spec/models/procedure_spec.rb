@@ -1734,6 +1734,26 @@ describe Procedure do
     end
   end
 
+  describe 'france_connect_plus_required' do
+    let(:procedure) { procedures.brouillon }
+
+    it 'cannot go with a procedure restricted to ProConnect users' do
+      procedure.assign_attributes(pro_connect_restriction: :all, france_connect_plus_required: true)
+
+      expect(procedure).not_to be_valid
+      expect(procedure.errors).to be_of_kind(:france_connect_plus_required, :present)
+    end
+
+    it 'asks a session opened another way to sign in with FranceConnect+, FranceConnect+ enabled or not' do
+      procedure.france_connect_plus_required = true
+      allow(FranceConnectPlusService).to receive(:enabled?).and_return(false)
+
+      expect(procedure.france_connect_plus_missing?(UserSession.new(login_method: :password))).to be(true)
+      expect(procedure.france_connect_plus_missing?(nil)).to be(true)
+      expect(procedure.france_connect_plus_missing?(UserSession.new(login_method: :france_connect_plus))).to be(false)
+    end
+  end
+
   describe '#champ_value_in_condition?' do
     include Logic
     let(:procedure) do

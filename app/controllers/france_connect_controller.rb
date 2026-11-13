@@ -261,7 +261,7 @@ class FranceConnectController < ApplicationController
   end
 
   def connect_france_connect(user, login_method:)
-    replace_session(user, login_method:)
+    replace_session(user, login_method:, france_connect_information: @fci)
 
     user.update_attribute('loged_in_with_france_connect', User.loged_in_with_france_connects.fetch(:particulier))
     user.update_preferred_domain(Current.host)

@@ -19,19 +19,7 @@
     </div>
 
     <% if local_assigns[:plus_url] && FranceConnectPlusService.enabled? -%>
-      <div class="fr-connect-group fr-my-2w">
-        <%= link_to(plus_url, class: "fr-btn fr-connect fr-connect--plus") do -%>
-          <span class="fr-connect__login">
-            <%= t('views.shared.france_connect_login.login_button') %>
-          </span>
-
-          <span class="fr-connect__brand">FranceConnect</span>
-        <% end -%>
-
-        <p>
-          <%= link_to t('views.shared.france_connect_login.plus_help_link'), "https://www.franceconnect.gouv.fr/franceconnect-plus/", title: new_tab_suffix(t('views.shared.france_connect_login.plus_help_link')), **external_link_attributes %>
-        </p>
-      </div>
+      <%= render partial: 'shared/france_connect_plus_login', locals: { url: plus_url } %>
     <% end -%>
   </div>
 <% else -%>

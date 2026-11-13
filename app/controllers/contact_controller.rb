@@ -63,7 +63,8 @@ class ContactController < ApplicationController
     return false unless user_signed_in?
     return false unless contact_form_params[:question_type] == ContactForm::TYPE_INSTRUCTION
 
-    dossier&.messagerie_available?
+    # A dossier requiring FranceConnect+ takes no message from another session: it goes to support
+    dossier&.messagerie_available? && !dossier.france_connect_plus_missing?(Current.user_session)
   end
 
   def dossier

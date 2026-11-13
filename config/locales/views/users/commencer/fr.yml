@@ -3,6 +3,8 @@ fr:
     show:
       start_procedure: Commencer la démarche
       start_dossier: Commencer un dossier
+      france_connect_plus_required_info: "Cette démarche exige une identification avec FranceConnect+, qui garantit un niveau de vérification d’identité renforcé. Les autres modes de connexion ne permettent pas d’y accéder."
+      france_connect_plus_required_signed_in: "Cette démarche exige une identification avec FranceConnect+. Reconnectez-vous avec FranceConnect+ pour commencer un dossier ou consulter les vôtres."
       pro_connect_restriction_all_info_html: "Cette démarche nécessite une <a href=\"%{path}\" title=\"S’identifier avec ProConnect\">authentification via ProConnect</a>. Seuls les agents disposant d’un compte ProConnect peuvent y accéder."
       existing_dossiers: Vous avez déjà des dossiers pour cette démarche
       show_dossiers: Voir mes dossiers en cours

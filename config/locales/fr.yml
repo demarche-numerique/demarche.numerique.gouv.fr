@@ -646,6 +646,7 @@ fr:
           created_at: Créé le %{date}
           updated_at: modifié le %{date}
           shared_with: Dossier partagé par %{owner} avec
+          france_connect_plus_hidden: "Connectez-vous avec FranceConnect+ pour voir le détail de ce dossier."
           deleted_by_user: Mis à la corbeille le %{date} par l’usager
           deleted_by_automatic: Mis à la corbeille automatiquement le %{date} car le délai maximal de conservation a été atteint
         dossier_action:
@@ -897,6 +898,10 @@ fr:
         required: "Vous devez utiliser ProConnect pour vous connecter à votre espace administrateur."
         procedure_required: "Vous devez vous connecter par ProConnect pour accéder à cette démarche."
         mfa_failed: "ProConnect n’a pas pu vérifier votre double authentification. Réessayez, puis contactez le support si le problème persiste."
+      france_connect_plus:
+        another_identity: "Ce dossier est lié à une autre identité FranceConnect+ que celle avec laquelle vous êtes connecté : déconnectez-vous, puis connectez-vous avec FranceConnect+ sous l’identité du titulaire du dossier."
+        merge_required: "Votre compte a des dossiers sur une démarche qui exige FranceConnect+ : connectez-vous avec FranceConnect+ pour le fusionner avec un autre compte."
+        procedure_required: "Vous devez vous connecter avec FranceConnect+ pour accéder à cette démarche."
       france_connect:
         connexion: "Une erreur est survenue lors de la connexion avec FranceConnect. Veuillez réessayer."
         forbidden_html: "Seul-e-s les usagers peuvent se connecter via FranceConnect. En tant qu’instructeur ou administrateur, veuillez vous identifier avec ProConnect ou vous connecter avec votre compte %{app_name}."

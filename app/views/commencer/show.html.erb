@@ -8,7 +8,17 @@
     <%= render ProcedureDraftWarningComponent.new(revision: @revision, current_administrateur:, extra_class_names: "fr-mb-2w") %>
     <%= render Dsfr::CalloutComponent.new(title: t(".start_procedure"), heading_level: 'h2') do |c| -%>
       <% c.with_html_body do -%>
-        <%- if @procedure.pro_connect_restriction_all? -%>
+        <%- if @procedure.france_connect_plus_guarded? -%>
+          <% c.with_body do -%>
+            <%= render partial: 'shared/france_connect_plus_login', locals: { url: commencer_france_connect_plus_path(path: @procedure.path, prefill_token: @prefilled_dossier&.prefill_token) } %>
+
+            <div class="fr-alert fr-alert--info">
+              <p>
+                <%= t('.france_connect_plus_required_info') %>
+              </p>
+            </div>
+          <%- end -%>
+        <%- elsif @procedure.pro_connect_restriction_all? -%>
           <% c.with_body do -%>
             <%= render ProConnectLoginComponent.new(url: commencer_pro_connect_path(path: @procedure.path, prefill_token: @prefilled_dossier&.prefill_token), title: nil) %>
 
@@ -73,7 +83,17 @@
     <%- end -%>
   <%- else -%>
     <%= render ProcedureDraftWarningComponent.new(revision: @revision, current_administrateur:, extra_class_names: "fr-mb-2w") %>
-    <%- if @procedure.pro_connect_restriction_all? && !Current.user_session.via_pro_connect? -%>
+    <%- if @procedure.france_connect_plus_missing?(Current.user_session) -%>
+      <div class="fr-alert fr-alert--warning fr-mb-2w">
+        <p>
+          <%= t('.france_connect_plus_required_signed_in') %>
+        </p>
+
+        <div class="fr-mt-3w">
+          <%= render partial: 'shared/france_connect_plus_login', locals: { url: commencer_france_connect_plus_path(path: @procedure.path, prefill_token: @prefilled_dossier&.prefill_token) } %>
+        </div>
+      </div>
+    <%- elsif @procedure.pro_connect_restriction_all? && !Current.user_session.via_pro_connect? -%>
       <div class="fr-alert fr-alert--warning fr-mb-2w">
         <p>
           <%= t('.pro_connect_restriction_all_info_html', path: pro_connect_login_path) %>

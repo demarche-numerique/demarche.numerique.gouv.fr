@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_13_100000) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_13_180000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_catalog.plpgsql"
@@ -533,6 +533,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_13_100000) do
     t.boolean "for_procedure_preview", default: false, null: false
     t.boolean "for_tiers", default: false, null: false
     t.boolean "forced_groupe_instructeur", default: false, null: false
+    t.string "france_connect_plus_sub"
     t.bigint "groupe_instructeur_id"
     t.datetime "groupe_instructeur_updated_at", precision: nil
     t.datetime "hidden_by_administration_at", precision: nil
@@ -1175,6 +1176,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_13_100000) do
     t.boolean "experts_require_administrateur_invitation", default: false
     t.boolean "for_individual", default: false
     t.boolean "for_tiers_enabled", default: true, null: false
+    t.boolean "france_connect_plus_required", default: false, null: false
     t.datetime "hidden_at", precision: nil
     t.datetime "hidden_at_as_template", precision: nil
     t.boolean "hide_instructeurs_email", default: false, null: false
@@ -1477,6 +1479,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_13_100000) do
   create_table "user_sessions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "expires_at", null: false
+    t.bigint "france_connect_information_id"
     t.inet "ip_address"
     t.string "login_method"
     t.datetime "revoked_at"
@@ -1485,6 +1488,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_13_100000) do
     t.string "sessionable_type", null: false
     t.datetime "updated_at", null: false
     t.string "user_agent"
+    t.index ["france_connect_information_id"], name: "index_user_sessions_on_france_connect_information_id"
     t.index ["sessionable_type", "sessionable_id", "revoked_at"], name: "index_user_sessions_on_sessionable_and_revoked_at"
   end
 
@@ -1663,6 +1667,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_13_100000) do
   add_foreign_key "type_de_champ_matches", "procedure_user_overlaps", column: ["left_procedure_id", "right_procedure_id"], primary_key: ["left_procedure_id", "right_procedure_id"]
   add_foreign_key "types_de_champ", "procedures"
   add_foreign_key "types_de_champ", "referentiels"
+  add_foreign_key "user_sessions", "france_connect_informations", on_delete: :nullify
   add_foreign_key "users", "users", column: "requested_merge_into_id"
   add_foreign_key "without_continuation_mails", "procedures", on_delete: :cascade
   add_foreign_key "zone_labels", "zones"
