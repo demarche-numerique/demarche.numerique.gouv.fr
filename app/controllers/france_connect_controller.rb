@@ -199,8 +199,11 @@ class FranceConnectController < ApplicationController
 
   def service = FranceConnectService
 
-  # Sent back on logout
+  # Shared with FranceConnect+: the last provider to sign in leaves the only id token,
+  # so sign out goes through it (FC then FC+ → the FC+ token alone, and back)
   def keep_id_token(id_token)
+    cookies.delete(FranceConnectController::ID_TOKEN_COOKIE_NAME)
+    cookies.delete(FranceConnectPlusController::ID_TOKEN_COOKIE_NAME)
     cookies.encrypted[self.class::ID_TOKEN_COOKIE_NAME] = { value: id_token, secure: Rails.env.production?, httponly: true }
   end
 
