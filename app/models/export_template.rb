@@ -80,6 +80,12 @@ class ExportTemplate < ApplicationRecord
       .filter { _1.column.stable_id == stable_id }
   end
 
+  def preload_columns(dossiers)
+    champs = dossiers.flat_map(&:champ_data)
+
+    exported_columns.map(&:column).filter(&:champ_column?).each { it.preload(champs) }
+  end
+
   def in_export?(exported_column)
     @template_exported_columns ||= exported_columns.map(&:column)
     @template_exported_columns.include?(exported_column.column)

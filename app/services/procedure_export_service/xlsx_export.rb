@@ -53,6 +53,7 @@ class ProcedureExportService::XlsxExport
 
     DossierPreloader.new(@dossiers.ordered_for_export)
       .in_batches(includes: DossierPreloader::SHEET_EXPORT_INCLUDES) do |batch|
+      @export_template&.preload_columns(batch)
       rows = batch.map do |dossier|
         @current_dossier_id = dossier.id
         columns = dossier.spreadsheet_columns_xlsx(type_de_champs:, export_template: @export_template)

@@ -25,6 +25,7 @@ class ProcedureExportService::CsvExport
     DossierPreloader
       .new(@dossiers.ordered_for_export)
       .in_batches(includes: DossierPreloader::SHEET_EXPORT_INCLUDES) do |batch|
+      @export_template&.preload_columns(batch)
       batch.each do |dossier|
         columns = dossier.spreadsheet_columns_csv(type_de_champs:, export_template: @export_template)
 

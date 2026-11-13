@@ -99,5 +99,11 @@ en:
             telephone: Phone
             email: Email
             site_internet: Website
+          dossier_link:
+            application_number: Application number
+            procedure_title: Procedure title
+            submitted_on: Application submission date
+            procedure_agency: Procedure agency
+            deleted_procedure: Deleted procedure (no. %{id})
           dossier_labels:
             label_id: Labels

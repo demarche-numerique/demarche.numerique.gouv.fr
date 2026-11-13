@@ -8,6 +8,7 @@ module DossierStateConcern
     self.traitements.usager_submit_en_construction(checkpoint:)
     self.submitted_revision_id = revision_id
     save!
+    complete_dossier_link_champs!
 
     RoutingEngine.compute(self)
 
@@ -28,6 +29,7 @@ module DossierStateConcern
     checkpoint = merge_instructeur_buffer_stream!
     traitement = self.traitements.instructeur_submit_en_construction(instructeur:, checkpoint:, motivation:)
     save!
+    complete_dossier_link_champs!
 
     RoutingEngine.compute(self)
     render_carte_champs_later!
@@ -43,6 +45,7 @@ module DossierStateConcern
     self.submitted_revision_id = revision_id
 
     save!
+    complete_dossier_link_champs!
 
     RoutingEngine.compute(self)
 
@@ -444,6 +447,10 @@ module DossierStateConcern
   # declarative_triggered_at à nil.
   def combined_declarative_acceptation?
     procedure.send_combined_declarative_email? && procedure.declarative_accepte?
+  end
+
+  def complete_dossier_link_champs!
+    Champs::DossierLinkChamp.complete_linked_dossiers!(champ_data.filter { it.main_stream? && it.is_a?(Champs::DossierLinkChamp) })
   end
 
   def remove_not_in_revision_champs!

@@ -22,6 +22,9 @@ module Types
         []
       elsif object.carte?
         [object.type_de_champ.canonical_column(procedure_id: object.procedure.id)]
+      elsif object.dossier_link?
+        dataloader.with(Sources::DossierLinkProcedures).load(object)
+        object.type_de_champ.columns(procedure_id: object.procedure.id).map { it.try(:applicant_column) || it }
       else
         object.type_de_champ.columns(procedure_id: object.procedure.id)
       end

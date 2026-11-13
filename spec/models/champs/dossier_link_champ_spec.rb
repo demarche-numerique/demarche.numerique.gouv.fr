@@ -230,4 +230,148 @@ describe Champs::DossierLinkChamp, type: :model do
       it { is_expected.not_to include(deleted.dossier_id) }
     end
   end
+
+  describe 'linked procedure id and submission date' do
+    let(:submitted_at) { Time.zone.local(2026, 3, 4, 0, 30) }
+
+    def submitted(dossier) = dossier.tap { it.update_columns(depose_at: submitted_at) }
+
+    it 'stores the procedure and the submission date of a live dossier' do
+      linked = submitted(dossiers.en_construction)
+      champ.update(value: linked.id)
+      expect(champ.reload.value_json).to eq('procedure_id' => linked.procedure.id, 'submitted_on' => '2026-03-04')
+    end
+
+    it 'stores the submission date in Paris time for a dossier submitted just after midnight' do
+      linked = dossiers.en_construction.tap { it.update_columns(depose_at: ActiveSupport::TimeZone['Europe/Paris'].local(2025, 3, 1, 0, 30)) }
+      expect(linked.reload.depose_at.utc.to_date).to eq(Date.new(2025, 2, 28))
+      champ.update(value: linked.id)
+      expect(champ.reload.value_json).to eq('procedure_id' => linked.procedure.id, 'submitted_on' => '2025-03-01')
+    end
+
+    it 'stores the procedure and the submission date of a purged dossier' do
+      deleted = create(:deleted_dossier, dossier_id: 987_654, depose_at: Date.new(2026, 3, 4))
+      champ.update(value: '987654')
+      expect(champ.reload.value_json).to eq('procedure_id' => deleted.procedure_id, 'submitted_on' => '2026-03-04')
+    end
+
+    it 'stores no submission date for a dossier never submitted' do
+      linked = create(:dossier, :brouillon)
+      deleted = create(:deleted_dossier, dossier_id: 987_654, depose_at: nil)
+      champ.update(value: linked.id)
+      expect(champ.reload.value_json).to eq('procedure_id' => linked.procedure.id)
+      champ.update(value: '987654')
+      expect(champ.reload.value_json).to eq('procedure_id' => deleted.procedure_id)
+    end
+
+    it 'follows the value' do
+      first = submitted(create(:dossier, :en_construction))
+      second = create(:dossier, :en_construction).tap { it.update_columns(depose_at: Time.zone.local(2026, 5, 6, 12)) }
+      champ.update(value: first.id)
+      champ.update(value: second.id)
+      expect(champ.reload.value_json).to eq('procedure_id' => second.procedure.id, 'submitted_on' => '2026-05-06')
+      champ.update(value: nil)
+      expect(champ.reload.value_json).to be_nil
+    end
+
+    ['abc', '99999999999999999999', '424242424'].each do |value|
+      it "stores nothing for #{value}" do
+        expect { champ.update(value:) }.not_to raise_error
+        expect(champ.reload.value_json).to be_nil
+      end
+    end
+
+    it 'keeps the procedure and the submission date when the user buffer is merged' do
+      linked = submitted(dossiers.en_construction)
+      public_id = champ.public_id
+      dossier.with_update_stream(dossier.user) do
+        buffer_champ = dossier.public_champ_for_update(public_id, updated_by: dossier.user.email)
+        buffer_champ.update!(value: linked.id)
+        expect(buffer_champ.stream).to eq(Dossier::USER_BUFFER_STREAM)
+      end
+      dossier.merge_user_buffer_stream!
+      main_champ = dossier.reload.root_champs_public.first
+      expect(main_champ.stream).to eq(Dossier::MAIN_STREAM)
+      expect(main_champ.value_json).to eq('procedure_id' => linked.procedure.id, 'submitted_on' => '2026-03-04')
+    end
+  end
+
+  describe 'linked dossier metadata at submission' do
+    let(:user) { create(:user) }
+    let(:dossier) { create(:dossier, :brouillon, procedure:, user:) }
+    let(:linked) { create(:dossier, :brouillon, user:) }
+    let(:date_column) { procedure.active_revision.public_root_type_de_champs.first.columns(procedure_id: procedure.id).second }
+
+    def link!(target)
+      dossier.with_update_stream(user) do
+        dossier.public_champ_for_update(dossier.root_champs_public.first.public_id, updated_by: user.email).update!(value: target.id.to_s)
+      end
+    end
+
+    def main_champ = Dossier.find(dossier.id).champ_data.find { it.stable_id == date_column.stable_id && it.stream == Dossier::MAIN_STREAM }
+
+    def submit(target)
+      Dossier.find(target.id).tap { it.with_champs.passer_en_construction! }
+    end
+
+    def deposit(target) = target.tap { it.update_columns(depose_at: Time.zone.local(2026, 3, 4, 10)) }.depose_at.to_date
+
+    def completed(submitted_on) = { 'procedure_id' => linked.procedure.id, 'submitted_on' => submitted_on.iso8601 }
+
+    it 'completes the submission date of a link stored while the target was a brouillon' do
+      link!(linked)
+      expect(main_champ.value_json).to eq('procedure_id' => linked.procedure.id)
+      stamps = main_champ.slice(:updated_at, :value_updated_at)
+
+      submitted_on = submit(linked).depose_at.to_date
+      submit(dossier)
+
+      expect(main_champ.value_json).to eq(completed(submitted_on))
+      expect(date_column.value(main_champ)).to eq(submitted_on)
+      expect(main_champ.slice(:updated_at, :value_updated_at)).to eq(stamps)
+    end
+
+    it 'leaves a link to a target still in brouillon without a date' do
+      link!(linked)
+
+      expect { submit(dossier) }.not_to raise_error
+      expect(main_champ.value_json).to eq('procedure_id' => linked.procedure.id)
+      expect(date_column.value(main_champ)).to be_nil
+    end
+
+    it 'completes the submission date when the dossier is submitted again after a correction' do
+      link!(linked)
+      submit(dossier)
+      submitted_on = deposit(linked)
+
+      Dossier.find(dossier.id).tap { it.with_champs.usager_submit_en_construction! }
+
+      expect(main_champ.value_json).to eq(completed(submitted_on))
+      expect(date_column.value(main_champ)).to eq(submitted_on)
+    end
+
+    it 'keeps a complete link without querying the linked dossier' do
+      submitted_on = deposit(linked)
+      link!(linked)
+
+      expect(count_queries(matching: /"deleted_dossiers"|UPDATE "champs"/) { submit(dossier) }).to eq(0)
+      expect(main_champ.value_json).to eq(completed(submitted_on))
+    end
+
+    it 'leaves alone a champ linked to another dossier between the read and the write' do
+      link!(linked)
+      deposit(linked)
+      other = create(:dossier, :en_construction)
+      other_value_json = { 'procedure_id' => other.procedure.id, 'submitted_on' => other.depose_at.to_date.iso8601 }
+      champ = main_champ
+      allow(described_class).to receive(:linked_value_jsons).and_wrap_original do |original, *args|
+        original.call(*args).tap { ChampData.find(champ.id).update_columns(value: other.id.to_s, value_json: other_value_json) }
+      end
+
+      described_class.complete_linked_dossiers!([champ])
+
+      expect(main_champ.value_json).to eq(other_value_json)
+      expect(champ.value_json).to eq('procedure_id' => linked.procedure.id)
+    end
+  end
 end

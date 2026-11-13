@@ -61,6 +61,7 @@ class Column
   def dossier_column? = false
   def champ_column? = false
   def filterable? = filterable
+  def usable_in_conditions? = true
 
   def label_for_value(value)
     if value == NOT_FILLED_VALUE

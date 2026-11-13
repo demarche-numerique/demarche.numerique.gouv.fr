@@ -19,6 +19,25 @@ describe Conditions::RoutingRulesComponent, type: :component do
       expect(libelles).to include('age')
       expect(libelles).not_to include('family')
     end
+
+    context 'with a dossier link' do
+      let(:target) { create(:procedure) }
+      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :dossier_link, libelle: 'Dossier lié', **tdc_options }]) }
+      let(:libelles) { component.send(:sources_by_visibility)[:public].values.flatten(1).map(&:first) }
+      let(:other_column_labels) { ['Dossier lié – N° dossier', 'Dossier lié – Date de dépôt du dossier', 'Dossier lié – Service porteur de la démarche'] }
+
+      context 'limited to some procedures' do
+        let(:tdc_options) { { procedures_limit: true, dossier_link_procedure_ids: [target.id] } }
+
+        it { expect(libelles).not_to include('Dossier lié – Intitulé de la démarche', *other_column_labels) }
+      end
+
+      context 'not limited' do
+        let(:tdc_options) { {} }
+
+        it { expect(libelles).not_to include('Dossier lié – Intitulé de la démarche', *other_column_labels) }
+      end
+    end
   end
 
   describe 'render' do

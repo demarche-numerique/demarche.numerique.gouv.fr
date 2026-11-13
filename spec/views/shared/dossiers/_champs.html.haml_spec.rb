@@ -119,6 +119,122 @@ describe 'shared/dossiers/champs', type: :view do
     end
   end
 
+  context "with a dossier_link champ shown as a data card" do
+    let(:public_type_de_champs) { [{ type: :dossier_link }] }
+    let(:nav_bar_profile) { :instructeur }
+    let(:action_name) { "show" }
+    let(:accessible_procedure) { create(:procedure, libelle: "Culture et Santé", organisation: "ARS La Réunion", instructeurs: [instructeur]) }
+    let(:linked_dossier) { create(:dossier, :en_construction, procedure: accessible_procedure) }
+    let(:value) { linked_dossier.id }
+    let(:current_user) { instructeur.user }
+
+    before do
+      dossier.champs.first.update(value:)
+      allow(view).to receive(:current_user).and_return(current_user)
+      allow(view).to receive(:current_instructeur).and_return(instructeur)
+      without_partial_double_verification do
+        allow(view.controller).to receive_messages(nav_bar_profile:, action_name:)
+      end
+    end
+
+    context "when the instructeur has access to the linked dossier" do
+      it "renders the card with the source and the four rows in order instead of the sentence" do
+        card = Capybara.string(subject).find(".external-champ")
+        expect(card).to have_css(".source", text: "Source\u00A0:\u00A0#{APPLICATION_NAME}")
+        expect(card.all("dt").map { it.text.strip }).to eq(["N° dossier", "Date de dépôt du dossier", "Intitulé de la démarche", "Service porteur de la démarche"])
+        expect(card.all("dd").map { it.text.strip }).to eq(["Dossier n° #{linked_dossier.id}", linked_dossier.depose_at.to_date.strftime("%d/%m/%Y"), "Culture et Santé", "ARS La Réunion"])
+        link = card.find_link("Dossier n° #{linked_dossier.id}", href: instructeur_dossier_path(accessible_procedure, linked_dossier))
+        expect(link[:target]).to eq("_blank")
+        expect(link[:title]).to eq("Dossier n° #{linked_dossier.id} — Nouvel onglet")
+        is_expected.to have_no_text("déposé le")
+      end
+    end
+
+    context "when printed" do
+      let(:action_name) { "print" }
+
+      it "keeps the sentence" do
+        is_expected.to have_no_css(".external-champ")
+        is_expected.to have_link("N° #{linked_dossier.id}", href: instructeur_dossier_path(accessible_procedure, linked_dossier))
+      end
+    end
+
+    context "when viewed by the usager owning the dossier" do
+      let(:nav_bar_profile) { :user }
+      let(:profile) { "usager" }
+      let(:current_user) { linked_dossier.user }
+
+      it "keeps the sentence" do
+        is_expected.to have_no_css(".external-champ")
+        is_expected.to have_text("N° #{linked_dossier.id} - déposé le")
+      end
+    end
+
+    context "when viewed by an expert" do
+      let(:nav_bar_profile) { :expert }
+      let(:profile) { "expert" }
+
+      it "keeps the sentence" do
+        is_expected.to have_no_css(".external-champ")
+        is_expected.to have_text("N° #{linked_dossier.id} - déposé le")
+      end
+    end
+
+    context "when the instructeur has no access to the linked dossier" do
+      let(:linked_dossier) { create(:dossier, :en_construction) }
+
+      it "keeps the sentence" do
+        is_expected.to have_no_css(".external-champ")
+        is_expected.to have_link("Dossier n° #{linked_dossier.id}", href: "#modal-no-access-to-dossier-#{linked_dossier.id}")
+      end
+    end
+
+    context "when the linked dossier is a brouillon" do
+      let(:linked_dossier) { create(:dossier, :brouillon, procedure: accessible_procedure) }
+
+      it "keeps the sentence" do
+        is_expected.to have_no_css(".external-champ")
+        is_expected.to have_text("Dossier en brouillon répondant à la démarche")
+      end
+    end
+
+    context "when the linked dossier is expired" do
+      let(:linked_dossier) { create(:dossier, :en_construction, :hidden_by_expired, procedure: accessible_procedure) }
+
+      it "keeps the sentence" do
+        is_expected.to have_no_css(".external-champ")
+        is_expected.to have_text("mais expiré le")
+      end
+    end
+
+    context "when the linked dossier is hidden by the administration" do
+      let(:linked_dossier) { create(:dossier, :en_construction, :hidden_by_administration, procedure: accessible_procedure) }
+
+      it "keeps the sentence" do
+        is_expected.to have_no_css(".external-champ")
+        is_expected.to have_text("mais supprimé le")
+      end
+    end
+
+    context "when the linked dossier was purged" do
+      let(:value) { create(:deleted_dossier, dossier_id: 999_999_999, procedure: accessible_procedure).dossier_id }
+
+      it "keeps the sentence" do
+        is_expected.to have_no_css(".external-champ")
+        is_expected.to have_text("n’existe plus")
+      end
+    end
+
+    context "when no dossier matches the number" do
+      let(:value) { 888_888_888 }
+
+      it "keeps the sentence" do
+        is_expected.to have_no_css(".external-champ")
+        is_expected.to have_text("Pas de dossier associé")
+      end
+    end
+  end
+
   context "with a dossier_link champ but without value" do
     let(:public_type_de_champs) { [{ type: :dossier_link, mandatory: false }] }
 
