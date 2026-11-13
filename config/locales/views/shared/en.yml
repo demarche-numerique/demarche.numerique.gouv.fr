@@ -19,6 +19,7 @@ en:
         commencer_pc_title: "Are you a professional?"
         login_button: "Sign in with"
         help_link: What is FranceConnect?
+        plus_help_link: What is FranceConnect+?
         separator: or
       account:
         account_title: "Sign in with your %{application_name} account"

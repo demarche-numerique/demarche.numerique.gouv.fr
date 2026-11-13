@@ -31,6 +31,10 @@ describe 'users/sessions/new', type: :view do
       expect(rendered).to have_css('.france-connect-login')
     end
 
+    it 'does not render FranceConnect+ login button by default' do
+      expect(rendered).not_to have_css('.fr-connect--plus')
+    end
+
     it 'does not render ProConnect login button by default' do
       expect(rendered).not_to have_css('.pro-connect-login')
     end
@@ -42,6 +46,19 @@ describe 'users/sessions/new', type: :view do
         expect(rendered).to have_css('.pro-connect-login')
         expect(rendered).to have_text('Tous les ministères et opérateurs peuvent l’utiliser à ce jour.')
       end
+    end
+  end
+
+  context 'when FranceConnect+ is enabled' do
+    before do
+      allow(FranceConnectService).to receive(:enabled?).and_return(true)
+      allow(FranceConnectPlusService).to receive(:enabled?).and_return(true)
+      render
+    end
+
+    it 'renders the FranceConnect+ login button below the FranceConnect one' do
+      expect(rendered).to have_link('S’identifier avec FranceConnect', href: '/france_connect_plus', class: 'fr-connect--plus')
+      expect(Capybara.string(rendered).all('a.fr-connect').map { it[:href] }).to eq(['/france_connect', '/france_connect_plus'])
     end
   end
 

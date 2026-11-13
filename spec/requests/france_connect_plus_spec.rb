@@ -53,6 +53,9 @@ describe 'FranceConnect+ authentication', :caching do
 
       expect(controller.current_user).to eq(user)
       expect(UserSession.where(sessionable: user).sole.login_method).to eq('france_connect_plus')
+
+      get profil_path
+      expect(response.body).to include('via FranceConnect+')
     end
 
     it 'signs out of FranceConnect+ too' do
