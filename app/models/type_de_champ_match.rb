@@ -4,6 +4,12 @@ class TypeDeChampMatch < ApplicationRecord
   WILSON_Z = 1.96
   MIN_SCORE = ENV.fetch('CHAMP_MATCHING_MIN_SCORE') { 0.5 }.to_f
 
+  # Some namespaces tell usagers apart better than others: CHAMP_MATCHING_MIN_SCORE_<NAMESPACE>
+  # sets the bar of one, MIN_SCORE stands for the ones left unset.
+  MIN_SCORES = ChampMatching::ComparableValue::COMPARISON_NAMESPACES.values.uniq.index_with do |namespace|
+    ENV.fetch("CHAMP_MATCHING_MIN_SCORE_#{namespace.upcase}") { MIN_SCORE }.to_f
+  end.freeze
+
   # The same lower bound as #score, so a scope and a record never disagree.
   SCORE_SQL = begin
     z2 = WILSON_Z**2
@@ -35,5 +41,7 @@ class TypeDeChampMatch < ApplicationRecord
     (centre - margin) / (1 + z2 / common_users_count)
   end
 
-  def confirmed? = score >= MIN_SCORE
+  def self.min_score(namespace) = MIN_SCORES.fetch(namespace, MIN_SCORE)
+
+  def confirmed?(namespace) = score >= self.class.min_score(namespace)
 end

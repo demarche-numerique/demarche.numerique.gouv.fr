@@ -13,8 +13,8 @@
     <strong>matching_users_count</strong> compte les usagers dont les deux
     champs portent la même valeur, parmi les
     <strong>common_users_count</strong> qui ont répondu aux deux. Le
-    <strong>score</strong> est la borne basse de Wilson, confirmé à partir de
-    <%= TypeDeChampMatch::MIN_SCORE %>.
+    <strong>score</strong> est la borne basse de Wilson, confirmé à partir du
+    seuil propre à son namespace.
   </p>
 
   <% sections.each do |procedure| %>

@@ -49,8 +49,20 @@ describe TypeDeChampMatch do
 
   describe '#confirmed?' do
     it 'keeps what the score supports and drops the rest' do
-      expect([match(500, 500, stable_id: 1), match(19, 19, stable_id: 2)]).to all(be_confirmed)
-      expect([match(25, 50, stable_id: 3), match(2, 2, stable_id: 4)]).to all(satisfy { !it.confirmed? })
+      expect([match(500, 500, stable_id: 1), match(19, 19, stable_id: 2)]).to all(satisfy { it.confirmed?(:text) })
+      expect([match(25, 50, stable_id: 3), match(2, 2, stable_id: 4)]).to all(satisfy { !it.confirmed?(:text) })
+    end
+
+    it 'holds each namespace to its own bar' do
+      stub_const("#{described_class}::MIN_SCORES", described_class::MIN_SCORES.merge(siret: 0.5, text: 0.9))
+      match = match(19, 19)
+
+      expect(match.confirmed?(:siret)).to be(true)
+      expect(match.confirmed?(:text)).to be(false)
+    end
+
+    it 'holds a champ of no known namespace to the global bar' do
+      expect(described_class.min_score(nil)).to eq(described_class::MIN_SCORE)
     end
   end
 
