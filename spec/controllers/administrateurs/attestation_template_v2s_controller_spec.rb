@@ -124,6 +124,19 @@ describe Administrateurs::AttestationTemplateV2sController, type: :controller do
       it do
         is_expected.to eq('PDF_DATA')
       end
+
+      context 'with the attestation_typst flag' do
+        before do
+          Flipper.enable(:attestation_typst, procedure)
+          allow(TypstService).to receive(:generate_pdf).and_return('TYPST_PDF_DATA')
+        end
+
+        it 'renders the Typst template for the preview dossier' do
+          is_expected.to eq('TYPST_PDF_DATA')
+          expect(TypstService).to have_received(:generate_pdf).with('attestation', hash_including(title: 'Mon titre pour Ma démarche'), assets: anything)
+          expect(WeasyprintService).not_to have_received(:generate_pdf)
+        end
+      end
     end
   end
 
