@@ -24,7 +24,8 @@ module Types
 
     def date_supression
       if object.is_a?(Dossier)
-        object.hidden_by_administration_at || object.hidden_by_user_at || object.hidden_by_expired_at
+        # The historical date, and the expiration for the dossiers it did not cover.
+        object.hidden_by_administration_at || (object.hidden_by_user_at if object.en_construction?) || object.hidden_by_expired_at
       else
         object.deleted_at
       end
@@ -40,8 +41,13 @@ module Types
 
     def reason
       if object.is_a?(Dossier)
-        # restore by the administration clears the reason but keeps an expired dossier hidden
-        object.hidden_by_reason || ('expired' if object.hidden_by_expired?)
+        # restore by the administration clears the reason but keeps an expired dossier hidden,
+        # and legacy expired dossiers carry reasons the enum does not know
+        if DeletedDossier.reasons.key?(object.hidden_by_reason) || !object.hidden_by_expired?
+          object.hidden_by_reason
+        else
+          'expired'
+        end
       else
         object.reason
       end

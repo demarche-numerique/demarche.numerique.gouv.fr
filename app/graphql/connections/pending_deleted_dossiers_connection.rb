@@ -8,8 +8,7 @@ module Connections
 
     # Ruby counterpart of hidden_at_statement.
     def self.hidden_at(dossier)
-      (dossier.en_construction? ? dossier.hidden_by_user_at : dossier.hidden_by_administration_at) ||
-        dossier.hidden_by_administration_at || dossier.hidden_by_expired_at
+      (dossier.hidden_by_user_at if dossier.en_construction?) || dossier.hidden_by_administration_at || dossier.hidden_by_expired_at
     end
 
     private
@@ -32,17 +31,14 @@ module Connections
       end
     end
 
-    # The CASE is the historical key: the fallbacks only apply to dossiers it left NULL,
-    # so cursors already stored by integrators stay valid.
+    # Same value as the historical key (user_at if en_construction, else administration_at) wherever
+    # it was set, so cursors already stored by integrators stay valid.
     def hidden_at_statement
       dossiers_table = Dossier.arel_table
-      case_statement = dossiers_table[:state]
-        .when(:en_construction)
-        .then(dossiers_table[:hidden_by_user_at])
-        .else(dossiers_table[:hidden_by_administration_at])
+      user_statement = dossiers_table[:state].when(:en_construction).then(dossiers_table[:hidden_by_user_at])
 
       Arel::Nodes::NamedFunction.new('COALESCE', [
-        case_statement,
+        user_statement,
         dossiers_table[:hidden_by_administration_at],
         dossiers_table[:hidden_by_expired_at],
       ])
