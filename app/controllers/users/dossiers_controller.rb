@@ -770,9 +770,9 @@ module Users
       return if stable_ids.empty?
 
       # A procedure that requires FranceConnect+ shows its values to a FranceConnect+ session only
-      hidden, shown = dossiers.partition { it.france_connect_plus_missing?(Current.user_session) }
-      @france_connect_plus_hidden_dossier_ids = hidden.to_set(&:id)
-      shown_dossier_ids = shown.map(&:id)
+      @france_connect_plus_hidden_dossier_ids = Dossier.where(id: dossiers.map(&:id))
+        .france_connect_plus_out_of_reach_for(Current.user_session).pluck(:id).to_set
+      shown_dossier_ids = dossiers.map(&:id) - @france_connect_plus_hidden_dossier_ids.to_a
 
       ChampData.where(dossier_id: shown_dossier_ids, stable_id: stable_ids, stream: Dossier::MAIN_STREAM)
         .find_each do |champ|

@@ -35,7 +35,8 @@ class DossierTransfer < ApplicationRecord
           to: transfer.email,
         }
       end)
-      transfer.dossiers.update_all(user_id: current_user.id)
+      # A new owner, a new identity: the first FranceConnect+ session of theirs to open it binds it
+      transfer.dossiers.update_all(user_id: current_user.id, france_connect_plus_sub: nil)
       transfer.destroy_and_nullify
     end
   end

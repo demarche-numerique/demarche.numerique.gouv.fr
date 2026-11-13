@@ -47,6 +47,14 @@ RSpec.describe DossierTransfer, type: :model do
         expect(transfer_log.from).to eq(user.email)
         expect(transfer_log.to).to eq(other_user.email)
       end
+
+      context 'with a dossier bound to a FranceConnect+ identity' do
+        let(:dossier) { create(:dossier, user:, france_connect_plus_sub: 'previous_owner_sub') }
+
+        it 'unbinds it, for the new owner to bind it' do
+          expect(dossier.france_connect_plus_sub).to be_nil
+        end
+      end
     end
 
     describe 'with_dossiers' do

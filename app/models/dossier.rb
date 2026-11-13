@@ -623,10 +623,43 @@ class Dossier < ApplicationRecord
     termine? && !user_deleted?
   end
 
-  # The one check of usager access under a procedure that requires FranceConnect+: the
-  # administrateur's preview is no usager's dossier
+  # The one check of usager access under a procedure that requires FranceConnect+. The dossier
+  # opens to its owner's FranceConnect+ identity only, not to another identity linked to the
+  # same account; an invite needs a FranceConnect+ session of their own. The administrateur's
+  # preview is no usager's dossier.
   def france_connect_plus_missing?(user_session)
-    !for_procedure_preview? && procedure.france_connect_plus_missing?(user_session)
+    return false if !france_connect_plus_guarded?
+    return true if !user_session&.via_france_connect_plus?
+    return false if user_session.sessionable_id != user_id
+
+    france_connect_plus_sub.present? && france_connect_plus_sub != user_session.france_connect_sub
+  end
+
+  # The same rule in SQL, for the lists: the dossiers among these the session may not reach
+  scope :france_connect_plus_out_of_reach_for, -> (user_session) do
+    guarded = where(for_procedure_preview: false)
+      .joins(:procedure).where(procedures: { france_connect_plus_required: true })
+      .where.not(procedures: { aasm_state: :brouillon })
+    next guarded if !user_session&.via_france_connect_plus?
+
+    guarded
+      .where(user_id: user_session.sessionable_id)
+      .where.not(france_connect_plus_sub: nil)
+      .where.not(france_connect_plus_sub: user_session.france_connect_sub)
+  end
+
+  # A dossier with no identity yet -- just created, transferred, or from before the procedure
+  # required FranceConnect+ -- takes the one of its owner's first FranceConnect+ session to open it
+  def bind_france_connect_plus!(user_session)
+    return if france_connect_plus_sub.present? || !france_connect_plus_guarded?
+    return if !user_session&.via_france_connect_plus? || user_session.sessionable_id != user_id
+    return if user_session.france_connect_sub.nil?
+
+    update_column(:france_connect_plus_sub, user_session.france_connect_sub)
+  end
+
+  def france_connect_plus_guarded?
+    !for_procedure_preview? && procedure.france_connect_plus_guarded?
   end
 
   def can_be_updated_by_user?

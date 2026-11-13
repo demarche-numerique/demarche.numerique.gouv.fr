@@ -1076,6 +1076,18 @@ describe Users::DossiersController, type: :controller do
         expect(response).to redirect_to(france_connect_plus_required_path)
       end
 
+      it 'does not create a dossier on the draft revision of the published procedure either' do
+        expect { post :new, params: { procedure_id: procedure.id, brouillon: true } }.not_to change { Dossier.count }
+        expect(response).to redirect_to(france_connect_plus_required_path)
+      end
+
+      it 'creates a test dossier on a procedure not published yet' do
+        draft_procedure = create(:procedure, :for_individual, france_connect_plus_required: true)
+
+        expect { post :new, params: { procedure_id: draft_procedure.id, brouillon: true } }.to change { Dossier.count }.by(1)
+        expect(user.dossiers.last.revision).to eq(draft_procedure.draft_revision)
+      end
+
       it 'still lists the dossiers' do
         get :index
         expect(response).to have_http_status(:ok)
@@ -1128,6 +1140,35 @@ describe Users::DossiersController, type: :controller do
       it 'shows the dossier' do
         get :show, params: { id: dossier.id }
         expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'when another FranceConnect+ identity linked to the account signs in' do
+      let(:dossier) { create(:dossier, :en_construction, :with_individual, user:, procedure:, france_connect_plus_sub: 'owner_sub') }
+
+      before do
+        another_identity = create(:france_connect_information, user:, france_connect_particulier_id: 'another_sub')
+        sign_in(user, login_method: :france_connect_plus, france_connect_information: another_identity)
+      end
+
+      it 'keeps the dossier closed, saying it is bound to another identity' do
+        get :show, params: { id: dossier.id }
+        expect(response).to redirect_to(france_connect_plus_required_path)
+        expect(flash[:alert]).to include('lié à une autre identité FranceConnect+')
+      end
+    end
+
+    context 'when the owner opens an unbound dossier with FranceConnect+' do
+      before do
+        identity = create(:france_connect_information, user:, france_connect_particulier_id: 'owner_sub')
+        sign_in(user, login_method: :france_connect_plus, france_connect_information: identity)
+      end
+
+      it 'binds it to their identity' do
+        get :show, params: { id: dossier.id }
+
+        expect(response).to have_http_status(:ok)
+        expect(dossier.reload.france_connect_plus_sub).to eq('owner_sub')
       end
     end
 

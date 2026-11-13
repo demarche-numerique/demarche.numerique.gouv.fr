@@ -86,12 +86,10 @@ module Users
     end
 
     # The search reads champ values: a procedure that requires FranceConnect+ keeps its dossiers
-    # out of the results of a session opened another way, which could test guesses with it
+    # out of the results of a session opened another way, which could test guesses with it, and
+    # of a FranceConnect+ session of another identity than the one they are bound to
     def without_france_connect_plus_dossiers(scope)
-      return scope if Current.user_session&.via_france_connect_plus?
-
-      required = ProcedureRevision.where(procedure_id: Procedure.where(france_connect_plus_required: true).select(:id))
-      scope.where.not(revision_id: required.select(:id))
+      scope.where.not(id: scope.france_connect_plus_out_of_reach_for(Current.user_session).select(:id))
     end
 
     def user_dossiers
