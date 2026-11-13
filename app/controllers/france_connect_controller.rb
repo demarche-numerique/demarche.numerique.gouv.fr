@@ -24,6 +24,8 @@ class FranceConnectController < ApplicationController
   end
 
   def callback
+    return redirect_to new_user_session_path if !service.enabled?
+
     expected_state = cookies.encrypted[STATE_COOKIE_NAME]
     if expected_state.blank? || expected_state != params['state']
       return redirect_to(new_user_session_path, alert: t('errors.messages.france_connect.connexion'))
@@ -199,7 +201,7 @@ class FranceConnectController < ApplicationController
 
   # Sent back on logout
   def keep_id_token(id_token)
-    cookies.encrypted[ID_TOKEN_COOKIE_NAME] = { value: id_token, secure: Rails.env.production?, httponly: true }
+    cookies.encrypted[self.class::ID_TOKEN_COOKIE_NAME] = { value: id_token, secure: Rails.env.production?, httponly: true }
   end
 
   def set_user_by_confirmation_token
