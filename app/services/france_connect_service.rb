@@ -62,8 +62,14 @@ class FranceConnectService
     access_token = client.access_token!(client_auth_method: :secret)
 
     id_token = verified_id_token(access_token.id_token, nonce)
+    user_info = user_info(access_token)
 
-    [user_info(access_token), id_token]
+    # OpenID Connect Core 5.3.2: the user info must be about the identity the id token authenticated
+    if user_info['sub'] != JSON::JWT.decode(id_token, :skip_verification)['sub']
+      raise OpenIDConnect::ResponseObject::IdToken::InvalidToken.new('Invalid user info: sub does not match the ID token')
+    end
+
+    [user_info, id_token]
   rescue OpenIDConnect::HttpError => e
     Sentry.set_extras(france_connect_status: e.status, france_connect_body: e.response.body)
     raise

@@ -86,6 +86,7 @@ describe FranceConnectService do
       }
     }
     let(:user_info) { instance_double('OpenIDConnect::ResponseObject::UserInfo', raw_attributes: user_info_hash) }
+    let(:id_token) { JSON::JWT.new(sub: france_connect_particulier_id).to_s }
 
     subject { described_class.find_or_retrieve_france_connect_information(code, nonce) }
 
@@ -93,7 +94,7 @@ describe FranceConnectService do
       access_token = instance_double('OpenIDConnect::AccessToken')
       allow_any_instance_of(OpenIDConnect::Client).to receive(:access_token!).and_return(access_token)
       allow(access_token).to receive(:userinfo!).and_return(user_info)
-      allow(access_token).to receive(:id_token).and_return('id_token')
+      allow(access_token).to receive(:id_token).and_return(id_token)
 
       allow(OpenIDConnect::ResponseObject::IdToken).to receive(:decode).and_return(double(verify!: true))
       allow(FranceConnectConfig).to receive(:client_config).and_return({ identifier: 'identifier' })
@@ -102,7 +103,7 @@ describe FranceConnectService do
 
     context "when there is no existing fci" do
       it 'returns user informations' do
-        fci, id_token = subject
+        fci, returned_id_token = subject
 
         expect(fci).to have_attributes({
           given_name: given_name,
@@ -115,7 +116,15 @@ describe FranceConnectService do
           france_connect_particulier_id: france_connect_particulier_id,
         })
 
-        expect(id_token).to eq('id_token')
+        expect(returned_id_token).to eq(id_token)
+      end
+    end
+
+    context 'when the user info is about another identity than the id token' do
+      let(:id_token) { JSON::JWT.new(sub: 'another_sub').to_s }
+
+      it 'refuses it' do
+        expect { subject }.to raise_error(OpenIDConnect::ResponseObject::IdToken::InvalidToken, 'Invalid user info: sub does not match the ID token')
       end
     end
 
