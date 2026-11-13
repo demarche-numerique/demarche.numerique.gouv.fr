@@ -10,8 +10,12 @@ class UserSession < ApplicationRecord
     password: 'password',
     email_link: 'email_link',
     france_connect: 'france_connect',
+    france_connect_plus: 'france_connect_plus',
     pro_connect: 'pro_connect',
   }, prefix: :via
+
+  # FranceConnect+ is FranceConnect at a higher eIDAS level
+  def via_any_france_connect? = via_france_connect? || via_france_connect_plus?
 
   validates :revoked_reason, inclusion: { in: REVOCATION_REASONS }, allow_nil: true
 
