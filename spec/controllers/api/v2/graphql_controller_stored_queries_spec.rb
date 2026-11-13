@@ -1039,6 +1039,51 @@ describe API::V2::GraphqlController do
           expect(gql_data[:groupeInstructeur][:id]).to eq(groupe_instructeur.to_typed_id)
           expect(gql_data[:groupeInstructeur][:dossiers][:nodes].map { _1[:id] }).to eq([dossier.to_typed_id])
         }
+
+        context 'filtered by revision' do
+          let!(:old_revision) { procedure.published_revision }
+          let!(:new_dossier) do
+            dossier
+            travel 1.second
+            procedure.publish_revision!(admin)
+            create(:dossier, :en_construction, :with_individual, procedure:)
+          end
+          let(:new_revision_id) { procedure.reload.published_revision.to_typed_id }
+
+          context 'with revision' do
+            let(:variables) { { groupeInstructeurNumber: groupe_instructeur.id, includeDossiers: true, revision: old_revision.to_typed_id } }
+
+            it {
+              expect(gql_errors).to be_nil
+              expect(gql_data[:groupeInstructeur][:dossiers][:nodes].map { _1[:id] }).to eq([dossier.to_typed_id])
+            }
+          end
+
+          context 'with minRevision or maxRevision' do
+            let(:query) { 'query($number: Int!, $minRevision: ID, $maxRevision: ID) { groupeInstructeur(number: $number) { dossiers(minRevision: $minRevision, maxRevision: $maxRevision) { nodes { id } } } }' }
+            let(:nodes) { gql_data[:groupeInstructeur][:dossiers][:nodes].map { _1[:id] } }
+
+            subject { post :execute, params: { query:, variables: }, as: :json }
+
+            context 'minRevision' do
+              let(:variables) { { number: groupe_instructeur.id, minRevision: new_revision_id } }
+
+              it { expect(nodes).to eq([new_dossier.to_typed_id]) }
+            end
+
+            context 'maxRevision' do
+              let(:variables) { { number: groupe_instructeur.id, maxRevision: old_revision.to_typed_id } }
+
+              it { expect(nodes).to eq([dossier.to_typed_id]) }
+            end
+
+            context 'revision of another procedure' do
+              let(:variables) { { number: groupe_instructeur.id, minRevision: procedures.individual.published_revision.to_typed_id } }
+
+              it { expect(gql_errors.first[:extensions]).to eq({ code: 'not_found' }) }
+            end
+          end
+        end
       end
 
       context 'include deleted Dossiers' do

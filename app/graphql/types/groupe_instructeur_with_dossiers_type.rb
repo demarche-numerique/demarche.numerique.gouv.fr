@@ -85,5 +85,11 @@ module Types
 
       Connections::PendingDeletedDossiersConnection.new(dossiers, deprecated_order: order)
     end
+
+    private
+
+    def find_revision(revision)
+      object.procedure.revisions.find(ApplicationRecord.id_from_typed_id(revision))
+    end
   end
 end
