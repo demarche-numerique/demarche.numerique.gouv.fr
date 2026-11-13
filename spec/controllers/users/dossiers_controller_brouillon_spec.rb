@@ -177,6 +177,16 @@ describe Users::DossiersController, type: :controller do
       end
     end
 
+    context 'when user logged via france connect plus' do
+      let(:login_method) { :france_connect_plus }
+
+      it 'sets submitted_with_france_connect to true' do
+        subject
+        dossier.reload
+        expect(dossier.submitted_with_france_connect).to be true
+      end
+    end
+
     context 'when user not logged via france connect' do
       it 'sets submitted_with_france_connect to false' do
         subject
