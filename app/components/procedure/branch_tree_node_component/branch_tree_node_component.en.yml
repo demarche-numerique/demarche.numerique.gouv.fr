@@ -1,0 +1,6 @@
+---
+en:
+  nothing: No additional field
+  summary:
+    one: "1 field, about %{minutes} min"
+    other: "%{count} fields, about %{minutes} min"

@@ -27,7 +27,70 @@ describe Logic::PossibleValues::Enums do
     expect(values.restrict(Logic::IncludeOperator, 'a').restrict(Logic::ExcludeOperator, 'a').restrict(Logic::IncludeOperator, 'b')).to be_empty
   end
 
-  it 'ignores operators that do not apply' do
-    expect(values.restrict(Logic::Eq, 'a').restrict(Logic::NotEq, 'a')).not_to be_empty
+  it 'answers the operators it does not take as Logic#compute does' do
+    # a condition written when the champ was a drop down: a list is never equal to a text
+    expect(values.restrict(Logic::Eq, 'a')).to be_empty
+    expect(values.restrict(Logic::Eq, true)).to be_empty
+    expect(values.restrict(Logic::NotEq, 'a')).to eq(values)
+    expect(values.restrict(Logic::GreaterThan, 1)).to be_empty
+  end
+
+  it 'cannot select an option it does not have' do
+    expect(values.restrict(Logic::IncludeOperator, 'removed')).to be_empty
+    expect(values.restrict(Logic::ExcludeOperator, 'removed')).not_to be_empty
+    expect(values.regions([[Logic::IncludeOperator, 'a'], [Logic::IncludeOperator, 'removed']])).to contain_exactly(
+      values.with(must_include: Set['a'], must_exclude: Set['removed']),
+      values.with(must_exclude: Set['a', 'removed'])
+    )
+  end
+
+  describe '#regions' do
+    include_examples 'possible values regions', [[Logic::IncludeOperator, 'a'], [Logic::ExcludeOperator, 'b'], [Logic::IncludeOperator, 'b']]
+
+    it 'combines the mentioned options' do
+      expect(values.regions([[Logic::IncludeOperator, 'a'], [Logic::ExcludeOperator, 'b']])).to contain_exactly(
+        values.with(must_include: Set['a', 'b']),
+        values.with(must_include: Set['a'], must_exclude: Set['b']),
+        values.with(must_include: Set['b'], must_exclude: Set['a']),
+        values.with(must_exclude: Set['a', 'b'])
+      )
+      expect(values.regions([])).to eq([values])
+    end
+
+    it 'leaves out the selection of nothing when every option is mentioned' do
+      expect(described_class.new(['a', 'b']).regions([[Logic::IncludeOperator, 'a'], [Logic::IncludeOperator, 'b']]).size).to eq(3)
+    end
+
+    it 'respects prior requirements' do
+      regions = values.restrict(Logic::IncludeOperator, 'a').regions([[Logic::IncludeOperator, 'a'], [Logic::IncludeOperator, 'b']])
+
+      expect(regions.size).to eq(2)
+      expect(regions).to all(satisfy { it.must_include.include?('a') })
+    end
+  end
+
+  describe '#union' do
+    let(:with_a_with_b) { values.restrict(Logic::IncludeOperator, 'a').restrict(Logic::IncludeOperator, 'b') }
+    let(:with_a_without_b) { values.restrict(Logic::IncludeOperator, 'a').restrict(Logic::ExcludeOperator, 'b') }
+    let(:without_a_with_b) { values.restrict(Logic::ExcludeOperator, 'a').restrict(Logic::IncludeOperator, 'b') }
+
+    it 'frees the single option the two differ on' do
+      expect(with_a_with_b.union(with_a_without_b)).to eq(values.restrict(Logic::IncludeOperator, 'a'))
+    end
+
+    it 'cannot merge when more than one option differs' do
+      expect(with_a_with_b.union(values)).to be_nil
+      expect(with_a_without_b.union(without_a_with_b)).to be_nil
+    end
+  end
+
+  describe '#to_s' do
+    let(:tdc) { build(:type_de_champ_multiple_drop_down_list, drop_down_options: ['a', 'b']) }
+
+    it do
+      expect(values.to_s(tdc)).to eq('toute sélection')
+      expect(values.restrict(Logic::IncludeOperator, 'a').restrict(Logic::ExcludeOperator, 'b').to_s(tdc)).to eq('avec a, sans b')
+      expect(values.restrict(Logic::ExcludeOperator, 'b').to_s(tdc)).to eq('sans b')
+    end
   end
 end

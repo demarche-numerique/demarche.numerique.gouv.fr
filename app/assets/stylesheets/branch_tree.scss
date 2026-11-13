@@ -1,0 +1,9 @@
+@import 'constants';
+
+// The possible paths through a form (Procedure::BranchTreeNodeComponent):
+// nested answers indented under a rule rather than bulleted.
+.branch-tree {
+  list-style: none;
+  padding-left: $default-padding;
+  border-left: 2px solid var(--border-default-grey);
+}

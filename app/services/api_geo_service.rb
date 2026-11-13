@@ -100,6 +100,13 @@ class APIGeoService
       departements.map { ["#{_1[:code]} – #{_1[:name]}", _1[:code]] }
     end
 
+    # Departement codes by region code
+    def departements_by_region
+      memoize(:departements_by_region) do
+        departements.group_by { it[:region_code] }.transform_values { |departements| departements.map { it[:code] } }.freeze
+      end
+    end
+
     def departement_name(code)
       return 'Etranger' if code == '99'
       departements.find { _1[:code] == code }&.dig(:name)
