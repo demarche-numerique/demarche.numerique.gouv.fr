@@ -769,7 +769,12 @@ module Users
         .uniq
       return if stable_ids.empty?
 
-      ChampData.where(dossier_id: dossiers.map(&:id), stable_id: stable_ids, stream: Dossier::MAIN_STREAM)
+      # A procedure that requires FranceConnect+ shows its values to a FranceConnect+ session only
+      hidden, shown = dossiers.partition { it.france_connect_plus_missing?(Current.user_session) }
+      @france_connect_plus_hidden_dossier_ids = hidden.to_set(&:id)
+      shown_dossier_ids = shown.map(&:id)
+
+      ChampData.where(dossier_id: shown_dossier_ids, stable_id: stable_ids, stream: Dossier::MAIN_STREAM)
         .find_each do |champ|
           (@champs_by_dossier_id[champ.dossier_id] ||= {})[champ.stable_id] = champ
         end

@@ -1131,6 +1131,35 @@ describe Users::DossiersController, type: :controller do
       end
     end
 
+    context 'when the dossiers list shows chosen champ values' do
+      render_views
+
+      let(:procedure) { create(:procedure, :for_individual, :published, france_connect_plus_required: true, public_type_de_champs: [{ type: :text, libelle: 'Titre' }]) }
+      let(:column) { procedure.customizable_columns.first }
+
+      before do
+        create(:dossiers_list_personnalisation, user:, procedure:, displayed_columns: [column])
+        dossier.champs.find { _1.stable_id == column.stable_id }.update!(value: 'Valeur du dossier')
+      end
+
+      it 'hides them from a session opened another way' do
+        sign_in(user, login_method: :password)
+
+        get :index
+
+        expect(response.body).not_to include('Valeur du dossier')
+        expect(response.body).to include('Connectez-vous avec FranceConnect+ pour voir le détail de ce dossier.')
+      end
+
+      it 'shows them to a FranceConnect+ session' do
+        sign_in(user, login_method: :france_connect_plus)
+
+        get :index
+
+        expect(response.body).to include('Valeur du dossier')
+      end
+    end
+
     context 'when FranceConnect+ is switched off' do
       before do
         allow(FranceConnectPlusService).to receive(:enabled?).and_return(false)

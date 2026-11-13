@@ -5,7 +5,8 @@
         dossier: dossier,
         linkable: @statut != "dossiers-supprimes",
         personnalisation: @personnalisations_by_procedure_id&.[](dossier.procedure.id),
-        champs_by_stable_id: @champs_by_dossier_id&.[](dossier.id) || {}
+        champs_by_stable_id: @champs_by_dossier_id&.[](dossier.id) || {},
+        champs_hidden: @france_connect_plus_hidden_dossier_ids&.include?(dossier.id)
       } %>
 
       <% if dossier.procedure.close? %>

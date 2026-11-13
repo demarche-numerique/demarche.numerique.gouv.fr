@@ -646,6 +646,7 @@ fr:
           created_at: Créé le %{date}
           updated_at: modifié le %{date}
           shared_with: Dossier partagé par %{owner} avec
+          france_connect_plus_hidden: "Connectez-vous avec FranceConnect+ pour voir le détail de ce dossier."
           deleted_by_user: Mis à la corbeille le %{date} par l’usager
           deleted_by_automatic: Mis à la corbeille automatiquement le %{date} car le délai maximal de conservation a été atteint
         dossier_action:

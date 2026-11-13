@@ -34,7 +34,7 @@ module Users
         if search_terms.blank?
           user_dossiers
         else
-          user_dossiers.merge(DossierSearchService.matching_dossiers_for_user(search_terms, @user))
+          without_france_connect_plus_dossiers(user_dossiers.merge(DossierSearchService.matching_dossiers_for_user(search_terms, @user)))
         end
     end
 
@@ -83,6 +83,15 @@ module Users
 
     def has_invites?
       @user.dossiers_invites.visible_by_user.exists?
+    end
+
+    # The search reads champ values: a procedure that requires FranceConnect+ keeps its dossiers
+    # out of the results of a session opened another way, which could test guesses with it
+    def without_france_connect_plus_dossiers(scope)
+      return scope if Current.user_session&.via_france_connect_plus?
+
+      required = ProcedureRevision.where(procedure_id: Procedure.where(france_connect_plus_required: true).select(:id))
+      scope.where.not(revision_id: required.select(:id))
     end
 
     def user_dossiers

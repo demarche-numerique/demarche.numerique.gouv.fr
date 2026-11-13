@@ -43,6 +43,21 @@ RSpec.describe Users::DossierFilterService do
     end
   end
 
+  describe '#base_scope with search under a procedure that requires FranceConnect+' do
+    let(:dossier) { create(:dossier, :en_construction, user:, procedure: create(:procedure, :published, france_connect_plus_required: true)) }
+    subject(:service) { described_class.new(user:, params: ActionController::Parameters.new(search: dossier.id.to_s)) }
+
+    it 'leaves the dossier out of a session opened another way' do
+      Current.user_session = UserSession.new(login_method: :password)
+      expect(service.base_scope).not_to include(dossier)
+    end
+
+    it 'finds it for a FranceConnect+ session' do
+      Current.user_session = UserSession.new(login_method: :france_connect_plus)
+      expect(service.base_scope).to include(dossier)
+    end
+  end
+
   describe '#dossiers with procedure_id filter' do
     let(:procedure_a) { procedures.individual }
     let(:procedure_b) { procedures.entreprise }
