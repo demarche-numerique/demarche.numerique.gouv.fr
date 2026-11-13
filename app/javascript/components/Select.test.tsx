@@ -293,6 +293,89 @@ suite('SingleSelect search', () => {
   });
 });
 
+suite('MultipleSelect announcements', () => {
+  let container: HTMLDivElement;
+  let root: Root;
+  const platform = Object.getOwnPropertyDescriptor(navigator, 'platform');
+
+  function onPlatform(value: string) {
+    Object.defineProperty(navigator, 'platform', {
+      value,
+      configurable: true
+    });
+  }
+
+  function liveRegion() {
+    return document.querySelector('[data-live-announcer]');
+  }
+
+  beforeEach(() => {
+    container = document.createElement('div');
+    document.body.appendChild(container);
+    root = createAppRoot(container);
+    root.render(
+      <MultipleSelect
+        name="menu[]"
+        value={['entree']}
+        aria-label="Menu"
+        items={[
+          { label: 'Entrée', value: 'entree' },
+          { label: 'Plat', value: 'plat' }
+        ]}
+      />
+    );
+  });
+
+  afterEach(() => {
+    root.unmount();
+    container.remove();
+    liveRegion()?.replaceChildren();
+    if (platform) {
+      Object.defineProperty(navigator, 'platform', platform);
+    } else {
+      Reflect.deleteProperty(navigator, 'platform');
+    }
+  });
+
+  function lastAnnouncement() {
+    return liveRegion()?.lastElementChild?.textContent;
+  }
+
+  test('announces the focused option and its state on Apple devices', async () => {
+    onPlatform('MacIntel');
+    await userEvent.click(page.getByRole('button', { name: /Menu/ }));
+    await expect.poll(lastAnnouncement).toBe('Entrée, sélectionné');
+
+    await userEvent.keyboard('{ArrowDown}');
+    await expect.poll(lastAnnouncement).toBe('Plat');
+
+    await userEvent.keyboard('{Enter}');
+    await expect.poll(lastAnnouncement).toBe('Plat, sélectionné');
+  });
+
+  test('keeps the live region reachable while the popover is open', async () => {
+    onPlatform('MacIntel');
+    await userEvent.click(page.getByRole('button', { name: /Menu/ }));
+
+    await expect.poll(lastAnnouncement).toBe('Entrée, sélectionné');
+    expect(liveRegion()?.closest('[aria-hidden="true"], [inert]')).toBeNull();
+  });
+
+  test('stays silent elsewhere, where screen readers follow the option', async () => {
+    onPlatform('Win32');
+    await userEvent.click(page.getByRole('button', { name: /Menu/ }));
+    await expect
+      .element(page.getByRole('option', { name: 'Entrée' }))
+      .toHaveAttribute('data-focused');
+    await userEvent.keyboard('{ArrowDown}');
+
+    await expect
+      .element(page.getByRole('option', { name: 'Plat' }))
+      .toHaveAttribute('data-focused');
+    expect(liveRegion()?.textContent ?? '').toBe('');
+  });
+});
+
 suite('SingleSelect inside a form', () => {
   let container: HTMLDivElement;
   let root: Root;
