@@ -25,6 +25,7 @@ describe Users::PasswordsController, type: :controller do
         }
         expect(subject.current_user).to eq(user)
         expect(subject.current_instructeur.email).to eq(administrateur.email)
+        expect(UserSession.where(sessionable: user).sole.login_method).to eq('password')
       end
 
       it "also signs administrateur in" do

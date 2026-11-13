@@ -337,9 +337,11 @@ describe Users::ProfilController, type: :controller do
     end
 
     context 'when the user is logged in with FranceConnect' do
+      let(:id_token) { JSON::JWT.new(sub: fci.france_connect_particulier_id).to_s }
+
       before do
         allow(FranceConnectConfig).to receive(:client_config).and_return({ end_session_endpoint: 'https://logout.franceconnect.gouv.fr' })
-        cookies.encrypted[FranceConnectController::ID_TOKEN_COOKIE_NAME] = 'id_token'
+        cookies.encrypted[FranceConnectController::ID_TOKEN_COOKIE_NAME] = id_token
         cookies.encrypted[FranceConnectController::STATE_COOKIE_NAME] = 'state'
       end
 
@@ -355,7 +357,7 @@ describe Users::ProfilController, type: :controller do
           expect(response.cookies[cookie_name]).to be_nil
         end
 
-        expect(response).to redirect_to('https://logout.franceconnect.gouv.fr?id_token_hint=id_token&post_logout_redirect_uri=http%3A%2F%2Ftest.host%2Fprofil&state=state')
+        expect(response).to redirect_to("https://logout.franceconnect.gouv.fr?id_token_hint=#{id_token}&post_logout_redirect_uri=http%3A%2F%2Ftest.host%2Fprofil&state=state")
       end
     end
   end

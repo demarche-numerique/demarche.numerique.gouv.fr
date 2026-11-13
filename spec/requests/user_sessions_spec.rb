@@ -39,9 +39,8 @@ describe 'the session registry', type: :request do
     end
 
     # The user agent is a header, so a client can send bytes that are not valid
-    # UTF-8. Postgres refuses such an INSERT, the hook rescues it, and the session
-    # would open with no row: no deadline, and out of reach of revocation. One
-    # header would have exempted a session from the whole mechanism.
+    # UTF-8. Postgres refuses such an INSERT, and the sign in would fail on one
+    # header.
     it 'still registers a row when the user agent is not valid UTF-8' do
       broken = "Mozilla/5.0 \xC3\x28".dup.force_encoding(Encoding::BINARY)
 
@@ -66,16 +65,6 @@ describe 'the session registry', type: :request do
       get manager_root_path
 
       expect(response).to redirect_to(new_super_admin_session_path)
-    end
-
-    it 'signs nobody out when the hook raises' do
-      sign_in_super_admin
-      allow(UserSession).to receive(:find_by).and_raise('boom')
-      expect(Sentry).to receive(:capture_exception)
-
-      get manager_root_path
-
-      expect(response).to have_http_status(:ok)
     end
 
     it 'rejects a session whose row no longer exists' do

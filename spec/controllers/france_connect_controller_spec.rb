@@ -131,6 +131,34 @@ describe FranceConnectController, type: :controller do
             expect(fc_user.preferred_domain_demarche_numerique_gouv_fr?).to be_truthy
           end
 
+          context 'and the account is already signed in with its password' do
+            before do
+              fc_user.remember_me = true
+              sign_in(fc_user, login_method: :password)
+            end
+
+            it 'keeps the choice to stay signed in' do
+              subject
+
+              expect(warden.session(:user)[SessionRegistrableConcern::PERSISTENT_KEY]).to be(true)
+            end
+          end
+
+          context 'and another account is signed in, staying signed in' do
+            before do
+              other_user = users.usager
+              other_user.remember_me = true
+              sign_in(other_user, login_method: :password)
+            end
+
+            it 'does not stay signed in' do
+              subject
+
+              expect(controller.current_user).to eq(fc_user)
+              expect(warden.session(:user)[SessionRegistrableConcern::PERSISTENT_KEY]).to be_nil
+            end
+          end
+
           context 'and the user was notified of the deletion of the inactive account' do
             before { fc_user.update!(inactive_close_to_expiration_notice_sent_at: 1.week.ago) }
 
@@ -247,8 +275,24 @@ describe FranceConnectController, type: :controller do
 
         expect(user.email).to eq(email.downcase)
         expect(user.email_verified_at).not_to be_nil
+        expect(user.loged_in_with_france_connect).to eq('particulier')
         expect(fci.reload.merge_token).to be_nil
         expect(response).to redirect_to(root_path(user))
+      end
+
+      context 'and another account is signed in' do
+        let(:other_user) { users.usager }
+
+        before { sign_in(other_user, login_method: :password) }
+
+        it 'closes its session before opening the new one' do
+          subject
+
+          expect(UserSession.where(sessionable: other_user).pluck(:login_method, :revoked_reason))
+            .to contain_exactly(['password', 'sign_out'])
+          expect(UserSession.where(sessionable: User.last).pluck(:login_method, :revoked_reason))
+            .to contain_exactly(['france_connect', nil])
+        end
       end
     end
 

@@ -39,13 +39,17 @@ module SessionRegistrableConcern
     warden.raw_session["warden.user.#{scope}.session"] ||= {}
   end
 
-  def self.open_session!(record, warden, scope)
-    request = warden.request
-    session = warden.session(scope)
+  def self.open_session!(record, warden, scope, login_method: nil)
+    user_agent, remote_ip = warden.request.user_agent, warden.request.remote_ip
 
-    session[LAST_SEEN_KEY] = Date.current.iso8601
+    # in db
+    user_session = record.open_user_session!(user_agent, remote_ip, login_method:)
 
-    session[SESSION_KEY] = record.open_user_session!(request.user_agent, request.remote_ip).id
+    # in cookie
+    warden.session(scope).merge!(LAST_SEEN_KEY => Date.current.iso8601, SESSION_KEY => user_session.id)
+
+    # in current request, the usager's only: the same request loads the super admin too
+    Current.user_session = user_session if scope == :user
   end
 
   # Read from the signed cookie, so the client cannot push the date forward.
@@ -72,11 +76,13 @@ module SessionRegistrableConcern
     persist_cookie!(warden, scope)
   end
 
+  def self.persistent?(warden, scope) = !!warden_session(warden, scope)[PERSISTENT_KEY]
+
   # Rails rewrites the session cookie on every response (random ciphertext), and
   # a rewrite carrying no expiry turns a persistent cookie back into a session
   # one -- so the option has to be set again every time.
   def self.persist_cookie!(warden, scope)
-    return if !warden_session(warden, scope)[PERSISTENT_KEY]
+    return if !persistent?(warden, scope)
 
     warden.request.session_options[:expire_after] = SESSION_COOKIE_LIFETIME
   end
@@ -89,7 +95,7 @@ module SessionRegistrableConcern
     session[LAST_SEEN_KEY] = today if session[LAST_SEEN_KEY] != today
   end
 
-  # Whether `continue_session!` -- or its rescue -- has just dropped this scope.
+  # Whether `continue_session!` has just dropped this scope.
   def self.signed_out?(warden, scope)
     warden.raw_session["warden.user.#{scope}.key"].nil?
   end
@@ -114,7 +120,10 @@ module SessionRegistrableConcern
         :inactivity
       end
 
-    return if reason.nil?
+    if reason.nil?
+      Current.user_session = user_session if scope == :user
+      return
+    end
 
     # Before the logout: `before_logout` would otherwise find the row usable and
     # stamp it `sign_out`, as if the user had left on purpose.
@@ -146,10 +155,11 @@ module SessionRegistrableConcern
   # The raw user-agent and not a label: deriving it at display time means a
   # better parser later also improves old rows. The address is never rewritten
   # afterwards -- reading a row on every request must stay a read.
-  def open_user_session!(user_agent, ip_address = nil)
+  def open_user_session!(user_agent, ip_address = nil, login_method: nil)
     user_sessions.create!(
       user_agent: sanitized_user_agent(user_agent),
       ip_address:,
+      login_method:,
       expires_at: session_max_lifetime&.from_now
     )
   end
@@ -189,8 +199,7 @@ module SessionRegistrableConcern
   def revoke_account_wide!(reason) = nil
 
   # Client-controlled: invalid UTF-8 or a NUL makes Postgres refuse the INSERT,
-  # the hook rescues it, and the session opens with no row -- exempt from every
-  # deadline. Scrubbed rather than rejected.
+  # and the sign in fails on one header. Scrubbed rather than rejected.
   def sanitized_user_agent(user_agent)
     return if user_agent.nil?
 

@@ -24,6 +24,10 @@ describe 'setting a password outside the reset form', type: :request do
     it 'opens exactly one session, in place of the revoked one' do
       expect(user.user_sessions.usable.count).to eq(1)
     end
+
+    it 'keeps how the session was opened' do
+      expect(user.user_sessions.usable.sole.login_method).to eq('password')
+    end
   end
 
   # Devise's `sign_in` does nothing when the visitor already is that user, so

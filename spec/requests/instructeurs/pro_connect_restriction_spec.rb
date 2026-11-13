@@ -7,11 +7,12 @@ describe "ProConnect restriction of a procedure on the instructeur pages", type:
   # in the url instead of the restricted one.
   let(:other_procedure) { procedures.close }
   let(:dossier) { dossiers.en_construction }
+  let(:login_method) { :password }
 
   before do
     procedure.update!(pro_connect_restriction: :instructeurs)
     instructeur.assign_to_procedure(other_procedure)
-    login_as(instructeur.user, scope: :user)
+    login_as(instructeur.user, scope: :user, event: :set_user, login_method:)
   end
 
   shared_examples "a page requiring ProConnect" do
@@ -95,11 +96,7 @@ describe "ProConnect restriction of a procedure on the instructeur pages", type:
   end
 
   context "when the instructeur is logged in with ProConnect" do
-    before do
-      jar = ActionDispatch::TestRequest.create.cookie_jar
-      jar.encrypted[ProConnectSessionConcern::SESSION_INFO_COOKIE_NAME] = { user_id: instructeur.user.id }.to_json
-      cookies[ProConnectSessionConcern::SESSION_INFO_COOKIE_NAME] = jar[ProConnectSessionConcern::SESSION_INFO_COOKIE_NAME]
-    end
+    let(:login_method) { :pro_connect }
 
     it "shows the dossier" do
       get instructeur_dossier_path(procedure, dossier)

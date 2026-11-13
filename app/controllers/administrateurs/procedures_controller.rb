@@ -274,7 +274,7 @@ module Administrateurs
     end
 
     def pro_connect_restricted
-      @logged_in_with_pro_connect = logged_in_with_pro_connect?
+      @logged_in_with_pro_connect = Current.user_session.via_pro_connect?
     end
 
     def update_pro_connect_restricted

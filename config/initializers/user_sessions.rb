@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-# These hooks run on every authenticated request: a bug here locks out everyone,
-# ourselves included. Hence the rescue on each one, and the adoption of sessions
-# older than the registry.
+# These hooks run on every authenticated request, and the request reads what
+# they set (`Current.user_session`) without a guard: they raise rather than let a
+# session through unchecked. Sessions older than the registry are adopted.
 
 # Matched on the event rather than filtered: a fourth event would be dropped in
 # silence, which is how `sign_in` went unregistered for a while. Here it raises
@@ -23,16 +23,23 @@ Warden::Manager.after_set_user do |record, warden, options|
   # alone -- what `after_authentication` does -- would leave every path on the
   # second line without one: invisible while sessions without a row are still
   # adopted, a sign in loop the moment they no longer are.
-  in :authentication | :set_user
-    SessionRegistrableConcern.open_session!(record, warden, scope)
+  #
+  # The form only knows passwords; application code says how it signed the
+  # person in: `sign_in(user, login_method: :france_connect)`. Fetched: a row
+  # without a method would take one from the provider cookies left in the browser.
+  # A super admin has no provider, and Devise signs them in after a reset.
+  in :authentication
+    SessionRegistrableConcern.open_session!(record, warden, scope, login_method: :password)
+  in :set_user if scope == :user
+    SessionRegistrableConcern.open_session!(record, warden, scope, login_method: options.fetch(:login_method))
+  in :set_user
+    SessionRegistrableConcern.open_session!(record, warden, scope, login_method: options.fetch(:login_method, :password))
 
   # :fetch -- read back from the cookie on every later request, so the row it
   # names has to still be good.
   in :fetch
     SessionRegistrableConcern.continue_session!(record, warden, scope)
   end
-rescue StandardError => e
-  Sentry.capture_exception(e)
 end
 
 # Not gated: "stay signed in" is not part of the registry, and gating it would
@@ -44,9 +51,8 @@ Warden::Manager.after_set_user do |record, warden, options|
   in :authentication | :set_user
     SessionRegistrableConcern.remember!(record, warden, options[:scope])
   in :fetch
-    # The hook above may have just logged this scope out, or died into its
-    # rescue: stamping then would resurrect the key Warden deleted and refresh a
-    # session that failed its check.
+    # The hook above may have just logged this scope out: stamping then would
+    # resurrect the key Warden deleted and refresh a session that failed its check.
     next if SessionRegistrableConcern.signed_out?(warden, options[:scope])
 
     # Here rather than beside the check that reads it, because that check is
@@ -55,18 +61,16 @@ Warden::Manager.after_set_user do |record, warden, options|
     SessionRegistrableConcern.touch_last_seen!(SessionRegistrableConcern.warden_session(warden, options[:scope]))
     SessionRegistrableConcern.persist_cookie!(warden, options[:scope])
   end
-rescue StandardError => e
-  Sentry.capture_exception(e)
 end
 
 # Not gated: a row left alive by a sign out would make the session list lie.
 Warden::Manager.before_logout do |record, warden, options|
   next unless record.is_a?(SessionRegistrableConcern)
 
+  Current.user_session = nil if options[:scope] == :user
+
   session_id = SessionRegistrableConcern.warden_session(warden, options[:scope])[SessionRegistrableConcern::SESSION_KEY]
   next if session_id.nil?
 
   record.user_sessions.usable.where(id: session_id).revoke_all!(:sign_out)
-rescue StandardError => e
-  Sentry.capture_exception(e)
 end

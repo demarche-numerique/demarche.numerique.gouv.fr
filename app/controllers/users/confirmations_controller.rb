@@ -75,7 +75,7 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
       end
     elsif sign_in_after_confirmation?(resource)
       resource.remember_me = true
-      sign_in(resource)
+      sign_in(resource, login_method: :email_link)
     end
 
     if procedure_from_params

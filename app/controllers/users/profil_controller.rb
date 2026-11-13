@@ -74,7 +74,7 @@ module Users
 
       flash.notice = "Le compte FranceConnect de « #{fci.full_name} » ne peut plus accéder à vos dossiers"
 
-      if logged_in_with_france_connect?
+      if france_connect_id_token?
         redirect_to france_connect_logout_url(callback: profil_url), allow_other_host: true
       else
         redirect_to profil_path

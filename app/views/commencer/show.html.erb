@@ -73,7 +73,7 @@
     <%- end -%>
   <%- else -%>
     <%= render ProcedureDraftWarningComponent.new(revision: @revision, current_administrateur:, extra_class_names: "fr-mb-2w") %>
-    <%- if @procedure.pro_connect_restriction_all? && !logged_in_with_pro_connect? -%>
+    <%- if @procedure.pro_connect_restriction_all? && !Current.user_session.via_pro_connect? -%>
       <div class="fr-alert fr-alert--warning fr-mb-2w">
         <p>
           <%= t('.pro_connect_restriction_all_info_html', path: pro_connect_login_path) %>

@@ -45,7 +45,7 @@ module Administrateurs
     def ensure_pro_connect_if_required!
       procedure_id = pro_connect_procedure_id
       return if procedure_id.blank?
-      return if logged_in_with_pro_connect?
+      return if Current.user_session.via_pro_connect?
       return if !current_administrateur.procedures.with_discarded.not_pro_connect_restriction_none.exists?(id: procedure_id)
 
       redirect_to_pro_connect_required_for_procedure

@@ -726,10 +726,7 @@ describe Users::CommencerController, type: :controller do
     context 'when user is signed in with ProConnect' do
       let(:user) { create(:user) }
 
-      before do
-        sign_in user
-        cookies.encrypted[:pro_connect_session_info] = { user_id: user.id }.to_json
-      end
+      before { sign_in(user, login_method: :pro_connect) }
 
       subject { get :commencer, params: { path: procedure.path } }
 

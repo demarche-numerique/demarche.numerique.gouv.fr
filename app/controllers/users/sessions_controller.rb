@@ -84,7 +84,7 @@ class Users::SessionsController < Devise::SessionsController
 
       delete_pro_connect_session_info_cookie
 
-      if logged_in_with_france_connect?
+      if france_connect_id_token?
         return redirect_to france_connect_logout_url(callback: root_url), allow_other_host: true
       end
 

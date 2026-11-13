@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   include Devise::StoreLocationExtension
   include ApplicationController::ErrorHandling
   include ProConnectSessionConcern
+  include LegacyLoginMethodConcern
 
   MAINTENANCE_MESSAGE = 'Le site est actuellement en maintenance. Il sera à nouveau disponible dans un court instant.'
 
@@ -27,6 +28,9 @@ class ApplicationController < ActionController::Base
   before_action :setup_tracking
   before_action :set_customizable_view_path
   before_action :display_csrf_retry_message
+  # After the guards: a request turned away by maintenance or the staging
+  # password writes nothing.
+  before_action :record_legacy_login_method
   # After the action, so that its own sign in notice does not override this one.
   after_action :confirm_account_kept_after_deletion_notice
 
@@ -205,6 +209,20 @@ class ApplicationController < ActionController::Base
   # Agent pages bypass the failure app, so they store the page around a frame
   # themselves: the frame follows the redirect and leaves for the sign in page.
   def page_to_come_back_to = PageAroundTheFrame.location(request) || request.fullpath
+
+  # A new session, even for the account already signed in: Devise's `sign_in`
+  # would otherwise do nothing, and leave it on a row opened another way.
+  def replace_session(user, login_method:)
+    if user_signed_in?
+      # The sign out drops "stay signed in" with the session, and providers never ask.
+      # Not for another account: on a shared computer, it never made that choice.
+      user.remember_me = SessionRegistrableConcern.persistent?(warden, :user) if current_user == user
+      sign_out(:user)
+      # Set by the fetch of the account just signed out, which the sign out leaves.
+      request.session_options[:expire_after] = nil
+    end
+    sign_in(:user, user, login_method:)
+  end
 
   def after_sign_out_path_for(_resource_or_scope)
     stored_location_for(:user) || super

@@ -7,7 +7,7 @@ module ProConnectSessionConcern
   ADMINISTRATEUR_DEVICE_COOKIE_NAME = :administrateur_device
 
   included do
-    helper_method :logged_in_with_pro_connect?, :pro_connect_only_login?
+    helper_method :pro_connect_only_login?
   end
 
   def set_pro_connect_session_info_cookie(user_id, mfa: false)
@@ -23,12 +23,8 @@ module ProConnectSessionConcern
   def sign_in_with_pro_connect(user, id_token:, mfa:)
     user.instructeur&.update!(pro_connect_id_token: id_token)
     set_pro_connect_session_info_cookie(user.id, mfa:)
-    sign_in(:user, user)
+    replace_session(user, login_method: :pro_connect)
     user.update_preferred_domain(Current.host)
-  end
-
-  def logged_in_with_pro_connect?
-    pro_connect_session.present?
   end
 
   def pro_connect_mfa?

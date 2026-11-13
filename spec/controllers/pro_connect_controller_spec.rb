@@ -71,6 +71,30 @@ describe ProConnectController, type: :controller do
           expect(ProConnectService).to receive(:authenticate).with(code, nonce).and_return(auth)
         end
 
+        # Sent to ProConnect by a procedure that requires it
+        context 'and the account is already signed in with its password' do
+          let(:user) { users.usager }
+          let(:email) { user.email }
+
+          before do
+            user.remember_me = true
+            sign_in(user, login_method: :password)
+          end
+
+          it 'opens a ProConnect session in place of the password one' do
+            subject
+
+            expect(UserSession.where(sessionable: user).pluck(:login_method, :revoked_reason))
+              .to contain_exactly(['password', 'sign_out'], ['pro_connect', nil])
+          end
+
+          it 'keeps the choice to stay signed in' do
+            subject
+
+            expect(warden.session(:user)[SessionRegistrableConcern::PERSISTENT_KEY]).to be(true)
+          end
+        end
+
         context 'and the user does not have an account yet' do
           let(:initial_instructeur_count) { Instructeur.count }
 

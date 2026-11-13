@@ -83,6 +83,34 @@ describe 'staying signed in', type: :request do
     end
   end
 
+  # On a shared computer: the next person never made the previous one's choice.
+  context 'another account signing in with FranceConnect, after the box was ticked' do
+    let(:fc_user) { create(:user) }
+    let(:fci) { create(:france_connect_information, user: fc_user) }
+
+    def set_encrypted_cookie(name, value)
+      jar = ActionDispatch::TestRequest.create.cookie_jar
+      jar.encrypted[name] = value
+      cookies[name] = jar[name]
+    end
+
+    before do
+      allow(FranceConnectService).to receive(:enabled?).and_return(true)
+      allow(FranceConnectService).to receive(:find_or_retrieve_france_connect_information).and_return([fci, 'id_token'])
+    end
+
+    it 'gets a session cookie, which dies with the browser' do
+      post_user_session(usager, remember_me: true)
+
+      set_encrypted_cookie(FranceConnectController::STATE_COOKIE_NAME, 'state')
+      get france_connect_callback_path, params: { code: 'code', state: 'state' }
+
+      expect(UserSession.where(sessionable: fc_user).sole.login_method).to eq('france_connect')
+      expect(session_cookie).to be_present
+      expect(session_cookie_expiry).to be_nil
+    end
+  end
+
   # One duration for everyone. What differs per role is the row, and the row
   # is what actually cuts.
   context 'an agent' do
