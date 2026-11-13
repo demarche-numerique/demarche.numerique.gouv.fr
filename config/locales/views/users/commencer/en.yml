@@ -3,6 +3,8 @@ en:
     show:
       start_procedure: Start the procedure
       start_dossier: Start a file
+      france_connect_plus_required_info: "This procedure requires signing in with FranceConnect+, which guarantees a stronger identity check. Other sign in methods give no access to it."
+      france_connect_plus_required_signed_in: "This procedure requires signing in with FranceConnect+. Sign in again with FranceConnect+ to start an application or see yours."
       pro_connect_restriction_all_info_html: "This procedure requires <a href=\"%{path}\" title=\"Signin with ProConnect\">ProConnect authentication</a>. Only agents with a ProConnect account can access it."
       existing_dossiers: You already have files for this procedure
       show_dossiers: View my current files

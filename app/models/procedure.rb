@@ -413,6 +413,14 @@ class Procedure < ApplicationRecord
     end
   end
 
+  # A procedure not published yet has test dossiers only, which its administrateurs fill
+  # without FranceConnect, that they cannot use
+  def france_connect_plus_guarded? = france_connect_plus_required? && !brouillon?
+
+  # Whether this session has to sign in again with FranceConnect+ to see the procedure's dossiers.
+  # It holds even with FranceConnect+ switched off: the dossiers stay closed then.
+  def france_connect_plus_missing?(user_session) = france_connect_plus_guarded? && !user_session&.via_france_connect_plus?
+
   def enable_pro_connect_restriction!(level)
     update!(
       pro_connect_restriction: level,

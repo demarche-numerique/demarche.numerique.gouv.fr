@@ -20,6 +20,7 @@ en:
         login_button: "Sign in with"
         help_link: What is FranceConnect?
         plus_help_link: What is FranceConnect+?
+        plus_unavailable: "FranceConnect+ is unavailable for now. Try again later."
         separator: or
       account:
         account_title: "Sign in with your %{application_name} account"
