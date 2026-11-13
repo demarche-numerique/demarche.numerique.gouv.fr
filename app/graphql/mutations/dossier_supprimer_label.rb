@@ -12,9 +12,9 @@ module Mutations
     field :errors, [Types::ValidationErrorType], null: true
 
     def resolve(dossier:, label:)
-      dossier_label = dossier.dossier_labels.find_by(label: label)
+      dossier_label = dossier.remove_label(label)
 
-      if dossier_label.destroy
+      if dossier_label&.destroyed?
         { dossier:, label: }
       else
         { errors: ['Impossible de supprimer le label'] }
