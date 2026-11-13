@@ -84,7 +84,11 @@ class Users::PasswordsController < Devise::PasswordsController
     return if !user_signed_in?
     return if current_user.instructeur.nil?
 
-    trust_device(Time.zone.now, current_user.instructeur)
+    # The revocation took every token: this row is what the renewal job reads to
+    # warn before this cookie expires. Its link is never sent.
+    instructeur = current_user.instructeur
+    token = instructeur.trusted_device_tokens.create!
+    trust_device(token.created_at, instructeur, token)
   end
 
   def update_email_verified_at

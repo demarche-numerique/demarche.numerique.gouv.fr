@@ -302,6 +302,11 @@ describe Instructeur, type: :model do
         before { instructeur.trusted_device_tokens.first.update(created_at: (TrustedDeviceToken::LOGIN_TOKEN_YOUTH + 1.minute).ago) }
         it { expect(instructeur.young_login_token?).to be false }
       end
+
+      context 'when the young token is already activated' do
+        before { instructeur.trusted_device_tokens.first.update!(activated_at: Time.zone.now) }
+        it { expect(instructeur.young_login_token?).to be_falsey }
+      end
     end
 
     context 'when there are no token' do
