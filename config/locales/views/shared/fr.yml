@@ -19,6 +19,7 @@ fr:
         commencer_pc_title: "Vous êtes un professionnel ?"
         login_button: "S’identifier avec"
         help_link: "Qu’est-ce que FranceConnect ?"
+        plus_help_link: "Qu’est-ce que FranceConnect+ ?"
         separator: ou
       account:
         account_title: "Se connecter avec son compte %{application_name}"
