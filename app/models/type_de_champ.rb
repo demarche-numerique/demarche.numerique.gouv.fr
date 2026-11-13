@@ -21,7 +21,7 @@ class TypeDeChamp < ApplicationRecord
   CATEGORIES = [STRUCTURE, STANDARD, CHOICE, IDENTIFICATION, LOCALISATION, FRANCE_CONNECT, REFERENTIEL]
   MENU_ORDER = [
     'header_section', 'explication',
-    'text', 'textarea', 'integer_number', 'decimal_number', 'formatted', 'date', 'datetime', 'piece_justificative', 'repetition', 'dossier_link',
+    'text', 'textarea', 'integer_number', 'decimal_number', 'formatted', 'date', 'datetime', 'piece_justificative', 'repetition', 'dossier_link', 'link',
     'drop_down_list', 'multiple_drop_down_list', 'linked_drop_down_list', 'yes_no', 'checkbox',
     'civilite', 'email', 'phone', 'siret', 'rna', 'rnf', 'annuaire_education', 'iban',
     'address', 'communes', 'departements', 'regions', 'pays', 'epci', 'carte',
@@ -52,6 +52,7 @@ class TypeDeChamp < ApplicationRecord
     header_section: 'header_section',
     repetition: 'repetition',
     dossier_link: 'dossier_link',
+    link: 'link',
     explication: 'explication',
     civilite: 'civilite',
     email: 'email',

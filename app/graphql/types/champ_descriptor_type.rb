@@ -49,6 +49,8 @@ module Types
           Types::Champs::Descriptor::CiviliteChampDescriptorType
         when TypeDeChamp.type_champs.fetch(:email)
           Types::Champs::Descriptor::EmailChampDescriptorType
+        when TypeDeChamp.type_champs.fetch(:link)
+          Types::Champs::Descriptor::LinkChampDescriptorType
         when TypeDeChamp.type_champs.fetch(:phone)
           Types::Champs::Descriptor::PhoneChampDescriptorType
         when TypeDeChamp.type_champs.fetch(:address)
