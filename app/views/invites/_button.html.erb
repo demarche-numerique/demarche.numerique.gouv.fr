@@ -1,0 +1,20 @@
+<span id="dossier-invites-button-wrapper" data-controller="lazy-modal">
+  <%= render partial: "invites/trigger", locals: { dossier: } %>
+
+  <%# Without its own name, DSFR labels the empty dialog with the opening button. %>
+  <%# A placeholder title holds the id until the frame swaps in the modal. %>
+  <%= turbo_frame_tag "dossier-invites-modal", data: { "lazy-modal-target": "frame" } do %>
+    <dialog
+      id="dossier-invites-modal-dialog"
+      class="fr-modal"
+      aria-labelledby="<%= Dsfr::ModalComponent.title_id('dossier-invites-modal-dialog') %>"
+    >
+      <h2
+        id="<%= Dsfr::ModalComponent.title_id('dossier-invites-modal-dialog') %>"
+        class="fr-modal__title"
+      >
+        <%= t('views.invites.form.modal_title') %>
+      </h2>
+    </dialog>
+  <% end %>
+</span>
