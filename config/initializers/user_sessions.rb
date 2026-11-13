@@ -27,10 +27,13 @@ Warden::Manager.after_set_user do |record, warden, options|
   # The form only knows passwords; application code says how it signed the
   # person in: `sign_in(user, login_method: :france_connect)`. Fetched: a row
   # without a method would take one from the provider cookies left in the browser.
+  # A super admin has no provider, and Devise signs them in after a reset.
   in :authentication
     SessionRegistrableConcern.open_session!(record, warden, scope, login_method: :password)
-  in :set_user
+  in :set_user if scope == :user
     SessionRegistrableConcern.open_session!(record, warden, scope, login_method: options.fetch(:login_method))
+  in :set_user
+    SessionRegistrableConcern.open_session!(record, warden, scope, login_method: options.fetch(:login_method, :password))
 
   # :fetch -- read back from the cookie on every later request, so the row it
   # names has to still be good.
