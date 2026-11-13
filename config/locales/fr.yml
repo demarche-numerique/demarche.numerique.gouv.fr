@@ -348,9 +348,9 @@ fr:
     confirmation:
       new:
         title: 'Confirmez votre adresse électronique'
-        email_cta_html: "Avant d’effectuer votre démarche, nous avons besoin de vérifier votre adresse électronique <strong>%{email}</strong>."
-        email_guidelines_html: "Ouvrez votre boîte email, et <strong>cliquez sur le lien d’activation</strong> dans le message que vous avez reçu."
-        email_missing: "Si vous n’avez pas reçu notre message (avez-vous vérifié les indésirables ?), nous pouvons vous le renvoyer."
+        email_cta_html: "Pour activer votre compte, nous avons besoin de vérifier votre adresse électronique <strong>%{email}</strong>."
+        email_guidelines_html: "Ouvrez votre boîte email et <strong>cliquez sur le bouton d’activation</strong> dans le message que vous avez reçu."
+        email_missing: "Si vous n’avez pas reçu notre message (avez-vous vérifié les indésirables ?), nous pouvons vous le renvoyer toutes les 2 minutes."
         resent: 'Renvoyer un email de confirmation'
     invites:
       create:
@@ -715,6 +715,8 @@ fr:
         link_sent:
           consult_help_page_html: Si vous voyez cette page trop souvent, <a target="_blank" rel="noopener noreferrer" href="%{href}">consultez notre aide</a>.
           email_cta_html: "Nous avons besoin de vérifier votre adresse électronique <strong>%{email}</strong>."
+          email_guidelines_html: "Ouvrez votre boîte email et <strong>cliquez sur le lien d’activation</strong> dans le message que vous avez reçu."
+          email_missing: "Si vous n’avez pas reçu notre message (avez-vous vérifié les indésirables ?), nous pouvons vous le renvoyer."
         trusted_device_renewal_notice:
           one: "Votre connexion sécurisée a bien été renouvelée. Votre navigateur est authentifié pour %{count} jour."
           other: "Votre connexion sécurisée a bien été renouvelée. Votre navigateur est authentifié pour %{count} jours."

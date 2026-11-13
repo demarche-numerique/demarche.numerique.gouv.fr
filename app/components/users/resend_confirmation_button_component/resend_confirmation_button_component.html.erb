@@ -1,0 +1,10 @@
+<%= tag.div(data: wrapper_data) do %>
+  <%= tag.button(tag.span(safe_join([t('views.confirmation.new.resent'), tag.span(aria: { hidden: true }, data: { countdown_button_target: 'counter' })])), type: 'submit', class: 'fr-btn fr-btn--secondary', data: { countdown_button_target: 'button' }) %>
+
+  <%= tag.div(class: 'fr-checkbox-group fr-checkbox-group--sm fr-mt-2w fr-hidden', data: { countdown_button_target: 'toggle' }) do %>
+    <%= tag.input(type: 'checkbox', id: 'hide-countdown', data: { countdown_button_target: 'checkbox', action: 'change->countdown-button#toggleCounter' }) %>
+    <%= tag.label(t('.hide_counter'), for: 'hide-countdown', class: 'fr-label') %>
+  <% end %>
+
+  <%= tag.p(class: 'fr-sr-only', role: 'status', data: { countdown_button_target: 'status' }) %>
+<% end %>
