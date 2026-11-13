@@ -81,7 +81,11 @@
       <% end %>
     <% end %>
 
-    <% if local_assigns[:personnalisation].present? %>
+    <% if local_assigns[:personnalisation].present? && local_assigns[:champs_hidden] %>
+      <p class="fr-icon--sm fr-icon-lock-line">
+        <%= t('views.users.dossiers.dossiers_list.france_connect_plus_hidden') %>
+      </p>
+    <% elsif local_assigns[:personnalisation].present? %>
       <%= render Users::DossierCardChampsComponent.new(
         columns: personnalisation.displayed_columns,
         champs_by_stable_id: local_assigns[:champs_by_stable_id] || {}

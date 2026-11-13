@@ -35,6 +35,7 @@ module Users
           user_dossiers
         else
           user_dossiers.merge(DossierSearchService.matching_dossiers_for_user(search_terms, @user))
+            .reachable_from_session(Current.user_session)
         end
     end
 

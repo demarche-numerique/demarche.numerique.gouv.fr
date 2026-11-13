@@ -624,6 +624,7 @@ en:
           created_at: Created at %{date}
           updated_at: updated at %{date}
           shared_with: File shared by %{owner} with
+          france_connect_plus_hidden: "Sign in with FranceConnect+ to see the details of this application."
           deleted_by_user: Moved to trash on %{date} by user
           deleted_by_automatic: Moved to trash on %{date} because of expiration date
           procedure_closed:

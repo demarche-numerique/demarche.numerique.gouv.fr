@@ -640,6 +640,16 @@ class Dossier < ApplicationRecord
     !for_procedure_preview? && procedure.france_connect_plus_missing?(user_session)
   end
 
+  scope :unreachable_from_session, -> (user_session) do
+    next none if user_session&.via_france_connect_plus?
+
+    where(for_procedure_preview: false)
+      .joins(:procedure).where(procedures: { france_connect_plus_required: true })
+      .where.not(procedures: { aasm_state: :brouillon })
+  end
+
+  scope :reachable_from_session, -> (user_session) { where.not(id: unreachable_from_session(user_session).select(:id)) }
+
   def can_be_updated_by_user?
     brouillon? || en_construction?
   end
