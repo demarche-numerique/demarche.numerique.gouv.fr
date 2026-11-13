@@ -9,4 +9,5 @@ fr:
   logout: 'Se déconnecter'
   my_account: 'Mon profil'
   via_france_connect: 'via FranceConnect'
+  via_france_connect_plus: 'via FranceConnect+'
   connected_as: "connecté en tant qu’%{profile}"
