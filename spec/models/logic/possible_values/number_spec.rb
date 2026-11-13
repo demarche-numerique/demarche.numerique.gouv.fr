@@ -22,13 +22,19 @@ describe Logic::PossibleValues::Number do
 
   it { expect(described_class.new(integer: false)).not_to be_empty }
 
-  it 'ignores non numeric constants' do
-    expect(described_class.new(integer: true).restrict(Logic::Eq, 'abc')).not_to be_empty
-    expect(described_class.new(integer: true).restrict(Logic::Eq, '10').restrict(Logic::Eq, 11)).not_to be_empty
+  it 'answers non numeric constants as Logic#compute does: a number is never a text' do
+    expect(described_class.new(integer: true).restrict(Logic::Eq, 'abc')).to be_empty
+    expect(described_class.new(integer: true).restrict(Logic::Eq, '10')).to be_empty
+    expect(described_class.new(integer: true).restrict(Logic::NotEq, '10')).to eq(described_class.new(integer: true))
+    expect(described_class.new(integer: true).restrict(Logic::GreaterThan, 'abc')).to be_empty
   end
 
-  it 'ignores operators that do not apply to numbers' do
-    expect(described_class.new(integer: true).restrict(Logic::IncludeOperator, 1)).not_to be_empty
+  it 'answers operators that do not apply to numbers as Logic#compute does' do
+    expect(described_class.new(integer: true).restrict(Logic::IncludeOperator, 1)).to be_empty
+  end
+
+  it 'leaves a missing bound alone' do
+    expect(described_class.new(integer: true).restrict(Logic::GreaterThanEq, nil)).to eq(described_class.new(integer: true))
   end
 
   describe '.for' do
@@ -120,4 +126,46 @@ describe Logic::PossibleValues::Number do
     [[[Logic::GreaterThan, 2], [Logic::NotEq, 3], [Logic::LessThan, 4]], true],
     [[[Logic::GreaterThan, 2], [Logic::NotEq, 3], [Logic::LessThan, 5]], false],
   ]
+
+  describe '#regions' do
+    let(:values) { described_class.new(integer: false) }
+
+    include_examples 'possible values regions', [[Logic::GreaterThan, 3], [Logic::LessThan, 2], [Logic::Eq, 3], [Logic::GreaterThanEq, 3.0], [Logic::NotEq, 5]]
+
+    it 'cuts at every constant' do
+      regions = values.regions([[Logic::GreaterThan, 3], [Logic::LessThan, 2]])
+
+      expect(regions.size).to eq(5)
+      expect(regions.map { it.restrict(Logic::GreaterThan, 3).empty? }).to eq([true, true, true, true, false])
+      expect(regions.map { it.restrict(Logic::LessThan, 2).empty? }).to eq([true, true, false, true, true])
+    end
+
+    it 'drops the regions integers leave empty' do
+      regions = described_class.new(integer: true).regions([[Logic::GreaterThan, 2], [Logic::LessThan, 3]])
+
+      expect(regions.size).to eq(4) # 2, 3, < 2, > 3
+    end
+
+    it 'cuts integers at a decimal without a region for it' do
+      regions = described_class.new(integer: true).regions([[Logic::GreaterThan, 2.5]])
+
+      expect(regions.size).to eq(2) # <= 2, >= 3
+      expect(regions.map { it.restrict(Logic::GreaterThan, 2.5).empty? }).to eq([true, false])
+    end
+
+    it 'cuts once at a constant written as an integer and as a decimal' do
+      comparisons = [[Logic::Eq, 3], [Logic::GreaterThan, 3.0]]
+
+      expect(values.regions(comparisons).size).to eq(3) # 3, < 3, > 3
+      expect(values.max_regions(comparisons)).to eq(3)
+    end
+
+    it 'ignores constants that are not numbers' do
+      expect(values.regions([[Logic::Eq, 'abc']])).to eq([values])
+    end
+
+    it 'is the whole values without comparisons' do
+      expect(values.regions([])).to eq([values])
+    end
+  end
 end
