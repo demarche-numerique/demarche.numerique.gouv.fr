@@ -475,9 +475,11 @@ class Dossier < ApplicationRecord
   # A brouillon may transiently be for_tiers without mandataire identity: the
   # persona choice is persisted as soon as it is made on the identity step,
   # before the names are submitted. Deposit still enforces presence (the state
-  # is already en_construction when the transition saves).
+  # is already en_construction when the transition saves), and so does the
+  # identity step submission (:identite context).
   validates :mandataire_first_name, presence: true, if: -> { for_tiers? && !brouillon? }
   validates :mandataire_last_name, presence: true, if: -> { for_tiers? && !brouillon? }
+  validates :mandataire_first_name, :mandataire_last_name, presence: true, on: :identite, if: -> { for_tiers? && brouillon? }
   validates :for_tiers, inclusion: { in: [true, false] }, if: -> { revision&.procedure&.for_individual? }
   # A BatchOperation validates up to 500 dossiers at once, and reading the
   # attachment of each costs a query. The guard also keeps this out of
@@ -587,6 +589,16 @@ class Dossier < ApplicationRecord
 
   def blocked_with_pending_correction?
     procedure.publiee? && procedure.feature_enabled?(:blocking_pending_correction) && pending_correction?
+  end
+
+  # An unverified siret (API Entreprise down) counts as complete. A missing
+  # individual cannot be fixed on the identity step, so it does not block.
+  def identity_complete?
+    if procedure.for_individual?
+      individual.nil? || (individual.valid?(:update) && (!for_tiers? || (mandataire_first_name? && mandataire_last_name?)))
+    else
+      siret.present?
+    end
   end
 
   def can_passer_en_construction?
