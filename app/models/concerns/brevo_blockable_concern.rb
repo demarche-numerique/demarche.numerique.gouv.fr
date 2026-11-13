@@ -6,6 +6,7 @@ module BrevoBlockableConcern
   # Sent for a mail refused because the address already was: it says nothing
   # of the reason.
   BREVO_BLOCKED_EVENT = 'blocked'
+  UNSUBSCRIBING_EVENTS = ['unsubscribed', 'spam'].freeze
 
   included do
     enum :brevo_blocked_reason, {
@@ -42,6 +43,7 @@ module BrevoBlockableConcern
     return if event == BREVO_BLOCKED_EVENT
 
     users.where(brevo_blocked_reason_at: [nil, ..at]).update_all(brevo_blocked_reason: event, brevo_blocked_reason_at: at)
+    users.update_all(email_unsubscribed: true) if event.in?(UNSUBSCRIBING_EVENTS)
   end
 
   def brevo_blocked? = brevo_last_blocked_at.present? && (brevo_unblocked_at.nil? || brevo_last_blocked_at >= brevo_unblocked_at)
