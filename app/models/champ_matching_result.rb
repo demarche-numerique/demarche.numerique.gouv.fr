@@ -24,7 +24,7 @@ class ChampMatchingResult
   attr_accessor :id,
                 :procedure_id, :stable_id, :libelle,
                 :partner_procedure_id, :partner_stable_id, :partner_libelle,
-                :common_users_count, :matching_users_count, :score, :confirmed, :namespace
+                :common_users_count, :matching_users_count, :score, :confirmed, :namespace, :min_score
 
   def persisted? = true
 
@@ -96,6 +96,7 @@ class ChampMatchingResult
         else
           [match.right_procedure_id, match.right_stable_id, match.left_procedure_id, match.left_stable_id]
         end
+      namespace = ChampMatching::ComparableValue::COMPARISON_NAMESPACES[champs.dig([procedure_id, stable_id], :type_champ)]
 
       new(
         id: match.id,
@@ -108,8 +109,9 @@ class ChampMatchingResult
         common_users_count: match.common_users_count,
         matching_users_count: match.matching_users_count,
         score: match.score,
-        confirmed: match.confirmed?,
-        namespace: ChampMatching::ComparableValue::COMPARISON_NAMESPACES[champs.dig([procedure_id, stable_id], :type_champ)]
+        confirmed: match.confirmed?(namespace),
+        namespace:,
+        min_score: TypeDeChampMatch.min_score(namespace)
       )
     end
 
