@@ -14,26 +14,31 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. placeholder {0}: selectedItems.length
-#: app/javascript/components/Select.tsx:187
+#: app/javascript/components/Select.tsx:310
 msgid "{0, plural, =0 {{defaultChildren}} one {1 choix sélectionné} other {# "
 "choix sélectionnés}}"
 msgstr "{0, plural, =0 {{defaultChildren}} one {1 item selected} other {# items "
 "selected}}"
 
+#: app/javascript/components/Select.tsx:222
+msgid "{label}, sélectionné"
+msgstr "{label}, selected"
+
 #: app/javascript/shared/attachment-error.ts:15
 msgid "La taille maximale du fichier autorisée est de&nbsp;<strong>{maxSizeMB} "
 "Mo</strong>."
-msgstr "The maximum authorized file size is&nbsp;<strong>{maxSizeMB} MB</strong>."
+msgstr "The maximum authorized file size is&nbsp;<strong>{maxSizeMB} "
+"MB</strong>."
 
-#: app/javascript/components/Select.tsx:125
+#: app/javascript/components/Select.tsx:149
 msgid "Rechercher"
 msgstr "Search"
 
-#: app/javascript/components/Select.tsx:124
+#: app/javascript/components/Select.tsx:147
 msgid "Rechercher dans la liste"
 msgstr "Search the list"
 
-#: app/javascript/components/Select.tsx:209
+#: app/javascript/components/Select.tsx:332
 msgid "Sélection"
 msgstr "Selection"
 

@@ -20,7 +20,15 @@ import type {
   SelectProps as AriaSelectProps,
   AutocompleteProps
 } from 'react-aria-components';
-import { useState, useMemo, useRef, useCallback, useId, type Key } from 'react';
+import {
+  useState,
+  useMemo,
+  useRef,
+  useCallback,
+  useId,
+  useEffect,
+  type Key
+} from 'react';
 import { flushSync } from 'react-dom';
 import * as s from 'superstruct';
 import { Plural, useLingui } from '@lingui/react/macro';
@@ -40,6 +48,7 @@ import {
 } from './react-aria/props';
 import { TagGroup } from './react-aria/components/TagGroup';
 import { dataAttributes } from './react-aria/hooks';
+import { announce, isAppleDevice } from './react-aria/announce';
 
 type SelectionMode = 'single' | 'multiple';
 type SelectProps<M extends SelectionMode = 'single'> = AriaSelectProps<
@@ -178,13 +187,45 @@ function selectOption(item: Item) {
   const label = item.mandatory ? `${item.label} *` : item.label;
   return (
     <SelectItem id={item.value} textValue={label}>
-      <DropdownItemContent
-        icon={item.icon}
-        label={label}
-        description={item.description}
-      />
+      {({ isFocused, isSelected }) => (
+        <>
+          <FocusedOptionAnnouncement
+            isFocused={isFocused}
+            isSelected={isSelected}
+            label={label}
+          />
+          <DropdownItemContent
+            icon={item.icon}
+            label={label}
+            description={item.description}
+          />
+        </>
+      )}
     </SelectItem>
   );
+}
+
+// The search field keeps the focus and points at the option with
+// aria-activedescendant, which VoiceOver does not follow. react-aria works
+// around it in ComboBox with a live region, but not in Autocomplete
+// (adobe/react-spectrum#10326).
+function FocusedOptionAnnouncement({
+  isFocused,
+  isSelected,
+  label
+}: {
+  isFocused: boolean;
+  isSelected: boolean;
+  label: string;
+}) {
+  const { t } = useLingui();
+  const message = isSelected ? t`${label}, sélectionné` : label;
+  useEffect(() => {
+    if (isFocused && isAppleDevice()) {
+      announce(message);
+    }
+  }, [isFocused, message]);
+  return null;
 }
 
 function hasAccents(text: string) {
