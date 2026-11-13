@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-RSpec.describe ConditionCycleValidator do
+RSpec.describe TypeDeChamps::ConditionCycleValidator do
   include Logic
 
-  let(:revision) { procedure.draft_revision }
-
   def condition_on(stable_id) = ds_eq(champ_value(stable_id), constant(true))
+
+  def cycle_error = procedure.errors.find { it.type == :condition_cycle }
 
   context 'when a public champ and an annotation are conditioned on each other' do
     let_it_be(:procedure) do
@@ -14,24 +14,26 @@ RSpec.describe ConditionCycleValidator do
         private_type_de_champs: [{ type: :yes_no, libelle: 'A', stable_id: 10, condition: condition_on(1) }])
     end
 
-    it 'reports the closed loop on base, pointing to a type de champ of the loop' do
-      revision.validate(:publication)
+    it 'refuses the publication, pointing to a type de champ of the loop' do
+      expect(procedure.valid?(:publication)).to be false
 
-      expect(revision.errors).to be_of_kind(:base, :condition_cycle)
-      error = revision.errors.find { it.type == :condition_cycle }
-      expect(error.options[:type_de_champ].stable_id).to be_in([1, 10])
-      expect(error.options[:libelles]).to be_in(['P → A → P', 'A → P → A'])
+      expect(procedure.errors).to be_of_kind(:draft_type_de_champs, :condition_cycle)
+      expect(cycle_error.options[:type_de_champ].stable_id).to be_in([1, 10])
+      expect(cycle_error.options[:libelles]).to be_in(['P → A → P', 'A → P → A'])
     end
 
-    it 'refuses the publication and imports the error on the procedure' do
-      expect(procedure.valid?(:publication)).to be false
-      expect(procedure.errors).to be_of_kind(:base, :condition_cycle)
+    it 'is reported once from either editor' do
+      [:public_type_de_champs_editor, :private_type_de_champs_editor].each do |context|
+        procedure.validate(context)
+
+        expect(procedure.errors.count { it.type == :condition_cycle }).to eq(1)
+      end
     end
 
     it 'does not run without a validation context' do
-      revision.validate
+      procedure.validate
 
-      expect(revision.errors).not_to be_of_kind(:base, :condition_cycle)
+      expect(procedure.errors).not_to be_of_kind(:draft_type_de_champs, :condition_cycle)
     end
   end
 
@@ -49,10 +51,29 @@ RSpec.describe ConditionCycleValidator do
     end
 
     it 'reports the whole loop' do
-      revision.validate(:publication)
+      procedure.validate(:publication)
 
-      error = revision.errors.find { it.type == :condition_cycle }
-      expect(error.options[:libelles].split(' → ').uniq).to contain_exactly('P1', 'A1', 'P2', 'A2')
+      expect(cycle_error.options[:libelles].split(' → ').uniq).to contain_exactly('P1', 'A1', 'P2', 'A2')
+    end
+  end
+
+  context 'when two champs of a repetition row are conditioned on each other' do
+    let_it_be(:procedure) do
+      create(:procedure,
+        public_type_de_champs: [
+          {
+            type: :repetition, libelle: 'R', stable_id: 1, children: [
+              { type: :yes_no, libelle: 'C1', stable_id: 2, condition: condition_on(3) },
+              { type: :yes_no, libelle: 'C2', stable_id: 3, condition: condition_on(2) },
+            ],
+          },
+        ])
+    end
+
+    it 'reports the loop, since a child sees its own row' do
+      procedure.validate(:publication)
+
+      expect(procedure.errors).to be_of_kind(:draft_type_de_champs, :condition_cycle)
     end
   end
 
@@ -66,9 +87,9 @@ RSpec.describe ConditionCycleValidator do
     end
 
     it 'reports no cycle, since a root champ never sees a repetition child' do
-      revision.validate(:publication)
+      procedure.validate(:publication)
 
-      expect(revision.errors).not_to be_of_kind(:base, :condition_cycle)
+      expect(procedure.errors).not_to be_of_kind(:draft_type_de_champs, :condition_cycle)
     end
   end
 
@@ -83,9 +104,9 @@ RSpec.describe ConditionCycleValidator do
     end
 
     it 'reports no cycle' do
-      revision.validate(:publication)
+      procedure.validate(:publication)
 
-      expect(revision.errors).not_to be_of_kind(:base, :condition_cycle)
+      expect(procedure.errors).not_to be_of_kind(:draft_type_de_champs, :condition_cycle)
     end
   end
 end

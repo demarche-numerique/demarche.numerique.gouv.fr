@@ -3,26 +3,30 @@
 # Un champ public conditionné sur une annotation (#14251) rend constructible un cycle
 # public ↔ privé, invisible pour ConditionValidator qui ne voit qu'une collection à la fois.
 # Un cycle fait récurser Champ#visible? indéfiniment.
-class ConditionCycleValidator < ActiveModel::Validator
-  def validate(revision)
-    coordinates = revision.revision_type_de_champs.index_by(&:stable_id)
-    edges = coordinates.values.filter { it.type_de_champ.condition? }.to_h do |coordinate|
-      sources = coordinate.type_de_champ.condition.sources.filter { visible_from?(coordinates[it], coordinate) }
-      [coordinate.stable_id, sources]
+class TypeDeChamps::ConditionCycleValidator < ActiveModel::EachValidator
+  def validate_each(procedure, attribute, tdcs)
+    tdcs_by_stable_id = tdcs.index_by(&:stable_id)
+    edges = tdcs.filter(&:condition?).to_h do |tdc|
+      sources = tdc.condition.sources.filter { visible_from?(tdcs_by_stable_id[it], tdc) }
+      [tdc.stable_id, sources]
     end
     cycle = find_cycle(edges)
     return if cycle.nil?
 
-    tdcs = coordinates.values_at(*cycle).map(&:type_de_champ)
-    revision.errors.add(:base, :condition_cycle,
-      type_de_champ: tdcs.first, libelles: [*tdcs, tdcs.first].map { it.libelle.truncate(50) }.join(' → '))
+    cycle_tdcs = tdcs_by_stable_id.values_at(*cycle)
+    procedure.errors.add(attribute, :condition_cycle,
+      type_de_champ: cycle_tdcs.first, libelles: [*cycle_tdcs, cycle_tdcs.first].map { it.libelle.truncate(50) }.join(' → '))
   end
 
   private
 
-  # Comme Champ#visible? : un champ racine ne voit que les champs racine, un enfant y ajoute sa ligne.
-  def visible_from?(source, coordinate)
-    source.present? && (source.root? || source.parent_id == coordinate.parent_id)
+  # Comme Champ#visible? : un champ hors répétition ne voit que les champs hors répétition,
+  # un enfant y ajoute sa ligne.
+  def visible_from?(source, tdc)
+    return false if source.nil?
+    return true if !source.in_repetition?
+
+    source.enclosing_repetition.stable_id == tdc.enclosing_repetition&.stable_id
   end
 
   def find_cycle(edges)
