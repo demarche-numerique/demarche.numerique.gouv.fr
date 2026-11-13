@@ -90,3 +90,12 @@ en:
         attributes:
           header_section_level:
             gap_error: 'should be preceded by a level %{level} header section'
+        locked:
+          update:
+            used_by_routing_rules: "“%{type_de_champ}” is used for routing, so its type cannot be changed."
+            used_by_referentiel_urls: "“%{type_de_champ}” is used by a reference dataset, so its type cannot be changed."
+            used_by_ineligibilite_rules: "“%{type_de_champ}” is used by the eligibility rules, so its type cannot be changed."
+          destroy:
+            used_by_routing_rules: "“%{type_de_champ}” is used for routing, so it cannot be deleted."
+            used_by_referentiel_urls: "“%{type_de_champ}” is used by a reference dataset, so it cannot be deleted."
+            used_by_ineligibilite_rules: "“%{type_de_champ}” is used by the eligibility rules, so it cannot be deleted."

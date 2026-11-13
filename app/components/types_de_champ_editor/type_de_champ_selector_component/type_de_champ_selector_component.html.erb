@@ -4,7 +4,12 @@
   <%= render ReactComponent.new("Select/SingleSelect", **select_props) %>
 </react-fragment>
 
-<% if disabled? %>
+<% if coordinate.type_champ_locked? %>
+  <div class="cell fr-mt-1w">
+    <span class="fr-icon-lock-fill fr-icon--sm" aria-hidden="true"></span>
+    <%= coordinate.type_change_locked_message %>
+  </div>
+<% elsif disabled? %>
   <div class="cell fr-mt-1w">
     <span class="fr-icon-lock-fill fr-icon--sm" aria-hidden="true"></span>
     <%= t(".no_allowed_type") %>

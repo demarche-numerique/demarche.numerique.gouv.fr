@@ -283,7 +283,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
       it do
         is_expected.to have_http_status(:ok)
-        expect(flash.alert).to include("utilisé pour le routage")
+        expect(flash.alert).to eq(I18n.t("activerecord.errors.type_de_champ.locked.update.used_by_routing_rules", type_de_champ: 'l2'))
       end
     end
 
@@ -298,7 +298,40 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
       it do
         is_expected.to have_http_status(:ok)
-        expect(flash.alert).to include("utilisé par un référentiel")
+        expect(flash.alert).to eq(I18n.t("activerecord.errors.type_de_champ.locked.update.used_by_referentiel_urls", type_de_champ: 'l2'))
+      end
+    end
+
+    context 'when the champ is used by the ineligibilite rules' do
+      include Logic
+
+      let(:ineligibilite_enabled) { true }
+      let(:params) do
+        default_params.deep_merge(type_de_champ: { type_champ: 'text' }, stable_id: first_coordinate.stable_id)
+      end
+
+      before do
+        procedure.draft_revision.update!(
+          ineligibilite_enabled:,
+          ineligibilite_message: 'Vous n’êtes pas éligible',
+          ineligibilite_rules: ds_eq(champ_value(first_coordinate.stable_id), constant(1))
+        )
+      end
+
+      it 'rejects the type change' do
+        is_expected.to have_http_status(:ok)
+        expect(flash.alert).to eq(I18n.t("activerecord.errors.type_de_champ.locked.update.used_by_ineligibilite_rules", type_de_champ: 'l1'))
+        expect(first_coordinate.reload.type_champ).to eq('integer_number')
+      end
+
+      context 'when the ineligibilite rules are disabled' do
+        let(:ineligibilite_enabled) { false }
+
+        it 'accepts the type change' do
+          is_expected.to have_http_status(:ok)
+          expect(flash.alert).to be_nil
+          expect(procedure.draft_revision.reload.public_revision_type_de_champs.first.type_champ).to eq('text')
+        end
       end
     end
 
@@ -605,7 +638,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
       it do
         is_expected.to have_http_status(:ok)
-        expect(flash.alert).to include("utilisé pour le routage")
+        expect(flash.alert).to eq(I18n.t("activerecord.errors.type_de_champ.locked.destroy.used_by_routing_rules", type_de_champ: 'l3'))
       end
     end
 
@@ -620,7 +653,31 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
       it do
         is_expected.to have_http_status(:ok)
-        expect(flash.alert).to include("utilisé par un référentiel")
+        expect(flash.alert).to eq(I18n.t("activerecord.errors.type_de_champ.locked.destroy.used_by_referentiel_urls", type_de_champ: 'l3'))
+      end
+    end
+
+    context 'when the champ is used by the ineligibilite rules' do
+      include Logic
+
+      let(:params) do
+        { procedure_id: procedure.id, stable_id: first_coordinate.stable_id }
+      end
+
+      before do
+        procedure.draft_revision.update!(
+          ineligibilite_enabled: true,
+          ineligibilite_message: 'Vous n’êtes pas éligible',
+          ineligibilite_rules: ds_eq(champ_value(first_coordinate.stable_id), constant(1))
+        )
+      end
+
+      it 'rejects the deletion' do
+        stable_id = first_coordinate.stable_id
+
+        is_expected.to have_http_status(:ok)
+        expect(flash.alert).to eq(I18n.t("activerecord.errors.type_de_champ.locked.destroy.used_by_ineligibilite_rules", type_de_champ: 'l1'))
+        expect(procedure.draft_revision.reload.type_de_champs.map(&:stable_id)).to include(stable_id)
       end
     end
   end

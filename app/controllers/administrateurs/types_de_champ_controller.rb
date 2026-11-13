@@ -31,12 +31,8 @@ module Administrateurs
       was_prefill_with_fc_information = type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?
       update_params = type_de_champ_update_params(type_de_champ)
 
-      if @coordinate.used_by_routing_rules? && changing_of_type?(type_de_champ, update_params)
-        errors = "« #{type_de_champ.libelle} » est utilisé pour le routage, vous ne pouvez pas modifier son type."
-        @morphed = [champ_component_from(@coordinate, focused: false, errors:)]
-        flash.alert = errors
-      elsif @coordinate.used_by_referentiel_urls? && changing_of_type?(type_de_champ, update_params)
-        errors = "« #{type_de_champ.libelle} » est utilisé par un référentiel, vous ne pouvez pas modifier son type."
+      if @coordinate.type_champ_locked? && changing_of_type?(type_de_champ, update_params)
+        errors = @coordinate.type_change_locked_message
         @morphed = [champ_component_from(@coordinate, focused: false, errors:)]
         flash.alert = errors
       else
@@ -136,14 +132,10 @@ module Administrateurs
     end
 
     def destroy
-      coordinate, type_de_champ = draft.coordinate_and_tdc(params[:stable_id])
+      coordinate, _ = draft.coordinate_and_tdc(params[:stable_id])
 
-      if coordinate&.used_by_referentiel_urls?
-        errors = "« #{type_de_champ.libelle} » est utilisé par un référentiel, vous ne pouvez pas le supprimer."
-        @morphed = [champ_component_from(coordinate, focused: false, errors:)]
-        flash.alert = errors
-      elsif coordinate&.used_by_routing_rules?
-        errors = "« #{type_de_champ.libelle} » est utilisé pour le routage, vous ne pouvez pas le supprimer."
+      if coordinate&.type_champ_locked?
+        errors = coordinate.deletion_locked_message
         @morphed = [champ_component_from(coordinate, focused: false, errors:)]
         flash.alert = errors
       else

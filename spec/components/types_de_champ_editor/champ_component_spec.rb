@@ -40,6 +40,42 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
         end
       end
 
+      context 'drop down tdc used by a reference dataset url' do
+        let(:public_type_de_champs) do
+          [
+            { type: :drop_down_list, stable_id: 2, libelle: 'Votre ville', options: ['Paris', 'Lyon'] },
+            {
+              type: :referentiel,
+              stable_id: 3,
+              referentiel: create(:api_referentiel, :exact_match, mentioned_stable_id: 2),
+            },
+          ]
+        end
+        let(:coordinate) { procedure.draft_revision.coordinate_and_tdc(2).first }
+
+        it 'links to the reference dataset instead of offering to delete it' do
+          expect(page).to have_text(/utilisé par\nun référentiel avancé/)
+          expect(page).to have_link('un référentiel avancé', href: Rails.application.routes.url_helpers.edit_admin_procedure_referentiel_path(procedure, 3))
+          expect(page).not_to have_css('.fr-icon-delete-line')
+        end
+
+        context 'and by the ineligibilite rules' do
+          let(:ineligibilite_rules_used?) { true }
+
+          it 'gives the same reason as the type menu' do
+            expect(page).to have_link('un référentiel avancé')
+            expect(page).not_to have_text('l’éligibilité des dossiers')
+          end
+        end
+      end
+
+      context 'drop down tdc not used by a reference dataset url' do
+        it 'offers to delete it' do
+          expect(page).not_to have_text('un référentiel avancé')
+          expect(page).to have_css('.fr-icon-delete-line')
+        end
+      end
+
       context 'tdc used for prefill' do
         let(:public_type_de_champs) do
           [
@@ -78,7 +114,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       let(:procedure) { create(:procedure, public_type_de_champs: [{ type: type_champ }]) }
       let(:coordinate) { procedure.draft_revision.public_revision_type_de_champs.first }
       let(:decimals_toggle) { 'Ce nombre peut comprendre des chiffres après la virgule (décimal)' }
-      let(:locked_hint) { 'Ce champ est utilisé pour le routage ou l’éligibilité des dossiers : vous ne pouvez pas changer ce réglage.' }
+      let(:locked_hint) { 'vous ne pouvez pas modifier son type' }
       let(:toggle_id) { ActionView::RecordIdentifier.dom_id(coordinate.type_de_champ, :numeric_type_champ) }
       let(:hint_id) { ActionView::RecordIdentifier.dom_id(coordinate.type_de_champ, :numeric_type_champ_hint) }
 
@@ -116,7 +152,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
         it 'locks the toggle and says why' do
           expect(page).to have_checked_field(decimals_toggle, disabled: true)
           expect(page).to have_css("##{toggle_id}[aria-describedby='#{hint_id}']")
-          expect(page).to have_css("##{hint_id}", text: locked_hint)
+          expect(page).to have_css("##{hint_id}", text: I18n.t("activerecord.errors.type_de_champ.locked.update.used_by_routing_rules", type_de_champ: coordinate.libelle))
         end
       end
 
@@ -126,7 +162,25 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
 
         it 'locks the toggle and says why' do
           expect(page).to have_unchecked_field(decimals_toggle, disabled: true)
-          expect(page).to have_text(locked_hint)
+          expect(page).to have_css("##{hint_id}", text: I18n.t("activerecord.errors.type_de_champ.locked.update.used_by_ineligibilite_rules", type_de_champ: coordinate.libelle))
+        end
+      end
+
+      context 'when it is used by a reference dataset url' do
+        let(:procedure) do
+          create(:procedure, public_type_de_champs: [
+            { type: :integer_number, stable_id: 2, libelle: 'Code commune' },
+            {
+              type: :referentiel,
+              stable_id: 3,
+              referentiel: create(:api_referentiel, :exact_match, mentioned_stable_id: 2),
+            },
+          ])
+        end
+
+        it 'locks the toggle and says it is used by a reference dataset' do
+          expect(page).to have_unchecked_field(decimals_toggle, disabled: true)
+          expect(page).to have_css("##{hint_id}", text: I18n.t("activerecord.errors.type_de_champ.locked.update.used_by_referentiel_urls", type_de_champ: 'Code commune'))
         end
       end
     end
