@@ -220,6 +220,22 @@ describe FranceConnectController, type: :controller do
         expect(flash[:alert]).to be_present
       end
     end
+
+    context 'when the callback is replayed' do
+      [
+        OpenIDConnect::ResponseObject::IdToken::InvalidNonce.new('Invalid ID Token: Nonce does not match'),
+        OpenIDConnect::Unauthorized.new(401, 'Access Token Invalid or Expired'),
+      ].each do |error|
+        it "sends back to sign in on #{error.class}" do
+          allow(FranceConnectService).to receive(:retrieve_user_informations).and_raise(error)
+
+          subject
+
+          expect(response).to redirect_to(new_user_session_path)
+          expect(flash[:alert]).to include('Une erreur est survenue lors de la connexion')
+        end
+      end
+    end
   end
 
   describe '#merge_using_fc_email' do

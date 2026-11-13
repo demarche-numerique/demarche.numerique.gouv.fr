@@ -57,7 +57,8 @@ class FranceConnectController < ApplicationController
       end
     end
 
-  rescue Rack::OAuth2::Client::Error => e
+  # A replayed or reloaded callback: the code, the access token or the nonce no longer holds
+  rescue Rack::OAuth2::Client::Error, OpenIDConnect::ResponseObject::IdToken::InvalidToken, OpenIDConnect::HttpError => e
     Rails.logger.error e.message
     redirect_to(new_user_session_path, alert: t('errors.messages.france_connect.connexion'))
   end
