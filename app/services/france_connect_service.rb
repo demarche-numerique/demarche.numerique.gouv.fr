@@ -19,6 +19,8 @@ class FranceConnectService
 
   def self.acr_values = 'eidas1'
 
+  def self.login_method = :france_connect
+
   def self.authorization_uri
     client = OpenIDConnect::Client.new(conf)
 

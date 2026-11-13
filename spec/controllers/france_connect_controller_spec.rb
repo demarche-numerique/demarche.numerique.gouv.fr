@@ -259,7 +259,7 @@ describe FranceConnectController, type: :controller do
         .merge(france_connect_particulier_id: user_info['sub'])
     end
     let!(:fci) { FranceConnectInformation.create!(fci_attributes) }
-    let(:merge_token) { fci.create_merge_token! }
+    let(:merge_token) { fci.create_merge_token!(login_method: :france_connect) }
 
     before do
       allow(UserMailer).to receive_message_chain(:custom_confirmation_instructions, :deliver_later)
@@ -469,7 +469,7 @@ describe FranceConnectController, type: :controller do
         .merge(france_connect_particulier_id: user_info['sub'])
     end
     let(:fci) { FranceConnectInformation.create!(fci_attributes) }
-    let(:merge_token) { fci.create_merge_token! }
+    let(:merge_token) { fci.create_merge_token!(login_method: :france_connect) }
     let(:email) { 'EXISTING_account@a.com ' }
     let(:password) { SECURE_PASSWORD }
     let(:format) { :turbo_stream }
@@ -583,7 +583,7 @@ describe FranceConnectController, type: :controller do
         .merge(france_connect_particulier_id: user_info['sub'])
     end
     let(:fci) { FranceConnectInformation.create!(fci_attributes) }
-    let(:merge_token) { fci.create_merge_token! }
+    let(:merge_token) { fci.create_merge_token!(login_method: :france_connect) }
     let(:email) { 'requested_email@.a.com' }
 
     subject { post :send_email_merge_request, params: { merge_token: merge_token, email: }.merge(extra_params) }

@@ -41,9 +41,12 @@ class FranceConnectInformation < ApplicationRecord
     UserMailer.custom_confirmation_instructions(user, token).deliver_later
   end
 
-  def create_merge_token!
+  # The method of the callback that started the merge, for the session the merge opens.
+  # A callback starts a new merge: an email link sent for the previous one no longer holds.
+  def create_merge_token!(login_method:)
     merge_token = SecureRandom.uuid
-    update(merge_token:, merge_token_created_at: Time.zone.now)
+    update(merge_token:, merge_token_created_at: Time.zone.now, merge_login_method: login_method,
+           email_merge_token: nil, email_merge_token_created_at: nil, requested_email: nil)
 
     merge_token
   end
@@ -70,6 +73,7 @@ class FranceConnectInformation < ApplicationRecord
   def clean_tokens_and_requested_email
     self.merge_token = nil
     self.merge_token_created_at = nil
+    self.merge_login_method = nil
     self.email_merge_token = nil
     self.email_merge_token_created_at = nil
     self.requested_email = nil

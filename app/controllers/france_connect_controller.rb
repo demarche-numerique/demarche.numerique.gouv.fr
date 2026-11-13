@@ -39,10 +39,10 @@ class FranceConnectController < ApplicationController
       preexisting_unlinked_user = User.find_by(email: sanitize(@fci.email_france_connect))
 
       if preexisting_unlinked_user.nil?
-        @fci.create_merge_token!
+        @fci.create_merge_token!(login_method: service.login_method)
         render :choose_email
       elsif preexisting_unlinked_user.can_france_connect?
-        @fci.create_merge_token!
+        @fci.create_merge_token!(login_method: service.login_method)
         render :merge
       else
         destroy_fci_and_redirect_to_login(@fci)
@@ -50,7 +50,7 @@ class FranceConnectController < ApplicationController
     else
       if @fci.user.can_france_connect?
         @fci.update(updated_at: Time.zone.now)
-        connect_france_connect(@fci.user)
+        connect_france_connect(@fci.user, login_method: service.login_method)
       else
         destroy_fci_and_redirect_to_login(@fci)
       end
@@ -91,10 +91,11 @@ class FranceConnectController < ApplicationController
   end
 
   def merge_using_fc_email
+    login_method = @fci.merge_login_method
     @fci.safely_associate_user!(@fci.email_france_connect)
     @fci.user.update!(email_verified_at: Time.current)
 
-    connect_merged_france_connect(@fci.user)
+    connect_merged_france_connect(@fci.user, login_method:)
   end
 
   def merge_using_password
@@ -105,15 +106,17 @@ class FranceConnectController < ApplicationController
     end
 
     if user.present? && user.valid_for_authentication? { user.valid_password?(params[:password]) }
+      login_method = @fci.merge_login_method
       @fci.safely_update_user(user:)
 
-      connect_merged_france_connect(user)
+      connect_merged_france_connect(user, login_method:)
     else
       flash.alert = t('france_connect.flash.invalid_password')
     end
   end
 
   def merge_using_email_link
+    login_method = @fci.merge_login_method
     user = User.find_by(email: @fci.requested_email)
 
     if user.present? && !user.can_france_connect?
@@ -128,7 +131,7 @@ class FranceConnectController < ApplicationController
 
     @fci.user.update(email_verified_at: Time.zone.now)
 
-    connect_merged_france_connect(@fci.user)
+    connect_merged_france_connect(@fci.user, login_method:)
   end
 
   # TODO mutualiser avec le controller Users::ActivateController
@@ -255,8 +258,8 @@ class FranceConnectController < ApplicationController
     redirect_to pro_connect_path, alert: t('errors.messages.france_connect.forbidden_html', app_name: APPLICATION_NAME)
   end
 
-  def connect_france_connect(user)
-    replace_session(user, login_method: :france_connect)
+  def connect_france_connect(user, login_method:)
+    replace_session(user, login_method:)
 
     user.update_attribute('loged_in_with_france_connect', User.loged_in_with_france_connects.fetch(:particulier))
     user.update_preferred_domain(Current.host)
@@ -265,9 +268,9 @@ class FranceConnectController < ApplicationController
     redirect_to destination_path(current_user)
   end
 
-  def connect_merged_france_connect(user)
+  def connect_merged_france_connect(user, login_method:)
     flash.notice = t('france_connect.flash.connection_done', application_name: Current.application_name)
-    connect_france_connect(user)
+    connect_france_connect(user, login_method:)
   end
 
   def sanitized_email_params
