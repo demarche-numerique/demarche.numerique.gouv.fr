@@ -1,0 +1,10 @@
+en:
+  administrateurs:
+    attestation_template_v2s:
+      form:
+        preview_dossier_label: Application used for the preview
+        preview_dossier_option: "No. %{number} – %{owner} – %{state}"
+        preview_dossier_search: Filter by number or name
+        preview_dossier_section:
+          current: Current revision of the procedure
+          previous: Previous revisions – some tags may be missing
