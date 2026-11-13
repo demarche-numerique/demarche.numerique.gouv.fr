@@ -65,6 +65,7 @@ class ProcedureDashboard < Administrate::BaseDashboard
     no_gender: Field::Boolean,
     pro_connect_restriction: Field::String,
     pro_connect_for_moral_procedure: Field::Boolean,
+    france_connect_plus_required: Field::Boolean,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -134,6 +135,7 @@ class ProcedureDashboard < Administrate::BaseDashboard
     :piece_justificative_multiple,
     :for_tiers_enabled,
     :hide_instructeurs_email,
+    :france_connect_plus_required,
     :opendata,
     :robots_indexable,
     :replaced_by_procedure_id,
@@ -152,6 +154,7 @@ class ProcedureDashboard < Administrate::BaseDashboard
     :hide_instructeurs_email,
     :replaced_by_procedure_id,
     :no_gender,
+    :france_connect_plus_required,
   ].freeze
 
   # Overwrite this method to customize how procedures are displayed
