@@ -70,7 +70,7 @@
 
           <div class="fr-fieldset__element">
             <div class="fr-radio-group">
-              <%= f.radio_button :pro_connect_restriction, 'all', class: 'fr-radio' %>
+              <%= f.radio_button :pro_connect_restriction, 'all', class: 'fr-radio', disabled: @procedure.france_connect_plus_required? %>
 
               <%= f.label :pro_connect_restriction_all, class: 'fr-label' do %>
                 Tous les utilisateurs
@@ -78,6 +78,10 @@
                   Seuls les usagers authentifiés via ProConnect pourront déposer
                   de nouveaux dossiers. Administrateurs et instructeurs doivent
                   aussi s’authentifier via ProConnect.
+                  <% if @procedure.france_connect_plus_required? %>
+                    Indisponible : la démarche exige FranceConnect+ de ses
+                    usagers.
+                  <% end %>
                 </p>
               <% end %>
             </div>

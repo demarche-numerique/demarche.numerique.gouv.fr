@@ -1734,6 +1734,17 @@ describe Procedure do
     end
   end
 
+  describe 'france_connect_plus_required' do
+    let(:procedure) { procedures.brouillon }
+
+    it 'cannot go with a procedure restricted to ProConnect users' do
+      procedure.assign_attributes(pro_connect_restriction: :all, france_connect_plus_required: true)
+
+      expect(procedure).not_to be_valid
+      expect(procedure.errors).to be_of_kind(:france_connect_plus_required, :present)
+    end
+  end
+
   describe '#champ_value_in_condition?' do
     include Logic
     let(:procedure) do

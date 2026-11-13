@@ -275,6 +275,9 @@ class Procedure < ApplicationRecord
 
   before_create :enable_pro_connect_for_moral_procedure
 
+  # A procedure open to ProConnect users only has no usager to identify with FranceConnect+
+  validates :france_connect_plus_required, absence: true, if: :pro_connect_restriction_all?
+
   validates :libelle, presence: true, allow_blank: false, allow_nil: false
   validates :description, presence: true, allow_blank: false, allow_nil: false
   validates :administrateurs, presence: true
