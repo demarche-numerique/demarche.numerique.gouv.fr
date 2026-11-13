@@ -17,6 +17,10 @@
         <%= link_to t('views.shared.france_connect_login.help_link'), "https://franceconnect.gouv.fr/", title: new_tab_suffix(t('views.shared.france_connect_login.help_link')), **external_link_attributes %>
       </p>
     </div>
+
+    <% if local_assigns[:plus_url] && FranceConnectPlusService.enabled? -%>
+      <%= render partial: 'shared/france_connect_plus_login', locals: { url: plus_url } %>
+    <% end -%>
   </div>
 <% else -%>
   <!-- FranceConnect is not configured -->
