@@ -10,5 +10,33 @@ module Manager
         page: Administrate::Page::Collection.new(dashboard),
       }
     end
+
+    def show
+      result = ChampMatchingResult.find(params[:id])
+      ranked = result.observations.filter(&:answered?).each.with_index(1).to_a
+
+      render locals: {
+        result:,
+        procedures: Procedure.with_discarded.where(id: [result.procedure_id, result.partner_procedure_id]).pluck(:id, :libelle).to_h,
+        verdict: params[:verdict],
+        observations: Kaminari.paginate_array(filter_by_verdict(ranked, params[:verdict])).page(params[:_page]).per(50),
+      }
+    end
+
+    private
+
+    # Administrate resolves the route from the class only for an ActiveRecord
+    # instance, so a row of this read model never got its link.
+    def existing_action?(resource, action_name)
+      super(resource.is_a?(ChampMatchingResult) ? resource.class : resource, action_name)
+    end
+
+    def filter_by_verdict(ranked, verdict)
+      case verdict
+      when 'matching' then ranked.filter { |observation, _rank| observation.matching? }
+      when 'differing' then ranked.reject { |observation, _rank| observation.matching? }
+      else ranked
+      end
+    end
   end
 end

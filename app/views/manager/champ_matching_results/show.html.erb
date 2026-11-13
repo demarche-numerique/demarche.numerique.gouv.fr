@@ -1,0 +1,126 @@
+<% content_for(:title) { "#{result.libelle} ↔ #{result.partner_libelle}" } %>
+
+<header class="main-content__header">
+  <h1 class="main-content__page-title" id="page-title">
+    <%= content_for(:title) %>
+  </h1>
+
+  <div>
+    <%= link_to("Retour aux champs appariés", manager_champ_matching_results_path, class: "button") %>
+  </div>
+</header>
+
+<section class="main-content__body">
+  <table>
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Cette démarche</th>
+        <th scope="col">Démarche partenaire</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <th scope="row">Démarche</th>
+
+        <td>
+          <%= link_to("#{result.procedure_id} — #{procedures[result.procedure_id]}", manager_procedure_path(result.procedure_id)) %>
+        </td>
+
+        <td>
+          <%= link_to("#{result.partner_procedure_id} — #{procedures[result.partner_procedure_id]}", manager_procedure_path(result.partner_procedure_id)) %>
+        </td>
+      </tr>
+
+      <tr>
+        <th scope="row">Champ</th>
+        <td><%= result.stable_id %> — <%= result.libelle %></td>
+        <td><%= result.partner_stable_id %> — <%= result.partner_libelle %></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <dl class="champ-matching__figures">
+    <div>
+      <dt>Common Users Count</dt>
+      <dd><%= result.common_users_count %></dd>
+    </div>
+
+    <div>
+      <dt>Matching Users Count</dt>
+      <dd><%= result.matching_users_count %></dd>
+    </div>
+
+    <div>
+      <dt>Score</dt>
+
+      <dd>
+        <span
+          class="champ-matching__score--<%= result.confirmed ? "confirmed" : "unconfirmed" %>"
+          title="<%= result.confirmed ? "confirmé" : "non confirmé" %>"
+        >
+          <%= number_with_precision(result.score, precision: 2) %>
+        </span>
+      </dd>
+    </div>
+
+    <div>
+      <dt>Seuil sur la borne basse de Wilson</dt>
+
+      <dd>
+        <%= number_with_precision(TypeDeChampMatch::MIN_SCORE, precision: 2) %>
+      </dd>
+    </div>
+
+    <div>
+      <dt>Namespace</dt>
+      <dd><code><%= result.namespace %></code></dd>
+    </div>
+  </dl>
+
+  <h2>Comparaisons usager par usager</h2>
+
+  <nav aria-label="Filtrer les comparaisons">
+    <% [[nil, "Toutes"], ["matching", "Concordantes"], ["differing", "Discordantes"]].each do |value, label| %>
+      <% if verdict == value %>
+        <strong aria-current="page"><%= label %></strong>
+      <% else %>
+        <%= link_to(label, manager_champ_matching_result_path(result, verdict: value)) %>
+      <% end %>
+    <% end %>
+  </nav>
+
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Usager</th>
+        <th scope="col"><%= result.libelle %></th>
+        <th scope="col"><%= result.partner_libelle %></th>
+        <th scope="col">Verdict</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% observations.each do |observation, rank| %>
+        <tr>
+          <td><%= rank %></td>
+
+          <td>
+            <%= render("values", values: observation.values, shared: observation.shared_comparables, procedure_id: result.procedure_id) %>
+          </td>
+
+          <td>
+            <%= render("values", values: observation.partner_values, shared: observation.shared_comparables, procedure_id: result.partner_procedure_id) %>
+          </td>
+
+          <td>
+            <%= observation.matching? ? "Concorde" : "Diffère" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= render("pagination", resources: observations) %>
+</section>

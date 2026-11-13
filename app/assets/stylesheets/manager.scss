@@ -176,6 +176,27 @@
   &__partner-title {
     margin-top: 1.5rem;
   }
+
+  &__figures {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+
+    dd {
+      margin: 0;
+    }
+  }
+
+  &__value--shared code,
+  &__score--confirmed {
+    background-color: #e5f4e4;
+    color: #18753c;
+  }
+
+  &__score--unconfirmed {
+    background-color: #fbebeb;
+    color: #ce0500;
+  }
 }
 
 .api-status {

@@ -6,6 +6,46 @@ describe Manager::ChampMatchingResultsController, type: :controller do
 
   render_views
 
+  describe 'GET #show' do
+    let(:left) { create(:procedure, :published, libelle: 'Permis de construire', public_type_de_champs: [{ type: :text, libelle: 'Votre adresse' }]) }
+    let(:right) { create(:procedure, :published, libelle: 'Aide à la rénovation', public_type_de_champs: [{ type: :text, libelle: 'Adresse du domicile' }]) }
+    let(:match) { TypeDeChampMatch.sole }
+
+    before do
+      stub_const('ChampMatchingConcern::USERS_FLOOR', 1)
+
+      user = create(:user)
+      { left => '12 rue du Pont', right => '12, Rue du PONT' }.each do |procedure, value|
+        create(:dossier, :en_construction, procedure:, user:).champ_data.find { !it.private? }.update_column(:value, value)
+      end
+
+      ProcedureUserOverlap.refresh_within([left.id, right.id])
+      ProcedureUserOverlap.find_each(&:refresh_champ_matches!)
+    end
+
+    it 'montre la ligne, puis les valeurs saisies et normalisées de chaque usager' do
+      get :show, params: { id: "#{match.id}-#{right.id}" }
+
+      expect(response).to have_http_status(:ok)
+      expect(response.body).to include('Aide à la rénovation', 'Adresse du domicile', '12, Rue du PONT', '12 rue du pont')
+      expect(response.body.index('12, Rue du PONT')).to be < response.body.index('12 rue du Pont')
+    end
+
+    it 'relie chaque valeur au dossier où elle a été saisie' do
+      get :show, params: { id: "#{match.id}-#{left.id}" }
+
+      [left, right].each do |procedure|
+        expect(response.body).to include(instructeur_dossier_path(procedure_id: procedure.id, dossier_id: procedure.dossiers.sole.id))
+      end
+    end
+
+    it 'filtre les comparaisons par verdict' do
+      get :show, params: { id: "#{match.id}-#{left.id}", verdict: 'differing' }
+
+      expect(response.body).not_to include('12 rue du Pont')
+    end
+  end
+
   describe 'GET #index' do
     before do
       left = create(:procedure, :published, libelle: 'Permis de construire', public_type_de_champs: [{ type: :text, libelle: 'Votre adresse' }])
@@ -23,6 +63,14 @@ describe Manager::ChampMatchingResultsController, type: :controller do
       expect(response).to have_http_status(:ok)
       expect(response.body).to include('Permis de construire', 'Aide à la rénovation', 'Votre adresse', 'Adresse du domicile', '0.91')
       expect(response.body.scan('Votre adresse').size).to eq(2)
+    end
+
+    it 'rend chaque ligne cliquable vers le détail de son appariement' do
+      get :index
+
+      match = TypeDeChampMatch.sole
+      expect(response.body).to include(manager_champ_matching_result_path("#{match.id}-#{match.left_procedure_id}"))
+      expect(response.body).to include(manager_champ_matching_result_path("#{match.id}-#{match.right_procedure_id}"))
     end
 
     it 'pagine les démarches, sans couper une démarche de ses partenaires' do

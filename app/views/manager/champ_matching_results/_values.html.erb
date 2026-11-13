@@ -1,0 +1,10 @@
+<% values.uniq { [it.raw, it.comparable] }.each do |value| %>
+  <div class="<%= "champ-matching__value--shared" if shared.include?(value.comparable) %>">
+    <div>
+      <%= link_to("Dossier n° #{value.dossier_id}", instructeur_dossier_path(procedure_id:, dossier_id: value.dossier_id)) %>
+    </div>
+
+    <div><%= value.raw.presence || "—" %></div>
+    <code>→ <%= value.comparable %></code>
+  </div>
+<% end %>
