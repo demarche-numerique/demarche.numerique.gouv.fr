@@ -218,6 +218,8 @@ class ApplicationController < ActionController::Base
       # Not for another account: on a shared computer, it never made that choice.
       user.remember_me = SessionRegistrableConcern.persistent?(warden, :user) if current_user == user
       sign_out(:user)
+      # Set by the fetch of the account just signed out, which the sign out leaves.
+      request.session_options[:expire_after] = nil
     end
     sign_in(:user, user, login_method:)
   end
