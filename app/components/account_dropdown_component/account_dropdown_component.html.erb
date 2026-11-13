@@ -2,7 +2,9 @@
   <% c.with_button do %>
     <span class="fr-mr-1w"><%= current_email %></span>
 
-    <%- if france_connected? -%>
+    <%- if france_connected_plus? -%>
+      <span>&nbsp;<%= t('.via_france_connect_plus') %></span>
+    <%- elsif france_connected? -%>
       <span>&nbsp;<%= t('.via_france_connect') %></span>
     <%- end -%>
 
