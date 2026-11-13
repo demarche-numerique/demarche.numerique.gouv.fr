@@ -8,13 +8,13 @@
 # `login_method:` says how, as application code does: without it, the row is
 # one of the sessions opened before methods were recorded.
 module SignInOpensASessionRow
-  def sign_in(resource, scope: nil, login_method: nil)
+  def sign_in(resource, scope: nil, login_method: nil, france_connect_information: nil)
     super(resource, scope:)
 
     return if !resource.is_a?(SessionRegistrableConcern)
 
     scope ||= Devise::Mapping.find_scope!(resource)
-    warden.set_user(resource, scope:, event: :set_user, login_method:)
+    warden.set_user(resource, scope:, event: :set_user, login_method:, france_connect_information:)
   end
 
   # Production gives each request a new Warden proxy, which reads the user back

@@ -212,7 +212,7 @@ class ApplicationController < ActionController::Base
 
   # A new session, even for the account already signed in: Devise's `sign_in`
   # would otherwise do nothing, and leave it on a row opened another way.
-  def replace_session(user, login_method:)
+  def replace_session(user, login_method:, france_connect_information: nil)
     if user_signed_in?
       # The sign out drops "stay signed in" with the session, and providers never ask.
       # Not for another account: on a shared computer, it never made that choice.
@@ -221,7 +221,7 @@ class ApplicationController < ActionController::Base
       # Set by the fetch of the account just signed out, which the sign out leaves.
       request.session_options[:expire_after] = nil
     end
-    sign_in(:user, user, login_method:)
+    sign_in(:user, user, login_method:, france_connect_information:)
   end
 
   def after_sign_out_path_for(_resource_or_scope)

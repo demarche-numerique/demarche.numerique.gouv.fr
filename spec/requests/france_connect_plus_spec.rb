@@ -60,7 +60,7 @@ describe 'FranceConnect+ authentication', :caching do
       authenticate_with_france_connect_plus
 
       expect(controller.current_user).to eq(user)
-      expect(UserSession.where(sessionable: user).sole.login_method).to eq('france_connect_plus')
+      expect(UserSession.where(sessionable: user).sole).to have_attributes(login_method: 'france_connect_plus', france_connect_sub: 'fcp_sub')
 
       get profil_path
       expect(response.body).to include('via FranceConnect+')
@@ -87,7 +87,7 @@ describe 'FranceConnect+ authentication', :caching do
       post france_connect_merge_using_fc_email_path, params: { merge_token: }
 
       expect(controller.current_user.email).to eq('angela.dubois@example.org')
-      expect(UserSession.where(sessionable: controller.current_user).usable.sole.login_method).to eq('france_connect_plus')
+      expect(UserSession.where(sessionable: controller.current_user).usable.sole).to have_attributes(login_method: 'france_connect_plus', france_connect_sub: 'fcp_sub')
     end
 
     it 'keeps FranceConnect+ through a merge by email link' do

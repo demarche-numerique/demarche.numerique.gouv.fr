@@ -4,6 +4,8 @@ class UserSession < ApplicationRecord
   REVOCATION_REASONS = %w[sign_out logout_device logout_all support new_session password_change inactivity].freeze
 
   belongs_to :sessionable, polymorphic: true
+  # The FranceConnect identity a FranceConnect or FranceConnect+ session was opened with
+  belongs_to :france_connect_information, optional: true
 
   # How the session was opened. Nil on the rows opened before it was recorded.
   enum :login_method, {
@@ -16,6 +18,9 @@ class UserSession < ApplicationRecord
 
   # FranceConnect+ is FranceConnect at a higher eIDAS level
   def via_any_france_connect? = via_france_connect? || via_france_connect_plus?
+
+  # The identity's sub, shared by FranceConnect and FranceConnect+
+  def france_connect_sub = france_connect_information&.france_connect_particulier_id
 
   validates :revoked_reason, inclusion: { in: REVOCATION_REASONS }, allow_nil: true
 
