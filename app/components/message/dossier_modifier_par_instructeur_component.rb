@@ -42,7 +42,7 @@ class Message::DossierModifierParInstructeurComponent < ApplicationComponent
 
   def self.create_commentaire(traitement)
     body = render(dossier: traitement.dossier, changed_columns: traitement.changed_columns, motivation: traitement.motivation)
-    CommentaireService.create!(traitement.instructeur, traitement.dossier, body:, deletable: false)
+    CommentaireService.create!(traitement.instructeur, traitement.dossier, body:, deletable: false, dossier_modifie_par_instructeur: true)
   end
 
   private

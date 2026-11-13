@@ -95,6 +95,7 @@ describe 'Editing a dossier as an instructeur:', js: true do
 
       mail = ActionMailer::Base.deliveries.find { _1.to.to_a.include?(dossier.user.email) }
       expect(mail).to be_present
+      expect(mail.subject).to eq("Votre dossier n° #{dossier.id} a été modifié par un instructeur (#{procedure.libelle})")
     end
 
     scenario 'the instructeur can cancel without saving' do
