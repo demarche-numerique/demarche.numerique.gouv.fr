@@ -20,7 +20,15 @@ import type {
   SelectProps as AriaSelectProps,
   AutocompleteProps
 } from 'react-aria-components';
-import { useState, useMemo, useRef, useCallback, useId, type Key } from 'react';
+import {
+  useState,
+  useMemo,
+  useRef,
+  useCallback,
+  useId,
+  type Key,
+  type KeyboardEvent
+} from 'react';
 import { flushSync } from 'react-dom';
 import * as s from 'superstruct';
 import { Plural, useLingui } from '@lingui/react/macro';
@@ -99,6 +107,16 @@ function Select<M extends SelectionMode = 'single'>({
     throw new Error('Select must be provided with either items or sections');
   }
 
+  // The search field keeps no virtual focus on the options (see Autocomplete
+  // below), so ArrowDown hands the real focus over to the list.
+  const listBoxRef = useRef<HTMLDivElement>(null);
+  const focusListOnArrowDown = (event: KeyboardEvent) => {
+    if (event.key == 'ArrowDown') {
+      event.preventDefault();
+      listBoxRef.current?.focus();
+    }
+  };
+
   if (!props['aria-label'] && labelId) {
     props['aria-labelledby'] = [ariaLabelledbyPrefix, labelId]
       .filter(Boolean)
@@ -132,16 +150,24 @@ function Select<M extends SelectionMode = 'single'>({
         className="react-aria-Popover select-popover"
         style={{ display: 'flex', flexDirection: 'column' }}
       >
-        <Autocomplete<Item> filter={filter}>
+        {/* Real focus on the options: VoiceOver does not follow the
+            aria-activedescendant of virtual focus. */}
+        <Autocomplete<Item> filter={filter} disableVirtualFocus>
           <SearchField
             autoFocus
+            onKeyDown={focusListOnArrowDown}
             aria-label={labelId ? undefined : t`Rechercher dans la liste`}
             aria-labelledby={labelId}
             placeholder={t`Rechercher`}
             style={{ margin: 4 }}
           />
           <Virtualizer layout={ListLayout}>
-            <SelectListBox items={sections ? undefined : items}>
+            <SelectListBox
+              ref={listBoxRef}
+              // Select focuses its list on open; the search field comes first.
+              autoFocus={false}
+              items={sections ? undefined : items}
+            >
               {sections ? (
                 <Collection items={sections}>
                   {(section) => (
