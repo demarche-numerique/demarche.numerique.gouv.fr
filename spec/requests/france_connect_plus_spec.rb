@@ -54,6 +54,17 @@ describe 'FranceConnect+ authentication', :caching do
       expect(controller.current_user).to eq(user)
       expect(UserSession.where(sessionable: user).sole.login_method).to eq('france_connect_plus')
     end
+
+    it 'signs out of FranceConnect+ too' do
+      authenticate_with_france_connect_plus
+
+      delete destroy_user_session_path
+
+      logout_params = Rack::Utils.parse_query(URI(response.location).query)
+      expect(response.location).to start_with("#{FranceConnectPlusHelpers::ISSUER}/session/end?")
+      # FranceConnect+ finds the session to close from the decrypted id token
+      expect(JSON::JWT.decode(logout_params.fetch('id_token_hint'), FranceConnectPlusHelpers::SIGNING_PUBLIC_KEY)['sub']).to eq('fcp_sub')
+    end
   end
 
   context 'when the identity is linked to no account yet' do

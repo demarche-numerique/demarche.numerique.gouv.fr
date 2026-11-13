@@ -196,8 +196,10 @@ class FranceConnectController < ApplicationController
 
   def service = FranceConnectService
 
-  # Sent back on logout
+  # Sent back on logout, to the provider of the last authentication only
   def keep_id_token(id_token)
+    cookies.delete(FranceConnectController::ID_TOKEN_COOKIE_NAME)
+    cookies.delete(FranceConnectPlusController::ID_TOKEN_COOKIE_NAME)
     cookies.encrypted[self.class::ID_TOKEN_COOKIE_NAME] = { value: id_token, secure: Rails.env.production?, httponly: true }
   end
 
