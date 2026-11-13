@@ -11,6 +11,9 @@ class FranceConnectPlusController < FranceConnectController
     render json: FranceConnectPlusConfig.encryption_jwks
   end
 
+  # Where a procedure that requires FranceConnect+ sends a session opened another way
+  def required; end
+
   private
 
   def service = FranceConnectPlusService

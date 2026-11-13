@@ -1045,6 +1045,105 @@ describe Users::DossiersController, type: :controller do
     end
   end
 
+  describe 'France Connect+ restriction' do
+    let(:user) { create(:user) }
+    let(:procedure) { create(:procedure, :for_individual, :published, france_connect_plus_required: true) }
+    let(:dossier) { create(:dossier, :en_construction, :with_individual, user:, procedure:) }
+
+    before { allow(FranceConnectPlusService).to receive(:enabled?).and_return(true) }
+
+    context 'when the user signed in another way' do
+      before { sign_in(user, login_method: :password) }
+
+      it 'sends them to sign in with FranceConnect+, then back to the dossier' do
+        get :show, params: { id: dossier.id }
+
+        expect(response).to redirect_to(france_connect_plus_required_path)
+        expect(flash[:alert]).to include('FranceConnect+')
+        expect(controller.stored_location_for(:user)).to eq(dossier_path(dossier))
+      end
+
+      it 'keeps every page of the dossier from them' do
+        get :messagerie, params: { id: dossier.id }
+        expect(response).to redirect_to(france_connect_plus_required_path)
+
+        get :demande, params: { id: dossier.id }
+        expect(response).to redirect_to(france_connect_plus_required_path)
+      end
+
+      it 'does not create a dossier' do
+        expect { post :new, params: { procedure_id: procedure.id } }.not_to change { Dossier.count }
+        expect(response).to redirect_to(france_connect_plus_required_path)
+      end
+
+      it 'still lists the dossiers' do
+        get :index
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'when the user signed in another way saves a field' do
+      let(:dossier) { create(:dossier, :brouillon, :with_individual, user:, procedure:) }
+
+      before { sign_in(user, login_method: :password) }
+
+      it 'comes back to the dossier, not to the saving request' do
+        patch :update, params: { id: dossier.id, dossier: { champs_public_attributes: {} } }
+
+        expect(response).to redirect_to(france_connect_plus_required_path)
+        expect(controller.stored_location_for(:user)).to eq(dossier_path(dossier))
+      end
+    end
+
+    context 'when an administrateur previews the procedure' do
+      let(:procedure) { create(:procedure, :for_individual, :published, france_connect_plus_required: true, public_type_de_champs: [{ type: :text }]) }
+      let(:dossier) { create(:dossier, :brouillon, :with_individual, user:, procedure:, for_procedure_preview: true) }
+
+      before { sign_in(user, login_method: :password) }
+
+      it 'lets them fill the preview' do
+        champ = dossier.public_root_champs.first
+        patch :update, params: { id: dossier.id, dossier: { champs_public_attributes: { champ.public_id => { value: 'aperçu' } } } }, format: :turbo_stream
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'when an invite signed in another way' do
+      let(:invited_user) { create(:user) }
+
+      before do
+        create(:invite, dossier:, user: invited_user)
+        sign_in(invited_user, login_method: :france_connect)
+      end
+
+      it 'sends them to sign in with FranceConnect+' do
+        get :show, params: { id: dossier.id }
+        expect(response).to redirect_to(france_connect_plus_required_path)
+      end
+    end
+
+    context 'when the user signed in with FranceConnect+' do
+      before { sign_in(user, login_method: :france_connect_plus) }
+
+      it 'shows the dossier' do
+        get :show, params: { id: dossier.id }
+        expect(response).to have_http_status(:ok)
+      end
+    end
+
+    context 'when FranceConnect+ is switched off' do
+      before do
+        allow(FranceConnectPlusService).to receive(:enabled?).and_return(false)
+        sign_in(user, login_method: :password)
+      end
+
+      it 'keeps the dossier closed' do
+        get :show, params: { id: dossier.id }
+        expect(response).to redirect_to(france_connect_plus_required_path)
+      end
+    end
+  end
+
   describe 'GET #transfer_requests' do
     let(:user) { create(:user, email: 'destinataire@example.com') }
     before { sign_in(user) }

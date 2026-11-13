@@ -623,6 +623,12 @@ class Dossier < ApplicationRecord
     termine? && !user_deleted?
   end
 
+  # The one check of usager access under a procedure that requires FranceConnect+: the
+  # administrateur's preview is no usager's dossier
+  def france_connect_plus_missing?(user_session)
+    !for_procedure_preview? && procedure.france_connect_plus_missing?(user_session)
+  end
+
   def can_be_updated_by_user?
     brouillon? || en_construction?
   end

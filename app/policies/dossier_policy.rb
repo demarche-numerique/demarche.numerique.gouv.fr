@@ -9,8 +9,9 @@ class DossierPolicy < ApplicationPolicy
 
   private
 
+  # The procedure may require FranceConnect+ to show the dossier to its owner or its invites
   def user_accessible?
-    user.owns_or_invite?(record)
+    user.owns_or_invite?(record) && !record.france_connect_plus_missing?(Current.user_session)
   end
 
   def instructeur_accessible?

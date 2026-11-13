@@ -39,10 +39,12 @@ module Users
     end
 
     def transfer_all_dossiers
-      transfer = DossierTransfer.initiate(next_owner_email, current_user.dossiers)
+      # A procedure that requires FranceConnect+ lets its dossiers go from a FranceConnect+ session only
+      dossiers = current_user.dossiers.reject { it.france_connect_plus_missing?(Current.user_session) }
+      transfer = DossierTransfer.initiate(next_owner_email, dossiers)
 
       if transfer.valid?
-        flash.notice = t('.new_transfer', count: current_user.dossiers.count, email: next_owner_email)
+        flash.notice = t('.new_transfer', count: dossiers.size, email: next_owner_email)
       else
         flash.alert = transfer.errors.full_messages
       end

@@ -271,6 +271,20 @@ describe Users::ProfilController, type: :controller do
       expect(flash.notice).to eq("Le transfert de 3 dossiers à #{next_owner} est en cours")
     end
 
+    context 'with a dossier of a procedure that requires FranceConnect+' do
+      let!(:dossiers) do
+        [
+          create(:dossier, user:),
+          create(:dossier, user:, procedure: create(:procedure, :published, france_connect_plus_required: true)),
+        ]
+      end
+
+      it 'leaves it out from a session opened another way' do
+        expect(created_transfer.dossiers).to eq([dossiers.first])
+        expect(flash.notice).to eq("Le transfert d’un dossier à #{next_owner} est en cours")
+      end
+    end
+
     context "next owner has an empty email" do
       let(:next_owner) { '' }
 

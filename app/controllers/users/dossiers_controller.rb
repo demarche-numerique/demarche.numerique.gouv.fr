@@ -7,6 +7,7 @@ module Users
     include TurboChampsConcern
     include LockableConcern
     include ProConnectSessionConcern
+    include FranceConnectPlusRestrictionConcern
     include Dry::Monads[:result]
     include DossierEditConcern
 
@@ -28,6 +29,7 @@ module Users
     before_action :ensure_dossier_can_be_filled, only: [:brouillon, :modifier, :submit_brouillon, :submit_en_construction, :update]
     before_action :ensure_dossier_can_be_viewed, only: [:show]
     before_action :ensure_pro_connect_for_procedure, only: [:brouillon, :modifier, :submit_brouillon, :submit_en_construction, :update]
+    before_action -> { ensure_france_connect_plus_for(dossier) }, except: ACTIONS_ALLOWED_TO_ANY_USER + TRASH_ACTIONS
     before_action :ensure_editing_brouillon, only: [:brouillon]
     before_action :forbid_closed_submission!, only: [:submit_brouillon]
     before_action :ensure_dossier_has_changes, only: [:submit_en_construction], if: :update_with_stream?
@@ -464,6 +466,7 @@ module Users
       end
 
       return if ensure_pro_connect_for_procedure(procedure)
+      return if ensure_france_connect_plus_for(procedure)
 
       dossier = Dossier.new(
         revision: params[:brouillon] ? procedure.draft_revision : procedure.active_revision,
