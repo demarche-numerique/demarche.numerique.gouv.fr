@@ -216,7 +216,6 @@ module SystemHelpers
       sleep 0.1 # wait for any animation to complete
       option.click
       option.send_keys(:escape)
-      option.send_keys(:escape)
     end
   end
 

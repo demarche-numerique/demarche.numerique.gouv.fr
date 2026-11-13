@@ -293,6 +293,62 @@ suite('SingleSelect search', () => {
   });
 });
 
+suite('SingleSelect keyboard navigation', () => {
+  let container: HTMLDivElement;
+  let root: Root;
+
+  beforeEach(async () => {
+    container = document.createElement('div');
+    document.body.appendChild(container);
+    root = createAppRoot(container);
+    root.render(
+      <SingleSelect
+        name="type"
+        value={null}
+        aria-label="Type"
+        items={[
+          { label: 'Entrée', value: 'entree' },
+          { label: 'Plat', value: 'plat' }
+        ]}
+      />
+    );
+    await userEvent.click(page.getByRole('button'));
+  });
+
+  afterEach(() => {
+    root.unmount();
+    container.remove();
+  });
+
+  test('moves the focus from the search field to the options', async () => {
+    await expect.element(page.getByRole('searchbox')).toHaveFocus();
+    expect(
+      page
+        .getByRole('searchbox')
+        .element()
+        .getAttribute('aria-activedescendant')
+    ).toBeNull();
+
+    await userEvent.keyboard('{ArrowDown}');
+    await expect
+      .element(page.getByRole('option', { name: 'Entrée' }))
+      .toHaveFocus();
+
+    await userEvent.keyboard('{ArrowDown}');
+    await expect
+      .element(page.getByRole('option', { name: 'Plat' }))
+      .toHaveFocus();
+  });
+
+  test('selects the focused option with Enter', async () => {
+    await userEvent.keyboard('{ArrowDown}{ArrowDown}{Enter}');
+
+    await expect
+      .element(page.getByRole('button', { name: /Plat/ }))
+      .toBeInTheDocument();
+  });
+});
+
 suite('SingleSelect inside a form', () => {
   let container: HTMLDivElement;
   let root: Root;
