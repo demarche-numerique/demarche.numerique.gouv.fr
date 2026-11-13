@@ -142,7 +142,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
     }
 
     # Champs are automatically saved
-    expect(page).to have_button('Ajouter un champ', disabled: false)
+    expect(page).to have_selector('.type-de-champ', count: 3)
     page.refresh
     expect(page).to have_selector('.type-de-champ', count: 3)
 

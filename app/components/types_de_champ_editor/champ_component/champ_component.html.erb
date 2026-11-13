@@ -491,7 +491,10 @@
     <%= render(Conditions::ChampsConditionsComponent.new(tdc: type_de_champ, upper_tdcs: coordinate.condition_source_coordinates.map(&:type_de_champ), procedure:)) %>
 
     <div class="flex justify-between section footer">
-      <div class="position flex align-center">
+      <div
+        class="position flex align-center"
+        id="<%= dom_id(type_de_champ, :editor_position) %>"
+      >
         <%= (@coordinate.position + 1).to_s %>
       </div>
 
