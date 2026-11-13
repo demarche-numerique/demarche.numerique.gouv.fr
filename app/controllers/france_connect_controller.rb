@@ -13,9 +13,9 @@ class FranceConnectController < ApplicationController
   ID_TOKEN_COOKIE_NAME = :france_connect_id_token
 
   def login
-    return redirect_to new_user_session_path if !FranceConnectService.enabled?
+    return redirect_to new_user_session_path if !service.enabled?
 
-    uri, state, nonce = FranceConnectService.authorization_uri
+    uri, state, nonce = service.authorization_uri
 
     cookies.encrypted[STATE_COOKIE_NAME] = { value: state, secure: Rails.env.production?, httponly: true }
     cookies.encrypted[NONCE_COOKIE_NAME] = { value: nonce, secure: Rails.env.production?, httponly: true }
@@ -29,20 +29,20 @@ class FranceConnectController < ApplicationController
       return redirect_to(new_user_session_path, alert: t('errors.messages.france_connect.connexion'))
     end
 
-    @fci, id_token = FranceConnectService.find_or_retrieve_france_connect_information(params[:code], cookies.encrypted[NONCE_COOKIE_NAME])
+    @fci, id_token = service.find_or_retrieve_france_connect_information(params[:code], cookies.encrypted[NONCE_COOKIE_NAME])
 
     cookies.delete(NONCE_COOKIE_NAME)
 
-    cookies.encrypted[ID_TOKEN_COOKIE_NAME] = { value: id_token, secure: Rails.env.production?, httponly: true }
+    keep_id_token(id_token)
 
     if @fci.user.nil?
       preexisting_unlinked_user = User.find_by(email: sanitize(@fci.email_france_connect))
 
       if preexisting_unlinked_user.nil?
-        @fci.create_merge_token!
+        @fci.create_merge_token!(login_method: service.login_method)
         render :choose_email
       elsif preexisting_unlinked_user.can_france_connect?
-        @fci.create_merge_token!
+        @fci.create_merge_token!(login_method: service.login_method)
         render :merge
       else
         destroy_fci_and_redirect_to_login(@fci)
@@ -50,7 +50,7 @@ class FranceConnectController < ApplicationController
     else
       if @fci.user.can_france_connect?
         @fci.update(updated_at: Time.zone.now)
-        connect_france_connect(@fci.user)
+        connect_france_connect(@fci.user, login_method: service.login_method)
       else
         destroy_fci_and_redirect_to_login(@fci)
       end
@@ -91,10 +91,11 @@ class FranceConnectController < ApplicationController
   end
 
   def merge_using_fc_email
+    login_method = @fci.merge_login_method
     @fci.safely_associate_user!(@fci.email_france_connect)
     @fci.user.update!(email_verified_at: Time.current)
 
-    connect_merged_france_connect(@fci.user)
+    connect_merged_france_connect(@fci.user, login_method:)
   end
 
   def merge_using_password
@@ -105,15 +106,17 @@ class FranceConnectController < ApplicationController
     end
 
     if user.present? && user.valid_for_authentication? { user.valid_password?(params[:password]) }
+      login_method = @fci.merge_login_method
       @fci.safely_update_user(user:)
 
-      connect_merged_france_connect(user)
+      connect_merged_france_connect(user, login_method:)
     else
       flash.alert = t('france_connect.flash.invalid_password')
     end
   end
 
   def merge_using_email_link
+    login_method = @fci.merge_login_method
     user = User.find_by(email: @fci.requested_email)
 
     if user.present? && !user.can_france_connect?
@@ -128,7 +131,7 @@ class FranceConnectController < ApplicationController
 
     @fci.user.update(email_verified_at: Time.zone.now)
 
-    connect_merged_france_connect(@fci.user)
+    connect_merged_france_connect(@fci.user, login_method:)
   end
 
   # TODO mutualiser avec le controller Users::ActivateController
@@ -191,6 +194,15 @@ class FranceConnectController < ApplicationController
 
   private
 
+  def service = FranceConnectService
+
+  # Sent back on logout, to the provider of the last authentication only
+  def keep_id_token(id_token)
+    cookies.delete(FranceConnectController::ID_TOKEN_COOKIE_NAME)
+    cookies.delete(FranceConnectPlusController::ID_TOKEN_COOKIE_NAME)
+    cookies.encrypted[self.class::ID_TOKEN_COOKIE_NAME] = { value: id_token, secure: Rails.env.production?, httponly: true }
+  end
+
   def set_user_by_confirmation_token
     @user = User.find_by(confirmation_token: params[:token])
 
@@ -248,8 +260,8 @@ class FranceConnectController < ApplicationController
     redirect_to pro_connect_path, alert: t('errors.messages.france_connect.forbidden_html', app_name: APPLICATION_NAME)
   end
 
-  def connect_france_connect(user)
-    replace_session(user, login_method: :france_connect)
+  def connect_france_connect(user, login_method:)
+    replace_session(user, login_method:)
 
     user.update_attribute('loged_in_with_france_connect', User.loged_in_with_france_connects.fetch(:particulier))
     user.update_preferred_domain(Current.host)
@@ -258,9 +270,9 @@ class FranceConnectController < ApplicationController
     redirect_to destination_path(current_user)
   end
 
-  def connect_merged_france_connect(user)
+  def connect_merged_france_connect(user, login_method:)
     flash.notice = t('france_connect.flash.connection_done', application_name: Current.application_name)
-    connect_france_connect(user)
+    connect_france_connect(user, login_method:)
   end
 
   def sanitized_email_params
