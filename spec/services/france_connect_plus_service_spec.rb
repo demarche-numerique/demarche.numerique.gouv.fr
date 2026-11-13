@@ -59,5 +59,12 @@ describe FranceConnectPlusService, :caching do
       expect { described_class.find_or_retrieve_france_connect_information('a_code', 'a_nonce') }
         .to raise_error(OpenIDConnect::ResponseObject::IdToken::InvalidToken, 'Invalid ID token: eIDAS level below substantiel')
     end
+
+    it 'refuses user info about another identity than the id token' do
+      stub_france_connect_plus_tokens(id_token: france_connect_plus_id_token(nonce: 'a_nonce'), user_info: user_info.merge(sub: 'another_sub'))
+
+      expect { described_class.find_or_retrieve_france_connect_information('a_code', 'a_nonce') }
+        .to raise_error(OpenIDConnect::ResponseObject::IdToken::InvalidToken, 'Invalid user info: sub does not match the ID token')
+    end
   end
 end
