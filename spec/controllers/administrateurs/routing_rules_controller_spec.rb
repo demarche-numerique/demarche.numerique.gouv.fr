@@ -115,6 +115,8 @@ describe Administrateurs::RoutingRulesController, type: :controller do
   end
 
   describe '#delete_row' do
+    render_views
+
     before do
       gi_2.update(routing_rule: ds_and([ds_eq(champ_value(drop_down_tdc.stable_id), constant('Lyon')), empty_operator(empty, empty)]))
       post :delete_row, params: params.merge(row_index: 1), format: :turbo_stream
@@ -141,6 +143,7 @@ describe Administrateurs::RoutingRulesController, type: :controller do
 
     it do
       expect(gi_2.reload.routing_rule).to eq(ds_eq(champ_value(drop_down_tdc.stable_id), constant('Lyon')))
+      expect(replaced_block(:routing_rule)).to be_present
     end
   end
 
