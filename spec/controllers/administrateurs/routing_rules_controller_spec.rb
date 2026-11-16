@@ -47,6 +47,15 @@ describe Administrateurs::RoutingRulesController, type: :controller do
         expect(gi_2.reload.routing_rule).to eq(ds_eq(champ_value(drop_down_tdc.stable_id), empty))
       end
 
+      context 'rendering' do
+        render_views
+
+        it do
+          expect(replaced_block(:routing)).to be_present
+          expect(replaced_block(:routing).at_css("##{dom_id(gi_2, :routing_rule)}")).to be_present
+        end
+      end
+
       context '#update value' do
         let(:value) { constant('Lyon').to_json }
 
