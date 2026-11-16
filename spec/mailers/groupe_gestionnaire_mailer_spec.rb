@@ -28,7 +28,8 @@ RSpec.describe GroupeGestionnaireMailer, type: :mailer do
     before { gestionnaires_to_add.each { groupe_gestionnaire.add_gestionnaire(_1) } }
 
     it do
-      expect(subject.body).to include('Vous venez d’être nommé gestionnaire du groupe gestionnaire')
+      expect(subject.body).to include("Vous venez d’être nommé gestionnaire du groupe gestionnaire #{groupe_gestionnaire.name}")
+      expect(subject.body).to include("par « #{current_super_admin_email} »")
       expect(subject.bcc).to match_array(['int3@g.fr', 'int4@g.fr'])
     end
   end
