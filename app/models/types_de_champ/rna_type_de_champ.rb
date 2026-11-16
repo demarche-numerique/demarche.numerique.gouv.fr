@@ -8,7 +8,7 @@ class TypesDeChamp::RNATypeDeChamp < TypeDeChamp
 
   include AddressableColumnConcern
 
-  def estimated_fill_duration(revision)
+  def estimated_fill_duration
     FILL_DURATION_MEDIUM
   end
 

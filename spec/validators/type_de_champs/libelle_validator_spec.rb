@@ -37,7 +37,7 @@ RSpec.describe TypeDeChamps::LibelleValidator do
   context 'with a champ inside a repetition' do
     let(:types) { [{ type: :repetition, children: [{ type: :text }] }] }
     let(:repetition) { procedure.active_revision.public_root_type_de_champs.find(&:repetition?) }
-    let(:child) { procedure.draft_revision.children_of(repetition).first }
+    let(:child) { procedure.draft_revision.type_de_champ(repetition.stable_id).flat_children.first }
 
     context 'when the child libelle is empty' do
       before { child.update(libelle: '') }

@@ -19,7 +19,7 @@ class TypesDeChamp::TextareaTypeDeChamp < TypesDeChamp::TextTypeDeChamp
   def customizable? = false
   def character_limit? = character_limit.present?
 
-  def estimated_fill_duration(revision)
+  def estimated_fill_duration
     FILL_DURATION_MEDIUM
   end
 

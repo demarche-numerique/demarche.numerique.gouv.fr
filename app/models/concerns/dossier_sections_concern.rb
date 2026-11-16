@@ -11,14 +11,14 @@ module DossierSectionsConcern
       when :private
         hash[parent] = revision.private_root_type_de_champs.filter(&:header_section?)
       else
-        hash[parent] = revision.children_of(parent).filter(&:header_section?)
+        hash[parent] = parent.flat_children.filter(&:header_section?)
       end
     end
-    @sections[revision.parent_of(type_de_champ) || (type_de_champ.public? ? :public : :private)]
+    @sections[type_de_champ.enclosing_repetition || (type_de_champ.public? ? :public : :private)]
   end
 
   def auto_numbering_section_headers_for?(type_de_champ)
-    return false if type_de_champ.child?(revision)
+    return false if type_de_champ.in_repetition?
 
     sections_for(type_de_champ)&.none? { _1.libelle =~ /^\d/ }
   end

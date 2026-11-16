@@ -130,10 +130,9 @@ class TypeDeChamp < ApplicationRecord
   before_save :remove_attachment, if: -> { type_champ_changed? }
   before_save :clean_referentiel
 
-  def libelle_with_parent(revision)
-    if child?(revision)
-      parent_type_de_champ = revision.parent_of(self)
-      "#{parent_type_de_champ.libelle} - #{libelle}"
+  def libelle_with_parent
+    if (repetition = enclosing_repetition)
+      "#{repetition.libelle} - #{libelle}"
     else
       libelle
     end
@@ -194,10 +193,6 @@ class TypeDeChamp < ApplicationRecord
   def api_particulier? = false
 
   def any_drop_down_list? = false
-
-  def child?(revision)
-    revision.coordinate_for(self)&.child?
-  end
 
   def options_for_select = nil
 

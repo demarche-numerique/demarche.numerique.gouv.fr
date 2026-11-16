@@ -35,7 +35,7 @@ RSpec.describe TypesDeChamp::PrefillRepetitionTypeDeChamp, type: :model do
     let(:repetition_tdc) { procedure_with_dropdown.public_draft_type_de_champs.find(&:repetition?) }
 
     before do
-      sub_tdc = procedure_with_dropdown.active_revision.children_of(repetition_tdc).first
+      sub_tdc = procedure_with_dropdown.active_revision.type_de_champ(repetition_tdc.stable_id).flat_children.first
       sub_tdc.update!(drop_down_options: [xss_payload, "safe"])
     end
 

@@ -183,7 +183,7 @@ describe TypeDeChampTree do
     context 'with a stable id held twice' do
       let(:public_type_de_champs) { [{ libelle: 'a' }, { type: :repetition, libelle: 'r', children: [{ libelle: 'r1' }, { libelle: 'r2' }] }, { libelle: 'b' }] }
       let(:repetition_coordinate) { revision.revision_type_de_champs.find(&:repetition?) }
-      let(:r1) { revision.children_of(repetition_coordinate.type_de_champ).first }
+      let(:r1) { revision.type_de_champ(repetition_coordinate.type_de_champ.stable_id).flat_children.first }
 
       def copy_of(type_de_champ, libelle: type_de_champ.libelle)
         create(:type_de_champ_text, no_coordinate: true, libelle:).tap { it.update_columns(stable_id: type_de_champ.stable_id) }
@@ -214,7 +214,7 @@ describe TypeDeChampTree do
         before { lay(edited, position: 0, parent: repetition_coordinate) }
 
         it 'keeps the latest type de champ' do
-          expect(tree.public_children.second.children.map(&:type_de_champ_id)).to eq([edited.id, revision.children_of(repetition_coordinate.type_de_champ).last.id])
+          expect(tree.public_children.second.children.map(&:type_de_champ_id)).to eq([edited.id, revision.type_de_champ(repetition_coordinate.type_de_champ.stable_id).flat_children.last.id])
         end
       end
 

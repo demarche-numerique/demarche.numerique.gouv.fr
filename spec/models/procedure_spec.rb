@@ -578,7 +578,7 @@ describe Procedure do
           let(:public_type_de_champs) { [{ type: :repetition, libelle: 'Bloc', children: }] }
           let(:private_type_de_champs) { [] }
           let(:repetition) { procedure.draft_revision.type_de_champs.find(&:repetition?) }
-          let(:nested_tdc) { procedure.draft_revision.children_of(repetition).first }
+          let(:nested_tdc) { procedure.draft_revision.type_de_champ(repetition.stable_id).flat_children.first }
 
           context 'with invalid dropdown' do
             let(:children) { [{ type: :multiple_drop_down_list, libelle: 'Choix imbriqué' }] }

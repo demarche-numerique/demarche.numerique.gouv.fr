@@ -78,7 +78,7 @@ module DossierChampsConcern
     revision
       .type_de_champs
       .filter { _1.stable_id.in?(stable_ids) }
-      .filter { !_1.child?(revision) }
+      .reject(&:in_repetition?)
       .map { _1.repetition? ? project_champ(_1) : champ_for_update(_1, updated_by: nil) }
   end
 
@@ -187,7 +187,7 @@ module DossierChampsConcern
   # référentiel : leurs cibles, lignes de répétition comprises, suffisent à les reconnaître.
   def discard_instructeur_buffer_proposal!(type_de_champs)
     target_stable_ids = type_de_champs.map(&:stable_id)
-    repetition_stable_ids = type_de_champs.filter_map { revision.parent_of(it)&.stable_id }
+    repetition_stable_ids = type_de_champs.filter_map { it.enclosing_repetition&.stable_id }
     buffer = champ_data.filter(&:instructeur_buffer_stream?)
     row_ids = buffer.filter { it.row? && it.stable_id.in?(repetition_stable_ids) }.map(&:row_id)
     discarded = buffer.filter { it.stable_id.in?(target_stable_ids) || it.row_id.in?(row_ids) }
@@ -455,7 +455,7 @@ module DossierChampsConcern
   end
 
   def check_valid_row_id_on_read?(type_de_champ, row_id)
-    if type_de_champ.child?(revision)
+    if revision.type_de_champ(type_de_champ.stable_id)&.in_repetition?
       if row_id.blank?
         raise "type_de_champ #{type_de_champ.stable_id} in revision #{revision_id} must have a row_id because it is part of a repetition"
       end

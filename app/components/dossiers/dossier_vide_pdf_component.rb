@@ -232,7 +232,7 @@ class Dossiers::DossierVidePdfComponent < ApplicationComponent
   end
 
   def repetition(type_de_champ)
-    children = revision.children_of(type_de_champ)
+    children = type_de_champ.flat_children
     occurrences = Array.new(REPETITION_OCCURRENCES) do
       safe_join(children.map { |child| tag.section(render_champ(child), class: champ_css_class(child)) })
     end
