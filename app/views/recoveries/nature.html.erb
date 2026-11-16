@@ -1,0 +1,28 @@
+<% content_for(:title) { t('.title') } %>
+
+<div class="fr-container fr-my-6w">
+  <h1 class="fr-h1"><%= t('recoveries.heading') %></h1>
+
+  <h2 class="fr-h2"><%= t('.title') %></h2>
+
+  <%= form_with data: { controller: 'enable-submit-if-checked' } do |f| %>
+    <% buttons = [
+        { label: t('.collectivite_label'), value: 'collectivite', hint: t('.collectivite_hint') },
+        { label: t('.autre_label'), value: 'autre' },
+      ] %>
+
+    <div data-action="click->enable-submit-if-checked#click">
+      <%= render Dsfr::RadioButtonListComponent.new(form: f, target: :nature, buttons: buttons) do %>
+        <%= t('.legend') %>
+      <% end %>
+
+      <button
+        class="fr-btn"
+        disabled
+        data-enable-submit-if-checked-target="submit"
+      >
+        <%= t('recoveries.continue') %>
+      </button>
+    </div>
+  <% end %>
+</div>

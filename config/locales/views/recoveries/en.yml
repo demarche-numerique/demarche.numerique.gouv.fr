@@ -1,0 +1,10 @@
+en:
+  recoveries:
+    heading: Recover applications
+    continue: Continue
+    nature:
+      title: Type of applications
+      legend: What type of applications do you want to recover?
+      collectivite_label: applications concerning a local authority
+      collectivite_hint: (DETR, other grant requests, state property consultation, ...)
+      autre_label: other

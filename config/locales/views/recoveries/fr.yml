@@ -1,0 +1,10 @@
+fr:
+  recoveries:
+    heading: Récupération de dossiers
+    continue: Continuer
+    nature:
+      title: Nature des dossiers
+      legend: Quel type de dossier souhaitez-vous récupérer ?
+      collectivite_label: des dossiers concernant une collectivité territoriale
+      collectivite_hint: (DETR, autres demandes de subvention, consultation du domaine, ...)
+      autre_label: autre

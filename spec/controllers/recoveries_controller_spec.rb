@@ -4,9 +4,17 @@ describe RecoveriesController, type: :controller do
   include Dry::Monads[:result]
 
   describe 'GET #nature' do
+    render_views
+
     subject { get :nature }
 
-    it { is_expected.to have_http_status(:success) }
+    it do
+      subject
+      expect(response.body).to have_css('h2', text: 'Nature des dossiers')
+      expect(response.body).to have_field('des dossiers concernant une collectivité territoriale', type: 'radio')
+      expect(response.body).to have_field('autre', type: 'radio', exact: true)
+      expect(response.body).to have_button('Continuer', disabled: true)
+    end
   end
 
   describe 'POST #post_nature' do
