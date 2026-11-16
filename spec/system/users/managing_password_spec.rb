@@ -22,6 +22,7 @@ describe 'Managing password:', js: true do
 
       click_reset_password_link_for user.email
       expect(page).to have_content 'Changement de mot de passe'
+      expect(page).to have_text('Ce mot de passe concerne uniquement votre compte local. Il sera utilisé lors de vos connexions avec votre adresse électronique, et non via FranceConnect.')
 
       fill_in 'user_password', with: new_password
       fill_in 'user_password_confirmation', with: new_password
@@ -89,6 +90,7 @@ describe 'Managing password:', js: true do
       click_reset_password_link_for super_admin.email
 
       expect(page).to have_content 'Changement de mot de passe'
+      expect(page).not_to have_text('Ce mot de passe concerne uniquement votre compte local.')
 
       fill_in 'super_admin_password', with: weak_password
       fill_in 'super_admin_password_confirmation', with: weak_password
@@ -115,6 +117,7 @@ describe 'Managing password:', js: true do
     scenario 'a signed-in user changes their password' do
       visit profil_path
       click_on 'Modifier mon mot de passe'
+      expect(page).to have_text('Ce mot de passe concerne uniquement votre compte local. Il sera utilisé lors de vos connexions avec votre adresse électronique, et non via FranceConnect.')
 
       fill_in 'Mot de passe actuel', with: users.default_password
       fill_in 'user_password', with: weak_password

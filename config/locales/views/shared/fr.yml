@@ -18,9 +18,12 @@ fr:
         commencer_title: "Vous êtes un particulier ?"
         commencer_pc_title: "Vous êtes un professionnel ?"
         login_button: "S’identifier avec"
+        explanation: "FranceConnect est la solution proposée par l’État pour sécuriser et simplifier la connexion à vos services en ligne."
+        plus_explanation: "FranceConnect+ est la solution proposée par l’État pour renforcer la sécurité de vos services en ligne les plus sensibles."
         help_link: "Qu’est-ce que FranceConnect ?"
         plus_help_link: "Qu’est-ce que FranceConnect+ ?"
         separator: ou
+      local_password_notice: "Ce mot de passe concerne uniquement votre compte local. Il sera utilisé lors de vos connexions avec votre adresse électronique, et non via FranceConnect."
       account:
         account_title: "Se connecter avec son compte %{application_name}"
         already_user_question: "Vous avez déjà un compte ?"
