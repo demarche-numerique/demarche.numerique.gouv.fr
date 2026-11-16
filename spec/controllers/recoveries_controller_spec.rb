@@ -34,9 +34,40 @@ describe RecoveriesController, type: :controller do
   end
 
   describe 'Get #support' do
-    subject { get :support }
+    render_views
+
+    subject { get :support, params: { error: } }
+
+    let(:error) { nil }
 
     it { is_expected.to have_http_status(:success) }
+
+    context 'when the nature is not supported' do
+      let(:error) { 'other_nature' }
+
+      it do
+        subject
+        expect(response.body).to have_text('Votre situation nécessite un traitement particulier.')
+        expect(response.body).to have_link('Contactez le support', href: /\Amailto:/)
+      end
+    end
+
+    context 'when pro connect must be used' do
+      let(:error) { 'must_use_pro_connect' }
+
+      it { expect(subject.body).to have_text('Vous devez utiliser le portail ProConnect pour récupérer vos dossiers.', normalize_ws: true) }
+    end
+
+    context 'when there is no dossier' do
+      let(:error) { 'no_dossier' }
+
+      it do
+        subject
+        expect(response.body).to have_text('que vous avez renseignée nʼa pas de dossier concernant votre organisation.', normalize_ws: true)
+        expect(response.body).to have_link('Essayer avec une autre adresse électronique', href: identification_recovery_path)
+        expect(response.body).to have_link('Contactez le support', href: /\Amailto:/)
+      end
+    end
   end
 
   describe 'ensure_pro_connect_is_used' do

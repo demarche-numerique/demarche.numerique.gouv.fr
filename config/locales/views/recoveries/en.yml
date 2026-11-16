@@ -16,3 +16,9 @@ en:
     selection:
       title: Select procedures
       legend: Select the procedures you want to recover.
+    support:
+      title: Contact support
+      special_case: Your situation requires special handling.
+      must_use_pro_connect: You must use the ProConnect portal to recover your applications.
+      no_dossier: The email address “%{email}” you entered has no application concerning your organisation.
+      try_another_email: Try another email address

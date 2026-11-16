@@ -1,0 +1,29 @@
+<% content_for(:title) { t('.title') } %>
+
+<div class="fr-container fr-my-6w">
+  <h1 class="fr-h1"><%= t('recoveries.heading') %></h1>
+
+  <% case params[:error] %>
+  <% when 'other_nature', 'not_collectivite_territoriale' %>
+    <p><%= t('.special_case') %></p>
+    <%= mail_to(Current.contact_email, t('.title'), subject: 'Récupération de dossiers', class: 'fr-btn') %>
+  <% when 'must_use_pro_connect' %>
+    <p>
+      <%= t('.must_use_pro_connect') %>
+    </p>
+    <%= render ProConnectLoginComponent.new %>
+  <% when 'no_dossier' %>
+    <p>
+      <%= t('.no_dossier', email: cookies[:retrieve_email]) %>
+    </p>
+    <ul class="fr-btns-group fr-btns-group--inline">
+      <li>
+        <%= link_to t('.try_another_email'), identification_recovery_path, class: 'fr-btn' %>
+      </li>
+
+      <li>
+        <%= mail_to(Current.contact_email, t('.title'), subject: 'Récupération de dossiers', class: 'fr-btn fr-btn--secondary') %>
+      </li>
+    </ul>
+  <% end %>
+</div>
