@@ -113,10 +113,9 @@ class ProcedureExportService
 
   def champs_repetables_options(format:)
     procedure
-      .all_revisions_type_de_champs
-      .repetition
+      .repetition_type_de_champs_for_procedure_export
       .filter_map do |type_de_champ_repetition|
-        type_de_champs = procedure.all_revisions_type_de_champs(parent: type_de_champ_repetition).to_a
+        type_de_champs = procedure.repetition_children_for_procedure_export(type_de_champ_repetition)
         rows = dossiers.flat_map { RepetitionRow.for(it, type_de_champ_repetition) }
 
         if type_de_champs.present? && rows.present?
