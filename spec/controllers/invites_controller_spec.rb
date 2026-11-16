@@ -4,6 +4,25 @@ describe InvitesController, type: :controller do
   let(:dossier) { dossiers.en_construction }
   let(:email) { 'plop@octo.com' }
 
+  describe 'under a procedure that requires FranceConnect+' do
+    let(:owner) { create(:user) }
+    let(:procedure) { create(:procedure, :published, france_connect_plus_required: true) }
+    let(:dossier) { create(:dossier, :en_construction, user: owner, procedure:) }
+
+    it 'invites no one from a session opened another way' do
+      sign_in(owner, login_method: :password)
+
+      expect { post :create, params: { dossier_id: dossier.id, invite_email: email } }.not_to change(Invite, :count)
+      expect(response).to redirect_to(france_connect_plus_required_path)
+    end
+
+    it 'invites from a FranceConnect+ session' do
+      sign_in(owner, login_method: :france_connect_plus)
+
+      expect { post :create, params: { dossier_id: dossier.id, invite_email: email } }.to change(Invite, :count).by(1)
+    end
+  end
+
   describe '#POST create' do
     let(:invite) { Invite.last }
 
