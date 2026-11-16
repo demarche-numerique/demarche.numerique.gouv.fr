@@ -208,12 +208,6 @@ class TypeDeChamp < ApplicationRecord
     previous_header_section.header_section_level_value.to_i
   end
 
-  def current_section_level(revision)
-    tdcs = private? ? revision.private_root_type_de_champs.to_a : revision.public_root_type_de_champs.to_a
-
-    previous_section_level(tdcs.take(tdcs.find_index(self)))
-  end
-
   def to_typed_id
     GraphQL::Schema::UniqueWithinType.encode('Champ', stable_id)
   end
@@ -563,6 +557,14 @@ class TypeDeChamp < ApplicationRecord
 
   def enclosing_section
     ancestors.reverse_each.find(&:header_section?)
+  end
+
+  # How deep in the header sections it sits, from 0 outside any section, a
+  # header section counting itself: an h1 at the root is at level 1, and so is
+  # what it holds. The header sections of a repetition sit under the ones
+  # holding it: the heading outline of the whole form, up to 6.
+  def level
+    ancestors.count(&:header_section?) + (header_section? ? 1 : 0)
   end
 
   private
