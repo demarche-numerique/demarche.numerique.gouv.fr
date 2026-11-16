@@ -17,9 +17,8 @@ jobs:
       uses: 13rac1/block-fixup-merge-action@v2.0.0
 
   verify-signatures:
-    # Verified on the pull request. Skipped in the queue, where GitHub adds its
-    # own merge commit that no authorized key signs; skipped counts as success.
-    if: github.event_name == 'pull_request'
+    # Also runs in the queue: a rebase can move commits out of the range checked
+    # on the pull request. The queue's merge commit is signed by web-flow.
     runs-on: ubuntu-24.04
 
     steps:
@@ -31,7 +30,7 @@ jobs:
     - name: Verify commits are signed by an authorized key
       shell: bash
       env:
-        BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.merge_group.base_sha }}
       run: |
         export GNUPGHOME=$(mktemp -d)
         # Keys come from the base branch: a PR cannot authorize its own key
