@@ -153,11 +153,11 @@ module Types
     end
 
     def champ_descriptors
-      object.active_revision.public_revision_type_de_champs
+      object.active_revision.public_root_type_de_champs
     end
 
     def annotation_descriptors
-      object.active_revision.private_revision_type_de_champs
+      object.active_revision.private_root_type_de_champs
     end
 
     def self.authorized?(object, context)
