@@ -32,6 +32,12 @@ describe BrevoBlockableConcern do
 
       expect(user.reload.brevo_last_blocked_at).to be_nil
     end
+
+    it 'ignores a soft bounce without reporting it' do
+      expect(Sentry).not_to receive(:capture_message)
+
+      User.record_brevo_event(email: user.email, event: 'soft_bounce', at: earlier)
+    end
   end
 
   describe '#record_brevo_block!' do
