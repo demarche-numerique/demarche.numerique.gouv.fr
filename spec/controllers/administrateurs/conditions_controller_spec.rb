@@ -108,6 +108,8 @@ describe Administrateurs::ConditionsController, type: :controller do
     end
 
     describe '#destroy' do
+      render_views
+
       before do
         second_tdc.update(condition: empty_operator(empty, empty))
         delete :destroy, params: default_params, format: :turbo_stream
@@ -117,6 +119,15 @@ describe Administrateurs::ConditionsController, type: :controller do
         expect(third_tdc.reload.condition).to eq(nil)
         expect(assigns(:coordinate)).to eq(procedure.draft_revision.coordinate_for(third_tdc))
         expect(assigns(:upper_tdcs)).to eq([first_tdc, second_tdc])
+        expect(replaced_condition_block).to be_present
+      end
+
+      context 'on the first champ, which has no champ to depend on' do
+        let(:default_params) { super().merge(stable_id: first_tdc.stable_id) }
+
+        it 'removes the condition block' do
+          expect(response.body).to have_css("turbo-stream[action='remove'][target='#{dom_id(first_tdc, :condition)}']")
+        end
       end
     end
 
