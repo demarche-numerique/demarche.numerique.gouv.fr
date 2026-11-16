@@ -1,0 +1,5 @@
+en:
+  france_connect_plus:
+    required:
+      title: "FranceConnect+ sign in required"
+      explanation: "This procedure requires signing in with FranceConnect+, which guarantees a stronger identity check. Sign in with FranceConnect+ to access your applications: you will then come back to this page."

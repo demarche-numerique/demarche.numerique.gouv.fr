@@ -35,6 +35,14 @@ describe 'FranceConnect+ authentication', :caching do
     expect(Rack::Utils.parse_query(URI(response.location).query)).to include('acr_values' => 'eidas2')
   end
 
+  it 'explains why a procedure sends here' do
+    get '/france_connect_plus/required'
+
+    expect(response).to have_http_status(:ok)
+    expect(response.body).to include('Connexion FranceConnect+ requise')
+    expect(response.body).to include('href="/france_connect_plus"')
+  end
+
   it 'stays closed until enabled, configured or not' do
     ENV['FRANCE_CONNECT_PLUS_ENABLED'] = 'disabled'
 
