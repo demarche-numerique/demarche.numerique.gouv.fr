@@ -2,6 +2,7 @@
 
 describe Administrateurs::RoutingRulesController, type: :controller do
   include Logic
+  include ActionView::RecordIdentifier
 
   before { sign_in(procedure.administrateurs.first.user) }
 
@@ -13,6 +14,11 @@ describe Administrateurs::RoutingRulesController, type: :controller do
       procedure_id: procedure.id,
       groupe_instructeur_id: gi_2.id,
     }
+  end
+
+  def replaced_block(key)
+    target = dom_id(gi_2, key)
+    Nokogiri::HTML5.fragment(response.body).at_css("turbo-stream[action='replace'][target='#{target}'] template ##{target}")
   end
 
   describe '#update' do
@@ -95,6 +101,8 @@ describe Administrateurs::RoutingRulesController, type: :controller do
   end
 
   describe '#add_row' do
+    render_views
+
     before do
       gi_2.update(routing_rule: ds_eq(champ_value(drop_down_tdc.stable_id), empty))
       post :add_row, params: default_params, format: :turbo_stream
@@ -102,6 +110,7 @@ describe Administrateurs::RoutingRulesController, type: :controller do
 
     it do
       expect(gi_2.reload.routing_rule).to eq(ds_and([ds_eq(champ_value(drop_down_tdc.stable_id), empty), empty_operator(empty, empty)]))
+      expect(replaced_block(:routing_rule)).to be_present
     end
   end
 
