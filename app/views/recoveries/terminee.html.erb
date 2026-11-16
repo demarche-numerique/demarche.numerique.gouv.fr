@@ -1,0 +1,10 @@
+<% content_for(:title) { t('.title') } %>
+
+<div class="fr-container fr-my-6w">
+  <h1 class="fr-h1"><%= t('recoveries.heading') %></h1>
+
+  <h2 class="fr-h2"><%= t('.title') %></h2>
+
+  <p><%= t('.reassigned') %></p>
+  <%= link_to t('.see_dossiers'), dossiers_path, class: "fr-btn" %>
+</div>

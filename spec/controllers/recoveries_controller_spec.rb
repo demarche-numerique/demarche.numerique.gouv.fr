@@ -192,5 +192,17 @@ describe RecoveriesController, type: :controller do
 
       it { is_expected.to redirect_to(terminee_recovery_path) }
     end
+
+    describe 'GET #terminee' do
+      render_views
+
+      subject { get :terminee }
+
+      it do
+        subject
+        expect(response.body).to have_css('h2', text: 'Récupération terminée')
+        expect(response.body).to have_link('Voir mes dossiers', href: dossiers_path)
+      end
+    end
   end
 end

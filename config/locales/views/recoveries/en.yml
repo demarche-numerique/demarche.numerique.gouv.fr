@@ -22,3 +22,7 @@ en:
       must_use_pro_connect: You must use the ProConnect portal to recover your applications.
       no_dossier: The email address “%{email}” you entered has no application concerning your organisation.
       try_another_email: Try another email address
+    terminee:
+      title: Recovery complete
+      reassigned: The applications have been reassigned to you.
+      see_dossiers: See my applications

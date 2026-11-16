@@ -22,3 +22,7 @@ fr:
       must_use_pro_connect: Vous devez utiliser le portail ProConnect pour récupérer vos dossiers.
       no_dossier: Lʼadresse électronique « %{email} » que vous avez renseignée nʼa pas de dossier concernant votre organisation.
       try_another_email: Essayer avec une autre adresse électronique
+    terminee:
+      title: Récupération terminée
+      reassigned: Les dossiers vous ont été réaffectés.
+      see_dossiers: Voir mes dossiers
