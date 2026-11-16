@@ -24,6 +24,8 @@ class AccountDropdownComponent < ViewComponent::Base
     current_user&.france_connected_with_one_identity?
   end
 
+  def france_connected_plus? = Current.user_session&.via_france_connect_plus?
+
   def show_profile_badge?
     nav_bar_profile != :guest
   end

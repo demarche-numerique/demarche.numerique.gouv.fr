@@ -26,7 +26,7 @@
         <%= hidden_field_tag :with_particulier, true %>
       <% end %>
 
-      <%= render partial: 'shared/france_connect_login', locals: { url: france_connect_path } %>
+      <%= render partial: 'shared/france_connect_login', locals: { url: france_connect_path, plus_url: france_connect_plus_path } %>
 
       <% if invite_context || params[:with_proconnect] %>
         <%= render ProConnectLoginComponent.new %>

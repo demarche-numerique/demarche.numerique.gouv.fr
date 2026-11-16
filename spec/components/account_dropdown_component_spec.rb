@@ -83,6 +83,17 @@ describe AccountDropdownComponent, type: :component do
 
     it 'shows FranceConnect badge' do
       expect(subject).to have_text('via FranceConnect')
+      expect(subject).not_to have_text('via FranceConnect+')
+    end
+
+    context 'with FranceConnect+' do
+      before do
+        allow(Current).to receive(:user_session).and_return(instance_double(UserSession, via_france_connect_plus?: true))
+      end
+
+      it 'shows FranceConnect+ badge' do
+        expect(subject).to have_text('via FranceConnect+')
+      end
     end
   end
 
