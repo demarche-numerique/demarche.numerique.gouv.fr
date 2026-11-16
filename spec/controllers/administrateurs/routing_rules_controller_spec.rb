@@ -144,6 +144,31 @@ describe Administrateurs::RoutingRulesController, type: :controller do
     end
   end
 
+  describe '#change_targeted_champ' do
+    render_views
+
+    before { patch :change_targeted_champ, params: params, format: :turbo_stream }
+
+    let(:params) { default_params.merge(groupe_instructeur: { condition_form: condition_form }, row_index: 0) }
+
+    let(:condition_form) do
+      {
+        rows: [
+          {
+            targeted_champ: champ_value(drop_down_tdc.stable_id).to_json,
+            operator_name: Logic::NotEq.name,
+            value: empty.to_json,
+          },
+        ],
+      }
+    end
+
+    it do
+      expect(gi_2.reload.routing_rule).to eq(ds_eq(champ_value(drop_down_tdc.stable_id), constant('Paris')))
+      expect(replaced_block(:routing_rule)).to be_present
+    end
+  end
+
   describe "#update_defaut_groupe_instructeur" do
     let(:procedure) { create(:procedure) }
     let(:gi_2) { create(:groupe_instructeur, label: 'groupe 2', procedure: procedure) }
