@@ -18,6 +18,8 @@ fr:
         commencer_title: "Vous êtes un particulier ?"
         commencer_pc_title: "Vous êtes un professionnel ?"
         login_button: "S’identifier avec"
+        explanation: "FranceConnect est la solution proposée par l’État pour sécuriser et simplifier la connexion à vos services en ligne."
+        plus_explanation: "FranceConnect+ est la solution proposée par l’État pour renforcer la sécurité de vos services en ligne les plus sensibles."
         help_link: "Qu’est-ce que FranceConnect ?"
         plus_help_link: "Qu’est-ce que FranceConnect+ ?"
         separator: ou

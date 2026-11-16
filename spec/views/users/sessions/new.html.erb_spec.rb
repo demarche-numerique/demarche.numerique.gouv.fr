@@ -27,8 +27,9 @@ describe 'users/sessions/new', type: :view do
       expect(rendered).to have_button('Se connecter')
     end
 
-    it 'renders FranceConnect login button' do
+    it 'renders FranceConnect login button, with the wording FranceConnect requires above it' do
       expect(rendered).to have_css('.france-connect-login')
+      expect(rendered).to have_text('FranceConnect est la solution proposée par l’État pour sécuriser et simplifier la connexion à vos services en ligne.')
     end
 
     it 'does not render FranceConnect+ login button by default' do
@@ -59,6 +60,10 @@ describe 'users/sessions/new', type: :view do
     it 'renders the FranceConnect+ login button below the FranceConnect one' do
       expect(rendered).to have_link('S’identifier avec FranceConnect', href: '/france_connect_plus', class: 'fr-connect--plus')
       expect(Capybara.string(rendered).all('a.fr-connect').map { it[:href] }).to eq(['/france_connect', '/france_connect_plus'])
+    end
+
+    it 'puts the wording FranceConnect+ requires above its button' do
+      expect(rendered).to have_text('FranceConnect+ est la solution proposée par l’État pour renforcer la sécurité de vos services en ligne les plus sensibles.')
     end
   end
 
