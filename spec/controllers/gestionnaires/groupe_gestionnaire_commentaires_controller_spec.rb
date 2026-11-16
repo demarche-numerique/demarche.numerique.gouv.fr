@@ -160,6 +160,8 @@ describe Gestionnaires::GroupeGestionnaireCommentairesController, type: :control
   end
 
   describe "#destroy" do
+    render_views
+
     before do
       sign_in(gestionnaire.user)
     end
@@ -181,7 +183,9 @@ describe Gestionnaires::GroupeGestionnaireCommentairesController, type: :control
       it do
         expect(groupe_gestionnaire.reload.commentaire_groupe_gestionnaires.count).to eq(2)
         expect(commentaire_to_delete.reload.discarded?).to eq(true)
-        expect(flash.notice).to eq("Votre message a été supprimé")
+        expect(response.body).to include("Votre message a été supprimé")
+        expect(response.body).to have_css("turbo-stream[action='update'][target='#{ActionView::RecordIdentifier.dom_id(commentaire_to_delete)}']")
+        expect(response.body).to include("(Message supprimé)")
       end
     end
 
@@ -193,7 +197,8 @@ describe Gestionnaires::GroupeGestionnaireCommentairesController, type: :control
       it do
         expect(groupe_gestionnaire.reload.commentaire_groupe_gestionnaires.count).to eq(1)
         expect(commentaire_to_delete.reload.discarded?).to eq(false)
-        expect(flash.alert).to eq("Impossible de supprimer le message, celui-ci ne vous appartient pas")
+        expect(response.body).to include("Impossible de supprimer le message, celui-ci ne vous appartient pas")
+        expect(response.body).not_to have_css("turbo-stream[action='update'][target='#{ActionView::RecordIdentifier.dom_id(commentaire_to_delete)}']")
       end
     end
   end
