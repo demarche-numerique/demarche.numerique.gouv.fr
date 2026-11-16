@@ -101,9 +101,17 @@ describe RecoveriesController, type: :controller do
     end
 
     describe 'GET #identification' do
+      render_views
+
       subject { get :identification }
 
-      it { is_expected.to have_http_status(:success) }
+      it do
+        subject
+        expect(response.body).to have_css('h2', text: 'Identification du propriétaire des dossiers')
+        expect(response.body).to have_css('p', text: 'Votre organisation est « name » identifiée par le SIRET 12345678901234', normalize_ws: true)
+        expect(response.body).to have_field('Adresse électronique du propriétaire des dossiers', type: 'email')
+        expect(response.body).to have_button('Continuer')
+      end
     end
 
     describe 'POST #post_identification' do

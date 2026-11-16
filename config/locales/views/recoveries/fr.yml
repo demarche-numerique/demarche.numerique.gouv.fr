@@ -8,3 +8,8 @@ fr:
       collectivite_label: des dossiers concernant une collectivité territoriale
       collectivite_hint: (DETR, autres demandes de subvention, consultation du domaine, ...)
       autre_label: autre
+    identification:
+      title: Identification du propriétaire
+      subtitle: Identification du propriétaire des dossiers
+      organisation: Votre organisation est « %{name} » identifiée par le SIRET %{siret}
+      email_label: Adresse électronique du propriétaire des dossiers

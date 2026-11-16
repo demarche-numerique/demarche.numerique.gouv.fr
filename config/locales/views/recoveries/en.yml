@@ -8,3 +8,8 @@ en:
       collectivite_label: applications concerning a local authority
       collectivite_hint: (DETR, other grant requests, state property consultation, ...)
       autre_label: other
+    identification:
+      title: Owner identification
+      subtitle: Identification of the applications’ owner
+      organisation: Your organisation is “%{name}”, identified by SIRET %{siret}
+      email_label: Email address of the applications’ owner
