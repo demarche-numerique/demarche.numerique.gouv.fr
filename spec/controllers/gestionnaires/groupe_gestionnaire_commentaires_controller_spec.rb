@@ -39,7 +39,8 @@ describe Gestionnaires::GroupeGestionnaireCommentairesController, type: :control
         let(:subject_groupe_gestionnaire) { child_commentaire.groupe_gestionnaire.parent }
 
         it do
-          expect(response.body).to include("Messagerie des groupes enfants")
+          expect(response.body).to have_css("main h2", text: "Messagerie des groupes enfants")
+          expect(response.body).not_to have_css("main h3, main h4, main h5, main h6")
           expect(response.body).to have_css("tbody tr", text: child_gestionnaire.email)
         end
       end
@@ -56,6 +57,8 @@ describe Gestionnaires::GroupeGestionnaireCommentairesController, type: :control
           expect(assigns(:groupe_gestionnaire).current_commentaires_groupe_and_children_commentaires_groupe.or(CommentaireGroupeGestionnaire.where(groupe_gestionnaire_id: child_groupe_gestionnaire.id, sender: child_gestionnaire)).select("sender_id, sender_type, sender_email, MAX(id) as id, MAX(created_at) as created_at").group(:sender_id, :sender_type, :sender_email).order("MAX(id) DESC")).to include(commentaire_to_parent_groupe_gestionnaire)
           expect(response.body).to include(commentaire_to_parent_groupe_gestionnaire.sender_email)
           expect(response.body).to include("Messages avec le groupe gestionnaire parent")
+          expect(response.body).to have_css("main h2", text: "Messagerie du groupe parent")
+          expect(response.body).not_to have_css("main h3, main h4, main h5, main h6")
         end
       end
     end
