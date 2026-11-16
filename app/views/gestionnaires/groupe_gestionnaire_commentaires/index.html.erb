@@ -1,0 +1,51 @@
+<%= render partial: 'shared/breadcrumbs_section', locals: { steps: [[@groupe_gestionnaire.name.truncate_words(10), gestionnaire_groupe_gestionnaire_path(@groupe_gestionnaire)], ["Messagerie"]] } %>
+
+<div class="fr-container">
+  <h1 class="fr-h2">
+    Messagerie de «&nbsp;<%= @groupe_gestionnaire.name %>&nbsp;»
+  </h1>
+
+  <%= render partial: 'list_commentaires', locals: { commentaires: @commentaires, groupe_gestionnaire: @groupe_gestionnaire } %>
+
+  <% if @commentaires_children_groups.present? %>
+    <h2 class="fr-h5">Messagerie des groupes enfants</h2>
+    <%= render partial: 'list_commentaires', locals: { commentaires: @commentaires_children_groups, groupe_gestionnaire: @groupe_gestionnaire } %>
+  <% end %>
+
+  <% if @groupe_gestionnaire.parent_id %>
+    <h2 class="fr-h5">
+      Messagerie du groupe parent
+      «&nbsp;<%= @groupe_gestionnaire.parent.name %>&nbsp;»
+    </h2>
+    <% if @commentaires_parent_group.present? %>
+      <%= render partial: 'list_commentaires', locals: { commentaires: @commentaires_parent_group, groupe_gestionnaire: @groupe_gestionnaire } %>
+    <% else %>
+      <div class="fr-table">
+        <div class="fr-table__wrapper">
+          <div class="fr-table__container">
+            <div class="fr-table__content">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Adresse électronique</th>
+                    <th>Dernier message</th>
+                    <th></th>
+                  </tr>
+
+                  <tr>
+                    <td>Messages avec le groupe gestionnaire parent</td>
+                    <td></td>
+
+                    <td>
+                      <%= link_to 'Voir', parent_groupe_gestionnaire_gestionnaire_groupe_gestionnaire_commentaires_path(@groupe_gestionnaire), class: 'fr-btn' %>
+                    </td>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

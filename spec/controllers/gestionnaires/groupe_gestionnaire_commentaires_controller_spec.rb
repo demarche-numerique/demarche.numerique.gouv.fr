@@ -32,6 +32,19 @@ describe Gestionnaires::GroupeGestionnaireCommentairesController, type: :control
         end
       end
 
+      context "with a message from a child group" do
+        let(:child_gestionnaire) { create(:gestionnaire) }
+        let(:child_groupe_gestionnaire) { create(:groupe_gestionnaire, ancestry: "/#{groupe_gestionnaire.id}/", gestionnaires: [child_gestionnaire]) }
+        let(:child_commentaire) { create(:commentaire_groupe_gestionnaire, groupe_gestionnaire: child_groupe_gestionnaire, sender: child_gestionnaire) }
+        let(:subject_groupe_gestionnaire) { child_commentaire.groupe_gestionnaire.parent }
+
+        it do
+          expect(response.body).to have_css("main h2", text: "Messagerie des groupes enfants")
+          expect(response.body).not_to have_css("main h3, main h4, main h5, main h6")
+          expect(response.body).to have_css("tbody tr", text: child_gestionnaire.email)
+        end
+      end
+
       context "in a child group" do
         let(:child_gestionnaire) { create(:gestionnaire).tap { _1.user.update(last_sign_in_at: Time.zone.now) } }
         let!(:child_groupe_gestionnaire) { create(:groupe_gestionnaire, ancestry: "/#{groupe_gestionnaire.id}/", gestionnaires: [child_gestionnaire]) }
@@ -44,6 +57,8 @@ describe Gestionnaires::GroupeGestionnaireCommentairesController, type: :control
           expect(assigns(:groupe_gestionnaire).current_commentaires_groupe_and_children_commentaires_groupe.or(CommentaireGroupeGestionnaire.where(groupe_gestionnaire_id: child_groupe_gestionnaire.id, sender: child_gestionnaire)).select("sender_id, sender_type, sender_email, MAX(id) as id, MAX(created_at) as created_at").group(:sender_id, :sender_type, :sender_email).order("MAX(id) DESC")).to include(commentaire_to_parent_groupe_gestionnaire)
           expect(response.body).to include(commentaire_to_parent_groupe_gestionnaire.sender_email)
           expect(response.body).to include("Messages avec le groupe gestionnaire parent")
+          expect(response.body).to have_css("main h2", text: "Messagerie du groupe parent")
+          expect(response.body).not_to have_css("main h3, main h4, main h5, main h6")
         end
       end
     end
@@ -148,6 +163,8 @@ describe Gestionnaires::GroupeGestionnaireCommentairesController, type: :control
   end
 
   describe "#destroy" do
+    render_views
+
     before do
       sign_in(gestionnaire.user)
     end
@@ -169,7 +186,9 @@ describe Gestionnaires::GroupeGestionnaireCommentairesController, type: :control
       it do
         expect(groupe_gestionnaire.reload.commentaire_groupe_gestionnaires.count).to eq(2)
         expect(commentaire_to_delete.reload.discarded?).to eq(true)
-        expect(flash.notice).to eq("Votre message a été supprimé")
+        expect(response.body).to include("Votre message a été supprimé")
+        expect(response.body).to have_css("turbo-stream[action='update'][target='#{ActionView::RecordIdentifier.dom_id(commentaire_to_delete)}']")
+        expect(response.body).to include("(Message supprimé)")
       end
     end
 
@@ -181,7 +200,8 @@ describe Gestionnaires::GroupeGestionnaireCommentairesController, type: :control
       it do
         expect(groupe_gestionnaire.reload.commentaire_groupe_gestionnaires.count).to eq(1)
         expect(commentaire_to_delete.reload.discarded?).to eq(false)
-        expect(flash.alert).to eq("Impossible de supprimer le message, celui-ci ne vous appartient pas")
+        expect(response.body).to include("Impossible de supprimer le message, celui-ci ne vous appartient pas")
+        expect(response.body).not_to have_css("turbo-stream[action='update'][target='#{ActionView::RecordIdentifier.dom_id(commentaire_to_delete)}']")
       end
     end
   end

@@ -1,3 +1,0 @@
-- if @last_commentaire.discarded?
-  = turbo_stream.update @last_commentaire do
-    = render(Dossiers::MessageComponent.new(commentaire: @last_commentaire, connected_user: current_gestionnaire, messagerie_seen_at: @commentaire_seen_at, groupe_gestionnaire: @groupe_gestionnaire))
