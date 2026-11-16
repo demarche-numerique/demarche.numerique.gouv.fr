@@ -44,7 +44,8 @@ RSpec.describe GroupeGestionnaireMailer, type: :mailer do
     subject { described_class.notify_removed_administrateur(groupe_gestionnaire, administrateur_to_remove.email, current_super_admin_email) }
 
     it do
-      expect(subject.body).to include('Vous venez d’être supprimé(e) du groupe gestionnaire')
+      expect(subject.body).to include("Vous venez d’être supprimé(e) du groupe gestionnaire #{groupe_gestionnaire.name}")
+      expect(subject.body).to include("par « #{current_super_admin_email} »")
       expect(subject.to).to match_array(['int3@g.fr'])
     end
   end
