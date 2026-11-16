@@ -8,11 +8,11 @@ RSpec.describe TypesDeChampEditor::HeaderSectionsSummaryComponent, type: :compon
   let(:is_private) { false }
   let(:type_de_champs) do
     [
-      { type: :header_section, level: 1 },
+      { type: :header_section, level: 1, libelle: 'h1' },
       { type: :text },
-      { type: :header_section, level: 2 },
-      { type: :repetition, children: [{ type: :text }, { type: :header_section, level: 1 }] },
-      { type: :header_section, level: 3 },
+      { type: :header_section, level: 2, libelle: 'h2' },
+      { type: :repetition, children: [{ type: :text }, { type: :header_section, level: 1, libelle: 'rh1' }] },
+      { type: :header_section, level: 3, libelle: 'h3' },
       { type: :text },
     ]
   end
@@ -24,6 +24,13 @@ RSpec.describe TypesDeChampEditor::HeaderSectionsSummaryComponent, type: :compon
   context 'public' do
     it do
       public_type_de_champs.each { expect(subject).to have_selector("a[href='##{dom_id(_1, :type_de_champ_editor)}']") }
+    end
+
+    it 'marks the level of each section, leaving out the ones within a repetition' do
+      expect(subject).to have_selector('a.fr-sidemenu__link:not(.custom-link-grey)', exact_text: 'h1')
+      expect(subject).to have_selector('a.fr-sidemenu__link:not(.custom-link-grey)', exact_text: '-- h2')
+      expect(subject).to have_selector('a.fr-sidemenu__link.custom-link-grey', exact_text: '-- h3')
+      expect(subject).not_to have_text('rh1')
     end
   end
 
