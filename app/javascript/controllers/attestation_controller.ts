@@ -6,7 +6,8 @@ export class AttestationController extends ApplicationController {
     'layoutToggle',
     'logoMarianneLabelFieldset',
     'logoAttachmentFieldset',
-    'preview'
+    'preview',
+    'previewLink'
   ];
   static values = {
     logoAttachmentOfficialLabel: String,
@@ -17,6 +18,7 @@ export class AttestationController extends ApplicationController {
   declare readonly logoMarianneLabelFieldsetTarget: HTMLElement;
   declare readonly logoAttachmentFieldsetTarget: HTMLElement;
   declare readonly previewTarget: HTMLIFrameElement;
+  declare readonly previewLinkTarget: HTMLAnchorElement;
 
   declare readonly logoAttachmentOfficialLabelValue: string;
   declare readonly logoAttachmentFreeLabelValue: string;
@@ -30,6 +32,15 @@ export class AttestationController extends ApplicationController {
       // oxlint-disable-next-line no-self-assign
       this.previewTarget.src = this.previewTarget.src; // reload the iframe
     });
+  }
+
+  previewDossier(event: Event) {
+    const { value } = event.target as HTMLInputElement;
+    this.previewTarget.src = withDossier(this.previewTarget.src, value);
+    this.previewLinkTarget.href = withDossier(
+      this.previewLinkTarget.href,
+      value
+    );
   }
 
   private get isStateLayout() {
@@ -48,4 +59,10 @@ export class AttestationController extends ApplicationController {
         : this.logoAttachmentFreeLabelValue;
     }
   }
+}
+
+function withDossier(url: string, dossierId: string) {
+  const withParam = new URL(url);
+  withParam.searchParams.set('dossier_id', dossierId);
+  return withParam.toString();
 }

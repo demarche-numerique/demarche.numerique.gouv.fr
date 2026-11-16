@@ -7,7 +7,8 @@ module Administrateurs
     before_action :preload_revisions, only: [:edit, :update, :create]
 
     def show
-      preview_dossier = @procedure.dossier_for_preview(current_user)
+      preview_dossier = @procedure.dossiers.visible_by_administration.find_by(id: params[:dossier_id]) if params[:dossier_id].present?
+      preview_dossier ||= @procedure.dossier_for_preview(current_user)
       attributes = @attestation_template.render_attributes_for(dossier: preview_dossier)
 
       @body = attributes.fetch(:body)
@@ -61,6 +62,7 @@ module Administrateurs
         ],
       ]
 
+      @preview_dossiers = @attestation_template.preview_dossiers
       @attestation_template.validate
     end
 

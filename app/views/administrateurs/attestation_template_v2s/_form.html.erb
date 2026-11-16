@@ -218,27 +218,50 @@
         class="fr-col-12 fr-col-lg-5 fr-background-alt--blue-france"
         id="preview-column"
       >
+        <% preselected = preview_dossiers.values.first&.first %>
+        <% preview_path = admin_procedure_attestation_template_v2_path(procedure, format: :pdf, attestation_kind:, dossier_id: preselected&.id) %>
+
         <div class="sticky--top fr-px-1w" data-controller="sticky-top">
           <div class="flex justify-between align-center">
             <h2 class="fr-h4">Aperçu</h2>
 
             <p>
-              <%= link_to 'Prévisualiser en taille réelle', admin_procedure_attestation_template_v2_path(procedure, format: :pdf, attestation_kind:), class: 'fr-link', target: '_blank', rel: 'noopener' %>
+              <%= link_to 'Prévisualiser en taille réelle', preview_path, class: 'fr-link', target: '_blank', rel: 'noopener', data: { attestation_target: 'previewLink' } %>
             </p>
           </div>
+
+          <% if preselected %>
+            <div class="fr-mb-2w">
+              <react-fragment>
+                <%= render ReactComponent.new "Select/SingleSelect",
+                  label: t('.preview_dossier_label'),
+                  searchPlaceholder: t('.preview_dossier_search'),
+                  sections: preview_dossiers.map { |revision, dossiers|
+                    {
+                      label: t(".preview_dossier_section.#{revision}"),
+                      items: dossiers.map { |dossier| [t('.preview_dossier_option', number: dossier.id, owner: attestation_depot_requester_identity(dossier), state: dossier_display_state(dossier).upcase), dossier.id.to_s] },
+                    }
+                  },
+                  value: preselected.id.to_s,
+                  data: { no_autosubmit: 'true', action: 'change->attestation#previewDossier' } %>
+              </react-fragment>
+            </div>
+          <% end %>
 
           <iframe
             class="attestation-preview"
             title="Aperçu"
-            src="<%= admin_procedure_attestation_template_v2_path(procedure, format: :pdf, attestation_kind:) %>"
+            src="<%= preview_path %>"
             data-attestation-target="preview"
           ></iframe>
 
           <p class="fr-hint-text">
             L’aperçu est mis à jour automatiquement après chaque modification.
-            Pour générer un aperçu fidèle avec champs et dates,
-            <%= link_to("créez-vous un dossier", new_dossier_path(procedure_id: procedure, brouillon: true), **external_link_attributes) %>
-            et acceptez-le&nbsp;: l’aperçu l’utilisera.
+            <% if preselected.nil? %>
+              Pour générer un aperçu fidèle avec champs et dates,
+              <%= link_to("créez-vous un dossier", new_dossier_path(procedure_id: procedure, brouillon: true), **external_link_attributes) %>
+              et acceptez-le&nbsp;: l’aperçu l’utilisera.
+            <% end %>
           </p>
         </div>
       </div>

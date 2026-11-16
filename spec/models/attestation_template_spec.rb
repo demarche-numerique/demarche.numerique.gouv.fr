@@ -1,6 +1,34 @@
 # frozen_string_literal: true
 
 describe AttestationTemplate, type: :model do
+  describe '#preview_dossiers' do
+    let(:procedure) { procedures.individual }
+    let(:seeded) { procedure.dossiers.index_by(&:state) }
+    let(:acceptation) { procedure.attestation_templates.build(kind: :acceptation) }
+
+    let(:states) { -> (template, **options) { template.preview_dossiers(**options).transform_values { it.map(&:state) } } }
+
+    it 'offers the states an attestation of that kind can be issued from' do
+      expect(states.(acceptation)).to eq(current: ['accepte', 'en_instruction', 'en_construction'])
+      expect(states.(procedure.attestation_templates.build(kind: :refus)))
+        .to eq(current: ['refuse', 'en_instruction', 'en_construction'])
+    end
+
+    it 'keeps every state within the limit' do
+      create_list(:dossier, 2, :accepte, procedure:, depose_at: Time.current)
+
+      expect(states.(acceptation, limit: 3)).to eq(current: ['accepte', 'en_instruction', 'en_construction'])
+    end
+
+    it 'splits off the dossiers of previous revisions, decided ones first, then the most recent deposits' do
+      seeded.fetch('en_construction').update_columns(depose_at: 1.hour.ago)
+      seeded.fetch('en_instruction').update_columns(depose_at: 2.hours.ago)
+      seeded.fetch('accepte').update_columns(depose_at: 3.hours.ago, revision_id: procedure.draft_revision.id)
+
+      expect(states.(acceptation)).to eq(current: ['en_construction', 'en_instruction'], previous: ['accepte'])
+    end
+  end
+
   describe 'validates footer length' do
     let(:attestation_template) { build(:attestation_template, footer: footer) }
 
