@@ -60,7 +60,7 @@ RSpec.describe Attachment::HintsComponent, type: :component do
     end
 
     it 'renders tooltip with full format list' do
-      expect(subject).to have_selector('[role="tooltip"]')
+      expect(subject).to have_selector('[role="tooltip"]', text: '.md, .markdown', visible: :all)
     end
   end
 
