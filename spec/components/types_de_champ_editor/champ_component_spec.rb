@@ -2,7 +2,7 @@
 
 describe TypesDeChampEditor::ChampComponent, type: :component do
   describe 'render' do
-    let(:component) { described_class.new(coordinate:) }
+    let(:component) { described_class.new(type_de_champ:) }
     let(:routing_rules_stable_ids) { [] }
     let(:ineligibilite_rules_used?) { false }
 
@@ -16,7 +16,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       let(:procedure) { create(:procedure, public_type_de_champs:) }
       let(:public_type_de_champs) { [{ type: :drop_down_list, libelle: 'Votre ville', options: ['Paris', 'Lyon', 'Marseille'] }] }
       let(:tdc) { procedure.draft_revision.type_de_champs.first }
-      let(:coordinate) { procedure.draft_revision.coordinate_for(tdc) }
+      let(:type_de_champ) { tdc }
 
       context 'drop down tdc not used for routing' do
         it do
@@ -58,7 +58,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
             { type: :drop_down_list, stable_id: 2, libelle: 'Votre ville', options: ['Paris', 'Lyon'] },
           ]
         end
-        let(:coordinate) { procedure.draft_revision.then { it.coordinate_for(it.type_de_champ(2)) } }
+        let(:type_de_champ) { procedure.draft_revision.type_de_champ(2) }
         it do
           expect(page).to have_text(/Champ prérempli/)
         end
@@ -67,7 +67,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
 
     describe 'tdc explication' do
       let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :explication }]) }
-      let(:coordinate) { procedure.draft_revision.public_revision_type_de_champs.first }
+      let(:type_de_champ) { procedure.draft_revision.public_root_type_de_champs.first }
       it 'includes an uploader for notice_explicative' do
         expect(page).to have_css('label', text: 'Notice explicative')
         expect(page).to have_css('input[type=file]')
@@ -76,11 +76,11 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
 
     describe 'tdc number' do
       let(:procedure) { create(:procedure, public_type_de_champs: [{ type: type_champ }]) }
-      let(:coordinate) { procedure.draft_revision.public_revision_type_de_champs.first }
+      let(:type_de_champ) { procedure.draft_revision.public_root_type_de_champs.first }
       let(:decimals_toggle) { 'Ce nombre peut comprendre des chiffres après la virgule (décimal)' }
       let(:locked_hint) { 'Ce champ est utilisé pour le routage ou l’éligibilité des dossiers : vous ne pouvez pas changer ce réglage.' }
-      let(:toggle_id) { ActionView::RecordIdentifier.dom_id(coordinate.type_de_champ, :numeric_type_champ) }
-      let(:hint_id) { ActionView::RecordIdentifier.dom_id(coordinate.type_de_champ, :numeric_type_champ_hint) }
+      let(:toggle_id) { ActionView::RecordIdentifier.dom_id(type_de_champ, :numeric_type_champ) }
+      let(:hint_id) { ActionView::RecordIdentifier.dom_id(type_de_champ, :numeric_type_champ_hint) }
 
       context 'when it is an integer' do
         let(:type_champ) { :integer_number }
@@ -111,7 +111,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
 
       context 'when it is used by routing' do
         let(:type_champ) { :decimal_number }
-        let(:routing_rules_stable_ids) { [coordinate.stable_id] }
+        let(:routing_rules_stable_ids) { [type_de_champ.stable_id] }
 
         it 'locks the toggle and says why' do
           expect(page).to have_checked_field(decimals_toggle, disabled: true)
@@ -134,9 +134,9 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
     describe 'tdc quotient familial' do
       let(:procedure) { create(:procedure, public_type_de_champs:, private_type_de_champs: [{ type: :text }]) }
 
-      context "when coordinate public" do
+      context "when public" do
         let(:public_type_de_champs) { [{ type: :quotient_familial, libelle: 'Quotient familial' }] }
-        let(:coordinate) { procedure.draft_revision.public_revision_type_de_champs.first }
+        let(:type_de_champ) { procedure.draft_revision.public_root_type_de_champs.first }
 
         it 'does not have mandatory configuration' do
           expect(page).not_to have_field('Champ obligatoire')
@@ -146,7 +146,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
 
     describe 'tdc pre_rempli' do
       let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :pre_rempli, libelle: 'Statut' }]) }
-      let(:coordinate) { procedure.draft_revision.public_revision_type_de_champs.first }
+      let(:type_de_champ) { procedure.draft_revision.public_root_type_de_champs.first }
 
       it 'explains when the field can be used, with links to the doc' do
         expect(page).to have_css('.fr-notice--info', text: 'Vous pouvez utiliser ce champ dans votre formulaire uniquement si :')
@@ -158,18 +158,18 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
 
     describe 'select champ position' do
       let(:tdc) { procedure.draft_revision.type_de_champs.first }
-      let(:coordinate) { procedure.draft_revision.public_revision_type_de_champs.first }
+      let(:type_de_champ) { procedure.draft_revision.public_root_type_de_champs.first }
       let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text, libelle: 'a' }]) }
       it 'does not have select to move champs' do
-        expect(page).to have_css("select##{ActionView::RecordIdentifier.dom_id(coordinate, :move_and_morph)}")
+        expect(page).to have_css("select##{ActionView::RecordIdentifier.dom_id(type_de_champ, :move_and_morph)}")
       end
     end
   end
 
   describe 'piece_justificative field' do
     let(:procedure) { create(:procedure, piece_justificative_multiple: true, public_type_de_champs: [{ type: :piece_justificative }]) }
-    let(:coordinate) { procedure.draft_revision.public_revision_type_de_champs.first }
-    let(:component) { described_class.new(coordinate:) }
+    let(:type_de_champ) { procedure.draft_revision.public_root_type_de_champs.first }
+    let(:component) { described_class.new(type_de_champ:) }
 
     before do
       allow_any_instance_of(Procedure).to receive(:stable_ids_used_by_routing_rules).and_return([])
@@ -190,7 +190,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       let(:tdc) { procedure.draft_revision.type_de_champs.first }
 
       before do
-        coordinate.type_de_champ.update!(pj_limit_formats: true, pj_format_families: ['document_texte'])
+        type_de_champ.update!(pj_limit_formats: true, pj_format_families: ['document_texte'])
         render_inline(component)
       end
 
@@ -203,7 +203,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       let(:tdc) { procedure.draft_revision.type_de_champs.first }
 
       before do
-        coordinate.type_de_champ.update!(nature: 'titre_identite')
+        type_de_champ.update!(nature: 'titre_identite')
         render_inline(component)
       end
 
@@ -222,7 +222,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       let(:tdc) { procedure.draft_revision.type_de_champs.first }
 
       before do
-        coordinate.type_de_champ.update!(nature: 'rib')
+        type_de_champ.update!(nature: 'rib')
         render_inline(component)
       end
 

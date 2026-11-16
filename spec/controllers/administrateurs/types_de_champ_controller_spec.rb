@@ -17,7 +17,12 @@ describe Administrateurs::TypesDeChampController, type: :controller do
   def second_coordinate = procedure.draft_revision.reload.public_revision_type_de_champs.second
   def third_coordinate = procedure.draft_revision.public_revision_type_de_champs.third
 
-  def extract_libelle(champ_component) = [champ_component.coordinate.libelle, champ_component.coordinate.upper_coordinates.map(&:libelle)]
+  def extract_libelle(champ_component)
+    type_de_champ = champ_component.type_de_champ
+    [type_de_champ.libelle, type_de_champ.revision.coordinate_for(type_de_champ).upper_coordinates.map(&:libelle)]
+  end
+
+  def siblings = assigns(:siblings)&.map(&:libelle)
 
   def morpheds
     assigns(:morphed)
@@ -60,7 +65,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       it do
         is_expected.to have_http_status(:ok)
         expect(flash.alert).to eq(nil)
-        expect(assigns(:coordinate)).to eq(second_coordinate)
+        expect(siblings).to eq(['l1', 'l1.5', 'l2', 'l3'])
         expect(extract_libelle(assigns(:created))).to eq(['l1.5', ['l1']])
         expect(morpheds).to eq([['l2', ['l1', 'l1.5']], ['l3', ['l1', 'l1.5', 'l2']]])
       end
@@ -72,7 +77,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
       it do
         is_expected.to have_http_status(:ok)
-        expect(assigns(:coordinate)).to be_nil
+        expect(siblings).to be_nil
         expect(flash.alert).to eq(["Le champ « Type champ » doit être rempli"])
       end
     end
@@ -99,7 +104,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       expect(flash.alert).to eq(nil)
       expect(second_coordinate.libelle).to eq('updated')
 
-      expect(assigns(:coordinate)).to eq(second_coordinate)
+      expect(siblings).to eq(['l1', 'updated', 'l3'])
       expect(morpheds).to eq([['updated', ['l1']], ['l3', ['l1', 'updated']]])
     end
 
@@ -121,7 +126,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
       it do
         is_expected.to have_http_status(:ok)
-        expect(assigns(:coordinate)).to eq(second_coordinate)
+        expect(assigns(:siblings).map(&:stable_id)).to include(second_coordinate.stable_id)
         expect(flash.alert).to be_nil
       end
     end
@@ -478,7 +483,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       is_expected.to have_http_status(:ok)
       expect(flash.alert).to eq(nil)
       expect(second_coordinate.libelle).to eq('l3')
-      expect(assigns(:coordinate)).to eq(second_coordinate)
+      expect(siblings).to eq(['l1', 'l3', 'l2'])
       expect(assigns(:destroyed).libelle).to eq('l3')
       expect(extract_libelle(assigns(:created))).to eq(['l3', ['l1']])
       expect(morpheds).to eq([['l2', ['l1', 'l3']]])
@@ -498,7 +503,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       is_expected.to have_http_status(:ok)
       expect(flash.alert).to eq(nil)
 
-      expect(assigns(:coordinate)).to eq(second_coordinate)
+      expect(siblings).to eq(['l2', 'l1', 'l3'])
       expect(assigns(:destroyed).libelle).to eq('l1')
       expect(extract_libelle(assigns(:created))).to eq(['l1', ['l2']])
       expect(morpheds).to eq([['l2', []]])
@@ -518,7 +523,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         patch action, params:, format: :turbo_stream
 
         expect(response).to have_http_status(:ok)
-        expect(assigns(:coordinate)).to be_nil
+        expect(siblings).to be_nil
         expect(procedure.draft_revision.reload.public_revision_type_de_champs.map(&:libelle)).to eq(['l1', 'l3'])
       end
     end
@@ -535,8 +540,8 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
       it do
         is_expected.to have_http_status(:ok)
-        expect(assigns(:coordinate)).to eq(first_coordinate)
-        expect(assigns(:destroyed)).to eq(first_coordinate)
+        expect(siblings).to eq(['l2', 'l3', 'l1'])
+        expect(assigns(:destroyed).libelle).to eq('l1')
         expect(extract_libelle(assigns(:created))).to eq(['l1', ['l2', 'l3']])
         expect(morpheds).to eq([['l2', []], ['l3', ['l2']]])
       end
@@ -553,7 +558,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       it do
         is_expected.to have_http_status(:ok)
         [first_coordinate, second_coordinate, third_coordinate].map(&:reload)
-        expect(assigns(:coordinate).stable_id).to eq(second_coordinate.stable_id)
+        expect(siblings).to eq(['l1', 'l3', 'l2'])
         expect(assigns(:destroyed).stable_id).to eq(second_coordinate.stable_id)
         expect(extract_libelle(assigns(:created))).to eq(['l3', ['l1']])
         expect(morpheds).to eq([['l3', ['l1']], ['l2', ['l1', 'l3']]])
@@ -571,11 +576,9 @@ describe Administrateurs::TypesDeChampController, type: :controller do
     subject { delete :destroy, params: params, format: :turbo_stream }
 
     it do
-      used_to_be_second_coordinate = second_coordinate
-
       is_expected.to have_http_status(:ok)
       expect(flash.alert).to eq(nil)
-      expect(assigns(:coordinate)).to eq(used_to_be_second_coordinate)
+      expect(siblings).to eq(['l1', 'l3'])
       expect(assigns(:destroyed).libelle).to eq('l2')
       expect(morpheds).to eq([['l3', ['l1']]])
     end
@@ -649,6 +652,38 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         expect(response).to have_http_status(422)
         expect(response.parsed_body['errors'].join).to include('vide')
       end
+    end
+  end
+
+  describe 'the files the editor shows' do
+    render_views
+
+    let(:procedure) do
+      create(:procedure, public_type_de_champs: [
+        { type: :text, libelle: 'first' },
+        { type: :piece_justificative },
+        { type: :piece_justificative },
+        { type: :explication },
+        { type: :repetition, children: [{ type: :piece_justificative }, { type: :explication }] },
+      ])
+    end
+
+    def count_type_de_champ_attachment_queries
+      count = 0
+      counter = -> (*, payload) { count += 1 if payload[:sql].include?('FROM "active_storage_attachments"') && payload[:type_casted_binds].include?('TypeDeChamp') }
+      ActiveSupport::Notifications.subscribed(counter, 'sql.active_record') { yield }
+      count
+    end
+
+    it 'are loaded at once for the types de champ a stream renders' do
+      params = { procedure_id: procedure.id, stable_id: first_coordinate.stable_id, type_de_champ: { libelle: 'updated' } }
+
+      queries = count_type_de_champ_attachment_queries { post :update, params:, format: :turbo_stream }
+
+      expect(response).to have_http_status(:ok)
+      expect(assigns(:morphed).size).to eq(5)
+      # the templates, the notices
+      expect(queries).to eq(2)
     end
   end
 

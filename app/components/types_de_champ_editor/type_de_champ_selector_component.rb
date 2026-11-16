@@ -4,16 +4,17 @@
 # field may take, grouped by category, with the types the published revision
 # cannot be converted to greyed out.
 class TypesDeChampEditor::TypeDeChampSelectorComponent < ApplicationComponent
-  def initialize(coordinate:, form:)
-    @coordinate = coordinate
+  def initialize(type_de_champ:, form:)
+    @type_de_champ = type_de_champ
     @form = form
   end
 
   private
 
-  attr_reader :coordinate, :form
+  attr_reader :type_de_champ, :form
 
-  delegate :type_de_champ, :revision, :procedure, to: :coordinate
+  delegate :revision, to: :type_de_champ
+  delegate :procedure, to: :revision
 
   def trigger_id = dom_id(type_de_champ, :type_champ)
   def label_id = dom_id(type_de_champ, :type_champ_label)
@@ -78,15 +79,15 @@ class TypesDeChampEditor::TypeDeChampSelectorComponent < ApplicationComponent
   end
 
   def disabled?
-    coordinate.type_champ_locked? || accepted_type_champs.size == 1
+    revision.coordinate_for(type_de_champ).type_champ_locked? || accepted_type_champs.size == 1
   end
 
   def filter_block_type_champ(klass)
-    !coordinate.child? || klass.allowed_in_repetition?
+    !type_de_champ.in_repetition? || klass.allowed_in_repetition?
   end
 
   def filter_public_or_private_only_type_champ(klass)
-    coordinate.private? ? !klass.public_only? : !klass.private_only?
+    type_de_champ.private? ? !klass.public_only? : !klass.private_only?
   end
 
   def filter_featured_type_champ(klass)

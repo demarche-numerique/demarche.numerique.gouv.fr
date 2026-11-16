@@ -162,12 +162,13 @@ class ProcedureRevision < ApplicationRecord
     edit_type_de_champs { type_de_champ.update(params) }
   end
 
+  # A move returns the type de champ where it is laid out by now.
   def move_type_de_champ(stable_id, position)
-    edit_coordinate(stable_id) { move_coordinate(it, position) }
+    move(stable_id) { move_coordinate(it, position) }
   end
 
   def move_type_de_champ_after(stable_id, position)
-    edit_coordinate(stable_id) do |coordinate|
+    move(stable_id) do |coordinate|
       siblings = coordinate.siblings
 
       if position > coordinate.position
@@ -207,13 +208,13 @@ class ProcedureRevision < ApplicationRecord
   end
 
   def move_up_type_de_champ(stable_id)
-    edit_coordinate(stable_id) do |coordinate|
+    move(stable_id) do |coordinate|
       coordinate.position > 0 ? move_coordinate(coordinate, coordinate.position - 1) : coordinate
     end
   end
 
   def move_down_type_de_champ(stable_id)
-    edit_coordinate(stable_id) { move_coordinate(it, it.position + 1) }
+    move(stable_id) { move_coordinate(it, it.position + 1) }
   end
 
   def draft?
@@ -319,8 +320,8 @@ class ProcedureRevision < ApplicationRecord
         params = { header_section_level:, libelle: }.compact
 
         if after_stable_id.nil? # positionned at first
-          coordinate = move_type_de_champ(stable_id, 0)
-          if payload.key?(:header_section_level) && coordinate.type_de_champ.header_section? && params.present?
+          moved = move_type_de_champ(stable_id, 0)
+          if payload.key?(:header_section_level) && moved.header_section? && params.present?
             update_type_de_champ(find_and_ensure_exclusive_use(stable_id), params)
           end
         else # positionned after another tdc
@@ -336,8 +337,8 @@ class ProcedureRevision < ApplicationRecord
 
           after_coordinate = coordinate_by_stable_id(after_stable_id)
           if after_coordinate
-            coordinate = move_type_de_champ_after(stable_id, after_coordinate.position)
-            if payload.key?(:header_section_level) && coordinate.type_de_champ.header_section? && params.present?
+            moved = move_type_de_champ_after(stable_id, after_coordinate.position)
+            if payload.key?(:header_section_level) && moved.header_section? && params.present?
               update_type_de_champ(find_and_ensure_exclusive_use(stable_id), params)
             end
           end
@@ -406,6 +407,11 @@ class ProcedureRevision < ApplicationRecord
 
       yield coordinate
     end
+  end
+
+  # nil as edit_coordinate
+  def move(stable_id, &)
+    type_de_champ(stable_id) if edit_coordinate(stable_id, &)
   end
 
   def move_coordinate(coordinate, position)

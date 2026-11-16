@@ -9,7 +9,7 @@ RSpec.describe TypesDeChampEditor::HeaderSectionComponent, type: :component do
   let(:component) do
     cmp = nil
     form_for(tdc, url: '/') do |form|
-      cmp = described_class.new(form:, coordinate: procedure.draft_revision.coordinate_for(tdc))
+      cmp = described_class.new(form:, type_de_champ: tdc)
     end
     cmp
   end
@@ -76,12 +76,12 @@ RSpec.describe TypesDeChampEditor::HeaderSectionComponent, type: :component do
 
   describe 'in the editor' do
     let(:revision) { procedure.draft_revision }
-    let(:coordinate) { revision.revision_type_de_champs.joins(:type_de_champ).find_by(type_de_champ: { libelle: 'tested' }) }
+    let(:type_de_champ) { revision.type_de_champs.find { it.libelle == 'tested' } }
 
     let(:level_select) { page.find("select[name$='[header_section_level]']") }
 
-    # With the upper coordinates BlockComponent passes, to prove the header ignores them
-    before { render_inline(TypesDeChampEditor::ChampComponent.new(coordinate:)) }
+    # Within the whole ChampComponent, to prove the header ignores what sits above its siblings
+    before { render_inline(TypesDeChampEditor::ChampComponent.new(type_de_champ:)) }
 
     shared_examples 'offers level 1 only and shows the error the publication raises' do
       it do

@@ -133,6 +133,12 @@ describe ProcedureRevision do
       expect(laid_out('b').enclosing_repetition).to be_nil
     end
 
+    it 'lists each one with what sits around it, whatever the header sections' do
+      expect(libelles(laid_out('b').flat_siblings)).to eq(['a', 'h1', 'b', 'r', 'h2', 'c'])
+      expect(libelles(laid_out('r1').flat_siblings)).to eq(['rh1', 'r1'])
+      expect(libelles(laid_out('d').flat_siblings)).to eq(['d'])
+    end
+
     it 'gives each one its children and its ancestors' do
       expect(libelles(draft.public_type_de_champs)).to eq(['a', 'h1'])
       expect(libelles(draft.private_type_de_champs)).to eq(['d'])
@@ -468,6 +474,13 @@ describe ProcedureRevision do
         expect(draft.public_revision_type_de_champs.map(&:position)).to eq([0, 1, 2, 3])
         expect(draft.public_root_type_de_champs.index(type_de_champ_public)).to eq(2)
         expect(draft.procedure.type_de_champs_for_procedure_export.index(type_de_champ_public)).to eq(2)
+      end
+
+      it 'returns the type de champ where it is laid out by now' do
+        moved = draft.move_type_de_champ(last_type_de_champ.stable_id, 0)
+
+        expect(moved).to equal(draft.public_root_type_de_champs.first)
+        expect(moved.stable_id).to eq(last_type_de_champ.stable_id)
       end
 
       it 'move up' do

@@ -28,14 +28,6 @@ describe ProcedureRevisionPreloader do
       expect(pj_coordinate.association(:revision).loaded?).to eq(true)
       expect(pj_coordinate.association(:procedure).loaded?).to eq(true)
 
-      query_count = 0
-      ActiveSupport::Notifications.subscribed(lambda { |*_args| query_count += 1 }, "sql.active_record") do
-        expect(pj_coordinate.type_de_champ.piece_justificative_template.blob).not_to be_nil
-        expect(pj_coordinate.type_de_champ.notice_explicative.blob).to be_nil
-      end
-
-      expect(query_count).to eq(0)
-
       # check order
       original = Procedure.find(procedure.id)
       expect_relation_is_preloaded_sorted(original, procedure, :revision_type_de_champs)

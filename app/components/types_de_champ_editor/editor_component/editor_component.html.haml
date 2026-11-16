@@ -1,6 +1,6 @@
 .fr-pb-12w{ 'data-turbo': 'true', id: dom_id(@revision, :types_de_champ_editor) }
   .types-de-champ-editor.editor-root
     = render Procedure::ErrorsSummary.new(procedure: @revision.procedure, validation_context:)
-    = render TypesDeChampEditor::BlockComponent.new(block: @revision, coordinates: coordinates)
-  #empty-coordinates{ hidden: coordinates.present? }
+    = render TypesDeChampEditor::BlockComponent.new(block: @revision, type_de_champs:)
+  #empty-coordinates{ hidden: type_de_champs.present? }
     = render TypesDeChampEditor::AddChampButtonComponent.new(revision: @revision, is_annotation: annotations?)

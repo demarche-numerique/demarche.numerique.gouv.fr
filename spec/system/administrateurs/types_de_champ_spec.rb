@@ -457,7 +457,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
           { type: :text, libelle: 'last_tdc' },
         ]
       end
-      let(:initial_first_coordinate_selector) { "##{ActionView::RecordIdentifier.dom_id(initial_first_coordinate, :move_and_morph)}" }
+      let(:initial_first_coordinate_selector) { "##{ActionView::RecordIdentifier.dom_id(initial_first_coordinate.type_de_champ, :move_and_morph)}" }
 
       scenario 'root select is empty by default' do
         # at first, select only contains the current coordinate
@@ -473,7 +473,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
         expect(page.find(initial_first_coordinate_selector).all("option").map(&:text)).to match_array(['1 - first_tdc', '2 - middle_tdc', '3 - last_tdc'])
 
         # renaming a tdc renames it's option
-        within "##{dom_id(initial_first_coordinate, :type_de_champ_editor)}" do
+        within "##{dom_id(initial_first_coordinate.type_de_champ, :type_de_champ_editor)}" do
           fill_in 'Libellé du champ', with: 'renamed'
         end
         wait_until { initial_first_coordinate.reload.libelle == 'renamed' }
@@ -499,7 +499,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
 
         # check reorder rerendered champ component between target->destination
         reordered_coordinates.map(&:reload).map do |coordinate|
-          expect(page).to have_selector("##{ActionView::RecordIdentifier.dom_id(coordinate, :type_de_champ_editor)} .position", text: coordinate.position + 1)
+          expect(page).to have_selector("##{ActionView::RecordIdentifier.dom_id(coordinate.type_de_champ, :type_de_champ_editor)} .position", text: coordinate.position + 1)
         end
       end
     end
@@ -520,7 +520,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
         ]
       end
       let(:children_coordinates) { procedure.draft_revision.revision_type_de_champs.filter { _1.parent.present? } }
-      let(:first_child_coordinate_selector) { "##{ActionView::RecordIdentifier.dom_id(children_coordinates.first, :move_and_morph)}" }
+      let(:first_child_coordinate_selector) { "##{ActionView::RecordIdentifier.dom_id(children_coordinates.first.type_de_champ, :move_and_morph)}" }
 
       scenario 'first child of repetition select is empty by default' do
         expect(page).to have_selector("#{first_child_coordinate_selector} option", count: 1)
@@ -552,7 +552,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
 
         # check reorder rerendered champ component between target->destination
         reordered_coordinates.map(&:reload).map do |coordinate|
-          expect(page).to have_selector("##{ActionView::RecordIdentifier.dom_id(coordinate, :type_de_champ_editor)} .position", text: coordinate.position + 1)
+          expect(page).to have_selector("##{ActionView::RecordIdentifier.dom_id(coordinate.type_de_champ, :type_de_champ_editor)} .position", text: coordinate.position + 1)
         end
       end
 

@@ -35,18 +35,6 @@ class ProcedureRevisionTypeDeChamp < ApplicationRecord
     parent_id.present?
   end
 
-  def first?
-    position == 0
-  end
-
-  def last?
-    siblings.last == self
-  end
-
-  def empty?
-    revision_type_de_champs.empty?
-  end
-
   def siblings
     if child?
       parent.revision_type_de_champs
@@ -88,21 +76,6 @@ class ProcedureRevisionTypeDeChamp < ApplicationRecord
 
   def siblings_starting_at(offset)
     siblings.filter { |s| (position + offset) <= s.position }
-  end
-
-  def previous_sibling
-    index = siblings.index(self)
-    if index > 0
-      siblings[index - 1]
-    end
-  end
-
-  def block
-    if child?
-      parent
-    else
-      revision
-    end
   end
 
   def used_by_routing_rules?

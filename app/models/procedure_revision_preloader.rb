@@ -26,7 +26,6 @@ class ProcedureRevisionPreloader
 
     coordinates_by_revision_id = ProcedureRevisionTypeDeChamp
       .where(revision_id: revisions.map(&:id))
-      .preload(type_de_champ: { notice_explicative_attachment: :blob, piece_justificative_template_attachment: :blob })
       .order(:position, :id)
       .to_a
       .group_by(&:revision_id)

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class TypesDeChampEditor::SelectChampTemplatePositionComponent < ApplicationComponent
-  def initialize(block:, coordinates:)
+  def initialize(block:, type_de_champs:)
     @block = block
-    @coordinates = coordinates
+    @type_de_champs = type_de_champs
   end
 
   def block_id

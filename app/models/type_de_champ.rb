@@ -482,7 +482,15 @@ class TypeDeChamp < ApplicationRecord
     end
   end
 
-  # The types de champ the nodes of a tree stand for, each one given by the
+  # The template of a piece justificative and the notice of an explication,
+  # loaded at once where each type de champ would run its own queries. On the
+  # instances given: a revision laid out again holds other ones.
+  def self.preload_attachments(type_de_champs)
+    { piece_justificative_template_attachment: :piece_justificative?, notice_explicative_attachment: :explication? }.each do |association, predicate|
+      ActiveRecord::Associations::Preloader.new(records: type_de_champs.filter(&predicate), associations: { association => :blob }).call
+    end
+  end
+
   # block, laid out as the nodes are. A node the block has nothing for is left
   # out, with what it holds.
   def self.laid_out(nodes, ancestors = [], revision: nil, &)
@@ -541,6 +549,12 @@ class TypeDeChamp < ApplicationRecord
   # everything it holds in document order, whatever the depth
   def flat_children
     children.flat_map { [it, *it.flat_children] }
+  end
+
+  # the ones listed with it, itself included: what its repetition holds, or
+  # what sits outside any repetition on its side of the form
+  def flat_siblings
+    enclosing_repetition&.flat_children || (private? ? revision.private_root_type_de_champs : revision.public_root_type_de_champs)
   end
 
   def parent

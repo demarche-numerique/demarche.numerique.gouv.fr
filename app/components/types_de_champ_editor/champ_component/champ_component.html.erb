@@ -12,7 +12,7 @@
         <div class="flex justify-start flex-gap fr-mb-4w">
           <div class="flex justify-start width-33">
             <div class="cell flex justify-start column flex-grow">
-              <%= render TypesDeChampEditor::TypeDeChampSelectorComponent.new(coordinate:, form:) %>
+              <%= render TypesDeChampEditor::TypeDeChampSelectorComponent.new(type_de_champ:, form:) %>
 
               <% if type_de_champ.siret? || type_de_champ.communes? || type_de_champ.departements? || type_de_champ.address? || type_de_champ.epci? %>
                 <div class="cell fr-mt-1w">
@@ -97,7 +97,7 @@
             <% if type_de_champ.header_section? %>
               <p class="fr-text--sm"><%= t(".header_section_hint") %></p>
               <div class="cell fr-mt-1w">
-                <%= render TypesDeChampEditor::HeaderSectionComponent.new(form:, coordinate:) %>
+                <%= render TypesDeChampEditor::HeaderSectionComponent.new(form:, type_de_champ:) %>
               </div>
             <% end %>
 
@@ -476,13 +476,13 @@
     <% if type_de_champ.repetition? %>
       <div class="flex justify-start section fr-ml-1w">
         <div class="editor-block flex-grow cell">
-          <%= render TypesDeChampEditor::BlockComponent.new(block: coordinate, coordinates: coordinate.revision_type_de_champs) %>
+          <%= render TypesDeChampEditor::BlockComponent.new(block: type_de_champ, type_de_champs: type_de_champ.flat_children) %>
 
           <div
-            class="type-de-champ-add-button <%= class_names(hidden: !coordinate.empty?) %>"
-            id="<%= dom_id(coordinate, :type_de_champ_add_button) %>"
+            class="type-de-champ-add-button <%= class_names(hidden: type_de_champ.children.any?) %>"
+            id="<%= dom_id(type_de_champ, :type_de_champ_add_button) %>"
           >
-            <%= render TypesDeChampEditor::AddChampButtonComponent.new(revision: coordinate.revision, parent: coordinate, is_annotation: coordinate.private?) %>
+            <%= render TypesDeChampEditor::AddChampButtonComponent.new(revision:, parent: type_de_champ, is_annotation: type_de_champ.private?) %>
           </div>
         </div>
       </div>
@@ -492,12 +492,12 @@
 
     <div class="flex justify-between section footer">
       <div class="position flex align-center">
-        <%= (@coordinate.position + 1).to_s %>
+        <%= (index + 1).to_s %>
       </div>
 
       <%= tag.button(class: "fr-btn fr-btn--tertiary-no-outline fr-icon-arrow-up-line move-up", **move_button_options(:up)) %>
       <%= tag.button(class: "fr-btn fr-btn--tertiary-no-outline fr-icon-arrow-down-line move-down", **move_button_options(:down)) %>
-      <%= render TypesDeChampEditor::SelectChampPositionComponent.new(revision:, coordinate:) %>
+      <%= render TypesDeChampEditor::SelectChampPositionComponent.new(type_de_champ:) %>
 
       <div class="flex right">
         <% if coordinate.used_by_routing_rules? %>
@@ -516,7 +516,7 @@
     </div>
   </div>
 
-  <div class="type-de-champ-add-button <%= class_names(root: !coordinate.child?, flex: true) %>">
-    <%= render TypesDeChampEditor::AddChampButtonComponent.new(revision: coordinate.revision, parent: coordinate&.parent, is_annotation: coordinate.private?, after_stable_id: type_de_champ.stable_id) %>
+  <div class="type-de-champ-add-button <%= class_names(root: !type_de_champ.in_repetition?, flex: true) %>">
+    <%= render TypesDeChampEditor::AddChampButtonComponent.new(revision:, parent: type_de_champ.enclosing_repetition, is_annotation: type_de_champ.private?, after_stable_id: type_de_champ.stable_id) %>
   </div>
 <% end %>
