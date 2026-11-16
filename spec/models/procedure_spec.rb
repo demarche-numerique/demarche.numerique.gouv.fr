@@ -1819,13 +1819,29 @@ describe Procedure do
   end
 
   describe 'france_connect_plus_required' do
-    let(:procedure) { procedures.brouillon }
+    let(:procedure) { procedures.individual }
 
     it 'cannot go with a procedure restricted to ProConnect users' do
       procedure.assign_attributes(pro_connect_restriction: :all, france_connect_plus_required: true)
 
       expect(procedure).not_to be_valid
       expect(procedure.errors).to be_of_kind(:france_connect_plus_required, :present)
+    end
+
+    it 'asks a session opened another way to sign in with FranceConnect+, FranceConnect+ enabled or not' do
+      procedure.france_connect_plus_required = true
+      allow(FranceConnectPlusService).to receive(:enabled?).and_return(false)
+
+      expect(procedure.france_connect_plus_missing?(UserSession.new(login_method: :password))).to be(true)
+      expect(procedure.france_connect_plus_missing?(nil)).to be(true)
+      expect(procedure.france_connect_plus_missing?(UserSession.new(login_method: :france_connect_plus))).to be(false)
+    end
+
+    it 'leaves a procedure not published yet open to its test dossiers' do
+      unpublished = procedures.brouillon
+      unpublished.france_connect_plus_required = true
+
+      expect(unpublished.france_connect_plus_missing?(UserSession.new(login_method: :password))).to be(false)
     end
   end
 
