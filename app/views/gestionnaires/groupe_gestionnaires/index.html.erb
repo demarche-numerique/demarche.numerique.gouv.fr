@@ -1,0 +1,42 @@
+<%= render 'main_navigation' %>
+<%= render partial: 'shared/breadcrumbs_section', locals: { steps: [['Groupes gestionnaires']] } %>
+
+<div class="fr-container">
+  <h1 class="fr-h2">Groupes gestionnaires</h1>
+
+  <div class="fr-table">
+    <div class="fr-table__wrapper">
+      <div class="fr-table__container">
+        <div class="fr-table__content">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Nom</th>
+                <th scope="col">Nombre de gestionnaires</th>
+                <th scope="col">Nombre d’administrateurs</th>
+                <th scope="col">Arborescence</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @groupe_gestionnaires.order(:name).each do |groupe_gestionnaire| %>
+                <tr>
+                  <td>
+                    <%= link_to groupe_gestionnaire.name, gestionnaire_groupe_gestionnaire_path(groupe_gestionnaire) %>
+                  </td>
+
+                  <td><%= groupe_gestionnaire.gestionnaire_ids.size %></td>
+                  <td><%= groupe_gestionnaire.administrateur_ids.size %></td>
+
+                  <td>
+                    <%= link_to 'Voir', tree_structure_gestionnaire_groupe_gestionnaire_path(groupe_gestionnaire), class: 'fr-btn' %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

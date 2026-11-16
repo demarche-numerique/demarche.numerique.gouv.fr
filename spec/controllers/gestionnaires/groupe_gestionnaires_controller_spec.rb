@@ -31,6 +31,9 @@ describe Gestionnaires::GroupeGestionnairesController, type: :controller do
         expect(assigns(:groupe_gestionnaires)).not_to include(not_my_groupe_gestionnaire)
         expect(response.body).to have_link('Mes groupes gestionnaires', href: gestionnaire_groupe_gestionnaires_path, class: 'fr-nav__link')
         expect(response.body).to have_css('#header-navigation [aria-current="page"]', text: 'Mes groupes gestionnaires')
+        expect(response.body).to have_css('tbody tr', count: 2)
+        expect(response.body).to have_link(groupe_gestionnaire.name, href: gestionnaire_groupe_gestionnaire_path(groupe_gestionnaire))
+        expect(response.body).to have_link('Voir', href: tree_structure_gestionnaire_groupe_gestionnaire_path(other_groupe_gestionnaire))
       end
     end
   end
