@@ -20,7 +20,7 @@ class ChampPolicy < ApplicationPolicy
   def dossier = record.dossier
 
   def user_accessible?
-    user.owns_or_invite?(dossier)
+    user.owns_or_invite?(dossier) && !dossier.france_connect_plus_missing?(Current.user_session)
   end
 
   def instructeur_accessible?

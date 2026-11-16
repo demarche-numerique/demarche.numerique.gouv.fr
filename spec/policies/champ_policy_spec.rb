@@ -21,6 +21,21 @@ describe ChampPolicy do
   let(:champ) { ChampData.find(dossier.champ_data.find { |c| !c.private? }.id) }
   let(:annotation) { ChampData.find(dossier.champ_data.find(&:private?).id) }
 
+  describe 'under a procedure that requires FranceConnect+' do
+    let(:procedure) do
+      create(:procedure, :published, france_connect_plus_required: true, public_type_de_champs: [{ type: :text }], private_type_de_champs: [{ type: :text }])
+    end
+    let(:user) { owner }
+
+    it 'lets the owner update from a FranceConnect+ session only' do
+      Current.user_session = UserSession.new(login_method: :password)
+      expect(policy.update?).to be_falsey
+
+      Current.user_session = UserSession.new(login_method: :france_connect_plus)
+      expect(policy.update?).to be_truthy
+    end
+  end
+
   describe '#initialize' do
     let(:state) { :brouillon }
 

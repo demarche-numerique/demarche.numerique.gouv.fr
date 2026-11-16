@@ -177,5 +177,46 @@ describe DossierPolicy do
         it { is_expected.to be_truthy }
       end
     end
+
+    context 'when the procedure requires FranceConnect+' do
+      let(:procedure) { create(:procedure, :published, france_connect_plus_required: true) }
+
+      before { allow(FranceConnectPlusService).to receive(:enabled?).and_return(true) }
+
+      context 'when the owner signed in another way' do
+        let(:user) { owner }
+        before { Current.user_session = UserSession.new(login_method: :password) }
+
+        it { is_expected.to be_falsey }
+      end
+
+      context 'when an invite signed in another way' do
+        let(:user) { create(:user) }
+        before do
+          create(:invite, dossier:, user:)
+          Current.user_session = UserSession.new(login_method: :france_connect)
+        end
+
+        it { is_expected.to be_falsey }
+      end
+
+      context 'when the owner signed in with FranceConnect+' do
+        let(:user) { owner }
+        before { Current.user_session = UserSession.new(login_method: :france_connect_plus) }
+
+        it { is_expected.to be_truthy }
+      end
+
+      context 'when an instructeur of the groupe reads it' do
+        let(:instructeur) { create(:instructeur) }
+        let(:user) { instructeur.user }
+        before do
+          instructeur.assign_to_procedure(procedure)
+          Current.user_session = UserSession.new(login_method: :password)
+        end
+
+        it { is_expected.to be_truthy }
+      end
+    end
   end
 end
