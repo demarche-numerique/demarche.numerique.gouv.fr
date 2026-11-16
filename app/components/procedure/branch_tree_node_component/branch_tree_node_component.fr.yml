@@ -1,0 +1,6 @@
+---
+fr:
+  nothing: Aucun champ supplémentaire
+  summary:
+    one: "1 champ, environ %{minutes} min"
+    other: "%{count} champs, environ %{minutes} min"

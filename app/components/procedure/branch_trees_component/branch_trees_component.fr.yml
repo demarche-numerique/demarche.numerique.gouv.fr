@@ -1,0 +1,10 @@
+---
+fr:
+  title: "Selon %{champs}"
+  title_without_source: "%{champs}, dont la condition vise un champ absent du formulaire"
+  none: Ce formulaire ne comporte aucune condition.
+  never_displayed_title: Champs jamais affichés
+  never_displayed:
+    one: "Aucune réponse n’affiche le champ %{champs}."
+    other: "Aucune réponse n’affiche les champs %{champs}."
+  capped: Ce groupe combine trop de réponses pour être détaillé.
