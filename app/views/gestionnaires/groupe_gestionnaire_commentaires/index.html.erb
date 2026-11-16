@@ -8,15 +8,15 @@
   <%= render partial: 'list_commentaires', locals: { commentaires: @commentaires, groupe_gestionnaire: @groupe_gestionnaire } %>
 
   <% if @commentaires_children_groups.present? %>
-    <h5>Messagerie des groupes enfants</h5>
+    <h2 class="fr-h5">Messagerie des groupes enfants</h2>
     <%= render partial: 'list_commentaires', locals: { commentaires: @commentaires_children_groups, groupe_gestionnaire: @groupe_gestionnaire } %>
   <% end %>
 
   <% if @groupe_gestionnaire.parent_id %>
-    <h5>
+    <h2 class="fr-h5">
       Messagerie du groupe parent
       «&nbsp;<%= @groupe_gestionnaire.parent.name %>&nbsp;»
-    </h5>
+    </h2>
     <% if @commentaires_parent_group.present? %>
       <%= render partial: 'list_commentaires', locals: { commentaires: @commentaires_parent_group, groupe_gestionnaire: @groupe_gestionnaire } %>
     <% else %>
