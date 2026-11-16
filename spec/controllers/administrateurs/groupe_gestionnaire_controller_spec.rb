@@ -51,6 +51,8 @@ describe Administrateurs::GroupeGestionnaireController, type: :controller do
       it do
         expect(response).to have_http_status(:ok)
         expect(assigns(:groupe_gestionnaire)).to eq(groupe_gestionnaire)
+        expect(response.body).to have_css('h1', text: "Gestionnaires de «\u00A0#{groupe_gestionnaire.name}\u00A0»")
+        expect(response.body).to have_css('tbody#gestionnaires td', text: gestionnaire.email)
       end
     end
   end

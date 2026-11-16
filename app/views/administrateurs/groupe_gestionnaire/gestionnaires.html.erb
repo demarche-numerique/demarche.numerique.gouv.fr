@@ -1,0 +1,19 @@
+<%= render partial: 'shared/breadcrumbs_section', locals: { steps: [['Mon groupe gestionnaire', admin_groupe_gestionnaire_path], ['Gestionnaires']] } %>
+
+<div class="container">
+  <h1>Gestionnaires de «&nbsp;<%= @groupe_gestionnaire.name %>&nbsp;»</h1>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Adresse électronique</th>
+        <th>Enregistré le</th>
+        <th>État</th>
+      </tr>
+    </thead>
+
+    <tbody id="gestionnaires">
+      <%= render(GroupeGestionnaire::GroupeGestionnaireGestionnaires::GestionnaireComponent.with_collection(@groupe_gestionnaire.gestionnaires.order('users.email'), groupe_gestionnaire: @groupe_gestionnaire, is_gestionnaire: false)) %>
+    </tbody>
+  </table>
+</div>
