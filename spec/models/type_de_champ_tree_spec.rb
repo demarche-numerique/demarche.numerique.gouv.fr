@@ -270,6 +270,33 @@ describe TypeDeChampTree do
     end
   end
 
+  describe '#nodes_with_ancestors' do
+    let(:public_type_de_champs) do
+      [
+        { type: :header_section, level: 1, libelle: 'h1' },
+        { type: :repetition, libelle: 'r', children: [{ type: :header_section, level: 1, libelle: 'rh1' }, { libelle: 'r1' }] },
+        { libelle: 'a' },
+      ]
+    end
+    let(:private_type_de_champs) { [{ libelle: 'b' }] }
+
+    def libelles(nodes_with_ancestors)
+      libelles = revision.type_de_champs.to_h { [it.stable_id, it.libelle] }
+      nodes_with_ancestors.map { |node, ancestors| [libelles.fetch(node.stable_id), ancestors.map { libelles.fetch(it.stable_id) }] }
+    end
+
+    it 'gives every node in document order with its ancestors, the outermost first' do
+      expect(libelles(tree.nodes_with_ancestors)).to eq([
+        ['h1', []], ['r', ['h1']], ['rh1', ['h1', 'r']], ['r1', ['h1', 'r', 'rh1']], ['a', ['h1']], ['b', []],
+      ])
+    end
+
+    it 'gives the public nodes alone, or the private ones' do
+      expect(libelles(tree.public_nodes_with_ancestors).map(&:first)).to eq(['h1', 'r', 'rh1', 'r1', 'a'])
+      expect(libelles(tree.private_nodes_with_ancestors).map(&:first)).to eq(['b'])
+    end
+  end
+
   describe 'json' do
     let(:public_type_de_champs) { [{ type: :header_section, level: 1 }, { type: :repetition, children: [{}, {}] }] }
     let(:private_type_de_champs) { [{}] }

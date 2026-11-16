@@ -83,14 +83,13 @@ class TypeDeChampTree < Data.define(:public_children, :private_children)
       latest = {}
 
       trees.each_with_index do |tree, rank|
-        [tree.public_children, tree.private_children].each_with_index do |nodes, private|
-          coordinates_of(nodes, repetition_ids).each_with_index do |node, position|
-            keep_latest(latest, nil, node, [private, position, -rank])
-            next if !repetition_ids.include?(node.type_de_champ_id)
+        [tree.public_nodes_with_ancestors, tree.private_nodes_with_ancestors].each_with_index do |nodes_with_ancestors, private|
+          positions = Hash.new(0)
 
-            flattened(node.children).each_with_index do |child, child_position|
-              keep_latest(latest, node.stable_id, child, [private, child_position, -rank])
-            end
+          nodes_with_ancestors.each do |node, ancestors|
+            container = enclosing_repetition(ancestors, repetition_ids)&.stable_id
+            keep_latest(latest, container, node, [private, positions[container], -rank])
+            positions[container] += 1
           end
         end
       end
@@ -108,12 +107,10 @@ class TypeDeChampTree < Data.define(:public_children, :private_children)
       latest[[container, node.stable_id]] = [node.type_de_champ_id, key] if kept.nil? || node.type_de_champ_id >= kept.first
     end
 
-    # the root as coordinates lay it: header sections followed by what they hold
-    def coordinates_of(nodes, repetition_ids)
-      nodes.flat_map { repetition_ids.include?(it.type_de_champ_id) ? [it] : [it, *coordinates_of(it.children, repetition_ids)] }
+    # the repetition a node sits in, if any: header sections do not count
+    def enclosing_repetition(ancestors, repetition_ids)
+      ancestors.find { repetition_ids.include?(it.type_de_champ_id) }
     end
-
-    def flattened(nodes) = nodes.flat_map { [it, *flattened(it.children)] }
 
     # only a repetition or a header section has children to tell apart
     def repetition_type_de_champ_ids(trees)
@@ -250,15 +247,22 @@ class TypeDeChampTree < Data.define(:public_children, :private_children)
   end
 
   # every node of the tree in document order, the public ones first
-  def nodes = nodes_of(public_children) + nodes_of(private_children)
+  def nodes = nodes_with_ancestors.map(&:first)
 
   # every type de champ the tree lays out, in document order: what to load in
   # one query before laying them out
   def type_de_champ_ids = nodes.map(&:type_de_champ_id)
 
+  # every node in document order, each with its ancestors, the outermost first
+  def public_nodes_with_ancestors = with_ancestors(public_children)
+  def private_nodes_with_ancestors = with_ancestors(private_children)
+  def nodes_with_ancestors = public_nodes_with_ancestors + private_nodes_with_ancestors
+
   def as_json(*) = { public_children: public_children.map(&:as_json), private_children: private_children.map(&:as_json) }
 
   private
 
-  def nodes_of(nodes) = nodes.flat_map { [it, *nodes_of(it.children)] }
+  def with_ancestors(nodes, ancestors = [])
+    nodes.flat_map { [[it, ancestors], *with_ancestors(it.children, [*ancestors, it])] }
+  end
 end
