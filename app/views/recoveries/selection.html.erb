@@ -1,0 +1,42 @@
+<% content_for(:title) { t('.title') } %>
+
+<div class="fr-container fr-my-6w">
+  <h1 class="fr-h1"><%= t('recoveries.heading') %></h1>
+
+  <h2 class="fr-h2"><%= t('.title') %></h2>
+
+  <%= form_tag nil, data: { controller: 'enable-submit-if-checked' } do %>
+    <fieldset
+      class="fr-fieldset"
+      id="checkboxes"
+      aria-labelledby="checkboxes-legend checkboxes-messages"
+      data-action="click->enable-submit-if-checked#click"
+    >
+      <legend
+        class="fr-fieldset__legend--regular fr-fieldset__legend"
+        id="checkboxes-legend"
+      >
+        <%= t('.legend') %>
+      </legend>
+
+      <% recoverable_id_and_libelles(@recoverables).each do |procedure_id, libelle| %>
+        <div class="fr-fieldset__element">
+          <div class="fr-checkbox-group">
+            <%= check_box_tag 'procedure_ids[]', procedure_id, false, class: 'fr-checkbox', id: procedure_id %>
+            <%= label_tag procedure_id, libelle, class: 'fr-label' %>
+          </div>
+        </div>
+      <% end %>
+    </fieldset>
+
+    <%= hidden_field_tag 'previous_email', @previous_email %>
+
+    <button
+      class="fr-btn"
+      disabled
+      data-enable-submit-if-checked-target="submit"
+    >
+      <%= t('recoveries.continue') %>
+    </button>
+  <% end %>
+</div>

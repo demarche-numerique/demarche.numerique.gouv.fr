@@ -136,13 +136,21 @@ describe RecoveriesController, type: :controller do
       end
 
       context 'when there are recoverable procedures' do
-        let(:recoverable_procedures) { [[1, 'libelle', 2]] }
+        render_views
+
+        let(:recoverable_procedures) { [{ procedure_id: 1, libelle: 'libelle', count: 2 }] }
 
         before do
           allow(RecoveryService).to receive(:recoverable_procedures).and_return(recoverable_procedures)
         end
 
-        it { is_expected.to have_http_status(:success) }
+        it do
+          subject
+          expect(response.body).to have_css('h2', text: 'Sélection des démarches')
+          expect(response.body).to have_css('legend', text: 'Sélectionner les démarches que vous souhaitez récupérer.')
+          expect(response.body).to have_field('libelle', type: 'checkbox', with: '1')
+          expect(response.body).to have_button('Continuer', disabled: true)
+        end
       end
     end
 

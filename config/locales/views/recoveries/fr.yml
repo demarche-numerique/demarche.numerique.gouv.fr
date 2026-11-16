@@ -13,3 +13,6 @@ fr:
       subtitle: Identification du propriétaire des dossiers
       organisation: Votre organisation est « %{name} » identifiée par le SIRET %{siret}
       email_label: Adresse électronique du propriétaire des dossiers
+    selection:
+      title: Sélection des démarches
+      legend: Sélectionner les démarches que vous souhaitez récupérer.

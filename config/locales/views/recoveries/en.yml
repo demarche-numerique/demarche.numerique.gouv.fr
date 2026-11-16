@@ -13,3 +13,6 @@ en:
       subtitle: Identification of the applications’ owner
       organisation: Your organisation is “%{name}”, identified by SIRET %{siret}
       email_label: Email address of the applications’ owner
+    selection:
+      title: Select procedures
+      legend: Select the procedures you want to recover.
