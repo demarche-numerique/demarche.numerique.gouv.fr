@@ -5,6 +5,7 @@ describe Administrateurs::ProcedureAdministrateursController, type: :controller 
   let(:other_admin) { create(:administrateur).tap { _1.user.update(last_sign_in_at: Time.zone.now) } }
   let!(:administrateurs_procedure) { create(:administrateurs_procedure, administrateur: signed_in_admin, procedure: procedure, manager: manager) }
   let!(:procedure) { create(:procedure, administrateurs: [other_admin]) }
+  let(:streams) { Nokogiri::HTML5.fragment(response.body) }
   render_views
 
   before do
@@ -38,6 +39,32 @@ describe Administrateurs::ProcedureAdministrateursController, type: :controller 
       let(:manager) { true }
       subject { post :create, params: { procedure_id: procedure.id, administrateur: { email: administrateurs.default.email } }, format: :turbo_stream }
       it { is_expected.to have_http_status(:forbidden) }
+    end
+
+    context 'as a regular admin' do
+      let(:manager) { false }
+      let(:new_admin) { administrateurs.blank }
+      let(:email) { new_admin.email }
+
+      subject { post :create, params: { procedure_id: procedure.id, administrateur: { email: } }, format: :turbo_stream }
+
+      before { subject }
+
+      it 'refreshes the list, resets the form and focuses it' do
+        expect(streams.css('turbo-stream[action="update"][target="administrateurs"] template tr').text).to include(new_admin.email, other_admin.email)
+        expect(streams.at_css('turbo-stream[action="replace"][target="new_administrateur"] template form#new_administrateur input#administrateur_email[required][value=""]')).to be_present
+        expect(streams.at_css('turbo-stream[action="focus"][target="administrateur_email"]')).to be_present
+      end
+
+      context 'with an unknown email' do
+        let(:email) { 'unknown@exemple.fr' }
+
+        it 'only shows an alert' do
+          expect(response.body).to include('alert-danger')
+          expect(streams.at_css('turbo-stream[target="administrateurs"]')).to be_nil
+          expect(streams.at_css('turbo-stream[target="new_administrateur"]')).to be_nil
+        end
+      end
     end
   end
 

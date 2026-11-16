@@ -1,0 +1,7 @@
+<% if @administrateur.present? %>
+  <%= turbo_stream.update 'administrateurs' do %>
+    <%= render Procedure::ProcedureAdministrateurs::AdministrateurComponent.with_collection(@procedure.administrateurs.order('users.email'), procedure: @procedure) %>
+  <% end %>
+  <%= turbo_stream.replace "new_administrateur", partial: 'add_admin_form', locals: { procedure: @procedure, disabled_as_super_admin: administrateur_as_manager? } %>
+  <%= turbo_stream.focus 'administrateur_email' %>
+<% end %>
