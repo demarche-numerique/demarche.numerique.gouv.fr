@@ -61,6 +61,9 @@ describe Gestionnaires::GroupeGestionnairesController, type: :controller do
         expect(assigns(:groupe_gestionnaire)).to eq(child_groupe_gestionnaire)
         expect(response.body).to have_link('Mes groupes gestionnaires', href: gestionnaire_groupe_gestionnaires_path)
         expect(response.body).not_to have_css('#header-navigation [aria-current]')
+        expect(response.body).to have_css('h2', text: "Gestion du groupe \"#{child_groupe_gestionnaire.name}\"")
+        expect(response.body).to have_link('Modifier', href: edit_gestionnaire_groupe_gestionnaire_path(child_groupe_gestionnaire))
+        expect(response.body).to have_button('Supprimer')
       end
     end
   end

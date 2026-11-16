@@ -1,0 +1,36 @@
+<%= render 'main_navigation' %>
+<%= render partial: 'shared/breadcrumbs_section', locals: { steps: [[@groupe_gestionnaire.name.truncate_words(10)]], metadatas: true } %>
+
+<div class="fr-container procedure-admin-container">
+  <ul class="fr-btns-group fr-btns-group--inline-sm fr-btns-group--icon-left">
+    <li>
+      <%= link_to 'Modifier', edit_gestionnaire_groupe_gestionnaire_path(@groupe_gestionnaire), class: 'fr-btn fr-btn--primary fr-btn--icon-left fr-icon-success-line' %>
+    </li>
+
+    <% if @groupe_gestionnaire.can_be_deleted?(current_gestionnaire) %>
+      <li>
+        <%= button_to gestionnaire_groupe_gestionnaire_path(@groupe_gestionnaire), class: "fr-btn fr-btn--tertiary fr-btn--icon-left fr-icon-delete-line", method: :delete, data: { turbo_confirm: "Voulez-vous vraiment supprimer ce groupe !" }, form: { data: { turbo: true } } do %>
+          <%= t('views.gestionnaires.groupe_gestionnaires.delete') %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="fr-container">
+  <h2>Gestion du groupe "<%= @groupe_gestionnaire.name %>"</h2>
+
+  <% if @groupe_gestionnaire.groupe_gestionnaire_id.present? %>
+    <p>
+      groupe parent&nbsp;:
+      <a href="<%= gestionnaire_groupe_gestionnaire_path(@groupe_gestionnaire.groupe_gestionnaire) %>"><%= @groupe_gestionnaire.groupe_gestionnaire.name %></a>
+    </p>
+  <% end %>
+
+  <div class="fr-grid-row fr-grid-row--gutters fr-mb-5w fr-groupe_gestionnaire_cards">
+    <%= render GroupeGestionnaire::Card::GestionnairesComponent.new(groupe_gestionnaire: @groupe_gestionnaire, path: gestionnaire_groupe_gestionnaire_gestionnaires_path(@groupe_gestionnaire)) %>
+    <%= render GroupeGestionnaire::Card::AdministrateursComponent.new(groupe_gestionnaire: @groupe_gestionnaire, path: gestionnaire_groupe_gestionnaire_administrateurs_path(@groupe_gestionnaire)) %>
+    <%= render GroupeGestionnaire::Card::ChildrenComponent.new(groupe_gestionnaire: @groupe_gestionnaire, path: gestionnaire_groupe_gestionnaire_children_path(@groupe_gestionnaire)) %>
+    <%= render GroupeGestionnaire::Card::CommentairesComponent.new(groupe_gestionnaire: @groupe_gestionnaire, administrateur: nil, path: gestionnaire_groupe_gestionnaire_commentaires_path(@groupe_gestionnaire), unread_commentaires: @unread_commentaires) %>
+  </div>
+</div>
