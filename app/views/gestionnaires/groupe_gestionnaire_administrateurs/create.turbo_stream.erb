@@ -1,0 +1,7 @@
+<% if @administrateur.present? %>
+  <%= turbo_stream.update 'administrateurs' do %>
+    <%= render GroupeGestionnaire::GroupeGestionnaireAdministrateurs::AdministrateurComponent.with_collection(@groupe_gestionnaire.administrateurs.order('users.email'), groupe_gestionnaire: @groupe_gestionnaire) %>
+  <% end %>
+  <%= turbo_stream.replace "new_administrateur", partial: 'add_administrateur_form', locals: { groupe_gestionnaire: @groupe_gestionnaire } %>
+  <%= turbo_stream.focus 'administrateur_email' %>
+<% end %>

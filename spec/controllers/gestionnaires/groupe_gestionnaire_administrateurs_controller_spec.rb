@@ -4,7 +4,24 @@ describe Gestionnaires::GroupeGestionnaireAdministrateursController, type: :cont
   let(:gestionnaire) { create(:gestionnaire).tap { _1.user.update(last_sign_in_at: Time.zone.now) } }
   let(:groupe_gestionnaire) { create(:groupe_gestionnaire, gestionnaires: [gestionnaire]) }
 
+  render_views
+
   before { sign_in gestionnaire.user }
+
+  describe '#index' do
+    let(:administrateur) { create(:administrateur) }
+
+    before do
+      groupe_gestionnaire.administrateurs << administrateur
+      get :index, params: { groupe_gestionnaire_id: groupe_gestionnaire.id }
+    end
+
+    it do
+      expect(response.body).to have_css("h1", text: groupe_gestionnaire.name)
+      expect(response.body).to include(administrateur.email)
+      expect(response.body).to have_field('administrateur_email')
+    end
+  end
 
   describe '#create' do
     before do
@@ -21,7 +38,9 @@ describe Gestionnaires::GroupeGestionnaireAdministrateursController, type: :cont
 
       it do
         expect(groupe_gestionnaire.reload.administrateurs.map(&:email)).to include(new_administrateur_email)
-        expect(flash.notice).to eq("Les administrateurs ont bien été affectés au groupe gestionnaire")
+        expect(response.body).to include("Les administrateurs ont bien été affectés au groupe gestionnaire")
+        expect(response.body).to have_css('turbo-stream[action="replace"][target="new_administrateur"]')
+        expect(response.body).to include(new_administrateur_email)
       end
     end
   end
@@ -48,7 +67,7 @@ describe Gestionnaires::GroupeGestionnaireAdministrateursController, type: :cont
 
       it do
         expect(groupe_gestionnaire.reload.administrateurs.count).to eq(0)
-        expect(flash.notice).to eq("L’administrateur « #{new_administrateur.email} » a été supprimé.")
+        expect(response.body).to include("L’administrateur «&nbsp;#{new_administrateur.email}&nbsp;» a été supprimé.")
       end
     end
 
@@ -62,7 +81,7 @@ describe Gestionnaires::GroupeGestionnaireAdministrateursController, type: :cont
 
       it do
         expect(groupe_gestionnaire.reload.administrateurs.count).to eq(2)
-        expect(flash.alert).to eq("L’administrateur « #{administrateur_with_procedure.email} » ne peut pas être supprimé du groupe gestionnaire.")
+        expect(response.body).to include("L’administrateur «&nbsp;#{administrateur_with_procedure.email}&nbsp;» ne peut pas être supprimé du groupe gestionnaire.")
       end
     end
 
@@ -99,7 +118,7 @@ describe Gestionnaires::GroupeGestionnaireAdministrateursController, type: :cont
 
       it do
         expect(groupe_gestionnaire.reload.administrateurs.count).to eq(0)
-        expect(flash.notice).to eq("L’administrateur « #{new_administrateur.email} » a été retiré du groupe gestionnaire.")
+        expect(response.body).to include("L’administrateur «&nbsp;#{new_administrateur.email}&nbsp;» a été retiré du groupe gestionnaire.")
       end
     end
 
