@@ -100,13 +100,6 @@ class TypesDeChamp::PieceJustificativeTypeDeChamp < TypeDeChamp
     end
   end
 
-  def allowed_extensions
-    allowed_content_types
-      .filter_map { |mime| MiniMime.lookup_by_content_type(mime)&.extension }
-      .uniq
-      .map { |ext| ".#{ext}" }
-  end
-
   def allowed_content_types
     if titre_identite?
       NATURE_IMAGE_TYPES

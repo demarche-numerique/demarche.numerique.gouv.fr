@@ -62,7 +62,7 @@ class Attachment::HintsComponent < ApplicationComponent
     return nil unless show_exhaustive_formats?
 
     tdc = champ.type_de_champ
-    NATURE_DISPLAY_FORMATS[tdc.nature&.to_sym] || tdc.allowed_extensions.join(', ')
+    NATURE_DISPLAY_FORMATS[tdc.nature.to_sym]
   end
 
   def formats_accepted_text
