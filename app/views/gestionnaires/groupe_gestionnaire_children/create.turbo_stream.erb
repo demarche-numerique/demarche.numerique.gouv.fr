@@ -1,0 +1,7 @@
+<% if @child.present? %>
+  <%= turbo_stream.update 'children' do %>
+    <%= render GroupeGestionnaire::GroupeGestionnaireChildren::ChildComponent.with_collection(@groupe_gestionnaire.children, groupe_gestionnaire: @groupe_gestionnaire) %>
+  <% end %>
+  <%= turbo_stream.replace "new_child", partial: 'add_child_form', locals: { groupe_gestionnaire: @groupe_gestionnaire } %>
+  <%= turbo_stream.focus 'groupe_gestionnaire_name' %>
+<% end %>
