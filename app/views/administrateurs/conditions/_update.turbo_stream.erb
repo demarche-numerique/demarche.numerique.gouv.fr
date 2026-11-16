@@ -1,0 +1,20 @@
+<%= turbo_stream.replace 'breadcrumbs', render(partial: 'shared/breadcrumbs_section',
+  locals: { steps: [[admin_procedures_back_label(@procedure), admin_procedures_back_path(@procedure)],
+                    [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)],
+                    [t('.breadcrumb')]] }) %>
+
+<%= turbo_stream.update "sticky-header" do %>
+  <%= render partial: "administrateurs/procedures/unpublished_changes_sticky_header", locals: { procedure: @procedure } %>
+<% end %>
+
+<%= turbo_stream.replace 'errors-summary', render(Procedure::ErrorsSummary.new(procedure: @procedure, validation_context: @tdc.public? ? :public_type_de_champs_editor : :private_type_de_champs_editor)) %>
+
+<% rendered = render @condition_component %>
+
+<% if rendered.present? %>
+  <%= turbo_stream.replace dom_id(@tdc, :condition), rendered %>
+<% else %>
+  <%= turbo_stream.remove dom_id(@tdc, :condition) %>
+<% end %>
+
+<%= render AutosaveNoticeTurboStreamComponent.new %>
