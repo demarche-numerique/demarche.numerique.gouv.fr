@@ -89,6 +89,9 @@ describe Gestionnaires::GroupeGestionnairesController, type: :controller do
         subject
         expect(response).to have_http_status(:ok)
         expect(assigns(:groupe_gestionnaire)).to eq(child_groupe_gestionnaire)
+        expect(response.body).to have_field('groupe_gestionnaire[name]', with: child_groupe_gestionnaire.name)
+        expect(response.body).to have_button('Enregistrer')
+        expect(response.body).to have_link('Annuler', href: gestionnaire_groupe_gestionnaire_path(child_groupe_gestionnaire))
       end
     end
   end
