@@ -68,12 +68,15 @@ describe Administrateurs::ConditionsController, type: :controller do
     end
 
     describe '#add_row' do
+      render_views
+
       before { post :add_row, params: default_params, format: :turbo_stream }
 
       it do
         expect(third_tdc.reload.condition).to eq(empty_operator(empty, empty))
         expect(assigns(:coordinate)).to eq(procedure.draft_revision.coordinate_for(third_tdc))
         expect(assigns(:upper_tdcs)).to eq([first_tdc, second_tdc])
+        expect(replaced_condition_block).to be_present
       end
     end
 
