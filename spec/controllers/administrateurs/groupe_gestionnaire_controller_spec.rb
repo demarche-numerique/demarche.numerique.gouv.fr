@@ -3,6 +3,8 @@
 describe Administrateurs::GroupeGestionnaireController, type: :controller do
   let(:admin) { administrateurs.default }
 
+  render_views
+
   describe "#show" do
     subject { get :show }
 
@@ -22,6 +24,10 @@ describe Administrateurs::GroupeGestionnaireController, type: :controller do
       it do
         expect(response).to have_http_status(:ok)
         expect(assigns(:groupe_gestionnaire)).to eq(groupe_gestionnaire)
+        expect(response.body).to have_css('h2', text: "Gestion du groupe gestionnaire \"#{groupe_gestionnaire.name}\"")
+        expect(response.body).to have_link(href: admin_groupe_gestionnaire_gestionnaires_path)
+        expect(response.body).to have_link(href: admin_groupe_gestionnaire_administrateurs_path)
+        expect(response.body).to have_link(href: admin_groupe_gestionnaire_commentaires_path)
       end
     end
   end
