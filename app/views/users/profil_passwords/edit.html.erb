@@ -7,6 +7,8 @@
     <div class="fr-col-lg-6">
       <h1><%= t('.title') %></h1>
 
+      <p><%= t('views.shared.local_password_notice') %></p>
+
       <% if external_login_providers.any? %>
         <%= render Dsfr::AlertComponent.new(title: t('.external_login_title', providers: external_login_providers.to_sentence), state: :info, heading_level: 'h2', extra_class_names: 'fr-mb-4w') do |c| %>
           <% c.with_body do %>

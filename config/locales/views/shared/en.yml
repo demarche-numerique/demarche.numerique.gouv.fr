@@ -23,6 +23,7 @@ en:
         help_link: What is FranceConnect?
         plus_help_link: What is FranceConnect+?
         separator: or
+      local_password_notice: "This password only applies to your local account. It will be used when you sign in with your email address, not through FranceConnect."
       account:
         account_title: "Sign in with your %{application_name} account"
         already_user_question: 'Do you already have an account?'
