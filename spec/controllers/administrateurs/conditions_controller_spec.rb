@@ -2,6 +2,7 @@
 
 describe Administrateurs::ConditionsController, type: :controller do
   include Logic
+  include ActionView::RecordIdentifier
 
   before { sign_in(procedure.administrateurs.first.user) }
 
@@ -10,6 +11,11 @@ describe Administrateurs::ConditionsController, type: :controller do
     let(:first_tdc) { procedure.draft_revision.type_de_champs.first }
     let(:second_tdc) { procedure.draft_revision.type_de_champs.second }
     let(:third_tdc) { procedure.draft_revision.type_de_champs.third }
+    let(:condition_target) { dom_id(third_tdc, :condition) }
+
+    def replaced_condition_block
+      Nokogiri::HTML5.fragment(response.body).at_css("turbo-stream[action='replace'][target='#{condition_target}'] template ##{condition_target}")
+    end
 
     before { sign_in(procedure.administrateurs.first.user) }
 
@@ -44,6 +50,10 @@ describe Administrateurs::ConditionsController, type: :controller do
         expect(assigns(:coordinate)).to eq(procedure.draft_revision.coordinate_for(third_tdc))
         expect(assigns(:upper_tdcs)).to eq([first_tdc, second_tdc])
         expect(response.body).to include('<turbo-stream action="replace" target="autosave-notice">')
+        expect(response.body).to have_css("turbo-stream[action='replace'][target='breadcrumbs']")
+        expect(response.body).to have_css("turbo-stream[action='update'][target='sticky-header']")
+        expect(response.body).to have_css("turbo-stream[action='replace'][target='errors-summary']")
+        expect(replaced_condition_block).to be_present
       end
 
       context 'when procedure is published' do
