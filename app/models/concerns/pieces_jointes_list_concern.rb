@@ -26,7 +26,10 @@ module PiecesJointesListConcern
   end
 
   def outdated_exportables_pieces_jointes
-    exportables_pieces_jointes_for_all_versions - exportables_pieces_jointes
+    # by stable id: the draft may hold a newer version of a piece jointe still published
+    stable_ids = exportables_pieces_jointes.to_set(&:stable_id)
+
+    exportables_pieces_jointes_for_all_versions.reject { stable_ids.member?(it.stable_id) }
   end
 
   private

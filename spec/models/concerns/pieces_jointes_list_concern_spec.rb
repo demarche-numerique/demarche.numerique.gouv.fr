@@ -111,5 +111,14 @@ describe PiecesJointesListConcern do
         expect(procedure.outdated_exportables_pieces_jointes.map(&:libelle)).to match_array(["kept", "outdated"])
       end
     end
+
+    context 'when the draft holds a newer version of a published piece jointe' do
+      before { procedure.draft_revision.find_and_ensure_exclusive_use(2).update!(libelle: 'renamed') }
+
+      it 'is not outdated' do
+        expect(procedure.exportables_pieces_jointes.map(&:libelle)).to match_array(["kept", "new"])
+        expect(procedure.outdated_exportables_pieces_jointes.map(&:libelle)).to match_array(["outdated"])
+      end
+    end
   end
 end
