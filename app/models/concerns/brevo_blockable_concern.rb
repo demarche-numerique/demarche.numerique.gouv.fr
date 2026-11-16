@@ -7,6 +7,9 @@ module BrevoBlockableConcern
   # of the reason.
   BREVO_BLOCKED_EVENT = 'blocked'
 
+  # A temporary failure: Brevo does not block the address for it.
+  BREVO_SOFT_BOUNCE_EVENT = 'soft_bounce'
+
   included do
     enum :brevo_blocked_reason, {
       hard_bounce: 'hard_bounce',
@@ -18,6 +21,8 @@ module BrevoBlockableConcern
 
   class_methods do
     def record_brevo_event(email:, event:, at:)
+      return if event == BREVO_SOFT_BOUNCE_EVENT
+
       # the webhook subscribes to the blocking events only: any other one is a misconfiguration
       if !known_event?(event)
         Sentry.capture_message("Brevo webhook: unhandled event", extra: { event: })
