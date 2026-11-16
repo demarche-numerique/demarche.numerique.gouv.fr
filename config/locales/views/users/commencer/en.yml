@@ -3,7 +3,7 @@ en:
     show:
       start_procedure: Start the procedure
       start_dossier: Start a file
-      pro_connect_restriction_all_info_html: "This procedure requires <a href=\"%{path}\" title=\"Signin with ProConnect\">ProConnect authentication</a>. Only agents with a ProConnect account can access it."
+      pro_connect_restriction_all_info_html: "This procedure requires <a href=\"%{path}\" title=\"Signin with ProConnect\">ProConnect authentication</a>. Only professionals with a ProConnect account can access it."
       existing_dossiers: You already have files for this procedure
       show_dossiers: View my current files
       prefilled_draft: "You have a prefilled file"

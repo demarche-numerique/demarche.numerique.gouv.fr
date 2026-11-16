@@ -2,7 +2,7 @@ fr:
   pro_connect:
     required:
       title: "Connexion ProConnect requise"
-      explanation: "Cette démarche nécessite une authentification via ProConnect. Seuls les agents disposant d’un compte ProConnect peuvent y accéder."
+      explanation: "Cette démarche nécessite une authentification via ProConnect. Seuls les professionnels disposant d’un compte ProConnect peuvent y accéder."
     index:
       cta: Se connecter avec ProConnect
       explanation_html: "Seuls les professionnels disposant <strong>d’un compte ProConnect</strong> peuvent accéder à leur <strong>espace administrateur</strong>. Veuillez vous connecter ou vous inscrire en cliquant sur le bouton ci-dessous :"

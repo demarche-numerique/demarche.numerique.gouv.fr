@@ -718,7 +718,7 @@ describe Users::CommencerController, type: :controller do
         assert_response :success
         expect(controller.stored_location_for(:user)).to eq(commencer_path(path: procedure.path))
         expect(response.body).to include("S’identifier avec ProConnect")
-        expect(response.body).to include("Seuls les agents disposant d’un compte ProConnect peuvent y accéder")
+        expect(response.body).to include("Seuls les professionnels disposant d’un compte ProConnect peuvent y accéder")
         expect(response.body).not_to include('france_connect')
       end
     end
@@ -735,7 +735,7 @@ describe Users::CommencerController, type: :controller do
         assert_response :success
         expect(response.body).to include("Commencer")
         expect(response.body).not_to include("S’identifier avec ProConnect")
-        expect(response.body).not_to include("Seuls les agents disposant d’un compte ProConnect peuvent y accéder")
+        expect(response.body).not_to include("Seuls les professionnels disposant d’un compte ProConnect peuvent y accéder")
       end
     end
 
@@ -750,7 +750,7 @@ describe Users::CommencerController, type: :controller do
         subject
         assert_response :success
         expect(response.body).not_to include("Commencer")
-        expect(response.body).to include("Seuls les agents disposant d’un compte ProConnect peuvent y accéder")
+        expect(response.body).to include("Seuls les professionnels disposant d’un compte ProConnect peuvent y accéder")
       end
     end
   end
