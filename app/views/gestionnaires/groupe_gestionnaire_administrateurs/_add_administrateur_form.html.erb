@@ -1,0 +1,12 @@
+<%= form_for groupe_gestionnaire.administrateurs.new(user: User.new), url: { controller: 'groupe_gestionnaire_administrateurs' }, html: { id: "new_administrateur" }, data: { turbo: true, turbo_force: :server } do |f| %>
+  <div class="fr-input-group">
+    <%= f.label :email, class: "fr-label" do %>
+      Ajouter un administrateur
+      <span class="fr-hint-text">Renseignez l’adresse électronique d’un administrateur pour lui permettre de gérer le groupe «&nbsp;<%= groupe_gestionnaire.name %>&nbsp;». Exemple&nbsp;: marie.dupont@exemple.fr</span>
+    <% end %>
+
+    <%= f.email_field :email, required: true, class: "fr-input", autofocus: true %>
+  </div>
+
+  <%= f.submit 'Ajouter comme administrateur', class: 'fr-btn' %>
+<% end %>
