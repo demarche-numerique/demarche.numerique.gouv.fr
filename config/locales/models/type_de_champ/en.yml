@@ -34,6 +34,7 @@ en:
           numeric: 'Number'
           date: 'Date'
           datetime: 'Date and time'
+          temporal: 'Date'
           piece_justificative: 'Supporting document'
           titre_identite: 'Identity title'
           checkbox: 'Checkbox'

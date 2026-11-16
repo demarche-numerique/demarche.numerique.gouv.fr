@@ -272,6 +272,89 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       end
     end
 
+    describe 'the « Date » menu entry' do
+      def type_champ_of(coordinate) = TypeDeChamp.where(id: coordinate.type_de_champ.id).pick(:type_champ)
+
+      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :date, libelle: 'l1' }, { type: :date, libelle: 'l2' }]) }
+
+      context 'choosing it on a text field' do
+        let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text, libelle: 'l1' }]) }
+        let(:params) { { procedure_id: procedure.id, stable_id: first_coordinate.stable_id, type_de_champ: { type_champ: 'temporal' } } }
+
+        it 'makes it a date, the toggle not being displayed yet' do
+          is_expected.to have_http_status(:ok)
+          expect(type_champ_of(first_coordinate)).to eq('date')
+        end
+      end
+
+      context 'turning the time toggle on' do
+        let(:params) { default_params.deep_merge(type_de_champ: { type_champ: 'temporal', temporal_type_champ: 'datetime' }) }
+
+        it 'makes the date a datetime' do
+          is_expected.to have_http_status(:ok)
+          expect(type_champ_of(second_coordinate)).to eq('datetime')
+        end
+      end
+
+      context 'turning the time toggle off' do
+        let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :datetime, libelle: 'l1' }]) }
+        let(:params) { { procedure_id: procedure.id, stable_id: first_coordinate.stable_id, type_de_champ: { type_champ: 'temporal', temporal_type_champ: 'date' } } }
+
+        it 'makes the datetime a date' do
+          is_expected.to have_http_status(:ok)
+          expect(type_champ_of(first_coordinate)).to eq('date')
+        end
+      end
+
+      context 'choosing another type while the toggle is still displayed' do
+        let(:params) { default_params.deep_merge(type_de_champ: { type_champ: 'text', temporal_type_champ: 'date' }) }
+
+        it 'follows the menu and ignores the toggle' do
+          is_expected.to have_http_status(:ok)
+          expect(type_champ_of(second_coordinate)).to eq('text')
+        end
+      end
+
+      context 'with an unexpected toggle value' do
+        let(:params) { default_params.deep_merge(type_de_champ: { type_champ: 'temporal', temporal_type_champ: 'siret' }) }
+
+        it 'falls back to a date' do
+          is_expected.to have_http_status(:ok)
+          expect(type_champ_of(second_coordinate)).to eq('date')
+        end
+      end
+
+      context 'editing the libelle of a date used by routing' do
+        let(:params) { default_params.deep_merge(type_de_champ: { type_champ: 'temporal', temporal_type_champ: 'date' }) }
+
+        before do
+          allow_any_instance_of(ProcedureRevisionTypeDeChamp).to receive(:used_by_routing_rules?).and_return(true)
+        end
+
+        it 'saves it, the type being unchanged' do
+          is_expected.to have_http_status(:ok)
+          expect(flash.alert).to be_nil
+          expect(second_coordinate.libelle).to eq('updated')
+        end
+      end
+
+      context 'editing the libelle of a datetime used by routing, its locked toggle sending nothing' do
+        let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :datetime, libelle: 'l1' }]) }
+        let(:params) { { procedure_id: procedure.id, stable_id: first_coordinate.stable_id, type_de_champ: { type_champ: 'temporal', libelle: 'updated' } } }
+
+        before do
+          allow_any_instance_of(ProcedureRevisionTypeDeChamp).to receive(:used_by_routing_rules?).and_return(true)
+        end
+
+        it 'keeps it a datetime and saves the libelle' do
+          is_expected.to have_http_status(:ok)
+          expect(flash.alert).to be_nil
+          expect(type_champ_of(first_coordinate)).to eq('datetime')
+          expect(TypeDeChamp.where(id: first_coordinate.type_de_champ.id).pick(:libelle)).to eq('updated')
+        end
+      end
+    end
+
     context 'rejected if type changed and routing involved' do
       let(:params) do
         default_params.deep_merge(type_de_champ: { type_champ: 'text', stable_id: third_coordinate.stable_id })
