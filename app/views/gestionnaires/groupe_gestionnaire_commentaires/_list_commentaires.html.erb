@@ -1,0 +1,21 @@
+<div class="fr-table">
+  <div class="fr-table__wrapper">
+    <div class="fr-table__container">
+      <div class="fr-table__content">
+        <table>
+          <thead>
+            <tr>
+              <th>Adresse électronique</th>
+              <th>Dernier message</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <tbody id="commentaires">
+            <%= render GroupeGestionnaire::GroupeGestionnaireListCommentaires::CommentaireComponent.with_collection(commentaires, groupe_gestionnaire: groupe_gestionnaire) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

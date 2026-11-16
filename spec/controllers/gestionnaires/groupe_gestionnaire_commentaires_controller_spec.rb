@@ -32,6 +32,18 @@ describe Gestionnaires::GroupeGestionnaireCommentairesController, type: :control
         end
       end
 
+      context "with a message from a child group" do
+        let(:child_gestionnaire) { create(:gestionnaire) }
+        let(:child_groupe_gestionnaire) { create(:groupe_gestionnaire, ancestry: "/#{groupe_gestionnaire.id}/", gestionnaires: [child_gestionnaire]) }
+        let(:child_commentaire) { create(:commentaire_groupe_gestionnaire, groupe_gestionnaire: child_groupe_gestionnaire, sender: child_gestionnaire) }
+        let(:subject_groupe_gestionnaire) { child_commentaire.groupe_gestionnaire.parent }
+
+        it do
+          expect(response.body).to include("Messagerie des groupes enfants")
+          expect(response.body).to have_css("tbody tr", text: child_gestionnaire.email)
+        end
+      end
+
       context "in a child group" do
         let(:child_gestionnaire) { create(:gestionnaire).tap { _1.user.update(last_sign_in_at: Time.zone.now) } }
         let!(:child_groupe_gestionnaire) { create(:groupe_gestionnaire, ancestry: "/#{groupe_gestionnaire.id}/", gestionnaires: [child_gestionnaire]) }
