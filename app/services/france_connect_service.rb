@@ -62,9 +62,6 @@ class FranceConnectService
     user_info = access_token.userinfo!.raw_attributes
 
     [user_info, access_token.id_token]
-  rescue OpenIDConnect::HttpError => e
-    Sentry.set_extras(france_connect_status: e.status, france_connect_body: e.response.body)
-    raise
   end
 
   # rubocop:disable DS/ApplicationName
