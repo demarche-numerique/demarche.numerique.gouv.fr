@@ -1,0 +1,35 @@
+<%= render 'gestionnaires/groupe_gestionnaires/main_navigation' %>
+<%= render partial: 'shared/breadcrumbs_section', locals: { steps: [[@groupe_gestionnaire.name.truncate_words(10), gestionnaire_groupe_gestionnaire_path(@groupe_gestionnaire)], ['Gestionnaires']] } %>
+
+<div class="fr-container">
+  <h1 class="fr-h2">
+    Gérer les gestionnaires de «&nbsp;<%= @groupe_gestionnaire.name %>&nbsp;»
+  </h1>
+
+  <div class="fr-table">
+    <div class="fr-table__wrapper">
+      <div class="fr-table__container">
+        <div class="fr-table__content">
+          <table>
+            <thead>
+              <tr>
+                <th>Adresse électronique</th>
+                <th>Enregistré le</th>
+                <th>État</th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody id="gestionnaires">
+              <%= render GroupeGestionnaire::GroupeGestionnaireGestionnaires::GestionnaireComponent.with_collection(@groupe_gestionnaire.gestionnaires.order('users.email'), groupe_gestionnaire: @groupe_gestionnaire) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fr-mt-4w">
+    <%= render 'add_gestionnaire_form', groupe_gestionnaire: @groupe_gestionnaire %>
+  </div>
+</div>
