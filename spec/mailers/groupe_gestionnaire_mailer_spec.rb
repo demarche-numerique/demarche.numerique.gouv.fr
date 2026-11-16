@@ -81,7 +81,9 @@ RSpec.describe GroupeGestionnaireMailer, type: :mailer do
     subject { described_class.notify_new_commentaire_groupe_gestionnaire(groupe_gestionnaire, commentaire, admin.email, gestionnaire.email, commentaire_url) }
 
     it do
-      expect(subject.body).to include('Vous avez un nouveau message dans le groupe gestionnaire')
+      expect(subject.body).to include("Vous avez un nouveau message envoyé de la part de #{admin.email} dans la messagerie du groupe gestionnaire #{groupe_gestionnaire.name}")
+      expect(subject.body).to have_link('Consulter le message', href: commentaire_url)
+      expect(subject.body).to have_link('mail', href: "mailto:#{admin.email}")
       expect(subject.to).to match_array(['int3@g.fr'])
     end
   end
