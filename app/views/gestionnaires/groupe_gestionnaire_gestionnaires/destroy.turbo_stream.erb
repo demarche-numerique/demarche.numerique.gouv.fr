@@ -1,0 +1,9 @@
+<%= turbo_stream.update 'gestionnaires' do %>
+  <%= render GroupeGestionnaire::GroupeGestionnaireGestionnaires::GestionnaireComponent.with_collection(@groupe_gestionnaire.gestionnaires.order('users.email'), groupe_gestionnaire: @groupe_gestionnaire) %>
+<% end %>
+
+<% if @groupe_gestionnaire.gestionnaires.one? %>
+  <%= turbo_stream.focus 'gestionnaire_email' %>
+<% else %>
+  <%= turbo_stream.focus_all '#gestionnaires tr:first-child input[type="submit"]' %>
+<% end %>
