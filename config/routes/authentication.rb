@@ -40,6 +40,8 @@ scope 'france_connect', as: :france_connect, controller: :france_connect do
 end
 
 scope 'france_connect_plus', as: :france_connect_plus, controller: :france_connect_plus do
+  get '/' => :login
+  get 'callback'
   get 'keys'
 end
 
