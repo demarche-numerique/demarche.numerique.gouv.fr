@@ -29,6 +29,7 @@ module Users
     before_action :ensure_dossier_can_be_viewed, only: [:show]
     before_action :ensure_pro_connect_for_procedure, only: [:brouillon, :modifier, :submit_brouillon, :submit_en_construction, :update]
     before_action :ensure_editing_brouillon, only: [:brouillon]
+    before_action :ensure_brouillon_identity_complete, only: [:brouillon, :submit_brouillon]
     before_action :forbid_closed_submission!, only: [:submit_brouillon]
     before_action :ensure_dossier_has_changes, only: [:submit_en_construction], if: :update_with_stream?
     before_action :set_dossier_stream, only: [:modifier, :update, :submit_en_construction, :check_completude, :champ, :revert_prefill], if: :update_with_stream?
@@ -172,7 +173,8 @@ module Users
         sanitized_params.delete(:individual_attributes) if sanitized_params[:individual_attributes].blank? # évite {} qui réinitialise l'individual
       end
 
-      if @dossier.update(sanitized_params) && @dossier.individual.valid?
+      @dossier.assign_attributes(sanitized_params)
+      if @dossier.save(context: [:update, :identite]) && @dossier.individual.valid?
         if @dossier.for_tiers?
           email = sanitized_params.dig(:individual_attributes, :email)
           User.create_or_promote_to_tiers(email, SecureRandom.hex, @dossier) if email.present?
@@ -618,14 +620,21 @@ module Users
     end
 
     def ensure_dossier_can_be_filled
-      if !dossier.autorisation_donnees
-        if dossier.procedure.for_individual
-          flash.alert = t('users.dossiers.fill_identity.individual')
-          redirect_to identite_dossier_path(dossier)
-        else
-          flash.alert = t('users.dossiers.fill_identity.siret')
-          redirect_to siret_dossier_path(dossier)
-        end
+      redirect_to_identity_step if !dossier.autorisation_donnees
+    end
+
+    def ensure_brouillon_identity_complete
+      # Invites cannot open the identity step (owner only).
+      redirect_to_identity_step if dossier.brouillon? && current_user.owns?(dossier) && !dossier.identity_complete?
+    end
+
+    def redirect_to_identity_step
+      if dossier.procedure.for_individual
+        flash.alert = t('users.dossiers.fill_identity.individual')
+        redirect_to identite_dossier_path(dossier)
+      else
+        flash.alert = t('users.dossiers.fill_identity.siret')
+        redirect_to siret_dossier_path(dossier)
       end
     end
 
