@@ -22,6 +22,14 @@ describe Administrateurs::ProcedureAdministrateursController, type: :controller 
         expect(subject.body).to have_field('administrateur_email', type: 'email')
         expect(subject.body).to have_button('Ajouter comme administrateur')
       end
+
+      it 'lists the procedure administrateurs' do
+        expect(subject.body).to have_css('h1', text: 'Administrateurs')
+        expect(subject.body).to have_css('table caption', text: 'Liste des administrateurs')
+        expect(subject.body).to have_css('tbody#administrateurs tr', count: 2)
+        expect(subject.body).to have_css('tbody#administrateurs tr', text: signed_in_admin.email)
+        expect(subject.body).to have_css('tbody#administrateurs tr', text: other_admin.email)
+      end
     end
   end
 
