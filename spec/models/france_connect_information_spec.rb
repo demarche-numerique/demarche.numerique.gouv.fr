@@ -106,10 +106,31 @@ describe FranceConnectInformation, type: :model do
     let(:fci) { create(:france_connect_information) }
 
     it 'returns a merge_token and register it s creation date' do
-      token = fci.create_merge_token!
+      token = fci.create_merge_token!(login_method: :france_connect_plus)
 
       expect(fci.merge_token).to eq(token)
       expect(fci.merge_token_created_at).not_to be_nil
+      expect(fci.merge_login_method).to eq('france_connect_plus')
+    end
+
+    it 'voids the email link of the previous merge' do
+      fci.update!(requested_email: 'other@example.org')
+      fci.create_email_merge_token!
+
+      fci.create_merge_token!(login_method: :france_connect_plus)
+
+      expect(fci.reload).to have_attributes(email_merge_token: nil, email_merge_token_created_at: nil, requested_email: nil)
+    end
+  end
+
+  describe '#safely_update_user' do
+    it 'forgets how the merge started' do
+      fci = create(:france_connect_information)
+      fci.create_merge_token!(login_method: :france_connect_plus)
+
+      fci.safely_update_user(user: create(:user))
+
+      expect(fci.reload.merge_login_method).to be_nil
     end
   end
 end

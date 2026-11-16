@@ -5,6 +5,7 @@ class Cron::OidcConfigRefreshJob < Cron::CronJob
 
   def perform
     FranceConnectConfig.refresh! if FranceConnectService.enabled?
-    ProConnectConfig.refresh!    if ProConnectService.enabled?
+    FranceConnectPlusConfig.refresh! if FranceConnectPlusService.enabled?
+    ProConnectConfig.refresh! if ProConnectService.enabled?
   end
 end

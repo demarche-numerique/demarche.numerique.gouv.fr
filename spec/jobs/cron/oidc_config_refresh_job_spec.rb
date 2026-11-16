@@ -29,5 +29,16 @@ RSpec.describe Cron::OidcConfigRefreshJob, type: :job do
 
       subject
     end
+
+    it "refreshes FranceConnectPlusConfig once enabled" do
+      ENV['FRANCE_CONNECT_PLUS_ENABLED'] = "enabled"
+      allow(FranceConnectConfig).to receive(:refresh!)
+      allow(ProConnectConfig).to receive(:refresh!)
+      expect(FranceConnectPlusConfig).to receive(:refresh!)
+
+      subject
+    ensure
+      ENV.delete('FRANCE_CONNECT_PLUS_ENABLED')
+    end
   end
 end
