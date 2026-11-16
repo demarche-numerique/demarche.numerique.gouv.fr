@@ -2,8 +2,12 @@
 
 module Users
   class TransfersController < UserController
+    include FranceConnectPlusRestrictionConcern
+
     def create
       dossier = current_user.dossiers.find(params[:id])
+      return if ensure_france_connect_plus_for(dossier)
+
       email = params.require(:dossier_transfer).permit(:email)[:email]
       transfer = DossierTransfer.new(email:, dossiers: [dossier])
 

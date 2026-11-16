@@ -56,3 +56,9 @@ en:
         new_transfer: 
           one: "The transfer of a file to %{email} is in progress"
           other: "The transfer of %{count} files to %{email} is in progress"
+        left_out_france_connect_plus_required:
+          one: "An application was not transferred: its procedure requires FranceConnect+. <a href='%{url}'>Sign in with FranceConnect+</a> to transfer it."
+          other: "%{count} applications were not transferred: their procedure requires FranceConnect+. <a href='%{url}'>Sign in with FranceConnect+</a> to transfer them."
+        left_out_another_identity:
+          one: "An application was not transferred: it is linked to another FranceConnect+ identity than the one you are signed in with."
+          other: "%{count} applications were not transferred: they are linked to another FranceConnect+ identity than the one you are signed in with."

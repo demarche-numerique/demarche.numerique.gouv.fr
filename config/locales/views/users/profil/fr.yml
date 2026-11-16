@@ -58,3 +58,9 @@ fr:
         new_transfer:
           one: "Le transfert d’un dossier à %{email} est en cours"
           other: "Le transfert de %{count} dossiers à %{email} est en cours"
+        left_out_france_connect_plus_required:
+          one: "Un dossier n’a pas été transféré : sa démarche exige FranceConnect+. <a href='%{url}'>Connectez-vous avec FranceConnect+</a> pour le transférer."
+          other: "%{count} dossiers n’ont pas été transférés : leur démarche exige FranceConnect+. <a href='%{url}'>Connectez-vous avec FranceConnect+</a> pour les transférer."
+        left_out_another_identity:
+          one: "Un dossier n’a pas été transféré : il est lié à une autre identité FranceConnect+ que celle avec laquelle vous êtes connecté."
+          other: "%{count} dossiers n’ont pas été transférés : ils sont liés à une autre identité FranceConnect+ que celle avec laquelle vous êtes connecté."

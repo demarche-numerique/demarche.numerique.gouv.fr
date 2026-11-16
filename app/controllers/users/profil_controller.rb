@@ -51,12 +51,23 @@ module Users
     end
 
     def transfer_all_dossiers
-      transfer = DossierTransfer.initiate(next_owner_email, current_user.dossiers)
+      # A procedure that requires FranceConnect+ lets its dossiers go from a session that may open them only
+      dossiers = current_user.dossiers.reachable_from_session(Current.user_session)
+      unreachable_count = current_user.dossiers.unreachable_from_session(Current.user_session).count
 
-      if transfer.valid?
-        flash.notice = t('.new_transfer', count: current_user.dossiers.count, email: next_owner_email)
-      else
-        flash.alert = transfer.errors.full_messages
+      if unreachable_count.positive?
+        store_location_for(:user, profil_path)
+        flash.alert = france_connect_plus_left_out_message(unreachable_count)
+      end
+
+      if unreachable_count.zero? || dossiers.exists?
+        transfer = DossierTransfer.initiate(next_owner_email, dossiers)
+
+        if transfer.valid?
+          flash.notice = t('.new_transfer', count: dossiers.count, email: next_owner_email)
+        else
+          flash.alert = [flash.alert, *transfer.errors.full_messages].compact
+        end
       end
 
       redirect_to profil_path
@@ -149,6 +160,15 @@ module Users
 
     def next_owner_email
       params[:next_owner]
+    end
+
+    # A FranceConnect+ session of another identity than the dossiers' would loop through FranceConnect+
+    def france_connect_plus_left_out_message(count)
+      if Current.user_session&.via_france_connect_plus?
+        t('users.profil.transfer_all_dossiers.left_out_another_identity', count:)
+      else
+        t('users.profil.transfer_all_dossiers.left_out_france_connect_plus_required', count:, url: france_connect_plus_path)
+      end
     end
   end
 end
