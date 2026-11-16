@@ -11,6 +11,20 @@ describe Administrateurs::ProcedureAdministrateursController, type: :controller 
     sign_in(signed_in_admin.user)
   end
 
+  describe '#index' do
+    subject { get :index, params: { procedure_id: procedure.id } }
+
+    context 'as a regular admin' do
+      let(:manager) { false }
+
+      it 'renders the add admin form' do
+        expect(subject.body).to have_css("form#new_administrateur label[for='administrateur_email'] .fr-hint-text", text: procedure.libelle)
+        expect(subject.body).to have_field('administrateur_email', type: 'email')
+        expect(subject.body).to have_button('Ajouter comme administrateur')
+      end
+    end
+  end
+
   describe '#create' do
     context 'as manager' do
       let(:manager) { true }
