@@ -134,7 +134,7 @@ describe 'Invitations' do
       expect(page).to have_current_path(brouillon_dossier_path(dossier))
 
       # Disconnect the user to trigger an autosave error
-      logout(:user)
+      page.driver.with_playwright_page { it.context.clear_cookies }
       fill_in 'Texte obligatoire', with: 'some input'
 
       expect(page).to have_css('.autosave-status.failed')
@@ -146,8 +146,10 @@ describe 'Invitations' do
       log_in(owner)
       navigate_to_brouillon(dossier)
 
-      # Simulate session expiration (e.g. logged out in another tab, or iOS bfcache)
-      logout(:user)
+      # Simulate session expiration (e.g. logged out in another tab, or iOS bfcache).
+      # Not Warden's logout: it acts on the next request, which can be a test asset
+      # (favicon, font) fired by the page instead of the invites modal.
+      page.driver.with_playwright_page { it.context.clear_cookies }
 
       click_on "Inviter une personne à modifier ce dossier"
 
@@ -172,6 +174,40 @@ describe 'Invitations' do
       expect(page).to have_current_path(dossier_path(dossier))
       expect(page).to have_text("Une invitation a été envoyée à user_invite@exemple.fr.")
       expect(page).to have_text("user_invite@exemple.fr")
+    end
+
+    scenario 'the confirmation gets the focus and reopens the updated modal right away', js: true do
+      log_in(owner)
+      navigate_to_dossier(dossier)
+      send_invite_to "user_invite@exemple.fr"
+      expect(page).to have_css('#flash_messages', focused: true)
+
+      within('#flash_messages') { click_button "inviter une autre personne" }
+      expect(page).to have_button("Fermer", focused: true)
+      within('#dossier-invites-modal-dialog') { expect(page).to have_text("1 personne invitée") }
+      expect(page).to have_field('invite_email', with: '', visible: true)
+
+      accept_confirm { click_on "Révoquer l’accès" }
+      expect(page).to have_text("L’autorisation de user_invite@exemple.fr vient d’être révoquée")
+      expect(page).to have_css('#flash_messages', focused: true)
+    end
+
+    scenario 'an invitation error focuses the email field, which describes the error, at each attempt', js: true do
+      create(:invite, dossier:, email: "user_invite@exemple.fr")
+      log_in(owner)
+      navigate_to_dossier(dossier)
+
+      click_on "Voir les personnes invitées"
+      fill_in 'invite_email', with: "user_invite@exemple.fr"
+
+      2.times do
+        click_on "Envoyer une invitation"
+        expect(page).to have_field('invite_email', focused: true)
+      end
+
+      email_field = find_field('invite_email')
+      expect(email_field['aria-invalid']).to eq('true')
+      expect(find(id: email_field['aria-describedby'])).to have_text("Invitation déjà envoyée")
     end
 
     context 'as an invited user', js: true do

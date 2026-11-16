@@ -1,0 +1,10 @@
+<%= turbo_stream.append "dossier-invites-button-wrapper" do %>
+  <script>
+    document.getElementById("dossier-invites-form").reset();
+    dsfr(document.getElementById("dossier-invites-modal-dialog")).modal.conceal();
+    document.getElementById("flash_messages").focus();
+  </script>
+<% end %>
+
+<%= turbo_stream.replace "dossier-invites-trigger", partial: "invites/trigger", locals: { dossier: } %>
+<%= turbo_stream.replace "dossier-invites-form-content", partial: "invites/form", locals: { dossier:, invite: dossier.invites.build, invites: dossier.invites.filter(&:persisted?) } %>
