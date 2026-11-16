@@ -3,6 +3,8 @@
 describe Gestionnaires::GroupeGestionnairesController, type: :controller do
   let(:gestionnaire) { create(:gestionnaire) }
 
+  render_views
+
   describe "#index" do
     subject { get :index }
 
@@ -27,6 +29,8 @@ describe Gestionnaires::GroupeGestionnairesController, type: :controller do
         expect(assigns(:groupe_gestionnaires)).to include(groupe_gestionnaire)
         expect(assigns(:groupe_gestionnaires)).to include(other_groupe_gestionnaire)
         expect(assigns(:groupe_gestionnaires)).not_to include(not_my_groupe_gestionnaire)
+        expect(response.body).to have_link('Mes groupes gestionnaires', href: gestionnaire_groupe_gestionnaires_path, class: 'fr-nav__link')
+        expect(response.body).to have_css('#header-navigation [aria-current="page"]', text: 'Mes groupes gestionnaires')
       end
     end
   end
@@ -52,6 +56,8 @@ describe Gestionnaires::GroupeGestionnairesController, type: :controller do
         subject
         expect(response).to have_http_status(:ok)
         expect(assigns(:groupe_gestionnaire)).to eq(child_groupe_gestionnaire)
+        expect(response.body).to have_link('Mes groupes gestionnaires', href: gestionnaire_groupe_gestionnaires_path)
+        expect(response.body).not_to have_css('#header-navigation [aria-current]')
       end
     end
   end

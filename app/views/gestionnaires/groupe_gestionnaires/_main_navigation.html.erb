@@ -1,0 +1,14 @@
+<% content_for(:main_navigation) do %>
+  <nav
+    class="fr-nav"
+    id="header-navigation"
+    role="navigation"
+    aria-label="<%= t('layouts.header.main_menu') %>"
+  >
+    <ul class="fr-nav__list">
+      <li class="fr-nav__item">
+        <%= link_to 'Mes groupes gestionnaires', gestionnaire_groupe_gestionnaires_path, class: 'fr-nav__link', 'aria-current': current_page?(controller: 'groupe_gestionnaires', action: :index) ? 'page' : nil %>
+      </li>
+    </ul>
+  </nav>
+<% end %>
