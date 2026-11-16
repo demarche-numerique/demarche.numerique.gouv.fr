@@ -167,6 +167,8 @@ describe Gestionnaires::GroupeGestionnairesController, type: :controller do
         subject
         expect(response).to have_http_status(:ok)
         expect(assigns(:tree_structure)).to eq(groupe_gestionnaire => { child_groupe_gestionnaire => {} })
+        expect(response.body).to have_css('h1', text: "Arborescence de «\u00A0#{groupe_gestionnaire.name}\u00A0»")
+        expect(response.body).to have_css("ul ul a[href='#{gestionnaire_groupe_gestionnaire_path(child_groupe_gestionnaire)}']", text: child_groupe_gestionnaire.name)
       end
     end
   end

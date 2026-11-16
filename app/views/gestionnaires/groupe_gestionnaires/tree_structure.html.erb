@@ -1,0 +1,21 @@
+<%= render partial: 'shared/breadcrumbs_section', locals: { steps: [[@groupe_gestionnaire.name.truncate_words(10), gestionnaire_groupe_gestionnaire_path(@groupe_gestionnaire)], ['Arborescence']] } %>
+
+<div class="fr-container">
+  <h1>Arborescence de «&nbsp;<%= @groupe_gestionnaire.name %>&nbsp;»</h1>
+
+  <div class="fr-mt-4w">
+    <% if @groupe_gestionnaire.parent_id %>
+      <ul>
+        <li><%= @groupe_gestionnaire.parent.name %></li>
+      </ul>
+    <% end %>
+
+    <ul>
+      <% @tree_structure.each do |parent, children| %>
+        <li>
+          <%= render(GroupeGestionnaire::GroupeGestionnaireTreeStructures::TreeStructureComponent.new(parent: parent, children: children)) %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
