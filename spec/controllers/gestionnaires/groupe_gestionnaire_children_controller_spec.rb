@@ -4,8 +4,9 @@ describe Gestionnaires::GroupeGestionnaireChildrenController, type: :controller 
   let(:gestionnaire) { create(:gestionnaire).tap { _1.user.update(last_sign_in_at: Time.zone.now) } }
   let(:groupe_gestionnaire) { create(:groupe_gestionnaire, gestionnaires: [gestionnaire]) }
 
+  render_views
+
   describe "#index" do
-    render_views
     subject { get :index, params: { groupe_gestionnaire_id: groupe_gestionnaire.id } }
 
     context "when not logged" do
@@ -24,6 +25,8 @@ describe Gestionnaires::GroupeGestionnaireChildrenController, type: :controller 
         expect(response).to have_http_status(:ok)
         expect(assigns(:groupe_gestionnaire).children).to include(child_groupe_gestionnaire)
         expect(response.body).to include(child_groupe_gestionnaire.name)
+        expect(response.body).to have_css("h1", text: groupe_gestionnaire.name)
+        expect(response.body).to have_field('groupe_gestionnaire_name')
       end
     end
   end
@@ -44,7 +47,9 @@ describe Gestionnaires::GroupeGestionnaireChildrenController, type: :controller 
 
       it do
         expect(groupe_gestionnaire.reload.children.map(&:name)).to include(new_child_group_name)
-        expect(flash.notice).to eq("Le groupe enfants a bien été créé")
+        expect(response.body).to include("Le groupe enfants a bien été créé")
+        expect(response.body).to have_css('turbo-stream[action="replace"][target="new_child"]')
+        expect(response.body).to include(new_child_group_name)
       end
     end
   end
