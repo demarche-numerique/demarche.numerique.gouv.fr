@@ -591,11 +591,10 @@ class Dossier < ApplicationRecord
     procedure.publiee? && procedure.feature_enabled?(:blocking_pending_correction) && pending_correction?
   end
 
-  # An unverified siret (API Entreprise down) counts as complete. A missing
-  # individual cannot be fixed on the identity step, so it does not block.
+  # An unverified siret (API Entreprise down) counts as complete.
   def identity_complete?
     if procedure.for_individual?
-      individual.nil? || (individual.valid?(:update) && (!for_tiers? || (mandataire_first_name? && mandataire_last_name?)))
+      individual&.valid?(:update) && (!for_tiers? || (mandataire_first_name? && mandataire_last_name?))
     else
       siret.present?
     end
