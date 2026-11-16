@@ -87,10 +87,16 @@ class Logic::ChampColumnValue < Logic::Term
 
   private
 
+  # A repetition has no column a condition can read: its columns are its
+  # children's, and listing them needs the procedure. A column condition
+  # left on a champ that became a repetition is no longer available.
   def targeted_column(tdcs)
-    targeted_tdc(tdcs)
-      &.columns(procedure_id: nil) # dirty hack as we do not need procedure_id
-      &.find { it.column_id == @column_id }
+    tdc = targeted_tdc(tdcs)
+    return if tdc.nil? || tdc.repetition?
+
+    tdc
+      .columns(procedure_id: nil) # dirty hack as we do not need procedure_id
+      .find { it.column_id == @column_id }
   end
 
   def targeted_tdc(tdcs) = tdcs.find { it.stable_id == stable_id }
