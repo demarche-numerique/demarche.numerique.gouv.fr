@@ -2,8 +2,13 @@
   &:before {
     margin-right: 3px;
   }
-  a {
+  a,
+  button {
     color: inherit;
+  }
+
+  button {
+    text-decoration: underline;
   }
 }
 

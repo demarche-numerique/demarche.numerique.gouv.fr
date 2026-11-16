@@ -323,7 +323,7 @@ describe InvitesController, type: :controller do
     context 'when user is signed in' do
       it "destroy invites" do
         expect { subject }.to change { Invite.count }.from(1).to(0)
-        expect(response.body).to include("dossier-invites-button-wrapper")
+        expect(response.body).to include("dossier-invites-trigger")
         expect(response.body).to include("L’autorisation de plop@octo.com vient d’être révoquée")
       end
     end
