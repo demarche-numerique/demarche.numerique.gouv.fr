@@ -14,7 +14,10 @@ module Users
 
     def update_email
       requested_user = User.find_by(email: requested_email)
-      if requested_user.present?
+      if requested_user.present? && dossiers_unreachable_from_session?
+        alert = Current.user_session&.via_france_connect_plus? ? 'merge_another_identity' : 'merge_required'
+        flash.alert = t("errors.messages.france_connect_plus.#{alert}")
+      elsif requested_user.present?
         current_user.ask_for_merge(requested_user)
 
         flash.notice = t('devise.registrations.update_needs_confirmation')
@@ -36,6 +39,15 @@ module Users
       current_user.with_lock do
         current_user.update!(params)
       end
+    end
+
+    # A merge moves the account's dossiers and invites: those of a procedure requiring
+    # FranceConnect+ move from a session that may open them only
+    def dossiers_unreachable_from_session?
+      Dossier
+        .where(id: current_user.dossiers).or(Dossier.where(id: current_user.dossiers_invites))
+        .unreachable_from_session(Current.user_session)
+        .exists?
     end
 
     def transfer_all_dossiers

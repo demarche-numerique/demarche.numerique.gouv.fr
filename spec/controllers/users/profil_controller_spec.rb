@@ -146,6 +146,42 @@ describe Users::ProfilController, type: :controller do
       end
     end
 
+    context 'when the account has dossiers on a procedure that requires FranceConnect+' do
+      let(:existing_user) { create(:user) }
+
+      before do
+        create(:dossier, :en_construction, user:, procedure: create(:procedure, :published, france_connect_plus_required: true))
+      end
+
+      it 'refuses the merge from a session opened another way' do
+        sign_in(user, login_method: :password)
+
+        patch :update_email, params: { user: { email: existing_user.email } }
+
+        expect(user.reload.requested_merge_into).to be_nil
+        expect(flash.alert).to include('connectez-vous avec FranceConnect+')
+      end
+
+      it 'refuses the merge from a FranceConnect+ session of another identity, saying so' do
+        user.dossiers.update_all(france_connect_plus_sub: 'owner_sub')
+        fci = create(:france_connect_information, user:, france_connect_particulier_id: 'another_sub')
+        sign_in(user, login_method: :france_connect_plus, france_connect_information: fci)
+
+        patch :update_email, params: { user: { email: existing_user.email } }
+
+        expect(user.reload.requested_merge_into).to be_nil
+        expect(flash.alert).to include('dossiers liés à une autre identité FranceConnect+')
+      end
+
+      it 'asks for the merge from a FranceConnect+ session' do
+        sign_in(user, login_method: :france_connect_plus)
+
+        patch :update_email, params: { user: { email: existing_user.email } }
+
+        expect(user.reload.requested_merge_into).to eq(existing_user)
+      end
+    end
+
     describe 'warning the current address' do
       let(:previous_email) { user.email }
 

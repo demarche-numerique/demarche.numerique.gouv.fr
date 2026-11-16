@@ -26,7 +26,7 @@ module Users
     # current_user.dossiers exclut les dossiers où l'usager est seulement
     # invité : le consentement porte sur son identité France Connect, pas sur
     # celle du propriétaire du dossier.
-    def set_dossier = @dossier = current_user.dossiers.find(params[:id])
+    def set_dossier = @dossier = current_user.dossiers.reachable_from_session(Current.user_session).find(params[:id])
 
     # On répond toujours par le turbo-frame, même vide : une réponse sans frame
     # afficherait « Content missing » à la place de l'encart.

@@ -78,6 +78,12 @@ RSpec.describe Users::AmiConsentsController, type: :controller do
 
         it { expect { show }.to raise_error(ActiveRecord::RecordNotFound) }
       end
+
+      context 'with a dossier of a procedure requiring FranceConnect+, from a session opened another way' do
+        let(:dossier) { create(:dossier, :en_construction, user:, procedure: create(:procedure, :published, france_connect_plus_required: true)) }
+
+        it { expect { show }.to raise_error(ActiveRecord::RecordNotFound) }
+      end
     end
   end
 
