@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class TypesDeChamp::DatetimeTypeDeChamp < TypesDeChamp::TemporalTypeDeChamp
-  def self.icon = 'fr-icon-time-line'
   def self.column_type = :datetime
   def birthdate? = false
 

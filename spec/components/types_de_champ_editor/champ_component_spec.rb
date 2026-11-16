@@ -185,6 +185,61 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       end
     end
 
+    describe 'tdc temporal' do
+      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: type_champ }]) }
+      let(:type_de_champ) { procedure.draft_revision.public_root_type_de_champs.first }
+      let(:time_toggle) { 'Cette date comprend aussi un horaire (date et heure)' }
+      let(:locked_hint) { 'vous ne pouvez pas modifier son type' }
+      let(:toggle_id) { ActionView::RecordIdentifier.dom_id(type_de_champ, :temporal_type_champ) }
+      let(:hint_id) { ActionView::RecordIdentifier.dom_id(type_de_champ, :temporal_type_champ_hint) }
+
+      context 'when it is a date' do
+        let(:type_champ) { :date }
+
+        it 'offers the toggle without any hint' do
+          expect(page).to have_unchecked_field(time_toggle)
+          expect(page).not_to have_text(locked_hint)
+          expect(page).not_to have_css("##{toggle_id}[aria-describedby]")
+        end
+      end
+
+      context 'when it is a datetime' do
+        let(:type_champ) { :datetime }
+
+        it 'offers the toggle without any hint' do
+          expect(page).to have_checked_field(time_toggle)
+          expect(page).not_to have_text(locked_hint)
+        end
+      end
+
+      context 'when it is not a date' do
+        let(:type_champ) { :text }
+
+        it { expect(page).not_to have_field(time_toggle) }
+      end
+
+      context 'when it is used by routing' do
+        let(:type_champ) { :datetime }
+        let(:routing_rules_stable_ids) { [type_de_champ.stable_id] }
+
+        it 'locks the toggle and says why' do
+          expect(page).to have_checked_field(time_toggle, disabled: true)
+          expect(page).to have_css("##{toggle_id}[aria-describedby='#{hint_id}']")
+          expect(page).to have_css("##{hint_id}", text: I18n.t("activerecord.errors.type_de_champ.locked.update.used_by_routing_rules", type_de_champ: type_de_champ.libelle))
+        end
+      end
+
+      context 'when it is used by eligibility rules' do
+        let(:type_champ) { :date }
+        let(:ineligibilite_rules_used?) { true }
+
+        it 'locks the toggle and says why' do
+          expect(page).to have_unchecked_field(time_toggle, disabled: true)
+          expect(page).to have_css("##{hint_id}", text: I18n.t("activerecord.errors.type_de_champ.locked.update.used_by_ineligibilite_rules", type_de_champ: type_de_champ.libelle))
+        end
+      end
+    end
+
     describe 'tdc quotient familial' do
       let(:procedure) { create(:procedure, public_type_de_champs:, private_type_de_champs: [{ type: :text }]) }
 
