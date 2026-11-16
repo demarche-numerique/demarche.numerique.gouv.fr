@@ -85,6 +85,22 @@ describe Administrateurs::ProcedureAdministrateursController, type: :controller 
         expect(other_admin.procedures.reload).not_to include(procedure)
       end
 
+      it 'refreshes the list and focuses the email field once a single admin remains' do
+        rows = streams.css('turbo-stream[action="update"][target="administrateurs"] template tr').text
+        expect(rows).to include(signed_in_admin.email)
+        expect(rows).not_to include(other_admin.email)
+        expect(streams.at_css('turbo-stream[action="focus"][target="administrateur_email"]')).to be_present
+      end
+
+      context 'when several admins remain' do
+        let!(:procedure) { create(:procedure, administrateurs: [other_admin, administrateurs.blank]) }
+
+        it 'focuses the first remove button' do
+          expect(streams.at_css('turbo-stream[action="focus"][targets^="#administrateurs tr:first-child"]')).to be_present
+          expect(streams.at_css('turbo-stream[action="focus"][target="administrateur_email"]')).to be_nil
+        end
+      end
+
       context 'then removing oneself' do
         before do
           destroy_admin(signed_in_admin)
