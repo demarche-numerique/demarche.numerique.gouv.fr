@@ -99,6 +99,17 @@ class TypeDeChampTree < Data.define(:public_children, :private_children)
         .transform_values { |entries| entries.sort_by { |(_, stable_id), (_, key)| [key, stable_id] }.map { |(_, stable_id), _| stable_id } }
     end
 
+    # The stable ids the trees lay outside any repetition, the repetitions
+    # themselves among them: header sections and what they hold are all there.
+    def root_stable_ids(trees)
+      repetition_ids = repetition_type_de_champ_ids(trees)
+
+      trees
+        .flat_map(&:nodes_with_ancestors)
+        .filter_map { |node, ancestors| node.stable_id if enclosing_repetition(ancestors, repetition_ids).nil? }
+        .uniq
+    end
+
     private
 
     # the trees come oldest first: a later revision holding the same version wins

@@ -569,6 +569,16 @@ describe TagsSubstitutionConcern, type: :model do
       end
     end
 
+    context 'when a type de champ within a repetition has the libellé of one outside' do
+      let(:public_type_de_champs) { [{ libelle: 'Nom' }, { type: :repetition, libelle: 'Répétition', children: [{ libelle: 'Nom' }] }] }
+
+      before { dossier.public_root_champs.first.update(value: 'valeur') }
+
+      it 'substitutes the one outside the repetition' do
+        expect(template_concern.send(:replace_tags, '--Nom--', dossier)).to eq('valeur')
+      end
+    end
+
     context 'when a champ only exists on the draft of a published procedure' do
       let(:dossier) { create(:dossier, procedure:, revision: procedure.draft_revision) }
 

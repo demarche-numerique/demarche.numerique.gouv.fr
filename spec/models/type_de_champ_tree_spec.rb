@@ -270,6 +270,27 @@ describe TypeDeChampTree do
     end
   end
 
+  describe '.root_stable_ids' do
+    let(:public_type_de_champs) do
+      [
+        { type: :header_section, level: 1, libelle: 'h1' },
+        { type: :repetition, libelle: 'r', children: [{ type: :header_section, level: 1, libelle: 'rh1' }, { libelle: 'r1' }] },
+        { libelle: 'a' },
+      ]
+    end
+    let(:private_type_de_champs) { [{ libelle: 'b' }] }
+
+    it 'gives the stable ids outside any repetition, the repetitions among them, once each' do
+      libelles = revision.type_de_champs.to_h { [it.stable_id, it.libelle] }
+
+      expect(described_class.root_stable_ids([tree, tree]).map { libelles.fetch(it) }).to eq(['h1', 'r', 'a', 'b'])
+    end
+
+    it 'is empty without any tree' do
+      expect(described_class.root_stable_ids([])).to eq([])
+    end
+  end
+
   describe '#nodes_with_ancestors' do
     let(:public_type_de_champs) do
       [
