@@ -50,7 +50,7 @@ describe Administrateurs::ConditionsController, type: :controller do
         expect(assigns(:coordinate)).to eq(procedure.draft_revision.coordinate_for(third_tdc))
         expect(assigns(:upper_tdcs)).to eq([first_tdc, second_tdc])
         expect(response.body).to include('<turbo-stream action="replace" target="autosave-notice">')
-        expect(response.body).to have_css("turbo-stream[action='replace'][target='breadcrumbs']")
+        expect(response.body).not_to have_css("turbo-stream[target='breadcrumbs']")
         expect(response.body).to have_css("turbo-stream[action='update'][target='sticky-header']")
         expect(response.body).to have_css("turbo-stream[action='replace'][target='errors-summary']")
         expect(replaced_condition_block).to be_present
