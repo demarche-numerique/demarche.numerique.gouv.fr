@@ -1,30 +1,18 @@
-<% content_for(:title, 'Invitation à donner votre avis') %>
+<% content_for(:title, t('.title')) %>
 
 <% content_for(:footer) do %>
-  Merci de ne pas répondre à cet email. Donnez votre avis
-  <%= link_to("sur #{APPLICATION_NAME}", @url) %> ou
-  <%= succeed '.' do %>
-    <%= mail_to(@claimant_email, "contactez la personne qui vous a invité") %>
-  <% end %>
+  <%= t('.footer_html', application_link: link_to(t('.application_link', application_name: APPLICATION_NAME), @url), contact_link: mail_to(@claimant_email, t('.contact_link'))) %>
 <% end %>
 
-<p>
-  Bonjour,
-</p>
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
 
 <p>
-  Vous avez été invité par <strong><%= @claimant_email %></strong>
   <% if @multiple %>
-    à donner votre avis sur
-    <%= @avis.count %>
-    dossiers de la démarche :
-    <strong><%= @avis_unique.procedure.libelle %></strong>
+    <%= t('.invitation_multiple_html', claimant_email: @claimant_email, count: @avis.count, libelle_demarche: @avis_unique.procedure.libelle) %>
   <% else %>
-    à donner votre avis sur le dossier n°
-    <%= @avis_unique.dossier.id %>
-    de la démarche :
-    <strong><%= @avis_unique.procedure.libelle %></strong>
+    <%= t('.invitation_single_html', claimant_email: @claimant_email, dossier_id: @avis_unique.dossier.id, libelle_demarche: @avis_unique.procedure.libelle) %>
   <% end %>
+
   <p>
     <%= dsfr_button(@call_to_action, @url, :primary) %>
   </p>

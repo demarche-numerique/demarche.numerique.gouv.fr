@@ -28,12 +28,17 @@ RSpec.describe AvisMailer, type: :mailer do
     context "with single avis" do
       let(:avis_param) { avis1 }
 
-      it "invites the expert to give an opinion on the dossier" do
-        body = mail.html_part.body.to_s.squish
+      it "is written in French whatever the sender's locale" do
+        body = I18n.with_locale(:en) { mail }.html_part.body.to_s
 
         expect(body).to include("Vous avez été invité par")
-        expect(body).to include(avis1.claimant.email)
-        expect(body).to include("à donner votre avis sur le dossier n° #{dossier.id} de la démarche :")
+        expect(body).not_to include("translation missing")
+      end
+
+      it "invites the expert to give an opinion on the dossier" do
+        body = mail.html_part.body.to_s
+
+        expect(body).to include("Vous avez été invité par <strong>#{avis1.claimant.email}</strong> à donner votre avis sur le dossier n° #{dossier.id} de la démarche :")
         expect(body).to include("contactez la personne qui vous a invité")
       end
 
@@ -75,7 +80,7 @@ RSpec.describe AvisMailer, type: :mailer do
       let(:avis_param) { [avis1, avis2] }
 
       it "invites the expert to give an opinion on several dossiers" do
-        expect(mail.html_part.body.to_s.squish).to include("à donner votre avis sur 2 dossiers de la démarche :")
+        expect(mail.html_part.body.to_s).to include("à donner votre avis sur 2 dossiers de la démarche :")
       end
 
       context "when user is active and verified" do

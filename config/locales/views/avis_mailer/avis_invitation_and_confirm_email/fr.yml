@@ -1,0 +1,9 @@
+fr:
+  avis_mailer:
+    avis_invitation_and_confirm_email:
+      title: Invitation à donner votre avis
+      footer_html: Merci de ne pas répondre à cet email. Donnez votre avis %{application_link} ou %{contact_link}.
+      application_link: sur %{application_name}
+      contact_link: contactez la personne qui vous a invité
+      invitation_single_html: "Vous avez été invité par <strong>%{claimant_email}</strong> à donner votre avis sur le dossier n° %{dossier_id} de la démarche : <strong>%{libelle_demarche}</strong>"
+      invitation_multiple_html: "Vous avez été invité par <strong>%{claimant_email}</strong> à donner votre avis sur %{count} dossiers de la démarche : <strong>%{libelle_demarche}</strong>"

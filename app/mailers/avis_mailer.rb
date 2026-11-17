@@ -54,7 +54,8 @@ class AvisMailer < ApplicationMailer
 
     bypass_unverified_mail_protection!
 
-    mail(to: email, subject: subject)
+    # Subject and call to action are French only: keep the body in French too.
+    I18n.with_locale(:fr) { mail(to: email, subject: subject) }
   end
 
   # i18n-tasks-use t("avis_mailer.#{action}.subject")
