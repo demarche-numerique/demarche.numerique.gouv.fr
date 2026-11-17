@@ -11,7 +11,7 @@ class ProcedureExportService::InlineRepetitionsBuilder
 
   def type_de_champs
     @type_de_champs ||= if enabled?
-      @procedure.all_revisions_type_de_champs.to_a
+      @procedure.effective_revisions_type_de_champs.to_a
     else
       @procedure.type_de_champs_for_procedure_export.to_a
     end
@@ -54,7 +54,7 @@ class ProcedureExportService::InlineRepetitionsBuilder
   end
 
   def columns_by_child(repetition)
-    @procedure.all_revisions_type_de_champs(parent: repetition)
+    @procedure.effective_revisions_type_de_champs(parent: repetition)
       .index_with { @export_template.columns_for_stable_id(it.stable_id) }
       .filter { |_, exported_columns| exported_columns.any? }
   end

@@ -50,7 +50,7 @@
         </div>
       </fieldset>
 
-      <% if procedure.all_revisions_type_de_champs.repetition.any? %>
+      <% if procedure.effective_revisions_type_de_champs.repetition.any? %>
         <fieldset
           class="<%= class_names('fr-fieldset', 'hidden' => export_template.template_csv?) %>"
           id="repetition-layout"

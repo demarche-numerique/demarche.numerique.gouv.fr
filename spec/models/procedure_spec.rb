@@ -1612,7 +1612,7 @@ describe Procedure do
     end
   end
 
-  describe '#all_revisions_type_de_champs' do
+  describe '#effective_revisions_type_de_champs' do
     let(:public_type_de_champs) do
       [
         { type: :text },
@@ -1624,16 +1624,16 @@ describe Procedure do
       let(:procedure) { create(:procedure, public_type_de_champs:) }
 
       it 'returns one type de champ' do
-        expect(procedure.all_revisions_type_de_champs.size).to eq 1
+        expect(procedure.effective_revisions_type_de_champs.size).to eq 1
       end
 
       it 'returns also section type de champ' do
-        expect(procedure.all_revisions_type_de_champs(with_header_section: true).size).to eq 2
+        expect(procedure.effective_revisions_type_de_champs(with_header_section: true).size).to eq 2
       end
 
       it "returns types de champ on draft revision" do
         procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'onemorechamp')
-        expect(procedure.reload.all_revisions_type_de_champs.size).to eq 2
+        expect(procedure.reload.effective_revisions_type_de_champs.size).to eq 2
       end
     end
 
@@ -1641,16 +1641,16 @@ describe Procedure do
       let(:procedure) { create(:procedure, :published, public_type_de_champs:) }
 
       it 'returns one type de champ' do
-        expect(procedure.all_revisions_type_de_champs.size).to eq 1
+        expect(procedure.effective_revisions_type_de_champs.size).to eq 1
       end
 
       it 'returns also section type de champ' do
-        expect(procedure.all_revisions_type_de_champs(with_header_section: true).size).to eq 2
+        expect(procedure.effective_revisions_type_de_champs(with_header_section: true).size).to eq 2
       end
 
       it "doesn't return types de champ on draft revision" do
         procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'onemorechamp')
-        expect(procedure.reload.all_revisions_type_de_champs.size).to eq 1
+        expect(procedure.reload.effective_revisions_type_de_champs.size).to eq 1
       end
     end
   end

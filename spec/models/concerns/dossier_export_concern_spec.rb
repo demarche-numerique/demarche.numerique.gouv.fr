@@ -11,7 +11,7 @@ describe DossierExportConcern do
         dossier
         expect {
           integer_number_type_de_champ.update(type_champ: :decimal_number)
-        }.to change { dossier.reload.champ_values_for_export(procedure.all_revisions_type_de_champs.not_repetition.to_a, format: :xlsx) }
+        }.to change { dossier.reload.champ_values_for_export(procedure.effective_revisions_type_de_champs.not_repetition.to_a, format: :xlsx) }
           .from([["c1", 42]]).to([["c1", 42.0]])
       end
     end
@@ -72,7 +72,7 @@ describe DossierExportConcern do
             draft.add_type_de_champ(type_champ: :communes, libelle: "communes", parent_stable_id: tdc_repetition.stable_id)
 
             dossier_test = create(:dossier, procedure: proc_test)
-            type_champs = proc_test.all_revisions_type_de_champs(parent: tdc_repetition).to_a
+            type_champs = proc_test.effective_revisions_type_de_champs(parent: tdc_repetition).to_a
             expect(type_champs.size).to eq(1)
             expect(dossier_test.champ_values_for_export(type_champs, format: :xlsx).size).to eq(3)
           end
@@ -205,7 +205,7 @@ describe DossierExportConcern do
     end
     let(:dossier) { create(:dossier, procedure:) }
     let(:bloc) { dossier.find_type_de_champ_by_stable_id(10) }
-    let(:children) { procedure.all_revisions_type_de_champs(parent: bloc).to_a }
+    let(:children) { procedure.effective_revisions_type_de_champs(parent: bloc).to_a }
     let(:export_template) do
       exported_columns = [
         ExportedColumn.new(libelle: 'Nom', column: procedure.find_column(label: 'Nom')),
@@ -220,7 +220,7 @@ describe DossierExportConcern do
     let(:inline_repetitions) { { 10 => ProcedureExportService::InlineRepetition.new(max_rows:, columns_by_child:) } }
 
     subject(:columns) do
-      dossier.spreadsheet_columns_csv(type_de_champs: procedure.all_revisions_type_de_champs.to_a, export_template:, inline_repetitions:)
+      dossier.spreadsheet_columns_csv(type_de_champs: procedure.effective_revisions_type_de_champs.to_a, export_template:, inline_repetitions:)
     end
 
     before do

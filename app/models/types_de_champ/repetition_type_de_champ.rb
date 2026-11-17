@@ -47,7 +47,7 @@ class TypesDeChamp::RepetitionTypeDeChamp < TypeDeChamp
     prefix = prefix.present? ? "(#{prefix} #{libelle})" : libelle
 
     Procedure.find(procedure_id)
-      .all_revisions_type_de_champs(parent: self)
+      .effective_revisions_type_de_champs(parent: self)
       .flat_map { it.columns(procedure_id:, displayable: false, prefix:) }
   end
 

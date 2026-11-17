@@ -189,12 +189,12 @@ class ProcedureExportService::XlsxExport
     end
 
     def repetition_tdcs
-      @repetition_tdcs ||= @procedure.all_revisions_type_de_champs.repetition.to_a
+      @repetition_tdcs ||= @procedure.effective_revisions_type_de_champs.repetition.to_a
     end
 
     def repetition_children_tdcs
       @repetition_children_tdcs ||= repetition_tdcs.to_h do |tdc|
-        [tdc.stable_id, @procedure.all_revisions_type_de_champs(parent: tdc).to_a]
+        [tdc.stable_id, @procedure.effective_revisions_type_de_champs(parent: tdc).to_a]
       end
     end
 

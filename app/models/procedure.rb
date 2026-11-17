@@ -132,7 +132,7 @@ class Procedure < ApplicationRecord
     [*past_revisions, published_revision]
   end
 
-  def all_revisions_type_de_champs(parent: nil, with_header_section: false)
+  def effective_revisions_type_de_champs(parent: nil, with_header_section: false)
     if brouillon?
       if parent.nil?
         (with_header_section ? TypeDeChamp.with_header_section : TypeDeChamp.fillable)
@@ -145,7 +145,7 @@ class Procedure < ApplicationRecord
     else
       # 'sti': entries marshalled before the TypeDeChamp STI deserialize as the
       # base class, without the typed behavior.
-      cache_key = ['all_revisions_type_de_champs', 'sti', published_revision, parent, with_header_section, ActiveRecord::VERSION::STRING].compact
+      cache_key = ['effective_revisions_type_de_champs', 'sti', published_revision, parent, with_header_section, ActiveRecord::VERSION::STRING].compact
       Rails.cache.fetch(cache_key, expires_in: 1.month) { published_revisions_type_de_champs(parent:, with_header_section:) }
     end
   end
@@ -155,7 +155,7 @@ class Procedure < ApplicationRecord
   end
 
   def type_de_champs_for_procedure_export
-    all_revisions_type_de_champs.not_repetition
+    effective_revisions_type_de_champs.not_repetition
   end
 
   # The template tag parser's vocabulary (mail templates, attestations,
