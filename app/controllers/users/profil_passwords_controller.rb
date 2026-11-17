@@ -21,7 +21,7 @@ module Users
         flash.notice = t('.success')
         redirect_to profil_path(context: params[:context])
       else
-        render :edit, status: :unprocessable_content
+        render_edit_with_errors
       end
     end
 
@@ -55,6 +55,11 @@ module Users
 
     def render_password_error(kind)
       current_user.errors.add(:password, kind)
+      render_edit_with_errors
+    end
+
+    def render_edit_with_errors
+      flash.now[:alert] = current_user.errors.full_messages
       render :edit, status: :unprocessable_content
     end
 

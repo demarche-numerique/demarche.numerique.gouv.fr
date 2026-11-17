@@ -130,6 +130,12 @@ describe Users::ProfilPasswordsController, type: :controller do
       let(:submitted_current) { 'ce n’est pas le bon mot de passe' }
 
       it_behaves_like 'a rejected change'
+
+      it 'also shows the error at the top of the page' do
+        update_request
+
+        expect(flash.now[:alert]).to contain_exactly(a_string_including('est incorrect. Saisir votre mot de passe actuel'))
+      end
     end
 
     context 'with a blank current password' do
@@ -143,6 +149,12 @@ describe Users::ProfilPasswordsController, type: :controller do
       let(:submitted_confirmation) { '' }
 
       it_behaves_like 'a rejected change'
+
+      it 'also shows the error at the top of the page' do
+        update_request
+
+        expect(flash.now[:alert]).to contain_exactly(a_string_including('est vide. Saisir un nouveau mot de passe'))
+      end
     end
 
     context 'with a mismatched confirmation' do
