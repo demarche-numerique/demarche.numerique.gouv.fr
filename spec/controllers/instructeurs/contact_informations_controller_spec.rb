@@ -41,6 +41,12 @@ describe Instructeurs::ContactInformationsController, type: :controller do
         expect(ContactInformation.last.horaires).to eq('horaires')
         expect(ContactInformation.last.adresse).to eq('adresse')
       end
+
+      it 'translates the notice in english' do
+        cookies[:locale] = 'en'
+        post :create, params: params
+        expect(flash.notice).to eq('The contact information has been added')
+      end
     end
 
     context 'when submitting an invalid contact_information' do

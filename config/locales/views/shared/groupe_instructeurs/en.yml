@@ -7,3 +7,7 @@ en:
         submit: Save
         delete: Delete
         delete_confirm: Do you confirm the deletion of this contact information?
+      contact_information_flash:
+        created: The contact information has been added
+        updated: The contact information has been updated
+        destroyed: The contact information has been deleted

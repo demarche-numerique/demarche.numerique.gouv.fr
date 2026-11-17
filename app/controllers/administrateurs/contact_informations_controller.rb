@@ -13,7 +13,7 @@ module Administrateurs
       @contact_information = @groupe_instructeur.build_contact_information(contact_information_params)
       if @contact_information.save
         redirect_to admin_procedure_groupe_instructeur_path(@procedure, @groupe_instructeur),
-          notice: "Les informations de contact ont bien été ajoutées"
+          notice: t("shared.groupe_instructeurs.contact_information_flash.created")
       else
         flash.now[:alert] = @contact_information.errors.full_messages
         render :new
@@ -28,7 +28,7 @@ module Administrateurs
       @contact_information = @groupe_instructeur.contact_information
       if @contact_information.update(contact_information_params)
         redirect_to admin_procedure_groupe_instructeur_path(@procedure, @groupe_instructeur),
-          notice: "Les informations de contact ont bien été modifiées"
+          notice: t("shared.groupe_instructeurs.contact_information_flash.updated")
       else
         flash.now[:alert] = @contact_information.errors.full_messages
         render :edit
@@ -38,7 +38,7 @@ module Administrateurs
     def destroy
       @groupe_instructeur.contact_information.destroy
       redirect_to admin_procedure_groupe_instructeur_path(@procedure, @groupe_instructeur),
-        notice: "Les informations de contact ont bien été supprimées"
+        notice: t("shared.groupe_instructeurs.contact_information_flash.destroyed")
     end
 
     private

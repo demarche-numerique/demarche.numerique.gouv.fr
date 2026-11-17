@@ -7,3 +7,7 @@ fr:
         submit: Enregistrer
         delete: Supprimer
         delete_confirm: Confirmez-vous la suppression de ces informations de contact ?
+      contact_information_flash:
+        created: Les informations de contact ont bien été ajoutées
+        updated: Les informations de contact ont bien été modifiées
+        destroyed: Les informations de contact ont bien été supprimées
