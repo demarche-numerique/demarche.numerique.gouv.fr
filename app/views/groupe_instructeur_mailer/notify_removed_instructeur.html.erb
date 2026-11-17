@@ -1,0 +1,8 @@
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+
+<p>
+  <% assignment_state = @still_assigned_to_procedure ? 'assigned' : 'unassigned' %>
+  <%= t(".email_body.#{assignment_state}", groupe: @group.label, email: @current_instructeur_email, procedure: @group.procedure.libelle) %>
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>
