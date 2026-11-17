@@ -8,8 +8,6 @@ fr:
         forgot_title: Vous ne connaissez pas votre mot de passe actuel ?
         forgot_current_password: Réinitialiser mon mot de passe
         forgot_hint: Vous serez déconnecté, puis vous recevrez un lien par e-mail pour choisir un nouveau mot de passe.
-        external_login_title: Votre connexion %{providers} n’est pas concernée
-        external_login_body: Ce changement ne porte que sur le mot de passe de votre compte. Votre connexion via %{providers} continuera de fonctionner à l’identique.
         submit: Changer le mot de passe
         submit_loading: Modification en cours…
       forgot:

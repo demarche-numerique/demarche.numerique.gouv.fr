@@ -18,25 +18,39 @@ describe Users::ProfilPasswordsController, type: :controller do
       expect(response).to have_http_status(:ok)
       expect(response.body).to include('Mot de passe actuel')
       expect(response.body).to include('Réinitialiser mon mot de passe')
+      expect(response.body).not_to include('Ce mot de passe concerne uniquement votre compte local.')
     end
 
     context 'when the account is linked to FranceConnect' do
-      before { create(:france_connect_information, user: user) }
+      before { create(:france_connect_information, user:) }
 
-      it 'reassures the user that FranceConnect is not affected' do
+      it 'says the password is not FranceConnect’s' do
         get :edit
 
-        expect(response.body).to include('Votre connexion FranceConnect n’est pas concernée')
+        expect(response.body).to include('Ce mot de passe concerne uniquement votre compte local. Il sera utilisé lors de vos connexions avec votre adresse électronique, et non via FranceConnect.')
       end
     end
 
     context 'when the account is linked to ProConnect' do
-      before { create(:pro_connect_information, user: user) }
+      before { create(:pro_connect_information, user:) }
 
-      it 'reassures the user that ProConnect is not affected' do
+      it 'says the password is not ProConnect’s' do
         get :edit
 
-        expect(response.body).to include('Votre connexion ProConnect n’est pas concernée')
+        expect(response.body).to include('Ce mot de passe concerne uniquement votre compte local. Il sera utilisé lors de vos connexions avec votre adresse électronique, et non via ProConnect.')
+      end
+    end
+
+    context 'when the account is linked to both' do
+      before do
+        create(:france_connect_information, user:)
+        create(:pro_connect_information, user:)
+      end
+
+      it 'says the password is neither FranceConnect’s nor ProConnect’s' do
+        get :edit
+
+        expect(response.body).to include('Ce mot de passe concerne uniquement votre compte local. Il sera utilisé lors de vos connexions avec votre adresse électronique, et non via FranceConnect ou ProConnect.')
       end
     end
   end

@@ -6,7 +6,7 @@ module Users
 
     before_action :ensure_password_login_allowed
 
-    helper_method :external_login_providers
+    helper_method :external_logins
 
     def edit
     end
@@ -40,10 +40,10 @@ module Users
       redirect_to profil_path(context: params[:context])
     end
 
-    def external_login_providers
-      @external_login_providers ||= [
-        ('FranceConnect' if current_user.france_connect_informations.any?),
-        ('ProConnect' if current_user.pro_connect_informations.any?),
+    def external_logins
+      @external_logins ||= [
+        (:france_connect if current_user.france_connect_informations.any?),
+        (:pro_connect if current_user.pro_connect_informations.any?),
       ].compact
     end
 
