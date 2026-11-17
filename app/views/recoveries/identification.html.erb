@@ -1,0 +1,27 @@
+<% content_for(:title) { t('.title') } %>
+
+<div class="fr-container fr-my-6w">
+  <h1><%= t('recoveries.heading') %></h1>
+
+  <h2><%= t('.subtitle') %></h2>
+
+  <p>
+    <%= t('.organisation', name: @structure_name, siret: current_instructeur.last_pro_connect_information.siret) %>
+  </p>
+
+  <%= form_with do |f| %>
+    <div class="fr-input-group">
+      <label class="fr-label" for="email">
+        <%= t('.email_label') %>
+
+        <span class="fr-hint-text">
+          <%= t('email', scope: [:activerecord, :attributes, :default_attributes, :hints]) %>
+        </span>
+      </label>
+
+      <%= f.email_field :previous_email, required: true, autocomplete: 'off', class: 'fr-input width-66', id: 'email' %>
+    </div>
+
+    <button class="fr-btn"><%= t('recoveries.continue') %></button>
+  <% end %>
+</div>

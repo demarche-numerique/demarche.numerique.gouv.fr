@@ -1,0 +1,28 @@
+en:
+  recoveries:
+    heading: Recover applications
+    continue: Continue
+    nature:
+      title: Type of applications
+      legend: What type of applications do you want to recover?
+      collectivite_label: applications concerning a local authority
+      collectivite_hint: (DETR, other grant requests, state property consultation, ...)
+      autre_label: other
+    identification:
+      title: Owner identification
+      subtitle: Identification of the applications’ owner
+      organisation: Your organisation is “%{name}”, identified by SIRET %{siret}
+      email_label: Email address of the applications’ owner
+    selection:
+      title: Select procedures
+      legend: Select the procedures you want to recover.
+    support:
+      title: Contact support
+      special_case: Your situation requires special handling.
+      must_use_pro_connect: You must use the ProConnect portal to recover your applications.
+      no_dossier: The email address “%{email}” you entered has no application concerning your organisation.
+      try_another_email: Try another email address
+    terminee:
+      title: Recovery complete
+      reassigned: The applications have been reassigned to you.
+      see_dossiers: See my applications

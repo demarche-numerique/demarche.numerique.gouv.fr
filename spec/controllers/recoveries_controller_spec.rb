@@ -4,9 +4,17 @@ describe RecoveriesController, type: :controller do
   include Dry::Monads[:result]
 
   describe 'GET #nature' do
+    render_views
+
     subject { get :nature }
 
-    it { is_expected.to have_http_status(:success) }
+    it do
+      subject
+      expect(response.body).to have_css('h2', text: 'Nature des dossiers')
+      expect(response.body).to have_field('des dossiers concernant une collectivité territoriale', type: 'radio')
+      expect(response.body).to have_field('autre', type: 'radio', exact: true)
+      expect(response.body).to have_button('Continuer', disabled: true)
+    end
   end
 
   describe 'POST #post_nature' do
@@ -26,9 +34,40 @@ describe RecoveriesController, type: :controller do
   end
 
   describe 'Get #support' do
-    subject { get :support }
+    render_views
+
+    subject { get :support, params: { error: } }
+
+    let(:error) { nil }
 
     it { is_expected.to have_http_status(:success) }
+
+    context 'when the nature is not supported' do
+      let(:error) { 'other_nature' }
+
+      it do
+        subject
+        expect(response.body).to have_text('Votre situation nécessite un traitement particulier.')
+        expect(response.body).to have_link('Contactez le support', href: /\Amailto:/)
+      end
+    end
+
+    context 'when pro connect must be used' do
+      let(:error) { 'must_use_pro_connect' }
+
+      it { expect(subject.body).to have_text('Vous devez utiliser le portail ProConnect pour récupérer vos dossiers.', normalize_ws: true) }
+    end
+
+    context 'when there is no dossier' do
+      let(:error) { 'no_dossier' }
+
+      it do
+        subject
+        expect(response.body).to have_text('que vous avez renseignée nʼa pas de dossier concernant votre organisation.', normalize_ws: true)
+        expect(response.body).to have_link('Essayer avec une autre adresse électronique', href: identification_recovery_path)
+        expect(response.body).to have_link('Contactez le support', href: /\Amailto:/)
+      end
+    end
   end
 
   describe 'ensure_pro_connect_is_used' do
@@ -93,9 +132,17 @@ describe RecoveriesController, type: :controller do
     end
 
     describe 'GET #identification' do
+      render_views
+
       subject { get :identification }
 
-      it { is_expected.to have_http_status(:success) }
+      it do
+        subject
+        expect(response.body).to have_css('h2', text: 'Identification du propriétaire des dossiers')
+        expect(response.body).to have_css('p', text: 'Votre organisation est « name » identifiée par le SIRET 12345678901234', normalize_ws: true)
+        expect(response.body).to have_field('Adresse électronique du propriétaire des dossiers', type: 'email')
+        expect(response.body).to have_button('Continuer')
+      end
     end
 
     describe 'POST #post_identification' do
@@ -120,13 +167,21 @@ describe RecoveriesController, type: :controller do
       end
 
       context 'when there are recoverable procedures' do
-        let(:recoverable_procedures) { [[1, 'libelle', 2]] }
+        render_views
+
+        let(:recoverable_procedures) { [{ procedure_id: 1, libelle: 'libelle', count: 2 }] }
 
         before do
           allow(RecoveryService).to receive(:recoverable_procedures).and_return(recoverable_procedures)
         end
 
-        it { is_expected.to have_http_status(:success) }
+        it do
+          subject
+          expect(response.body).to have_css('h2', text: 'Sélection des démarches')
+          expect(response.body).to have_css('legend', text: 'Sélectionner les démarches que vous souhaitez récupérer.')
+          expect(response.body).to have_field('libelle', type: 'checkbox', with: '1')
+          expect(response.body).to have_button('Continuer', disabled: true)
+        end
       end
     end
 
@@ -136,6 +191,18 @@ describe RecoveriesController, type: :controller do
       before { expect(RecoveryService).to receive(:recover_procedure!) }
 
       it { is_expected.to redirect_to(terminee_recovery_path) }
+    end
+
+    describe 'GET #terminee' do
+      render_views
+
+      subject { get :terminee }
+
+      it do
+        subject
+        expect(response.body).to have_css('h2', text: 'Récupération terminée')
+        expect(response.body).to have_link('Voir mes dossiers', href: dossiers_path)
+      end
     end
   end
 end

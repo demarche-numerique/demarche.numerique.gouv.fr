@@ -1,0 +1,28 @@
+fr:
+  recoveries:
+    heading: Récupération de dossiers
+    continue: Continuer
+    nature:
+      title: Nature des dossiers
+      legend: Quel type de dossier souhaitez-vous récupérer ?
+      collectivite_label: des dossiers concernant une collectivité territoriale
+      collectivite_hint: (DETR, autres demandes de subvention, consultation du domaine, ...)
+      autre_label: autre
+    identification:
+      title: Identification du propriétaire
+      subtitle: Identification du propriétaire des dossiers
+      organisation: Votre organisation est « %{name} » identifiée par le SIRET %{siret}
+      email_label: Adresse électronique du propriétaire des dossiers
+    selection:
+      title: Sélection des démarches
+      legend: Sélectionner les démarches que vous souhaitez récupérer.
+    support:
+      title: Contactez le support
+      special_case: Votre situation nécessite un traitement particulier.
+      must_use_pro_connect: Vous devez utiliser le portail ProConnect pour récupérer vos dossiers.
+      no_dossier: Lʼadresse électronique « %{email} » que vous avez renseignée nʼa pas de dossier concernant votre organisation.
+      try_another_email: Essayer avec une autre adresse électronique
+    terminee:
+      title: Récupération terminée
+      reassigned: Les dossiers vous ont été réaffectés.
+      see_dossiers: Voir mes dossiers
