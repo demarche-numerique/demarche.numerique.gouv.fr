@@ -1,8 +1,13 @@
 en:
   instructeurs:
     contact_informations:
-      new:
-        title: Contact
+      edit:
+        agency: Agency
+        heading: Edit contact information
         teams: Teams
+        title: Contact
+      new:
         agency: Agency
         heading: Contact information
+        teams: Teams
+        title: Contact
