@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 describe Instructeurs::ContactInformationsController, type: :controller do
+  render_views
+
   let(:instructeur) { create(:instructeur) }
   let(:procedure) { create(:procedure) }
   let(:assign_to) { create(:assign_to, instructeur: instructeur, groupe_instructeur: build(:groupe_instructeur, procedure: procedure)) }
@@ -13,6 +15,13 @@ describe Instructeurs::ContactInformationsController, type: :controller do
 
   before do
     sign_in(instructeur.user)
+  end
+
+  describe '#new' do
+    it do
+      get :new, params: { procedure_id: procedure.id, groupe_id: gi.id }
+      expect(response.body).to have_css('h1', text: 'Informations de contact')
+    end
   end
 
   describe '#create' do
