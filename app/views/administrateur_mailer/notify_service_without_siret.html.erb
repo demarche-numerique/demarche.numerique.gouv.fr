@@ -1,0 +1,12 @@
+<% content_for(:title, t('.title')) %>
+
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+
+<p><%= t('.missing_siret', application_name: APPLICATION_NAME) %></p>
+
+<p>
+  <%= t('.fill_in_siret') %>
+  <%= link_to admin_procedures_url, admin_procedures_url %>
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>

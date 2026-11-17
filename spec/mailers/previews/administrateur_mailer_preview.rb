@@ -7,6 +7,10 @@ class AdministrateurMailerPreview < ActionMailer::Preview
     AdministrateurMailer.activate_before_expiration(user, "a4d4e4f4b4d445")
   end
 
+  def notify_service_without_siret
+    AdministrateurMailer.notify_service_without_siret("admin@example.fr")
+  end
+
   def api_entreprise_token_expiration
     administrateur = Administrateur.first
     procedure = Procedure.kept.where.not(api_entreprise_token: nil).first || Procedure.first
