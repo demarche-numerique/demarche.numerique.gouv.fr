@@ -6,6 +6,14 @@ RSpec.describe InviteMailer, type: :mailer do
 
   describe '.invite_user' do
     let(:invite) { create(:invite, user: create(:user)) }
+
+    it 'renders the translated body' do
+      body = subject.body.decoded
+      expect(body).to include("L’utilisateur #{invite.email_sender} souhaite")
+      expect(body).to include("merci de suivre ce lien : <a href=")
+      expect(body).not_to include('translation missing')
+    end
+
     it 'creates a target_user_link' do
       expect { deliver }
         .to change { TargetedUserLink.where(target_model: invite, user: invite.user).count }

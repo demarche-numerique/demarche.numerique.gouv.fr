@@ -1,10 +1,9 @@
 <p>
-  Bonjour,
+  <%= t(:hello, scope: [:views, :shared, :greetings]) %>
 </p>
 
 <p>
-  L’utilisateur <%= @invite.email_sender %> souhaite que vous participiez à
-  l’élaboration d’un dossier sur <%= APPLICATION_NAME %>.
+  <%= t('.intro', email_sender: @invite.email_sender, application_name: APPLICATION_NAME) %>
 </p>
 
 <% if @invite.message.present? %>
@@ -14,7 +13,7 @@
 <% end %>
 
 <p>
-  Pour le consulter, merci de suivre ce lien&nbsp;: <%= link_to @url, @url %>
+  <%= t('.view_link_html', link: link_to(@url, @url)) %>
 </p>
 
 <%= render partial: "layouts/mailers/signature" %>
