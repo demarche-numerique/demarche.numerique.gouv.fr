@@ -143,6 +143,19 @@ describe User, type: :model do
         expect(user.instructeur).to be_present
       end
 
+      it 'unlinks its FranceConnect identities, and signs their sessions out' do
+        user = User.find_by!(email:)
+        create(:france_connect_information, user:)
+        via_france_connect = user.open_user_session!('a browser', login_method: :france_connect)
+        via_password = user.open_user_session!('another browser', login_method: :password)
+
+        subject
+
+        expect(user.france_connect_informations.reload).to be_empty
+        expect(via_france_connect.reload.revoked_reason).to eq('france_connect_unlinked')
+        expect(via_password.reload.revoked_at).to be_nil
+      end
+
       context 'with an existing instructeur' do
         let(:old_admins) { [administrateurs.default] }
         let(:admins) { [create(:administrateur)] }

@@ -6,6 +6,8 @@ class FranceConnectInformation < ApplicationRecord
 
   belongs_to :user, optional: true
 
+  after_destroy -> { user&.revoke_france_connect_sessions! }
+
   validates :france_connect_particulier_id, presence: true, allow_blank: false, allow_nil: false
 
   def safely_associate_user!(email)
