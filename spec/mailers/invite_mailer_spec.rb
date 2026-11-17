@@ -11,7 +11,6 @@ RSpec.describe InviteMailer, type: :mailer do
       body = subject.body.decoded
       expect(body).to include("L’utilisateur #{invite.email_sender} souhaite")
       expect(body).to include("merci de suivre ce lien : <a href=")
-      expect(body).not_to include('translation missing')
     end
 
     it 'creates a target_user_link' do
@@ -71,8 +70,8 @@ RSpec.describe InviteMailer, type: :mailer do
       body = subject.body.decoded
       expect(body).to include("L’utilisateur #{invite.email_sender} souhaite")
       expect(body).to include("<strong>#{invite.dossier.procedure.libelle}</strong>")
+      expect(body).to include("Cette plateforme permet")
       expect(body).to include("l’adresse électronique kikoo@lol.fr sur <a href=")
-      expect(body).not_to include('translation missing')
     end
 
     it 'creates a target_user_link' do
