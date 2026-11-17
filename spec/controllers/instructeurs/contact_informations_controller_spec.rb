@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 describe Instructeurs::ContactInformationsController, type: :controller do
+  render_views
+
   let(:instructeur) { create(:instructeur) }
   let(:procedure) { create(:procedure) }
   let(:assign_to) { create(:assign_to, instructeur: instructeur, groupe_instructeur: build(:groupe_instructeur, procedure: procedure)) }
@@ -13,6 +15,13 @@ describe Instructeurs::ContactInformationsController, type: :controller do
 
   before do
     sign_in(instructeur.user)
+  end
+
+  describe '#new' do
+    it do
+      get :new, params: { procedure_id: procedure.id, groupe_id: gi.id }
+      expect(response.body).to have_css('h1', text: 'Informations de contact')
+    end
   end
 
   describe '#create' do
@@ -63,6 +72,15 @@ describe Instructeurs::ContactInformationsController, type: :controller do
         expect(response).to render_template(:new)
         expect(assigns(:contact_information).nom).to eq('super service')
       end
+    end
+  end
+
+  describe '#edit' do
+    before { create(:contact_information, groupe_instructeur: gi) }
+
+    it do
+      get :edit, params: { procedure_id: procedure.id, groupe_id: gi.id }
+      expect(response.body).to have_css('h1', text: 'Modifier les informations de contact')
     end
   end
 

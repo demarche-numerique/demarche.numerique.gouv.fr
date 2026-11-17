@@ -1,0 +1,13 @@
+<% content_for(:title, t('.title')) %>
+
+<%= render partial: 'shared/breadcrumbs_section',
+  locals: { steps: [[@procedure.libelle.truncate_words(10), instructeur_procedure_path(@procedure)],
+    [t('.teams'), instructeur_groupes_path(@procedure)],
+    [@groupe_instructeur.label, instructeur_groupe_path(@groupe_instructeur, procedure_id: @procedure.id)],
+    [t('.agency')]] } %>
+
+<div class="container">
+  <h1><%= t('.heading') %></h1>
+
+  <%= render 'form', procedure_id: @procedure.id %>
+</div>
