@@ -56,6 +56,8 @@ class ProcedureRevision < ApplicationRecord
     self
   end
 
+  def type_de_champs_laid_out? = @laid_out_type_de_champ_tree.equal?(type_de_champ_tree)
+
   def type_de_champs = type_de_champ_layout.type_de_champs
   def public_flat_type_de_champs = type_de_champ_layout.public_flat_type_de_champs
   def private_flat_type_de_champs = type_de_champ_layout.private_flat_type_de_champs
@@ -434,7 +436,7 @@ class ProcedureRevision < ApplicationRecord
   # They are laid out from the stored tree, and again once it is another
   # object: an edit writes it, a reload reads it again.
   def type_de_champ_layout
-    lay_out_type_de_champs if !@laid_out_type_de_champ_tree.equal?(type_de_champ_tree)
+    lay_out_type_de_champs if !type_de_champs_laid_out?
 
     @type_de_champ_layout
   end
