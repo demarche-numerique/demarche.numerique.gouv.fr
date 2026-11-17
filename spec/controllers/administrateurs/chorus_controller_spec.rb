@@ -24,7 +24,11 @@ describe Administrateurs::ChorusController, type: :controller do
       context 'rendered' do
         render_views
 
-        it { is_expected.to have_http_status(200) }
+        it 'renders the budget framework form' do
+          expect(subject).to have_http_status(200)
+          expect(response.body).to have_selector('h1', text: 'Cadre budgétaire')
+          expect(response.body).to have_text('Cas d’usage')
+        end
       end
     end
   end

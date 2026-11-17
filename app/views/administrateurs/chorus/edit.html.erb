@@ -1,0 +1,36 @@
+<% content_for(:title, "Chorus") %>
+<% render_procedure_sticky_title(@procedure) %>
+
+<%= render partial: 'shared/breadcrumbs_section', locals: { steps: [[admin_procedures_back_label(@procedure), admin_procedures_back_path(@procedure)], [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)], ['Connecteur Chorus']] } %>
+
+<div class="container">
+  <h1 class="fr-h1">
+    Cadre budgétaire
+  </h1>
+
+  <%= render Dsfr::CalloutComponent.new(title: "Cas d’usage") do |c| %>
+    <% c.with_body do %>
+      <p>
+        Vous traitez une démarche liées a des subventions qui seront payées au
+        travers de Chorus ?
+      </p>
+
+      <p>
+        Les agent traitants les dossiers seront ammenés a suivre la
+        planification budgetaire des dossiers traités ?
+      </p>
+
+      <p>
+        En renseignant le cadre budgetaire de la subvention, vous donnez les
+        moyens de rapprocher les dossiers traités sur démarches-simplifiées avec
+        les données extraites de Chorus
+      </p>
+
+      <p>
+        Ce cadre budgetaire sera automatiquement ajouté aux exports des dossiers
+      </p>
+    <% end %>
+  <% end %>
+
+  <%= render Procedure::ChorusFormComponent.new(procedure: @procedure) %>
+</div>
