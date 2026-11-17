@@ -5,11 +5,11 @@ RSpec.describe InviteMailer, type: :mailer do
   subject { InviteMailer.invite_user(invite) }
 
   describe '.invite_user' do
-    let(:invite) { create(:invite, user: create(:user)) }
+    let(:invite) { create(:invite, user: create(:user), email_sender: 'sender@example.com') }
 
     it 'renders the translated body' do
       body = subject.body.decoded
-      expect(body).to include("L’utilisateur #{invite.email_sender} souhaite")
+      expect(body).to include("L’utilisateur sender@example.com souhaite")
       expect(body).to include("merci de suivre ce lien : <a href=")
     end
 
@@ -64,11 +64,11 @@ RSpec.describe InviteMailer, type: :mailer do
 
   describe '.invite_guest' do
     subject { InviteMailer.invite_guest(invite) }
-    let(:invite) { create(:invite, user: nil, email: 'kikoo@lol.fr') }
+    let(:invite) { create(:invite, user: nil, email: 'kikoo@lol.fr', email_sender: 'sender@example.com') }
 
     it 'renders the translated body' do
       body = subject.body.decoded
-      expect(body).to include("L’utilisateur #{invite.email_sender} souhaite")
+      expect(body).to include("L’utilisateur sender@example.com souhaite")
       expect(body).to include("<strong>#{invite.dossier.procedure.libelle}</strong>")
       expect(body).to include("Cette plateforme permet")
       expect(body).to include("l’adresse électronique kikoo@lol.fr sur <a href=")
@@ -117,7 +117,7 @@ RSpec.describe InviteMailer, type: :mailer do
     end
 
     context 'message contains malicious link' do
-      let(:invite) { create(:invite, user: create(:user), message: "Coucou\n<a href=\"https://malicious.site\">trusted anchor</a>") }
+      let(:invite) { create(:invite, user: nil, message: "Coucou\n<a href=\"https://malicious.site\">trusted anchor</a>") }
       it 'sanitize message' do
         expect(subject.body.decoded).to match(%r{<p>Coucou\s+<br />trusted anchor</p>})
       end
