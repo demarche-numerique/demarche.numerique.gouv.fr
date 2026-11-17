@@ -140,7 +140,7 @@ describe Instructeurs::GroupeInstructeursController, type: :controller do
       end
 
       it 'calls the groupe instructeur a team' do
-        expect(flash.notice).to eq("The reviewer #{new_instructeur_email} was assigned to the team “groupe instructeur 2”.")
+        expect(flash.notice).to eq("The reviewer #{new_instructeur_email} was assigned to the team ‘groupe instructeur 2’.")
       end
     end
 
