@@ -1,0 +1,15 @@
+<% content_for(:title, @subject) %>
+
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+
+<p>
+  <%= t('.body', groupe_gestionnaire_name: @groupe_gestionnaire.name, sender_email: @sender_email) %>
+</p>
+
+<p><%= dsfr_button(t('.see_message'), @commentaire_url, :primary) %></p>
+
+<%= render partial: "layouts/mailers/signature" %>
+
+<% content_for :footer do %>
+  <%= render 'layouts/mailers/commentaire_groupe_gestionnaire_footer' %>
+<% end %>

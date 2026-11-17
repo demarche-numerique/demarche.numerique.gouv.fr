@@ -1,0 +1,7 @@
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+
+<p>
+  <%= t(".email_body", groupe_gestionnaire_name: @groupe_gestionnaire.name, email: @current_super_admin_email, application_name: APPLICATION_NAME) %>
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>
