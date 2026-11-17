@@ -6,7 +6,7 @@ fr:
         breadcrumb: Connecteur Chorus
         heading: Cadre budgétaire
         use_case: Cas d’usage
-        add_field: Ajouter un champs Engagement Juridique aux annotations privées afin de renseigner l’EJ directement dans DS
+        add_field: Ajouter un champ Engagement Juridique aux annotations privées afin de renseigner l’EJ directement dans DS
         exports: L’EJ sera automatiquement ajouté aux exports des dossiers
         add_internal_field: Ajouter une annotation privée EJ
       edit:
@@ -14,7 +14,7 @@ fr:
         breadcrumb: Connecteur Chorus
         heading: Cadre budgétaire
         use_case: Cas d’usage
-        grants_question: Vous traitez une démarche liées a des subventions qui seront payées au travers de Chorus ?
-        planning_question: Les agent traitants les dossiers seront ammenés a suivre la planification budgetaire des dossiers traités ?
-        matching: En renseignant le cadre budgetaire de la subvention, vous donnez les moyens de rapprocher les dossiers traités sur démarches-simplifiées avec les données extraites de Chorus
-        exports: Ce cadre budgetaire sera automatiquement ajouté aux exports des dossiers
+        grants_question: Vous traitez une démarche liée à des subventions qui seront payées au travers de Chorus ?
+        planning_question: Les agents traitant les dossiers seront amenés à suivre la planification budgétaire des dossiers traités ?
+        matching: En renseignant le cadre budgétaire de la subvention, vous donnez les moyens de rapprocher les dossiers traités sur démarches-simplifiées avec les données extraites de Chorus
+        exports: Ce cadre budgétaire sera automatiquement ajouté aux exports des dossiers
