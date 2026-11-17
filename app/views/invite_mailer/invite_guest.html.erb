@@ -1,0 +1,23 @@
+<p>
+  <%= t(:hello, scope: [:views, :shared, :greetings]) %>
+</p>
+
+<p>
+  <%= t('.intro_html', email_sender: @invite.email_sender, procedure: tag.strong(@invite.dossier.procedure.libelle), application_name: APPLICATION_NAME) %>
+</p>
+
+<% if @invite.message.present? %>
+  <blockquote>
+    <%= simple_format(@invite.message) %>
+  </blockquote>
+<% end %>
+
+<p>
+  <%= t('.platform_description') %>
+</p>
+
+<p>
+  <%= t('.sign_up_html', email: @invite.email, link: link_to(@url, @url)) %>
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>

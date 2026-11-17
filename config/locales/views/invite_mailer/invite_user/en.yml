@@ -1,4 +1,5 @@
 en:
   invite_mailer:
     invite_user:
-      subject: Participate in the drafting of a procedure
+      intro: The applicant %{email_sender} would like you to help prepare an application on %{application_name}.
+      view_link_html: "To view it, please follow this link: %{link}"

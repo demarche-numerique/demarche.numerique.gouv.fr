@@ -1,4 +1,6 @@
 fr:
   invite_mailer:
     invite_guest:
-      subject: "%{email_sender} vous invite à consulter un dossier"
+      intro_html: L’utilisateur %{email_sender} souhaite que vous participiez à l’élaboration d’un dossier pour la démarche %{procedure} sur %{application_name}.
+      platform_description: Cette plateforme permet à ses utilisateurs d’établir des dossiers 100 % en ligne et de dialoguer avec plusieurs interlocuteurs privilégiés avant d’instruire un dépôt.
+      sign_up_html: Afin de répondre à cette invitation, merci de vous inscrire avec l’adresse électronique %{email} sur %{link}

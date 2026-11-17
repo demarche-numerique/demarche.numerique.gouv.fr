@@ -1,4 +1,5 @@
 fr:
   invite_mailer:
     invite_user:
-      subject: Participez à l’élaboration d’un dossier
+      intro: L’utilisateur %{email_sender} souhaite que vous participiez à l’élaboration d’un dossier sur %{application_name}.
+      view_link_html: "Pour le consulter, merci de suivre ce lien : %{link}"

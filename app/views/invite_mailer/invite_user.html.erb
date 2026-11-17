@@ -1,0 +1,19 @@
+<p>
+  <%= t(:hello, scope: [:views, :shared, :greetings]) %>
+</p>
+
+<p>
+  <%= t('.intro', email_sender: @invite.email_sender, application_name: APPLICATION_NAME) %>
+</p>
+
+<% if @invite.message.present? %>
+  <blockquote>
+    <%= simple_format(@invite.message) %>
+  </blockquote>
+<% end %>
+
+<p>
+  <%= t('.view_link_html', link: link_to(@url, @url)) %>
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>

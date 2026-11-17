@@ -1,4 +1,6 @@
 en:
   invite_mailer:
     invite_guest:
-      subject: "%{email_sender} invites you to view a procedure"
+      intro_html: The applicant %{email_sender} would like you to help prepare an application for the procedure %{procedure} on %{application_name}.
+      platform_description: This platform lets applicants prepare their applications 100% online and discuss them with several trusted contacts before submitting them for review.
+      sign_up_html: To accept this invitation, please sign up with the email address %{email} on %{link}
