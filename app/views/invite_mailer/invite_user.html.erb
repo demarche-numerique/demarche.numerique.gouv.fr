@@ -1,0 +1,20 @@
+<p>
+  Bonjour,
+</p>
+
+<p>
+  L’utilisateur <%= @invite.email_sender %> souhaite que vous participiez à
+  l’élaboration d’un dossier sur <%= APPLICATION_NAME %>.
+</p>
+
+<% if @invite.message.present? %>
+  <blockquote>
+    <%= simple_format(@invite.message) %>
+  </blockquote>
+<% end %>
+
+<p>
+  Pour le consulter, merci de suivre ce lien&nbsp;: <%= link_to @url, @url %>
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>
