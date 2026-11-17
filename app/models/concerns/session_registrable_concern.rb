@@ -39,17 +39,29 @@ module SessionRegistrableConcern
     warden.raw_session["warden.user.#{scope}.session"] ||= {}
   end
 
-  def self.open_session!(record, warden, scope, login_method: nil)
+  def self.open_session!(record, warden, scope, login_method: nil, continuing: nil)
     user_agent, remote_ip = warden.request.user_agent, warden.request.remote_ip
 
     # in db
-    user_session = record.open_user_session!(user_agent, remote_ip, login_method:)
+    user_session = record.open_user_session!(user_agent, remote_ip, login_method:, continuing:)
 
     # in cookie
     warden.session(scope).merge!(LAST_SEEN_KEY => Date.current.iso8601, SESSION_KEY => user_session.id)
 
     # in current request, the usager's only: the same request loads the super admin too
     Current.user_session = user_session if scope == :user
+  end
+
+  # The usager's session going on under another login method, with nothing proven
+  # again: the current row is revoked for a new one that continues it, and there
+  # is no sign in for Devise to track.
+  def self.swap_session!(user, warden, login_method:, reason:)
+    continuing = Current.user_session
+
+    user.transaction do
+      user.user_sessions.where(id: continuing.id).revoke_all!(reason)
+      open_session!(user, warden, :user, login_method:, continuing:)
+    end
   end
 
   # Read from the signed cookie, so the client cannot push the date forward.
@@ -155,12 +167,16 @@ module SessionRegistrableConcern
   # The raw user-agent and not a label: deriving it at display time means a
   # better parser later also improves old rows. The address is never rewritten
   # afterwards -- reading a row on every request must stay a read.
-  def open_user_session!(user_agent, ip_address = nil, login_method: nil)
+  #
+  # A row `continuing:` another one keeps its start and deadline, which the role
+  # deadlines are counted from.
+  def open_user_session!(user_agent, ip_address = nil, login_method: nil, continuing: nil)
     user_sessions.create!(
       user_agent: sanitized_user_agent(user_agent),
       ip_address:,
       login_method:,
-      expires_at: session_max_lifetime&.from_now
+      created_at: continuing&.created_at,
+      expires_at: continuing ? continuing.expires_at : session_max_lifetime&.from_now
     )
   end
 
