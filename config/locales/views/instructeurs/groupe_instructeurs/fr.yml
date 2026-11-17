@@ -1,6 +1,11 @@
 fr:
   instructeurs:
     groupe_instructeurs:
+      index:
+        title: Instructeurs
+        heading: Gestion des instructeurs
+        groups_list: Liste des groupes
+        view: voir
       add_instructeurs:
         wrong_address:
           one: "%{emails} n’est pas une adresse électronique valide"

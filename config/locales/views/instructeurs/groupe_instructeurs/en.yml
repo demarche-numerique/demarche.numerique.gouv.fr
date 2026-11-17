@@ -1,6 +1,11 @@
 en:
   instructeurs:
     groupe_instructeurs:
+      index:
+        title: Reviewers
+        heading: Reviewer management
+        groups_list: List of teams
+        view: view
       add_instructeurs:
         assignment:
           one: "The reviewer %{emails} was assigned to the group « %{groupe} »."
