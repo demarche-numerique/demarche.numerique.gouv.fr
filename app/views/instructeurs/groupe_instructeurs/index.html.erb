@@ -2,7 +2,13 @@
 
 <div class="sub-header">
   <div class="fr-container flex column">
-    <%= render partial: 'shared/breadcrumbs', locals: { steps: [[@procedure.libelle.truncate_words(10), instructeur_procedure_path(@procedure)], [t('.heading')]] } %>
+    <%= render partial: 'shared/breadcrumbs', locals: {
+      steps: [
+        [@procedure.libelle.truncate_words(10), instructeur_procedure_path(@procedure)],
+        [t('.heading')]
+      ]
+    } %>
+
     <%= render partial: 'instructeurs/procedures/header', locals: { procedure: @procedure } %>
   </div>
 </div>

@@ -2,10 +2,21 @@
   <div class="fr-container flex column">
     <% if @procedure.routing_enabled? %>
       <% content_for(:title, t('.title_with_group', label: @groupe_instructeur.label)) %>
-      <%= render partial: 'shared/breadcrumbs', locals: { steps: [[@procedure.libelle.truncate_words(10), instructeur_procedure_path(@procedure)], [t('.groups'), instructeur_groupes_path(@procedure)], [@groupe_instructeur.label]] } %>
+      <%= render partial: 'shared/breadcrumbs', locals: {
+        steps: [
+          [@procedure.libelle.truncate_words(10), instructeur_procedure_path(@procedure)],
+          [t('.groups'), instructeur_groupes_path(@procedure)],
+          [@groupe_instructeur.label]
+        ]
+      } %>
     <% else %>
       <% content_for(:title, t('.title')) %>
-      <%= render partial: 'shared/breadcrumbs', locals: { steps: [[@procedure.libelle, instructeur_procedure_path(@procedure)], [t('.title')]] } %>
+      <%= render partial: 'shared/breadcrumbs', locals: {
+        steps: [
+          [@procedure.libelle, instructeur_procedure_path(@procedure)],
+          [t('.title')]
+        ]
+      } %>
     <% end %>
 
     <%= render partial: 'instructeurs/procedures/header', locals: { procedure: @procedure } %>
@@ -21,12 +32,25 @@
     <% end %>
   </h4>
 
-  <%= render partial: 'shared/groupe_instructeurs/instructeurs', locals: { procedure: @procedure, groupe_instructeur: @groupe_instructeur, instructeurs: @instructeurs, disabled_as_super_admin: false, available_instructeur_emails: [], restrict_to_domain: restricted_email_domain } %>
+  <%= render partial: 'shared/groupe_instructeurs/instructeurs', locals: {
+    procedure: @procedure,
+    groupe_instructeur: @groupe_instructeur,
+    instructeurs: @instructeurs,
+    disabled_as_super_admin: false,
+    available_instructeur_emails: [],
+    restrict_to_domain: restricted_email_domain
+  } %>
 
   <% if @procedure.routing_enabled? %>
-    <%= render partial: 'shared/groupe_instructeurs/contact_information', locals: { procedure: @procedure, groupe_instructeur: @groupe_instructeur } %>
+    <%= render partial: 'shared/groupe_instructeurs/contact_information', locals: {
+      procedure: @procedure,
+      groupe_instructeur: @groupe_instructeur
+    } %>
     <% if @procedure.attestation_acceptation_template&.activated? %>
-      <%= render partial: "shared/groupe_instructeurs/signature_form", locals: { groupe_instructeur: @groupe_instructeur, preview_path: preview_attestation_acceptation_instructeur_groupe_path(@groupe_instructeur.procedure, @groupe_instructeur) } %>
+      <%= render partial: "shared/groupe_instructeurs/signature_form", locals: {
+        groupe_instructeur: @groupe_instructeur,
+        preview_path: preview_attestation_acceptation_instructeur_groupe_path(@groupe_instructeur.procedure, @groupe_instructeur)
+      } %>
     <% end %>
   <% end %>
 </div>
