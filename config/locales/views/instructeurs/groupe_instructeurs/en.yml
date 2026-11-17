@@ -1,6 +1,17 @@
 en:
   instructeurs:
     groupe_instructeurs:
+      index:
+        title: Reviewers
+        heading: Reviewer management
+        groups_list: List of teams
+        view: view
+      show:
+        title_with_group: "Reviewers of team %{label}"
+        title: Reviewers
+        groups: Teams
+        group_heading: "Team “%{label}”"
+        procedure_heading: "Procedure “%{libelle}”"
       add_instructeurs:
         assignment:
           one: "The reviewer %{emails} was assigned to the group « %{groupe} »."

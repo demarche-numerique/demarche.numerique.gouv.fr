@@ -1,6 +1,17 @@
 fr:
   instructeurs:
     groupe_instructeurs:
+      index:
+        title: Instructeurs
+        heading: Gestion des instructeurs
+        groups_list: Liste des groupes
+        view: voir
+      show:
+        title_with_group: "Instructeurs du groupe %{label}"
+        title: Instructeurs
+        groups: Groupes d’instructeurs
+        group_heading: "Groupe « %{label} »"
+        procedure_heading: "Démarche « %{libelle} »"
       add_instructeurs:
         wrong_address:
           one: "%{emails} n’est pas une adresse électronique valide"
