@@ -59,6 +59,7 @@ class ProcedureExportService
     I18n.transliterate(name, locale: :en)
       .delete('/\*?[]:')
       .truncate(30, omission: '')
+      .gsub(/\A'+|'+\z/, '')
   end
 
   private
