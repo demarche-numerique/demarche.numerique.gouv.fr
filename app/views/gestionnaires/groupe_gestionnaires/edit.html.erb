@@ -1,0 +1,26 @@
+<% content_for(:root_class, 'scroll-margins-for-sticky-footer') %>
+<%= render 'main_navigation' %>
+<%= render partial: 'shared/breadcrumbs_section', locals: { steps: [[@groupe_gestionnaire.name.truncate_words(10), gestionnaire_groupe_gestionnaire_path(@groupe_gestionnaire)], ['Edit']] } %>
+<%= render NestedForms::FormOwnerComponent.new %>
+
+<%= form_for @groupe_gestionnaire, url: url_for({ controller: 'gestionnaires/groupe_gestionnaires', action: :update, id: @groupe_gestionnaire.id }), html: { class: 'form', multipart: true } do |f| %>
+  <div class="fr-container">
+    <div class="fr-grid-row">
+      <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
+        <h1 class="fr-h2">Description</h1>
+        <%= render Dsfr::InputComponent.new(form: f, attribute: :name, input_type: :text_field, opts: {}) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="sticky-action-footer">
+    <div class="fr-container">
+      <div class="fr-grid-row">
+        <div class="fr-col-12 fr-col-offset-md-2 fr-col-md-8">
+          <%= f.button 'Enregistrer', class: 'fr-btn fr-mr-2w' %>
+          <%= link_to 'Annuler', gestionnaire_groupe_gestionnaire_path(id: @groupe_gestionnaire), class: 'fr-btn fr-btn--secondary', data: { controller: 'confirm', confirm_message_value: 'Êtes-vous sûr de vouloir annuler les modifications effectuées ?', action: 'confirm#ask' } %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

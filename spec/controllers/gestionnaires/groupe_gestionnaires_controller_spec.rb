@@ -3,6 +3,8 @@
 describe Gestionnaires::GroupeGestionnairesController, type: :controller do
   let(:gestionnaire) { create(:gestionnaire) }
 
+  render_views
+
   describe "#index" do
     subject { get :index }
 
@@ -27,6 +29,11 @@ describe Gestionnaires::GroupeGestionnairesController, type: :controller do
         expect(assigns(:groupe_gestionnaires)).to include(groupe_gestionnaire)
         expect(assigns(:groupe_gestionnaires)).to include(other_groupe_gestionnaire)
         expect(assigns(:groupe_gestionnaires)).not_to include(not_my_groupe_gestionnaire)
+        expect(response.body).to have_link('Mes groupes gestionnaires', href: gestionnaire_groupe_gestionnaires_path, class: 'fr-nav__link')
+        expect(response.body).to have_css('#header-navigation [aria-current="page"]', text: 'Mes groupes gestionnaires')
+        expect(response.body).to have_css('tbody tr', count: 2)
+        expect(response.body).to have_link(groupe_gestionnaire.name, href: gestionnaire_groupe_gestionnaire_path(groupe_gestionnaire))
+        expect(response.body).to have_link('Voir', href: tree_structure_gestionnaire_groupe_gestionnaire_path(other_groupe_gestionnaire))
       end
     end
   end
@@ -52,6 +59,11 @@ describe Gestionnaires::GroupeGestionnairesController, type: :controller do
         subject
         expect(response).to have_http_status(:ok)
         expect(assigns(:groupe_gestionnaire)).to eq(child_groupe_gestionnaire)
+        expect(response.body).to have_link('Mes groupes gestionnaires', href: gestionnaire_groupe_gestionnaires_path)
+        expect(response.body).not_to have_css('#header-navigation [aria-current]')
+        expect(response.body).to have_css('h2', text: "Gestion du groupe \"#{child_groupe_gestionnaire.name}\"")
+        expect(response.body).to have_link('Modifier', href: edit_gestionnaire_groupe_gestionnaire_path(child_groupe_gestionnaire))
+        expect(response.body).to have_button('Supprimer')
       end
     end
   end
@@ -77,6 +89,9 @@ describe Gestionnaires::GroupeGestionnairesController, type: :controller do
         subject
         expect(response).to have_http_status(:ok)
         expect(assigns(:groupe_gestionnaire)).to eq(child_groupe_gestionnaire)
+        expect(response.body).to have_field('groupe_gestionnaire[name]', with: child_groupe_gestionnaire.name)
+        expect(response.body).to have_button('Enregistrer')
+        expect(response.body).to have_link('Annuler', href: gestionnaire_groupe_gestionnaire_path(child_groupe_gestionnaire))
       end
     end
   end
@@ -152,6 +167,8 @@ describe Gestionnaires::GroupeGestionnairesController, type: :controller do
         subject
         expect(response).to have_http_status(:ok)
         expect(assigns(:tree_structure)).to eq(groupe_gestionnaire => { child_groupe_gestionnaire => {} })
+        expect(response.body).to have_css('h1', text: "Arborescence de «\u00A0#{groupe_gestionnaire.name}\u00A0»")
+        expect(response.body).to have_css("ul ul a[href='#{gestionnaire_groupe_gestionnaire_path(child_groupe_gestionnaire)}']", text: child_groupe_gestionnaire.name)
       end
     end
   end
