@@ -56,6 +56,7 @@ RSpec.describe InviteMailer, type: :mailer do
   end
 
   describe '.invite_guest' do
+    subject { InviteMailer.invite_guest(invite) }
     let(:invite) { create(:invite, user: nil, email: 'kikoo@lol.fr') }
 
     it 'creates a target_user_link' do
