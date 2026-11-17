@@ -75,6 +75,15 @@ describe Instructeurs::ContactInformationsController, type: :controller do
     end
   end
 
+  describe '#edit' do
+    before { create(:contact_information, groupe_instructeur: gi) }
+
+    it do
+      get :edit, params: { procedure_id: procedure.id, groupe_id: gi.id }
+      expect(response.body).to have_css('h1', text: 'Modifier les informations de contact')
+    end
+  end
+
   describe '#update' do
     let(:contact_information) { create(:contact_information, groupe_instructeur: gi) }
     let(:contact_information_params) {
