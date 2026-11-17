@@ -1,0 +1,24 @@
+<% content_for(:title, @subject) %>
+
+<p>
+  Bonjour,
+</p>
+
+<p>
+  Vous avez fait la demande d’un compte administrateur sur
+  <%= APPLICATION_NAME %>. Votre compte a été créé mais reste inactif, il
+  arrivera à expiration le <%= try_format_date(@expiration_date) %>
+</p>
+
+<p>
+  Afin d’activer votre compte, veuillez cliquer sur le lien ci-dessous&nbsp;:
+  <%= link_to(users_activate_url(token: @reset_password_token), users_activate_url(token: @reset_password_token)) %>
+</p>
+
+<p>
+  Nous restons à votre disposition si vous avez besoin d’accompagnement.
+</p>
+
+<p>
+  <%= render partial: "layouts/mailers/bizdev_signature", locals: { author_name: "Benjamin Doberset" } %>
+</p>
