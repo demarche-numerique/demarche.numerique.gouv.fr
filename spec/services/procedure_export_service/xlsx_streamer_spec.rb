@@ -93,6 +93,11 @@ describe ProcedureExportService::XlsxStreamer do
       expect(name).not_to match(%r{[/\\*?\[\]:]})
       expect(name).to eq(ProcedureExportService.sanitize_sheet_name(raw))
     end
+
+    it 'strips the apostrophes Excel forbids at both ends, the truncation included' do
+      expect(ProcedureExportService.sanitize_sheet_name("(4589041) Veuillez indiquer l'identité des participants")).to eq("(4589041) Veuillez indiquer l")
+      expect(ProcedureExportService.sanitize_sheet_name("'Participants'")).to eq("Participants")
+    end
   end
 
   describe 'styling and value types' do
