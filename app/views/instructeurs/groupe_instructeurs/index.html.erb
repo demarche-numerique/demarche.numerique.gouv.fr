@@ -26,7 +26,13 @@
             <td><%= group.label %></td>
 
             <td class="actions">
-              <%= link_to t('.view'), instructeur_groupe_path(@procedure, group) %>
+              <%= link_to instructeur_groupe_path(@procedure, group) do %>
+                <%= t('.view') %>
+
+                <span class="fr-sr-only">
+                  <%= t('.view_group', label: group.label) %>
+                </span>
+              <% end %>
             </td>
           </tr>
         <% end %>

@@ -43,6 +43,10 @@ describe Instructeurs::GroupeInstructeursController, type: :controller do
         expect(response.body).not_to include(gi_1_1.label)
         expect(response.body).not_to include(gi_2_2.label)
       end
+
+      it 'names the group in each view link' do
+        expect(response.body).to have_link('voir le groupe « groupe instructeur 2 »', href: instructeur_groupe_path(procedure, gi_1_2))
+      end
     end
 
     context 'when i am an instructor of the procedure, and instructeurs_self_management_enabled is false' do
