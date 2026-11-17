@@ -21,6 +21,7 @@ describe Instructeurs::ContactInformationsController, type: :controller do
     it do
       get :new, params: { procedure_id: procedure.id, groupe_id: gi.id }
       expect(response.body).to have_css('h1', text: 'Informations de contact')
+      expect(response.body).to have_link('Gestion des instructeurs', href: instructeur_groupes_path(procedure))
     end
   end
 

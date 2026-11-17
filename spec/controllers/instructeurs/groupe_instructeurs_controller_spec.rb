@@ -127,8 +127,9 @@ describe Instructeurs::GroupeInstructeursController, type: :controller do
       context 'without routing' do
         let(:routing_enabled) { false }
 
-        it 'truncates the procedure label' do
+        it 'truncates the procedure label and has no teams step' do
           expect(response.body).to have_link(truncated_libelle, href: instructeur_procedure_path(procedure))
+          expect(response.body).not_to have_link(href: instructeur_groupes_path(procedure))
         end
       end
     end
