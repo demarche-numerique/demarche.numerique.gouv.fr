@@ -13,9 +13,10 @@ RSpec.describe InviteMailer, type: :mailer do
       expect(body).to include("merci de suivre ce lien : <a href=")
     end
 
-    it 'has a subject in French and in English' do
+    it "has a subject in the invited user's locale" do
       expect(subject.subject).to eq("Participez à l’élaboration d’un dossier")
-      expect(I18n.with_locale(:en) { InviteMailer.invite_user(invite).subject }).to eq("Participate in drafting an application")
+      invite.user.update!(locale: 'en')
+      expect(I18n.with_locale(:fr) { InviteMailer.invite_user(invite).subject }).to eq("Participate in drafting an application")
     end
 
     it 'creates a target_user_link' do
@@ -79,9 +80,8 @@ RSpec.describe InviteMailer, type: :mailer do
       expect(body).to include("l’adresse électronique kikoo@lol.fr sur <a href=")
     end
 
-    it 'has a subject in French and in English' do
-      expect(subject.subject).to eq("sender@example.com vous invite à consulter un dossier")
-      expect(I18n.with_locale(:en) { InviteMailer.invite_guest(invite).subject }).to eq("sender@example.com invites you to view an application")
+    it "has a subject in the default locale, not the sender's" do
+      expect(I18n.with_locale(:en) { subject.subject }).to eq("sender@example.com vous invite à consulter un dossier")
     end
 
     it 'creates a target_user_link' do

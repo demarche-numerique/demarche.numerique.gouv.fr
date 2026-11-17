@@ -91,4 +91,31 @@ RSpec.describe ApplicationMailer, type: :mailer do
       end
     end
   end
+
+  describe 'locale' do
+    # deliver_later replays the locale of the request that enqueued the email, i.e. the sender's.
+    it "renders in the recipient's locale, not the sender's" do
+      users.usager.update!(locale: 'en')
+
+      subject = I18n.with_locale(:fr) { UserMailer.password_changed(users.usager).subject }
+      expect(subject).to eq("Your account password has been changed")
+    end
+
+    it 'renders in the default locale when the recipient has none' do
+      subject = I18n.with_locale(:en) { UserMailer.password_changed(users.usager).subject }
+      expect(subject).to eq("Le mot de passe de votre compte a été modifié")
+    end
+
+    it 'renders in the default locale for a recipient without account' do
+      subject = I18n.with_locale(:en) { UserMailer.france_connect_merge_confirmation('guest@example.fr', 'token', Time.zone.now).subject }
+      expect(subject).to eq("Veuillez confirmer la fusion de compte")
+    end
+
+    it "does not leak the recipient's locale" do
+      users.usager.update!(locale: 'en')
+
+      I18n.with_locale(:fr) { UserMailer.password_changed(users.usager).subject }
+      expect(I18n.locale).to eq(:fr)
+    end
+  end
 end

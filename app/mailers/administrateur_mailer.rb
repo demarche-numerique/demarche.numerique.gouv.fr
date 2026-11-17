@@ -5,6 +5,7 @@ class AdministrateurMailer < ApplicationMailer
   layout 'mailers/layout'
 
   def activate_before_expiration(user, reset_password_token)
+    use_recipient_locale(user)
     @user = user
     @reset_password_token = reset_password_token
     @expiration_date = @user.reset_password_sent_at + Devise.reset_password_within
@@ -26,6 +27,7 @@ class AdministrateurMailer < ApplicationMailer
   end
 
   def api_entreprise_token_expiration(administrateur, procedure)
+    use_recipient_locale(administrateur.user)
     @procedure = procedure
     @expires_at = procedure.api_entreprise_token.expires_at
     subject = "[Action requise] Votre jeton API Entreprise expire bientôt (démarche nº#{procedure.id})"

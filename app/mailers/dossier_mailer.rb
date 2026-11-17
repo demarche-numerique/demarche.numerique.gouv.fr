@@ -177,6 +177,7 @@ class DossierMailer < ApplicationMailer
   end
 
   def notify_groupe_instructeur_changed(instructeur, dossier)
+    use_recipient_locale(instructeur.user)
     @subject = default_i18n_subject(dossier_id: dossier.id)
     @dossier = dossier
 

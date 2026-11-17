@@ -44,6 +44,7 @@ class NotificationMailer < ApplicationMailer
   end
 
   def send_accuse_lecture_notification(dossier)
+    use_recipient_locale(dossier.user)
     @dossier = dossier
     @dossier.with_revision
     @subject = default_i18n_subject(dossier_id: @dossier.id, libelle: @dossier.procedure.libelle.truncate_words(50))

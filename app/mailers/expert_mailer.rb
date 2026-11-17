@@ -8,6 +8,7 @@ class ExpertMailer < ApplicationMailer
   def send_dossier_decision(avis)
     return if not_revoked_avis(avis).empty?
 
+    use_recipient_locale(avis.expert.user)
     @avis = avis
     @dossier = @avis.dossier
     email = @avis.expert.email
