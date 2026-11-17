@@ -18,15 +18,21 @@ describe Commentaire do
     end
 
     context 'on an archived dossier' do
-      let(:dossier) { create :dossier, :archived }
+      let(:dossier) { create :dossier, :accepte, :archived }
       let(:commentaire) { build :commentaire, dossier: dossier }
 
-      it { is_expected.to be_truthy }
+      it { is_expected.to be_falsey }
     end
 
     context 'on a dossier en_construction' do
       let(:dossier) { create :dossier, :en_construction }
       let(:commentaire) { build :commentaire, dossier: dossier }
+
+      it { is_expected.to be_truthy }
+    end
+
+    context 'on a brouillon, sent by an instructeur' do
+      let(:commentaire) { build :commentaire, dossier: dossiers.brouillon, instructeur: instructeurs.default }
 
       it { is_expected.to be_truthy }
     end

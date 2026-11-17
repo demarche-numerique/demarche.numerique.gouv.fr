@@ -24,7 +24,7 @@ RSpec.describe AutoArchiveProcedureDossiersJob, type: :job do
     let(:last_operation) { dossier2.dossier_operation_logs.last }
 
     before do
-      dossier9.flag_as_pending_correction!(build(:commentaire))
+      dossier9.flag_as_pending_correction!(build(:commentaire, dossier: dossier9))
 
       subject
 

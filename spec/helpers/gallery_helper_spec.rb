@@ -125,7 +125,7 @@ RSpec.describe GalleryHelper, type: :helper do
     end
 
     context "when record is a Commentaire" do
-      let(:record) { create(:commentaire, dossier:) }
+      let(:record) { commentaires.from_usager }
 
       it { is_expected.to eq('Pièce jointe au message') }
     end

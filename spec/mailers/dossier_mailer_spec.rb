@@ -40,7 +40,7 @@ RSpec.describe DossierMailer, type: :mailer do
     let(:service) { build(:service) }
     let(:procedure) { create(:simple_procedure, service: service) }
     let(:dossier) { create(:dossier, procedure: procedure) }
-    let(:commentaire) { create(:commentaire, dossier: dossier) }
+    let(:commentaire) { create(:commentaire, dossier: dossier, instructeur: instructeurs.default) }
     subject { described_class.with(commentaire: commentaire).notify_new_answer }
 
     it 'checks email subject and body for correct inclusions, exclusions and contact informations' do
@@ -79,7 +79,7 @@ RSpec.describe DossierMailer, type: :mailer do
 
   describe '.notify_new_answer with commentaire discarded' do
     let(:dossier) { create(:dossier, procedure: procedures.individual) }
-    let(:commentaire) { create(:commentaire, dossier: dossier, discarded_at: 2.minutes.ago) }
+    let(:commentaire) { create(:commentaire, dossier: dossier, instructeur: instructeurs.default, discarded_at: 2.minutes.ago) }
 
     subject { described_class.with(commentaire: commentaire).notify_new_answer }
 
@@ -103,7 +103,7 @@ RSpec.describe DossierMailer, type: :mailer do
   describe '.notify_new_answer with dossier brouillon on a declarative procedure' do
     let(:procedure) { create(:simple_procedure, declarative_with_state: 'en_instruction') }
     let(:dossier) { create(:dossier, :brouillon, procedure:) }
-    let(:commentaire) { create(:commentaire, dossier:) }
+    let(:commentaire) { create(:commentaire, dossier:, instructeur: instructeurs.default) }
 
     subject { described_class.with(commentaire:).notify_new_answer }
 

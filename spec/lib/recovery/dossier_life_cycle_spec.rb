@@ -33,7 +33,7 @@ describe 'Dossier::Recovery::LifeCycle' do
       d.attestation = build(:attestation, :with_pdf)
       d.justificatif_motivation.attach(some_file)
 
-      d.commentaires << build(:commentaire, :with_file)
+      d.commentaires << build(:commentaire, :with_file, instructeur: instructeurs.default)
 
       d.invites << build(:invite, :with_user)
 

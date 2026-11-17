@@ -8,7 +8,7 @@ class Commentaire < ApplicationRecord
   has_one :dossier_correction, inverse_of: :commentaire, dependent: :nullify
   has_one :dossier_pending_response, inverse_of: :commentaire, dependent: :nullify
 
-  validate :messagerie_available?, on: :create, unless: -> { dossier.brouillon? }
+  validate :messagerie_available?, on: :create, unless: -> { dossier.brouillon? && sent_by_instructeur? }
 
   has_many_attached :piece_jointe
 

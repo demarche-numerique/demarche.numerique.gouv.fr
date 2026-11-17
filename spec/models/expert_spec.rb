@@ -97,7 +97,7 @@ RSpec.describe Expert, type: :model do
     end
 
     context 'when an old expert has a commentaire' do
-      let(:dossier) { create(:dossier) }
+      let(:dossier) { create(:dossier, :en_construction) }
       let(:commentaire) { CommentaireService.create(old_expert, dossier, body: "Mon commentaire") }
 
       before do
