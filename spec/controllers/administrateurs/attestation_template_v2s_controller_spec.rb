@@ -66,13 +66,13 @@ describe Administrateurs::AttestationTemplateV2sController, type: :controller do
         context 'of another procedure' do
           let(:chosen) { dossiers.accepte }
 
-          it { is_expected.not_to include("n° #{chosen.id}") }
+          it { is_expected.not_to match(/n° #{chosen.id}\b/) }
         end
 
         context 'still a brouillon' do
           let(:chosen) { create(:dossier, :brouillon, procedure:) }
 
-          it { is_expected.not_to include("n° #{chosen.id}") }
+          it { is_expected.not_to match(/n° #{chosen.id}\b/) }
         end
       end
 
