@@ -391,7 +391,9 @@ describe ProcedureCloneConcern, type: :model do
 
     context 'when an email template references a champ' do
       let(:public_type_de_champs) { [{ libelle: 'Mon champ' }] }
-      let(:email_passe_en_instruction) { build(:email_passe_en_instruction, body: 'Bonjour --Mon champ--') }
+
+      # the factory saves the template before the draft stores its tree, which names the champ
+      before { procedure.email_passe_en_instruction.update!(body: 'Bonjour --Mon champ--') }
 
       it 'should duplicate it' do
         expect(subject.email_passe_en_instruction.body).to eq('Bonjour --Mon champ--')
@@ -403,6 +405,16 @@ describe ProcedureCloneConcern, type: :model do
         it 'should duplicate it anyway' do
           expect(subject.email_passe_en_instruction.body).to eq('Bonjour --Champ supprimé--')
         end
+      end
+    end
+
+    context 'when a legacy attestation template references a champ' do
+      let(:public_type_de_champs) { [{ libelle: 'Mon champ' }] }
+
+      before { procedure.attestation_acceptation_template.update!(body: 'Bonjour --Mon champ--') }
+
+      it 'should duplicate it' do
+        expect(subject.attestation_acceptation_template.body).to eq('Bonjour --Mon champ--')
       end
     end
 

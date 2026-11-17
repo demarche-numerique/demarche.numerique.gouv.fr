@@ -150,31 +150,30 @@ class Procedure < ApplicationRecord
 
   # The template tag parser's vocabulary (mail templates, attestations,
   # dossier submitted messages) — not the tag picker, which offers the active
-  # revision only. Two properties are load-bearing:
+  # revision only. Three properties are load-bearing:
   # - on a published procedure the draft revision is included, so tags for
   #   not-yet-published champs parse on dossiers following the draft revision
   #   (procedure preview);
   # - every version of a type de champ is returned — no deduplication by
   #   stable_id: legacy tags reference champs by libellé, so libellés from
-  #   older revisions must keep matching.
-  # Both are pinned in tags_substitution_concern_spec ('replace_tags' with
-  # revisions and with a draft-only champ).
+  #   older revisions must keep matching;
+  # - the ones within a repetition are left out: a tag never resolves to them,
+  #   and their libellé would shadow the same libellé outside the repetition.
+  # They are pinned in tags_substitution_concern_spec ('replace_tags' with
+  # revisions, with a draft-only champ and with a libellé held twice).
+  #
+  # The stable ids come from the aggregated tree and the draft's, their
+  # versions from the procedure: a stable id never crosses a repetition.
+  #
+  # Ordered by id as well: the oldest have no created_at, and the latest of
+  # the ones sharing a libellé is the one a tag resolves to.
   def type_de_champs_for_tags
+    trees = [aggregated_type_de_champ_tree, draft_revision.type_de_champ_tree]
+
     TypeDeChamp
       .fillable
-      .joins(:revisions)
-      .where(procedure_revisions: brouillon? ? { id: draft_revision_id } : { procedure_id: id })
-      .where(revision_type_de_champs: { parent_id: nil })
-      .order(:created_at)
-      .distinct(:id)
-  end
-
-  def public_type_de_champs_for_tags
-    type_de_champs_for_tags.public_only
-  end
-
-  def private_type_de_champs_for_tags
-    type_de_champs_for_tags.private_only
+      .where(procedure_id: id, stable_id: TypeDeChampTree.root_stable_ids(trees))
+      .order(:created_at, :id)
   end
 
   def revisions_with_pending_dossiers

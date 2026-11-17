@@ -162,7 +162,7 @@ describe Manager::ProceduresController, type: :controller do
     subject(:cross_procedure_request) do
       post :change_piece_justificative_template, params: {
         id: procedure.id,
-        type_de_champ: { id: other_type_de_champ.id, piece_justificative_template: upload },
+        type_de_champ: { stable_id: other_type_de_champ.stable_id, piece_justificative_template: upload },
       }
     rescue ActiveRecord::RecordNotFound
       nil
@@ -171,6 +171,17 @@ describe Manager::ProceduresController, type: :controller do
     it "does not update the template of a type de champ from a different procedure" do
       expect { cross_procedure_request }
         .not_to change { other_type_de_champ.reload.piece_justificative_template.blob.id }
+    end
+
+    it "updates the template of a type de champ of the procedure" do
+      type_de_champ = procedure.draft_revision.type_de_champs.first
+
+      post :change_piece_justificative_template, params: {
+        id: procedure.id,
+        type_de_champ: { stable_id: type_de_champ.stable_id, piece_justificative_template: upload },
+      }
+
+      expect(type_de_champ.reload.piece_justificative_template.blob.filename.to_s).to eq("RIB.pdf")
     end
   end
 

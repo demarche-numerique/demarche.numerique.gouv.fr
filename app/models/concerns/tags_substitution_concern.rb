@@ -484,8 +484,10 @@ module TagsSubstitutionConcern
   end
 
   def procedure_type_de_champs_tags
-    tags_for_dossier_state(type_de_champs_tags(procedure.public_type_de_champs_for_tags, Dossier::SOUMIS) +
-      type_de_champs_tags(procedure.private_type_de_champs_for_tags, Dossier::INSTRUCTION_COMMENCEE) +
+    private_type_de_champs, public_type_de_champs = procedure.type_de_champs_for_tags.partition(&:private?)
+
+    tags_for_dossier_state(type_de_champs_tags(public_type_de_champs, Dossier::SOUMIS) +
+      type_de_champs_tags(private_type_de_champs, Dossier::INSTRUCTION_COMMENCEE) +
       identity_tags + dossier_tags + ROUTAGE_TAGS)
   end
 

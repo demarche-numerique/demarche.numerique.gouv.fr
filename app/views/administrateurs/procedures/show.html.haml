@@ -9,7 +9,7 @@
 .fr-container.procedure-admin-container
   %ul.fr-btns-group.fr-btns-group--inline-sm.fr-btns-group--icon-left
     - if @procedure.validate(:publication)
-      - if @procedure.draft_revision.public_revision_type_de_champs.count > 0
+      - if @procedure.draft_revision.public_root_type_de_champs.any?
         %li
           = link_to t('preview', scope: [:layouts, :breadcrumb]), apercu_admin_procedure_path(@procedure), target: "_blank", class: 'fr-btn fr-btn--tertiary fr-btn--icon-left fr-icon-eye-line', id: "preview-procedure"
       - if !@procedure.brouillon?

@@ -197,6 +197,65 @@ describe Procedure do
       end
   end
 
+  describe '#type_de_champs_for_tags' do
+    let(:procedure) { create(:procedure, :published, public_type_de_champs:, private_type_de_champs:) }
+    let(:public_type_de_champs) do
+      [
+        { type: :header_section, level: 1, libelle: 'section' },
+        { libelle: 'dans une section' },
+        { type: :repetition, libelle: 'répétition', children: [{ libelle: 'dans une répétition' }] },
+        { type: :explication, libelle: 'explication' },
+        { libelle: 'renommé' },
+        { libelle: 'supprimé' },
+      ]
+    end
+    let(:private_type_de_champs) { [{ libelle: 'annotation' }] }
+
+    def stable_id_of(libelle) = procedure.draft_revision.type_de_champs.find { it.libelle == libelle }.stable_id
+
+    subject(:libelles) { procedure.type_de_champs_for_tags.map(&:libelle) }
+
+    it 'gives the fillable types de champ outside any repetition' do
+      expect(libelles).to match_array(['dans une section', 'répétition', 'renommé', 'supprimé', 'annotation'])
+    end
+
+    context 'with revisions' do
+      before do
+        procedure.draft_revision.find_and_ensure_exclusive_use(stable_id_of('renommé')).update!(libelle: 'nouveau nom')
+        procedure.draft_revision.remove_type_de_champ(stable_id_of('supprimé'))
+        procedure.publish_revision!(procedure.administrateurs.first)
+        procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'à venir')
+      end
+
+      it 'gives every version of them, the removed ones and the ones of the draft' do
+        expect(libelles).to match_array(['dans une section', 'répétition', 'renommé', 'nouveau nom', 'supprimé', 'annotation', 'à venir'])
+      end
+    end
+
+    context 'when the procedure was never published' do
+      let(:procedure) { create(:procedure, public_type_de_champs:, private_type_de_champs:) }
+
+      it 'gives the ones of the draft' do
+        expect(libelles).to match_array(['dans une section', 'répétition', 'renommé', 'supprimé', 'annotation'])
+      end
+    end
+
+    context 'when the versions of a type de champ have no created_at' do
+      let(:version) { procedure.type_de_champs.find_by(libelle: 'renommé') }
+
+      before do
+        # the latest version is the first one written
+        version.dup.update!(id: version.id + 1000, libelle: 'dernier nom')
+        version.dup.update!(libelle: 'nom suivant')
+        procedure.type_de_champs.where(stable_id: version.stable_id).update_all(created_at: nil)
+      end
+
+      it 'gives the latest one last' do
+        expect(libelles.last(3)).to eq(['renommé', 'nom suivant', 'dernier nom'])
+      end
+    end
+  end
+
   describe 'compute_dossiers_count' do
     let(:procedure) { create(:procedure_with_dossiers, dossiers_count: 2, dossiers_count_computed_at: Time.zone.now - Procedure::DOSSIERS_COUNT_EXPIRING) }
 

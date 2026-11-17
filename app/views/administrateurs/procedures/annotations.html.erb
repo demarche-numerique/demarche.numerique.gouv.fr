@@ -38,7 +38,7 @@
 </div>
 
 <%= render Procedure::FixedFooterComponent.new(procedure: @procedure) do %>
-  <% if @procedure.draft_revision.private_revision_type_de_champs.count > 0 %>
+  <% if @procedure.draft_revision.private_root_type_de_champs.any? %>
     <%= link_to t('preview_annotations', scope: [:layouts, :breadcrumb]), apercu_admin_procedure_path(@procedure, params: {tab: 'annotations-privees'}), target: "_blank", rel: "noopener", class: 'fr-link' %>
   <% end %>
 <% end %>
