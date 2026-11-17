@@ -59,6 +59,14 @@ RSpec.describe InviteMailer, type: :mailer do
     subject { InviteMailer.invite_guest(invite) }
     let(:invite) { create(:invite, user: nil, email: 'kikoo@lol.fr') }
 
+    it 'renders the translated body' do
+      body = subject.body.decoded
+      expect(body).to include("L’utilisateur #{invite.email_sender} souhaite")
+      expect(body).to include("<strong>#{invite.dossier.procedure.libelle}</strong>")
+      expect(body).to include("l’adresse électronique kikoo@lol.fr sur <a href=")
+      expect(body).not_to include('translation missing')
+    end
+
     it 'creates a target_user_link' do
       expect { deliver }
         .to change { TargetedUserLink.where(target_model: invite, user: nil).count }
