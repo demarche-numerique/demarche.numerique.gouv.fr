@@ -1,7 +1,7 @@
 fr:
   administrateur_mailer:
     activate_before_expiration:
-      account_inactive: "Vous avez fait la demande d’un compte administrateur sur %{application_name}. Votre compte a été créé mais reste inactif, il arrivera à expiration le %{expiration_date}"
+      account_inactive: "Vous avez fait la demande d’un compte administrateur sur %{application_name}. Votre compte a été créé mais reste inactif, il arrivera à expiration le %{expiration_date}."
       activation_link: "Afin d’activer votre compte, veuillez cliquer sur le lien ci-dessous :"
       support: Nous restons à votre disposition si vous avez besoin d’accompagnement.
     notify_service_without_siret:
