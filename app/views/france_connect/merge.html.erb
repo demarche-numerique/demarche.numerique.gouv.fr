@@ -55,13 +55,6 @@
     <p><%= t('.title_fill_in_password') %></p>
 
     <%= render partial: 'password_confirmation', locals: { fci: @fci, wrong_password: @wrong_password } %>
-
-    <div class="fr-mt-4v">
-      <%= button_to t('.link_confirm_by_email'),
-        france_connect_send_email_merge_request_path,
-        params: { email: @fci.email_france_connect, merge_token: @fci.merge_token },
-        class: 'fr-btn fr-btn--secondary' %>
-    </div>
   </div>
 
   <div
