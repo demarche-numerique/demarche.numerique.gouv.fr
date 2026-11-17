@@ -2,7 +2,7 @@
 
 # These hooks run on every authenticated request, and the request reads what
 # they set (`Current.user_session`) without a guard: they raise rather than let a
-# session through unchecked. Sessions older than the registry are adopted.
+# session through unchecked.
 
 # Matched on the event rather than filtered: a fourth event would be dropped in
 # silence, which is how `sign_in` went unregistered for a while. Here it raises
@@ -19,10 +19,9 @@ Warden::Manager.after_set_user do |record, warden, options|
   #                    FranceConnect, ProConnect, invitations, email confirmation,
   #                    password resets and expert links all sign people in.
   #
-  # Both mean a session opens, so both write its row. Keying on :authentication
-  # alone -- what `after_authentication` does -- would leave every path on the
-  # second line without one: invisible while sessions without a row are still
-  # adopted, a sign in loop the moment they no longer are.
+  # Both open a session, so both write a row: keying on :authentication alone --
+  # what `after_authentication` does -- would leave every path on the second line
+  # in a sign in loop.
   #
   # The form only knows passwords; application code says how it signed the
   # person in: `sign_in(user, login_method: :france_connect)`. Fetched: a row
