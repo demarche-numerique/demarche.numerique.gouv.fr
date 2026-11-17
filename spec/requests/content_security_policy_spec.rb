@@ -14,8 +14,7 @@ describe 'Content-Security-Policy header', type: :request do
     expect(directives['base-uri']).to eq(["'self'"])
   end
 
-  it 'lets plugins fall back to default-src, data: included' do
-    expect(directives).not_to have_key('object-src')
-    expect(directives['default-src']).to include('data:')
+  it 'only lets plugins load from us and the storage proxy' do
+    expect(directives['object-src']).to contain_exactly("'self'", *URI(DS_PROXY_URL).host)
   end
 end
