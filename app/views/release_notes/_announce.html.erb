@@ -1,0 +1,18 @@
+<div class="fr-mb-4w">
+  <h3><%= l(notes[0].released_on, format: :long) %></h3>
+
+  <% notes.each do |note| %>
+    <div
+      class="fr-mb-4w fr-px-2w fr-py-2w fr-background-alt--grey"
+      data-turbo="false"
+    >
+      <p>
+        <% note.categories.each do |category| %>
+          <%= announce_category_badge(category) %>
+        <% end %>
+      </p>
+
+      <%= render_release_note_content(note.body) %>
+    </div>
+  <% end %>
+</div>
