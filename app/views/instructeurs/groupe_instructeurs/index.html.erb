@@ -1,0 +1,32 @@
+<% content_for(:title, "Instructeurs") %>
+
+<div class="sub-header">
+  <div class="fr-container flex column">
+    <%= render partial: 'shared/breadcrumbs', locals: { steps: [[@procedure.libelle.truncate_words(10), instructeur_procedure_path(@procedure)], ['Gestion des instructeurs']] } %>
+    <%= render partial: 'instructeurs/procedures/header', locals: { procedure: @procedure } %>
+  </div>
+</div>
+
+<div class="fr-container groupe-instructeur">
+  <h1 class="fr-h4">Gestion des instructeurs</h1>
+
+  <div class="card">
+    <h2 class="fr-h3">Liste des groupes</h2>
+
+    <table class="table fr-mt-4v">
+      <tbody>
+        <% @groupes_instructeurs.each do |group| %>
+          <tr>
+            <td><%= group.label %></td>
+
+            <td class="actions">
+              <%= link_to "voir", instructeur_groupe_path(@procedure, group) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <%= paginate @groupes_instructeurs, views_prefix: 'shared' %>
+  </div>
+</div>
