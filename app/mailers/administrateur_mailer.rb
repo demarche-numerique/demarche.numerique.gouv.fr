@@ -18,7 +18,7 @@ class AdministrateurMailer < ApplicationMailer
   end
 
   def notify_service_without_siret(user_email)
-    @subject = "Siret manquant sur un de vos services"
+    @subject = "SIRET manquant sur un de vos services"
 
     mail(to: user_email,
       subject: @subject,

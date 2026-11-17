@@ -60,8 +60,8 @@ end
 
     it do
       expect(subject.to).to eq([admin_email])
-      expect(subject.subject).to eq("Siret manquant sur un de vos services")
-      expect(subject.body).to include("un de vos services n’a pas son siret renseigné")
+      expect(subject.subject).to eq("SIRET manquant sur un de vos services")
+      expect(subject.body).to include("un de vos services n’a pas son SIRET renseigné")
       I18n.with_locale(:en) do
         body = described_class.notify_service_without_siret(admin_email).body
         expect(body).to include("has no SIRET number")

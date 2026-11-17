@@ -5,6 +5,6 @@ fr:
       activation_link: "Afin d’activer votre compte, veuillez cliquer sur le lien ci-dessous :"
       support: Nous restons à votre disposition si vous avez besoin d’accompagnement.
     notify_service_without_siret:
-      title: Service avec Siret manquant
-      missing_siret: Vous êtes administrateur sur la plateforme %{application_name} et au moins un de vos services n’a pas son siret renseigné.
+      title: Service avec SIRET manquant
+      missing_siret: Vous êtes administrateur sur la plateforme %{application_name} et au moins un de vos services n’a pas son SIRET renseigné.
       fill_in_siret: "Afin d’éviter tout dysfonctionnement sur la plateforme, nous vous invitons à le remplir au plus vite à cette adresse :"
