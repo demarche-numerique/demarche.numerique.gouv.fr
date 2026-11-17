@@ -151,6 +151,32 @@ describe Users::ProfilPasswordsController, type: :controller do
       it_behaves_like 'a rejected change'
     end
 
+    context 'with the current password as the new one' do
+      let(:submitted_new) { current_password }
+      let(:submitted_confirmation) { current_password }
+
+      it_behaves_like 'a rejected change'
+
+      it 'tells the user to pick a different password' do
+        update_request
+
+        expect(controller.current_user.errors).to be_of_kind(:password, :same_as_current)
+      end
+    end
+
+    context 'with a wrong current password and the real one as the new one' do
+      let(:submitted_current) { 'ce n’est pas le bon mot de passe' }
+      let(:submitted_new) { current_password }
+      let(:submitted_confirmation) { current_password }
+
+      it 'only reports the wrong current password' do
+        update_request
+
+        expect(controller.current_user.errors).to be_of_kind(:current_password, :invalid)
+        expect(controller.current_user.errors).not_to be_of_kind(:password, :same_as_current)
+      end
+    end
+
     context 'with a weak new password' do
       let(:submitted_new) { '000000000000' }
       let(:submitted_confirmation) { '000000000000' }

@@ -12,7 +12,8 @@ module Users
     end
 
     def update
-      return render_blank_password if password_params[:password].blank?
+      return render_password_error(:blank) if password_params[:password].blank?
+      return render_password_error(:same_as_current) if same_as_current_password?
 
       if current_user.update_with_password(password_params)
         sign_in(current_user, scope: :user, force: true, login_method: Current.user_session.login_method)
@@ -47,8 +48,13 @@ module Users
       ].compact
     end
 
-    def render_blank_password
-      current_user.errors.add(:password, :blank)
+    def same_as_current_password?
+      password_params[:password] == password_params[:current_password] &&
+        current_user.valid_password?(password_params[:current_password])
+    end
+
+    def render_password_error(kind)
+      current_user.errors.add(:password, kind)
       render :edit, status: :unprocessable_content
     end
 

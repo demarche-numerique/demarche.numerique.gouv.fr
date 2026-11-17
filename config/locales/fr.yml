@@ -822,6 +822,7 @@ fr:
               invalid: 'est incorrect. Saisir votre mot de passe actuel'
             password:
               blank: 'est vide. Saisir un nouveau mot de passe'
+              same_as_current: 'est identique au mot de passe actuel. Saisir un mot de passe différent'
               too_short: "est trop court. Saisir un mot de passe avec au moins 12 caractères"
               not_strong: "n’est pas assez complexe. Saisir un mot de passe plus complexe"
             password_confirmation:

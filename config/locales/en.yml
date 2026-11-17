@@ -813,6 +813,7 @@ en:
               invalid: 'is incorrect. Fill in your current password'
             password:
               blank: 'is empty. Fill in a new password'
+              same_as_current: 'is the same as your current password. Fill in a different password'
               too_short: "is too short. Fill in a password with at least 12 characters"
               not_strong: "not strong enough. Fill in a stronger password"
             password_confirmation:
