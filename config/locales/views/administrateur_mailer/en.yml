@@ -1,0 +1,6 @@
+en:
+  administrateur_mailer:
+    activate_before_expiration:
+      account_inactive: "You requested an administrator account on %{application_name}. Your account has been created but is still inactive, it will expire on %{expiration_date}."
+      activation_link: "To activate your account, please click the link below:"
+      support: We remain at your disposal if you need any assistance.
