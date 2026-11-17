@@ -5,7 +5,7 @@ module Mutations
     description "Publier une démarche"
 
     argument :demarche, Types::DemarcheDescriptorType::FindDemarcheInput, "La démarche", required: true
-    argument :path, String, "Chemin de la démarche. S'il est déjà utilisé par une autre de vos démarches, celle-ci sera dépubliée et remplacée.", required: true
+    argument :path, String, "Chemin de la démarche. S'il est déjà utilisé par une autre de vos démarches accessible avec ce jeton, celle-ci sera dépubliée et remplacée.", required: true
     argument :lien_site_web, String, "Où les usagers trouveront-ils le lien vers la démarche", required: false
     argument :robots_indexable, Boolean, "Cette démarche est référençable par les moteurs de recherche (Google, …) pour aider les usagers à la découvrir", required: false, default_value: true
 
@@ -28,6 +28,11 @@ module Mutations
 
       if demarche.lien_site_web.blank?
         return { errors: ["L'information \"Où trouver la démarche\" est obligatoire (\"lienSiteWeb\")."] }
+      end
+
+      other_demarche = demarche.other_procedure_with_path(path)
+      if other_demarche.present? && current_administrateur.owns?(other_demarche) && !context.authorized_demarche?(other_demarche)
+        return { errors: ["Le chemin \"#{path}\" est utilisé par une démarche que ce jeton ne permet pas de modifier."] }
       end
 
       demarche.publish_or_reopen!(current_administrateur, path)

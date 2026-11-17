@@ -277,6 +277,16 @@ RSpec.describe Types::DemarcheType, type: :graphql do
       expect(procedure.path).to eq(variables[:path])
       expect(other_procedure).to be_depubliee
     end
+
+    context 'when the token does not cover the procedure holding the path' do
+      let(:context) { { administrateur_id: admin.id, procedure_ids: [procedure.id], write_access: true } }
+
+      it 'leaves the other procedure published' do
+        expect(data[:demarchePublier][:errors]).to eq([{ message: "Le chemin \"#{other_procedure.path}\" est utilisé par une démarche que ce jeton ne permet pas de modifier." }])
+        expect(procedure.reload).to be_brouillon
+        expect(other_procedure.reload).to be_publiee
+      end
+    end
   end
 
   describe 'publier une demarche sans lien_site_web' do
