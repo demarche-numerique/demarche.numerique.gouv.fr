@@ -1,0 +1,29 @@
+<p>
+  Bonjour,
+</p>
+
+<p>
+  L’utilisateur <%= @invite.email_sender %> souhaite que vous participiez à
+  l’élaboration d’un dossier pour la démarche
+  <strong><%= @invite.dossier.procedure.libelle %></strong> sur
+  <%= APPLICATION_NAME %>.
+</p>
+
+<% if @invite.message.present? %>
+  <blockquote>
+    <%= simple_format(@invite.message) %>
+  </blockquote>
+<% end %>
+
+<p>
+  Cette plateforme permet à ses utilisateurs d’établir des dossiers 100 % en
+  ligne et de dialoguer avec plusieurs interlocuteurs privilégiés avant
+  d’instruire un dépot.
+</p>
+
+<p>
+  Afin de répondre à cette invitation, merci de vous inscrire avec l’adresse
+  électronique <%= @invite.email %> sur <%= link_to @url, @url %>
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>
