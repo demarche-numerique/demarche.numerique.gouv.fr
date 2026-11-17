@@ -103,6 +103,11 @@ Two traps produced the current English UI and are banned:
 - State labels are adjectives or past participles ("Submitted", "Under
   review"), actions are imperative verbs ("Start review"), and the two never
   share a word that would change meaning across the pair.
+- Quotation marks follow the [GOV.UK style guide](https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/style-guides/a-to-z-style-guide/#quotes-and-speech-marks):
+  single curly quotes around a name or a term inserted in a sentence (the team
+  ‘%{label}’, the ‘Submit’ button), double curly quotes only for something a
+  person said or wrote. Never French guillemets « » in English copy; French
+  copy keeps « » with non-breaking spaces inside.
 
 ## Actors
 
