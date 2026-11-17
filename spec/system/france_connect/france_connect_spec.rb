@@ -104,6 +104,9 @@ describe 'FranceConnect Connexion' do
 
             scenario 'it merges its account' do
               page.find('#it-is-mine').click
+              within('.fusion') do
+                expect(page).not_to have_css("form[action='#{france_connect_send_email_merge_request_path}']")
+              end
               fill_in 'password', with: SECURE_PASSWORD
               click_on 'Fusionner les comptes'
 

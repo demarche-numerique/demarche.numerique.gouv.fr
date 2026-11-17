@@ -1177,7 +1177,6 @@ fr:
       button_merge: Fusionner les comptes
       title_fill_in_email: Donnez-nous alors l’adresse électronique que %{application_name} utilisera pour vous contacter
       button_use_this_email: Utiliser cette adresse électronique
-      link_confirm_by_email: Confirmer mon compte par email
     flash:
       confirmation_mail_sent: "Nous venons de vous envoyer le mail de confirmation, veuillez cliquer sur le lien contenu dans ce mail pour fusionner vos comptes"
       confirmation_mail_resent: "Le lien de confirmation a expiré. Un nouveau lien de confirmation vous a été envoyé par email."

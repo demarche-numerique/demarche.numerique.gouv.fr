@@ -8,8 +8,6 @@ en:
         forgot_title: You do not know your current password?
         forgot_current_password: Reset my password
         forgot_hint: You will be signed out, then you will receive an email link to choose a new password.
-        external_login_title: Your %{providers} login is not affected
-        external_login_body: This change only applies to your account password. Logging in through %{providers} will keep working exactly as before.
         submit: Change the password
         submit_loading: Changing…
       forgot:

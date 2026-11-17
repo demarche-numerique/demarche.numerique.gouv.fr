@@ -1153,7 +1153,6 @@ en:
       button_merge: Merge accounts
       title_fill_in_email: Fill in the email that %{application_name} will use to contact you
       button_use_this_email: Use this email
-      link_confirm_by_email: Confirm by receiving an email
     flash:
         confirmation_mail_sent: "An email with the confirmation link has been sent, please click on the link."
         confirmation_mail_resent: "Confirmation link expired. A new link has been sent by email."
