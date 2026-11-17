@@ -45,7 +45,7 @@ describe Instructeurs::GroupeInstructeursController, type: :controller do
       end
 
       it 'names the group in each view link' do
-        expect(response.body).to have_link('voir le groupe « groupe instructeur 2 »', href: instructeur_groupe_path(procedure, gi_1_2))
+        expect(response.body).to have_link("voir le groupe « #{gi_1_2.label} »", href: instructeur_groupe_path(procedure, gi_1_2))
       end
     end
 
