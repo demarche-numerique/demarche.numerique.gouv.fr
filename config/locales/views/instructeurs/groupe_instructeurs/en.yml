@@ -10,7 +10,6 @@ en:
       show:
         title_with_group: "Reviewers of team %{label}"
         title: Reviewers
-        groups: Teams
         group_heading: "Team “%{label}”"
         procedure_heading: "Procedure “%{libelle}”"
       add_instructeurs:

@@ -5,7 +5,7 @@
       <%= render partial: 'shared/breadcrumbs', locals: {
         steps: [
           [@procedure.libelle.truncate_words(10), instructeur_procedure_path(@procedure)],
-          [t('.groups'), instructeur_groupes_path(@procedure)],
+          [t('instructeurs.groupe_instructeurs.index.heading'), instructeur_groupes_path(@procedure)],
           [@groupe_instructeur.label]
         ]
       } %>
@@ -13,7 +13,7 @@
       <% content_for(:title, t('.title')) %>
       <%= render partial: 'shared/breadcrumbs', locals: {
         steps: [
-          [@procedure.libelle, instructeur_procedure_path(@procedure)],
+          [@procedure.libelle.truncate_words(10), instructeur_procedure_path(@procedure)],
           [t('.title')]
         ]
       } %>
