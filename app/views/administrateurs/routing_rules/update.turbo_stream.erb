@@ -1,0 +1,3 @@
+<%= turbo_stream.replace dom_id(@groupe_instructeur, :routing),
+  render(Procedure::OneGroupeManagementComponent.new(revision: @procedure.active_revision,
+  groupe_instructeur: @groupe_instructeur)) %>

@@ -1,0 +1,7 @@
+<% rendered = render @routing_rule_component %>
+
+<% if rendered.present? %>
+  <%= turbo_stream.replace dom_id(@groupe_instructeur, :routing_rule), rendered %>
+<% else %>
+  <%= turbo_stream.remove dom_id(@groupe_instructeur, :routing_rule) %>
+<% end %>
