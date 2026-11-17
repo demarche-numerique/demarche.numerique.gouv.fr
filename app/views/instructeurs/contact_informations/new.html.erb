@@ -9,5 +9,5 @@
 <div class="container">
   <h1><%= t('.heading') %></h1>
 
-  <%= render partial: 'form', locals: { contact_information: @contact_information, procedure_id: @procedure.id } %>
+  <%= render 'form', procedure_id: @procedure.id %>
 </div>
