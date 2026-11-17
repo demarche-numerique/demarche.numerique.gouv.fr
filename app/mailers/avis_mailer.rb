@@ -38,41 +38,38 @@ class AvisMailer < ApplicationMailer
 
     bypass_unverified_mail_protection!
 
-    # deliver_later replays the locale of the request, i.e. the instructeur's: use the expert's.
-    I18n.with_locale(user.locale || I18n.default_locale) do
-      @call_to_action =
-        if !user.active?
-          t("avis_mailer.avis_invitation_and_confirm_email.call_to_action.sign_up")
-        elsif user.unverified_email?
-          t("avis_mailer.avis_invitation_and_confirm_email.call_to_action.confirm_email")
-        elsif @multiple
-          t("avis_mailer.avis_invitation_and_confirm_email.call_to_action.all_requests")
-        else
-          t("avis_mailer.avis_invitation_and_confirm_email.call_to_action.give_opinion")
-        end
+    use_recipient_locale(user)
+    @call_to_action =
+      if !user.active?
+        t("avis_mailer.avis_invitation_and_confirm_email.call_to_action.sign_up")
+      elsif user.unverified_email?
+        t("avis_mailer.avis_invitation_and_confirm_email.call_to_action.confirm_email")
+      elsif @multiple
+        t("avis_mailer.avis_invitation_and_confirm_email.call_to_action.all_requests")
+      else
+        t("avis_mailer.avis_invitation_and_confirm_email.call_to_action.give_opinion")
+      end
 
-      subject =
-        if @multiple
-          t("avis_mailer.avis_invitation_and_confirm_email.subject_multiple")
-        else
-          t("avis_mailer.avis_invitation_and_confirm_email.subject_single", dossier_id: @avis_unique.dossier.id, libelle_demarche: @avis_unique.dossier.procedure.libelle)
-        end
+    subject =
+      if @multiple
+        t("avis_mailer.avis_invitation_and_confirm_email.subject_multiple")
+      else
+        t("avis_mailer.avis_invitation_and_confirm_email.subject_single", dossier_id: @avis_unique.dossier.id, libelle_demarche: @avis_unique.dossier.procedure.libelle)
+      end
 
-      mail(to: email, subject:)
-    end
+    mail(to: email, subject:)
   end
 
   # i18n-tasks-use t("avis_mailer.#{action}.subject")
   def notify_new_commentaire_to_expert(dossier, avis, expert)
     return if not_revoked_avis(avis).empty?
 
-    I18n.with_locale(dossier.user_locale) do
-      @dossier = dossier
-      @avis = avis
-      @subject = default_i18n_subject(dossier_id: dossier.id, libelle_demarche: dossier.procedure.libelle)
+    use_recipient_locale(dossier.user)
+    @dossier = dossier
+    @avis = avis
+    @subject = default_i18n_subject(dossier_id: dossier.id, libelle_demarche: dossier.procedure.libelle)
 
-      mail(to: expert.email, subject: @subject)
-    end
+    mail(to: expert.email, subject: @subject)
   end
 
   # avis is the recipient's own avis on the dossier, not the one just given.
@@ -80,13 +77,12 @@ class AvisMailer < ApplicationMailer
     # Checked at delivery: the dossier may be deleted between enqueue and a retry.
     return if not_revoked_avis(avis).empty? || !avis.dossier.visible_by_administration?
 
-    I18n.with_locale(avis.dossier.user_locale) do
-      @dossier = avis.dossier
-      @avis = avis
-      @subject = default_i18n_subject(dossier_id: @dossier.id)
+    use_recipient_locale(avis.dossier.user)
+    @dossier = avis.dossier
+    @avis = avis
+    @subject = default_i18n_subject(dossier_id: @dossier.id)
 
-      mail(to: avis.expert.email, subject: @subject)
-    end
+    mail(to: avis.expert.email, subject: @subject)
   end
 
   def self.critical_email?(action_name)
