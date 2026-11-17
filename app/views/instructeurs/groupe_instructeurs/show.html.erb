@@ -1,11 +1,11 @@
 <div class="sub-header">
   <div class="fr-container flex column">
     <% if @procedure.routing_enabled? %>
-      <% content_for(:title, "Instructeurs du groupe #{@groupe_instructeur.label}") %>
-      <%= render partial: 'shared/breadcrumbs', locals: { steps: [[@procedure.libelle.truncate_words(10), instructeur_procedure_path(@procedure)], ['Groupes d’instructeurs', instructeur_groupes_path(@procedure)], [@groupe_instructeur.label]] } %>
+      <% content_for(:title, t('.title_with_group', label: @groupe_instructeur.label)) %>
+      <%= render partial: 'shared/breadcrumbs', locals: { steps: [[@procedure.libelle.truncate_words(10), instructeur_procedure_path(@procedure)], [t('.groups'), instructeur_groupes_path(@procedure)], [@groupe_instructeur.label]] } %>
     <% else %>
-      <% content_for(:title, "Instructeurs") %>
-      <%= render partial: 'shared/breadcrumbs', locals: { steps: [[@procedure.libelle, instructeur_procedure_path(@procedure)], ['Instructeurs']] } %>
+      <% content_for(:title, t('.title')) %>
+      <%= render partial: 'shared/breadcrumbs', locals: { steps: [[@procedure.libelle, instructeur_procedure_path(@procedure)], [t('.title')]] } %>
     <% end %>
 
     <%= render partial: 'instructeurs/procedures/header', locals: { procedure: @procedure } %>
@@ -15,13 +15,9 @@
 <div class="fr-container groupe-instructeur">
   <h4>
     <% if @procedure.routing_enabled? %>
-      Groupe «
-      <%= @groupe_instructeur.label %>
-      »
+      <%= t('.group_heading', label: @groupe_instructeur.label) %>
     <% else %>
-      Démarche «
-      <%= @procedure.libelle %>
-      »
+      <%= t('.procedure_heading', libelle: @procedure.libelle) %>
     <% end %>
   </h4>
 
