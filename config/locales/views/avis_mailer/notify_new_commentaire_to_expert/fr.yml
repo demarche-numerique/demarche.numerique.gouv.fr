@@ -3,3 +3,4 @@ fr:
     notify_new_commentaire_to_expert:
       subject: Nouveau message envoyé sur le dossier n°%{dossier_id}
       body: Un nouveau message a été envoyé par l’usager sur le dossier n° %{dossier_id} de la démarche %{libelle_demarche}
+      messagerie_link: Messagerie du dossier n°%{dossier_id}

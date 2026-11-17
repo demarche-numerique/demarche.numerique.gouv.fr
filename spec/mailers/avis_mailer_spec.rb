@@ -154,6 +154,14 @@ RSpec.describe AvisMailer, type: :mailer do
       expect(body).to include(messagerie_expert_avis_url(procedure_id: dossier.procedure.id, id: avis.pending.id))
     end
 
+    it "is written in the applicant's locale" do
+      avis.pending.dossier.user.update!(locale: "en")
+      body = subject.html_part.body.to_s
+
+      expect(body).to include("on application no. #{avis.pending.dossier.id} of the procedure")
+      expect(body).to include("Messaging for application no. #{avis.pending.dossier.id}")
+    end
+
     it "sends nothing once the avis itself is revoked" do
       avis.pending.update!(answer: "Avis favorable", revoked_at: Time.zone.now)
 

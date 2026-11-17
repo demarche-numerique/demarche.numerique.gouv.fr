@@ -7,7 +7,7 @@
 </p>
 
 <p>
-  <%= link_to("Messagerie du dossier n°#{@dossier.id}", messagerie_expert_avis_url(procedure_id: @dossier.procedure.id, id: @avis.id)) %>
+  <%= link_to(t('.messagerie_link', dossier_id: @dossier.id), messagerie_expert_avis_url(procedure_id: @dossier.procedure.id, id: @avis.id)) %>
 </p>
 
 <%= render partial: "layouts/mailers/signature" %>
