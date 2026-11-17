@@ -1,0 +1,12 @@
+fr:
+  administrateurs:
+    chorus:
+      edit:
+        title: Chorus
+        breadcrumb: Connecteur Chorus
+        heading: Cadre budgétaire
+        use_case: Cas d’usage
+        grants_question: Vous traitez une démarche liées a des subventions qui seront payées au travers de Chorus ?
+        planning_question: Les agent traitants les dossiers seront ammenés a suivre la planification budgetaire des dossiers traités ?
+        matching: En renseignant le cadre budgetaire de la subvention, vous donnez les moyens de rapprocher les dossiers traités sur démarches-simplifiées avec les données extraites de Chorus
+        exports: Ce cadre budgetaire sera automatiquement ajouté aux exports des dossiers

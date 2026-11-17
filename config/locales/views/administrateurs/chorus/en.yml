@@ -1,0 +1,12 @@
+en:
+  administrateurs:
+    chorus:
+      edit:
+        title: Chorus
+        breadcrumb: Chorus connector
+        heading: Budget framework
+        use_case: Use case
+        grants_question: Are you handling a procedure related to grants that will be paid through Chorus?
+        planning_question: Will the reviewers handling the applications have to follow the budget planning of the reviewed applications?
+        matching: By entering the budget framework of the grant, you make it possible to match the applications reviewed on the platform with the data extracted from Chorus
+        exports: This budget framework will automatically be added to the application exports
