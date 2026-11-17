@@ -7,3 +7,10 @@ en:
       contact_link: contact the person who invited you
       invitation_single_html: "You have been invited by <strong>%{claimant_email}</strong> to give your opinion on application no. %{dossier_id} of the procedure: <strong>%{libelle_demarche}</strong>"
       invitation_multiple_html: "You have been invited by <strong>%{claimant_email}</strong> to give your opinion on %{count} applications of the procedure: <strong>%{libelle_demarche}</strong>"
+      subject_single: Give your opinion on application no. %{dossier_id} (%{libelle_demarche})
+      subject_multiple: Give your opinion on several applications
+      call_to_action:
+        sign_up: Sign up to give your opinion
+        confirm_email: Confirm your email address to give your opinion
+        all_requests: All your opinion requests for this procedure
+        give_opinion: Give your opinion

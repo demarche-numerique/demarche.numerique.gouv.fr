@@ -28,10 +28,16 @@ RSpec.describe AvisMailer, type: :mailer do
     context "with single avis" do
       let(:avis_param) { avis1 }
 
-      it "is written in French whatever the sender's locale" do
-        body = I18n.with_locale(:en) { mail }.html_part.body.to_s
+      it "is written in the expert's locale, not the sender's" do
+        expect(I18n.with_locale(:en) { mail }.subject).to eq("Donnez votre avis sur le dossier n° #{dossier.id} (#{procedure.libelle})")
 
-        expect(body).to include("Vous avez été invité par")
+        user.update!(locale: "en")
+        english = I18n.with_locale(:fr) { described_class.avis_invitation_and_confirm_email(user, user.confirmation_token, avis_param).deliver_now }
+        body = english.html_part.body.to_s
+
+        expect(english.subject).to eq("Give your opinion on application no. #{dossier.id} (#{procedure.libelle})")
+        expect(body).to include("You have been invited by")
+        expect(body).to include("Sign up to give your opinion")
         expect(body).not_to include("translation missing")
       end
 

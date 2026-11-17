@@ -34,28 +34,32 @@ class AvisMailer < ApplicationMailer
 
     @url = targeted_user_link_url(id: targeted_user_link.id, confirmation_token: @confirmation_token.presence, batch: @multiple)
 
-    if !user.active?
-      @call_to_action = "Inscrivez-vous pour donner votre avis"
-    elsif user.unverified_email?
-      @call_to_action = 'Confirmez votre adresse électronique pour donner votre avis'
-    elsif @multiple
-      @call_to_action = 'Toutes vos demandes d’avis pour cette démarche'
-    else
-      @call_to_action = 'Donnez votre avis'
-    end
-
-    if @multiple
-      subject = "Donnez votre avis sur plusieurs dossiers"
-      @claimant_email = @avis_unique.claimant.email
-    else
-      subject = "Donnez votre avis sur le dossier n° #{@avis_unique.dossier.id} (#{@avis_unique.dossier.procedure.libelle})"
-      @claimant_email = @avis_unique.claimant.email
-    end
+    @claimant_email = @avis_unique.claimant.email
 
     bypass_unverified_mail_protection!
 
-    # Subject and call to action are French only: keep the body in French too.
-    I18n.with_locale(:fr) { mail(to: email, subject: subject) }
+    # deliver_later replays the locale of the request, i.e. the instructeur's: use the expert's.
+    I18n.with_locale(user.locale || I18n.default_locale) do
+      @call_to_action =
+        if !user.active?
+          t("avis_mailer.avis_invitation_and_confirm_email.call_to_action.sign_up")
+        elsif user.unverified_email?
+          t("avis_mailer.avis_invitation_and_confirm_email.call_to_action.confirm_email")
+        elsif @multiple
+          t("avis_mailer.avis_invitation_and_confirm_email.call_to_action.all_requests")
+        else
+          t("avis_mailer.avis_invitation_and_confirm_email.call_to_action.give_opinion")
+        end
+
+      subject =
+        if @multiple
+          t("avis_mailer.avis_invitation_and_confirm_email.subject_multiple")
+        else
+          t("avis_mailer.avis_invitation_and_confirm_email.subject_single", dossier_id: @avis_unique.dossier.id, libelle_demarche: @avis_unique.dossier.procedure.libelle)
+        end
+
+      mail(to: email, subject:)
+    end
   end
 
   # i18n-tasks-use t("avis_mailer.#{action}.subject")

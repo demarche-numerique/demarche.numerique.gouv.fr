@@ -7,3 +7,10 @@ fr:
       contact_link: contactez la personne qui vous a invité
       invitation_single_html: "Vous avez été invité par <strong>%{claimant_email}</strong> à donner votre avis sur le dossier n° %{dossier_id} de la démarche : <strong>%{libelle_demarche}</strong>"
       invitation_multiple_html: "Vous avez été invité par <strong>%{claimant_email}</strong> à donner votre avis sur %{count} dossiers de la démarche : <strong>%{libelle_demarche}</strong>"
+      subject_single: Donnez votre avis sur le dossier n° %{dossier_id} (%{libelle_demarche})
+      subject_multiple: Donnez votre avis sur plusieurs dossiers
+      call_to_action:
+        sign_up: Inscrivez-vous pour donner votre avis
+        confirm_email: Confirmez votre adresse électronique pour donner votre avis
+        all_requests: Toutes vos demandes d’avis pour cette démarche
+        give_opinion: Donnez votre avis
