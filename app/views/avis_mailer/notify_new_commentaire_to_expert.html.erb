@@ -1,0 +1,13 @@
+<% content_for(:title, @subject) %>
+
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+
+<p>
+  <%= t('.body', dossier_id: @dossier.id, libelle_demarche: @dossier.procedure.libelle) %>
+</p>
+
+<p>
+  <%= link_to(t('.messagerie_link', dossier_id: @dossier.id), messagerie_expert_avis_url(procedure_id: @dossier.procedure.id, id: @avis.id)) %>
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>

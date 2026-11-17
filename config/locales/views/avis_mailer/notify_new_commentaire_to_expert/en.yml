@@ -2,4 +2,5 @@ en:
   avis_mailer:
     notify_new_commentaire_to_expert:
       subject: New comment posted on the file n°%{dossier_id}
-      body: A new comment has been submitted by the user on file number %{dossier_id} on the file %{libelle_demarche}
+      body: A new message has been sent by the applicant on application no. %{dossier_id} of the procedure %{libelle_demarche}
+      messagerie_link: Messaging for application no. %{dossier_id}

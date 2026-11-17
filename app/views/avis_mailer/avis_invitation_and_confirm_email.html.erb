@@ -1,0 +1,21 @@
+<% content_for(:title, t('.title')) %>
+
+<% content_for(:footer) do %>
+  <%= t('.footer_html', application_link: link_to(t('.application_link', application_name: APPLICATION_NAME), @url), contact_link: mail_to(@claimant_email, t('.contact_link'))) %>
+<% end %>
+
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+
+<p>
+  <% if @multiple %>
+    <%= t('.invitation_multiple_html', claimant_email: @claimant_email, count: @avis.count, libelle_demarche: @avis_unique.procedure.libelle) %>
+  <% else %>
+    <%= t('.invitation_single_html', claimant_email: @claimant_email, dossier_id: @avis_unique.dossier.id, libelle_demarche: @avis_unique.procedure.libelle) %>
+  <% end %>
+
+  <p>
+    <%= dsfr_button(@call_to_action, @url, :primary) %>
+  </p>
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>

@@ -28,6 +28,26 @@ RSpec.describe AvisMailer, type: :mailer do
     context "with single avis" do
       let(:avis_param) { avis1 }
 
+      it "is written in the expert's locale, not the sender's" do
+        expect(I18n.with_locale(:en) { mail }.subject).to eq("Donnez votre avis sur le dossier n° #{dossier.id} (#{procedure.libelle})")
+
+        user.update!(locale: "en")
+        english = I18n.with_locale(:fr) { described_class.avis_invitation_and_confirm_email(user, user.confirmation_token, avis_param).deliver_now }
+        body = english.html_part.body.to_s
+
+        expect(english.subject).to eq("Give your opinion on application no. #{dossier.id} (#{procedure.libelle})")
+        expect(body).to include("You have been invited by")
+        expect(body).to include("Sign up to give your opinion")
+        expect(body).not_to include("translation missing")
+      end
+
+      it "invites the expert to give an opinion on the dossier" do
+        body = mail.html_part.body.to_s
+
+        expect(body).to include("Vous avez été invité par <strong>#{avis1.claimant.email}</strong> à donner votre avis sur le dossier n° #{dossier.id} de la démarche :")
+        expect(body).to include("contactez la personne qui vous a invité")
+      end
+
       context "when user is active and verified" do
         let(:user) { create(:user, :active, :with_email_verified, confirmation_token: "token") }
 
@@ -64,6 +84,10 @@ RSpec.describe AvisMailer, type: :mailer do
 
     context "with multiple avis" do
       let(:avis_param) { [avis1, avis2] }
+
+      it "invites the expert to give an opinion on several dossiers" do
+        expect(mail.html_part.body.to_s).to include("à donner votre avis sur 2 dossiers de la démarche :")
+      end
 
       context "when user is active and verified" do
         let(:user) { create(:user, :active, :with_email_verified, confirmation_token: "token") }
@@ -126,6 +150,22 @@ RSpec.describe AvisMailer, type: :mailer do
     it "is addressed to the expert" do
       expect { subject }.to change { ActionMailer::Base.deliveries.size }.by(1)
       expect(ActionMailer::Base.deliveries.last.to).to eq([experts.default.email])
+    end
+
+    it "links to the dossier messagerie" do
+      dossier = avis.pending.dossier
+      body = subject.html_part.body.to_s
+
+      expect(body).to include("Messagerie du dossier n°#{dossier.id}")
+      expect(body).to include(messagerie_expert_avis_url(procedure_id: dossier.procedure.id, id: avis.pending.id))
+    end
+
+    it "is written in the applicant's locale" do
+      avis.pending.dossier.user.update!(locale: "en")
+      body = subject.html_part.body.to_s
+
+      expect(body).to include("on application no. #{avis.pending.dossier.id} of the procedure")
+      expect(body).to include("Messaging for application no. #{avis.pending.dossier.id}")
     end
 
     it "sends nothing once the avis itself is revoked" do
