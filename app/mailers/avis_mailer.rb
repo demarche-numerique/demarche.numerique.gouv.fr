@@ -64,7 +64,7 @@ class AvisMailer < ApplicationMailer
   def notify_new_commentaire_to_expert(dossier, avis, expert)
     return if not_revoked_avis(avis).empty?
 
-    use_recipient_locale(dossier.user)
+    use_recipient_locale(expert.user)
     @dossier = dossier
     @avis = avis
     @subject = default_i18n_subject(dossier_id: dossier.id, libelle_demarche: dossier.procedure.libelle)
@@ -77,7 +77,7 @@ class AvisMailer < ApplicationMailer
     # Checked at delivery: the dossier may be deleted between enqueue and a retry.
     return if not_revoked_avis(avis).empty? || !avis.dossier.visible_by_administration?
 
-    use_recipient_locale(avis.dossier.user)
+    use_recipient_locale(avis.expert.user)
     @dossier = avis.dossier
     @avis = avis
     @subject = default_i18n_subject(dossier_id: @dossier.id)

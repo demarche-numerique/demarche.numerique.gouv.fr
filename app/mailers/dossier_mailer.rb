@@ -45,7 +45,6 @@ class DossierMailer < ApplicationMailer
   end
 
   def notify_new_commentaire_to_instructeur(dossier, instructeur_email)
-    use_recipient_locale(dossier.user)
     @dossier = dossier
     @subject = default_i18n_subject(dossier_id: dossier.id, libelle_demarche: dossier.procedure.libelle)
 
@@ -69,7 +68,6 @@ class DossierMailer < ApplicationMailer
   end
 
   def notify_new_avis_to_instructeur(avis, instructeur_email)
-    use_recipient_locale(avis.dossier.user)
     @avis = avis
     @subject = default_i18n_subject(dossier_id: avis.dossier.id, libelle_demarche: avis.procedure.libelle)
 
@@ -77,7 +75,6 @@ class DossierMailer < ApplicationMailer
   end
 
   def notify_new_dossier_depose_to_instructeur(dossier, instructeur_email)
-    use_recipient_locale(dossier.user)
     @dossier = dossier
     @subject = default_i18n_subject(dossier_id: dossier.id, libelle_demarche: dossier.procedure.libelle)
 
