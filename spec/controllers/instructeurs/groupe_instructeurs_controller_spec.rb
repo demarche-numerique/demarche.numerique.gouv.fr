@@ -105,6 +105,33 @@ describe Instructeurs::GroupeInstructeursController, type: :controller do
         expect(response.body).not_to have_selector('#instructeur-emails-domain-hint')
       end
     end
+
+    context 'breadcrumbs' do
+      let(:libelle) { 'Une démarche au libellé bien trop long pour tenir dans le fil d’Ariane' }
+      let(:truncated_libelle) { libelle.truncate_words(10) }
+
+      before do
+        procedure.update!(libelle:, routing_enabled:)
+        get :show, params: { procedure_id: procedure.id, id: gi_1_2.id }
+      end
+
+      context 'with routing' do
+        let(:routing_enabled) { true }
+
+        it 'truncates the procedure label and names the teams step after its page' do
+          expect(response.body).to have_link(truncated_libelle, href: instructeur_procedure_path(procedure))
+          expect(response.body).to have_link('Gestion des instructeurs', href: instructeur_groupes_path(procedure))
+        end
+      end
+
+      context 'without routing' do
+        let(:routing_enabled) { false }
+
+        it 'truncates the procedure label' do
+          expect(response.body).to have_link(truncated_libelle, href: instructeur_procedure_path(procedure))
+        end
+      end
+    end
   end
 
   describe '#add_instructeurs' do
