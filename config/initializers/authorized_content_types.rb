@@ -143,7 +143,7 @@ FORMAT_FAMILIES = {
 NATURE_IMAGE_TYPES = ['image/jpeg', 'image/png'].freeze
 
 FORMAT_FAMILY_EXAMPLES = {
-  document_texte: '.pdf, .doc, .docx, .odt, .txt, .rtf, .pages',
+  document_texte: '.pdf, .doc, .docx, .odt, .txt, .md, .markdown, .rtf, .pages',
   tableur: '.xls, .xlsx, .ods, .csv',
   presentation: '.ppt, .pptx, .odp',
   donnees: '.xml, .json, .csv, .kml, .gpx, .tsv, .dbf',

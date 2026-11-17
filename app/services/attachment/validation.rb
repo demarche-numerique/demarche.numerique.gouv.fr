@@ -2,6 +2,13 @@
 
 class Attachment::Validation
   EXTENSIONS_ORDER = ['jpeg', 'png', 'pdf', 'zip'].freeze
+  # MiniMime knows only .markdown for text/markdown, and nothing for text/x-markdown.
+  MARKDOWN_EXTENSIONS = ['md', 'markdown'].freeze
+  EXTENSIONS_OVERRIDES = { 'text/markdown' => MARKDOWN_EXTENSIONS, 'text/x-markdown' => MARKDOWN_EXTENSIONS }.freeze
+
+  def self.extensions_for(content_types)
+    content_types.flat_map { EXTENSIONS_OVERRIDES[it] || Array(MiniMime.lookup_by_content_type(it)&.extension) }.uniq
+  end
 
   attr_reader :attached_file
 
@@ -32,16 +39,13 @@ class Attachment::Validation
 
   def allowed_extensions
     @allowed_extensions ||= begin
-      if champ.present?
-        extensions = champ.allowed_content_types.filter_map { |ct| MiniMime.lookup_by_content_type(ct)&.extension }.uniq
-        sorted = extensions.sort_by { |e| EXTENSIONS_ORDER.index(e) || 999 }
-        return sorted.size > 5 ? (sorted.first(5) + ['…']) : sorted
+      content_types = if champ.present?
+        champ.allowed_content_types
+      else
+        has_content_type_validator? ? content_type_validator_list : []
       end
 
-      raw = has_content_type_validator? ? content_type_validator_list : []
-
-      extensions = raw.filter_map { |ct| MiniMime.lookup_by_content_type(ct)&.extension }.uniq
-      sorted = extensions.sort_by { |e| EXTENSIONS_ORDER.index(e) || 999 }
+      sorted = self.class.extensions_for(content_types).sort_by { EXTENSIONS_ORDER.index(it) || 999 }
       sorted.size > 5 ? (sorted.first(5) + ['…']) : sorted
     end
   end
@@ -75,9 +79,7 @@ class Attachment::Validation
   end
 
   def content_types_with_extensions(content_types)
-    extensions = content_types.filter_map { |ct| MiniMime.lookup_by_content_type(ct)&.extension }
-      .uniq
-      .map { |ext| ".#{ext}" }
+    extensions = self.class.extensions_for(content_types).map { ".#{it}" }
 
     (content_types + extensions).join(', ')
   end

@@ -72,6 +72,18 @@ RSpec.describe Attachment::Validation do
         expect(accept).to include('.pdf')
         expect(accept).to include('.kml')
       end
+
+      it 'includes both markdown extensions' do
+        expect(validation.accept_attribute.split(', ')).to include('.md', '.markdown')
+      end
+    end
+
+    context 'with document_texte format family' do
+      let(:public_type_de_champs) { [{ type: :piece_justificative, libelle: 'Document', pj_limit_formats: '1', pj_format_families: ['document_texte'] }] }
+
+      it 'includes both markdown extensions' do
+        expect(validation.accept_attribute.split(', ')).to include('text/markdown', 'text/x-markdown', '.md', '.markdown')
+      end
     end
   end
 
