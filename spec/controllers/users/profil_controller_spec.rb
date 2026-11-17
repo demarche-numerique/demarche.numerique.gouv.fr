@@ -327,6 +327,53 @@ describe Users::ProfilController, type: :controller do
       expect(response).to redirect_to(profil_path)
     end
 
+    context 'with a FranceConnect+ session, and one older than login methods, on other devices' do
+      let!(:other_device) { user.open_user_session!('other device', login_method: :france_connect_plus) }
+      let!(:legacy_device) { user.open_user_session!('legacy device') }
+
+      context 'from a session opened with FranceConnect' do
+        before { sign_in(user, login_method: :france_connect) }
+
+        it 'signs the other devices out, and goes on as a password session with the same start and deadline' do
+          opened_with_france_connect = user.user_sessions.find_by!(login_method: :france_connect)
+          opened_with_france_connect.update!(created_at: 3.weeks.ago, expires_at: 3.days.from_now)
+
+          expect { subject }.not_to change { user.reload.sign_in_count }
+
+          expect(other_device.reload.revoked_reason).to eq('france_connect_unlinked')
+          expect(legacy_device.reload.revoked_reason).to eq('france_connect_unlinked')
+          expect(opened_with_france_connect.reload.revoked_reason).to eq('france_connect_unlinked')
+
+          replacing = user.user_sessions.usable.find_by!(login_method: :password)
+          expect(replacing.created_at).to eq(opened_with_france_connect.created_at)
+          expect(replacing.expires_at).to eq(opened_with_france_connect.expires_at)
+          expect(session['warden.user.user.session'][SessionRegistrableConcern::SESSION_KEY]).to eq(replacing.id)
+        end
+
+        it 'keeps the session as it was when the identity cannot be destroyed' do
+          allow_any_instance_of(FranceConnectInformation).to receive(:destroy!).and_raise(ActiveRecord::RecordNotDestroyed)
+
+          expect { subject }.to raise_error(ActiveRecord::RecordNotDestroyed)
+          expect(user.user_sessions.usable.pluck(:login_method)).to include('france_connect')
+          expect(user.user_sessions.where(login_method: :password)).to be_empty
+        end
+      end
+
+      context 'from a session opened with a password' do
+        before { sign_in(user, login_method: :password) }
+
+        it 'signs the other devices out, and keeps this one' do
+          kept = user.user_sessions.find_by!(login_method: :password)
+
+          subject
+
+          expect(other_device.reload.revoked_reason).to eq('france_connect_unlinked')
+          expect(legacy_device.reload.revoked_reason).to eq('france_connect_unlinked')
+          expect(kept.reload.revoked_at).to be_nil
+        end
+      end
+    end
+
     context 'when the fci does not exist (already deleted or unknown id)' do
       subject { delete :destroy_fci, params: { fci_id: 'unknown' } }
 

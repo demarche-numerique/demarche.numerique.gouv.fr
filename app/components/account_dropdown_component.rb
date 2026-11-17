@@ -6,7 +6,7 @@ class AccountDropdownComponent < ViewComponent::Base
   attr_reader :dossier
   attr_reader :nav_bar_profile
 
-  delegate :current_user, :current_email, :color_by_role, :multiple_devise_profile_connect?,
+  delegate :current_email, :color_by_role, :multiple_devise_profile_connect?,
            :user_signed_in?, :instructeur_signed_in?, :expert_signed_in?,
            :administrateur_signed_in?, :gestionnaire_signed_in?, :super_admin_signed_in?,
            to: :helpers
@@ -20,9 +20,7 @@ class AccountDropdownComponent < ViewComponent::Base
     PROFIL_CONTEXT_PROFILES.include?(nav_bar_profile) ? { context: nav_bar_profile } : {}
   end
 
-  def france_connected?
-    current_user&.france_connected_with_one_identity?
-  end
+  def france_connected? = Current.user_session&.via_france_connect?
 
   def france_connected_plus? = Current.user_session&.via_france_connect_plus?
 

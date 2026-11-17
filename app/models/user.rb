@@ -173,7 +173,7 @@ class User < ApplicationRecord
     if user.valid?
       if user.instructeur.nil?
         user.create_instructeur!
-        user.france_connect_informations.delete_all
+        user.france_connect_informations.destroy_all
       end
 
       user.instructeur.administrateurs << administrateurs
@@ -212,7 +212,7 @@ class User < ApplicationRecord
     if user.valid? && user.administrateur.nil?
       pro_connect_required_at = Time.zone.now if ProConnectService.enabled?
       user.create_administrateur!(pro_connect_required_at:)
-      user.france_connect_informations.delete_all
+      user.france_connect_informations.destroy_all
       AdminUpdateDefaultZonesJob.perform_later(user.administrateur)
     end
 
@@ -310,6 +310,13 @@ class User < ApplicationRecord
 
   def france_connected_with_one_identity?
     france_connect_informations.size == 1
+  end
+
+  # Once an identity is unlinked, no provider vouches any longer for the sessions it opened.
+  # The rows opened before methods were recorded go too: LegacyLoginMethodConcern would
+  # file them as password ones, the identity gone.
+  def revoke_france_connect_sessions!
+    user_sessions.where(login_method: [:france_connect, :france_connect_plus, nil]).revoke_all!(:france_connect_unlinked)
   end
 
   def can_prefill_from_fc?(with_gender:)

@@ -70,7 +70,12 @@ module Users
       fci = current_user.france_connect_informations.find_by(id: params[:fci_id])
       return redirect_to profil_path if fci.nil?
 
-      fci.destroy!
+      current_user.transaction do
+        if Current.user_session.via_any_france_connect?
+          SessionRegistrableConcern.swap_session!(current_user, warden, login_method: :password, reason: :france_connect_unlinked)
+        end
+        fci.destroy!
+      end
 
       flash.notice = "Le compte FranceConnect de « #{fci.full_name} » ne peut plus accéder à vos dossiers"
 

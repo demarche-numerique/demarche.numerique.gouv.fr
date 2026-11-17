@@ -74,25 +74,33 @@ describe AccountDropdownComponent, type: :component do
     end
   end
 
-  context 'when user is france connected' do
-    subject { render_inline(component) }
+  describe 'the sign in mention' do
+    before { allow(Current).to receive(:user_session).and_return(UserSession.new(login_method:)) }
 
-    before do
-      user.france_connect_informations << build(:france_connect_information, user:)
-    end
+    context 'from a FranceConnect session' do
+      let(:login_method) { :france_connect }
 
-    it 'shows FranceConnect badge' do
-      expect(subject).to have_text('via FranceConnect')
-      expect(subject).not_to have_text('via FranceConnect+')
-    end
-
-    context 'with FranceConnect+' do
-      before do
-        allow(Current).to receive(:user_session).and_return(instance_double(UserSession, via_france_connect_plus?: true))
+      it 'says via FranceConnect' do
+        expect(subject).to have_text('via FranceConnect')
+        expect(subject).not_to have_text('via FranceConnect+')
       end
+    end
 
-      it 'shows FranceConnect+ badge' do
+    context 'from a FranceConnect+ session' do
+      let(:login_method) { :france_connect_plus }
+
+      it 'says via FranceConnect+' do
         expect(subject).to have_text('via FranceConnect+')
+      end
+    end
+
+    context 'from a password session of an account linked to FranceConnect' do
+      let(:login_method) { :password }
+
+      before { user.france_connect_informations << build(:france_connect_information, user:) }
+
+      it 'says nothing' do
+        expect(subject).not_to have_text('via FranceConnect')
       end
     end
   end
