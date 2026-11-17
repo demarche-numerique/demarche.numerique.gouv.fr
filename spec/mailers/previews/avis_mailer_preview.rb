@@ -35,6 +35,11 @@ class AvisMailerPreview < ActionMailer::Preview
     )
   end
 
+  def notify_new_commentaire_to_expert
+    avis = Avis.not_revoked.first!
+    AvisMailer.notify_new_commentaire_to_expert(avis.dossier, avis, avis.expert)
+  end
+
   def notify_new_avis_to_expert
     AvisMailer.notify_new_avis_to_expert(Avis.not_revoked.first!)
   end

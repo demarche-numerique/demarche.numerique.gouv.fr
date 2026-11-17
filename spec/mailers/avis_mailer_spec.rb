@@ -141,6 +141,14 @@ RSpec.describe AvisMailer, type: :mailer do
       expect(ActionMailer::Base.deliveries.last.to).to eq([experts.default.email])
     end
 
+    it "links to the dossier messagerie" do
+      dossier = avis.pending.dossier
+      body = subject.html_part.body.to_s
+
+      expect(body).to include("Messagerie du dossier n°#{dossier.id}")
+      expect(body).to include(messagerie_expert_avis_url(procedure_id: dossier.procedure.id, id: avis.pending.id))
+    end
+
     it "sends nothing once the avis itself is revoked" do
       avis.pending.update!(answer: "Avis favorable", revoked_at: Time.zone.now)
 
