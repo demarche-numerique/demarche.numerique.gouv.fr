@@ -175,8 +175,8 @@ describe PiecesJustificativesService do
       end
 
       context 'with a pj on an commentaire' do
-        let(:dossier) { create(:dossier) }
-        let(:witness) { create(:dossier) }
+        let(:dossier) { create(:dossier, :en_construction) }
+        let(:witness) { create(:dossier, :en_construction) }
 
         let!(:commentaire) { create(:commentaire, dossier: dossier) }
         let!(:witness_commentaire) { create(:commentaire, dossier: witness) }
@@ -196,7 +196,7 @@ describe PiecesJustificativesService do
       end
 
       context 'with a pj not safe on a commentaire' do
-        let(:dossier) { create(:dossier) }
+        let(:dossier) { create(:dossier, :en_construction) }
         let!(:commentaire) { create(:commentaire, dossier: dossier) }
 
         before { attach_file(commentaire.piece_jointe, false) }

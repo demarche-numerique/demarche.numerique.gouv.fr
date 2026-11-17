@@ -6,7 +6,7 @@ describe Dossier, type: :model do
   let(:user) { users.usager }
 
   describe 'has_many preloaded_commentaires' do
-    let(:dossier) { dossiers.brouillon }
+    let(:dossier) { dossiers.en_instruction }
     let!(:commentaire) { create :commentaire, created_at: '2016-03-14', dossier: }
     let!(:commentaire_2) { create :commentaire, created_at: '2016-03-15', dossier: }
     let!(:commentaire_3) { create :commentaire, created_at: '2016-03-16', dossier: }

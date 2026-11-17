@@ -10,15 +10,15 @@ module Maintenance
       let(:commentaire) { create(:commentaire, dossier: dossier) }
 
       before do
+        dossier.update(
+          depose_at: Date.new(2024, 05, 23),
+          state: "en_construction"
+        )
         commentaire.piece_jointe.attach(
           io: File.open(file_path),
           filename: file_name,
           content_type: content_type,
           metadata: { virus_scan_result: ActiveStorage::VirusScanner::SAFE }
-        )
-        dossier.update(
-          depose_at: Date.new(2024, 05, 23),
-          state: "en_construction"
         )
       end
 

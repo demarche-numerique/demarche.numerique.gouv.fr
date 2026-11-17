@@ -142,7 +142,9 @@ FactoryBot.define do
     end
 
     trait :with_commentaires do
-      commentaires { [build(:commentaire), build(:commentaire)] }
+      after(:create) do |dossier|
+        create_list(:commentaire, 2, dossier:)
+      end
     end
 
     trait :with_invites do

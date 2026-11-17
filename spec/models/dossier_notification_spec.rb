@@ -289,7 +289,7 @@ RSpec.describe DossierNotification, type: :model do
       empty_seeds Dossier
 
       let(:notification_type) { :message }
-      let!(:dossier_to_notify) { create(:dossier) }
+      let!(:dossier_to_notify) { create(:dossier, :en_construction) }
       let!(:commentaire_to_notify) { create(:commentaire, dossier: dossier_to_notify, instructeur_id: nil, email: "test@exemple.fr") }
       let!(:dossier_not_to_notify) { create(:dossier) }
       let!(:commentaire_not_to_notify) { create(:commentaire, dossier: dossier_not_to_notify, instructeur:) }
