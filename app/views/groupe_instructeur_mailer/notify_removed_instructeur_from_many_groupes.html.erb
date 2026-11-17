@@ -1,0 +1,20 @@
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+
+<% if @still_assigned_to_procedure %>
+  <p>
+    <%= t(".email_body.assigned", count: @removed_from_groupes.count, email: @current_instructeur_email, procedure: @procedure.libelle, groupe: @removed_from_groupes.first.label) %>
+  </p>
+  <% if @removed_from_groupes.many? %>
+    <ul>
+      <% @removed_from_groupes.each do |groupe| %>
+        <li><%= groupe.label %></li>
+      <% end %>
+    </ul>
+  <% end %>
+<% else %>
+  <p>
+    <%= t(".email_body.unassigned", email: @current_instructeur_email, procedure: @procedure.libelle) %>
+  </p>
+<% end %>
+
+<%= render partial: "layouts/mailers/signature" %>
