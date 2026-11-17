@@ -8,6 +8,14 @@
 
 Rails.application.configure do
   config.content_security_policy do |policy|
+    amazon_storage_host = if Rails.configuration.active_storage.service == :amazon
+      cfg = Rails.configuration.active_storage.service_configurations["amazon"]
+      if cfg["endpoint"].present?
+        URI(cfg["endpoint"]).host
+      else
+        "#{cfg['bucket']}.s3.#{cfg['region']}.amazonaws.com"
+      end
+    end
     images_whitelist = ["*.openstreetmap.org", "*.cloud.ovh.net", "image.crisp.chat", "*"]
     images_whitelist << URI(DS_PROXY_URL).host if DS_PROXY_URL.present?
     images_whitelist << URI(MATOMO_IFRAME_URL).host if MATOMO_IFRAME_URL.present?
@@ -26,7 +34,7 @@ Rails.application.configure do
     connect_whitelist = ["client.crisp.chat", "wss://client.relay.crisp.chat", "storage.crisp.chat", "lasuite.numerique.gouv.fr", "app.franceconnect.gouv.fr", "openmaptiles.data.gouv.fr", "openmaptiles.geo.data.gouv.fr", "openmaptiles.github.io", "tiles.geo.api.gouv.fr", "data.geopf.fr", "pmtiles-data.s3.rbx.io.cloud.ovh.net"]
     connect_whitelist << ENV.fetch('APP_HOST')
     connect_whitelist << ENV.fetch('APP_HOST_LEGACY') if ENV.key?('APP_HOST_LEGACY') && ENV['APP_HOST_LEGACY'] != ENV['APP_HOST']
-    connect_whitelist << "*.amazonaws.com" if Rails.configuration.active_storage.service == :amazon
+    connect_whitelist << amazon_storage_host if amazon_storage_host
     connect_whitelist += ENV.values_at('SENTRY_DSN_JS', 'SENTRY_DSN_RAILS').compact_blank.map { URI(it).host }.uniq
     connect_whitelist << URI(DS_PROXY_URL).host if DS_PROXY_URL.present?
     connect_whitelist << URI(API_ADRESSE_URL).host if API_ADRESSE_URL.present?
@@ -53,6 +61,12 @@ Rails.application.configure do
 
     # base-uri does not fall back to default-src: an injected <base> would re-point every relative script
     policy.base_uri(:self)
+
+    # <embed> shows PDF attachments (RIB): only from the storage hosts, never data:
+    object_whitelist = []
+    object_whitelist << URI(DS_PROXY_URL).host if DS_PROXY_URL.present?
+    object_whitelist << amazon_storage_host if amazon_storage_host
+    policy.object_src(:self, *object_whitelist)
 
     if Rails.env.development?
       # Allow LiveReload requests
