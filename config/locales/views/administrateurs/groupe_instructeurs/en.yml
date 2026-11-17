@@ -48,8 +48,8 @@ en:
       reaffectation:
         title: "Reassign files from team “%{label}”"
         hint:
-          one: "The team “%{label}” has files. In order to delete it, you have to reassign them to the other team"
-          other: "The team “%{label}” has files. In order to delete it, you have to reassign them to one of the %{count} other teams"
+          one: "The team “%{label}” has files. In order to delete it, you have to reassign them to the other team."
+          other: "The team “%{label}” has files. In order to delete it, you have to reassign them to one of the %{count} other teams."
         label: New team
         select: Select
         submit: Reassign files to this team
