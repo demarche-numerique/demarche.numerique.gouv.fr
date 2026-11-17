@@ -447,6 +447,15 @@ describe Users::DossiersController, type: :controller do
           }.to change { DossierNotification.where(dossier: dossier, notification_type: :attente_reponse).count }.to(0)
         end
       end
+
+      context 'on a brouillon' do
+        let(:dossier) { create(:dossier, :brouillon, procedure:, user:, groupe_instructeur: nil) }
+
+        it 'rejects the message' do
+          expect { subject }.not_to change(Commentaire, :count)
+          expect(response).to have_http_status(:unprocessable_content)
+        end
+      end
     end
 
     context 'notify on new message to experts' do
