@@ -321,6 +321,19 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         end
       end
 
+      context 'checking birthdate on a datetime' do
+        let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :datetime, libelle: 'l1' }]) }
+        let(:params) { { procedure_id: procedure.id, stable_id: first_coordinate.stable_id, type_de_champ: { type_champ: 'temporal', temporal_type_champ: 'datetime', date_in_past: '1', birthdate: '1' } } }
+
+        it 'makes it a birthdate, dropping the time and the other formats' do
+          is_expected.to have_http_status(:ok)
+          type_de_champ = TypeDeChamp.find(first_coordinate.type_de_champ.id)
+          expect(type_de_champ.type_champ).to eq('date')
+          expect(type_de_champ.birthdate?).to be(true)
+          expect(type_de_champ.date_in_past).to be_nil
+        end
+      end
+
       context 'choosing another type while the toggle is still displayed' do
         let(:params) { default_params.deep_merge(type_de_champ: { type_champ: 'text', temporal_type_champ: 'date' }) }
 
