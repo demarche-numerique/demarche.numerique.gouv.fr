@@ -1,6 +1,8 @@
 en:
   title: My active sessions
   explication: These devices are currently signed in to your account. If you do not recognise one of them, sign it out and then change your password.
+  browser_on_platform: "%{browser} on %{platform}"
+  unknown_device: Unknown device
   device: Device
   signed_in_at: Signed in
   actions: Action

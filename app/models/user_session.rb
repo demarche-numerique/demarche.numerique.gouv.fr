@@ -17,6 +17,8 @@ class UserSession < ApplicationRecord
   # FranceConnect+ is FranceConnect at a higher eIDAS level
   def via_any_france_connect? = via_france_connect? || via_france_connect_plus?
 
+  def browser = @browser ||= Browser.new(user_agent.to_s)
+
   validates :revoked_reason, inclusion: { in: REVOCATION_REASONS }, allow_nil: true
 
   scope :usable, -> { where(revoked_at: nil, expires_at: [nil, Time.current..]) }
