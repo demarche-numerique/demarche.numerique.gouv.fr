@@ -2,6 +2,7 @@
 en:
   label: Application used for the preview
   option: "No. %{number} – %{owner} – %{state}"
+  option_without_owner: "No. %{number} – %{state}"
   search: Filter by number or name
   section:
     current: Current revision of the procedure

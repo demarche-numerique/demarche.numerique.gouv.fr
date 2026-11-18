@@ -6,6 +6,7 @@ module Instructeurs
     before_action :set_export_template, only: [:edit, :update, :destroy]
     before_action :ensure_legitimate_groupe_instructeur, only: [:create, :update]
     before_action :set_type_de_champs, only: [:new, :edit]
+    before_action :set_preview_dossiers, only: [:new, :edit, :create, :update, :preview]
 
     def new
       @export_template = export_template
@@ -47,7 +48,7 @@ module Instructeurs
     def preview
       export_template = ExportTemplate.new(export_template_params)
 
-      render turbo_stream: turbo_stream.replace('preview', partial: 'preview', locals: { procedure: @procedure, export_template: })
+      render turbo_stream: turbo_stream.replace('preview', partial: 'preview', locals: { procedure: @procedure, export_template:, dossier: @preview_dossier, preview_dossiers: @preview_dossiers })
     end
 
     private
@@ -81,6 +82,12 @@ module Instructeurs
           pjs: [:stable_id, :enabled, :template],
           exported_columns: []
         )
+    end
+
+    def set_preview_dossiers
+      groupe_instructeur_ids = @groupe_instructeurs.ids
+      @preview_dossiers = @procedure.preview_dossiers(states: ExportTemplate::PREVIEW_DOSSIER_STATES, groupe_instructeur_ids:)
+      @preview_dossier = @procedure.preview_dossier(params[:dossier_id], groupe_instructeur_ids:) || @preview_dossiers.values.first&.first
     end
 
     def set_procedure_and_groupe_instructeurs
