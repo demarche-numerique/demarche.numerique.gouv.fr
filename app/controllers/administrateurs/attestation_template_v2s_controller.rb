@@ -6,8 +6,7 @@ module Administrateurs
     before_action :retrieve_attestation_template
 
     def show
-      preview_dossier = @procedure.dossiers.visible_by_administration.find_by(id: params[:dossier_id]) if params[:dossier_id].present?
-      preview_dossier ||= @procedure.dossier_for_preview(current_user)
+      preview_dossier = @procedure.preview_dossier(params[:dossier_id]) || @procedure.dossier_for_preview(current_user)
       attributes = @attestation_template.render_attributes_for(dossier: preview_dossier)
 
       @body = attributes.fetch(:body)

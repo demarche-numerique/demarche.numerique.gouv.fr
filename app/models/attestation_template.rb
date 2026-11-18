@@ -127,36 +127,8 @@ class AttestationTemplate < ApplicationRecord
     'refus' => ['en_construction', 'en_instruction', 'refuse'],
   }.freeze
 
-  # The latest deposits of each state, picked by rank so that every state shows up,
-  # split by revision: only the active one knows every tag of the attestation.
-  # Within each, the decided dossiers come first, as they fill the decision tags.
   def preview_dossiers(limit: 20)
-    latest_by_state = PREVIEW_DOSSIER_STATES.fetch(kind).map do |state|
-      latest_of_groupe = Dossier.visible_by_administration
-        .where(state:)
-        .where('dossiers.groupe_instructeur_id = groupe_instructeurs.id')
-        .order_by_depose_at
-        .limit(limit)
-
-      Dossier
-        .from("groupe_instructeurs CROSS JOIN LATERAL (#{latest_of_groupe.to_sql}) dossiers")
-        .where(groupe_instructeurs: { procedure_id: procedure.id })
-        .order_by_depose_at
-        .includes(:individual, :etablissement)
-        .limit(limit)
-        .to_a
-    end
-
-    decided_state = PREVIEW_DOSSIER_STATES.fetch(kind).last
-    active_revision_id = procedure.active_revision.id
-    current, previous = latest_by_state
-      .flat_map { it.each_with_index.to_a }
-      .min_by(limit, &:last)
-      .map(&:first)
-      .sort_by { [it.state == decided_state ? 0 : 1, -it.depose_at.to_f] }
-      .partition { it.revision_id == active_revision_id }
-
-    { current:, previous: }.compact_blank
+    procedure.preview_dossiers(states: PREVIEW_DOSSIER_STATES.fetch(kind), limit:)
   end
 
   def logo_url
