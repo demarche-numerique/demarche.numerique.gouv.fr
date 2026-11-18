@@ -158,6 +158,23 @@ describe Administrateurs::EmailTemplatesController, type: :controller do
       expect(subject.body).to include('id="mail-body-preview"')
       expect(subject.body).to include('id="mail-subject-preview"')
     end
+
+    context 'avec des dossiers déposés' do
+      let(:seeded) { procedure.dossiers.index_by(&:state) }
+
+      it 'prévisualise par défaut un dossier dans l’état où l’email est envoyé' do
+        get :edit, params: { procedure_id: procedure.id, id: 'accepte' }
+        expect(response.body).to include("dossier_id=#{seeded.fetch('accepte').id}")
+      end
+
+      it 'prévisualise le dossier choisi, s’il appartient à la démarche' do
+        get :edit, params: { procedure_id: procedure.id, id: 'accepte', dossier_id: seeded.fetch('en_construction').id }
+        expect(response.body).to include("dossier_id=#{seeded.fetch('en_construction').id}")
+
+        get :edit, params: { procedure_id: procedure.id, id: 'accepte', dossier_id: create(:dossier, :accepte).id }
+        expect(response.body).to include("dossier_id=#{seeded.fetch('accepte').id}")
+      end
+    end
   end
 
   describe 'GET edit (alerte d’incohérence attestation)' do
@@ -197,6 +214,17 @@ describe Administrateurs::EmailTemplatesController, type: :controller do
       expect(response.media_type).to eq('text/vnd.turbo-stream.html')
       expect(response.body).to include('mail-body-preview')
       expect(response.body).to include('Salut')
+    end
+
+    it 'prévisualise l’objet sur le dossier choisi' do
+      dossier = procedure.dossiers.find_by(state: :en_instruction)
+      json_subject = { "type" => "doc", "content" => [{ "type" => "paragraph", "content" => [{ "type" => "mention", "attrs" => { "id" => "dossier_number", "label" => "numéro du dossier" } }] }] }.to_json
+
+      post :preview, params: {
+        procedure_id: procedure.id, id: 'passe_en_instruction', dossier_id: dossier.id,
+        email_template: { tiptap_subject: json_subject },
+      }, format: :turbo_stream
+      expect(response.body).to match(%r{<template>\s*#{dossier.id}\s*</template>})
     end
 
     context 'when the sample dossier holds markup in a usager-controlled tag' do

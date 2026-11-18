@@ -83,7 +83,12 @@ class TiptapEditorComponent < ApplicationComponent
 
   def data_attributes
     attributes = { controller: 'tiptap' }
-    attributes[:tiptap_preview_url_value] = preview_url if preview_url
+    if preview_url
+      attributes[:tiptap_preview_url_value] = preview_url
+      # Lets a surrounding preview dossier picker point the preview at its dossier.
+      attributes[:preview_dossier_target] = 'url'
+      attributes[:preview_dossier_attribute] = 'data-tiptap-preview-url-value'
+    end
     attributes[:tiptap_single_line_value] = true if single_line?
     attributes
   end

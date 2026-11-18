@@ -534,3 +534,14 @@ describe EmailTemplate do
     end
   end
 end
+
+describe EmailTemplate, '#preview_dossiers', type: :model do
+  let(:procedure) { procedures.individual }
+  let(:states) { -> (klass) { klass.default_for_procedure(procedure).preview_dossiers.transform_values { it.map(&:state) } } }
+
+  it 'offers the deposited dossiers, those in the state the email is sent in first' do
+    expect(states.(Emails::Accepte)).to eq(current: ['accepte', 'en_instruction', 'en_construction'])
+    expect(states.(Emails::Refuse)).to eq(current: ['refuse', 'en_instruction', 'en_construction'])
+    expect(states.(Emails::Depose)).to eq(current: ['en_construction', 'en_instruction'])
+  end
+end

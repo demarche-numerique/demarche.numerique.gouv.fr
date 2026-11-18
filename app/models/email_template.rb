@@ -11,6 +11,9 @@ class EmailTemplate < ApplicationRecord
     REPLY        = :reply
   end
 
+  # Besides the state the email is sent in, which goes first in the picker.
+  PREVIEW_DOSSIER_STATES = [Dossier.states.fetch(:en_construction), Dossier.states.fetch(:en_instruction)].freeze
+
   validates :json_body, tags: true, if: -> { json_body.present? }
   validates :json_subject, tags: true, if: -> { json_subject.present? }
   validates :body, tags: true, if: -> { json_body.blank? }
@@ -41,6 +44,11 @@ class EmailTemplate < ApplicationRecord
 
   def attachment_for_dossier(dossier)
     nil
+  end
+
+  def preview_dossiers
+    state = self.class::DOSSIER_STATE
+    procedure.preview_dossiers(states: [*(PREVIEW_DOSSIER_STATES - [state]), state])
   end
 
   def mentions_attestation?

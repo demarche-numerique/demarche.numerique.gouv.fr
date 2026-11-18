@@ -19,13 +19,17 @@
                         ["Modèles d’email", admin_procedure_email_templates_path(@procedure)],
                         [@email_template.class.const_get(:DISPLAYED_NAME)]] } %>
 
-<% preview_url = preview_admin_procedure_email_template_path(@procedure, @email_template.class.const_get(:SLUG)) %>
+<% preview_url = preview_admin_procedure_email_template_path(@procedure, @email_template.class.const_get(:SLUG), dossier_id: @dossier&.id) %>
 <% tags = @email_template.tags_categorized %>
 
 <%= form_for @email_template, as: Emails::PARAM_KEY,
       url: admin_procedure_email_template_path(@procedure, @email_template.class.const_get(:SLUG)),
       method: :put do |f| %>
-  <div id="mail-template-edit" class="fr-container fr-my-4w">
+  <div
+    id="mail-template-edit"
+    class="fr-container fr-my-4w"
+    data-controller="preview-dossier"
+  >
     <div class="fr-grid-row fr-grid-row--gutters">
       <div class="fr-col-12 fr-col-lg-7">
         <fieldset class="fr-fieldset" aria-labelledby="edit-mail-template">
@@ -65,6 +69,8 @@
         <div class="mail-preview-panel fr-background-alt--blue-france">
           <h2 class="fr-h4">Aperçu</h2>
 
+          <%= render Procedure::PreviewDossierSelectComponent.new(dossiers: @preview_dossiers, selected: @dossier) %>
+
           <p class="fr-text--sm">
             Objet&nbsp;:
             <strong id="mail-subject-preview"><%= @email_template.subject_for_dossier(@dossier) %></strong>
@@ -80,9 +86,11 @@
 
           <p class="fr-hint-text fr-mt-2w">
             L’aperçu se met à jour automatiquement après chaque modification.
-            Pour générer un aperçu fidèle avec les champs et les dates,
-            <%= link_to("créez-vous un dossier", new_dossier_path(procedure_id: @procedure, brouillon: true), class: "no-wrap", **external_link_attributes) %>
-            et déposez-le&nbsp;: l’aperçu l’utilisera.
+            <% if @preview_dossiers.blank? %>
+              Pour générer un aperçu fidèle avec les champs et les dates,
+              <%= link_to("créez-vous un dossier", new_dossier_path(procedure_id: @procedure, brouillon: true), class: "no-wrap", **external_link_attributes) %>
+              et déposez-le&nbsp;: l’aperçu l’utilisera.
+            <% end %>
           </p>
         </div>
       </div>
