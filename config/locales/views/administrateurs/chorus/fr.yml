@@ -2,16 +2,16 @@ fr:
   administrateurs:
     chorus:
       add_champ_engagement_juridique:
-        title: Chorus
-        breadcrumb: Connecteur Chorus
-        heading: Cadre budgétaire
+        title: Ajouter l’engagement juridique
+        breadcrumb: Ajouter l’engagement juridique
+        heading: Ajouter l’engagement juridique
         use_case: Cas d’usage
         add_field: Ajouter un champ Engagement Juridique aux annotations privées afin de renseigner l’EJ directement sur la plateforme
         exports: L’EJ sera automatiquement ajouté aux exports des dossiers
         add_internal_field: Ajouter une annotation privée EJ
       edit:
-        title: Chorus
-        breadcrumb: Connecteur Chorus
+        title: Cadre budgétaire
+        breadcrumb: Cadre budgétaire
         heading: Cadre budgétaire
         use_case: Cas d’usage
         grants_question: Vous traitez une démarche liée à des subventions qui seront payées au travers de Chorus ?
