@@ -53,18 +53,24 @@ RSpec.describe EditableChamp::ChampLabelContentComponent, type: :component do
       end
 
       context "when champ is a date" do
-        before { allow(champ).to receive(:date?).and_return(true) }
+        before do
+          allow(champ).to receive(:date?).and_return(true)
+          allow(champ).to receive(:html_id).and_return("champ-1")
+        end
 
-        it 'returns hint with date-input-hint controller' do
-          expect(component.hints_for_champ).to eq([{ text: "Un hint test", controller: "date-input-hint" }])
+        it 'returns hint with date-input-hint controller and a stable id' do
+          expect(component.hints_for_champ).to eq([{ text: "Un hint test", controller: "date-input-hint", id: "champ-1-format-hint" }])
         end
       end
 
       context "when champ is a datetime" do
-        before { allow(champ).to receive(:datetime?).and_return(true) }
+        before do
+          allow(champ).to receive(:datetime?).and_return(true)
+          allow(champ).to receive(:html_id).and_return("champ-1")
+        end
 
-        it 'returns hint with date-input-hint controller' do
-          expect(component.hints_for_champ).to eq([{ text: "Un hint test", controller: "date-input-hint" }])
+        it 'returns hint with date-input-hint controller and a stable id' do
+          expect(component.hints_for_champ).to eq([{ text: "Un hint test", controller: "date-input-hint", id: "champ-1-format-hint" }])
         end
       end
     end
