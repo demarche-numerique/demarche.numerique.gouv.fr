@@ -1,0 +1,8 @@
+---
+en:
+  label: Application used for the preview
+  option: "No. %{number} – %{owner} – %{state}"
+  search: Filter by number or name
+  section:
+    current: Current revision of the procedure
+    previous: Previous revisions – some tags may be missing
