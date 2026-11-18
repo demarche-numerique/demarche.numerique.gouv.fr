@@ -30,6 +30,10 @@ RSpec.describe InstructeurMailer, type: :mailer do
       expect(subject.body).to include('valid for one week')
     end
 
+    it 'falls back to the request locale when the instructeur has none' do
+      expect(I18n.with_locale(:en) { described_class.send_login_token(user, token).body }).to include('valid for one week')
+    end
+
     context 'without SafeMailer configured' do
       it { expect(subject[BalancerDeliveryMethod::FORCE_DELIVERY_METHOD_HEADER]&.value).to eq(nil) }
     end

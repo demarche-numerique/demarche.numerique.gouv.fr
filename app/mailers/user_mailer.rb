@@ -5,7 +5,7 @@ class UserMailer < ApplicationMailer
   layout 'mailers/layout'
 
   def new_account_warning(user, procedure = nil)
-    use_recipient_locale(user)
+    use_recipient_locale(user, requested_by_recipient: true)
     @user = user
     @subject = default_i18n_subject
     @procedure = procedure
@@ -14,6 +14,7 @@ class UserMailer < ApplicationMailer
   end
 
   def ask_for_merge(user, requested_email)
+    use_recipient_locale(requested_email)
     @user = user
     @requested_email = requested_email
     @subject = default_i18n_subject
@@ -22,6 +23,7 @@ class UserMailer < ApplicationMailer
   end
 
   def france_connect_merge_confirmation(email, email_merge_token, email_merge_token_created_at)
+    use_recipient_locale(email, requested_by_recipient: true)
     @email_merge_token = email_merge_token
     @email_merge_token_created_at = email_merge_token_created_at
     @subject = default_i18n_subject
@@ -30,7 +32,7 @@ class UserMailer < ApplicationMailer
   end
 
   def custom_confirmation_instructions(user, token)
-    use_recipient_locale(user)
+    use_recipient_locale(user, requested_by_recipient: true)
     @user = user
 
     @token = token
@@ -62,7 +64,7 @@ class UserMailer < ApplicationMailer
   end
 
   def resend_confirmation_email(user, token)
-    use_recipient_locale(user)
+    use_recipient_locale(user, requested_by_recipient: true)
     @token = token
     @user = user
 
@@ -99,7 +101,7 @@ class UserMailer < ApplicationMailer
   end
 
   def reset_password_via_pro_connect(user)
-    use_recipient_locale(user)
+    use_recipient_locale(user, requested_by_recipient: true)
     @user = user
 
     bypass_unverified_mail_protection!
@@ -153,7 +155,7 @@ class UserMailer < ApplicationMailer
   end
 
   def password_changed(user)
-    use_recipient_locale(user)
+    use_recipient_locale(user, requested_by_recipient: true)
     @user = user
     @subject = default_i18n_subject
 

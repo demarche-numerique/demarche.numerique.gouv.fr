@@ -32,7 +32,7 @@ class InstructeurMailer < ApplicationMailer
   end
 
   def send_login_token(instructeur, login_token, host = nil)
-    use_recipient_locale(instructeur.user)
+    use_recipient_locale(instructeur.user, requested_by_recipient: true)
     @instructeur = instructeur
     @login_token = login_token
     subject = default_i18n_subject(application_name: APPLICATION_NAME)

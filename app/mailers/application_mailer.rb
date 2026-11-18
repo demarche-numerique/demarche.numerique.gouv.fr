@@ -17,9 +17,15 @@ class ApplicationMailer < ActionMailer::Base
 
   private
 
-  def with_default_locale(&) = I18n.with_locale(I18n.default_locale, &)
+  def with_default_locale(&)
+    @request_locale = I18n.locale
+    I18n.with_locale(I18n.default_locale, &)
+  end
 
-  def use_recipient_locale(user)
-    I18n.locale = user&.locale || I18n.default_locale
+  # recipient: a User, or the email of the account to look up.
+  # requested_by_recipient: the recipient triggered the email, so the request locale is a safe fallback.
+  def use_recipient_locale(recipient, requested_by_recipient: false)
+    user = recipient.is_a?(String) ? User.find_by(email: recipient) : recipient
+    I18n.locale = user&.locale || (requested_by_recipient ? @request_locale : I18n.default_locale)
   end
 end
