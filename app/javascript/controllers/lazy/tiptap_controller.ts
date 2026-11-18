@@ -115,6 +115,11 @@ export class TiptapController extends ApplicationController {
     }
   }
 
+  // A preview dossier picker changed the url: refresh the preview with the new dossier.
+  previewUrlValueChanged(_value: string, previousValue?: string) {
+    if (previousValue) this.#schedulePreview();
+  }
+
   #schedulePreview() {
     if (!this.previewUrlValue) return;
 

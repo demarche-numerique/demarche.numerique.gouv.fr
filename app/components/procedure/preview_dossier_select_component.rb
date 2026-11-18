@@ -10,7 +10,7 @@ class Procedure::PreviewDossierSelectComponent < ApplicationComponent
   end
 
   def render?
-    @selected.present?
+    @dossiers.present? && @selected.present?
   end
 
   def react_props
