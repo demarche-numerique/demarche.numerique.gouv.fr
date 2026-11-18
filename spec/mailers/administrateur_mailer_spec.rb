@@ -60,7 +60,12 @@ end
     it do
       expect(subject.to).to eq([admin_email])
       expect(subject.subject).to eq("SIRET manquant sur un de vos services")
-      expect(I18n.with_locale(:en) { described_class.notify_service_without_siret(admin_email).body }).to include("un de vos services n’a pas son SIRET renseigné")
+      expect(subject.body).to include("un de vos services n’a pas son SIRET renseigné")
+    end
+
+    it "renders the body in the locale of the admin's account" do
+      create(:user, email: admin_email, locale: 'en')
+      expect(subject.body).to include("has no SIRET number")
     end
 
     context 'when perform_later is called' do

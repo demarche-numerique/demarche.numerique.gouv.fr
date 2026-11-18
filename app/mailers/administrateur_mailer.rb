@@ -19,6 +19,7 @@ class AdministrateurMailer < ApplicationMailer
   end
 
   def notify_service_without_siret(user_email)
+    use_recipient_locale(user_email)
     @subject = "SIRET manquant sur un de vos services"
 
     mail(to: user_email,
