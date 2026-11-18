@@ -138,6 +138,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       let(:locked_hint) { 'Ce champ est utilisé pour le routage ou l’éligibilité des dossiers : vous ne pouvez pas changer ce réglage.' }
       let(:toggle_id) { ActionView::RecordIdentifier.dom_id(coordinate.type_de_champ, :temporal_type_champ) }
       let(:hint_id) { ActionView::RecordIdentifier.dom_id(coordinate.type_de_champ, :temporal_type_champ_hint) }
+      let(:birthdate_toggle) { 'Ce champ est une date de naissance' }
 
       context 'when it is a date' do
         let(:type_champ) { :date }
@@ -156,6 +157,20 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
           expect(page).to have_checked_field(time_toggle)
           expect(page).not_to have_text(locked_hint)
         end
+
+        it { expect(page).to have_unchecked_field(birthdate_toggle) }
+      end
+
+      context 'when it is a birthdate' do
+        let(:type_champ) { :date }
+        let(:coordinate) { procedure.draft_revision.public_revision_type_de_champs.first.tap { it.type_de_champ.update!(birthdate: '1') } }
+
+        it 'only offers the FranceConnect prefill' do
+          expect(page).to have_checked_field(birthdate_toggle)
+          expect(page).to have_unchecked_field('Préremplir avec la date de naissance FranceConnect')
+          expect(page).not_to have_text('Format accepté')
+          expect(page).not_to have_field(time_toggle)
+        end
       end
 
       context 'when it is not a date' do
@@ -172,6 +187,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
           expect(page).to have_checked_field(time_toggle, disabled: true)
           expect(page).to have_css("##{toggle_id}[aria-describedby='#{hint_id}']")
           expect(page).to have_css("##{hint_id}", text: locked_hint)
+          expect(page).to have_unchecked_field(birthdate_toggle, disabled: true)
         end
       end
 

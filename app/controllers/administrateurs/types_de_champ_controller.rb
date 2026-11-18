@@ -323,6 +323,7 @@ module Administrateurs
       toggle_locked = already_temporal && toggle_type_champ.nil?
 
       return type_de_champ.type_champ if toggle_locked
+      return 'date' if params.dig(:type_de_champ, :birthdate) == '1'
       return toggle_type_champ if TypeDeChamp.temporal_type_champ?(toggle_type_champ)
 
       'date'
