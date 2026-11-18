@@ -132,8 +132,15 @@ class AttestationTemplate < ApplicationRecord
   # Within each, the decided dossiers come first, as they fill the decision tags.
   def preview_dossiers(limit: 20)
     latest_by_state = PREVIEW_DOSSIER_STATES.fetch(kind).map do |state|
-      Dossier.visible_by_administration
-        .where(groupe_instructeur_id: procedure.groupe_instructeur_ids, state:)
+      latest_of_groupe = Dossier.visible_by_administration
+        .where(state:)
+        .where('dossiers.groupe_instructeur_id = groupe_instructeurs.id')
+        .order_by_depose_at
+        .limit(limit)
+
+      Dossier
+        .from("groupe_instructeurs CROSS JOIN LATERAL (#{latest_of_groupe.to_sql}) dossiers")
+        .where(groupe_instructeurs: { procedure_id: procedure.id })
         .order_by_depose_at
         .includes(:individual, :etablissement)
         .limit(limit)
