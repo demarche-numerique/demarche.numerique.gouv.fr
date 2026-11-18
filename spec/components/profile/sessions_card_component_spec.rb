@@ -76,6 +76,14 @@ describe Profile::SessionsCardComponent, type: :component do
     end
   end
 
+  context 'with a user agent nothing can be read from' do
+    let!(:only_session) { user.open_user_session!('curl/8.4.0') }
+
+    it 'says the device is unknown' do
+      expect(subject).to have_text('Appareil inconnu')
+    end
+  end
+
   context 'with a revoked session' do
     let!(:revoked) { user.open_user_session!(chrome) }
     let!(:live) { user.open_user_session!('Mozilla/5.0 (X11; Linux x86_64; rv:129.0) Gecko/20100101 Firefox/129.0') }

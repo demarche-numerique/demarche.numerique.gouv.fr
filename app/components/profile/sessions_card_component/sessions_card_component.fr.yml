@@ -1,6 +1,8 @@
 fr:
   title: Mes sessions actives
   explication: Voici les appareils actuellement connectés à votre compte. Si vous n’en reconnaissez pas un, déconnectez-le puis changez votre mot de passe.
+  browser_on_platform: "%{browser} sur %{platform}"
+  unknown_device: Appareil inconnu
   device: Appareil
   signed_in_at: Connexion
   actions: Action

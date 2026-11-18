@@ -21,6 +21,8 @@ class UserSession < ApplicationRecord
   # The identity's sub, shared by FranceConnect and FranceConnect+
   def france_connect_sub = france_connect_information&.france_connect_particulier_id
 
+  def browser = @browser ||= Browser.new(user_agent.to_s)
+
   validates :revoked_reason, inclusion: { in: REVOCATION_REASONS }, allow_nil: true
 
   scope :usable, -> { where(revoked_at: nil, expires_at: [nil, Time.current..]) }
