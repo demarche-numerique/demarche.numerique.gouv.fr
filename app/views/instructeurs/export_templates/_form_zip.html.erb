@@ -1,4 +1,8 @@
-<div class="fr-my-4w" id="export_template-edit">
+<div
+  class="fr-my-4w"
+  id="export_template-edit"
+  data-controller="preview-dossier"
+>
   <div class="fr-grid-row fr-grid-row--gutters">
     <div class="fr-col-12 fr-col-md-8 fr-pr-4w">
       <%= form_with model: [:instructeur, procedure, export_template], data: { turbo: 'true', controller: 'autosubmit' } do |f| %>
@@ -12,6 +16,7 @@
         >
 
         <%= f.hidden_field :kind, value: 'zip' %>
+        <%= hidden_field_tag :dossier_id, @preview_dossier&.id, id: nil, data: { preview_dossier_target: 'input' } %>
         <%= render Dsfr::InputComponent.new(form: f, attribute: :name, input_type: :text_field) %>
 
         <% if groupe_instructeurs.many? %>
@@ -142,7 +147,7 @@
     </div>
 
     <div class="fr-col-12 fr-col-md-4 fr-background-alt--blue-france">
-      <%= render partial: 'preview', locals: { procedure:, export_template: } %>
+      <%= render partial: 'preview', locals: { procedure:, export_template:, dossier: @preview_dossier, preview_dossiers: @preview_dossiers } %>
     </div>
   </div>
 </div>

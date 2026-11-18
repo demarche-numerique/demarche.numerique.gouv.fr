@@ -24,6 +24,10 @@ describe ProcedurePreviewDossiersConcern do
 
       expect(states.()).to eq(current: ['en_construction', 'en_instruction'], previous: ['accepte'])
     end
+
+    it 'keeps to the given groupes' do
+      expect(procedure.preview_dossiers(states: ['accepte'], groupe_instructeur_ids: [])).to eq({})
+    end
   end
 
   describe '#preview_dossier' do
@@ -35,6 +39,10 @@ describe ProcedurePreviewDossiersConcern do
       expect(procedure.preview_dossier(seeded.fetch('brouillon').id)).to be_nil
       expect(procedure.preview_dossier(create(:dossier, :accepte).id)).to be_nil
       expect(procedure.preview_dossier(nil)).to be_nil
+    end
+
+    it 'keeps to the given groupes' do
+      expect(procedure.preview_dossier(seeded.fetch('accepte').id, groupe_instructeur_ids: [])).to be_nil
     end
   end
 end

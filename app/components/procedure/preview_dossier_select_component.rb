@@ -32,6 +32,13 @@ class Procedure::PreviewDossierSelectComponent < ApplicationComponent
   end
 
   def option_label(dossier)
-    t('.option', number: dossier.id, owner: attestation_depot_requester_identity(dossier), state: dossier_display_state(dossier).upcase)
+    state = dossier_display_state(dossier).upcase
+    owner = attestation_depot_requester_identity(dossier)
+
+    if owner.present?
+      t('.option', number: dossier.id, owner:, state:)
+    else
+      t('.option_without_owner', number: dossier.id, state:)
+    end
   end
 end

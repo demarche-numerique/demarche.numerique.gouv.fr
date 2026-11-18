@@ -37,4 +37,20 @@ describe "procedure exports zip", js: true do
     tiptap_tags = dossier_folder_template.dig(:content, 0, :content).filter { _1[:type] == "mention" }
     expect(tiptap_tags.map { _1[:attrs][:label] }).to include("SIREN")
   end
+
+  scenario "the preview follows the chosen dossier" do
+    accepte = create(:dossier, :accepte, procedure:)
+    en_construction = create(:dossier, :en_construction, procedure:)
+    # NFKC turns the state labels' non-breaking spaces into the plain ones the search input gets
+    label = -> (dossier) { "N° #{dossier.id} – #{Dossier.human_attribute_name("state.#{dossier.state}").upcase}".unicode_normalize(:nfkc) }
+
+    visit new_instructeur_procedure_export_template_path(procedure, kind: :zip)
+
+    expect(page).to have_button(label.(accepte))
+    expect(page).to have_css('#preview', text: "dossier-#{accepte.id}/")
+
+    select_react_option(label.(en_construction), from: "Dossier utilisé pour l’aperçu")
+
+    expect(page).to have_css('#preview', text: "dossier-#{en_construction.id}/")
+  end
 end
