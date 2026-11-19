@@ -11,7 +11,7 @@ namespace :lint do
 
     # Invoked in-process rather than shelled out: these are plain file scans,
     # and each `bundle exec rake` boot costs ~4s.
-    ['lint:adresse_electronique', 'lint:apostrophe', 'lint:yaml_newline'].each { Rake::Task[it].invoke }
+    ['lint:adresse_electronique', 'lint:apostrophe', 'lint:english_quotes', 'lint:yaml_newline'].each { Rake::Task[it].invoke }
   end
 
   desc 'Run the JavaScript, TypeScript, CSS and ERB linters'

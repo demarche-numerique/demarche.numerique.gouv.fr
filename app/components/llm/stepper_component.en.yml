@@ -1,3 +1,3 @@
 en:
   back_link: "Back to management screen"
-  title: "Improving the quality of the form « %{libelle} »"
+  title: "Improving the quality of the form ‘%{libelle}’"

@@ -12,7 +12,7 @@ en:
         cancel: Back
         dashboard: Dashboard
       autorisations:
-        title: Token privileges « %{name} »
+        title: Token privileges ‘%{name}’
         token_access: This token accesses
         custom_procedures: some of my procedures
         all_procedures: all my procedures
@@ -28,9 +28,9 @@ en:
         continue: continue
       edit:
         back_link: Back
-        title: 'Edit API token « %{name} »'
+        title: 'Edit API token ‘%{name}’'
       edit_form:
-        title: 'Edit API token « %{name} »'
+        title: 'Edit API token ‘%{name}’'
         rename_button: Rename
         enter_at_least_one_network: 'Enter at least 1 authorized network'
         enter_authorized_ips: 'Enter authorized IP addresses'
@@ -45,7 +45,7 @@ en:
         add_button: Add
         delete_button: Delete
       securite:
-        title: Security of the token « %{name} »
+        title: Security of the token ‘%{name}’
         dashboard: Dashboard
         security_warning: Your token will likely allow you to handle confidential or personal data.
         responsibility: It is your responsibility to keep it secure and limit its use to authorised persons only.
