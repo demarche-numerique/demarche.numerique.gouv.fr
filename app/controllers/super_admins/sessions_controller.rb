@@ -5,6 +5,10 @@ class SuperAdmins::SessionsController < Devise::SessionsController
 
   private
 
+  # Devise permits remember_me for every scope, but SuperAdmin is not rememberable:
+  # a failed attempt carrying it would crash rebuilding the sign in form.
+  def sign_in_params = super.except(:remember_me)
+
   def request_logs(logs)
     super
 
