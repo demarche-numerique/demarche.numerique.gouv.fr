@@ -18,8 +18,8 @@ class DeviseUserMailer < Devise::Mailer
   def confirmation_instructions(record, token, opts_or_headers = {})
     opts_or_headers[:from] = NO_REPLY_EMAIL
     opts_or_headers[:reply_to] = NO_REPLY_EMAIL
-    @procedure = opts_or_headers[:procedure_after_confirmation] || nil
-    @prefill_token = opts_or_headers[:prefill_token]
+    @procedure = opts_or_headers.delete(:procedure_after_confirmation)
+    @prefill_token = opts_or_headers.delete(:prefill_token)
 
     bypass_unverified_mail_protection!
 

@@ -19,6 +19,15 @@ RSpec.describe DeviseUserMailer, type: :mailer do
       it { expect(subject[BalancerDeliveryMethod::FORCE_DELIVERY_METHOD_HEADER]&.value).to eq(forced_delivery_method.to_s) }
     end
 
+    context 'with a procedure and a prefill token' do
+      subject { described_class.confirmation_instructions(user, token, procedure_after_confirmation: procedures.individual, prefill_token: 'prefill-token') }
+
+      it 'keeps them out of the headers' do
+        expect(subject['procedure-after-confirmation']).to be_nil
+        expect(subject['prefill-token']).to be_nil
+      end
+    end
+
     context 'when perform_later is called' do
       it 'enqueues email in default queue for high priority delivery' do
         expect { subject.deliver_later }.to have_enqueued_job.on_queue(Rails.application.config.action_mailer.deliver_later_queue_name)
