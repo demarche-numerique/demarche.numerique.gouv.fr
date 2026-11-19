@@ -120,8 +120,7 @@ module Users
     def justificatif_motivation
       justificatif = dossier.justificatif_motivation
 
-      # Same rule as Attachment::ShowComponent: never hand out a file the virus scanner rejected
-      if justificatif.attached? && (justificatif.virus_scanner.safe? || !justificatif.virus_scanner.started?)
+      if justificatif.attached? && !justificatif.virus_scanner_error?
         redirect_to justificatif.url, allow_other_host: true
       else
         flash.notice = t('.not_available')

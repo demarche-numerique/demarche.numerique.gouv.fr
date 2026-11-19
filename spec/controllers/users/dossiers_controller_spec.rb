@@ -176,7 +176,6 @@ describe Users::DossiersController, type: :controller do
 
     before do
       dossier.justificatif_motivation.attach(fixture_file_upload('spec/fixtures/files/piece_justificative_0.pdf', 'application/pdf'))
-      dossier.justificatif_motivation.blob.update!(virus_scan_result: ActiveStorage::VirusScanner::SAFE)
     end
 
     subject { get :justificatif_motivation, params: { id: dossier.id } }
