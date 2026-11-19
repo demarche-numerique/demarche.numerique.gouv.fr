@@ -779,6 +779,16 @@ describe Instructeur, type: :model do
       end
     end
 
+    context 'when the old instructeur has a batch operation' do
+      let!(:batch_operation) { create(:batch_operation, instructeur: old_instructeur, operation: :passer_en_instruction) }
+
+      before { subject }
+
+      it 'transfers the batch operation to the new instructeur' do
+        expect(batch_operation.reload.instructeur).to eq(new_instructeur)
+      end
+    end
+
     context 'when the old instructeur is referenced by a legacy export' do
       let!(:export) { create(:export, instructeur: old_instructeur) }
 
