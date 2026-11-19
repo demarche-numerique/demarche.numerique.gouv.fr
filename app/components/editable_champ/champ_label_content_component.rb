@@ -3,8 +3,8 @@
 class EditableChamp::ChampLabelContentComponent < ApplicationComponent
   include ApplicationHelper
 
-  def initialize(form:, champ:, seen_at: nil, row_number: nil)
-    @form, @champ, @seen_at, @row_number = form, champ, seen_at, row_number
+  def initialize(champ:, seen_at: nil, row_number: nil)
+    @champ, @seen_at, @row_number = champ, seen_at, row_number
   end
 
   def render_libelle?

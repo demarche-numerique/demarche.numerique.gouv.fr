@@ -1,14 +1,14 @@
 <%# we do this trick because some html elements should use 'label' and some should be plain paragraphs %>
 <% if @champ.html_label? %>
   <%= @form.label @champ.main_value_name, id: input_label_id(@champ), for: @champ.focusable_input_id, class: 'fr-label' do %>
-    <%= render EditableChamp::ChampLabelContentComponent.new(form: @form, champ: @champ, seen_at: @seen_at, row_number: @row_number) %>
+    <%= render EditableChamp::ChampLabelContentComponent.new(champ: @champ, seen_at: @seen_at, row_number: @row_number) %>
   <% end %>
 <% elsif @champ.legend_label? %>
   <legend
     class="fr-fieldset__legend fr-text--regular"
     id="<%= champ_fieldset_legend_id(@champ) %>"
   >
-    <%= render EditableChamp::ChampLabelContentComponent.new(form: @form, champ: @champ, seen_at: @seen_at, row_number: @row_number) %>
+    <%= render EditableChamp::ChampLabelContentComponent.new(champ: @champ, seen_at: @seen_at, row_number: @row_number) %>
   </legend>
 <% end %>
 

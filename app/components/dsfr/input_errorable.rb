@@ -128,11 +128,8 @@ module Dsfr
 
         aria_describedby = []
 
-        if describedby_present?
-          aria_describedby << describedby_id
-        elsif hintable?
-          aria_describedby << hint_id
-        end
+        aria_describedby << describedby_id if describedby_present?
+        aria_describedby << hint_id if hintable?
 
         aria_describedby << object.error_id(attribute) if errors_on_attribute? && object.respond_to?(:error_id)
 

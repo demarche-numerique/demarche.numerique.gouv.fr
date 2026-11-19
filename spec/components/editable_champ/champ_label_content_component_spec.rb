@@ -7,7 +7,7 @@ RSpec.describe EditableChamp::ChampLabelContentComponent, type: :component do
     let(:champ) { dossier.public_root_champs.first }
     let(:value_updated_at) { 3.days.ago.change(usec: 0) }
     let(:seen_at) { 1.day.ago }
-    let(:component) { described_class.new(form: nil, champ:, seen_at:) }
+    let(:component) { described_class.new(champ:, seen_at:) }
 
     subject { render_inline(component) }
 

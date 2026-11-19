@@ -5,6 +5,6 @@
     'false'
   %label.fr-label{ for: @champ.focusable_input_id, id: input_label_id(@champ) }
     %span.width-100
-      = render EditableChamp::ChampLabelContentComponent.new form: @form, champ: @champ, seen_at: @seen_at, row_number: @row_number
+      = render EditableChamp::ChampLabelContentComponent.new champ: @champ, seen_at: @seen_at, row_number: @row_number
   - if @champ.description.present?
     .fr-hint-text.fr-mt-1v.fr-ml-4w{ id: @champ.describedby_id }= render SimpleFormatComponent.new(@champ.description, allow_a: true)
