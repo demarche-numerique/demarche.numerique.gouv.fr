@@ -193,7 +193,9 @@ class Procedure < ApplicationRecord
 
   has_many :administrateurs_procedures, dependent: :delete_all
   has_many :dossiers_list_personnalisations, dependent: :delete_all
-  has_many :administrateurs, through: :administrateurs_procedures, before_remove: :check_administrateur_minimal_presence
+  has_many :administrateurs, through: :administrateurs_procedures,
+    before_remove: :check_administrateur_minimal_presence,
+    after_remove: :forget_in_api_tokens
   has_many :groupe_instructeurs, -> { order(:label) }, inverse_of: :procedure, dependent: :destroy
   has_many :instructeurs, through: :groupe_instructeurs
   has_many :export_templates, through: :groupe_instructeurs
@@ -428,6 +430,10 @@ class Procedure < ApplicationRecord
     if self.administrateurs.count <= 1
       raise ActiveRecord::RecordNotDestroyed.new("Cannot remove the last administrateur of procedure #{self.libelle} (#{self.id})")
     end
+  end
+
+  def forget_in_api_tokens(administrateur)
+    APIToken.forget_procedure(id, administrateur:)
   end
 
   def dossiers_close_to_expiration

@@ -183,6 +183,19 @@ describe Administrateur, type: :model do
       end
     end
 
+    context 'when the old admin has an api token on a list of its procedures' do
+      let(:old_admin) { create(:administrateur, :with_api_token) }
+      let!(:old_procedure) { create(:procedure, administrateurs: [old_admin]) }
+
+      it 'keeps the procedures of the token' do
+        token = old_admin.api_tokens.first
+        token.update!(allowed_procedure_ids: [old_procedure.id])
+        subject
+
+        expect(token.reload.allowed_procedure_ids).to eq([old_procedure.id])
+      end
+    end
+
     context 'when the old admin has an old api token' do
       let(:old_admin) { create(:administrateur, :with_api_token) }
 

@@ -277,6 +277,25 @@ describe APIToken, type: :model do
 
         it { expect(api_token.reload.procedure_ids).to eq([procedure.id]) }
       end
+
+      context 'when its owner is removed from a listed procedure' do
+        let(:co_admin) { administrateurs.default }
+        let(:procedure) { procedures.individual }
+        let(:other_procedure) { procedures.brouillon }
+        let(:co_admin_token) { APIToken.generate(co_admin).first }
+
+        before do
+          [procedure, other_procedure].each { it.administrateurs << administrateur }
+          api_token.update!(allowed_procedure_ids: [procedure.id, other_procedure.id])
+          co_admin_token.update!(allowed_procedure_ids: [procedure.id])
+          procedure.administrateurs.delete(administrateur)
+        end
+
+        it 'drops the procedure from its own tokens only' do
+          expect(api_token.reload.allowed_procedure_ids).to eq([other_procedure.id])
+          expect(co_admin_token.reload.allowed_procedure_ids).to eq([procedure.id])
+        end
+      end
     end
   end
 
