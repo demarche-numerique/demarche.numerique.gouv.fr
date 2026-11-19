@@ -81,6 +81,17 @@ class Administrateur < ApplicationRecord
     transaction do
       old_procedure_ids = old_admin.procedures.ids
 
+      # v1/v2 tokens are deliberately left behind: we want their owners to
+      # migrate to v3 tokens.
+      # A full access token is narrowed to the old admin's procedures, so it
+      # does not gain access to the new admin's own procedures.
+      # Tokens move before the old admin leaves its procedures: leaving one
+      # drops it from the list tokens the old admin still owns.
+      old_admin.api_tokens.authenticable.find_each do |token|
+        token.allowed_procedure_ids = old_procedure_ids if token.full_access?
+        self.api_tokens << token
+      end
+
       procedures_with_new_admin, procedures_without_new_admin = old_admin
         .procedures
         .with_discarded
@@ -118,15 +129,6 @@ class Administrateur < ApplicationRecord
       instructeurs_without_new_admin.each do |i|
         i.administrateurs << self
         i.administrateurs.delete(old_admin)
-      end
-
-      # v1/v2 tokens are deliberately left behind (and destroyed with the old
-      # admin): we want their owners to migrate to v3 tokens.
-      # A full access token is narrowed to the old admin's procedures, so it
-      # does not gain access to the new admin's own procedures.
-      old_admin.api_tokens.authenticable.find_each do |token|
-        token.allowed_procedure_ids = old_procedure_ids if token.full_access?
-        self.api_tokens << token
       end
     end
   end
