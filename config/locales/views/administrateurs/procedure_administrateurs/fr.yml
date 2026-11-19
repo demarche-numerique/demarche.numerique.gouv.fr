@@ -1,0 +1,14 @@
+fr:
+  administrateurs:
+    procedure_administrateurs:
+      add_admin_form:
+        label: Ajouter un administrateur
+        hint_html: "Renseignez l’adresse électronique d’un administrateur déjà enregistré sur %{application_name} pour lui permettre de modifier «&nbsp;%{libelle}&nbsp;». Exemple&nbsp;: marie.dupont@exemple.fr"
+        submit: Ajouter comme administrateur
+      index:
+        title: Administrateurs
+        caption: Liste des administrateurs
+        email: Adresse électronique
+        registered_at: Enregistré le
+        state: État
+        action: Action

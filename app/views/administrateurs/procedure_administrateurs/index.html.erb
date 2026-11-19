@@ -1,0 +1,40 @@
+<% content_for(:title, t('.title')) %>
+<% render_procedure_sticky_title(@procedure) %>
+
+<%= render partial: 'shared/breadcrumbs_section',
+  locals: { steps: [[admin_procedures_back_label(@procedure), admin_procedures_back_path(@procedure)],
+                    [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)],
+                    [t('.title')]] } %>
+
+<div class="fr-container">
+  <h1 class="fr-h2"><%= t('.title') %></h1>
+
+  <div class="fr-mb-4w">
+    <%= render 'add_admin_form', procedure: @procedure, disabled_as_super_admin: administrateur_as_manager? %>
+  </div>
+
+  <div class="fr-table">
+    <div class="fr-table__wrapper">
+      <div class="fr-table__container">
+        <div class="fr-table__content">
+          <table>
+            <caption><%= t('.caption') %></caption>
+
+            <thead>
+              <th scope="col"><%= t('.email') %></th>
+              <th scope="col"><%= t('.registered_at') %></th>
+              <th scope="col"><%= t('.state') %></th>
+              <th scope="col"><%= t('.action') %></th>
+            </thead>
+
+            <tbody id="administrateurs">
+              <%= render(Procedure::ProcedureAdministrateurs::AdministrateurComponent.with_collection(@procedure.administrateurs.order('users.email'), procedure: @procedure)) %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render Procedure::FixedFooterComponent.new(procedure: @procedure) %>

@@ -1,0 +1,18 @@
+<%= form_for procedure.administrateurs.new(user: User.new),
+  url: { controller: 'procedure_administrateurs' },
+  html: { id: "new_administrateur" },
+  data: { turbo: true, turbo_force: :server } do |f| %>
+  <div class="fr-input-group">
+    <%= f.label :email, class: "fr-label" do %>
+      <%= t('.label') %>
+
+      <span class="fr-hint-text">
+        <%= t('.hint_html', application_name: Current.application_name, libelle: procedure.libelle) %>
+      </span>
+    <% end %>
+
+    <%= f.email_field :email, required: true, class: "fr-input", autofocus: true, disabled: disabled_as_super_admin %>
+  </div>
+
+  <%= f.submit t('.submit'), class: 'fr-btn', disabled: disabled_as_super_admin %>
+<% end %>
