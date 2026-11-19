@@ -302,6 +302,22 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       end
     end
 
+    context 'changing the type of a reference dataset whose url mentions a field above' do
+      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text, libelle: 'l1', stable_id: 100 }, { type: :referentiel, libelle: 'l2', stable_id: 200 }]) }
+      let(:params) { { procedure_id: procedure.id, stable_id: 200, type_de_champ: { type_champ: 'text' } } }
+
+      before do
+        procedure.draft_revision.type_de_champs.find { it.stable_id == 200 }.update!(referentiel: create(:api_referentiel, :exact_match, mentioned_stable_id: 100))
+      end
+
+      it 'renders the mentioned field unlocked' do
+        is_expected.to have_http_status(:ok)
+        mentioned = assigns(:morphed).find { it.coordinate.stable_id == 100 }
+        expect(mentioned).to be_present
+        expect(mentioned.coordinate.type_champ_locked?).to be(false)
+      end
+    end
+
     context 'when the champ is used by the ineligibilite rules' do
       include Logic
 
@@ -654,6 +670,22 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       it do
         is_expected.to have_http_status(:ok)
         expect(flash.alert).to eq(I18n.t("activerecord.errors.type_de_champ.locked.destroy.used_by_referentiel_urls", type_de_champ: 'l3'))
+      end
+    end
+
+    context 'removing a reference dataset whose url mentions a field above' do
+      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text, libelle: 'l1', stable_id: 100 }, { type: :referentiel, libelle: 'l2', stable_id: 200 }]) }
+      let(:params) { { procedure_id: procedure.id, stable_id: 200 } }
+
+      before do
+        procedure.draft_revision.type_de_champs.find { it.stable_id == 200 }.update!(referentiel: create(:api_referentiel, :exact_match, mentioned_stable_id: 100))
+      end
+
+      it 'renders the mentioned field unlocked' do
+        is_expected.to have_http_status(:ok)
+        mentioned = assigns(:morphed).find { it.coordinate.stable_id == 100 }
+        expect(mentioned).to be_present
+        expect(mentioned.coordinate.type_champ_locked?).to be(false)
       end
     end
 
