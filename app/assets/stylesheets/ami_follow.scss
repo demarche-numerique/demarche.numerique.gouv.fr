@@ -22,6 +22,16 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+
+    // DSFR lays the icon out as a flex item: a wrapped label then centers its
+    // lines away from it. Inline, the icon follows the first centered line.
+    .fr-btn--icon-left {
+      display: inline-block;
+
+      &::before {
+        display: inline-block;
+      }
+    }
   }
 }
 
