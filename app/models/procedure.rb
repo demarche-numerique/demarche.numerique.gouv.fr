@@ -18,6 +18,7 @@ class Procedure < ApplicationRecord
   include ProcedureEmailTemplatesConcern
   include ProcedureArchiveWeightConcern
   include ProcedureExportOrderConcern
+  include ProcedurePreviewDossiersConcern
 
   include Discard::Model
   self.discard_column = :hidden_at

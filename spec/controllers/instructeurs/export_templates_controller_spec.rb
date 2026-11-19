@@ -278,16 +278,28 @@ describe Instructeurs::ExportTemplatesController, type: :controller do
     render_views
 
     let(:export_template) { create(:export_template, groupe_instructeur:) }
+    let!(:dossier) { create(:dossier, :en_construction, procedure:) }
+    let(:dossier_id) { nil }
 
-    context 'with put request' do
-      subject { put :preview, params: { procedure_id: procedure.id, id: export_template.id, export_template: export_template_params }, format: :turbo_stream }
+    subject { put :preview, params: { procedure_id: procedure.id, id: export_template.id, dossier_id:, export_template: export_template_params }, format: :turbo_stream }
 
-      it 'works with bigbig procedure' do
-        dossier = create(:dossier, procedure: procedure, for_procedure_preview: true)
-        subject
-        expect(response.body).to include "DOSSIER_#{dossier.id}"
-        expect(response.body).to include "mon_export_#{dossier.id}.pdf"
-      end
+    it 'previews a dossier of the instructeur' do
+      subject
+      expect(response.body).to include "DOSSIER_#{dossier.id}"
+      expect(response.body).to include "mon_export_#{dossier.id}.pdf"
+    end
+
+    context 'with a chosen dossier' do
+      let(:chosen) { create(:dossier, :accepte, procedure:) }
+      let(:dossier_id) { chosen.id }
+
+      it { subject; expect(response.body).to include "DOSSIER_#{chosen.id}" }
+    end
+
+    context 'with a dossier of a groupe the instructeur does not belong to' do
+      let(:dossier_id) { create(:dossier, :accepte, procedure:, groupe_instructeur: create(:groupe_instructeur, procedure:)).id }
+
+      it { subject; expect(response.body).not_to include "DOSSIER_#{dossier_id}" }
     end
   end
 
