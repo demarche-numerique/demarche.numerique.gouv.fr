@@ -5,5 +5,5 @@ en:
   libelles_description_html: "The <strong>field labels and descriptions</strong>: updating field labels that are too long, in all caps, or hard to understand."
   structure_formulaire_html: "The <strong>form structure</strong>: improving the form structure by reorganising fields and adding sections."
   utilisation_types_html: "The <strong>proper use of field types</strong>: converting certain fields to other field types that are better suited to the information requested."
-  demande_unique_html: "The <strong>unique data request (« Dites-le nous une fois »)</strong>: removing fields detected as redundant or duplicated."
+  demande_unique_html: "The <strong>unique data request (‘Dites-le nous une fois’)</strong>: removing fields detected as redundant or duplicated."
   libre_choix: "You are free to choose which suggestions you wish to apply."

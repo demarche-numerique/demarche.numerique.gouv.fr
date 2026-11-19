@@ -63,12 +63,12 @@ en:
         declarative_with_state/accepte: Accepted
         api_entreprise_token: Token API Entreprise
         api_particulier_token: Token API Particulier
-        email_depose: The “Acknowledgement of receipt” email template
-        email_passe_en_instruction: The “Acknowledgment of review start” email template
-        email_accepte: The “Acceptance” email template
-        email_refuse: The “Refusal” email template
-        email_classe_sans_suite: The “Closed with no further action” email template
-        email_repasse_en_instruction: The “File re-examination” email template
+        email_depose: The ‘Acknowledgement of receipt’ email template
+        email_passe_en_instruction: The ‘Acknowledgment of review start’ email template
+        email_accepte: The ‘Acceptance’ email template
+        email_refuse: The ‘Refusal’ email template
+        email_classe_sans_suite: The ‘Closed with no further action’ email template
+        email_repasse_en_instruction: The ‘File re-examination’ email template
         attestation_acceptation_template: Attestation template acceptation
         attestation_refus_template: Attestation template refused
         draft_revision: The form

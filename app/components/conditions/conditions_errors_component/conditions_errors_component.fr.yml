@@ -17,6 +17,7 @@ fr:
     limited:
       one: "Aucune valeur du champ « %{libelle} » ne vérifie %{comparisons} : ses valeurs sont limitées %{limits}."
       other: "Aucune valeur du champ « %{libelle} » ne vérifie à la fois %{comparisons} : ses valeurs sont limitées %{limits}."
+    comparison: "« %{comparison} »"
     limits:
       between: "entre « %{min} » et « %{max} »"
       min: "à « %{min} » au minimum"

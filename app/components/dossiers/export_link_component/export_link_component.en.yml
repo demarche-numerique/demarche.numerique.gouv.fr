@@ -8,8 +8,8 @@ en:
   refresh_page: Refresh page
   export_title_everything: Export .%{export_format} of all files
   export_title_with_tab:
-    one: Export .%{export_format} of 1 file « %{export_tabs} »
-    other: Export .%{export_format} of %{count} files « %{export_tabs} »
+    one: Export .%{export_format} of 1 file ‘%{export_tabs}’
+    other: Export .%{export_format} of %{count} files ‘%{export_tabs}’
   export_title:
     one: Export .%{export_format} of 1 file
     other: Export .%{export_format} of %{count} files

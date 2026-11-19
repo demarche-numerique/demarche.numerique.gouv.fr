@@ -3,7 +3,7 @@ en:
   shared:
     champs:
       external_data:
-        pending: "Retrieving data for identifier “%{identifier}”…"
-        not_found: "No data found for identifier “%{identifier}”."
-        degraded: "Data for identifier “%{identifier}” could not be retrieved. We are retrying: it will arrive later."
-        error: "An error occurred while retrieving data for identifier “%{identifier}”."
+        pending: "Retrieving data for identifier ‘%{identifier}’…"
+        not_found: "No data found for identifier ‘%{identifier}’."
+        degraded: "Data for identifier ‘%{identifier}’ could not be retrieved. We are retrying: it will arrive later."
+        error: "An error occurred while retrieving data for identifier ‘%{identifier}’."

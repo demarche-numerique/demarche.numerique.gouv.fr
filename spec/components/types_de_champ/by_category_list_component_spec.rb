@@ -11,4 +11,10 @@ describe TypesDeChamp::ByCategoryListComponent, type: :component do
       "« Champ pré-rempli non modifiable »",
     ])
   end
+
+  context 'in English' do
+    around { |example| I18n.with_locale(:en) { example.run } }
+
+    it { expect(page.all('li').first.text).to eq("‘Integer number’, ‘Decimal number’") }
+  end
 end
