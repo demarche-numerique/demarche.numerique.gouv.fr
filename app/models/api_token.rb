@@ -151,6 +151,12 @@ class APIToken < ApplicationRecord
 
     def digest(plain_token) = Digest::SHA256.hexdigest(plain_token)
 
+    def remove_procedure(procedure_id, administrateur:)
+      where(administrateur:)
+        .where('?::bigint = ANY(allowed_procedure_ids)', procedure_id)
+        .update_all(['allowed_procedure_ids = array_remove(allowed_procedure_ids, ?::bigint)', procedure_id])
+    end
+
     def authenticate(bearer_string)
       bearer = BearerToken.from_string(bearer_string)
 
