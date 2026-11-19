@@ -8,6 +8,7 @@ class ExportTemplate < ApplicationRecord
   has_many :exports, dependent: :nullify
 
   enum :kind, { zip: 'zip', csv: 'csv', xlsx: 'xlsx', ods: 'ods' }, prefix: :template
+  enum :repetition_layout, { sheet: 'sheet', inline: 'inline' }, prefix: true, validate: true
 
   attribute :dossier_folder, :export_item
   attribute :export_pdf, :export_item
@@ -43,6 +44,10 @@ class ExportTemplate < ApplicationRecord
 
   def tabular?
     kind != 'zip'
+  end
+
+  def inline_repetitions?
+    template_csv? || (tabular? && repetition_layout_inline?)
   end
 
   def tags

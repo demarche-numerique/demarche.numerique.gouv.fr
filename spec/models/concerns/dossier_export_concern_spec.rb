@@ -229,7 +229,7 @@ describe DossierExportConcern do
     let(:inline_repetitions) { { 10 => ProcedureExportService::InlineRepetition.new(max_rows:, columns_by_child:) } }
 
     subject(:columns) do
-      dossier.spreadsheet_columns_csv(type_de_champs: procedure.type_de_champs_with_repetitions_for_procedure_export, export_template:, inline_repetitions:)
+      dossier.spreadsheet_columns_csv(type_de_champs: procedure.type_de_champs_for_procedure_export(with_repetitions: true), export_template:, inline_repetitions:)
     end
 
     before do
