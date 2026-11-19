@@ -23,9 +23,14 @@
     justify-content: center;
     text-align: center;
 
-    // A wrapped label would center its lines away from the button's icon.
+    // DSFR lays the icon out as a flex item: a wrapped label then centers its
+    // lines away from it. Inline, the icon follows the first centered line.
     .fr-btn--icon-left {
-      text-align: start;
+      display: inline-block;
+
+      &::before {
+        display: inline-block;
+      }
     }
   }
 }
