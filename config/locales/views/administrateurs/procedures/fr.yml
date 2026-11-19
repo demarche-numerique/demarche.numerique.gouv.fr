@@ -190,3 +190,5 @@ fr:
         not_administrateur:
           one: "%{emails} n’est pas associé à un compte administrateur"
           other: "%{emails} ne sont pas associés à des comptes administrateurs"
+      pro_connect_restricted:
+        unavailable_france_connect_plus_required: "Indisponible : la démarche exige FranceConnect+ de ses usagers."

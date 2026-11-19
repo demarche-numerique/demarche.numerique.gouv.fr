@@ -22,6 +22,7 @@ en:
         plus_explanation: "FranceConnect+ is the solution offered by the State to strengthen the security of your most sensitive online services."
         help_link: What is FranceConnect?
         plus_help_link: What is FranceConnect+?
+        plus_unavailable: "FranceConnect+ is unavailable for now. Try again later."
         separator: or
       local_password_notice:
         france_connect: "This password only applies to your local account. It will be used when you sign in with your email address, not through FranceConnect."

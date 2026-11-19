@@ -147,6 +147,17 @@ describe ContactController, question_type: :controller do
             expect(flash[:notice]).to match('Votre message a été envoyé sur la messagerie de votre dossier.')
             expect(response).to redirect_to messagerie_dossier_path(dossier)
           end
+
+          context 'on a procedure that requires FranceConnect+, from a session opened another way' do
+            let(:dossier) { create(:dossier, :en_construction, procedure: create(:procedure, :published, france_connect_plus_required: true)) }
+
+            before { sign_in(user, login_method: :password) }
+
+            it 'sends the message to support, not to the dossier' do
+              expect { subject }.to change(Commentaire, :count).by(0).and change(ContactForm, :count).by(1)
+              expect(response).to redirect_to root_path
+            end
+          end
         end
       end
 

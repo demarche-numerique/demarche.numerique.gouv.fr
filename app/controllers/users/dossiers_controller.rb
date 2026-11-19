@@ -7,6 +7,7 @@ module Users
     include TurboChampsConcern
     include LockableConcern
     include ProConnectSessionConcern
+    include FranceConnectPlusRestrictionConcern
     include Dry::Monads[:result]
     include DossierEditConcern
 
@@ -28,6 +29,7 @@ module Users
     before_action :ensure_dossier_can_be_filled, only: [:brouillon, :modifier, :submit_brouillon, :submit_en_construction, :update]
     before_action :ensure_dossier_can_be_viewed, only: [:show]
     before_action :ensure_pro_connect_for_procedure, only: [:brouillon, :modifier, :submit_brouillon, :submit_en_construction, :update]
+    before_action -> { ensure_france_connect_plus_for(dossier) }, except: ACTIONS_ALLOWED_TO_ANY_USER + TRASH_ACTIONS
     before_action :ensure_editing_brouillon, only: [:brouillon]
     before_action :ensure_brouillon_identity_complete, only: [:brouillon, :submit_brouillon]
     before_action :forbid_closed_submission!, only: [:submit_brouillon]
@@ -466,6 +468,7 @@ module Users
       end
 
       return if ensure_pro_connect_for_procedure(procedure)
+      return if ensure_france_connect_plus_for(procedure)
 
       dossier = Dossier.new(
         revision: params[:brouillon] ? procedure.draft_revision : procedure.active_revision,
@@ -775,7 +778,12 @@ module Users
         .uniq
       return if stable_ids.empty?
 
-      ChampData.where(dossier_id: dossiers.map(&:id), stable_id: stable_ids, stream: Dossier::MAIN_STREAM)
+      # A procedure that requires FranceConnect+ shows its values to a FranceConnect+ session only
+      hidden, shown = dossiers.partition { it.france_connect_plus_missing?(Current.user_session) }
+      @france_connect_plus_hidden_dossier_ids = hidden.map(&:id)
+      shown_dossier_ids = shown.map(&:id)
+
+      ChampData.where(dossier_id: shown_dossier_ids, stable_id: stable_ids, stream: Dossier::MAIN_STREAM)
         .find_each do |champ|
           (@champs_by_dossier_id[champ.dossier_id] ||= {})[champ.stable_id] = champ
         end

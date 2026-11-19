@@ -25,6 +25,7 @@ fr:
         estimated_duration_visible: Afficher le temps de remplissage estimé
         estimated_processing_duration_visible: Afficher le délai de traitement estimé
         for_tiers_enabled: Activer le dépot par un tiers
+        france_connect_plus_required: Exiger FranceConnect+ des usagers
         hide_instructeurs_email: Masquer l’adresse électronique des instructeurs
         id: Id
         libelle: Titre de la démarche
@@ -91,6 +92,8 @@ fr:
       models:
         procedure:
           attributes:
+            france_connect_plus_required:
+              present: "n’est pas compatible avec une démarche réservée aux utilisateurs ProConnect"
             api_particulier_token:
               invalid: 'n’est pas valide (format attendu : v3)'
               expired: 'a expiré le %{date}'

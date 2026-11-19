@@ -468,6 +468,16 @@ describe Users::CommencerController, type: :controller do
     end
   end
 
+  describe '#france_connect_plus' do
+    subject { get :france_connect_plus, params: { path: published_procedure.path } }
+
+    it 'comes back to the procedure start page after signing in with FranceConnect+' do
+      subject
+      expect(controller.stored_location_for(:user)).to eq(commencer_path(path: published_procedure.path))
+      expect(subject).to redirect_to(france_connect_plus_path)
+    end
+  end
+
   describe '#dossier_vide_pdf' do
     let(:procedure) { procedures.individual }
     before { get :dossier_vide_pdf, params: { path: procedure.path } }

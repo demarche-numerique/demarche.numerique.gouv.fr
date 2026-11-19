@@ -87,6 +87,14 @@ module Users
       redirect_to pro_connect_path
     end
 
+    def france_connect_plus
+      @procedure = retrieve_procedure
+      return procedure_not_found if @procedure.blank?
+
+      store_user_location!(@procedure)
+      redirect_to france_connect_plus_path
+    end
+
     def procedure_for_help
       retrieve_procedure
     end

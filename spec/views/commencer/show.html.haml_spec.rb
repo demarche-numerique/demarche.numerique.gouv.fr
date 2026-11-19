@@ -62,6 +62,81 @@ RSpec.describe 'commencer/show', type: :view do
     end
   end
 
+  context 'when the procedure requires FranceConnect+' do
+    before do
+      allow(FranceConnectService).to receive(:enabled?).and_return(true)
+      allow(FranceConnectPlusService).to receive(:enabled?).and_return(true)
+      procedure.france_connect_plus_required = true
+    end
+
+    context 'and no user is signed in' do
+      it 'offers FranceConnect+ only' do
+        subject
+        expect(rendered).to have_link('S’identifier avec FranceConnect', href: commencer_france_connect_plus_path(path: procedure.path), class: 'fr-connect--plus')
+        expect(rendered).not_to have_link(href: commencer_france_connect_path(path: procedure.path))
+        expect(rendered).not_to have_link('Créer un compte')
+        expect(rendered).not_to have_link('J’ai déjà un compte')
+      end
+
+      context 'with FranceConnect+ switched off' do
+        before { allow(FranceConnectPlusService).to receive(:enabled?).and_return(false) }
+
+        it 'stays closed and says why' do
+          subject
+          expect(rendered).to have_text('FranceConnect+ est momentanément indisponible.')
+          expect(rendered).not_to have_link(href: commencer_france_connect_path(path: procedure.path))
+          expect(rendered).not_to have_link('Créer un compte')
+        end
+      end
+    end
+
+    context 'and the user signed in another way' do
+      let(:user) { create :user }
+
+      before { Current.user_session = instance_double(UserSession, via_france_connect_plus?: false) }
+
+      it 'asks to sign in again with FranceConnect+' do
+        subject
+        expect(rendered).to have_link('S’identifier avec FranceConnect', href: commencer_france_connect_plus_path(path: procedure.path))
+        expect(rendered).not_to have_link('Commencer un dossier')
+      end
+    end
+
+    context 'and the user signed in another way opens the draft revision' do
+      let(:user) { create :user }
+
+      before do
+        assign(:revision, procedure.draft_revision)
+        Current.user_session = instance_double(UserSession, via_france_connect_plus?: false)
+      end
+
+      it 'asks to sign in again with FranceConnect+ on a published procedure' do
+        subject
+        expect(rendered).not_to have_link('Commencer un dossier')
+      end
+
+      context 'of a procedure not published yet' do
+        let(:procedure) { create(:procedure, :for_individual) }
+
+        it 'lets them start a test dossier' do
+          subject
+          expect(rendered).to have_link('Commencer un dossier', href: new_dossier_url(procedure_id: procedure.id, brouillon: true))
+        end
+      end
+    end
+
+    context 'and the user signed in with FranceConnect+' do
+      let(:user) { create :user }
+
+      before { Current.user_session = instance_double(UserSession, via_france_connect_plus?: true) }
+
+      it 'lets them start a dossier' do
+        subject
+        expect(rendered).to have_link('Commencer un dossier', href: new_dossier_url(procedure_id: procedure.id))
+      end
+    end
+  end
+
   context 'when the user is already signed in' do
     let(:user) { create :user }
 

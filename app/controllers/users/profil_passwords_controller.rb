@@ -16,7 +16,7 @@ module Users
       return render_password_error(:same_as_current) if same_as_current_password?
 
       if current_user.update_with_password(password_params)
-        sign_in(current_user, scope: :user, force: true, login_method: Current.user_session.login_method)
+        sign_in(current_user, scope: :user, force: true, login_method: Current.user_session.login_method, france_connect_information: Current.user_session.france_connect_information)
         UserMailer.password_changed(current_user).deliver_later
         flash.notice = t('.success')
         redirect_to profil_path(context: params[:context])

@@ -14,7 +14,10 @@ module Users
 
     def update_email
       requested_user = User.find_by(email: requested_email)
-      if requested_user.present?
+      if requested_user.present? && dossiers_unreachable_from_session?
+        alert = Current.user_session&.via_france_connect_plus? ? 'merge_another_identity' : 'merge_required'
+        flash.alert = t("errors.messages.france_connect_plus.#{alert}")
+      elsif requested_user.present?
         current_user.ask_for_merge(requested_user)
 
         flash.notice = t('devise.registrations.update_needs_confirmation')
@@ -38,13 +41,33 @@ module Users
       end
     end
 
-    def transfer_all_dossiers
-      transfer = DossierTransfer.initiate(next_owner_email, current_user.dossiers)
+    # A merge moves the account's dossiers and invites: those of a procedure requiring
+    # FranceConnect+ move from a session that may open them only
+    def dossiers_unreachable_from_session?
+      Dossier
+        .where(id: current_user.dossiers).or(Dossier.where(id: current_user.dossiers_invites))
+        .unreachable_from_session(Current.user_session)
+        .exists?
+    end
 
-      if transfer.valid?
-        flash.notice = t('.new_transfer', count: current_user.dossiers.count, email: next_owner_email)
-      else
-        flash.alert = transfer.errors.full_messages
+    def transfer_all_dossiers
+      # A procedure that requires FranceConnect+ lets its dossiers go from a session that may open them only
+      dossiers = current_user.dossiers.reachable_from_session(Current.user_session)
+      unreachable_count = current_user.dossiers.unreachable_from_session(Current.user_session).count
+
+      if unreachable_count.positive?
+        store_location_for(:user, profil_path)
+        flash.alert = france_connect_plus_left_out_message(unreachable_count)
+      end
+
+      if unreachable_count.zero? || dossiers.exists?
+        transfer = DossierTransfer.initiate(next_owner_email, dossiers)
+
+        if transfer.valid?
+          flash.notice = t('.new_transfer', count: dossiers.count, email: next_owner_email)
+        else
+          flash.alert = [flash.alert, *transfer.errors.full_messages].compact
+        end
       end
 
       redirect_to profil_path
@@ -137,6 +160,15 @@ module Users
 
     def next_owner_email
       params[:next_owner]
+    end
+
+    # A FranceConnect+ session of another identity than the dossiers' would loop through FranceConnect+
+    def france_connect_plus_left_out_message(count)
+      if Current.user_session&.via_france_connect_plus?
+        t('users.profil.transfer_all_dossiers.left_out_another_identity', count:)
+      else
+        t('users.profil.transfer_all_dossiers.left_out_france_connect_plus_required', count:, url: france_connect_plus_path)
+      end
     end
   end
 end

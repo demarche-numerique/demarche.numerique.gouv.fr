@@ -185,3 +185,5 @@ en:
         not_administrateur:
           one: "%{emails} is not associated with an administrator account"
           other: "%{emails} are not associated with administrator accounts"
+      pro_connect_restricted:
+        unavailable_france_connect_plus_required: "Unavailable: the procedure requires FranceConnect+ from its applicants."

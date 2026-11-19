@@ -146,6 +146,42 @@ describe Users::ProfilController, type: :controller do
       end
     end
 
+    context 'when the account has dossiers on a procedure that requires FranceConnect+' do
+      let(:existing_user) { create(:user) }
+
+      before do
+        create(:dossier, :en_construction, user:, procedure: create(:procedure, :published, france_connect_plus_required: true))
+      end
+
+      it 'refuses the merge from a session opened another way' do
+        sign_in(user, login_method: :password)
+
+        patch :update_email, params: { user: { email: existing_user.email } }
+
+        expect(user.reload.requested_merge_into).to be_nil
+        expect(flash.alert).to include('connectez-vous avec FranceConnect+')
+      end
+
+      it 'refuses the merge from a FranceConnect+ session of another identity, saying so' do
+        user.dossiers.update_all(france_connect_plus_sub: 'owner_sub')
+        fci = create(:france_connect_information, user:, france_connect_particulier_id: 'another_sub')
+        sign_in(user, login_method: :france_connect_plus, france_connect_information: fci)
+
+        patch :update_email, params: { user: { email: existing_user.email } }
+
+        expect(user.reload.requested_merge_into).to be_nil
+        expect(flash.alert).to include('dossiers liés à une autre identité FranceConnect+')
+      end
+
+      it 'asks for the merge from a FranceConnect+ session' do
+        sign_in(user, login_method: :france_connect_plus)
+
+        patch :update_email, params: { user: { email: existing_user.email } }
+
+        expect(user.reload.requested_merge_into).to eq(existing_user)
+      end
+    end
+
     describe 'warning the current address' do
       let(:previous_email) { user.email }
 
@@ -258,17 +294,70 @@ describe Users::ProfilController, type: :controller do
     let!(:dossiers) { Array.new(3) { create(:dossier, user: user) } }
     let(:next_owner) { 'loulou@lou.com' }
     let(:created_transfer) { DossierTransfer.first }
+    let(:france_connect_information) { nil }
+    let(:login_method) { :password }
 
     subject {
       post :transfer_all_dossiers, params: { next_owner: next_owner }
     }
 
-    before { subject }
+    before do
+      sign_in(user, login_method:, france_connect_information:)
+      subject
+    end
 
     it "transfer all dossiers" do
       expect(created_transfer.email).to eq(next_owner)
       expect(created_transfer.dossiers).to match_array(dossiers)
       expect(flash.notice).to eq("Le transfert de 3 dossiers à #{next_owner} est en cours")
+    end
+
+    context 'with a dossier of a procedure that requires FranceConnect+' do
+      let(:france_connect_plus_procedure) { create(:procedure, :published, france_connect_plus_required: true) }
+      let!(:dossiers) do
+        [
+          create(:dossier, user:),
+          create(:dossier, user:, procedure: france_connect_plus_procedure, france_connect_plus_sub: 'owner_sub'),
+        ]
+      end
+
+      it 'leaves it out from a session opened another way, with a link to sign in with FranceConnect+' do
+        expect(created_transfer.dossiers).to eq([dossiers.first])
+        expect(flash.notice).to eq("Le transfert d’un dossier à #{next_owner} est en cours")
+        expect(flash.alert).to eq("Un dossier n’a pas été transféré : sa démarche exige FranceConnect+. <a href='/france_connect_plus'>Connectez-vous avec FranceConnect+</a> pour le transférer.")
+        expect(controller.stored_location_for(:user)).to eq(profil_path)
+      end
+
+      context 'from a FranceConnect+ session of another identity' do
+        let(:login_method) { :france_connect_plus }
+        let(:france_connect_information) { create(:france_connect_information, user:, france_connect_particulier_id: 'another_sub') }
+
+        it 'leaves it out, saying it is bound to another identity' do
+          expect(created_transfer.dossiers).to eq([dossiers.first])
+          expect(flash.alert).to eq("Un dossier n’a pas été transféré : il est lié à une autre identité FranceConnect+ que celle avec laquelle vous êtes connecté.")
+        end
+      end
+
+      context 'and no other dossier' do
+        let!(:dossiers) { Array.new(2) { create(:dossier, user:, procedure: france_connect_plus_procedure) } }
+
+        it 'starts no transfer' do
+          expect(created_transfer).to be_nil
+          expect(flash.notice).to be_nil
+          expect(flash.alert).to eq("2 dossiers n’ont pas été transférés : leur démarche exige FranceConnect+. <a href='/france_connect_plus'>Connectez-vous avec FranceConnect+</a> pour les transférer.")
+        end
+      end
+
+      context 'and an empty email' do
+        let(:next_owner) { '' }
+
+        it 'says both' do
+          expect(flash.alert).to eq([
+            "Un dossier n’a pas été transféré : sa démarche exige FranceConnect+. <a href='/france_connect_plus'>Connectez-vous avec FranceConnect+</a> pour le transférer.",
+            "L’adresse électronique doit être rempli",
+          ])
+        end
+      end
     end
 
     context "next owner has an empty email" do
@@ -372,6 +461,14 @@ describe Users::ProfilController, type: :controller do
           expect(kept.reload.revoked_at).to be_nil
         end
       end
+    end
+
+    it 'keeps the rows of the sessions the identity opened' do
+      user_session = user.user_sessions.create!(login_method: :france_connect, france_connect_information: fci, expires_at: 1.day.from_now)
+
+      subject
+
+      expect(user_session.reload).to have_attributes(france_connect_information_id: nil, revoked_reason: 'france_connect_unlinked')
     end
 
     context 'when the fci does not exist (already deleted or unknown id)' do

@@ -43,6 +43,7 @@ scope 'france_connect_plus', as: :france_connect_plus, controller: :france_conne
   get '/' => :login
   get 'callback'
   get 'keys'
+  get 'required'
 end
 
 get 'pro_connect' => 'pro_connect#index'

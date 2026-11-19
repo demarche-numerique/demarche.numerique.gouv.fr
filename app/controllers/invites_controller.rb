@@ -1,16 +1,21 @@
 # frozen_string_literal: true
 
 class InvitesController < ApplicationController
+  include FranceConnectPlusRestrictionConcern
+
   before_action :authenticate_user!, except: [:show]
   before_action :store_user_location!, only: [:show]
 
   def index
     @dossier = current_user.dossiers.visible_by_user.find(params[:dossier_id])
+    ensure_france_connect_plus_for(@dossier)
   end
 
   def create
     email = params[:invite_email]&.downcase
     @dossier = current_user.dossiers.visible_by_user.find(params[:dossier_id])
+    return if ensure_france_connect_plus_for(@dossier)
+
     @invite = Invite.create(
       dossier: @dossier,
       user: User.find_by(email: email),
@@ -59,6 +64,8 @@ class InvitesController < ApplicationController
 
   def destroy
     invite = Invite.find_by(id: params[:id], dossier: current_user.dossiers.visible_by_user)
+
+    return if invite.present? && ensure_france_connect_plus_for(invite.dossier)
 
     if invite.present?
       @dossier = invite.dossier

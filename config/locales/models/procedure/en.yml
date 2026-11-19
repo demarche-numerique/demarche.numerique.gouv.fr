@@ -42,6 +42,7 @@ en:
         estimated_duration_visible: Show estimated fill time
         estimated_processing_duration_visible: Show estimated processing delay
         for_tiers_enabled: Enable a third party to submit a file
+        france_connect_plus_required: Require FranceConnect+ from applicants
         hide_instructeurs_email: Hide reviewers’ email addresses
         api_state:
           brouillon: Draft
@@ -85,6 +86,8 @@ en:
       models:
         procedure:
           attributes:
+            france_connect_plus_required:
+              present: "is not compatible with a procedure restricted to ProConnect users"
             api_particulier_token:
               invalid: 'is not valid (expected format: v3)'
               expired: 'expired on %{date}'

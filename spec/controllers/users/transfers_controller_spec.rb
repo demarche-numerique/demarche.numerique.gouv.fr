@@ -5,6 +5,18 @@ describe Users::TransfersController, type: :controller do
   let(:recipient_user) { create(:user) }
   let(:dossier) { create(:dossier, user: sender_user) }
 
+  describe 'POST create under a procedure that requires FranceConnect+' do
+    let(:procedure) { create(:procedure, :published, france_connect_plus_required: true) }
+    let(:dossier) { create(:dossier, :en_construction, user: sender_user, procedure:) }
+
+    it 'transfers nothing from a session opened another way' do
+      sign_in(sender_user, login_method: :password)
+
+      expect { post :create, params: { id: dossier.id, dossier_transfer: { email: recipient_user.email } } }.not_to change(DossierTransfer, :count)
+      expect(response).to redirect_to(france_connect_plus_required_path)
+    end
+  end
+
   describe 'DELETE destroy' do
     context "as transfer receiver" do
       let(:dossier_transfert) { DossierTransfer.initiate(recipient_user.email, [dossier]) }

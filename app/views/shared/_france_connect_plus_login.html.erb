@@ -1,17 +1,23 @@
-<div class="fr-connect-group fr-my-2w">
-  <p class="fr-mb-1w">
-    <%= t('views.shared.france_connect_login.plus_explanation') %>
+<% if FranceConnectPlusService.enabled? -%>
+  <div class="fr-connect-group fr-my-2w">
+    <p class="fr-mb-1w">
+      <%= t('views.shared.france_connect_login.plus_explanation') %>
+    </p>
+
+    <%= link_to(url, class: "fr-btn fr-connect fr-connect--plus") do -%>
+      <span class="fr-connect__login">
+        <%= t('views.shared.france_connect_login.login_button') %>
+      </span>
+
+      <span class="fr-connect__brand">FranceConnect</span>
+    <% end -%>
+
+    <p>
+      <%= link_to t('views.shared.france_connect_login.plus_help_link'), "https://www.franceconnect.gouv.fr/franceconnect-plus/", title: new_tab_suffix(t('views.shared.france_connect_login.plus_help_link')), **external_link_attributes %>
+    </p>
+  </div>
+<% else -%>
+  <p class="fr-my-2w">
+    <%= t('views.shared.france_connect_login.plus_unavailable') %>
   </p>
-
-  <%= link_to(url, class: "fr-btn fr-connect fr-connect--plus") do -%>
-    <span class="fr-connect__login">
-      <%= t('views.shared.france_connect_login.login_button') %>
-    </span>
-
-    <span class="fr-connect__brand">FranceConnect</span>
-  <% end -%>
-
-  <p>
-    <%= link_to t('views.shared.france_connect_login.plus_help_link'), "https://www.franceconnect.gouv.fr/franceconnect-plus/", title: new_tab_suffix(t('views.shared.france_connect_login.plus_help_link')), **external_link_attributes %>
-  </p>
-</div>
+<% end -%>

@@ -9,9 +9,27 @@ describe 'setting a password outside the reset form', type: :request do
   let(:user) { users.usager }
 
   before do
-    post_user_session(user)
+    open_the_session
 
     set_the_password
+  end
+
+  def open_the_session = post_user_session(user)
+
+  # A procedure requiring FranceConnect+ checks the identity the session was opened as
+  shared_examples 'a password set on a FranceConnect+ session' do
+    context 'on a FranceConnect+ session' do
+      let(:fci) { create(:france_connect_information, user:) }
+
+      def open_the_session
+        super
+        user.user_sessions.usable.sole.update!(login_method: :france_connect_plus, france_connect_information: fci)
+      end
+
+      it 'keeps the identity it was opened as' do
+        expect(user.user_sessions.usable.sole).to have_attributes(login_method: 'france_connect_plus', france_connect_information_id: fci.id)
+      end
+    end
   end
 
   shared_examples 'a password set on a live session' do
@@ -56,6 +74,7 @@ describe 'setting a password outside the reset form', type: :request do
     end
 
     it_behaves_like 'a password set on a live session'
+    it_behaves_like 'a password set on a FranceConnect+ session'
   end
 
   describe 'changing the password from the profile page' do
@@ -66,5 +85,6 @@ describe 'setting a password outside the reset form', type: :request do
     end
 
     it_behaves_like 'a password set on a live session'
+    it_behaves_like 'a password set on a FranceConnect+ session'
   end
 end
