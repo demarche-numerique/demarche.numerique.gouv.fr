@@ -6,11 +6,6 @@
 
   = turbo_stream.replace(c.block_id) do
     = render c
-= turbo_stream.replace 'breadcrumbs' , render(partial: 'shared/breadcrumbs_section',
-  locals: { steps: [[admin_procedures_back_label(@procedure), admin_procedures_back_path(@procedure)],
-                    [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)],
-                    ['Configuration des champs']] })
-
 = turbo_stream.replace 'errors-summary', render(Procedure::ErrorsSummary.new(procedure: @procedure, validation_context: @coordinate&.private? ? :private_type_de_champs_editor : :public_type_de_champs_editor))
 
 = turbo_stream.replace 'summary', render(TypesDeChampEditor::HeaderSectionsSummaryComponent.new(procedure: @procedure, is_private: @coordinate&.private?))

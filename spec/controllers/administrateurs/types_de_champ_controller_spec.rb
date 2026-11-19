@@ -66,6 +66,16 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       end
     end
 
+    context "rendering the stream" do
+      render_views
+      let(:type_champ) { TypeDeChamp.type_champs.fetch(:text) }
+
+      it "leaves the page breadcrumb alone" do
+        subject
+        expect(response.body).not_to have_css("turbo-stream[target='breadcrumbs']")
+      end
+    end
+
     context "validate" do
       let(:type_champ) { TypeDeChamp.type_champs.fetch(:text) }
       let(:params) { default_params.deep_merge(type_de_champ: { type_champ: nil }) }

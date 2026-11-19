@@ -1,0 +1,15 @@
+<%= turbo_stream.update "sticky-header" do %>
+  <%= render partial: "administrateurs/procedures/unpublished_changes_sticky_header", locals: { procedure: @procedure } %>
+<% end %>
+
+<%= turbo_stream.replace 'errors-summary', render(Procedure::ErrorsSummary.new(procedure: @procedure, validation_context: @tdc.public? ? :public_type_de_champs_editor : :private_type_de_champs_editor)) %>
+
+<% rendered = render @condition_component %>
+
+<% if rendered.present? %>
+  <%= turbo_stream.replace dom_id(@tdc, :condition), rendered %>
+<% else %>
+  <%= turbo_stream.remove dom_id(@tdc, :condition) %>
+<% end %>
+
+<%= render AutosaveNoticeTurboStreamComponent.new %>
