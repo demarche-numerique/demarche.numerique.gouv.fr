@@ -1,0 +1,14 @@
+<div aria-live="polite">
+  <div
+    class="<%= class_names('fr-fieldset__element', 'hidden' => !export_template.template_csv?) %>"
+    data-export-template-kind-target="csvOnly"
+  >
+    <%= render Dsfr::AlertComponent.new(state: :info, size: :sm) do |c| %>
+      <% c.with_body do %>
+        <p>
+          <%= local_assigns[:private_annotations] ? t('.private_message') : t('.message') %>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

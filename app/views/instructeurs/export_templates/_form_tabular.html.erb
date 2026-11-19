@@ -1,6 +1,6 @@
 <div class="fr-grid-row fr-grid-row--gutters">
   <div class="fr-col-12 fr-col-md-8">
-    <%= form_with model: [:instructeur, procedure, export_template], local: true, data: { turbo: true } do |f| %>
+    <%= form_with model: [:instructeur, procedure, export_template], local: true, data: { turbo: true, controller: 'export-template-kind' } do |f| %>
       <h2>Paramètres de l’export</h2>
       <%= f.hidden_field "[dossier_folder][template]", value: export_template.dossier_folder.template_json %>
       <%= f.hidden_field "[export_pdf][template]", value: export_template.export_pdf.template_json %>
@@ -34,17 +34,17 @@
 
         <div class="fr-fieldset__element fr-fieldset__element--inline">
           <div class="fr-radio-group">
-            <%= f.radio_button :kind, "xlsx", id: "xlsx" %>
+            <%= f.radio_button :kind, "xlsx", id: "xlsx", data: { export_template_kind_target: 'kind' } %>
             <label class="fr-label" for="xlsx">xlsx</label>
           </div>
 
           <div class="fr-radio-group">
-            <%= f.radio_button :kind, "ods", id: "ods" %>
+            <%= f.radio_button :kind, "ods", id: "ods", data: { export_template_kind_target: 'kind' } %>
             <label class="fr-label" for="ods">ods</label>
           </div>
 
           <div class="fr-radio-group">
-            <%= f.radio_button :kind, "csv", id: "csv" %>
+            <%= f.radio_button :kind, "csv", id: "csv", data: { export_template_kind_target: 'kind' } %>
             <label class="fr-label" for="csv">csv</label>
           </div>
         </div>
@@ -59,8 +59,20 @@
 
       <%= render partial: 'checkbox_group', locals: { title: 'Informations usager', all_columns: procedure.usager_columns_for_export, export_template: } %>
       <%= render partial: 'checkbox_group', locals: { title: 'Informations dossier', all_columns: procedure.dossier_columns_for_export, export_template: } %>
-      <%= render ExportTemplate::ChampsComponent.new("Formulaire usager", export_template, @public_type_de_champs) %>
-      <%= render ExportTemplate::ChampsComponent.new("Annotations privées", export_template, @private_type_de_champs) if @private_type_de_champs.any? %>
+
+      <%= render ExportTemplate::ChampsComponent.new("Formulaire usager", export_template, @public_type_de_champs) do %>
+        <% if @public_type_de_champs.any?(&:repetition?) %>
+          <%= render 'repetition_csv_notice', export_template: %>
+        <% end %>
+      <% end %>
+
+      <% if @private_type_de_champs.any? %>
+        <%= render ExportTemplate::ChampsComponent.new("Annotations privées", export_template, @private_type_de_champs) do %>
+          <% if @private_type_de_champs.any?(&:repetition?) %>
+            <%= render 'repetition_csv_notice', export_template:, private_annotations: true %>
+          <% end %>
+        <% end %>
+      <% end %>
 
       <%= render FixedFooterComponent.new do |footer| %>
         <% footer.with_action do %>
