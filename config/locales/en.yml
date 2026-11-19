@@ -1053,6 +1053,7 @@ en:
         not_available: "The certificate is not available, please try again later."
       justificatif_motivation:
         not_available: "The supporting document is not available."
+        scan_pending: "The supporting document is being scanned for viruses, please try again in a few minutes."
       show:
         attestation_depot:
           get_attestation_depot: "Get a deposit receipt"

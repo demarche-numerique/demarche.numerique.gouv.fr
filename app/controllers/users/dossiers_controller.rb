@@ -120,11 +120,12 @@ module Users
     def justificatif_motivation
       justificatif = dossier.justificatif_motivation
 
-      if justificatif.attached? && !justificatif.virus_scanner_error?
-        redirect_to justificatif.url, allow_other_host: true
+      if !justificatif.attached? || justificatif.virus_scanner_error?
+        redirect_to dossier_path(dossier), notice: t('.not_available')
+      elsif justificatif.virus_scanner.pending?
+        redirect_to dossier_path(dossier), notice: t('.scan_pending')
       else
-        flash.notice = t('.not_available')
-        redirect_to dossier_path(dossier)
+        redirect_to justificatif.url, allow_other_host: true
       end
     end
 
