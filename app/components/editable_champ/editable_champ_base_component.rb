@@ -25,6 +25,12 @@ class EditableChamp::EditableChampBaseComponent < ApplicationComponent
     @champ.describedby_id
   end
 
+  def describedby_present?
+    return @describedby_present if defined?(@describedby_present)
+
+    @describedby_present = EditableChamp::ChampLabelComponent.new(form: @form, champ: @champ).describedby_present?
+  end
+
   def labelledby_id_attr(label_id = nil)
     return {} if !@champ.in_repetition?
 
@@ -34,7 +40,7 @@ class EditableChamp::EditableChampBaseComponent < ApplicationComponent
   def fieldset_aria_opts
     if dsfr_champ_container == :fieldset
       labelledby = [input_label_id(@champ)]
-      labelledby << describedby_id if @champ.description.present?
+      labelledby << describedby_id if describedby_present?
 
       {
         aria: { labelledby: labelledby.join(' ') },

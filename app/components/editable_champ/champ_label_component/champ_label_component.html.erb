@@ -3,21 +3,6 @@
   <%= @form.label @champ.main_value_name, id: input_label_id(@champ), for: @champ.focusable_input_id, class: 'fr-label' do %>
     <%= render EditableChamp::ChampLabelContentComponent.new(form: @form, champ: @champ, seen_at: @seen_at, row_number: @row_number) %>
   <% end %>
-  <% if @champ.description.present? %>
-    <div class="fr-hint-text fr-mb-1w" id="<%= @champ.describedby_id %>">
-      <%= render SimpleFormatComponent.new(@champ.description, allow_a: true) %>
-    </div>
-  <% end %>
-  <% if @champ.formatted? && @champ.type_de_champ.formatted_advanced? && @champ.type_de_champ.expression_reguliere_indications.present? %>
-    <div class="fr-hint-text" id="<%= @champ.describedby_id %>">
-      <%= @champ.type_de_champ.expression_reguliere_indications %>
-    </div>
-  <% end %>
-  <% if @champ.type_de_champ.referentiel? && @champ.type_de_champ&.referentiel&.hint&.present? %>
-    <div class="fr-hint-text" id="<%= @champ.describedby_id %>">
-      <%= t('.referentiel', hint: @champ.type_de_champ.referentiel.hint) %>
-    </div>
-  <% end %>
 <% elsif @champ.legend_label? %>
   <legend
     class="fr-fieldset__legend fr-text--regular"
@@ -25,9 +10,32 @@
   >
     <%= render EditableChamp::ChampLabelContentComponent.new(form: @form, champ: @champ, seen_at: @seen_at, row_number: @row_number) %>
   </legend>
-  <% if @champ.description.present? %>
-    <div class="fr-hint-text" id="<%= @champ.describedby_id %>">
+<% end %>
+
+<%# the automatic hints come last, just above the input %>
+<% if (@champ.html_label? || @champ.legend_label?) && describedby_present? %>
+  <div
+    class="<%= class_names('fr-hint-text', 'fr-mb-1w': @champ.html_label?) %>"
+    id="<%= @champ.describedby_id %>"
+  >
+    <% if @champ.description.present? %>
       <%= render SimpleFormatComponent.new(@champ.description, allow_a: true) %>
-    </div>
-  <% end %>
+    <% end %>
+
+    <% if expression_reguliere_indications.present? %>
+      <p><%= expression_reguliere_indications %></p>
+    <% end %>
+
+    <% if referentiel_hint.present? %>
+      <p><%= t('.referentiel', hint: referentiel_hint) %></p>
+    <% end %>
+
+    <% hints_for_champ.each do |hint| %>
+      <p
+        <%= tag.attributes(id: hint[:id], data: (hint[:controller] ? { controller: hint[:controller], turbo_force: :browser } : {})) %>
+      >
+        <%= hint[:text] %>
+      </p>
+    <% end %>
+  </div>
 <% end %>

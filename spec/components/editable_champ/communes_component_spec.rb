@@ -33,12 +33,8 @@ describe EditableChamp::CommunesComponent, type: :component do
     context 'when the champ has no description' do
       before { tdc.update(description: nil) }
 
-      it { is_expected.to be_nil }
-
-      context 'and the champ has an error' do
-        before { dossier.errors.import(champ.errors.add(:value, 'error')) }
-
-        it { is_expected.to eq([champ.error_id(:value)]) }
+      it 'still targets the automatic hint' do
+        expect(subject).to eq([champ.describedby_id])
       end
     end
   end
