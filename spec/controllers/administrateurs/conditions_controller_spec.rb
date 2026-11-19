@@ -2,6 +2,7 @@
 
 describe Administrateurs::ConditionsController, type: :controller do
   include Logic
+  include ActionView::RecordIdentifier
 
   before { sign_in(procedure.administrateurs.first.user) }
 
@@ -10,6 +11,11 @@ describe Administrateurs::ConditionsController, type: :controller do
     let(:first_tdc) { procedure.draft_revision.type_de_champs.first }
     let(:second_tdc) { procedure.draft_revision.type_de_champs.second }
     let(:third_tdc) { procedure.draft_revision.type_de_champs.third }
+    let(:condition_target) { dom_id(third_tdc, :condition) }
+
+    def replaced_condition_block
+      Nokogiri::HTML5.fragment(response.body).at_css("turbo-stream[action='replace'][target='#{condition_target}'] template ##{condition_target}")
+    end
 
     before { sign_in(procedure.administrateurs.first.user) }
 
@@ -44,6 +50,10 @@ describe Administrateurs::ConditionsController, type: :controller do
         expect(assigns(:coordinate)).to eq(procedure.draft_revision.coordinate_for(third_tdc))
         expect(assigns(:upper_tdcs)).to eq([first_tdc, second_tdc])
         expect(response.body).to include('<turbo-stream action="replace" target="autosave-notice">')
+        expect(response.body).to have_css("turbo-stream[action='replace'][target='breadcrumbs']")
+        expect(response.body).to have_css("turbo-stream[action='update'][target='sticky-header']")
+        expect(response.body).to have_css("turbo-stream[action='replace'][target='errors-summary']")
+        expect(replaced_condition_block).to be_present
       end
 
       context 'when procedure is published' do
@@ -58,16 +68,21 @@ describe Administrateurs::ConditionsController, type: :controller do
     end
 
     describe '#add_row' do
+      render_views
+
       before { post :add_row, params: default_params, format: :turbo_stream }
 
       it do
         expect(third_tdc.reload.condition).to eq(empty_operator(empty, empty))
         expect(assigns(:coordinate)).to eq(procedure.draft_revision.coordinate_for(third_tdc))
         expect(assigns(:upper_tdcs)).to eq([first_tdc, second_tdc])
+        expect(replaced_condition_block).to be_present
       end
     end
 
     describe '#delete_row' do
+      render_views
+
       before { delete :delete_row, params: params.merge(row_index: 0), format: :turbo_stream }
 
       let(:params) { default_params.merge(type_de_champ: { condition_form: condition_form }) }
@@ -88,10 +103,13 @@ describe Administrateurs::ConditionsController, type: :controller do
         expect(third_tdc.reload.condition).to eq(nil)
         expect(assigns(:coordinate)).to eq(procedure.draft_revision.coordinate_for(third_tdc))
         expect(assigns(:upper_tdcs)).to eq([first_tdc, second_tdc])
+        expect(replaced_condition_block).to be_present
       end
     end
 
     describe '#destroy' do
+      render_views
+
       before do
         second_tdc.update(condition: empty_operator(empty, empty))
         delete :destroy, params: default_params, format: :turbo_stream
@@ -101,10 +119,21 @@ describe Administrateurs::ConditionsController, type: :controller do
         expect(third_tdc.reload.condition).to eq(nil)
         expect(assigns(:coordinate)).to eq(procedure.draft_revision.coordinate_for(third_tdc))
         expect(assigns(:upper_tdcs)).to eq([first_tdc, second_tdc])
+        expect(replaced_condition_block).to be_present
+      end
+
+      context 'on the first champ, which has no champ to depend on' do
+        let(:default_params) { super().merge(stable_id: first_tdc.stable_id) }
+
+        it 'removes the condition block' do
+          expect(response.body).to have_css("turbo-stream[action='remove'][target='#{dom_id(first_tdc, :condition)}']")
+        end
       end
     end
 
     describe '#change_targeted_champ' do
+      render_views
+
       before do
         second_tdc.update(condition: empty_operator(empty, empty))
         patch :change_targeted_champ, params: params, format: :turbo_stream
@@ -128,6 +157,7 @@ describe Administrateurs::ConditionsController, type: :controller do
         expect(third_tdc.reload.condition).to eq(ds_eq(champ_value(second_tdc.stable_id), constant(0)))
         expect(assigns(:coordinate)).to eq(procedure.draft_revision.coordinate_for(third_tdc))
         expect(assigns(:upper_tdcs)).to eq([first_tdc, second_tdc])
+        expect(replaced_condition_block).to be_present
       end
     end
 
