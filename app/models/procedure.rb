@@ -148,6 +148,10 @@ class Procedure < ApplicationRecord
     [*past_revisions, published_revision]
   end
 
+  def effective_revision_ids
+    brouillon? ? [draft_revision_id] : revisions.ids - [draft_revision_id]
+  end
+
   # The template tag parser's vocabulary (mail templates, attestations,
   # dossier submitted messages) — not the tag picker, which offers the active
   # revision only. Three properties are load-bearing:
