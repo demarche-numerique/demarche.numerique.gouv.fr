@@ -92,5 +92,31 @@ RSpec.describe ReleaseNotesController, type: :controller do
         end
       end
     end
+
+    describe 'pagination rendering' do
+      let(:user) { admin }
+
+      render_views
+
+      before do
+        6.times { create(:release_note, categories: ['administrateur'], released_on: Date.new(2023, 9, 1) + it.days) }
+      end
+
+      it 'lazy loads the next page in a turbo frame' do
+        get :index
+
+        expect(response.body).to include('<turbo-frame loading="lazy" id="announces-page-2"')
+        expect(response.body).to have_link('Annonces précédentes')
+      end
+
+      it 'renders the requested page in its own turbo frame' do
+        get :index, params: { page: 2 }
+
+        expect(response).to render_template('scrollable_list')
+        expect(response.body).to include('<turbo-frame id="announces-page-2">')
+        expect(response.body).to include('Sample release note body')
+        expect(response.body).not_to include('Pour l’admin')
+      end
+    end
   end
 end

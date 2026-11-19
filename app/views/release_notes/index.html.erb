@@ -1,0 +1,56 @@
+<div class="fr-container fr-my-5w">
+  <h2 class="fr-mb-5w">
+    <%= t('.title', app_name: Current.application_name) %>
+  </h2>
+
+  <div class="fr-grid-row fr-grid-row--gutters" data-turbo="true">
+    <div class="fr-col-md-3">
+      <%= form_with(url: release_notes_path, method: :get, data: { turbo_frame: 'announces', controller: 'autosubmit' }, html: { role: 'search' }) do |f| %>
+        <fieldset class="sidebar-filter">
+          <legend></legend>
+
+          <ul>
+            <li class="fr-py-2w fr-pl-2w">
+              <fieldset
+                class="fr-fieldset"
+                aria-labelledby="sidebar_category_legend"
+              >
+                <legend
+                  class="fr-fieldset__legend"
+                  id="sidebar_category_legend"
+                >
+                  <%= ReleaseNote.human_attribute_name(:categories) %>
+                </legend>
+
+                <% ReleaseNote::CATEGORIES.each do |category| %>
+                  <div class="fr-fieldset__element">
+                    <div class="fr-checkbox-group">
+                      <%= f.check_box :categories, { multiple: true, include_hidden: false, id: "filter_category_#{category}", checked: @categories.include?(category) }, category, nil %>
+
+                      <label
+                        class="fr-label"
+                        for="filter_category_<%= category %>"
+                      >
+                        <%= ReleaseNote.human_attribute_name("categories.#{category}") %>
+                      </label>
+                    </div>
+                  </div>
+                <% end %>
+              </fieldset>
+            </li>
+          </ul>
+        </fieldset>
+      <% end %>
+    </div>
+
+    <div class="fr-col-md-9">
+      <%= turbo_frame_tag "announces", data: { turbo_action: :advance } do %>
+        <% if @announces.any? %>
+          <%= render "page", announces: @announces, paginated_groups: @paginated_groups %>
+        <% else %>
+          <p class="fr-my-4w text-center"><%= t('.no_content') %></p>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
