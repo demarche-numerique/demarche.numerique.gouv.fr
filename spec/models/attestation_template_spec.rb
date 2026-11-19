@@ -20,6 +20,17 @@ describe AttestationTemplate, type: :model do
       expect(states.(acceptation, limit: 3)).to eq(current: ['accepte', 'en_instruction', 'en_construction'])
     end
 
+    it 'merges the latest deposits of every groupe instructeur' do
+      older = seeded.fetch('accepte')
+      other_groupe = create(:groupe_instructeur, procedure:)
+      recent = create(:dossier, :accepte, procedure:, groupe_instructeur: other_groupe, depose_at: 1.minute.from_now)
+
+      dossiers = acceptation.preview_dossiers(limit: 3)[:current]
+
+      expect(dossiers).to include(recent)
+      expect(dossiers).not_to include(older)
+    end
+
     it 'splits off the dossiers of previous revisions, decided ones first, then the most recent deposits' do
       seeded.fetch('en_construction').update_columns(depose_at: 1.hour.ago)
       seeded.fetch('en_instruction').update_columns(depose_at: 2.hours.ago)
