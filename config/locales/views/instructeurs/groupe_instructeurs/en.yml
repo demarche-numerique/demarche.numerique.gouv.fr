@@ -14,8 +14,8 @@ en:
         procedure_heading: "Procedure “%{libelle}”"
       add_instructeurs:
         assignment:
-          one: "The reviewer %{emails} was assigned to the group « %{groupe} »."
-          other: "The reviewers %{emails} were assigned to the group « %{groupe} »."
+          one: "The reviewer %{emails} was assigned to the team ‘%{groupe}’."
+          other: "The reviewers %{emails} were assigned to the team ‘%{groupe}’."
         wrong_address:
           one: "%{emails} is not a valid email address"
           other: "%{emails} are not valid email addresses"

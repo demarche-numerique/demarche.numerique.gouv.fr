@@ -131,6 +131,19 @@ describe Instructeurs::GroupeInstructeursController, type: :controller do
       end
     end
 
+    context 'when the instructeur reads the site in English' do
+      let(:new_instructeur_email) { "new_instructeur@#{instructeur.email_domain}" }
+
+      before do
+        instructeur.user.update!(locale: 'en')
+        subject
+      end
+
+      it 'calls the groupe instructeur a team' do
+        expect(flash.notice).to eq("The reviewer #{new_instructeur_email} was assigned to the team ‘groupe instructeur 2’.")
+      end
+    end
+
     context 'of an instructeur already known and with email verified' do
       let(:known_instructeur) { create(:instructeur, :email_verified, email: "connu@#{instructeur.email_domain}") }
       let(:new_instructeur_email) { known_instructeur.email }

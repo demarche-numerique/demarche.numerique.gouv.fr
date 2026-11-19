@@ -9,11 +9,11 @@ en:
       routing_modal:
         custom:
           title: Manual routing configuration
-          alert_title: Two default groups have been created
-          alert_body: "You now need to rename them and give them routing rules based on the “routable” fields of your form, i.e. fields of type:"
+          alert_title: Two default teams have been created
+          alert_body: "You now need to rename them and give them routing rules based on the ‘routable’ fields of your form, i.e. fields of type:"
         simple:
           title: Automatic routing configuration
-          alert_title: The teams have been created from the field “%{champ}”
+          alert_title: The teams have been created from the field ‘%{champ}’
       index:
         procedures: Procedures
       add_instructeurs:
@@ -21,11 +21,11 @@ en:
           one: "%{emails} is not a valid email address"
           other: "%{emails} are not valid email addresses"
         assignment:
-          one: "The reviewer %{emails} was assigned to the group « %{groupe} »."
-          other: "The reviewers %{emails} were assigned to the group « %{groupe} »."
+          one: "The reviewer %{emails} was assigned to the team ‘%{groupe}’."
+          other: "The reviewers %{emails} were assigned to the team ‘%{groupe}’."
       routing_alert_sticky_header:
-        routing_alert_html: "<strong>%{count} files</strong> have been deposited and are waiting to be processed on this procedure. These files have <strong>not been routed according to the configured routing</strong>. You must launch the routing to distribute them to the different groups."
-        routing_alert_with_invalid_rules_html: "<strong>%{count} files</strong> have been deposited and are waiting to be processed on this procedure. These files have <strong>not yet been routed</strong>. Once you have configured your routing rules, you will need to launch the routing to distribute them to the different groups."
+        routing_alert_html: "<strong>%{count} files</strong> have been deposited and are waiting to be processed on this procedure. These files have <strong>not been routed according to the configured routing</strong>. You must launch the routing to distribute them to the different teams."
+        routing_alert_with_invalid_rules_html: "<strong>%{count} files</strong> have been deposited and are waiting to be processed on this procedure. These files have <strong>not yet been routed</strong>. Once you have configured your routing rules, you will need to launch the routing to distribute them to the different teams."
         bulk_route: Launch routing
         bulk_routing_confirm: "Are you sure you want to launch the routing for the deposited files waiting to be processed ?"
       update_self_management_restricted_to_email_domain:
@@ -36,23 +36,23 @@ en:
           one: "%{emails} is not a valid email address"
           other: "%{emails} are not valid email addresses"
         add_all_groupes_assignment:
-          one: "The reviewer %{emails} was assigned to all groups."
-          other: "The reviewers %{emails} were assigned to all groups."
+          one: "The reviewer %{emails} was assigned to all teams."
+          other: "The reviewers %{emails} were assigned to all teams."
       remove_instructeur_from_all_groupes:
         remove_all_groupes_assignment:
-          one: "The reviewer %{emails} was removed from all groups."
-          other: "The reviewers %{emails} were removed from all groups."
+          one: "The reviewer %{emails} was removed from all teams."
+          other: "The reviewers %{emails} were removed from all teams."
         remove_all_groupes_partial:
-          one: "The reviewer %{emails} was not removed from all groups because they are the only reviewer in some groups."
-          other: "The reviewers %{emails} were not removed from all groups because they are the only reviewers in some groups."
+          one: "The reviewer %{emails} was not removed from all teams because they are the only reviewer in some teams."
+          other: "The reviewers %{emails} were not removed from all teams because they are the only reviewers in some teams."
       reaffectation:
-        title: "Reassign files from group « %{label} »"
+        title: "Reassign files from team ‘%{label}’"
         hint:
-          one: "The group « %{label} » has files. In order to delete it, you have to reassign them to the other group"
-          other: "The group « %{label} » has files. In order to delete it, you have to reassign them to one of the %{count} other groups"
-        label: New group
+          one: "The team ‘%{label}’ has files. In order to delete it, you have to reassign them to the other team."
+          other: "The team ‘%{label}’ has files. In order to delete it, you have to reassign them to one of the %{count} other teams."
+        label: New team
         select: Select
-        submit: Reassign files to this group
-        confirm: "Are you sure you want to reassign files from the group « %{label} » ?"
-        success: "Files from group « %{group_label} » have been reassigned to group « %{target_group_label} »"
-        error: "Please select a group in the list below"
+        submit: Reassign files to this team
+        confirm: "Are you sure you want to reassign files from the team ‘%{label}’?"
+        success: "Files from team ‘%{group_label}’ have been reassigned to team ‘%{target_group_label}’"
+        error: "Please select a team in the list below"
