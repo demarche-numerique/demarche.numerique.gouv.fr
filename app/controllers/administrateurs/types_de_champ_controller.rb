@@ -4,6 +4,7 @@ module Administrateurs
   class TypesDeChampController < AdministrateurController
     include ActiveSupport::NumberHelper
     include CsvParsingConcern
+    include TurboTypesDeChampConcern
 
     before_action :retrieve_procedure
 
@@ -17,7 +18,7 @@ module Administrateurs
         @coordinate = draft.coordinate_for(type_de_champ)
         ProcedureRevisionPreloader.load_one(@coordinate.revision)
         @created = champ_component_from(@coordinate, focused: true)
-        @morphed = champ_components_starting_at(@coordinate, 1)
+        refresh_below_created(@coordinate)
       else
         flash.alert = type_de_champ.errors.full_messages
       end
@@ -28,7 +29,7 @@ module Administrateurs
 
       type_de_champ = draft.find_and_ensure_exclusive_use(params[:stable_id])
       @coordinate = draft.coordinate_for(type_de_champ)
-      was_prefill_with_fc_information = type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?
+      was_prefill_with_fc_information = prefills_france_connect_date?(type_de_champ)
       update_params = type_de_champ_update_params(type_de_champ)
 
       if @coordinate.used_by_routing_rules? && changing_of_type?(type_de_champ, update_params)
@@ -40,6 +41,8 @@ module Administrateurs
         @morphed = [champ_component_from(@coordinate, focused: false, errors:)]
         flash.alert = errors
       else
+        dependencies_before = dependencies_of(type_de_champ)
+
         if changing_of_type?(type_de_champ, update_params)
           type_de_champ = type_de_champ.becomes_type(update_params['type_champ'])
         end
@@ -50,10 +53,11 @@ module Administrateurs
 
         if draft.update_type_de_champ(type_de_champ, update_params)
           reload_procedure_with_includes
-          @morphed = if was_prefill_with_fc_information != (type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?)
-            draft.revision_type_de_champs.map { |c| champ_component_from(c) }
+          if was_prefill_with_fc_information != prefills_france_connect_date?(type_de_champ)
+            @morphed = all_champ_components
           else
-            champ_components_starting_at(@coordinate)
+            @coordinate = draft.coordinate_for(type_de_champ)
+            refresh_below_updated(@coordinate, before: dependencies_before)
           end
         else
           flash.alert = type_de_champ.errors.full_messages
@@ -152,7 +156,11 @@ module Administrateurs
         if @coordinate.present?
           ProcedureRevisionPreloader.load_one(@coordinate.revision)
           @destroyed = @coordinate
-          @morphed = champ_components_starting_at(@coordinate)
+          if prefills_france_connect_date?(@coordinate.type_de_champ)
+            @morphed = all_champ_components
+          else
+            refresh_below_destroyed(@coordinate)
+          end
         end
       end
     end
@@ -208,9 +216,14 @@ module Administrateurs
 
     private
 
+    # A date prefilled by FranceConnect locks the option on every other date
+    def prefills_france_connect_date?(type_de_champ) = type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?
+
     def changing_of_type?(type_de_champ, update_params)
       update_params['type_champ'].present? && update_params['type_champ'] != type_de_champ.type_champ
     end
+
+    def all_champ_components = draft.revision_type_de_champs.map { champ_component_from(it) }
 
     def champ_components_starting_at(coordinate, offset = 0)
       coordinate

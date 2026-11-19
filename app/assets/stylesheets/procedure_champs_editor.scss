@@ -48,11 +48,12 @@
       align-items: center;
     }
 
-    &.first .move-up {
+    &:first-child .move-up {
       display: none;
     }
 
-    &.last .move-down {
+    // the last child of a block is the hidden template of its position menu
+    &:nth-last-child(2) .move-down {
       display: none;
     }
 
