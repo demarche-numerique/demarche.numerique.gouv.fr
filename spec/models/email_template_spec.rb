@@ -257,6 +257,8 @@ describe EmailTemplate do
         it do
           expect(dossier.justificatif_motivation).to be_attached
           is_expected.to include("Télécharger le document justificatif")
+          is_expected.to include("/dossiers/#{dossier.id}/justificatif_motivation")
+          is_expected.not_to include("active_storage")
         end
       end
     end

@@ -1053,6 +1053,8 @@ fr:
         identity_saved: "Identité enregistrée"
       attestation:
         not_available: "L’attestation n’est pas disponible, veuillez réessayer plus tard."
+      justificatif_motivation:
+        not_available: "Le document justificatif n’est pas disponible."
       attestation_depot:
         receipt: "Attestation de dépôt"
         description: "Ce document atteste que %{user_name} a déposé le %{date} un dossier sur la démarche « %{procedure} »."
