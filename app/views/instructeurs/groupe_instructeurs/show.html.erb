@@ -14,7 +14,7 @@
       <%= render partial: 'shared/breadcrumbs', locals: {
         steps: [
           [@procedure.libelle.truncate_words(10), instructeur_procedure_path(@procedure)],
-          [t('.title')]
+          [t('instructeurs.groupe_instructeurs.index.heading')]
         ]
       } %>
     <% end %>

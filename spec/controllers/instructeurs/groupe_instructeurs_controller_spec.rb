@@ -127,9 +127,10 @@ describe Instructeurs::GroupeInstructeursController, type: :controller do
       context 'without routing' do
         let(:routing_enabled) { false }
 
-        it 'truncates the procedure label and has no teams step' do
+        it 'truncates the procedure label, has no teams step and names the last step after the menu link' do
           expect(response.body).to have_link(truncated_libelle, href: instructeur_procedure_path(procedure))
           expect(response.body).not_to have_link(href: instructeur_groupes_path(procedure))
+          expect(response.body).to have_selector('.fr-breadcrumb__list li:last-child [aria-current="page"]', text: 'Gestion des instructeurs')
         end
       end
     end
