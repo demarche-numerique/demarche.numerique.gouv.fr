@@ -14,7 +14,7 @@ module Users
     layout 'procedure_context', only: [:identite, :update_identite, :siret, :update_siret]
 
     ACTIONS_ALLOWED_TO_ANY_USER = [:index, :new, :deleted_dossiers, :trash, :transfer_requests, :personnalisation, :update_personnalisation]
-    ACTIONS_ALLOWED_TO_OWNER_OR_INVITE = [:show, :destroy, :demande, :messagerie, :brouillon, :modifier, :update, :create_commentaire, :attestation_depot, :restore, :champ, :check_completude, :notify_owner_for_changes, :revert_prefill]
+    ACTIONS_ALLOWED_TO_OWNER_OR_INVITE = [:show, :destroy, :demande, :messagerie, :brouillon, :modifier, :update, :create_commentaire, :attestation_depot, :justificatif_motivation, :restore, :champ, :check_completude, :notify_owner_for_changes, :revert_prefill]
     TRASH_ACTIONS = [:show_in_trash, :show_deleted]
     ITEMS_PER_PAGE = 25
     SIMPLE_LIST_THRESHOLD = 5
@@ -115,6 +115,18 @@ module Users
     def show_deleted
       @deleted_dossier = deleted_dossier_for(params[:id])
       raise ActiveRecord::RecordNotFound if @deleted_dossier.nil?
+    end
+
+    def justificatif_motivation
+      justificatif = dossier.justificatif_motivation
+
+      if !justificatif.attached? || justificatif.virus_scanner_error?
+        redirect_to dossier_path(dossier), notice: t('.not_available')
+      elsif justificatif.virus_scanner.pending?
+        redirect_to dossier_path(dossier), notice: t('.scan_pending')
+      else
+        redirect_to justificatif.url, allow_other_host: true
+      end
     end
 
     def attestation_depot
@@ -672,7 +684,7 @@ module Users
         Dossier.hidden_by_user.or(Dossier.hidden_by_not_modified_for_a_long_time)
       elsif action_name == 'extend_conservation_and_restore' ||
             (action_name == 'show' && request.format.pdf?) ||
-            action_name == 'attestation'
+            action_name.in?(['attestation', 'justificatif_motivation'])
         Dossier.visible_by_user.or(Dossier.hidden_by_expired)
       else
         Dossier.visible_by_user

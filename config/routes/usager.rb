@@ -76,6 +76,7 @@ scope module: 'users', defaults: { nav_bar_profile: :user } do
       post 'commentaire' => 'dossiers#create_commentaire'
       patch 'restore', to: 'dossiers#restore'
       get 'attestation'
+      get 'justificatif_motivation'
       get 'transferer', to: 'dossiers#transferer'
       post 'transferer', to: 'transfers#create', as: :transfer
       get 'attestation_depot', format: :pdf

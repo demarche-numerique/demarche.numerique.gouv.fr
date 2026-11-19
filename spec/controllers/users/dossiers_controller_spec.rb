@@ -171,6 +171,66 @@ describe Users::DossiersController, type: :controller do
     end
   end
 
+  describe 'justificatif_motivation' do
+    let(:dossier) { dossiers.accepte }
+
+    before do
+      dossier.justificatif_motivation.attach(fixture_file_upload('spec/fixtures/files/piece_justificative_0.pdf', 'application/pdf'))
+      dossier.justificatif_motivation.blob.update!(virus_scan_result: ActiveStorage::VirusScanner::SAFE)
+    end
+
+    subject { get :justificatif_motivation, params: { id: dossier.id } }
+
+    context 'as the owner' do
+      before { sign_in(users.usager) }
+
+      it { expect(subject.location).to match '/rails/active_storage/disk/' }
+
+      context 'when the dossier is expired' do
+        before { dossier.hide_and_keep_track!(:automatic, :expired) }
+
+        it { expect(subject.location).to match '/rails/active_storage/disk/' }
+      end
+
+      context 'when the virus scan is pending' do
+        before { dossier.justificatif_motivation.blob.update!(virus_scan_result: ActiveStorage::VirusScanner::PENDING) }
+
+        it do
+          expect(subject).to redirect_to(dossier_path(dossier))
+          expect(flash.notice).to eq("Le document justificatif est en cours d’analyse antivirus, réessayez dans quelques minutes.")
+        end
+      end
+
+      context 'when the justificatif is infected' do
+        before { dossier.justificatif_motivation.blob.update!(virus_scan_result: ActiveStorage::VirusScanner::INFECTED) }
+
+        it do
+          expect(subject).to redirect_to(dossier_path(dossier))
+          expect(flash.notice).to eq("Le document justificatif n’est pas disponible.")
+        end
+      end
+    end
+
+    context 'as an invited user' do
+      before do
+        create(:invite, dossier:, user: users.admin)
+        sign_in(users.admin)
+      end
+
+      it { expect(subject.location).to match '/rails/active_storage/disk/' }
+    end
+
+    context 'as another user' do
+      before { sign_in(users.instructeur) }
+
+      it { expect(subject).to redirect_to(root_path) }
+    end
+
+    context 'when not signed in' do
+      it { expect(subject).to redirect_to(new_user_session_path) }
+    end
+  end
+
   describe 'GET #index' do
     let(:user) { create(:user) }
     before { sign_in(user) }

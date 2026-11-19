@@ -158,7 +158,7 @@ module TagsSubstitutionConcern
       description: '',
       lambda: -> (d) {
         if d.justificatif_motivation.attached?
-          external_link(url_for_justificatif_motivation(d), "Télécharger le document justificatif")
+          external_link(justificatif_motivation_dossier_url(d, host:), "Télécharger le document justificatif")
         else
           return "[l’instructeur n’a pas joint de document supplémentaire]"
         end
@@ -366,12 +366,6 @@ module TagsSubstitutionConcern
 
   def external_link(url, title = nil)
     link_to(title || url, url, target: '_blank', rel: 'noopener')
-  end
-
-  def url_for_justificatif_motivation(dossier)
-    if dossier.justificatif_motivation.attached?
-      Rails.application.routes.url_helpers.rails_blob_url(dossier.justificatif_motivation, host:)
-    end
   end
 
   def dossier_tags
