@@ -40,6 +40,12 @@ describe Administrateurs::ContactInformationsController, type: :controller do
         expect(flash[:notice]).to eq('Les informations de contact ont bien été ajoutées')
         expect(response).to redirect_to(admin_procedure_groupe_instructeur_path(procedure, groupe_instructeur))
       end
+
+      it 'translates the notice in english' do
+        cookies[:locale] = 'en'
+        post :create, params: valid_params
+        expect(flash[:notice]).to eq('The contact information has been added')
+      end
     end
 
     context 'with invalid params' do

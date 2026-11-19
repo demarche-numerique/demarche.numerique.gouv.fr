@@ -11,7 +11,7 @@ module Instructeurs
       assign_procedure_and_groupe_instructeur
       @contact_information = @groupe_instructeur.build_contact_information(contact_information_params)
       if @contact_information.save
-        redirect_to instructeur_groupe_path(@procedure, @groupe_instructeur), notice: "Les informations de contact ont bien été ajoutées"
+        redirect_to instructeur_groupe_path(@procedure, @groupe_instructeur), notice: t("shared.groupe_instructeurs.contact_information_flash.created")
       else
         flash[:alert] = @contact_information.errors.full_messages
         render :new
@@ -27,7 +27,7 @@ module Instructeurs
       assign_procedure_and_groupe_instructeur
       @contact_information = @groupe_instructeur.contact_information
       if @contact_information.update(contact_information_params)
-        redirect_to instructeur_groupe_path(@procedure, @groupe_instructeur), notice: "Les informations de contact ont bien été modifiées"
+        redirect_to instructeur_groupe_path(@procedure, @groupe_instructeur), notice: t("shared.groupe_instructeurs.contact_information_flash.updated")
       else
         flash[:alert] = @contact_information.errors.full_messages
         render :edit
@@ -37,7 +37,7 @@ module Instructeurs
     def destroy
       assign_procedure_and_groupe_instructeur
       @groupe_instructeur.contact_information.destroy
-      redirect_to instructeur_groupe_path(@procedure, @groupe_instructeur), notice: "Les informations de contact ont bien été supprimées"
+      redirect_to instructeur_groupe_path(@procedure, @groupe_instructeur), notice: t("shared.groupe_instructeurs.contact_information_flash.destroyed")
     end
 
     private
