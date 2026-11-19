@@ -374,6 +374,14 @@ describe Users::ProfilController, type: :controller do
       end
     end
 
+    it 'keeps the rows of the sessions the identity opened' do
+      user_session = user.user_sessions.create!(login_method: :france_connect, france_connect_information: fci, expires_at: 1.day.from_now)
+
+      subject
+
+      expect(user_session.reload).to have_attributes(france_connect_information_id: nil, revoked_reason: 'france_connect_unlinked')
+    end
+
     context 'when the fci does not exist (already deleted or unknown id)' do
       subject { delete :destroy_fci, params: { fci_id: 'unknown' } }
 

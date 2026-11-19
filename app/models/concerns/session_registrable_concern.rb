@@ -39,11 +39,11 @@ module SessionRegistrableConcern
     warden.raw_session["warden.user.#{scope}.session"] ||= {}
   end
 
-  def self.open_session!(record, warden, scope, login_method: nil, continuing: nil)
+  def self.open_session!(record, warden, scope, login_method: nil, france_connect_information: nil, continuing: nil)
     user_agent, remote_ip = warden.request.user_agent, warden.request.remote_ip
 
     # in db
-    user_session = record.open_user_session!(user_agent, remote_ip, login_method:, continuing:)
+    user_session = record.open_user_session!(user_agent, remote_ip, login_method:, france_connect_information:, continuing:)
 
     # in cookie
     warden.session(scope).merge!(LAST_SEEN_KEY => Date.current.iso8601, SESSION_KEY => user_session.id)
@@ -170,11 +170,12 @@ module SessionRegistrableConcern
   #
   # A row `continuing:` another one keeps its start and deadline, which the role
   # deadlines are counted from.
-  def open_user_session!(user_agent, ip_address = nil, login_method: nil, continuing: nil)
+  def open_user_session!(user_agent, ip_address = nil, login_method: nil, france_connect_information: nil, continuing: nil)
     user_sessions.create!(
       user_agent: sanitized_user_agent(user_agent),
       ip_address:,
       login_method:,
+      france_connect_information:,
       created_at: continuing&.created_at,
       expires_at: continuing ? continuing.expires_at : session_max_lifetime&.from_now
     )

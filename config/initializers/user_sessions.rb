@@ -31,7 +31,7 @@ Warden::Manager.after_set_user do |record, warden, options|
   in :authentication
     SessionRegistrableConcern.open_session!(record, warden, scope, login_method: :password)
   in :set_user if scope == :user
-    SessionRegistrableConcern.open_session!(record, warden, scope, login_method: options.fetch(:login_method))
+    SessionRegistrableConcern.open_session!(record, warden, scope, login_method: options.fetch(:login_method), france_connect_information: options[:france_connect_information])
   in :set_user
     SessionRegistrableConcern.open_session!(record, warden, scope, login_method: options.fetch(:login_method, :password))
 
