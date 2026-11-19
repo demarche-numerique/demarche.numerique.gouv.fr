@@ -6,8 +6,8 @@ module Administrateurs
 
     before_action :authenticate_administrateur!
     before_action :ensure_pro_connect_if_required!
-    before_action :alert_for_missing_siret_service
-    before_action :alert_for_missing_service
+    before_action :alert_for_missing_siret_service, if: -> { request.format.symbol == :html }
+    before_action :alert_for_missing_service, if: -> { request.format.symbol == :html }
     helper_method :administrateur_as_manager?
 
     def nav_bar_profile
