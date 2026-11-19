@@ -22,6 +22,11 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+
+    // A wrapped label would center its lines away from the button's icon.
+    .fr-btn--icon-left {
+      text-align: start;
+    }
   }
 }
 
