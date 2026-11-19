@@ -266,6 +266,17 @@ describe APIToken, type: :model do
           expect(api_token.context).to eq(administrateur_id: administrateur.id, procedure_ids: [], write_access: true, api_token_id: api_token.id)
         end
       end
+
+      context 'with a listed procedure put in the bin then restored' do
+        before do
+          api_token.update!(allowed_procedure_ids: [procedure.id])
+          procedure.discard!
+          api_token.store_new_ip('203.0.113.7')
+          procedure.undiscard!
+        end
+
+        it { expect(api_token.reload.procedure_ids).to eq([procedure.id]) }
+      end
     end
   end
 
