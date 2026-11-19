@@ -27,5 +27,5 @@
 <% end %>
 
 <% hints_for_champ.each do |hint| %>
-  <span class="fr-hint-text" <%= tag.attributes(data: (hint[:controller] ? { controller: hint[:controller] } : {})) %>><%= hint[:text] %></span>
+  <span class="fr-hint-text" <%= tag.attributes(id: hint[:id], data: (hint[:controller] ? { controller: hint[:controller], turbo_force: :browser } : {})) %>><%= hint[:text] %></span>
 <% end %>
