@@ -235,7 +235,7 @@ class FranceConnectController < ApplicationController
   end
 
   def securely_retrieve_fci
-    @fci = FranceConnectInformation.find_by(merge_token: params[:merge_token])
+    @fci = FranceConnectInformation.find_by(merge_token: params.expect(:merge_token))
 
     if @fci.nil? || !@fci.valid_for_merge?
       flash.alert = t('france_connect.flash.merger_token_expired', application_name: Current.application_name)
