@@ -24,7 +24,12 @@ describe Administrateurs::ChorusController, type: :controller do
       context 'rendered' do
         render_views
 
-        it { is_expected.to have_http_status(200) }
+        it 'renders the budget framework form' do
+          expect(subject).to have_http_status(200)
+          expect(response.body).to have_title(/\A\s*Cadre budgétaire · /)
+          expect(response.body).to have_selector('h1', text: 'Cadre budgétaire')
+          expect(response.body).to have_text('Cas d’usage')
+        end
       end
     end
   end
@@ -114,7 +119,10 @@ describe Administrateurs::ChorusController, type: :controller do
 
       it 'have links to add annotation' do
         expect(subject).to have_http_status(:success)
+        expect(response.body).to have_title(/\A\s*Ajouter l’engagement juridique · /)
+        expect(response.body).to have_selector('h1', text: 'Ajouter l’engagement juridique')
         expect(response.body).to have_link("Ajouter une annotation privée EJ", href: annotations_admin_procedure_path(procedure))
+        expect(response.body).to have_text("L’EJ sera automatiquement ajouté aux exports des dossiers")
       end
     end
   end

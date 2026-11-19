@@ -1,0 +1,20 @@
+en:
+  administrateurs:
+    chorus:
+      add_champ_engagement_juridique:
+        title: Add the legal commitment
+        breadcrumb: Add the legal commitment
+        heading: Add the legal commitment
+        use_case: Use case
+        add_field: Add a Legal commitment field to the internal fields to enter the legal commitment directly on the platform
+        exports: The legal commitment will automatically be added to the application exports
+        add_internal_field: Add a legal commitment internal field
+      edit:
+        title: Budget framework
+        breadcrumb: Budget framework
+        heading: Budget framework
+        use_case: Use case
+        grants_question: Are you handling a procedure related to grants that will be paid through Chorus?
+        planning_question: Will the reviewers handling the applications have to follow the budget planning of the reviewed applications?
+        matching: By entering the budget framework of the grant, you make it possible to match the applications reviewed on the platform with the data extracted from Chorus
+        exports: This budget framework will automatically be added to the application exports

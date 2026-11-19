@@ -1,0 +1,21 @@
+<% content_for(:title, t('.title')) %>
+<% render_procedure_sticky_title(@procedure) %>
+
+<%= render partial: 'shared/breadcrumbs_section', locals: { steps: [[admin_procedures_back_label(@procedure), admin_procedures_back_path(@procedure)], [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)], [t('.breadcrumb')]] } %>
+
+<div class="container">
+  <h1 class="fr-h1">
+    <%= t('.heading') %>
+  </h1>
+
+  <%= render Dsfr::CalloutComponent.new(title: t('.use_case')) do |c| %>
+    <% c.with_body do %>
+      <p><%= t('.grants_question') %></p>
+      <p><%= t('.planning_question') %></p>
+      <p><%= t('.matching') %></p>
+      <p><%= t('.exports') %></p>
+    <% end %>
+  <% end %>
+
+  <%= render Procedure::ChorusFormComponent.new(procedure: @procedure) %>
+</div>
