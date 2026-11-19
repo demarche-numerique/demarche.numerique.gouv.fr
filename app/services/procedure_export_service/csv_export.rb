@@ -49,5 +49,7 @@ class ProcedureExportService::CsvExport
     end
   end
 
-  def type_de_champs = @inline_repetitions.type_de_champs
+  def type_de_champs
+    @type_de_champs ||= @procedure.type_de_champs_for_procedure_export(with_repetitions: @inline_repetitions.enabled?)
+  end
 end

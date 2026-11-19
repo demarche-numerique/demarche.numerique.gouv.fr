@@ -154,7 +154,7 @@ class ProcedureExportService
   end
 
   def spreadsheet_columns(format)
-    type_de_champs = @inline_repetitions.type_de_champs
+    type_de_champs = procedure.type_de_champs_for_procedure_export(with_repetitions: @inline_repetitions.enabled?)
     inline_repetitions = @inline_repetitions.to_h
 
     Proc.new do |instance|

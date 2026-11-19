@@ -108,7 +108,9 @@ class ProcedureExportService::XlsxExport
     end
   end
 
-  def type_de_champs = @inline_repetitions.type_de_champs
+  def type_de_champs
+    @type_de_champs ||= @procedure.type_de_champs_for_procedure_export(with_repetitions: @inline_repetitions.enabled?)
+  end
 
   # Accumulates rows for the Etablissements, Avis and Repetition sheets while we
   # stream the main Dossiers sheet.

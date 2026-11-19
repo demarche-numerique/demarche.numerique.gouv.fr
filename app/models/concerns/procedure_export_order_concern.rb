@@ -13,14 +13,10 @@ module ProcedureExportOrderConcern
   LEGACY_EXPORT_ORDER_VERSION = 1
 
   # The columns of the main sheet: what the dossiers may hold out of any
-  # repetition, each repetition having a sheet of its own.
-  def type_de_champs_for_procedure_export
-    in_export_order(main_sheet_type_de_champs)
-  end
-
-  # The columns of the main sheet when the repetitions are flattened in it
-  def type_de_champs_with_repetitions_for_procedure_export
-    in_export_order(aggregated_type_de_champs.root_type_de_champs.filter(&:fillable?))
+  # repetition, each repetition having a sheet of its own, unless they are
+  # flattened in it.
+  def type_de_champs_for_procedure_export(with_repetitions: false)
+    in_export_order(with_repetitions ? aggregated_type_de_champs.root_type_de_champs.filter(&:fillable?) : main_sheet_type_de_champs)
   end
 
   def repetition_type_de_champs_for_procedure_export

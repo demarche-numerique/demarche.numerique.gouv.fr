@@ -9,14 +9,6 @@ class ProcedureExportService::InlineRepetitionsBuilder
 
   def enabled? = @export_template.present? && @export_template.inline_repetitions?
 
-  def type_de_champs
-    @type_de_champs ||= if enabled?
-      @procedure.type_de_champs_with_repetitions_for_procedure_export
-    else
-      @procedure.type_de_champs_for_procedure_export.to_a
-    end
-  end
-
   def to_h
     return {} if !enabled?
 
@@ -32,8 +24,7 @@ class ProcedureExportService::InlineRepetitionsBuilder
   private
 
   def repetition_columns
-    @repetition_columns ||= type_de_champs
-      .filter(&:repetition?)
+    @repetition_columns ||= @procedure.repetition_type_de_champs_for_procedure_export
       .to_h { [it.stable_id, columns_by_child(it)] }
       .filter { |_, children_columns| children_columns.any? }
   end
