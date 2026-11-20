@@ -151,7 +151,7 @@
                         class="fr-hint-text"
                         id="<%= numeric_type_champ_hint_id %>"
                       >
-                        <%= t(".numeric_type_champ_locked_hint") %>
+                        <%= coordinate.type_change_locked_message %>
                       </p>
                     <% end %>
                   </div>
@@ -500,10 +500,8 @@
       <%= render TypesDeChampEditor::SelectChampPositionComponent.new(revision:, coordinate:) %>
 
       <div class="flex right">
-        <% if coordinate.used_by_routing_rules? %>
-          <%= tag.span(t(".used_for_routing_html", link: link_to(t(".routing_link"), admin_procedure_groupe_instructeurs_path(revision.procedure_id, anchor: "routing-rules")))) %>
-        <% elsif coordinate.used_by_ineligibilite_rules? %>
-          <%= tag.span(t(".used_for_ineligibilite_html", link: link_to(t(".ineligibilite_link"), edit_admin_procedure_ineligibilite_rules_path(revision.procedure_id)))) %>
+        <% if coordinate.type_champ_locked? %>
+          <%= lock_explanation %>
         <% else %>
           <% if coordinate.prefilled_by_type_de_champ %>
             <span><%= t(".prefilled_referentiel") %></span>

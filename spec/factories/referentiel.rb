@@ -15,6 +15,29 @@ FactoryBot.define do
     end
 
     factory :api_referentiel, class: 'Referentiels::APIReferentiel' do
+      transient do
+        mentioned_stable_id { nil }
+      end
+
+      after(:build) do |referentiel, evaluator|
+        next if evaluator.mentioned_stable_id.nil?
+
+        mention_id = "tdc#{evaluator.mentioned_stable_id}"
+        referentiel.url_tiptap = {
+          "type" => "doc",
+          "content" => [
+            {
+              "type" => "paragraph",
+              "content" => [
+                { "type" => "text", "text" => "https://api.gouv.fr/" },
+                { "type" => "mention", "attrs" => { "id" => mention_id, "label" => "Champ" } },
+              ],
+            },
+          ],
+        }
+        referentiel.test_data_tiptap = { mention_id => "test" }
+      end
+
       trait :autocomplete do # finess
         mode { 'autocomplete' }
         url_tiptap do

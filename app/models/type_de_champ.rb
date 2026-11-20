@@ -562,6 +562,10 @@ class TypeDeChamp < ApplicationRecord
     ancestors.count(&:header_section?) + (header_section? ? 1 : 0)
   end
 
+  def stable_ids_used_in_referentiel_url
+    referentiel.is_a?(Referentiels::APIReferentiel) ? referentiel.tiptap_mention_stable_ids : []
+  end
+
   private
 
   def set_default_libelle

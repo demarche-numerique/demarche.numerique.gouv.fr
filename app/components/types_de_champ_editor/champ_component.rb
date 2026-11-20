@@ -18,6 +18,24 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
     type_de_champ.fillable? && !type_de_champ.must_be_mandatory? && !type_de_champ.cannot_be_mandatory?
   end
 
+  def lock_explanation
+    case coordinate.type_champ_lock_reason
+    when :used_by_routing_rules
+      tag.span(t(".used_for_routing_html", link: link_to(t(".routing_link"), admin_procedure_groupe_instructeurs_path(revision.procedure_id, anchor: "routing-rules"))))
+    when :used_by_referentiel_urls
+      tag.span(t(".used_for_referentiel_html", link: referentiel_link))
+    when :used_by_ineligibilite_rules
+      tag.span(t(".used_for_ineligibilite_html", link: link_to(t(".ineligibilite_link"), edit_admin_procedure_ineligibilite_rules_path(revision.procedure_id))))
+    end
+  end
+
+  def referentiel_link
+    referentiel_type_de_champ = coordinate.referentiel_type_de_champ_using_url
+    return t(".referentiel_link") if referentiel_type_de_champ.nil?
+
+    link_to(t(".referentiel_link"), edit_admin_procedure_referentiel_path(revision.procedure_id, referentiel_type_de_champ.stable_id), data: { turbo: false })
+  end
+
   def type_de_champ_path
     admin_procedure_type_de_champ_path(procedure, type_de_champ.stable_id)
   end
