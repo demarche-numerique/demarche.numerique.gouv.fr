@@ -67,7 +67,7 @@ DS/GlobalI18nTranslate:
     - 'app/views/**/*'
   Exclude:
     # hints_for_champ and friends run before render, where the component `t` raises
-    - 'app/components/editable_champ/champ_label_content_component.rb'
+    - 'app/components/editable_champ/champ_label_component.rb'
 
 Bundler/DuplicatedGem:
   Enabled: true

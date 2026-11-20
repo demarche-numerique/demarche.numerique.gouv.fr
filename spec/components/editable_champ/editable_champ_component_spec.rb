@@ -60,6 +60,57 @@ describe EditableChamp::EditableChampComponent, type: :component do
     end
   end
 
+  describe "automatic hint" do
+    let(:description) { "Description de l'admin" }
+    let(:public_type_de_champs) { [{ type:, description: }] }
+
+    before do
+      ActionView::Base.empty.form_for(champ, url: '/') do |form|
+        render_inline(described_class.new(form:, champ:))
+      end
+    end
+
+    let(:describedby) { page.find_by_id(champ.describedby_id) }
+
+    context "with an email champ" do
+      let(:type) { :email }
+
+      it "renders the hint after the description, outside the label, and describes the input with it" do
+        expect(page).not_to have_css("label .fr-hint-text")
+        expect(describedby.text.squish).to eq("Description de l'admin Exemple : adresse@mail.com")
+        expect(page.find("input[type=email]")["aria-describedby"]).to start_with(champ.describedby_id)
+      end
+
+      context "without description" do
+        let(:description) { nil }
+
+        it { expect(describedby.text.squish).to eq("Exemple : adresse@mail.com") }
+      end
+    end
+
+    context "with a multiple choice champ rendered as checkboxes" do
+      let(:type) { :multiple_drop_down_list }
+      let(:description) { nil }
+
+      it "renders the hint outside the legend and labels the fieldset with it" do
+        expect(page).not_to have_css("legend .fr-hint-text")
+        expect(describedby.text).to include("Vous pouvez sélectionner un ou plusieurs choix.")
+        expect(page.find("fieldset")["aria-labelledby"]).to include(champ.describedby_id)
+      end
+    end
+
+    context "with an advanced formatted champ with regex indications" do
+      let(:public_type_de_champs) do
+        [{ type: :formatted, formatted_mode: "advanced", expression_reguliere: "\\d+", expression_reguliere_indications: "Des chiffres", description: }]
+      end
+
+      it "renders description and indications under a single id" do
+        expect(page).to have_css("##{champ.describedby_id}", count: 1)
+        expect(describedby.text.squish).to eq("Description de l'admin Des chiffres")
+      end
+    end
+  end
+
   describe "#row_number_if_in_repetition" do
     subject { component.row_number_if_in_repetition }
 
