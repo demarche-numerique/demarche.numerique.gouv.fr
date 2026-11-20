@@ -10,6 +10,8 @@ module TurboTypesDeChampConcern
   # groups them under as a top-level section.
   Footprint = Data.define(:attributes, :sources, :section, :header_section_level, :prefilled_stable_ids)
 
+  NO_FOOTPRINT = Footprint.new(attributes: {}, sources: [], section: nil, header_section_level: nil, prefilled_stable_ids: [])
+
   private
 
   def footprint_of(type_de_champ)

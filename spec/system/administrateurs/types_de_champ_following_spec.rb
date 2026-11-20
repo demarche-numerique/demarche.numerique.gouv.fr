@@ -79,6 +79,18 @@ describe 'Editing a champ keeps the champs below it up to date', js: true do
     within("#{editor_of('Liste des associés')} > .type-de-champ-add-button") { add_champ }
     expect(page).to have_css("#{footer_of('Liste des associés')} .move-down", visible: :visible)
     expect_the_state_of_a_reload
+
+    within("#{editor_of('Vous êtes')} > .type-de-champ-add-button") { add_champ }
+    within(footer_of('Majeur')) { expect(page).to have_css('.position', exact_text: '4') }
+    expect_the_state_of_a_reload
+
+    within(editor_of('Demandeur')) { accept_alert { click_on 'Supprimer' } }
+    within(footer_of('Vous êtes')) { expect(page).to have_css('.position', exact_text: '1') }
+    expect_the_state_of_a_reload
+
+    within(editor_of('Vous êtes')) { accept_alert { click_on 'Supprimer' } }
+    within(editor_of('Société cotée')) { expect(page).to have_css('.errors-summary') }
+    expect_the_state_of_a_reload
   end
 
   scenario 'editing sources cited below' do

@@ -15,7 +15,10 @@ module Administrateurs
       if type_de_champ.valid?
         edited(type_de_champ)
         @created = champ_component_from(type_de_champ, focused: true)
-        @morphed = champ_components_from(siblings_starting_at(type_de_champ, 1))
+        following = siblings_starting_at(type_de_champ, 1)
+        below = refresh_below(type_de_champ, following, before: NO_FOOTPRINT, after: footprint_of(type_de_champ))
+        @morphed = champ_components_from(below)
+        @renumbered = following - below
       else
         flash.alert = type_de_champ.errors.full_messages
       end
@@ -134,12 +137,22 @@ module Administrateurs
         refuse(type_de_champ, "« #{type_de_champ.libelle} » est utilisé pour le routage, vous ne pouvez pas le supprimer.")
       elsif type_de_champ.present?
         index = type_de_champ.flat_siblings.index(type_de_champ)
+        before = footprint_of(type_de_champ)
         # nil in case of replay (double click, champ already removed)
         if draft.remove_type_de_champ(params[:stable_id]).present?
           edited(type_de_champ)
           @destroyed = type_de_champ
-          # the ones that followed it
-          @morphed = champ_components_from(@siblings.drop(index))
+
+          # the other dates lose the lock
+          if type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?
+            @morphed = champ_components_from(draft.type_de_champs)
+          else
+            # the ones that followed it
+            following = @siblings.drop(index)
+            below = refresh_below(type_de_champ, following, before:, after: NO_FOOTPRINT)
+            @morphed = champ_components_from(below)
+            @renumbered = following - below
+          end
         end
       end
     end
