@@ -271,7 +271,33 @@ class TypeDeChampTree < Data.define(:public_children, :private_children)
 
   def as_json(*) = { public_children: public_children.map(&:as_json), private_children: private_children.map(&:as_json) }
 
+  # The coordinates the tree stands for, not saved, a parent before its
+  # children: from_coordinates gives the tree back. A header section comes
+  # right before what it holds, and only a repetition is a parent. Positions
+  # count from 0 in the form, in the annotations and in each repetition.
+  def to_coordinates(type_de_champs_by_id)
+    [public_children, private_children].flat_map { coordinates_for(it, nil, type_de_champs_by_id) }
+  end
+
   private
+
+  def coordinates_for(nodes, parent, type_de_champs_by_id)
+    siblings(nodes, type_de_champs_by_id).each_with_index.flat_map do |(node, type_de_champ), position|
+      coordinate = ProcedureRevisionTypeDeChamp.new(type_de_champ:, parent:, position:)
+      children = type_de_champ.repetition? ? coordinates_for(node.children, coordinate, type_de_champs_by_id) : []
+
+      [coordinate, *children]
+    end
+  end
+
+  # the nodes coordinates lay side by side, each with its type de champ
+  def siblings(nodes, type_de_champs_by_id)
+    nodes.flat_map do |node|
+      type_de_champ = type_de_champs_by_id.fetch(node.type_de_champ_id)
+
+      [[node, type_de_champ], *(type_de_champ.repetition? ? [] : siblings(node.children, type_de_champs_by_id))]
+    end
+  end
 
   def with_ancestors(nodes, ancestors = [])
     nodes.flat_map { [[it, ancestors], *with_ancestors(it.children, [*ancestors, it])] }

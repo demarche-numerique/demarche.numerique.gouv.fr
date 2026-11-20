@@ -96,8 +96,19 @@ class ProcedureRevision < ApplicationRecord
 
   # The tree as the coordinates have it by now: they remain what the editor
   # writes, the tree following them, until it edits the tree itself. For an
-  # edit made elsewhere: a new draft, a clone, a recovery import.
+  # edit made elsewhere: a clone, a recovery import.
   def store_type_de_champ_tree = edit_type_de_champs { self }
+
+  # The other way round, for a revision made out of a tree (a new draft): the
+  # coordinates the editor is to write from.
+  def create_coordinates_from_type_de_champ_tree
+    type_de_champs_by_id = TypeDeChamp.where(id: type_de_champ_tree.type_de_champ_ids).index_by(&:id)
+
+    type_de_champ_tree.to_coordinates(type_de_champs_by_id).each { it.update!(revision: self) }
+    revision_type_de_champs.reset
+
+    self
+  end
 
   def add_type_de_champ(params)
     parent_stable_id = params.delete(:parent_stable_id)
