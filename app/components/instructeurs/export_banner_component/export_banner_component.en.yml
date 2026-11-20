@@ -1,0 +1,6 @@
+---
+en:
+  pending_html: Your last export is being generated. You can find all your exports in the <a href="%{url}">exports list</a>.
+  available_html: The last export in %{file_format} format is ready. You can <a href="%{file_url}">download it</a>.
+  failed: Your last export in %{file_format} format could not be created.
+  close: Hide message
