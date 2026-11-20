@@ -8,11 +8,6 @@ class LLM::SuggestionOrderingService
     merge_suggestions_into_originals(llm_rule_suggestion)
   end
 
-  def self.build_original_list(revision)
-    revision.public_revision_type_de_champs
-      .to_a
-   end
-
   def self.ordered_label_suggestions(llm_rule_suggestion)
     root_tdcs, children_tdcs = llm_rule_suggestion.llm_rule_suggestion_items
       .partition { |item| item.payload['parent_id'].nil? }
@@ -28,7 +23,7 @@ class LLM::SuggestionOrderingService
 
   def self.merge_suggestions_into_originals(llm_rule_suggestion)
     suggestions = llm_rule_suggestion.llm_rule_suggestion_items.to_a
-    original_items = llm_rule_suggestion.procedure_revision.public_revision_type_de_champs.to_a
+    original_items = llm_rule_suggestion.procedure_revision.public_root_type_de_champs
 
     validate_no_cycles!(suggestions)
 
