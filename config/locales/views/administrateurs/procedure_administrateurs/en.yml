@@ -3,7 +3,7 @@ en:
     procedure_administrateurs:
       add_admin_form:
         label: Add an administrator
-        hint_html: "Enter the email address of an administrator already registered on %{application_name} to allow them to edit “%{libelle}”. Example: marie.dupont@exemple.fr"
+        hint_html: "Enter the email address of an administrator already registered on %{application_name} to allow them to edit ‘%{libelle}’. Example: marie.dupont@exemple.fr"
         submit: Add as administrator
       index:
         title: Administrators

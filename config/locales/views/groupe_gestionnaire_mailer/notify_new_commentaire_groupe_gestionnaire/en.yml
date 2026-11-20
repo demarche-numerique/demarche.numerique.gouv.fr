@@ -1,4 +1,4 @@
 en:
   groupe_gestionnaire_mailer:
     notify_new_commentaire_groupe_gestionnaire:
-      subject: "You have a new message in the admins group \"%{name}\""
+      subject: "You have a new message in the admins group ‘%{name}’"

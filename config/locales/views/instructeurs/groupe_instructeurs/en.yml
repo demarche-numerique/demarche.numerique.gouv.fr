@@ -6,13 +6,13 @@ en:
         heading: Reviewer management
         groups_list: List of teams
         view: view
-        view_group: "team “%{label}”"
+        view_group: "team ‘%{label}’"
       show:
         title_with_group: "Reviewers of team %{label}"
         title: Reviewers
         groups: Teams
-        group_heading: "Team “%{label}”"
-        procedure_heading: "Procedure “%{libelle}”"
+        group_heading: "Team ‘%{label}’"
+        procedure_heading: "Procedure ‘%{libelle}’"
       add_instructeurs:
         assignment:
           one: "The reviewer %{emails} was assigned to the team ‘%{groupe}’."

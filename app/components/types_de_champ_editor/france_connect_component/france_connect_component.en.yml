@@ -11,7 +11,7 @@ en:
 
   important_information: "Important information"
 
-  notice_intro: 'A "Supporting document" field will be displayed in the following cases:'
+  notice_intro: 'A ‘Supporting document’ field will be displayed in the following cases:'
 
   notice_cases:
     - "The user did not log in using FranceConnect;"

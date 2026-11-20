@@ -37,16 +37,16 @@ en:
         refuse: 'Refused'
         sans_suite: 'No further action'
       reaffectation:
-        success: "The file n° %{dossier_id} has been re-assigned to « %{label} » group."
+        success: "The file n° %{dossier_id} has been re-assigned to ‘%{label}’ group."
         error: "Please select a group in the list below"
       reaffectation:
         title: "Reassign the file n° %{dossier_id} to another group"
         hint:
-          one: "This file is assigned to group « %{label} ». You can reassign it to the other group"
-          other: "This file is assigned to group« %{label} ». You can reassign it to one of the %{count} other groups"
-        success: "The file n° %{dossier_id} has been re-assigned to « %{label} » group."
+          one: "This file is assigned to group ‘%{label}’. You can reassign it to the other group"
+          other: "This file is assigned to group ‘%{label}’. You can reassign it to one of the %{count} other groups"
+        success: "The file n° %{dossier_id} has been re-assigned to ‘%{label}’ group."
         error: "Please select a group in the list below"
         submit: Reassign the file to this group
         label: New group
         select: Select
-        confirm: "Are you sure you want to reassign the file n° %{dossier_id} to the group « %{label} » ?"
+        confirm: "Are you sure you want to reassign the file n° %{dossier_id} to the group ‘%{label}’?"

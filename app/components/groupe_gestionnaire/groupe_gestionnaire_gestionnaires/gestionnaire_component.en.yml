@@ -1,4 +1,4 @@
 en:
   yourself_indicator: "(It's you!)"
   remove_from_group: "Remove from group"
-  remove_confirm: "Remove « %{email} » from the group « %{group_name} » ?"
+  remove_confirm: "Remove ‘%{email}’ from the group ‘%{group_name}’?"

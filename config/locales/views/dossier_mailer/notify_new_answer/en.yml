@@ -1,13 +1,13 @@
 en:
   dossier_mailer:
     notify_new_answer:
-      subject: New message on your file no. %{dossier_id} « %{libelle_demarche} »
+      subject: New message on your file no. %{dossier_id} ‘%{libelle_demarche}’
       body_html: |
-        You received <b>a new message</b> from the service in charge of reviewing your file on « %{libelle_demarche} ».
+        You received <b>a new message</b> from the service in charge of reviewing your file on ‘%{libelle_demarche}’.
       link: |
         To read the message and answer it, select the following link:
       body_draft_html: |
-        You received <b>a new message</b> from the service in charge of reviewing the file you started a draft for on the procedure « %{libelle_demarche} ».
+        You received <b>a new message</b> from the service in charge of reviewing the file you started a draft for on the procedure ‘%{libelle_demarche}’.
       contact_html: "If you chose to contact the service, please send an email directly to this address: <a href=\"mailto:%{email}\">%{email}</a>"
       contact_no_email: If you chose to contact the service, please use the contact infos available below.
       access_message: Read the message

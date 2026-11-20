@@ -11,7 +11,7 @@ en:
     hint: "By default, a reviewer can only add addresses from their own domain (example: @interieur.gouv.fr)."
   can_edit_dossiers:
     title: Editing of user files by reviewers
-    hint: This option allows reviewers to edit user files themselves. Any change made by a reviewer to a user's file will be logged and shown in the "Involved people" tab of the file. The user will also be notified of the details of the changes made.
+    hint: This option allows reviewers to edit user files themselves. Any change made by a reviewer to a user's file will be logged and shown in the ‘Involved people’ tab of the file. The user will also be notified of the details of the changes made.
   routing: Routing
   routing_configuration_notice_1:
     Routing allows you to route files to different teams.
@@ -21,15 +21,15 @@ en:
     You have configured routing with <strong>%{groupe_instructeurs_count} teams.</strong>
   routing_configuration_notice_2_html: |
     To configure it, your form must contain
-    at least one <strong>"routable field"</strong>, i.e., a field of the following type:
+    at least one <strong>‘routable field’</strong>, i.e., a field of the following type:
   routing_configuration_notice_3_html: |
     Add this field to the <a href="%{path}">form fields</a> edit page.
   configure_routing: Configure routing
   delete_routing: Delete routing
   deleting: Deleting…
-  delete_title: No files will be deleted. Teams will be deleted. Only reviewers in the "%{defaut_label}" team will remain assigned to the process.
+  delete_title: No files will be deleted. Teams will be deleted. Only reviewers in the ‘%{defaut_label}’ team will remain assigned to the process.
   delete_confirmation: |
-    Please note: All files will be moved to the "%{defaut_label}" team, and only reviewers in this team will remain assigned to the process. Do you wish to continue?
+    Please note: All files will be moved to the ‘%{defaut_label}’ team, and only reviewers in this team will remain assigned to the process. Do you wish to continue?
   routing_configuration_title: Routing configuration
   routing_configuration_subtitle: Choice of configuration type
   configuration: Configuration
@@ -39,7 +39,7 @@ en:
       hint: automatically creates groups from the possible values of a form field
     manual:
       label: Manual
-      hint: you are free to create and configure groups using the "routable" fields of the user form
+      hint: you are free to create and configure groups using the ‘routable’ fields of the user form
   cancel: Cancel
   continue: Continue
   routage_doc:

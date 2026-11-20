@@ -3,7 +3,7 @@ en:
   street_fr_hint: 'Example : 12 Main Street'
   street_international_hint: 'Example : 12 Main Street'
   search_error: 'An error occurred while searching'
-  search_error_support_degraded_mode: 'An error occurred while searching. If the problem persists, check "I cannot find my address in the suggestions" and continue.'
+  search_error_support_degraded_mode: 'An error occurred while searching. If the problem persists, check ‘I cannot find my address in the suggestions’ and continue.'
   city_label: City
   city_hint: 'Example : London'
   commune_label: City or Municipality

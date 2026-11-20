@@ -1,7 +1,7 @@
 ---
 en:
-  clear_filter: Clear the filter « %{filter_label} »
+  clear_filter: Clear the filter ‘%{filter_label}’
   search_filter_dossiers: Search / filter files
   toggle_filters: Show / hide filters
   enable_filters_customization: Customize filters
-  no_filters: Click on « Customize filters » to add search criteria / filters.
+  no_filters: Click on ‘Customize filters’ to add search criteria / filters.
