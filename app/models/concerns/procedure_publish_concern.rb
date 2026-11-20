@@ -131,20 +131,6 @@ module ProcedurePublishConcern
     type_de_champs.where.not(id: laid_out).find_each(&:destroy)
   end
 
-  def move_new_children_to_new_parent_coordinate(new_draft)
-    children = new_draft.revision_type_de_champs
-      .includes(parent: :type_de_champ)
-      .where.not(parent_id: nil)
-    coordinates_by_stable_id = new_draft.revision_type_de_champs
-      .includes(:type_de_champ)
-      .index_by(&:stable_id)
-
-    children.each do |child|
-      child.update!(parent: coordinates_by_stable_id.fetch(child.parent.stable_id))
-    end
-    new_draft.reload
-  end
-
   def cleanup_type_de_champs_options!
     draft_revision.type_de_champs.each do |type_de_champ|
       type_de_champ.update!(options: type_de_champ.clean_options)
