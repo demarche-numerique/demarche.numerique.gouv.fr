@@ -31,9 +31,11 @@ class DossierProjectionService
 
     champ_data_by_dossier_id = if champ_columns.any?
       stable_ids = champ_columns.map(&:stable_id)
-      ChampData.where(dossier_id: dossiers_ids, stable_id: stable_ids, stream: Dossier::MAIN_STREAM)
+      champ_data = ChampData.where(dossier_id: dossiers_ids, stable_id: stable_ids, stream: Dossier::MAIN_STREAM)
         .includes(:piece_justificative_file_attachments)
-        .group_by(&:dossier_id)
+        .to_a
+      champ_columns.each { it.preload(champ_data) }
+      champ_data.group_by(&:dossier_id)
     else
       {}
     end

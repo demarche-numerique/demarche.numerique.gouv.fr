@@ -13,4 +13,5 @@ class Current < ActiveSupport::CurrentAttributes
   attribute :user
   attribute :user_session
   attribute :procedure_columns
+  attribute :dossier_link_procedures
 end

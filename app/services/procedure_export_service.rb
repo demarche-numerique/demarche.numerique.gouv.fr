@@ -29,6 +29,7 @@ class ProcedureExportService
 
   def to_ods
     @dossiers = @dossiers.downloadable_sorted_batch
+    @export_template&.preload_columns(@dossiers)
     tables = [:dossiers, :etablissements, :avis]
     tables += champs_repetables_options(format: :ods) if !@inline_repetitions.enabled?
 
