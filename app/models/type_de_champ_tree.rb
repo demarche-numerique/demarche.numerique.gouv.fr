@@ -271,6 +271,15 @@ class TypeDeChampTree < Data.define(:public_children, :private_children)
 
   def as_json(*) = { public_children: public_children.map(&:as_json), private_children: private_children.map(&:as_json) }
 
+  # The same layout of other types de champ (the copies a clone makes), given
+  # by the id of the one each of them stands in for.
+  def with_type_de_champ_ids(ids)
+    self.class.new(
+      public_children: public_children.map { it.with_type_de_champ_ids(ids) },
+      private_children: private_children.map { it.with_type_de_champ_ids(ids) }
+    )
+  end
+
   # The coordinates the tree stands for, not saved, a parent before its
   # children: from_coordinates gives the tree back. A header section comes
   # right before what it holds, and only a repetition is a parent. Positions
