@@ -11,7 +11,7 @@ fr:
 
   important_information: "Information importante"
 
-  notice_intro: 'Un champ de type "Pièce à joindre" sera affiché dans les cas suivants :'
+  notice_intro: 'Un champ de type « Pièce à joindre » sera affiché dans les cas suivants :'
 
   notice_cases:
     - "L’usager ne s’est pas connecté via FranceConnect ;"

@@ -40,7 +40,7 @@ describe Emails::Depose, type: :model do
     context 'template with invalid tag' do
       let(:email_body) { 'foo --numéro du -- bar' }
 
-      it { expect(subject.errors.full_messages).to eq(["Le champ « Corps de l’email » contient la balise \"numéro du\" qui n’existe pas. Supprimer la balise"]) }
+      it { expect(subject.errors.full_messages).to eq(["Le champ « Corps de l’email » contient la balise « numéro du » qui n’existe pas. Supprimer la balise"]) }
     end
 
     context 'template with unpublished tag' do
@@ -50,7 +50,7 @@ describe Emails::Depose, type: :model do
         procedure.draft_revision.add_type_de_champ(type_champ: :integer_number, libelle: 'age')
       end
 
-      it { expect(subject.errors.full_messages).to eq(["Le champ « Corps de l’email » contient la balise \"age\" qui n’est pas encore publiée. Publier la nouvelle version de la démarche et recommencer"]) }
+      it { expect(subject.errors.full_messages).to eq(["Le champ « Corps de l’email » contient la balise « age » qui n’est pas encore publiée. Publier la nouvelle version de la démarche et recommencer"]) }
     end
 
     context 'template with removed but unpublished tag' do
@@ -60,7 +60,7 @@ describe Emails::Depose, type: :model do
         procedure.draft_revision.remove_type_de_champ(type_de_champ.stable_id)
       end
 
-      it { expect(subject.errors.full_messages).to eq(["Le champ « Corps de l’email » contient la balise \"nom\" qui a été supprimée dans les modifications en cours du formulaire. Supprimer cette balise ou réinitialiser les modifications du formulaire puis recommencer"]) }
+      it { expect(subject.errors.full_messages).to eq(["Le champ « Corps de l’email » contient la balise « nom » qui a été supprimée dans les modifications en cours du formulaire. Supprimer cette balise ou réinitialiser les modifications du formulaire puis recommencer"]) }
     end
 
     context 'template with removed tag' do
@@ -71,7 +71,7 @@ describe Emails::Depose, type: :model do
         procedure.publish_revision!(procedure.administrateurs.first)
       end
 
-      it { expect(subject.errors.full_messages).to eq(["Le champ « Corps de l’email » contient la balise \"nom\" qui a été supprimée. Supprimer la balise"]) }
+      it { expect(subject.errors.full_messages).to eq(["Le champ « Corps de l’email » contient la balise « nom » qui a été supprimée. Supprimer la balise"]) }
     end
 
     context 'template with new tag and old dossier' do
@@ -83,7 +83,7 @@ describe Emails::Depose, type: :model do
         procedure.publish_revision!(procedure.administrateurs.first)
       end
 
-      it { expect(subject.errors.full_messages).to eq(["Le champ « Corps de l’email » contient la balise \"age\" qui n’existe pas sur un des dossiers en cours de traitement. Supprimer la balise"]) }
+      it { expect(subject.errors.full_messages).to eq(["Le champ « Corps de l’email » contient la balise « age » qui n’existe pas sur un des dossiers en cours de traitement. Supprimer la balise"]) }
     end
   end
 end

@@ -9,4 +9,4 @@ fr:
     zero: Aucun dossier n’est actuellement affecté à ce groupe.
     one: "%{count} dossier est actuellement affecté à ce groupe."
     other: "%{count} dossiers sont actuellement affectés à ce groupe."
-  delete_confirmation: Êtes-vous sûr de vouloir supprimer le groupe "%{group_name}" ?
+  delete_confirmation: Êtes-vous sûr de vouloir supprimer le groupe « %{group_name} » ?

@@ -198,19 +198,19 @@ describe 'As an administrateur, I want to manage the procedure’s attestation',
 
       scenario do
         visit edit_admin_procedure_attestation_template_v2_path(procedure, attestation_kind: :acceptation)
-        expect(page).to have_content("Le champ « Contenu de l’attestation » contient la balise \"age\"")
+        expect(page).to have_content("Le champ « Contenu de l’attestation » contient la balise « age »")
 
         click_on "date de décision"
 
         expect(page).to have_content("Attestation en erreur")
-        expect(page).to have_content("Le champ « Contenu de l’attestation » contient la balise \"age\"")
+        expect(page).to have_content("Le champ « Contenu de l’attestation » contient la balise « age »")
 
         page.execute_script("document.getElementById('attestation_template_tiptap_body').type = 'text'")
         fill_in "attestation_template[tiptap_body]", with: AttestationTemplate::TIPTAP_BODY_DEFAULT.to_json
 
         expect(page).to have_content("Attestation enregistrée")
         expect(page).not_to have_content("Attestation en erreur")
-        expect(page).not_to have_content("Le champ « Contenu de l’attestation » contient la balise \"age\"")
+        expect(page).not_to have_content("Le champ « Contenu de l’attestation » contient la balise « age »")
       end
     end
   end

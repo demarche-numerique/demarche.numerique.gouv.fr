@@ -20,7 +20,7 @@ fr:
           avis_externe: Être informé lorsqu’un avis externe a été rendu sur le dossier
           attente_correction: Être informé lorsqu’une demande de correction a été envoyée à l’usager
           attente_avis: Être informé lorsqu’un avis externe a été demandé sur le dossier
-          attente_reponse: Être informé lorsqu’un message a été envoyé à l’usager avec l’option "en attente de réponse"
+          attente_reponse: Être informé lorsqu’un message a été envoyé à l’usager avec l’option « en attente de réponse »
         label:
           positive: Oui
           negative: Non

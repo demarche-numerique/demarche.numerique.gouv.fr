@@ -3,7 +3,7 @@ fr:
   street_fr_hint: 'Exemple : 11 rue des Mimosas'
   street_international_hint: 'Exemple : 12 Main Street'
   search_error: 'Une erreur est survenue lors de la recherche'
-  search_error_support_degraded_mode: 'Une erreur est survenue lors de la recherche. Si le problème persiste, cochez "Je ne trouve pas mon adresse dans les suggestions" et continuez.'
+  search_error_support_degraded_mode: 'Une erreur est survenue lors de la recherche. Si le problème persiste, cochez « Je ne trouve pas mon adresse dans les suggestions » et continuez.'
   city_label: Ville
   city_hint: 'Exemple : London'
   commune_label: Ville ou commune

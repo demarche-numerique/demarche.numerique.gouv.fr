@@ -69,7 +69,7 @@ RSpec.describe GroupeInstructeurMailer, type: :mailer do
 
       it 'sends email indicating the single group from which instructeur was removed' do
         expect(subject.to).to eq(['removed@test.fr'])
-        expect(subject.subject).to include('Vous avez été retiré(e) du groupe "Groupe 1"')
+        expect(subject.subject).to include('Vous avez été retiré(e) du groupe « Groupe 1 »')
         expect(subject.body).to include('Vous avez été retiré(e) du groupe « Groupe 1 »')
         expect(subject.body).to include('admin@test.fr')
       end
@@ -140,7 +140,7 @@ RSpec.describe GroupeInstructeurMailer, type: :mailer do
 
       it 'sends email with correct subject' do
         expect(subject.to).to eq(['instructeur@test.fr'])
-        expect(subject.subject).to include('Vous avez été ajouté(e) au groupe "défaut"')
+        expect(subject.subject).to include('Vous avez été ajouté(e) au groupe « défaut »')
         expect(subject.subject).to include(procedure.libelle)
         expect(instructeur.user.reset_password_token).to be_present
       end
@@ -198,7 +198,7 @@ RSpec.describe GroupeInstructeurMailer, type: :mailer do
 
       it 'sends email with correct subject and includes reset password token' do
         expect(subject.to).to eq(['instructeur@test.fr'])
-        expect(subject.subject).to include('Vous avez été ajouté(e) au groupe "Groupe 1"')
+        expect(subject.subject).to include('Vous avez été ajouté(e) au groupe « Groupe 1 »')
         expect(subject.subject).to include(procedure.libelle)
         expect(instructeur.user.reset_password_token).to be_present
       end
