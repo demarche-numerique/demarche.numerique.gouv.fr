@@ -16,9 +16,7 @@
         .fr-tile__body
           .fr-tile__content
             %h3.fr-tile__title
-              = link_to url,
-                data: link_data,
-                role: 'menuitem' do
+              = link_to url, data: link_data do
                 = opt[:title]
             %p.fr-tile__desc
               = opt[:desc]

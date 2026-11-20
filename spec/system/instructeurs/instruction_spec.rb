@@ -367,6 +367,21 @@ describe 'Instructing a dossier:', js: true do
       expect(page).to have_css('.fr-tag', text: "Complet", count: 2)
       expect(dossier.dossier_labels.count).to eq(1)
     end
+
+    scenario 'Screen readers can tell a menu button from a disclosure button' do
+      login_as(instructeur.user, scope: :user)
+      visit instructeur_dossier_path(procedure, dossier)
+
+      label_button = find('button[aria-expanded="false"]:not([aria-haspopup])', text: 'Ajouter un label')
+      label_button.send_keys(:down)
+      expect(page).to have_selector('button[aria-expanded="false"]', text: 'Ajouter un label')
+      label_button.click
+      expect(page).to have_selector('button[aria-expanded="true"]:focus', text: 'Ajouter un label')
+
+      find('button[aria-haspopup="menu"]', text: 'Imprimer').send_keys(:down)
+      expect(page).to have_selector('button[aria-expanded="true"]', text: 'Imprimer')
+      expect(page).to have_selector('[role="menuitem"]:focus', text: 'Tout le dossier')
+    end
   end
 
   context 'An instructeur can see original dossier' do
