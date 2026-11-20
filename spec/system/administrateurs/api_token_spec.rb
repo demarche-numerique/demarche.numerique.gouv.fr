@@ -183,6 +183,20 @@ describe 'As an administrateur I create an API token', js: true do
     expect(page).to have_no_checked_field('api_token_form_lifetime_custom')
   end
 
+  scenario 'duplicating a list token whose procedures are all binned selects none' do
+    original_token = APIToken.generate(administrateur).first
+    original_token.update!(allowed_procedure_ids: [procedure.id])
+    procedure.discard!
+
+    visit profil_path
+    click_on 'Dupliquer'
+    click_on 'Continuer'
+
+    expect(page).to have_checked_field('api_token_form_target_custom')
+    expect(page).to have_field('Sélectionner les démarches autorisées')
+    expect(page).to have_button('Continuer', disabled: true)
+  end
+
   scenario 'restricting and restoring access to an api token' do
     token = APIToken.generate(administrateur).first
     visit edit_admin_api_token_path(token)
