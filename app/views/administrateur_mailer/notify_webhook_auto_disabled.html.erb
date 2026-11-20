@@ -1,0 +1,35 @@
+<%- content_for(:title, "Un webhook de votre démarche a été désactivé") %>
+
+<p>Bonjour,</p>
+
+<p>
+  Vous êtes administrateur de la démarche
+  <%= link_to "« #{@procedure.libelle} »", admin_procedure_url(@procedure) %>.
+</p>
+
+<p>
+  <strong>
+    Le webhook <%= @webhook.label.presence || @webhook.url %> a été
+    automatiquement désactivé
+    <% if @gone %>
+      : son URL de destination a répondu « 410 Gone », qui demande l’arrêt des
+      livraisons.
+    <% else %>
+      après
+      <%= Webhook::MAX_ATTEMPTS %>
+      tentatives de livraison infructueuses.
+    <% end %>
+  </strong>
+</p>
+
+<p>Dernière erreur rencontrée : <%= @webhook.last_error %></p>
+
+<p>
+  Les évènements de la démarche continuent d’être enregistrés pendant
+  <%= WebhookEvent::RETENTION_PERIOD.in_days.to_i %> jours. Une fois le problème
+  corrigé, vous pouvez réactiver le webhook via la mutation GraphQL
+  <code>webhookActiver</code>: les évènements en attente seront alors livrés
+  dans l’ordre.
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>
