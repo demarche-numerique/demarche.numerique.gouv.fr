@@ -29,6 +29,12 @@ describe APITokenForm do
       it { expect(form.errors).to be_empty }
     end
 
+    context 'without a name' do
+      let(:attributes) { { name: '' } }
+
+      it { expect(form.errors).to be_of_kind(:name, :blank) }
+    end
+
     context 'with a procedure the administrateur does not administer' do
       let(:admin) { administrateurs.blank }
       let(:attributes) { { target: 'custom', procedure_ids: [procedure.id.to_s] } }

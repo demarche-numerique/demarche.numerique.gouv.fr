@@ -268,6 +268,16 @@ describe Administrateurs::APITokensController, type: :controller do
       end
     end
 
+    context 'when the token is created from a step reached without its state' do
+      subject { post :create, params: { api_token_form: { lifetime: 'oneWeek' } } }
+
+      it 'sends the admin back to the name step' do
+        subject
+        expect(response).to have_http_status(:unprocessable_content)
+        expect(response.parsed_body.at_css('#api-token-name-error').text).to eq('Donnez un nom au jeton')
+      end
+    end
+
     context 'when duplicating the token of another administrateur' do
       let(:params) { { duplicate: APIToken.generate(administrateurs.blank).first.id } }
 

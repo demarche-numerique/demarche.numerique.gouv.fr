@@ -11,13 +11,19 @@
   </h1>
 
   <%= form_with model: @api_token_form, url: autorisations_admin_api_tokens_path, method: :post, html: { class: 'fr-mt-2w' } do |f| %>
-    <div class="fr-input-group">
+    <%- name_error = @api_token_form.errors[:name].first -%>
+
+    <div class="<%= class_names('fr-input-group': true, 'fr-input-group--error': name_error) %>">
       <%= f.label :name, class: 'fr-label' do %>
         <%= t('.name') %>
         <span class="fr-hint-text"><%= t('.name-hint') %></span>
       <% end %>
 
-      <%= f.text_field :name, class: 'fr-input width-33', autocomplete: 'off', autocapitalize: 'off', autocorrect: 'off', spellcheck: false, required: true, autofocus: true %>
+      <%= f.text_field :name, class: class_names('fr-input width-33': true, 'fr-input--error': name_error), aria: { describedby: ('api-token-name-error' if name_error), invalid: ('true' if name_error) }, autocomplete: 'off', autocapitalize: 'off', autocorrect: 'off', spellcheck: false, required: true, autofocus: true %>
+
+      <%- if name_error -%>
+        <p class="fr-error-text" id="api-token-name-error"><%= name_error %></p>
+      <%- end -%>
 
       <%= render APITokens::HiddenFieldsComponent.new(form: f, except: %i[name]) %>
     </div>

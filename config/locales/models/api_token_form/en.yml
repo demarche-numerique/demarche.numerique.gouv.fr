@@ -4,6 +4,8 @@ en:
       models:
         api_token_form:
           attributes:
+            name:
+              blank: Give the token a name
             allowed_procedure_ids:
               blank: Select at least one procedure
             networks:
