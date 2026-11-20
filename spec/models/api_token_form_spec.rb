@@ -118,5 +118,13 @@ describe APITokenForm do
         )
       end
     end
+
+    context 'with a token whose list has been emptied' do
+      before { token.update!(allowed_procedure_ids: []) }
+
+      it 'keeps a restricted target' do
+        expect(form.target).to eq('custom')
+      end
+    end
   end
 end
