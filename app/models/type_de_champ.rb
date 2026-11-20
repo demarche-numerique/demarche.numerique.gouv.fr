@@ -92,8 +92,6 @@ class TypeDeChamp < ApplicationRecord
 
   has_many :revision_type_de_champs, -> { revision_ordered }, class_name: 'ProcedureRevisionTypeDeChamp', dependent: :destroy, inverse_of: :type_de_champ
 
-  has_many :revisions, -> { ordered }, through: :revision_type_de_champs
-
   belongs_to :referentiel, optional: true, inverse_of: :type_de_champs
   belongs_to :procedure, -> { with_discarded }, inverse_of: :type_de_champs
 
@@ -170,8 +168,15 @@ class TypeDeChamp < ApplicationRecord
     becomes(self.class.find_sti_class(new_type_champ))
   end
 
+  # the revisions of its procedure laying it out
+  def revisions
+    ProcedureRevision.where(procedure_id:).laying_out(self)
+  end
+
   def only_present_on_draft?
-    revisions.one? && revisions.first.draft?
+    # two are enough to tell
+    laid_out_by = revisions.take(2)
+    laid_out_by.one? && laid_out_by.first.draft?
   end
 
   def prefillable? = false

@@ -69,6 +69,8 @@ class ProcedureRevision < ApplicationRecord
   has_one :published_procedure, -> { with_discarded }, class_name: 'Procedure', foreign_key: :published_revision_id, dependent: :nullify, inverse_of: :published_revision
 
   scope :ordered, -> { order(:created_at) }
+  # the database searches the trees: those of a procedure weigh up to a few megabytes
+  scope :laying_out, -> (type_de_champ) { where("jsonb_path_exists(type_de_champ_tree, 'strict $.** ? (@.type_de_champ_id == $id)', CAST(:vars AS jsonb))", vars: { id: type_de_champ.id }.to_json) }
 
   validates :ineligibilite_message, presence: true, if: -> { ineligibilite_enabled? }
 
