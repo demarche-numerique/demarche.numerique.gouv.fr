@@ -236,6 +236,7 @@ module Administrateurs
     def type_de_champ_update_params(type_de_champ)
       permitted = params.required(:type_de_champ).permit(:type_champ,
         :numeric_type_champ,
+        :temporal_type_champ,
         :libelle,
         :description,
         :mandatory,
@@ -296,8 +297,16 @@ module Administrateurs
     end
 
     def resolved_type_champ(type_champ, type_de_champ)
-      return type_champ if type_champ != TypeDeChamp::NUMERIC_MENU_VALUE
+      return type_champ if type_champ != TypeDeChamp::NUMERIC_MENU_VALUE && type_champ != TypeDeChamp::TEMPORAL_MENU_VALUE
 
+      if type_champ == TypeDeChamp::NUMERIC_MENU_VALUE
+        resolved_numeric_type_champ(type_champ, type_de_champ)
+      elsif type_champ == TypeDeChamp::TEMPORAL_MENU_VALUE
+        resolved_temporal_type_champ(type_champ, type_de_champ)
+      end
+    end
+
+    def resolved_numeric_type_champ(type_champ, type_de_champ)
       toggle_type_champ = params.dig(:type_de_champ, :numeric_type_champ)
       already_numeric = type_de_champ.is_a?(TypesDeChamp::NumericTypeDeChamp)
       toggle_locked = already_numeric && toggle_type_champ.nil?
@@ -306,6 +315,18 @@ module Administrateurs
       return toggle_type_champ if TypeDeChamp.numeric_type_champ?(toggle_type_champ)
 
       'integer_number'
+    end
+
+    def resolved_temporal_type_champ(type_champ, type_de_champ)
+      toggle_type_champ = params.dig(:type_de_champ, :temporal_type_champ)
+      already_temporal = type_de_champ.is_a?(TypesDeChamp::TemporalTypeDeChamp)
+      toggle_locked = already_temporal && toggle_type_champ.nil?
+
+      return type_de_champ.type_champ if toggle_locked
+      return 'date' if params.dig(:type_de_champ, :birthdate) == '1'
+      return toggle_type_champ if TypeDeChamp.temporal_type_champ?(toggle_type_champ)
+
+      'date'
     end
 
     def draft

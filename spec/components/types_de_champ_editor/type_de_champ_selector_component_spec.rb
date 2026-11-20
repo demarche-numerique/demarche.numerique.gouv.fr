@@ -61,6 +61,29 @@ describe TypesDeChampEditor::TypeDeChampSelectorComponent, type: :component do
     end
   end
 
+  describe 'the « Date » entry' do
+    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: type_champ }]) }
+    let(:type_champ) { :text }
+
+    it 'stands for both the date and the datetime types' do
+      expect(values.count('temporal')).to eq(1)
+      expect(values).not_to include('date', 'datetime')
+      expect(items.find { it['value'] == 'temporal' }['label']).to eq('Date')
+    end
+
+    context 'on a date field' do
+      let(:type_champ) { :date }
+
+      it { expect(props['value']).to eq('temporal') }
+    end
+
+    context 'on a datetime field' do
+      let(:type_champ) { :datetime }
+
+      it { expect(props['value']).to eq('temporal') }
+    end
+  end
+
   describe 'the dossier_link type' do
     let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :dossier_link }]) }
 
@@ -136,7 +159,7 @@ describe TypesDeChampEditor::TypeDeChampSelectorComponent, type: :component do
     it 'greys out the types the field cannot be converted to' do
       expect(props['isDisabled']).to be(false)
       expect(props['disabledKeys']).to include('numeric', 'drop_down_list')
-      expect(props['disabledKeys']).not_to include('date', 'datetime', 'text')
+      expect(props['disabledKeys']).not_to include('temporal', 'text')
     end
 
     context 'when the field can become a number' do

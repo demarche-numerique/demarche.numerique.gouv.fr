@@ -30,9 +30,14 @@ class TypeDeChamp < ApplicationRecord
   ].freeze
 
   NUMERIC_MENU_VALUE = 'numeric'
+  TEMPORAL_MENU_VALUE = 'temporal'
 
   def self.numeric_type_champ?(type_champ)
     type_champs.value?(type_champ) && find_sti_class(type_champ).menu_value == NUMERIC_MENU_VALUE
+  end
+
+  def self.temporal_type_champ?(type_champ)
+    type_champs.value?(type_champ) && find_sti_class(type_champ).menu_value == TEMPORAL_MENU_VALUE
   end
 
   def self.category = STANDARD
