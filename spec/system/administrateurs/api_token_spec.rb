@@ -14,9 +14,7 @@ describe 'As an administrateur I create an API token', js: true do
     xss_payload = '<img src=x onerror=alert(1)>'
     procedure.update_column(:libelle, xss_payload)
 
-    # Reached when a custom target was submitted without any procedure.
-    visit autorisations_admin_api_tokens_path(name: 'test-xss', target: 'custom', noProcedure: true)
-    expect(page).to have_text('Sélectionnez au moins une démarche')
+    visit autorisations_admin_api_tokens_path(name: 'test-xss', target: 'custom')
     expect(page).to have_field('Sélectionner les démarches autorisées', visible: true)
 
     fill_in 'Sélectionner les démarches autorisées', with: procedure.libelle

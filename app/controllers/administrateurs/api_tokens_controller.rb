@@ -7,14 +7,12 @@ module Administrateurs
     # Removing a procedure only narrows the token, it stays possible without ProConnect.
     skip_before_action :ensure_pro_connect_if_required!, only: :remove_procedure
     before_action :set_api_token, only: [:edit, :update, :destroy, :remove_procedure]
-    before_action :set_api_token_params, only: [:nom, :autorisations, :securite, :create]
+    before_action :set_api_token_form, only: [:nom, :autorisations, :securite, :create]
 
     def nom
-      @name = @api_token_params.name
     end
 
     def autorisations
-      @name = @api_token_params.name
       @libelle_id_procedures = libelle_id_procedures
     end
 
@@ -22,25 +20,12 @@ module Administrateurs
     end
 
     def create
-      if params[:target] == "custom" && allowed_procedure_ids.empty?
-        return redirect_to autorisations_admin_api_tokens_path(@api_token_params.to_h.merge(noProcedure: true))
+      if @api_token_form.invalid?
+        return render_invalid_step
       end
 
-      if params[:networkFiltering] == "customNetworks" && invalid_network?
-        return redirect_to securite_admin_api_tokens_path(@api_token_params.to_h.merge(invalidNetwork: true))
-      end
-
-      expires_at = requested_expires_at
-
-      if expires_at.nil?
-        return redirect_to securite_admin_api_tokens_path(@api_token_params.to_h.merge(invalidLifetime: true))
-      end
-
-      @api_token, @packed_token = APIToken.generate(current_administrateur, expires_at:)
-
-      @api_token.update!(name: @api_token_params.name, write_access:,
-                         allowed_procedure_ids:, authorized_networks:,
-                         requires_ip_filtering: true)
+      @api_token, @packed_token = APIToken.generate(current_administrateur, expires_at: @api_token_form.expires_at)
+      @api_token.update!(@api_token_form.token_attributes)
 
       @curl_command = curl_command(@packed_token, @api_token.procedure_ids.first)
     end
@@ -129,78 +114,33 @@ module Administrateurs
         .map { |libelle, id| ["#{id} - #{libelle}", id] }
     end
 
-    def authorized_networks
-      if params[:networkFiltering] == "customNetworks"
-        networks
+    def render_invalid_step
+      if @api_token_form.errors.include?(:allowed_procedure_ids)
+        @libelle_id_procedures = libelle_id_procedures
+        render :autorisations, status: :unprocessable_content
       else
-        []
+        render :securite, status: :unprocessable_content
       end
     end
 
     def invalid_network?
-      params[:networks]
-        .split
-        .any? do
-          begin
-            IPAddr.new(_1)
-            false
-          rescue
-            true
-          end
-        end
+      APIToken.parse_networks(params[:networks]).include?(nil)
     end
 
     def networks
-      params[:networks]
-        .split
-        .map { begin IPAddr.new(_1) rescue nil end }
-        .compact
+      APIToken.parse_networks(params[:networks]).compact
     end
 
     def set_api_token
       @api_token = current_administrateur.api_tokens.find(params[:id])
     end
 
-    def set_api_token_params
-      @api_token_params = APITokenParams.new(params)
+    def set_api_token_form
+      @api_token_form = APITokenForm.new(params, administrateur: current_administrateur)
     end
 
     def procedure_to_add
       params[:procedure_to_add]&.to_i
-    end
-
-    def write_access
-      params[:access] == "read_write"
-    end
-
-    def allowed_procedure_ids
-      if params[:target] == "custom"
-        current_administrateur
-          .procedure_ids
-          .intersection(@api_token_params.targets.map(&:to_i))
-      else
-        nil
-      end
-    end
-
-    # Returns nil when the requested lifetime is missing, unknown or out of
-    # bounds, so that create can send the admin back to the security step.
-    def requested_expires_at
-      expires_at =
-        if params[:lifetime] == 'custom'
-          begin
-            Date.parse(params[:customLifetime].to_s)
-          rescue Date::Error
-            nil
-          end
-        else
-          APIToken.selectable_lifetimes[params[:lifetime]&.to_sym]&.from_now&.to_date
-        end
-
-      return if expires_at.nil?
-      return unless expires_at.between?(Date.tomorrow, APIToken.max_expires_at)
-
-      expires_at
     end
   end
 end

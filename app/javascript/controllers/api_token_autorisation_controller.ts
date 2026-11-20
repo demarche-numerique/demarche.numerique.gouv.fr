@@ -2,15 +2,17 @@ import { ApplicationController } from './application_controller';
 
 export class ApiTokenAutorisationController extends ApplicationController {
   static targets = ['procedureSelectGroup', 'continueButton'];
+  static values = { initialTargets: Boolean };
 
   declare readonly continueButtonTarget: HTMLButtonElement;
   declare readonly procedureSelectGroupTarget: HTMLElement;
+  declare readonly initialTargetsValue: boolean;
   declare hasInitialTargets: boolean;
 
   connect() {
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const customTargets = urlSearchParams.get('target') == 'custom';
-    this.hasInitialTargets = urlSearchParams.getAll('targets[]').length > 0;
+    const customTargets =
+      this.element.querySelector("[value='custom']:checked") !== null;
+    this.hasInitialTargets = this.initialTargetsValue;
 
     if (customTargets) {
       this.procedureSelectGroupTarget.classList.remove('hidden');
