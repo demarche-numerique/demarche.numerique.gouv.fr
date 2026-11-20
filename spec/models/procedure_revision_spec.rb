@@ -558,6 +558,16 @@ describe ProcedureRevision do
       expect(libelles_and_positions).to eq([['a', 0], ['e', 1], ['d', 2], ['b', 3], ['c', 4]])
     end
 
+    it 'adds a type de champ a publication does not purge in the meantime' do
+      # holding the lock, a publication purges the types de champ no tree holds
+      before_the_lock { procedure.send(:purge_type_de_champs_laid_out_by_no_revision) }
+
+      type_de_champ = draft.add_type_de_champ(type_champ: :text, libelle: 'd')
+
+      expect(type_de_champ).to eq(draft.type_de_champ(type_de_champ.stable_id))
+      expect(libelles_and_positions).to eq([['d', 0], ['a', 1], ['b', 2], ['c', 3]])
+    end
+
     it 'moves a type de champ from where it was moved in the meantime' do
       a, _, c = draft.public_root_type_de_champs
       before_the_lock { other_request.move_type_de_champ(c.stable_id, 0) }
@@ -604,6 +614,17 @@ describe ProcedureRevision do
 
         expect(type_de_champ.libelle).to eq('a bis')
         expect(TypeDeChamp.where(stable_id:)).to contain_exactly(published_type_de_champ, type_de_champ)
+      end
+
+      it 'adds nothing to the revision published in the meantime' do
+        before_the_lock { Procedure.find(procedure.id).publish_revision!(procedure.administrateurs.first) }
+
+        type_de_champ = draft.add_type_de_champ(type_champ: :text, libelle: 'd')
+
+        expect(type_de_champ).not_to be_persisted
+        expect(procedure.reload.published_revision).to eq(draft)
+        expect(procedure.published_revision.type_de_champs.map(&:libelle)).to eq(['a'])
+        expect(procedure.type_de_champs.where(libelle: 'd')).to be_empty
       end
     end
   end

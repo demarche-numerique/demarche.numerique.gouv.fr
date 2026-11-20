@@ -110,20 +110,28 @@ class ProcedureRevision < ApplicationRecord
       type_de_champ.mandatory = false
     end
 
-    if type_de_champ.save
-      edit_type_de_champs do
-        parent_coordinate = coordinate_by_stable_id(parent_stable_id)
-        after_coordinate = coordinate_by_stable_id(after_stable_id)
-        siblings = siblings_for(type_de_champ:, parent_coordinate:)
-        position = next_position_for(after_coordinate:)
+    published_at_before_the_lock = published_at
 
-        # moving all the impacted tdc down
-        ProcedureRevisionTypeDeChamp.where(id: siblings, position: position..).unscope(:eager_load).update_all("position = position + 1")
+    # saved under the lock: a publication purges the types de champ no tree holds
+    added = edit_type_de_champs do
+      # published while this request waited for the lock
+      raise ActiveRecord::ReadOnlyRecord, "the revision is no longer the draft" if published_at != published_at_before_the_lock
 
-        # insertion of the new tdc
-        revision_type_de_champs.create!(type_de_champ:, parent_id: parent_coordinate&.id, position:)
-      end
+      next false if !type_de_champ.save
 
+      parent_coordinate = coordinate_by_stable_id(parent_stable_id)
+      after_coordinate = coordinate_by_stable_id(after_stable_id)
+      siblings = siblings_for(type_de_champ:, parent_coordinate:)
+      position = next_position_for(after_coordinate:)
+
+      # moving all the impacted tdc down
+      ProcedureRevisionTypeDeChamp.where(id: siblings, position: position..).unscope(:eager_load).update_all("position = position + 1")
+
+      # insertion of the new tdc
+      revision_type_de_champs.create!(type_de_champ:, parent_id: parent_coordinate&.id, position:)
+    end
+
+    if added
       # as the draft lays it out by now: the lock of the edit reloaded it
       type_de_champ(type_de_champ.stable_id)
     else
