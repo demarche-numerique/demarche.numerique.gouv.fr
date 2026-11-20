@@ -23,6 +23,21 @@ describe DubiousProcedure, type: :model do
         expect(subject.first.dubious_champs).to include("t’aurais une carte bancaire ?")
       end
 
+      it 'leaves out a champ no revision lays out any more' do
+        draft = procedure.draft_revision
+        draft.remove_type_de_champ(draft.type_de_champs.find { it.libelle == 'num de securite sociale, stp' }.stable_id)
+
+        expect(subject.find { it.id == procedure.id }.dubious_champs).to eq("t’aurais une carte bancaire ?")
+      end
+
+      it 'names once a champ several revisions lay out' do
+        procedure.publish!(procedure.administrateurs.first)
+        draft = procedure.reload.draft_revision
+        draft.update_type_de_champ(draft.find_and_ensure_exclusive_use(draft.type_de_champs.first.stable_id), description: 'edited')
+
+        expect(subject.find { it.id == procedure.id }.dubious_champs).to eq("num de securite sociale, stp - t’aurais une carte bancaire ?")
+      end
+
       context 'and a whitelisted procedure' do
         let(:procedure) { create(:procedure, :whitelisted) }
 
