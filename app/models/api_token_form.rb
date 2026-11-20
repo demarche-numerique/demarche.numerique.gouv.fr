@@ -1,57 +1,48 @@
 # frozen_string_literal: true
 
 class APITokenForm
-  include ActiveModel::Validations
+  include ActiveModel::Model
+  include ActiveModel::Attributes
 
-  FIELDS = [:name, :api_token_to_duplicate, :target, :targets, :access, :networkFiltering, :networks, :lifetime, :customLifetime].freeze
+  attribute :name, :string
+  attribute :duplicated_token_id, :string
+  attribute :target, :string
+  attribute :procedure_ids, default: -> { [] }
+  attribute :access, :string
+  attribute :network_filtering, :string, default: 'autoAssign'
+  attribute :networks, :string
+  attribute :lifetime, :string
+  attribute :custom_lifetime, :date
 
-  attr_reader :params, :administrateur
+  attr_accessor :administrateur
 
   validates :allowed_procedure_ids, presence: true, if: :custom_target?
   validate :networks_are_ip_addresses, if: :custom_networks?
   validates :expires_at, presence: true
   validates :expires_at, comparison: { greater_than_or_equal_to: -> (_) { Date.tomorrow }, less_than_or_equal_to: -> (_) { APIToken.max_expires_at } }, allow_nil: true
 
-  def initialize(params, administrateur:)
-    @params = params.permit(:name, :api_token_to_duplicate, :target, :access, :networkFiltering, :networks, :lifetime, :customLifetime, targets: [])
-    @administrateur = administrateur
-  end
-
   def self.from_token(token)
-    new(ActionController::Parameters.new(
-      api_token_to_duplicate: token.id,
+    new(
+      administrateur: token.administrateur,
+      duplicated_token_id: token.id,
       name: token.name,
       target: token.allowed_procedure_ids.blank? ? 'all' : 'custom',
-      targets: token.allowed_procedure_ids,
+      procedure_ids: Array(token.allowed_procedure_ids),
       access: token.write_access? ? 'read_write' : 'read',
-      networkFiltering: token.authorized_networks.blank? ? 'autoAssign' : 'customNetworks',
+      network_filtering: token.authorized_networks.blank? ? 'autoAssign' : 'customNetworks',
       networks: token.authorized_networks_for_ui.gsub(', ', ' ').presence
-    ), administrateur: token.administrateur)
+    )
   end
 
-  def name
-    params[:name]
-  end
+  def duplicating? = duplicated_token_id.present?
 
-  def targets
-    Array(params[:targets])
-  end
+  def custom_target? = target == 'custom'
 
-  def networks
-    params[:networks]
-  end
-
-  def duplicating?
-    params[:api_token_to_duplicate].present?
-  end
-
-  def custom_target? = params[:target] == 'custom'
-
-  def custom_networks? = params[:networkFiltering] == 'customNetworks'
+  def custom_networks? = network_filtering == 'customNetworks'
 
   def allowed_procedure_ids
     if custom_target?
-      administrateur.procedure_ids.intersection(targets.map(&:to_i))
+      administrateur.procedure_ids.intersection(procedure_ids.map(&:to_i))
     end
   end
 
@@ -60,33 +51,21 @@ class APITokenForm
   end
 
   def expires_at
-    if params[:lifetime] == 'custom'
-      begin
-        Date.parse(params[:customLifetime].to_s)
-      rescue Date::Error
-        nil
-      end
+    if lifetime == 'custom'
+      custom_lifetime
     else
-      APIToken.selectable_lifetimes[params[:lifetime]&.to_sym]&.from_now&.to_date
+      APIToken.selectable_lifetimes[lifetime&.to_sym]&.from_now&.to_date
     end
   end
 
   def token_attributes
     {
       name:,
-      write_access: params[:access] == 'read_write',
+      write_access: access == 'read_write',
       allowed_procedure_ids:,
       authorized_networks:,
       requires_ip_filtering: true,
     }
-  end
-
-  def to_h
-    FIELDS.index_with { |field| params[field] }.compact
-  end
-
-  def hidden_fields_for(owned_fields)
-    to_h.except(*owned_fields)
   end
 
   private

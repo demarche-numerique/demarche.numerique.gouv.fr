@@ -136,7 +136,11 @@ module Administrateurs
     end
 
     def set_api_token_form
-      @api_token_form = APITokenForm.new(params, administrateur: current_administrateur)
+      @api_token_form = APITokenForm.new(api_token_form_params.merge(administrateur: current_administrateur))
+    end
+
+    def api_token_form_params
+      params.fetch(:api_token_form, {}).permit(:name, :duplicated_token_id, :target, :access, :network_filtering, :networks, :lifetime, :custom_lifetime, procedure_ids: [])
     end
 
     def procedure_to_add

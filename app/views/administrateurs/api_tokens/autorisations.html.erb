@@ -10,10 +10,10 @@
     <%= @api_token_form.duplicating? ? t('administrateurs.api_tokens.duplicate_title') : t('administrateurs.api_tokens.new_token') %>
   </h1>
 
-  <%= form_with url: securite_admin_api_tokens_path,
+  <%= form_with model: @api_token_form, url: securite_admin_api_tokens_path,
   method: :get, id: 'api-token-autorisation-form',
   data: { controller: 'api-token-autorisation',
-  'api-token-autorisation-initial-targets-value': @api_token_form.targets.any?,
+  'api-token-autorisation-initial-targets-value': @api_token_form.procedure_ids.any?,
   action: 'change->api-token-autorisation#setContinueButtonState' } do |f| -%>
     <%= render Dsfr::RadioButtonListComponent.new(form: f,
       target: :target,
@@ -22,17 +22,15 @@
         { label: t('.all_procedures'),
         value: :all,
         hint: t('.all_procedures_hint'),
-        checked: params[:target] == 'all',
         data: { 'action': 'click->api-token-autorisation#hideProcedureSelectGroup' } },
         { label: t('.custom_procedures'),
         value: :custom,
-        checked: params[:target] == 'custom',
         data: { 'action': 'click->api-token-autorisation#showProcedureSelectGroup' } },]) do %>
       <%= t('.token_access') %>
     <% end %>
 
     <div
-      class="fr-mb-4w hidden"
+      class="fr-mb-4w <%= class_names('hidden': !@api_token_form.custom_target?) %>"
       data-api-token-autorisation-target="procedureSelectGroup"
     >
       <div class="fr-select-group">
@@ -45,8 +43,8 @@
             <%= render ReactComponent.new 'ComboBox/MultiComboBox',
               items: @libelle_id_procedures,
               id: 'targets',
-              name: 'targets[]',
-              selectedKeys: @api_token_form.targets,
+              name: 'api_token_form[procedure_ids][]',
+              selectedKeys: @api_token_form.procedure_ids,
               'aria-label': t('.select_procedures') %>
           </react-fragment>
         </div>
@@ -60,21 +58,19 @@
         target: :access,
         buttons: [ { label: t('.read_only'),
           value: :read,
-          checked: params[:access] == 'read',
           hint: t('.read_only_hint') },
         { label: t('.read_write'),
         value: :read_write,
-        checked: params[:access] == 'read_write',
         hint: t('.read_write_hint') }]) do %>
         <%= t('.token_permission') %>
       <% end %>
     </div>
 
-    <%= render APITokens::HiddenFieldsComponent.new(fields: @api_token_form.hidden_fields_for(%i[target targets access])) %>
+    <%= render APITokens::HiddenFieldsComponent.new(form: f, except: %i[target procedure_ids access]) %>
 
     <ul class="fr-btns-group fr-btns-group--inline">
       <li>
-        <%= link_to t('.cancel'), nom_admin_api_tokens_path(@api_token_form.to_h), class: "fr-btn fr-btn--secondary" %>
+        <%= link_to t('.cancel'), nom_admin_api_tokens_path(api_token_form: @api_token_form.attributes.compact), class: "fr-btn fr-btn--secondary" %>
       </li>
 
       <li>

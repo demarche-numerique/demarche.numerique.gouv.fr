@@ -49,7 +49,7 @@ export class ApiTokenSecuriteController extends ApplicationController {
 
   lifetimeDefined() {
     const checked = this.element.querySelector<HTMLInputElement>(
-      "[name='lifetime']:checked"
+      "[name='api_token_form[lifetime]']:checked"
     );
 
     if (!checked) {
