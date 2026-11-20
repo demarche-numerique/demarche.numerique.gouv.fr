@@ -626,6 +626,24 @@ describe ProcedureRevision do
         expect(procedure.published_revision.type_de_champs.map(&:libelle)).to eq(['a'])
         expect(procedure.type_de_champs.where(libelle: 'd')).to be_empty
       end
+
+      it 'edits nothing of the revision published in the meantime' do
+        stable_id = draft.public_root_type_de_champs.first.stable_id
+        before_the_lock { Procedure.find(procedure.id).publish_revision!(procedure.administrateurs.first) }
+
+        expect { draft.remove_type_de_champ(stable_id) }.to raise_error(ActiveRecord::RecordNotFound)
+        expect { draft.move_type_de_champ(stable_id, 1) }.to raise_error(ActiveRecord::RecordNotFound)
+        expect { draft.find_and_ensure_exclusive_use(stable_id) }.to raise_error(ActiveRecord::RecordNotFound)
+        expect { draft.update_type_de_champ(TypeDeChamp.find_by(stable_id:), libelle: 'a bis') }.to raise_error(ActiveRecord::RecordNotFound)
+
+        expect(procedure.reload.published_revision).to eq(draft)
+        expect(procedure.published_revision.type_de_champs.map(&:libelle)).to eq(['a'])
+        expect(TypeDeChamp.where(stable_id:).count).to eq(1)
+      end
+
+      it 'still stores the tree of a published revision' do
+        expect { procedure.published_revision.store_type_de_champ_tree }.not_to raise_error
+      end
     end
   end
 
