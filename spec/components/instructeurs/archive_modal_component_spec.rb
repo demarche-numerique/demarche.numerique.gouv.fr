@@ -15,7 +15,7 @@ RSpec.describe Instructeurs::ArchiveModalComponent, type: :component do
       modal_id = "modal-archive-#{dossier.id}"
 
       expect(subject).to have_selector("dialog##{modal_id}[aria-labelledby='#{modal_id}-title']", visible: :all)
-      expect(subject).to have_selector("h2##{modal_id}-title", text: 'Déplacer dans « à archiver »', visible: :all)
+      expect(subject).to have_selector("h2##{modal_id}-title", text: 'Déplacer dans « à archiver »', visible: :all)
       expect(subject).to have_no_selector('h1', visible: :all)
       expect(subject).to have_selector('.fr-notice.fr-notice--info', text: 'Information importante', visible: :all)
       expect(subject).to have_selector("form##{modal_id}-form[action^='/procedures/#{procedure.id}/'][action$='/dossiers/#{dossier.id}/archive'] input[name='_method'][value='patch']", visible: :all)

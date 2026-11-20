@@ -2,6 +2,6 @@
 fr:
   subject: "Votre dossier n° %{dossier_number} a été modifié par un instructeur (%{demarche_title})"
   greeting: Bonjour,
-  body_with_known_changes: "Afin de poursuivre son instruction, un instructeur a apporté les modifications suivantes à votre dossier n° %{dossier_number} de la démarche « %{demarche_title} » :"
-  body_with_unknown_changes: "Afin de poursuivre son instruction, un instructeur a apporté des modifications à votre dossier n° %{dossier_number} de la démarche « %{demarche_title} »."
+  body_with_known_changes: "Afin de poursuivre son instruction, un instructeur a apporté les modifications suivantes à votre dossier n° %{dossier_number} de la démarche « %{demarche_title} » :"
+  body_with_unknown_changes: "Afin de poursuivre son instruction, un instructeur a apporté des modifications à votre dossier n° %{dossier_number} de la démarche « %{demarche_title} »."
   farewell_html: Bien cordialement,<br>%{service_name}

@@ -8,8 +8,8 @@ fr:
   refresh_page: Recharger la page
   export_title_everything: "Export .%{export_format} de tous les dossiers"
   export_title_with_tab:
-    one: "Export .%{export_format} d’un dossier « %{export_tabs} »"
-    other: "Export .%{export_format} de %{count} dossiers « %{export_tabs} »"
+    one: "Export .%{export_format} d’un dossier « %{export_tabs} »"
+    other: "Export .%{export_format} de %{count} dossiers « %{export_tabs} »"
   export_title:
     one: "Export .%{export_format} d’un dossier"
     other: "Export .%{export_format} de %{count} dossiers"

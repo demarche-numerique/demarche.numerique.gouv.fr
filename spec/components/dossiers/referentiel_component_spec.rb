@@ -36,7 +36,7 @@ RSpec.describe Dossiers::ReferentielComponent, type: :component do
     let(:pending) { true }
 
     it 'displays a pending message with the identifier' do
-      expect(subject).to have_text('Récupération des données en cours pour l’identifiant « ABC123 »')
+      expect(subject).to have_text('Récupération des données en cours pour l’identifiant « ABC123 »')
     end
   end
 
@@ -46,7 +46,7 @@ RSpec.describe Dossiers::ReferentielComponent, type: :component do
     let(:not_found) { true }
 
     it 'displays a not found message with the identifier' do
-      expect(subject).to have_text('Aucune donnée trouvée pour l’identifiant « ABC123 »')
+      expect(subject).to have_text('Aucune donnée trouvée pour l’identifiant « ABC123 »')
     end
   end
 
@@ -56,7 +56,7 @@ RSpec.describe Dossiers::ReferentielComponent, type: :component do
     let(:external_error) { true }
 
     it 'displays a generic error message with the identifier' do
-      expect(subject).to have_text('Une erreur est survenue lors de la récupération des données pour l’identifiant « ABC123 »')
+      expect(subject).to have_text('Une erreur est survenue lors de la récupération des données pour l’identifiant « ABC123 »')
     end
   end
 

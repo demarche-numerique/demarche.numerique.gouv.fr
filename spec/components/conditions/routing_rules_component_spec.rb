@@ -54,7 +54,7 @@ describe Conditions::RoutingRulesComponent, type: :component do
         let(:routing_rule) { ds_and([ds_eq(champ_value(drop_down_tdc.stable_id), constant('Lyon')), ds_eq(champ_value(drop_down_tdc.stable_id), constant('Paris'))]) }
 
         it 'explains why, without invalidating the rule used for routing' do
-          expect(page).to have_text('Aucune valeur du champ « Votre ville » ne vérifie à la fois « est Lyon » et « est Paris »')
+          expect(page).to have_text('Aucune valeur du champ « Votre ville » ne vérifie à la fois « est Lyon » et « est Paris »')
           expect(page).not_to have_text('règle invalide')
         end
       end

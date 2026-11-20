@@ -54,7 +54,7 @@ describe 'admin/_email_template_attestation_inconsistency_alert', type: :view do
 
       it 'explains how to insert the tag with the editor' do
         alert = strip_tags(render_alert(procedure, mail_type)).squish
-        expect(alert).to include("insérez la balise « lien attestation » dans l’accusé d’acceptation (tapez @ dans le corps de l’email)")
+        expect(alert).to include("insérez la balise «&nbsp;lien attestation&nbsp;» dans l’accusé d’acceptation (tapez @ dans le corps de l’email)")
         expect(alert).not_to include("--lien attestation--")
       end
 

@@ -27,13 +27,13 @@ fr:
       <p>Cette étape propose d’utiliser <strong>les types de champs appropriés</strong> (adresse électronique, adresse, etc.)
       pour faciliter le remplissage des champs par l’usager et fiabiliser le recueil des données pour l’administration.
       Certains champs spécialisés permettent de récupérer automatiquement des données complémentaires
-      (exemple : le champ « Adresse » fournit directement les données « Commune », « Département », etc.).</p>
+      (exemple : le champ « Adresse » fournit directement les données « Commune », « Département », etc.).</p>
 
     cleaner_html: |
-      <p>Cette étape applique le principe <strong>« Dites-le nous une fois »</strong> :
+      <p>Cette étape applique le principe <strong>« Dites-le nous une fois »</strong> :
       l’administration ne doit pas redemander des informations déjà collectées ou connues par ailleurs.</p>
       <p>Les suggestions proposent de supprimer des champs qui demandent une information déjà disponible
-      via un autre champ du formulaire (exemple : suppression d’un champ « Commune » quand un champ « Adresse »
+      via un autre champ du formulaire (exemple : suppression d’un champ « Commune » quand un champ « Adresse »
       est présent dans le formulaire et permet de récupérer automatiquement la commune).</p>
   no_suggestion_html: |
     🎉 <strong>Félicitations</strong>, nous n’avons aucune suggestion

@@ -253,7 +253,7 @@ fr:
           <br>75342 Paris CEDEX 07</p>"
     prefill_descriptions:
       edit:
-        intro_html: "Vous souhaitez permettre à vos usager·ères la <strong>création d’un dossier prérempli</strong>, à partir de données dont vous disposez déjà, pour la démarche « %{libelle} »."
+        intro_html: "Vous souhaitez permettre à vos usager·ères la <strong>création d’un dossier prérempli</strong>, à partir de données dont vous disposez déjà, pour la démarche « %{libelle} »."
         info_html: Pour cela, sélectionnez ci-dessous les champs que vous souhaitez préremplir.<br> Vous trouverez ensuite en bas de cette page un lien de préremplissage qu’il ne vous restera plus qu’à copier, à adapter en remplaçant les valeurs par défaut et à partager.<br> De la même façon, vous trouverez en bas de page un exemple de requête cURL à adapter si vous souhaitez préremplir les dossiers par API.
         champ_id: ID
         champ_type: Type
@@ -493,9 +493,9 @@ fr:
         introduction_file_explaination: "Fichier joint à la demande d’avis"
       search:
         dossier_not_in_instructor_group: "Le dossier n° %{dossier_id} de la procédure « %{procedure_libelle} » correspond à votre recherche mais il est rattaché à un autre groupe d’instructeurs."
-        deleted_dossier: "Le dossier n° %{dossier_id} de la procédure « %{procedure_libelle} » correspond à votre recherche mais il a été supprimé le %{deleted_at}. Vous pouvez retrouver sa trace dans l’"
+        deleted_dossier: "Le dossier n° %{dossier_id} de la procédure « %{procedure_libelle} » correspond à votre recherche mais il a été supprimé le %{deleted_at}. Vous pouvez retrouver sa trace dans l’"
         deleted_dossier_link: "historique des dossiers supprimés"
-        hidden_dossier: "Le dossier n° %{dossier_id} de la procédure « %{procedure_libelle} » correspond à votre recherche mais il a été placé dans la "
+        hidden_dossier: "Le dossier n° %{dossier_id} de la procédure « %{procedure_libelle} » correspond à votre recherche mais il a été placé dans la "
         hidden_dossier_link: "corbeille"
     users:
       dossiers:
@@ -537,7 +537,7 @@ fr:
           status_overview:
             status_draft: brouillon
             status_in_progress: déposé
-            en_construction_html: "Votre dossier est déposé, <strong>vous pouvez encore le modifier</strong> si besoin. Vous ne pourrez plus modifier votre dossier lorsque l’administration le passera « en instruction »."
+            en_construction_html: "Votre dossier est déposé, <strong>vous pouvez encore le modifier</strong> si besoin. Vous ne pourrez plus modifier votre dossier lorsque l’administration le passera « en instruction »."
             status_review: en instruction
             admin_review: Votre dossier est en cours d’instruction par l’administration. Vous ne pouvez plus le modifier.
             delay_title:
@@ -584,7 +584,7 @@ fr:
             label: Personnaliser la liste des dossiers
           search:
             back_to_list: "Mes dossiers"
-            result_title: "Résultat de la recherche pour « %{search_terms} »"
+            result_title: "Résultat de la recherche pour « %{search_terms} »"
             placeholder_label: "Rechercher un dossier"
             placeholder_hint: "Par n° de dossier, nom / prénom, SIRET, mots-clés…"
             placeholder_text: "Saisissez votre recherche"
@@ -1060,7 +1060,7 @@ fr:
         scan_pending: "Le document justificatif est en cours d’analyse antivirus, réessayez dans quelques minutes."
       attestation_depot:
         receipt: "Attestation de dépôt"
-        description: "Ce document atteste que %{user_name} a déposé le %{date} un dossier sur la démarche « %{procedure} »."
+        description: "Ce document atteste que %{user_name} a déposé le %{date} un dossier sur la démarche « %{procedure} »."
         file_submitted_at: "Dossier déposé le"
         dossier_state: "État du dossier"
         states:
@@ -1109,7 +1109,7 @@ fr:
         trash: corbeille
       aasm_error_originating_state: Le dossier est déjà %{state}.
       aasm_error_awaiting_external_verification: "Les données suivantes n’ont pas encore pu être vérifiées : %{champs}. Il n’est pas possible de passer le dossier en %{state}."
-      unverified_champ: "« %{libelle} »"
+      unverified_champ: "« %{libelle} »"
       unverified_demandeur: le SIRET du demandeur
       aasm_error_annotations_no_url: Les annotations privées n’ont pas été correctement renseignées, elles sont indispensables pour rendre une décision.
       aasm_error_annotations: Les annotations privées n’ont pas été correctement renseignées, elles sont indispensables pour rendre une décision. <a href="%{url}">Modifier les annotations</a>.
@@ -1131,7 +1131,7 @@ fr:
       unspecified_champs_group: Formulaire usager
       unspecified_annotations_group: Annotations privées
       add_justificatif: Ajouter un justificatif (facultatif)
-      motivation_missing_error: « Motivation » doit être rempli
+      motivation_missing_error: « Motivation » doit être rempli
     avis:
       revoquer:
         revoked: "%{email} ne peut plus donner son avis sur ce dossier."
@@ -1298,7 +1298,7 @@ fr:
   editable_champ:
     repetition_component:
       deleted: '[%{row_number}] %{libelle} supprimé'
-      add: 'Ajouter un élément à « %{libelle} »'
+      add: 'Ajouter un élément à « %{libelle} »'
       expand_all: 'Déplier tous les éléments'
       collapse_all: 'Replier tous les éléments'
       max_reached: "Vous ne pouvez plus ajouter d’éléments supplémentaires car la limite est de %{max} élément(s) au maximum. Pour ajouter un autre élément, vous devez d’abord en supprimer un."

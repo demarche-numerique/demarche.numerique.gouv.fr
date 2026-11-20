@@ -2,21 +2,21 @@ fr:
   archiver:
     finish:
       text_success:
-        one: "%{success_count}/1 dossier a été placé dans « à archiver »"
-        other: "%{success_count}/%{count} dossiers ont été placés dans « à archiver »"
+        one: "%{success_count}/1 dossier a été placé dans « à archiver »"
+        other: "%{success_count}/%{count} dossiers ont été placés dans « à archiver »"
     in_progress:
       text_success:
-        one: "1 dossier est en cours de déplacement dans « à archiver »"
-        other: "%{success_count}/%{count} dossiers sont en cours de déplacement dans « à archiver »"
+        one: "1 dossier est en cours de déplacement dans « à archiver »"
+        other: "%{success_count}/%{count} dossiers sont en cours de déplacement dans « à archiver »"
   desarchiver:
     finish:
       text_success:
-        one: "%{success_count}/1 dossier a été retiré de « à archiver »"
-        other: "%{success_count}/%{count} dossiers ont été retirés de « à archiver »"
+        one: "%{success_count}/1 dossier a été retiré de « à archiver »"
+        other: "%{success_count}/%{count} dossiers ont été retirés de « à archiver »"
     in_progress:
       text_success:
-        one: "1 dossier est en cours de retrait de « à archiver »"
-        other: "%{success_count}/%{count} dossiers sont en cours de retrait de « à archiver »"
+        one: "1 dossier est en cours de retrait de « à archiver »"
+        other: "%{success_count}/%{count} dossiers sont en cours de retrait de « à archiver »"
   passer_en_instruction:
     finish:
       text_success:

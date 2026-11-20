@@ -1,10 +1,14 @@
 # frozen_string_literal: true
 
 namespace :lint do
-  desc 'Check that french translation files quote with « », not “ ”, " " or ‘ ’ (see GLOSSARY.md, UI copy policy)'
+  desc 'Check that french translation files quote with « » and non-breaking spaces inside, not “ ”, " " or ‘ ’ (see GLOSSARY.md, UI copy policy)'
   task :french_quotes do
-    forbidden_quotes = /[“”"‘‚„‹›]/
+    rules = {
+      /[“”"‘‚„‹›]/ => 'use « » instead of “ ”, " " or ‘ ’',
+      /«(?![  ])|(?<![  ])»/ => 'put a non-breaking space inside « »',
+    }
     html_tag = /<[^>]*>/
+    html_nbsp = /&nbsp;|&#160;/
 
     each_string = -> (node, key, &block) do
       case node
@@ -20,15 +24,18 @@ namespace :lint do
     files.each do |file|
       each_string.(YAML.load_file(file, aliases: true), nil) do |key, value|
         next if key.end_with?('prefill_query_response_html')
-        offenses << "  #{file}: #{key}: #{value.squish.truncate(80)}" if value.gsub(html_tag, '').match?(forbidden_quotes)
+        text = value.gsub(html_tag, '').gsub(html_nbsp, " ")
+        rules.each do |pattern, advice|
+          offenses << "  #{file}: #{key}: #{advice}: #{value.squish.truncate(80)}" if text.match?(pattern)
+        end
       end
     end
 
     if offenses.any?
-      puts offenses, "\n❌ Found #{offenses.size} translation(s) with “ ”, \" \" or ‘ ’ in french translation files: use « » with non-breaking spaces inside"
+      puts offenses, "\n❌ Found #{offenses.size} translation(s) with misused quotation marks in french translation files"
       exit 1
     end
 
-    puts "✅ No “ ”, \" \" or ‘ ’ found in french translation files"
+    puts "✅ No misused quotation marks found in french translation files"
   end
 end

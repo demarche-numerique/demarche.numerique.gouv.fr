@@ -11,5 +11,5 @@ fr:
         one: Votre compte reste activé sur %{application_name}, seul le dossier sera supprimé.
         other: Votre compte reste activé sur %{application_name}, seuls les dossiers seront supprimés.
       footer_termine_html:
-        one: Vous pouvez télécharger ce dossier au format PDF et retrouver tous vos dossiers expirants sur la page <a href="%{dossiers_url}">mes dossiers</a> en appliquant un filtre par l’alerte « Expire bientôt ».
-        other: Vous pouvez télécharger ces dossiers au format PDF et retrouver tous vos dossiers expirants sur la page <a href="%{dossiers_url}">mes dossiers</a> en appliquant un filtre par l’alerte « Expire bientôt ».
+        one: Vous pouvez télécharger ce dossier au format PDF et retrouver tous vos dossiers expirants sur la page <a href="%{dossiers_url}">mes dossiers</a> en appliquant un filtre par l’alerte « Expire bientôt ».
+        other: Vous pouvez télécharger ces dossiers au format PDF et retrouver tous vos dossiers expirants sur la page <a href="%{dossiers_url}">mes dossiers</a> en appliquant un filtre par l’alerte « Expire bientôt ».

@@ -40,8 +40,8 @@ fr:
     update_drop_down_options_alert: "Le champ « %{label} » est utilisé pour le routage des dossiers. Veuillez mettre à jour la configuration des groupes d’instructeurs après avoir publié les modifications."
     enable_mandatory: Le champ « %{label} » est maintenant obligatoire.
     disable_mandatory: Le champ « %{label} » n’est plus obligatoire.
-    enable_drop_down_other: Le champ « %{label} » comporte maintenant un choix « Autre ».
-    disable_drop_down_other: Le champ « %{label} » ne comporte plus de choix « Autre ».
+    enable_drop_down_other: Le champ « %{label} » comporte maintenant un choix « Autre ».
+    disable_drop_down_other: Le champ « %{label} » ne comporte plus de choix « Autre ».
     update_carte_layers: "Les référentiels cartographiques du champ « %{label} » ont été modifiés :"
     enable_update_collapsible_explanation: Le texte complémentaire affichable au clic du champ « %{label} » a été ajouté.
     disable_update_collapsible_explanation: Le texte complémentaire affichable au clic du champ « %{label} » a été supprimé.
@@ -102,8 +102,8 @@ fr:
     update_pj_limit_formats: "La limitation des formats du champ « %{label} » a été modifiée."
     update_pj_format_families: "Les familles de formats acceptés du champ « %{label} » ont été modifiées."
     update_pj_auto_purge: "La suppression automatique du champ « %{label} » a été modifiée."
-    add_procedures_limit: L’option « Limiter à certaines démarches » a été activée pour le champ « %{label} ».
-    remove_procedures_limit: L’option « Limiter à certaines démarches » a été désactivée pour le champ « %{label} ».
+    add_procedures_limit: L’option « Limiter à certaines démarches » a été activée pour le champ « %{label} ».
+    remove_procedures_limit: L’option « Limiter à certaines démarches » a été désactivée pour le champ « %{label} ».
     update_procedures: "Les démarches autorisées pour le champ « %{label} » ont été modifiées :"
     update_limit_repetitions: "La limitation du nombre d’éléments du champ « %{label} » a été modifiée. %{to}"
     enable_limit_repetitions: "La limitation est désormais activée."
@@ -129,8 +129,8 @@ fr:
     update_piece_justificative_template: Le modèle de pièce justificative de l’annotation privée « %{label} » a été modifié.
     update_notice_explicative: La notice explicative de l’annotation privée « %{label} » a été modifiée.
     update_drop_down_options: "Les options de sélection de l’annotation privée « %{label} » ont été modifiées :"
-    enable_drop_down_other: L’annotation privée « %{label} » comporte maintenant un choix « Autre ».
-    disable_drop_down_other: L’annotation privée « %{label} » ne comporte plus de choix « Autre ».
+    enable_drop_down_other: L’annotation privée « %{label} » comporte maintenant un choix « Autre ».
+    disable_drop_down_other: L’annotation privée « %{label} » ne comporte plus de choix « Autre ».
     update_carte_layers: "Les référentiels cartographiques de l’annotation privée « %{label} » ont été modifiés :"
     enable_update_collapsible_explanation: Le texte complémentaire affichable au clic de l’annotation privée « %{label} » a été ajouté.
     disable_update_collapsible_explanation: Le texte complémentaire affichable au clic de l’annotation privée « %{label} » a été supprimé.
@@ -193,8 +193,8 @@ fr:
     update_pj_limit_formats: "La limitation des formats de l’annotation privée « %{label} » a été modifiée."
     update_pj_format_families: "Les familles de formats acceptés de l’annotation privée « %{label} » ont été modifiées."
     update_pj_auto_purge: "La suppression automatique de l’annotation privée « %{label} » a été modifiée."
-    add_procedures_limit: "L’option « Limiter à certaines démarches » a été activée pour l’annotation privée « %{label} »."
-    remove_procedures_limit: "L’option « Limiter à certaines démarches » a été désactivée pour l’annotation privée « %{label} »."
+    add_procedures_limit: "L’option « Limiter à certaines démarches » a été activée pour l’annotation privée « %{label} »."
+    remove_procedures_limit: "L’option « Limiter à certaines démarches » a été désactivée pour l’annotation privée « %{label} »."
     update_procedures: "Les démarches autorisées pour l’annotation privée « %{label} » ont été modifiées :"
     update_limit_repetitions: "La limitation du nombre d’éléments de l’annotation privée « %{label} » a été modifiée. %{to}"
     enable_limit_repetitions: "La limitation est désormais activée."

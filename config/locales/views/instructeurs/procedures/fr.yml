@@ -4,7 +4,7 @@ fr:
       order_positions:
         title: Ordre
         back_to_procedures: Liste des démarches
-        heading_html: Personnaliser l’ordre des %{count} démarches « en cours »
+        heading_html: Personnaliser l’ordre des %{count} démarches « en cours »
         description: "Déplacez les démarches dans la liste pour les classer en fonction de vos préférences :"
         status_close: Close
         status_depubliee: Dépubliée

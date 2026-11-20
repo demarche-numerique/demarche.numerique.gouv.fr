@@ -193,7 +193,7 @@ describe 'Editing a dossier as an instructeur:', js: true do
 
       expect(page).to have_button('Enregistrer les modifications', disabled: true)
 
-      click_on 'Ajouter un élément à « Enfants »'
+      click_on 'Ajouter un élément à « Enfants »'
 
       expect(page).to have_selector('.repetition-row', count: 3)
       expect(page).to have_button('Enregistrer les modifications', disabled: false)

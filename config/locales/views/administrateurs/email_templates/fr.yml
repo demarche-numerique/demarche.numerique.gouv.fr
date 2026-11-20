@@ -5,8 +5,8 @@ fr:
         switched: L’accusé de réception personnalisé a été supprimé et remplacé par le modèle standard de votre démarche déclarative.
       index:
         accuse_lecture_notice:
-          body: L’accusé de lecture est activé sur cette démarche. Dans ce contexte, les emails « d’acceptation », « de refus » et de « classement sans suite » ne sont pas modifiables afin de s’assurer que la décision finale reste masquée pour l’usager.
-          declarative_accepte: Cette démarche étant déclarative avec un passage automatique au statut « accepté », l’accusé de réception envoyé au dépôt annonce toutefois cette acceptation à l’usager.
+          body: L’accusé de lecture est activé sur cette démarche. Dans ce contexte, les emails « d’acceptation », « de refus » et de « classement sans suite » ne sont pas modifiables afin de s’assurer que la décision finale reste masquée pour l’usager.
+          declarative_accepte: Cette démarche étant déclarative avec un passage automatique au statut « accepté », l’accusé de réception envoyé au dépôt annonce toutefois cette acceptation à l’usager.
         declarative_notice:
           title: Démarche déclarative
           presentation: présentation

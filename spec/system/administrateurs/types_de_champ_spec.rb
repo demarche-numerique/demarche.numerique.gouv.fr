@@ -345,7 +345,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
     # 'Options de la liste' only exists once the type-switch re-render has
     # landed, so fill_in also synchronizes on the morph.
     fill_in 'Options de la liste', with: 'Un menu', fill_options: { clear: :backspace }
-    check "Proposer une option « autre » avec un texte libre"
+    check "Proposer une option « autre » avec un texte libre"
     expect(page).to have_content('Formulaire enregistré')
 
     # Autosaves are serialized and coalesced client-side, so the last save

@@ -2219,7 +2219,7 @@ describe Instructeurs::DossiersController, type: :controller do
 
     it do
       expect(response).to have_http_status(:ok)
-      expect(response.body).to include("Ce dossier est affecté au groupe « défaut ». Vous pouvez le réaffecter à lʼun des 2 autres groupes instructeurs")
+      expect(response.body).to include("Ce dossier est affecté au groupe « défaut ». Vous pouvez le réaffecter à lʼun des 2 autres groupes instructeurs")
     end
   end
 

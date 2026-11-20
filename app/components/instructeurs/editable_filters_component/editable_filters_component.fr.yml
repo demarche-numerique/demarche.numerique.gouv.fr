@@ -1,7 +1,7 @@
 ---
 fr:
-  clear_filter: Effacer le filtre « %{filter_label} »
+  clear_filter: Effacer le filtre « %{filter_label} »
   search_filter_dossiers: Rechercher / filtrer les dossiers
   toggle_filters: Afficher / masquer les filtres
   enable_filters_customization: Personnaliser
-  no_filters: Cliquez sur « Personnaliser » pour ajouter des critères de recherche / filtres.
+  no_filters: Cliquez sur « Personnaliser » pour ajouter des critères de recherche / filtres.

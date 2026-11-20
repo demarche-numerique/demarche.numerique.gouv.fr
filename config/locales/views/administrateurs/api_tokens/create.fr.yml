@@ -3,7 +3,7 @@ fr:
   administrateurs:
     api_tokens:
       create:
-        title: "jeton « %{name} » créé"
+        title: "jeton « %{name} » créé"
         ready: Votre jeton est prêt
         intro: Vous pouvez maintenant utiliser votre jeton pour accéder à vos données.
         warning: Attention, vous ne pourrez plus le consulter après avoir quitté cette page.

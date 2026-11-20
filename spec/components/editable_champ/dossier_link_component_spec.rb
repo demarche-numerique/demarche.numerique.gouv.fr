@@ -140,7 +140,7 @@ describe EditableChamp::DossierLinkComponent, type: :component do
         expect(page).not_to have_css('select')
 
         props = JSON.parse(page.find('react-component')['props'])
-        expect(props['sections'].first['label']).to eq('Démarche « Démarche A »')
+        expect(props['sections'].first['label']).to eq('Démarche « Démarche A »')
         expect(props['sections'].first['items'].map { it['value'] }).to eq([user_dossier.id.to_s])
         # the select trigger gets its accessible name from the field label
         expect(props['label_id']).to be_present
@@ -156,7 +156,7 @@ describe EditableChamp::DossierLinkComponent, type: :component do
 
           props = JSON.parse(page.find('react-component')['props'])
           empty_section = props['sections'].last
-          expect(empty_section['label']).to eq('Démarche « Démarche B »')
+          expect(empty_section['label']).to eq('Démarche « Démarche B »')
           expect(empty_section['items'].map { it['label'] }).to eq(['Vous n’avez déposé aucun dossier sur cette démarche.'])
           expect(props['disabled_keys']).to eq(empty_section['items'].map { it['value'] })
         end

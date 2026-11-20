@@ -15,7 +15,7 @@ describe 'Private annotations with a limited repetition', js: true do
     visit annotations_privees_instructeur_dossier_path(procedure, dossier)
     expect(page).to have_content('« bloc annotation » doit contenir au minimum 2 élément(s)')
 
-    click_on 'Ajouter un élément à « bloc annotation »'
+    click_on 'Ajouter un élément à « bloc annotation »'
     expect(page).to have_selector('.repetition-row', count: 2)
 
     expect(page).not_to have_content('« bloc annotation » doit contenir au minimum 2 élément(s)')

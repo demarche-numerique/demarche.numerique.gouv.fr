@@ -9,6 +9,6 @@ fr:
         cancel: Annuler
         submit: Valider
       delete_labels:
-        zero: Êtes-vous sûr de vouloir supprimer le label « %{label_name} » ?
-        one: Le label « %{label_name} » est déjà assigné à un dossier, êtes-vous sûr de vouloir le supprimer ?
-        other: Le label « %{label_name} » est déjà assigné à %{count} dossiers, êtes-vous sûr de vouloir le supprimer ?
+        zero: Êtes-vous sûr de vouloir supprimer le label « %{label_name} » ?
+        one: Le label « %{label_name} » est déjà assigné à un dossier, êtes-vous sûr de vouloir le supprimer ?
+        other: Le label « %{label_name} » est déjà assigné à %{count} dossiers, êtes-vous sûr de vouloir le supprimer ?

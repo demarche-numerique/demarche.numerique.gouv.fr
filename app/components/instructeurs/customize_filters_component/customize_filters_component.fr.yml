@@ -2,9 +2,9 @@
 fr:
   select: Sélectionner
   add: Ajouter
-  delete_filter: Supprimer le filtre « %{filter_label} »
-  move_up_filter: Déplacer le filtre « %{filter_label} » vers le haut
-  move_down_filter: Déplacer le filtre « %{filter_label} » vers le bas
+  delete_filter: Supprimer le filtre « %{filter_label} »
+  move_up_filter: Déplacer le filtre « %{filter_label} » vers le haut
+  move_down_filter: Déplacer le filtre « %{filter_label} » vers le bas
   file_information: Informations dossier
   user_information: Informations usager
   user_form: Formulaire usager

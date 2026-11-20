@@ -50,8 +50,8 @@ describe EditableChamp::ProposedPrefillComponent, type: :component do
     end
 
     it 'shows each added row, numbered, with its values' do
-      expect(subject).to have_text('Ajout de l’élément « Dirigeants 1 »')
-      expect(subject).to have_text('Ajout de l’élément « Dirigeants 2 »')
+      expect(subject).to have_text('Ajout de l’élément « Dirigeants 1 »')
+      expect(subject).to have_text('Ajout de l’élément « Dirigeants 2 »')
       expect(subject).to have_selector('.sub_list', text: /Nom du dirigeant :\s+Jeanne/)
       expect(subject).to have_selector('.sub_list', text: /Nom du dirigeant :\s+Paul/)
     end
@@ -86,7 +86,7 @@ describe EditableChamp::ProposedPrefillComponent, type: :component do
     end
 
     it 'shows the value it replaces' do
-      expect(subject).to have_selector('.champ-row', text: /Nom :\s+Dupont\s+\(remplace « Martin »\)/)
+      expect(subject).to have_selector('.champ-row', text: /Nom :\s+Dupont\s+\(remplace « Martin »\)/)
     end
   end
 
@@ -120,7 +120,7 @@ describe EditableChamp::ProposedPrefillComponent, type: :component do
     end
 
     it 'shows the "No" a checkbox replaces' do
-      expect(subject).to have_selector('.champ-row', text: /Adhérent :\s+Oui\s+\(remplace « Non »\)/)
+      expect(subject).to have_selector('.champ-row', text: /Adhérent :\s+Oui\s+\(remplace « Non »\)/)
     end
   end
 end

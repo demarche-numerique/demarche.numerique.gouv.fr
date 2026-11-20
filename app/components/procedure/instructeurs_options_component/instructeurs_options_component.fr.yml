@@ -11,7 +11,7 @@ fr:
     hint: "Par défaut, un instructeur ne peut ajouter que des adresses de son domaine (exemple : @interieur.gouv.fr)."
   can_edit_dossiers:
     title: Modification des dossiers usagers par les instructeurs
-    hint: Cette option permet aux instructeurs de modifier eux-mêmes les dossiers des usagers. Toute modification effectuée par un instructeur sur le dossier d’un usager sera historisée et indiquée dans l’onglet « Personnes impliquées » du dossier. L’usager sera également notifié du détail des modifications effectuées.
+    hint: Cette option permet aux instructeurs de modifier eux-mêmes les dossiers des usagers. Toute modification effectuée par un instructeur sur le dossier d’un usager sera historisée et indiquée dans l’onglet « Personnes impliquées » du dossier. L’usager sera également notifié du détail des modifications effectuées.
   routing: Routage
   routing_configuration_notice_1:
     Le routage permet d’acheminer les dossiers vers différents groupes d’instructeurs.
@@ -21,15 +21,15 @@ fr:
     Vous avez configuré un routage avec <strong>%{groupe_instructeurs_count} groupes d’instructeurs.</strong>
   routing_configuration_notice_2_html: |
     Pour le configurer, votre formulaire doit comporter
-    au moins un <strong>« champ routable »</strong>, soit un champ de type :
+    au moins un <strong>« champ routable »</strong>, soit un champ de type :
   routing_configuration_notice_3_html: |
     Ajoutez ce champ dans la page d’édition <a href="%{path}">des champs du formulaire</a>.
   configure_routing: Configurer le routage
   delete_routing: Supprimer le routage
   deleting: Suppression…
-  delete_title: Aucun dossier ne sera supprimé. Les groupes d’instructeurs vont être supprimés. Seuls les instructeurs du groupe « %{defaut_label} » resteront affectés à la démarche.
+  delete_title: Aucun dossier ne sera supprimé. Les groupes d’instructeurs vont être supprimés. Seuls les instructeurs du groupe « %{defaut_label} » resteront affectés à la démarche.
   delete_confirmation: |
-    Attention : tous les dossiers vont être déplacés dans le groupe « %{defaut_label} » et seuls les instructeurs présents dans ce groupe resteront affectés à la démarche. Souhaitez-vous continuer ?
+    Attention : tous les dossiers vont être déplacés dans le groupe « %{defaut_label} » et seuls les instructeurs présents dans ce groupe resteront affectés à la démarche. Souhaitez-vous continuer ?
   routing_configuration_title: Configuration du routage
   routing_configuration_subtitle: Choix du type de configuration
   configuration: Configuration
@@ -39,7 +39,7 @@ fr:
       hint: crée les groupes automatiquement à partir des valeurs possibles d’un champ du formulaire usager
     manual:
       label: Manuelle
-      hint: libre à vous de créer et de configurer les groupes en utilisant les champs « routables » du formulaire usager
+      hint: libre à vous de créer et de configurer les groupes en utilisant les champs « routables » du formulaire usager
   cancel: Annuler
   continue: Continuer
   routage_doc:

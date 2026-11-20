@@ -2,8 +2,8 @@
 fr:
   c_est_vous: "%{email} (C’est vous !)"
   remove_from_group: "Retirer du groupe"
-  remove_confirm: "Retirer « %{email} » des administrateurs de « %{group_name} » ?"
+  remove_confirm: "Retirer « %{email} » des administrateurs de « %{group_name} » ?"
   revoke_admin_access: "Révoquer l’accès administrateur"
   delete: "Supprimer"
   cannot_delete_admin: "Cet administrateur a des démarches dont il est le seul admin et ne peut être supprimé"
-  delete_confirm: "Supprimer « %{email} » en tant qu’administrateur ?"
+  delete_confirm: "Supprimer « %{email} » en tant qu’administrateur ?"
