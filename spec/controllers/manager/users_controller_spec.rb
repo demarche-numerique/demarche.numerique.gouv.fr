@@ -239,25 +239,27 @@ describe Manager::UsersController, type: :controller do
     let(:user) { users.usager }
     let(:brevo) { instance_double(Brevo::API, unblock_user:) }
 
+    let(:now) { Time.zone.parse('2026-11-06 10:00') }
+
     before do
       allow(Brevo::API).to receive(:new).and_return(brevo)
       user.update_columns(email_unsubscribed: true)
-      put :unblock_email, params: { user_id: user.id }
+      travel_to(now) { put :unblock_email, params: { user_id: user.id } }
     end
 
     context 'when Brevo unblocks the address' do
       let(:unblock_user) { true }
 
-      it 'subscribes the user again' do
-        expect(user.reload.email_unsubscribed).to be(false)
+      it 'subscribes the user again and records the unblock' do
+        expect(user.reload).to have_attributes(email_unsubscribed: false, brevo_unblocked_at: now)
       end
     end
 
     context 'when Brevo refuses' do
       let(:unblock_user) { false }
 
-      it 'keeps the user unsubscribed' do
-        expect(user.reload.email_unsubscribed).to be(true)
+      it 'keeps the user unsubscribed and records nothing' do
+        expect(user.reload).to have_attributes(email_unsubscribed: true, brevo_unblocked_at: nil)
       end
     end
   end

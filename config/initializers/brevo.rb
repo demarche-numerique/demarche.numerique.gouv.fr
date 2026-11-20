@@ -21,5 +21,7 @@ if ENV.key?('BREVO_BALANCING_VALUE')
 
   SibApiV3Sdk.configure do |config|
     config.api_key['api-key'] = ENV["BREVO_API_V3_KEY"]
+    # seconds; the SDK default, 0, never times out
+    config.timeout = 10
   end
 end

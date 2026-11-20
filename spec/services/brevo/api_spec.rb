@@ -20,6 +20,22 @@ describe Brevo::API do
     allow(API::Client).to receive(:new).and_return(instance_double(API::Client, call: Failure(API::Client::Error[type, code, true, API::Client::HTTPError.new(response)])))
   end
 
+  describe '#unblock_user' do
+    let!(:unblock) { stub_request(:delete, %r{\Ahttps://api\.sendinblue\.com/}).to_return(status: 204) }
+
+    it 'unblocks the address at Brevo' do
+      expect(api.unblock_user('usager@example.com')).to be(true)
+      expect(unblock).to have_been_requested
+    end
+
+    it 'calls nothing for an address that would leave the endpoint path' do
+      expect(api.unblock_user('a/../../../webhooks/1@attacker.fr')).to be(false)
+      expect(api.unblock_user('..?@attacker.fr')).to be(false)
+      expect(api.unblock_user('..#@attacker.fr')).to be(false)
+      expect(unblock).not_to have_been_requested
+    end
+  end
+
   describe '#send_email' do
     it 'returns the message ids' do
       stub_send(status: 201, body: { messageId: '<1@smtp-relay.mailin.fr>' })
