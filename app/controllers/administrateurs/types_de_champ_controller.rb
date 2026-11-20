@@ -15,7 +15,10 @@ module Administrateurs
       if type_de_champ.valid?
         edited(type_de_champ)
         @created = champ_component_from(type_de_champ, focused: true)
-        @morphed = champ_components_from(siblings_starting_at(type_de_champ, 1))
+        following = siblings_starting_at(type_de_champ, 1)
+        below = refresh_below(type_de_champ, following, changes: appearing(type_de_champ), before: NO_FOOTPRINT, after: footprint_of(type_de_champ))
+        @morphed = champ_components_from(below)
+        @renumbered = following - below
       else
         flash.alert = type_de_champ.errors.full_messages
       end
@@ -135,12 +138,27 @@ module Administrateurs
         refuse(type_de_champ, "« #{type_de_champ.libelle} » est utilisé pour le routage, vous ne pouvez pas le supprimer.")
       elsif type_de_champ.present?
         index = type_de_champ.flat_siblings.index(type_de_champ)
+        # the other dates lose the lock; the conditions, once the last one on
+        # a champ value goes, read the columns: the procedure tells that mode
+        # once, so read it only after the removal then
+        whole_form = [type_de_champ, *type_de_champ.flat_children].any? do
+          (it.date? && it.prefill_with_france_connect_information?) || it.condition&.terms&.any?(Logic::ChampValue)
+        end
+        before = footprint_of(type_de_champ) if !whole_form
         # nil in case of replay (double click, champ already removed)
         if draft.remove_type_de_champ(params[:stable_id]).present?
           edited(type_de_champ)
           @destroyed = type_de_champ
-          # the ones that followed it
-          @morphed = champ_components_from(@siblings.drop(index))
+
+          if whole_form
+            @morphed = champ_components_from(draft.type_de_champs)
+          else
+            # the ones that followed it
+            following = @siblings.drop(index)
+            below = refresh_below(type_de_champ, following, changes: vanishing(type_de_champ), before:, after: NO_FOOTPRINT)
+            @morphed = champ_components_from(below)
+            @renumbered = following - below
+          end
         end
       end
     end

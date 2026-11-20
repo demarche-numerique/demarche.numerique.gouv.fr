@@ -14,6 +14,8 @@ module TurboTypesDeChampConcern
   # change empties.
   Footprint = Data.define(:sources, :section, :prefilled_stable_ids)
 
+  NO_FOOTPRINT = Footprint.new(sources: [], section: nil, prefilled_stable_ids: [])
+
   private
 
   def footprint_of(type_de_champ)
@@ -23,6 +25,10 @@ module TurboTypesDeChampConcern
       prefilled_stable_ids: type_de_champ.referentiel? ? type_de_champ.referentiel_mapping_prefillable_stable_ids.map(&:to_s) : []
     )
   end
+
+  # Added or removed, a type de champ changes all it shows, from or to nothing
+  def appearing(type_de_champ) = type_de_champ.attributes.slice(*SHOWN_ATTRIBUTES).transform_values { [nil, it] }
+  def vanishing(type_de_champ) = type_de_champ.attributes.slice(*SHOWN_ATTRIBUTES).transform_values { [it, nil] }
 
   # The champs below to send back whole; the condition blocks to replace go in
   # @conditions. changes: as saved_changes.
