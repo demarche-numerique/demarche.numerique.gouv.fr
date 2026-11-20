@@ -10,7 +10,7 @@ fr:
         custom:
           title: Configuration manuelle du routage
           alert_title: Deux groupes par défaut ont été créés
-          alert_body: "Vous devez maintenant les renommer et leur attribuer des règles de routage à partir du ou des champs « routables » de votre formulaire, soit des champs de type :"
+          alert_body: "Vous devez maintenant les renommer et leur attribuer des règles de routage à partir du ou des champs « routables » de votre formulaire, soit des champs de type :"
         simple:
           title: Configuration automatique du routage
           alert_title: "Les groupes instructeurs ont été créés à partir du champ « %{champ} »"
@@ -50,13 +50,13 @@ fr:
           one: "Lʼinstructeur %{emails} nʼa pas été retiré de tous les groupes car il est seul instructeur dans certains groupes."
           other: "Les instructeurs %{emails} nʼont pas été retirés de tous les groupes car ils sont seuls instructeurs dans certains groupes."
       reaffectation:
-        title: "Réaffectation des dossiers du groupe « %{label} »"
+        title: "Réaffectation des dossiers du groupe « %{label} »"
         hint:
-          one: "Le groupe « %{label} » contient des dossiers. Afin de procéder à sa suppression, vous devez réaffecter ses dossiers à lʼautre groupe instructeur"
-          other: "Le groupe « %{label} » contient des dossiers. Afin de procéder à sa suppression, vous devez réaffecter ses dossiers à lʼun des %{count} autres groupes instructeurs"
+          one: "Le groupe « %{label} » contient des dossiers. Afin de procéder à sa suppression, vous devez réaffecter ses dossiers à lʼautre groupe instructeur"
+          other: "Le groupe « %{label} » contient des dossiers. Afin de procéder à sa suppression, vous devez réaffecter ses dossiers à lʼun des %{count} autres groupes instructeurs"
         label: Nouveau groupe instructeur
         select: Sélectionner
         submit: Réaffecter les dossiers à ce groupe
-        confirm: "Êtes-vous sûr de vouloir réaffecter les dossiers du groupe « %{label} » ?"
-        success: "Les dossiers du groupe « %{group_label} » ont été réaffectés au groupe « %{target_group_label} »"
+        confirm: "Êtes-vous sûr de vouloir réaffecter les dossiers du groupe « %{label} » ?"
+        success: "Les dossiers du groupe « %{group_label} » ont été réaffectés au groupe « %{target_group_label} »"
         error: "Veuillez sélectionner un groupe instructeur dans la liste ci-dessous"

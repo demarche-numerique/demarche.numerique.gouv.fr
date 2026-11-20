@@ -19,5 +19,5 @@ fr:
   select_template_label: Sélectionner le modèle d’export
   configure_templates: Configurer les modèles d’export
   no_template: Aucun modèle configuré
-  include_archived_plural_html: <span>Inclure les <strong>%{count} dossiers « à archiver »</strong></span>
-  include_archived_singular_html: <span>Inclure le <strong>dossier « à archiver »</strong></span>
+  include_archived_plural_html: <span>Inclure les <strong>%{count} dossiers « à archiver »</strong></span>
+  include_archived_singular_html: <span>Inclure le <strong>dossier « à archiver »</strong></span>

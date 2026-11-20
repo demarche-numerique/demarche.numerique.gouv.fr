@@ -95,12 +95,12 @@ describe Conditions::ConditionsErrorsComponent, type: :component do
       let(:source_tdcs) { [tdc] }
       let(:condition) { ds_and([greater_than(champ_value(tdc.stable_id), constant(3)), less_than(champ_value(tdc.stable_id), constant(2))]) }
 
-      it { expect(page).to have_content("Aucune valeur du champ « #{tdc.libelle} » ne vérifie à la fois « supérieur à 3 » et « inférieur à 2 ».") }
+      it { expect(page).to have_content("Aucune valeur du champ « #{tdc.libelle} » ne vérifie à la fois « supérieur à 3 » et « inférieur à 2 ».") }
 
       context 'in English' do
         around { |example| I18n.with_locale(:en) { example.run } }
 
-        it { expect(page).to have_content("No value of the field « #{tdc.libelle} » satisfies « greater than 3 » and « less than 2 » at once.") }
+        it { expect(page).to have_content("No value of the field « #{tdc.libelle} » satisfies « greater than 3 » and « less than 2 » at once.") }
       end
     end
 
@@ -110,7 +110,7 @@ describe Conditions::ConditionsErrorsComponent, type: :component do
       let(:condition) { ds_or([greater_than(champ_value(tdc.stable_id), constant(1)), ds_and([greater_than(champ_value(tdc.stable_id), constant(3)), less_than(champ_value(tdc.stable_id), constant(2))])]) }
 
       it 'says the error is about one branch' do
-        expect(page).to have_content("Une des branches « Ou » de cette condition ne peut jamais être vraie : aucune valeur du champ « #{tdc.libelle} » n’y vérifie à la fois « supérieur à 3 » et « inférieur à 2 ».")
+        expect(page).to have_content("Une des branches « Ou » de cette condition ne peut jamais être vraie : aucune valeur du champ « #{tdc.libelle} » n’y vérifie à la fois « supérieur à 3 » et « inférieur à 2 ».")
         expect(page).to have_no_content("Aucune valeur du champ")
       end
     end
@@ -120,7 +120,7 @@ describe Conditions::ConditionsErrorsComponent, type: :component do
       let(:source_tdcs) { [tdc] }
       let(:condition) { ds_or([greater_than(champ_value(tdc.stable_id), constant(1)), greater_than(champ_value(tdc.stable_id), constant(6))]) }
 
-      it { expect(page).to have_content("Une des branches « Ou » de cette condition ne peut jamais être vraie : aucune valeur du champ « #{tdc.libelle} » n’y vérifie « supérieur à 6 », ses valeurs étant limitées entre « 0 » et « 5 ».") }
+      it { expect(page).to have_content("Une des branches « Ou » de cette condition ne peut jamais être vraie : aucune valeur du champ « #{tdc.libelle} » n’y vérifie « supérieur à 6 », ses valeurs étant limitées entre « 0 » et « 5 ».") }
     end
 
     context 'when a branch of an or targets a champ hidden in that case' do
@@ -129,7 +129,7 @@ describe Conditions::ConditionsErrorsComponent, type: :component do
       let(:source_tdcs) { [number, tdc] }
       let(:condition) { ds_or([ds_and([ds_eq(champ_value(tdc.stable_id), constant(true)), less_than(champ_value(number.stable_id), constant(5))]), less_than(champ_value(number.stable_id), constant(3))]) }
 
-      it { expect(page).to have_content("Une des branches « Ou » de cette condition ne peut jamais être vraie : le champ « #{tdc.libelle} » n’est pas affiché dans ce cas.") }
+      it { expect(page).to have_content("Une des branches « Ou » de cette condition ne peut jamais être vraie : le champ « #{tdc.libelle} » n’est pas affiché dans ce cas.") }
     end
 
     context 'when a row runs into the validation limits of a number champ' do
@@ -137,7 +137,7 @@ describe Conditions::ConditionsErrorsComponent, type: :component do
       let(:source_tdcs) { [tdc] }
       let(:condition) { greater_than(champ_value(tdc.stable_id), constant(6)) }
 
-      it { expect(page).to have_content("Aucune valeur du champ « #{tdc.libelle} » ne vérifie « supérieur à 6 » : ses valeurs sont limitées entre « 0 » et « 5 ».") }
+      it { expect(page).to have_content("Aucune valeur du champ « #{tdc.libelle} » ne vérifie « supérieur à 6 » : ses valeurs sont limitées entre « 0 » et « 5 ».") }
     end
 
     context 'when the rows are contradictory on a geographic champ' do
@@ -146,7 +146,7 @@ describe Conditions::ConditionsErrorsComponent, type: :component do
       let(:condition) { ds_and([ds_in_region(champ_value(tdc.stable_id), constant('84')), ds_in_departement(champ_value(tdc.stable_id), constant('75'))]) }
 
       it 'names the region and the departement' do
-        expect(page).to have_content("Aucune valeur du champ « #{tdc.libelle} » ne vérifie à la fois « est dans la région Auvergne-Rhône-Alpes » et « est dans le département 75 – Paris ».")
+        expect(page).to have_content("Aucune valeur du champ « #{tdc.libelle} » ne vérifie à la fois « est dans la région Auvergne-Rhône-Alpes » et « est dans le département 75 – Paris ».")
       end
     end
 
@@ -155,7 +155,7 @@ describe Conditions::ConditionsErrorsComponent, type: :component do
       let(:source_tdcs) { [tdc] }
       let(:condition) { ds_and([ds_eq(champ_value(tdc.stable_id), constant(true)), ds_eq(champ_value(tdc.stable_id), constant(false))]) }
 
-      it { expect(page).to have_content("Aucune valeur du champ « #{tdc.libelle} » ne vérifie à la fois « est oui » et « est non ».") }
+      it { expect(page).to have_content("Aucune valeur du champ « #{tdc.libelle} » ne vérifie à la fois « est oui » et « est non ».") }
     end
 
     context 'when the rows are contradictory on the other option' do
@@ -163,7 +163,7 @@ describe Conditions::ConditionsErrorsComponent, type: :component do
       let(:source_tdcs) { [tdc] }
       let(:condition) { ds_and([ds_eq(champ_value(tdc.stable_id), constant(Champs::DropDownListChamp::OTHER)), ds_eq(champ_value(tdc.stable_id), constant('val1'))]) }
 
-      it { expect(page).to have_content("Aucune valeur du champ « #{tdc.libelle} » ne vérifie à la fois « est Entrer une autre option » et « est val1 ».") }
+      it { expect(page).to have_content("Aucune valeur du champ « #{tdc.libelle} » ne vérifie à la fois « est Entrer une autre option » et « est val1 ».") }
     end
 
     context 'when the rows are contradictory on a region champ' do
@@ -171,7 +171,7 @@ describe Conditions::ConditionsErrorsComponent, type: :component do
       let(:source_tdcs) { [tdc] }
       let(:condition) { ds_and([ds_eq(champ_value(tdc.stable_id), constant('84')), ds_eq(champ_value(tdc.stable_id), constant('11'))]) }
 
-      it { expect(page).to have_content("Aucune valeur du champ « #{tdc.libelle} » ne vérifie à la fois « est Auvergne-Rhône-Alpes » et « est Île-de-France ».") }
+      it { expect(page).to have_content("Aucune valeur du champ « #{tdc.libelle} » ne vérifie à la fois « est Auvergne-Rhône-Alpes » et « est Île-de-France ».") }
     end
 
     context 'when the rows exclude every region a departement is in' do
@@ -179,7 +179,7 @@ describe Conditions::ConditionsErrorsComponent, type: :component do
       let(:source_tdcs) { [tdc] }
       let(:condition) { ds_and([ds_not_in_region(champ_value(tdc.stable_id), constant('84')), ds_not_in_departement(champ_value(tdc.stable_id), constant('75')), ds_in_departement(champ_value(tdc.stable_id), constant('01'))]) }
 
-      it { expect(page).to have_content("ne vérifie à la fois « n’est pas dans la région Auvergne-Rhône-Alpes », « n’est pas dans le département 75 – Paris » et « est dans le département 01 – Ain ».") }
+      it { expect(page).to have_content("ne vérifie à la fois « n’est pas dans la région Auvergne-Rhône-Alpes », « n’est pas dans le département 75 – Paris » et « est dans le département 01 – Ain ».") }
     end
 
     context 'when the rows are contradictory on a column' do
@@ -188,7 +188,7 @@ describe Conditions::ConditionsErrorsComponent, type: :component do
       let(:column) { champ_column_value(tdc.columns(procedure_id: nil).find { it.type == :enum }) }
       let(:condition) { ds_and([ds_eq(column, constant('val1')), ds_eq(column, constant('val2'))]) }
 
-      it { expect(page).to have_content("Aucune valeur du champ « #{tdc.libelle} » ne vérifie à la fois « est val1 » et « est val2 ».") }
+      it { expect(page).to have_content("Aucune valeur du champ « #{tdc.libelle} » ne vérifie à la fois « est val1 » et « est val2 ».") }
     end
 
     context 'when a single row can never be true' do
@@ -196,7 +196,7 @@ describe Conditions::ConditionsErrorsComponent, type: :component do
       let(:source_tdcs) { [tdc] }
       let(:condition) { ds_eq(champ_value(tdc.stable_id), constant(2.5)) }
 
-      it { expect(page).to have_content("Aucune valeur du champ « #{tdc.libelle} » ne vérifie « égal à 2.5 ».") }
+      it { expect(page).to have_content("Aucune valeur du champ « #{tdc.libelle} » ne vérifie « égal à 2.5 ».") }
     end
 
     context 'when the targeted champ is never displayed in that case' do
@@ -205,7 +205,7 @@ describe Conditions::ConditionsErrorsComponent, type: :component do
       let(:source_tdcs) { [tdc, hidden_tdc] }
       let(:condition) { ds_and([ds_eq(champ_value(hidden_tdc.stable_id), constant(true)), less_than(champ_value(tdc.stable_id), constant(5))]) }
 
-      it { expect(page).to have_content("Cette condition ne peut jamais être vraie : le champ « #{hidden_tdc.libelle} » n’est pas affiché dans ce cas.") }
+      it { expect(page).to have_content("Cette condition ne peut jamais être vraie : le champ « #{hidden_tdc.libelle} » n’est pas affiché dans ce cas.") }
     end
 
     context 'when every targeted champ is hidden together' do
@@ -216,8 +216,8 @@ describe Conditions::ConditionsErrorsComponent, type: :component do
       let(:condition) { ds_and([ds_eq(champ_value(hidden_tdc.stable_id), constant(true)), ds_eq(champ_value(other_tdc.stable_id), constant(true))]) }
 
       it 'lists every one of them' do
-        expect(page).to have_content('le champ « un » n’est pas affiché dans ce cas.')
-        expect(page).to have_content('le champ « deux » n’est pas affiché dans ce cas.')
+        expect(page).to have_content('le champ « un » n’est pas affiché dans ce cas.')
+        expect(page).to have_content('le champ « deux » n’est pas affiché dans ce cas.')
       end
     end
 

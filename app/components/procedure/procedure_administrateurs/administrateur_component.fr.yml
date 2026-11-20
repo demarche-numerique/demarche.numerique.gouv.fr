@@ -1,4 +1,4 @@
 fr:
   remove: Retirer
   its_you: "(C’est vous !)"
-  confirm_remove: "Retirer « %{email} » des administrateurs de « %{libelle} » ?"
+  confirm_remove: "Retirer « %{email} » des administrateurs de « %{libelle} » ?"

@@ -391,7 +391,7 @@ describe BatchOperationProcessOneJob, type: :job do
 
       it 'stores a human readable error message naming the champ, without failing the job' do
         expect { subject.perform_now }.not_to raise_error
-        expect(batch_operation.dossier_operations.error.first.error_message).to include("vérifiées : « Numéro RNA ».")
+        expect(batch_operation.dossier_operations.error.first.error_message).to include("vérifiées : « Numéro RNA ».")
       end
     end
   end

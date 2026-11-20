@@ -51,7 +51,7 @@ RSpec.describe Dossiers::RNFComponent, type: :component do
     let(:rnf_data) { nil }
 
     it 'displays a pending message with the identifier' do
-      expect(subject).to have_text('Récupération des données en cours pour l’identifiant « 075-FDD-00003-01 »')
+      expect(subject).to have_text('Récupération des données en cours pour l’identifiant « 075-FDD-00003-01 »')
     end
   end
 
@@ -60,7 +60,7 @@ RSpec.describe Dossiers::RNFComponent, type: :component do
     let(:rnf_data) { nil }
 
     it 'tells the instructeur the data will come later' do
-      expect(subject).to have_text('Les données pour l’identifiant « 075-FDD-00003-01 » n’ont pas pu être récupérées')
+      expect(subject).to have_text('Les données pour l’identifiant « 075-FDD-00003-01 » n’ont pas pu être récupérées')
     end
   end
 
@@ -70,7 +70,7 @@ RSpec.describe Dossiers::RNFComponent, type: :component do
     let(:fetch_external_data_exceptions) { [ExternalDataException.new(error: 'NotFound', code: 404)] }
 
     it 'displays a not found message with the identifier' do
-      expect(subject).to have_text('Aucune donnée trouvée pour l’identifiant « 075-FDD-00003-01 »')
+      expect(subject).to have_text('Aucune donnée trouvée pour l’identifiant « 075-FDD-00003-01 »')
     end
   end
 
@@ -80,7 +80,7 @@ RSpec.describe Dossiers::RNFComponent, type: :component do
     let(:fetch_external_data_exceptions) { [ExternalDataException.new(error: 'Boom', code: 500)] }
 
     it 'displays a generic error message with the identifier' do
-      expect(subject).to have_text('Une erreur est survenue lors de la récupération des données pour l’identifiant « 075-FDD-00003-01 »')
+      expect(subject).to have_text('Une erreur est survenue lors de la récupération des données pour l’identifiant « 075-FDD-00003-01 »')
     end
   end
 

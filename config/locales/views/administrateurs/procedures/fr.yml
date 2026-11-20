@@ -32,7 +32,7 @@ fr:
       commune_info:
         title: Comment fonctionne le champ « Commune française actuelle » ?
         description_html: "Ce champ propose des valeurs provenant de l’%{api_geo_link} (référentiels géographiques nationaux). Il s’agit des communes de France métropolitaine et des DROM. Les communes des TOM ou à l’étranger ne sont donc <strong>pas</strong> incluses."
-        warning_desc_html: "Si vous paramétrez ce champ en obligatoire et que l’usager souhaite renseigner une commune hors France métropolitaine / DROM ou à l’étranger, il <strong>sera bloqué</strong> pour déposer son dossier.<br><br>Dans l’incertitude, nous vous recommandons de laisser ce champ en facultatif, de prévoir une question préliminaire pour appliquer une logique conditionnelle au champ, ou de privilégier un champ de type « texte court »."
+        warning_desc_html: "Si vous paramétrez ce champ en obligatoire et que l’usager souhaite renseigner une commune hors France métropolitaine / DROM ou à l’étranger, il <strong>sera bloqué</strong> pour déposer son dossier.<br><br>Dans l’incertitude, nous vous recommandons de laisser ce champ en facultatif, de prévoir une question préliminaire pour appliquer une logique conditionnelle au champ, ou de privilégier un champ de type « texte court »."
       close:
         page_title: Clore la démarche
         replacement_procedure_callout_title: Vous êtes sur le point de clore une démarche
@@ -96,7 +96,7 @@ fr:
         dpd_part_1: Avez-vous bien pensé à informer votre Délégué à la Protection des Données personnelles (DPD).
         dpd_part_2: Si votre démarche propose de collecter des données personnelles, vous devez informer votre DPD. Chaque organisme en a un.
         dpd_part_3: "Ce dernier pourra vous aider dans la finalisation de votre démarche, et vous inviter à vous interroger sur les données collectées, et sur la pertinence de ces dernières. N’oubliez pas : toutes les démarches qui contiennent des données personnelles doivent être consignées dans un registre des traitements :"
-        dpd_part_4: Comment faire ? Vous pouvez soit lui communiquer par email le lien vers la démarche en test, ou bien le nommer « administrateur ». Dans tous les cas, ne publiez votre démarche qu’après avoir eu son avis.
+        dpd_part_4: Comment faire ? Vous pouvez soit lui communiquer par email le lien vers la démarche en test, ou bien le nommer « administrateur ». Dans tous les cas, ne publiez votre démarche qu’après avoir eu son avis.
         back_to_procedure: 'Annuler et revenir à la page de la démarche'
         submit: Publier
       check_path:

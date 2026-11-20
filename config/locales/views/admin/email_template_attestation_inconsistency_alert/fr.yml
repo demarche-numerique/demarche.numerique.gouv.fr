@@ -9,7 +9,7 @@ fr:
       enable_attestation: "activez l’attestation"
       remove_tag: "enlevez la balise"
       add_tag: insérez la balise
-      attestation_tag: "« lien attestation »"
+      attestation_tag: "« lien attestation »"
       or_word: ou
       to_word: dans
       insert_tag_hint: "(tapez @ dans le corps de l’email)"
@@ -17,5 +17,5 @@ fr:
   views:
     administrateurs:
       mail_accepte: "l’accusé d’acceptation"
-      mail_depose: "l’accusé de réception avec passage automatique au statut « accepté »"
+      mail_depose: "l’accusé de réception avec passage automatique au statut « accepté »"
       mail_refuse: "l’accusé de refus"

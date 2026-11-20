@@ -3,7 +3,7 @@ fr:
   shared:
     champs:
       external_data:
-        pending: "Récupération des données en cours pour l’identifiant « %{identifier} »…"
-        not_found: "Aucune donnée trouvée pour l’identifiant « %{identifier} »."
-        degraded: "Les données pour l’identifiant « %{identifier} » n’ont pas pu être récupérées. Nous réessayons : elles arriveront plus tard."
-        error: "Une erreur est survenue lors de la récupération des données pour l’identifiant « %{identifier} »."
+        pending: "Récupération des données en cours pour l’identifiant « %{identifier} »…"
+        not_found: "Aucune donnée trouvée pour l’identifiant « %{identifier} »."
+        degraded: "Les données pour l’identifiant « %{identifier} » n’ont pas pu être récupérées. Nous réessayons : elles arriveront plus tard."
+        error: "Une erreur est survenue lors de la récupération des données pour l’identifiant « %{identifier} »."

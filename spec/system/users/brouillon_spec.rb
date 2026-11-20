@@ -180,13 +180,13 @@ describe 'The user', js: true do
   scenario 'repetition with max limit disables add button when reached' do
     log_in_fast(user, procedure_with_repetition_limited)
 
-    expect(page).to have_button('Ajouter un élément à « bloc »', disabled: false)
+    expect(page).to have_button('Ajouter un élément à « bloc »', disabled: false)
     dossier = user_dossier.reload
 
-    click_on 'Ajouter un élément à « bloc »'
+    click_on 'Ajouter un élément à « bloc »'
     expect(page).to have_selector('.repetition .champs-group', count: 2)
 
-    expect(page).to have_button('Ajouter un élément à « bloc »', disabled: true)
+    expect(page).to have_button('Ajouter un élément à « bloc »', disabled: true)
   end
 
   let(:procedure_with_repetition_min) do
@@ -204,7 +204,7 @@ describe 'The user', js: true do
 
     within(all('.repetition-row').first) { fill_in 'sous champ', with: 'premier' }
     wait_for_autosave
-    click_on 'Ajouter un élément à « bloc »'
+    click_on 'Ajouter un élément à « bloc »'
     expect(page).to have_selector('.repetition-row', count: 2)
     expect(page).not_to have_selector('.editable-champ-repetition.fr-fieldset--error')
 
@@ -214,7 +214,7 @@ describe 'The user', js: true do
     expect(page).to have_content('« [2] sous champ » doit être rempli')
     expect(page).to have_selector('.editable-champ-repetition.fr-fieldset--error')
 
-    click_on 'Ajouter un élément à « bloc »'
+    click_on 'Ajouter un élément à « bloc »'
     expect(page).to have_selector('.repetition-row', count: 3)
     expect(page).to have_selector('.editable-champ-repetition.fr-fieldset--error')
 
@@ -237,7 +237,7 @@ describe 'The user', js: true do
 
     within(all('.repetition-row').first) { find_field('justificatif').attach_file(Rails.root + 'spec/fixtures/files/file.pdf') }
     expect(page).to have_text('file.pdf')
-    click_on 'Ajouter un élément à « bloc pj »'
+    click_on 'Ajouter un élément à « bloc pj »'
     expect(page).to have_selector('.repetition-row', count: 2)
 
     click_on 'Déposer le dossier'

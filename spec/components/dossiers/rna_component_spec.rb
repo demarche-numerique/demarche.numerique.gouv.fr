@@ -52,7 +52,7 @@ RSpec.describe Dossiers::RNAComponent, type: :component do
     let(:rna_data) { nil }
 
     it 'displays a pending message with the identifier' do
-      expect(subject).to have_text('Récupération des données en cours pour l’identifiant « W173847273 »')
+      expect(subject).to have_text('Récupération des données en cours pour l’identifiant « W173847273 »')
     end
   end
 
@@ -62,7 +62,7 @@ RSpec.describe Dossiers::RNAComponent, type: :component do
     let(:fetch_external_data_exceptions) { [ExternalDataException.new(error: 'NotFound', code: 404)] }
 
     it 'displays a not found message with the identifier' do
-      expect(subject).to have_text('Aucune donnée trouvée pour l’identifiant « W173847273 »')
+      expect(subject).to have_text('Aucune donnée trouvée pour l’identifiant « W173847273 »')
     end
   end
 
@@ -72,7 +72,7 @@ RSpec.describe Dossiers::RNAComponent, type: :component do
     let(:fetch_external_data_exceptions) { [ExternalDataException.new(error: 'Boom', code: 500)] }
 
     it 'displays a generic error message with the identifier' do
-      expect(subject).to have_text('Une erreur est survenue lors de la récupération des données pour l’identifiant « W173847273 »')
+      expect(subject).to have_text('Une erreur est survenue lors de la récupération des données pour l’identifiant « W173847273 »')
     end
   end
 

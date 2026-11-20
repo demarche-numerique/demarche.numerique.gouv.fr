@@ -57,7 +57,7 @@ fr:
     errors:
       models:
         dossier:
-          cannot_archive: Un dossier ne peut être déplacé dans « à archiver » qu’une fois le traitement terminé
+          cannot_archive: Un dossier ne peut être déplacé dans « à archiver » qu’une fois le traitement terminé
           attributes:
             pending_correction:
               blank: "Cochez la case indiquant avoir effectué les corrections demandées."

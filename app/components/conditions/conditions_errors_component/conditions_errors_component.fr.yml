@@ -12,20 +12,20 @@ fr:
     not_included: "« %{right} » ne fait pas partie de « %{libelle} »."
     empty_options: "Le champ « %{libelle} » n’a aucune option parmi lesquelles choisir."
     contradiction:
-      one: "Aucune valeur du champ « %{libelle} » ne vérifie %{comparisons}."
-      other: "Aucune valeur du champ « %{libelle} » ne vérifie à la fois %{comparisons}."
+      one: "Aucune valeur du champ « %{libelle} » ne vérifie %{comparisons}."
+      other: "Aucune valeur du champ « %{libelle} » ne vérifie à la fois %{comparisons}."
     limited:
-      one: "Aucune valeur du champ « %{libelle} » ne vérifie %{comparisons} : ses valeurs sont limitées %{limits}."
-      other: "Aucune valeur du champ « %{libelle} » ne vérifie à la fois %{comparisons} : ses valeurs sont limitées %{limits}."
+      one: "Aucune valeur du champ « %{libelle} » ne vérifie %{comparisons} : ses valeurs sont limitées %{limits}."
+      other: "Aucune valeur du champ « %{libelle} » ne vérifie à la fois %{comparisons} : ses valeurs sont limitées %{limits}."
     limits:
-      between: "entre « %{min} » et « %{max} »"
-      min: "à « %{min} » au minimum"
-      max: "à « %{max} » au maximum"
-    unreachable: "Cette condition ne peut jamais être vraie : le champ « %{libelle} » n’est pas affiché dans ce cas."
+      between: "entre « %{min} » et « %{max} »"
+      min: "à « %{min} » au minimum"
+      max: "à « %{max} » au maximum"
+    unreachable: "Cette condition ne peut jamais être vraie : le champ « %{libelle} » n’est pas affiché dans ce cas."
     contradiction_branch:
-      one: "Une des branches « Ou » de cette condition ne peut jamais être vraie : aucune valeur du champ « %{libelle} » n’y vérifie %{comparisons}."
-      other: "Une des branches « Ou » de cette condition ne peut jamais être vraie : aucune valeur du champ « %{libelle} » n’y vérifie à la fois %{comparisons}."
+      one: "Une des branches « Ou » de cette condition ne peut jamais être vraie : aucune valeur du champ « %{libelle} » n’y vérifie %{comparisons}."
+      other: "Une des branches « Ou » de cette condition ne peut jamais être vraie : aucune valeur du champ « %{libelle} » n’y vérifie à la fois %{comparisons}."
     limited_branch:
-      one: "Une des branches « Ou » de cette condition ne peut jamais être vraie : aucune valeur du champ « %{libelle} » n’y vérifie %{comparisons}, ses valeurs étant limitées %{limits}."
-      other: "Une des branches « Ou » de cette condition ne peut jamais être vraie : aucune valeur du champ « %{libelle} » n’y vérifie à la fois %{comparisons}, ses valeurs étant limitées %{limits}."
-    unreachable_branch: "Une des branches « Ou » de cette condition ne peut jamais être vraie : le champ « %{libelle} » n’est pas affiché dans ce cas."
+      one: "Une des branches « Ou » de cette condition ne peut jamais être vraie : aucune valeur du champ « %{libelle} » n’y vérifie %{comparisons}, ses valeurs étant limitées %{limits}."
+      other: "Une des branches « Ou » de cette condition ne peut jamais être vraie : aucune valeur du champ « %{libelle} » n’y vérifie à la fois %{comparisons}, ses valeurs étant limitées %{limits}."
+    unreachable_branch: "Une des branches « Ou » de cette condition ne peut jamais être vraie : le champ « %{libelle} » n’est pas affiché dans ce cas."

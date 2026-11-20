@@ -95,7 +95,7 @@ describe Conditions::ChampsConditionsComponent, type: :component do
           let(:condition) { ds_and([greater_than(target, constant(3)), less_than(target, constant(2))]) }
 
           it 'names the field and the conflicting rows' do
-            expect(page).to have_selector('.errors-summary', text: "Aucune valeur du champ « #{upper_tdc.libelle} » ne vérifie à la fois « supérieur à 3 » et « inférieur à 2 ».")
+            expect(page).to have_selector('.errors-summary', text: "Aucune valeur du champ « #{upper_tdc.libelle} » ne vérifie à la fois « supérieur à 3 » et « inférieur à 2 ».")
           end
         end
 

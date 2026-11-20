@@ -5,5 +5,5 @@ fr:
   libelles_description_html: "Les <strong>libellés et descriptions des champs</strong>: mise à jour des libellés de champs détectés comme trop longs, en majuscules ou difficiles à comprendre."
   structure_formulaire_html: "La <strong>structure du formulaire</strong>: amélioration de la structure du formulaire en réorganisant les champs et en ajoutant des sections."
   utilisation_types_html: "La <strong>bonne utilisation des types de champs</strong>: transformation de certains champs en d’autres types de champs, plus adaptés au regard de l’information attendue."
-  demande_unique_html: "La <strong>demande unique d’information (« Dites-le nous une fois »)</strong>: suppression des champs détectés comme redondants ou en doublon."
+  demande_unique_html: "La <strong>demande unique d’information (« Dites-le nous une fois »)</strong>: suppression des champs détectés comme redondants ou en doublon."
   libre_choix: "Vous êtes libre de choisir les suggestions que vous souhaitez appliquer."

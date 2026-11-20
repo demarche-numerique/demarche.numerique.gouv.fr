@@ -2,5 +2,5 @@
 fr:
   link: 'Dossier n° %{id}'
   title: 'Vous n’avez pas accès à ce dossier'
-  content_html: 'Pour consulter ce dossier, vous devez <strong>contacter l’un des administrateurs</strong> de la démarche « %{procedure_name} » pour lui demander de <strong>vous ajouter comme instructeur</strong> :'
-  no_matching_admin_html: 'Contactez le service en charge de la démarche « %{procedure_name} » pour vous nommer instructeur si vous devez accéder à ce dossier :'
+  content_html: 'Pour consulter ce dossier, vous devez <strong>contacter l’un des administrateurs</strong> de la démarche « %{procedure_name} » pour lui demander de <strong>vous ajouter comme instructeur</strong> :'
+  no_matching_admin_html: 'Contactez le service en charge de la démarche « %{procedure_name} » pour vous nommer instructeur si vous devez accéder à ce dossier :'

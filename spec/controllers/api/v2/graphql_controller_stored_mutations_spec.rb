@@ -89,7 +89,7 @@ describe API::V2::GraphqlController do
         let(:dossier) { dossiers.en_instruction }
 
         it {
-          expect(gql_data[:dossierArchiver][:errors].first[:message]).to eq('Un dossier ne peut être déplacé dans « à archiver » qu’une fois le traitement terminé')
+          expect(gql_data[:dossierArchiver][:errors].first[:message]).to eq('Un dossier ne peut être déplacé dans « à archiver » qu’une fois le traitement terminé')
         }
       end
     end

@@ -1765,7 +1765,7 @@ describe Dossier, type: :model do
       end
 
       it 'names every identifier the instructeur waits for' do
-        expect(dossier.unverified_data_labels).to eq("le SIRET du demandeur, « Numéro SIRET » et « Numéro RNA »")
+        expect(dossier.unverified_data_labels).to eq("le SIRET du demandeur, « Numéro SIRET » et « Numéro RNA »")
       end
     end
 

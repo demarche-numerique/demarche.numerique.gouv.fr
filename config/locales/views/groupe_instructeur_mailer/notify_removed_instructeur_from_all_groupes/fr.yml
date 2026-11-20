@@ -7,6 +7,6 @@ fr:
       subject_unassigned: 'Vous avez été désaffecté(e) de la démarche « %{procedure} »'
       email_body:
         assigned:
-          one: "Vous avez été retiré(e) du groupe « %{groupe} » de la démarche « %{procedure} » par « %{email} »."
-          other: "Vous avez été retiré(e) des groupes suivants de la démarche « %{procedure} » par « %{email} » :"
-        unassigned: "Vous avez été désaffecté(e) de la démarche « %{procedure} » par « %{email} »."
+          one: "Vous avez été retiré(e) du groupe « %{groupe} » de la démarche « %{procedure} » par « %{email} »."
+          other: "Vous avez été retiré(e) des groupes suivants de la démarche « %{procedure} » par « %{email} » :"
+        unassigned: "Vous avez été désaffecté(e) de la démarche « %{procedure} » par « %{email} »."
