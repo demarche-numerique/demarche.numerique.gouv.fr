@@ -493,7 +493,7 @@ module Instructeurs
 
     # Mémoïsé sur une ivar dédiée : `@procedure` est écrasé par certaines actions
     # (create_avis lui affecte `dossier.procedure`), et chaque chargement coûte
-    # les deux révisions avec leurs types de champ.
+    # les deux révisions, et la disposition de leurs types de champ.
     #
     # Pas de `with_attached_logo` : aucune page instructeur n'affiche le logo, et
     # le précharger coûte six requêtes (l'attachement, le blob, ses variantes, et

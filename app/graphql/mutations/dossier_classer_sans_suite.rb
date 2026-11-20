@@ -32,7 +32,6 @@ module Mutations
     end
 
     def authorized?(dossier:, instructeur:, **args)
-      dossier.with_revision
       if dossier.en_instruction? && dossier.awaiting_external_verification?
         return false, { errors: ["Les informations du SIRET du dossier ne sont pas complètes. Veuillez réessayer plus tard."] }
       elsif !dossier.en_instruction? || !dossier.can_terminer?

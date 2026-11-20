@@ -216,7 +216,7 @@ describe ProcedureRevision do
       before do
         draft.remove_type_de_champ(draft.type_de_champs.find { it.libelle == 'r2' }.stable_id)
         # hands the same instance of the repetition to the coordinates of both revisions
-        ProcedureRevisionPreloader.new([published, draft]).all
+        ActiveRecord::Associations::Preloader.new(records: [published, draft], associations: :revision_type_de_champs).call
       end
 
       it 'lays it out in each of them' do
