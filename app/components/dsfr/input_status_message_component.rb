@@ -22,6 +22,15 @@ module Dsfr
       statutable? && statut_message.present?
     end
 
+    # The visible region shows the errors instead of the status: never announce what it hides.
+    def announceable?
+      !errored? && status_announcement?
+    end
+
+    def errored?
+      @champ.errors.any? || @champ.dossier_nested_errors.any?
+    end
+
     def statutable?
       siret_support_status? ||
       rna_support_statut? ||
