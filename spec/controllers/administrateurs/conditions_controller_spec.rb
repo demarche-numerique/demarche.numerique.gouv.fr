@@ -47,7 +47,6 @@ describe Administrateurs::ConditionsController, type: :controller do
 
       it do
         expect(third_tdc.reload.condition).to eq(ds_eq(champ_value(first_tdc.stable_id), constant(2)))
-        expect(assigns(:coordinate)).to eq(procedure.draft_revision.coordinate_for(third_tdc))
         expect(assigns(:upper_tdcs)).to eq([first_tdc, second_tdc])
         expect(response.body).to include('<turbo-stream action="replace" target="autosave-notice">')
         expect(response.body).to have_css("turbo-stream[action='replace'][target='breadcrumbs']")
@@ -74,7 +73,6 @@ describe Administrateurs::ConditionsController, type: :controller do
 
       it do
         expect(third_tdc.reload.condition).to eq(empty_operator(empty, empty))
-        expect(assigns(:coordinate)).to eq(procedure.draft_revision.coordinate_for(third_tdc))
         expect(assigns(:upper_tdcs)).to eq([first_tdc, second_tdc])
         expect(replaced_condition_block).to be_present
       end
@@ -101,7 +99,6 @@ describe Administrateurs::ConditionsController, type: :controller do
 
       it do
         expect(third_tdc.reload.condition).to eq(nil)
-        expect(assigns(:coordinate)).to eq(procedure.draft_revision.coordinate_for(third_tdc))
         expect(assigns(:upper_tdcs)).to eq([first_tdc, second_tdc])
         expect(replaced_condition_block).to be_present
       end
@@ -117,7 +114,6 @@ describe Administrateurs::ConditionsController, type: :controller do
 
       it do
         expect(third_tdc.reload.condition).to eq(nil)
-        expect(assigns(:coordinate)).to eq(procedure.draft_revision.coordinate_for(third_tdc))
         expect(assigns(:upper_tdcs)).to eq([first_tdc, second_tdc])
         expect(replaced_condition_block).to be_present
       end
@@ -155,7 +151,6 @@ describe Administrateurs::ConditionsController, type: :controller do
 
       it do
         expect(third_tdc.reload.condition).to eq(ds_eq(champ_value(second_tdc.stable_id), constant(0)))
-        expect(assigns(:coordinate)).to eq(procedure.draft_revision.coordinate_for(third_tdc))
         expect(assigns(:upper_tdcs)).to eq([first_tdc, second_tdc])
         expect(replaced_condition_block).to be_present
       end
@@ -236,7 +231,6 @@ describe Administrateurs::ConditionsController, type: :controller do
 
       it do
         expect(child_2.reload.condition).to eq(empty_operator(empty, empty))
-        expect(assigns(:coordinate)).to eq(procedure.draft_revision.coordinate_for(child_2))
         expect(assigns(:upper_tdcs)).to eq([child_1, top])
       end
     end

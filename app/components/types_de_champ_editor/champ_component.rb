@@ -15,11 +15,6 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
   delegate :libelle_configurable?, :description_configurable?, :revision, to: :type_de_champ
   delegate :procedure, to: :revision
 
-  # for what the coordinate alone answers
-  def coordinate
-    @coordinate ||= revision.coordinate_for(type_de_champ)
-  end
-
   def siblings
     @siblings ||= type_de_champ.flat_siblings
   end
