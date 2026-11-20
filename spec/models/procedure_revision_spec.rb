@@ -45,7 +45,7 @@ describe ProcedureRevision do
         draft.move_type_de_champ(added.stable_id, 2)
         expect(stored_libelles).to eq([['a'], ['b'], ['c'], ['r', ['r2'], ['r1']]])
 
-        draft.move_type_de_champ_after(added.stable_id, 0)
+        draft.move_type_de_champ_after(added.stable_id, a.stable_id)
         expect(stored_libelles).to eq([['a'], ['c'], ['b'], ['r', ['r2'], ['r1']]])
 
         draft.remove_type_de_champ(b.stable_id)
@@ -581,7 +581,8 @@ describe ProcedureRevision do
       before_the_lock { other_request.remove_type_de_champ(a.stable_id) }
 
       expect(draft.move_type_de_champ(a.stable_id, 1)).to be_nil
-      expect(draft.move_type_de_champ_after(a.stable_id, 1)).to be_nil
+      expect(draft.move_type_de_champ_after(a.stable_id, b.stable_id)).to be_nil
+      expect(draft.move_type_de_champ_after(b.stable_id, a.stable_id)).to be_nil
       expect(libelles_and_positions).to eq([['b', 0], ['c', 1]])
 
       other_request.remove_type_de_champ(b.stable_id)

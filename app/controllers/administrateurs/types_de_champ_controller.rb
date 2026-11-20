@@ -84,11 +84,11 @@ module Administrateurs
     end
 
     def move_and_morph
-      source_type_de_champ = draft.find_and_ensure_exclusive_use(params[:stable_id])
-      target_type_de_champ = draft.find_and_ensure_exclusive_use(params[:target_stable_id])
-      from = source_type_de_champ.flat_siblings.index(source_type_de_champ)
-      after = draft.coordinate_for(target_type_de_champ).position
-      type_de_champ = draft.move_type_de_champ_after(source_type_de_champ.stable_id, after)
+      from = draft.type_de_champ(params[:stable_id])&.then { it.flat_siblings.index(it) }
+      type_de_champ = draft.move_type_de_champ_after(params[:stable_id], params[:target_stable_id])
+      # nil in case of replay (champ removed in another tab)
+      return if type_de_champ.nil?
+
       edited(type_de_champ)
       @destroyed = type_de_champ
       @created = champ_component_from(type_de_champ)

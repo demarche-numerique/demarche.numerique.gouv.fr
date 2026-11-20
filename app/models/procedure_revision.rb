@@ -167,8 +167,13 @@ class ProcedureRevision < ApplicationRecord
     move(stable_id) { move_coordinate(it, position) }
   end
 
-  def move_type_de_champ_after(stable_id, position)
+  # After the sibling given, read under the lock as the one moved is: nil as
+  # well when that one is gone.
+  def move_type_de_champ_after(stable_id, after_stable_id)
     move(stable_id) do |coordinate|
+      position = coordinate_by_stable_id(after_stable_id)&.position
+      next if position.nil?
+
       siblings = coordinate.siblings
 
       if position > coordinate.position
@@ -335,12 +340,9 @@ class ProcedureRevision < ApplicationRecord
             end
           end
 
-          after_coordinate = coordinate_by_stable_id(after_stable_id)
-          if after_coordinate
-            moved = move_type_de_champ_after(stable_id, after_coordinate.position)
-            if payload.key?(:header_section_level) && moved.header_section? && params.present?
-              update_type_de_champ(find_and_ensure_exclusive_use(stable_id), params)
-            end
+          moved = move_type_de_champ_after(stable_id, after_stable_id)
+          if payload.key?(:header_section_level) && moved&.header_section? && params.present?
+            update_type_de_champ(find_and_ensure_exclusive_use(stable_id), params)
           end
         end
       elsif payload.key?(:type_champ) # TypesImprover: type change

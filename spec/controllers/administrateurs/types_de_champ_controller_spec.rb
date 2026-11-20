@@ -527,6 +527,16 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         expect(procedure.draft_revision.reload.public_revision_type_de_champs.map(&:libelle)).to eq(['l1', 'l3'])
       end
     end
+
+    it 'move_and_morph is a no-op as well, whichever of the two is gone' do
+      [[removed_stable_id, first_coordinate.stable_id], [first_coordinate.stable_id, removed_stable_id]].each do |stable_id, target_stable_id|
+        patch :move_and_morph, params: { procedure_id: procedure.id, stable_id:, target_stable_id: }, format: :turbo_stream
+
+        expect(response).to have_http_status(:ok)
+        expect(siblings).to be_nil
+        expect(procedure.draft_revision.reload.public_revision_type_de_champs.map(&:libelle)).to eq(['l1', 'l3'])
+      end
+    end
   end
 
   describe '#move_and_morph' do
@@ -562,6 +572,21 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         expect(assigns(:destroyed).stable_id).to eq(second_coordinate.stable_id)
         expect(extract_libelle(assigns(:created))).to eq(['l3', ['l1']])
         expect(morpheds).to eq([['l3', ['l1']], ['l2', ['l1', 'l3']]])
+      end
+    end
+
+    context 'on a published procedure' do
+      let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ libelle: 'l1' }, { libelle: 'l2' }, { libelle: 'l3' }]) }
+      let(:params) do
+        { procedure_id: procedure.id, stable_id: first_coordinate.stable_id, target_stable_id: third_coordinate.stable_id }
+      end
+
+      it 'leaves the types de champ shared with the published revision as they are' do
+        expect { patch :move_and_morph, params:, format: :turbo_stream }
+          .not_to change { TypeDeChamp.where(procedure:).count }
+
+        expect(siblings).to eq(['l2', 'l3', 'l1'])
+        expect(procedure.published_revision.public_root_type_de_champs.map(&:libelle)).to eq(['l1', 'l2', 'l3'])
       end
     end
   end
