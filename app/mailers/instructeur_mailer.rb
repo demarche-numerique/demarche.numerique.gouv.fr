@@ -12,6 +12,7 @@ class InstructeurMailer < ApplicationMailer
   end
 
   def last_week_overview(instructeur)
+    use_recipient_locale(instructeur.user)
     email = instructeur.email
     @subject = default_i18n_subject
     @overviews = instructeur.weekly_email_summary_data
@@ -22,6 +23,7 @@ class InstructeurMailer < ApplicationMailer
   end
 
   def send_dossier(sender, dossier, recipient)
+    use_recipient_locale(recipient.user)
     @sender = sender
     @dossier = dossier
     subject = default_i18n_subject(sender_email: sender.email, dossier_id: dossier.id)
@@ -30,6 +32,7 @@ class InstructeurMailer < ApplicationMailer
   end
 
   def send_login_token(instructeur, login_token, host = nil)
+    use_recipient_locale(instructeur.user, requested_by_recipient: true)
     @instructeur = instructeur
     @login_token = login_token
     subject = default_i18n_subject(application_name: APPLICATION_NAME)
@@ -40,6 +43,7 @@ class InstructeurMailer < ApplicationMailer
   end
 
   def trusted_device_token_renewal(instructeur, renewal_token, valid_until)
+    use_recipient_locale(instructeur.user)
     @instructeur = instructeur
     @renewal_token = renewal_token
     @valid_until = valid_until
@@ -49,6 +53,7 @@ class InstructeurMailer < ApplicationMailer
   end
 
   def send_notifications(instructeur, data)
+    use_recipient_locale(instructeur.user)
     @data = data
     subject = default_i18n_subject
 

@@ -4,6 +4,7 @@ class GroupeInstructeurMailer < ApplicationMailer
   layout 'mailers/layout'
 
   def notify_removed_instructeur(group, removed_instructeur, current_instructeur_email)
+    use_recipient_locale(removed_instructeur.user)
     @group = group
     @current_instructeur_email = current_instructeur_email
     @still_assigned_to_procedure = removed_instructeur.in?(group.procedure.instructeurs)
@@ -17,6 +18,7 @@ class GroupeInstructeurMailer < ApplicationMailer
   end
 
   def notify_removed_instructeur_from_many_groupes(procedure, removed_from_groupes, removed_instructeur, current_instructeur_email, still_assigned)
+    use_recipient_locale(removed_instructeur.user)
     @procedure = procedure
     @removed_from_groupes = removed_from_groupes
     @current_instructeur_email = current_instructeur_email
@@ -42,6 +44,7 @@ class GroupeInstructeurMailer < ApplicationMailer
   end
 
   def confirm_and_notify_added_instructeur(instructeur, group, current_instructeur_email)
+    use_recipient_locale(instructeur.user)
     @instructeur = instructeur
     @group = group
     @current_instructeur_email = current_instructeur_email
@@ -55,6 +58,7 @@ class GroupeInstructeurMailer < ApplicationMailer
   end
 
   def notify_added_instructeur_in_many_groupes(instructeur, groups, current_instructeur_email)
+    use_recipient_locale(instructeur.user)
     @instructeur = instructeur
     @groups = groups
     @procedure = groups.first.procedure
@@ -70,6 +74,7 @@ class GroupeInstructeurMailer < ApplicationMailer
   end
 
   def confirm_and_notify_added_instructeur_in_many_groupes(instructeur, groups, current_instructeur_email)
+    use_recipient_locale(instructeur.user)
     @instructeur = instructeur
     @groups = groups
     @procedure = groups.first.procedure

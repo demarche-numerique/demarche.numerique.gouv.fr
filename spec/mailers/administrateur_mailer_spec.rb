@@ -9,14 +9,13 @@ RSpec.describe AdministrateurMailer, type: :mailer do
     let(:token) { SecureRandom.hex }
     subject { described_class.activate_before_expiration(user, token) }
 
-    it 'renders the body in every locale' do
+    it "renders the body in the recipient's locale" do
       expect(subject.body).to include("Votre compte a été créé mais reste inactif")
       expect(subject.body).to include("users/activate?token=#{token}")
-      I18n.with_locale(:en) do
-        body = described_class.activate_before_expiration(user, token).body
-        expect(body).to include("still inactive")
-        expect(body).not_to include("translation_missing")
-      end
+      user.update!(locale: 'en')
+      body = described_class.activate_before_expiration(user, token).body
+      expect(body).to include("still inactive")
+      expect(body).not_to include("translation_missing")
     end
 
     context 'without SafeMailer configured' do
@@ -62,11 +61,11 @@ end
       expect(subject.to).to eq([admin_email])
       expect(subject.subject).to eq("SIRET manquant sur un de vos services")
       expect(subject.body).to include("un de vos services n’a pas son SIRET renseigné")
-      I18n.with_locale(:en) do
-        body = described_class.notify_service_without_siret(admin_email).body
-        expect(body).to include("has no SIRET number")
-        expect(body).not_to include("translation_missing")
-      end
+    end
+
+    it "renders the body in the locale of the admin's account" do
+      create(:user, email: admin_email, locale: 'en')
+      expect(subject.body).to include("has no SIRET number")
     end
 
     context 'when perform_later is called' do

@@ -91,4 +91,35 @@ RSpec.describe ApplicationMailer, type: :mailer do
       end
     end
   end
+
+  describe 'locale' do
+    it "renders in the recipient's locale, not the sender's" do
+      users.usager.update!(locale: 'en')
+
+      subject = I18n.with_locale(:fr) { UserMailer.password_changed(users.usager).subject }
+      expect(subject).to eq("Your account password has been changed")
+    end
+
+    it 'renders in the default locale when the recipient has none' do
+      subject = I18n.with_locale(:en) { UserMailer.account_reactivated(users.usager).subject }
+      expect(subject).to eq("Votre compte a été réactivé")
+    end
+
+    it 'looks the recipient up by email' do
+      users.usager.update!(locale: 'en')
+
+      subject = I18n.with_locale(:fr) { UserMailer.ask_for_merge(users.instructeur, users.usager.email).subject }
+      expect(subject).to eq("Account merge")
+    end
+
+    it 'renders in the default locale for an email without account' do
+      subject = I18n.with_locale(:en) { UserMailer.ask_for_merge(users.usager, 'guest@example.fr').subject }
+      expect(subject).to eq("Fusion de compte")
+    end
+
+    it "falls back to the request locale when the recipient triggered the email and has no locale" do
+      subject = I18n.with_locale(:en) { UserMailer.password_changed(users.usager).subject }
+      expect(subject).to eq("Your account password has been changed")
+    end
+  end
 end
