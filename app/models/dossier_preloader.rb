@@ -62,9 +62,8 @@ class DossierPreloader
   private
 
   # Révisions indexées par id pour un batch de dossiers, mémorisées d'un batch
-  # à l'autre. Une révision déjà chargée sur un dossier est réutilisée : le
-  # Preloader ne charge que ce qui lui manque (ex: `Dossier.for_api_v2` a déjà
-  # les types de champ, la requête la plus coûteuse du préchargement).
+  # à l'autre. Une révision déjà chargée sur un dossier est réutilisée
+  # (ex: `Dossier.for_api_v2`).
   def revisions_for(dossiers, pj_template: false)
     @revisions_by_id ||= {}
     known_ids = @revisions_by_id.keys
@@ -77,7 +76,7 @@ class DossierPreloader
     @revisions_by_id.merge!(ProcedureRevision.where(id: missing_ids).index_by(&:id))
 
     new_revisions = @revisions_by_id.except(*known_ids).values
-    ActiveRecord::Associations::Preloader.new(records: new_revisions, associations: [:procedure, :revision_type_de_champs]).call
+    ActiveRecord::Associations::Preloader.new(records: new_revisions, associations: [:procedure]).call
     preload_type_de_champs(new_revisions, pj_template:)
 
     @revisions_by_id

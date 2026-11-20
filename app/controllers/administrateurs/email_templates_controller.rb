@@ -4,7 +4,6 @@ module Administrateurs
   class EmailTemplatesController < AdministrateurController
     include ActionView::Helpers::SanitizeHelper
     before_action :retrieve_procedure
-    before_action :preload_revisions
 
     def index
       @email_templates = @procedure.email_templates
