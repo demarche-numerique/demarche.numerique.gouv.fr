@@ -189,7 +189,7 @@ describe 'As an administrateur I create an API token', js: true do
     select "#{procedure.id} - #{procedure.libelle}", from: 'procedure_to_add'
     click_on 'Ajouter'
 
-    expect(page).to have_content(procedure.libelle)
+    expect(page).to have_css("li#authorized_procedure_#{procedure.id}")
     expect(token.reload.allowed_procedure_ids).to eq([procedure.id])
 
     click_on 'Supprimer'
@@ -199,6 +199,7 @@ describe 'As an administrateur I create an API token', js: true do
 
     click_on "Restaurer lʼaccès à toutes les démarches"
 
+    expect(page).to have_no_content('Votre jeton dʼAPI a accès à certaines démarches')
     expect(page).to have_content('accès à toutes vos démarches')
     expect(token.reload.allowed_procedure_ids).to be_nil
   end
