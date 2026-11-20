@@ -214,6 +214,24 @@ describe Administrateurs::APITokensController, type: :controller do
       it { expect(token.allowed_procedure_ids).to eq([procedure.id]) }
     end
 
+    context 'when its owner is removed from a listed procedure in the meantime' do
+      let(:listed_procedure) { procedures.individual.tap { it.administrateurs << administrateurs.blank } }
+      let(:params) { { procedure_to_add: procedure.id } }
+
+      before do
+        token.update!(allowed_procedure_ids: [listed_procedure.id])
+        allow(controller).to receive(:set_api_token).and_wrap_original do |set_api_token|
+          set_api_token.call
+          listed_procedure.administrateurs.delete(admin)
+        end
+        subject
+      end
+
+      it 'does not write the listed procedure back' do
+        expect(token.reload.allowed_procedure_ids).to eq([procedure.id])
+      end
+    end
+
     context 'with a procedure to add not owned by the admin' do
       let(:another_procedure) { create(:procedure, administrateurs: [create(:administrateur)]) }
       let(:params) { { procedure_to_add: another_procedure.id } }
@@ -344,6 +362,21 @@ describe Administrateurs::APITokensController, type: :controller do
         it 'still removes it from the token' do
           subject
           expect(token.reload.allowed_procedure_ids).to eq([procedure2.id])
+        end
+      end
+
+      context 'when its owner is removed from the other procedure in the meantime' do
+        before do
+          procedure2.administrateurs << administrateurs.default
+          allow(controller).to receive(:set_api_token).and_wrap_original do |set_api_token|
+            set_api_token.call
+            procedure2.administrateurs.delete(admin)
+          end
+        end
+
+        it 'does not write the other procedure back' do
+          subject
+          expect(token.reload.allowed_procedure_ids).to eq([])
         end
       end
     end
