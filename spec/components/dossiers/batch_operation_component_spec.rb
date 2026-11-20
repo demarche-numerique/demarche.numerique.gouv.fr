@@ -26,7 +26,7 @@ RSpec.describe Dossiers::BatchOperationComponent, type: :component do
     context 'statut traite' do
       let(:statut) { 'traites' }
       it do
-        is_expected.to have_button('Déplacer les dossiers dans “à archiver“', disabled: true)
+        is_expected.to have_button('Déplacer les dossiers dans « à archiver »', disabled: true)
         is_expected.to have_button('Mettre les dossiers à la corbeille', disabled: true)
         is_expected.to have_button('Envoyer un message aux usagers', disabled: true)
       end
@@ -119,7 +119,7 @@ RSpec.describe Dossiers::BatchOperationComponent, type: :component do
         is_expected.to have_button('Ne plus suivre les dossiers', disabled: true)
         is_expected.to have_button('Passer les dossiers en instruction', disabled: true)
         is_expected.to have_button('Repasser les dossiers en construction', disabled: true)
-        is_expected.to have_button('Déplacer les dossiers dans “à archiver“', disabled: true)
+        is_expected.to have_button('Déplacer les dossiers dans « à archiver »', disabled: true)
         is_expected.to have_button('Mettre les dossiers à la corbeille', disabled: true)
         is_expected.to have_button('Demander un avis externe', disabled: true)
       end

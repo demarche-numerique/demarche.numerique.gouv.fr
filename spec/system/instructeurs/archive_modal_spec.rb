@@ -70,7 +70,7 @@ describe 'Archive warning modal', js: true do
 
     check(dom_id(BatchOperation.new, "checkbox_#{dossier_1.id}"))
     check(dom_id(BatchOperation.new, "checkbox_#{dossier_2.id}"))
-    open_dsfr_modal('#modal-archive-batch') { click_on 'Déplacer les dossiers dans “à archiver“' }
+    open_dsfr_modal('#modal-archive-batch') { click_on 'Déplacer les dossiers dans « à archiver »' }
     within('#modal-archive-batch') { click_on 'Confirmer' }
 
     expect(page).to have_content('dossiers sont en cours de déplacement dans « à archiver »')

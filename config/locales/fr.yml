@@ -275,18 +275,18 @@ fr:
           title: Valeurs
           prenom: Un prénom
           nom: Un nom
-          genre: '"M." pour Monsieur, "Mme" pour Madame'
+          genre: '« M. » pour Monsieur, « Mme » pour Madame'
           text_html: Un texte court
           textarea_html: Un texte long
           decimal_number_html: Un nombre décimal
           integer_number_html: Un nombre entier
           formatted_html: Un texte qui respecte les règles de formattage
           email_html: Une adresse électronique
-          civilite_html: '"M." pour Monsieur, "Mme" pour Madame'
+          civilite_html: '« M. » pour Monsieur, « Mme » pour Madame'
           phone_html: Un numéro de téléphone
           iban_html: Un numéro Iban
-          yes_no_html: '"true" pour Oui, "false" pour Non'
-          checkbox_html: '"true" pour coché, "false" pour décoché'
+          yes_no_html: '« true » pour Oui, « false » pour Non'
+          checkbox_html: '« true » pour coché, « false » pour décoché'
           pays_html: Un <a href="https://en.wikipedia.org/wiki/ISO_3166-2" target="_blank" rel="noopener noreferrer">code pays ISO 3166-2</a>
           regions_html: Un <a href="https://fr.wikipedia.org/wiki/R%C3%A9gion_fran%C3%A7aise" target="_blank" rel="noopener noreferrer">code INSEE de région</a>
           departements_html: Un <a href="https://fr.wikipedia.org/wiki/Num%C3%A9rotation_des_d%C3%A9partements_fran%C3%A7ais" target="_blank">numéro de département</a>
@@ -517,7 +517,7 @@ fr:
           back: Retour
         merci:
           thanks: Merci !
-          dossier_success: Votre dossier a bien été déposé sur la démarche “%{libelle}”.
+          dossier_success: Votre dossier a bien été déposé sur la démarche « %{libelle} ».
           dossier_acces_html: Vous avez désormais accès à votre <strong>dossier en ligne</strong> pour suivre son traitement et échanger si besoin avec l’administration par la messagerie.
           download_dossier: Télécharger mon dossier
           download_attestation: Télécharger mon attestation
@@ -911,9 +911,9 @@ fr:
         forbidden_html: "Seul-e-s les usagers peuvent se connecter via FranceConnect. En tant qu’instructeur ou administrateur, veuillez vous identifier avec ProConnect ou vous connecter avec votre compte %{app_name}."
         internal_error: "Une erreur est survenue lors de la connexion avec FranceConnect. Veuillez essayer un autre mode de connexion."
       siret:
-        network_error: ‘Désolé, la récupération des informations SIRET est temporairement indisponible. Veuillez réessayer dans quelques instants.’
-        not_found: ‘Nous n’avons pas trouvé d’établissement correspondant à ce numéro SIRET.’
-        unavailable_for_legal_reasons: ‘Les informations de cet établissement ne sont pas disponibles (entité non diffusible).’
+        network_error: Désolé, la récupération des informations SIRET est temporairement indisponible. Veuillez réessayer dans quelques instants.
+        not_found: Nous n’avons pas trouvé d’établissement correspondant à ce numéro SIRET.
+        unavailable_for_legal_reasons: Les informations de cet établissement ne sont pas disponibles (entité non diffusible).
       missing_range_rules: Les valeurs minimale et/ou maximale doivent être renseignées.
       invalid_range_rules: La valeur minimale doit être inférieure à la valeur maximale.
       invalid_repetition_range: La valeur minimale doit être inférieure ou égale à la valeur maximale.
@@ -1090,7 +1090,7 @@ fr:
         explanation: "Vous ne pouvez plus récupérer ce dossier pour une des raisons suivantes :"
         reason_user_request: "Il a été mis à la corbeille à votre demande, puis automatiquement supprimé."
         reason_automatic: "Il a été supprimé car son délai maximal de conservation a été atteint."
-        history_link_html: "Vous pouvez retrouver l’ensemble des dossiers supprimés de votre compte (hors \"BROUILLON\") sur la page <a href=\"%{history_link}\" class=\"fr-link\">Historique des dossiers supprimés</a>."
+        history_link_html: "Vous pouvez retrouver l’ensemble des dossiers supprimés de votre compte (hors « BROUILLON ») sur la page <a href=\"%{history_link}\" class=\"fr-link\">Historique des dossiers supprimés</a>."
   instructeurs:
     dossiers:
       deleted_by_instructeur: "Le dossier a bien été supprimé de votre interface"

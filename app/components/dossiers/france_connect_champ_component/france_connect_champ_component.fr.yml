@@ -1,9 +1,9 @@
 ---
 fr:
-  fc_data_correct: Les données ci-dessous ont été récupérées automatiquement et de façon fiable via le champ "%{type_champ}".
-  fc_data_incorrect: L’usager n’a pas confirmé l’exactitude des données récupérées automatiquement via le champ "%{type_champ}"
-  fc_data_not_recovered: Les données n’ont pas pu être récupérées automatiquement via le champ "%{type_champ}"
-  fc_data_not_found: Les données récupérées automatiquement via le champ "%{type_champ}" indiquent qu’aucune information n’est disponible pour cet usager.
+  fc_data_correct: Les données ci-dessous ont été récupérées automatiquement et de façon fiable via le champ « %{type_champ} ».
+  fc_data_incorrect: L’usager n’a pas confirmé l’exactitude des données récupérées automatiquement via le champ « %{type_champ} »
+  fc_data_not_recovered: Les données n’ont pas pu être récupérées automatiquement via le champ « %{type_champ} »
+  fc_data_not_found: Les données récupérées automatiquement via le champ « %{type_champ} » indiquent qu’aucune information n’est disponible pour cet usager.
 
   type_champ:
     quotient_familial: Quotient familial (France Connect)

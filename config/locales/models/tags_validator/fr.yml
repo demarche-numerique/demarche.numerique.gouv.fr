@@ -5,17 +5,17 @@ fr:
       # Model-specific keys under errors.models.<model>.attributes take precedence.
       messages:
         champ_missing:
-          one: contient la balise "%{tags}" qui n’existe pas. Supprimer la balise
+          one: contient la balise « %{tags} » qui n’existe pas. Supprimer la balise
           other: contient  %{count} balises (%{tags}) qui n’existent pas. Supprimer les balises
         champ_missing_in_draft_revision:
-          one: contient la balise "%{tags}" qui a été supprimée dans les modifications en cours du formulaire. Supprimer cette balise ou réinitialiser les modifications du formulaire puis recommencer
+          one: contient la balise « %{tags} » qui a été supprimée dans les modifications en cours du formulaire. Supprimer cette balise ou réinitialiser les modifications du formulaire puis recommencer
           other: contient  %{count} balises (%{tags}) qui ont été supprimées dans les modifications en cours du formulaire. Supprimer ces balises ou réinitialiser les modifications du formulaire puis recommencer
         champ_missing_in_published_revision:
-          one: contient la balise "%{tags}" qui n’est pas encore publiée. Publier la nouvelle version de la démarche et recommencer
+          one: contient la balise « %{tags} » qui n’est pas encore publiée. Publier la nouvelle version de la démarche et recommencer
           other: contient  %{count} balises (%{tags}) qui ne sont pas encore publiées. Publier la nouvelle version de la démarche et recommencer
         champ_missing_in_published_and_draft_revision:
-          one: contient la balise "%{tags}" qui a été supprimée. Supprimer la balise
+          one: contient la balise « %{tags} » qui a été supprimée. Supprimer la balise
           other: contient  %{count} balises (%{tags}) qui ont été supprimées. Supprimer les balises
         champ_missing_in_previous_revision:
-          one: contient la balise "%{tags}" qui n’existe pas sur un des dossiers en cours de traitement. Supprimer la balise
+          one: contient la balise « %{tags} » qui n’existe pas sur un des dossiers en cours de traitement. Supprimer la balise
           other: contient %{count} balises (%{tags}) qui n’existent pas sur un des dossiers en cours de traitement. Supprimer les balises

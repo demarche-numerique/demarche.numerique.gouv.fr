@@ -242,26 +242,26 @@ describe Administrateurs::AttestationTemplatesController, type: :controller do
         render_views
         let(:body) { "body --#{removed_type_de_champ.libelle}--" }
 
-        it { expect(response.body).to have_content("Le champ « Contenu de l’attestation » contient la balise \"#{removed_type_de_champ.libelle}\" qui a été supprimée dans les modifications en cours du formulaire. Supprimer cette balise ou réinitialiser les modifications du formulaire puis recommencer") }
+        it { expect(response.body).to have_content("Le champ « Contenu de l’attestation » contient la balise « #{removed_type_de_champ.libelle} » qui a été supprimée dans les modifications en cours du formulaire. Supprimer cette balise ou réinitialiser les modifications du formulaire puis recommencer") }
       end
 
       context 'with removed and published' do
         render_views
         let(:body) { "body --#{removed_and_published_type_de_champ.libelle}--" }
-        it { expect(response.body).to have_content("Le champ « Contenu de l’attestation » contient la balise \"#{removed_and_published_type_de_champ.libelle}\" qui a été supprimée.") }
+        it { expect(response.body).to have_content("Le champ « Contenu de l’attestation » contient la balise « #{removed_and_published_type_de_champ.libelle} » qui a été supprimée.") }
       end
 
       context 'with new champ missing on dossier submitted on previous revision' do
         render_views
         let(:dossier) { create(:dossier, :en_construction, procedure: procedure, revision: procedure.revisions.first) }
         let(:body) { "body --#{new_type_de_champ.libelle}--" }
-        it { expect(response.body).to have_content("Le champ « Contenu de l’attestation » contient la balise \"#{new_type_de_champ.libelle}\" qui n’existe pas sur un des dossiers en cours de traitement") }
+        it { expect(response.body).to have_content("Le champ « Contenu de l’attestation » contient la balise « #{new_type_de_champ.libelle} » qui n’existe pas sur un des dossiers en cours de traitement") }
       end
 
       context 'with champ on draft' do
         render_views
         let(:body) { "body --#{draft_type_de_champ.libelle}--" }
-        it { expect(response.body).to have_content("Le champ « Contenu de l’attestation » contient la balise \"#{draft_type_de_champ.libelle}\" qui n’est pas encore publiée") }
+        it { expect(response.body).to have_content("Le champ « Contenu de l’attestation » contient la balise « #{draft_type_de_champ.libelle} » qui n’est pas encore publiée") }
       end
     end
   end

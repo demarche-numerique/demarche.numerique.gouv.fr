@@ -25,16 +25,16 @@ describe 'BatchOperation a dossier:', js: true do
       # check a11y with enabled checkbox
       expect(page).to be_axe_clean
       # ensure button is disabled by default
-      expect(page).to have_button("Déplacer les dossiers dans “à archiver“", disabled: true)
+      expect(page).to have_button("Déplacer les dossiers dans « à archiver »", disabled: true)
 
       checkbox_id = dom_id(BatchOperation.new, "checkbox_#{dossier_1.id}")
       # batch one dossier
       check(checkbox_id)
-      expect(page).to have_button("Déplacer les dossiers dans “à archiver“")
+      expect(page).to have_button("Déplacer les dossiers dans « à archiver »")
 
       # ensure batch is created
 
-      open_dsfr_modal('#modal-archive-batch') { click_on "Déplacer les dossiers dans “à archiver“" }
+      open_dsfr_modal('#modal-archive-batch') { click_on "Déplacer les dossiers dans « à archiver »" }
       within('#modal-archive-batch') { click_on 'Confirmer' }
 
       # ensure batched dossier is disabled
@@ -84,7 +84,7 @@ describe 'BatchOperation a dossier:', js: true do
       end
 
       # submit checkall
-      open_dsfr_modal('#modal-archive-batch') { click_on "Déplacer les dossiers dans “à archiver“" }
+      open_dsfr_modal('#modal-archive-batch') { click_on "Déplacer les dossiers dans « à archiver »" }
       within('#modal-archive-batch') { click_on 'Confirmer' }
 
       # reload

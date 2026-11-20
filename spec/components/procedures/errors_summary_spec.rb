@@ -103,7 +103,7 @@ describe Procedure::ErrorsSummary, type: :component do
       expect(page).to have_selector("a", text: "Les règles d’inéligibilité")
       expect(page).to have_selector("a[href*='v2']", text: "Le modèle d’attestation")
       expect(page).to have_selector("a[href*='email_templates']", text: "Le modèle d’email « Accusé de réception »")
-      expect(page).to have_text('contient la balise "invalidtag" qui n’existe pas')
+      expect(page).to have_text('contient la balise « invalidtag » qui n’existe pas')
       expect(page).to have_text("n’est pas valide", count: 1)
     end
   end
@@ -119,7 +119,7 @@ describe Procedure::ErrorsSummary, type: :component do
 
     it 'renders the underlying tag error with a link to the template editor' do
       expect(page).to have_selector("a[href*='email_templates/depose']", text: "Le modèle d’email « Accusé de réception »")
-      expect(page).to have_text('contient la balise "Nom du projet" qui a été supprimée dans les modifications en cours du formulaire')
+      expect(page).to have_text('contient la balise « Nom du projet » qui a été supprimée dans les modifications en cours du formulaire')
       expect(page).to have_no_text(/translation missing/i)
       expect(page).to have_no_text("n’est pas valide")
     end
