@@ -4,16 +4,16 @@ describe TypesDeChampEditor::TypeDeChampSelectorComponent, type: :component do
   let(:routing_rules_stable_ids) { [] }
   let(:ineligibilite_rules_used?) { false }
   let(:tdc) { procedure.draft_revision.type_de_champs.first }
-  let(:coordinate) { procedure.draft_revision.coordinate_for(tdc) }
-  let(:form) { ActionView::Helpers::FormBuilder.new(:type_de_champ, coordinate.type_de_champ, vc_test_controller.view_context, {}) }
+  let(:type_de_champ) { tdc }
+  let(:form) { ActionView::Helpers::FormBuilder.new(:type_de_champ, type_de_champ, vc_test_controller.view_context, {}) }
   let(:props) { JSON.parse(page.find('react-component')['props']) }
   let(:items) { props['sections'].flat_map { it['items'] } }
   let(:values) { items.map { it['value'] } }
 
   before do
     allow_any_instance_of(Procedure).to receive(:stable_ids_used_by_routing_rules).and_return(routing_rules_stable_ids)
-    allow_any_instance_of(ProcedureRevisionTypeDeChamp).to receive(:used_by_ineligibilite_rules?).and_return(ineligibilite_rules_used?)
-    render_inline(described_class.new(coordinate:, form:))
+    allow_any_instance_of(TypeDeChamp).to receive(:used_by_ineligibilite_rules?).and_return(ineligibilite_rules_used?)
+    render_inline(described_class.new(type_de_champ:, form:))
   end
 
   describe 'the menu of a plain field' do
@@ -71,7 +71,7 @@ describe TypesDeChampEditor::TypeDeChampSelectorComponent, type: :component do
 
   describe 'a type behind a disabled feature flag' do
     let(:procedure) { create(:procedure, private_type_de_champs: [{ type: :text }]) }
-    let(:coordinate) { procedure.draft_revision.private_revision_type_de_champs.first }
+    let(:type_de_champ) { procedure.draft_revision.private_root_type_de_champs.first }
 
     it { expect(values).not_to include('engagement_juridique') }
   end
@@ -83,7 +83,7 @@ describe TypesDeChampEditor::TypeDeChampSelectorComponent, type: :component do
     end
 
     context 'on a public field' do
-      let(:coordinate) { procedure.draft_revision.public_revision_type_de_champs.first }
+      let(:type_de_champ) { procedure.draft_revision.public_root_type_de_champs.first }
 
       it do
         expect(values).to include('quotient_familial')
@@ -92,7 +92,7 @@ describe TypesDeChampEditor::TypeDeChampSelectorComponent, type: :component do
     end
 
     context 'on a private field' do
-      let(:coordinate) { procedure.draft_revision.private_revision_type_de_champs.first }
+      let(:type_de_champ) { procedure.draft_revision.private_root_type_de_champs.first }
 
       it do
         expect(values).to include('engagement_juridique')
@@ -102,7 +102,7 @@ describe TypesDeChampEditor::TypeDeChampSelectorComponent, type: :component do
 
     context 'on a field inside a repetition' do
       let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :repetition, children: [{ type: :text }] }]) }
-      let(:coordinate) { procedure.draft_revision.public_revision_type_de_champs.first.children_revision_type_de_champs.first }
+      let(:type_de_champ) { procedure.draft_revision.public_root_type_de_champs.first.children.first }
 
       it { expect(values).not_to include('quotient_familial', 'repetition') }
     end

@@ -21,9 +21,9 @@ module Maintenance
 
       fail "TypeDeChamp not found ! #{typed_id}" if stable_id.nil?
 
-      coordinate, type_de_champ = revision.coordinate_and_tdc(stable_id)
+      type_de_champ = revision.type_de_champ(stable_id)
 
-      if coordinate&.used_by_routing_rules?
+      if type_de_champ.used_by_routing_rules?
         fail "#{typed_id} / #{type_de_champ.libelle} » est utilisé pour le routage, vous ne pouvez pas le supprimer."
       end
 

@@ -12,11 +12,11 @@ class TypesDeChampEditor::EditorComponent < ApplicationComponent
     @is_annotation
   end
 
-  def coordinates
+  def type_de_champs
     if annotations?
-      @revision.private_revision_type_de_champs
+      @revision.private_root_type_de_champs
     else
-      @revision.public_revision_type_de_champs
+      @revision.public_root_type_de_champs
     end
   end
 

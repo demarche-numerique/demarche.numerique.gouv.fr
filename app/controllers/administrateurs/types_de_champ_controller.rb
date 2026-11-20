@@ -9,15 +9,12 @@ module Administrateurs
 
     include SimpliscoreConcern
 
-    before_action :reload_procedure_with_includes, only: [:destroy]
-
     def create
       type_de_champ = draft.add_type_de_champ(type_de_champ_create_params)
       if type_de_champ.valid?
-        @coordinate = draft.coordinate_for(type_de_champ)
-        ProcedureRevisionPreloader.load_one(@coordinate.revision)
-        @created = champ_component_from(@coordinate, focused: true)
-        @morphed = champ_components_starting_at(@coordinate, 1)
+        edited(type_de_champ)
+        @created = champ_component_from(type_de_champ, focused: true)
+        @morphed = champ_components_from(siblings_starting_at(type_de_champ, 1))
       else
         flash.alert = type_de_champ.errors.full_messages
       end
@@ -27,18 +24,13 @@ module Administrateurs
       import_referentiel and return if referentiel_file.present?
 
       type_de_champ = draft.find_and_ensure_exclusive_use(params[:stable_id])
-      @coordinate = draft.coordinate_for(type_de_champ)
       was_prefill_with_fc_information = type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?
       update_params = type_de_champ_update_params(type_de_champ)
 
-      if @coordinate.used_by_routing_rules? && changing_of_type?(type_de_champ, update_params)
-        errors = "« #{type_de_champ.libelle} » est utilisé pour le routage, vous ne pouvez pas modifier son type."
-        @morphed = [champ_component_from(@coordinate, focused: false, errors:)]
-        flash.alert = errors
-      elsif @coordinate.used_by_referentiel_urls? && changing_of_type?(type_de_champ, update_params)
-        errors = "« #{type_de_champ.libelle} » est utilisé par un référentiel, vous ne pouvez pas modifier son type."
-        @morphed = [champ_component_from(@coordinate, focused: false, errors:)]
-        flash.alert = errors
+      if type_de_champ.used_by_routing_rules? && changing_of_type?(type_de_champ, update_params)
+        refuse(type_de_champ, "« #{type_de_champ.libelle} » est utilisé pour le routage, vous ne pouvez pas modifier son type.")
+      elsif type_de_champ.used_by_referentiel_urls? && changing_of_type?(type_de_champ, update_params)
+        refuse(type_de_champ, "« #{type_de_champ.libelle} » est utilisé par un référentiel, vous ne pouvez pas modifier son type.")
       else
         if changing_of_type?(type_de_champ, update_params)
           type_de_champ = type_de_champ.becomes_type(update_params['type_champ'])
@@ -49,13 +41,17 @@ module Administrateurs
         update_params = update_params.except(*update_params.keys.reject { type_de_champ.respond_to?("#{it}=") })
 
         if draft.update_type_de_champ(type_de_champ, update_params)
-          reload_procedure_with_includes
+          # as the draft lays it out by now, of another type or not
+          type_de_champ = draft.type_de_champ(params[:stable_id])
+          edited(type_de_champ)
           @morphed = if was_prefill_with_fc_information != (type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?)
-            draft.revision_type_de_champs.map { |c| champ_component_from(c) }
+            champ_components_from(draft.type_de_champs)
           else
-            champ_components_starting_at(@coordinate)
+            champ_components_from(siblings_starting_at(type_de_champ))
           end
         else
+          # as the draft has it: the one that failed to save may be of another type
+          edited(draft.type_de_champ(params[:stable_id]))
           flash.alert = type_de_champ.errors.full_messages
         end
       end
@@ -65,9 +61,8 @@ module Administrateurs
       type_de_champ = draft.find_and_ensure_exclusive_use(params[:stable_id])
 
       if type_de_champ.piece_justificative_template.attach(params[:blob_signed_id])
-        reload_procedure_with_includes
-        @coordinate = draft.coordinate_for(type_de_champ)
-        @morphed = [champ_component_from(@coordinate)]
+        edited(type_de_champ)
+        @morphed = [champ_component_from(type_de_champ)]
 
         render :create
       else
@@ -79,9 +74,8 @@ module Administrateurs
       type_de_champ = draft.find_and_ensure_exclusive_use(params[:stable_id])
 
       if type_de_champ.notice_explicative.attach(params[:blob_signed_id])
-        reload_procedure_with_includes
-        @coordinate = draft.coordinate_for(type_de_champ)
-        @morphed = [champ_component_from(@coordinate)]
+        edited(type_de_champ)
+        @morphed = [champ_component_from(type_de_champ)]
 
         render :create
       else
@@ -90,69 +84,58 @@ module Administrateurs
     end
 
     def move_and_morph
-      source_type_de_champ = draft.find_and_ensure_exclusive_use(params[:stable_id])
-      target_type_de_champ = draft.find_and_ensure_exclusive_use(params[:target_stable_id])
-      @coordinate = draft.coordinate_for(source_type_de_champ)
-      from = @coordinate.position
-      to = draft.coordinate_for(target_type_de_champ).position # move after
-      @coordinate = draft.move_type_de_champ_after(@coordinate.stable_id, to)
-      reload_procedure_with_includes
-      @destroyed = @coordinate
-      @created = champ_component_from(@coordinate)
-      @morphed = @coordinate.siblings
-      if from > to # case of moved up, update components from target (> plus one) to origin
-        @morphed = @morphed.filter { _1.position > to && _1.position <= from }
-      else # case of moved down, update components from origin up to target (< minus one)
-        @morphed = @morphed.filter { _1.position >= from && _1.position < to }
-      end
+      from = draft.type_de_champ(params[:stable_id])&.then { it.flat_siblings.index(it) }
+      type_de_champ = draft.move_type_de_champ_after(params[:stable_id], params[:target_stable_id])
+      # nil in case of replay (champ removed in another tab)
+      return if type_de_champ.nil?
 
-      @morphed = @morphed.map { |c| champ_component_from(c) }
+      edited(type_de_champ)
+      @destroyed = type_de_champ
+      @created = champ_component_from(type_de_champ)
+      to = @siblings.index(type_de_champ)
+      # what sits between where it was and where it is by now
+      @morphed = champ_components_from(from > to ? @siblings[to..from] : @siblings[from...to])
     end
 
     def move_up
-      @coordinate = draft.move_up_type_de_champ(params[:stable_id])
+      type_de_champ = draft.move_up_type_de_champ(params[:stable_id])
       # nil in case of replay (champ removed in another tab)
-      return if @coordinate.nil?
+      return if type_de_champ.nil?
 
-      reload_procedure_with_includes
-      @coordinate = draft.revision_type_de_champs.find { _1.id == @coordinate.id }
-      @destroyed = @coordinate
-      @created = champ_component_from(@coordinate)
+      edited(type_de_champ)
+      @destroyed = type_de_champ
+      @created = champ_component_from(type_de_champ)
       # update the one component below
-      @morphed = champ_components_starting_at(@coordinate, 1).take(1)
+      @morphed = champ_components_from(siblings_starting_at(type_de_champ, 1).take(1))
     end
 
     def move_down
-      @coordinate = draft.move_down_type_de_champ(params[:stable_id])
+      type_de_champ = draft.move_down_type_de_champ(params[:stable_id])
       # nil in case of replay (champ removed in another tab)
-      return if @coordinate.nil?
+      return if type_de_champ.nil?
 
-      reload_procedure_with_includes
-      @coordinate = draft.revision_type_de_champs.find { _1.id == @coordinate.id }
-      @destroyed = @coordinate
-      @created = champ_component_from(@coordinate)
+      edited(type_de_champ)
+      @destroyed = type_de_champ
+      @created = champ_component_from(type_de_champ)
       # update the one component above
-      @morphed = champ_components_starting_at(@coordinate, - 1).take(1)
+      @morphed = champ_components_from(siblings_starting_at(type_de_champ, - 1).take(1))
     end
 
     def destroy
-      coordinate, type_de_champ = draft.coordinate_and_tdc(params[:stable_id])
+      type_de_champ = draft.type_de_champ(params[:stable_id])
 
-      if coordinate&.used_by_referentiel_urls?
-        errors = "« #{type_de_champ.libelle} » est utilisé par un référentiel, vous ne pouvez pas le supprimer."
-        @morphed = [champ_component_from(coordinate, focused: false, errors:)]
-        flash.alert = errors
-      elsif coordinate&.used_by_routing_rules?
-        errors = "« #{type_de_champ.libelle} » est utilisé pour le routage, vous ne pouvez pas le supprimer."
-        @morphed = [champ_component_from(coordinate, focused: false, errors:)]
-        flash.alert = errors
-      else
-        @coordinate = draft.remove_type_de_champ(params[:stable_id])
+      if type_de_champ&.used_by_referentiel_urls?
+        refuse(type_de_champ, "« #{type_de_champ.libelle} » est utilisé par un référentiel, vous ne pouvez pas le supprimer.")
+      elsif type_de_champ&.used_by_routing_rules?
+        refuse(type_de_champ, "« #{type_de_champ.libelle} » est utilisé pour le routage, vous ne pouvez pas le supprimer.")
+      elsif type_de_champ.present?
+        index = type_de_champ.flat_siblings.index(type_de_champ)
         # nil in case of replay (double click, champ already removed)
-        if @coordinate.present?
-          ProcedureRevisionPreloader.load_one(@coordinate.revision)
-          @destroyed = @coordinate
-          @morphed = champ_components_starting_at(@coordinate)
+        if draft.remove_type_de_champ(params[:stable_id]).present?
+          edited(type_de_champ)
+          @destroyed = type_de_champ
+          # the ones that followed it
+          @morphed = champ_components_from(@siblings.drop(index))
         end
       end
     end
@@ -161,8 +144,8 @@ module Administrateurs
       type_de_champ = draft.find_and_ensure_exclusive_use(params[:stable_id])
       type_de_champ.update!(referentiel_id: nil)
 
-      @coordinate = draft.coordinate_for(type_de_champ)
-      @morphed = champ_components_starting_at(@coordinate)
+      edited(type_de_champ)
+      @morphed = champ_components_from(siblings_starting_at(type_de_champ))
     end
 
     def import_referentiel
@@ -202,8 +185,8 @@ module Administrateurs
         ReferentielItem.insert_all(items_to_insert)
       end
 
-      @coordinate = draft.coordinate_for(type_de_champ)
-      @morphed = champ_components_starting_at(@coordinate)
+      edited(type_de_champ)
+      @morphed = champ_components_from(siblings_starting_at(type_de_champ))
     end
 
     private
@@ -212,19 +195,41 @@ module Administrateurs
       update_params['type_champ'].present? && update_params['type_champ'] != type_de_champ.type_champ
     end
 
-    def champ_components_starting_at(coordinate, offset = 0)
-      coordinate
-        .siblings_starting_at(offset)
-        .lazy
-        .map { |c| champ_component_from(c) }
+    # Where the edit took place, for what the stream refreshes around it. Read
+    # off the draft as it is by now: a type de champ removed holds the layout
+    # it had.
+    def edited(type_de_champ)
+      @private = type_de_champ.private?
+      @repetition = draft.type_de_champ(type_de_champ.enclosing_repetition.stable_id) if type_de_champ.in_repetition?
+      @siblings = if @repetition
+        @repetition.flat_children
+      elsif @private
+        draft.private_root_type_de_champs
+      else
+        draft.public_root_type_de_champs
+      end
     end
 
-    def champ_component_from(coordinate, focused: false, errors: '')
-      TypesDeChampEditor::ChampComponent.new(
-        coordinate:,
-        focused: focused,
-        errors:
-      )
+    # the champ is left as it is, and shows why
+    def refuse(type_de_champ, errors)
+      edited(type_de_champ)
+      @morphed = [champ_component_from(type_de_champ, errors:)]
+      flash.alert = errors
+    end
+
+    def siblings_starting_at(type_de_champ, offset = 0)
+      @siblings.drop([@siblings.index(type_de_champ) + offset, 0].max)
+    end
+
+    def champ_component_from(type_de_champ, focused: false, errors: '')
+      champ_components_from([type_de_champ], focused:, errors:).first
+    end
+
+    # a repetition shows the files of what it holds
+    def champ_components_from(type_de_champs, focused: false, errors: '')
+      TypeDeChamp.preload_attachments(type_de_champs.flat_map { [it, *it.flat_children] })
+
+      type_de_champs.map { TypesDeChampEditor::ChampComponent.new(type_de_champ: it, focused:, errors:) }
     end
 
     def type_de_champ_create_params
@@ -310,10 +315,6 @@ module Administrateurs
 
     def draft
       @procedure.draft_revision
-    end
-
-    def reload_procedure_with_includes
-      ProcedureRevisionPreloader.load_one(draft)
     end
 
     def referentiel_file

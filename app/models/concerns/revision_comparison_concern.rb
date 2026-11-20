@@ -22,7 +22,8 @@ module RevisionComparisonConcern
       .filter { |from, to| from.position != to.position || from.parent&.stable_id != to.parent&.stable_id }
       .map { |from, to| ProcedureRevisionChange::MoveChamp.new(from, from.position, to.position) }
 
-    preload_diffed_attachments(kept.flat_map { [from_h[_1], to_h[_1]] })
+    # the files TypeDeChamp#revision_diff_attributes reads
+    TypeDeChamp.preload_attachments(kept.flat_map { [from_h[_1], to_h[_1]] })
 
     changed = kept
       .map { [from_h[_1], to_h[_1]] }
@@ -53,14 +54,6 @@ module RevisionComparisonConcern
   end
 
   private
-
-  # The files TypeDeChamp#revision_diff_attributes reads, loaded at once where
-  # each type de champ would run its own queries.
-  def preload_diffed_attachments(type_de_champs)
-    { piece_justificative_template_attachment: :piece_justificative?, notice_explicative_attachment: :explication? }.each do |association, predicate|
-      ActiveRecord::Associations::Preloader.new(records: type_de_champs.filter(&predicate), associations: { association => :blob }).call
-    end
-  end
 
   # Diffs two versions of a type de champ over the attributes it declares in
   # TypeDeChamp#revision_diff_attributes. The keys of the new version drive

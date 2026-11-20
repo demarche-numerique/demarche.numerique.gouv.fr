@@ -3,11 +3,11 @@
 class TypesDeChampEditor::HeaderSectionComponent < ApplicationComponent
   MAX_LEVEL = 3
 
-  def initialize(form:, coordinate:)
+  def initialize(form:, type_de_champ:)
     @form = form
-    @tdc = coordinate.type_de_champ
+    @tdc = type_de_champ
     # Scope of HeaderSectionConsistencyValidator: a header is only compared to its preceding siblings
-    @upper_tdcs = coordinate.preceding_siblings.map(&:type_de_champ)
+    @upper_tdcs = type_de_champ.flat_siblings.take_while { it != type_de_champ }
   end
 
   def header_section_options_for_select

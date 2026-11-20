@@ -159,6 +159,18 @@ describe TypeDeChamp do
     end
   end
 
+  describe 'dom ids' do
+    include ActionView::RecordIdentifier
+
+    # the factories give a type de champ its id as stable_id
+    let(:type_de_champ) { TypesDeChamp::TextTypeDeChamp.new(id: 7, stable_id: 42) }
+
+    it 'follow the stable_id, whatever the type' do
+      expect(dom_id(type_de_champ)).to eq('type_de_champ_42')
+      expect(dom_id(type_de_champ, :type_de_champ_editor)).to eq('type_de_champ_editor_type_de_champ_42')
+    end
+  end
+
   describe '#becomes_type' do
     it 'runs the target type validations instead of the source ones' do
       tdc = create(:type_de_champ_textarea)
@@ -749,6 +761,54 @@ describe TypeDeChamp do
       TypeDeChamp.type_champ_classes.each do |klass|
         expect(TypeDeChamp::CATEGORIES).to include(klass.category), "#{klass} has no category"
         expect(klass.icon).to be_present, "#{klass} has no icon"
+      end
+    end
+  end
+
+  describe '#prefill_targets' do
+    let(:procedure) do
+      create(:procedure,
+             public_type_de_champs: [
+               { libelle: 'p1' },
+               { libelle: 'p2' },
+               {
+                 type: :repetition, libelle: 'p3', children: [
+                   { libelle: 'p3.1' },
+                   { libelle: 'p3.2' },
+                 ],
+               },
+             ],
+             private_type_de_champs: [
+               { libelle: 'a1' },
+               { libelle: 'a2' },
+             ])
+    end
+
+    subject { procedure.draft_revision.type_de_champs.find { it.libelle == from }.prefill_targets.map(&:libelle) }
+
+    context 'from a public champ at root' do
+      let(:from) { 'p1' }
+
+      it 'takes the public types de champ after it, a repetition bringing its children, plus every annotation' do
+        expect(subject).to eq(['p2', 'p3', 'p3.1', 'p3.2', 'a1', 'a2'])
+      end
+    end
+
+    context 'from a public champ inside a repetition' do
+      let(:from) { 'p3.1' }
+
+      it 'stays within its own row, plus every annotation' do
+        expect(subject).to eq(['p3.2', 'a1', 'a2'])
+      end
+    end
+
+    context 'from an annotation' do
+      let(:from) { 'a1' }
+
+      # p1 est avant l'annotation dans son propre bloc : sa position ne doit pas
+      # être comparée à celle de l'annotation, qui vit dans l'autre bloc.
+      it 'takes every public champ, whatever its position' do
+        expect(subject).to eq(['p1', 'p2', 'p3', 'p3.1', 'p3.2', 'a2'])
       end
     end
   end

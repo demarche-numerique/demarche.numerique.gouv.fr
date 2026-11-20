@@ -16,9 +16,8 @@ class TypesDeChampEditor::HeaderSectionsSummaryComponent < ApplicationComponent
     type_de_champs.filter(&:header_section?)
   end
 
-  # the editor anchors its elements on the coordinates
   def href(header_section)
-    "##{dom_id(draft_revision.coordinate_for(header_section), :type_de_champ_editor)}"
+    "##{dom_id(header_section, :type_de_champ_editor)}"
   end
 
   private

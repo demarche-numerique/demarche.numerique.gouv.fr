@@ -1,3 +1,3 @@
-<%= form_with(url: move_and_morph_admin_procedure_type_de_champ_path(@coordinate.revision.procedure, @coordinate.type_de_champ.stable_id), class: 'fr-ml-3w flex', method: :patch, data: { turbo: true }) do |f| %>
-  <%= select_tag :target_stable_id, options_for_select(options), id: describedby_id, class: 'fr-select', data: { 'select-champ-position-template-target': 'select', selected: @coordinate.stable_id } %>
+<%= form_with(url: move_and_morph_admin_procedure_type_de_champ_path(@type_de_champ.revision.procedure, @type_de_champ.stable_id), class: 'fr-ml-3w flex', method: :patch, data: { turbo: true }) do |f| %>
+  <%= select_tag :target_stable_id, options_for_select(options), id: describedby_id, class: 'fr-select', data: { 'select-champ-position-template-target': 'select', selected: @type_de_champ.stable_id } %>
 <% end %>

@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class TypesDeChampEditor::BlockComponent < ApplicationComponent
-  def initialize(block:, coordinates:)
+  # block: the revision, or a repetition and what it holds
+  def initialize(block:, type_de_champs:)
     @block = block
-    @coordinates = coordinates
+    @type_de_champs = type_de_champs
   end
 
   private

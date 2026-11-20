@@ -1,8 +1,7 @@
-- if @coordinate.present?
-  - if @coordinate.parent.present?
-    - c = TypesDeChampEditor::SelectChampTemplatePositionComponent.new(block: @coordinate.parent, coordinates: @coordinate.parent.revision_type_de_champs)
-  - else
-    - c = TypesDeChampEditor::SelectChampTemplatePositionComponent.new(block: @coordinate.revision, coordinates: @coordinate.private? ? @coordinate.revision.private_revision_type_de_champs : @coordinate.revision.public_revision_type_de_champs)
+-# set by the edit (TypesDeChampController#edited): @siblings is nil when nothing was edited
+- block = @repetition || @procedure.draft_revision
+- if @siblings
+  - c = TypesDeChampEditor::SelectChampTemplatePositionComponent.new(block:, type_de_champs: @siblings)
 
   = turbo_stream.replace(c.block_id) do
     = render c
@@ -11,9 +10,9 @@
                     [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)],
                     ['Configuration des champs']] })
 
-= turbo_stream.replace 'errors-summary', render(Procedure::ErrorsSummary.new(procedure: @procedure, validation_context: @coordinate&.private? ? :private_type_de_champs_editor : :public_type_de_champs_editor))
+= turbo_stream.replace 'errors-summary', render(Procedure::ErrorsSummary.new(procedure: @procedure, validation_context: @private ? :private_type_de_champs_editor : :public_type_de_champs_editor))
 
-= turbo_stream.replace 'summary', render(TypesDeChampEditor::HeaderSectionsSummaryComponent.new(procedure: @procedure, is_private: @coordinate&.private?))
+= turbo_stream.replace 'summary', render(TypesDeChampEditor::HeaderSectionsSummaryComponent.new(procedure: @procedure, is_private: @private))
 
 - unless flash.alert
   = render AutosaveNoticeTurboStreamComponent.new
@@ -21,31 +20,32 @@
 - if @destroyed.present?
   = turbo_stream.remove dom_id(@destroyed, :type_de_champ_editor)
 
-  - if @destroyed.siblings.empty?
+  - if @siblings.empty?
     = turbo_stream.show('empty-coordinates')
 
 - if @created.present?
-  - if @created.coordinate.previous_sibling.present?
-    = turbo_stream.after dom_id(@created.coordinate.previous_sibling, :type_de_champ_editor) do
+  - previous_sibling = @siblings.take_while { it != @created.type_de_champ }.last
+  - if previous_sibling.present?
+    = turbo_stream.after dom_id(previous_sibling, :type_de_champ_editor) do
       - render @created
   - else
-    = turbo_stream.prepend dom_id(@created.coordinate.block, :types_de_champ_editor_block) do
+    = turbo_stream.prepend dom_id(block, :types_de_champ_editor_block) do
       - render @created
 
   = turbo_stream.hide('empty-coordinates')
 
 - @morphed&.each do |champ_component|
-  = turbo_stream.replace dom_id(champ_component.coordinate, :type_de_champ_editor) do
+  = turbo_stream.replace dom_id(champ_component.type_de_champ, :type_de_champ_editor) do
     - render champ_component
 
-- if @coordinate.present?
-  = turbo_stream.replace dom_id(@coordinate.revision, :estimated_fill_duration) do
-    - render TypesDeChampEditor::EstimatedFillDurationComponent.new(revision: @coordinate.revision, is_annotation: @coordinate.private?)
+- if @siblings
+  = turbo_stream.replace dom_id(@procedure.draft_revision, :estimated_fill_duration) do
+    - render TypesDeChampEditor::EstimatedFillDurationComponent.new(revision: @procedure.draft_revision, is_annotation: @private)
 
-- if @created&.coordinate&.child?
-  = turbo_stream.hide dom_id(@created.coordinate.parent, :type_de_champ_add_button)
-- elsif @destroyed&.child? && @destroyed.parent.empty?
-  = turbo_stream.show dom_id(@destroyed.parent, :type_de_champ_add_button)
+- if @created.present? && @repetition
+  = turbo_stream.hide dom_id(@repetition, :type_de_champ_add_button)
+- elsif @destroyed.present? && @repetition && @siblings.empty?
+  = turbo_stream.show dom_id(@repetition, :type_de_champ_add_button)
 
 = turbo_stream.update "sticky-header" do
   = render partial: "administrateurs/procedures/unpublished_changes_sticky_header", locals: { procedure: @procedure }

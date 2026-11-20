@@ -35,18 +35,6 @@ class ProcedureRevisionTypeDeChamp < ApplicationRecord
     parent_id.present?
   end
 
-  def first?
-    position == 0
-  end
-
-  def last?
-    siblings.last == self
-  end
-
-  def empty?
-    revision_type_de_champs.empty?
-  end
-
   def siblings
     if child?
       parent.revision_type_de_champs
@@ -84,74 +72,5 @@ class ProcedureRevisionTypeDeChamp < ApplicationRecord
 
   def preceding_siblings
     siblings.filter { it.position < position }
-  end
-
-  def siblings_starting_at(offset)
-    siblings.filter { |s| (position + offset) <= s.position }
-  end
-
-  def previous_sibling
-    index = siblings.index(self)
-    if index > 0
-      siblings[index - 1]
-    end
-  end
-
-  def block
-    if child?
-      parent
-    else
-      revision
-    end
-  end
-
-  def used_by_routing_rules?
-    procedure.used_by_routing_rules?(type_de_champ)
-  end
-
-  def used_by_referentiel_urls?
-    procedure.used_by_referentiel_urls?(type_de_champ)
-  end
-
-  def used_by_ineligibilite_rules?
-    revision.ineligibilite_enabled? && stable_id.in?(revision.ineligibilite_rules&.sources || [])
-  end
-
-  def type_champ_locked?
-    used_by_routing_rules? || used_by_ineligibilite_rules?
-  end
-
-  def prefilled_by_type_de_champ
-    revision.type_de_champs
-      .filter(&:referentiel?)
-      .find { stable_id.to_s.in?(it.referentiel_mapping_prefillable_stable_ids.map(&:to_s)) }
-  end
-
-  # Dans son propre bloc, seules les coordonnées qui suivent ; dans l'autre, toutes :
-  # l'ordre entre le formulaire et les annotations n'a pas de sens.
-  def prefill_target_coordinates
-    public_prefill_targets + private_prefill_targets
-  end
-
-  private
-
-  def public_prefill_targets
-    public_coordinates = revision.revision_type_de_champs.filter(&:public?)
-
-    private? ? public_coordinates : coordinates_after_self(public_coordinates)
-  end
-
-  def private_prefill_targets
-    private_coordinates = revision.revision_type_de_champs.filter(&:private?)
-
-    private? ? coordinates_after_self(private_coordinates) : private_coordinates
-  end
-
-  def coordinates_after_self(coordinates)
-    return siblings_starting_at(1) if child?
-
-    coordinates.filter do |coordinate|
-      coordinate.child? ? coordinate.parent.position >= position : coordinate.position > position
-    end
   end
 end

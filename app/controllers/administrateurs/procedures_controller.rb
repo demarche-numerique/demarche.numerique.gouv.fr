@@ -447,10 +447,12 @@ module Administrateurs
 
     def champs
       ProcedureRevisionPreloader.load_one(@procedure.draft_revision)
+      TypeDeChamp.preload_attachments(@procedure.draft_revision.public_flat_type_de_champs)
     end
 
     def annotations
       ProcedureRevisionPreloader.load_one(@procedure.draft_revision)
+      TypeDeChamp.preload_attachments(@procedure.draft_revision.private_flat_type_de_champs)
     end
 
     def detail

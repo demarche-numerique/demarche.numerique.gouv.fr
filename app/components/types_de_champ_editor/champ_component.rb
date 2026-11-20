@@ -1,18 +1,32 @@
 # frozen_string_literal: true
 
 class TypesDeChampEditor::ChampComponent < ApplicationComponent
-  attr_reader :coordinate
+  attr_reader :type_de_champ
 
-  def initialize(coordinate:, focused: false, errors: '')
-    @coordinate = coordinate
+  # a type de champ of the draft, laid out: it knows what it sits with
+  def initialize(type_de_champ:, focused: false, errors: '')
+    @type_de_champ = type_de_champ
     @focused = focused
     @errors = errors
   end
 
   private
 
-  delegate :type_de_champ, :revision, :procedure, to: :coordinate
-  delegate :libelle_configurable?, :description_configurable?, to: :type_de_champ
+  delegate :libelle_configurable?, :description_configurable?, :revision, to: :type_de_champ
+  delegate :procedure, to: :revision
+
+  # for what the coordinate alone answers
+  def coordinate
+    @coordinate ||= revision.coordinate_for(type_de_champ)
+  end
+
+  def siblings
+    @siblings ||= type_de_champ.flat_siblings
+  end
+
+  def index
+    @index ||= siblings.index(type_de_champ)
+  end
 
   def mandatory_configurable?
     type_de_champ.fillable? && !type_de_champ.must_be_mandatory? && !type_de_champ.cannot_be_mandatory?
@@ -24,10 +38,10 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
 
   def html_options
     {
-      id: dom_id(coordinate, :type_de_champ_editor),
+      id: dom_id(type_de_champ, :type_de_champ_editor),
       class: class_names('type-header-section': type_de_champ.header_section?,
-        first: coordinate.first?,
-        last: coordinate.last?),
+        first: index.zero?,
+        last: index == siblings.size - 1),
       data: {
         controller: 'type-de-champ-editor',
         type_de_champ_editor_move_up_url_value: move_up_admin_procedure_type_de_champ_path(procedure, type_de_champ.stable_id),
@@ -76,14 +90,14 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
   def prefill_with_france_connect_information_locked_by_sibling?
     return false if type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?
 
-    coordinate.revision.type_de_champs.any? do |tdc|
+    revision.type_de_champs.any? do |tdc|
       tdc.date? && tdc.prefill_with_france_connect_information? && tdc.id != type_de_champ.id
     end
   end
 
   def turbo_confirm
-    if coordinate.prefilled_by_type_de_champ
-      t(".confirm_prefilled_removal", libelle: coordinate.prefilled_by_type_de_champ.libelle)
+    if (prefilled_by = type_de_champ.prefilled_by_type_de_champ)
+      t(".confirm_prefilled_removal", libelle: prefilled_by.libelle)
     else
       t(".confirm_removal")
     end
