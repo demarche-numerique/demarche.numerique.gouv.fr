@@ -10,6 +10,13 @@ class TypeDeChampTree < Data.define(:public_children, :private_children)
   end
   private_constant :MergedNode
 
+  # The ancestors a node may have: three levels of header sections, a
+  # repetition, and three levels of header sections within it.
+  MAX_DEPTH = 7
+
+  class EditError < StandardError; end
+  class TooDeepError < EditError; end
+
   class << self
     def from_json(json)
       json = json.symbolize_keys
@@ -288,6 +295,71 @@ class TypeDeChampTree < Data.define(:public_children, :private_children)
     [public_children, private_children].flat_map { coordinates_for(it, nil, type_de_champs_by_id) }
   end
 
+  # The edits, each giving another tree. A node is named by its stable id, and
+  # a place by the parent (:public and :private being the roots) and the
+  # sibling to come after, first of the parent when none is given.
+  #
+  # The tree does not know what its nodes are: whether a parent may hold
+  # anything, or a node leave its repetition, is for the one editing to tell.
+  # It only stays a tree, holding a stable id once and nothing deeper than
+  # MAX_DEPTH, and raises EditError when it would not.
+
+  def insert(node, parent:, after: nil)
+    held = stable_ids & stable_ids_of(node)
+    raise EditError, "stable ids #{held.join(', ')} are already in the tree" if held.any?
+
+    lay(node, parent:, after:)
+  end
+
+  # the node goes with what it holds
+  def move(stable_id, parent:, after: nil)
+    node, = node_with_ancestors(stable_id)
+    raise EditError, "node #{stable_id} cannot go in what it holds" if stable_ids_of(node).include?(parent)
+
+    splice(stable_id, []).lay(node, parent:, after:)
+  end
+
+  # children: :remove them along, or :inline them in place of the node
+  def remove(stable_id, children: :remove)
+    node, = node_with_ancestors(stable_id)
+
+    case children
+    when :remove then splice(stable_id, [])
+    when :inline then splice(stable_id, node.children)
+    else raise ArgumentError, "unknown children option: #{children.inspect}"
+    end
+  end
+
+  # Another type de champ under the same stable id.
+  # children: :remove them, :keep them, or :inline them right after the node
+  def replace(stable_id, type_de_champ_id:, children: :remove)
+    node, = node_with_ancestors(stable_id)
+
+    case children
+    when :remove then splice(stable_id, [node.with(type_de_champ_id:, children: [])])
+    when :keep then splice(stable_id, [node.with(type_de_champ_id:)])
+    when :inline then splice(stable_id, [node.with(type_de_champ_id:, children: []), *node.children])
+    else raise ArgumentError, "unknown children option: #{children.inspect}"
+    end
+  end
+
+  protected
+
+  def lay(node, parent:, after:)
+    case parent
+    when :public
+      check_depth(node, 0)
+      with(public_children: laid_after(public_children, node, after))
+    when :private
+      check_depth(node, 0)
+      with(private_children: laid_after(private_children, node, after))
+    else
+      container, ancestors = node_with_ancestors(parent)
+      check_depth(node, ancestors.size + 1)
+      splice(parent, [container.with(children: laid_after(container.children, node, after))])
+    end
+  end
+
   private
 
   def coordinates_for(nodes, parent, type_de_champs_by_id)
@@ -311,4 +383,35 @@ class TypeDeChampTree < Data.define(:public_children, :private_children)
   def with_ancestors(nodes, ancestors = [])
     nodes.flat_map { [[it, ancestors], *with_ancestors(it.children, [*ancestors, it])] }
   end
+
+  def stable_ids = nodes.map(&:stable_id)
+
+  # the one of the node, and of what it holds
+  def stable_ids_of(node) = with_ancestors([node]).map { |held, _| held.stable_id }
+
+  def node_with_ancestors(stable_id)
+    nodes_with_ancestors.find { |node, _| node.stable_id == stable_id } || raise(EditError, "node #{stable_id} is not in the tree")
+  end
+
+  # the nodes in place of the one named
+  def splice(stable_id, nodes)
+    with(public_children: spliced(public_children, stable_id, nodes), private_children: spliced(private_children, stable_id, nodes))
+  end
+
+  def spliced(siblings, stable_id, nodes)
+    siblings.flat_map { it.stable_id == stable_id ? nodes : [it.with(children: spliced(it.children, stable_id, nodes))] }
+  end
+
+  def laid_after(siblings, node, after)
+    index = after.nil? ? 0 : siblings.index { it.stable_id == after }&.succ
+    raise EditError, "node #{after} is not a child of the parent" if index.nil?
+
+    [*siblings].insert(index, node)
+  end
+
+  def check_depth(node, depth)
+    raise TooDeepError, "nothing goes deeper than #{MAX_DEPTH} ancestors" if depth + height(node) > MAX_DEPTH
+  end
+
+  def height(node) = node.children.empty? ? 0 : 1 + node.children.map { height(it) }.max
 end
