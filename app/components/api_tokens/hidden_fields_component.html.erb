@@ -1,5 +1,5 @@
-<%- fields.each do |key, value| -%>
-  <%- Array(value).each do |v| -%>
-    <%= hidden_field_tag "#{key}#{'[]' if value.is_a?(Array)}", v %>
+<%- attributes.each do |attribute, value| -%>
+  <%- Array.wrap(value).each do |v| -%>
+    <%= form.hidden_field attribute, multiple: value.is_a?(Array), value: v, id: nil %>
   <%- end -%>
 <%- end -%>
