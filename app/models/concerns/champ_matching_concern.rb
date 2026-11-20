@@ -166,16 +166,15 @@ module ChampMatchingConcern
     end
   end
 
-  # Every revision, not just the published one: an old dossier can carry a champ
-  # the procedure no longer asks for.
+  # Every type de champ of the procedure, not just the ones its published
+  # revision lays out: an old dossier can carry a champ the procedure no longer
+  # asks for. More than needed (the content of repetitions, what the draft
+  # removed) only reads a champ class for nothing.
   def namespaces_of(procedure_id)
-    ProcedureRevisionTypeDeChamp
-      .root
-      .public_only
-      .joins(:revision)
-      .where(procedure_revisions: { procedure_id: }, types_de_champ: { type_champ: ChampMatching::ComparableValue::TYPE_CHAMPS })
+    TypeDeChamp
+      .where(procedure_id:, private: false, type_champ: ChampMatching::ComparableValue::TYPE_CHAMPS)
       .distinct
-      .pluck('types_de_champ.type_champ')
+      .pluck(:type_champ)
       .map { ChampMatching::ComparableValue::COMPARISON_NAMESPACES.fetch(it) }
       .to_set
   end

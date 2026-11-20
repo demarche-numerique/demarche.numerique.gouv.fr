@@ -28,6 +28,16 @@ describe ChampMatchingResult do
       expect(described_class.find(row.to_param)).to have_attributes(procedure_id: right.id, libelle: 'Adresse du domicile', partner_libelle: 'Votre adresse', namespace: :text)
       expect(described_class.find("#{match.id}-#{left.id}")).to have_attributes(procedure_id: left.id, libelle: 'Votre adresse')
     end
+
+    it 'gives a champ the last libellé it was given' do
+      match = match!(0, 78)
+      draft = left.draft_revision
+      draft.update_type_de_champ(draft.find_and_ensure_exclusive_use(stable_ids(left).first), libelle: 'Adresse postale')
+      left.publish_revision!(left.administrateurs.first)
+
+      expect(described_class.find("#{match.id}-#{left.id}").libelle).to eq('Adresse postale')
+      expect(described_class.find("#{match.id}-#{right.id}").partner_libelle).to eq('Adresse postale')
+    end
   end
 
   describe '#observations' do
