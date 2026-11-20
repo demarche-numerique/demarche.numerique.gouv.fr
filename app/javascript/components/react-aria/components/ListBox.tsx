@@ -1,4 +1,5 @@
 'use client';
+import type { Ref } from 'react';
 import {
   Text,
   ListBox as AriaListBox,
@@ -54,7 +55,9 @@ export function DropdownItemContent({
   );
 }
 
-export function DropdownListBox<T extends object>(props: ListBoxProps<T>) {
+export function DropdownListBox<T extends object>(
+  props: ListBoxProps<T> & { ref?: Ref<HTMLDivElement> }
+) {
   return <AriaListBox {...props} className="dropdown-listbox" />;
 }
 
