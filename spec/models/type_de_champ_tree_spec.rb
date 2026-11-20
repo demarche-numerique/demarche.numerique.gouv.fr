@@ -317,6 +317,58 @@ describe TypeDeChampTree do
     end
   end
 
+  describe '#to_coordinates' do
+    let(:public_type_de_champs) do
+      [
+        { type: :header_section, level: 1, libelle: 'h1' },
+        { type: :header_section, level: 3, libelle: 'h3' },
+        { libelle: 'a' },
+        {
+          type: :repetition, libelle: 'r', children: [
+            { type: :header_section, level: 1, libelle: 'rh1' },
+            { libelle: 'r1' },
+            { type: :header_section, level: 2, libelle: 'rh1.1' },
+            { libelle: 'r2' },
+          ],
+        },
+        { type: :header_section, level: 2, libelle: 'h2' },
+        { libelle: 'b' },
+      ]
+    end
+    let(:private_type_de_champs) { [{ type: :header_section, level: 1, libelle: 'ph1' }, { libelle: 'c' }] }
+    let(:type_de_champs_by_id) { TypeDeChamp.where(id: tree.type_de_champ_ids).index_by(&:id) }
+    let(:coordinates) { tree.to_coordinates(type_de_champs_by_id) }
+
+    it 'lays a header section before what it holds, and the content of a repetition under it' do
+      expect(coordinates.map { [it.libelle, it.position, it.parent&.libelle] }).to eq([
+        ['h1', 0, nil], ['h3', 1, nil], ['a', 2, nil], ['r', 3, nil],
+        ['rh1', 0, 'r'], ['r1', 1, 'r'], ['rh1.1', 2, 'r'], ['r2', 3, 'r'],
+        ['h2', 4, nil], ['b', 5, nil],
+        ['ph1', 0, nil], ['c', 1, nil],
+      ])
+    end
+
+    it 'gives the tree back, not saved' do
+      expect(coordinates).to all(be_new_record)
+      expect(described_class.from_coordinates(coordinates)).to eq(tree)
+    end
+
+    it 'gives the tree back once saved on another revision' do
+      other_revision = procedure.revisions.create!
+      coordinates.each { it.update!(revision: other_revision) }
+
+      expect(described_class.from_coordinates(other_revision.revision_type_de_champs.reload)).to eq(tree)
+    end
+
+    it 'is empty for an empty tree' do
+      expect(described_class.new.to_coordinates({})).to eq([])
+    end
+
+    it 'fails on a type de champ it is not given' do
+      expect { tree.to_coordinates({}) }.to raise_error(KeyError)
+    end
+  end
+
   describe 'json' do
     let(:public_type_de_champs) { [{ type: :header_section, level: 1 }, { type: :repetition, children: [{}, {}] }] }
     let(:private_type_de_champs) { [{}] }

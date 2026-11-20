@@ -836,6 +836,41 @@ describe ProcedureRevision do
         expect(child.parent_id).to eq(parent.id)
       end
     end
+
+    context 'with a header section, a repetition and an annotation' do
+      let(:procedure) do
+        create(:procedure,
+          public_type_de_champs: [
+            { type: :header_section, level: 1, libelle: 'h1' },
+            { libelle: 'a' },
+            { type: :repetition, libelle: 'r', children: [{ libelle: 'r1' }, { libelle: 'r2' }] },
+          ],
+          private_type_de_champs: [{ libelle: 'c' }])
+      end
+
+      def coordinates_of(revision) = revision.revision_type_de_champs.reload.map { [it.libelle, it.position, it.parent&.libelle] }
+
+      it 'takes the tree as it is, and makes its coordinates out of it' do
+        expect { new_draft }.not_to change { procedure.type_de_champs.count }
+
+        expect(new_draft.reload.type_de_champ_tree).to eq(draft.type_de_champ_tree)
+        expect(TypeDeChampTree.from_coordinates(new_draft.revision_type_de_champs)).to eq(draft.type_de_champ_tree)
+        expect(coordinates_of(new_draft)).to contain_exactly(
+          ['h1', 0, nil], ['a', 1, nil], ['r', 2, nil], ['r1', 0, 'r'], ['r2', 1, 'r'], ['c', 0, nil]
+        )
+      end
+
+      it 'leaves behind the coordinates out of the tree, and the gaps between positions' do
+        a, r2, c = ['a', 'r2', 'c'].map { |libelle| draft.revision_type_de_champs.find { it.libelle == libelle } }
+        r2.update_columns(parent_id: a.id)
+        c.update_columns(position: 7)
+        draft.store_type_de_champ_tree # laid by hand: the tree follows
+
+        expect(coordinates_of(new_draft)).to contain_exactly(
+          ['h1', 0, nil], ['a', 1, nil], ['r', 2, nil], ['r1', 0, 'r'], ['c', 0, nil]
+        )
+      end
+    end
   end
 
   describe '#update_type_de_champ' do

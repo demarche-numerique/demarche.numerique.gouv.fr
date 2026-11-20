@@ -87,17 +87,16 @@ module ProcedurePublishConcern
     touch(:unpublished_at)
   end
 
+  # The new revision takes the tree as it is, and lays out the same types de
+  # champ: the coordinates are made out of the tree.
   def create_new_revision(revision = nil)
     transaction do
-      new_revision = (revision || draft_revision)
-        .deep_clone(include: [:revision_type_de_champs], except: [:type_de_champ_tree])
+      (revision || draft_revision)
+        .deep_clone
         .tap { |revision| revision.published_at = nil }
         .tap { |revision| revision.administrateur_id = nil }
         .tap(&:save!)
-
-      move_new_children_to_new_parent_coordinate(new_revision)
-
-      new_revision.store_type_de_champ_tree
+        .create_coordinates_from_type_de_champ_tree
     end
   end
 
@@ -106,7 +105,7 @@ module ProcedurePublishConcern
   def publish_new_revision(administrateur)
     # the last edit of the draft: the tree it leaves is the published one, and
     # the lock, held until publication commits, keeps the editor from changing
-    # the coordinates before the next draft is cloned from them
+    # it before the next draft takes it
     draft_revision.edit_type_de_champs do
       cleanup_type_de_champs_options!
       draft_revision.remove_coordinates_out_of_tree
