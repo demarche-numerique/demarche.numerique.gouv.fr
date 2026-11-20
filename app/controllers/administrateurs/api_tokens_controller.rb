@@ -58,31 +58,34 @@ module Administrateurs
         h[:authorized_networks] = networks
       end
 
-      if params[:restore_full_access].present?
-        h[:allowed_procedure_ids] = nil
-      elsif procedure_to_add.present?
-        to_add = current_administrateur
-          .procedure_ids
-          .intersection([procedure_to_add])
-
-        h[:allowed_procedure_ids] =
-          (Array.wrap(@api_token.allowed_procedure_ids) + to_add).uniq
-      end
-
       if params[:name].present?
         h[:name] = params[:name]
       end
 
-      @api_token.update!(h)
+      @api_token.with_lock do
+        if params[:restore_full_access].present?
+          h[:allowed_procedure_ids] = nil
+        elsif procedure_to_add.present?
+          to_add = current_administrateur
+            .procedure_ids
+            .intersection([procedure_to_add])
+
+          h[:allowed_procedure_ids] =
+            (Array.wrap(@api_token.allowed_procedure_ids) + to_add).uniq
+        end
+
+        @api_token.update!(h)
+      end
 
       render :edit
     end
 
     def remove_procedure
       procedure_id = params[:procedure_id].to_i
-      remaining_ids = (@api_token.allowed_procedure_ids || @api_token.procedure_ids) - [procedure_id]
-      @api_token.allowed_procedure_ids = remaining_ids
-      @api_token.save!
+      @api_token.with_lock do
+        remaining_ids = (@api_token.allowed_procedure_ids || @api_token.procedure_ids) - [procedure_id]
+        @api_token.update!(allowed_procedure_ids: remaining_ids)
+      end
 
       @libelle_id_procedures = libelle_id_procedures
       render turbo_stream: turbo_stream.update("tokenUpdate", partial: "administrateurs/api_tokens/edit_form", locals: { api_token: @api_token, libelle_id_procedures: @libelle_id_procedures, invalid_network_message: nil })
