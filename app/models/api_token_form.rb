@@ -16,6 +16,7 @@ class APITokenForm
 
   attr_accessor :administrateur
 
+  validates :name, presence: true
   validates :allowed_procedure_ids, presence: true, if: :custom_target?
   validate :networks_are_ip_addresses, if: :custom_networks?
   validates :expires_at, presence: true

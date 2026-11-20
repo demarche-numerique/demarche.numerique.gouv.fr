@@ -115,7 +115,9 @@ module Administrateurs
     end
 
     def render_invalid_step
-      if @api_token_form.errors.include?(:allowed_procedure_ids)
+      if @api_token_form.errors.include?(:name)
+        render :nom, status: :unprocessable_content
+      elsif @api_token_form.errors.include?(:allowed_procedure_ids)
         @libelle_id_procedures = libelle_id_procedures
         render :autorisations, status: :unprocessable_content
       else

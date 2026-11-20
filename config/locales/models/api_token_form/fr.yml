@@ -4,6 +4,8 @@ fr:
       models:
         api_token_form:
           attributes:
+            name:
+              blank: Donnez un nom au jeton
             allowed_procedure_ids:
               blank: Sélectionnez au moins une démarche
             networks:
