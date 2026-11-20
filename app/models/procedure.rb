@@ -188,7 +188,7 @@ class Procedure < ApplicationRecord
         .state_en_construction_ou_instruction
         .distinct(:revision_id)
         .pluck(:revision_id)
-      ProcedureRevision.includes(:revision_type_de_champs).where(id: ids)
+      ProcedureRevision.where(id: ids).to_a.tap { ProcedureRevision.preload_type_de_champs(it) }
     end
   end
 
