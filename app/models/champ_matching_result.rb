@@ -115,15 +115,13 @@ class ChampMatchingResult
       )
     end
 
-    # Ordered by revision, so the last libellé and type a champ was given win.
+    # Ordered by version, so the last libellé and type a champ was given win.
     def champs_of(matches)
-      ProcedureRevisionTypeDeChamp
-        .unscope(:eager_load)
-        .joins(:revision, :type_de_champ)
-        .where(procedure_revisions: { procedure_id: matches.flat_map { [it.left_procedure_id, it.right_procedure_id] } },
-               types_de_champ: { stable_id: matches.flat_map { [it.left_stable_id, it.right_stable_id] } })
-        .order('procedure_revisions.id')
-        .pluck('procedure_revisions.procedure_id', 'types_de_champ.stable_id', 'types_de_champ.libelle', 'types_de_champ.type_champ')
+      TypeDeChamp
+        .where(procedure_id: matches.flat_map { [it.left_procedure_id, it.right_procedure_id] },
+               stable_id: matches.flat_map { [it.left_stable_id, it.right_stable_id] })
+        .order(:id)
+        .pluck(:procedure_id, :stable_id, :libelle, :type_champ)
         .to_h { |procedure_id, stable_id, libelle, type_champ| [[procedure_id, stable_id], { libelle:, type_champ: }] }
     end
   end

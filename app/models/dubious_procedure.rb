@@ -19,25 +19,35 @@ class DubiousProcedure
   end
 
   def self.all
-    procedures_with_forbidden_tdcs_sql = ProcedureRevisionTypeDeChamp
-      .unscope(:eager_load)
-      .joins(:procedure, :type_de_champ)
-      .select("string_agg(types_de_champ.libelle, ' - ') as dubious_champs, procedures.id as procedure_id, procedures.libelle as procedure_libelle, procedures.aasm_state as procedure_aasm_state, procedures.hidden_at_as_template as procedure_hidden_at_as_template")
-      .where("unaccent(types_de_champ.libelle) ~* unaccent(?)", forbidden_regexp)
-      .where(types_de_champ: { type_champ: [TypeDeChamp.type_champs.fetch(:text), TypeDeChamp.type_champs.fetch(:textarea)] })
+    type_de_champs = TypeDeChamp
+      .dubious
+      .joins(:procedure)
       .where(procedures: { closed_at: nil, whitelisted_at: nil })
-      .group("procedures.id")
-      .order("procedures.id asc")
-      .to_sql
+      .order(:id)
+      .pluck(:procedure_id, :id, :libelle)
 
-    ActiveRecord::Base.connection.execute(procedures_with_forbidden_tdcs_sql).map do |procedure|
+    # a type de champ removed from a draft lives until the next publication:
+    # only the ones a revision lays out are asked of anyone
+    laid_out_ids = laid_out_type_de_champ_ids(type_de_champs.map(&:first).uniq)
+    dubious_champs = type_de_champs
+      .filter { |_, id, _| laid_out_ids.include?(id) }
+      .group_by(&:first)
+      .transform_values { |versions| versions.map(&:last).uniq.join(' - ') }
+
+    Procedure.with_discarded.where(id: dubious_champs.keys).order(:id).pluck(:id, :libelle, :aasm_state, :hidden_at_as_template).map do |id, libelle, aasm_state, hidden_at_as_template|
       p = DubiousProcedure.new
-      p.id = procedure["procedure_id"]
-      p.dubious_champs = procedure["dubious_champs"]
-      p.libelle = procedure["procedure_libelle"]
-      p.aasm_state = procedure["procedure_aasm_state"]
-      p.hidden_at_as_template = procedure["procedure_hidden_at_as_template"]
+      p.id = id
+      p.dubious_champs = dubious_champs.fetch(id)
+      p.libelle = libelle
+      p.aasm_state = aasm_state
+      p.hidden_at_as_template = hidden_at_as_template
       p
+    end
+  end
+
+  def self.laid_out_type_de_champ_ids(procedure_ids)
+    procedure_ids.each_slice(1_000).each_with_object(Set.new) do |slice, ids|
+      ProcedureRevision.where(procedure_id: slice).pluck(:type_de_champ_tree).each { ids.merge(it.type_de_champ_ids) }
     end
   end
 

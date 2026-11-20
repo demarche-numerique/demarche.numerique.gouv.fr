@@ -57,6 +57,27 @@ namespace :stats do
       total_instructeurs: total_instructeurs,
     }
   end
+
+  # Ce que dispose la révision publiée de chaque démarche, lu en une passe : les
+  # démarches avec annotations privées, celles avec champs conditionnels, et
+  # celles qui utilisent chaque type de champ public hors répétition.
+  def published_type_de_champs_stats(procedure_ids)
+    stats = { private_annotation_ids: [], conditional_ids: [], procedure_ids_by_type_champ: Hash.new { |hash, type_champ| hash[type_champ] = [] } }
+    published_revision_ids = Procedure.where(id: procedure_ids).pluck(:published_revision_id)
+
+    ProcedureRevision.where(id: published_revision_ids).find_in_batches(batch_size: 500) do |revisions|
+      ProcedureRevision.preload_type_de_champs(revisions)
+
+      revisions.each do |revision|
+        stats[:private_annotation_ids] << revision.procedure_id if revision.private_flat_type_de_champs.any?
+        stats[:conditional_ids] << revision.procedure_id if revision.type_de_champs.any? { !it.condition.nil? }
+        revision.public_root_type_de_champs.map(&:type_champ).uniq.each { stats[:procedure_ids_by_type_champ][it] << revision.procedure_id }
+      end
+    end
+
+    stats
+  end
+
   desc <<~EOD
     Génère des statistiques d’utilisation des fonctionnalités des démarches publiées ou closes
     au cours des 2 dernières années. Génère un fichier CSV avec les résultats.
@@ -163,34 +184,14 @@ namespace :stats do
     attestation_total_procedures = base_scope.where(id: attestation_total_procedures_ids)
     add_procedure_stat(stats, "Attestation (total)", attestation_total_procedures, total_procedures, total_dossiers_all_procedures)
 
+    type_de_champs_stats = published_type_de_champs_stats(procedure_ids)
+
     # 18. Démarches avec annotations privées
-    private_annotation_ids = ActiveRecord::Base.connection.execute(<<~SQL.squish).values.flatten
-      SELECT DISTINCT procedures.id
-      FROM procedures
-      INNER JOIN procedure_revisions ON procedure_revisions.id = procedures.published_revision_id
-      INNER JOIN procedure_revision_types_de_champ ON procedure_revision_types_de_champ.revision_id = procedure_revisions.id
-      INNER JOIN types_de_champ ON types_de_champ.id = procedure_revision_types_de_champ.type_de_champ_id
-      WHERE procedures.hidden_at IS NULL
-        AND procedures.aasm_state IN ('publiee', 'close', 'depubliee')
-        AND procedure_revisions.published_at >= '#{2.years.ago.to_fs(:db)}'
-        AND types_de_champ.private = true
-    SQL
-    private_annotations_procedures = base_scope.where(id: private_annotation_ids)
+    private_annotations_procedures = base_scope.where(id: type_de_champs_stats[:private_annotation_ids])
     add_procedure_stat(stats, "Avec annotations privées", private_annotations_procedures, total_procedures, total_dossiers_all_procedures)
 
     # 21. Démarches avec champs conditionnels
-    conditional_ids = ActiveRecord::Base.connection.execute(<<~SQL.squish).values.flatten
-      SELECT DISTINCT procedures.id
-      FROM procedures
-      INNER JOIN procedure_revisions ON procedure_revisions.id = procedures.published_revision_id
-      INNER JOIN procedure_revision_types_de_champ ON procedure_revision_types_de_champ.revision_id = procedure_revisions.id
-      INNER JOIN types_de_champ ON types_de_champ.id = procedure_revision_types_de_champ.type_de_champ_id
-      WHERE procedures.hidden_at IS NULL
-        AND procedures.aasm_state IN ('publiee', 'close', 'depubliee')
-        AND procedure_revisions.published_at >= '#{2.years.ago.to_fs(:db)}'
-        AND types_de_champ.condition IS NOT NULL
-    SQL
-    conditional_procedures = base_scope.where(id: conditional_ids)
+    conditional_procedures = base_scope.where(id: type_de_champs_stats[:conditional_ids])
     add_procedure_stat(stats, "Avec champs conditionnels", conditional_procedures, total_procedures, total_dossiers_all_procedures)
 
     # 22. Démarches avec avis demandés
@@ -236,32 +237,11 @@ namespace :stats do
 
     rake_puts "\n=== Génération des statistiques par type de champ ==="
 
-    # Récupération des stats par type de champ sur les champs publics (parent = null uniquement)
-    # Utilisons une approche en 2 étapes pour éviter les problèmes d’attributs manquants
-    type_champ_data = ActiveRecord::Base.connection.execute(<<~SQL.squish).to_a
-      SELECT
-        type_champ,
-        COUNT(*) as nb_procedures,
-        SUM(estimated_dossiers_count) as nb_dossiers
-      FROM (
-        SELECT DISTINCT
-          types_de_champ.type_champ,
-          procedures.id,
-          procedures.estimated_dossiers_count
-        FROM types_de_champ
-        INNER JOIN procedure_revision_types_de_champ ON procedure_revision_types_de_champ.type_de_champ_id = types_de_champ.id
-        INNER JOIN procedure_revisions ON procedure_revisions.id = procedure_revision_types_de_champ.revision_id
-        INNER JOIN procedures ON procedures.id = procedure_revisions.procedure_id
-        WHERE procedure_revision_types_de_champ.parent_id IS NULL
-          AND types_de_champ.private = false
-          AND procedure_revisions.published_at >= '#{2.years.ago.to_fs(:db)}'
-          AND procedures.hidden_at IS NULL
-          AND procedures.aasm_state IN ('publiee', 'close', 'depubliee')
-          AND procedures.published_revision_id = procedure_revisions.id
-      ) as unique_procedures
-      GROUP BY type_champ
-      ORDER BY nb_procedures DESC, nb_dossiers DESC
-    SQL
+    # Stats par type de champ sur les champs publics hors répétition de la révision publiée
+    estimated_dossiers_counts = Procedure.where(id: procedure_ids).pluck(:id, :estimated_dossiers_count).to_h
+    type_champ_data = type_de_champs_stats[:procedure_ids_by_type_champ]
+      .map { |type_champ, ids| { 'type_champ' => type_champ, 'nb_procedures' => ids.size, 'nb_dossiers' => ids.sum { estimated_dossiers_counts[it].to_i } } }
+      .sort_by { [-it['nb_procedures'], -it['nb_dossiers']] }
 
     type_champ_results = []
 
