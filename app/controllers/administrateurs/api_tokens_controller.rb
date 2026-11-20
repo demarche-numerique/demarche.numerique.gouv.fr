@@ -136,11 +136,20 @@ module Administrateurs
     end
 
     def set_api_token_form
-      @api_token_form = APITokenForm.new(api_token_form_params.merge(administrateur: current_administrateur))
+      @api_token_form =
+        if params[:duplicate].present?
+          APITokenForm.from_token(current_administrateur.api_tokens.find(params.expect(:duplicate)))
+        else
+          APITokenForm.new(api_token_form_params.merge(administrateur: current_administrateur))
+        end
     end
 
     def api_token_form_params
-      params.fetch(:api_token_form, {}).permit(:name, :duplicated_token_id, :target, :access, :network_filtering, :networks, :lifetime, :custom_lifetime, procedure_ids: [])
+      if params.key?(:api_token_form)
+        params.expect(api_token_form: [:name, :duplicated_token_id, :target, :access, :network_filtering, :networks, :lifetime, :custom_lifetime, procedure_ids: []])
+      else
+        {}
+      end
     end
 
     def procedure_to_add

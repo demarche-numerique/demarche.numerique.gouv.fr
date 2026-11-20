@@ -18,8 +18,10 @@
           class: 'fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-btn--icon-left fr-icon-pencil-line'
 
       %li
-        = link_to 'Dupliquer',
-          nom_admin_api_tokens_path(api_token_form: APITokenForm.from_token(@api_token).attributes.compact),
+        = button_to 'Dupliquer',
+          nom_admin_api_tokens_path,
+          params: { duplicate: @api_token.id },
+          form: { data: { turbo: false } },
           class: 'fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-btn--icon-left fr-icon-file-copy-line'
 
       %li

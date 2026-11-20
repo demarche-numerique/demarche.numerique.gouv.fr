@@ -5,13 +5,13 @@
     [t('users.profil.show.profile'), profil_path(context: :administrateur)],
     [@api_token_form.duplicating? ? t('administrateurs.api_tokens.duplicate_title') : t('administrateurs.api_tokens.new_token')]] } %>
 
-<div class="fr-container fr-mt-2w" data-turbo="true">
+<div class="fr-container fr-mt-2w">
   <h1>
     <%= @api_token_form.duplicating? ? t('administrateurs.api_tokens.duplicate_title') : t('administrateurs.api_tokens.new_token') %>
   </h1>
 
   <%= form_with model: @api_token_form, url: securite_admin_api_tokens_path,
-  method: :get, id: 'api-token-autorisation-form',
+  method: :post, id: 'api-token-autorisation-form',
   data: { controller: 'api-token-autorisation',
   'api-token-autorisation-initial-targets-value': @api_token_form.procedure_ids.any?,
   action: 'change->api-token-autorisation#setContinueButtonState' } do |f| -%>
@@ -70,7 +70,13 @@
 
     <ul class="fr-btns-group fr-btns-group--inline">
       <li>
-        <%= link_to t('.cancel'), nom_admin_api_tokens_path(api_token_form: @api_token_form.attributes.compact), class: "fr-btn fr-btn--secondary" %>
+        <button
+          type="submit"
+          form="api-token-autorisation-back"
+          class="fr-btn fr-btn--secondary"
+        >
+          <%= t('.cancel') %>
+        </button>
       </li>
 
       <li>
@@ -82,5 +88,9 @@
         <% end %>
       </li>
     </ul>
+  <% end %>
+
+  <%= form_with model: @api_token_form, url: nom_admin_api_tokens_path, method: :post, id: 'api-token-autorisation-back' do |back| %>
+    <%= render APITokens::HiddenFieldsComponent.new(form: back) %>
   <% end %>
 </div>

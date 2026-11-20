@@ -14,7 +14,10 @@ describe 'As an administrateur I create an API token', js: true do
     xss_payload = '<img src=x onerror=alert(1)>'
     procedure.update_column(:libelle, xss_payload)
 
-    visit autorisations_admin_api_tokens_path(api_token_form: { name: 'test-xss', target: 'custom' })
+    visit nom_admin_api_tokens_path
+    fill_in 'Nom du jeton', with: 'test-xss'
+    click_on 'Continuer'
+    custom_check 'api_token_form_target_custom'
     expect(page).to have_field('Sélectionner les démarches autorisées', visible: true)
 
     fill_in 'Sélectionner les démarches autorisées', with: procedure.libelle
@@ -164,13 +167,16 @@ describe 'As an administrateur I create an API token', js: true do
     click_on 'Dupliquer'
 
     expect(page).to have_field('Nom du jeton', with: 'Jeton original')
+    expect(URI(page.current_url).query).to be_nil
     click_on 'Continuer'
 
     expect(page).to have_checked_field('api_token_form_access_read_write')
     expect(page).to have_text(procedure.libelle)
+    expect(URI(page.current_url).query).to be_nil
     click_on 'Continuer'
 
     expect(page).to have_content('Sécurité')
+    expect(URI(page.current_url).query).to be_nil
     expect(page).to have_checked_field('api_token_form_network_filtering_customnetworks')
     expect(page).to have_field('api_token_form_networks', with: '192.168.1.0/24')
     expect(page).to have_no_checked_field('api_token_form_lifetime_oneweek')
