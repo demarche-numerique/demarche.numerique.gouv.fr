@@ -1792,7 +1792,8 @@ input DemarchePublierInput {
   lienSiteWeb: String
 
   """
-  Chemin de la démarche. S'il est déjà utilisé par une autre de vos démarches, celle-ci sera dépubliée et remplacée.
+  Chemin de la démarche. S'il est déjà utilisé par une autre de vos démarches
+  accessible avec ce jeton, celle-ci sera dépubliée et remplacée.
   """
   path: String!
 
