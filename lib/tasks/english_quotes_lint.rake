@@ -1,20 +1,34 @@
 # frozen_string_literal: true
 
 namespace :lint do
-  desc 'Check that english translation files use no french guillemets (see GLOSSARY.md, UI copy policy)'
+  desc 'Check that english translation files quote names and terms with ‘…’, not « », “ ” or " " (see GLOSSARY.md, UI copy policy)'
   task :english_quotes do
+    forbidden_quotes = /[«»“”"]/
+    html_tag = /<[^>]*>/
+
+    each_string = -> (node, key, &block) do
+      case node
+      when Hash then node.each { |k, v| each_string.(v, [key, k].compact.join('.'), &block) }
+      when Array then node.each_with_index { |v, i| each_string.(v, "#{key}.#{i}", &block) }
+      when String then block.(key, node)
+      end
+    end
+
     files = Dir.glob('{config/locales,app/components}/**/{*.en,en}.yml')
-    offenses = files.flat_map do |file|
-      File.readlines(file).each_with_index.filter_map do |line, i|
-        "  #{file}:#{i + 1}: #{line.strip.truncate(80)}" if line.match?(/[«»]/)
+    offenses = []
+
+    files.each do |file|
+      each_string.(YAML.load_file(file, aliases: true), nil) do |key, value|
+        next if key.end_with?('prefill_query_response_html')
+        offenses << "  #{file}: #{key}: #{value.squish.truncate(80)}" if value.gsub(html_tag, '').match?(forbidden_quotes)
       end
     end
 
     if offenses.any?
-      puts offenses, "\n❌ Found « » in english translation files: use ‘…’ around a name or a term"
+      puts offenses, "\n❌ Found #{offenses.size} translation(s) with « », “ ” or \" \" in english translation files: use ‘…’ around a name or a term"
       exit 1
     end
 
-    puts "✅ No french guillemets found in english translation files"
+    puts "✅ No « », “ ” or \" \" found in english translation files"
   end
 end
