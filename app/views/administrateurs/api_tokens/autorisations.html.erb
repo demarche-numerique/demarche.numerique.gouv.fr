@@ -13,7 +13,7 @@
   <%= form_with model: @api_token_form, url: securite_admin_api_tokens_path,
   method: :post, id: 'api-token-autorisation-form',
   data: { controller: 'api-token-autorisation',
-  'api-token-autorisation-initial-targets-value': @api_token_form.procedure_ids.any?,
+  'api-token-autorisation-initial-targets-value': @api_token_form.allowed_procedure_ids.present?,
   action: 'change->api-token-autorisation#setContinueButtonState' } do |f| -%>
     <%= render Dsfr::RadioButtonListComponent.new(form: f,
       target: :target,
