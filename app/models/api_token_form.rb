@@ -27,7 +27,7 @@ class APITokenForm
       administrateur: token.administrateur,
       duplicated_token_id: token.id,
       name: token.name,
-      target: token.allowed_procedure_ids.blank? ? 'all' : 'custom',
+      target: token.full_access? ? 'all' : 'custom',
       procedure_ids: Array(token.allowed_procedure_ids),
       access: token.write_access? ? 'read_write' : 'read',
       network_filtering: token.authorized_networks.blank? ? 'autoAssign' : 'customNetworks',
