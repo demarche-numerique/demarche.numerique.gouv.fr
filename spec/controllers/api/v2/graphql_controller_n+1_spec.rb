@@ -96,6 +96,63 @@ describe API::V2::GraphqlController do
     end
   end
 
+  describe 'revision descriptors' do
+    let(:variables) { { demarcheNumber: procedures.individual.id } }
+
+    subject { post :execute, params: { query:, variables: }, as: :json }
+
+    def type_de_champ_queries
+      queries = []
+      callback = lambda { |*args| queries << args.last[:sql] if args.last[:sql].include?('FROM "types_de_champ"') }
+      ActiveSupport::Notifications.subscribed(callback, "sql.active_record") { subject }
+      queries
+    end
+
+    context 'of every revision' do
+      let(:query) do
+        <<~GRAPHQL
+          query($demarcheNumber: Int!) {
+            demarche(number: $demarcheNumber) {
+              revisions {
+                champDescriptors { id }
+                annotationDescriptors { id }
+              }
+            }
+          }
+        GRAPHQL
+      end
+
+      it "loads their types de champ in one query" do
+        expect(type_de_champ_queries.size).to eq(1)
+        expect(gql_errors).to be_nil
+        expect(gql_data[:demarche][:revisions].size).to eq(2)
+      end
+    end
+
+    context "of the dossiers' revision" do
+      let(:query) do
+        <<~GRAPHQL
+          query($demarcheNumber: Int!) {
+            demarche(number: $demarcheNumber) {
+              dossiers {
+                nodes {
+                  champs { id }
+                  demarche { revision { champDescriptors { id } } }
+                }
+              }
+            }
+          }
+        GRAPHQL
+      end
+
+      it "reuses the types de champ loaded with the dossiers" do
+        expect(type_de_champ_queries.size).to eq(1)
+        expect(gql_errors).to be_nil
+        expect(gql_data[:demarche][:dossiers][:nodes].first[:demarche][:revision][:champDescriptors].size).to eq(6)
+      end
+    end
+  end
+
   describe 'demarche.dossiers with entreprise demandeur' do
     let_it_be(:procedure_entreprise) { create(:procedure, :published, :with_service, administrateurs: [admin], public_type_de_champs: [{}]) }
 
