@@ -4,10 +4,8 @@ fr:
       edit:
         agency: Service
         heading: Modifier les informations de contact
-        teams: Groupes d’instructeurs
         title: Contact
       new:
         agency: Service
         heading: Informations de contact
-        teams: Groupes d’instructeurs
         title: Contact
