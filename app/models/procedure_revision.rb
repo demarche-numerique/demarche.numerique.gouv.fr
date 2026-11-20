@@ -97,7 +97,7 @@ class ProcedureRevision < ApplicationRecord
   # The tree as the coordinates have it by now: they remain what the editor
   # writes, the tree following them, until it edits the tree itself. For an
   # edit made elsewhere: a new draft, a clone, a recovery import.
-  def store_type_de_champ_tree = edit_type_de_champs { self }
+  def store_type_de_champ_tree = edit_type_de_champs(published_too: true) { self }
 
   def add_type_de_champ(params)
     parent_stable_id = params.delete(:parent_stable_id)
@@ -110,13 +110,8 @@ class ProcedureRevision < ApplicationRecord
       type_de_champ.mandatory = false
     end
 
-    published_at_before_the_lock = published_at
-
     # saved under the lock: a publication purges the types de champ no tree holds
     added = edit_type_de_champs do
-      # published while this request waited for the lock
-      raise ActiveRecord::ReadOnlyRecord, "the revision is no longer the draft" if published_at != published_at_before_the_lock
-
       next false if !type_de_champ.save
 
       parent_coordinate = coordinate_by_stable_id(parent_stable_id)
@@ -146,6 +141,8 @@ class ProcedureRevision < ApplicationRecord
   # first along with its edit.
   def find_and_ensure_exclusive_use(stable_id)
     with_lock(TYPE_DE_CHAMP_TREE_LOCK) do
+      refuse_published_revision
+
       # read once locked: the lock lays the revision out anew
       tdc = type_de_champ(stable_id)
 
@@ -384,10 +381,12 @@ class ProcedureRevision < ApplicationRecord
   # read again, as an edit always left them: the type de champ it hands over is
   # often updated next, past the ones they hold. The types de champ are laid out
   # again, as the lock reloads the tree.
-  def edit_type_de_champs
+  def edit_type_de_champs(published_too: false)
     raise ArgumentError, "save the revision before editing its types de champ: the lock reloads it" if new_record? || has_changes_to_save?
 
     with_lock(TYPE_DE_CHAMP_TREE_LOCK) do
+      refuse_published_revision if !published_too
+
       yield.tap do
         type_de_champ_tree = TypeDeChampTree.from_coordinates(revision_type_de_champs.reset)
         update_columns(type_de_champ_tree:) if type_de_champ_tree != self[:type_de_champ_tree]
@@ -397,6 +396,12 @@ class ProcedureRevision < ApplicationRecord
   end
 
   private
+
+  # A published revision is never edited. Read under the lock: an edit that
+  # waited for it through the publication of its draft stops here.
+  def refuse_published_revision
+    raise ActiveRecord::RecordNotFound, "the revision is published: its types de champ are no longer edited" if published_at?
+  end
 
   # Read from the database: a coordinate the tree leaves out included.
   def coordinate_by_stable_id(stable_id)
