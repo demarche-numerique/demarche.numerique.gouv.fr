@@ -3,24 +3,30 @@ import * as s from 'superstruct';
 import tippy, { type Instance as TippyInstance } from 'tippy.js';
 import { matchSorter } from 'match-sorter';
 
+import { blockTagsAllowed } from './block_tags';
+
 export const tagSchema = s.coerce(
   s.object({
     label: s.string(),
     id: s.string(),
     mandatory: s.optional(s.boolean()),
-    conditional: s.optional(s.boolean())
+    conditional: s.optional(s.boolean()),
+    // the tag renders as a list (repetition, multiple drop down, carte)
+    block: s.optional(s.boolean())
   }),
   s.type({
     tagLabel: s.string(),
     tagId: s.string(),
     tagMandatory: s.optional(s.string()),
-    tagConditional: s.optional(s.string())
+    tagConditional: s.optional(s.string()),
+    tagBlock: s.optional(s.string())
   }),
-  ({ tagId, tagLabel, tagMandatory, tagConditional }) => ({
+  ({ tagId, tagLabel, tagMandatory, tagConditional, tagBlock }) => ({
     label: tagLabel,
     id: tagId,
     mandatory: tagMandatory === 'true',
-    conditional: tagConditional === 'true'
+    conditional: tagConditional === 'true',
+    block: tagBlock === 'true'
   })
 );
 export type TagSchema = s.Infer<typeof tagSchema>;
@@ -222,8 +228,12 @@ export function createSuggestionMenu(
     char: '@',
     allowedPrefixes: null,
     allowSpaces: true,
-    items: ({ query }) => {
-      return matchSorter(tags, query, { keys: ['label'] }).slice(0, 6);
+    items: ({ query, editor }) => {
+      // Block tags are not offered inside a title or a heading.
+      const candidates = blockTagsAllowed(editor.state)
+        ? tags
+        : tags.filter((tag) => !tag.block);
+      return matchSorter(candidates, query, { keys: ['label'] }).slice(0, 6);
     },
     render: () => {
       let menu: SuggestionMenu;

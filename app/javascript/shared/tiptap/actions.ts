@@ -1,6 +1,8 @@
 import { Editor } from '@tiptap/core';
 import * as s from 'superstruct';
 
+import { selectionHoldsBlockTag } from './block_tags';
+
 type EditorAction = {
   run(): void;
   isActive(): boolean;
@@ -26,7 +28,8 @@ const EDITOR_ACTIONS: Record<string, (editor: Editor) => EditorAction> = {
     isDisabled: () =>
       editor.isActive('title') ||
       editor.isActive('header') ||
-      editor.isActive('footer')
+      editor.isActive('footer') ||
+      selectionHoldsBlockTag(editor)
   }),
   heading3: (editor) => ({
     run: () => editor.chain().focus().toggleHeading({ level: 3 }).run(),
@@ -34,7 +37,8 @@ const EDITOR_ACTIONS: Record<string, (editor: Editor) => EditorAction> = {
     isDisabled: () =>
       editor.isActive('title') ||
       editor.isActive('header') ||
-      editor.isActive('footer')
+      editor.isActive('footer') ||
+      selectionHoldsBlockTag(editor)
   }),
   bold: (editor) => ({
     run: () => editor.chain().focus().toggleBold().run(),
