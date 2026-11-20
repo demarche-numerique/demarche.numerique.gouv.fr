@@ -24,7 +24,8 @@ describe 'Recovery::Revision::LifeCycle' do
     context "when type de champ missing" do
       before do
         dossier
-        procedure.published_revision.remove_type_de_champ(yes_no_type_de_champ.stable_id)
+        procedure.published_revision.revision_type_de_champs.find { it.stable_id == yes_no_type_de_champ.stable_id }.destroy
+        procedure.published_revision.store_type_de_champ_tree # laid by hand: the tree follows
       end
 
       it do

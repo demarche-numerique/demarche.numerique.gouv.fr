@@ -53,7 +53,10 @@ describe Migrations::BatchUpdatePaysValuesJob, type: :job do
   context "the champ is not in the dossier revision anymore" do
     let(:attributes) { { value: 'RUSSIE' } }
 
-    before { dossier.revision.remove_type_de_champ(pays_champ.stable_id) }
+    before do
+      dossier.revision.revision_type_de_champs.find { it.stable_id == pays_champ.stable_id }.destroy
+      dossier.revision.store_type_de_champ_tree # laid by hand: the tree follows
+    end
 
     it 'skips the champ without raising' do
       # call perform directly to bypass retry_on, which swallows the error
