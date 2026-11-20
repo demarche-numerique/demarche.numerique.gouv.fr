@@ -38,6 +38,10 @@
   = turbo_stream.replace dom_id(champ_component.type_de_champ, :type_de_champ_editor) do
     - render champ_component
 
+- @conditions&.each do |conditions_component|
+  = turbo_stream.replace dom_id(conditions_component.tdc, :condition) do
+    - render conditions_component
+
 - if @siblings
   = turbo_stream.replace dom_id(@procedure.draft_revision, :estimated_fill_duration) do
     - render TypesDeChampEditor::EstimatedFillDurationComponent.new(revision: @procedure.draft_revision, is_annotation: @private)

@@ -4,6 +4,7 @@ module Administrateurs
   class TypesDeChampController < AdministrateurController
     include ActiveSupport::NumberHelper
     include CsvParsingConcern
+    include TurboTypesDeChampConcern
 
     before_action :retrieve_procedure
 
@@ -32,6 +33,8 @@ module Administrateurs
       elsif type_de_champ.used_by_referentiel_urls? && changing_of_type?(type_de_champ, update_params)
         refuse(type_de_champ, "« #{type_de_champ.libelle} » est utilisé par un référentiel, vous ne pouvez pas modifier son type.")
       else
+        before = footprint_of(type_de_champ)
+
         if changing_of_type?(type_de_champ, update_params)
           type_de_champ = type_de_champ.becomes_type(update_params['type_champ'])
         end
@@ -47,7 +50,8 @@ module Administrateurs
           @morphed = if was_prefill_with_fc_information != (type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?)
             champ_components_from(draft.type_de_champs)
           else
-            champ_components_from(siblings_starting_at(type_de_champ))
+            below = refresh_below(type_de_champ, siblings_starting_at(type_de_champ, 1), before:, after: footprint_of(type_de_champ))
+            champ_components_from([type_de_champ, *below])
           end
         else
           # as the draft has it: the one that failed to save may be of another type
