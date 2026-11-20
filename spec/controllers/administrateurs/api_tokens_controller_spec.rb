@@ -121,17 +121,17 @@ describe Administrateurs::APITokensController, type: :controller do
   describe 'securite' do
     render_views
 
-    it 'carries the targeted procedures over to the creation form and the back link' do
-      get :securite, params: { api_token_form: { name: 'Test', access: 'read', target: 'custom', procedure_ids: [procedure.id] } }
+    it 'carries the targeted procedures over in the posted creation and back forms' do
+      post :securite, params: { api_token_form: { name: 'Test', access: 'read', target: 'custom', procedure_ids: [procedure.id] } }
 
-      form = response.parsed_body
-      expect(form.css("input[type=hidden][name='api_token_form[procedure_ids][]']").map { it['value'] }).to eq([procedure.id.to_s])
-      back_link = form.at_css("a[href^='#{autorisations_admin_api_tokens_path}']")['href']
-      expect(Rack::Utils.parse_nested_query(URI(back_link).query).dig('api_token_form', 'procedure_ids')).to eq([procedure.id.to_s])
+      [admin_api_tokens_path, autorisations_admin_api_tokens_path].each do |path|
+        form = response.parsed_body.at_css("form[action='#{path}']")
+        expect(form.css("input[type=hidden][name='api_token_form[procedure_ids][]']").map { it['value'] }).to eq([procedure.id.to_s])
+      end
     end
 
     it 'ignores a forged procedure_ids hash' do
-      get :securite, params: { api_token_form: { name: 'Test', target: 'custom', procedure_ids: { a: procedure.id } } }
+      post :securite, params: { api_token_form: { name: 'Test', target: 'custom', procedure_ids: { a: procedure.id } } }
 
       expect(response).to have_http_status(:ok)
       expect(response.parsed_body.css("input[name='api_token_form[procedure_ids][]']")).to be_empty
@@ -250,21 +250,28 @@ describe Administrateurs::APITokensController, type: :controller do
   describe 'nom' do
     render_views
 
-    subject { get :nom, params: }
+    subject { post :nom, params: }
 
     let(:name_field) { response.parsed_body.at_css("input[name='api_token_form[name]']") }
 
     context 'when duplicating an existing token' do
       let(:token) { APIToken.generate(admin).first }
-      let(:params) do
-        token.update!(name: 'Jeton à dupliquer', write_access: true, allowed_procedure_ids: [procedure.id])
-        { api_token_form: APITokenForm.from_token(token).attributes.compact }
-      end
+      let(:params) { { duplicate: token.id } }
 
-      it 'pre-fills the name from the original token' do
+      before { token.update!(name: 'Jeton à dupliquer', write_access: true, allowed_procedure_ids: [procedure.id]) }
+
+      it 'pre-fills the form from the original token' do
         subject
         expect(name_field['value']).to eq('Jeton à dupliquer')
+        expect(response.parsed_body.css("input[type=hidden][name='api_token_form[procedure_ids][]']").map { it['value'] }).to eq([procedure.id.to_s])
+        expect(response.parsed_body.at_css("input[type=hidden][name='api_token_form[duplicated_token_id]']")['value']).to eq(token.id)
       end
+    end
+
+    context 'when duplicating the token of another administrateur' do
+      let(:params) { { duplicate: APIToken.generate(administrateurs.blank).first.id } }
+
+      it { expect { subject }.to raise_error(ActiveRecord::RecordNotFound) }
     end
 
     context 'without duplication' do
@@ -274,6 +281,20 @@ describe Administrateurs::APITokensController, type: :controller do
         subject
         expect(name_field['value']).to be_nil
       end
+    end
+
+    ['forged', [{ name: 'forged' }], { '0' => { name: 'forged' } }].each do |forged_form|
+      context "with a malformed form (#{forged_form.class})" do
+        let(:params) { { api_token_form: forged_form } }
+
+        it { expect { subject }.to raise_error(ActionController::ParameterMissing) }
+      end
+    end
+
+    context 'when duplicating several tokens at once' do
+      let(:params) { { duplicate: [APIToken.generate(admin).first.id] } }
+
+      it { expect { subject }.to raise_error(ActionController::ParameterMissing) }
     end
   end
 
