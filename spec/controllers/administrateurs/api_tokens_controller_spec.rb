@@ -59,50 +59,13 @@ describe Administrateurs::APITokensController, type: :controller do
       it { expect(token.expires_at).to eq(3.months.from_now.to_date) }
     end
 
-    shared_examples 'a rejected lifetime' do
-      it 'does not create a token and sends the admin back to the security step' do
-        expect(token).to be_nil
-        expect(response.location).to include(securite_admin_api_tokens_path)
-        expect(response.location).to include('invalidLifetime=true')
-      end
-    end
-
-    context 'with an infinite lifetime' do
+    context 'with an invalid lifetime' do
       let(:params) { default_params.merge(lifetime: 'infinite') }
 
-      it_behaves_like 'a rejected lifetime'
-    end
-
-    context 'with an unknown lifetime' do
-      let(:params) { default_params.merge(lifetime: 'whatever') }
-
-      it_behaves_like 'a rejected lifetime'
-    end
-
-    context 'with a custom lifetime in the past' do
-      let(:params) { default_params.merge(lifetime: 'custom', customLifetime: 1.day.ago.to_date.iso8601) }
-
-      it_behaves_like 'a rejected lifetime'
-    end
-
-    context 'with a custom lifetime beyond the cap' do
-      let(:params) { default_params.merge(lifetime: 'custom', customLifetime: (APIToken.max_expires_at + 1.day).iso8601) }
-
-      it_behaves_like 'a rejected lifetime'
-    end
-
-    context 'with an unparsable custom lifetime' do
-      let(:params) { default_params.merge(lifetime: 'custom', customLifetime: 'not a date') }
-
-      it_behaves_like 'a rejected lifetime'
-    end
-
-    context 'with bad network' do
-      let(:networks) { 'bad' }
-      let(:params) { default_params.merge(networkFiltering: 'customNetworks', networks:) }
-
-      it do
+      it 'does not create a token and renders the security step again' do
         expect(token).to be_nil
+        expect(response).to have_http_status(:unprocessable_content)
+        expect(response).to render_template(:securite)
       end
     end
 
@@ -138,10 +101,10 @@ describe Administrateurs::APITokensController, type: :controller do
       let(:another_procedure) { create(:procedure, :new_administrateur) }
       let(:params) { default_params.merge(target: 'custom', targets: [another_procedure.id]) }
 
-      it 'does not create a token without access and sends the admin back to the autorisations step' do
+      it 'does not create a token without access and renders the autorisations step again' do
         expect(token).to be_nil
-        expect(response.location).to include(autorisations_admin_api_tokens_path)
-        expect(response.location).to include('noProcedure=true')
+        expect(response).to have_http_status(:unprocessable_content)
+        expect(response).to render_template(:autorisations)
       end
     end
 
@@ -150,26 +113,7 @@ describe Administrateurs::APITokensController, type: :controller do
 
       it do
         expect(token).to be_nil
-        expect(response.location).to include('noProcedure=true')
-      end
-    end
-
-    context 'with procedure filtering and a bad network' do
-      let(:params) { default_params.merge(target: 'custom', targets: [procedure.id], networkFiltering: 'customNetworks', networks: 'bad') }
-
-      it 'keeps the targeted procedures when sending the admin back to the security step' do
-        expect(token).to be_nil
-        expect(Rack::Utils.parse_nested_query(URI(response.location).query)['targets']).to eq([procedure.id.to_s])
-      end
-    end
-
-    context 'with procedure filtering but no procedure' do
-      let(:params) { default_params.merge(target: 'custom') }
-
-      it 'does not create a token and sends the admin back to the autorisations step' do
-        expect(token).to be_nil
-        expect(response.location).to include(autorisations_admin_api_tokens_path)
-        expect(response.location).to include('noProcedure=true')
+        expect(response).to render_template(:autorisations)
       end
     end
   end
@@ -178,7 +122,7 @@ describe Administrateurs::APITokensController, type: :controller do
     render_views
 
     it 'carries the targeted procedures over to the creation form and the back link' do
-      get :securite, params: { name: 'Test', access: 'read', target: 'custom', targets: [procedure.id], invalidNetwork: true }
+      get :securite, params: { name: 'Test', access: 'read', target: 'custom', targets: [procedure.id] }
 
       form = response.parsed_body
       expect(form.css("input[type=hidden][name='targets[]']").map { it['value'] }).to eq([procedure.id.to_s])
@@ -192,16 +136,24 @@ describe Administrateurs::APITokensController, type: :controller do
       expect(response).to have_http_status(:ok)
       expect(response.parsed_body.css("input[name='targets[]']")).to be_empty
     end
+
+    it 'tells the admin the networks are invalid and keeps the targeted procedures' do
+      post :create, params: { name: 'Test', access: 'read', target: 'custom', targets: [procedure.id], networkFiltering: 'customNetworks', networks: 'bad', lifetime: 'oneWeek' }
+
+      expect(response.parsed_body.at_css('.fr-error-text').text).to eq('Vous devez entrer des adresses IPv4 ou IPv6 valides')
+      form = response.parsed_body.at_css("form[action='#{admin_api_tokens_path}']")
+      expect(form.css("input[type=hidden][name='targets[]']").map { it['value'] }).to eq([procedure.id.to_s])
+    end
   end
 
   describe 'autorisations' do
     render_views
 
     it 'tells the admin to pick a procedure' do
-      get :autorisations, params: { name: 'Test', target: 'custom', noProcedure: true }
+      post :create, params: { name: 'Test', access: 'read', target: 'custom', lifetime: 'oneWeek' }
 
       error = response.parsed_body.at_css('fieldset.fr-fieldset--error .fr-messages-group .fr-message--error')
-      expect(error.text.strip).to eq(I18n.t('administrateurs.api_tokens.autorisations.no_procedure'))
+      expect(error.text.strip).to eq('Sélectionnez au moins une démarche')
     end
   end
 
@@ -296,18 +248,22 @@ describe Administrateurs::APITokensController, type: :controller do
   end
 
   describe 'nom' do
+    render_views
+
     subject { get :nom, params: }
+
+    let(:name_field) { response.parsed_body.at_css("input[name='name']") }
 
     context 'when duplicating an existing token' do
       let(:token) { APIToken.generate(admin).first }
       let(:params) do
         token.update!(name: 'Jeton à dupliquer', write_access: true, allowed_procedure_ids: [procedure.id])
-        APITokenParams.from_token(token).to_h
+        APITokenForm.from_token(token).to_h
       end
 
       it 'pre-fills the name from the original token' do
         subject
-        expect(assigns(:name)).to eq('Jeton à dupliquer')
+        expect(name_field['value']).to eq('Jeton à dupliquer')
       end
     end
 
@@ -316,10 +272,11 @@ describe Administrateurs::APITokensController, type: :controller do
 
       it 'starts with a blank name' do
         subject
-        expect(assigns(:name)).to be_nil
+        expect(name_field['value']).to be_nil
       end
     end
   end
+
   describe 'remove_procedure' do
     # a full-access token materializes all the admin's procedures on removal:
     # use the seeded blank administrateur, who is guaranteed to own nothing

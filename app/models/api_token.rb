@@ -166,6 +166,14 @@ class APIToken < ApplicationRecord
 
       api_token.matches?(bearer.plain_token) ? api_token : nil
     end
+
+    def parse_networks(networks)
+      networks.to_s.split.map do
+        IPAddr.new(it)
+      rescue IPAddr::Error
+        nil
+      end
+    end
   end
 
   def last_used_at
