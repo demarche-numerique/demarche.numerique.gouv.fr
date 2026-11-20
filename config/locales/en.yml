@@ -276,17 +276,17 @@ en:
           title: Values
           prenom: A first name
           nom: A last name
-          genre: '"M." for Mister, "Mme" for Madam'
+          genre: '‘M.’ for Mister, ‘Mme’ for Madam'
           text_html: A short text
           textarea_html: A long text
           decimal_number_html: A decimal number
           integer_number_html: An integer number
           email_html: An email address
-          civilite_html: '"M." for Mister, "Mme" for Madam'
+          civilite_html: '‘M.’ for Mister, ‘Mme’ for Madam'
           phone_html: A phone number
           iban_html: An Iban number
-          yes_no_html: '"true" for Yes, "false" pour No'
-          checkbox_html: '"true" to check, "false" to uncheck'
+          yes_no_html: '‘true’ for Yes, ‘false’ pour No'
+          checkbox_html: '‘true’ to check, ‘false’ to uncheck'
           pays_html: An <a href="https://en.wikipedia.org/wiki/ISO_3166-2" target="_blank" rel="noopener noreferrer">ISO 3166-2 country code</a>
           regions_html: An <a href="https://fr.wikipedia.org/wiki/R%C3%A9gion_fran%C3%A7aise" target="_blank" rel="noopener noreferrer">INSEE region code</a>
           departements_html: A <a href="https://fr.wikipedia.org/wiki/Num%C3%A9rotation_des_d%C3%A9partements_fran%C3%A7ais" target="_blank">department number</a>
@@ -576,7 +576,7 @@ en:
             label: Customize the dossier list
           search:
             back_to_list: "My files"
-            result_title: "Search results for \"%{search_terms}\""
+            result_title: "Search results for ‘%{search_terms}’"
             placeholder_label: "Search a file"
             placeholder_hint: "By file number, name, SIRET, keywords..."
             placeholder_text: "Enter your search"
@@ -1074,7 +1074,7 @@ en:
         explanation: "You can no longer recover this file for one of the following reasons:"
         reason_user_request: "It was moved to trash at your request, then automatically deleted."
         reason_automatic: "It was deleted because its maximum retention period has been reached."
-        history_link_html: "You can find all deleted files from your account (except \"DRAFT\") on the <a href=\"%{history_link}\" class=\"fr-link\">Deleted files history</a> page."
+        history_link_html: "You can find all deleted files from your account (except ‘DRAFT’) on the <a href=\"%{history_link}\" class=\"fr-link\">Deleted files history</a> page."
       attestation_depot:
         receipt: "Deposit receipt"
         description: "This document attests that on the %{date}, %{user_name} submitted a file on the procedure ‘%{procedure}’."
@@ -1129,7 +1129,7 @@ en:
       unspecified_champs_group: User form
       unspecified_annotations_group: Private annotations
       add_justificatif: Add a supporting document (optional)
-      motivation_missing_error: '"Motivation" must be filled in'
+      motivation_missing_error: '‘Motivation’ must be filled in'
     avis:
       revoquer:
         revoked: "%{email} can no longer give their opinion on this file."

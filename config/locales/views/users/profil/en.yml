@@ -48,7 +48,7 @@ en:
         linked_identities:
           one: 'Your account on %{application_name} is currently linked to the following identity:'
           other: 'Your account on %{application_name} is currently linked to the following %{count} identities:'
-        unlink_confirmation: 'the FranceConnect account "%{full_name}" will no longer be able to access your files.'
+        unlink_confirmation: 'the FranceConnect account ‘%{full_name}’ will no longer be able to access your files.'
         forbid_access: forbid access
       ensure_update_email_is_authorized:
         email_not_allowed: "The email %{requested_email} cannot be used, contact support: <a href='mailto:%{contact_email}'>%{contact_email}</a>"

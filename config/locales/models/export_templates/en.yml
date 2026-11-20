@@ -35,9 +35,9 @@ en:
           legend: Layout of repeatable block data
           sheet:
             label: In a separate sheet of the workbook
-            hint: Your workbook will have one sheet per repeatable block of the form, in addition to the “Dossiers” sheet.
+            hint: Your workbook will have one sheet per repeatable block of the form, in addition to the ‘Dossiers’ sheet.
           inline:
-            label: In the “Dossiers” sheet of the workbook
+            label: In the ‘Dossiers’ sheet of the workbook
             hint: "Repeatable block data will appear alongside the other application data. Warning: the spreadsheet may have many columns (as many as the largest number of items an applicant added to the repeatable block)."
       repetition_csv_notice:
         message: If you select fields from a repeatable block, the spreadsheet may have a large number of columns (depending on the maximum number of items an applicant has added to the repeatable block).

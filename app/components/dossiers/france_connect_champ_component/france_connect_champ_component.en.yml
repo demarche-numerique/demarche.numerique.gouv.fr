@@ -1,9 +1,9 @@
 ---
 en:
-  fc_data_correct: The data below has been retrieved automatically and reliably via the "%{type_champ}" field.
-  fc_data_incorrect: The user has not confirmed the accuracy of the data automatically retrieved via the "%{type_champ}" field.
-  fc_data_not_recovered: The data could not be retrieved automatically via the "%{type_champ}" field.
-  fc_data_not_found: The data automatically retrieved via the "%{type_champ}" field indicates that no information is available for this user.
+  fc_data_correct: The data below has been retrieved automatically and reliably via the ‘%{type_champ}’ field.
+  fc_data_incorrect: The user has not confirmed the accuracy of the data automatically retrieved via the ‘%{type_champ}’ field.
+  fc_data_not_recovered: The data could not be retrieved automatically via the ‘%{type_champ}’ field.
+  fc_data_not_found: The data automatically retrieved via the ‘%{type_champ}’ field indicates that no information is available for this user.
 
   type_champ:
     quotient_familial: Family quotient (France Connect)

@@ -2,8 +2,8 @@ en:
   groupe_instructeur_mailer:
     confirm_and_notify_added_instructeur:
       subject:
-        one: 'You were assigned to procedure "%{procedure}"'
-        other: 'You were assigned to group "%{groupe}" of procedure "%{procedure}"'
+        one: 'You were assigned to procedure ‘%{procedure}’'
+        other: 'You were assigned to group ‘%{groupe}’ of procedure ‘%{procedure}’'
       title: "Procedure assignment"
       email_body:
         html:
@@ -11,5 +11,5 @@ en:
           other: "You were assigned to the group <strong>%{groupe}</strong> by %{email}, in charge of procedure <strong>%{procedure}</strong>."
       account_created_html: "A reviewer account has been created for the email address <strong>%{email}</strong>. To activate it, click the button below."
       activate_button: "Activate my account"
-      next_connections_html: "For your next connections on %{application_name}, click the \"<em>Sign in</em>\" button at the top of the page or use this link: <a href=\"%{sign_in_url}\">%{sign_in_url}</a>"
+      next_connections_html: "For your next connections on %{application_name}, click the ‘<em>Sign in</em>’ button at the top of the page or use this link: <a href=\"%{sign_in_url}\">%{sign_in_url}</a>"
       tutorial_html: "We also invite you to read our <a href=\"%{tutorial_url}\">reviewer tutorial</a>."
