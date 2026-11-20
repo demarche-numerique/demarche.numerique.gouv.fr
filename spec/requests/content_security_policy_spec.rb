@@ -13,4 +13,8 @@ describe 'Content-Security-Policy header', type: :request do
   it 'only lets a <base> tag point to us' do
     expect(directives['base-uri']).to eq(["'self'"])
   end
+
+  it 'only lets plugins load from us and the storage proxy' do
+    expect(directives['object-src']).to contain_exactly("'self'", *URI(DS_PROXY_URL).host)
+  end
 end

@@ -54,6 +54,12 @@ Rails.application.configure do
     # base-uri does not fall back to default-src: an injected <base> would re-point every relative script
     policy.base_uri(:self)
 
+    # <embed> shows PDF attachments (RIB): only from the storage hosts, never data:
+    object_whitelist = []
+    object_whitelist << URI(DS_PROXY_URL).host if DS_PROXY_URL.present?
+    object_whitelist << "*.amazonaws.com" if Rails.configuration.active_storage.service == :amazon
+    policy.object_src(:self, *object_whitelist)
+
     if Rails.env.development?
       # Allow LiveReload requests
       policy.connect_src(*policy.connect_src, "ws://localhost:3035", "http://localhost:3035")
