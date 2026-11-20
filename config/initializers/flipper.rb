@@ -26,6 +26,7 @@ features = [
   :dossier_pdf_vide,
   :engagement_juridique_type_de_champ,
   :groupe_instructeur_api_hack,
+  :link_type_de_champ,
   :pro_connect_restricted,
   :pro_connect_required_for_all_administrateurs,
   :prefill_iban,

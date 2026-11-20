@@ -18,6 +18,7 @@ module Mutations
       argument :drop_down_list, String, "Modifier la sélection d’un champ choix simple", required: false
       argument :multiple_drop_down_list, [String], "Modifier la sélection d’un champ choix multiple", required: false
       argument :dossier_link, String, "Modifier la valeur d'un champ lien vers un dossier", required: false
+      argument :link, String, "Modifier la valeur d’un champ lien (URL http ou https)", required: false
       argument :phone, String, "Modifier la valeur d’un champ téléphone", required: false
       argument :iban, String, "Modifier la valeur d’un champ IBAN", required: false
       argument :formatted, String, "Modifier la valeur d’un champ à format prédéfini", required: false
@@ -127,6 +128,7 @@ module Mutations
         TypeDeChamp.type_champs.fetch(:multiple_drop_down_list),
         TypeDeChamp.type_champs.fetch(:dossier_link),
         TypeDeChamp.type_champs.fetch(:phone),
+        TypeDeChamp.type_champs.fetch(:link),
         TypeDeChamp.type_champs.fetch(:iban),
         TypeDeChamp.type_champs.fetch(:formatted),
         TypeDeChamp.type_champs.fetch(:civilite),

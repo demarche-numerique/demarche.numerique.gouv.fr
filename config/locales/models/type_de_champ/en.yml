@@ -16,6 +16,7 @@ en:
           header_section: 'Header section'
           repetition: 'Repetition'
           dossier_link: 'Link to another %{app_name} file'
+          link: 'Link (URL)'
           explication: 'Explication'
           civilite: 'Civility'
           email: 'Email'

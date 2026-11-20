@@ -1,0 +1,67 @@
+<%# the callout of an explication, with a real label: the title names the url input %>
+<% editing = @champ.href.blank? %>
+
+<div
+  class="fr-callout fr-callout--blue-cumulus fr-mb-0"
+  data-controller="link-annotation"
+  data-link-annotation-editing-value="<%= editing %>"
+>
+  <h3 class="fr-callout__title">
+    <%= tag.label(id: input_label_id(@champ), for: @champ.focusable_input_id) do %>
+      <%= render EditableChamp::ChampLabelContentComponent.new(form: @form, champ: @champ, seen_at: @seen_at, row_number: @row_number) %>
+    <% end %>
+  </h3>
+
+  <% if @champ.description.present? %>
+    <div class="fr-callout__text fr-mb-1w" id="<%= @champ.describedby_id %>">
+      <%= render SimpleFormatComponent.new(@champ.description, allow_a: true) %>
+    </div>
+  <% end %>
+
+  <% if @champ.href.present? %>
+    <div data-link-annotation-target="display" <%= "hidden" if editing %>>
+      <p class="fr-mb-2w">
+        <%= render Dossiers::LinkComponent.new(champ: @champ) %>
+      </p>
+
+      <button
+        type="button"
+        class="
+          fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left
+          fr-icon-edit-line
+        "
+        aria-controls="<%= @champ.focusable_input_id %>"
+        data-link-annotation-target="editButton"
+        data-action="link-annotation#edit"
+      >
+        <%= t(".edit") %>
+      </button>
+    </div>
+  <% end %>
+
+  <%# the draft has no name: the autosave only sends the hidden value, on save %>
+  <div data-link-annotation-target="form" <%= "hidden" if !editing %>>
+    <%= @form.hidden_field(:value, data: { link_annotation_target: "value" }) %>
+    <%= tag.input(**input_opts(type: "url", id: @champ.focusable_input_id, value: @champ.value, required: @champ.required?, placeholder: "https://", data: { link_annotation_target: "draft", action: "input->link-annotation#isolate change->link-annotation#isolate keydown.enter->link-annotation#save" }, aria: { **labelledby_id_attr, describedby: "#{@champ.describedby_id} #{@champ.error_id(:value)}" })) %>
+
+    <ul class="fr-btns-group fr-btns-group--inline-sm fr-btns-group--sm fr-mt-2w">
+      <li>
+        <button type="button" class="fr-btn" data-action="link-annotation#save">
+          <%= t(".save") %>
+        </button>
+      </li>
+
+      <% if @champ.href.present? %>
+        <li>
+          <button
+            type="button"
+            class="fr-btn fr-btn--secondary"
+            data-action="link-annotation#cancel"
+          >
+            <%= t(".cancel") %>
+          </button>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
