@@ -13,10 +13,9 @@ module Maintenance
     def collection
       procedure = Procedure.find(procedure_id.strip)
 
-      TypeDeChamp
-        .joins(:revisions)
-        .where(type_champ: DROP_DOWN_TYPE_CHAMPS, procedure_revisions: { procedure_id: procedure.id })
-        .distinct
+      laid_out_ids = procedure.revisions.pluck(:type_de_champ_tree).flat_map(&:type_de_champ_ids)
+
+      TypeDeChamp.where(id: laid_out_ids, type_champ: DROP_DOWN_TYPE_CHAMPS)
     end
 
     def process(type_de_champ)
