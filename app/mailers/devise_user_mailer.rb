@@ -15,18 +15,18 @@ class DeviseUserMailer < Devise::Mailer
     ['devise_mailer']
   end
 
-  def confirmation_instructions(record, token, opts = {})
-    opts[:from] = NO_REPLY_EMAIL
-    opts[:reply_to] = NO_REPLY_EMAIL
-    @procedure = opts[:procedure_after_confirmation] || nil
-    @prefill_token = opts[:prefill_token]
+  def confirmation_instructions(record, token, opts_or_headers = {})
+    opts_or_headers[:from] = NO_REPLY_EMAIL
+    opts_or_headers[:reply_to] = NO_REPLY_EMAIL
+    @procedure = opts_or_headers.delete(:procedure_after_confirmation)
+    @prefill_token = opts_or_headers.delete(:prefill_token)
 
     bypass_unverified_mail_protection!
 
     I18n.with_locale(record.locale) do
       if record.unconfirmed_email.nil?
         @subject = t('.subject', application_name: APPLICATION_NAME)
-        opts[:subject] = @subject
+        opts_or_headers[:subject] = @subject
       end
 
       super
