@@ -1,0 +1,8 @@
+---
+en:
+  counter_one: "(1 second)"
+  counter_other: "(# seconds)"
+  announcement_one: You can resend the email in 1 second.
+  announcement_other: "You can resend the email in # seconds."
+  available: You can now resend the confirmation email.
+  hide_counter: Hide the countdown

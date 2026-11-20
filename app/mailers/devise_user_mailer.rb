@@ -24,6 +24,11 @@ class DeviseUserMailer < Devise::Mailer
     bypass_unverified_mail_protection!
 
     I18n.with_locale(record.locale) do
+      if record.unconfirmed_email.nil?
+        @subject = t('.subject', application_name: APPLICATION_NAME)
+        opts[:subject] = @subject
+      end
+
       super
     end
   end

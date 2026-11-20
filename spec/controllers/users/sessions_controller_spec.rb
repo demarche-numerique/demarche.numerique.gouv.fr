@@ -474,6 +474,12 @@ describe Users::SessionsController, type: :controller do
       let(:link_email) { 'a@a.com' }
 
       it { expect(response.body).to include(link_email) }
+
+      it 'keeps its own wording' do
+        expect(response.body).to have_text('Ouvrez votre boîte email et cliquez sur le lien d’activation dans le message que vous avez reçu.')
+        expect(response.body).to have_text('Si vous n’avez pas reçu notre message (avez-vous vérifié les indésirables ?), nous pouvons vous le renvoyer.')
+        expect(response.body).not_to have_text('toutes les 2 minutes')
+      end
     end
 
     context 'when the email is evil' do

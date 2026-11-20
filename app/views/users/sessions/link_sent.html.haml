@@ -13,10 +13,10 @@
     = render Dsfr::AlertComponent.new(title: '', state: :info, heading_level: 'h2', extra_class_names: 'fr-mt-6w fr-mb-3w') do |c|
       - c.with_body do
         %p= t('views.users.sessions.link_sent.email_cta_html', email: @email)
-        %p= t('views.confirmation.new.email_guidelines_html')
+        %p= t('views.users.sessions.link_sent.email_guidelines_html')
 
     %p.fr-text--sm.fr-text-mention--grey.fr-mb-1w
-      = t('views.confirmation.new.email_missing')
+      = t('views.users.sessions.link_sent.email_missing')
 
     = button_to instructeurs_reset_link_sent_path(signed_email: @signed_email), class: 'fr-btn fr-btn--secondary', method: 'POST' do
       = t('views.confirmation.new.resent')

@@ -29,6 +29,19 @@ class SessionFailureApp < Devise::FailureApp
 
   private
 
+  def unconfirmed_sign_in?
+    warden_message == :unconfirmed &&
+      request.post? &&
+      request.headers['Turbo-Frame'].blank? &&
+      attempted_path.to_s.partition('?').first == user_session_path
+  end
+
+  def redirect_to_email_confirmation
+    email = User.normalize_value_for(:email, params.dig(:user, :email).to_s)
+
+    redirect_to new_user_confirmation_path(email: SignedConfirmationEmail.sign(email))
+  end
+
   # The reason exists on the first rejected request only. Each later failure
   # would write the generic message over it, so it is marked, the way Devise
   # marks its own `:timedout` message.
@@ -42,6 +55,8 @@ class SessionFailureApp < Devise::FailureApp
   # explanation cannot outlive the trouble it explains -- the first page that
   # shows the flash consumes both.
   def redirect
+    return redirect_to_email_confirmation if unconfirmed_sign_in?
+
     return super if !request.flash[SESSION_ENDED_KEY]
 
     request.flash.keep(:alert)

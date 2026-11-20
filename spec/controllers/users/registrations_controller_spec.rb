@@ -66,6 +66,12 @@ describe Users::RegistrationsController, type: :controller do
 
         expect(controller.message_encryptor_service.decrypt_and_verify(session[:signed_up_email], purpose: :signed_up_email)).to eq(user[:email])
       end
+
+      it 'remembers the confirmation request' do
+        subject
+
+        expect(session[:confirmation_requested_at]).to be_within(5).of(Time.current.to_i)
+      end
     end
 
     context 'when user is not correct' do
@@ -75,6 +81,12 @@ describe Users::RegistrationsController, type: :controller do
         expect(DeviseUserMailer).not_to receive(:confirmation_instructions)
 
         subject
+      end
+
+      it 'remembers nothing' do
+        subject
+
+        expect(session[:confirmation_requested_at]).to be_nil
       end
     end
 
@@ -98,6 +110,10 @@ describe Users::RegistrationsController, type: :controller do
           email_param = Rack::Utils.parse_nested_query(URI.parse(response.location).query)['email']
           decrypted_email = controller.message_encryptor_service.decrypt_and_verify(email_param, purpose: :email_confirmation)
           expect(decrypted_email).to eq(user[:email])
+        end
+
+        it 'remembers the confirmation request' do
+          expect(session[:confirmation_requested_at]).to be_within(5).of(Time.current.to_i)
         end
       end
 
@@ -123,6 +139,10 @@ describe Users::RegistrationsController, type: :controller do
           email_param = Rack::Utils.parse_nested_query(URI.parse(response.location).query)['email']
           decrypted_email = controller.message_encryptor_service.decrypt_and_verify(email_param, purpose: :email_confirmation)
           expect(decrypted_email).to eq(user[:email])
+        end
+
+        it 'remembers the confirmation request' do
+          expect(session[:confirmation_requested_at]).to be_within(5).of(Time.current.to_i)
         end
       end
 
