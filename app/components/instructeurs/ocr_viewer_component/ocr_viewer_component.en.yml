@@ -2,4 +2,4 @@
 en:
   title: Data retrieved from attachment
   processing_error: This data could not be automatically retrieved from the attached file
-  two_ddoc_title: 'The "2D-Doc" barcode on the document contains encoded data and a signature that helps fight document fraud and secure data exchanged between the user and the administration'
+  two_ddoc_title: 'The ‘2D-Doc’ barcode on the document contains encoded data and a signature that helps fight document fraud and secure data exchanged between the user and the administration'

@@ -9,11 +9,11 @@ en:
       existing_dossiers: You already have files for this procedure
       show_dossiers: View my current files
       prefilled_draft: "You have a prefilled file"
-      prefilled_draft_detail_html: "You are ready to continue a prefilled file for the \"%{procedure}\" procedure, started <strong>%{time_ago} ago</strong>."
+      prefilled_draft_detail_html: "You are ready to continue a prefilled file for the ‘%{procedure}’ procedure, started <strong>%{time_ago} ago</strong>."
       already_draft: "You already started to fill a file"
-      already_draft_detail_html: "You started to fill a file for the \"%{procedure}\" procedure <strong>%{time_ago} ago</strong>"
+      already_draft_detail_html: "You started to fill a file for the ‘%{procedure}’ procedure <strong>%{time_ago} ago</strong>"
       already_not_draft: "You already submitted a file"
-      already_not_draft_detail_html: "You submitted a file for the \"%{procedure}\" procedure <strong>%{time_ago} ago</strong>."
+      already_not_draft_detail_html: "You submitted a file for the ‘%{procedure}’ procedure <strong>%{time_ago} ago</strong>."
       go_to_prefilled_file: 'Continue to fill my prefilled file'
       continue_file: "Continue to fill my file"
       start_new_file: "Start a new file"

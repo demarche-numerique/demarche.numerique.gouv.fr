@@ -6,7 +6,7 @@ en:
         heading: Reviewer management
         groups_list: List of teams
         view: view
-        view_group: "team “%{label}”"
+        view_group: "team ‘%{label}’"
       show:
         title_with_group: "Reviewers of team %{label}"
         title: Reviewers

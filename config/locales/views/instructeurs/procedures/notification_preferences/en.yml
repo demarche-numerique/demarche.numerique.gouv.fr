@@ -20,7 +20,7 @@ en:
           avis_externe: Be informed when an external opinion has been given on the file
           attente_correction: Be informed when a correction request has been sent to the user
           attente_avis: Be informed when an external opinion has been sent on the file
-          attente_reponse: Be informed when a message has been sent to the user with the "pending response" option
+          attente_reponse: Be informed when a message has been sent to the user with the ‘pending response’ option
         label:
           positive: Yes
           negative: No
@@ -56,7 +56,7 @@ en:
           notice: This email informs you that a ‘submitted’ file that you were following has been deleted at the user's request. You will therefore no longer have access to it.
         info_notice:
           title: Important
-          desc_followed_dossiers_html: You must <strong>follow</strong> the file (by clicking the "Follow" button) to receive this email notification.
+          desc_followed_dossiers_html: You must <strong>follow</strong> the file (by clicking the ‘Follow’ button) to receive this email notification.
         warning_notice:
           title: Caution
           desc_expiration: When this option is disabled, you will no longer receive alerts about files expiring before they are automatically moved to the trash.
