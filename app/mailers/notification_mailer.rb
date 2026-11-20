@@ -28,7 +28,6 @@ class NotificationMailer < ApplicationMailer
 
   def send_notification_for_tiers(dossier, repasser_en_instruction: false)
     @dossier = dossier
-    @dossier.with_revision
     @repasser_en_instruction = repasser_en_instruction
 
     if @dossier.individual.no_notification?
@@ -45,7 +44,6 @@ class NotificationMailer < ApplicationMailer
 
   def send_accuse_lecture_notification(dossier)
     @dossier = dossier
-    @dossier.with_revision
     @subject = default_i18n_subject(dossier_id: @dossier.id, libelle: @dossier.procedure.libelle.truncate_words(50))
     @email = @dossier.user_email_for(:notification)
 
@@ -102,7 +100,6 @@ class NotificationMailer < ApplicationMailer
 
   def set_dossier
     @dossier = params[:dossier]
-    @dossier.with_revision
 
     if @dossier.skip_user_notification_email?
       mail.perform_deliveries = false

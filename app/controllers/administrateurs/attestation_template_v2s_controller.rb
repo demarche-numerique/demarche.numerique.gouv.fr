@@ -4,7 +4,6 @@ module Administrateurs
   class AttestationTemplateV2sController < AdministrateurController
     before_action :retrieve_procedure
     before_action :retrieve_attestation_template
-    before_action :preload_revisions, only: [:edit, :update, :create]
 
     def show
       preview_dossier = @procedure.dossiers.visible_by_administration.find_by(id: params[:dossier_id]) if params[:dossier_id].present?

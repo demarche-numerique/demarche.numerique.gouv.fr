@@ -58,7 +58,7 @@ describe DossierPreloader do
       queries
     end
 
-    it 'reuses revisions loaded with their types de champ instead of loading them again' do
+    it 'reuses revisions already loaded instead of loading them again' do
       loaded_dossiers = Dossier.where(id: dossiers).for_api_v2.to_a
 
       expect(sql_touching('procedure_revision') { DossierPreloader.new(loaded_dossiers).all }).to be_empty
@@ -71,10 +71,7 @@ describe DossierPreloader do
     it 'reuses a loaded revision and only loads its types de champ' do
       loaded_dossiers = Dossier.where(id: dossiers).includes(:revision).to_a
 
-      queries = sql_touching('"procedure_revision') { DossierPreloader.new(loaded_dossiers).all }
-
-      expect(queries.grep(/"procedure_revisions"/)).to be_empty
-      expect(queries.grep(/"procedure_revision_types_de_champ"/).size).to eq(1)
+      expect(sql_touching('"procedure_revision') { DossierPreloader.new(loaded_dossiers).all }).to be_empty
       expect(sql_touching('') { loaded_dossiers.first.public_root_champs.map(&:type_de_champ) }).to be_empty
     end
 
@@ -94,7 +91,7 @@ describe DossierPreloader do
       revisions = []
 
       queries = sql_touching('FROM "types_de_champ"') do
-        preloader.in_batches(includes: { revision: :revision_type_de_champs }) do |batch|
+        preloader.in_batches(includes: :revision) do |batch|
           revisions << batch.first.revision
           batch.first.revision.type_de_champs
         end
