@@ -1,0 +1,14 @@
+en:
+  activemodel:
+    errors:
+      models:
+        api_token_form:
+          attributes:
+            allowed_procedure_ids:
+              blank: Select at least one procedure
+            networks:
+              invalid: You must enter valid IPv4 or IPv6 addresses
+            expires_at:
+              blank: You must choose a lifetime between tomorrow and the maximum allowed duration
+              greater_than_or_equal_to: You must choose a lifetime between tomorrow and the maximum allowed duration
+              less_than_or_equal_to: You must choose a lifetime between tomorrow and the maximum allowed duration

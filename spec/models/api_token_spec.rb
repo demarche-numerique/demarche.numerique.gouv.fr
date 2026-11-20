@@ -24,7 +24,7 @@ describe APIToken, type: :model do
 
       it 'is rejected as too soon' do
         expect(api_token).to be_invalid
-        expect(api_token.errors).to be_of_kind(:expires_at, :greater_than)
+        expect(api_token.errors).to be_of_kind(:expires_at, :greater_than_or_equal_to)
       end
     end
 
@@ -33,7 +33,7 @@ describe APIToken, type: :model do
 
       it 'is rejected as too soon' do
         expect(api_token).to be_invalid
-        expect(api_token.errors).to be_of_kind(:expires_at, :greater_than)
+        expect(api_token.errors).to be_of_kind(:expires_at, :greater_than_or_equal_to)
       end
     end
 

@@ -19,7 +19,7 @@ class APIToken < ApplicationRecord
   # reporting it twice.
   validates :expires_at,
             comparison: {
-              greater_than: -> (_) { Date.current },
+              greater_than_or_equal_to: -> (_) { min_expires_at },
               less_than_or_equal_to: -> (_) { max_expires_at },
             },
             allow_nil: true,
@@ -141,6 +141,8 @@ class APIToken < ApplicationRecord
       LIFETIMES.filter { |_, lifetime| lifetime <= MAX_LIFETIME }
     end
 
+    def min_expires_at = Date.tomorrow
+
     def max_expires_at
       MAX_LIFETIME.from_now.to_date
     end
@@ -165,6 +167,14 @@ class APIToken < ApplicationRecord
       return if api_token.nil?
 
       api_token.matches?(bearer.plain_token) ? api_token : nil
+    end
+
+    def parse_networks(networks)
+      networks.to_s.split.map do
+        IPAddr.new(it)
+      rescue IPAddr::Error
+        nil
+      end
     end
   end
 

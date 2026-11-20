@@ -1,13 +1,13 @@
-<%= content_for :title, t('.title', name: @name) %>
+<%= content_for :title, t('.title', name: @api_token_form.name) %>
 
 <%= render partial: 'shared/breadcrumbs_section',
   locals: { steps: [[t('.dashboard'), tableau_de_bord_helper_path],
     [t('users.profil.show.profile'), profil_path(context: :administrateur)],
-    [@api_token_params.duplicating? ? t('administrateurs.api_tokens.duplicate_title') : t('administrateurs.api_tokens.new_token')]] } %>
+    [@api_token_form.duplicating? ? t('administrateurs.api_tokens.duplicate_title') : t('administrateurs.api_tokens.new_token')]] } %>
 
 <div class="fr-container fr-mt-2w">
   <h1>
-    <%= @api_token_params.duplicating? ? t('administrateurs.api_tokens.duplicate_title') : t('administrateurs.api_tokens.new_token') %>
+    <%= @api_token_form.duplicating? ? t('administrateurs.api_tokens.duplicate_title') : t('administrateurs.api_tokens.new_token') %>
   </h1>
 
   <%= render Dsfr::AlertComponent.new(title: nil, size: :sm, state: :info, extra_class_names: 'fr-mb-2w') do |c| %>
@@ -41,7 +41,7 @@
     <% end %>
 
     <div
-      class="fr-input-group fr-mb-4w <%= class_names('hidden': params[:networkFiltering] != 'customNetworks', 'fr-input-group--error': params[:invalidNetwork].present?) %>"
+      class="fr-input-group fr-mb-4w <%= class_names('hidden': params[:networkFiltering] != 'customNetworks', 'fr-input-group--error': @api_token_form.errors.include?(:networks)) %>"
       data-api-token-securite-target="networkFiltering"
     >
       <%= f.label :name, class: 'fr-label' do %>
@@ -50,7 +50,7 @@
       <% end %>
 
       <%= f.text_field :networks,
-        class: class_names('fr-input': true, 'fr-input--error': params[:invalidNetwork].present?),
+        class: class_names('fr-input': true, 'fr-input--error': @api_token_form.errors.include?(:networks)),
         autocomplete: 'off',
         autocapitalize: 'off',
         autocorrect: 'off',
@@ -59,8 +59,8 @@
         'data-action': 'input->api-token-securite#setContinueButtonState',
         'data-api-token-securite-target': 'networks' %>
 
-      <%- if params[:invalidNetwork].present? -%>
-        <p class="fr-error-text"><%= t('.invalid_network') %></p>
+      <%- @api_token_form.errors[:networks].each do |message| -%>
+        <p class="fr-error-text"><%= message %></p>
       <%- end -%>
     </div>
 
@@ -68,7 +68,7 @@
 
     <%= render Dsfr::RadioButtonListComponent.new(form: f,
       target: :lifetime,
-      error: params[:invalidLifetime].present? ? t('.invalid_lifetime') : nil,
+      error: @api_token_form.errors[:expires_at].first,
       buttons: APIToken.selectable_lifetimes.keys.map { |lifetime|
         { label: t(".lifetime.#{lifetime.to_s.underscore}"),
           value: lifetime,
@@ -102,11 +102,11 @@
       >
     </div>
 
-    <%= render APITokens::HiddenFieldsComponent.new(fields: @api_token_params.hidden_fields_for(%i[networkFiltering networks lifetime customLifetime])) %>
+    <%= render APITokens::HiddenFieldsComponent.new(fields: @api_token_form.hidden_fields_for(%i[networkFiltering networks lifetime customLifetime])) %>
 
     <ul class="fr-btns-group fr-btns-group--inline">
       <li>
-        <%= link_to t('.back'), autorisations_admin_api_tokens_path(@api_token_params.to_h), class: "fr-btn fr-btn--secondary" %>
+        <%= link_to t('.back'), autorisations_admin_api_tokens_path(@api_token_form.to_h), class: "fr-btn fr-btn--secondary" %>
       </li>
 
       <li>
