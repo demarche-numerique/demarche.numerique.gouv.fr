@@ -37,4 +37,16 @@ describe Logic::DisplayConditions do
     expect(apply(ds_eq(d, constant(true))))
       .to eq(ds_and([ds_eq(d, constant(true)), ds_and([ds_eq(h, constant('x')), ds_eq(d, constant(true))])]))
   end
+
+  describe '#read_sources' do
+    it 'reads the champs the condition targets and, transitively, the ones they are displayed under' do
+      expect(display_conditions.read_sources(ds_eq(d, constant(true)))).to eq([5, 4, 1])
+    end
+
+    it 'ends on display conditions depending on each other' do
+      hidden.condition = ds_eq(d, constant(true))
+
+      expect(display_conditions.read_sources(ds_eq(d, constant(true)))).to eq([5, 4])
+    end
+  end
 end

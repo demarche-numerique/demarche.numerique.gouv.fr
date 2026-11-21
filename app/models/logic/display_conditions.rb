@@ -32,6 +32,10 @@ class Logic::DisplayConditions
     and_with(*hoist_shared(condition, sources))
   end
 
+  # The stable ids of every champ the condition reads once rewritten: the
+  # ones it targets, and those their display conditions depend on
+  def read_sources(condition) = apply(condition, conditional_sources(condition)).sources.uniq
+
   private
 
   # [term, conditions]: the term with the display conditions added to its
