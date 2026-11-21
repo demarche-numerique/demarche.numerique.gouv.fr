@@ -17,8 +17,12 @@ class EditableChamp::RepetitionRowComponent < ApplicationComponent
 
   private
 
+  def row
+    @champ.rows.find { it.id == row_id }
+  end
+
   def section_component
-    EditableChamp::SectionComponent.new(dossier: @dossier, type_de_champs: @type_de_champs, row_id:, row_number: @row_number)
+    EditableChamp::SectionComponent.new(champs: row.children, row_number: @row_number)
   end
 
   def delete_button
