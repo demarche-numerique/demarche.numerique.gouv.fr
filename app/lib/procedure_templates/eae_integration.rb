@@ -6,19 +6,25 @@ module ProcedureTemplates
   # notice of the École de l'air et de l'espace (note N°46/EAE/DGFM/CMDT):
   # each document is uploaded once, and reviewers read it in place.
   #
+  # Applicants of the internal recruitment already serve: the documents their
+  # administration holds (JDC, social security, bank details, past services)
+  # are not asked again.
+  #
   # Medical documents are deliberately left out: the platform cannot hide a
   # champ from part of the reviewers of an application, and health data must
   # not reach the administrative team.
   class EaeIntegration
     include Logic
 
-    LIBELLE = "Intégration à l’École de l’air et de l’espace – recrutement externe"
+    LIBELLE = "Intégration à l’École de l’air et de l’espace"
     CADRE_JURIDIQUE = "Note N°46/EAE/DGFM/CMDT – notice d’intégration des élèves issus du recrutement externe"
 
     # Months an application is kept once reviewed: the documents are then held
     # by the school's own systems, the platform only carries them.
     DUREE_CONSERVATION = 3
 
+    EXTERNE = "Externe"
+    INTERNE = "Interne"
     SCIENCES_POLITIQUES = "Sur titre – licence option « sciences politiques »"
     CONCOURS = [
       "Concours MP, PC, PSI, MPI (SCEI)",
@@ -31,7 +37,7 @@ module ProcedureTemplates
     TRAIN = "Train"
 
     DESCRIPTION = <<~TEXT
-      Vous êtes admis à l’École de l’air et de l’espace par un concours du recrutement externe. Cette démarche remplace l’envoi de vos pièces administratives par courriel et leur copie sur clé USB : chaque pièce est déposée une seule fois.
+      Vous êtes admis à l’École de l’air et de l’espace par un concours du recrutement externe ou interne. Cette démarche remplace l’envoi de vos pièces administratives par courriel et leur copie sur clé USB : chaque pièce est déposée une seule fois.
 
       Elle remplace aussi la fiche de renseignements et la fiche de contact de la notice d’intégration.
 
@@ -69,7 +75,25 @@ module ProcedureTemplates
       { type: :explication, libelle: "Protection de vos données", description: INFORMATION_RGPD },
 
       { type: :header_section, libelle: "Recrutement" },
-      { key: :concours, type: :drop_down_list, libelle: "Concours d’admission", drop_down_options: CONCOURS },
+      {
+        key: :recrutement,
+        type: :drop_down_list,
+        libelle: "Type de recrutement",
+        description: "Interne si vous êtes déjà militaire d’active et admis par un concours interne. Les pièces que l’administration détient déjà ne vous sont alors pas redemandées.",
+        drop_down_options: [EXTERNE, INTERNE],
+      },
+      { key: :concours, type: :drop_down_list, libelle: "Concours d’admission", drop_down_options: CONCOURS, shown_if: -> { externe } },
+      { type: :text, libelle: "Grade actuel", shown_if: -> { interne } },
+      { type: :text, libelle: "Unité et base d’affectation actuelles", shown_if: -> { interne } },
+      { type: :text, libelle: "Numéro identifiant air (NIA) actuel", shown_if: -> { interne } },
+      { type: :date, libelle: "Date d’entrée en service", date_in_past: true, shown_if: -> { interne } },
+      {
+        type: :piece_justificative,
+        libelle: "État signalétique et des services",
+        mandatory: false,
+        export_name: "EtatSignaletique",
+        shown_if: -> { interne },
+      },
       {
         type: :drop_down_list,
         libelle: "Corps",
@@ -248,12 +272,14 @@ module ProcedureTemplates
         type: :piece_justificative,
         libelle: "Attestation de participation à la journée défense et citoyenneté (JDC)",
         export_name: "JDC",
+        shown_if: -> { externe },
       },
       {
         key: :services_anterieurs,
         type: :yes_no,
         libelle: "Avez-vous des antécédents militaires ?",
         description: "Période de réserve, EETAAE de Saintes, autre armée, lycée militaire, EPA de Grenoble, FMIR…",
+        shown_if: -> { externe },
       },
       {
         type: :textarea,
@@ -306,7 +332,7 @@ module ProcedureTemplates
       },
 
       { type: :header_section, libelle: "Emploi, solde et protection sociale" },
-      { key: :emploi_civil, type: :yes_no, libelle: "Occupez-vous actuellement un emploi civil ?" },
+      { key: :emploi_civil, type: :yes_no, libelle: "Occupez-vous actuellement un emploi civil ?", shown_if: -> { externe } },
       {
         type: :piece_justificative,
         libelle: "Attestation de l’employeur vous libérant de votre emploi civil",
@@ -321,6 +347,7 @@ module ProcedureTemplates
         description: "À votre propre numéro, et non à celui de vos parents. L’attestation se télécharge sur ameli.fr.",
         export_name: "SecuriteSociale",
         pj_auto_purge: true,
+        shown_if: -> { externe },
       },
       {
         type: :piece_justificative,
@@ -328,6 +355,7 @@ module ProcedureTemplates
         description: "À vos nom et prénom.",
         export_name: "RIB",
         pj_auto_purge: true,
+        shown_if: -> { externe },
       },
 
       { type: :header_section, libelle: "Personne à prévenir en cas d’urgence" },
@@ -478,6 +506,10 @@ module ProcedureTemplates
     def value(key) = champ_value(@stable_ids.fetch(key))
 
     def yes(key) = ds_eq(value(key), constant(true))
+
+    def externe = ds_eq(value(:recrutement), constant(EXTERNE))
+
+    def interne = ds_eq(value(:recrutement), constant(INTERNE))
 
     def sciences_politiques = ds_eq(value(:concours), constant(SCIENCES_POLITIQUES))
 

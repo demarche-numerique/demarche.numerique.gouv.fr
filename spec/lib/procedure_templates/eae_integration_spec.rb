@@ -49,6 +49,9 @@ RSpec.describe ProcedureTemplates::EaeIntegration do
     conditions = types_de_champ.filter { it.condition.present? }.to_h { [it.libelle, it.condition.to_s(revision.type_de_champs)] }
 
     expect(conditions).to include(
+      "Concours d’admission" => "(Type de recrutement == Externe)",
+      "Relevé d’identité bancaire (RIB)" => "(Type de recrutement == Externe)",
+      "Grade actuel" => "(Type de recrutement == Interne)",
       "Passeport étranger" => "(Avez-vous une autre nationalité que la nationalité française ? == Oui)",
       "Photo d’identité" => "(Concours d’admission == Sur titre – licence option « sciences politiques »)",
       "Permis de conduire (recto et verso)" => "(Êtes-vous titulaire du permis de conduire ? == Oui)",
@@ -66,6 +69,25 @@ RSpec.describe ProcedureTemplates::EaeIntegration do
     dossier.champ_for_update(question, updated_by: dossier.user.email).update!(value: "true")
 
     expect(Dossier.find(dossier.id).project_champ(permis)).to be_visible
+  end
+
+  it "does not ask an internal applicant the documents the administration already holds" do
+    dossier = create(:dossier, procedure:, revision:)
+    recrutement = type_de_champ("Type de recrutement")
+    dossier.champ_for_update(recrutement, updated_by: dossier.user.email).update!(value: "Interne")
+    dossier = Dossier.find(dossier.id)
+
+    hidden = [
+      "Concours d’admission", "Attestation de participation à la journée défense et citoyenneté (JDC)", "Avez-vous des antécédents militaires ?",
+      "Occupez-vous actuellement un emploi civil ?", "Carte vitale (recto) ou attestation de droits", "Relevé d’identité bancaire (RIB)",
+    ]
+    shown = [
+      "Grade actuel", "Unité et base d’affectation actuelles", "Numéro identifiant air (NIA) actuel", "Date d’entrée en service",
+      "État signalétique et des services",
+    ]
+
+    expect(hidden.map { dossier.project_champ(type_de_champ(it)).visible? }).to all(be(false))
+    expect(shown.map { dossier.project_champ(type_de_champ(it)).visible? }).to all(be(true))
   end
 
   it "can be published once the administrateur has set its service and zone" do
@@ -106,7 +128,7 @@ RSpec.describe ProcedureTemplates::EaeIntegration do
       expect(export_template.export_pdf.path(dossier)).to eq("Martin_Zoé_FicheRens")
       expect(export_template.pj(type_de_champ("Lettre de convocation")).path(dossier)).to eq("Martin_Zoé_Convocation")
       expect(export_template.pjs.map { it.path(dossier).delete_prefix("Martin_Zoé_") }).to eq([
-        "Convocation", "NotesConcours", "ActeNaissance", "Ambassade", "Famille", "LivretFamille", "Scolarite", "PhotoIdentite", "PSC1",
+        "EtatSignaletique", "Convocation", "NotesConcours", "ActeNaissance", "Ambassade", "Famille", "LivretFamille", "Scolarite", "PhotoIdentite", "PSC1",
         "JDC", "ContratsReserve", "ConvocationsReserve", "SoldesReserve", "DenonciationReserve", "EtatsServices",
         "AttestationEmployeur", "Permis", "SecuriteSociale", "RIB",
       ])
