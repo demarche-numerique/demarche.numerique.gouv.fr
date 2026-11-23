@@ -2,12 +2,17 @@
 
 module APITokens
   class HiddenFieldsComponent < ApplicationComponent
-    def initialize(fields:)
-      @fields = fields
+    def initialize(form:, except: [])
+      @form = form
+      @except = except
     end
 
     private
 
-    attr_reader :fields
+    attr_reader :form
+
+    def attributes
+      form.object.attributes.compact.except(*@except.map(&:to_s))
+    end
   end
 end

@@ -2,20 +2,13 @@ import { ApplicationController } from './application_controller';
 
 export class ApiTokenAutorisationController extends ApplicationController {
   static targets = ['procedureSelectGroup', 'continueButton'];
+  static values = { initialTargets: Boolean };
 
   declare readonly continueButtonTarget: HTMLButtonElement;
   declare readonly procedureSelectGroupTarget: HTMLElement;
-  declare hasInitialTargets: boolean;
+  declare initialTargetsValue: boolean;
 
   connect() {
-    const urlSearchParams = new URLSearchParams(window.location.search);
-    const customTargets = urlSearchParams.get('target') == 'custom';
-    this.hasInitialTargets = urlSearchParams.getAll('targets[]').length > 0;
-
-    if (customTargets) {
-      this.procedureSelectGroupTarget.classList.remove('hidden');
-    }
-
     this.setContinueButtonState();
   }
 
@@ -33,7 +26,7 @@ export class ApiTokenAutorisationController extends ApplicationController {
     this.continueButtonTarget.disabled = !(
       this.targetDefined() && this.accessDefined()
     );
-    this.hasInitialTargets = false; // toute vérification suivante ignore l'état initial
+    this.initialTargetsValue = false; // toute vérification suivante ignore l'état initial
   }
 
   targetDefined() {
@@ -48,13 +41,18 @@ export class ApiTokenAutorisationController extends ApplicationController {
     }
 
     const selectedTargets = Array.from(
-      this.element.querySelectorAll<HTMLInputElement>("input[name='targets[]']")
+      this.element.querySelectorAll<HTMLInputElement>(
+        "input[name='api_token_form[procedure_ids][]']"
+      )
     ).filter((input) => input.value.trim() !== '');
 
-    return this.hasInitialTargets || selectedTargets.length > 0;
+    return this.initialTargetsValue || selectedTargets.length > 0;
   }
 
   accessDefined() {
-    return this.element.querySelectorAll("[name='access']:checked").length == 1;
+    return (
+      this.element.querySelectorAll("[name='api_token_form[access]']:checked")
+        .length == 1
+    );
   }
 }

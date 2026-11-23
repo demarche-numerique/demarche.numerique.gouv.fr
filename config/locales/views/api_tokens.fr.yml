@@ -18,7 +18,6 @@ fr:
         all_procedures: toutes mes démarches
         all_procedures_hint: présentes et futures
         select_procedures: Sélectionner les démarches autorisées
-        no_procedure: Sélectionnez au moins une démarche
         token_permission: Ce jeton permet
         read_only: de lire uniquement
         read_only_hint: récupérer des dossiers, des pièces-jointes
@@ -56,7 +55,6 @@ fr:
         custom_networks: Saisie manuelle des réseaux autorisés
         enter_ips: Entrez les adresses IP autorisées
         network_hint: 'adresses réseaux séparées par des espaces. Ex: 176.31.79.200 192.168.33.0/24 2001:41d0:304:400::52f/128'
-        invalid_network: Vous devez entrer des adresses IPv4 ou IPv6 valides
         lifetime_label: 'Durée de vie du jeton :'
         lifetime:
           one_week: 1 semaine
@@ -64,7 +62,6 @@ fr:
           six_months: 6 mois
           one_year: 1 an
         custom_lifetime_label: 'durée personnalisée, au maximum %{count} jours'
-        invalid_lifetime: Vous devez choisir une durée de vie comprise entre demain et la durée maximale autorisée
         enter_expiry: Entrez la date de fin de validité du jeton
         validate: Valider
         back: Retour

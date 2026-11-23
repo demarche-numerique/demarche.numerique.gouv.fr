@@ -1,0 +1,16 @@
+fr:
+  activemodel:
+    errors:
+      models:
+        api_token_form:
+          attributes:
+            name:
+              blank: Donnez un nom au jeton
+            allowed_procedure_ids:
+              blank: Sélectionnez au moins une démarche
+            networks:
+              invalid: Vous devez entrer des adresses IPv4 ou IPv6 valides
+            expires_at:
+              blank: Vous devez choisir une durée de vie comprise entre demain et la durée maximale autorisée
+              greater_than_or_equal_to: Vous devez choisir une durée de vie comprise entre demain et la durée maximale autorisée
+              less_than_or_equal_to: Vous devez choisir une durée de vie comprise entre demain et la durée maximale autorisée

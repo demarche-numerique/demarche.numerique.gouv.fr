@@ -56,8 +56,6 @@ class APIToken < ApplicationRecord
       .without_any_expiration_notice_sent_within(duration)
   end
 
-  before_save :sanitize_targeted_procedure_ids
-
   def context
     {
       administrateur_id:,
@@ -71,7 +69,7 @@ class APIToken < ApplicationRecord
     if full_access?
       administrateur.procedures.ids
     else
-      sanitized_targeted_procedure_ids
+      administrateur.procedures.ids.intersection(allowed_procedure_ids)
     end
   end
 
@@ -80,19 +78,15 @@ class APIToken < ApplicationRecord
   end
 
   def full_access?
-    targeted_procedure_ids.nil?
+    allowed_procedure_ids.nil?
   end
 
   def targetable_procedures
     administrateur
       .procedures
-      .where.not(id: targeted_procedure_ids)
+      .where.not(id: allowed_procedure_ids)
       .select(:id, :libelle)
       .order(:libelle)
-  end
-
-  def sanitized_targeted_procedure_ids
-    administrateur.procedures.ids.intersection(targeted_procedure_ids || [])
   end
 
   # Prefix is made of the first 6 characters of the uuid base64 encoded
@@ -155,6 +149,12 @@ class APIToken < ApplicationRecord
 
     def digest(plain_token) = Digest::SHA256.hexdigest(plain_token)
 
+    def forget_procedure(procedure_id, administrateur:)
+      where(administrateur:)
+        .where('?::bigint = ANY(allowed_procedure_ids)', procedure_id)
+        .update_all(['allowed_procedure_ids = array_remove(allowed_procedure_ids, ?::bigint)', procedure_id])
+    end
+
     def authenticate(bearer_string)
       bearer = BearerToken.from_string(bearer_string)
 
@@ -165,6 +165,14 @@ class APIToken < ApplicationRecord
       return if api_token.nil?
 
       api_token.matches?(bearer.plain_token) ? api_token : nil
+    end
+
+    def parse_networks(networks)
+      networks.to_s.split.map do
+        IPAddr.new(it)
+      rescue IPAddr::Error
+        nil
+      end
     end
   end
 
@@ -181,18 +189,6 @@ class APIToken < ApplicationRecord
     else
       false
     end
-  end
-
-  private
-
-  def sanitize_targeted_procedure_ids
-    if targeted_procedure_ids.present?
-      write_attribute(:allowed_procedure_ids, sanitized_targeted_procedure_ids)
-    end
-  end
-
-  def targeted_procedure_ids
-    read_attribute(:allowed_procedure_ids)
   end
 
   class BearerToken < Data.define(:api_token_id, :plain_token)

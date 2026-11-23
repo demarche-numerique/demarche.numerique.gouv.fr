@@ -14,9 +14,10 @@ describe 'As an administrateur I create an API token', js: true do
     xss_payload = '<img src=x onerror=alert(1)>'
     procedure.update_column(:libelle, xss_payload)
 
-    # Reached when a custom target was submitted without any procedure.
-    visit autorisations_admin_api_tokens_path(name: 'test-xss', target: 'custom', noProcedure: true)
-    expect(page).to have_text('Sélectionnez au moins une démarche')
+    visit nom_admin_api_tokens_path
+    fill_in 'Nom du jeton', with: 'test-xss'
+    click_on 'Continuer'
+    custom_check 'api_token_form_target_custom'
     expect(page).to have_field('Sélectionner les démarches autorisées', visible: true)
 
     fill_in 'Sélectionner les démarches autorisées', with: procedure.libelle
@@ -34,16 +35,16 @@ describe 'As an administrateur I create an API token', js: true do
     fill_in 'Nom du jeton', with: 'mon jeton'
     click_on 'Continuer'
 
-    custom_check "target_custom"
+    custom_check "api_token_form_target_custom"
     fill_in 'Sélectionner les démarches autorisées', with: procedure.libelle
     find('[role="option"]', text: procedure.libelle).click
     send_keys(:escape)
-    custom_check 'access_read_write'
+    custom_check 'api_token_form_access_read_write'
     click_on 'Continuer'
     expect(page).to have_content("Sécurité")
 
-    custom_check 'networkFiltering_autoassign'
-    custom_check 'lifetime_oneweek'
+    custom_check 'api_token_form_network_filtering_autoassign'
+    custom_check 'api_token_form_lifetime_oneweek'
     click_on('Valider')
     expect(page).to have_content("Votre jeton est prêt")
 
@@ -60,14 +61,14 @@ describe 'As an administrateur I create an API token', js: true do
     fill_in 'Nom du jeton', with: 'jeton manuel'
     click_on 'Continuer'
 
-    custom_check 'access_read_write'
-    custom_check 'target_all'
+    custom_check 'api_token_form_access_read_write'
+    custom_check 'api_token_form_target_all'
     click_on 'Continuer'
     expect(page).to have_content("Sécurité")
 
-    custom_check 'networkFiltering_customnetworks'
-    fill_in 'networks', with: '192.168.1.0/24'
-    custom_check 'lifetime_oneweek'
+    custom_check 'api_token_form_network_filtering_customnetworks'
+    fill_in 'api_token_form_networks', with: '192.168.1.0/24'
+    custom_check 'api_token_form_lifetime_oneweek'
     click_on('Valider')
     expect(page).to have_content("Votre jeton est prêt")
 
@@ -82,15 +83,15 @@ describe 'As an administrateur I create an API token', js: true do
     fill_in 'Nom du jeton', with: 'jeton semestriel'
     click_on 'Continuer'
 
-    custom_check 'access_read_write'
-    custom_check 'target_all'
+    custom_check 'api_token_form_access_read_write'
+    custom_check 'api_token_form_target_all'
     click_on 'Continuer'
     expect(page).to have_content("Sécurité")
 
     expect(page).to have_no_content('Infini')
 
-    custom_check 'networkFiltering_autoassign'
-    custom_check 'lifetime_sixmonths'
+    custom_check 'api_token_form_network_filtering_autoassign'
+    custom_check 'api_token_form_lifetime_sixmonths'
     click_on('Valider')
     expect(page).to have_content("Votre jeton est prêt")
 
@@ -104,14 +105,14 @@ describe 'As an administrateur I create an API token', js: true do
     fill_in 'Nom du jeton', with: 'jeton daté'
     click_on 'Continuer'
 
-    custom_check 'access_read_write'
-    custom_check 'target_all'
+    custom_check 'api_token_form_access_read_write'
+    custom_check 'api_token_form_target_all'
     click_on 'Continuer'
     expect(page).to have_content("Sécurité")
 
-    custom_check 'networkFiltering_autoassign'
-    custom_check 'lifetime_custom'
-    fill_in 'customLifetime', with: 3.months.from_now.to_date.iso8601
+    custom_check 'api_token_form_network_filtering_autoassign'
+    custom_check 'api_token_form_lifetime_custom'
+    fill_in 'api_token_form_custom_lifetime', with: 3.months.from_now.to_date.iso8601
     click_on('Valider')
     expect(page).to have_content("Votre jeton est prêt")
 
@@ -125,31 +126,31 @@ describe 'As an administrateur I create an API token', js: true do
     fill_in 'Nom du jeton', with: 'jeton avec retour'
     click_on 'Continuer'
 
-    custom_check 'target_custom'
+    custom_check 'api_token_form_target_custom'
     fill_in 'Sélectionner les démarches autorisées', with: procedure.libelle
     find('[role="option"]', text: procedure.libelle).click
     send_keys(:escape)
-    custom_check 'access_read_write'
+    custom_check 'api_token_form_access_read_write'
     click_on 'Continuer'
     expect(page).to have_content('Sécurité')
 
     click_on 'Retour'
     expect(page).to have_content('Privilèges du jeton')
-    expect(page).to have_checked_field('access_read_write')
+    expect(page).to have_checked_field('api_token_form_access_read_write')
     expect(page).to have_text(procedure.libelle)
 
     click_on 'Retour'
     expect(page).to have_field('Nom du jeton', with: 'jeton avec retour')
 
     click_on 'Continuer'
-    expect(page).to have_checked_field('access_read_write')
+    expect(page).to have_checked_field('api_token_form_access_read_write')
     expect(page).to have_text(procedure.libelle)
     click_on 'Continuer'
     expect(page).to have_content('Sécurité')
 
-    custom_check 'networkFiltering_customnetworks'
-    fill_in 'networks', with: '192.168.1.0/24'
-    custom_check 'lifetime_oneweek'
+    custom_check 'api_token_form_network_filtering_customnetworks'
+    fill_in 'api_token_form_networks', with: '192.168.1.0/24'
+    custom_check 'api_token_form_lifetime_oneweek'
 
     click_on('Valider')
     expect(page).to have_content('Votre jeton est prêt')
@@ -166,17 +167,34 @@ describe 'As an administrateur I create an API token', js: true do
     click_on 'Dupliquer'
 
     expect(page).to have_field('Nom du jeton', with: 'Jeton original')
+    expect(URI(page.current_url).query).to be_nil
     click_on 'Continuer'
 
-    expect(page).to have_checked_field('access_read_write')
+    expect(page).to have_checked_field('api_token_form_access_read_write')
     expect(page).to have_text(procedure.libelle)
+    expect(URI(page.current_url).query).to be_nil
     click_on 'Continuer'
 
     expect(page).to have_content('Sécurité')
-    expect(page).to have_checked_field('networkFiltering_customnetworks')
-    expect(page).to have_field('networks', with: '192.168.1.0/24')
-    expect(page).to have_no_checked_field('lifetime_oneweek')
-    expect(page).to have_no_checked_field('lifetime_custom')
+    expect(URI(page.current_url).query).to be_nil
+    expect(page).to have_checked_field('api_token_form_network_filtering_customnetworks')
+    expect(page).to have_field('api_token_form_networks', with: '192.168.1.0/24')
+    expect(page).to have_no_checked_field('api_token_form_lifetime_oneweek')
+    expect(page).to have_no_checked_field('api_token_form_lifetime_custom')
+  end
+
+  scenario 'duplicating a list token whose procedures are all binned selects none' do
+    original_token = APIToken.generate(administrateur).first
+    original_token.update!(allowed_procedure_ids: [procedure.id])
+    procedure.discard!
+
+    visit profil_path
+    click_on 'Dupliquer'
+    click_on 'Continuer'
+
+    expect(page).to have_checked_field('api_token_form_target_custom')
+    expect(page).to have_field('Sélectionner les démarches autorisées')
+    expect(page).to have_button('Continuer', disabled: true)
   end
 
   scenario 'restricting and restoring access to an api token' do
@@ -189,7 +207,7 @@ describe 'As an administrateur I create an API token', js: true do
     select "#{procedure.id} - #{procedure.libelle}", from: 'procedure_to_add'
     click_on 'Ajouter'
 
-    expect(page).to have_content(procedure.libelle)
+    expect(page).to have_css("li#authorized_procedure_#{procedure.id}")
     expect(token.reload.allowed_procedure_ids).to eq([procedure.id])
 
     click_on 'Supprimer'
@@ -199,6 +217,7 @@ describe 'As an administrateur I create an API token', js: true do
 
     click_on "Restaurer lʼaccès à toutes les démarches"
 
+    expect(page).to have_no_content('Votre jeton dʼAPI a accès à certaines démarches')
     expect(page).to have_content('accès à toutes vos démarches')
     expect(token.reload.allowed_procedure_ids).to be_nil
   end
