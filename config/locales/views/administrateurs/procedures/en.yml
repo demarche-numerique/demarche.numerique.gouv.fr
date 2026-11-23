@@ -123,6 +123,11 @@ en:
         administrateurs_count:
           one: "%{count} administrator"
           other: "%{count} administrators"
+        api_tokens:
+          checked:
+            one: "The API token %{tokens} will have access to the new procedure only if this box stays checked."
+            other: "The API tokens %{tokens} will have access to the new procedure only if this box stays checked."
+          token: "‘%{name}’ (%{email})"
         instructeurs: Reviewers
         instructeurs_count:
           zero: No reviewer

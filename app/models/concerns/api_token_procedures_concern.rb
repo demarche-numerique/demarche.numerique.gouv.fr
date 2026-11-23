@@ -20,6 +20,13 @@ module APITokenProceduresConcern
         .where(administrateur_id: AdministrateursProcedure.where(procedure:, manager: [false, nil]).select(:administrateur_id))
         .where('allowed_procedure_ids IS NULL OR ?::bigint = ANY(allowed_procedure_ids)', procedure.id)
     end
+
+    scope :reading_clones_of, -> (procedure) do
+      authenticable
+        .unexpired
+        .owned_by_an_administrator_of(procedure)
+        .where('allowed_procedure_ids IS NULL OR (follows_clones AND ?::bigint = ANY(allowed_procedure_ids))', procedure.id)
+    end
   end
 
   class_methods do
