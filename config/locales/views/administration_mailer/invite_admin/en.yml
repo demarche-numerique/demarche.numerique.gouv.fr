@@ -1,6 +1,7 @@
 en:
   administration_mailer:
     invite_admin:
+      subject: Activate your administrator account
       title: Administrator account activation
       thanks: Thank you for your interest in our tool for digitizing procedures.
       account_created: Your administrator account has been created for the email address %{email}.

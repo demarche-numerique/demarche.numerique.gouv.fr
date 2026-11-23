@@ -1,6 +1,7 @@
 fr:
   administration_mailer:
     invite_admin:
+      subject: Activez votre compte administrateur
       title: Activation du compte administrateur
       thanks: Je vous remercie de l’intérêt que vous portez à notre outil de dématérialisation de démarches.
       account_created: Votre compte administrateur a été créé pour l’adresse électronique %{email}.

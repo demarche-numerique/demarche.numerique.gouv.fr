@@ -18,6 +18,21 @@ RSpec.describe AdministrationMailer, type: :mailer do
       expect(body).to include("Équipe de #{APPLICATION_NAME}")
     end
 
+    it 'renders in the recipient locale, not the sender one' do
+      expect(I18n.with_locale(:en) { described_class.invite_admin(admin_user, token).subject }).to eq("Activez votre compte administrateur")
+    end
+
+    context 'when the recipient uses English' do
+      before { admin_user.locale = 'en' }
+
+      it 'renders the English body' do
+        expect(subject.subject).to eq("Activate your administrator account")
+        body = subject.body.decoded.squish
+        expect(body).to include("Your administrator account has been created for the email address #{admin_user.email}.")
+        expect(body).to include("To activate it, click the following link:")
+      end
+    end
+
     describe "when the user has not been activated" do
       it do
         expect(subject.body.decoded).to include("Pour l’activer, cliquez sur le lien suivant\u00A0:")
