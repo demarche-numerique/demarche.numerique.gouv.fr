@@ -91,7 +91,7 @@ fr:
         addresses: "Adresses (%{count})"
         in_progress: "Création des comptes en cours."
       approve:
-        success: "Demande validée : la création des %{count} comptes administrateurs est en cours. Le résultat s’affiche sur la page de la demande."
+        success: "Demande validée : la création des %{count} comptes administrateurs est en cours."
       refuse:
         success: "Demande refusée. Aucun compte n’a été créé."
       cancel:

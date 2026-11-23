@@ -27,6 +27,10 @@ describe AdministrateurCreationRequest do
     end
 
     it { expect(described_class.parse_emails(nil)).to eq([]) }
+
+    it 'drops a trailing sentence period and splits on unicode spaces' do
+      expect(described_class.parse_emails("Merci : a@x.fr.\u00A0b@y.fr")).to eq(['a@x.fr', 'b@y.fr'])
+    end
   end
 
   describe 'validations' do
@@ -148,6 +152,22 @@ describe AdministrateurCreationRequest do
       creation_request.create_accounts!
       expect(User).not_to receive(:create_or_promote_to_administrateur)
       creation_request.create_accounts!
+    end
+
+    it 'keeps the outcomes already saved when resumed after a crash' do
+      creation_request.update!(results: { 'new.admin@numerique.gouv.fr' => 'created' })
+      creation_request.create_accounts!
+
+      expect(creation_request.reload.results).to include('new.admin@numerique.gouv.fr' => 'created', existing.email => 'already_administrateur')
+    end
+
+    it 'still runs once its requester is deleted' do
+      validator = create(:super_admin)
+      creation_request.update!(validator:)
+      requester.destroy!
+
+      creation_request.reload.create_accounts!
+      expect(creation_request.results['new.admin@numerique.gouv.fr']).to eq('created')
     end
   end
 end

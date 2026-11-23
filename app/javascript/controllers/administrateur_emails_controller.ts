@@ -6,7 +6,7 @@ const MIN_ROWS = 10;
 
 function parseEmails(text: string): string[] {
   const emails = (text.match(EMAIL_REGEXP) ?? []).map((email) =>
-    email.toLowerCase()
+    email.toLowerCase().replace(/\.$/, '')
   );
   return [...new Set(emails)];
 }

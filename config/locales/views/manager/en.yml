@@ -83,7 +83,7 @@ en:
         addresses: "Addresses (%{count})"
         in_progress: "Accounts are being created."
       approve:
-        success: "Request approved: the %{count} administrator accounts are being created. The result shows on the request page."
+        success: "Request approved: the %{count} administrator accounts are being created."
       refuse:
         success: "Request rejected. No account was created."
       cancel:

@@ -26,14 +26,23 @@ module Manager
       )
       return render :new, status: :unprocessable_content if @creation_request.invalid?
 
-      if @creation_request.emails.many?
-        verify_fresh_super_admin_otp!
-        return if performed?
+      if @creation_request.emails.many? && SUPER_ADMIN_OTP_ENABLED
+        # Unlike verify_fresh_super_admin_otp!, keeps the pasted list on a wrong code.
+        result = current_super_admin.verify_step_up_otp!(params[:otp_attempt].to_s)
+        if result != :ok
+          return reject_super_admin_attempt!(result) do
+            flash.now[:error] = t("manager.fresh_otp.invalid_code")
+            render :new, status: :unprocessable_content
+          end
+        end
 
-        @creation_request.otp_verified = SUPER_ADMIN_OTP_ENABLED
+        @creation_request.otp_verified = true
       end
 
-      @creation_request.update!(state: @creation_request.requires_validation? ? :pending : :approved)
+      # Locks the requester so that parallel submissions cannot exceed the daily quota.
+      current_super_admin.with_lock do
+        @creation_request.update!(state: @creation_request.requires_validation? ? :pending : :approved)
+      end
 
       if @creation_request.pending?
         redirect_to manager_administrateur_creation_request_path(@creation_request)

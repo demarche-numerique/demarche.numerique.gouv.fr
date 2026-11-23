@@ -9,17 +9,19 @@ class AdministrateurCreationRequest < ApplicationRecord
   DAILY_QUOTA = 300
   VALIDITY = 24.hours
   # Anything around an address in a pasted mail header: separators, names, chevrons, quotes.
-  EMAIL_REGEXP = /[^\s<>,;:"'()\[\]]+@[^\s<>,;:"'()\[\]]+/
+  EMAIL_REGEXP = /[^[:space:]<>,;:"'()\[\]]+@[^[:space:]<>,;:"'()\[\]]+/
 
-  belongs_to :requester, class_name: 'SuperAdmin'
+  # Optional: the log outlives a deleted super admin.
+  belongs_to :requester, class_name: 'SuperAdmin', optional: true
   belongs_to :validator, class_name: 'SuperAdmin', optional: true
 
   enum :state, { pending: 'pending', approved: 'approved', refused: 'refused', cancelled: 'cancelled' }
 
+  validates :requester, presence: true, on: :create
   validates :emails, length: { in: 1..MAX_EMAILS }
   validate :daily_quota, on: :create
 
-  def self.parse_emails(text) = text.to_s.scan(EMAIL_REGEXP).map(&:downcase).uniq
+  def self.parse_emails(text) = text.to_s.scan(EMAIL_REGEXP).map { it.downcase.delete_suffix('.') }.uniq
 
   def requires_validation? = emails.size > MAX_EMAILS_WITHOUT_VALIDATION
 
@@ -40,16 +42,19 @@ class AdministrateurCreationRequest < ApplicationRecord
   def cancel! = decide!(:cancelled, nil)
 
   def create_accounts!
-    return if results.present?
+    inviter = validator || requester
+    pending_emails = emails - results.keys
+    existing = User.joins(:administrateur).where(email: pending_emails).pluck(:email)
 
-    existing = User.joins(:administrateur).where(email: emails).pluck(:email)
-    outcomes = emails.index_with do |email|
-      next 'already_administrateur' if email.in?(existing)
-
-      requester.invite_admin(email).errors.empty? ? 'created' : 'invalid'
+    # Saved one by one, so that a retry after a crash keeps what is already done.
+    pending_emails.each do |email|
+      outcome = if email.in?(existing)
+        'already_administrateur'
+      else
+        inviter.invite_admin(email).errors.empty? ? 'created' : 'invalid'
+      end
+      update!(results: results.merge(email => outcome))
     end
-
-    update!(results: outcomes)
   end
 
   def results_summary

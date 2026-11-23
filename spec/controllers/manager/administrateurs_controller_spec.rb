@@ -164,7 +164,13 @@ describe Manager::AdministrateursController, type: :controller do
       context 'when the OTP code is invalid' do
         let(:otp_attempt) { '000000' }
 
-        it { expect { subject }.not_to change(AdministrateurCreationRequest, :count) }
+        render_views
+
+        it 'keeps the pasted list' do
+          expect { subject }.not_to change(AdministrateurCreationRequest, :count)
+          expect(response).to have_http_status(:unprocessable_content)
+          expect(response.body).to include('agent.10@numerique.gouv.fr')
+        end
       end
     end
 

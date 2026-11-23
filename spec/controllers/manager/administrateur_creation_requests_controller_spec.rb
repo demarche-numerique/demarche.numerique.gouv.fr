@@ -68,6 +68,15 @@ describe Manager::AdministrateurCreationRequestsController, type: :controller do
       end
     end
 
+    context 'when the requester has been deleted' do
+      before { requester.destroy! }
+
+      it do
+        expect { subject }.to have_enqueued_job(AdministrateurCreationRequestJob)
+        expect(creation_request.reload).to be_approved
+      end
+    end
+
     context 'when the request is replayed' do
       before { creation_request.approve!(create(:super_admin)) }
 
