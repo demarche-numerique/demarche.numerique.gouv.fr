@@ -266,6 +266,41 @@ RSpec.describe PriorityDeliveryConcern do
     end
   end
 
+  context 'when the recipient is blocked by Brevo' do
+    let(:brevo) { instance_double(Brevo::API, unblock_user: true) }
+    let(:critical) { true }
+
+    before do
+      allow(ExampleMailer).to receive(:critical_email?).and_return(critical)
+      allow(Brevo::API).to receive(:new).and_return(brevo)
+      users.usager.record_brevo_block!(at: 1.hour.ago, event: 'hard_bounce')
+      ActionMailer::Base.balancer_settings = { brevo_api: 10 }
+    end
+
+    it 'unblocks it before a critical email goes through Brevo' do
+      expect(ExampleMailer.greet(users.usager.email).deliver_now).to have_been_delivered_using(MockBrevoAPI)
+      expect(brevo).to have_received(:unblock_user).with(users.usager.email)
+    end
+
+    it 'leaves it blocked when another provider sends the email' do
+      ActionMailer::Base.balancer_settings = { mock_smtp: 10 }
+
+      ExampleMailer.greet(users.usager.email).deliver_now
+
+      expect(brevo).not_to have_received(:unblock_user)
+    end
+
+    context 'for an email that is not critical' do
+      let(:critical) { false }
+
+      it 'leaves it blocked' do
+        ExampleMailer.greet(users.usager.email).deliver_now
+
+        expect(brevo).not_to have_received(:unblock_user)
+      end
+    end
+  end
+
   it 'names the mailer and action in a header' do
     mail = ExampleMailer.greet('test@example.com').deliver_now
     expect(mail[PriorityDeliveryConcern::MAILER_HEADER].value).to eq('ExampleMailer.greet')

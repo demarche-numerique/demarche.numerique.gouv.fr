@@ -73,6 +73,10 @@ class Brevo::API
   end
 
   def unblock_user(email_address)
+    # the SDK puts the address in the URL path as is: "a/../../webhooks/1@x.fr" would DELETE /webhooks/1,
+    # "..?@x.fr" DELETE /smtp
+    return false if email_address.match?(%r{[/?#]})
+
     client = ::SibApiV3Sdk::TransactionalEmailsApi.new
     client.smtp_blocked_contacts_email_delete(email_address)
     true
