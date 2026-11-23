@@ -73,7 +73,7 @@ en:
         expires: "You cannot approve this request yourself. Without approval, it expires automatically on %{date}."
         edit: "Edit the list"
         cancel: "Cancel the request"
-        edit_hint: "“Edit the list” cancels this request and goes back to the form with the addresses filled in; a new request and a new link will be created. Either way, this link will stop working."
+        edit_hint: "‘Edit the list’ cancels this request and goes back to the form with the addresses filled in; a new request and a new link will be created. Either way, this link will stop working."
         request_html: "<strong>%{requester}</strong> requests the creation of <strong>%{count} administrator accounts</strong>."
         dates: "Requested on %{created_at} · valid until %{expires_at}"
         approve: "Approve the creation of %{count} administrator accounts"
