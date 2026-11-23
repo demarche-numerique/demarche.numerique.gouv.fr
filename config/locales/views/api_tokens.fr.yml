@@ -43,6 +43,8 @@ fr:
         add_authorized_procedures: 'Ajouter des démarches autorisées'
         add_button: Ajouter
         delete_button: Supprimer
+      update:
+        networks_required: Vous ne pouvez pas supprimer les restrictions d’accès à l’API d’un jeton permanent.
       securite:
         title: Sécurité du jeton « %{name} »
         dashboard: Tableau de bord

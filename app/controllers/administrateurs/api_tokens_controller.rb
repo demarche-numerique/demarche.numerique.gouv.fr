@@ -40,7 +40,7 @@ module Administrateurs
 
       if !params[:networks].nil?
         if invalid_network?
-          @invalid_network_message = "vous devez entrer des adresses ipv4 ou ipv6 valides"
+          @invalid_network_message = t('activemodel.errors.models.api_token_form.attributes.networks.invalid')
           return render :edit
         end
 
@@ -49,7 +49,7 @@ module Administrateurs
         # anywhere until they expire. The newer ones re-pin themselves on the next
         # call, so they may be emptied.
         if !@api_token.requires_ip_filtering? && networks.empty?
-          @invalid_network_message = "Vous ne pouvez pas supprimer les restrictions d’accès à l’API d’un jeton permanent."
+          @invalid_network_message = t('.networks_required')
           @api_token.reload
           return render :edit
         end

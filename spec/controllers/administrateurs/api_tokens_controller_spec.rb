@@ -182,7 +182,7 @@ describe Administrateurs::APITokensController, type: :controller do
 
       it 'does not update a token' do
         expect(token.authorized_networks).to be_blank
-        expect(assigns(:invalid_network_message)).to eq('vous devez entrer des adresses ipv4 ou ipv6 valides')
+        expect(assigns(:invalid_network_message)).to eq('Vous devez entrer des adresses IPv4 ou IPv6 valides')
       end
     end
 

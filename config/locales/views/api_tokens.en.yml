@@ -43,6 +43,8 @@ en:
         add_authorized_procedures: 'Add authorized procedures'
         add_button: Add
         delete_button: Delete
+      update:
+        networks_required: You cannot remove the API access restrictions of a permanent token.
       securite:
         title: Security of the token « %{name} »
         dashboard: Dashboard
