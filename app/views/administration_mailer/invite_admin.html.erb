@@ -1,0 +1,35 @@
+<% content_for(:title, 'Activation du compte administrateur') %>
+
+<p>
+  Bonjour,
+</p>
+
+<p>
+  Je vous remercie de l’intérêt que vous portez à notre outil de
+  dématérialisation de démarches.
+</p>
+
+<p>
+  Votre compte administrateur a été créé pour l’adresse électronique
+  <%= @user.email %>.
+</p>
+
+<% if !@user.active? %>
+  <p>
+    <b>
+      Pour l’activer, cliquez sur le lien suivant :
+      <%= link_to(users_activate_url(token: @reset_password_token), users_activate_url(token: @reset_password_token)) %>
+    </b>
+  </p>
+<% else %>
+  <p>
+    <b>
+      Pour vous connecter, cliquez sur le lien suivant :
+      <%= link_to edit_user_password_url(@user, reset_password_token: @reset_password_token), edit_user_password_url(@user, reset_password_token: @reset_password_token) %>
+    </b>
+  </p>
+<% end %>
+
+<p>
+  <%= render partial: "layouts/mailers/bizdev_signature", locals: { author_name: @author_name } %>
+</p>

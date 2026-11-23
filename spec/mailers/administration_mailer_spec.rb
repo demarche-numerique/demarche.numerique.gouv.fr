@@ -11,7 +11,7 @@ RSpec.describe AdministrationMailer, type: :mailer do
     it { expect(subject.subject).not_to be_empty }
 
     it 'renders the French body' do
-      body = subject.body.decoded
+      body = subject.body.decoded.squish
       expect(body).to include("Activation du compte administrateur")
       expect(body).to include("Je vous remercie de l’intérêt que vous portez à notre outil de dématérialisation de démarches.")
       expect(body).to include("Votre compte administrateur a été créé pour l’adresse électronique #{admin_user.email}.")
@@ -61,7 +61,7 @@ RSpec.describe AdministrationMailer, type: :mailer do
     end
 
     it 'renders the French body' do
-      body = subject.body.decoded
+      body = subject.body.decoded.squish
       expect(body).to include("Demande de création de compte refusée")
       expect(body).to include("Les comptes administrateurs sont destinés aux administrations publiques")
       expect(body).to include("l’entrée dans #{APPLICATION_NAME} se fait via un lien fourni par l’administration responsable")
