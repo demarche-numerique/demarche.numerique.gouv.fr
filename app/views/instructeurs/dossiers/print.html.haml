@@ -17,15 +17,15 @@
 
 %h2 Formulaire
 
-- public_type_de_champs = @dossier.revision.public_root_type_de_champs
-- if public_type_de_champs.any? || @dossier.procedure.routing_enabled?
-  = render ViewableChamp::SectionComponent.new(dossier: @dossier, type_de_champs: public_type_de_champs, demande_seen_at: nil, profile: 'instructeur')
+- public_champs = @dossier.public_champs
+- if public_champs.any? || @dossier.procedure.routing_enabled?
+  = render ViewableChamp::SectionComponent.new(champs: public_champs, demande_seen_at: nil, profile: 'instructeur')
 
 %h2 Annotations privées
 
-- private_type_de_champs = @dossier.revision.private_root_type_de_champs
-- if private_type_de_champs.any?
-  = render ViewableChamp::SectionComponent.new(dossier: @dossier, type_de_champs: private_type_de_champs, demande_seen_at: nil, profile: 'instructeur')
+- private_champs = @dossier.private_champs
+- if private_champs.any?
+  = render ViewableChamp::SectionComponent.new(champs: private_champs, demande_seen_at: nil, profile: 'instructeur')
 - else
   Aucune annotation privée
 

@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
 describe EditableChamp::SectionComponent, type: :component do
-  include TreeableConcern
   let(:procedure) { create(:procedure, public_type_de_champs:) }
   let(:public_type_de_champs) { [] }
   let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-  let(:type_de_champs) { dossier.revision.public_root_type_de_champs }
-  let(:component) { described_class.new(type_de_champs:, dossier:) }
+  let(:component) { described_class.new(champs: dossier.public_champs) }
   before { render_inline(component).to_html }
 
   context 'list of champs without an header_section' do
@@ -86,6 +84,15 @@ describe EditableChamp::SectionComponent, type: :component do
     it 'contains all champs' do
       expect(page).to have_selector("fieldset input[type=text]", count: 1)
       expect(page).to have_selector("fieldset fieldset textarea", count: 1)
+    end
+  end
+
+  context 'with a level skipped after an earlier section of that level was closed' do
+    let(:public_type_de_champs) { [{ type: :header_section, level: 1 }, { type: :header_section, level: 2 }, { type: :header_section, level: 1 }, { type: :header_section, level: 3 }, { type: :text }] }
+
+    it 'keeps the champ in the section opened last' do
+      expect(page).to have_selector("fieldset fieldset input[type=text]", count: 1)
+      expect(page).to have_selector("fieldset fieldset fieldset", count: 0)
     end
   end
 

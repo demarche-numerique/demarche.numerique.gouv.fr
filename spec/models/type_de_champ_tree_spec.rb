@@ -115,7 +115,6 @@ describe TypeDeChampTree do
       end
     end
 
-    # TreeableConcern#to_tree nests this h3 in the h2 of the FIRST h1
     context 'with a level skipped after an earlier section of that level was closed' do
       let(:public_type_de_champs) do
         [

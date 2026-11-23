@@ -6,7 +6,6 @@ describe 'shared/dossiers/champs', type: :view do
   let(:profile) { "instructeur" }
   let(:procedure) { create(:procedure, public_type_de_champs:) }
   let(:dossier) { create(:dossier, :with_populated_champs, procedure:) }
-  let(:type_de_champs) { dossier.revision.public_root_type_de_champs }
 
   before do
     view.extend DossierHelper
@@ -17,7 +16,7 @@ describe 'shared/dossiers/champs', type: :view do
     end
   end
 
-  subject { render ViewableChamp::SectionComponent.new(type_de_champs:, dossier:, demande_seen_at:, profile:) }
+  subject { render ViewableChamp::SectionComponent.new(champs: dossier.public_champs, demande_seen_at:, profile:) }
 
   context "there are some champs" do
     let(:public_type_de_champs) { [{ type: :checkbox }, { type: :header_section }, { type: :explication }, { type: :dossier_link }, { type: :textarea }, { type: :integer_number }] }
