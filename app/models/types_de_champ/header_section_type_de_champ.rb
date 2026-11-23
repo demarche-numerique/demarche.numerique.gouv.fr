@@ -12,7 +12,8 @@ class TypesDeChamp::HeaderSectionTypeDeChamp < TypeDeChamp
   def has_label? = false
   def tags_for_template = [].freeze
 
-  def revision_diff_options = { header_section_level: header_section_level_value.to_s }
+  # its level is its place in the tree: a change of level is a move
+  def revision_diff_options = {}
 
   def header_section_level_value
     if header_section_level.presence

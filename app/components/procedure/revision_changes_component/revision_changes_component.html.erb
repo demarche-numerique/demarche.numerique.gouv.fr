@@ -239,10 +239,6 @@
         <% list.with_item do %>
           <%= t(".#{prefix}.update_prefill_with_france_connect_information", label: change.label, to: change.to ? t(".#{prefix}.add_prefill_with_france_connect_information") : t(".#{prefix}.remove_prefill_with_france_connect_information")) %>
         <% end %>
-      <% when :header_section_level %>
-        <% list.with_item do %>
-          <%= t(".#{prefix}.update_header_section_level", label: change.label, to: change.to) %>
-        <% end %>
       <% when :pre_rempli_hidden %>
         <% list.with_item do %>
           <%= t(".#{prefix}.#{change.to ? 'enable' : 'disable'}_pre_rempli_hidden", label: change.label) %>

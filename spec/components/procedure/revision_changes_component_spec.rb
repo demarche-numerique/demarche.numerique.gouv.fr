@@ -219,7 +219,8 @@ describe Procedure::RevisionChangesComponent, type: :component do
   describe "header section, birthdate and pre rempli changes" do
     let(:procedure) do
       create(:procedure, :published, public_type_de_champs: [
-        { type: :header_section, libelle: "Titre", level: "1" },
+        { type: :header_section, libelle: "Partie", level: "1" },
+        { type: :header_section, libelle: "Titre", level: "2" },
         { type: :date, libelle: "Naissance", birthdate: "0" },
         { type: :pre_rempli, libelle: "Prérempli" },
       ])
@@ -233,13 +234,13 @@ describe Procedure::RevisionChangesComponent, type: :component do
     end
 
     before do
-      new_revision.find_and_ensure_exclusive_use(tdcs[0].stable_id).update!(header_section_level: "2")
-      new_revision.find_and_ensure_exclusive_use(tdcs[1].stable_id).update!(birthdate: "1", prefill_with_france_connect_information: "1")
-      new_revision.find_and_ensure_exclusive_use(tdcs[2].stable_id).update!(pre_rempli_hidden: "1")
+      new_revision.update_type_de_champ(new_revision.find_and_ensure_exclusive_use(tdcs[1].stable_id), header_section_level: "1")
+      new_revision.find_and_ensure_exclusive_use(tdcs[2].stable_id).update!(birthdate: "1", prefill_with_france_connect_information: "1")
+      new_revision.find_and_ensure_exclusive_use(tdcs[3].stable_id).update!(pre_rempli_hidden: "1")
     end
 
-    it "displays every change" do
-      expect(subject).to have_text("Le niveau du titre de section « Titre » a été modifié. Le nouveau niveau est 2.", normalize_ws: true)
+    it "displays every change, the level of a header section as a move" do
+      expect(subject).to have_text("La position d’un champ a été modifiée.", normalize_ws: true)
       expect(subject).to have_text("Le champ « Naissance » a été modifié. Il s’agit désormais d’une date de naissance.", normalize_ws: true)
       expect(subject).to have_text("Le champ « Naissance » a été modifié. La date est désormais préremplie avec FranceConnect.", normalize_ws: true)
       expect(subject).to have_text("Le champ « Prérempli » est désormais masqué pour l’usager.", normalize_ws: true)
@@ -323,31 +324,6 @@ describe Procedure::RevisionChangesComponent, type: :component do
       expect(subject).to have_text("La nature de pièce justificative")
 
       expect(subject).not_to have_text("Les familles de formats acceptés")
-    end
-  end
-
-  describe "legacy header section without an explicit level" do
-    let(:procedure) do
-      create(:procedure, :published, public_type_de_champs: [{ type: :header_section, libelle: "Titre" }])
-    end
-    let(:new_revision) { procedure.create_new_revision }
-    let(:tdc) { procedure.active_revision.public_root_type_de_champs.first }
-
-    subject do
-      render_inline(described_class.new(new_revision: new_revision.reload, previous_revision: procedure.active_revision))
-      page
-    end
-
-    before do
-      tdc.update!(header_section_level: nil)
-      procedure.active_revision.reload
-
-      # what the editor re-submits for a legacy section (header_section_level_value is 1)
-      new_revision.find_and_ensure_exclusive_use(tdc.stable_id).update!(header_section_level: "1")
-    end
-
-    it "does not report a level change when the level is semantically identical" do
-      expect(subject).not_to have_text("Le niveau du titre de section")
     end
   end
 
