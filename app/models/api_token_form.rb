@@ -8,6 +8,7 @@ class APITokenForm
   attribute :duplicated_token_id, :string
   attribute :target, :string
   attribute :procedure_ids, default: -> { [] }
+  attribute :follows_clones, :boolean, default: true
   attribute :access, :string
   attribute :network_filtering, :string, default: 'autoAssign'
   attribute :networks, :string
@@ -29,6 +30,7 @@ class APITokenForm
       name: token.name,
       target: token.full_access? ? 'all' : 'custom',
       procedure_ids: Array(token.allowed_procedure_ids),
+      follows_clones: token.full_access? || token.follows_clones?,
       access: token.write_access? ? 'read_write' : 'read',
       network_filtering: token.authorized_networks.blank? ? 'autoAssign' : 'customNetworks',
       networks: token.authorized_networks_for_ui.gsub(', ', ' ').presence
@@ -64,6 +66,7 @@ class APITokenForm
       name:,
       write_access: access == 'read_write',
       allowed_procedure_ids:,
+      follows_clones: custom_target? && follows_clones,
       authorized_networks:,
       requires_ip_filtering: true,
     }

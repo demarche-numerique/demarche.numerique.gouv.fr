@@ -18,6 +18,7 @@ en:
         all_procedures: all my procedures
         all_procedures_hint: current and future
         select_procedures: Select authorized procedures
+        follows_clones: Also include the future clones of these procedures
         token_permission: This token allows
         read_only: read only
         read_only_hint: retrieve dossiers, attachments
@@ -43,6 +44,7 @@ en:
         add_authorized_procedures: 'Add authorized procedures'
         add_button: Add
         delete_button: Delete
+        remove_followed_procedure_confirm: Remove ‘%{libelle}’ from this token? Its future clones will no longer enter it either.
       update:
         networks_required: You cannot remove the API access restrictions of a permanent token.
         renamed: The token has been renamed.
