@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_13_180000) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_23_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_catalog.plpgsql"
@@ -63,6 +63,19 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_13_180000) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "administrateur_creation_requests", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "decided_at"
+    t.string "emails", null: false, array: true
+    t.boolean "otp_verified", default: false, null: false
+    t.bigint "requester_id", null: false
+    t.jsonb "results", default: {}, null: false
+    t.string "state", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "validator_id"
+    t.index ["requester_id", "created_at"], name: "idx_on_requester_id_created_at_edc49a8245"
   end
 
   create_table "administrateurs", id: :serial, force: :cascade do |t|
