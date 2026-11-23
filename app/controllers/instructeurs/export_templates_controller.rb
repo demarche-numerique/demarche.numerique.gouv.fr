@@ -87,7 +87,9 @@ module Instructeurs
     def set_preview_dossiers
       groupe_instructeur_ids = @groupe_instructeurs.ids
       @preview_dossiers = @procedure.preview_dossiers(states: ExportTemplate::PREVIEW_DOSSIER_STATES, groupe_instructeur_ids:)
-      @preview_dossier = @procedure.preview_dossier(params[:dossier_id], groupe_instructeur_ids:) || @preview_dossiers.values.first&.first
+      @preview_dossier = @procedure.preview_dossier(params[:dossier_id], groupe_instructeur_ids:) ||
+        @preview_dossiers.values.first&.first ||
+        @procedure.dossiers.where(for_procedure_preview: true, user: current_user).first
     end
 
     def set_procedure_and_groupe_instructeurs
