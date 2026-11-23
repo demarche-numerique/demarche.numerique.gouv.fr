@@ -21,9 +21,7 @@ class NotificationMailer < ApplicationMailer
     @service = @dossier.procedure.service
     @logo_url = procedure_logo_url(@dossier.procedure)
     attachments[@attachment[:filename]] = @attachment[:content] if @attachment.present?
-    I18n.with_locale(@dossier.user_locale) do
-      mail(subject: @subject, to: @email, template_name: 'send_notification')
-    end
+    mail(subject: @subject, to: @email, template_name: 'send_notification')
   end
 
   def send_notification_for_tiers(dossier, repasser_en_instruction: false)
@@ -44,6 +42,7 @@ class NotificationMailer < ApplicationMailer
   end
 
   def send_accuse_lecture_notification(dossier)
+    use_recipient_locale(dossier.user)
     @dossier = dossier
     @dossier.with_revision
     @subject = default_i18n_subject(dossier_id: @dossier.id, libelle: @dossier.procedure.libelle.truncate_words(50))
@@ -107,16 +106,15 @@ class NotificationMailer < ApplicationMailer
     if @dossier.skip_user_notification_email?
       mail.perform_deliveries = false
     else
-      I18n.with_locale(@dossier.user_locale) do
-        @email_template = @dossier.email_template_for(params[:state])
-        email_template_presenter = EmailTemplatePresenterService.new(@dossier, params[:state])
+      use_recipient_locale(@dossier.user)
+      @email_template = @dossier.email_template_for(params[:state])
+      email_template_presenter = EmailTemplatePresenterService.new(@dossier, params[:state])
 
-        @email = @dossier.user_email_for(:notification)
-        @rendered_template = email_template_presenter.safe_body
-        @subject = email_template_presenter.safe_subject
-        @actions = @email_template.actions_for_dossier(@dossier)
-        @attachment = @email_template.attachment_for_dossier(@dossier)
-      end
+      @email = @dossier.user_email_for(:notification)
+      @rendered_template = email_template_presenter.safe_body
+      @subject = email_template_presenter.safe_subject
+      @actions = @email_template.actions_for_dossier(@dossier)
+      @attachment = @email_template.attachment_for_dossier(@dossier)
     end
   end
 end

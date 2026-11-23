@@ -4,6 +4,7 @@ class PhishingAlertMailer < ApplicationMailer
   layout 'mailers/layout'
 
   def notify(user)
+    use_recipient_locale(user)
     @user = user
     @subject = default_i18n_subject
 

@@ -5,6 +5,7 @@ class AdministrateurMailer < ApplicationMailer
   layout 'mailers/layout'
 
   def activate_before_expiration(user, reset_password_token)
+    use_recipient_locale(user)
     @user = user
     @reset_password_token = reset_password_token
     @expiration_date = @user.reset_password_sent_at + Devise.reset_password_within
@@ -18,6 +19,7 @@ class AdministrateurMailer < ApplicationMailer
   end
 
   def notify_service_without_siret(user_email)
+    use_recipient_locale(user_email)
     @subject = "SIRET manquant sur un de vos services"
 
     mail(to: user_email,

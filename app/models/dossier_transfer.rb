@@ -41,10 +41,6 @@ class DossierTransfer < ApplicationRecord
     end
   end
 
-  def user_locale
-    User.find_by(email: email)&.locale || I18n.default_locale
-  end
-
   def destroy_and_nullify
     transaction do
       # Rails cascading is not working with default scopes. Doing nullify cascade manually.

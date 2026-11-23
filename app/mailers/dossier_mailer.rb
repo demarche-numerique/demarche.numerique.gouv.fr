@@ -22,82 +22,75 @@ class DossierMailer < ApplicationMailer
     @dossier = params[:dossier]
     raise AbortDeliveryError if !@dossier.brouillon? || @dossier.hidden_by_user_at.present?
 
-    I18n.with_locale(@dossier.user_locale) do
-      @service = @dossier.procedure.service
-      @logo_url = procedure_logo_url(@dossier.procedure)
-      @subject = default_i18n_subject(libelle_demarche: @dossier.procedure.libelle)
+    use_recipient_locale(@dossier.user)
+    @service = @dossier.procedure.service
+    @logo_url = procedure_logo_url(@dossier.procedure)
+    @subject = default_i18n_subject(libelle_demarche: @dossier.procedure.libelle)
 
-      mail(to: @dossier.user_email_for(:notification), subject: @subject)
-    end
+    mail(to: @dossier.user_email_for(:notification), subject: @subject)
   end
 
   def notify_new_answer
     commentaire = params[:commentaire]
     dossier = commentaire.dossier
 
-    I18n.with_locale(dossier.user_locale) do
-      @dossier = dossier
-      @service = dossier.procedure.service
-      @logo_url = procedure_logo_url(@dossier.procedure)
-      @body = commentaire.body
-      @subject = default_i18n_subject(dossier_id: dossier.id, libelle_demarche: dossier.procedure.libelle)
+    use_recipient_locale(dossier.user)
+    @dossier = dossier
+    @service = dossier.procedure.service
+    @logo_url = procedure_logo_url(@dossier.procedure)
+    @body = commentaire.body
+    @subject = default_i18n_subject(dossier_id: dossier.id, libelle_demarche: dossier.procedure.libelle)
 
-      mail(to: dossier.user_email_for(:notification), subject: @subject)
-    end
+    mail(to: dossier.user_email_for(:notification), subject: @subject)
   end
 
   def notify_new_commentaire_to_instructeur(dossier, instructeur_email)
-    I18n.with_locale(dossier.user_locale) do
-      @dossier = dossier
-      @subject = default_i18n_subject(dossier_id: dossier.id, libelle_demarche: dossier.procedure.libelle)
+    use_recipient_locale(instructeur_email)
+    @dossier = dossier
+    @subject = default_i18n_subject(dossier_id: dossier.id, libelle_demarche: dossier.procedure.libelle)
 
-      mail(to: instructeur_email, subject: @subject)
-    end
+    mail(to: instructeur_email, subject: @subject)
   end
 
   def notify_pending_correction
     commentaire = params[:commentaire]
     dossier = commentaire.dossier
 
-    I18n.with_locale(dossier.user_locale) do
-      @dossier = dossier
-      @service = dossier.procedure.service
-      @logo_url = procedure_logo_url(@dossier.procedure)
-      @correction = commentaire.dossier_correction
+    use_recipient_locale(dossier.user)
+    @dossier = dossier
+    @service = dossier.procedure.service
+    @logo_url = procedure_logo_url(@dossier.procedure)
+    @correction = commentaire.dossier_correction
 
-      # No default: a fallback would give a plausible but wrong subject ("correct" for a complement).
-      @subject = t(".#{@correction.reason}.subject", dossier_id: dossier.id, libelle_demarche: dossier.procedure.libelle)
+    # No default: a fallback would give a plausible but wrong subject ("correct" for a complement).
+    @subject = t(".#{@correction.reason}.subject", dossier_id: dossier.id, libelle_demarche: dossier.procedure.libelle)
 
-      mail(to: dossier.user_email_for(:notification), subject: @subject)
-    end
+    mail(to: dossier.user_email_for(:notification), subject: @subject)
   end
 
   def notify_new_avis_to_instructeur(avis, instructeur_email)
-    I18n.with_locale(avis.dossier.user_locale) do
-      @avis = avis
-      @subject = default_i18n_subject(dossier_id: avis.dossier.id, libelle_demarche: avis.procedure.libelle)
+    use_recipient_locale(instructeur_email)
+    @avis = avis
+    @subject = default_i18n_subject(dossier_id: avis.dossier.id, libelle_demarche: avis.procedure.libelle)
 
-      mail(to: instructeur_email, subject: @subject)
-    end
+    mail(to: instructeur_email, subject: @subject)
   end
 
   def notify_new_dossier_depose_to_instructeur(dossier, instructeur_email)
-    I18n.with_locale(dossier.user_locale) do
-      @dossier = dossier
-      @subject = default_i18n_subject(dossier_id: dossier.id, libelle_demarche: dossier.procedure.libelle)
+    use_recipient_locale(instructeur_email)
+    @dossier = dossier
+    @subject = default_i18n_subject(dossier_id: dossier.id, libelle_demarche: dossier.procedure.libelle)
 
-      mail(to: instructeur_email, subject: @subject)
-    end
+    mail(to: instructeur_email, subject: @subject)
   end
 
   def notify_brouillon_near_deletion(dossiers, to_email)
-    I18n.with_locale(dossiers.first.user_locale) do
-      @subject = default_i18n_subject(count: dossiers.size)
-      @dossiers = dossiers
-      @expiration_date = Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks.from_now
+    use_recipient_locale(dossiers.first.user)
+    @subject = default_i18n_subject(count: dossiers.size)
+    @dossiers = dossiers
+    @expiration_date = Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks.from_now
 
-      mail(to: to_email, subject: @subject)
-    end
+    mail(to: to_email, subject: @subject)
   end
 
   def notify_brouillon_deletion(dossier_hashes, to_email)
@@ -115,14 +108,13 @@ class DossierMailer < ApplicationMailer
   end
 
   def notify_automatic_deletion_to_user(hidden_dossiers, to_email)
-    I18n.with_locale(hidden_dossiers.first.user_locale) do
-      @state = hidden_dossiers.first.state
-      @subject = default_i18n_subject(count: hidden_dossiers.size)
-      @hidden_dossiers = hidden_dossiers
-      @deletion_date = Dossier::REMAINING_WEEKS_BEFORE_DELETION.weeks.from_now
+    use_recipient_locale(hidden_dossiers.first.user)
+    @state = hidden_dossiers.first.state
+    @subject = default_i18n_subject(count: hidden_dossiers.size)
+    @hidden_dossiers = hidden_dossiers
+    @deletion_date = Dossier::REMAINING_WEEKS_BEFORE_DELETION.weeks.from_now
 
-      mail(to: to_email, subject: @subject)
-    end
+    mail(to: to_email, subject: @subject)
   end
 
   def notify_automatic_deletion_for_tiers(hidden_dossiers, to_email)
@@ -147,13 +139,12 @@ class DossierMailer < ApplicationMailer
   end
 
   def notify_near_deletion_to_user(dossiers, to_email)
-    I18n.with_locale(dossiers.first.user_locale) do
-      @subject = default_i18n_subject(count: dossiers.size, state: dossiers.first.state)
-      @dossiers = dossiers
-      @expiration_date = Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks.from_now
+    use_recipient_locale(dossiers.first.user)
+    @subject = default_i18n_subject(count: dossiers.size, state: dossiers.first.state)
+    @dossiers = dossiers
+    @expiration_date = Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks.from_now
 
-      mail(to: to_email, subject: @subject)
-    end
+    mail(to: to_email, subject: @subject)
   end
 
   def notify_near_deletion_for_tiers(dossiers, to_email)
@@ -177,6 +168,7 @@ class DossierMailer < ApplicationMailer
   end
 
   def notify_groupe_instructeur_changed(instructeur, dossier)
+    use_recipient_locale(instructeur.user)
     @subject = default_i18n_subject(dossier_id: dossier.id)
     @dossier = dossier
 
@@ -184,12 +176,11 @@ class DossierMailer < ApplicationMailer
   end
 
   def notify_brouillon_not_submitted(dossier)
-    I18n.with_locale(dossier.user_locale) do
-      @subject = default_i18n_subject(dossier_id: dossier.id)
-      @dossier = dossier
+    use_recipient_locale(dossier.user)
+    @subject = default_i18n_subject(dossier_id: dossier.id)
+    @dossier = dossier
 
-      mail(to: dossier.user_email_for(:notification), subject: @subject)
-    end
+    mail(to: dossier.user_email_for(:notification), subject: @subject)
   end
 
   def notify_transfer
@@ -198,21 +189,19 @@ class DossierMailer < ApplicationMailer
     @user = User.find_by(email: @transfer.email)
 
     bypass_unverified_mail_protection!
-    I18n.with_locale(@transfer.user_locale) do
-      @subject = default_i18n_subject()
+    use_recipient_locale(@user)
+    @subject = default_i18n_subject()
 
-      mail(to: @transfer.email, subject: @subject)
-    end
+    mail(to: @transfer.email, subject: @subject)
   end
 
   def notify_owner_for_changes(dossier, invite)
-    I18n.with_locale(dossier.user_locale) do
-      @dossier = dossier
-      @invite = invite
-      @subject = default_i18n_subject(dossier_id: dossier.id, email_invite: invite.email)
+    use_recipient_locale(dossier.user)
+    @dossier = dossier
+    @invite = invite
+    @subject = default_i18n_subject(dossier_id: dossier.id, email_invite: invite.email)
 
-      mail(to: dossier.user.email, subject: @subject)
-    end
+    mail(to: dossier.user.email, subject: @subject)
   end
 
   def self.critical_email?(action_name)

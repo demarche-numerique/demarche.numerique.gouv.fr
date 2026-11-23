@@ -5,6 +5,7 @@ class InviteMailer < ApplicationMailer
   layout 'mailers/layout'
 
   def invite_user(invite)
+    use_recipient_locale(invite.user)
     bypass_unverified_mail_protection!
 
     @subject = default_i18n_subject

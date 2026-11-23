@@ -112,6 +112,14 @@ RSpec.describe DossierMailer, type: :mailer do
     end
   end
 
+  describe '.notify_new_dossier_depose_to_instructeur' do
+    it "renders in the locale of the instructeur's account" do
+      instructeurs.default.user.update!(locale: 'en')
+      mail = DossierMailer.notify_new_dossier_depose_to_instructeur(dossiers.en_construction, instructeurs.default.email)
+      expect(mail.body).to include('Dear Sir or Madam')
+    end
+  end
+
   describe '.notify_en_construction_deletion_to_administration' do
     let(:hidden_dossier) { build(:dossier) }
 
