@@ -24,8 +24,7 @@ module Administrateurs
         return render_invalid_step
       end
 
-      @api_token, @packed_token = APIToken.generate(current_administrateur, expires_at: @api_token_form.expires_at)
-      @api_token.update!(@api_token_form.token_attributes)
+      @api_token, @packed_token = APIToken.generate(current_administrateur, expires_at: @api_token_form.expires_at, **@api_token_form.token_attributes)
 
       @curl_command = curl_command(@packed_token, @api_token.procedure_ids.first)
     end

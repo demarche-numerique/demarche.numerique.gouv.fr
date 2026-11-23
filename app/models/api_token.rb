@@ -133,10 +133,10 @@ class APIToken < ApplicationRecord
       MAX_LIFETIME.from_now.to_date
     end
 
-    def generate(administrateur, expires_at: max_expires_at)
+    def generate(administrateur, expires_at: max_expires_at, **attributes)
       plain_token = generate_unique_secure_token
       encrypted_token = BCrypt::Password.create(plain_token)
-      api_token = create!(administrateur:, encrypted_token:, token_digest: digest(plain_token), expires_at:, name: Date.today.strftime('Jeton d’API généré le %d/%m/%Y'))
+      api_token = create!(name: Date.today.strftime('Jeton d’API généré le %d/%m/%Y'), **attributes, administrateur:, encrypted_token:, token_digest: digest(plain_token), expires_at:)
       bearer = BearerToken.new(api_token.id, plain_token)
       [api_token, bearer.to_string]
     end
