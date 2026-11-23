@@ -186,14 +186,15 @@ describe 'As an administrateur, I want to manage the procedure’s attestation',
 
     context "tag in error" do
       before do
-        tdc = procedure.active_revision.add_type_de_champ(type_champ: :integer_number, libelle: 'age')
+        # published, then removed: only a past revision holds it
+        tdc = procedure.draft_revision.add_type_de_champ(type_champ: :integer_number, libelle: 'age')
+        procedure.publish_revision!(procedure.administrateurs.first)
+        procedure.draft_revision.remove_type_de_champ(tdc.stable_id)
         procedure.publish_revision!(procedure.administrateurs.first)
 
         attestation = procedure.attestation_templates.build(version: 2, json_body: AttestationTemplate::TIPTAP_BODY_DEFAULT, label_logo: "test", kind: "acceptation")
         attestation.json_body["content"] << { type: :mention, attrs: { id: "tdc#{tdc.stable_id}", label: tdc.libelle } }
         attestation.save!
-
-        procedure.draft_revision.remove_type_de_champ(tdc)
       end
 
       scenario do
