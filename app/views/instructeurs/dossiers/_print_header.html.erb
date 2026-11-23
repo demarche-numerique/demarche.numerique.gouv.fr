@@ -1,0 +1,4 @@
+<div id="print-header" class="print-header">
+  <%= dossier.procedure.libelle.truncate_words(10) %> &gt;
+  <%= "Dossier n° #{dossier.id} (#{dossier_display_state(dossier, lower: true)})" %>
+</div>

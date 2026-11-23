@@ -1,0 +1,19 @@
+<%# Rendered by every Instructeurs::DossiersController action that changes the state of a dossier %>
+<%# from the dossier page (passer_en_instruction, repasser_en_construction, repasser_en_instruction, %>
+<%# pending_correction, terminer, dossier_labels). The page is not reloaded, so the work in progress %>
+<%# in the current tab (a message being written, an upload) survives the state change. %>
+<%# Only the regions listed here are refreshed: any region of the dossier page that reads the %>
+<%# dossier state must be broadcast here, or it stays stale until the next navigation. %>
+<%= turbo_stream.replace 'header-top', partial: 'header_top', locals: { dossier: @dossier, procedure_presentation: @procedure_presentation, notifications: @notifications } %>
+
+<%= turbo_stream.replace 'print-header', partial: 'print_header', locals: { dossier: @dossier } %>
+
+<%= turbo_stream.replace 'edit-dossier-button', Instructeurs::EditDossierButtonComponent.new(dossier: @dossier) %>
+
+<%= turbo_stream.replace 'dossier-infos-generales', partial: 'shared/dossiers/infos_generales', locals: { dossier: @dossier, profile: 'instructeur' } %>
+
+<%= turbo_stream.replace 'dossier-traitements', Instructeurs::DossierTraitementsComponent.new(traitements: @dossier.traitements) %>
+
+<% @notifications_sticker.each do |key, notification| %>
+  <%= turbo_stream.replace notification_sticker_id(key), partial: 'shared/notification_sticker', locals: { key:, notification: } %>
+<% end %>
