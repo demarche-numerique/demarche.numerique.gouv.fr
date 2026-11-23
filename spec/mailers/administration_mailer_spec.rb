@@ -10,8 +10,17 @@ RSpec.describe AdministrationMailer, type: :mailer do
 
     it { expect(subject.subject).not_to be_empty }
 
+    it 'renders the French body' do
+      body = subject.body.decoded
+      expect(body).to include("Activation du compte administrateur")
+      expect(body).to include("Je vous remercie de l’intérêt que vous portez à notre outil de dématérialisation de démarches.")
+      expect(body).to include("Votre compte administrateur a été créé pour l’adresse électronique #{admin_user.email}.")
+      expect(body).to include("Équipe de #{APPLICATION_NAME}")
+    end
+
     describe "when the user has not been activated" do
       it do
+        expect(subject.body.decoded).to include("Pour l’activer, cliquez sur le lien suivant")
         expect(subject.body).to include(users_activate_path(token: token))
         expect(subject.body).not_to include(edit_user_password_url(admin_user, reset_password_token: token))
         expect(subject['BYPASS_UNVERIFIED_MAIL_PROTECTION']).to be_present
@@ -21,6 +30,7 @@ RSpec.describe AdministrationMailer, type: :mailer do
     describe "when the user is already active" do
       let(:last_sign_in_at) { Time.zone.now }
       it do
+        expect(subject.body.decoded).to include("Pour vous connecter, cliquez sur le lien suivant")
         expect(subject.body).not_to include(users_activate_path(token: token))
         expect(subject.body).to include(edit_user_password_url(admin_user, reset_password_token: token))
       end
@@ -48,6 +58,16 @@ RSpec.describe AdministrationMailer, type: :mailer do
     it do
       expect(subject.subject).not_to be_empty
       expect(subject['BYPASS_UNVERIFIED_MAIL_PROTECTION']).to be_present
+    end
+
+    it 'renders the French body' do
+      body = subject.body.decoded
+      expect(body).to include("Demande de création de compte refusée")
+      expect(body).to include("Les comptes administrateurs sont destinés aux administrations publiques")
+      expect(body).to include("l’entrée dans #{APPLICATION_NAME} se fait via un lien fourni par l’administration responsable")
+      expect(body).to include("en tant qu’usager, merci d’expliciter le problème rencontré sur notre")
+      expect(body).to include(%(<a href="#{contact_url}">formulaire de contact</a>))
+      expect(body).to include(%(<a href="#{contact_admin_url}">formulaire de contact administrateur</a>))
     end
   end
 end
