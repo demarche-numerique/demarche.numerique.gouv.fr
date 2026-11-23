@@ -1,0 +1,4 @@
+<%= render Procedure::ProcedureAdministrateurs::AdministrateurComponent.with_collection(
+  procedure.administrateurs.order('users.email'),
+  procedure:
+) %>

@@ -1,6 +1,4 @@
-<%= turbo_stream.update 'administrateurs' do %>
-  <%= render Procedure::ProcedureAdministrateurs::AdministrateurComponent.with_collection(@procedure.administrateurs.order('users.email'), procedure: @procedure) %>
-<% end %>
+<%= turbo_stream.update 'administrateurs', partial: 'administrateurs', locals: { procedure: @procedure } %>
 
 <% if @procedure.administrateurs.one? %>
   <%= turbo_stream.focus 'administrateur_email' %>
