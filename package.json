@@ -49,7 +49,7 @@
     "p-retry": "^7.1.1",
     "pmtiles": "^4.3.0",
     "react": "19.2.7",
-    "react-aria-components": "^1.18.0",
+    "react-aria-components": "^1.22.1",
     "react-coordinate-input": "^1.0.0",
     "react-dom": "19.2.7",
     "react-fast-compare": "^3.2.2",
