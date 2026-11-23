@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 describe Administrateurs::ContactInformationsController, type: :controller do
+  render_views
+
   let(:admin) { administrateurs.default }
-  let(:procedure) { create(:procedure, administrateurs: [admin]) }
+  let(:procedure) { procedures.individual }
   let(:groupe_instructeur) { procedure.defaut_groupe_instructeur }
 
   before do
@@ -14,6 +16,9 @@ describe Administrateurs::ContactInformationsController, type: :controller do
       get :new, params: { procedure_id: procedure.id, groupe_instructeur_id: groupe_instructeur.id }
       expect(response).to render_template(:new)
       expect(assigns(:contact_information)).to be_a_new(ContactInformation)
+      expect(response.body).to have_css('h1', text: 'Informations de contact')
+      expect(response.body).to have_field('contact_information[nom]')
+      expect(response.body).not_to have_button('Supprimer')
     end
   end
 
@@ -35,7 +40,7 @@ describe Administrateurs::ContactInformationsController, type: :controller do
     context 'with valid params' do
       it 'creates the contact information and redirects' do
         expect { post :create, params: valid_params }
-          .to change { ContactInformation.count }.by(1)
+          .to change { groupe_instructeur.reload.contact_information.present? }.from(false).to(true)
 
         expect(flash[:notice]).to eq('Les informations de contact ont bien été ajoutées')
         expect(response).to redirect_to(admin_procedure_groupe_instructeur_path(procedure, groupe_instructeur))
@@ -68,6 +73,9 @@ describe Administrateurs::ContactInformationsController, type: :controller do
       get :edit, params: { procedure_id: procedure.id, groupe_instructeur_id: groupe_instructeur.id }
       expect(response).to render_template(:edit)
       expect(assigns(:contact_information)).to eq(contact_information)
+      expect(response.body).to have_css('h1', text: 'Modifier les informations de contact')
+      expect(response.body).to have_field('contact_information[nom]')
+      expect(response.body).to have_button('Supprimer')
     end
   end
 
@@ -111,7 +119,7 @@ describe Administrateurs::ContactInformationsController, type: :controller do
     it 'destroys the contact information and redirects' do
       expect {
         delete :destroy, params: { procedure_id: procedure.id, groupe_instructeur_id: groupe_instructeur.id }
-      }.to change { ContactInformation.count }.by(-1)
+      }.to change { groupe_instructeur.reload.contact_information.present? }.from(true).to(false)
 
       expect(flash[:notice]).to eq('Les informations de contact ont bien été supprimées')
       expect(response).to redirect_to(admin_procedure_groupe_instructeur_path(procedure, groupe_instructeur))
