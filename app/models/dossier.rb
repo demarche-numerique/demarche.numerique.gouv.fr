@@ -283,7 +283,9 @@ class Dossier < ApplicationRecord
   }
   scope :visible_by_user_or_administration, -> { visible_by_user.or(visible_by_administration) }
   scope :hidden_for_administration, -> {
-    state_not_brouillon.hidden_by_administration.or(state_en_construction.hidden_by_user)
+    state_not_brouillon.hidden_by_administration
+      .or(state_not_brouillon.hidden_by_expired)
+      .or(state_en_construction.hidden_by_user)
   }
   scope :for_procedure_preview, -> { where(for_procedure_preview: true) }
   scope :for_groupe_instructeur, -> (groupe_instructeurs) { where(groupe_instructeur: groupe_instructeurs) }
@@ -294,7 +296,8 @@ class Dossier < ApplicationRecord
   scope :created_since,                  -> (since) { where(dossiers: { depose_at: since.. }) }
   scope :hidden_by_user_since,           -> (since) { where('dossiers.hidden_by_user_at IS NOT NULL AND dossiers.hidden_by_user_at >= ?', since) }
   scope :hidden_by_administration_since, -> (since) { where('dossiers.hidden_by_administration_at IS NOT NULL AND dossiers.hidden_by_administration_at >= ?', since) }
-  scope :hidden_since,                   -> (since) { hidden_by_user_since(since).or(hidden_by_administration_since(since)) }
+  scope :hidden_by_expired_since,        -> (since) { where(dossiers: { hidden_by_expired_at: since.. }) }
+  scope :hidden_since,                   -> (since) { hidden_by_user_since(since).or(hidden_by_administration_since(since)).or(hidden_by_expired_since(since)) }
 
   scope :with_type_de_champ, -> (stable_id) { joins(:champ_data).where(champs: { stream: MAIN_STREAM, stable_id: }) }
   scope :without_type_de_champ, -> (stable_id) { where.not(id: with_type_de_champ(stable_id).select(:id)) }
