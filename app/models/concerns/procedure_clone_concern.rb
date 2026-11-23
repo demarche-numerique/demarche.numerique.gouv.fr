@@ -122,6 +122,7 @@ module ProcedureCloneConcern
       procedure.save!
       clone_email_templates(procedure) if options[:clone_email_templates]
       move_new_children_to_new_parent_coordinate(procedure.draft_revision)
+      APIToken.receive_clone(source: self, clone: procedure)
     end
 
     procedure.draft_revision.revision_type_de_champs.public_only.each(&:destroy) if !options[:clone_champs]

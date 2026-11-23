@@ -3,6 +3,14 @@ en:
   read_write_prefix: "read and write on"
   read_only_prefix: "read only on"
   all_procedures: "All procedures"
+  procedures_count:
+    zero: "no procedure"
+    one: "%{count} procedure"
+    other: "%{count} procedures"
+  with_clones:
+    zero: "%{procedures}"
+    one: "%{procedures} and its future clones"
+    other: "%{procedures} and their future clones"
   network_filtering: "filtering: %{networks}"
   pending_ip: "Awaiting IP detection (1st call)"
   no_filtering: "No network filtering"

@@ -123,6 +123,11 @@ fr:
         administrateurs_count:
           one: "%{count} administrateur"
           other: "%{count} administrateurs"
+        api_tokens:
+          checked:
+            one: "Le jeton d’API %{tokens} aura accès à la nouvelle démarche seulement si cette case reste cochée."
+            other: "Les jetons d’API %{tokens} auront accès à la nouvelle démarche seulement si cette case reste cochée."
+          token: "« %{name} » (%{email})"
         instructeurs: Instructeurs
         instructeurs_count:
           zero: Aucun instructeur

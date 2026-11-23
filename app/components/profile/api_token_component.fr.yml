@@ -3,6 +3,14 @@ fr:
   read_write_prefix: "lecture et écriture sur"
   read_only_prefix: "lecture seule sur"
   all_procedures: "Toutes les démarches"
+  procedures_count:
+    zero: "aucune démarche"
+    one: "%{count} démarche"
+    other: "%{count} démarches"
+  with_clones:
+    zero: "%{procedures}"
+    one: "%{procedures} et ses futurs clones"
+    other: "%{procedures} et leurs futurs clones"
   network_filtering: "filtrage : %{networks}"
   pending_ip: "En attente de détection IP (1er appel)"
   no_filtering: "Aucun filtrage réseau"

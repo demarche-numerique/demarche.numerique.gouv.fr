@@ -143,6 +143,7 @@ module Administrateurs
       @procedure = Procedure.find(params[:procedure_id])
       @cloned_from_library = cloned_from_library?
       @is_same_admin = current_administrateur.owns?(@procedure)
+      @clone_api_tokens = APIToken.reading_clones_of(@procedure).where.not(administrateur: current_administrateur).includes(:administrateur).order(:name).to_a if @is_same_admin
       @updated_email_templates = @procedure.custom_email_templates.exists?
 
       if @procedure.hidden_as_template? && !@is_same_admin

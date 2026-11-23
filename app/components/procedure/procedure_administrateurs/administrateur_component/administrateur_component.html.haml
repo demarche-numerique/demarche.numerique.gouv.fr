@@ -1,5 +1,8 @@
 %tr{ id: dom_id(@administrateur) }
-  %td= email
+  %td
+    = email
+    - api_token_descriptions.each do |description|
+      %p.fr-hint-text.fr-mb-0= description
   %td= created_at
   %td= registration_state
   %td= remove_button

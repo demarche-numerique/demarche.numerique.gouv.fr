@@ -2,3 +2,9 @@ en:
   remove: Remove
   its_you: "(It's you!)"
   confirm_remove: "Remove « %{email} » from the administrators of « %{libelle} » ?"
+  api_token: "API token ‘%{name}’: views this procedure, %{last_use}"
+  api_token_following_clones: "API token ‘%{name}’: views this procedure and its future clones, %{last_use}"
+  api_token_writing: "API token ‘%{name}’: views and edits this procedure, %{last_use}"
+  api_token_writing_following_clones: "API token ‘%{name}’: views and edits this procedure and its future clones, %{last_use}"
+  used_ago: "used %{time} ago"
+  never_used: "never used"

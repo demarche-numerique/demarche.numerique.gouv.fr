@@ -95,7 +95,7 @@
           <%- end -%>
           <div class="fr-fieldset__element">
             <div class="fr-checkbox-group">
-              <%= fco.check_box 'administrateurs', checked: true %>
+              <%= fco.check_box 'administrateurs', checked: true, aria: { describedby: ('clone-api-tokens-message' if @clone_api_tokens.any?) } %>
 
               <%= fco.label 'administrateurs', class: "fr-label" do %>
                 <%= t('administrateurs.procedures.clone.administrateurs') %>
@@ -104,6 +104,17 @@
                   <%= t('administrateurs.procedures.clone.administrateurs_count', count: @procedure.administrateurs.count) %>
                 </div>
               <% end %>
+
+              <%- if @clone_api_tokens.any? -%>
+                <div
+                  class="fr-messages-group fr-ml-4w"
+                  id="clone-api-tokens-message"
+                >
+                  <p class="fr-message fr-message--info fr-mt-1v">
+                    <%= t('administrateurs.procedures.clone.api_tokens.checked', count: @clone_api_tokens.size, tokens: clone_api_token_names(@clone_api_tokens)) %>
+                  </p>
+                </div>
+              <%- end -%>
             </div>
           </div>
           <%- if @procedure.instructeurs.any? -%>

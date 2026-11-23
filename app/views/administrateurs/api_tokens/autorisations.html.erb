@@ -49,6 +49,11 @@
           </react-fragment>
         </div>
       </div>
+
+      <div class="fr-checkbox-group fr-mt-2w">
+        <%= f.check_box :follows_clones %>
+        <%= f.label :follows_clones, t('.follows_clones'), class: 'fr-label' %>
+      </div>
     </div>
 
     <hr class="fr-hr">
@@ -66,7 +71,7 @@
       <% end %>
     </div>
 
-    <%= render APITokens::HiddenFieldsComponent.new(form: f, except: %i[target procedure_ids access]) %>
+    <%= render APITokens::HiddenFieldsComponent.new(form: f, except: %i[target procedure_ids follows_clones access]) %>
 
     <ul class="fr-btns-group fr-btns-group--inline">
       <li>

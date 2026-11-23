@@ -47,11 +47,13 @@ describe 'As an administrateur I create an API token', js: true do
     custom_check 'api_token_form_lifetime_oneweek'
     click_on('Valider')
     expect(page).to have_content("Votre jeton est prêt")
+    expect(page).to have_text("#{procedure.libelle} et ses futurs clones")
 
     token = APIToken.last
     expect(token.requires_ip_filtering).to be true
     expect(token.authorized_networks).to be_empty
     expect(token.allowed_procedure_ids).to eq([procedure.id])
+    expect(token.follows_clones).to be true
   end
 
   scenario 'token creation with manual IP' do
@@ -75,6 +77,7 @@ describe 'As an administrateur I create an API token', js: true do
     token = APIToken.last
     expect(token.requires_ip_filtering).to be true
     expect(token.authorized_networks).to eq([IPAddr.new('192.168.1.0/24')])
+    expect(token.follows_clones).to be false
   end
   scenario 'token creation with a preset lifetime, no eternal option offered' do
     visit profil_path
@@ -131,12 +134,15 @@ describe 'As an administrateur I create an API token', js: true do
     find('[role="option"]', text: procedure.libelle).click
     send_keys(:escape)
     custom_check 'api_token_form_access_read_write'
+    expect(page).to have_checked_field('api_token_form_follows_clones')
+    custom_check 'api_token_form_follows_clones'
     click_on 'Continuer'
     expect(page).to have_content('Sécurité')
 
     click_on 'Retour'
     expect(page).to have_content('Privilèges du jeton')
     expect(page).to have_checked_field('api_token_form_access_read_write')
+    expect(page).to have_unchecked_field('api_token_form_follows_clones')
     expect(page).to have_text(procedure.libelle)
 
     click_on 'Retour'
@@ -157,6 +163,7 @@ describe 'As an administrateur I create an API token', js: true do
 
     token = APIToken.last
     expect(token.authorized_networks).to eq([IPAddr.new('192.168.1.0/24')])
+    expect(token.follows_clones).to be false
   end
 
   scenario 'duplicating a token pre-fills steps 1 and 2 but leaves lifetime blank' do
@@ -171,6 +178,7 @@ describe 'As an administrateur I create an API token', js: true do
     click_on 'Continuer'
 
     expect(page).to have_checked_field('api_token_form_access_read_write')
+    expect(page).to have_unchecked_field('api_token_form_follows_clones')
     expect(page).to have_text(procedure.libelle)
     expect(URI(page.current_url).query).to be_nil
     click_on 'Continuer'
@@ -216,7 +224,12 @@ describe 'As an administrateur I create an API token', js: true do
     expect(page).to have_css("li#authorized_procedure_#{procedure.id}")
     expect(token.reload.allowed_procedure_ids).to eq([procedure.id])
 
-    click_on 'Supprimer'
+    custom_check 'follows_clones'
+
+    expect(page).to have_css('form[data-turbo-confirm]')
+    expect(token.reload.follows_clones).to be true
+
+    accept_confirm { click_on 'Supprimer' }
 
     expect(page).to have_no_css("li#authorized_procedure_#{procedure.id}")
     expect(token.reload.allowed_procedure_ids).to eq([])

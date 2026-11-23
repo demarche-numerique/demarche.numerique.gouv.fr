@@ -113,19 +113,28 @@
   </div>
 
   <%- if !api_token.full_access? -%>
-    <ul class="fr-mb-2w">
-      <%- api_token.procedures.each do |procedure| -%>
-        <li id="<%= dom_id(procedure, :authorized) %>">
-          <%= procedure.libelle %>
+    <%- procedures = api_token.procedures.to_a -%>
+    <%= tag.details(open: procedures.size <= 10, class: 'fr-mb-2w') do %>
+      <summary><%= t('.procedures_count', count: procedures.size) %></summary>
 
-          <%= button_to t('.delete_button'),
-            remove_procedure_admin_api_token_path(api_token, procedure_id: procedure.id),
-            class: 'fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-btn--icon-left fr-icon-delete-line',
-            form_class: 'inline',
-            method: :delete %>
-        </li>
-      <%- end -%>
-    </ul>
+      <ul>
+        <%- procedures.each do |procedure| -%>
+          <li id="<%= dom_id(procedure, :authorized) %>">
+            <%= procedure.libelle %>
+
+            <%= button_to t('.delete_button'),
+              remove_procedure_admin_api_token_path(api_token, procedure_id: procedure.id),
+              class: 'fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-btn--icon-left fr-icon-delete-line',
+              form_class: 'inline',
+              method: :delete,
+              form: { data: { turbo_confirm: (t('.remove_followed_procedure_confirm', libelle: procedure.libelle) if api_token.follows_clones?) } } %>
+          </li>
+        <%- end -%>
+      </ul>
+    <% end %>
+    <%= form_with url: admin_api_token_path(api_token), method: :patch, class: 'fr-mb-2w', data: { controller: 'autosubmit' } do |f| -%>
+      <%= render Dsfr::ToggleComponent.new(form: f, target: :follows_clones, title: t('administrateurs.api_tokens.autorisations.follows_clones'), checked: api_token.follows_clones?, extra_class_names: '') %>
+    <%- end -%>
     <div class="flex align-center">
       <p class="fr-text--sm fr-mb-0 fr-mr-1v">
         <%= t('.restrict_access_message') %>

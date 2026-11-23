@@ -284,11 +284,25 @@ describe Administrateurs::APITokensController, type: :controller do
       it { expect(flash_message).to eq('Choisissez une démarche à ajouter.') }
     end
 
+    context 'with follows_clones unchecked' do
+      let(:params) { { follows_clones: '0' } }
+
+      before do
+        token.update!(allowed_procedure_ids: [procedure.id], follows_clones: true)
+        subject
+      end
+
+      it 'stops following the clones without moving the focus to a message' do
+        expect(token.reload.follows_clones).to be false
+        expect(streams.at_css('turbo-stream[action="focus"][target="flash_messages"]')).to be_nil
+      end
+    end
+
     context 'with restore_full_access' do
       let(:params) { { restore_full_access: true } }
 
       before do
-        token.update!(allowed_procedure_ids: [procedure.id])
+        token.update!(allowed_procedure_ids: [procedure.id], follows_clones: true)
         subject
         token.reload
       end
@@ -296,6 +310,7 @@ describe Administrateurs::APITokensController, type: :controller do
       it 'restores full access' do
         expect(token.allowed_procedure_ids).to be_nil
         expect(token.full_access?).to be true
+        expect(token.follows_clones).to be false
         expect(flash_message).to eq('Le jeton a de nouveau accès à toutes vos démarches.')
       end
     end
