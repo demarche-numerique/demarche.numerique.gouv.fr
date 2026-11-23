@@ -1,0 +1,8 @@
+fr:
+  administrateurs:
+    contact_informations:
+      new:
+        contact_information: Informations de contact
+        heading: Informations de contact
+        teams: Groupes d'instructeurs
+        title: Contact
