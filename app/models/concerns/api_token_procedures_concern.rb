@@ -21,4 +21,9 @@ module APITokenProceduresConcern
         .update_all(['allowed_procedure_ids = array_append(allowed_procedure_ids, ?::bigint)', clone.id])
     end
   end
+
+  def pin_procedures(procedure_ids)
+    self.allowed_procedure_ids = procedure_ids
+    self.follows_clones = true
+  end
 end
