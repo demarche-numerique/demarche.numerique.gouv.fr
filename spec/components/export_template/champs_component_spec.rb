@@ -23,4 +23,23 @@ describe ExportTemplate::ChampsComponent, type: :component do
     expect(page).to have_unchecked_field "Siret"
     expect(page).to have_unchecked_field "(Bloc répétable Amis) – Prénom"
   end
+
+  context 'with header sections' do
+    let(:public_type_de_champs) do
+      [
+        { type: :header_section, level: 2, libelle: 'Première partie' },
+        { type: :text, libelle: 'a' },
+        { type: :header_section, level: 3, libelle: 'Sous-partie' },
+        { type: :text, libelle: 'b' },
+        { type: :header_section, level: 1, libelle: 'Seconde partie' },
+        { type: :text, libelle: 'c' },
+      ]
+    end
+
+    it 'splits the champs on the ones at the top of the tree, whatever the level they declare' do
+      sections = component.sections.map { [it[:libelle], it[:columns].flatten.map(&:libelle)] }
+
+      expect(sections).to eq([['Première partie', ['a', 'b']], ['Seconde partie', ['c']]])
+    end
+  end
 end
