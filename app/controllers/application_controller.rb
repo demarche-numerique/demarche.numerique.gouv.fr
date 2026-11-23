@@ -475,6 +475,7 @@ class ApplicationController < ActionController::Base
       I18n.default_locale
 
     gon.locale = locale
+    current_user.update_column(:locale, locale) if current_user && current_user.locale.nil?
 
     I18n.with_locale(locale, &action)
   end
