@@ -24,6 +24,7 @@ fr:
   address:
     fetching: "Recherche de l’adresse « %{value} » en cours."
     error: "Une erreur est survenue lors de la recherche de l’adresse."
+  field_label: "« %{libelle} »"
   prefilled: "Donnée remplie automatiquement."
   pj:
     info: "Contenu du fichier en cours d’analyse…"

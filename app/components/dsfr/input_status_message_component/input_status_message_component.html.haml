@@ -5,7 +5,7 @@
   .fr-messages-group{ id: @error_id, aria: { live: (@error_full_messages.size > 0 ? :assertive : nil) } }
     - if @error_full_messages.size > 0
       %p{ class: class_names('fr-message' => true, "fr-message--#{@errors_on_attribute ? 'error' : 'valid'}" => true) }
-        = "« #{libelle} » "
+        = "#{t('.field_label', libelle:)} "
 
         = @error_full_messages.to_sentence
     - elsif status_announcement?

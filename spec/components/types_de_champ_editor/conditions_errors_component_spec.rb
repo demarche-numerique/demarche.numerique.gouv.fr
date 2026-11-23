@@ -100,7 +100,7 @@ describe Conditions::ConditionsErrorsComponent, type: :component do
       context 'in English' do
         around { |example| I18n.with_locale(:en) { example.run } }
 
-        it { expect(page).to have_content("No value of the field « #{tdc.libelle} » satisfies « greater than 3 » and « less than 2 » at once.") }
+        it { expect(page).to have_content("No value of the field ‘#{tdc.libelle}’ satisfies ‘greater than 3’ and ‘less than 2’ at once.") }
       end
     end
 

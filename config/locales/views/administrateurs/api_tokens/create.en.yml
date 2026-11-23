@@ -3,7 +3,7 @@ en:
   administrateurs:
     api_tokens:
       create:
-        title: "token « %{name} » created"
+        title: "token ‘%{name}’ created"
         ready: Your token is ready
         intro: You can now use your token to access your data.
         warning: Warning, you will no longer be able to view it after leaving this page.

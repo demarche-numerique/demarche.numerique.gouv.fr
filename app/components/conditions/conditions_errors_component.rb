@@ -121,7 +121,7 @@ class Conditions::ConditionsErrorsComponent < ApplicationComponent
 
   # A row as the editor reads it, the champ aside: « est dans la région Bretagne »
   def humanize_comparison(comparison)
-    "«\u00A0#{operator_label(comparison).downcase} #{humanize_value(comparison)}\u00A0»"
+    t('comparison', scope: '.errors', comparison: "#{operator_label(comparison).downcase} #{humanize_value(comparison)}")
   end
 
   # The label the editor gives the operator (see

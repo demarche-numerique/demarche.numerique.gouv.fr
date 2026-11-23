@@ -11,7 +11,7 @@ en:
     identification:
       title: Owner identification
       subtitle: Identification of the applications’ owner
-      organisation: Your organisation is “%{name}”, identified by SIRET %{siret}
+      organisation: Your organisation is ‘%{name}’, identified by SIRET %{siret}
       email_label: Email address of the applications’ owner
     selection:
       title: Select procedures
@@ -20,7 +20,7 @@ en:
       title: Contact support
       special_case: Your situation requires special handling.
       must_use_pro_connect: You must use the ProConnect portal to recover your applications.
-      no_dossier: The email address “%{email}” you entered has no application concerning your organisation.
+      no_dossier: The email address ‘%{email}’ you entered has no application concerning your organisation.
       try_another_email: Try another email address
     terminee:
       title: Recovery complete
