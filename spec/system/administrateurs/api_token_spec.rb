@@ -204,9 +204,15 @@ describe 'As an administrateur I create an API token', js: true do
     expect(page).to have_content('accès à toutes vos démarches')
     click_on "Restreindre lʼaccès à certaines démarches"
 
+    click_on 'Ajouter'
+
+    expect(page).to have_css('#flash_messages:focus', text: 'Choisissez une démarche à ajouter.')
+    expect(page).to have_select('procedure_to_add')
+
     select "#{procedure.id} - #{procedure.libelle}", from: 'procedure_to_add'
     click_on 'Ajouter'
 
+    expect(page).to have_css('#flash_messages:focus', text: "La démarche « #{procedure.libelle} » a été ajoutée au jeton.")
     expect(page).to have_css("li#authorized_procedure_#{procedure.id}")
     expect(token.reload.allowed_procedure_ids).to eq([procedure.id])
 

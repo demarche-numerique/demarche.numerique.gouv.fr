@@ -81,14 +81,6 @@ class APIToken < ApplicationRecord
     allowed_procedure_ids.nil?
   end
 
-  def targetable_procedures
-    administrateur
-      .procedures
-      .where.not(id: allowed_procedure_ids)
-      .select(:id, :libelle)
-      .order(:libelle)
-  end
-
   # Prefix is made of the first 6 characters of the uuid base64 encoded
   # it does not leak plain token
   def prefix
@@ -139,10 +131,10 @@ class APIToken < ApplicationRecord
       MAX_LIFETIME.from_now.to_date
     end
 
-    def generate(administrateur, expires_at: max_expires_at)
+    def generate(administrateur, expires_at: max_expires_at, **attributes)
       plain_token = generate_unique_secure_token
       encrypted_token = BCrypt::Password.create(plain_token)
-      api_token = create!(administrateur:, encrypted_token:, token_digest: digest(plain_token), expires_at:, name: Date.today.strftime('Jeton d’API généré le %d/%m/%Y'))
+      api_token = create!(name: Date.today.strftime('Jeton d’API généré le %d/%m/%Y'), **attributes, administrateur:, encrypted_token:, token_digest: digest(plain_token), expires_at:)
       bearer = BearerToken.new(api_token.id, plain_token)
       [api_token, bearer.to_string]
     end
@@ -169,7 +161,10 @@ class APIToken < ApplicationRecord
 
     def parse_networks(networks)
       networks.to_s.split.map do
-        IPAddr.new(it)
+        # IPAddr accepts a zone (fe80::1%eth0), which the inet type rejects, and
+        # reads everything after the first slash as the mask: 10.0.0.1/255.255.255.0/1
+        # would be stored as 0.0.0.0/1.
+        IPAddr.new(it) if it.count('/') <= 1 && !it.include?('%')
       rescue IPAddr::Error
         nil
       end

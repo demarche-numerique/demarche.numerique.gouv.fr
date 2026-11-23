@@ -79,7 +79,7 @@ class Administrateur < ApplicationRecord
     return if old_admin.nil? || old_admin == self
 
     transaction do
-      old_procedure_ids = old_admin.procedures.ids
+      old_procedure_ids = old_admin.procedures.with_discarded.ids
 
       # v1/v2 tokens are deliberately left behind: we want their owners to
       # migrate to v3 tokens.

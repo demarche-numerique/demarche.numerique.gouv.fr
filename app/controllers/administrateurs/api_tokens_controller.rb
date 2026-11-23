@@ -24,8 +24,7 @@ module Administrateurs
         return render_invalid_step
       end
 
-      @api_token, @packed_token = APIToken.generate(current_administrateur, expires_at: @api_token_form.expires_at)
-      @api_token.update!(@api_token_form.token_attributes)
+      @api_token, @packed_token = APIToken.generate(current_administrateur, expires_at: @api_token_form.expires_at, **@api_token_form.token_attributes)
 
       @curl_command = curl_command(@packed_token, @api_token.procedure_ids.first)
     end
@@ -41,8 +40,8 @@ module Administrateurs
 
       if !params[:networks].nil?
         if invalid_network?
-          @invalid_network_message = "vous devez entrer des adresses ipv4 ou ipv6 valides"
-          return render :edit
+          @invalid_network_message = t('activemodel.errors.models.api_token_form.attributes.networks.invalid')
+          return render :update, status: :unprocessable_content
         end
 
         # Tokens predating automatic IP pinning have no safety net: assign_first_ip!
@@ -50,45 +49,55 @@ module Administrateurs
         # anywhere until they expire. The newer ones re-pin themselves on the next
         # call, so they may be emptied.
         if !@api_token.requires_ip_filtering? && networks.empty?
-          @invalid_network_message = "Vous ne pouvez pas supprimer les restrictions d’accès à l’API d’un jeton permanent."
+          @invalid_network_message = t('.networks_required')
           @api_token.reload
-          return render :edit
+          return render :update, status: :unprocessable_content
         end
 
         h[:authorized_networks] = networks
+        flash.notice = t('.networks_updated')
       end
 
       if params[:name].present?
         h[:name] = params[:name]
+        flash.notice = t('.renamed')
       end
 
       @api_token.with_lock do
         if params[:restore_full_access].present?
           h[:allowed_procedure_ids] = nil
-        elsif procedure_to_add.present?
-          to_add = current_administrateur
-            .procedure_ids
-            .intersection([procedure_to_add])
+          flash.notice = t('.full_access_restored')
+        elsif params.key?(:procedure_to_add)
+          procedure = current_administrateur.procedures.find_by(id: params[:procedure_to_add])
 
-          h[:allowed_procedure_ids] =
-            (Array.wrap(@api_token.allowed_procedure_ids) + to_add).uniq
+          if procedure.present?
+            h[:allowed_procedure_ids] = (Array.wrap(@api_token.allowed_procedure_ids) + [procedure.id]).uniq
+            flash.notice = t('.procedure_added', libelle: ERB::Util.html_escape(procedure.libelle))
+          else
+            flash.alert = t('.no_procedure_to_add')
+          end
         end
 
         @api_token.update!(h)
       end
 
-      render :edit
+      render :update
     end
 
     def remove_procedure
-      procedure_id = params[:procedure_id].to_i
-      @api_token.with_lock do
-        remaining_ids = (@api_token.allowed_procedure_ids || @api_token.procedure_ids) - [procedure_id]
-        @api_token.update!(allowed_procedure_ids: remaining_ids)
+      procedure = current_administrateur.procedures.with_discarded.find_by(id: params[:procedure_id])
+
+      if procedure.present?
+        @api_token.with_lock do
+          remaining_ids = (@api_token.allowed_procedure_ids || current_administrateur.procedures.with_discarded.ids) - [procedure.id]
+          @api_token.update!(allowed_procedure_ids: remaining_ids)
+        end
+
+        flash.notice = t('.procedure_removed', libelle: ERB::Util.html_escape(procedure.libelle))
       end
 
       @libelle_id_procedures = libelle_id_procedures
-      render turbo_stream: turbo_stream.update("tokenUpdate", partial: "administrateurs/api_tokens/edit_form", locals: { api_token: @api_token, libelle_id_procedures: @libelle_id_procedures, invalid_network_message: nil })
+      render :update
     end
 
     def destroy
@@ -155,10 +164,6 @@ module Administrateurs
       else
         {}
       end
-    end
-
-    def procedure_to_add
-      params[:procedure_to_add]&.to_i
     end
   end
 end
