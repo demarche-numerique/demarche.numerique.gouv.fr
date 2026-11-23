@@ -5,19 +5,15 @@ procedure_params:
     - type: header_section
       libelle: "Représentant légal de la structure"
       stable_id: 100
-      position: 0
     - type: text
       libelle: "Nom"
       stable_id: 200
-      position: 1
     - type: text
       libelle: "Prenom"
       stable_id: 300
-      position: 2
     - type: text
       libelle: "Adresse électronique"
       stable_id: 400
-      position: 2
 
 expected_keeps:
   - stable_id: 100

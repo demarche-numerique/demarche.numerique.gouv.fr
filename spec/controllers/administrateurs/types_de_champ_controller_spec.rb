@@ -13,21 +13,17 @@ describe Administrateurs::TypesDeChampController, type: :controller do
            ])
   end
 
-  def first_type_de_champ = procedure.draft_revision.reload.public_root_type_de_champs.first
-  def second_type_de_champ = procedure.draft_revision.reload.public_root_type_de_champs.second
-  def third_type_de_champ = procedure.draft_revision.reload.public_root_type_de_champs.third
+  def first_type_de_champ = procedure.draft_revision.reload.public_type_de_champs.first
+  def second_type_de_champ = procedure.draft_revision.reload.public_type_de_champs.second
+  def third_type_de_champ = procedure.draft_revision.reload.public_type_de_champs.third
 
-  def extract_libelle(champ_component)
-    type_de_champ = champ_component.type_de_champ
-    [type_de_champ.libelle, type_de_champ.upper_type_de_champs.map(&:libelle)]
-  end
-
-  def siblings = assigns(:siblings)&.map(&:libelle)
-
-  def morpheds
-    assigns(:morphed)
-      .map { |component| extract_libelle(component) }.to_a
-  end
+  # what the stream brings up to date: the block edited, the list items it
+  # removes and inserts, the cards it renders again
+  def siblings = assigns(:type_de_champs)&.map(&:libelle)
+  def libelles(stable_ids) = TypeDeChamp.where(procedure:, stable_id: stable_ids).pluck(:stable_id, :libelle).to_h.values_at(*stable_ids)
+  def removed = libelles(assigns(:changes).removed)
+  def inserted = libelles(assigns(:changes).inserted)
+  def cards = libelles(assigns(:changes).cards)
 
   before { sign_in(procedure.administrateurs.first.user) }
 
@@ -61,13 +57,15 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       let(:type_champ) { TypeDeChamp.type_champs.fetch(:text) }
 
       # l1, l2, l3 => l1, l1.5, l2, l3
-      # created: (l1.5, [l1]), morphed: (l2, [l1, l1.5]), (l3, [l1, l1.5, l2])
+      # inserted: l1.5, cards: l2 and l3, which sit further
       it do
         is_expected.to have_http_status(:ok)
         expect(flash.alert).to eq(nil)
         expect(siblings).to eq(['l1', 'l1.5', 'l2', 'l3'])
-        expect(extract_libelle(assigns(:created))).to eq(['l1.5', ['l1']])
-        expect(morpheds).to eq([['l2', ['l1', 'l1.5']], ['l3', ['l1', 'l1.5', 'l2']]])
+        expect(removed).to be_empty
+        expect(inserted).to eq(['l1.5'])
+        expect(cards).to eq(['l2', 'l3'])
+        expect(assigns(:focused).libelle).to eq('l1.5')
       end
     end
 
@@ -81,6 +79,16 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       end
     end
 
+    context 'with a type which does not exist' do
+      let(:type_champ) { 'unknown' }
+
+      it do
+        is_expected.to have_http_status(:ok)
+        expect(siblings).to be_nil
+        expect(flash.alert).to eq(["Ce type de champ n’existe pas."])
+      end
+    end
+
     context "validate" do
       let(:type_champ) { TypeDeChamp.type_champs.fetch(:text) }
       let(:params) { default_params.deep_merge(type_de_champ: { type_champ: nil }) }
@@ -89,19 +97,6 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         is_expected.to have_http_status(:ok)
         expect(siblings).to be_nil
         expect(flash.alert).to eq(["Le champ « Type champ » doit être rempli"])
-      end
-    end
-
-    context "after a type de champ removed since (double click, another tab)" do
-      let(:type_champ) { TypeDeChamp.type_champs.fetch(:text) }
-
-      before { procedure.draft_revision.remove_type_de_champ(params.dig(:type_de_champ, :after_stable_id)) }
-
-      it 'adds nothing, and tells why' do
-        is_expected.to have_http_status(:ok)
-        expect(siblings).to be_nil
-        expect(flash.alert).to eq([I18n.t('activerecord.errors.type_de_champ.not_added.place_gone')])
-        expect(procedure.draft_revision.reload.public_root_type_de_champs.map(&:libelle)).to eq(['l2', 'l3'])
       end
     end
   end
@@ -121,14 +116,47 @@ describe Administrateurs::TypesDeChampController, type: :controller do
     subject { post :update, params: params, format: :turbo_stream }
 
     # l1, l2, l3 => l1, updated, l3
-    # morphed: (updated, [l1]), (l3, [l1, updated])
+    # cards: updated, and l3 whose condition may read it
     it do
       is_expected.to have_http_status(:ok)
       expect(flash.alert).to eq(nil)
       expect(second_type_de_champ.libelle).to eq('updated')
 
       expect(siblings).to eq(['l1', 'updated', 'l3'])
-      expect(morpheds).to eq([['updated', ['l1']], ['l3', ['l1', 'updated']]])
+      expect([removed, inserted]).to all(be_empty)
+      expect(cards).to eq(['updated', 'l3'])
+    end
+
+    context 'with repetitions around' do
+      let(:procedure) do
+        create(:procedure, public_type_de_champs: [
+          { type: :repetition, libelle: 'before', children: [{ libelle: 'b1' }] },
+          { libelle: 'l2' },
+          { type: :repetition, libelle: 'after', children: [{ libelle: 'a1' }, { libelle: 'a2' }] },
+        ])
+      end
+
+      render_views
+
+      def cards_elsewhere = assigns(:touched_elsewhere).map(&:libelle)
+
+      # what the repetition after it holds may read it in a condition
+      it 'renders again the cards of what the repetitions after it hold' do
+        subject
+
+        expect(cards).to eq(['updated', 'after'])
+        expect(cards_elsewhere).to eq(['a1', 'a2'])
+        third_type_de_champ.children.each do |child|
+          expect(response.body).to have_css("turbo-stream[action=replace][target='#{ActionView::RecordIdentifier.dom_id(child, :editor_error)}']")
+        end
+      end
+
+      it 'leaves alone what a repetition holds when the repetition itself is updated' do
+        post :update, params: default_params.merge(stable_id: third_type_de_champ.stable_id), format: :turbo_stream
+
+        expect(cards).to eq(['updated'])
+        expect(cards_elsewhere).to be_empty
+      end
     end
 
     context 'when the champ was already removed (replayed autosave)' do
@@ -149,7 +177,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
       it do
         is_expected.to have_http_status(:ok)
-        expect(assigns(:siblings).map(&:stable_id)).to include(second_type_de_champ.stable_id)
+        expect(assigns(:type_de_champs).map(&:stable_id)).to include(second_type_de_champ.stable_id)
         expect(flash.alert).to be_nil
       end
     end
@@ -160,7 +188,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
       it 'ignores the unknown option' do
         is_expected.to have_http_status(:ok)
-        type_de_champ = second_type_de_champ.reload
+        type_de_champ = second_type_de_champ
         expect(type_de_champ.libelle).to eq('updated')
         expect(type_de_champ.options['pre_rempli_hidden']).to be_nil
       end
@@ -169,12 +197,25 @@ describe Administrateurs::TypesDeChampController, type: :controller do
     context 'changing the type to header section' do
       let(:params) { default_params.deep_merge(type_de_champ: { type_champ: 'header_section' }) }
 
-      it 'stores the tree holding what follows within the section' do
+      render_views
+
+      it 'makes an empty header section of it, its list item rendered again' do
         is_expected.to have_http_status(:ok)
 
-        tree = procedure.draft_revision.reload.read_attribute(:type_de_champ_tree)
-        expect(tree.public_children.map(&:stable_id)).to eq([first_type_de_champ.stable_id, second_type_de_champ.stable_id])
-        expect(tree.public_children.second.children.map(&:stable_id)).to eq([third_type_de_champ.stable_id])
+        expect(procedure.draft_revision.reload.public_type_de_champs.map { [it.libelle, it.type_champ, it.children.size] })
+          .to eq([['l1', 'integer_number', 0], ['updated', 'header_section', 0], ['l3', 'drop_down_list', 0]])
+        expect(libelles(assigns(:changes).replaced)).to eq(['updated'])
+        expect(response.body).to have_css("turbo-stream[action=replace][target='#{ActionView::RecordIdentifier.dom_id(second_type_de_champ, :type_de_champ_editor)}']")
+      end
+
+      it 'takes the following siblings when asked to' do
+        subject
+        patch :take_following_siblings, params: { procedure_id: procedure.id, stable_id: second_type_de_champ.stable_id }, format: :turbo_stream
+
+        expect(response).to have_http_status(:ok)
+        expect(second_type_de_champ.children.map(&:libelle)).to eq(['l3'])
+        expect(removed).to eq(['l3'])
+        expect(inserted).to eq(['l3'])
       end
     end
 
@@ -323,7 +364,6 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       it 'leaves it as it is, and shows why' do
         is_expected.to have_http_status(:ok)
         expect(flash.alert).to eq(I18n.t("activerecord.errors.type_de_champ.locked.update.repetition_holding_champs", type_de_champ: 'held'))
-        expect(morpheds).to eq([['held', []]])
         expect(procedure.draft_revision.reload.type_de_champs.map(&:libelle)).to eq(['held', 'child', 'empty'])
         expect(first_type_de_champ).to be_repetition
       end
@@ -364,9 +404,8 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
       it 'renders the mentioned field unlocked' do
         is_expected.to have_http_status(:ok)
-        mentioned = assigns(:morphed).find { it.type_de_champ.stable_id == 100 }
-        expect(mentioned).to be_present
-        expect(mentioned.type_de_champ.type_champ_locked?).to be(false)
+        expect(cards).to include('l1')
+        expect(procedure.draft_revision.reload.type_de_champ(100).type_champ_locked?).to be(false)
       end
     end
 
@@ -538,7 +577,6 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       let(:multiple_drop_down_list_type_de_champ) do
         procedure.draft_revision.public_root_type_de_champs.first
       end
-
       let(:params) do
         {
           procedure_id: procedure.id,
@@ -566,7 +604,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
   end
 
   # l1, l2, l3 => l1, l3, l2
-  # destroyed: l3, created: (l3, [l1]), morphed: (l2, [l1, l3])
+  # removed then inserted: l3, cards: l2 which sits further
   describe '#move_up' do
     let(:params) do
       { procedure_id: procedure.id, stable_id: third_type_de_champ.stable_id }
@@ -579,14 +617,14 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       expect(flash.alert).to eq(nil)
       expect(second_type_de_champ.libelle).to eq('l3')
       expect(siblings).to eq(['l1', 'l3', 'l2'])
-      expect(assigns(:destroyed).libelle).to eq('l3')
-      expect(extract_libelle(assigns(:created))).to eq(['l3', ['l1']])
-      expect(morpheds).to eq([['l2', ['l1', 'l3']]])
+      expect(removed).to eq(['l3'])
+      expect(inserted).to eq(['l3'])
+      expect(cards).to eq(['l2'])
     end
   end
 
   # l1, l2, l3 => l2, l1, l3
-  # destroyed: l1, created: (l1, [l2]), morphed: (l2, [])
+  # removed then inserted: l1, cards: l2 which sits before
   describe '#move_down' do
     let(:params) do
       { procedure_id: procedure.id, stable_id: first_type_de_champ.stable_id }
@@ -599,85 +637,154 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       expect(flash.alert).to eq(nil)
 
       expect(siblings).to eq(['l2', 'l1', 'l3'])
-      expect(assigns(:destroyed).libelle).to eq('l1')
-      expect(extract_libelle(assigns(:created))).to eq(['l1', ['l2']])
-      expect(morpheds).to eq([['l2', []]])
+      expect(removed).to eq(['l1'])
+      expect(inserted).to eq(['l1'])
+      expect(cards).to eq(['l2'])
+    end
+  end
+
+  describe 'moving in and out of a header section' do
+    render_views
+
+    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :header_section, libelle: 's', children: [{ libelle: 'l1' }] }, { libelle: 'l2' }]) }
+
+    def section = first_type_de_champ
+
+    it 'moves in the header section before it, then out' do
+      patch :move_in, params: { procedure_id: procedure.id, stable_id: second_type_de_champ.stable_id }, format: :turbo_stream
+
+      expect(response).to have_http_status(:ok)
+      expect(section.children.map(&:libelle)).to eq(['l1', 'l2'])
+      expect([removed, inserted]).to all(eq(['l2']))
+      expect(response.body).to have_css("turbo-stream[action=after][target='#{ActionView::RecordIdentifier.dom_id(section.children.first, :type_de_champ_editor)}']")
+
+      patch :move_out, params: { procedure_id: procedure.id, stable_id: section.children.first.stable_id }, format: :turbo_stream
+
+      expect(response).to have_http_status(:ok)
+      expect(procedure.draft_revision.reload.public_type_de_champs.map(&:libelle)).to eq(['s', 'l1'])
+      expect(section.children.map(&:libelle)).to eq(['l2'])
+    end
+
+    it 'gives the focus back to the card of the one edited' do
+      l2 = second_type_de_champ
+      focused = -> (type_de_champ, control) { "turbo-stream[action=focus][target='#{ActionView::RecordIdentifier.dom_id(type_de_champ, control)}']" }
+
+      # nothing left to take: the button is hidden
+      patch :take_following_siblings, params: { procedure_id: procedure.id, stable_id: section.stable_id }, format: :turbo_stream
+      expect(section.children.map(&:libelle)).to eq(['l1', 'l2'])
+      expect(response.body).to have_css(focused.(section, :libelle))
+
+      # out of any section: the opposite move
+      patch :move_out, params: { procedure_id: procedure.id, stable_id: l2.stable_id }, format: :turbo_stream
+      expect(response.body).to have_css(focused.(l2, :move_in_button))
+
+      patch :move_in, params: { procedure_id: procedure.id, stable_id: l2.stable_id }, format: :turbo_stream
+      expect(response.body).to have_css(focused.(l2, :move_out_button))
+
+      # a move the card still offers
+      patch :move_up, params: { procedure_id: procedure.id, stable_id: l2.stable_id }, format: :turbo_stream
+      expect(section.children.map(&:libelle)).to eq(['l2', 'l1'])
+      expect(response.body).to have_css(focused.(l2, :move_up_button))
+    end
+
+    it 'says why a move is refused, on the type de champ' do
+      patch :move_out, params: { procedure_id: procedure.id, stable_id: second_type_de_champ.stable_id }, format: :turbo_stream
+
+      expect(response).to have_http_status(:ok)
+      # in the alert of the page, and on its card
+      expect(response.body).to have_css("turbo-stream[action=replace][target='#{ActionView::RecordIdentifier.dom_id(second_type_de_champ, :editor_error)}']")
+      expect(response.body).to include('types-de-champ-errors')
+      expect(response.body.gsub('&nbsp;', "\u00a0").scan('« l2 » n’est dans aucune section.').size).to eq(2)
+      expect(procedure.draft_revision.reload.public_type_de_champs.map(&:libelle)).to eq(['s', 'l2'])
     end
   end
 
   describe 'moving a champ already removed (replayed click)' do
-    render_views
-
     let(:removed_stable_id) { second_type_de_champ.stable_id }
     let(:params) { { procedure_id: procedure.id, stable_id: removed_stable_id } }
 
     before { procedure.draft_revision.remove_type_de_champ(removed_stable_id) }
 
-    [:move_up, :move_down].each do |action|
-      it "#{action} is a no-op instead of failing (RAILS-MPV, RAILS-MQH)" do
-        patch action, params:, format: :turbo_stream
-
-        expect(response).to have_http_status(:ok)
-        expect(siblings).to be_nil
-        expect(procedure.draft_revision.reload.public_root_type_de_champs.map(&:libelle)).to eq(['l1', 'l3'])
+    [:move_up, :move_down, :move_in, :move_out].each do |action|
+      it "#{action} raises RecordNotFound (rendered as 404) instead of a 500 (RAILS-MPV, RAILS-MQH)" do
+        expect { patch action, params:, format: :turbo_stream }.to raise_error(ActiveRecord::RecordNotFound)
+        expect(procedure.draft_revision.reload.public_type_de_champs.map(&:libelle)).to eq(['l1', 'l3'])
       end
     end
 
-    it 'move_and_morph is a no-op as well, whichever of the two is gone' do
+    it 'move does as well, whichever of the two is gone' do
       [[removed_stable_id, first_type_de_champ.stable_id], [first_type_de_champ.stable_id, removed_stable_id]].each do |stable_id, target_stable_id|
-        patch :move_and_morph, params: { procedure_id: procedure.id, stable_id:, target_stable_id: }, format: :turbo_stream
-
-        expect(response).to have_http_status(:ok)
-        expect(siblings).to be_nil
-        expect(procedure.draft_revision.reload.public_root_type_de_champs.map(&:libelle)).to eq(['l1', 'l3'])
+        expect { patch :move, params: { procedure_id: procedure.id, stable_id:, place: "after:#{target_stable_id}" }, format: :turbo_stream }
+          .to raise_error(ActiveRecord::RecordNotFound)
+        expect(procedure.draft_revision.reload.public_type_de_champs.map(&:libelle)).to eq(['l1', 'l3'])
       end
     end
   end
 
-  describe '#move_and_morph' do
+  describe '#move' do
     # l1, l2, l3 => l2, l3, l1
-    context 'move and morph down' do
+    context 'after a type de champ further down' do
       let(:params) do
-        { procedure_id: procedure.id, stable_id: first_type_de_champ.stable_id, target_stable_id: third_type_de_champ.stable_id }
+        { procedure_id: procedure.id, stable_id: first_type_de_champ.stable_id, place: "after:#{third_type_de_champ.stable_id}" }
       end
 
-      subject { patch :move_and_morph, params: params, format: :turbo_stream }
+      subject { patch :move, params: params, format: :turbo_stream }
 
       it do
         is_expected.to have_http_status(:ok)
         expect(siblings).to eq(['l2', 'l3', 'l1'])
-        expect(assigns(:destroyed).libelle).to eq('l1')
-        expect(extract_libelle(assigns(:created))).to eq(['l1', ['l2', 'l3']])
-        expect(morpheds).to eq([['l2', []], ['l3', ['l2']]])
+        expect(removed).to eq(['l1'])
+        expect(inserted).to eq(['l1'])
+        expect(cards).to eq(['l2', 'l3'])
       end
     end
 
-    # l1, l2, l3 => l1, l3, l2
-    context 'move and morph up' do
+    # l1, l2, l3 => l3, l1, l2
+    context 'first of the form' do
       let(:params) do
-        { procedure_id: procedure.id, stable_id: third_type_de_champ.stable_id, target_stable_id: first_type_de_champ.stable_id }
+        { procedure_id: procedure.id, stable_id: third_type_de_champ.stable_id, place: 'first' }
       end
 
-      subject { patch :move_and_morph, params: params, format: :turbo_stream }
+      subject { patch :move, params: params, format: :turbo_stream }
 
       it do
         is_expected.to have_http_status(:ok)
-        [first_type_de_champ, second_type_de_champ, third_type_de_champ].map(&:reload)
-        expect(siblings).to eq(['l1', 'l3', 'l2'])
-        expect(assigns(:destroyed).stable_id).to eq(second_type_de_champ.stable_id)
-        expect(extract_libelle(assigns(:created))).to eq(['l3', ['l1']])
-        expect(morpheds).to eq([['l3', ['l1']], ['l2', ['l1', 'l3']]])
+        expect(siblings).to eq(['l3', 'l1', 'l2'])
+        expect(removed).to eq(['l3'])
+        expect(inserted).to eq(['l3'])
+        expect(cards).to eq(['l1', 'l2'])
+      end
+    end
+
+    context 'first of a header section, or of the repetition it sits in' do
+      let(:procedure) do
+        create(:procedure, public_type_de_champs: [
+          { libelle: 'l1' },
+          { type: :header_section, libelle: 's', children: [{ libelle: 'l2' }] },
+          { type: :repetition, libelle: 'r', children: [{ libelle: 'r1' }, { libelle: 'r2' }] },
+        ])
+      end
+
+      it do
+        section, repetition = second_type_de_champ, third_type_de_champ
+
+        patch :move, params: { procedure_id: procedure.id, stable_id: first_type_de_champ.stable_id, place: "first:#{section.stable_id}" }, format: :turbo_stream
+        expect(first_type_de_champ.children.map(&:libelle)).to eq(['l1', 'l2'])
+
+        patch :move, params: { procedure_id: procedure.id, stable_id: repetition.children.last.stable_id, place: 'first' }, format: :turbo_stream
+        expect(second_type_de_champ.children.map(&:libelle)).to eq(['r2', 'r1'])
+        expect(siblings).to eq(['r2', 'r1'])
       end
     end
 
     context 'on a published procedure' do
       let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ libelle: 'l1' }, { libelle: 'l2' }, { libelle: 'l3' }]) }
       let(:params) do
-        { procedure_id: procedure.id, stable_id: first_type_de_champ.stable_id, target_stable_id: third_type_de_champ.stable_id }
+        { procedure_id: procedure.id, stable_id: first_type_de_champ.stable_id, place: "after:#{third_type_de_champ.stable_id}" }
       end
 
       it 'leaves the types de champ shared with the published revision as they are' do
-        expect { patch :move_and_morph, params:, format: :turbo_stream }
+        expect { patch :move, params:, format: :turbo_stream }
           .not_to change { TypeDeChamp.where(procedure:).count }
 
         expect(siblings).to eq(['l2', 'l3', 'l1'])
@@ -687,7 +794,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
   end
 
   # l1, l2, l3 => l1, l3
-  # destroyed: l2, morphed: (l3, [l1])
+  # removed: l2, cards: l3 which sits before
   describe '#destroy' do
     let(:params) do
       { procedure_id: procedure.id, stable_id: second_type_de_champ.stable_id }
@@ -699,8 +806,9 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       is_expected.to have_http_status(:ok)
       expect(flash.alert).to eq(nil)
       expect(siblings).to eq(['l1', 'l3'])
-      expect(assigns(:destroyed).libelle).to eq('l2')
-      expect(morpheds).to eq([['l3', ['l1']]])
+      expect(removed).to eq(['l2'])
+      expect(inserted).to be_empty
+      expect(cards).to eq(['l3'])
     end
 
     context 'when the champ was already removed (replayed double click)' do
@@ -711,9 +819,8 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         procedure.draft_revision.remove_type_de_champ(@removed_stable_id)
       end
 
-      it 'is a no-op instead of failing (RAILS-JYT)' do
-        is_expected.to have_http_status(:ok)
-        expect(assigns(:destroyed)).to be_nil
+      it 'raises RecordNotFound (rendered as 404) instead of a 500 (RAILS-JYT)' do
+        expect { subject }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
 
@@ -757,9 +864,8 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
       it 'renders the mentioned field unlocked' do
         is_expected.to have_http_status(:ok)
-        mentioned = assigns(:morphed).find { it.type_de_champ.stable_id == 100 }
-        expect(mentioned).to be_present
-        expect(mentioned.type_de_champ.type_champ_locked?).to be(false)
+        expect(cards).to include('l1')
+        expect(procedure.draft_revision.reload.type_de_champ(100).type_champ_locked?).to be(false)
       end
     end
 
@@ -790,14 +896,14 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
   describe '#notice_explicative' do
     let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :explication }]) }
-    let(:coordinate) { procedure.draft_revision.type_de_champs.first }
+    let(:type_de_champ) { procedure.draft_revision.type_de_champs.first }
     let(:content) { 'notice' }
     let(:blob) { ActiveStorage::Blob.create_and_upload!(io: StringIO.new(content), filename: 'notice.txt', content_type: 'text/plain') }
 
     context 'when sending a valid blob' do
       it 'attaches the blob and responds with 200' do
-        expect { put :notice_explicative, format: :turbo_stream, params: { stable_id: coordinate.stable_id, procedure_id: procedure.id, blob_signed_id: blob.signed_id } }
-          .to change { coordinate.reload.notice_explicative.attached? }
+        expect { put :notice_explicative, format: :turbo_stream, params: { stable_id: type_de_champ.stable_id, procedure_id: procedure.id, blob_signed_id: blob.signed_id } }
+          .to change { type_de_champ.reload.notice_explicative.attached? }
           .from(false).to(true)
         expect(response).to have_http_status(:success)
       end
@@ -807,8 +913,8 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       let(:content) { '' }
 
       it 'rejects it and responds with 422' do
-        expect { put :notice_explicative, format: :turbo_stream, params: { stable_id: coordinate.stable_id, procedure_id: procedure.id, blob_signed_id: blob.signed_id } }
-          .not_to change { coordinate.reload.notice_explicative.attached? }
+        expect { put :notice_explicative, format: :turbo_stream, params: { stable_id: type_de_champ.stable_id, procedure_id: procedure.id, blob_signed_id: blob.signed_id } }
+          .not_to change { type_de_champ.reload.notice_explicative.attached? }
         expect(response).to have_http_status(422)
         expect(response.parsed_body['errors'].join).to include('vide')
       end
@@ -841,7 +947,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       queries = count_type_de_champ_attachment_queries { post :update, params:, format: :turbo_stream }
 
       expect(response).to have_http_status(:ok)
-      expect(assigns(:morphed).size).to eq(5)
+      expect(assigns(:changes).cards.size).to eq(5)
       # the templates, the notices
       expect(queries).to eq(2)
     end

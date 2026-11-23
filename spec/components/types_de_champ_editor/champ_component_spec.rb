@@ -215,7 +215,7 @@ describe TypesDeChampEditor::ChampComponent, type: :component do
       let(:type_de_champ) { procedure.draft_revision.public_root_type_de_champs.first }
       let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text, libelle: 'a' }]) }
       it 'does not have select to move champs' do
-        expect(page).to have_css("select##{ActionView::RecordIdentifier.dom_id(type_de_champ, :move_and_morph)}")
+        expect(page).to have_css("select##{ActionView::RecordIdentifier.dom_id(type_de_champ, :move_to_place)}")
       end
     end
   end

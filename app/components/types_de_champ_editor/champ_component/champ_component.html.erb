@@ -1,7 +1,4 @@
-<div
-  class="type-de-champ-container"
-  id="<%= dom_id(type_de_champ, :editor_error) %>"
->
+<%= tag.div(**html_options) do %>
   <% if @errors.present? %>
     <div class="types-de-champ-errors"><%= @errors %></div>
   <% end %>
@@ -16,10 +13,10 @@
             <% if type_de_champ.siret? || type_de_champ.communes? || type_de_champ.departements? || type_de_champ.address? || type_de_champ.epci? %>
               <div class="cell fr-mt-1w">
                 <%= button_tag(t(".info_remontees_button"), type: :button, class: "fr-btn fr-icon-info-line fr-btn--icon-left fr-btn--tertiary-no-outline fr-btn--sm",
-                  data: { "fr-opened" => "false", "turbo-frame" => "api-champ-columns", action: "lazy-modal#load" },
-                  src: api_champ_columns_admin_procedure_path(id: procedure.id, stable_id: type_de_champ.stable_id),
-                  "aria-controls" => "api-champ-columns-modal",
-                  "aria-haspopup" => "dialog") %>
+                    data: { "fr-opened" => "false", "turbo-frame" => "api-champ-columns", action: "lazy-modal#load" },
+                    src: api_champ_columns_admin_procedure_path(id: procedure.id, stable_id: type_de_champ.stable_id),
+                    "aria-controls" => "api-champ-columns-modal",
+                    "aria-haspopup" => "dialog") %>
               </div>
             <% end %>
 
@@ -31,10 +28,10 @@
 
                   <% c.with_link do %>
                     <%= button_tag(t(".communes_info_link"), type: :button, class: "fr-pl-0 fr-link fr-notice__link fr-text-default--warning  fr-mt-1w",
-                      data: { "fr-opened" => "false", "turbo-frame" => "api-champ-columns", action: "lazy-modal#load", href: true },
-                      src: commune_info_admin_procedure_path(id: procedure.id, stable_id: type_de_champ.stable_id),
-                      "aria-controls" => "api-champ-columns-modal",
-                      "aria-haspopup" => "dialog") %>
+                        data: { "fr-opened" => "false", "turbo-frame" => "api-champ-columns", action: "lazy-modal#load", href: true },
+                        src: commune_info_admin_procedure_path(id: procedure.id, stable_id: type_de_champ.stable_id),
+                        "aria-controls" => "api-champ-columns-modal",
+                        "aria-haspopup" => "dialog") %>
                   <% end %>
                 <% end %>
               </div>
@@ -94,10 +91,10 @@
           <% end %>
 
           <% if type_de_champ.header_section? %>
+            <p class="fr-text--sm fr-mb-0">
+              <%= t(".header_section_level", level: type_de_champ.block_level) %>
+            </p>
             <p class="fr-text--sm"><%= t(".header_section_hint") %></p>
-            <div class="cell fr-mt-1w">
-              <%= render TypesDeChampEditor::HeaderSectionComponent.new(form:, type_de_champ:) %>
-            </div>
           <% end %>
 
           <% if type_de_champ.textarea? %>
@@ -346,10 +343,10 @@
               <%= form.label :drop_down_options_from_text, t(".drop_down_options_label"), for: dom_id(type_de_champ, :drop_down_options_from_text) %>
 
               <%= form.text_area :drop_down_options_from_text,
-                value: type_de_champ.drop_down_options.join("\r\n"),
-                class: 'fr-input small-margin small width-100',
-                rows: 7,
-                id: dom_id(type_de_champ, :drop_down_options_from_text) %>
+                  value: type_de_champ.drop_down_options.join("\r\n"),
+                  class: 'fr-input small-margin small width-100',
+                  rows: 7,
+                  id: dom_id(type_de_champ, :drop_down_options_from_text) %>
             </div>
           </div>
         <% elsif type_de_champ.drop_down_list? || type_de_champ.multiple_drop_down_list? %>
@@ -392,10 +389,10 @@
               <%= form.label :drop_down_options_from_text, t('.pre_rempli.options_label'), for: dom_id(type_de_champ, :drop_down_options_from_text) %>
 
               <%= form.text_area :drop_down_options_from_text,
-                value: type_de_champ.drop_down_options.join("\r\n"),
-                class: 'fr-input small-margin small width-100',
-                rows: 7,
-                id: dom_id(type_de_champ, :drop_down_options_from_text) %>
+                  value: type_de_champ.drop_down_options.join("\r\n"),
+                  class: 'fr-input small-margin small width-100',
+                  rows: 7,
+                  id: dom_id(type_de_champ, :drop_down_options_from_text) %>
             </div>
 
             <div class="cell fr-mt-1w flex align-center">
@@ -472,21 +469,6 @@
     <%= render(TypesDeChampEditor::FranceConnectComponent.new(procedure:, type_de_champ:)) %>
   <% end %>
 
-  <% if type_de_champ.repetition? %>
-    <div class="flex justify-start section fr-ml-1w">
-      <div class="editor-block flex-grow cell">
-        <%= render TypesDeChampEditor::BlockComponent.new(block: type_de_champ, type_de_champs: type_de_champ.flat_children) %>
-
-        <div
-          class="type-de-champ-add-button <%= class_names(hidden: type_de_champ.children.any?) %>"
-          id="<%= dom_id(type_de_champ, :type_de_champ_add_button) %>"
-        >
-          <%= render TypesDeChampEditor::AddChampButtonComponent.new(revision:, parent: type_de_champ, is_annotation: type_de_champ.private?) %>
-        </div>
-      </div>
-    </div>
-  <% end %>
-
   <%= render(Conditions::ChampsConditionsComponent.new(tdc: type_de_champ, upper_tdcs: type_de_champ.condition_source_type_de_champs, procedure:)) %>
 
   <div class="flex justify-between section footer">
@@ -494,11 +476,17 @@
       <%= (index + 1).to_s %>
     </div>
 
-    <%= tag.button(class: "fr-btn fr-btn--tertiary-no-outline fr-icon-arrow-up-line move-up", **move_button_options(:up)) %>
-    <%= tag.button(class: "fr-btn fr-btn--tertiary-no-outline fr-icon-arrow-down-line move-down", **move_button_options(:down)) %>
+    <%= tag.button(**move_button_options(:move_up)) %>
+    <%= tag.button(**move_button_options(:move_down)) %>
+    <%= tag.button(**move_button_options(:move_in)) %>
+    <%= tag.button(**move_button_options(:move_out)) %>
     <%= render TypesDeChampEditor::SelectChampPositionComponent.new(type_de_champ:) %>
 
     <div class="flex right">
+      <% if type_de_champ.header_section? %>
+        <%= tag.button(t(".take_following_siblings"), class: class_names("fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-mr-1w", hidden: !takes_following_siblings?), **edit_button_options(:take_following_siblings)) %>
+      <% end %>
+
       <% if type_de_champ.type_champ_locked? %>
         <%= lock_explanation %>
       <% else %>
@@ -511,4 +499,4 @@
       <% end %>
     </div>
   </div>
-</div>
+<% end %>

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-# The "Type de champ" menu of a field in the procedure editor: the types the
-# field may take, grouped by category, with the types the published revision
-# cannot be converted to greyed out.
+# The "Type de champ" menu of a field in the procedure editor: the types
+# listed where the field sits, grouped by category, with the ones the revision
+# refuses greyed out (RevisionEditConcern#accepted_type_champs).
 class TypesDeChampEditor::TypeDeChampSelectorComponent < ApplicationComponent
   def initialize(type_de_champ:, form:)
     @type_de_champ = type_de_champ
@@ -62,20 +62,9 @@ class TypesDeChampEditor::TypeDeChampSelectorComponent < ApplicationComponent
       .filter(&method(:filter_public_or_private_only_type_champ))
   end
 
-  ACCEPTED_TYPES = Columns::ChampColumn::CAST.keys
-    .group_by { |(from)| from.to_s }
-    .transform_values { |pairs| pairs.map { |(_, to)| to.to_s } }
-
+  # what the revision lets it become: the menu greys out the rest
   def accepted_type_champs
-    @accepted_type_champs ||= if published_type_champ.present?
-      ([published_type_champ] + ACCEPTED_TYPES.fetch(published_type_champ, [])).uniq
-    else
-      TypeDeChamp.type_champs.keys
-    end
-  end
-
-  def published_type_champ
-    @published_type_champ ||= procedure.published_revision&.type_de_champs&.find { _1.stable_id == type_de_champ.stable_id }&.type_champ
+    @accepted_type_champs ||= revision.accepted_type_champs(type_de_champ)
   end
 
   def disabled?

@@ -420,8 +420,8 @@ describe DossierRebaseConcern do
 
       context 'when a tdc is added in the middle' do
         before do
-          added_tdc = procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'l3')
-          procedure.draft_revision.move_type_de_champ(added_tdc.stable_id, 1)
+          first_stable_id = procedure.draft_revision.type_de_champs.find { it.libelle == 'l1' }.stable_id
+          procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'l3', after_stable_id: first_stable_id)
         end
 
         it { expect { subject }.to change { champ_libelles }.from(['l1', 'l2']).to(['l1', 'l3', 'l2']) }
@@ -440,7 +440,7 @@ describe DossierRebaseConcern do
       context 'when the second tdc is moved at the first place' do
         before do
           stable_id = procedure.draft_revision.type_de_champs.find { _1.libelle == 'l2' }.stable_id
-          procedure.draft_revision.move_type_de_champ(stable_id, 0)
+          procedure.draft_revision.move_type_de_champ(stable_id)
         end
 
         it { expect { subject }.to change { champ_libelles }.from(['l1', 'l2']).to(['l2', 'l1']) }
@@ -511,10 +511,8 @@ describe DossierRebaseConcern do
 
       context 'when a child tdc is added in the middle' do
         before do
-          last_child = procedure.draft_revision.type_de_champ(repetition.stable_id).flat_children.last
-          added_tdc = procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'c3', parent_stable_id: repetition.stable_id, after_stable_id: last_child.stable_id)
-          procedure.draft_revision.move_type_de_champ(added_tdc.stable_id, 1)
-          # procedure.publish_revision!(procedure.administrateurs.first)
+          first_child = procedure.draft_revision.type_de_champ(repetition.stable_id).flat_children.first
+          procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'c3', after_stable_id: first_child.stable_id)
         end
 
         it 'does somehting' do

@@ -1,0 +1,60 @@
+-# set by the edit (TypesDeChampController#edited): @changes is nil when nothing was edited
+- draft = @procedure.draft_revision
+- block = @repetition || draft
+- errors = @errors || {}
+- if @changes
+  - c = TypesDeChampEditor::SelectChampTemplatePositionComponent.new(block:, type_de_champs: @type_de_champs)
+
+  = turbo_stream.replace(c.block_id) do
+    = render c
+= turbo_stream.replace 'errors-summary', render(Procedure::ErrorsSummary.new(procedure: @procedure, validation_context: @private ? :private_type_de_champs_editor : :public_type_de_champs_editor))
+
+= turbo_stream.replace 'summary', render(TypesDeChampEditor::HeaderSectionsSummaryComponent.new(procedure: @procedure, is_private: @private))
+
+- unless flash.alert
+  = render AutosaveNoticeTurboStreamComponent.new
+
+- if @changes
+  - node = -> (stable_id) { TypesDeChampEditor::NodeComponent.new(type_de_champ: draft.type_de_champ(stable_id), focused_stable_id: @focused&.stable_id, errors:) }
+  -# what a list holds: the block itself, or one of its header sections
+  - list = -> (stable_id) { stable_id.nil? ? block : draft.type_de_champ(stable_id) }
+  - top = @repetition ? @repetition.children : (@private ? draft.private_type_de_champs : draft.public_type_de_champs)
+
+  - @changes.removed.each do |stable_id|
+    = turbo_stream.remove dom_id(TypeDeChamp.new(stable_id:), :type_de_champ_editor)
+
+  - @changes.replaced_lists.each do |stable_id|
+    = turbo_stream.replace dom_id(list.(stable_id), :types_de_champ_editor_block) do
+      - render TypesDeChampEditor::BlockComponent.new(block: list.(stable_id), type_de_champs: stable_id.nil? ? top : list.(stable_id).children, focused_stable_id: @focused&.stable_id, errors:)
+
+  - @changes.replaced.each do |stable_id|
+    = turbo_stream.replace dom_id(draft.type_de_champ(stable_id), :type_de_champ_editor) do
+      - render node.(stable_id)
+
+  - @changes.inserted.each do |stable_id|
+    - type_de_champ = draft.type_de_champ(stable_id)
+    - if type_de_champ.previous_sibling
+      = turbo_stream.after dom_id(type_de_champ.previous_sibling, :type_de_champ_editor) do
+        - render node.(stable_id)
+    - else
+      = turbo_stream.prepend dom_id(type_de_champ.parent || block, :types_de_champ_editor_block) do
+        - render node.(stable_id)
+
+  - [*@changes.cards.map { draft.type_de_champ(it) }, *@touched_elsewhere].each do |type_de_champ|
+    = turbo_stream.replace dom_id(type_de_champ, :editor_error) do
+      - render TypesDeChampEditor::ChampComponent.new(type_de_champ:, errors: errors.fetch(type_de_champ.stable_id, ''))
+
+  -# the button adding the first of a list shows while it is empty
+  - @changes.emptied.each do |stable_id|
+    = turbo_stream.show(list.(stable_id).is_a?(TypeDeChamp) ? dom_id(list.(stable_id), :type_de_champ_add_button) : 'empty-editor')
+  - @changes.filled.each do |stable_id|
+    = turbo_stream.hide(list.(stable_id).is_a?(TypeDeChamp) ? dom_id(list.(stable_id), :type_de_champ_add_button) : 'empty-editor')
+
+  - if @focused_control
+    = turbo_stream.focus @focused_control
+
+  = turbo_stream.replace dom_id(draft, :estimated_fill_duration) do
+    - render TypesDeChampEditor::EstimatedFillDurationComponent.new(revision: draft, is_annotation: @private)
+
+= turbo_stream.update "sticky-header" do
+  = render partial: "administrateurs/procedures/unpublished_changes_sticky_header", locals: { procedure: @procedure }

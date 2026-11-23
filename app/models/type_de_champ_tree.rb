@@ -3,8 +3,6 @@
 # The layout of a revision's types de champ: which ones it holds, in which
 # order, and which repetition or header section contains them.
 class TypeDeChampTree < Data.define(:public_children, :private_children)
-  include Flat
-
   # a node while trees are merged: its children are an array left open, where
   # the ones of a TypeDeChampNode are frozen
   MergedNode = Data.define(:stable_id, :type_de_champ_id, :children, :parent) do

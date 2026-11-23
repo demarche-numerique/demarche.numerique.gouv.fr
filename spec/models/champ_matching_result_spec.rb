@@ -32,7 +32,7 @@ describe ChampMatchingResult do
     it 'gives a champ the last libellé it was given' do
       match = match!(0, 78)
       draft = left.draft_revision
-      draft.update_type_de_champ(draft.find_and_ensure_exclusive_use(stable_ids(left).first), libelle: 'Adresse postale')
+      draft.update_type_de_champ(stable_ids(left).first, libelle: 'Adresse postale')
       left.publish_revision!(left.administrateurs.first)
 
       expect(described_class.find("#{match.id}-#{left.id}").libelle).to eq('Adresse postale')

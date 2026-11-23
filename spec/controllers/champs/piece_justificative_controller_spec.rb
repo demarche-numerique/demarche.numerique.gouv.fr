@@ -83,10 +83,10 @@ describe Champs::PieceJustificativeController, type: :controller do
     before do
       sign_in user
       draft = procedure.draft_revision
-      repetition = draft.find_and_ensure_exclusive_use(draft.public_root_type_de_champs.first.stable_id)
+      repetition = draft.public_root_type_de_champs.first
       # a repetition holding types de champ keeps its type
       repetition.flat_children.each { draft.remove_type_de_champ(it.stable_id) }
-      draft.update_type_de_champ(draft.type_de_champ(repetition.stable_id).becomes_type('text'), type_champ: 'text')
+      draft.update_type_de_champ(repetition.stable_id, type_champ: 'text')
     end
 
     it 'is out of the revision' do

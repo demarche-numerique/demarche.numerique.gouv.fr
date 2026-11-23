@@ -1,0 +1,15 @@
+en:
+  activerecord:
+    errors:
+      models:
+        procedure_revision:
+          edit:
+            holds_nothing: "‘%{libelle}’ cannot hold anything: only a section and a repeatable block hold other fields."
+            other_block: "‘%{libelle}’ cannot enter or leave a repeatable block, nor move between the form and the internal fields."
+            too_many_section_levels: "Sections nest %{max} levels deep at most."
+            no_section_before: "‘%{libelle}’ is not preceded by a section to move into."
+            not_in_section: "‘%{libelle}’ is not in a section."
+            unknown_type: "This field type does not exist."
+            not_allowed_in_repetition: "The ‘%{type_champ}’ type is not available in a repeatable block."
+            not_allowed_on_this_side: "The ‘%{type_champ}’ type is not available here."
+            type_not_accepted: "‘%{libelle}’ cannot become ‘%{type_champ}’: this field is already published, and its type does not convert to that one. Remove this field and add a new one of the type you need."

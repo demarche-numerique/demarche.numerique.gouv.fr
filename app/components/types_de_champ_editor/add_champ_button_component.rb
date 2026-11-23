@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class TypesDeChampEditor::AddChampButtonComponent < ApplicationComponent
+  # after a type de champ, or first of a parent: a header section, a repetition,
+  # or none for the form and the annotations
   def initialize(revision:, parent: nil, is_annotation: false, after_stable_id: nil)
     @revision = revision
     @parent = parent

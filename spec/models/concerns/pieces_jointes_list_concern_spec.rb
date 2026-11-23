@@ -101,8 +101,8 @@ describe PiecesJointesListConcern do
 
     context 'when a published piece jointe has since become another type' do
       before do
-        type_de_champ = procedure.draft_revision.find_and_ensure_exclusive_use(2)
-        procedure.draft_revision.update_type_de_champ(type_de_champ.becomes_type(:text), type_champ: 'text')
+        # written by hand: the editor refuses to turn a published piece jointe into a text
+        procedure.draft_revision.find_and_ensure_exclusive_use(2).becomes_type(:text).update!(type_champ: 'text')
         procedure.publish_revision!(procedure.administrateurs.first)
       end
 

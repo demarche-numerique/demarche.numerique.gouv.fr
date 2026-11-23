@@ -3,58 +3,56 @@
 module Administrateurs
   class TypesDeChampController < AdministrateurController
     include ActiveSupport::NumberHelper
+    include ActionView::RecordIdentifier
     include CsvParsingConcern
 
     before_action :retrieve_procedure
 
     include SimpliscoreConcern
 
+    # A request the editor of another tab made impossible: the place a type de
+    # champ was to take is gone. The page shows the form as it is.
+    rescue_from TypeDeChampTree::EditError do
+      render turbo_stream: turbo_stream.refresh
+    end
+
     def create
-      type_de_champ = draft.add_type_de_champ(type_de_champ_create_params)
-      # not saved when refused: it holds why
-      if type_de_champ.persisted?
-        edited(type_de_champ)
-        @created = champ_component_from(type_de_champ, focused: true)
-        @morphed = champ_components_from(siblings_starting_at(type_de_champ, 1))
-      else
-        flash.alert = type_de_champ.errors.full_messages
+      editing do
+        type_de_champ = draft.add_type_de_champ(type_de_champ_create_params)
+
+        if type_de_champ.errors.empty?
+          @focused = type_de_champ
+          edited(type_de_champ)
+        else
+          flash.alert = type_de_champ.errors.full_messages
+        end
       end
     end
 
     def update
-      import_referentiel and return if referentiel_file.present?
+      if referentiel_file.present?
+        import_referentiel
+        return render_edited
+      end
 
-      type_de_champ = draft.find_and_ensure_exclusive_use(params[:stable_id])
-      was_prefill_with_fc_information = type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?
-      update_params = type_de_champ_update_params(type_de_champ)
+      editing do
+        type_de_champ = draft.type_de_champ(params[:stable_id]) || raise(ActiveRecord::RecordNotFound)
+        was_prefill_with_fc_information = prefill_with_fc_information?(type_de_champ)
+        type_champ_was = type_de_champ.type_champ
+        referentiel_url_stable_ids = type_de_champ.stable_ids_used_in_referentiel_url
+        type_de_champ = draft.update_type_de_champ(params[:stable_id], type_de_champ_update_params(type_de_champ))
 
-      if type_de_champ.type_change_locked? && changing_of_type?(type_de_champ, update_params)
-        refuse(type_de_champ, type_de_champ.type_change_locked_message)
-      else
-        referentiel_url_stable_ids = []
-
-        if changing_of_type?(type_de_champ, update_params)
-          referentiel_url_stable_ids = type_de_champ.stable_ids_used_in_referentiel_url
-          type_de_champ = type_de_champ.becomes_type(update_params['type_champ'])
-        end
-
-        # the editor form can submit options of another type (type change, or a
-        # stale tab autosaving after one): drop the ones the type does not define
-        update_params = update_params.except(*update_params.keys.reject { type_de_champ.respond_to?("#{it}=") })
-
-        if draft.update_type_de_champ(type_de_champ, update_params)
-          # as the draft lays it out by now, of another type or not
-          type_de_champ = draft.type_de_champ(params[:stable_id])
-          edited(type_de_champ)
-          @morphed = if was_prefill_with_fc_information != (type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?)
-            champ_components_from(draft.type_de_champs)
-          else
-            champ_components_from(type_de_champs_for(referentiel_url_stable_ids) + siblings_starting_at(type_de_champ))
-          end
+        if type_de_champ.errors.empty?
+          # every date tells whether another one is prefilled
+          touched = was_prefill_with_fc_information != prefill_with_fc_information?(type_de_champ) ? draft.type_de_champs.filter(&:date?) : []
+          # what the url of its reference dataset read is unlocked by a type change
+          touched |= type_de_champs_for(referentiel_url_stable_ids) if type_de_champ.type_champ != type_champ_was
+          edited(type_de_champ, touched: touched | self_and_following(type_de_champ))
         else
-          # as the draft has it: the one that failed to save may be of another type
-          edited(draft.type_de_champ(params[:stable_id]))
           flash.alert = type_de_champ.errors.full_messages
+          # as the draft has it: the one that failed to save may be of another type
+          type_de_champ = draft.type_de_champ(params[:stable_id])
+          edited(type_de_champ, touched: [type_de_champ])
         end
       end
     end
@@ -63,10 +61,9 @@ module Administrateurs
       type_de_champ = draft.find_and_ensure_exclusive_use(params[:stable_id])
 
       if type_de_champ.piece_justificative_template.attach(params[:blob_signed_id])
-        edited(type_de_champ)
-        @morphed = [champ_component_from(type_de_champ)]
+        edited(type_de_champ, touched: [type_de_champ])
 
-        render :create
+        render_edited
       else
         render json: { errors: type_de_champ.errors.full_messages }, status: 422
       end
@@ -76,68 +73,40 @@ module Administrateurs
       type_de_champ = draft.find_and_ensure_exclusive_use(params[:stable_id])
 
       if type_de_champ.notice_explicative.attach(params[:blob_signed_id])
-        edited(type_de_champ)
-        @morphed = [champ_component_from(type_de_champ)]
+        edited(type_de_champ, touched: [type_de_champ])
 
-        render :create
+        render_edited
       else
         render json: { errors: type_de_champ.errors.full_messages }, status: 422
       end
     end
 
-    def move_and_morph
-      from = draft.type_de_champ(params[:stable_id])&.then { it.flat_siblings.index(it) }
-      type_de_champ = draft.move_type_de_champ_after(params[:stable_id], params[:target_stable_id])
-      # nil in case of replay (champ removed in another tab)
-      return if type_de_champ.nil?
+    # To a place of its block: first of it ("first"), first of one of its header
+    # sections ("first:<stable id>"), or after another type de champ
+    # ("after:<stable id>").
+    def move
+      where, target_stable_id = params.require(:place).split(':')
 
-      edited(type_de_champ)
-      @destroyed = type_de_champ
-      @created = champ_component_from(type_de_champ)
-      to = @siblings.index(type_de_champ)
-      # what sits between where it was and where it is by now
-      @morphed = champ_components_from(from > to ? @siblings[to..from] : @siblings[from...to])
+      move_with(:move) do |stable_id|
+        case where
+        when 'after' then draft.move_type_de_champ(stable_id, after_stable_id: target_stable_id)
+        when 'first' then draft.move_type_de_champ(stable_id, parent_stable_id: target_stable_id || draft.type_de_champ(stable_id)&.enclosing_repetition&.stable_id)
+        else raise ActionController::BadRequest
+        end
+      end
     end
 
-    def move_up
-      type_de_champ = draft.move_up_type_de_champ(params[:stable_id])
-      # nil in case of replay (champ removed in another tab)
-      return if type_de_champ.nil?
-
-      edited(type_de_champ)
-      @destroyed = type_de_champ
-      @created = champ_component_from(type_de_champ)
-      # update the one component below
-      @morphed = champ_components_from(siblings_starting_at(type_de_champ, 1).take(1))
-    end
-
-    def move_down
-      type_de_champ = draft.move_down_type_de_champ(params[:stable_id])
-      # nil in case of replay (champ removed in another tab)
-      return if type_de_champ.nil?
-
-      edited(type_de_champ)
-      @destroyed = type_de_champ
-      @created = champ_component_from(type_de_champ)
-      # update the one component above
-      @morphed = champ_components_from(siblings_starting_at(type_de_champ, - 1).take(1))
-    end
+    def move_up = move_with(:move_up) { draft.move_up_type_de_champ(it) }
+    def move_down = move_with(:move_down) { draft.move_down_type_de_champ(it) }
+    def move_in = move_with(:move_in) { draft.move_in_type_de_champ(it) }
+    def move_out = move_with(:move_out) { draft.move_out_type_de_champ(it) }
+    def take_following_siblings = move_with(:take_following_siblings) { draft.take_following_siblings(it) }
 
     def destroy
-      type_de_champ = draft.type_de_champ(params[:stable_id])
-
-      if type_de_champ&.type_champ_locked?
-        refuse(type_de_champ, type_de_champ.deletion_locked_message)
-      elsif type_de_champ.present?
-        index = type_de_champ.flat_siblings.index(type_de_champ)
-        referentiel_url_stable_ids = type_de_champ.stable_ids_used_in_referentiel_url
-        # nil in case of replay (double click, champ already removed)
-        if draft.remove_type_de_champ(params[:stable_id]).present?
-          edited(type_de_champ)
-          @destroyed = type_de_champ
-          # the ones that followed it
-          @morphed = champ_components_from(type_de_champs_for(referentiel_url_stable_ids) + @siblings.drop(index))
-        end
+      editing do
+        # what the url of its reference dataset read is unlocked
+        referentiel_url_stable_ids = draft.type_de_champ(params[:stable_id])&.stable_ids_used_in_referentiel_url || []
+        edited(draft.remove_type_de_champ(params[:stable_id]), touched: type_de_champs_for(referentiel_url_stable_ids))
       end
     end
 
@@ -145,8 +114,8 @@ module Administrateurs
       type_de_champ = draft.find_and_ensure_exclusive_use(params[:stable_id])
       type_de_champ.update!(referentiel_id: nil)
 
-      edited(type_de_champ)
-      @morphed = champ_components_from(siblings_starting_at(type_de_champ))
+      edited(type_de_champ, touched: self_and_following(type_de_champ))
+      render_edited
     end
 
     def import_referentiel
@@ -186,55 +155,93 @@ module Administrateurs
         ReferentielItem.insert_all(items_to_insert)
       end
 
-      edited(type_de_champ)
-      @morphed = champ_components_from(siblings_starting_at(type_de_champ))
+      edited(type_de_champ, touched: self_and_following(type_de_champ))
     end
 
     private
 
-    def changing_of_type?(type_de_champ, update_params)
-      update_params['type_champ'].present? && update_params['type_champ'] != type_de_champ.type_champ
+    # Runs an edit of the draft and renders what it changes on the page: the
+    # blocks are read before it, to tell. A refused edit leaves the form as it
+    # is, and says why on the type de champ it was about.
+    def editing
+      @blocks_before = draft.type_de_champs.group_by { block_key(it) }.transform_values { TypesDeChampEditor::BlockChanges::Snapshot.of(it) }
+
+      begin
+        yield
+      rescue RevisionEditConcern::RefusedError => e
+        flash.alert = e.message
+        type_de_champ = draft.type_de_champ(params[:stable_id])
+
+        if type_de_champ
+          @errors = { type_de_champ.stable_id => e.message }
+          edited(type_de_champ, touched: [type_de_champ])
+        end
+      end
+
+      render_edited
     end
 
-    # Where the edit took place, for what the stream refreshes around it. Read
-    # off the draft as it is by now: a type de champ removed holds the layout
-    # it had.
-    def edited(type_de_champ)
+    # every edit answers with the same stream
+    def render_edited
+      respond_to { |format| format.turbo_stream { render :edited } }
+    end
+
+    # The list item of the one moved is taken out and rendered again where it
+    # sits by now: what the others hold of unsaved input stays. Its card gets
+    # the focus back, on the button which moved it if it is still there.
+    def move_with(move)
+      editing do
+        type_de_champ = yield params[:stable_id]
+
+        edited(type_de_champ, touched: [type_de_champ])
+        @focused_control = TypesDeChampEditor::ChampComponent.new(type_de_champ:).focus_after(move)
+      end
+    end
+
+    # Where the edit took place: its block, as the draft lays it out by now,
+    # for what the stream brings up to date. A type de champ removed tells
+    # where it sat.
+    #
+    # touched: the types de champ to show again as they are, wherever they sit.
+    def edited(type_de_champ, touched: [])
       @private = type_de_champ.private?
       @repetition = draft.type_de_champ(type_de_champ.enclosing_repetition.stable_id) if type_de_champ.in_repetition?
-      @siblings = if @repetition
+      @type_de_champs = if @repetition
         @repetition.flat_children
       elsif @private
         draft.private_root_type_de_champs
       else
         draft.public_root_type_de_champs
       end
-    end
 
-    # the champ is left as it is, and shows why
-    def refuse(type_de_champ, errors)
-      edited(type_de_champ)
-      @morphed = [champ_component_from(type_de_champ, errors:)]
-      flash.alert = errors
-    end
+      after = TypesDeChampEditor::BlockChanges::Snapshot.of(@type_de_champs)
+      # no block read before: an edit which leaves every type de champ in its place
+      before = @blocks_before ? @blocks_before.fetch(block_key(type_de_champ)) { TypesDeChampEditor::BlockChanges::Snapshot.of([]) } : after
+      @changes = TypesDeChampEditor::BlockChanges.new(before:, after:, touched: touched.map(&:stable_id))
+      # what a repetition holds reads what comes before the repetition: shown
+      # again with its card, but for an edit of the repetition itself
+      held = @changes.cards.map { draft.type_de_champ(it) }.filter { it.repetition? && it.stable_id != type_de_champ.stable_id }.flat_map(&:flat_children)
+      @touched_elsewhere = touched.reject { after.include?(it.stable_id) } | held
 
-    def siblings_starting_at(type_de_champ, offset = 0)
-      @siblings.drop([@siblings.index(type_de_champ) + offset, 0].max)
+      # a repetition shows the files of what it holds
+      TypeDeChamp.preload_attachments([*@type_de_champs.flat_map { it.repetition? ? [it, *it.flat_children] : [it] }, *@touched_elsewhere])
     end
 
     def type_de_champs_for(stable_ids)
       stable_ids.filter_map { draft.type_de_champ(it) }
     end
 
-    def champ_component_from(type_de_champ, focused: false, errors: '')
-      champ_components_from([type_de_champ], focused:, errors:).first
+    def block_key(type_de_champ)
+      [type_de_champ.private?, type_de_champ.enclosing_repetition&.stable_id]
     end
 
-    # a repetition shows the files of what it holds
-    def champ_components_from(type_de_champs, focused: false, errors: '')
-      TypeDeChamp.preload_attachments(type_de_champs.flat_map { [it, *it.flat_children] })
+    # itself and what comes after it in its block: what may read it in a condition
+    def self_and_following(type_de_champ)
+      type_de_champ.flat_siblings.drop_while { it.stable_id != type_de_champ.stable_id }
+    end
 
-      type_de_champs.map { TypesDeChampEditor::NodeComponent.new(type_de_champ: it, focused:, errors:) }
+    def prefill_with_fc_information?(type_de_champ)
+      type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?
     end
 
     def type_de_champ_create_params
@@ -260,7 +267,6 @@ module Administrateurs
         :drop_down_mode,
         :collapsible_explanation_enabled,
         :collapsible_explanation_text,
-        :header_section_level,
         :positive_number,
         :min_number,
         :max_number,

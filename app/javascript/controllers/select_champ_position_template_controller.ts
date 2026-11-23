@@ -32,7 +32,8 @@ export class SelectChampPositionTemplateController extends ApplicationController
 
   private onFocus(event: Event): void {
     const focusedSelect = event.target as HTMLSelectElement;
-    const focusedSelectStableId = this.getStableIdForSelect(focusedSelect);
+    const focusedSelectPlace = this.getPlaceForSelect(focusedSelect);
+    const focusedSelectStableId = focusedSelect.dataset.stableId;
     const template = this.element.querySelector<HTMLElement>(
       `#${this.templateIdValue}`
     );
@@ -41,13 +42,17 @@ export class SelectChampPositionTemplateController extends ApplicationController
       const fragment = template.cloneNode(true) as HTMLSelectElement;
 
       const options = Array.from(fragment.querySelectorAll('option'));
-      options.map((option) => {
-        // can't move current element after current element
-        if (option.value == focusedSelectStableId) {
+      for (const option of options) {
+        // where it sits already
+        if (option.value == focusedSelectPlace) {
           option.setAttribute('selected', 'selected');
+        }
+        // can't move current element after itself, nor within what it holds
+        const within = option.dataset.within?.split(' ') ?? [];
+        if (focusedSelectStableId && within.includes(focusedSelectStableId)) {
           option.setAttribute('disabled', 'disabled');
         }
-      });
+      }
 
       focusedSelect.innerHTML = options
         .map((option) => option.outerHTML)
@@ -57,16 +62,15 @@ export class SelectChampPositionTemplateController extends ApplicationController
 
   private onChange(event: Event): void {
     const changedSelectTarget = event.target as HTMLSelectElement;
-    const stableIdDidChange =
-      changedSelectTarget.value !=
-      this.getStableIdForSelect(changedSelectTarget);
-    if (stableIdDidChange) {
+    const placeDidChange =
+      changedSelectTarget.value != this.getPlaceForSelect(changedSelectTarget);
+    if (placeDidChange) {
       changedSelectTarget.form?.requestSubmit();
     }
     event.stopImmediatePropagation();
   }
 
-  private getStableIdForSelect(select: HTMLSelectElement): string | null {
+  private getPlaceForSelect(select: HTMLSelectElement): string | null {
     return select.getAttribute('data-selected');
   }
 }

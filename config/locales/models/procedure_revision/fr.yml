@@ -6,3 +6,16 @@ fr:
         ineligibilite_rules: Les conditions d’inéligibilité
         hints:
           ineligibilite_message: "Ce message sera affiché à l’usager si son dossier est bloqué et lui expliquera la raison de son inéligibilité."
+    errors:
+      models:
+        procedure_revision:
+          edit:
+            holds_nothing: "« %{libelle} » ne peut rien contenir : seuls un titre de section et un bloc répétable contiennent d’autres champs."
+            other_block: "« %{libelle} » ne peut pas entrer dans un bloc répétable ni en sortir, ni passer du formulaire aux annotations privées."
+            too_many_section_levels: "Les titres de section s’imbriquent sur %{max} niveaux au plus."
+            no_section_before: "« %{libelle} » n’est pas précédé d’un titre de section dans lequel entrer."
+            not_in_section: "« %{libelle} » n’est dans aucune section."
+            unknown_type: "Ce type de champ n’existe pas."
+            not_allowed_in_repetition: "Le type « %{type_champ} » n’est pas disponible dans un bloc répétable."
+            not_allowed_on_this_side: "Le type « %{type_champ} » n’est pas disponible ici."
+            type_not_accepted: "« %{libelle} » ne peut pas devenir « %{type_champ} » : ce champ est déjà publié, et son type ne se convertit pas en celui-ci. Supprimez ce champ et ajoutez-en un nouveau du type souhaité."

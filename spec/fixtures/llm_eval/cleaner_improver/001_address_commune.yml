@@ -5,15 +5,12 @@ procedure_params:
     - type: address
       libelle: "Adresse postale"
       stable_id: 100
-      position: 0
     - type: text
       libelle: "Commune"
       stable_id: 200
-      position: 1
     - type: text
       libelle: "Code postal"
       stable_id: 300
-      position: 2
 
 expected_destroys:
   - stable_id: 200

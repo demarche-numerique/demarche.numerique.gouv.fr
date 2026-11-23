@@ -152,9 +152,12 @@ scope module: 'administrateurs', path: 'admin', as: 'admin', defaults: { nav_bar
 
     resources :types_de_champ, only: [:create, :update, :destroy], param: :stable_id do
       member do
-        patch :move_and_morph
+        patch :move
         patch :move_up
         patch :move_down
+        patch :move_in
+        patch :move_out
+        patch :take_following_siblings
         put :piece_justificative_template
         put :notice_explicative
         delete :nullify_referentiel

@@ -291,7 +291,6 @@ class Procedure < ApplicationRecord
 
   validates :public_draft_type_de_champs,
     'type_de_champs/condition': true,
-    'type_de_champs/header_section_consistency': true,
     'type_de_champs/no_empty_block': true,
     'type_de_champs/no_empty_drop_down': true,
     'type_de_champs/drop_down_primary_option': true,
@@ -306,7 +305,6 @@ class Procedure < ApplicationRecord
 
   validates :private_draft_type_de_champs,
     'type_de_champs/condition': true,
-    'type_de_champs/header_section_consistency': true,
     'type_de_champs/no_empty_block': true,
     'type_de_champs/no_empty_drop_down': true,
     'type_de_champs/drop_down_primary_option': true,

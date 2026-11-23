@@ -389,8 +389,8 @@ describe TypeDeChamp do
         procedure.publish_revision!(procedure.administrateurs.first)
       end
 
-      it 'keeping only the header_section_level' do
-        is_expected.to eq({ 'header_section_level' => '1' })
+      it 'keeping none, the level it once declared included' do
+        is_expected.to eq({})
       end
     end
 

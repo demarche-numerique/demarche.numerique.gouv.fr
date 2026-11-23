@@ -31,16 +31,10 @@ module RevisionDescribableToLLMConcern
       choices_dynamic: (tdc.referentiel.present? ? true : nil),
       position:,
       parent_id:,
-      header_section_level: (header_section_level(tdc) if tdc.header_section?),
+      header_section_level: (tdc.block_level if tdc.header_section?),
       display_condition: tdc.condition.present?,
       options: options_for_llm(tdc),
     }.compact.reject { |k, _v| reject.include?(k) }
-  end
-
-  # How deep the header section sits among the ones of the form, or of its
-  # repetition: the count restarts there, as the positions do.
-  def header_section_level(tdc)
-    tdc.level - (tdc.enclosing_repetition&.level || 0)
   end
 
   def options_for_llm(tdc)

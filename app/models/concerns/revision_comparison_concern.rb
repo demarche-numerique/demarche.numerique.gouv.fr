@@ -4,7 +4,8 @@ module RevisionComparisonConcern
   extend ActiveSupport::Concern
 
   def compare_type_de_champs(to_revision)
-    return [] if self == to_revision
+    # the same types de champ, laid out the same way
+    return [] if self == to_revision || type_de_champ_tree == to_revision.type_de_champ_tree
 
     from_h = type_de_champs.index_by(&:stable_id)
     to_h = to_revision.type_de_champs.index_by(&:stable_id)

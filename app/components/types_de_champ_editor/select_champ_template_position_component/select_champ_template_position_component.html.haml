@@ -1,7 +1,4 @@
 %div{ id: block_id, data: { 'select-champ-position-template-target': 'template', turbo_force: :server } }
   %select
-    - @type_de_champs.each.with_index(1) do |type_de_champ, position|
-      - if type_de_champ.header_section?
-        %option{ value: type_de_champ.stable_id }= "----- #{type_de_champ.libelle} -----"
-      - else
-        %option{ value: type_de_champ.stable_id }= "#{position} - #{type_de_champ.libelle}"
+    - places.each do |label, place, within|
+      %option{ value: place, data: { within: within.join(' ') } }= label

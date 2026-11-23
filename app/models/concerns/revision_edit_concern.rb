@@ -2,308 +2,437 @@
 
 # The edits of a draft: its types de champ added, changed, moved and removed.
 #
-# The editor lists every block flat (the form, the annotations, what a
-# repetition holds), a header section being a title among its siblings. An
-# edit is made on the tree flattened that way, which is then folded again by
-# the declared levels of the header sections (TypeDeChampTree::Flat).
+# Each edit takes the row lock of the revision, reads the tree as the edits
+# before it left it, checks what the editor allows, and writes the tree once.
+# The tree itself only knows that it stays a tree (TypeDeChampTree): the rules
+# are here.
 #
-# FIXME: the edits are to be the ones of a tree of sections (#14009).
+# - A block is the form, the annotations, or what a repetition holds. A type
+#   de champ never leaves its block: the rows already filled would no longer
+#   read (#14105).
+# - Only a header section and a repetition hold anything.
+# - A block refuses some types: a repetition within a repetition, an
+#   annotation type in the form.
+# - Three levels of header sections per block.
+# - A type de champ the published revision lays out takes its published type,
+#   or a type it converts to (Columns::ChampColumn::CAST). Neither a header
+#   section nor a repetition is in the table: once published, they keep their
+#   type. Anything not published yet is free, but a repetition holding types
+#   de champ: they would leave the draft with its type.
+# - Removing a repetition removes what it holds, removing a header section
+#   leaves what it holds in its place. A type de champ the routing, a
+#   referentiel or the eligibility rules read is not removed, nor changes type.
+#
+# A type de champ left out of the tree stays in the database until the next
+# publication or reset of the draft, which purge the ones no revision lays out
+# (ProcedurePublishConcern).
 module RevisionEditConcern
   extend ActiveSupport::Concern
+
+  # An edit the rules refuse. The message is for the administrateur.
+  class RefusedError < StandardError; end
+
+  MAX_SECTION_LEVEL = 3
 
   # A write to a column no foreign key refers to: FOR UPDATE would have every
   # dossier created on the revision wait, its foreign key check reading the row
   # FOR KEY SHARE.
   TYPE_DE_CHAMP_TREE_LOCK = 'FOR NO KEY UPDATE'
 
+  # the types a published type converts to
+  CASTABLE_TYPE_CHAMPS = Columns::ChampColumn::CAST.keys
+    .group_by { |(from)| from.to_s }
+    .transform_values { |pairs| pairs.map { |(_, to)| to.to_s } }
+    .freeze
+
+  # Every edit goes through here, one at a time: the requests of the editor
+  # race. The lock reloads the revision: the block reads the tree as the edits
+  # committed before it left it, and changes it in memory
+  # (type_de_champ_tree=). It is written once, when the block returns. An edit
+  # made of others holds the lock once.
+  #
+  # A published revision is never edited. Read under the lock: an edit that
+  # waited for it through the publication of its draft stops here.
+  def edit_type_de_champs
+    return yield if @editing_type_de_champs
+
+    raise ArgumentError, "save the revision before editing its types de champ: the lock reloads it" if new_record? || has_changes_to_save?
+
+    with_lock(TYPE_DE_CHAMP_TREE_LOCK) do
+      raise ActiveRecord::RecordNotFound, "the revision is published: its types de champ are no longer edited" if published_at?
+
+      @editing_type_de_champs = true
+
+      yield.tap { write_type_de_champ_tree if type_de_champ_tree_changed? }
+    ensure
+      @editing_type_de_champs = false
+      # the tree a refused edit left: the transaction rolls back the rest
+      restore_attributes([:type_de_champ_tree])
+    end
+  end
+
+  # First of the parent given (a header section, a repetition, or none for the
+  # form or the annotations), or right after a sibling. Returns the type de
+  # champ as the draft lays it out, or holding the errors which refused it.
   def add_type_de_champ(params)
-    parent_stable_id = params.delete(:parent_stable_id)
-    after_stable_id = params.delete(:after_stable_id)
+    params = params.to_h.symbolize_keys
+    parent_stable_id = params.delete(:parent_stable_id).presence
+    after_stable_id = params.delete(:after_stable_id).presence
+
+    # refused before it is built: an unknown type has no class
+    refuse(:unknown_type) if params[:type_champ].present? && !TypeDeChamp.type_champs.value?(params[:type_champ].to_s)
 
     type_de_champ = TypeDeChamp.new(params)
     type_de_champ.procedure = procedure
 
-    if params[:private].to_s == "true"
-      type_de_champ.mandatory = false
-    end
-
     # saved under the lock: a publication purges the types de champ no tree holds
-    added = edit_flat_type_de_champ_tree do |flat|
-      next [false, flat] if !type_de_champ.save
+    edit_type_de_champs do
+      after = laid_out_type_de_champ(after_stable_id) if after_stable_id
+      parent = after ? after.parent : (laid_out_type_de_champ(parent_stable_id) if parent_stable_id)
+
+      type_de_champ.private = (after || parent).private? if after || parent
+      type_de_champ.mandatory = false if type_de_champ.private?
+
+      check_holds(parent)
+      check_type_champ_allowed(type_de_champ.type_champ, repetition: block_of_content(parent), private: type_de_champ.private?)
+      check_section_levels(parent, 1) if type_de_champ.header_section?
+
+      next type_de_champ if !type_de_champ.save
 
       node = TypeDeChampNode.new(stable_id: type_de_champ.stable_id, type_de_champ_id: type_de_champ.id)
-      parent = parent_stable_id.presence&.to_i || (type_de_champ.private? ? :private : :public)
+      self.type_de_champ_tree = type_de_champ_tree.insert(node, parent: parent&.stable_id || root_of(type_de_champ), after: after&.stable_id)
+      lay_out_type_de_champs(type_de_champ.id => type_de_champ).type_de_champ(type_de_champ.stable_id)
+    end
+  rescue RefusedError, TypeDeChampTree::EditError => e
+    TypeDeChamp.new.tap { it.errors.add(:base, e.message) }
+  end
 
-      [true, flat.insert(node, parent:, after: after_stable_id.presence&.to_i)]
+  # The type de champ to change, the draft's own: one the published revision
+  # lays out as well is first replaced by a copy. Decided under the lock: two
+  # requests editing it at once would otherwise each make theirs, the last one
+  # orphaning the copy of the first along with its edit.
+  def find_and_ensure_exclusive_use(stable_id)
+    edit_type_de_champs do
+      type_de_champ = laid_out_type_de_champ(stable_id)
+      next type_de_champ if exclusive_use?(type_de_champ)
+
+      copy = type_de_champ.deep_clone do |original, kopy|
+        ClonePiecesJustificativesService.clone_attachments(original, kopy)
+        kopy.procedure = procedure
+      end
+      copy.save!
+      self.type_de_champ_tree = type_de_champ_tree.replace(type_de_champ.stable_id, type_de_champ_id: copy.id, children: :keep)
+
+      lay_out_type_de_champs(copy.id => copy).type_de_champ(stable_id)
+    end
+  end
+
+  # Returns the type de champ as the draft lays it out once updated, or the one
+  # holding the errors which kept it from being saved.
+  #
+  # A change of type follows the rules above. What a header section held
+  # stays in its place.
+  def update_type_de_champ(stable_id, params)
+    params = params.to_h.with_indifferent_access
+
+    edit_type_de_champs do
+      type_de_champ = laid_out_type_de_champ(stable_id)
+      type_champ = params[:type_champ].presence&.to_s
+      changes_type = type_champ && type_champ != type_de_champ.type_champ
+
+      # refused before a copy is made
+      check_type_champ_change(type_de_champ, type_champ) if changes_type
+      type_de_champ = find_and_ensure_exclusive_use(stable_id)
+
+      type_de_champ = type_de_champ.becomes_type(type_champ) if changes_type
+
+      # the editor form can submit options of another type (type change, or a
+      # stale tab autosaving after one): the ones the type does not define are dropped
+      if !type_de_champ.update(params.filter { |key, _| type_de_champ.respond_to?("#{key}=") })
+        # the draft lays it out as it is saved, not as it failed to be
+        lay_out_type_de_champs
+        next type_de_champ
+      end
+
+      if changes_type
+        self.type_de_champ_tree = type_de_champ_tree.replace(type_de_champ.stable_id, type_de_champ_id: type_de_champ.id, children: :inline)
+        # of another class by now
+        lay_out_type_de_champs
+      end
+
+      type_de_champ(stable_id)
+    end
+  end
+
+  # The types a type de champ may take, its own included.
+  def accepted_type_champs(type_de_champ)
+    published_type_champ = procedure.published_revision&.type_de_champ(type_de_champ.stable_id)&.type_champ
+    type_champs = if published_type_champ
+      [published_type_champ, *CASTABLE_TYPE_CHAMPS.fetch(published_type_champ, [])].uniq
+    else
+      TypeDeChamp.type_champs.values
     end
 
-    if added
-      # as the draft lays it out by now: the lock of the edit reloaded it
-      type_de_champ(type_de_champ.stable_id)
-    else
+    [type_de_champ.type_champ, *type_champs.filter { refusal_of_type_champ(type_de_champ, it).nil? }].uniq
+  end
+
+  # To the place given, as add_type_de_champ takes it, with what it holds.
+  # Returns the type de champ as the draft lays it out by now.
+  def move_type_de_champ(stable_id, parent_stable_id: nil, after_stable_id: nil)
+    edit_type_de_champs do
+      type_de_champ = laid_out_type_de_champ(stable_id)
+      after = laid_out_type_de_champ(after_stable_id) if after_stable_id.present?
+      parent = after ? after.parent : (laid_out_type_de_champ(parent_stable_id) if parent_stable_id.present?)
+
+      refuse(:other_block, type_de_champ) if after && after.private? != type_de_champ.private?
+
+      move(type_de_champ, parent:, after:)
+    end
+  end
+
+  # Before its previous sibling. The first of a header section comes out of
+  # it, right before. Left in place when first of its block.
+  def move_up_type_de_champ(stable_id)
+    edit_type_de_champs do
+      type_de_champ = laid_out_type_de_champ(stable_id)
+      previous = type_de_champ.previous_sibling
+
+      if previous
+        move(type_de_champ, parent: type_de_champ.parent, after: previous.previous_sibling)
+      elsif type_de_champ.parent&.header_section?
+        move(type_de_champ, parent: type_de_champ.parent.parent, after: type_de_champ.parent.previous_sibling)
+      else
+        type_de_champ
+      end
+    end
+  end
+
+  # After its next sibling. The last of a header section comes out of it,
+  # right after. Left in place when last of its block.
+  def move_down_type_de_champ(stable_id)
+    edit_type_de_champs do
+      type_de_champ = laid_out_type_de_champ(stable_id)
+      following = type_de_champ.next_sibling
+
+      if following
+        move(type_de_champ, parent: type_de_champ.parent, after: following)
+      elsif type_de_champ.parent&.header_section?
+        move(type_de_champ, parent: type_de_champ.parent.parent, after: type_de_champ.parent)
+      else
+        type_de_champ
+      end
+    end
+  end
+
+  # Last of the header section right before it.
+  def move_in_type_de_champ(stable_id)
+    edit_type_de_champs do
+      type_de_champ = laid_out_type_de_champ(stable_id)
+      section = type_de_champ.previous_sibling
+      refuse(:no_section_before, type_de_champ) if !section&.header_section?
+
+      move(type_de_champ, parent: section, after: section.children.last)
+    end
+  end
+
+  # Right after the header section holding it.
+  def move_out_type_de_champ(stable_id)
+    edit_type_de_champs do
+      type_de_champ = laid_out_type_de_champ(stable_id)
+      section = type_de_champ.parent
+      refuse(:not_in_section, type_de_champ) if !section&.header_section?
+
+      move(type_de_champ, parent: section.parent, after: section)
+    end
+  end
+
+  # A header section takes the siblings following it, up to the next header
+  # section, after what it holds already: what a title put in a flat list
+  # stands for.
+  def take_following_siblings(stable_id)
+    edit_type_de_champs do
+      section = laid_out_type_de_champ(stable_id)
+      refuse(:holds_nothing, section) if !section.header_section?
+
+      taken = section.siblings.drop(section.position + 1).take_while { !it.header_section? }
+      taken.reduce(section.children.last) do |after, sibling|
+        self.type_de_champ_tree = type_de_champ_tree.move(sibling.stable_id, parent: section.stable_id, after: after&.stable_id)
+        sibling
+      end
+
+      type_de_champ(stable_id)
+    end
+  end
+
+  # Returns the type de champ as the draft laid it out. It is left in the
+  # database: it lives until the next publication (or reset) of the
+  # procedure.
+  def remove_type_de_champ(stable_id)
+    edit_type_de_champs do
+      type_de_champ = laid_out_type_de_champ(stable_id)
+      removed = type_de_champ.repetition? ? [type_de_champ, *type_de_champ.flat_children] : [type_de_champ]
+      removed.each { check_not_in_use(it, :remove) }
+
+      self.type_de_champ_tree = type_de_champ_tree.remove(type_de_champ.stable_id, children: type_de_champ.header_section? ? :inline : :remove)
+
       type_de_champ
     end
-  rescue TypeDeChampTree::EditError
-    # the place asked for is gone: the parent, or the sibling to come after
-    TypeDeChamp.new.tap { it.errors.add(:base, I18n.t('activerecord.errors.type_de_champ.not_added.place_gone')) }
-  rescue => e
-    TypeDeChamp.new.tap { _1.errors.add(:base, e.message) }
   end
 
-  # Decided under the lock: two requests editing a shared type de champ at once
-  # would otherwise each clone it, the last one orphaning the clone of the
-  # first along with its edit.
-  def find_and_ensure_exclusive_use(stable_id)
-    with_lock(TYPE_DE_CHAMP_TREE_LOCK) do
-      refuse_published_revision
-
-      # read once locked: the lock lays the revision out anew
-      tdc = type_de_champ(stable_id)
-
-      # replayed request targeting a tdc no longer in this revision (deleted in
-      # another tab or by a previous request)
-      raise ActiveRecord::RecordNotFound if tdc.nil?
-
-      if tdc.only_present_on_draft?
-        tdc
-      else
-        replace_type_de_champ_by_clone(tdc)
-        type_de_champ(stable_id)
-      end
-    end
-  end
-
-  # The type (header section, repetition) and the header section level shape
-  # the tree as much as the order does.
-  # The lock lays the revision out anew: read the type de champ again
-  # (type_de_champ(stable_id)) rather than keep the one given.
-  #
-  # A repetition holding champs keeps its type: the fold would leave them out
-  # of the draft for good. Read under the lock, and answered as a failed save.
-  def update_type_de_champ(type_de_champ, params)
-    edit_type_de_champs do
-      type_de_champ.assign_attributes(params)
-
-      if type_de_champ.type_champ_changed?(from: TypeDeChamp.type_champs.fetch(:repetition)) && holds_type_de_champs?(type_de_champ.stable_id)
-        type_de_champ.errors.add(:base, I18n.t('activerecord.errors.type_de_champ.locked.update.repetition_holding_champs', type_de_champ: type_de_champ.libelle))
-        next false
-      end
-
-      type_de_champ.save
-    end
-  end
-
-  # A move returns the type de champ where it is laid out by now. The
-  # position is the one among its siblings: the ones its block lists.
-  def move_type_de_champ(stable_id, position)
-    move(stable_id) { position }
-  end
-
-  # After the sibling given, read under the lock as the one moved is: nil as
-  # well when that one is gone, or sits in another block.
-  def move_type_de_champ_after(stable_id, after_stable_id)
-    move(stable_id) do |siblings|
-      siblings.without(stable_id.to_i).index(after_stable_id.to_i)&.succ
-    end
-  end
-
-  # The type de champ is left in place: it lives until the next publication
-  # (or reset) of the procedure, which purges the types de champ no revision
-  # lays out any more (ProcedurePublishConcern).
-  #
-  # Returns whether it was laid out: no longer when the request is replayed
-  # (double click, removed in another tab).
-  def remove_type_de_champ(stable_id)
-    stable_id = stable_id.to_i
-
-    edit_flat_type_de_champ_tree do |flat|
-      next [false, flat] if flat.nodes.none? { it.stable_id == stable_id }
-
-      # what a repetition holds goes with it
-      [true, flat.remove(stable_id)]
-    end
-  end
-
-  def move_up_type_de_champ(stable_id)
-    move(stable_id) { |siblings| siblings.index(stable_id.to_i) - 1 }
-  end
-
-  def move_down_type_de_champ(stable_id)
-    move(stable_id) { |siblings| siblings.index(stable_id.to_i) + 1 }
-  end
-
+  # The suggestions of the LLM the administrateur accepted, applied as one
+  # edit: one lock, the tree written once. A suggestion the rules refuse, or
+  # whose type de champ is gone, is marked as failed: the others still apply.
   def apply_llm_rule_suggestion_items(changes)
-    # Handle adds first, outside transaction to ensure stable_ids are generated and available
-    created = changes.fetch(:add, []).each_with_object({}) do |item, accu|
-      after_stable_id, libelle, header_section_level, generated_stable_id = item.payload.with_indifferent_access.values_at(:after_stable_id, :libelle, :header_section_level, :generated_stable_id)
+    edit_type_de_champs do
+      # the header sections added, by the id the LLM gave them
+      added_stable_ids = {}
 
-      new_tdc = add_type_de_champ(after_stable_id:, type_champ: 'header_section', libelle:, header_section_level:)
-      item.failed! if !new_tdc.persisted?
-      accu[generated_stable_id] = new_tdc if new_tdc.persisted? && generated_stable_id
-    end
+      changes.fetch(:add, []).each do |item|
+        apply_llm_rule_suggestion_item(item) do |payload|
+          parent_stable_id, after_stable_id = payload.values_at(:parent_stable_id, :after_stable_id).map { it&.negative? ? added_stable_ids.fetch(it) : it }
+          section = add_type_de_champ(type_champ: TypeDeChamp.type_champs.fetch(:header_section), libelle: payload[:libelle], parent_stable_id:, after_stable_id:)
+          raise RefusedError, section.errors.full_messages.to_sentence if !section.persisted?
 
-    # transaction do
-    changes.fetch(:update, []).each do |item|
-      payload = item.payload.with_indifferent_access
-
-      if payload.key?(:after_stable_id) # StructureImprover: déplacement relatif
-        stable_id, after_stable_id, header_section_level, libelle = payload.values_at(:stable_id, :after_stable_id, :header_section_level, :libelle)
-        params = { header_section_level:, libelle: }.compact
-
-        if after_stable_id.nil? # positionned at first
-          moved = move_type_de_champ(stable_id, 0)
-          if payload.key?(:header_section_level) && moved.header_section? && params.present?
-            update_type_de_champ(find_and_ensure_exclusive_use(stable_id), params)
-          end
-        else # positionned after another tdc
-          if after_stable_id&.negative?
-            after_tdc = created[after_stable_id]
-            if after_tdc
-              after_stable_id = created[after_stable_id].stable_id
-            else
-              item.failed!
-              next
-            end
-          end
-
-          moved = move_type_de_champ_after(stable_id, after_stable_id)
-          if payload.key?(:header_section_level) && moved&.header_section? && params.present?
-            update_type_de_champ(find_and_ensure_exclusive_use(stable_id), params)
-          end
+          added_stable_ids[payload[:generated_stable_id]] = section.stable_id
         end
-      elsif payload.key?(:type_champ) # TypesImprover: type change
-        stable_id, type_champ, options = payload.values_at(:stable_id, :type_champ, :options)
+      end
 
-        tdc = find_and_ensure_exclusive_use(stable_id)
-        tdc = tdc.becomes_type(type_champ) if type_champ != tdc.type_champ
-        update_params = { type_champ: }
-        update_params[:options] = tdc.options.merge(options) if options.present?
-        update_type_de_champ(tdc, update_params)
-      else # LabelImprover: mise à jour contenu
-        stable_id, libelle, description = payload.values_at(:stable_id, :libelle, :description)
+      # once they are all there: a header section takes what follows it up to the next one
+      added_stable_ids.each_value { take_following_siblings(it) }
 
-        tdc = find_and_ensure_exclusive_use(stable_id)
-        tdc.update({ libelle:, description: }.compact)
+      changes.fetch(:update, []).each do |item|
+        apply_llm_rule_suggestion_item(item) do |payload|
+          params = if payload.key?(:type_champ) # TypesImprover
+            options = laid_out_type_de_champ(payload[:stable_id]).options.merge(payload[:options]) if payload[:options].present?
+            { type_champ: payload[:type_champ], options: }.compact
+          else # LabelImprover
+            payload.slice(:libelle, :description).compact
+          end
+
+          updated = update_type_de_champ(payload[:stable_id], params)
+          raise RefusedError, updated.errors.full_messages.to_sentence if updated.errors.any?
+        end
+      end
+
+      changes.fetch(:destroy, []).each do |item|
+        apply_llm_rule_suggestion_item(item) { remove_type_de_champ(item.stable_id) }
       end
     end
-
-    changes.fetch(:destroy, []).each do |llm_rule_suggestion_items|
-      # TODO: verify conditional rules before
-      remove_type_de_champ(llm_rule_suggestion_items.stable_id)
-    end
-  end
-
-  # Every edit of the draft goes through here, one at a time: the requests of
-  # the editor race, and each has to edit the tree the one before left. The
-  # lock reloads the revision: what an edit relies on (the tree, where a type
-  # de champ sits in it) is read inside, so it sees the edits made in the
-  # meantime rather than the ones a request was sent against. The types de
-  # champ are laid out again, as the lock reloads the tree.
-  #
-  # The tree is folded again whatever the edit: the type (header section,
-  # repetition) and the header section level shape it as much as the order.
-  def edit_type_de_champs
-    edit_flat_type_de_champ_tree { |flat| [yield, flat] }
   end
 
   private
 
-  # A published revision is never edited. Read under the lock: an edit that
-  # waited for it through the publication of its draft stops here.
-  def refuse_published_revision
-    raise ActiveRecord::RecordNotFound, "the revision is published: its types de champ are no longer edited" if published_at?
+  def apply_llm_rule_suggestion_item(item)
+    yield item.payload.with_indifferent_access
+  rescue RefusedError, TypeDeChampTree::EditError, KeyError, ActiveRecord::RecordNotFound
+    item.failed!
   end
 
-  # The block is given the tree flattened and answers what the edit returns,
-  # along with the flat tree as the edit leaves it.
-  #
-  # Flattened before the edit: what a repetition held is only left out by the
-  # fold once it is no longer one, where what a header section held stays. An
-  # edit made within another is refused for the same reason: the tree it
-  # stores would be left out by the fold of the one around it.
-  def edit_flat_type_de_champ_tree
-    raise ArgumentError, "save the revision before editing its types de champ: the lock reloads it" if new_record? || has_changes_to_save?
-    raise ArgumentError, "the types de champ are being edited: an edit made within another would be lost" if @editing_type_de_champs
+  # RecordNotFound for a request replayed, or sent from a tab left behind: the
+  # type de champ was removed since.
+  def laid_out_type_de_champ(stable_id)
+    type_de_champ(stable_id) || raise(ActiveRecord::RecordNotFound, "type de champ #{stable_id} is not laid out by the revision")
+  end
 
-    begin
-      @editing_type_de_champs = true
+  def exclusive_use?(type_de_champ)
+    published_tree = procedure.published_revision&.type_de_champ_tree
 
-      with_lock(TYPE_DE_CHAMP_TREE_LOCK) do
-        refuse_published_revision
+    published_tree.nil? || published_tree.type_de_champ_ids.exclude?(type_de_champ.id)
+  end
 
-        answer, flat = yield type_de_champ_tree.flatten(repetitions: type_de_champ_kinds(type_de_champ_tree).fetch(:repetitions))
-        tree = flat.fold(**type_de_champ_kinds(flat))
-        update_columns(type_de_champ_tree: tree) if tree != type_de_champ_tree
+  def root_of(type_de_champ) = type_de_champ.private? ? :private : :public
 
-        answer
-      end
-    ensure
-      @editing_type_de_champs = false
+  # the repetition whose block holds what a parent holds, nil for the form or the annotations
+  def block_of_content(parent)
+    return nil if parent.nil?
+
+    parent.repetition? ? parent : parent.enclosing_repetition
+  end
+
+  def same_block?(type_de_champ, parent)
+    return !type_de_champ.in_repetition? if parent.nil?
+
+    parent.private? == type_de_champ.private? && block_of_content(parent) == type_de_champ.enclosing_repetition
+  end
+
+  # the header sections holding what a parent holds, within its block
+  def section_level_in(parent)
+    parent.nil? || parent.repetition? ? 0 : parent.block_level
+  end
+
+  # the levels of header sections a type de champ brings along
+  def section_height(type_de_champ)
+    return 0 if !type_de_champ.header_section?
+
+    1 + type_de_champ.children.map { section_height(it) }.max.to_i
+  end
+
+  def move(type_de_champ, parent:, after:)
+    check_holds(parent)
+    refuse(:other_block, type_de_champ) if !same_block?(type_de_champ, parent)
+    check_section_levels(parent, section_height(type_de_champ))
+
+    self.type_de_champ_tree = type_de_champ_tree.move(type_de_champ.stable_id, parent: parent&.stable_id || root_of(type_de_champ), after: after&.stable_id)
+
+    type_de_champ(type_de_champ.stable_id)
+  end
+
+  def check_holds(parent)
+    refuse(:holds_nothing, parent) if parent && !parent.header_section? && !parent.repetition?
+  end
+
+  def check_section_levels(parent, height)
+    refuse(:too_many_section_levels, nil, max: MAX_SECTION_LEVEL) if section_level_in(parent) + height > MAX_SECTION_LEVEL
+  end
+
+  def check_type_champ_allowed(type_champ, repetition:, private:)
+    # left to the validations of the type de champ
+    return if type_champ.blank?
+
+    refusal = refusal_of_type_champ_in_block(type_champ, repetition:, private:)
+    refuse(refusal, nil, type_champ: human_type_champ(type_champ)) if refusal
+  end
+
+  def refusal_of_type_champ_in_block(type_champ, repetition:, private:)
+    return :unknown_type if !TypeDeChamp.type_champs.value?(type_champ)
+
+    type = TypeDeChamp.find_sti_class(type_champ)
+
+    if repetition && !type.allowed_in_repetition?
+      :not_allowed_in_repetition
+    elsif private ? type.public_only? : type.private_only?
+      :not_allowed_on_this_side
     end
   end
 
-  def holds_type_de_champs?(stable_id)
-    type_de_champ_tree.nodes.find { it.stable_id == stable_id }&.children.present?
+  # nil when the type de champ may take the type, where it sits
+  def refusal_of_type_champ(type_de_champ, type_champ)
+    refusal = refusal_of_type_champ_in_block(type_champ, repetition: type_de_champ.enclosing_repetition, private: type_de_champ.private?)
+    return refusal if refusal
+
+    :too_many_section_levels if type_champ == TypeDeChamp.type_champs.fetch(:header_section) && section_level_in(type_de_champ.parent) >= MAX_SECTION_LEVEL
   end
 
-  # what tells the trees apart: the options are not loaded, some hold thousands of choices
-  def type_de_champ_kinds(tree)
-    kinds = TypeDeChamp
-      .where(id: tree.type_de_champ_ids, type_champ: [TypeDeChamp.type_champs.fetch(:header_section), TypeDeChamp.type_champs.fetch(:repetition)])
-      .pluck(:id, :type_champ, Arel.sql("options->>'header_section_level'"))
-    repetitions, header_sections = kinds.partition { |_, type_champ, _| type_champ == TypeDeChamp.type_champs.fetch(:repetition) }
-
-    {
-      repetitions: repetitions.to_set(&:first),
-      levels: header_sections.to_h { |id, _, level| [id, level.presence&.to_i || 1] },
-    }
+  def check_type_champ_change(type_de_champ, type_champ)
+    check_not_in_use(type_de_champ, :change_type)
+    refusal = refusal_of_type_champ(type_de_champ, type_champ)
+    refuse(refusal, type_de_champ, type_champ: human_type_champ(type_champ), max: MAX_SECTION_LEVEL) if refusal
+    refuse(:type_not_accepted, type_de_champ, type_champ: human_type_champ(type_champ)) if accepted_type_champs(type_de_champ).exclude?(type_champ)
+    # a repetition holding types de champ
+    raise RefusedError, type_de_champ.type_change_locked_message if type_de_champ.type_change_locked?
   end
 
-  # what holds the type de champ in the flat tree (a root or its repetition),
-  # and the stable ids listed there, its own included
-  def flat_siblings(flat, stable_id)
-    { public: flat.public_nodes_with_ancestors, private: flat.private_nodes_with_ancestors }.each do |root, nodes_with_ancestors|
-      node, ancestors = nodes_with_ancestors.find { |node, _| node.stable_id == stable_id }
-      next if node.nil?
+  def check_not_in_use(type_de_champ, edit)
+    return if !type_de_champ.type_champ_locked?
 
-      siblings = ancestors.last&.children || (root == :public ? flat.public_children : flat.private_children)
-      return [ancestors.last&.stable_id || root, siblings.map(&:stable_id)]
-    end
-
-    nil
+    raise RefusedError, edit == :remove ? type_de_champ.deletion_locked_message : type_de_champ.type_change_locked_message
   end
 
-  # The block is given the siblings of the type de champ, itself included, and
-  # answers the position it takes among them: nil to leave it where it is.
-  # Returns nil as well when the type de champ is no longer in the revision: a
-  # replayed request (double click, removed in another tab).
-  def move(stable_id)
-    stable_id = stable_id.to_i
-
-    moved = edit_flat_type_de_champ_tree do |flat|
-      parent, siblings = flat_siblings(flat, stable_id)
-      position = yield siblings if siblings
-      next [false, flat] if position.nil?
-
-      others = siblings.without(stable_id)
-      # a position past the ends is the end
-      after = others[position.clamp(0, others.size) - 1] if position > 0
-
-      [true, flat.move(stable_id, parent:, after:)]
-    end
-
-    type_de_champ(stable_id) if moved
+  def refuse(reason, type_de_champ = nil, **)
+    raise RefusedError, I18n.t(reason, scope: 'activerecord.errors.models.procedure_revision.edit', libelle: type_de_champ&.libelle, **)
   end
 
-  def replace_type_de_champ_by_clone(type_de_champ)
-    edit_flat_type_de_champ_tree do |flat|
-      cloned_type_de_champ = type_de_champ.deep_clone do |original, kopy|
-        ClonePiecesJustificativesService.clone_attachments(original, kopy)
-        kopy.procedure = procedure
-      end
-      cloned_type_de_champ.save!
-
-      [cloned_type_de_champ, flat.replace(type_de_champ.stable_id, type_de_champ_id: cloned_type_de_champ.id, children: :keep)]
-    end
+  def human_type_champ(type_champ)
+    I18n.t(type_champ, scope: 'activerecord.attributes.type_de_champ.type_champs', default: type_champ.to_s, app_name: APPLICATION_NAME)
   end
 end

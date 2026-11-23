@@ -1,37 +1,13 @@
 # frozen_string_literal: true
 
+# Its level is its place in the tree: how deep it sits in the header sections
+# of its block (TypeDeChamp#block_level).
 class TypesDeChamp::HeaderSectionTypeDeChamp < TypeDeChamp
   def self.category = STRUCTURE
   def self.icon = 'fr-icon-heading'
-  def self.option_keys = [:header_section_level]
-
-  store_accessor :options, :header_section_level
 
   def fillable? = false
   def description_configurable? = false
   def has_label? = false
   def tags_for_template = [].freeze
-
-  # its level is its place in the tree: a change of level is a move
-  def revision_diff_options = {}
-
-  def header_section_level_value
-    if header_section_level.presence
-      header_section_level.to_i
-    else
-      1
-    end
-  end
-
-  def check_coherent_header_level(upper_tdcs)
-    previous_level = previous_section_level(upper_tdcs)
-    current_level = header_section_level_value.to_i
-
-    difference = current_level - previous_level
-    if current_level > previous_level && difference != 1
-      I18n.t('activerecord.errors.type_de_champ.attributes.header_section_level.gap_error', level: current_level - 1)
-    else
-      nil
-    end
-  end
 end

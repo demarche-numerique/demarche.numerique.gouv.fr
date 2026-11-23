@@ -5,15 +5,12 @@ procedure_params:
     - type: siret
       libelle: "SIRET de votre entreprise"
       stable_id: 100
-      position: 0
     - type: text
       libelle: "Raison sociale"
       stable_id: 200
-      position: 1
     - type: text
       libelle: "Adresse du siège social"
       stable_id: 300
-      position: 2
 
 expected_destroys:
   - stable_id: 200
