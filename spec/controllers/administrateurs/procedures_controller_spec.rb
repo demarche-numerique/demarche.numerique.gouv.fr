@@ -817,6 +817,28 @@ describe Administrateurs::ProceduresController, type: :controller do
       end
     end
 
+    context 'when api tokens would read the clone' do
+      let(:co_admin) { administrateurs.blank }
+      let(:former_admin) { create(:administrateur) }
+
+      before do
+        procedure.administrateurs << co_admin
+        APIToken.generate(admin, name: 'Mon export', allowed_procedure_ids: [procedure.id], follows_clones: true)
+        APIToken.generate(co_admin, name: 'SI subventions')
+        APIToken.generate(co_admin, name: 'Export comptable', allowed_procedure_ids: [procedure.id], follows_clones: true)
+        APIToken.generate(co_admin, name: 'Liste figée', allowed_procedure_ids: [procedure.id])
+        APIToken.generate(former_admin, name: 'Ancien jeton', allowed_procedure_ids: [procedure.id], follows_clones: true)
+        subject
+      end
+
+      it 'names the tokens of the other administrateurs' do
+        expect(response.body).to include("Les jetons d’API « Export comptable » (#{co_admin.email}) et « SI subventions » (#{co_admin.email}) auront accès à la nouvelle démarche seulement si cette case reste cochée.")
+        expect(response.body).not_to include('Mon export')
+        expect(response.body).not_to include('Liste figée')
+        expect(response.body).not_to include('Ancien jeton')
+      end
+    end
+
     context 'when the procedure is declarative and kept on the legacy emails' do
       before do
         procedure.update!(declarative_with_state: :accepte)

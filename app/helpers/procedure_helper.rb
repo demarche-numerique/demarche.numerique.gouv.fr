@@ -105,4 +105,10 @@ module ProcedureHelper
     !procedure.replaced_by_procedure.discarded? &&
     procedure.replaced_by_procedure.path.present? # TODO: to remove when all path are added, cf: https://github.com/demarche-numerique/demarche.numerique.gouv.fr/pull/11453
   end
+
+  def clone_api_token_names(api_tokens)
+    api_tokens
+      .map { t('administrateurs.procedures.clone.api_tokens.token', name: it.name, email: it.administrateur.email) }
+      .to_sentence
+  end
 end
