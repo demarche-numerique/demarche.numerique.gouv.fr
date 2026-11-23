@@ -1,7 +1,5 @@
 fr:
   instructeur_mailer:
-    user_to_instructeur:
-      subject: Vous avez été nommé instructeur
     last_week_overview:
       subject: Votre activité hebdomadaire
     send_dossier:

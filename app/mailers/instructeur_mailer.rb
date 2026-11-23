@@ -4,13 +4,6 @@
 class InstructeurMailer < ApplicationMailer
   layout 'mailers/layout'
 
-  def user_to_instructeur(email)
-    @email = email
-    @subject = default_i18n_subject
-
-    mail(to: @email, subject: @subject)
-  end
-
   def last_week_overview(instructeur)
     email = instructeur.email
     @subject = default_i18n_subject
