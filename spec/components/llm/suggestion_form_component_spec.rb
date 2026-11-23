@@ -87,7 +87,7 @@ RSpec.describe LLM::SuggestionFormComponent, type: :component do
             llm_rule_suggestion:,
             op_kind: 'add',
             stable_id: nil,
-            payload: { 'generated_stable_id' => -1, 'after_stable_id' => nom.stable_id, 'libelle' => 'Famille', 'header_section_level' => 1 })
+            payload: { 'generated_stable_id' => -1, 'after_stable_id' => nom.stable_id, 'libelle' => 'Famille' })
         end
 
         it 'lays it among the champs outside any repetition, left unchanged' do

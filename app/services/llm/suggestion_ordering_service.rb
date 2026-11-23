@@ -23,37 +23,65 @@ class LLM::SuggestionOrderingService
 
   def self.merge_suggestions_into_originals(llm_rule_suggestion)
     suggestions = llm_rule_suggestion.llm_rule_suggestion_items.to_a
-    original_items = llm_rule_suggestion.procedure_revision.public_root_type_de_champs
 
     validate_no_cycles!(suggestions)
 
-    suggestions_by_after_id = suggestions.index_by { |s| s.payload['after_stable_id'] }
+    suggestions_by_place = suggestions.index_by { |s| place_of(s) }
 
-    # Commencer par les suggestions en première position (after_stable_id: nil)
-    result = suggestions_by_after_id[nil] ? [suggestions_by_after_id[nil]] : []
+    lay(nil, llm_rule_suggestion.procedure_revision.public_type_de_champs, suggestions_by_place)
+  end
 
-    # Parcourir les originaux et insérer les suggestions après chacun
-    original_items.each_with_object(result) do |original, acc|
-      acc << original
-      acc << suggestions_by_after_id[original.stable_id] if suggestions_by_after_id[original.stable_id]
+  # Le formulaire dans l'ordre qu'il prend une fois les suggestions appliquées
+  # (RevisionEditConcern#apply_llm_rule_suggestion_items) : une suggestion placée
+  # en premier dans une section vient juste après son titre, une suggestion
+  # placée après un champ vient après tout ce qu'il contient.
+  def self.lay(parent_stable_id, type_de_champs, suggestions_by_place)
+    type_de_champs.reduce(chain([:first, parent_stable_id], suggestions_by_place)) do |acc, type_de_champ|
+      acc << type_de_champ
+      acc.concat(lay(type_de_champ.stable_id, type_de_champ.header_section? ? type_de_champ.children : [], suggestions_by_place))
+      acc.concat(chain([:after, type_de_champ.stable_id], suggestions_by_place))
     end
+  end
+
+  # Où se place une suggestion : après un champ, sinon en premier dans une
+  # section, ou dans le formulaire.
+  def self.place_of(suggestion)
+    after_stable_id, parent_stable_id = suggestion.payload.values_at('after_stable_id', 'parent_stable_id')
+
+    after_stable_id.nil? ? [:first, parent_stable_id] : [:after, after_stable_id]
+  end
+
+  # La suggestion placée ici, suivie de celles placées dans la section qu'elle
+  # ajoute, puis après elle. Chacune n'est prise qu'une fois : des identifiants
+  # incohérents ne font pas boucler.
+  def self.chain(place, suggestions_by_place)
+    suggestion = suggestions_by_place.delete(place)
+    return [] if suggestion.nil?
+
+    generated_stable_id = suggestion.payload['generated_stable_id']
+    return [suggestion] if generated_stable_id.nil?
+
+    [suggestion, *chain([:first, generated_stable_id], suggestions_by_place), *chain([:after, generated_stable_id], suggestions_by_place)]
   end
 
   def self.validate_no_cycles!(suggestions)
     return if suggestions.empty?
 
-    after_ids = suggestions.map { |s| s.payload['after_stable_id'] }.compact
+    places = suggestions.map { |s| place_of(s) }
+    # le début du formulaire n'est l'ancre de personne
+    anchored_places = places.reject { |(_, stable_id)| stable_id.nil? }
 
-    # CAS 1 : Duplication - deux suggestions ne peuvent pas avoir le même after_stable_id
-    if after_ids.uniq.length != after_ids.length
+    # CAS 1 : Duplication - deux suggestions ne peuvent pas se placer au même endroit
+    if anchored_places.uniq.length != anchored_places.length
       raise "Cycle détecté : duplication d'after_stable_id"
     end
 
     # CAS 2 : Cycle fermé - tous les éléments se référencent mutuellement sans point d'entrée
-    has_start = suggestions.any? { |s| s.payload['after_stable_id'].nil? }
+    has_start = anchored_places.length != places.length
+    anchor_ids = anchored_places.map(&:last)
     suggestion_ids = suggestions.map { |s| stable_id_of(s) }
 
-    if !has_start && suggestion_ids.all? { |id| after_ids.include?(id) }
+    if !has_start && suggestion_ids.all? { |id| anchor_ids.include?(id) }
       raise "Cycle détecté : chaîne fermée sans point d'entrée"
     end
   end

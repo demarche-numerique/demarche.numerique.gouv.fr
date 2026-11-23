@@ -39,8 +39,7 @@ RSpec.describe LLM::StructureImprover do
           'add' => {
             'generated_stable_id' => -1,
             'libelle' => 'Nouveau titre de section',
-            'header_section_level' => 1,
-            'parent_id' => nil,
+            'parent_stable_id' => nil,
             'after_stable_id' => nil,
           },
         }
@@ -63,8 +62,7 @@ RSpec.describe LLM::StructureImprover do
             'generated_stable_id' => -2,
             'after_stable_id' => 1,
             'libelle' => 'Nouveau titre de section',
-            'header_section_level' => 1,
-            'parent_id' => nil,
+            'parent_stable_id' => nil,
           },
         }
       end

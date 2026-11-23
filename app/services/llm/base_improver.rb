@@ -233,6 +233,7 @@ module LLM
           - choices_dynamic : boolean indiquant si les options du champ sont issues d'un référentiel externe (true) ou non (false ou absent)
           - position : la position du champ dans le formulaire, dans une une répétition la position est relative à la répétition et commence a 0
           - parent_id : stable_id du champ parent, ou null s’il n’y a pas de parent (donc ce champ est un enfant d’une répétition)
+          - section_id : stable_id de la header_section qui contient directement ce champ, absent s’il n’est dans aucune section
           - header_section_level : le niveau de section si le champ est de type header_section
           - display_condition : une condition d'affichage, optionnelle, dépendant de valeurs saisies préalablement par l'usager. Si cette condition est vraie le champ sera affiché, sinon il sera masqué, même s'il est obligatoire.
 

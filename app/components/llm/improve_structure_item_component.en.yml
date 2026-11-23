@@ -1,6 +1,5 @@
 en:
   step_title: "Form structure"
   add_section: "Add section"
-  section_level: "(level %{header_section_level})"
   reorganization: "Reorganization"
   unchanged: "Unchanged"
