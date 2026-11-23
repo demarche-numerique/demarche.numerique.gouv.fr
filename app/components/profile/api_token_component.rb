@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Profile::APITokenComponent < ApplicationComponent
+  LISTED_PROCEDURES_MAX = 3
+
   def initialize(api_token:)
     @api_token = api_token
   end
@@ -13,8 +15,20 @@ class Profile::APITokenComponent < ApplicationComponent
 
   def autorizations
     right = @api_token.write_access? ? t(".read_write_prefix") : t(".read_only_prefix")
-    scope = @api_token.full_access? ? t(".all_procedures") : @api_token.procedures.map(&:libelle).join(', ')
-    sanitize("#{right} #{tag.b(scope)}")
+    sanitize("#{right} #{tag.b(procedures_scope)}")
+  end
+
+  def procedures_scope
+    return t(".all_procedures") if @api_token.full_access?
+
+    procedure_ids = @api_token.procedure_ids
+    procedures = if procedure_ids.size.between?(1, LISTED_PROCEDURES_MAX)
+      Procedure.where(id: procedure_ids).pluck(:libelle).join(', ')
+    else
+      t(".procedures_count", count: procedure_ids.size)
+    end
+
+    @api_token.follows_clones? ? t(".with_clones", procedures:, count: procedure_ids.size) : procedures
   end
 
   def network_filtering

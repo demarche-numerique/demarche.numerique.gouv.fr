@@ -44,6 +44,10 @@ en:
         add_authorized_procedures: 'Add authorized procedures'
         add_button: Add
         delete_button: Delete
+        procedures_count:
+          zero: No authorized procedure
+          one: "%{count} authorized procedure"
+          other: "%{count} authorized procedures"
         remove_followed_procedure_confirm: Remove ‘%{libelle}’ from this token? Its future clones will no longer enter it either.
       update:
         networks_required: You cannot remove the API access restrictions of a permanent token.

@@ -44,6 +44,10 @@ fr:
         add_authorized_procedures: 'Ajouter des démarches autorisées'
         add_button: Ajouter
         delete_button: Supprimer
+        procedures_count:
+          zero: Aucune démarche autorisée
+          one: "%{count} démarche autorisée"
+          other: "%{count} démarches autorisées"
         remove_followed_procedure_confirm: Retirer « %{libelle} » de ce jeton ? Ses futurs clones n’y entreront plus non plus.
       update:
         networks_required: Vous ne pouvez pas supprimer les restrictions d’accès à l’API d’un jeton permanent.
