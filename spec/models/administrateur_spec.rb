@@ -175,11 +175,13 @@ describe Administrateur, type: :model do
       let!(:old_procedure) { create(:procedure, administrateurs: [old_admin]) }
       let!(:new_procedure) { create(:procedure, administrateurs: [new_admin]) }
 
-      it 'restricts the token to the old admin procedures' do
+      it 'pins the token on the old admin procedures, following their clones' do
         token = old_admin.api_tokens.first
         subject
 
-        expect(token.reload.procedure_ids).to eq([old_procedure.id])
+        token.reload
+        expect(token.procedure_ids).to eq([old_procedure.id])
+        expect(token.follows_clones).to be true
       end
 
       context 'and a procedure in the bin' do

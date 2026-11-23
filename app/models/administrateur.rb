@@ -83,12 +83,13 @@ class Administrateur < ApplicationRecord
 
       # v1/v2 tokens are deliberately left behind: we want their owners to
       # migrate to v3 tokens.
-      # A full access token is narrowed to the old admin's procedures, so it
-      # does not gain access to the new admin's own procedures.
+      # A full access token is pinned on the old admin's procedures, so it does
+      # not gain access to the new admin's own procedures, and keeps following
+      # their clones.
       # Tokens move before the old admin leaves its procedures: leaving one
       # drops it from the list tokens the old admin still owns.
       old_admin.api_tokens.authenticable.find_each do |token|
-        token.allowed_procedure_ids = old_procedure_ids if token.full_access?
+        token.pin_procedures(old_procedure_ids) if token.full_access?
         self.api_tokens << token
       end
 
