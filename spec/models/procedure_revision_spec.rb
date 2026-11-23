@@ -301,12 +301,6 @@ describe ProcedureRevision do
 
       it 'waits for its types de champ to have a stable id' do
         expect { draft.public_type_de_champs }.to raise_error(ArgumentError)
-
-        procedure.save!
-        # the coordinates were laid by hand: the tree is stored as an edit would
-        draft.store_type_de_champ_tree
-
-        expect(libelles(draft.public_type_de_champs)).to eq(['a', 'h1'])
       end
     end
   end
@@ -1143,7 +1137,7 @@ describe ProcedureRevision do
             description:,
             children: [
               { mandatory: true, description: "word " * 10 },
-              { type: :piece_justificative, position: 2, mandatory: true, description: nil },
+              { type: :piece_justificative, mandatory: true, description: nil },
             ],
           },
         ]

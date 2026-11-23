@@ -12,22 +12,7 @@ FactoryBot.define do
 
         revision.procedure = from_revision.procedure
         revision.dossier_submitted_message_id = from_revision.dossier_submitted_message_id
-
-        coordinate_map = {}
-        revision_type_de_champs = from_revision.revision_type_de_champs.map do |from_coordinate|
-          parent = from_coordinate.parent.present? ? coordinate_map[from_coordinate.parent] : nil
-
-          coordinate = build(:procedure_revision_type_de_champ,
-            revision: revision,
-            type_de_champ: from_coordinate.type_de_champ,
-            position: from_coordinate.position,
-            parent: parent)
-
-          coordinate_map[from_coordinate] = coordinate
-          coordinate
-        end
-
-        revision.association(:revision_type_de_champs).target = revision_type_de_champs
+        revision.type_de_champ_tree = from_revision.type_de_champ_tree
       end
     end
   end
