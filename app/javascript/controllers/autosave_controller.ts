@@ -58,6 +58,9 @@ export class AutosaveController extends ApplicationController {
   }
 
   private onChange(event: Event) {
+    if (isIgnored(event.target)) {
+      return;
+    }
     matchInputElement(event.target, {
       file: (target) => {
         if (target.dataset.autoAttachUrl && target.files?.length) {
@@ -107,6 +110,9 @@ export class AutosaveController extends ApplicationController {
   }
 
   private onInput(event: Event) {
+    if (isIgnored(event.target)) {
+      return;
+    }
     matchInputElement(event.target, {
       inputable: (target) => {
         // Ignore input from React comboboxes. We trigger "change" events on them when selection is changed.
@@ -269,7 +275,7 @@ export class AutosaveController extends ApplicationController {
       ...element.querySelectorAll<HTMLInputElement | HTMLSelectElement>(
         'input:not([type=file]), textarea, select'
       )
-    ].filter((element) => !element.disabled);
+    ].filter((element) => !element.disabled && !isIgnored(element));
   }
 
   private partitionFiles(
@@ -412,4 +418,13 @@ export class AutosaveController extends ApplicationController {
 
     return null;
   }
+}
+
+// Controls a champ uses to build its value (the map editor keeps its value in
+// a hidden input) are neither saved nor trigger a save.
+function isIgnored(target: EventTarget | null) {
+  return (
+    target instanceof Element &&
+    target.closest('[data-autosave-ignore]') != null
+  );
 }

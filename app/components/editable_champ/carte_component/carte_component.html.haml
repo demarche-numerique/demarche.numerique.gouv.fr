@@ -1,6 +1,0 @@
-.fr-fieldset__element
-  %react-fragment.width-100
-    = render ReactComponent.new "MapEditor", **react_props
-
-  .geo-areas{ id: dom_id(@champ, :geo_areas) }
-    = render Dossiers::GeoAreasComponent.new(champ: @champ, editing: true)

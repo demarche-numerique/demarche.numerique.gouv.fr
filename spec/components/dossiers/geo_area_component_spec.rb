@@ -13,8 +13,13 @@ RSpec.describe Dossiers::GeoAreaComponent, type: :component do
   context 'when editing' do
     let(:editing) { true }
 
-    it "matches the id of the map's geojson feature so clicking it can zoom to the right shape" do
-      expect(page.find("[data-controller='geo-area']")['data-geo-area-id-value']).to eq(feature_id)
+    it 'links to the shape, edits its description and removes it in the editor' do
+      link = page.find("react-component[name='Map/FeatureLink']", text: geo_area.label)
+      expect(JSON.parse(link['props'])).to eq('id' => feature_id)
+      input = page.find("react-component[name='Map/DescriptionInput']")
+      expect(JSON.parse(input['props'])).to eq('id' => feature_id, 'label' => geo_area.label)
+      button = page.find("react-component[name='Map/RemoveFeatureButton']")
+      expect(JSON.parse(button['props'])).to eq('id' => feature_id, 'label' => geo_area.label)
     end
   end
 
