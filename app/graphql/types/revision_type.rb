@@ -10,15 +10,19 @@ module Types
     field :annotation_descriptors, [Types::ChampDescriptorType], null: false
 
     def champ_descriptors
-      object.public_root_type_de_champs
+      laid_out_revision.public_root_type_de_champs
     end
 
     def annotation_descriptors
       if context.authorized_demarche?(object.procedure)
-        object.private_root_type_de_champs
+        laid_out_revision.private_root_type_de_champs
       else
         []
       end
     end
+
+    private
+
+    def laid_out_revision = dataloader.with(Sources::LaidOutRevision).load(object)
   end
 end
