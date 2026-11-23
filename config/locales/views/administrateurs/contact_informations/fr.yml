@@ -2,12 +2,10 @@ fr:
   administrateurs:
     contact_informations:
       edit:
-        contact_information: Informations de contact
         heading: Modifier les informations de contact
+      heading:
+        contact_information: Informations de contact
         teams: Groupes d’instructeurs
         title: Contact
       new:
-        contact_information: Informations de contact
         heading: Informations de contact
-        teams: Groupes d’instructeurs
-        title: Contact

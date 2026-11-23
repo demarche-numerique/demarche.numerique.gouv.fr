@@ -2,12 +2,10 @@ en:
   administrateurs:
     contact_informations:
       edit:
-        contact_information: Contact information
         heading: Edit contact information
+      heading:
+        contact_information: Contact information
         teams: Teams
         title: Contact
       new:
-        contact_information: Contact information
         heading: Contact information
-        teams: Teams
-        title: Contact
