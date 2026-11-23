@@ -45,13 +45,13 @@ describe API::V2::GraphqlController do
       expect(query_count).to be <= MAX_QUERY_COUNT
     end
 
-    # The descriptors of the démarche read its revisions' trees, not their
-    # coordinates: only DossierPreloader loads the ones of the dossiers' revision.
+    # The descriptors of the démarche and the champs of its dossiers read the
+    # revisions' trees, not their coordinates.
     it "loads the types de champ of the dossiers' revision once" do
       variables = { demarcheNumber: procedure.id, includeDossiers: true, includeChamps: true, includeTraitements: false }
       dossier
       revision_queries = []
-      callback = lambda { |*args| revision_queries << args.last[:sql] if args.last[:sql].include?('"procedure_revision_types_de_champ"') }
+      callback = lambda { |*args| revision_queries << args.last[:sql] if args.last[:sql].match?(/FROM "(types_de_champ|procedure_revision_types_de_champ)"/) }
       ActiveSupport::Notifications.subscribed(callback, "sql.active_record") do
         post :execute, params: { queryId: query_id, variables:, operationName: operation_name }, as: :json
       end
@@ -61,20 +61,19 @@ describe API::V2::GraphqlController do
     end
 
     # The stored query only reads `traitements { revision { id datePublication } }`:
-    # the types de champ of those revisions must not be loaded. The expected
-    # query loads the dossiers' revision.
+    # the types de champ of those revisions must not be loaded.
     it "does not load the types de champ of the traitements' revision" do
       variables = { demarcheNumber: procedure.id, includeDossiers: true, includeTraitements: true, includeChamps: false, includeAnnotations: false }
       dossier
       revision_queries = []
-      callback = lambda { |*args| revision_queries << args.last[:sql] if args.last[:sql].include?('"procedure_revision_types_de_champ"') }
+      callback = lambda { |*args| revision_queries << args.last[:sql] if args.last[:sql].match?(/FROM "(types_de_champ|procedure_revision_types_de_champ)"/) }
       ActiveSupport::Notifications.subscribed(callback, "sql.active_record") do
         post :execute, params: { queryId: query_id, variables:, operationName: operation_name }, as: :json
       end
 
       expect(gql_errors).to be_nil
       expect(gql_data[:demarche][:dossiers][:nodes].first[:traitements].first[:revision][:id]).to eq(dossier.revision.to_typed_id)
-      expect(revision_queries.size).to eq(1)
+      expect(revision_queries).to be_empty
     end
 
     context "with 3 dossiers per state" do

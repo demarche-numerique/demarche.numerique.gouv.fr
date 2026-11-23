@@ -142,14 +142,6 @@ module Manager
 
     private
 
-    def find_resource(param)
-      procedure = super
-
-      procedure.preload_draft_and_published_revisions
-
-      procedure
-    end
-
     def procedure
       @procedure ||= Procedure.with_discarded.find(params[:id])
     end

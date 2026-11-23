@@ -246,7 +246,7 @@ class Procedure < ApplicationRecord
   end
 
   scope :for_api_v2, -> { includes(:draft_revision, :published_revision, administrateurs: :user) }
-  scope :with_active_revision, -> { includes(draft_revision: :revision_type_de_champs, published_revision: :revision_type_de_champs) }
+  scope :with_active_revision, -> { includes(:draft_revision, :published_revision) }
 
   scope :order_by_position_for, -> (instructeur) {
     joins(:instructeurs_procedures)
@@ -449,7 +449,6 @@ class Procedure < ApplicationRecord
   end
 
   def draft_changed?
-    preload_draft_and_published_revisions
     !brouillon? && (type_de_champs_revision_changes.present? || ineligibilite_rules_revision_changes.present?)
   end
 
@@ -459,17 +458,6 @@ class Procedure < ApplicationRecord
 
   def ineligibilite_rules_revision_changes
     published_revision.compare_ineligibilite_rules(draft_revision)
-  end
-
-  def preload_draft_and_published_revisions
-    revisions = []
-    if !association(:published_revision).loaded? && published_revision_id.present?
-      revisions.push(published_revision)
-    end
-    if !association(:draft_revision).loaded? && draft_revision_id.present?
-      revisions.push(draft_revision)
-    end
-    ProcedureRevisionPreloader.new(revisions).all if !revisions.empty?
   end
 
   def accepts_new_dossiers?

@@ -73,12 +73,8 @@ module Administrateurs
         .includes(
           :published_dossier_submitted_message,
           :draft_dossier_submitted_message,
-          published_revision: {
-            revision_type_de_champs: { type_de_champ: { piece_justificative_template_attachment: :blob } },
-          },
-          draft_revision: {
-            revision_type_de_champs: { type_de_champ: { piece_justificative_template_attachment: :blob } },
-          },
+          :published_revision,
+          :draft_revision,
           attestation_acceptation_template: [],
           attestation_refus_template: [],
           email_depose_templates: [],
@@ -446,12 +442,10 @@ module Administrateurs
     end
 
     def champs
-      ProcedureRevisionPreloader.load_one(@procedure.draft_revision)
       TypeDeChamp.preload_attachments(@procedure.draft_revision.public_flat_type_de_champs)
     end
 
     def annotations
-      ProcedureRevisionPreloader.load_one(@procedure.draft_revision)
       TypeDeChamp.preload_attachments(@procedure.draft_revision.private_flat_type_de_champs)
     end
 

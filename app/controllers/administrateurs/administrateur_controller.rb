@@ -25,15 +25,6 @@ module Administrateurs
       redirect_to admin_procedures_path, status: 404
     end
 
-    def preload_revisions
-      ProcedureRevisionPreloader.new(@procedure.revisions).all
-
-      @procedure.association(:draft_revision).target = @procedure.revisions.find { _1.id == @procedure.draft_revision.id }
-      if @procedure.published_revision
-        @procedure.association(:published_revision).target = @procedure.revisions.find { _1.id == @procedure.published_revision.id }
-      end
-    end
-
     def ensure_not_super_admin!
       if administrateur_as_manager?
         redirect_back_or_to(root_url, alert: "Interdit aux super admins", status: 403)
