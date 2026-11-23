@@ -1,4 +1,5 @@
 <%= render Procedure::ProcedureAdministrateurs::AdministrateurComponent.with_collection(
   procedure.administrateurs.order('users.email'),
-  procedure:
+  procedure:,
+  api_tokens_by_administrator: APIToken.reading(procedure).order(:name).group_by(&:administrateur_id)
 ) %>
