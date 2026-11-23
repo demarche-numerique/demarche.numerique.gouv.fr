@@ -28,7 +28,7 @@ en:
 
         The user can no longer make changes to their file.
       en_instruction: &passe_en_instruction_declarative |-
-        This email is sent to the user **when the reviewer starts reviewing** their file, **if it had been reverted to submitted**, or when the procedure closes automatically (if you have set a submission deadline).
+        This email is sent to the user **when the reviewer starts reviewing** their file, **if it had been reverted to submitted**.
       accepte: *passe_en_instruction_declarative
     accepte:
       default: |-

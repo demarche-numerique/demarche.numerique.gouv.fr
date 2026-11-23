@@ -28,7 +28,7 @@ fr:
 
         L’usager ne peut plus modifier son dossier.
       en_instruction: &passe_en_instruction_declarative |-
-        Cet email est envoyé à l’usager **lorsque l’instructeur passe en instruction** son dossier, **s’il avait été repassé en construction**, ou à la clôture automatique de la démarche (si vous avez paramétré une date limite de dépôt des dossiers).
+        Cet email est envoyé à l’usager **lorsque l’instructeur passe en instruction** son dossier, **s’il avait été repassé en construction**.
       accepte: *passe_en_instruction_declarative
     accepte:
       default: |-
