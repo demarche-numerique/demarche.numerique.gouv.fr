@@ -16,13 +16,13 @@ RSpec.describe Dsfr::InputStatusMessageComponent, type: :component do
     let(:errors_on_attribute) { true }
     let(:error_full_messages) { ["Invalid input"] }
     it "renders the error message" do
-      expect(subject).to have_css(".fr-message--error", text: "« #{champ.libelle} »")
+      expect(subject).to have_css(".fr-message--error", text: "«\u00A0#{champ.libelle}\u00A0»")
     end
 
     context "when row_number is provided" do
       let(:component) { described_class.new(champ_component:, champ:, row_number: 2) }
       it "renders the error message with row number" do
-        expect(subject).to have_css(".fr-message--error", text: "« [2] #{champ.libelle} »")
+        expect(subject).to have_css(".fr-message--error", text: "«\u00A0[2] #{champ.libelle}\u00A0»")
       end
     end
   end
