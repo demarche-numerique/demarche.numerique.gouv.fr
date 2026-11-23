@@ -12,21 +12,15 @@
   <%= t('.account_created', email: @user.email) %>
 </p>
 
-<% if !@user.active? %>
-  <p>
-    <b>
-      <%= t('.activate') %>
-      <%= link_to(users_activate_url(token: @reset_password_token), users_activate_url(token: @reset_password_token)) %>
-    </b>
-  </p>
+<% if @user.active? %>
+  <% label, url = t('.sign_in'), edit_user_password_url(@user, reset_password_token: @reset_password_token) %>
 <% else %>
-  <p>
-    <b>
-      <%= t('.sign_in') %>
-      <%= link_to edit_user_password_url(@user, reset_password_token: @reset_password_token), edit_user_password_url(@user, reset_password_token: @reset_password_token) %>
-    </b>
-  </p>
+  <% label, url = t('.activate'), users_activate_url(token: @reset_password_token) %>
 <% end %>
+
+<p>
+  <b><%= label %> <%= link_to url, url %></b>
+</p>
 
 <p>
   <%= render partial: "layouts/mailers/bizdev_signature", locals: { author_name: @author_name } %>

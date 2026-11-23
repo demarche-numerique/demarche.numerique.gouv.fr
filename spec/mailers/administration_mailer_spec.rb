@@ -2,7 +2,7 @@
 
 RSpec.describe AdministrationMailer, type: :mailer do
   describe '#invite_admin' do
-    let(:admin_user) { create(:user, last_sign_in_at: last_sign_in_at) }
+    let(:admin_user) { build(:user, last_sign_in_at: last_sign_in_at) }
     let(:token) { "some_token" }
     let(:last_sign_in_at) { nil }
 
