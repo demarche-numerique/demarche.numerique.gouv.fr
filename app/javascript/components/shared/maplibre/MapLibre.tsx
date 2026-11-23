@@ -57,7 +57,7 @@ export function MapLibre({ children, layers }: MapLibreProps) {
   const { style, ...mapStyleProps } = useStyle(layers, onStyleChange);
 
   useEffect(() => {
-    // Guard on the ref, not on the state: the state is only set once `load`
+    // Guard on the ref, not on the state: the state is only set once `style.load`
     // fires, so a re-render before then would build a second map.
     if (isSupported && visible && !mapRef.current) {
       invariant(containerRef.current, 'Map container not found');
@@ -71,7 +71,7 @@ export function MapLibre({ children, layers }: MapLibreProps) {
       map.addControl(styleControl, 'bottom-left');
       const protocol = new Protocol();
       addProtocol('pmtiles', protocol.tile);
-      map.on('load', () => {
+      map.once('style.load', () => {
         setMap(map);
         setStyleControlElement(styleControl.container);
       });
