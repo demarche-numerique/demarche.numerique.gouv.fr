@@ -1,15 +1,15 @@
-<% content_for(:title, "Contact") %>
+<% content_for(:title, t('.title')) %>
 <% render_procedure_sticky_title(@procedure) %>
 
 <%= render partial: 'shared/breadcrumbs_section',
   locals: { steps: [[admin_procedures_back_label(@procedure), admin_procedures_back_path(@procedure)],
     [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)],
-    ["Groupes d'instructeurs", admin_procedure_groupe_instructeurs_path(@procedure)],
+    [t('.teams'), admin_procedure_groupe_instructeurs_path(@procedure)],
     [@groupe_instructeur.label, admin_procedure_groupe_instructeur_path(@procedure, @groupe_instructeur)],
-    ['Informations de contact']]} %>
+    [t('.contact_information')]]} %>
 
 <div class="container">
-  <h1>Modifier les informations de contact</h1>
+  <h1><%= t('.heading') %></h1>
 
   <%= render partial: 'form',
     locals: { contact_information: @contact_information } %>
