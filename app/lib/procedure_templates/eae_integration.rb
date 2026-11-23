@@ -16,24 +16,24 @@ module ProcedureTemplates
   class EaeIntegration
     include Logic
 
-    LIBELLE = "Intégration à l’École de l’air et de l’espace"
-    CADRE_JURIDIQUE = "Note N°46/EAE/DGFM/CMDT – notice d’intégration des élèves issus du recrutement externe"
+    TITLE = "Intégration à l’École de l’air et de l’espace"
+    LEGAL_BASIS = "Note N°46/EAE/DGFM/CMDT – notice d’intégration des élèves issus du recrutement externe"
 
     # Months an application is kept once reviewed: the documents are then held
     # by the school's own systems, the platform only carries them.
-    DUREE_CONSERVATION = 3
+    RETENTION_PERIOD = 3
 
-    EXTERNE = "Externe"
-    INTERNE = "Interne"
-    SCIENCES_POLITIQUES = "Sur titre – licence option « sciences politiques »"
-    CONCOURS = [
+    EXTERNAL = "Externe"
+    INTERNAL = "Interne"
+    POLITICAL_SCIENCE = "Sur titre – licence option « sciences politiques »"
+    ENTRANCE_EXAMS = [
       "Concours MP, PC, PSI, MPI (SCEI)",
-      SCIENCES_POLITIQUES,
+      POLITICAL_SCIENCE,
       "Sur titre – licence option « sciences »",
       "Sur titre",
     ].freeze
-    CELIBATAIRE = "Célibataire"
-    SITUATIONS_FAMILIALES = [CELIBATAIRE, "Marié(e)", "Pacsé(e)", "En concubinage", "Divorcé(e)", "Veuf / veuve"].freeze
+    SINGLE = "Célibataire"
+    MARITAL_STATUSES = [SINGLE, "Marié(e)", "Pacsé(e)", "En concubinage", "Divorcé(e)", "Veuf / veuve"].freeze
     TRAIN = "Train"
 
     DESCRIPTION = <<~TEXT
@@ -44,25 +44,25 @@ module ProcedureTemplates
       Les pièces médicales ne sont pas concernées : elles suivent le circuit du service médical indiqué dans la notice.
     TEXT
 
-    INFORMATION_RGPD = <<~TEXT
+    DATA_PROTECTION_NOTICE = <<~TEXT
       Les informations et les pièces déposées ici servent uniquement à votre prise en compte administrative à l’École de l’air et de l’espace (état civil, solde, protection sociale, scolarité, personne à prévenir).
 
       Elles sont lues par la section administration élèves et le bureau des ressources humaines de l’école, et par personne d’autre.
 
-      Votre dossier est supprimé de cette plateforme #{DUREE_CONSERVATION} mois après son traitement. Vos pièces d’identité et votre justificatif de sécurité sociale sont supprimés dès le traitement.
+      Votre dossier est supprimé de cette plateforme #{RETENTION_PERIOD} mois après son traitement. Vos pièces d’identité et votre justificatif de sécurité sociale sont supprimés dès le traitement.
 
       Ne déposez aucun document médical dans cette démarche.
 
       Vous pouvez accéder à vos données, les faire rectifier ou vous opposer à leur traitement en écrivant au délégué à la protection des données indiqué en bas de page.
     TEXT
 
-    ATTESTATION_DOUBLE_NATIONALITE = <<~TEXT
+    DUAL_NATIONALITY_NOTICE = <<~TEXT
       Référence : instruction n° 1005/ARM/DRH-AAE/SDGR/BGA du 13 juillet 2021, chapitre 1, paragraphe 1.1.1.
 
       « Les jeunes gens ayant la faculté de répudier ou de décliner la nationalité française doivent être avisés lors du dépôt de leur demande d’engagement et au moment de la signature de l’acte que le fait de contracter un engagement dans l’armée française leur fait perdre cette faculté. »
     TEXT
 
-    MISE_EN_GARDE_STUPEFIANTS = <<~TEXT
+    DRUG_AND_ALCOHOL_WARNING = <<~TEXT
       Lisez l’annexe V de la notice d’intégration avant de cocher la case ci-dessous. Elle rappelle que :
 
       - aucune faute liée aux produits stupéfiants n’est tolérée dans l’armée de l’air et de l’espace ;
@@ -71,28 +71,28 @@ module ProcedureTemplates
       - tout usage, détention ou trafic expose à des sanctions disciplinaires ou professionnelles, en plus des poursuites pénales.
     TEXT
 
-    PUBLIC_CHAMPS = [
-      { type: :explication, libelle: "Protection de vos données", description: INFORMATION_RGPD },
+    PUBLIC_FIELDS = [
+      { type: :explication, libelle: "Protection de vos données", description: DATA_PROTECTION_NOTICE },
 
       { type: :header_section, libelle: "Recrutement" },
       {
-        key: :recrutement,
+        key: :recruitment,
         type: :drop_down_list,
         libelle: "Type de recrutement",
         description: "Interne si vous êtes déjà militaire d’active et admis par un concours interne. Les pièces que l’administration détient déjà ne vous sont alors pas redemandées.",
-        drop_down_options: [EXTERNE, INTERNE],
+        drop_down_options: [EXTERNAL, INTERNAL],
       },
-      { key: :concours, type: :drop_down_list, libelle: "Concours d’admission", drop_down_options: CONCOURS, shown_if: -> { externe } },
-      { type: :text, libelle: "Grade actuel", shown_if: -> { interne } },
-      { type: :text, libelle: "Unité et base d’affectation actuelles", shown_if: -> { interne } },
-      { type: :text, libelle: "Numéro identifiant air (NIA) actuel", shown_if: -> { interne } },
-      { type: :date, libelle: "Date d’entrée en service", date_in_past: true, shown_if: -> { interne } },
+      { key: :entrance_exam, type: :drop_down_list, libelle: "Concours d’admission", drop_down_options: ENTRANCE_EXAMS, shown_if: -> { external } },
+      { type: :text, libelle: "Grade actuel", shown_if: -> { internal } },
+      { type: :text, libelle: "Unité et base d’affectation actuelles", shown_if: -> { internal } },
+      { type: :text, libelle: "Numéro identifiant air (NIA) actuel", shown_if: -> { internal } },
+      { type: :date, libelle: "Date d’entrée en service", date_in_past: true, shown_if: -> { internal } },
       {
         type: :piece_justificative,
         libelle: "État signalétique et des services",
         mandatory: false,
         export_name: "EtatSignaletique",
-        shown_if: -> { interne },
+        shown_if: -> { internal },
       },
       {
         type: :drop_down_list,
@@ -143,52 +143,52 @@ module ProcedureTemplates
         mandatory: false,
       },
 
-      { key: :double_nationalite, type: :yes_no, libelle: "Avez-vous une autre nationalité que la nationalité française ?" },
-      { type: :pays, libelle: "Autre nationalité", shown_if: -> { yes(:double_nationalite) } },
-      { type: :date, libelle: "Date d’acquisition de cette nationalité", date_in_past: true, shown_if: -> { yes(:double_nationalite) } },
+      { key: :dual_nationality, type: :yes_no, libelle: "Avez-vous une autre nationalité que la nationalité française ?" },
+      { type: :pays, libelle: "Autre nationalité", shown_if: -> { yes(:dual_nationality) } },
+      { type: :date, libelle: "Date d’acquisition de cette nationalité", date_in_past: true, shown_if: -> { yes(:dual_nationality) } },
       {
         type: :drop_down_list,
         libelle: "Mode d’acquisition de cette nationalité",
         drop_down_options: ["Naissance", "Mariage", "Arrivée dans le pays"],
         drop_down_other: true,
-        shown_if: -> { yes(:double_nationalite) },
+        shown_if: -> { yes(:dual_nationality) },
       },
       {
         type: :piece_justificative,
         nature: "titre_identite",
         libelle: "Passeport étranger",
         description: "Photo ou scan au format JPEG ou PNG.",
-        shown_if: -> { yes(:double_nationalite) },
+        shown_if: -> { yes(:dual_nationality) },
       },
       {
         type: :piece_justificative,
         libelle: "Document officiel attestant la double nationalité",
         description: "Délivré par une ambassade, un tribunal ou une mairie : il précise la date et le mode d’acquisition.",
         export_name: "Ambassade",
-        shown_if: -> { yes(:double_nationalite) },
+        shown_if: -> { yes(:dual_nationality) },
       },
       {
         type: :explication,
         libelle: "Attestation de double nationalité",
-        description: ATTESTATION_DOUBLE_NATIONALITE,
-        shown_if: -> { yes(:double_nationalite) },
+        description: DUAL_NATIONALITY_NOTICE,
+        shown_if: -> { yes(:dual_nationality) },
       },
       {
         type: :checkbox,
         libelle: "J’atteste avoir été avisé(e) de ces dispositions et je suis pleinement conscient(e) que la souscription de mon contrat d’engagement me fait perdre la faculté de répudier la nationalité française",
-        shown_if: -> { yes(:double_nationalite) },
+        shown_if: -> { yes(:dual_nationality) },
       },
 
       { type: :header_section, libelle: "Situation familiale" },
-      { key: :situation_familiale, type: :drop_down_list, libelle: "Situation familiale", drop_down_options: SITUATIONS_FAMILIALES },
-      { key: :enfants, type: :integer_number, libelle: "Nombre d’enfants", positive_number: true },
+      { key: :marital_status, type: :drop_down_list, libelle: "Situation familiale", drop_down_options: MARITAL_STATUSES },
+      { key: :children_count, type: :integer_number, libelle: "Nombre d’enfants", positive_number: true },
       {
         type: :piece_justificative,
         libelle: "Justificatifs de situation de famille",
         description: "Acte de mariage, attestation de PACS, certificat de vie maritale, extraits d’acte de naissance des enfants.",
         export_name: "Famille",
         pj_auto_purge: true,
-        shown_if: -> { charge_de_famille },
+        shown_if: -> { with_family },
       },
       {
         type: :piece_justificative,
@@ -196,7 +196,7 @@ module ProcedureTemplates
         mandatory: false,
         export_name: "LivretFamille",
         pj_auto_purge: true,
-        shown_if: -> { charge_de_famille },
+        shown_if: -> { with_family },
       },
 
       { type: :header_section, libelle: "Coordonnées" },
@@ -242,7 +242,7 @@ module ProcedureTemplates
         type: :text,
         libelle: "Numéro INE ou BEA",
         description: "Il figure sur votre relevé de notes du baccalauréat. Il sert à votre inscription à l’IEP d’Aix-en-Provence.",
-        shown_if: -> { sciences_politiques },
+        shown_if: -> { political_science },
       },
       {
         type: :piece_justificative,
@@ -251,7 +251,7 @@ module ProcedureTemplates
         export_name: "PhotoIdentite",
         pj_limit_formats: true,
         pj_format_families: ["image_scan"],
-        shown_if: -> { sciences_politiques },
+        shown_if: -> { political_science },
       },
       { key: :psc1, type: :yes_no, libelle: "Détenez-vous une attestation de formation aux premiers secours (PSC1) ?" },
       { type: :piece_justificative, libelle: "Attestation PSC1", export_name: "PSC1", shown_if: -> { yes(:psc1) } },
@@ -272,27 +272,27 @@ module ProcedureTemplates
         type: :piece_justificative,
         libelle: "Attestation de participation à la journée défense et citoyenneté (JDC)",
         export_name: "JDC",
-        shown_if: -> { externe },
+        shown_if: -> { external },
       },
       {
-        key: :services_anterieurs,
+        key: :prior_service,
         type: :yes_no,
         libelle: "Avez-vous des antécédents militaires ?",
         description: "Période de réserve, EETAAE de Saintes, autre armée, lycée militaire, EPA de Grenoble, FMIR…",
-        shown_if: -> { externe },
+        shown_if: -> { external },
       },
       {
         type: :textarea,
         libelle: "Antécédents militaires",
         description: "Pour chaque période : l’organisme, les années et la durée.",
-        shown_if: -> { yes(:services_anterieurs) },
+        shown_if: -> { yes(:prior_service) },
       },
       {
         type: :text,
         libelle: "Numéro identifiant air (NIA)",
         description: "Si vous en détenez un.",
         mandatory: false,
-        shown_if: -> { yes(:services_anterieurs) },
+        shown_if: -> { yes(:prior_service) },
       },
       {
         type: :piece_justificative,
@@ -300,54 +300,54 @@ module ProcedureTemplates
         description: "Contrats initiaux et renouvellements.",
         mandatory: false,
         export_name: "ContratsReserve",
-        shown_if: -> { yes(:services_anterieurs) },
+        shown_if: -> { yes(:prior_service) },
       },
       {
         type: :piece_justificative,
         libelle: "Convocations aux périodes de réserve",
         mandatory: false,
         export_name: "ConvocationsReserve",
-        shown_if: -> { yes(:services_anterieurs) },
+        shown_if: -> { yes(:prior_service) },
       },
       {
         type: :piece_justificative,
         libelle: "Fiches de solde",
         mandatory: false,
         export_name: "SoldesReserve",
-        shown_if: -> { yes(:services_anterieurs) },
+        shown_if: -> { yes(:prior_service) },
       },
       {
         type: :piece_justificative,
         libelle: "Décision de dénonciation ou de résiliation du contrat de réserve",
         mandatory: false,
         export_name: "DenonciationReserve",
-        shown_if: -> { yes(:services_anterieurs) },
+        shown_if: -> { yes(:prior_service) },
       },
       {
         type: :piece_justificative,
         libelle: "État des services antérieurs dans d’autres armées",
         mandatory: false,
         export_name: "EtatsServices",
-        shown_if: -> { yes(:services_anterieurs) },
+        shown_if: -> { yes(:prior_service) },
       },
 
       { type: :header_section, libelle: "Emploi, solde et protection sociale" },
-      { key: :emploi_civil, type: :yes_no, libelle: "Occupez-vous actuellement un emploi civil ?", shown_if: -> { externe } },
+      { key: :civilian_job, type: :yes_no, libelle: "Occupez-vous actuellement un emploi civil ?", shown_if: -> { external } },
       {
         type: :piece_justificative,
         libelle: "Attestation de l’employeur vous libérant de votre emploi civil",
         export_name: "AttestationEmployeur",
-        shown_if: -> { yes(:emploi_civil) },
+        shown_if: -> { yes(:civilian_job) },
       },
-      { key: :permis, type: :yes_no, libelle: "Êtes-vous titulaire du permis de conduire ?" },
-      { type: :piece_justificative, libelle: "Permis de conduire (recto et verso)", export_name: "Permis", shown_if: -> { yes(:permis) } },
+      { key: :driving_licence, type: :yes_no, libelle: "Êtes-vous titulaire du permis de conduire ?" },
+      { type: :piece_justificative, libelle: "Permis de conduire (recto et verso)", export_name: "Permis", shown_if: -> { yes(:driving_licence) } },
       {
         type: :piece_justificative,
         libelle: "Carte vitale (recto) ou attestation de droits",
         description: "À votre propre numéro, et non à celui de vos parents. L’attestation se télécharge sur ameli.fr.",
         export_name: "SecuriteSociale",
         pj_auto_purge: true,
-        shown_if: -> { externe },
+        shown_if: -> { external },
       },
       {
         type: :piece_justificative,
@@ -355,7 +355,7 @@ module ProcedureTemplates
         description: "À vos nom et prénom.",
         export_name: "RIB",
         pj_auto_purge: true,
-        shown_if: -> { externe },
+        shown_if: -> { external },
       },
 
       { type: :header_section, libelle: "Personne à prévenir en cas d’urgence" },
@@ -370,13 +370,13 @@ module ProcedureTemplates
       { type: :address, libelle: "Adresse de la personne à prévenir" },
       { type: :phone, libelle: "Téléphone de la personne à prévenir", description: "Un portable de préférence." },
       { type: :email, libelle: "Adresse électronique de la personne à prévenir" },
-      { key: :parents_etranger, type: :yes_no, libelle: "Vos parents résident-ils à l’étranger ?" },
-      { type: :text, libelle: "Nom de la personne à prévenir en France", shown_if: -> { yes(:parents_etranger) } },
-      { type: :text, libelle: "Prénom de la personne à prévenir en France", shown_if: -> { yes(:parents_etranger) } },
-      { type: :text, libelle: "Lien de parenté avec la personne à prévenir en France", shown_if: -> { yes(:parents_etranger) } },
-      { type: :address, libelle: "Adresse de la personne à prévenir en France", shown_if: -> { yes(:parents_etranger) } },
-      { type: :phone, libelle: "Téléphone de la personne à prévenir en France", shown_if: -> { yes(:parents_etranger) } },
-      { type: :email, libelle: "Adresse électronique de la personne à prévenir en France", shown_if: -> { yes(:parents_etranger) } },
+      { key: :parents_abroad, type: :yes_no, libelle: "Vos parents résident-ils à l’étranger ?" },
+      { type: :text, libelle: "Nom de la personne à prévenir en France", shown_if: -> { yes(:parents_abroad) } },
+      { type: :text, libelle: "Prénom de la personne à prévenir en France", shown_if: -> { yes(:parents_abroad) } },
+      { type: :text, libelle: "Lien de parenté avec la personne à prévenir en France", shown_if: -> { yes(:parents_abroad) } },
+      { type: :address, libelle: "Adresse de la personne à prévenir en France", shown_if: -> { yes(:parents_abroad) } },
+      { type: :phone, libelle: "Téléphone de la personne à prévenir en France", shown_if: -> { yes(:parents_abroad) } },
+      { type: :email, libelle: "Adresse électronique de la personne à prévenir en France", shown_if: -> { yes(:parents_abroad) } },
 
       { type: :header_section, libelle: "Arrivée à l’école" },
       {
@@ -402,7 +402,7 @@ module ProcedureTemplates
 
       { type: :header_section, libelle: "Préparation physique" },
       {
-        key: :tests_realises,
+        key: :fitness_tests_done,
         type: :yes_no,
         libelle: "Avez-vous réalisé le demi-Cooper et le WOD de renforcement musculaire ?",
         description: "Si vous n’avez pas pu les réaliser, répondez non : n’indiquez aucun motif médical ici.",
@@ -412,7 +412,7 @@ module ProcedureTemplates
         type: :integer_number,
         libelle: "Demi-Cooper : distance parcourue en 6 minutes (en mètres)",
         positive_number: true,
-        shown_if: -> { yes(:tests_realises) },
+        shown_if: -> { yes(:fitness_tests_done) },
       },
       {
         type: :formatted,
@@ -422,15 +422,15 @@ module ProcedureTemplates
         expression_reguliere: "^[0-9]{1,2}:[0-5][0-9]$",
         expression_reguliere_exemple_text: "12:45",
         expression_reguliere_error_message: "Indiquez les minutes et les secondes, par exemple 12:45.",
-        shown_if: -> { yes(:tests_realises) },
+        shown_if: -> { yes(:fitness_tests_done) },
       },
 
       { type: :header_section, libelle: "Mise en garde contre les stupéfiants et l’alcool" },
-      { type: :explication, libelle: "Annexe V de la notice d’intégration", description: MISE_EN_GARDE_STUPEFIANTS },
+      { type: :explication, libelle: "Annexe V de la notice d’intégration", description: DRUG_AND_ALCOHOL_WARNING },
       { type: :checkbox, libelle: "Je reconnais avoir pris connaissance de l’attestation de mise en garde" },
     ].freeze
 
-    PRIVATE_CHAMPS = [
+    INTERNAL_FIELDS = [
       { type: :checkbox, libelle: "Pièces originales vérifiées le jour de l’intégration" },
       { type: :textarea, libelle: "Observations de la section administration élèves" },
     ].freeze
@@ -447,8 +447,8 @@ module ProcedureTemplates
     def create!
       Procedure.transaction do
         create_procedure!
-        add_champs(PUBLIC_CHAMPS)
-        add_champs(PRIVATE_CHAMPS, private: true)
+        add_fields(PUBLIC_FIELDS)
+        add_fields(INTERNAL_FIELDS, private: true)
         create_export_template!
         @procedure
       end
@@ -458,11 +458,11 @@ module ProcedureTemplates
 
     def create_procedure!
       @procedure = Procedure.new(
-        libelle: LIBELLE,
+        libelle: TITLE,
         description: DESCRIPTION,
-        cadre_juridique: CADRE_JURIDIQUE,
+        cadre_juridique: LEGAL_BASIS,
         lien_dpo: @lien_dpo,
-        duree_conservation_dossiers_dans_ds: DUREE_CONSERVATION,
+        duree_conservation_dossiers_dans_ds: RETENTION_PERIOD,
         for_individual: true,
         ask_birthday: true,
         # the definition of the form stays off the public catalogue
@@ -474,13 +474,13 @@ module ProcedureTemplates
       @procedure.save!
     end
 
-    def add_champs(definitions, private: false, parent_stable_id: nil)
+    def add_fields(definitions, private: false, parent_stable_id: nil)
       definitions.reduce(nil) do |previous, definition|
-        add_champ(definition, private:, parent_stable_id:, after_stable_id: previous&.stable_id)
+        add_field(definition, private:, parent_stable_id:, after_stable_id: previous&.stable_id)
       end
     end
 
-    def add_champ(definition, private:, parent_stable_id:, after_stable_id:)
+    def add_field(definition, private:, parent_stable_id:, after_stable_id:)
       definition => { type:, **attributes }
       key, shown_if, children, export_name = attributes.values_at(:key, :shown_if, :children, :export_name)
 
@@ -498,7 +498,7 @@ module ProcedureTemplates
 
       @stable_ids[key] = type_de_champ.stable_id if key
       @export_names[type_de_champ.stable_id] = export_name if export_name
-      add_champs(children, private:, parent_stable_id: type_de_champ.stable_id) if children
+      add_fields(children, private:, parent_stable_id: type_de_champ.stable_id) if children
 
       type_de_champ
     end
@@ -507,16 +507,16 @@ module ProcedureTemplates
 
     def yes(key) = ds_eq(value(key), constant(true))
 
-    def externe = ds_eq(value(:recrutement), constant(EXTERNE))
+    def external = ds_eq(value(:recruitment), constant(EXTERNAL))
 
-    def interne = ds_eq(value(:recrutement), constant(INTERNE))
+    def internal = ds_eq(value(:recruitment), constant(INTERNAL))
 
-    def sciences_politiques = ds_eq(value(:concours), constant(SCIENCES_POLITIQUES))
+    def political_science = ds_eq(value(:entrance_exam), constant(POLITICAL_SCIENCE))
 
-    def charge_de_famille
+    def with_family
       ds_or([
-        ds_not_eq(value(:situation_familiale), constant(CELIBATAIRE)),
-        greater_than(value(:enfants), constant(0)),
+        ds_not_eq(value(:marital_status), constant(SINGLE)),
+        greater_than(value(:children_count), constant(0)),
       ])
     end
 

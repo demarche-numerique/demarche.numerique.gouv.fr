@@ -13,7 +13,7 @@ module Maintenance
 
         expect { task.process(administrateur) }.to change { administrateur.procedures.count }.by(1)
 
-        expect(administrateur.procedures.last).to have_attributes(libelle: ProcedureTemplates::EaeIntegration::LIBELLE, aasm_state: "brouillon")
+        expect(administrateur.procedures.last).to have_attributes(libelle: ProcedureTemplates::EaeIntegration::TITLE, aasm_state: "brouillon")
       end
     end
   end
