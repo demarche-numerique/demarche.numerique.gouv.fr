@@ -44,6 +44,22 @@ describe RevisionDescribableToLLMConcern do
       end
     end
 
+    context 'with header sections declaring a level they do not sit at' do
+      let(:procedure) do
+        create(:procedure, public_type_de_champs: [
+          { type: :header_section, level: 1, libelle: 'h1' },
+          { type: :header_section, level: 3, libelle: 'h3' },
+          { type: :repetition, libelle: 'r', children: [{ type: :header_section, level: 2, libelle: 'r2' }, { type: :header_section, level: 3, libelle: 'r3' }] },
+        ])
+      end
+      let(:revision) { procedure.draft_revision }
+
+      it 'tells the level read on the tree, counted from the repetition within one' do
+        expect(revision.schema_to_llm.filter_map { [it[:libelle], it[:header_section_level]] if it[:type] == 'header_section' })
+          .to eq([['h1', 1], ['h3', 2], ['r2', 1], ['r3', 2]])
+      end
+    end
+
     context 'when a type_de_champ has nil options' do
       let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :date, libelle: "Date de naissance" }]) }
       let(:revision) { procedure.draft_revision }
