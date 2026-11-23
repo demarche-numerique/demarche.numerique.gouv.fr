@@ -161,7 +161,10 @@ class APIToken < ApplicationRecord
 
     def parse_networks(networks)
       networks.to_s.split.map do
-        IPAddr.new(it)
+        # IPAddr accepts a zone (fe80::1%eth0), which the inet type rejects, and
+        # reads everything after the first slash as the mask: 10.0.0.1/255.255.255.0/1
+        # would be stored as 0.0.0.0/1.
+        IPAddr.new(it) if it.count('/') <= 1 && !it.include?('%')
       rescue IPAddr::Error
         nil
       end
