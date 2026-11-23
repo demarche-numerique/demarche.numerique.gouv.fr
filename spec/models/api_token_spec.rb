@@ -321,6 +321,27 @@ describe APIToken, type: :model do
     end
   end
 
+  describe '.reading' do
+    let(:procedure) { procedures.individual }
+    let(:other_procedure) { procedures.brouillon }
+    let(:support) { create(:administrateur) }
+
+    let!(:full_access) { APIToken.generate(administrateur).first }
+    let!(:listed) { APIToken.generate(administrateur, allowed_procedure_ids: [procedure.id]).first }
+    let!(:elsewhere) { APIToken.generate(administrateur, allowed_procedure_ids: [other_procedure.id]).first }
+    let!(:expired) { APIToken.generate(administrateur).first.tap { it.update_column(:expires_at, 1.day.ago.to_date) } }
+    let!(:support_token) { APIToken.generate(support).first }
+
+    before do
+      [procedure, other_procedure].each { it.administrateurs << administrateur }
+      AdministrateursProcedure.create!(procedure:, administrateur: support, manager: true)
+    end
+
+    it 'lists the live tokens of its administrateurs that read it, support left out' do
+      expect(APIToken.reading(procedure)).to contain_exactly(full_access, listed)
+    end
+  end
+
   describe '#authenticate' do
     let(:api_token_and_packed_token) { APIToken.generate(administrateur) }
     let(:api_token) { api_token_and_packed_token.first }

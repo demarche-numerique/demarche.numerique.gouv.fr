@@ -2,3 +2,9 @@ fr:
   remove: Retirer
   its_you: "(C’est vous !)"
   confirm_remove: "Retirer « %{email} » des administrateurs de « %{libelle} » ?"
+  api_token: "Jeton d’API « %{name} » : consulte cette démarche, %{last_use}"
+  api_token_following_clones: "Jeton d’API « %{name} » : consulte cette démarche et ses futurs clones, %{last_use}"
+  api_token_writing: "Jeton d’API « %{name} » : consulte et modifie cette démarche, %{last_use}"
+  api_token_writing_following_clones: "Jeton d’API « %{name} » : consulte et modifie cette démarche et ses futurs clones, %{last_use}"
+  used_ago: "utilisé il y a %{time}"
+  never_used: "jamais utilisé"

@@ -113,6 +113,22 @@ describe Administrateurs::ProcedureAdministrateursController, type: :controller 
       end
     end
 
+    context 'when the remaining admin has api tokens on the procedure' do
+      before do
+        APIToken.generate(signed_in_admin, name: 'SI subventions', allowed_procedure_ids: [procedure.id], follows_clones: true)
+        APIToken.generate(signed_in_admin, name: 'Entrepôt', write_access: false)
+        destroy_admin(other_admin)
+      end
+
+      it 'shows the token under its owner' do
+        expect(response.body).to include("Jeton d’API « SI subventions » : consulte et modifie cette démarche et ses futurs clones, jamais utilisé")
+      end
+
+      it 'says a full access token reads the future clones too' do
+        expect(response.body).to include("Jeton d’API « Entrepôt » : consulte cette démarche et ses futurs clones, jamais utilisé")
+      end
+    end
+
     context 'when removing oneself from a procedure' do
       before do
         destroy_admin(signed_in_admin)

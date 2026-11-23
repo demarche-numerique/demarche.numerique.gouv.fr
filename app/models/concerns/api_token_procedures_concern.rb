@@ -11,6 +11,15 @@ module APITokenProceduresConcern
     scope :owned_by_an_administrator_of, -> (procedure) do
       where(administrateur_id: AdministrateursProcedure.where(procedure:).select(:administrateur_id))
     end
+
+    scope :unexpired, -> { where(expires_at: nil).or(where(expires_at: Date.current..)) }
+
+    scope :reading, -> (procedure) do
+      authenticable
+        .unexpired
+        .where(administrateur_id: AdministrateursProcedure.where(procedure:, manager: [false, nil]).select(:administrateur_id))
+        .where('allowed_procedure_ids IS NULL OR ?::bigint = ANY(allowed_procedure_ids)', procedure.id)
+    end
   end
 
   class_methods do
