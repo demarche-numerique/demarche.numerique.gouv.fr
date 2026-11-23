@@ -73,7 +73,7 @@ RSpec.describe Dossiers::AmiConsentStateComponent, type: :component do
     it 'confirms the follow-up instead of offering it' do
       render_component
 
-      expect(page).to have_css('p.fr-text--bold', text: "Vous suivez vos démarches sur #{Ami::APP_NAME}")
+      expect(page).to have_css('p.fr-text--bold', text: 'Vous suivez vos démarches sur l’application')
       expect(page).to have_css('.fr-icon-check-line')
       expect(page).not_to have_button
     end

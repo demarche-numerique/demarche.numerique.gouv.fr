@@ -5,7 +5,7 @@
   <%= tag.p(class: "ami-consent__granted fr-text--bold fr-mb-0", **granted_attributes) do %>
     <span class="fr-icon-check-line fr-icon--sm" aria-hidden="true"></span>
 
-    <%= t('.granted', app_name: Ami::APP_NAME) %>
+    <%= t('.granted') %>
   <% end %>
 <% else %>
   <%#
@@ -23,7 +23,7 @@
         fr-icon-notification-3-line
       "
     >
-      <%= t('.grant', app_name: Ami::APP_NAME) %>
+      <%= t('.grant') %>
     </button>
   <% end %>
 <% end %>

@@ -4,7 +4,7 @@
       <%= image_tag 'ami/illustration.svg', alt: '', class: 'ami-follow__illustration' %>
 
       <p id="ami-follow-title" class="fr-text--bold fr-mb-0">
-        <%= t('.title', app_name: Ami::APP_NAME) %>
+        <%= t('.title') %>
       </p>
     </div>
 
@@ -44,8 +44,8 @@
   </div>
 
   <%= render Dsfr::ModalComponent.new(id: MODAL_ID, size: :lg, icon: 'fr-icon-information-line') do |modal| %>
-    <% modal.with_title { t('.modal.title', app_name: Ami::APP_NAME) } %>
+    <% modal.with_title { t('.modal.title') } %>
 
-    <%= t('.modal.body_html', app_name: Ami::APP_NAME) %>
+    <%= t('.modal.body_html') %>
   <% end %>
 </section>
