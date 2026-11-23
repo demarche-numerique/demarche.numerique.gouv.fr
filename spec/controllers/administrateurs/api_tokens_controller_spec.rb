@@ -118,15 +118,6 @@ describe Administrateurs::APITokensController, type: :controller do
     end
   end
 
-  describe 'create of a token PostgreSQL rejects' do
-    let(:params) { { name: 'Test', access: 'read', target: 'all', lifetime: 'oneWeek', network_filtering: 'customNetworks', networks: 'fe80::1%eth0' } }
-
-    it 'leaves no token behind' do
-      expect { post :create, params: { api_token_form: params } }.to raise_error(ActiveRecord::StatementInvalid)
-      expect(APIToken.where(administrateur: admin)).to be_empty
-    end
-  end
-
   describe 'securite' do
     render_views
 

@@ -388,6 +388,14 @@ describe APIToken, type: :model do
     end
   end
 
+  describe '.parse_networks' do
+    it 'rejects an IPv6 zone and a stacked mask' do
+      networks = APIToken.parse_networks('fe80::1%eth0 10.0.0.1/255.255.255.0/1 10.0.0.0/255.0.0.0')
+
+      expect(networks.map { it && "#{it}/#{it.prefix}" }).to eq([nil, nil, '10.0.0.0/8'])
+    end
+  end
+
   describe '#store_new_ip' do
     let(:api_token) { APIToken.generate(administrateur).first }
     let(:ip) { '192.168.0.1' }
