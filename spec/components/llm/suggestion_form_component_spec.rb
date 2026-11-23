@@ -39,12 +39,12 @@ RSpec.describe LLM::SuggestionFormComponent, type: :component do
 
       context 'when there are suggestions' do
         before do
-          revision_coordinate = procedure.draft_revision.public_revision_type_de_champs.first
+          type_de_champ = procedure.draft_revision.public_root_type_de_champs.first
 
           create(:llm_rule_suggestion_item,
             llm_rule_suggestion:,
-            stable_id: revision_coordinate.stable_id,
-            payload: { 'stable_id' => revision_coordinate.stable_id, 'libelle' => 'Nom simplifié' })
+            stable_id: type_de_champ.stable_id,
+            payload: { 'stable_id' => type_de_champ.stable_id, 'libelle' => 'Nom simplifié' })
         end
 
         it 'shows the configured title' do
@@ -65,6 +65,39 @@ RSpec.describe LLM::SuggestionFormComponent, type: :component do
           it 'enables submit button' do
             expect(subject).not_to have_css("input[type='submit'][disabled]")
           end
+        end
+      end
+
+      context 'when the structure rule suggests a section' do
+        let(:procedure) do
+          create(:procedure,
+            public_type_de_champs: [
+              { type: :header_section, level: 1, libelle: 'Identité' },
+              { type: :text, libelle: 'Nom' },
+              { type: :repetition, libelle: 'Enfants', children: [{ type: :text, libelle: 'Prénom' }] },
+            ],
+            private_type_de_champs: [{ type: :text, libelle: 'Note' }])
+        end
+        let(:rule) { LLMRuleSuggestion.rules.fetch('improve_structure') }
+
+        before do
+          nom = procedure.draft_revision.public_root_type_de_champs.find { it.libelle == 'Nom' }
+
+          create(:llm_rule_suggestion_item,
+            llm_rule_suggestion:,
+            op_kind: 'add',
+            stable_id: nil,
+            payload: { 'generated_stable_id' => -1, 'after_stable_id' => nom.stable_id, 'libelle' => 'Famille', 'header_section_level' => 1 })
+        end
+
+        it 'lays it among the champs outside any repetition, left unchanged' do
+          labels = subject.css('.fr-fieldset__element label').map { it.text.squish }
+
+          expect(labels.size).to eq(4)
+          expect(labels[0]).to eq('Inchangé # 1 : Identité')
+          expect(labels[1]).to eq('Inchangé Nom')
+          expect(labels[2]).to include('Ajout de section', 'Famille')
+          expect(labels[3]).to eq('Inchangé Enfants')
         end
       end
 
