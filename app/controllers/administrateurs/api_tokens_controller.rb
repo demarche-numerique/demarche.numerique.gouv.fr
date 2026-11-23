@@ -65,13 +65,9 @@ module Administrateurs
       @api_token.with_lock do
         if params[:restore_full_access].present?
           h[:allowed_procedure_ids] = nil
-        elsif procedure_to_add.present?
-          to_add = current_administrateur
-            .procedure_ids
-            .intersection([procedure_to_add])
-
+        elsif current_administrateur.procedures.exists?(procedure_to_add)
           h[:allowed_procedure_ids] =
-            (Array.wrap(@api_token.allowed_procedure_ids) + to_add).uniq
+            (Array.wrap(@api_token.allowed_procedure_ids) + [procedure_to_add]).uniq
         end
 
         @api_token.update!(h)

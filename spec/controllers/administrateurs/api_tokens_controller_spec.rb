@@ -238,7 +238,7 @@ describe Administrateurs::APITokensController, type: :controller do
 
       before { subject; token.reload }
 
-      it { expect(token.allowed_procedure_ids).to eq([]) }
+      it { expect(token.allowed_procedure_ids).to be_nil }
     end
 
     context 'with an empty procedure to add' do
@@ -246,7 +246,9 @@ describe Administrateurs::APITokensController, type: :controller do
 
       before { subject; token.reload }
 
-      it { expect(token.allowed_procedure_ids).to eq([]) }
+      it 'keeps the access to all procedures' do
+        expect(token.allowed_procedure_ids).to be_nil
+      end
     end
 
     context 'with restore_full_access' do
