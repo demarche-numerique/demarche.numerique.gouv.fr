@@ -28,7 +28,7 @@
             </thead>
 
             <tbody id="administrateurs">
-              <%= render(Procedure::ProcedureAdministrateurs::AdministrateurComponent.with_collection(@procedure.administrateurs.order('users.email'), procedure: @procedure)) %>
+              <%= render 'administrateurs', procedure: @procedure %>
             </tbody>
           </table>
         </div>
