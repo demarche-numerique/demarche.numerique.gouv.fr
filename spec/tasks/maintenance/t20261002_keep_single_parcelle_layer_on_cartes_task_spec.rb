@@ -6,7 +6,7 @@ module Maintenance
   RSpec.describe T20261002KeepSingleParcelleLayerOnCartesTask do
     # Past the model, which no longer saves both parcelle layers.
     def carte_with(options)
-      create(:type_de_champ_carte, no_coordinate: true).tap { it.update_column(:options, options) }
+      create(:type_de_champ_carte).tap { it.update_column(:options, options) }
     end
 
     describe "#collection" do

@@ -41,23 +41,11 @@ FactoryBot.define do
       procedure.defaut_groupe_instructeur = procedure.groupe_instructeurs.first
       initial_revision = build(:procedure_revision, procedure: procedure, dossier_submitted_message: evaluator.dossier_submitted_message)
 
-      revision_type_de_champs = []
-
-      if evaluator.public_type_de_champs.present?
-        if !evaluator.public_type_de_champs.first.is_a?(Hash)
-          raise "public_type_de_champs must be an array of hashes"
+      [evaluator.public_type_de_champs, evaluator.private_type_de_champs].each do |type_de_champs|
+        if type_de_champs.present? && !type_de_champs.first.is_a?(Hash)
+          raise "public_type_de_champs and private_type_de_champs must be arrays of hashes"
         end
-        revision_type_de_champs += build_type_de_champs(evaluator.public_type_de_champs, revision: initial_revision, scope: :public)
       end
-
-      if evaluator.private_type_de_champs.present?
-        if !evaluator.private_type_de_champs.first.is_a?(Hash)
-          raise "private_type_de_champs must be an array of hashes"
-        end
-        revision_type_de_champs += build_type_de_champs(evaluator.private_type_de_champs, revision: initial_revision, scope: :private)
-      end
-
-      initial_revision.association(:revision_type_de_champs).target = revision_type_de_champs
 
       if procedure.brouillon?
         procedure.draft_revision = initial_revision
@@ -69,9 +57,14 @@ FactoryBot.define do
     end
 
     after(:create) do |procedure, evaluator|
-      # the coordinates were laid by hand: the revisions store their tree, as an edit would
-      procedure.draft_revision.store_type_de_champ_tree
-      procedure.published_revision&.store_type_de_champ_tree
+      # The types de champ are created once the procedure is saved: the tree
+      # names them by their ids. The draft of a published procedure lays out
+      # the same ones as the published revision.
+      type_de_champ_tree = TypeDeChampTree.new(
+        public_children: create_type_de_champ_nodes(evaluator.public_type_de_champs, procedure:, scope: :public),
+        private_children: create_type_de_champ_nodes(evaluator.private_type_de_champs, procedure:, scope: :private)
+      )
+      [procedure.draft_revision, procedure.published_revision].compact.each { store_factory_type_de_champ_tree(it, type_de_champ_tree) }
 
       procedure.claim_path!(evaluator.administrateur, evaluator.path)
       evaluator.instructeurs.each { |i| i.assign_to_procedure(procedure) }
@@ -226,56 +219,22 @@ FactoryBot.define do
     end
 
     trait :with_all_champs_mandatory do
-      after(:build) do |procedure, _evaluator|
-        TypeDeChamp.type_champs.map.with_index do |(libelle, type_champ), index|
-          if libelle == 'drop_down_list'
-            libelle = 'simple_drop_down_list'
-          end
-          if type_champ == 'repetition'
-            build(:type_de_champ_repetition, :with_type_de_champs, procedure: procedure, mandatory: true, libelle: libelle, position: index)
-          elsif type_champ == 'referentiel'
-            referentiel = build(:api_referentiel, :exact_match)
-
-            build(:type_de_champ_referentiel, procedure: procedure, mandatory: true, libelle: libelle, position: index, referentiel:)
-          else
-            build(:"type_de_champ_#{type_champ}", procedure: procedure, mandatory: true, libelle: libelle, position: index)
-          end
-        end
-        build(:type_de_champ_drop_down_list, :long, procedure: procedure, mandatory: true, libelle: 'simple_choice_drop_down_list_long', position: TypeDeChamp.type_champs.size)
-        build(:type_de_champ_multiple_drop_down_list, :long, procedure: procedure, mandatory: true, libelle: 'multiple_choice_drop_down_list_long', position: TypeDeChamp.type_champs.size + 1)
-        build(:type_de_champ_piece_justificative, nature: 'titre_identite', mandatory: true, libelle: "titre_identité", procedure: procedure, position: TypeDeChamp.type_champs.size + 2)
+      public_type_de_champs do
+        [
+          *all_type_de_champs_for_factory(mandatory: true),
+          { type: :drop_down_list, mandatory: true, libelle: 'simple_choice_drop_down_list_long', options: ["alpha", "bravo", "charly", "delta", "echo", "fox-trot", "golf"] },
+          { type: :multiple_drop_down_list, mandatory: true, libelle: 'multiple_choice_drop_down_list_long', options: ["alpha", "bravo", "charly", "delta", "echo", "fox-trot", "golf"] },
+          { type: :piece_justificative, nature: 'titre_identite', mandatory: true, libelle: "titre_identité" },
+        ]
       end
     end
 
     trait :with_all_champs do
-      after(:build) do |procedure, _evaluator|
-        TypeDeChamp.type_champs.map.with_index do |(libelle, type_champ), index|
-          if libelle == 'drop_down_list'
-            libelle = 'simple_drop_down_list'
-          end
-          if type_champ == 'repetition'
-            build(:type_de_champ_repetition, :with_type_de_champs, procedure: procedure, libelle: libelle, position: index)
-          elsif type_champ == 'referentiel'
-            referentiel = build(:api_referentiel, :exact_match)
-
-            build(:type_de_champ_referentiel, procedure: procedure, mandatory: true, libelle: libelle, position: index, referentiel:)
-          else
-            build(:"type_de_champ_#{type_champ}", procedure: procedure, libelle: libelle, position: index)
-          end
-        end
-      end
+      public_type_de_champs { all_type_de_champs_for_factory }
     end
 
-    # TODO: rewrite with private_type_de_champs
     trait :with_all_annotations do
-      after(:build) do |procedure, _evaluator|
-        TypeDeChamp.type_champs.map.with_index do |(libelle, type_champ), index|
-          if libelle == 'drop_down_list'
-            libelle = 'simple_drop_down_list'
-          end
-          build(:"type_de_champ_#{type_champ}", procedure: procedure, private: true, libelle: libelle, position: index)
-        end
-      end
+      private_type_de_champs { all_type_de_champs_for_factory(repetition_children: []) }
     end
 
     trait :with_dossier_submitted_message do
@@ -324,62 +283,106 @@ FactoryBot.define do
   end
 end
 
-def build_type_de_champs(type_de_champs, revision:, scope: :public, parent: nil)
-  type_de_champs.flat_map.with_index do |source_attributes, i|
-    # `referentiel` et `children` sont lus sur la source, jamais sur la copie :
-    # deep_dup duplique l'enregistrement ActiveRecord et la copie a un id nil.
-    # Les children sont dupliqués par l'appel récursif, à leur tour.
-    referentiel = source_attributes[:referentiel]
-    children = source_attributes[:children]
+# one of every type, named after its type
+def all_type_de_champs_for_factory(repetition_children: [{ libelle: 'sub type de champ' }, { type: :integer_number, libelle: 'sub type de champ2' }], **attributes)
+  TypeDeChamp.type_champs.map do |libelle, type_champ|
+    libelle = 'simple_drop_down_list' if libelle == 'drop_down_list'
 
-    type_de_champ_attributes = source_attributes.except(:referentiel, :children).deep_dup
-    type_de_champ_attributes[:referentiel_id] = referentiel.id if referentiel.present?
-
-    type = TypeDeChamp.type_champs.fetch(type_de_champ_attributes.delete(:type) || :text).to_sym
-    position = type_de_champ_attributes.delete(:position) || i
-    options = type_de_champ_attributes.delete(:options)
-    layers = type_de_champ_attributes.delete(:layers)
-
-    if !options.nil?
-      if type == :drop_down_list
-        type_de_champ_attributes[:drop_down_other] = options.delete(:other).present?
-      end
-
-      if type.in?([:drop_down_list, :multiple_drop_down_list, :linked_drop_down_list])
-        type_de_champ_attributes[:drop_down_options] = options
-      end
-    end
-
-    if type == :linked_drop_down_list
-      type_de_champ_attributes[:drop_down_secondary_libelle] = type_de_champ_attributes.delete(:secondary_libelle)
-      type_de_champ_attributes[:drop_down_secondary_description] = type_de_champ_attributes.delete(:secondary_description)
-    end
-
-    if type == :carte && layers.present?
-      type_de_champ_attributes[:editable_options] = layers.index_with { '1' }
-    end
-
-    if type == :header_section
-      type_de_champ_attributes[:header_section_level] = type_de_champ_attributes.delete(:level)
-    end
-
-    type_de_champ = if scope == :private
-      build(:"type_de_champ_#{type}", :private, no_coordinate: true, **type_de_champ_attributes)
+    case type_champ
+    when 'repetition'
+      { type: :repetition, libelle:, children: repetition_children, **attributes }
+    when 'referentiel'
+      { type: :referentiel, libelle:, referentiel: build(:api_referentiel, :exact_match), **attributes, mandatory: true }
     else
-      build(:"type_de_champ_#{type}", no_coordinate: true, **type_de_champ_attributes)
-    end
-    # assigned rather than given to the factory, which would save the procedure half built
-    type_de_champ.procedure = revision.procedure
-    coordinate = build(:procedure_revision_type_de_champ,
-      revision:,
-      type_de_champ:,
-      position:,
-      parent:)
-
-    if type_de_champ.repetition? && children.present?
-      [coordinate] + build_type_de_champs(children, revision:, scope:, parent: coordinate)
-    else
-      coordinate
+      { type: type_champ.to_sym, libelle:, **attributes }
     end
   end
+end
+
+# The tree given to a revision by a factory, in place of the edits which would
+# have built it.
+#
+# FIXME: the coordinates follow, as long as the editor writes them (#14009).
+def store_factory_type_de_champ_tree(revision, type_de_champ_tree)
+  revision.update_columns(type_de_champ_tree:)
+  revision.revision_type_de_champs.each(&:delete)
+  revision.revision_type_de_champs.reset
+  revision.create_coordinates_from_type_de_champ_tree
+end
+
+# The nodes of the types de champ described, each created for the procedure,
+# in document order. A repetition holds its children. A header section holds
+# what follows it, up to the next header section of its level or above (level
+# 1 unless given).
+def create_type_de_champ_nodes(type_de_champs, procedure:, scope: :public)
+  type_de_champ_nodes_for_factory(lay_type_de_champs_for_factory(type_de_champs, procedure:, scope:))
+end
+
+# each type de champ with what it holds, laid the same way
+def lay_type_de_champs_for_factory(type_de_champs, procedure:, scope:)
+  root = []
+  # the header sections left open, innermost last: [level, what it holds]
+  open_sections = []
+
+  type_de_champs.each do |attributes|
+    type_de_champ = create_type_de_champ_for_factory(attributes.except(:children), procedure:, scope:)
+
+    if type_de_champ.header_section?
+      level = type_de_champ.header_section_level_value
+      open_sections.pop while open_sections.any? && open_sections.last.first >= level
+      held = []
+      (open_sections.last&.last || root) << [type_de_champ, held]
+      open_sections << [level, held]
+    else
+      held = lay_type_de_champs_for_factory(attributes[:children].to_a, procedure:, scope:)
+      (open_sections.last&.last || root) << [type_de_champ, held]
+    end
+  end
+
+  root
+end
+
+def type_de_champ_nodes_for_factory(laid)
+  laid.map do |type_de_champ, held|
+    TypeDeChampNode.new(stable_id: type_de_champ.stable_id, type_de_champ_id: type_de_champ.id, children: type_de_champ_nodes_for_factory(held))
+  end
+end
+
+def create_type_de_champ_for_factory(source_attributes, procedure:, scope: :public)
+  # `referentiel` est lu sur la source, jamais sur la copie : deep_dup duplique
+  # l'enregistrement ActiveRecord et la copie a un id nil.
+  referentiel = source_attributes[:referentiel]
+
+  type_de_champ_attributes = source_attributes.except(:referentiel).deep_dup
+  type_de_champ_attributes[:referentiel] = referentiel if referentiel.present?
+
+  type = TypeDeChamp.type_champs.fetch(type_de_champ_attributes.delete(:type) || :text).to_sym
+  options = type_de_champ_attributes.delete(:options)
+  layers = type_de_champ_attributes.delete(:layers)
+
+  if !options.nil?
+    if type == :drop_down_list
+      type_de_champ_attributes[:drop_down_other] = options.delete(:other).present?
+    end
+
+    if type.in?([:drop_down_list, :multiple_drop_down_list, :linked_drop_down_list])
+      type_de_champ_attributes[:drop_down_options] = options
+    end
+  end
+
+  if type == :linked_drop_down_list
+    type_de_champ_attributes[:drop_down_secondary_libelle] = type_de_champ_attributes.delete(:secondary_libelle)
+    type_de_champ_attributes[:drop_down_secondary_description] = type_de_champ_attributes.delete(:secondary_description)
+  end
+
+  if type == :carte && layers.present?
+    type_de_champ_attributes[:editable_options] = layers.index_with { '1' }
+  end
+
+  if type == :header_section
+    type_de_champ_attributes[:header_section_level] = type_de_champ_attributes.delete(:level)
+  end
+
+  traits = scope == :private ? [:private] : []
+  create(:"type_de_champ_#{type}", *traits, laid_out: false, procedure:, **type_de_champ_attributes)
 end

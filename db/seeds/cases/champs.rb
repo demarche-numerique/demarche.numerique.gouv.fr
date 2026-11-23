@@ -49,15 +49,12 @@ ActiveRecord::Base.transaction do
     "referentiel" => { referentiel:, mandatory: true },
   }
 
-  # Build all coordinates in memory and save the revision once: one champ of
-  # every type per list, faster than one add_type_de_champ call per champ.
   revision = procedure.draft_revision
 
-  build_type_de_champ = lambda do |params, private_champ, position|
-    type_de_champ = TypeDeChamp.new(procedure_id: procedure.id, private: private_champ, libelle: params[:type_champ], **params)
-    revision.revision_type_de_champs.build(type_de_champ:, position:)
+  create_type_de_champ = lambda do |params, private_champ = false|
+    type_de_champ = TypeDeChamp.create!(procedure_id: procedure.id, private: private_champ, libelle: params[:type_champ], **params)
 
-    if type_de_champ.type_champ == TypeDeChamp.type_champs.fetch(:piece_justificative) && type_de_champ.nature.blank?
+    if type_de_champ.piece_justificative? && type_de_champ.nature.blank?
       type_de_champ.piece_justificative_template.attach(
         io: StringIO.new("toto"),
         filename: "toto.txt",
@@ -65,33 +62,41 @@ ActiveRecord::Base.transaction do
         metadata: { virus_scan_result: ActiveStorage::VirusScanner::SAFE }
       )
     end
+
+    type_de_champ
   end
 
-  [false, true].each do |private_champ|
-    TypeDeChamp.type_champs.each_value.with_index do |type_champ, position|
-      build_type_de_champ.call({ type_champ:, **extra_params_by_type.fetch(type_champ, {}) }, private_champ, position)
+  node = -> (type_de_champ, children = []) { TypeDeChampNode.new(stable_id: type_de_champ.stable_id, type_de_champ_id: type_de_champ.id, children:) }
+
+  # One champ of every type per list. The header section holds the ones after
+  # it, and the repetition of the form two children.
+  public_children, private_children = [false, true].map do |private_champ|
+    type_de_champs = TypeDeChamp.type_champs.each_value.map do |type_champ|
+      create_type_de_champ.call({ type_champ:, **extra_params_by_type.fetch(type_champ, {}) }, private_champ)
     end
+    # titre_identite is a piece_justificative nature, not a type_champ
+    type_de_champs << create_type_de_champ.call({ type_champ: "piece_justificative", nature: "titre_identite", libelle: "titre_identité" }) if !private_champ
+
+    nodes = type_de_champs.map do |type_de_champ|
+      children = if type_de_champ.repetition? && !private_champ
+        [
+          { type_champ: "text", libelle: "sub type de champ" },
+          { type_champ: "integer_number", libelle: "sub type de champ2" },
+        ].map { node.call(create_type_de_champ.call(it)) }
+      end
+
+      node.call(type_de_champ, children.to_a)
+    end
+
+    header_section_index = type_de_champs.index(&:header_section?)
+    header_section = nodes[header_section_index]
+
+    [*nodes.take(header_section_index), header_section.with(children: nodes.drop(header_section_index + 1))]
   end
 
-  # titre_identite is a piece_justificative nature, not a type_champ
-  build_type_de_champ.call(
-    { type_champ: "piece_justificative", nature: "titre_identite", libelle: "titre_identité" },
-    false,
-    TypeDeChamp.type_champs.size
-  )
-
-  revision.save!
-
-  repetition_coordinate = revision.revision_type_de_champs.find { it.type_de_champ.repetition? && !it.type_de_champ.private? }
-  [
-    { type_champ: "text", libelle: "sub type de champ" },
-    { type_champ: "integer_number", libelle: "sub type de champ2" },
-  ].each_with_index do |params, position|
-    revision.revision_type_de_champs.create!(type_de_champ: TypeDeChamp.create!(procedure_id: procedure.id, **params), parent: repetition_coordinate, position:)
-  end
-
-  # the coordinates were laid by hand: the revision stores its tree, as an edit would
-  revision.store_type_de_champ_tree
+  revision.update_columns(type_de_champ_tree: TypeDeChampTree.new(public_children:, private_children:))
+  # FIXME: the coordinates follow, as long as the editor writes them (#14009)
+  revision.create_coordinates_from_type_de_champ_tree
 
   procedures.label tous_champs: procedure
 

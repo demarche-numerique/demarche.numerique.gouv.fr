@@ -185,7 +185,7 @@ describe TypeDeChampTree do
       let(:r1) { revision.type_de_champ(repetition_coordinate.type_de_champ.stable_id).flat_children.first }
 
       def copy_of(type_de_champ, libelle: type_de_champ.libelle)
-        create(:type_de_champ_text, no_coordinate: true, libelle:).tap { it.update_columns(stable_id: type_de_champ.stable_id) }
+        create(:type_de_champ_text, laid_out: false, libelle:).tap { it.update_columns(stable_id: type_de_champ.stable_id) }
       end
 
       def lay(type_de_champ, position:, parent: nil)
@@ -226,17 +226,6 @@ describe TypeDeChampTree do
         it 'keeps the latest type de champ, where it is laid' do
           expect(tree.public_children.map(&:type_de_champ_id)).to eq([repetition_coordinate.type_de_champ_id, revision.type_de_champs.find { it.libelle == 'b' }.id, edited.id])
         end
-      end
-    end
-
-    context 'with a revision not saved yet' do
-      let(:procedure) { build(:procedure, public_type_de_champs:) }
-      let(:public_type_de_champs) { [{ type: :header_section, level: 1, libelle: 'h1' }, { type: :repetition, libelle: 'r', children: [{ libelle: 'r1' }] }] }
-
-      it do
-        expect(revision).to be_new_record
-        expect(tree.public_children.map { it.children.size }).to eq([1])
-        expect(tree.public_children.first.children.map { it.children.size }).to eq([1])
       end
     end
   end

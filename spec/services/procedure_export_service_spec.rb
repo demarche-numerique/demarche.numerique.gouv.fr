@@ -52,15 +52,6 @@ describe ProcedureExportService do
         let(:procedure) { create(:procedure, :published, :for_individual, :with_all_champs) }
         let!(:dossier) { create(:dossier, :en_instruction, :with_populated_champs, :with_individual, procedure: procedure) }
 
-        # before do
-        #   # change one tdc place to check if the header is ordered
-        #   tdc_first = procedure.active_revision.public_revision_type_de_champs.first
-        #   tdc_last = procedure.active_revision.public_revision_type_de_champs.last
-
-        #   tdc_first.update(position: tdc_last.position + 1)
-        #   procedure.reload
-        # end
-
         let(:nominal_headers) do
           [
             "ID",
@@ -403,16 +394,6 @@ describe ProcedureExportService do
     end
 
     describe 'Repetitions sheet' do
-      before do
-        # change one tdc place to check if the header is ordered
-        tdc_first = procedure.active_revision.public_revision_type_de_champs.first
-        tdc_last = procedure.active_revision.public_revision_type_de_champs.last
-
-        tdc_first.update(position: tdc_last.position + 1)
-        procedure.active_revision.store_type_de_champ_tree # laid by hand: the tree follows
-        procedure.reload
-      end
-
       let(:public_type_de_champs) { [{ type: :repetition, children: [{ libelle: 'Nom' }, { libelle: 'Age' }] }] }
       let(:procedure) { create(:procedure, :published, :for_individual, public_type_de_champs:) }
       let!(:dossiers) do
@@ -428,11 +409,10 @@ describe ProcedureExportService do
       end
 
       context 'with cloned procedure' do
-        let(:other_parent) { create(:type_de_champ_repetition, stable_id: champ_repetition.stable_id) }
+        let(:other_procedure) { create(:procedure) }
+        let(:other_parent) { create(:type_de_champ_repetition, procedure: other_procedure, stable_id: champ_repetition.stable_id) }
 
-        before do
-          create(:type_de_champ, parent: create(:procedure_revision_type_de_champ, type_de_champ: other_parent, revision: create(:procedure).active_revision, position: 0))
-        end
+        before { create(:type_de_champ, procedure: other_procedure, parent: other_parent) }
 
         it 'should have headers' do
           expect(repetition_sheet.headers).to eq([

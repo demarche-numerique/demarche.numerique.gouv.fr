@@ -19,29 +19,22 @@ FactoryBot.define do
     procedure { nil }
 
     transient do
-      position { nil }
+      # the repetition holding it, where its procedure lays it out
       parent { nil }
-      no_coordinate { false }
+      # with a procedure given, its active revision lays it out, last
+      laid_out { true }
     end
 
     after(:build) do |type_de_champ, evaluator|
       # A type de champ always belongs to a procedure. Without one given, it
-      # belongs to a seeded procedure without being laid out there: its
-      # coordinate goes to a revision of its own.
+      # belongs to a seeded procedure without being laid out there.
       type_de_champ.procedure ||= Oaken::Seeds.procedures.close
 
-      if !evaluator.no_coordinate
-        revision = evaluator.procedure&.active_revision || build(:procedure_revision)
-        evaluator.procedure&.save
-
-        revision.revision_type_de_champs << build(:procedure_revision_type_de_champ,
-          position: evaluator.position || 0,
-          revision: revision,
-          type_de_champ: type_de_champ,
-          parent: evaluator.parent)
-
-        revision.save
-        revision.store_type_de_champ_tree if revision.persisted?
+      # saved along: the tree names it by its id
+      if evaluator.laid_out && evaluator.procedure.present?
+        evaluator.procedure.save! if evaluator.procedure.new_record?
+        type_de_champ.save!
+        lay_out_type_de_champ_for_factory(type_de_champ, parent: evaluator.parent)
       end
     end
 
@@ -228,49 +221,22 @@ FactoryBot.define do
     end
     factory :type_de_champ_repetition do
       type_champ { TypeDeChamp.type_champs.fetch(:repetition) }
-
-      transient do
-        type_de_champs { [] }
-      end
-
-      after(:build) do |type_de_champ_repetition, evaluator|
-        evaluator.procedure&.save!
-        revision = evaluator.procedure&.active_revision || build(:procedure_revision)
-        parent = revision.revision_type_de_champs.find { |rtdc| rtdc.type_de_champ == type_de_champ_repetition }
-        type_de_champs = revision.revision_type_de_champs.filter { |rtdc| rtdc.parent == parent }
-        position = type_de_champs.size
-
-        evaluator.type_de_champs.each.with_index(position) do |type_de_champ, position|
-          revision.revision_type_de_champs << build(:procedure_revision_type_de_champ,
-            revision: revision,
-            type_de_champ: type_de_champ,
-            parent: parent,
-            position: position)
-        end
-
-        revision.save
-        revision.store_type_de_champ_tree if revision.persisted?
-      end
-
-      # TODO: drop
-      trait :with_type_de_champs do
-        after(:build) do |type_de_champ_repetition, evaluator|
-          revision = evaluator.procedure.active_revision
-          parent = revision.revision_type_de_champs.find { |rtdc| rtdc.type_de_champ == type_de_champ_repetition }
-
-          build(:type_de_champ, procedure: evaluator.procedure, libelle: 'sub type de champ', parent: parent, position: 0)
-          build(:type_de_champ, type_champ: TypeDeChamp.type_champs.fetch(:integer_number), procedure: evaluator.procedure, libelle: 'sub type de champ2', parent: parent, position: 1)
-        end
-      end
-
-      trait :with_region_type_de_champs do
-        after(:build) do |type_de_champ_repetition, evaluator|
-          revision = evaluator.procedure.active_revision
-          parent = revision.revision_type_de_champs.find { |rtdc| rtdc.type_de_champ == type_de_champ_repetition }
-
-          build(:type_de_champ, type_champ: TypeDeChamp.type_champs.fetch(:regions), procedure: evaluator.procedure, libelle: 'region sub_champ', parent: parent, position: 10)
-        end
-      end
     end
   end
+end
+
+# Last of what holds it in the active revision of its procedure: a repetition,
+# the form or the annotations.
+def lay_out_type_de_champ_for_factory(type_de_champ, parent: nil)
+  revision = type_de_champ.procedure.active_revision
+  tree = revision.type_de_champ_tree
+  parent = parent&.stable_id || (type_de_champ.private? ? :private : :public)
+  siblings = case parent
+  when :public then tree.public_children
+  when :private then tree.private_children
+  else tree.nodes.find { it.stable_id == parent }.children
+  end
+  node = TypeDeChampNode.new(stable_id: type_de_champ.stable_id, type_de_champ_id: type_de_champ.id)
+
+  store_factory_type_de_champ_tree(revision, tree.insert(node, parent:, after: siblings.last&.stable_id))
 end
