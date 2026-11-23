@@ -20,7 +20,7 @@ RSpec.describe AdministrationMailer, type: :mailer do
 
     describe "when the user has not been activated" do
       it do
-        expect(subject.body.decoded).to include("Pour l’activer, cliquez sur le lien suivant")
+        expect(subject.body.decoded).to include("Pour l’activer, cliquez sur le lien suivant\u00A0:")
         expect(subject.body).to include(users_activate_path(token: token))
         expect(subject.body).not_to include(edit_user_password_url(admin_user, reset_password_token: token))
         expect(subject['BYPASS_UNVERIFIED_MAIL_PROTECTION']).to be_present
@@ -30,7 +30,7 @@ RSpec.describe AdministrationMailer, type: :mailer do
     describe "when the user is already active" do
       let(:last_sign_in_at) { Time.zone.now }
       it do
-        expect(subject.body.decoded).to include("Pour vous connecter, cliquez sur le lien suivant")
+        expect(subject.body.decoded).to include("Pour vous connecter, cliquez sur le lien suivant\u00A0:")
         expect(subject.body).not_to include(users_activate_path(token: token))
         expect(subject.body).to include(edit_user_password_url(admin_user, reset_password_token: token))
       end

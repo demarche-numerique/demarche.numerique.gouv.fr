@@ -4,5 +4,5 @@ fr:
       title: Activation du compte administrateur
       thanks: Je vous remercie de l’intérêt que vous portez à notre outil de dématérialisation de démarches.
       account_created: Votre compte administrateur a été créé pour l’adresse électronique %{email}.
-      activate: "Pour l’activer, cliquez sur le lien suivant :"
-      sign_in: "Pour vous connecter, cliquez sur le lien suivant :"
+      activate: "Pour l’activer, cliquez sur le lien suivant :"
+      sign_in: "Pour vous connecter, cliquez sur le lien suivant :"
