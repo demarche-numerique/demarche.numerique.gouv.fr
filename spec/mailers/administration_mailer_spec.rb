@@ -66,8 +66,8 @@ RSpec.describe AdministrationMailer, type: :mailer do
       expect(body).to include("Les comptes administrateurs sont destinés aux administrations publiques")
       expect(body).to include("l’entrée dans #{APPLICATION_NAME} se fait via un lien fourni par l’administration responsable")
       expect(body).to include("en tant qu’usager, merci d’expliciter le problème rencontré sur notre")
-      expect(body).to include(%(<a href="#{contact_url}">formulaire de contact</a>))
-      expect(body).to include(%(<a href="#{contact_admin_url}">formulaire de contact administrateur</a>))
+      expect(body).to include(%(<a href="#{contact_url}">formulaire de contact</a>.))
+      expect(body).to include(%(<a href="#{contact_admin_url}">formulaire de contact administrateur</a>.))
     end
 
     it 'renders in the default locale, not the sender one' do
