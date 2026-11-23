@@ -24,6 +24,21 @@ describe ProcedureExportService::InlineRepetitionsBuilder do
       it 'uses the maximum of the repetition' do
         expect(subject[7].max_rows).to eq(3)
       end
+
+      it 'uses the highest maximum the published revisions gave it' do
+        draft = procedure.reload.draft_revision
+        draft.update_type_de_champ(draft.find_and_ensure_exclusive_use(7), max_repetitions: 2)
+        procedure.publish_revision!(procedure.administrateurs.first)
+
+        expect(subject[7].max_rows).to eq(3)
+      end
+
+      it 'leaves out the maximum only the draft holds' do
+        draft = procedure.reload.draft_revision
+        draft.update_type_de_champ(draft.find_and_ensure_exclusive_use(7), max_repetitions: 10)
+
+        expect(subject[7].max_rows).to eq(3)
+      end
     end
   end
 end

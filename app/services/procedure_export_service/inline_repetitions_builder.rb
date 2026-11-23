@@ -30,10 +30,18 @@ class ProcedureExportService::InlineRepetitionsBuilder
       .filter { it.max_repetitions? && repetition_columns.key?(it.stable_id) }
       .map(&:stable_id)
 
+    return {} if stable_ids.empty?
+
+    # the versions the effective revisions lay out: the draft may hold another
+    laid_out_ids = ProcedureRevision
+      .where(id: @procedure.effective_revision_ids)
+      .pluck(:type_de_champ_tree)
+      .flat_map(&:type_de_champ_ids)
+      .to_set
+
     TypeDeChamp
-      .joins(:revision_type_de_champs)
-      .where(stable_id: stable_ids, type_champ: TypeDeChamp.type_champs.fetch(:repetition), revision_type_de_champs: { revision_id: @procedure.effective_revision_ids })
-      .filter(&:max_repetitions?)
+      .where(procedure_id: @procedure.id, stable_id: stable_ids, type_champ: TypeDeChamp.type_champs.fetch(:repetition))
+      .filter { laid_out_ids.include?(it.id) && it.max_repetitions? }
       .group_by(&:stable_id)
       .transform_values { |versions| versions.map { it.max_repetitions.to_i }.max }
   end
