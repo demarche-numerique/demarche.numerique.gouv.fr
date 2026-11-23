@@ -419,6 +419,21 @@ suite('MultipleSelect announcements', () => {
       .toHaveAttribute('data-focused');
     expect(liveRegion()?.textContent ?? '').toBe('');
   });
+
+  test('exposes the state of the options as checked, not selected', async () => {
+    await userEvent.click(page.getByRole('button', { name: /Menu/ }));
+    const entree = page.getByRole('option', { name: 'Entrée' });
+    const plat = page.getByRole('option', { name: 'Plat' });
+
+    await expect.element(entree).toHaveAttribute('aria-checked', 'true');
+    await expect.element(plat).toHaveAttribute('aria-checked', 'false');
+    await expect.element(entree).not.toHaveAttribute('aria-selected');
+    await expect.element(plat).not.toHaveAttribute('aria-selected');
+
+    await userEvent.click(plat);
+
+    await expect.element(plat).toHaveAttribute('aria-checked', 'true');
+  });
 });
 
 suite('SingleSelect inside a form', () => {

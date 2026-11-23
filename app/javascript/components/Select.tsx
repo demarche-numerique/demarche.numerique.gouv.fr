@@ -18,7 +18,8 @@ import {
 } from 'react-aria-components';
 import type {
   SelectProps as AriaSelectProps,
-  AutocompleteProps
+  AutocompleteProps,
+  ListBoxItemProps
 } from 'react-aria-components';
 import {
   useState,
@@ -70,6 +71,9 @@ type SelectProps<M extends SelectionMode = 'single'> = AriaSelectProps<
   data?: Record<string, string>;
 };
 type AutocompleteFilter = NonNullable<AutocompleteProps<Item>['filter']>;
+type OptionElementProps = Parameters<
+  NonNullable<ListBoxItemProps['render']>
+>[0];
 
 function Select<M extends SelectionMode = 'single'>({
   items,
@@ -188,7 +192,7 @@ function Select<M extends SelectionMode = 'single'>({
 function selectOption(item: Item) {
   const label = item.mandatory ? `${item.label} *` : item.label;
   return (
-    <SelectItem id={item.value} textValue={label}>
+    <SelectItem id={item.value} textValue={label} render={checkedOption}>
       {({ isFocused, isSelected }) => (
         <>
           <FocusedOptionAnnouncement
@@ -205,6 +209,15 @@ function selectOption(item: Item) {
       )}
     </SelectItem>
   );
+}
+
+// NVDA does not announce aria-selected on an option (nvaccess/nvda#17639)
+function checkedOption(props: OptionElementProps) {
+  if ('href' in props) {
+    return <a {...props} />;
+  }
+  const { 'aria-selected': selected, ...optionProps } = props;
+  return <div {...optionProps} aria-checked={selected} />;
 }
 
 // The search field keeps the focus and points at the option with
