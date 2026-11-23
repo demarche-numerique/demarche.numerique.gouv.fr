@@ -81,14 +81,6 @@ class APIToken < ApplicationRecord
     allowed_procedure_ids.nil?
   end
 
-  def targetable_procedures
-    administrateur
-      .procedures
-      .where.not(id: allowed_procedure_ids)
-      .select(:id, :libelle)
-      .order(:libelle)
-  end
-
   # Prefix is made of the first 6 characters of the uuid base64 encoded
   # it does not leak plain token
   def prefix
