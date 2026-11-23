@@ -1,0 +1,1 @@
+<%= turbo_stream.update 'tokenUpdate', partial: 'edit_form', locals: { api_token: @api_token, libelle_id_procedures: @libelle_id_procedures, invalid_network_message: @invalid_network_message, restricting: params.key?(:procedure_to_add) } %>
