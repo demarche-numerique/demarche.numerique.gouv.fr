@@ -78,7 +78,7 @@ module Administrateurs
     def remove_procedure
       procedure_id = params[:procedure_id].to_i
       @api_token.with_lock do
-        remaining_ids = (@api_token.allowed_procedure_ids || @api_token.procedure_ids) - [procedure_id]
+        remaining_ids = (@api_token.allowed_procedure_ids || current_administrateur.procedures.with_discarded.ids) - [procedure_id]
         @api_token.update!(allowed_procedure_ids: remaining_ids)
       end
 

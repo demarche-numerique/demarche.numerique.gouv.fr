@@ -345,6 +345,15 @@ describe Administrateurs::APITokensController, type: :controller do
         token.reload
         expect(token.allowed_procedure_ids).to eq([procedure2.id])
       end
+
+      context 'and a procedure in the bin' do
+        let!(:binned_procedure) { create(:procedure, :discarded, administrateurs: [admin]) }
+
+        it 'keeps the binned procedure in the list' do
+          subject
+          expect(token.reload.allowed_procedure_ids).to contain_exactly(procedure2.id, binned_procedure.id)
+        end
+      end
     end
 
     context 'with an existing procedure list' do
