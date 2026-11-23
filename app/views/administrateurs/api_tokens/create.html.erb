@@ -89,6 +89,7 @@
     <li>
       <strong><%= t('.procedures') %></strong>
       <%= @api_token.full_access? ? t('.all_procedures') : @api_token.procedures.map(&:libelle).join(', ') %>
+      <%= t('.and_their_clones', count: @api_token.allowed_procedure_ids.size) if @api_token.follows_clones? %>
     </li>
 
     <li>

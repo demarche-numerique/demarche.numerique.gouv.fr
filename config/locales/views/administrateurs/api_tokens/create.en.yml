@@ -23,5 +23,8 @@ en:
         read_write: read and write
         read_only: read only
         all_procedures: all
+        and_their_clones:
+          one: and its future clones
+          other: and their future clones
         all_networks: all internet
         back_to_profile: Back to profile

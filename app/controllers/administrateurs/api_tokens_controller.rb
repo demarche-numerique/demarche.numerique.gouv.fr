@@ -63,9 +63,14 @@ module Administrateurs
         flash.notice = t('.renamed')
       end
 
+      if params.key?(:follows_clones)
+        h[:follows_clones] = params[:follows_clones] == '1'
+      end
+
       @api_token.with_lock do
         if params[:restore_full_access].present?
           h[:allowed_procedure_ids] = nil
+          h[:follows_clones] = false
           flash.notice = t('.full_access_restored')
         elsif params.key?(:procedure_to_add)
           procedure = current_administrateur.procedures.find_by(id: params[:procedure_to_add])
@@ -160,7 +165,7 @@ module Administrateurs
 
     def api_token_form_params
       if params.key?(:api_token_form)
-        params.expect(api_token_form: [:name, :duplicated_token_id, :target, :access, :network_filtering, :networks, :lifetime, :custom_lifetime, procedure_ids: []])
+        params.expect(api_token_form: [:name, :duplicated_token_id, :target, :follows_clones, :access, :network_filtering, :networks, :lifetime, :custom_lifetime, procedure_ids: []])
       else
         {}
       end
