@@ -13,7 +13,17 @@ module Maintenance
 
         expect { task.process(administrateur) }.to change { administrateur.procedures.count }.by(1)
 
-        expect(administrateur.procedures.last).to have_attributes(libelle: ProcedureTemplates::EaeIntegration::TITLE, aasm_state: "brouillon")
+        expect(administrateur.procedures.last).to have_attributes(
+          libelle: ProcedureTemplates::EaeIntegration::TITLE, aasm_state: "brouillon", auto_archive_on: nil
+        )
+      end
+
+      it "gives the procedure the deadline it is given" do
+        task.deadline = (Date.current.next_occurring(:wednesday) + 4.weeks).iso8601
+
+        task.process(administrateur)
+
+        expect(administrateur.procedures.last.auto_archive_on).to eq(task.deadline + 1.day)
       end
     end
   end

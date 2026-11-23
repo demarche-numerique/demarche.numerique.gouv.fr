@@ -8,16 +8,26 @@ RSpec.describe ProcedureTemplates::EaeIntegration do
   let(:types_de_champ) { revision.public_flat_type_de_champs }
   let(:pieces_justificatives) { types_de_champ.filter(&:piece_justificative?) }
 
-  def type_de_champ(libelle) = revision.type_de_champs.find { it.libelle == libelle }
+  # A section and a field can share a label, as can a field and the child of a block.
+  def type_de_champ(libelle)
+    [*revision.public_root_type_de_champs, *revision.private_root_type_de_champs].find { it.libelle == libelle && !it.header_section? }
+  end
+
+  def answer(dossier, libelle, value)
+    dossier.champ_for_update(type_de_champ(libelle), updated_by: dossier.user.email).update!(value:)
+
+    Dossier.find(dossier.id)
+  end
 
   it "creates a draft procedure with a short retention, kept off the public catalogue" do
     expect(procedure).to have_attributes(
       aasm_state: "brouillon",
       for_individual: true,
-      ask_birthday: true,
+      ask_birthday: false,
       opendata: false,
       lien_dpo: "dpd@exemple.fr",
-      duree_conservation_dossiers_dans_ds: 3
+      duree_conservation_dossiers_dans_ds: 3,
+      auto_archive_on: nil
     )
   end
 
@@ -65,17 +75,13 @@ RSpec.describe ProcedureTemplates::EaeIntegration do
     permis = type_de_champ("Permis de conduire (recto et verso)")
     expect(dossier.project_champ(permis)).not_to be_visible
 
-    question = type_de_champ("Êtes-vous titulaire du permis de conduire ?")
-    dossier.champ_for_update(question, updated_by: dossier.user.email).update!(value: "true")
+    dossier = answer(dossier, "Êtes-vous titulaire du permis de conduire ?", "true")
 
-    expect(Dossier.find(dossier.id).project_champ(permis)).to be_visible
+    expect(dossier.project_champ(permis)).to be_visible
   end
 
   it "does not ask an internal applicant the documents the administration already holds" do
-    dossier = create(:dossier, procedure:, revision:)
-    recrutement = type_de_champ("Type de recrutement")
-    dossier.champ_for_update(recrutement, updated_by: dossier.user.email).update!(value: "Interne")
-    dossier = Dossier.find(dossier.id)
+    dossier = answer(create(:dossier, procedure:, revision:), "Type de recrutement", "Interne")
 
     hidden = [
       "Concours d’admission", "Attestation de participation à la journée défense et citoyenneté (JDC)", "Avez-vous des antécédents militaires ?",
@@ -88,6 +94,16 @@ RSpec.describe ProcedureTemplates::EaeIntegration do
 
     expect(hidden.map { dossier.project_champ(type_de_champ(it)).visible? }).to all(be(false))
     expect(shown.map { dossier.project_champ(type_de_champ(it)).visible? }).to all(be(true))
+  end
+
+  it "asks the birth date in the field FranceConnect prefills" do
+    birth_date = type_de_champ("Date de naissance")
+    dossier = create(:dossier, procedure:, revision:, user: create(:user, :with_fci))
+
+    dossier.prefill_champs_from_france_connect(updated_by: dossier.user.email)
+
+    expect(birth_date).to be_birthdate.and be_prefill_with_france_connect_information
+    expect(Dossier.find(dossier.id).project_champ(birth_date).value).to eq(dossier.user.france_connect_informations.sole.birthdate.iso8601)
   end
 
   it "can be published once the administrateur has set its service and zone" do
@@ -110,28 +126,172 @@ RSpec.describe ProcedureTemplates::EaeIntegration do
     expect(revision.children_of(type_de_champ("Diplôme civil supérieur")).map(&:libelle)).to eq(["Libellé du diplôme", "Année d’obtention"])
   end
 
-  it "leaves two private annotations to the reviewers" do
-    expect(revision.private_flat_type_de_champs.map(&:libelle)).to eq([
-      "Pièces originales vérifiées le jour de l’intégration", "Observations de la section administration élèves",
+  it "gives the reviewers their instructions and two internal fields" do
+    expect(revision.private_flat_type_de_champs.map { [it.type_champ, it.libelle] }).to eq([
+      ["explication", "Consignes d’instruction"],
+      ["checkbox", "Pièces originales vérifiées le jour de l’intégration"],
+      ["textarea", "Observations du service"],
     ])
   end
 
-  describe "the export template" do
-    let(:export_template) { procedure.defaut_groupe_instructeur.export_templates.sole }
-    let(:dossier) do
-      create(:dossier, :en_construction, procedure:, revision:, individual: build(:individual, nom: "Martin", prenom: "Zoé"))
+  describe "the teams" do
+    it "has one team per recruitment, the student administration being the default one" do
+      expect(procedure).to be_routing_enabled
+      expect(procedure.defaut_groupe_instructeur.label).to eq("Section administration élèves")
+      expect(procedure.groupe_instructeurs.to_h { [it.label, it.humanized_routing_rule] }).to eq(
+        "Bureau des ressources humaines" => "(Type de recrutement == Interne)",
+        "Section administration élèves" => "(Type de recrutement == Externe)"
+      )
+      expect(procedure.groupe_instructeurs.reload.pluck(:valid_routing_rule, :unique_routing_rule)).to all(eq([true, true]))
     end
 
-    it "names the files as the notice asks" do
-      expect(export_template).to be_shared
-      expect(export_template.dossier_folder.path(dossier)).to eq("Martin_Zoé_#{dossier.id}")
-      expect(export_template.export_pdf.path(dossier)).to eq("Martin_Zoé_FicheRens")
-      expect(export_template.pj(type_de_champ("Lettre de convocation")).path(dossier)).to eq("Martin_Zoé_Convocation")
-      expect(export_template.pjs.map { it.path(dossier).delete_prefix("Martin_Zoé_") }).to eq([
-        "EtatSignaletique", "Convocation", "NotesConcours", "ActeNaissance", "Ambassade", "Famille", "LivretFamille", "Scolarite", "PhotoIdentite", "PSC1",
-        "JDC", "ContratsReserve", "ConvocationsReserve", "SoldesReserve", "DenonciationReserve", "EtatsServices",
-        "AttestationEmployeur", "Permis", "SecuriteSociale", "RIB",
-      ])
+    it "leaves the choice of the reviewers of each team to the administrateur" do
+      expect(procedure.groupe_instructeurs.flat_map(&:instructeurs)).to be_empty
+    end
+
+    it "sends an internal applicant to human resources, and any other to the student administration" do
+      internal = answer(create(:dossier, procedure:, revision:), "Type de recrutement", "Interne")
+      unanswered = create(:dossier, procedure:, revision:)
+
+      [internal, unanswered].each { RoutingEngine.compute(it) }
+
+      expect(internal.reload.groupe_instructeur.label).to eq("Bureau des ressources humaines")
+      expect(unanswered.reload.groupe_instructeur.label).to eq("Section administration élèves")
+    end
+  end
+
+  describe "the deadline" do
+    let(:administrateur) { administrateurs.blank }
+    let(:wednesday) { Date.current.next_occurring(:wednesday) }
+
+    it "closes the procedure the night of the last day of submission" do
+      procedure = described_class.create!(administrateur:, deadline: wednesday + 4.weeks)
+
+      expect(procedure.auto_archive_on).to eq(wednesday + 4.weeks + 1.day)
+    end
+
+    it "refuses a day whose eve gets no reminder" do
+      expect { described_class.create!(administrateur:, deadline: wednesday.next_occurring(:monday)) }
+        .to raise_error(ArgumentError, /no reminder/)
+        .and not_change { administrateur.procedures.count }
+    end
+
+    it "refuses a day in the past" do
+      expect { described_class.create!(administrateur:, deadline: wednesday - 4.weeks) }
+        .to raise_error(ActiveRecord::RecordInvalid) { expect(it.record.errors).to be_of_kind(:auto_archive_on, :greater_than) }
+    end
+  end
+
+  describe "the export templates" do
+    let(:export_templates) { procedure.defaut_groupe_instructeur.export_templates }
+    let(:dossier) { create(:dossier, procedure:, revision:, individual: build(:individual, nom: "Martin", prenom: "Zoé")) }
+
+    it "shares both with the team that does not own them" do
+      expect(export_templates.map { [it.kind, it.shared] }).to contain_exactly(["zip", true], ["xlsx", true])
+      expect(procedure.groupe_instructeurs.find_by!(label: "Bureau des ressources humaines").export_templates).to be_empty
+    end
+
+    describe "of the documents" do
+      let(:export_template) { export_templates.template_zip.sole }
+
+      def attach(libelle, filename, content_type: "application/pdf")
+        champ = dossier.champ_for_update(type_de_champ(libelle), updated_by: dossier.user.email)
+        champ.piece_justificative_file.attach(io: StringIO.new("x"), filename:, content_type:, metadata: { virus_scan_result: ActiveStorage::VirusScanner::SAFE })
+        champ.save!
+      end
+
+      def zip_paths
+        ActiveStorage::DownloadableFile
+          .create_list_from_dossiers(dossiers: Dossier.where(id: dossier.id), user_profile: instructeurs.default, export_template:)
+          .map(&:last)
+      end
+
+      it "names the files as the notice asks" do
+        expect(export_template.dossier_folder.path(dossier)).to eq("Martin_Zoé_#{dossier.id}")
+        expect(export_template.export_pdf.path(dossier)).to eq("Martin_Zoé_FicheRens")
+        expect(export_template.pj(type_de_champ("Lettre de convocation")).path(dossier)).to eq("Martin_Zoé_Convocation")
+        expect(export_template.pjs.map { it.path(dossier).delete_prefix("Martin_Zoé_") }).to eq([
+          "EtatSignaletique", "Convocation", "NotesConcours", "ActeNaissance", "Ambassade", "Famille", "LivretFamille", "Scolarite", "PhotoIdentite", "PSC1",
+          "JDC", "ContratsReserve", "ConvocationsReserve", "SoldesReserve", "DenonciationReserve", "EtatsServices",
+          "AttestationEmployeur", "Permis", "SecuriteSociale", "RIB",
+        ])
+      end
+
+      it "numbers the files of a document, in one folder per application, and leaves identity documents out" do
+        attach("Lettre de convocation", "scan.pdf")
+        attach("Diplômes ou relevés de notes à partir du baccalauréat", "bac.pdf")
+        attach("Diplômes ou relevés de notes à partir du baccalauréat", "licence.pdf")
+        attach("Carte nationale d’identité (recto) ou passeport", "cni.png", content_type: "image/png")
+
+        expect(zip_paths).to contain_exactly(
+          "Martin_Zoé_#{dossier.id}/Martin_Zoé_FicheRens.pdf",
+          "Martin_Zoé_#{dossier.id}/Martin_Zoé_Convocation-01.pdf",
+          "Martin_Zoé_#{dossier.id}/Martin_Zoé_Scolarite-01.pdf",
+          "Martin_Zoé_#{dossier.id}/Martin_Zoé_Scolarite-02.pdf"
+        )
+      end
+    end
+
+    describe "of the spreadsheet for the HR information system" do
+      let(:export_template) { export_templates.template_xlsx.sole }
+      let(:headers) { export_template.exported_columns.map(&:libelle) }
+
+      def line(dossier)
+        Dossier.find(dossier.id)
+          .spreadsheet_columns_xlsx(type_de_champs: procedure.type_de_champs_for_procedure_export.to_a, export_template:)
+          .to_h { [it[0], it[1]] }
+      end
+
+      it "lists data only, without what a prefill link could have set" do
+        expect(export_template.exported_columns.map { it.column.type }).not_to include(:attachments)
+        expect(headers).to start_with("N° dossier", "État", "Déposé le")
+        expect(headers).to include("Nom", "Date de naissance", "Corps", "Code postal", "NID", "Observations")
+        expect(headers).not_to include("Pièces originales vérifiées le jour de l’intégration")
+      end
+
+      it "writes one line per application" do
+        answer(dossier, "Type de recrutement", "Interne")
+        answer(dossier, "Corps", "Base (BASE)")
+        RoutingEngine.compute(answer(dossier, "Date de naissance", "2004-05-06"))
+
+        expect(line(dossier)).to include(
+          "N° dossier" => dossier.id, "Groupe instructeur" => "Bureau des ressources humaines", "Nom" => "Martin", "Prénom" => "Zoé",
+          "Type de recrutement" => "Interne", "Corps" => "Base (BASE)", "Date de naissance" => Date.new(2004, 5, 6), "Concours" => nil
+        )
+        expect(line(dossier).keys).to eq(headers)
+      end
+    end
+  end
+
+  describe "the e-mails" do
+    let(:dossier) do
+      create(:dossier, :en_instruction, procedure:, revision:, individual: build(:individual, nom: "Martin", prenom: "Zoé"))
+    end
+
+    it "customises the acknowledgement and the start of the review, and keeps the others as the platform writes them" do
+      expect(procedure.email_templates.filter(&:persisted?).map(&:class)).to contain_exactly(Emails::Depose, Emails::PasseEnInstruction)
+      expect(procedure.email_templates.filter(&:persisted?)).to all(be_valid)
+      expect(procedure).to be_valid(:publication)
+    end
+
+    it "acknowledges the submission and points to the submission receipt" do
+      email = procedure.email_templates.find { it.is_a?(Emails::Depose) }
+
+      expect(email.subject_for_dossier(dossier)).to eq("Votre dossier d’intégration n° #{dossier.id} a bien été déposé")
+      expect(email.body_for_dossier(dossier)).to include("Bonjour Zoé Martin,", "L’attestation de dépôt est jointe à ce courriel", "/dossiers/#{dossier.id}")
+      expect(email.body_for_dossier(dossier)).not_to include("--")
+    end
+
+    it "tells the applicant the application can no longer be changed once under review" do
+      email = procedure.email_templates.find { it.is_a?(Emails::PasseEnInstruction) }
+
+      expect(email.subject_for_dossier(dossier)).to eq("Votre dossier d’intégration n° #{dossier.id} est en cours d’examen")
+      expect(email.body_for_dossier(dossier)).to include("Vous ne pouvez plus le modifier.")
+      expect(email.body_for_dossier(dossier)).not_to include("--")
+    end
+
+    it "mentions the submission receipt on the page that follows the submission" do
+      expect(revision.dossier_submitted_message.body_as_html).to include("Une attestation de dépôt vous est envoyée par courriel")
     end
   end
 end
