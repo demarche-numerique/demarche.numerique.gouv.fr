@@ -4,7 +4,6 @@ class Conditions::ChampsConditionsComponent < Conditions::ConditionsComponent
   def initialize(tdc:, upper_tdcs:, procedure:)
     @tdc, @condition, @source_tdcs = tdc, tdc.condition, upper_tdcs
     @procedure = procedure
-    @champ_value_in_condition = procedure.champ_value_in_condition?
   end
 
   private

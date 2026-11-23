@@ -10,7 +10,6 @@ class Conditions::IneligibiliteRulesComponent < Conditions::ConditionsComponent
     @condition = draft_revision.ineligibilite_rules
     @source_tdcs = draft_revision.public_flat_type_de_champs
     @procedure_id = @procedure.id
-    @champ_value_in_condition = @procedure.champ_value_in_condition?
   end
 
   def pending_changes?

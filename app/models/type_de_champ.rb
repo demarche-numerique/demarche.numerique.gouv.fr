@@ -31,6 +31,8 @@ class TypeDeChamp < ApplicationRecord
 
   NUMERIC_MENU_VALUE = 'numeric'
 
+  CONDITION_COLUMN_TYPES = [:integer, :decimal, :enum, :enums, :boolean].freeze
+
   def self.numeric_type_champ?(type_champ)
     type_champs.value?(type_champ) && find_sti_class(type_champ).menu_value == NUMERIC_MENU_VALUE
   end
@@ -227,6 +229,8 @@ class TypeDeChamp < ApplicationRecord
   def simple_routable? = self.class.simple_routable?
 
   def conditionable? = self.class.conditionable?
+
+  def top_level_section? = false
 
   def condition_value_type = :unmanaged
   def condition_options = []
@@ -637,6 +641,20 @@ class TypeDeChamp < ApplicationRecord
     end
 
     sources
+  end
+
+  # Ce qu'il propose dans le menu des cibles d'une condition : ses colonnes, ou
+  # sa valeur quand la démarche conditionne sur la valeur des champs.
+  def condition_sources(procedure)
+    if procedure.champ_value_in_condition?
+      conditionable? ? [[libelle, Logic::ChampValue.new(stable_id)]] : []
+    elsif repetition?
+      []
+    else
+      columns(procedure_id: procedure.id)
+        .filter { it.filterable && it.type.in?(CONDITION_COLUMN_TYPES) }
+        .map { [it.label, Logic::ChampColumnValue.new(it.stable_id, it.column_id)] }
+    end
   end
 
   private
