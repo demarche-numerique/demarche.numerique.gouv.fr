@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_13_180000) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_23_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_catalog.plpgsql"
@@ -1643,9 +1643,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_13_180000) do
   add_foreign_key "parked_api_entreprise_fetches", "etablissements", on_delete: :cascade
   add_foreign_key "procedure_paths", "procedures"
   add_foreign_key "procedure_presentations", "assign_tos"
-  add_foreign_key "procedure_revision_types_de_champ", "procedure_revision_types_de_champ", column: "parent_id"
-  add_foreign_key "procedure_revision_types_de_champ", "procedure_revisions", column: "revision_id"
-  add_foreign_key "procedure_revision_types_de_champ", "types_de_champ"
   add_foreign_key "procedure_revisions", "dossier_submitted_messages"
   add_foreign_key "procedure_revisions", "procedures"
   add_foreign_key "procedure_user_overlaps", "procedures", column: "left_procedure_id"

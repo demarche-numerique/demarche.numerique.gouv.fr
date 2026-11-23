@@ -90,10 +90,6 @@ class TypeDeChamp < ApplicationRecord
     ars: 'ars',
   }
 
-  # FIXME: no longer written nor read. The rows left in the table refer to the
-  # type de champ, and go with it until the table is dropped (#14009).
-  has_many :revision_type_de_champs, class_name: 'ProcedureRevisionTypeDeChamp', dependent: :destroy, inverse_of: :type_de_champ
-
   belongs_to :referentiel, optional: true, inverse_of: :type_de_champs
   belongs_to :procedure, -> { with_discarded }, inverse_of: :type_de_champs
 

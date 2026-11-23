@@ -11,9 +11,6 @@ class ProcedureRevision < ApplicationRecord
   belongs_to :dossier_submitted_message, inverse_of: :revisions, optional: true, dependent: :destroy
   has_many :llm_rule_suggestions, dependent: :destroy, inverse_of: :procedure_revision
   has_many :dossiers, inverse_of: :revision, foreign_key: :revision_id
-  # FIXME: no longer written nor read. The rows left in the table refer to the
-  # revision, and go with it until the table is dropped (#14009).
-  has_many :revision_type_de_champs, class_name: 'ProcedureRevisionTypeDeChamp', foreign_key: :revision_id, dependent: :destroy, inverse_of: :revision
 
   # Lays out the types de champ of several revisions in one query, where each
   # revision would run its own, anew if it already had. An instance goes to one
