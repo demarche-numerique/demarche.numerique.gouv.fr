@@ -1,0 +1,105 @@
+<% content_for(:title) { t(".title") } %>
+
+<header class="main-content__header">
+  <h1 class="main-content__page-title"><%= content_for(:title) %></h1>
+
+  <div>
+    <%= link_to t("administrate.actions.back"), manager_administrateurs_path, class: "button" %>
+  </div>
+</header>
+
+<section class="main-content__body">
+  <p class="flash flash-notice">
+    <%= t(".info", max: AdministrateurCreationRequest::MAX_EMAILS, max_without_validation: AdministrateurCreationRequest::MAX_EMAILS_WITHOUT_VALIDATION) %>
+  </p>
+
+  <%= form_tag manager_administrateurs_path,
+        class: "form admin-creation",
+        data: {
+          controller: "administrateur-emails",
+          administrateur_emails_max_value: AdministrateurCreationRequest::MAX_EMAILS,
+          administrateur_emails_max_without_validation_value: AdministrateurCreationRequest::MAX_EMAILS_WITHOUT_VALIDATION,
+          administrateur_emails_labels_value: {
+            one: t(".submit_one"),
+            many: t(".submit_many", count: "%{count}"),
+            validation: t(".submit_validation", count: "%{count}"),
+          }.to_json,
+        } do %>
+    <div>
+      <%= label_tag :emails, t(".emails_label") %>
+
+      <p id="emails_hint" class="admin-creation__hint">
+        <%= t(".emails_hint") %>
+      </p>
+
+      <% if @creation_request.errors.any? %>
+        <p id="emails_error" class="flash flash-error">
+          <%= @creation_request.errors.messages_for(:emails).to_sentence %>
+        </p>
+      <% end %>
+
+      <%= text_area_tag :emails, @creation_request.emails.join("\n"),
+            rows: 10,
+            required: true,
+            autocapitalize: "off",
+            spellcheck: "false",
+            "aria-invalid": @creation_request.errors.any?,
+            "aria-describedby": ["emails_hint", ("emails_error" if @creation_request.errors.any?)].compact.join(" "),
+            data: { administrateur_emails_target: "input", action: "administrateur-emails#update" } %>
+    </div>
+
+    <div>
+      <div data-administrateur-emails-target="summary" hidden>
+        <h2 class="admin-creation__subtitle"><%= t(".summary") %></h2>
+
+        <p aria-live="polite">
+          <strong
+            class="admin-creation__count"
+            data-administrateur-emails-target="count"
+          ></strong>
+
+          <%= t(".count") %>
+        </p>
+
+        <p>
+          <%= t(".domains") %>
+          <span data-administrateur-emails-target="domains"></span>
+        </p>
+
+        <ul
+          class="admin-creation__list"
+          data-administrateur-emails-target="list"
+        ></ul>
+      </div>
+
+      <p
+        class="flash flash-alert"
+        data-administrateur-emails-target="validationNotice"
+        hidden
+      >
+        <%= t(".validation_notice", max_without_validation: AdministrateurCreationRequest::MAX_EMAILS_WITHOUT_VALIDATION) %>
+      </p>
+
+      <p
+        class="flash flash-error"
+        role="alert"
+        data-administrateur-emails-target="tooMany"
+        hidden
+      >
+        <%= t("activerecord.errors.models.administrateur_creation_request.attributes.emails.too_long", count: AdministrateurCreationRequest::MAX_EMAILS) %>
+      </p>
+
+      <div
+        class="field-unit field-unit--string field-unit--required"
+        data-administrateur-emails-target="otp"
+        hidden
+      >
+        <%= render Manager::OtpAttemptInputComponent.new %>
+      </div>
+
+      <button type="submit" data-administrateur-emails-target="submit">
+        <%= t(".submit_one") %>
+      </button>
+    </div>
+  <% end %>
+</section>

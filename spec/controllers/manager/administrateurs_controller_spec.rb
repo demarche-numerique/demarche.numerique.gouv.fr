@@ -44,21 +44,44 @@ describe Manager::AdministrateursController, type: :controller do
 
   describe 'GET #new' do
     render_views
+
     it 'displays form to create a new admin' do
       get :new
       expect(response).to have_http_status(:success)
+      expect(response.body).to include('name="emails"')
+    end
+
+    it 'prefills the addresses of a request of the current super admin' do
+      creation_request = AdministrateurCreationRequest.create!(requester: super_admin, emails: ['a@numerique.gouv.fr'], state: :cancelled)
+      other_request = AdministrateurCreationRequest.create!(requester: create(:super_admin), emails: ['b@numerique.gouv.fr'], state: :cancelled)
+
+      get :new, params: { from: creation_request.id }
+      expect(response.body).to include('a@numerique.gouv.fr')
+
+      get :new, params: { from: other_request.id }
+      expect(response.body).not_to include('b@numerique.gouv.fr')
     end
   end
 
   describe 'POST #create' do
-    let(:email) { 'plop@plop.com' }
-    let(:password) { SECURE_PASSWORD }
+    let(:super_admin) { create(:super_admin, :with_otp) }
+    let(:otp_attempt) { current_otp_for(super_admin) }
+    let(:emails) { 'plop@plop.com' }
+    let(:creation_request) { AdministrateurCreationRequest.where(requester: super_admin).last }
 
-    subject { post :create, params: { administrateur: { email: email } } }
+    def addresses(count, prefix: 'agent') = Array.new(count) { "#{prefix}.#{it}@numerique.gouv.fr" }.join("\n")
 
-    context 'when email and password are correct' do
-      it 'add new administrateur in database' do
+    subject { post :create, params: { emails:, otp_attempt: } }
+
+    context 'with one address' do
+      let(:otp_attempt) { nil }
+
+      it 'creates the administrateur without OTP and logs the creation' do
         expect { subject }.to change(Administrateur, :count).by(1)
+
+        expect(response).to redirect_to(manager_administrateurs_path)
+        expect(flash[:notice]).to eq('Administrateur créé.')
+        expect(creation_request).to have_attributes(state: 'approved', otp_verified: false, results: { 'plop@plop.com' => 'created' })
       end
 
       it 'alert new mail are send' do
@@ -74,12 +97,98 @@ describe Manager::AdministrateursController, type: :controller do
         expect(AdministrationMailer).to receive(:deliver_later)
         subject
       end
+
+      context 'when the address is already an administrateur' do
+        let(:emails) { administrateurs.default.email }
+
+        it 'does not invite it again' do
+          expect { subject }.not_to have_enqueued_mail(AdministrationMailer)
+          expect(flash[:notice]).to eq("Déjà administrateur, ignoré : #{administrateurs.default.email}.")
+        end
+      end
     end
 
-    context 'when email or password are missing' do
-      let(:email) { '' }
+    context 'without any address' do
+      let(:emails) { 'no address here' }
 
-      it { expect { subject }.to change(Administrateur, :count).by(0) }
+      render_views
+
+      it 'renders the form with an error' do
+        expect { subject }.not_to change(AdministrateurCreationRequest, :count)
+        expect(response).to have_http_status(:unprocessable_content)
+        expect(response.body).to include('Saisissez au moins une adresse électronique.')
+      end
+    end
+
+    context 'with 2 addresses' do
+      let(:emails) { "Agent A <a@numerique.gouv.fr>; b@numerique.gouv.fr, a@numerique.gouv.fr" }
+
+      it_behaves_like "a manager action gated by a fresh super-admin OTP" do
+        let(:action_matcher) { change(Administrateur, :count) }
+        let(:replay_subject) { -> { post :create, params: { emails: 'c@numerique.gouv.fr, d@numerique.gouv.fr', otp_attempt: } } }
+      end
+
+      it 'creates the administrateurs and logs the verified OTP' do
+        expect { subject }.to change(Administrateur, :count).by(2)
+
+        expect(flash[:notice]).to eq('2 administrateurs créés.')
+        expect(creation_request).to have_attributes(state: 'approved', otp_verified: true, emails: ['a@numerique.gouv.fr', 'b@numerique.gouv.fr'])
+      end
+
+      context 'when an address is refused by the server' do
+        let(:emails) { 'a@numerique.gouv.fr bad@@numerique.gouv.fr' }
+
+        it 'creates the other accounts' do
+          expect { subject }.to change(Administrateur, :count).by(1)
+          expect(flash[:notice]).to eq('Administrateur créé. Adresse refusée : bad@@numerique.gouv.fr.')
+        end
+      end
+    end
+
+    context 'with 10 addresses' do
+      let(:emails) { addresses(10) }
+
+      it { expect { subject }.to change(Administrateur, :count).by(10) }
+    end
+
+    context 'with 11 addresses' do
+      let(:emails) { addresses(11) }
+
+      it 'logs a pending request without creating any account' do
+        expect { subject }.not_to change(Administrateur, :count)
+
+        expect(creation_request).to have_attributes(state: 'pending', otp_verified: true)
+        expect(response).to redirect_to(manager_administrateur_creation_request_path(creation_request))
+      end
+
+      context 'when the OTP code is invalid' do
+        let(:otp_attempt) { '000000' }
+
+        it { expect { subject }.not_to change(AdministrateurCreationRequest, :count) }
+      end
+    end
+
+    context 'with 100 addresses' do
+      let(:emails) { addresses(100) }
+
+      it { expect { subject }.to change(AdministrateurCreationRequest.pending, :count).by(1) }
+    end
+
+    context 'with 101 addresses' do
+      let(:emails) { addresses(101) }
+
+      it 'refuses the request before checking the OTP' do
+        expect { subject }.not_to change { [AdministrateurCreationRequest.count, super_admin.reload.failed_attempts] }
+        expect(response).to have_http_status(:unprocessable_content)
+      end
+    end
+
+    context 'when the daily quota is reached' do
+      let(:emails) { addresses(2, prefix: 'other') }
+
+      before { 3.times { |i| AdministrateurCreationRequest.create!(requester: super_admin, emails: addresses(100, prefix: i).split, state: :approved) } }
+
+      it { expect { subject }.not_to change(Administrateur, :count) }
     end
   end
 

@@ -107,6 +107,8 @@ ignore_unused:
   - 'devise.failure.{inactivity,expired,france_connect_unlinked,logout_all,logout_device,new_session,session_revoked,sign_out,support}'
   - 'devise.confirmations.send_paranoid_instructions'
   - 'devise.mailer.email_changed.subject'
+  # t("…closed.#{state}") in Manager::AdministrateurCreationRequestsController
+  - 'manager.administrateur_creation_requests.closed.{approved,refused,cancelled,expired}'
   # YAML anchors aliased under public/private in revision_changes_component.fr.yml
   - 'procedure.revision_changes_component.update_referentiel_{public,private}.*'
   # t(".#{batch.operation}.finish.text_success") in batch_alert_component.html.haml

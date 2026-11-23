@@ -14,16 +14,32 @@ module Manager
     # After the link checks, so that an invalid link does not use up an OTP attempt.
     before_action :verify_fresh_super_admin_otp!, only: [:delete, :request_merge, :merge]
 
-    def create
-      administrateur = current_super_admin.invite_admin(create_administrateur_params[:email])
+    def new
+      from = AdministrateurCreationRequest.find_by(id: params[:from], requester: current_super_admin)
+      @creation_request = AdministrateurCreationRequest.new(emails: from&.emails || [])
+    end
 
-      if administrateur.errors.empty?
-        flash.notice = "Administrateur créé"
-        redirect_to manager_administrateurs_path
+    def create
+      @creation_request = AdministrateurCreationRequest.new(
+        requester: current_super_admin,
+        emails: AdministrateurCreationRequest.parse_emails(params[:emails])
+      )
+      return render :new, status: :unprocessable_content if @creation_request.invalid?
+
+      if @creation_request.emails.many?
+        verify_fresh_super_admin_otp!
+        return if performed?
+
+        @creation_request.otp_verified = SUPER_ADMIN_OTP_ENABLED
+      end
+
+      @creation_request.update!(state: @creation_request.requires_validation? ? :pending : :approved)
+
+      if @creation_request.pending?
+        redirect_to manager_administrateur_creation_request_path(@creation_request)
       else
-        render :new, locals: {
-          page: Administrate::Page::Form.new(dashboard, administrateur),
-        }
+        @creation_request.create_accounts!
+        redirect_to manager_administrateurs_path, notice: @creation_request.results_summary
       end
     end
 
@@ -100,10 +116,6 @@ module Manager
     end
 
     private
-
-    def create_administrateur_params
-      params.require(:administrateur).permit(:email)
-    end
 
     def encrypted_merge_params
       payload = { administrateur_id: requested_resource.id, old_administrateur_id: @old_administrateur.id, inviter_id: current_super_admin.id }

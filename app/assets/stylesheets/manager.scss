@@ -243,3 +243,53 @@
     font-variant-numeric: tabular-nums;
   }
 }
+
+.admin-creation {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+
+  textarea {
+    width: 100%;
+  }
+
+  // .flash sets a display that would override the attribute
+  [hidden] {
+    display: none;
+  }
+
+  &__hint {
+    font-size: 0.875rem;
+  }
+
+  &__subtitle {
+    margin: 1rem 0 0.5rem;
+    font-size: 1rem;
+  }
+
+  &__count {
+    font-size: 2rem;
+  }
+
+  &__list {
+    columns: 2;
+    margin-bottom: 1.5rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 1rem;
+  }
+
+  &__request {
+    max-width: 60rem;
+
+    input[readonly] {
+      width: 100%;
+      font-family: monospace;
+    }
+  }
+}

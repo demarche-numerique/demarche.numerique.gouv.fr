@@ -12,7 +12,7 @@
 
   <hr>
 
-  <% Administrate::Namespace.new(namespace).resources.select { |resource| !resource.to_s.in?(%w(confirmation_urls administrateur_confirmations banners api_entreprise_status)) }.each do |resource| %>
+  <% Administrate::Namespace.new(namespace).resources.select { |resource| !resource.to_s.in?(%w(confirmation_urls administrateur_confirmations administrateur_creation_requests banners api_entreprise_status)) }.each do |resource| %>
     <%= link_to(
       display_resource_name(resource),
       resource_index_route(resource),
