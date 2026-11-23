@@ -369,6 +369,25 @@ describe TypeDeChampTree do
     end
   end
 
+  describe '#with_type_de_champ_ids' do
+    let(:public_type_de_champs) { [{ type: :header_section, level: 1, libelle: 'h1' }, { type: :repetition, libelle: 'r', children: [{ libelle: 'r1' }] }] }
+    let(:private_type_de_champs) { [{ libelle: 'c' }] }
+    let(:ids) { tree.type_de_champ_ids.index_with { it + 1000 } }
+
+    it 'lays out the types de champ given as the tree does the ones they stand in for' do
+      other_tree = tree.with_type_de_champ_ids(ids)
+
+      expect(other_tree.type_de_champ_ids).to eq(tree.type_de_champ_ids.map { it + 1000 })
+      expect(other_tree.nodes.map(&:stable_id)).to eq(tree.nodes.map(&:stable_id))
+      expect(layout(other_tree.public_children)).to eq([{ 'h1' => [{ 'r' => ['r1'] }] }])
+      expect(layout(other_tree.private_children)).to eq(['c'])
+    end
+
+    it 'fails on a type de champ nothing stands in for' do
+      expect { tree.with_type_de_champ_ids({}) }.to raise_error(KeyError)
+    end
+  end
+
   describe 'json' do
     let(:public_type_de_champs) { [{ type: :header_section, level: 1 }, { type: :repetition, children: [{}, {}] }] }
     let(:private_type_de_champs) { [{}] }

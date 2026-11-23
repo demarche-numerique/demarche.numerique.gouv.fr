@@ -60,8 +60,6 @@ describe ProcedureCloneConcern, type: :model do
     def tag_source_pj_with_old_pj
       pj_tdc = procedure.draft_revision.public_root_type_de_champs.find(&:piece_justificative?)
       pj_tdc.update!(options: pj_tdc.options.merge(old_pj: { stable_id: 1234 }))
-      # the clone copies the types de champ of the coordinates, loaded before the update
-      procedure.draft_revision.reload
     end
 
     subject do
@@ -142,14 +140,39 @@ describe ProcedureCloneConcern, type: :model do
         expect(type_de_champ_ids & source_type_de_champ_ids).to be_empty
       end
 
+      it 'copies the types de champ of the tree and no other, from the oldest to the latest' do
+        # laid out first, created last
+        procedure.draft_revision.move_type_de_champ(type_de_champ_repetition.stable_id, 0)
+        left_out = procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'removed since')
+        procedure.draft_revision.remove_type_de_champ(left_out.stable_id)
+
+        tree = subject.draft_revision.reload.read_attribute(:type_de_champ_tree)
+
+        expect(subject.type_de_champs.ids).to match_array(tree.type_de_champ_ids)
+        expect(subject.type_de_champs.order(:id).map(&:stable_id)).to eq(procedure.type_de_champs.where.not(id: left_out).order(:created_at, :id).map(&:stable_id))
+      end
+
       context 'without the annotations' do
         let(:options) { super().merge(clone_annotations: false) }
 
-        it 'leaves them out of the tree' do
+        it 'leaves them out of the tree, and does not copy them' do
           tree = subject.draft_revision.reload.read_attribute(:type_de_champ_tree)
 
           expect(tree.public_children).to be_present
           expect(tree.private_children).to be_empty
+          expect(subject.type_de_champs.where(private: true)).to be_empty
+        end
+      end
+
+      context 'without the champs' do
+        let(:options) { super().merge(clone_champs: false) }
+
+        it 'leaves them out of the tree, and does not copy them' do
+          tree = subject.draft_revision.reload.read_attribute(:type_de_champ_tree)
+
+          expect(tree.public_children).to be_empty
+          expect(tree.private_children).to be_present
+          expect(subject.type_de_champs.where(private: false)).to be_empty
         end
       end
 
@@ -415,6 +438,15 @@ describe ProcedureCloneConcern, type: :model do
 
       it 'should duplicate it' do
         expect(subject.attestation_acceptation_template.body).to eq('Bonjour --Mon champ--')
+      end
+
+      context 'and the champ has been removed since' do
+        before { procedure.attestation_acceptation_template.update_column(:body, 'Bonjour --Champ supprimé--') }
+
+        it 'should duplicate it anyway' do
+          expect(subject.attestation_acceptation_template.body).to eq('Bonjour --Champ supprimé--')
+          expect(subject.attestation_acceptation_template).to be_persisted
+        end
       end
     end
 

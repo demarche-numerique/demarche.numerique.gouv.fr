@@ -17,5 +17,9 @@ class TypeDeChampNode < Data.define(:stable_id, :type_de_champ_id, :children)
     super(stable_id:, type_de_champ_id:, children: children.freeze)
   end
 
+  def with_type_de_champ_ids(ids)
+    self.class.new(stable_id:, type_de_champ_id: ids.fetch(type_de_champ_id), children: children.map { it.with_type_de_champ_ids(ids) })
+  end
+
   def as_json(*) = { stable_id:, type_de_champ_id:, children: children.map(&:as_json) }
 end

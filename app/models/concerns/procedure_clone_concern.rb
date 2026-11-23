@@ -104,12 +104,7 @@ module ProcedureCloneConcern
     # the tree of the draft names the types de champ of this procedure, not their copies
     procedure = self.deep_clone(include: cloneable_associations(options, admin), except: [{ draft_revision: [:type_de_champ_tree] }]) do |original, kopy|
       ClonePiecesJustificativesService.clone_attachments(original, kopy)
-      if original.is_a?(TypeDeChamp) && original.type_champ == 'referentiel'
-        CloneReferentielService.clone_referentiel(original, kopy, same_admin?(admin))
-      end
     end
-    # the copies would otherwise belong to the procedure they are cloned from
-    procedure.draft_revision.revision_type_de_champs.each { it.type_de_champ.procedure = procedure }
 
     procedure = initialize_clone_defaults(procedure, admin)
 
@@ -120,13 +115,11 @@ module ProcedureCloneConcern
 
     transaction do
       procedure.save!
+      clone_type_de_champs(procedure, options, admin)
+      clone_attestation_templates(procedure, options)
       clone_email_templates(procedure) if options[:clone_email_templates]
-      move_new_children_to_new_parent_coordinate(procedure.draft_revision)
     end
 
-    procedure.draft_revision.revision_type_de_champs.public_only.each(&:destroy) if !options[:clone_champs]
-    procedure.draft_revision.revision_type_de_champs.private_only.each(&:destroy) if !options[:clone_annotations]
-    procedure.draft_revision.store_type_de_champ_tree
     procedure.labels = [] if !options[:clone_labels]
 
     if !same_admin?(admin) || options[:cloned_from_library]
@@ -266,6 +259,47 @@ module ProcedureCloneConcern
     custom_email_templates.where.not(type: Emails::DEPOSE_TYPES)
   end
 
+  # The types de champ the draft lays out are copied, each keeping its stable
+  # id, and the clone lays the copies out as the draft does: its tree, less
+  # what the options leave behind, naming the copies.
+  def clone_type_de_champs(procedure, options, admin)
+    tree = draft_revision.type_de_champ_tree
+    tree = TypeDeChampTree.new(
+      public_children: options[:clone_champs] ? tree.public_children : [],
+      private_children: options[:clone_annotations] ? tree.private_children : []
+    )
+
+    # from the oldest to the latest, as the tags tell apart the ones sharing a libellé
+    copy_ids = TypeDeChamp.where(id: tree.type_de_champ_ids).order(:created_at, :id).to_h do |type_de_champ|
+      copy = type_de_champ.deep_clone do |original, kopy|
+        ClonePiecesJustificativesService.clone_attachments(original, kopy)
+        CloneReferentielService.clone_referentiel(original, kopy, same_admin?(admin)) if original.type_champ == 'referentiel'
+        kopy.procedure = procedure
+      end
+      copy.save!
+
+      [type_de_champ.id, copy.id]
+    end
+
+    procedure.draft_revision.update_columns(type_de_champ_tree: tree.with_type_de_champ_ids(copy_ids))
+    procedure.draft_revision.create_coordinates_from_type_de_champ_tree
+  end
+
+  # As the email templates below: copied once the clone is persisted, without
+  # validation, so a template naming a champ removed since is cloned as is.
+  def clone_attestation_templates(procedure, options)
+    attestation_templates = [
+      (attestation_acceptation_template if options[:clone_attestation_acceptation_template]),
+      (attestation_refus_template if options[:clone_attestation_refus_template]),
+    ]
+
+    attestation_templates.compact.each do |attestation_template|
+      copy = attestation_template.dup
+      copy.procedure = procedure
+      copy.save!(validate: false)
+    end
+  end
+
   # Copied once the clone is persisted: the tags validator resolves tags against
   # revisions in database, which don't exist before the save. Validation is
   # skipped so a template referencing a since-removed champ is cloned as is.
@@ -280,19 +314,10 @@ module ProcedureCloneConcern
   def cloneable_associations(options, admin)
     associations = {
       draft_revision: {
-        revision_type_de_champs: :type_de_champ,
         dossier_submitted_message: [],
       },
       procedure_tags: [],
     }
-
-    if options[:clone_attestation_acceptation_template]
-      associations[:attestation_acceptation_template] = []
-    end
-
-    if options[:clone_attestation_refus_template]
-      associations[:attestation_refus_template] = []
-    end
 
     if options[:clone_zones]
       associations[:zones] = []
