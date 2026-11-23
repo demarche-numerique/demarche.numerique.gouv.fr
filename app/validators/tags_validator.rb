@@ -51,11 +51,8 @@ class TagsValidator < ActiveModel::EachValidator
   end
 
   def invalid_tags_for_revision(record, tags, revision)
-    revision_stable_ids = revision
-      .revision_type_de_champs
-      .filter { !_1.child? }
-      .map(&:stable_id)
-      .uniq
+    # a revision not saved yet lays out nothing
+    revision_stable_ids = revision.persisted? ? revision.root_type_de_champs.to_set(&:stable_id) : Set.new
 
     tags.filter_map do |(tag, stable_id)|
       if stable_id.present? && !stable_id.in?(revision_stable_ids)

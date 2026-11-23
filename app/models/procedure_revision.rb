@@ -64,6 +64,7 @@ class ProcedureRevision < ApplicationRecord
   # root as in not within a repetition: header sections and their content are all there
   def public_root_type_de_champs = type_de_champ_layout.public_root_type_de_champs
   def private_root_type_de_champs = type_de_champ_layout.private_root_type_de_champs
+  def root_type_de_champs = type_de_champ_layout.root_type_de_champs
 
   has_one :draft_procedure, -> { with_discarded }, class_name: 'Procedure', foreign_key: :draft_revision_id, dependent: :nullify, inverse_of: :draft_revision
   has_one :published_procedure, -> { with_discarded }, class_name: 'Procedure', foreign_key: :published_revision_id, dependent: :nullify, inverse_of: :published_revision
