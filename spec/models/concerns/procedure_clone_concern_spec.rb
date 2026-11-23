@@ -667,4 +667,48 @@ describe ProcedureCloneConcern, type: :model do
       end
     end
   end
+
+  describe 'api tokens following clones' do
+    let(:alice) { administrateurs.default }
+    let(:bob) { administrateurs.blank }
+    let(:source) { procedures.individual.tap { it.administrateurs << bob } }
+
+    def list_token(owner, follows_clones: true)
+      APIToken.generate(owner, allowed_procedure_ids: [source.id], follows_clones:).first
+    end
+
+    it 'adds the clone to the tokens of the administrateurs it keeps' do
+      alice_token = list_token(alice)
+      bob_token = list_token(bob)
+      still_token = list_token(bob, follows_clones: false)
+      other = procedures.brouillon
+      elsewhere_token = APIToken.generate(alice, allowed_procedure_ids: [other.id], follows_clones: true).first
+
+      copy = source.clone(admin: bob)
+
+      expect(alice_token.reload.allowed_procedure_ids).to eq([source.id, copy.id])
+      expect(bob_token.reload.allowed_procedure_ids).to eq([source.id, copy.id])
+      expect(still_token.reload.allowed_procedure_ids).to eq([source.id])
+      expect(elsewhere_token.reload.allowed_procedure_ids).to eq([other.id])
+    end
+
+    it 'leaves out the tokens of the administrateurs the clone drops' do
+      alice_token = list_token(alice)
+      bob_token = list_token(bob)
+
+      copy = source.clone(options: { clone_administrateurs: false }, admin: alice)
+
+      expect(alice_token.reload.allowed_procedure_ids).to eq([source.id, copy.id])
+      expect(bob_token.reload.allowed_procedure_ids).to eq([source.id])
+    end
+
+    it 'leaves out a token whose owner no longer administers the source' do
+      carol = create(:administrateur)
+      carol_token = list_token(carol)
+
+      source.clone(admin: carol)
+
+      expect(carol_token.reload.allowed_procedure_ids).to eq([source.id])
+    end
+  end
 end
