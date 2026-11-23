@@ -45,6 +45,13 @@ en:
         delete_button: Delete
       update:
         networks_required: You cannot remove the API access restrictions of a permanent token.
+        renamed: The token has been renamed.
+        networks_updated: The authorized networks have been updated.
+        procedure_added: The procedure ‘%{libelle}’ has been added to the token.
+        no_procedure_to_add: Choose a procedure to add.
+        full_access_restored: The token has access to all your procedures again.
+      remove_procedure:
+        procedure_removed: The procedure ‘%{libelle}’ has been removed from the token.
       securite:
         title: Security of the token « %{name} »
         dashboard: Dashboard
