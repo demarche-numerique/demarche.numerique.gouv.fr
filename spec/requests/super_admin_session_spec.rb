@@ -43,6 +43,12 @@ describe 'super admin session lifetime', type: :request do
     expect(response).to redirect_to(new_super_admin_session_path)
   end
 
+  it 'shows the sign in page again after a failed attempt that asks to be remembered' do
+    post super_admin_session_path, params: { super_admin: { email: super_admin.email, password: 'wrong password', remember_me: '1' } }
+
+    expect(response).to have_http_status(:unprocessable_content)
+  end
+
   # What Devise leaves when SUPER_ADMIN_OTP_ENABLED is "disabled": a sign in
   # right after the reset, by Devise's own controller, which says nothing of how.
   context 'without OTP, after a password reset' do
