@@ -181,6 +181,17 @@ describe Administrateur, type: :model do
 
         expect(token.reload.procedure_ids).to eq([old_procedure.id])
       end
+
+      context 'and a procedure in the bin' do
+        let!(:binned_procedure) { create(:procedure, :discarded, administrateurs: [old_admin]) }
+
+        it 'keeps the binned procedure in the list' do
+          token = old_admin.api_tokens.first
+          subject
+
+          expect(token.reload.allowed_procedure_ids).to contain_exactly(old_procedure.id, binned_procedure.id)
+        end
+      end
     end
 
     context 'when the old admin has an api token on a list of its procedures' do
