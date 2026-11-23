@@ -1403,17 +1403,57 @@ describe ProcedureRevision do
     let(:procedure) { create(:procedure, public_type_de_champs: [{ libelle: 'Un champ texte' }]) }
     let(:type_de_champ) { procedure.draft_revision.public_root_type_de_champs.first }
 
-    it {
-      expect(type_de_champ.only_present_on_draft?).to be_truthy
+    it 'holds for a type de champ the draft alone lays out' do
+      expect(type_de_champ.only_present_on_draft?).to be(true)
+
       procedure.publish!(procedure.administrateurs.first)
-      expect(type_de_champ.only_present_on_draft?).to be_falsey
+      expect(type_de_champ.only_present_on_draft?).to be(false)
+      expect(type_de_champ.revisions).to contain_exactly(procedure.published_revision, procedure.draft_revision)
+
+      added = procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'Un autre champ')
+      expect(added.only_present_on_draft?).to be(true)
+
+      clone = procedure.draft_revision.find_and_ensure_exclusive_use(type_de_champ.stable_id)
+      expect(clone.only_present_on_draft?).to be(true)
+      expect(clone.revisions).to contain_exactly(procedure.draft_revision)
+      expect(type_de_champ.revisions).to contain_exactly(procedure.published_revision)
+    end
+
+    it 'does not hold for a type de champ only a past revision lays out' do
+      procedure.publish!(procedure.administrateurs.first)
       procedure.draft_revision.remove_type_de_champ(type_de_champ.stable_id)
-      expect(type_de_champ.only_present_on_draft?).to be_falsey
-      expect(type_de_champ.revisions.count).to eq(1)
+      expect(type_de_champ.only_present_on_draft?).to be(false)
+
+      past_revision = procedure.published_revision
       procedure.publish_revision!(procedure.administrateurs.first)
-      expect(type_de_champ.only_present_on_draft?).to be_falsey
-      expect(type_de_champ.revisions.count).to eq(1)
-    }
+      expect(type_de_champ.only_present_on_draft?).to be(false)
+      expect(type_de_champ.revisions).to contain_exactly(past_revision)
+    end
+
+    context 'in a section or a repetition' do
+      let(:procedure) do
+        create(:procedure, :published, public_type_de_champs: [
+          { type: :header_section, level: 1 },
+          { type: :text, libelle: 'in the section' },
+          { type: :repetition, children: [{ type: :text, libelle: 'in the repetition' }] },
+        ])
+      end
+
+      it 'finds the revisions laying it out, whatever the depth' do
+        procedure.draft_revision.type_de_champs.each do |type_de_champ|
+          expect(type_de_champ.revisions).to contain_exactly(procedure.published_revision, procedure.draft_revision)
+          expect(type_de_champ.only_present_on_draft?).to be(false)
+        end
+        expect(procedure.draft_revision.type_de_champs.map(&:libelle)).to include('in the section', 'in the repetition')
+      end
+    end
+
+    it 'does not hold for a type de champ no revision lays out anymore' do
+      procedure.draft_revision.remove_type_de_champ(type_de_champ.stable_id)
+
+      expect(type_de_champ.revisions).to be_empty
+      expect(type_de_champ.only_present_on_draft?).to be(false)
+    end
   end
 
   describe '#simple_routable_type_de_champs' do
