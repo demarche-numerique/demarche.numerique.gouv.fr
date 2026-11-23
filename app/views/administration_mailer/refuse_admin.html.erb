@@ -1,36 +1,23 @@
-<% content_for(:title, 'Demande de création de compte refusée') %>
+<% content_for(:title, t('.title')) %>
 
 <p>
-  Bonjour,
+  <%= t(:hello, scope: [:views, :shared, :greetings]) %>
 </p>
 
 <p>
-  Les comptes administrateurs sont destinés aux administrations publiques
-  souhaitant mettre en place sur leurs sites internet des démarches
-  dématérialisées pour leurs usagers. Il ne semble pas que ce soit votre cas.
+  <%= t('.intended_for') %>
 </p>
 
 <p>
-  Pour les usagers ou les administrations publiques (collectivités, etc.) qui
-  souhaitent remplir une démarche ou déposer un dossier en ligne, l’entrée dans
-  <%= APPLICATION_NAME %> se fait via un lien fourni par l’administration
-  responsable, sur son propre site web. Ce lien vous permettra de créer un
-  compte et de remplir le formulaire dans la foulée.
+  <%= t('.access', application_name: APPLICATION_NAME) %>
 </p>
 
 <p>
-  Si par contre vous rencontrez des problèmes lors de l’utilisation de
-  <%= APPLICATION_NAME %> en tant qu’usager, merci d’expliciter le problème
-  rencontré sur notre <%= link_to("formulaire de contact", contact_url) %>
-  .
+  <%= t('.contact_html', application_name: APPLICATION_NAME, link: link_to(t('.contact_link'), contact_url)) %>
 </p>
 
 <p>
-  Si vous avez fait une demande de compte administrateur légitime avec une
-  adresse électronique grand public (Orange, Wanadoo, etc.), merci de nous
-  contacter sur notre
-  <%= link_to("formulaire de contact administrateur", contact_admin_url) %>
-  .
+  <%= t('.contact_admin_html', link: link_to(t('.contact_admin_link'), contact_admin_url)) %>
 </p>
 
 <%= render partial: "layouts/mailers/signature" %>
