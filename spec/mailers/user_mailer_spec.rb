@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe UserMailer, type: :mailer do
-  let(:user) { create(:user) }
+  let(:user) { users.usager }
 
   describe '.new_account_warning' do
     subject { described_class.new_account_warning(user) }
@@ -150,6 +150,7 @@ RSpec.describe UserMailer, type: :mailer do
   end
 
   describe '.notify_inactive_close_to_deletion' do
+    let(:user) { create(:user) }
     subject { described_class.notify_inactive_close_to_deletion(user) }
 
     let(:body) { Capybara.string(subject.body.to_s) }
