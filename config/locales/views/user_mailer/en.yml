@@ -31,6 +31,9 @@ en:
       subject: Verify your email address
     invite_gestionnaire:
       subject: Activate your manager account
+      title: Activation of your group manager account
+      appointed: You have just been appointed group manager of the administrator group %{groupe_gestionnaire} on %{application_name}.
+      account_created_html: "Your account has been created for the email address %{email}. To activate it, please click the following link: %{link}"
     invite_gestionnaire_via_pro_connect:
       subject: Activate your manager account
     reset_password_via_pro_connect:

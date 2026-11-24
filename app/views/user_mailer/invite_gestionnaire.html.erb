@@ -1,16 +1,13 @@
-<% content_for(:title, 'Activation de votre compte gestionnaire') %>
+<% content_for(:title, t('.title')) %>
 
-<p>Bonjour,</p>
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
 
 <p>
-  Vous venez d’être nommé gestionnaire du groupe gestionnaire
-  <%= @groupe_gestionnaire.name %> sur <%= APPLICATION_NAME %>.
+  <%= t('.appointed', groupe_gestionnaire: @groupe_gestionnaire.name, application_name: APPLICATION_NAME) %>
 </p>
 
 <p>
-  Votre compte a été créé pour l’adresse électronique <%= @user.email %>. Pour
-  l’activer, nous vous invitons à cliquer sur le lien suivant&nbsp;:&nbsp;
-  <%= link_to(users_activate_url(token: @reset_password_token), users_activate_url(token: @reset_password_token)) %>
+  <%= t('.account_created_html', email: @user.email, link: link_to(users_activate_url(token: @reset_password_token), users_activate_url(token: @reset_password_token))) %>
 </p>
 
 <%= render partial: "layouts/mailers/signature" %>

@@ -31,6 +31,9 @@ fr:
       subject: Vérification de votre adresse électronique
     invite_gestionnaire:
       subject: Activez votre compte gestionnaire
+      title: Activation de votre compte gestionnaire
+      appointed: Vous venez d’être nommé gestionnaire du groupe gestionnaire %{groupe_gestionnaire} sur %{application_name}.
+      account_created_html: "Votre compte a été créé pour l’adresse électronique %{email}. Pour l’activer, nous vous invitons à cliquer sur le lien suivant : %{link}"
     invite_gestionnaire_via_pro_connect:
       subject: Activez votre compte gestionnaire
     reset_password_via_pro_connect:
