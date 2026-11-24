@@ -13,7 +13,7 @@ Fichiers du skill (`.claude/skills/recette-pr/`) :
 |---|---|
 | `prepare.sh <N>` | worktree détaché `../review-pr-<N>` sur la tête de la PR, dépendances, base `tps_review_pr_<N>` rechargée depuis le schéma de la PR puis seedée (Oaken) |
 | `serve.sh <N>` | Rails sur :3100 et Vite sur :3136, à côté du serveur de dev (3000/3036) qui reste intact |
-| `recette.mjs <scenario> --mode auto\|guide\|video` | joue le scénario (voir plus bas) ; la vidéo est commentée en voix off |
+| `recette.mjs <scenario> --mode auto\|guide\|video\|captures` | joue le scénario (voir plus bas) ; la vidéo est commentée en voix off |
 | `exemple-scenario.mjs` | scénario de référence (PR 14604) : à lire avant d'en écrire un |
 | `cleanup.sh <N>` | arrête le serveur, supprime worktree et bases |
 
@@ -49,8 +49,9 @@ puis `serve.sh N` **en arrière-plan** (`run_in_background`), et attends que `cu
 
 - La base est **jetable et déterministe** : chaque `prepare.sh` la recrée depuis le `schema.rb` de la PR (`SKIP_TEST_DATABASE=1` : sans lui, Rails recréerait aussi la base de test du dépôt principal). Le code des migrations n'est donc pas exécuté : si la PR en contient, ce n'est pas la recette qui le valide. `--keep-db` conserve la base.
 - `prepare.sh` n'arrête un serveur sur 3100/3136 que s'il tourne depuis le worktree de la PR ; sinon il s'arrête et demande.
+- **Une autre recette tourne déjà** (3100/3136 pris par un autre `review-pr-*`) : ne l'arrête pas, décale les ports. `RECETTE_PORT=3200 RECETTE_VITE_PORT=3236` devant `prepare.sh` **et** `serve.sh`, puis `--base-url http://localhost:3200` pour `recette.mjs`.
 - Comptes des seeds (mot de passe `users.default_password`, `db/seeds/setup.rb`) : `admin@exemple.fr` (administrateur + instructeur), `instructeur@exemple.fr`, `usager@exemple.fr`. Pour voir les démarches et dossiers seedés : `DB_DATABASE=tps_review_pr_N bin/rails runner 'puts Procedure.pluck(:id, :libelle, :aasm_state).map(&:inspect)'` dans le worktree.
-- E-mails : `http://localhost:3100/letter_opener`.
+- E-mails : `http://localhost:3100/letter_opener` pour ceux réellement envoyés. Pour **montrer** un mail, l'aperçu est plus simple : `/rails/mailers/<mailer>/<action>?part=text%2Fhtml` rend le HTML seul, sans le cadre de l'aperçu (les previews sont dans `spec/mailers/previews/`, avec des données fictives).
 - `prepare.sh` refuse de mettre à jour un worktree modifié : ne force rien, demande.
 
 ## 4. Écrire le scénario
@@ -81,6 +82,9 @@ Règles :
 - **Chaque étape part d'un état stable.** En mode guide, l'humain clique dans le panneau entre deux étapes : un menu, une popover ou une modale ouverte à l'étape précédente est fermé. L'action rouvre ce dont elle a besoin (voir `ouvrirMenu` dans l'exemple).
 - Locators par rôle, label et texte visibles (`getByRole`, `getByLabel`, `getByText`), scopés au bloc concerné. Les specs système de la PR donnent les libellés exacts.
 - Données hors seeds → `preparation`, jamais des clics de mise en place dans les étapes : la recette montre la feature, pas le décor. Inspire-toi des seeds (`db/seeds/procedures.rb`) pour construire une démarche.
+- **`preparation` est rejouée à chaque lancement** (auto, guide, vidéo, captures) sur la même base : rends-la idempotente (`find_or_create_by!`, purge de ce qu'elle a créé et de ce que les étapes créent, comme une copie). Sinon chaque run empile des données et décale les compteurs que l'attendu cite.
+- **Un attendu se déduit du code, pas de l'aperçu.** Lis le mailer, le composant ou la vue qui produit le texte avant d'écrire l'attendu : qui est listé, qui est exclu, au singulier ou au pluriel. Un attendu deviné fait échouer une étape sur un comportement correct, et c'est du temps perdu à trancher « bug du scénario ou bug de la PR ».
+- Pas besoin de faire défiler la page dans les actions : le runner centre la cible (sans animation : le DSFR anime le défilement, et une capture partirait avant la fin) et recentre avant chaque capture. Le panneau passe du côté opposé à la cible, et revient à droite quand l'action a changé de page. Il est transparent aux clics, sauf ses boutons.
 - `verifier` contrôle l'attendu, pas seulement l'absence d'erreur : chaque étape a le sien. **Tout texte cité entre guillemets dans l'attendu est vérifié mot pour mot** (`getByText`) : les libellés changent au fil des rebases, et un `isDisabled` seul laisse passer un message faux.
 - Textes en français, du point de vue du persona, sans jargon de code.
 
@@ -92,7 +96,7 @@ cd ../review-pr-N && node <repo>/.claude/skills/recette-pr/recette.mjs tmp/recet
 
 Sans tête, joue actions et vérifications, écrit une capture par étape, `resultats.json` et `rapport.md` dans `tmp/recette/resultats-auto/`. Le rapport marque ces étapes 🤖 « vérifiées par le script » : seul le mode guide produit des ✅, qui sont des jugements humains. `RECETTE_DEBUG=1` affiche la console de la page.
 
-Itère jusqu'au vert, puis **regarde les captures** (Read) : une vérification qui passe sur un écran faux est pire qu'une vérification absente.
+Itère jusqu'au vert, puis **regarde les captures** (Read) : une vérification qui passe sur un écran faux est pire qu'une vérification absente. Une capture qui montre le haut de la page au lieu de la cible est un défaut du runner, pas du scénario : corrige le runner plutôt que d'ajouter des défilements dans les actions.
 
 Quand une étape échoue, tranche : **bug du scénario** (locator, timing) → corrige ; **bug de la PR** (l'attendu tiré de la description n'est pas là) → c'est un résultat de recette. Ne contourne pas, note-le pour l'humain avec la capture.
 
@@ -118,11 +122,21 @@ node <repo>/.claude/skills/recette-pr/recette.mjs tmp/recette/scenario.mjs --mod
 
 Sans tête, 1280×800, avec **le panneau du mode guide** en bas à droite (étape, consigne, attendu ; le statut « ✓ Vérifié par le script » remplace les boutons de verdict) et le surlignage de la cible, **commentée en voix off** (approche de `/demo-pr`, #14665). La voix dit la `narration` de l'étape (sinon sa consigne) pendant que l'action se joue, puis l'attendu une fois vérifié ; une étape dure au moins ~7 s et au moins le temps de ses phrases. Toutes les phrases sont synthétisées avant l'enregistrement. Une `narration` se dit à l'oral : courte, sans parenthèses ni libellés à rallonge.
 
-La voix passe par `say` (macOS) et prend la première voix française installée (Thomas, Amélie…) ; `--voix` en choisit une autre (`say -v '?'`). Sans `say`, ou avec `--muet`, la vidéo sort muette avec ses sous-titres. ffmpeg est requis dans tous les cas (`brew install ffmpeg`).
+Compte ~15 s par étape avec la voix : 9 étapes font ~2 min 30. Au-delà de 6 ou 7 étapes, propose de garder les cas limites pour le mode guide, ou d'écrire des `narration` plus courtes que les attendus.
 
-L'attendu ne s'affiche et ne se dit qu'une fois `verifier` passé ; un échec s'affiche en rouge et termine la vidéo sur « Recette en échec à l'étape N » : ne livre jamais cette vidéo comme une démo : `tmp/recette/resultats-video/recette-pr-N.mp4` (~0,5 Mo). Vérifie 2 ou 3 images avec `ffmpeg -ss <t> -i … -frames:v 1 frame.png` avant de la proposer. `--rythme` ralentit ou accélère.
+La voix passe par `say` (macOS) et prend la première voix française installée (Thomas, Amélie…) ; `--voix` en choisit une autre (`say -v '?'`). Sans `say`, ou avec `--muet`, la vidéo sort muette, avec son panneau. ffmpeg est requis dans tous les cas (`brew install ffmpeg`).
 
-GitHub n'a pas d'API pour joindre une vidéo à un commentaire : l'humain la glisse dans le commentaire de la PR. Propose le texte (`rapport.md` + verdicts) et ne publie qu'avec son accord (`gh pr comment N --body-file …`).
+L'attendu ne s'affiche et ne se dit qu'une fois `verifier` passé ; un échec s'affiche en rouge et termine la vidéo sur « Recette en échec à l'étape N » : ne livre jamais cette vidéo comme une démo : `tmp/recette/resultats-video/recette-pr-N.mp4` (~0,5 Mo muette, ~2 Mo par minute avec la voix). Vérifie 2 ou 3 images avec `ffmpeg -ss <t> -i … -frames:v 1 frame.png` avant de la proposer. `--rythme` ralentit ou accélère.
+
+### Captures du panneau, pour la description d'une PR
+
+```bash
+node <repo>/.claude/skills/recette-pr/recette.mjs tmp/recette/scenario.mjs --mode captures
+```
+
+Sans tête, joue le scénario avec le panneau du mode guide et capture chaque étape deux fois : `NN-consigne.png` (consigne, cible surlignée) et `NN-attendu.png` (après l'action, attendu à juger). **Aucun verdict n'est cliqué** : ne simule jamais un ✅ pour produire une image, un bilan « 9/9 conformes » sans humain serait un faux.
+
+GitHub n'a pas d'API pour joindre une vidéo à un commentaire : l'humain la glisse dans le commentaire de la PR. Même chose pour les captures : un gist public peut être refusé par les permissions de la session (fuite d'informations) ; dans ce cas, ne contourne pas, donne les chemins à l'humain. Propose le texte (`rapport.md` + verdicts) et ne publie qu'avec son accord (`gh pr comment N --body-file …`).
 
 ## 8. Nettoyer
 

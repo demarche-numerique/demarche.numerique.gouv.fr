@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 // Joue un scénario de recette contre le serveur de la PR.
-//   node recette.mjs <scenario.mjs> --mode auto|guide|video [--base-url URL] [--out DIR] [--rythme N] [--muet] [--voix NOM]
-// auto  : sans tête, joue actions et vérifications ; sert à mettre le scénario au point.
-// guide : navigateur visible, un panneau guide l'humain qui donne un verdict par étape.
-// video : enregistre le scénario joué seul, avec sous-titres et voix off (macOS `say`), en mp4.
+//   node recette.mjs <scenario.mjs> --mode auto|guide|video|captures [--base-url URL] [--out DIR] [--rythme N] [--muet] [--voix NOM]
+// auto     : sans tête, joue actions et vérifications ; sert à mettre le scénario au point.
+// guide    : navigateur visible, un panneau guide l'humain qui donne un verdict par étape.
+// video    : enregistre le scénario joué seul, avec le panneau et une voix off (macOS `say`), en mp4.
+// captures : sans tête, capture le panneau du mode guide à chaque étape (pour la description d'une PR).
 import { chromium } from 'playwright';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, writeFileSync, readdirSync, renameSync, rmSync } from 'node:fs';
@@ -22,9 +23,10 @@ const { values: opts, positionals } = parseArgs({
     voix: { type: 'string' } // voix `say -v` ; par défaut la première voix française installée
   }
 });
-const scenarioPath = resolve(positionals[0] ?? die('usage: recette.mjs <scenario.mjs> --mode auto|guide|video'));
+const scenarioPath = resolve(positionals[0] ?? die('usage: recette.mjs <scenario.mjs> --mode auto|guide|video|captures'));
 const scenario = (await import(pathToFileURL(scenarioPath))).default;
 const mode = opts.mode;
+if (!['auto', 'guide', 'video', 'captures'].includes(mode)) die(`mode inconnu : ${mode}`);
 const baseURL = opts['base-url'];
 const out = resolve(opts.out ?? join(dirname(scenarioPath), `resultats-${mode}`));
 const worktree = execFileSync('git', ['-C', dirname(scenarioPath), 'rev-parse', '--show-toplevel'], { encoding: 'utf8' }).trim();
@@ -109,6 +111,10 @@ const OVERLAY = () => {
     :host { all: initial; }
     .p { position: fixed; z-index: 2147483647; font: 15px/1.4 Marianne, system-ui, sans-serif; background: #161616; color: #fff; border-radius: 8px; padding: 14px 16px; box-shadow: 0 6px 24px #0007; }
     .guide { right: 16px; bottom: 16px; width: 380px; }
+    .guide.gauche { right: auto; left: 16px; }
+    /* Transparent aux clics, sauf ses commandes : une action enchaînée sur plusieurs pages
+       ne doit pas buter sur le panneau (Playwright refuse un clic sur un élément recouvert). */
+    .p { pointer-events: none; } button, textarea { pointer-events: auto; }
     .s { margin: 10px 0 0; font-size: 13px; color: #cfcfff; }
     .n { color: #9a9aff; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; }
     h2 { margin: 4px 0 6px; font-size: 17px; }
@@ -135,7 +141,7 @@ const OVERLAY = () => {
     const e = (t) => String(t ?? '').replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]);
     const guide = s.mode === 'guide';
     host.shadowRoot.innerHTML = `<style>${css}</style>
-      <div class="p guide ${s.reduit ? 'reduit' : ''}" role="dialog" aria-label="Recette">
+      <div class="p guide ${s.cote === 'gauche' ? 'gauche' : ''} ${s.reduit ? 'reduit' : ''}" role="dialog" aria-label="Recette">
         ${guide ? '<button class="min" data-ev="reduire" title="Réduire">▁</button>' : ''}
         <div class="n">${e(s.entete)}</div>
         <h2>${e(s.titre)}</h2>
@@ -179,6 +185,13 @@ const eteindre = (page) => page.locator('[data-recette-cible]').evaluateAll((els
   el.removeAttribute('data-recette-cible');
   ['outline', 'outline-offset', 'border-radius'].forEach((p) => el.style.removeProperty(p));
 })).catch(() => {});
+
+// En bas de page, la cible ne peut pas être centrée : le panneau passe du côté opposé.
+// Après une action qui change de page, la cible a disparu : il revient à droite.
+async function placer(etat, etape, ctx) {
+  const box = await etape.cible?.(ctx)?.first().boundingBox({ timeout: 1000 }).catch(() => null);
+  etat.cote = box && box.x + box.width / 2 > 640 ? 'gauche' : 'droite';
+}
 
 async function main() {
   // Garde : on ne vide que ce qui ressemble à une sortie de recette.
@@ -283,10 +296,12 @@ async function main() {
     await eteindre(page);
     if (cible) {
       // Timeout court : une cible absente ne doit pas bloquer le guidage.
-      // Centrée, pour ne pas finir sous le panneau en bas à droite.
-      await cible.first().evaluate((el) => el.scrollIntoView({ block: 'center' }), null, { timeout: 3000 }).catch(() => {});
+      // Centrée, pour ne pas finir sous le panneau en bas à droite ; instantané, car le DSFR
+      // anime le défilement (scroll-behavior: smooth) et une capture partirait avant la fin.
+      await cible.first().evaluate((el) => el.scrollIntoView({ block: 'center', behavior: 'instant' }), null, { timeout: 3000 }).catch(() => {});
       await cible.first().evaluate(SURLIGNER, null, { timeout: 3000 }).catch(() => {});
     }
+    await placer(base, etape, ctx);
     const resultat = { etape: i + 1, titre: etape.titre, attendu: etape.attendu };
 
     if (mode === 'guide') {
@@ -299,7 +314,7 @@ async function main() {
         if (ev.type === 'fermer') break;
         if (ev.type === 'faire') {
           await afficher({ ...state, fait: true, consigne: '⏳ En cours…' });
-          try { await etape.action(ctx); await afficher({ ...state, consigne: '✓ Fait. Vérifiez l’attendu ci-dessous.' }); }
+          try { await etape.action(ctx); await placer(state, etape, ctx); await afficher({ ...state, consigne: '✓ Fait. Vérifiez l’attendu ci-dessous.' }); }
           catch (err) { await afficher({ ...state, consigne: `⚠ Action impossible : ${err.message.split('\n')[0]}. Faites-la à la main.` }); }
           continue;
         }
@@ -312,6 +327,12 @@ async function main() {
       // La voix lit la consigne pendant que l'action se joue, puis l'attendu une fois vérifié.
       const debut = Date.now();
       let voixAvant = 0;
+      // Captures : le panneau tel que le voit le relecteur, sans verdict simulé.
+      const capturer = (nom) => page.screenshot({ path: join(out, `${String(i + 1).padStart(2, '0')}-${nom}.png`) });
+      if (mode === 'captures') {
+        await afficher({ ...base, mode: 'guide', boutons: true, montrerAttendu: true });
+        await capturer('consigne');
+      }
       if (mode === 'video') {
         // Le même panneau que le mode guide : le statut remplace les boutons de verdict.
         await afficher({ ...base, statut: etape.action ? '▶ Le script joue l’action…' : '⏳ Vérification…' });
@@ -326,6 +347,14 @@ async function main() {
         resultat.verdict = 'échec';
         resultat.erreur = err.message.split('\n')[0];
       }
+      await placer(base, etape, ctx);
+      if (mode === 'captures') {
+        const echec = resultat.verdict === 'échec';
+        await etape.cible?.(ctx)?.first().evaluate((el) => el.scrollIntoView({ block: 'center', behavior: 'instant' }), null, { timeout: 1000 }).catch(() => {});
+        await afficher({ ...base, mode: 'guide', boutons: true, fait: true, montrerAttendu: true,
+          ...(echec ? { echec: resultat.erreur } : { consigne: '✓ Fait. Vérifiez l’attendu ci-dessous.' }) });
+        await capturer('attendu');
+      }
       if (mode === 'video') {
         await tenir(debut, 2200, voixAvant);
         // La vidéo n'affiche et ne dit l'attendu qu'une fois vérifié : elle ne doit rien affirmer de faux.
@@ -336,6 +365,8 @@ async function main() {
       }
     }
 
+    // La page a pu défiler depuis (chargement, action) : la capture doit montrer ce qu'on juge.
+    await etape.cible?.(ctx)?.first().evaluate((el) => el.scrollIntoView({ block: 'center', behavior: 'instant' }), null, { timeout: 1000 }).catch(() => {});
     await afficher({ ...state, cache: true });
     await page.screenshot({ path: join(out, `etape-${String(i + 1).padStart(2, '0')}.png`) });
     await afficher({ ...state, cache: false });
