@@ -3,6 +3,7 @@ fr:
     shared:
       ignore_or_contact_html: "Si vous n’êtes pas à l’origine de cette demande, vous pouvez ignorer ce message. Et si vous avez besoin d’assistance, n’hésitez pas à nous contacter à %{contact_link}."
       confirm_button: Je confirme
+      support_html: "Nous restons à votre disposition si vous avez besoin d’accompagnement à l’adresse %{contact_link}."
     new_account_warning:
       subject: Demande de création de compte
     ask_for_merge:
@@ -33,6 +34,12 @@ fr:
       tutorial_html: "Nous vous invitons aussi à consulter notre tutoriel à destination des nouveaux instructeurs : %{link}"
     invite_tiers:
       subject: Vérification de votre adresse électronique
+      title: Vérification de votre adresse électronique sur %{application_name}
+      started_for_procedure: "Un dossier sur la démarche : %{procedure} a été démarré en votre nom par %{email}."
+      started: Un dossier a été démarré en votre nom sur %{application_name}.
+      confirm: "Pour continuer à recevoir les mails concernant votre dossier, vous devez confirmer votre adresse électronique en cliquant sur ce bouton :"
+      link_html: "Vous pouvez aussi utiliser ce lien : %{link}"
+      learn_more: Pour en savoir plus, veuillez vous rapprocher de %{email}.
     resend_confirmation_email:
       subject: Vérification de votre adresse électronique
     invite_gestionnaire:

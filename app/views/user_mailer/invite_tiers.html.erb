@@ -1,35 +1,29 @@
-<% content_for(:title, "Vérification de votre adresse électronique sur #{APPLICATION_NAME}") %>
+<% content_for(:title, t('.title', application_name: APPLICATION_NAME)) %>
 
-<p>Bonjour,</p>
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
 
 <% if @dossier.present? %>
   <p>
-    Un dossier sur la démarche&nbsp;: <%= @dossier.procedure.libelle %> a été
-    démarré en votre nom par <%= @dossier.user.email %>.
+    <%= t('.started_for_procedure', procedure: @dossier.procedure.libelle, email: @dossier.user.email) %>
   </p>
 <% else %>
-  <p>Un dossier a été démarré en votre nom sur <%= APPLICATION_NAME %>.</p>
+  <p><%= t('.started', application_name: APPLICATION_NAME) %></p>
 <% end %>
 
 <p>
-  Pour continuer à recevoir les mails concernant votre dossier, vous devez
-  confirmer votre adresse électronique en cliquant sur ce bouton&nbsp;:
-  <%= dsfr_button 'Je confirme', users_confirm_email_url(token: @token), :primary %>
+  <%= t('.confirm') %>
+  <%= dsfr_button t('user_mailer.shared.confirm_button'), users_confirm_email_url(token: @token), :primary %>
 </p>
 
 <p>
-  Vous pouvez aussi utiliser ce lien&nbsp;:
-  <%= link_to(users_confirm_email_url(token: @token), users_confirm_email_url(token: @token)) %>
+  <%= t('.link_html', link: link_to(users_confirm_email_url(token: @token), users_confirm_email_url(token: @token))) %>
 </p>
 
 <% if @dossier.present? %>
-  <p>
-    Pour en savoir plus, veuillez vous rapprocher de <%= @dossier.user.email %>.
-  </p>
+  <p><%= t('.learn_more', email: @dossier.user.email) %></p>
 <% else %>
   <p>
-    Nous restons à votre disposition si vous avez besoin d’accompagnement à
-    l’adresse <%= link_to CONTACT_EMAIL, "mailto:#{CONTACT_EMAIL}" %>.
+    <%= t('user_mailer.shared.support_html', contact_link: link_to(CONTACT_EMAIL, "mailto:#{CONTACT_EMAIL}")) %>
   </p>
 <% end %>
 
