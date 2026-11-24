@@ -1,4 +1,5 @@
-<% content_for(:title, t('.title', application_name: APPLICATION_NAME)) %>
+<% content_for(:title, t('user_mailer.shared.confirm_email_title', application_name: APPLICATION_NAME)) %>
+<% confirm_url = users_confirm_email_url(token: @token) %>
 
 <p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
 
@@ -12,18 +13,18 @@
 
 <p>
   <%= t('.confirm') %>
-  <%= dsfr_button t('user_mailer.shared.confirm_button'), users_confirm_email_url(token: @token), :primary %>
+  <%= dsfr_button t('user_mailer.shared.confirm_button'), confirm_url, :primary %>
 </p>
 
 <p>
-  <%= t('.link_html', link: link_to(users_confirm_email_url(token: @token), users_confirm_email_url(token: @token))) %>
+  <%= t('user_mailer.shared.confirm_link_html', link: link_to(confirm_url, confirm_url)) %>
 </p>
 
 <% if @dossier.present? %>
   <p><%= t('.learn_more', email: @dossier.user.email) %></p>
 <% else %>
   <p>
-    <%= t('user_mailer.shared.support_html', contact_link: link_to(CONTACT_EMAIL, "mailto:#{CONTACT_EMAIL}")) %>
+    <%= t('user_mailer.shared.support_html', contact_link: mail_to(CONTACT_EMAIL)) %>
   </p>
 <% end %>
 
