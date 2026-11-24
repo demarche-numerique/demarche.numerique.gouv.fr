@@ -126,6 +126,13 @@ RSpec.describe InstructeurMailer, type: :mailer do
       expect(subject.body).to match(/1\s+dossier\s+avec des notifications «\u00A0nouveautés\u00A0» dont/)
       expect(subject.body).to include("«\u00A0MESSAGE\u00A0»")
     end
+
+    it "renders the body in the instructeur's locale" do
+      instructeur.user.update!(locale: 'en')
+      expect(subject.body).to include('2 applications submitted')
+      expect(subject.body).to include('(1 approved, 2 rejected)')
+      expect(subject.body).to include('‘MESSAGE’')
+    end
   end
 
   describe '#last_week_overview' do
