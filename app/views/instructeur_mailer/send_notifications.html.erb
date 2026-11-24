@@ -37,29 +37,29 @@
         <br>
         <%= datum[:nb_dossiers_with_notifications] %>
         <%= 'dossier'.pluralize(datum[:nb_dossiers_with_notifications]) %>
-        avec des notifications "nouveautés" dont :
+        avec des notifications « nouveautés » dont :
         <ul>
           <% if datum.dig(:nb_notifications, 'dossier_modifie')&.> 0 %>
             <li>
-              <%= datum[:nb_notifications]['dossier_modifie'] %> "DOSSIER
-              MODIFIÉ"
+              <%= datum[:nb_notifications]['dossier_modifie'] %> « DOSSIER
+              MODIFIÉ »
             </li>
           <% end %>
 
           <% if datum.dig(:nb_notifications, 'message')&.> 0 %>
-            <li><%= datum[:nb_notifications]['message'] %> "MESSAGE"</li>
+            <li><%= datum[:nb_notifications]['message'] %> « MESSAGE »</li>
           <% end %>
 
           <% if datum.dig(:nb_notifications, 'annotation_instructeur')&.> 0 %>
             <li>
               <%= datum[:nb_notifications]['annotation_instructeur'] %>
-              "ANNOTATION PRIVÉE"
+              « ANNOTATION PRIVÉE »
             </li>
           <% end %>
 
           <% if datum.dig(:nb_notifications, 'avis_externe')&.> 0 %>
             <li>
-              <%= datum[:nb_notifications]['avis_externe'] %> "AVIS EXTERNE"
+              <%= datum[:nb_notifications]['avis_externe'] %> « AVIS EXTERNE »
             </li>
           <% end %>
         </ul>
