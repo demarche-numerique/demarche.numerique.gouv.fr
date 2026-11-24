@@ -541,8 +541,6 @@ fr:
             dossier_number: "Dossier n° %{dossier_id}"
             created_date: "- En brouillon depuis le %{date_du_dossier}"
             submit_date: "- Déposé le %{date_du_dossier}"
-            download: "dossier-%{dossier_id}.pdf"
-            download_without_number: "dossier-DS.pdf"
           status_overview:
             status_draft: brouillon
             status_in_progress: déposé
@@ -1085,6 +1083,8 @@ fr:
       show:
         download_dossier:
           link: Télécharger mon dossier (PDF)
+          filename: "dossier-%{dossier_id}.pdf"
+          filename_without_number: "dossier-DS.pdf"
         download_attestation:
           link: Télécharger mon attestation (PDF)
           filename: Attestation

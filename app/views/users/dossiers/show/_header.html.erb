@@ -20,13 +20,13 @@
       </span>
     </h1>
 
-    <%= render(partial: 'users/dossiers/expiration_banner', locals: {dossier: dossier}) %>
+    <%= render 'users/dossiers/expiration_banner', dossier: %>
 
     <% if dossier.show_procedure_state_warning? %>
-      <%= render(partial: 'users/dossiers/procedure_removed_banner', locals: { dossier: dossier }) %>
+      <%= render 'users/dossiers/procedure_removed_banner', dossier: %>
     <% elsif current_user.owns?(dossier) %>
       <div class="header-actions fr-mb-3w">
-        <%= render(partial: 'users/dossiers/show/download_dossier', locals: { dossier: dossier }) %>
+        <%= render 'users/dossiers/show/download_dossier', dossier: %>
 
         <div class="ml-auto">
           <%= render partial: 'invites/button', locals: { dossier: } %>
@@ -39,7 +39,7 @@
     <% end %>
 
     <% if dossier.en_construction? %>
-      <%= render Dossiers::EnConstructionNotSubmittedComponent.new(dossier: dossier, user: current_user) %>
+      <%= render Dossiers::EnConstructionNotSubmittedComponent.new(dossier:, user: current_user) %>
     <% end %>
 
     <nav

@@ -533,8 +533,6 @@ en:
             dossier_number: "File no. %{dossier_id}"
             created_date: "- Draft on %{date_du_dossier}"
             submit_date: "- Submitted on %{date_du_dossier}"
-            download: "application-%{dossier_id}.pdf"
-            download_without_number: "DS-application.pdf"
           status_overview:
             status_draft: draft
             status_in_progress: submitted
@@ -1069,6 +1067,8 @@ en:
       show:
         download_dossier:
           link: Download your application (PDF)
+          filename: "application-%{dossier_id}.pdf"
+          filename_without_number: "DS-application.pdf"
         download_attestation:
           link: Download your decision notice (PDF)
           filename: Decision notice
