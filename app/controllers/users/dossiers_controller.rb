@@ -773,7 +773,7 @@ module Users
     end
 
     def commentaire_params
-      params.require(:commentaire).permit(:body, piece_jointe: [])
+      params.expect(commentaire: [:body, piece_jointe: []])
     end
 
     def load_personnalisation_data(dossiers)

@@ -542,7 +542,7 @@ module Instructeurs
     end
 
     def commentaire_params
-      params.require(:commentaire).permit(:body, piece_jointe: [])
+      params.expect(commentaire: [:body, piece_jointe: []])
     end
 
     def mark_demande_as_read
