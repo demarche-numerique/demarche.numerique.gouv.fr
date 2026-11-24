@@ -14,3 +14,6 @@ en:
       changed: A change to the email address associated with your account %{email} was made on %{application_name}. You can now connect with the email address %{new_email}.
       not_you_html: "If you did not make this request, your account may be compromised: contact the support through the %{contact_form_link} or at %{contact_email_link}."
       contact_form: contact form
+    password_change:
+      title: New password
+      body: A request to change your password on %{application_name} for the account %{email} was successfully processed.

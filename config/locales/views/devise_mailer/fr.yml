@@ -14,3 +14,6 @@ fr:
       changed: Le changement d’adresse électronique de votre compte %{email} sur %{application_name} a bien été pris en compte. Vous pouvez désormais vous connecter avec l’adresse %{new_email}.
       not_you_html: "Si vous n’êtes pas à l’origine de cette demande, votre compte est peut-être compromis : contactez le support via le %{contact_form_link} ou à l’adresse %{contact_email_link}."
       contact_form: formulaire de contact
+    password_change:
+      title: Votre nouveau mot de passe
+      body: La demande de changement de mot de passe pour votre compte %{email} sur %{application_name} a bien été prise en compte.
