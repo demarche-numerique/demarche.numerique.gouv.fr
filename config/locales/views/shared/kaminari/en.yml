@@ -1,0 +1,6 @@
+---
+en:
+  shared:
+    kaminari:
+      paginator:
+        nav_label: Pagination
