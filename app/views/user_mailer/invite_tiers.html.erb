@@ -1,0 +1,36 @@
+<% content_for(:title, "Vérification de votre adresse électronique sur #{APPLICATION_NAME}") %>
+
+<p>Bonjour,</p>
+
+<% if @dossier.present? %>
+  <p>
+    Un dossier sur la démarche&nbsp;: <%= @dossier.procedure.libelle %> a été
+    démarré en votre nom par <%= @dossier.user.email %>.
+  </p>
+<% else %>
+  <p>Un dossier a été démarré en votre nom sur <%= APPLICATION_NAME %>"</p>
+<% end %>
+
+<p>
+  Pour continuer à recevoir les mails concernant votre dossier, vous devez
+  confirmer votre adresse électronique en cliquant sur ce bouton&nbsp;:
+  <%= dsfr_button 'Je confirme', users_confirm_email_url(token: @token), :primary %>
+</p>
+
+<p>
+  Vous pouvez aussi utiliser ce lien&nbsp;:
+  <%= link_to(users_confirm_email_url(token: @token), users_confirm_email_url(token: @token)) %>
+</p>
+
+<% if @dossier.present? %>
+  <p>
+    Pour en savoir plus, veuillez vous rapprocher de <%= @dossier.user.email %>.
+  </p>
+<% else %>
+  <p>
+    Nous restons à votre disposition si vous avez besoin d’accompagnement à
+    l’adresse <%= link_to CONTACT_EMAIL, "mailto:#{CONTACT_EMAIL}" %>.
+  </p>
+<% end %>
+
+<%= render partial: "layouts/mailers/signature" %>
