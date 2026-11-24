@@ -1,0 +1,3 @@
+<% content_for(:title, "Messagerie · Dossier n° #{@dossier.id} (#{@dossier.owner_name})") %>
+<%= render partial: 'header', locals: { avis: @avis, dossier: @dossier } %>
+<%= render partial: "shared/dossiers/messagerie", locals: { dossier: @dossier, connected_user: current_expert, messagerie_seen_at: nil, new_commentaire: @commentaire, form_url: commentaire_expert_avis_path(@avis) } %>
