@@ -42,7 +42,7 @@ class Profile::APITokenComponent < ApplicationComponent
   end
 
   def use_and_expiration
-    use = @api_token.last_used_at.present? ? t(".used_ago", time: time_ago_in_words(@api_token.last_used_at)) : ""
+    use = @api_token.last_used_at.present? ? t(".used_ago", time: time_ago_in_words(@api_token.last_used_at, scope: :'datetime.distance_in_words.short')) : ""
     expiration = @api_token.expires_at.present? ? t(".valid_until", date: l(@api_token.expires_at, format: :long)) : t(".valid_indefinitely")
 
     "#{use} #{expiration}"
