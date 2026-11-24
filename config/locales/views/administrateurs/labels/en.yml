@@ -1,6 +1,11 @@
 en:
   administrateurs:
     labels:
+      new:
+        title: New label
+        labels_management: Label management
+        back_to_labels: All labels
+        heading: Create a new label
       form:
         existing_labels: Reminder of existing labels
       order_positions:
