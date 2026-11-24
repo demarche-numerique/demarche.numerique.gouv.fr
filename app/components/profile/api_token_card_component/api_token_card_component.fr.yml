@@ -7,3 +7,5 @@ fr:
   expired_tokens_title: Jetons expirés (%{count})
   shared_tokens_title: Jetons d’autres administrateurs sur vos démarches
   shared_tokens_intro: "Ils accèdent à des démarches que vous administrez. Seul leur propriétaire peut les modifier, mais « Dupliquer » en crée une copie dans votre compte."
+  transfer_offered: "%{email} vous propose de reprendre son jeton « %{name} »."
+  see_transfer: Voir la proposition

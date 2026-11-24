@@ -1,0 +1,11 @@
+<% content_for(:title, t('.title', name: @api_token.name)) %>
+
+<p><%= t('.hello') %></p>
+
+<p><%= t('.offer', email: @owner.email, name: @api_token.name) %></p>
+
+<p><%= t('.consequence') %></p>
+
+<p><%= link_to t('.see'), admin_api_token_transfer_url(@api_token) %></p>
+
+<%= render partial: "layouts/mailers/signature" %>

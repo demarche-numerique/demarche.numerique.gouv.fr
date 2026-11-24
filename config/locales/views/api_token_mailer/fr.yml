@@ -21,3 +21,20 @@ fr:
       never_used: Il n’a jamais été utilisé.
       what_to_do: S’il sert à votre équipe, dupliquez-le depuis votre profil, puis remplacez l’ancien jeton par le nouveau partout où il est utilisé.
       other_recipients: "Ont aussi reçu ce message : %{emails}."
+    transfer_offered:
+      subject: "%{email} vous propose de reprendre un jeton d’API"
+      title: "Reprendre le jeton « %{name} »"
+      hello: Bonjour,
+      offer: "%{email} vous propose de reprendre son jeton d’API « %{name} »."
+      consequence: Si vous acceptez, le jeton sera à votre nom, et ce qu’il modifie le sera en votre nom.
+      see: Voir la proposition
+    transfer_accepted:
+      subject: "Votre jeton d’API « %{name} » a été transmis"
+      title: "Jeton « %{name} » transmis"
+      hello: Bonjour,
+      body: "%{email} a repris le jeton « %{name} ». Il est désormais à son nom. Son secret ne change pas : rien à modifier là où il est utilisé."
+    transfer_declined:
+      subject: "Transmission du jeton « %{name} » refusée"
+      title: Transmission refusée
+      hello: Bonjour,
+      body: "%{email} a refusé de reprendre le jeton « %{name} ». Il reste à votre nom."

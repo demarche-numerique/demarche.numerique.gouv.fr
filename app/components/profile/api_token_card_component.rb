@@ -21,6 +21,10 @@ class Profile::APITokenCardComponent < ApplicationComponent
 
   def expired_unfolded? = @unfold_expired || valid_api_tokens.empty?
 
+  def offered_api_tokens
+    current_administrateur.offered_api_tokens.includes(:administrateur).filter(&:transferable?)
+  end
+
   def shared_api_tokens
     @shared_api_tokens ||= APIToken.visible_to(current_administrateur).includes(:administrateur).order(:name).to_a
   end
