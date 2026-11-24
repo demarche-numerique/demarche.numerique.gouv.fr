@@ -1,0 +1,33 @@
+<% if @labels.present? %>
+  <div class="fr-background-alt--grey fr-p-2w fr-mb-2w">
+    <p class="fr-mb-1w">Rappel des labels existants</p>
+
+    <ul class="horizontal-list">
+      <% @labels.each do |label| %>
+        <li><%= tag_label(label.name, label.color) %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with model: label, url: [:admin, @procedure, @label], local: true do |f| %>
+  <%= render Dsfr::InputComponent.new(form: f, attribute: :name, input_type: :text_field, opts: { maxlength: Label::NAME_MAX_LENGTH}) %>
+
+  <fieldset class="fr-fieldset">
+    <legend class="fr-fieldset__legend fr-fieldset__legend--regular">
+      <%= t('activerecord.attributes.label.color') %>
+      <%= asterisk %>
+    </legend>
+
+    <% @colors_collection.each do |color| %>
+      <div class="fr-fieldset__element fr-fieldset__element--inline">
+        <div class="fr-radio-group">
+          <%= f.radio_button :color, color, checked: (label.color == color) %>
+          <%= f.label :color, t("activerecord.attributes.label/color.#{color}"), value: color, class: "fr-label fr-tag fr-tag--sm fr-tag--#{Label.class_name(color)}" %>
+        </div>
+      </div>
+    <% end %>
+  </fieldset>
+
+  <%= render Procedure::FixedFooterComponent.new(procedure: @procedure, form: f) %>
+<% end %>
