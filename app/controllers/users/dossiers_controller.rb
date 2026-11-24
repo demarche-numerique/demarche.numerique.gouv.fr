@@ -176,8 +176,11 @@ module Users
         if @dossier.for_tiers?
           email = sanitized_params.dig(:individual_attributes, :email)
           User.create_or_promote_to_tiers(email, SecureRandom.hex, @dossier) if email.present?
+        end
+        # On a draft only: a submitted application refuses a write outside the
+        # buffer of the applicant, whose « modifier » screen prefills the date.
+        if @dossier.brouillon?
           @dossier.reset_champs_from_france_connect(updated_by: current_user.email)
-        else
           @dossier.prefill_champs_from_france_connect(updated_by: current_user.email)
         end
 

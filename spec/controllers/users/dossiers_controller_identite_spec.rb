@@ -268,6 +268,29 @@ describe Users::DossiersController, type: :controller do
     context 'when user is connected via FranceConnect' do
       let(:user) { create(:user, :with_fci) }
 
+      context 'when the dossier is en_construction and a date is prefilled from FranceConnect' do
+        let(:procedure) { create(:procedure, :published, :for_individual, public_type_de_champs: [{ type: :date, birthdate: '1', prefill_with_france_connect_information: '1' }]) }
+        let(:dossier) { create(:dossier, :en_construction, :with_individual, user:, procedure:) }
+
+        it 'saves the identity and leaves the date to the modifier screen' do
+          post :update_identite, params: { id: dossier.id, dossier: { for_tiers: 'false' } }
+
+          expect(response).to redirect_to(demande_dossier_path(dossier))
+          expect(dossier.reload.champ_data.map(&:stream)).to all(eq(Dossier::MAIN_STREAM))
+        end
+
+        context 'when it is filed for a third party' do
+          let(:dossier) { create(:dossier, :en_construction, :for_tiers_without_notification, user:, procedure:) }
+
+          it 'saves the identity' do
+            post :update_identite, params: { id: dossier.id, dossier: { for_tiers: 'true', individual_attributes: { nom: 'Beneficiaire', prenom: 'Le' } } }
+
+            expect(response).to redirect_to(demande_dossier_path(dossier))
+            expect(dossier.reload.individual.nom).to eq('Beneficiaire')
+          end
+        end
+      end
+
       context 'when dossier is for self' do
         let(:dossier) { create(:dossier, :with_individual, user:, procedure:) }
 
