@@ -1,0 +1,26 @@
+<% if @user.unconfirmed_email.nil? %>
+  <% content_for(:title, @subject) %>
+  <p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+  <% link = confirmation_url(@user, confirmation_token: @token, procedure_id: @procedure&.id, prefill_token: @prefill_token) %>
+  <p>
+    To confirm your email address and activate your account on
+    <%= APPLICATION_NAME %>, select the button below:
+  </p>
+  <p>
+    <%= dsfr_button('Activate my account', link, :primary) %>
+  </p>
+  <p>
+    If the button above does not work, copy and paste the following link into
+    your browser: <%= link_to(link, link) %>
+  </p>
+<% else %>
+  <% content_for(:title, "Change email address") %>
+  <p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+  <p>
+    To confirm your account email change on <%= APPLICATION_NAME %>, select the
+    following link:
+    <%= link_to(confirmation_url(@user, confirmation_token: @token), confirmation_url(@user, confirmation_token: @token)) %>
+  </p>
+<% end %>
+
+<%= render partial: "layouts/mailers/signature" %>
