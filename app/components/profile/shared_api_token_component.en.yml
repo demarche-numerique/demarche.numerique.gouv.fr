@@ -1,0 +1,10 @@
+---
+en:
+  managed_by: "Managed by %{email}"
+  shared_procedures_count:
+    one: "%{count} procedure you administer"
+    other: "%{count} procedures you administer"
+  all_procedures_html: "All the procedures of %{email}, including: %{procedures}"
+  with_others_html:
+    one: "%{procedures} and %{count} other procedure of %{email}"
+    other: "%{procedures} and %{count} other procedures of %{email}"

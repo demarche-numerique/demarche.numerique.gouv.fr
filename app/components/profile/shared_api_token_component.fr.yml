@@ -1,0 +1,10 @@
+---
+fr:
+  managed_by: "Géré par %{email}"
+  shared_procedures_count:
+    one: "%{count} démarche que vous administrez"
+    other: "%{count} démarches que vous administrez"
+  all_procedures_html: "Toutes les démarches de %{email}, dont : %{procedures}"
+  with_others_html:
+    one: "%{procedures} et %{count} autre démarche de %{email}"
+    other: "%{procedures} et %{count} autres démarches de %{email}"

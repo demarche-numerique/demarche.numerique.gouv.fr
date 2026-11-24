@@ -5,3 +5,5 @@ fr:
   create_token: Créer un nouveau jeton
   my_tokens_title: Mes jetons
   expired_tokens_title: Jetons expirés (%{count})
+  shared_tokens_title: Jetons d’autres administrateurs sur vos démarches
+  shared_tokens_intro: Ils lisent des démarches que vous administrez. Seul leur propriétaire peut les modifier.
