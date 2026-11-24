@@ -5,6 +5,8 @@
 // guide    : navigateur visible, un panneau guide l'humain qui donne un verdict par étape.
 // video    : enregistre le scénario joué seul, avec le panneau et une voix off (macOS `say`), en mp4.
 // captures : sans tête, capture le panneau du mode guide à chaque étape (pour la description d'une PR).
+// sonde    : se connecte, ouvre --page (sinon le départ) et affiche l'arbre d'accessibilité,
+//            pour écrire les locators d'après le DOM réel plutôt qu'en devinant.
 import { chromium } from 'playwright';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, writeFileSync, readdirSync, renameSync, rmSync } from 'node:fs';
@@ -20,13 +22,15 @@ const { values: opts, positionals } = parseArgs({
     out: { type: 'string' },
     rythme: { type: 'string', default: '1' }, // multiplicateur des pauses vidéo
     muet: { type: 'boolean', default: false }, // vidéo sans voix off
-    voix: { type: 'string' } // voix `say -v` ; par défaut la première voix française installée
+    voix: { type: 'string' }, // voix `say -v` ; par défaut la première voix française installée
+    page: { type: 'string' }, // sonde : chemin à ouvrir
+    clic: { type: 'string', multiple: true } // sonde : boutons ou liens à cliquer avant d'afficher l'arbre
   }
 });
 const scenarioPath = resolve(positionals[0] ?? die('usage: recette.mjs <scenario.mjs> --mode auto|guide|video|captures'));
 const scenario = (await import(pathToFileURL(scenarioPath))).default;
 const mode = opts.mode;
-if (!['auto', 'guide', 'video', 'captures'].includes(mode)) die(`mode inconnu : ${mode}`);
+if (!['auto', 'guide', 'video', 'captures', 'sonde'].includes(mode)) die(`mode inconnu : ${mode}`);
 const baseURL = opts['base-url'];
 const out = resolve(opts.out ?? join(dirname(scenarioPath), `resultats-${mode}`));
 const worktree = execFileSync('git', ['-C', dirname(scenarioPath), 'rev-parse', '--show-toplevel'], { encoding: 'utf8' }).trim();
@@ -187,11 +191,17 @@ const eteindre = (page) => page.locator('[data-recette-cible]').evaluateAll((els
 })).catch(() => {});
 
 // En bas de page, la cible ne peut pas être centrée : le panneau passe du côté opposé.
-// Après une action qui change de page, la cible a disparu : il revient à droite.
-async function placer(etat, etape, ctx) {
-  const box = await etape.cible?.(ctx)?.first().boundingBox({ timeout: 1000 }).catch(() => null);
+// Après l'action, on se règle sur la `zone` à juger si l'étape en a une, sinon sur la cible ;
+// si elle a disparu (changement de page), le panneau revient à droite.
+const aJuger = (etape, apres) => (apres && etape.zone) || etape.cible;
+async function placer(etat, etape, ctx, apres = false) {
+  const box = await aJuger(etape, apres)?.(ctx)?.first().boundingBox({ timeout: 1000 }).catch(() => null);
   etat.cote = box && box.x + box.width / 2 > 640 ? 'gauche' : 'droite';
 }
+
+// Amène à l'écran ce qu'on juge : la `zone` après l'action, sinon la cible.
+const centrer = (etape, ctx, apres) => aJuger(etape, apres)?.(ctx)?.first()
+  .evaluate((el) => el.scrollIntoView({ block: 'center', behavior: 'instant' }), null, { timeout: 1000 }).catch(() => {});
 
 async function main() {
   // Garde : on ne vide que ce qui ressemble à une sortie de recette.
@@ -265,6 +275,19 @@ async function main() {
   const depart = typeof scenario.depart === 'function' ? scenario.depart(data) : scenario.depart;
   await page.goto(depart);
 
+  if (mode === 'sonde') {
+    if (opts.page) await page.goto(typeof opts.page === 'string' ? opts.page.replace(/\{(\w+)\}/g, (_, k) => data[k]) : depart);
+    await page.waitForLoadState('networkidle');
+    for (const nom of opts.clic ?? []) {
+      await page.getByRole('button', { name: nom }).or(page.getByRole('link', { name: nom })).first().click();
+      await page.waitForLoadState('networkidle');
+    }
+    console.log(`${page.url()}\n${await page.locator('body').ariaSnapshot()}`);
+    await context.close();
+    await browser.close();
+    return;
+  }
+
   const total = scenario.etapes.length;
   const resultats = [];
   function ecrireRapport() {
@@ -314,7 +337,7 @@ async function main() {
         if (ev.type === 'fermer') break;
         if (ev.type === 'faire') {
           await afficher({ ...state, fait: true, consigne: '⏳ En cours…' });
-          try { await etape.action(ctx); await placer(state, etape, ctx); await afficher({ ...state, consigne: '✓ Fait. Vérifiez l’attendu ci-dessous.' }); }
+          try { await etape.action(ctx); await centrer(etape, ctx, true); await placer(state, etape, ctx, true); await afficher({ ...state, consigne: '✓ Fait. Vérifiez l’attendu ci-dessous.' }); }
           catch (err) { await afficher({ ...state, consigne: `⚠ Action impossible : ${err.message.split('\n')[0]}. Faites-la à la main.` }); }
           continue;
         }
@@ -347,10 +370,11 @@ async function main() {
         resultat.verdict = 'échec';
         resultat.erreur = err.message.split('\n')[0];
       }
-      await placer(base, etape, ctx);
+      await centrer(etape, ctx, true);
+      await placer(base, etape, ctx, true);
       if (mode === 'captures') {
         const echec = resultat.verdict === 'échec';
-        await etape.cible?.(ctx)?.first().evaluate((el) => el.scrollIntoView({ block: 'center', behavior: 'instant' }), null, { timeout: 1000 }).catch(() => {});
+        await centrer(etape, ctx, true);
         await afficher({ ...base, mode: 'guide', boutons: true, fait: true, montrerAttendu: true,
           ...(echec ? { echec: resultat.erreur } : { consigne: '✓ Fait. Vérifiez l’attendu ci-dessous.' }) });
         await capturer('attendu');
@@ -366,7 +390,7 @@ async function main() {
     }
 
     // La page a pu défiler depuis (chargement, action) : la capture doit montrer ce qu'on juge.
-    await etape.cible?.(ctx)?.first().evaluate((el) => el.scrollIntoView({ block: 'center', behavior: 'instant' }), null, { timeout: 1000 }).catch(() => {});
+    await centrer(etape, ctx, !!resultat.verdict);
     await afficher({ ...state, cache: true });
     await page.screenshot({ path: join(out, `etape-${String(i + 1).padStart(2, '0')}.png`) });
     await afficher({ ...state, cache: false });

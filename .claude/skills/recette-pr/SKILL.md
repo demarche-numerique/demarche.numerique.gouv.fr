@@ -13,7 +13,7 @@ Fichiers du skill (`.claude/skills/recette-pr/`) :
 |---|---|
 | `prepare.sh <N>` | worktree détaché `../review-pr-<N>` sur la tête de la PR, dépendances, base `tps_review_pr_<N>` rechargée depuis le schéma de la PR puis seedée (Oaken) |
 | `serve.sh <N>` | Rails sur :3100 et Vite sur :3136, à côté du serveur de dev (3000/3036) qui reste intact |
-| `recette.mjs <scenario> --mode auto\|guide\|video\|captures` | joue le scénario (voir plus bas) ; la vidéo est commentée en voix off |
+| `recette.mjs <scenario> --mode auto\|guide\|video\|captures\|sonde` | joue le scénario (voir plus bas) ; la vidéo est commentée en voix off ; `sonde` affiche l'arbre d'accessibilité d'une page |
 | `exemple-scenario.mjs` | scénario de référence (PR 14604) : à lire avant d'en écrire un |
 | `cleanup.sh <N>` | arrête le serveur, supprime worktree et bases |
 
@@ -70,7 +70,8 @@ export default {
   etapes: [{
     titre, consigne,          // ce que l'humain lit
     narration,                // optionnel : voix off de l'étape en vidéo, sinon la consigne
-    cible: ({ page }) => locator,       // surlignée avant l'action
+    cible: ({ page }) => locator,       // ce qu'on manipule : surlignée avant l'action
+    zone: ({ page }) => locator,        // optionnel : ce qu'on juge, amené à l'écran après l'action
     action: async ({ page, data }) => {},  // « Le faire pour moi » en mode guide
     attendu: '…',             // ce que l'humain doit constater
     verifier: async ({ page }) => {}    // lève une erreur si l'attendu n'est pas là
@@ -80,9 +81,11 @@ export default {
 
 Règles :
 - **Chaque étape part d'un état stable.** En mode guide, l'humain clique dans le panneau entre deux étapes : un menu, une popover ou une modale ouverte à l'étape précédente est fermé. L'action rouvre ce dont elle a besoin (voir `ouvrirMenu` dans l'exemple).
-- Locators par rôle, label et texte visibles (`getByRole`, `getByLabel`, `getByText`), scopés au bloc concerné. Les specs système de la PR donnent les libellés exacts.
-- Données hors seeds → `preparation`, jamais des clics de mise en place dans les étapes : la recette montre la feature, pas le décor. Inspire-toi des seeds (`db/seeds/procedures.rb`) pour construire une démarche.
-- **`preparation` est rejouée à chaque lancement** (auto, guide, vidéo, captures) sur la même base : rends-la idempotente (`find_or_create_by!`, purge de ce qu'elle a créé et de ce que les étapes créent, comme une copie). Sinon chaque run empile des données et décale les compteurs que l'attendu cite.
+- Locators par rôle, label et texte visibles (`getByRole`, `getByLabel`, `getByText`), scopés au bloc concerné. Les specs système de la PR donnent les libellés exacts, et leurs helpers (`add_column`, `add_filter`, `select_autocomplete`…) le parcours : lis leur implémentation dans `spec/support/` ou en bas de la spec, pas seulement leur appel.
+- **Écris les actions d'après le DOM réel, pas en devinant.** Avant une action sur un widget, lance la sonde : `recette.mjs scenario.mjs --mode sonde [--page '/procedures/{procedure}'] [--clic 'Personnaliser le tableau' --clic 'Colonne à afficher']`. Elle joue la préparation, se connecte, ouvre la page (`{clé}` est pris dans `data`), clique les boutons ou liens nommés et affiche l'arbre d'accessibilité : rôles et noms exacts. Pièges déjà rencontrés : un « bouton » DSFR qui est un lien (`link "Personnaliser"`), un `Select` React Aria (un `button` qui ouvre une `listbox`, sans champ texte) dont la liste est **virtualisée** (une option hors de vue n'est pas dans le DOM : faire défiler la `listbox` jusqu'à elle), un bouton activé par un contrôleur Stimulus pas encore branché (attendre `networkidle` avant d'agir).
+- **Cible et zone.** La cible est ce qu'on manipule ; quand l'attendu porte ailleurs (le tableau après « Personnaliser le tableau », une carte après une navigation), donne une `zone` : le runner l'amène à l'écran après l'action, y place le panneau et la cadre dans les captures. Sans elle, la vidéo affiche l'attendu sur un écran qui ne le montre pas.
+- Données hors seeds → `preparation`, jamais des clics de mise en place dans les étapes : la recette montre la feature, pas le décor. Inspire-toi des seeds (`db/seeds/procedures.rb`, `db/seeds/dossiers.rb`) pour construire une démarche et ses dossiers. Le chemin d'une démarche n'est pas une colonne : `Procedure.find_with_path(path).first` pour la retrouver d'un run à l'autre.
+- **`preparation` est rejouée à chaque lancement** (auto, guide, vidéo, captures, sonde) sur la même base : rends-la idempotente (`find_or_create_by!`, purge de ce qu'elle a créé et de ce que les étapes créent, comme une copie). Sinon chaque run empile des données et décale les compteurs que l'attendu cite.
 - **Un attendu se déduit du code, pas de l'aperçu.** Lis le mailer, le composant ou la vue qui produit le texte avant d'écrire l'attendu : qui est listé, qui est exclu, au singulier ou au pluriel. Un attendu deviné fait échouer une étape sur un comportement correct, et c'est du temps perdu à trancher « bug du scénario ou bug de la PR ».
 - Pas besoin de faire défiler la page dans les actions : le runner centre la cible (sans animation : le DSFR anime le défilement, et une capture partirait avant la fin) et recentre avant chaque capture. Le panneau passe du côté opposé à la cible, et revient à droite quand l'action a changé de page. Il est transparent aux clics, sauf ses boutons.
 - `verifier` contrôle l'attendu, pas seulement l'absence d'erreur : chaque étape a le sien. **Tout texte cité entre guillemets dans l'attendu est vérifié mot pour mot** (`getByText`) : les libellés changent au fil des rebases, et un `isDisabled` seul laisse passer un message faux.
