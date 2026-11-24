@@ -1,0 +1,93 @@
+<% content_for(:title, @subject) %>
+
+<p>
+  Bonjour,
+</p>
+
+<p>
+  Voici le résumé de votre activité hebdomadaire :
+</p>
+
+<% @overviews.each_with_index do |procedure_overview, index| %>
+  <h2 style="font-size: 16px; font-weight: 300; margin: 25px 0 5px;">
+    <%= procedure_overview.procedure.libelle %>
+    <%= link_to 'voir', instructeur_procedure_url(procedure_overview.procedure), style: 'color: #0069CC; font-size: 14px;' %>
+  </h2>
+
+  <table
+    cellpadding="0"
+    cellspacing="0"
+    style="width: 100%; padding-bottom: 20px;"
+  >
+    <tbody>
+      <% if procedure_overview.created_dossiers_count > 0 %>
+        <tr>
+          <td style="padding: 2px 0;">
+            <span style="font-weight: bold;">
+              <%= procedure_overview.created_dossiers_count %>
+            </span>
+
+            <%= procedure_overview.created_dossier_description %>
+          </td>
+        </tr>
+      <% end %>
+
+      <% if procedure_overview.dossiers_en_construction_count > 0 %>
+        <tr>
+          <td style="padding: 2px 0;">
+            <span style="font-weight: bold;">
+              <%= procedure_overview.dossiers_en_construction_count %>
+            </span>
+
+            <%= procedure_overview.dossiers_en_construction_description %>
+
+            <% if procedure_overview.old_dossiers_en_construction.count > 0 %>
+              dont
+              <span style="font-weight: bold; color: #FF5D60; padding: 2px 0;">
+                <%= procedure_overview.old_dossiers_en_construction.count %>
+              </span>
+              depuis plus de 7 jours
+              <% if procedure_overview.old_dossiers_en_construction.count < 6 %>
+                :
+                <%= sanitize(procedure_overview.old_dossiers_en_construction.map { link_to "n° #{it.id}", instructeur_dossier_url(procedure_overview.procedure, it), style: 'color: #0069CC;' }.join(', '), attributes: %w(href style)) %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+
+      <% if procedure_overview.dossiers_en_instruction_count > 0 %>
+        <tr>
+          <td style="padding: 2px 0;">
+            <span style="font-weight: bold;">
+              <%= procedure_overview.dossiers_en_instruction_count %>
+            </span>
+
+            <%= procedure_overview.dossiers_en_instruction_description %>
+
+            <% if procedure_overview.old_dossiers_en_instruction.count > 0 %>
+              dont
+              <span style="font-weight: bold; color: #FF5D60; padding: 2px 0;">
+                <%= procedure_overview.old_dossiers_en_instruction.count %>
+              </span>
+              depuis plus de 7 jours
+              <% if procedure_overview.old_dossiers_en_instruction.count < 6 %>
+                :
+                <%= sanitize(procedure_overview.old_dossiers_en_instruction.map { link_to "n° #{it.id}", instructeur_dossier_url(procedure_overview.procedure, it), style: 'color: #0069CC;' }.join(', '), attributes: %w(href style)) %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <% if index != (@overviews.count - 1) %>
+    <div
+      class="spacer"
+      style="border-bottom: 1px solid #CCC; margin: 25px 0 30px;"
+    ></div>
+  <% end %>
+<% end %>
+
+<%= render partial: "layouts/mailers/signature" %>
