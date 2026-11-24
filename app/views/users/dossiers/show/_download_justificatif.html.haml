@@ -1,3 +1,0 @@
-- if dossier.present? && dossier.justificatif_motivation.attached?
-  %span.fr-hint-text= t('views.users.dossiers.show.status_overview.justificatif')
-  = render Attachment::ShowComponent.new(attachment: dossier.justificatif_motivation.attachment)
