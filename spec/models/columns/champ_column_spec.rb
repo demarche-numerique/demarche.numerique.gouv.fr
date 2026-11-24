@@ -27,7 +27,7 @@ describe Columns::ChampColumn do
             "440117620",
             "GRTGAZ",
             "GRTGAZ",
-            "1990-04-24",
+            Date.new(1990, 4, 24),
             "Transports par conduites",
             nil,
             "92270",

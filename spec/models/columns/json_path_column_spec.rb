@@ -22,6 +22,19 @@ describe Columns::JSONPathColumn do
     context 'when champ has no value_json' do
       it { is_expected.to be_nil }
     end
+
+    context 'with a date column' do
+      let(:jsonpath) { '$.since' }
+      let(:column) { described_class.new(procedure_id: procedure.id, label: 'label', stable_id:, tdc_type:, jsonpath:, type: :date, displayable: true, mandatory: true) }
+
+      it 'reads the ISO string as a date, for the exports' do
+        champ.update(value_json: { since: '2026-03-04' })
+        expect(column.value(champ)).to eq(Date.new(2026, 3, 4))
+
+        champ.update(value_json: { since: 'not a date' })
+        expect(column.value(champ)).to be_nil
+      end
+    end
   end
 
   describe '#filtered_ids' do
