@@ -2,5 +2,5 @@ en:
   dossier_mailer:
     notify_new_dossier_depose_to_instructeur:
       subject: New application submitted for the procedure ‘%{libelle_demarche}’
-      body: A new application has been submitted (no. %{dossier_id}) for the procedure ‘%{libelle_demarche}’
+      body: A new application has been submitted (no. %{dossier_id}) for the procedure ‘%{libelle_demarche}’.
       link: Open application no. %{dossier_id}

@@ -2,5 +2,5 @@ fr:
   dossier_mailer:
     notify_new_dossier_depose_to_instructeur:
       subject: Nouveau dossier déposé pour la démarche « %{libelle_demarche} »
-      body: Un nouveau dossier a été déposé (n° %{dossier_id}) pour la démarche « %{libelle_demarche} »
-      link: Consulter le dossier n°%{dossier_id}
+      body: Un nouveau dossier a été déposé (n° %{dossier_id}) pour la démarche « %{libelle_demarche} ».
+      link: Consulter le dossier n° %{dossier_id}
