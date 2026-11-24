@@ -1,0 +1,10 @@
+en:
+  dossier_mailer:
+    notify_brouillon_deletion:
+      subject:
+        one: "A draft application has been deleted"
+        other: "Draft applications have been deleted"
+      header:
+        one: "The maximum retention period for the draft application has been reached, so it has been deleted:"
+        other: "The maximum retention period for the draft applications has been reached, so they have been deleted:"
+      dossier_html: "no. %{dossier_id} (%{link})"

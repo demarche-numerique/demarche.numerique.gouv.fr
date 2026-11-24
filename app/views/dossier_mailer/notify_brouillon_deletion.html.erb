@@ -8,8 +8,7 @@
   <ul>
     <% @dossier_hashes.each do |d| %>
       <li>
-        <%= "n° #{d[:id]}" %>
-        (<%= link_to d[:procedure_libelle], commencer_url(d[:procedure_path]) %>)
+        <%= t('.dossier_html', dossier_id: d[:id], link: link_to(d[:procedure_libelle], commencer_url(d[:procedure_path]))) %>
       </li>
     <% end %>
   </ul>
