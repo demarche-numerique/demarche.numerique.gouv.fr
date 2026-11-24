@@ -28,7 +28,8 @@ module Instructeurs
     def toggle_filters_expanded
       @procedure_presentation.update!(filters_expanded: params[:filters_expanded])
 
-      editable_filters_component = Instructeurs::EditableFiltersComponent.new(procedure_presentation: @procedure_presentation, instructeur_procedure: @instructeur_procedure, statut: params[:statut])
+      groupe_instructeur_ids = current_instructeur.groupe_instructeurs.where(procedure_id: @procedure_presentation.procedure.id).pluck(:id)
+      editable_filters_component = Instructeurs::EditableFiltersComponent.new(procedure_presentation: @procedure_presentation, instructeur_procedure: @instructeur_procedure, statut: params[:statut], groupe_instructeur_ids:)
 
       render turbo_stream: turbo_stream.replace(editable_filters_component.id, editable_filters_component)
     end

@@ -1,16 +1,17 @@
 # frozen_string_literal: true
 
 class Instructeurs::ColumnFilterValueComponent < ApplicationComponent
-  attr_reader :filtered_column, :form, :instructeur_procedure
+  attr_reader :filtered_column, :form, :instructeur_procedure, :groupe_instructeur_ids
 
   delegate :label, :date_range?, to: :filtered_column
 
   MAX_LABEL_LENGTH = 50
 
-  def initialize(filtered_column:, form:, instructeur_procedure:)
+  def initialize(filtered_column:, form:, instructeur_procedure:, groupe_instructeur_ids:)
     @filtered_column = filtered_column
     @form = form
     @instructeur_procedure = instructeur_procedure
+    @groupe_instructeur_ids = groupe_instructeur_ids
   end
 
   def id
@@ -46,7 +47,7 @@ class Instructeurs::ColumnFilterValueComponent < ApplicationComponent
   end
 
   def column_filter_options
-    options = column.options_for_select
+    options = column.filter_options(groupe_instructeur_ids)
 
     if tdc_type.in?([TypeDeChamp.type_champs.fetch(:yes_no), TypeDeChamp.type_champs.fetch(:civilite)]) && !column.mandatory
       options << Column.not_filled_option
@@ -96,6 +97,11 @@ class Instructeurs::ColumnFilterValueComponent < ApplicationComponent
     column&.type&.in?([:enum, :enums])
   end
 
+  # A text column with options offers them as suggestions, free text still allowed.
+  def suggestions?
+    column&.type == :text && column.options_for_select.present?
+  end
+
   def radio_buttons?
     column&.type&.in?([:boolean]) || tdc_type == TypeDeChamp.type_champs.fetch(:civilite) || (column.respond_to?(:table) && column.table == "individual" && column.column == "gender")
   end
@@ -109,6 +115,23 @@ class Instructeurs::ColumnFilterValueComponent < ApplicationComponent
       items: column_filter_options,
       value: Array(filtered_column&.filter_values).map(&:to_s),
       placeholder: t('.multi_select_placeholder'),
+    }
+  end
+
+  # Only a picked suggestion submits the filter: typed text waits for the search button.
+  # The newline separator, which an input cannot hold, keeps the typed text in one value.
+  def combobox_props
+    {
+      input_id:,
+      label_id:,
+      name: 'filter[filter][value][]',
+      class_name: 'fr-mb-0',
+      items: column_filter_options,
+      selected_keys: Array(value).map(&:to_s),
+      allows_custom_value: true,
+      value_separator: "\n",
+      placeholder: t('.search_placeholder'),
+      data: { autosubmit_target: 'input' },
     }
   end
 

@@ -2,7 +2,7 @@
 
 RSpec.describe Instructeurs::EditableFiltersComponent, type: :component do
   describe "render" do
-    subject { render_inline(described_class.new(procedure_presentation:, instructeur_procedure:, statut:)) }
+    subject { render_inline(described_class.new(procedure_presentation:, instructeur_procedure:, statut:, groupe_instructeur_ids: [])) }
 
     let(:procedure) { create(:procedure) }
     let(:procedure_id) { procedure.id }

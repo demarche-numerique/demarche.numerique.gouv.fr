@@ -62,6 +62,10 @@ class Column
   def champ_column? = false
   def filterable? = filterable
 
+  # The values a reviewer's filter offers, among the dossiers of their groups.
+  # A copy: the filter appends its own options.
+  def filter_options(_groupe_instructeur_ids) = Array(options_for_select).dup
+
   def label_for_value(value)
     if value == NOT_FILLED_VALUE
       I18n.t('activerecord.attributes.type_de_champ.not_filled')

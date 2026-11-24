@@ -7,7 +7,7 @@ describe Instructeurs::ColumnFilterValueComponent, type: :component do
     component = nil
 
     ActionView::Base.empty.form_with(url: "/") do |form|
-      component = described_class.new(filtered_column:, form:, instructeur_procedure:)
+      component = described_class.new(filtered_column:, form:, instructeur_procedure:, groupe_instructeur_ids: [])
     end
 
     render_inline(component)
@@ -18,7 +18,7 @@ describe Instructeurs::ColumnFilterValueComponent, type: :component do
 
   describe 'the select case' do
     let!(:column) do
-      column = double("Column", column: :value, type: :enum, tdc_type: "drop_down_list", options_for_select:, mandatory: true, h_id: {}, label: 'option1 option2')
+      column = double("Column", column: :value, type: :enum, tdc_type: "drop_down_list", options_for_select:, filter_options: options_for_select.dup, mandatory: true, h_id: {}, label: 'option1 option2')
       allow(column).to receive(:is_a?).with(Columns::ChampColumn).and_return(true)
       column
     end
@@ -53,7 +53,7 @@ describe Instructeurs::ColumnFilterValueComponent, type: :component do
   end
 
   describe 'the yes no case' do
-    let(:column) { double("Column", column: :value, type: :boolean, tdc_type: "yes_no", options_for_select: Champs::YesNoChamp.options, mandatory:, h_id: {}, label: 'oui non') }
+    let(:column) { double("Column", column: :value, type: :boolean, tdc_type: "yes_no", options_for_select: Champs::YesNoChamp.options, filter_options: Champs::YesNoChamp.options.dup, mandatory:, h_id: {}, label: 'oui non') }
 
     context 'when the column is mandatory' do
       let(:mandatory) { true }
@@ -77,7 +77,7 @@ describe Instructeurs::ColumnFilterValueComponent, type: :component do
   end
 
   describe 'the checkbox case' do
-    let(:column) { double("Column", column: :value, type: :boolean, tdc_type: "checkbox", options_for_select: Champs::CheckboxChamp.options, mandatory:, label: 'coché non coché', h_id: {}) }
+    let(:column) { double("Column", column: :value, type: :boolean, tdc_type: "checkbox", options_for_select: Champs::CheckboxChamp.options, filter_options: Champs::CheckboxChamp.options.dup, mandatory:, label: 'coché non coché', h_id: {}) }
 
     context 'when the column is mandatory' do
       let(:mandatory) { true }
@@ -101,7 +101,7 @@ describe Instructeurs::ColumnFilterValueComponent, type: :component do
   end
 
   describe 'the notification_type case' do
-    let(:column) { double("Column", column: 'notification_type', type: :enum, options_for_select:, h_id: {}, label: 'notifications sur le dossier') }
+    let(:column) { double("Column", column: 'notification_type', type: :enum, options_for_select:, filter_options: options_for_select.dup, h_id: {}, label: 'notifications sur le dossier') }
     let(:options_for_select) { I18n.t('instructeurs.dossiers.filterable_notification').map(&:to_a).map(&:reverse) }
 
     context 'when the instructeur has chosen not to have certain notifications' do

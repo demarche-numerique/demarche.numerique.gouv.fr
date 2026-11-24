@@ -36,7 +36,7 @@
         statut_with_notifications: @statut_with_notifications }
 
   .fr-container--fluid.fr-mx-4w.overflow-y-visible
-    = render Instructeurs::EditableFiltersComponent.new(procedure_presentation: @procedure_presentation, instructeur_procedure: @instructeur_procedure, statut: @statut)
+    = render Instructeurs::EditableFiltersComponent.new(procedure_presentation: @procedure_presentation, instructeur_procedure: @instructeur_procedure, statut: @statut, groupe_instructeur_ids: @groupe_instructeur_ids)
 
     - batch_operation_component = Dossiers::BatchOperationComponent.new(statut: @statut, procedure: @procedure, followed_dossier_ids: @followed_dossier_ids_on_page)
 

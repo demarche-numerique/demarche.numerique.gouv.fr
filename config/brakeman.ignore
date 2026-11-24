@@ -194,6 +194,52 @@
         89
       ],
       "note": "The jsonpath comes from the code or from the column headers of a référentiel set by an administrateur, and is escaped by quote_string when the column is built (JSONPathColumn#initialize), as in the filters of the same class. The direction is a constant, ASC or DESC."
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "f815bac3a912d90c7fb53b5a7c84a87d755a2752f60541e02d1301e5d71620c6",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/models/columns/json_path_column.rb",
+      "line": 77,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "Arel.sql(\"jsonb_path_query_first(champs.value_json, '#{jsonpath_for_sql}') #>> '{}'\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Columns::JSONPathColumn",
+        "method": "suggested_values"
+      },
+      "user_input": "jsonpath_for_sql",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": "The jsonpath comes from the code or from the column headers of a référentiel set by an administrateur, and is escaped by quote_string when the column is built (JSONPathColumn#initialize), as in the filters of the same class."
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "10c8f08e7cc003641e5857e93ac89747e3fd21634698453ac3d9689ca827a832",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/models/columns/json_path_column.rb",
+      "line": 72,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "ChampData.where(:stable_id => stable_id, :stream => (Dossier::MAIN_STREAM)).joins(\"JOIN (#{latest_dossiers_sql(groupe_instructeur_ids.map(&:to_i).uniq.sort)}) latest_dossiers ON latest_dossiers.id = champs.dossier_id\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Columns::JSONPathColumn",
+        "method": "suggested_values"
+      },
+      "user_input": "latest_dossiers_sql(groupe_instructeur_ids.map(&:to_i).uniq.sort)",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": "The subquery is built by sanitize_sql_array from groupe_instructeur ids cast to integers and constant limits; the jsonpath it is joined to is escaped by quote_string when the column is built."
     }
   ],
   "brakeman_version": "8.0.4"

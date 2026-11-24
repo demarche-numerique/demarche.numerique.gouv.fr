@@ -70,6 +70,17 @@
     <react-fragment>
       <%= render ReactComponent.new "Select/MultipleSelect", **react_props %>
     </react-fragment>
+  <% elsif suggestions? %>
+    <%= form.label input_id, class: 'fr-label', id: label_id do %>
+      <%= render_label %>
+    <% end %>
+    <div class="fr-input-wrap fr-input-wrap--addon flex align-end">
+      <react-fragment>
+        <%= render ReactComponent.new "ComboBox/MultiComboBox", **combobox_props %>
+      </react-fragment>
+
+      <%= form.button t('.update'), class: 'fr-btn fr-icon-search-line' %>
+    </div>
   <% else %>
     <div class="default-filter">
       <% Array(value).each do |v| %>
