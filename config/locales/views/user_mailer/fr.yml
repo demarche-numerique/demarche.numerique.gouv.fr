@@ -65,6 +65,9 @@ fr:
       subject: Connectez-vous avec ProConnect
     send_archive:
       subject: Votre archive est disponible
+      available_html: "Votre archive pour la démarche %{procedure_link} est disponible. Vous pouvez la télécharger dans votre espace de gestion des archives."
+      view_archives: Consulter mes archives
+      validity_html: "Ce fichier est <b>valide %{duration}</b> et peut être téléchargé <b>plusieurs fois.</b>"
     notify_inactive_close_to_deletion:
       subject: "Votre compte %{application_name} sera supprimé dans %{remaining_weeks} semaines"
       inactive_html: "Cela fait plus de %{years} ans que vous ne vous êtes pas connecté(e) à votre <strong>compte %{application_name}</strong> avec l’adresse %{email}."

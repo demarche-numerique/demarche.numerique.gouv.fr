@@ -65,6 +65,9 @@ en:
       subject: Sign in with ProConnect
     send_archive:
       subject: Your archive is available
+      available_html: "Your archive for the procedure %{procedure_link} is available. You can download it from your archive management space."
+      view_archives: View my archives
+      validity_html: "This file is <b>valid for %{duration}</b> and can be downloaded <b>several times.</b>"
     notify_inactive_close_to_deletion:
       subject: "Your %{application_name} account will be deleted in %{remaining_weeks} weeks"
       inactive_html: "You have not signed in to your <strong>%{application_name} account</strong> with the address %{email} for more than %{years} years."
