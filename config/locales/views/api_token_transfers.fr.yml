@@ -29,3 +29,34 @@ fr:
         choose_a_recipient: Choisissez un administrateur qui administre toutes les démarches du jeton.
       destroy:
         cancelled: La proposition de transmission est annulée.
+      show:
+        title: Reprendre le jeton « %{name} »
+        dashboard: Tableau de bord
+        offer: "%{email} vous propose de reprendre ce jeton (commence par %{prefix})."
+        read_write: Lecture et écriture
+        read_only: Lecture seule
+        used_ago: Utilisé il y a %{time}
+        never_used: Jamais utilisé
+        networks: "Réseaux autorisés : %{networks}"
+        pending_ip: Adresse IP fixée au premier appel
+        no_filtering: Toutes les adresses sont acceptées
+        expires: Expire le %{date}
+        never_expires: N’expire jamais
+        expiring_soon: Ce jeton expire bientôt. Les rappels déjà envoyés à son propriétaire ne seront pas renvoyés.
+        procedures:
+          one: "%{count} démarche lue"
+          other: "%{count} démarches lues"
+        full_access: Ce jeton lit aujourd’hui toutes les démarches de %{email}. Une fois repris, il ne lira plus que ces démarches et leurs futurs clones.
+        follows_clones: Il lit aussi les futurs clones de ces démarches.
+        consequences: Ce que fera ce jeton sera fait en votre nom, y compris par toute personne qui connaît son secret. En cas de doute, acceptez, puis dupliquez-le et supprimez l’original.
+        missing:
+          one: "Vous n’administrez pas cette démarche du jeton. Demandez à en devenir administrateur, puis revenez :"
+          other: "Vous n’administrez pas ces %{count} démarches du jeton. Demandez à en devenir administrateur, puis revenez :"
+        accept: Accepter
+        decline: Refuser
+      accept:
+        accepted: Le jeton « %{name} » est maintenant à votre nom.
+        changed: Le jeton a changé depuis l’affichage de cette page. Vérifiez-le, puis acceptez à nouveau.
+        ineligible: Il vous manque des démarches de ce jeton.
+      decline:
+        declined: Vous avez refusé de reprendre le jeton.

@@ -29,3 +29,34 @@ en:
         choose_a_recipient: Choose an administrator who administers all the procedures of the token.
       destroy:
         cancelled: The hand-over offer is cancelled.
+      show:
+        title: Take over the token ‘%{name}’
+        dashboard: Dashboard
+        offer: "%{email} would like you to take over this token (starts with %{prefix})."
+        read_write: Read and write
+        read_only: Read only
+        used_ago: Used %{time} ago
+        never_used: Never used
+        networks: "Authorized networks: %{networks}"
+        pending_ip: IP address set on the first call
+        no_filtering: Every address is accepted
+        expires: Expires on %{date}
+        never_expires: Never expires
+        expiring_soon: This token expires soon. The reminders already sent to its owner will not be sent again.
+        procedures:
+          one: "%{count} procedure read"
+          other: "%{count} procedures read"
+        full_access: This token reads all the procedures of %{email} today. Once taken over, it will only read these procedures and their future clones.
+        follows_clones: It also reads the future clones of these procedures.
+        consequences: What this token does will be done in your name, including by anyone who knows its secret. If in doubt, accept, then duplicate it and delete the original.
+        missing:
+          one: "You do not administer this procedure of the token. Ask to become one of its administrators, then come back:"
+          other: "You do not administer these %{count} procedures of the token. Ask to become one of their administrators, then come back:"
+        accept: Accept
+        decline: Decline
+      accept:
+        accepted: The token ‘%{name}’ is now in your name.
+        changed: The token changed since this page was shown. Check it, then accept again.
+        ineligible: You do not administer every procedure of this token.
+      decline:
+        declined: You declined to take over the token.

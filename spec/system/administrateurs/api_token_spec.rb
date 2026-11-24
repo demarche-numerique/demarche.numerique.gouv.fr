@@ -228,6 +228,30 @@ describe 'As an administrateur I create an API token', js: true do
     expect(administrateur.api_tokens.sole).to have_attributes(allowed_procedure_ids: [procedure.id], write_access: false, authorized_networks: [IPAddr.new('192.168.1.0/24')])
   end
 
+  scenario 'handing a token over to a co-administrateur' do
+    co_admin = administrateurs.blank
+    procedure.administrateurs << co_admin
+    token = APIToken.generate(administrateur, name: 'Jeton à transmettre', allowed_procedure_ids: [procedure.id]).first
+
+    visit profil_path
+    click_on 'Modifier'
+    click_on 'Transmettre ce jeton'
+    custom_check "recipient_id_#{co_admin.id}"
+    click_on 'Proposer la transmission'
+
+    expect(page).to have_current_path(edit_admin_api_token_path(token))
+    expect(page).to have_text("Transmission proposée à #{co_admin.email}")
+    expect(page).to have_button('Annuler la transmission')
+
+    login_as co_admin.user, scope: :user
+    visit profil_path
+    click_on 'Voir la proposition'
+    click_on 'Accepter'
+
+    expect(page).to have_text('Le jeton « Jeton à transmettre » est maintenant à votre nom.')
+    expect(token.reload.administrateur).to eq(co_admin)
+  end
+
   scenario 'seeing every procedure a token reads' do
     APIToken.generate(administrateur, name: 'Export', allowed_procedure_ids: [procedures.individual, procedures.brouillon, procedures.close, procedure].map(&:id))
 

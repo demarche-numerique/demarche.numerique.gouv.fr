@@ -22,3 +22,20 @@ en:
       never_used: It has never been used.
       what_to_do: "If software of your team uses it, ask %{email} to duplicate it, or click ‘Create a copy in my name’ on your profile, then give the new token to the technical team."
       other_recipients: "Also sent to: %{emails}."
+    transfer_offered:
+      subject: "%{email} would like you to take over an API token"
+      title: "Take over the token ‘%{name}’"
+      hello: Hello,
+      offer: "%{email} would like you to take over their API token ‘%{name}’."
+      consequence: If you accept, the token will be in your name, and what it changes will be changed in your name.
+      see: See the offer
+    transfer_accepted:
+      subject: "Your API token ‘%{name}’ was handed over"
+      title: "Token ‘%{name}’ handed over"
+      hello: Hello,
+      body: "%{email} took over the token ‘%{name}’. It is now in their name. The software using it has nothing to change."
+    transfer_declined:
+      subject: "Hand-over of the token ‘%{name}’ declined"
+      title: Hand-over declined
+      hello: Hello,
+      body: "%{email} declined to take over the token ‘%{name}’. It stays in your name."

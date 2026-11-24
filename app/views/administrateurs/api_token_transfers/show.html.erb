@@ -1,0 +1,88 @@
+<% content_for :title, t('.title', name: @api_token.name) %>
+
+<%= render partial: 'shared/breadcrumbs_section',
+  locals: { steps: [[t('.dashboard'), tableau_de_bord_helper_path],
+    [t('users.profil.show.profile'), profil_path(context: :administrateur)],
+    [t('.title', name: @api_token.name)]] } %>
+
+<% procedures = @api_token.procedures.order(:libelle).to_a %>
+<% missing = Procedure.where(id: @api_token.missing_procedure_ids_for(current_administrateur)).order(:libelle).to_a %>
+
+<div class="fr-container fr-mt-2w">
+  <h1><%= t('.title', name: @api_token.name) %></h1>
+
+  <p>
+    <%= t('.offer', email: @api_token.administrateur.email, prefix: @api_token.prefix) %>
+  </p>
+
+  <ul>
+    <li>
+      <%= @api_token.write_access? ? t('.read_write') : t('.read_only') %>
+    </li>
+
+    <li>
+      <%= @api_token.last_used_at ? t('.used_ago', time: time_ago_in_words(@api_token.last_used_at, scope: :'datetime.distance_in_words.short')) : t('.never_used') %>
+    </li>
+
+    <li>
+      <% if @api_token.authorized_networks.any? %>
+        <%= t('.networks', networks: @api_token.authorized_networks_for_ui) %>
+      <% elsif @api_token.pending_auto_ip? %>
+        <%= t('.pending_ip') %>
+      <% else %>
+        <%= t('.no_filtering') %>
+      <% end %>
+    </li>
+
+    <li>
+      <%= @api_token.expires_at ? t('.expires', date: l(@api_token.expires_at, format: :long)) : t('.never_expires') %>
+    </li>
+  </ul>
+
+  <% if @api_token.expiring_soon? %>
+    <p class="fr-text-default--warning"><%= t('.expiring_soon') %></p>
+  <% end %>
+
+  <%= tag.details(open: procedures.size <= 10, class: 'fr-mb-2w') do %>
+    <summary><%= t('.procedures', count: procedures.size) %></summary>
+
+    <ul>
+      <% procedures.each do |procedure| %>
+        <li><%= "#{procedure.id} - #{procedure.libelle}" %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <% if @api_token.full_access? %>
+    <p><%= t('.full_access', email: @api_token.administrateur.email) %></p>
+  <% elsif @api_token.follows_clones? %>
+    <p><%= t('.follows_clones') %></p>
+  <% end %>
+
+  <%= render Dsfr::AlertComponent.new(title: nil, size: :sm, state: :warning, extra_class_names: 'fr-mb-2w') do |c| %>
+    <% c.with_body do %>
+      <p><%= t('.consequences') %></p>
+    <% end %>
+  <% end %>
+
+  <% if missing.any? %>
+    <p><%= t('.missing', count: missing.size) %></p>
+    <ul>
+      <% missing.each do |procedure| %>
+        <li><%= "#{procedure.id} - #{procedure.libelle}" %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <ul class="fr-btns-group fr-btns-group--inline">
+    <li>
+      <%= button_to t('.decline'), decline_admin_api_token_transfer_path(@api_token), class: 'fr-btn fr-btn--secondary', form: { data: { turbo: true } } %>
+    </li>
+
+    <% if missing.empty? %>
+      <li>
+        <%= button_to t('.accept'), accept_admin_api_token_transfer_path(@api_token), params: { fingerprint: @api_token.transfer_fingerprint }, class: 'fr-btn', form: { data: { turbo: true } } %>
+      </li>
+    <% end %>
+  </ul>
+</div>
