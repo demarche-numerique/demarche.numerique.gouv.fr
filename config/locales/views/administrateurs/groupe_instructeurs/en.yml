@@ -18,6 +18,11 @@ en:
         procedures: Procedures
         groupes: Teams
         instructeurs: Reviewers
+      options:
+        procedures: Procedures
+        groupes: Teams
+        instructeurs: Reviewers
+        options: Options
       add_instructeurs:
         wrong_address:
           one: "%{emails} is not a valid email address"

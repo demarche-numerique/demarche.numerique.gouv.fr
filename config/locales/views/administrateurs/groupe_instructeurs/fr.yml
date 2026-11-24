@@ -27,6 +27,9 @@ fr:
           other: "Les instructeurs %{emails} ont été ajoutés au groupe « %{groupe} »."
       options:
         procedures: Démarches
+        groupes: Groupes
+        instructeurs: Instructeurs
+        options: Options
       simple_routing:
         procedures: Démarches
       routing_alert_sticky_header:
