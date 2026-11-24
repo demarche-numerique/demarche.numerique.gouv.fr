@@ -2,6 +2,7 @@
 
 describe Administrateurs::IneligibiliteRulesController, type: :controller do
   include Logic
+  include ActionView::RecordIdentifier
   let(:user) { create(:user) }
   let(:admin) { create(:administrateur, user: create(:user)) }
   let(:procedure) { create(:procedure, administrateurs: [admin], public_type_de_champs:) }
@@ -32,9 +33,8 @@ describe Administrateurs::IneligibiliteRulesController, type: :controller do
 
           it 'replaces the rules component' do
             subject
-            target = ActionView::RecordIdentifier.dom_id(procedure.draft_revision, :ineligibilite_rules)
-            expect(response.body).to have_css("turbo-stream[action='replace'][target='#{target}']", visible: false)
-            expect(response.body).to include(%(<div id="#{target}">))
+            target = dom_id(procedure.draft_revision, :ineligibilite_rules)
+            expect(Nokogiri::HTML5.fragment(response.body).at_css("turbo-stream[action='replace'][target='#{target}'] template ##{target}")).to be_present
           end
         end
       end
