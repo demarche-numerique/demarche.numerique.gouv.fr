@@ -31,7 +31,7 @@ class Profile::SharedAPITokenComponent < Profile::APITokenComponent
 
   def named_procedure_ids = shared_procedure_ids
 
-  def actions = []
+  def actions = [duplicate_button(primary: true, label: t('.copy'), aria_label: t('.copy_label', name: @api_token.name))]
 
   def owner_email = @api_token.administrateur.email
 end

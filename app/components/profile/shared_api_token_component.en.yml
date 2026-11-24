@@ -8,3 +8,5 @@ en:
   with_others_html:
     one: "%{procedures} and %{count} other procedure of %{email}"
     other: "%{procedures} and %{count} other procedures of %{email}"
+  copy: "Create a copy in my name"
+  copy_label: "Create a copy in my name of the token ‘%{name}’"

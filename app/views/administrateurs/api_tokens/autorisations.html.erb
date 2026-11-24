@@ -3,12 +3,22 @@
 <%= render partial: 'shared/breadcrumbs_section',
   locals: { steps: [['Tableau de bord', tableau_de_bord_helper_path],
     [t('users.profil.show.profile'), profil_path(context: :administrateur)],
-    [@api_token_form.duplicating? ? t('administrateurs.api_tokens.duplicate_title') : t('administrateurs.api_tokens.new_token')]] } %>
+    [api_token_form_title(@api_token_form)]] } %>
 
 <div class="fr-container fr-mt-2w">
   <h1>
-    <%= @api_token_form.duplicating? ? t('administrateurs.api_tokens.duplicate_title') : t('administrateurs.api_tokens.new_token') %>
+    <%= api_token_form_title(@api_token_form) %>
   </h1>
+
+  <% if @api_token_form.copying? %>
+    <%= render Dsfr::AlertComponent.new(title: nil, size: :sm, state: :info, extra_class_names: 'fr-mb-2w') do |c| %>
+      <% c.with_body do %>
+        <p>
+          <%= t('.copied_from', name: @api_token_form.source_token.name, email: @api_token_form.source_token.administrateur.email, count: @api_token_form.source_token.procedure_ids_shared_with(current_administrateur).size) %>
+        </p>
+      <% end %>
+    <% end %>
+  <% end %>
 
   <%= form_with model: @api_token_form, url: securite_admin_api_tokens_path,
   method: :post, id: 'api-token-autorisation-form',

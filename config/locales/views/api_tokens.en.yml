@@ -4,6 +4,8 @@ en:
     api_tokens:
       new_token: New token creation
       duplicate_title: Duplicate API token
+      copy_title: Copy of a token in your name
+      copy_name: "%{name} (copy)"
       nom:
         title: New API token
         name: Name of the token
@@ -13,6 +15,9 @@ en:
         dashboard: Dashboard
       autorisations:
         title: Token privileges « %{name} »
+        copied_from:
+          one: Copy of the token ‘%{name}’ of %{email}. The procedure it reads and you administer is preselected.
+          other: Copy of the token ‘%{name}’ of %{email}. The %{count} procedures it reads and you administer are preselected.
         token_access: This token accesses
         custom_procedures: some of my procedures
         all_procedures: all my procedures
@@ -64,6 +69,7 @@ en:
         security_warning: Your token will likely allow you to handle confidential or personal data.
         responsibility: It is your responsibility to keep it secure and limit its use to authorised persons only.
         features_intro: To help you, we offer network filtering and token lifetime features.
+        open_source_warning: "The original token accepts every address. Enter the software’s addresses, or choose automatic detection: only the address of the first call will then be accepted."
         network_filtering_label: 'Network filtering:'
         auto_assign: Automatic detection on first API call
         auto_assign_hint: The IP address of your first call will be automatically authorised

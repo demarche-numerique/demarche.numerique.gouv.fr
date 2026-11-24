@@ -15,7 +15,7 @@ class APITokenForm
   attribute :lifetime, :string
   attribute :custom_lifetime, :date
 
-  attr_accessor :administrateur
+  attr_accessor :administrateur, :source_token
 
   validates :name, presence: true
   validates :allowed_procedure_ids, presence: true, if: :custom_target?
@@ -24,21 +24,26 @@ class APITokenForm
   validates :expires_at, presence: true
   validates :expires_at, comparison: { greater_than_or_equal_to: -> (_) { APIToken.min_expires_at }, less_than_or_equal_to: -> (_) { APIToken.max_expires_at } }, allow_nil: true
 
-  def self.from_token(token)
+  def self.from_token(token, administrateur:)
+    own = token.administrateur_id == administrateur.id
+
     new(
-      administrateur: token.administrateur,
+      administrateur:,
+      source_token: token,
       duplicated_token_id: token.id,
-      name: token.name,
-      target: token.full_access? ? 'all' : 'custom',
-      procedure_ids: Array(token.allowed_procedure_ids),
+      name: own ? token.name : I18n.t('administrateurs.api_tokens.copy_name', name: token.name),
+      target: own && token.full_access? ? 'all' : 'custom',
+      procedure_ids: own ? Array(token.allowed_procedure_ids) : token.procedure_ids_shared_with(administrateur),
       follows_clones: token.full_access? || token.follows_clones?,
       access: token.write_access? ? 'read_write' : 'read',
-      network_filtering: token.authorized_networks.blank? ? 'autoAssign' : 'customNetworks',
+      network_filtering: token.pending_auto_ip? ? 'autoAssign' : 'customNetworks',
       networks: token.authorized_networks_for_ui.gsub(', ', ' ').presence
     )
   end
 
   def duplicating? = duplicated_token_id.present?
+
+  def copying? = source_token.present? && source_token.administrateur_id != administrateur.id
 
   def custom_target? = target == 'custom'
 

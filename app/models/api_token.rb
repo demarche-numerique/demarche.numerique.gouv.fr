@@ -116,6 +116,10 @@ class APIToken < ApplicationRecord
     requires_ip_filtering? && authorized_networks.empty?
   end
 
+  def open_to_every_address?
+    !requires_ip_filtering? && authorized_networks.empty?
+  end
+
   def expired?
     expires_at&.past?
   end

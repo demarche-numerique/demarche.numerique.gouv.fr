@@ -20,6 +20,12 @@ RSpec.describe Profile::SharedAPITokenComponent, type: :component do
       expect(legend).to have_link("#{shared.libelle} (n° #{shared.id})", href: "/admin/procedures/#{shared.id}")
       expect(legend).to have_no_text(procedures.brouillon.libelle)
     end
+
+    it 'only offers to copy it in my name' do
+      expect(page).to have_css("button.fr-btn--secondary[aria-label='Créer une copie à mon nom du jeton « Tableau »']", text: 'Créer une copie à mon nom')
+      expect(page).to have_no_link('Modifier')
+      expect(page).to have_no_link('Supprimer')
+    end
   end
 
   context 'with a full access token' do

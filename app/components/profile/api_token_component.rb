@@ -128,13 +128,13 @@ class Profile::APITokenComponent < ApplicationComponent
       aria: { label: t('.edit_label', name: @api_token.name) }
   end
 
-  def duplicate_button(primary:)
-    button_to t('.duplicate'),
+  def duplicate_button(primary:, label: t('.duplicate'), aria_label: t('.duplicate_label', name: @api_token.name))
+    button_to label,
       nom_admin_api_tokens_path,
       params: { duplicate: @api_token.id },
       form: { data: { turbo: false } },
       class: class_names('fr-btn fr-btn--sm fr-btn--icon-left fr-icon-file-add-line', 'fr-btn--secondary': primary, 'fr-btn--tertiary': !primary),
-      aria: { label: t('.duplicate_label', name: @api_token.name) }
+      aria: { label: aria_label }
   end
 
   def destroy_link

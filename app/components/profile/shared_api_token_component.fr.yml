@@ -8,3 +8,5 @@ fr:
   with_others_html:
     one: "%{procedures} et %{count} autre démarche de %{email}"
     other: "%{procedures} et %{count} autres démarches de %{email}"
+  copy: "Créer une copie à mon nom"
+  copy_label: "Créer une copie à mon nom du jeton « %{name} »"
