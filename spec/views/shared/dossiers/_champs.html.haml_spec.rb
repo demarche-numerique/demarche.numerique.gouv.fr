@@ -108,12 +108,48 @@ describe 'shared/dossiers/champs', type: :view do
         is_expected.to include("N° #{linked_dossier.id}")
       end
     end
+  end
 
-    context "when the instructeur has no access to the linked dossier" do
-      let(:linked_dossier) { create(:dossier, :en_construction) }
+  context "with a dossier_link champ shown as a data card" do
+    let(:public_type_de_champs) { [{ type: :dossier_link }] }
+    let(:nav_bar_profile) { :instructeur }
+    let(:action_name) { "show" }
+    let(:accessible_procedure) { create(:procedure, libelle: "Culture et Santé", organisation: "ARS La Réunion", instructeurs: [instructeur]) }
+    let(:linked_dossier) { create(:dossier, :en_construction, procedure: accessible_procedure) }
+    let(:value) { linked_dossier.id }
+    let(:current_user) { instructeur.user }
 
-      it "renders the no-access component instead of the summary" do
-        is_expected.to have_css("#modal-no-access-to-dossier-#{linked_dossier.id}", visible: false)
+    before do
+      dossier.champs.first.update(value:)
+      allow(view).to receive(:current_user).and_return(current_user)
+      allow(view).to receive(:current_instructeur).and_return(instructeur)
+      without_partial_double_verification do
+        allow(view.controller).to receive_messages(nav_bar_profile:, action_name:)
+      end
+    end
+
+    it "renders the card instead of the sentence" do
+      card = Capybara.string(subject).find(".external-champ")
+      expect(card).to have_css(".source", text: "Source\u00A0:\u00A0#{APPLICATION_NAME}")
+      expect(card).to have_link("Dossier n° #{linked_dossier.id}", href: instructeur_dossier_path(accessible_procedure, linked_dossier))
+      is_expected.to have_no_text("déposé le")
+    end
+
+    context "when printed" do
+      let(:action_name) { "print" }
+
+      it "keeps the sentence" do
+        is_expected.to have_no_css(".external-champ")
+        is_expected.to have_link("N° #{linked_dossier.id}", href: instructeur_dossier_path(accessible_procedure, linked_dossier))
+      end
+    end
+
+    context "when the linked dossier is expired" do
+      let(:linked_dossier) { create(:dossier, :en_construction, :hidden_by_expired, procedure: accessible_procedure) }
+
+      it "keeps the sentence" do
+        is_expected.to have_no_css(".external-champ")
+        is_expected.to have_text("mais expiré le")
       end
     end
   end
