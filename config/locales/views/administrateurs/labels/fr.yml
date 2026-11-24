@@ -1,6 +1,15 @@
 fr:
   administrateurs:
     labels:
+      index:
+        title: Labels
+        new_label: Nouveau label
+        labels_list: Liste des labels
+        customize_order: Personnaliser l’ordre
+        name: Nom
+        actions: Actions
+        edit: Modifier
+        delete: Supprimer
       edit:
         title: Modifier le label
         labels_management: gestion des labels

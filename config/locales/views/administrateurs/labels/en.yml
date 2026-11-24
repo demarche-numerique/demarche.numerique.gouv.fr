@@ -1,6 +1,15 @@
 en:
   administrateurs:
     labels:
+      index:
+        title: Labels
+        new_label: New label
+        labels_list: Labels list
+        customize_order: Customize order
+        name: Name
+        actions: Actions
+        edit: Edit
+        delete: Delete
       edit:
         title: Edit label
         labels_management: Label management
