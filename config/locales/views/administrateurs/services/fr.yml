@@ -28,7 +28,6 @@ fr:
         title: Service
         services_choice: Choix du service
         new_service: Nouveau service
-        heading: Nouveau service
       form:
         siret_hint_html: "Indiquez le numéro de SIRET de l’organisme dont ce service dépend. Rechercher le SIRET sur"
         siret_format: "Format attendu : 14 chiffres. Exemple : 50000123456789"
