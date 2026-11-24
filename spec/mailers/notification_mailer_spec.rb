@@ -53,6 +53,12 @@ RSpec.describe NotificationMailer, type: :mailer do
       expect(subject.body).to include("Pour en connaitre la nature, veuillez consulter votre dossier dans votre compte #{APPLICATION_NAME}")
       expect(subject.body).to have_link("Consulter mon dossier", href: dossier_url(dossier))
     end
+
+    it "renders the email in the applicant's locale" do
+      dossier.user.update!(locale: 'en')
+      expect(subject.subject).to eq("A decision has been made on your application no. #{dossier.id} (#{dossier.procedure.libelle})")
+      expect(subject.body).to have_link("View my application", href: dossier_url(dossier))
+    end
   end
 
   describe 'send_depose_notification' do
