@@ -38,7 +38,7 @@ describe Administrateurs::ServicesController, type: :controller do
         subject
         expect(assigns[:service].siret).to be_nil
         expect(assigns[:prefilled]).to be_nil
-        expect(response.body).to have_css("h1", text: "Nouveau Service")
+        expect(response.body).to have_css("h1", text: "Nouveau service")
       end
     end
   end

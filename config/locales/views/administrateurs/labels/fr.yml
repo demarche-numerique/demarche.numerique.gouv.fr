@@ -12,11 +12,11 @@ fr:
         delete: Supprimer
       edit:
         title: Modifier le label
-        labels_management: gestion des labels
+        labels_management: Gestion des labels
         back_to_labels: Liste de tous les labels
       new:
         title: Nouveau label
-        labels_management: gestion des labels
+        labels_management: Gestion des labels
         back_to_labels: Liste de tous les labels
         heading: Créer un nouveau label
       form:
@@ -29,6 +29,6 @@ fr:
         cancel: Annuler
         submit: Valider
       delete_labels:
-        zero: Êtes-vous sûr de vouloir supprimer le label « %{label_name} » ?
-        one: Le label « %{label_name} » est déjà assigné à un dossier, êtes-vous sûr de vouloir le supprimer ?
-        other: Le label « %{label_name} » est déjà assigné à %{count} dossiers, êtes-vous sûr de vouloir le supprimer ?
+        zero: Êtes-vous sûr de vouloir supprimer le label « %{label_name} » ?
+        one: Le label « %{label_name} » est déjà assigné à un dossier, êtes-vous sûr de vouloir le supprimer ?
+        other: Le label « %{label_name} » est déjà assigné à %{count} dossiers, êtes-vous sûr de vouloir le supprimer ?
