@@ -1,7 +1,7 @@
 <% content_for(:title, @groupe_instructeur.label) %>
 <% render_procedure_sticky_title(@procedure) %>
 
-<%= render partial: 'shared/breadcrumbs_section', locals: { steps: [[admin_procedures_back_label(@procedure), admin_procedures_back_path(@procedure)], [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)], ['Groupes d’instructeurs', admin_procedure_groupe_instructeurs_path(@procedure)], [@groupe_instructeur.label]] } %>
+<%= render partial: 'shared/breadcrumbs_section', locals: { steps: [[admin_procedures_back_label(@procedure), admin_procedures_back_path(@procedure)], [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)], [t('.groupe_instructeurs'), admin_procedure_groupe_instructeurs_path(@procedure)], [@groupe_instructeur.label]] } %>
 
 <%= render Procedure::GroupeInstructeurMenuComponent.new(procedure: @procedure) do %>
   <%= render Procedure::OneGroupeManagementComponent.new(revision: @procedure.active_revision, groupe_instructeur: @groupe_instructeur) %>

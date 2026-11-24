@@ -23,6 +23,8 @@ en:
         groupes: Teams
         instructeurs: Reviewers
         options: Options
+      show:
+        groupe_instructeurs: Teams
       add_instructeurs:
         wrong_address:
           one: "%{emails} is not a valid email address"

@@ -30,6 +30,8 @@ fr:
         groupes: Groupes
         instructeurs: Instructeurs
         options: Options
+      show:
+        groupe_instructeurs: Groupes d’instructeurs
       simple_routing:
         procedures: Démarches
       routing_alert_sticky_header:
