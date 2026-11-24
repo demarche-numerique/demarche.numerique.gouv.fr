@@ -958,6 +958,35 @@ fr:
   datetime:
     formats:
       long: "%d %B %Y à %H:%M"
+    distance_in_words:
+      short:
+        less_than_x_minutes:
+          one: "moins d’une minute"
+          other: "moins de %{count} minutes"
+        x_minutes:
+          one: "%{count} minute"
+          other: "%{count} minutes"
+        about_x_hours:
+          one: "une heure"
+          other: "%{count} heures"
+        x_days:
+          one: "%{count} jour"
+          other: "%{count} jours"
+        about_x_months:
+          one: "un mois"
+          other: "%{count} mois"
+        x_months:
+          one: "%{count} mois"
+          other: "%{count} mois"
+        about_x_years:
+          one: "un an"
+          other: "%{count} ans"
+        over_x_years:
+          one: "plus d’un an"
+          other: "plus de %{count} ans"
+        almost_x_years:
+          one: "presque un an"
+          other: "presque %{count} ans"
   date:
     formats:
       long: "%d %B %Y"
