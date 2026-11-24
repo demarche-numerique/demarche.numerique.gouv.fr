@@ -1,27 +1,20 @@
-<% content_for(:title, 'Confirmez votre adresse électronique') %>
+<% content_for(:title, t('.subject')) %>
 
-<p>Bonjour <%= @user.email %>&nbsp;!</p>
+<p><%= t('.greeting', email: @user.email) %></p>
 
 <p>
-  Veuillez confirmer votre adresse électronique en cliquant sur le lien
-  ci-dessous&nbsp;:
-  <%= dsfr_button 'Je confirme', france_connect_confirm_email_url(@token), :primary %>
+  <%= t('.confirm') %>
+  <%= dsfr_button t('user_mailer.shared.confirm_button'), france_connect_confirm_email_url(@token), :primary %>
 </p>
 
 <p>
-  Ce lien est valide
-  <%= distance_of_time_in_words(FranceConnectInformation::CONFIRMATION_EMAIL_VALIDITY) %>.
+  <%= t('.validity', duration: distance_of_time_in_words(FranceConnectInformation::CONFIRMATION_EMAIL_VALIDITY)) %>
 </p>
 
-<p>
-  Tant que vous n’aurez pas confirmé votre adresse électronique, vous ne
-  recevrez aucune notification sur l’avancement de vos dossiers.
-</p>
+<p><%= t('.no_notification') %></p>
 
 <p>
-  Si vous n’êtes pas à l’origine de cette demande, vous pouvez ignorer ce
-  message. Et si vous avez besoin d’assistance, n’hésitez pas à nous contacter
-  à <%= mail_to CONTACT_EMAIL %>.
+  <%= t('user_mailer.shared.ignore_or_contact_html', contact_link: mail_to(CONTACT_EMAIL)) %>
 </p>
 
 <%= render partial: "layouts/mailers/signature" %>

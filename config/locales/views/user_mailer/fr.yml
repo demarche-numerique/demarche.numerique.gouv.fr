@@ -2,6 +2,7 @@ fr:
   user_mailer:
     shared:
       ignore_or_contact_html: "Si vous n’êtes pas à l’origine de cette demande, vous pouvez ignorer ce message. Et si vous avez besoin d’assistance, n’hésitez pas à nous contacter à %{contact_link}."
+      confirm_button: Je confirme
     new_account_warning:
       subject: Demande de création de compte
     ask_for_merge:
@@ -15,6 +16,10 @@ fr:
       subject: Veuillez confirmer la fusion de compte
     custom_confirmation_instructions:
       subject: Confirmez votre adresse électronique
+      greeting: "Bonjour %{email} !"
+      confirm: "Veuillez confirmer votre adresse électronique en cliquant sur le lien ci-dessous :"
+      validity: Ce lien est valide %{duration}.
+      no_notification: Tant que vous n’aurez pas confirmé votre adresse électronique, vous ne recevrez aucune notification sur l’avancement de vos dossiers.
     invite_instructeur:
       subject: Activez votre compte instructeur
     invite_tiers:

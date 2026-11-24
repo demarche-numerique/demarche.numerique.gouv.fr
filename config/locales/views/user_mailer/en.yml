@@ -2,6 +2,7 @@ en:
   user_mailer:
     shared:
       ignore_or_contact_html: "If you did not make this request, you can ignore this message. If you need help, feel free to contact us at %{contact_link}."
+      confirm_button: I confirm
     new_account_warning:
       subject: Account creation request
     ask_for_merge:
@@ -15,6 +16,10 @@ en:
       subject: Please confirm the account merge
     custom_confirmation_instructions:
       subject: Confirm your email address
+      greeting: "Hello %{email}!"
+      confirm: "Please confirm your email address by clicking the link below:"
+      validity: This link is valid for %{duration}.
+      no_notification: Until you confirm your email address, you will not receive any notification about the progress of your applications.
     invite_instructeur:
       subject: Activate your reviewer account
     invite_tiers:
