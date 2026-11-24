@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class Profile::APITokenCardComponent < ApplicationComponent
+  def initialize(unfold_expired: false)
+    @unfold_expired = unfold_expired
+  end
+
   private
 
   def render?
@@ -8,6 +12,12 @@ class Profile::APITokenCardComponent < ApplicationComponent
   end
 
   def api_tokens
-    current_administrateur.api_tokens.order(created_at: :desc)
+    @api_tokens ||= current_administrateur.api_tokens.order(created_at: :desc).to_a
   end
+
+  def valid_api_tokens = api_tokens.reject(&:expired?)
+
+  def expired_api_tokens = api_tokens.filter(&:expired?)
+
+  def expired_unfolded? = @unfold_expired || valid_api_tokens.empty?
 end

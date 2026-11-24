@@ -1,0 +1,21 @@
+<div class="fr-table fr-mb-0">
+  <div class="fr-table__wrapper">
+    <div class="fr-table__container">
+      <div class="fr-table__content">
+        <table aria-labelledby="<%= @labelledby %>">
+          <thead>
+            <tr>
+              <th scope="col" class="fr-col-2"><%= t('.token') %></th>
+              <th scope="col" class="fr-col-2"><%= t('.access') %></th>
+              <th scope="col" class="fr-col-2"><%= t('.last_use') %></th>
+              <th scope="col" class="fr-col-2"><%= t('.expiration') %></th>
+              <th scope="col" class="fr-col--lg"><%= t('.actions') %></th>
+            </tr>
+          </thead>
+
+          <%= content %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

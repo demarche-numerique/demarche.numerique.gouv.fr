@@ -17,3 +17,29 @@
     font-weight: bold;
   }
 }
+
+// The DSFR draws the border under a table cell as a background image. An API token
+// takes two rows, the second one reading as the legend of the first: no border between them.
+.fr-table__content .api-token-row {
+  // Its natural height: a long token name, spanning both rows, then lengthens the legend
+  // row only, instead of opening a gap between the two.
+  height: 2.5rem;
+
+  > th,
+  > td {
+    padding-top: 0.75rem;
+  }
+
+  > td {
+    padding-bottom: 0;
+    background-image: none;
+  }
+
+  > .api-token-actions {
+    padding-top: 0.5rem;
+  }
+}
+
+.fr-table__content .api-token-details-row > td {
+  padding-top: 0.25rem;
+}

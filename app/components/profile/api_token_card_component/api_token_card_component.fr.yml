@@ -3,3 +3,5 @@ fr:
   first_paragraph_html: |
     Ces jetons sont nécessaires pour effectuer des appels vers l’API de %{application_name}. <br>En savoir plus sur  sur <a target="_blank" rel="noopener" href="%{api_doc_url}" title="Voir la documentation de l’API de %{application_name}">l’API GraphQL</a>
   create_token: Créer un nouveau jeton
+  my_tokens_title: Mes jetons
+  expired_tokens_title: Jetons expirés (%{count})

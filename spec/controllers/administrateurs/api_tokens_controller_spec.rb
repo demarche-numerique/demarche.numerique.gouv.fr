@@ -159,6 +159,30 @@ describe Administrateurs::APITokensController, type: :controller do
     end
   end
 
+  describe 'destroy' do
+    render_views
+
+    let!(:token) { APIToken.generate(admin, name: 'À supprimer').first }
+    let(:card) { streams.at_css("turbo-stream[action='replace'][target='#{ActionView::RecordIdentifier.dom_id(admin, :profil_api_token)}'] template") }
+
+    let!(:expired) { APIToken.generate(admin, name: 'Expiré').first.tap { it.update_column(:expires_at, 1.day.ago.to_date) } }
+
+    it 'deletes the token and redraws the card, without an empty table' do
+      delete :destroy, params: { id: token.id }, format: :turbo_stream
+
+      expect(APIToken.exists?(token.id)).to be(false)
+      expect(card.at_css('table[aria-labelledby="my-api-tokens-title"]')).to be_nil
+    end
+
+    it 'keeps the expired tokens unfolded while deleting them one by one' do
+      APIToken.generate(admin, name: 'Autre expiré').first.update_column(:expires_at, 1.day.ago.to_date)
+      delete :destroy, params: { id: expired.id }, format: :turbo_stream
+
+      expect(card.at_css('table[aria-labelledby="my-api-tokens-title"] tbody th').text).to include('À supprimer')
+      expect(card.at_css('#expired-api-tokens .fr-accordion__btn')['aria-expanded']).to eq('true')
+    end
+  end
+
   describe 'update' do
     render_views
 

@@ -1,0 +1,7 @@
+---
+en:
+  token: "Token"
+  access: "Access"
+  last_use: "Last use"
+  expiration: "Expiration"
+  actions: "Actions"
