@@ -10,6 +10,24 @@ class TypesDeChamp::DossierLinkTypeDeChamp < TypeDeChamp
   boolean_options :procedures_limit
   def dossier_link_procedure_ids = Array.wrap(super)
 
+  def customization_column(procedure_id:) = canonical_column(procedure_id:)
+
+  def columns(procedure_id:, displayable: true, prefix: nil)
+    shared = { procedure_id:, stable_id:, tdc_type: type_champ, displayable:, mandatory: mandatory? }
+    [
+      Columns::DossierLinkNumberColumn.new(
+        **shared,
+        label: linked_column_label(prefix, :application_number),
+        applicant_label: libelle_with_prefix(prefix),
+        type: self.class.column_type,
+        options_for_select:
+      ),
+      Columns::DossierLinkColumn.new(**shared, label: linked_column_label(prefix, :submitted_on), jsonpath: '$.submitted_on', type: :date, filterable: false),
+      Columns::DossierLinkColumn.new(**shared, label: linked_column_label(prefix, :procedure_title), jsonpath: '$.procedure_title', type: :enum),
+      Columns::DossierLinkColumn.new(**shared, label: linked_column_label(prefix, :procedure_agency), jsonpath: '$.procedure_agency', type: :text, filterable: false),
+    ]
+  end
+
   def revision_diff_options
     {
       procedures_limit: procedures_limit?,
@@ -22,5 +40,11 @@ class TypesDeChamp::DossierLinkTypeDeChamp < TypeDeChamp
 
   def dossier_link_procedure_ids=(value)
     super(Array.wrap(value).map(&:to_i).reject(&:zero?).uniq)
+  end
+
+  private
+
+  def linked_column_label(prefix, key)
+    "#{libelle_with_prefix(prefix)} – #{I18n.t(key, scope: 'activerecord.attributes.procedure_presentation.fields.dossier_link')}"
   end
 end

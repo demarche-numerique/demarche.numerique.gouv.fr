@@ -51,7 +51,12 @@ class Instructeurs::ColumnFilterValueComponent < ApplicationComponent
   end
 
   def build_column_filter_options
-    options = column.filter_options(groupe_instructeur_ids)
+    options = case column
+    when Columns::DossierLinkColumn
+      column.options_for_dossiers(current_instructeur.dossiers)
+    else
+      column.filter_options(groupe_instructeur_ids)
+    end
 
     if tdc_type.in?([TypeDeChamp.type_champs.fetch(:yes_no), TypeDeChamp.type_champs.fetch(:civilite)]) && !column.mandatory
       options << Column.not_filled_option

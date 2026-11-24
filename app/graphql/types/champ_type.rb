@@ -22,6 +22,8 @@ module Types
         []
       elsif object.carte?
         [object.type_de_champ.canonical_column(procedure_id: object.procedure.id)]
+      elsif object.dossier_link?
+        [object.type_de_champ.canonical_column(procedure_id: object.procedure.id)]
       else
         object.type_de_champ.columns(procedure_id: object.procedure.id)
       end

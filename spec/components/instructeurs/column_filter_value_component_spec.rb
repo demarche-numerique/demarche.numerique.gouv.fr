@@ -10,6 +10,7 @@ describe Instructeurs::ColumnFilterValueComponent, type: :component do
       component = described_class.new(filtered_column:, form:, instructeur_procedure:, groupe_instructeur_ids: [])
     end
 
+    allow(component).to receive(:current_instructeur).and_return(instructeur_procedure.instructeur)
     render_inline(component)
   end
 
@@ -32,6 +33,29 @@ describe Instructeurs::ColumnFilterValueComponent, type: :component do
         "option1", "option2",
       ])
     }
+  end
+
+  describe 'the linked procedure title filter' do
+    let(:procedure) { create(:procedure, :published, :routee, instructeurs: [instructeur], public_type_de_champs: [{ type: :dossier_link }]) }
+    let(:instructeur) { create(:instructeur) }
+    let!(:instructeur_procedure) { create(:instructeurs_procedure, instructeur:, procedure:) }
+    let(:column) do
+      tdc = procedure.active_revision.public_root_type_de_champs.first
+      tdc.columns(procedure_id: procedure.id).third
+    end
+    let(:accessible_dossier) { create(:dossier, :en_construction, procedure:, groupe_instructeur: procedure.defaut_groupe_instructeur) }
+    let(:other_group_dossier) { create(:dossier, :en_construction, procedure:, groupe_instructeur: procedure.groupe_instructeurs.last) }
+
+    let(:filtered_column) do
+      accessible_dossier.champ_data.find_by!(stream: Dossier::MAIN_STREAM).update!(value_json: { 'procedure_title' => 'Démarche accessible' })
+      other_group_dossier.champ_data.find_by!(stream: Dossier::MAIN_STREAM).update!(value_json: { 'procedure_title' => 'Démarche autre groupe' })
+      super()
+    end
+
+    it 'only offers titles from dossiers the instructeur can access' do
+      props = JSON.parse(page.find('react-component')['props'])
+      expect(props.fetch('items')).to eq([['Démarche accessible', 'Démarche accessible']])
+    end
   end
 
   describe 'the input case' do

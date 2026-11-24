@@ -63,4 +63,55 @@ RSpec.describe DossiersListPersonnalisation, type: :model do
       expect(displayed_columns.map(&:label)).to eq(['Ville'])
     end
   end
+
+  describe 'dossier link column' do
+    let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :dossier_link, libelle: 'Dossier lié' }]) }
+    let(:column) { procedure.customizable_columns.first }
+
+    it 'keeps the bare libelle once saved and reloaded, on the column the reviewer screens resolve' do
+      personnalisation = create(:dossiers_list_personnalisation, procedure:, displayed_columns: [column])
+      Current.reset
+
+      reloaded = DossiersListPersonnalisation.find(personnalisation.id).displayed_columns.sole
+
+      expect(reloaded.label).to eq('Dossier lié')
+      expect(reloaded.h_id).to eq(column.h_id)
+      expect(procedure.find_column(h_id: column.h_id).label).to eq('Dossier lié – N° dossier')
+    end
+
+    context 'when the field is no longer offered in the current revision' do
+      include Logic
+
+      let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :yes_no, libelle: 'Lié ?', stable_id: 1 }, { type: :dossier_link, libelle: 'Dossier lié' }]) }
+      let(:column) { procedure.customizable_columns.find { it.label == 'Dossier lié' } }
+
+      def reloaded_after(personnalisation)
+        procedure.publish_revision!(procedure.administrateurs.first)
+        Current.reset
+        DossiersListPersonnalisation.find(personnalisation.id).displayed_columns.sole
+      end
+
+      it 'keeps the bare libelle when the field was removed' do
+        personnalisation = create(:dossiers_list_personnalisation, procedure:, displayed_columns: [column])
+        procedure.draft_revision.remove_type_de_champ(column.stable_id)
+
+        reloaded = reloaded_after(personnalisation)
+
+        expect(reloaded.label).to eq('Dossier lié')
+        expect(reloaded).to eq(procedure.find_column(h_id: column.h_id))
+        expect(procedure.find_column(h_id: column.h_id).label).to eq('Dossier lié – N° dossier')
+      end
+
+      it 'keeps the bare libelle when the field got a condition' do
+        personnalisation = create(:dossiers_list_personnalisation, procedure:, displayed_columns: [column])
+        procedure.draft_revision.find_and_ensure_exclusive_use(column.stable_id).update!(condition: ds_eq(champ_value(1), constant(true)))
+
+        reloaded = reloaded_after(personnalisation)
+
+        expect(procedure.reload.customizable_columns.map(&:stable_id)).not_to include(column.stable_id)
+        expect(reloaded.label).to eq('Dossier lié')
+        expect(reloaded.h_id).to eq(column.h_id)
+      end
+    end
+  end
 end
