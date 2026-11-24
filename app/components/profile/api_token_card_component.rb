@@ -21,5 +21,14 @@ class Profile::APITokenCardComponent < ApplicationComponent
 
   def expired_unfolded? = @unfold_expired || valid_api_tokens.empty?
 
+  def shared_api_tokens
+    @shared_api_tokens ||= APIToken.visible_to(current_administrateur).includes(:administrateur).order(:name).to_a
+  end
+
   def rows(api_tokens) = api_tokens.map { Profile::APITokenComponent.new(api_token: it) }
+
+  def shared_rows
+    reader_procedure_ids = current_administrateur.procedure_ids_outside_support
+    shared_api_tokens.map { Profile::SharedAPITokenComponent.new(api_token: it, reader_procedure_ids:) }
+  end
 end

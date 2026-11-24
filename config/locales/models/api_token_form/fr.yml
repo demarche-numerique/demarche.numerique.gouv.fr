@@ -9,6 +9,7 @@ fr:
             allowed_procedure_ids:
               blank: Sélectionnez au moins une démarche
             networks:
+              blank: Entrez au moins un réseau autorisé, ou choisissez la détection automatique au 1er appel
               invalid: Vous devez entrer des adresses IPv4 ou IPv6 valides
             expires_at:
               blank: Vous devez choisir une durée de vie comprise entre demain et la durée maximale autorisée

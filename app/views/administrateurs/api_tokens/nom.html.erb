@@ -3,11 +3,11 @@
 <%= render partial: 'shared/breadcrumbs_section',
   locals: { steps: [[t('.dashboard'), tableau_de_bord_helper_path],
     [t('users.profil.show.profile'), profil_path(context: :administrateur)],
-    [@api_token_form.duplicating? ? t('administrateurs.api_tokens.duplicate_title') : t('administrateurs.api_tokens.new_token')]] } %>
+    [api_token_form_title(@api_token_form)]] } %>
 
 <div class="fr-container fr-mt-2w">
   <h1>
-    <%= @api_token_form.duplicating? ? t('administrateurs.api_tokens.duplicate_title') : t('administrateurs.api_tokens.new_token') %>
+    <%= api_token_form_title(@api_token_form) %>
   </h1>
 
   <%= form_with model: @api_token_form, url: autorisations_admin_api_tokens_path, method: :post, html: { class: 'fr-mt-2w' } do |f| %>

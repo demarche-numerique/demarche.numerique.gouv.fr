@@ -5,6 +5,14 @@ class APITokenMailerPreview < ActionMailer::Preview
     APITokenMailer.expiration(api_token)
   end
 
+  def expiration_with_co_recipients
+    APITokenMailer.expiration(api_token, [co_administrator.email])
+  end
+
+  def expiration_for_co_administrator
+    APITokenMailer.expiration_for_co_administrator(api_token, co_administrator, [co_administrator.email])
+  end
+
   def becomes_expirable
     APITokenMailer.becomes_expirable(user, [api_token], Date.new(2027, 8, 31))
   end
@@ -26,6 +34,10 @@ class APITokenMailerPreview < ActionMailer::Preview
 
   def administrateur
     Administrateur.new(user:)
+  end
+
+  def co_administrator
+    Administrateur.new(user: User.new(email: 'collegue@a.com'))
   end
 
   def user

@@ -1,0 +1,24 @@
+en:
+  api_token_mailer:
+    expiration:
+      subject: "Your API token ‘%{name}’ expires on %{date}"
+      title: "Your token ‘%{name}’ expires"
+      hello: Hello,
+      expires: "Your token ‘%{name}’ expires on %{date}. The API will then reject its calls."
+      how_to_replace: To replace it, duplicate it from your profile, give the new token to the software using it, then delete the old one.
+      tell_the_technical_team: Let the technical team in charge of this software know.
+      co_recipients:
+        one: "We also told this administrator of your procedures: %{emails}."
+        other: "We also told these administrators of your procedures: %{emails}."
+    expiration_for_co_administrator:
+      subject: An API token of %{email} expires on %{date}
+      title: "The token ‘%{name}’ expires"
+      hello: Hello,
+      expires: "The token ‘%{name}’ of %{email} expires on %{date}."
+      reads:
+        one: It reads one procedure you administer.
+        other: It reads %{count} procedures you administer.
+      used_ago: Last used %{time} ago.
+      never_used: It has never been used.
+      what_to_do: "If software of your team uses it, ask %{email} to duplicate it, or click ‘Create a copy in my name’ on your profile, then give the new token to the technical team."
+      other_recipients: "Also sent to: %{emails}."

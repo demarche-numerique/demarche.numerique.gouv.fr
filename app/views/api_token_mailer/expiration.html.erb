@@ -1,22 +1,22 @@
-<% content_for(:title, "Expiration de votre jeton « #{@api_token.name} »") %>
+<% content_for(:title, t('.title', name: @api_token.name)) %>
 
-<p>Bonjour,</p>
-
-<p>
-  Vous recevez ce courriel car vous êtes le propriétaire du jeton «
-  <%= @api_token.name %> ».
-</p>
+<p><%= t('.hello') %></p>
 
 <p>
-  <strong>Ce jeton expire le <%= l(@api_token.expires_at, format: :long) %>.</strong>
-  <br>
-  L’accès à l’API de <%= APPLICATION_NAME %> sera alors bloqué pour ce jeton.
+  <strong>
+    <%= t('.expires', name: @api_token.name, date: l(@api_token.expires_at, format: :long)) %>
+  </strong>
 </p>
 
-<p>
-  Pour le renouveler, rendez-vous sur votre page de profil, dans la section «
-  Jetons d’identification de l’API ».
-</p>
+<p><%= t('.how_to_replace') %></p>
+
+<p><%= t('.tell_the_technical_team') %></p>
+
+<% if @co_recipient_emails.any? %>
+  <p>
+    <%= t('.co_recipients', count: @co_recipient_emails.size, emails: @co_recipient_emails.to_sentence) %>
+  </p>
+<% end %>
 
 <p><%= link_to profil_url, profil_url %></p>
 

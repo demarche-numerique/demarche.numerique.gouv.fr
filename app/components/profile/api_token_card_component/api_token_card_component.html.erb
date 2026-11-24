@@ -40,4 +40,12 @@
       </div>
     </section>
   <% end %>
+
+  <% if shared_api_tokens.any? %>
+    <h3 class="fr-h6 fr-mt-4w fr-mb-1w" id="shared-api-tokens-title">
+      <%= t('.shared_tokens_title') %>
+    </h3>
+    <p class="fr-text--sm"><%= t('.shared_tokens_intro') %></p>
+    <%= render Profile::APITokensTableComponent.new(labelledby: 'shared-api-tokens-title', rows: shared_rows) %>
+  <% end %>
 </section>

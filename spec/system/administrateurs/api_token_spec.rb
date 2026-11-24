@@ -205,6 +205,29 @@ describe 'As an administrateur I create an API token', js: true do
     expect(page).to have_button('Continuer', disabled: true)
   end
 
+  scenario 'copying the token of a co-administrateur' do
+    co_admin = administrateurs.blank
+    procedure.administrateurs << co_admin
+    APIToken.generate(co_admin, name: 'Jeton du collègue', write_access: false, allowed_procedure_ids: [procedure.id], authorized_networks: [IPAddr.new('192.168.1.0/24')])
+
+    visit profil_path
+    click_on 'Créer une copie à mon nom'
+
+    expect(page).to have_field('Nom du jeton', with: 'Jeton du collègue (copie)')
+    click_on 'Continuer'
+
+    expect(page).to have_text("Copie du jeton « Jeton du collègue » de #{co_admin.email}")
+    expect(page).to have_checked_field('api_token_form_access_read')
+    click_on 'Continuer'
+
+    expect(page).to have_field('api_token_form_networks', with: '192.168.1.0/24')
+    custom_check 'api_token_form_lifetime_oneweek'
+    click_on 'Valider'
+
+    expect(page).to have_content('Votre jeton est prêt')
+    expect(administrateur.api_tokens.sole).to have_attributes(allowed_procedure_ids: [procedure.id], write_access: false, authorized_networks: [IPAddr.new('192.168.1.0/24')])
+  end
+
   scenario 'seeing every procedure a token reads' do
     APIToken.generate(administrateur, name: 'Export', allowed_procedure_ids: [procedures.individual, procedures.brouillon, procedures.close, procedure].map(&:id))
 

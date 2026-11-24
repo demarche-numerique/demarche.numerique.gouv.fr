@@ -342,6 +342,98 @@ describe APIToken, type: :model do
     end
   end
 
+  describe '.visible_to' do
+    let(:reader) { administrateurs.blank }
+    let(:owner) { administrateurs.default }
+    let(:shared) { procedures.individual }
+    let(:owners_only) { procedures.brouillon }
+    let(:support) { create(:administrateur) }
+    let(:reader_is_support) { false }
+
+    let!(:full_access) { APIToken.generate(owner).first }
+    let!(:listed) { APIToken.generate(owner, allowed_procedure_ids: [shared.id]).first }
+    let!(:elsewhere) { APIToken.generate(owner, allowed_procedure_ids: [owners_only.id]).first }
+    let!(:expired) { APIToken.generate(owner).first.tap { it.update_column(:expires_at, 1.day.ago.to_date) } }
+    let!(:legacy) { APIToken.generate(owner).first.tap { it.update_column(:version, 2) } }
+    let!(:own) { APIToken.generate(reader).first }
+    let!(:support_token) { APIToken.generate(support).first }
+
+    before do
+      AdministrateursProcedure.create!(procedure: shared, administrateur: reader, manager: reader_is_support)
+      AdministrateursProcedure.create!(procedure: shared, administrateur: support, manager: true)
+    end
+
+    it 'lists the live tokens of co-administrateurs reading a shared procedure, support left out' do
+      expect(APIToken.visible_to(reader)).to contain_exactly(full_access, listed)
+    end
+
+    context 'when the reader is attached as support' do
+      let(:reader_is_support) { true }
+
+      it { expect(APIToken.visible_to(reader)).to be_empty }
+    end
+
+    context 'when the shared procedure is in the bin' do
+      before { shared.discard! }
+
+      it { expect(APIToken.visible_to(reader)).to be_empty }
+    end
+
+    context 'when the owner left the shared procedure without its list forgetting it' do
+      before { AdministrateursProcedure.where(procedure: shared, administrateur: owner).delete_all }
+
+      it { expect(APIToken.visible_to(reader)).to be_empty }
+    end
+  end
+
+  describe '.duplicable_by' do
+    let(:reader) { administrateurs.blank }
+    let(:owner) { administrateurs.default }
+    let!(:listed) { APIToken.generate(owner, allowed_procedure_ids: [procedures.individual.id]).first }
+    let!(:elsewhere) { APIToken.generate(owner, allowed_procedure_ids: [procedures.brouillon.id]).first }
+    let!(:own_expired) { APIToken.generate(reader).first.tap { it.update_column(:expires_at, 1.day.ago.to_date) } }
+
+    before { procedures.individual.administrateurs << reader }
+
+    it 'adds the own tokens of the administrateur, expired ones included, to the visible ones' do
+      expect(APIToken.duplicable_by(reader)).to contain_exactly(listed, own_expired)
+    end
+  end
+
+  describe '#expiration_co_recipients' do
+    let(:owner) { administrateurs.default }
+    let(:procedure) { procedures.individual }
+    let(:stranger) { create(:administrateur) }
+    let(:supported_procedure) { create(:procedure, administrateurs: [stranger]) }
+    let(:api_token) { APIToken.generate(owner, allowed_procedure_ids: [procedure.id, supported_procedure.id]).first }
+    let(:co_admins) { create_list(:administrateur, 6) }
+    let(:token_holder) { co_admins.first }
+    let(:support) { create(:administrateur) }
+
+    before do
+      co_admins.each_with_index do |co_admin, i|
+        procedure.administrateurs << co_admin
+        co_admin.user.update_column(:last_sign_in_at, i.days.ago)
+      end
+      token_holder.user.update_column(:last_sign_in_at, 1.year.ago)
+      APIToken.generate(token_holder, allowed_procedure_ids: [procedure.id])
+
+      APIToken.generate(co_admins.last).first.update_column(:expires_at, 1.day.ago.to_date)
+      APIToken.generate(co_admins.last).first.update_column(:version, 2)
+      APIToken.generate(co_admins.last, allowed_procedure_ids: [procedures.brouillon.id])
+
+      AdministrateursProcedure.create!(procedure:, administrateur: support, manager: true)
+      support.user.update_column(:last_sign_in_at, Time.current)
+
+      AdministrateursProcedure.create!(procedure: supported_procedure, administrateur: owner, manager: true)
+      stranger.user.update_column(:last_sign_in_at, Time.current)
+    end
+
+    it 'picks five co-administrateurs outside support, holders of a valid token on these procedures first, then the most recently signed in' do
+      expect(api_token.expiration_co_recipients).to eq([token_holder, *co_admins[1..4]])
+    end
+  end
+
   describe '#authenticate' do
     let(:api_token_and_packed_token) { APIToken.generate(administrateur) }
     let(:api_token) { api_token_and_packed_token.first }

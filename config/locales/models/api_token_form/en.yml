@@ -9,6 +9,7 @@ en:
             allowed_procedure_ids:
               blank: Select at least one procedure
             networks:
+              blank: Enter at least one authorized network, or choose automatic detection on the first call
               invalid: You must enter valid IPv4 or IPv6 addresses
             expires_at:
               blank: You must choose a lifetime between tomorrow and the maximum allowed duration

@@ -146,6 +146,13 @@ describe Administrateurs::APITokensController, type: :controller do
       form = response.parsed_body.at_css("form[action='#{admin_api_tokens_path}']")
       expect(form.css("input[type=hidden][name='api_token_form[procedure_ids][]']").map { it['value'] }).to eq([procedure.id.to_s])
     end
+
+    it 'warns that the duplicated token accepted every address' do
+      token = APIToken.generate(admin, requires_ip_filtering: false).first
+      post :securite, params: { api_token_form: { name: 'Test', access: 'read', target: 'all', duplicated_token_id: token.id } }
+
+      expect(response.body).to include('Le jeton d’origine accepte toutes les adresses.')
+    end
   end
 
   describe 'autorisations' do
@@ -156,6 +163,26 @@ describe Administrateurs::APITokensController, type: :controller do
 
       error = response.parsed_body.at_css('fieldset.fr-fieldset--error .fr-messages-group .fr-message--error')
       expect(error.text.strip).to eq('Sélectionnez au moins une démarche')
+    end
+
+    context 'with a forged duplicated token id' do
+      let(:stranger_token) { APIToken.generate(administrateurs.blank, name: 'Jeton-etranger-42').first }
+
+      it 'shows nothing of that token' do
+        post :autorisations, params: { api_token_form: { name: 'x', duplicated_token_id: stranger_token.id } }
+        expect(response.body).not_to include('Jeton-etranger-42')
+      end
+    end
+
+    context 'when coming back to the copy of a token of a co-administrateur with another selection' do
+      let(:token) { APIToken.generate(administrateurs.blank, name: 'Jeton du collègue', allowed_procedure_ids: [procedure.id]).first }
+
+      before { procedure.administrateurs << administrateurs.blank }
+
+      it 'counts the procedures the original token shares with me' do
+        post :autorisations, params: { api_token_form: { name: 'x', duplicated_token_id: token.id, target: 'custom', procedure_ids: [procedure.id, procedures.individual.id] } }
+        expect(response.body).to include("Copie du jeton « Jeton du collègue » de #{administrateurs.blank.email}. La démarche qu’il lit et que vous administrez est présélectionnée.")
+      end
     end
   end
 

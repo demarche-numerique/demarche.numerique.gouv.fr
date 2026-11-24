@@ -48,6 +48,12 @@ describe APITokenForm do
       it { expect(form.errors).to be_of_kind(:networks, :invalid) }
     end
 
+    context 'with networks entered by hand but left empty' do
+      let(:attributes) { { network_filtering: 'customNetworks', networks: ' ' } }
+
+      it { expect(form.errors).to be_of_kind(:networks, :blank) }
+    end
+
     context 'with an infinite lifetime' do
       let(:attributes) { { lifetime: 'infinite' } }
 
@@ -74,7 +80,7 @@ describe APITokenForm do
   end
 
   describe '.from_token' do
-    subject(:form) { described_class.from_token(token) }
+    subject(:form) { described_class.from_token(token, administrateur: admin) }
 
     context 'with a full-access, read-write token with custom networks' do
       before do
@@ -124,6 +130,37 @@ describe APITokenForm do
 
       it 'keeps a restricted target' do
         expect(form.target).to eq('custom')
+      end
+    end
+
+    context 'with an old token open to every address' do
+      before { token.update!(requires_ip_filtering: false, authorized_networks: []) }
+
+      it 'asks for the networks' do
+        expect(form).to have_attributes(network_filtering: 'customNetworks', networks: nil)
+      end
+    end
+
+    context 'with the full access token of a co-administrateur' do
+      subject(:form) { described_class.from_token(token, administrateur: reader) }
+
+      let(:reader) { administrateurs.blank }
+
+      before do
+        procedures.individual.administrateurs << reader
+        token.update!(name: 'Prod', write_access: false)
+      end
+
+      it 'restricts the copy to the shared procedures, following their clones' do
+        expect(form).to have_attributes(
+          administrateur: reader,
+          name: 'Prod (copie)',
+          target: 'custom',
+          procedure_ids: [procedures.individual.id],
+          follows_clones: true,
+          access: 'read'
+        )
+        expect(form).to be_copying
       end
     end
   end

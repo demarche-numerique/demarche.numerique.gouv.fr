@@ -35,4 +35,16 @@ RSpec.describe Profile::APITokensTableComponent, type: :component do
       expect(modal).to have_link(procedures.close.libelle, href: "/admin/procedures/#{procedures.close.id}", visible: :all)
     end
   end
+
+  context 'with the token of a co-administrator sharing more procedures than its legend names' do
+    let(:other) { procedures.entreprise }
+    let(:api_token) { APIToken.generate(owner, allowed_procedure_ids: [*four_procedures, other].map(&:id)).first }
+    let(:rows) { [Profile::SharedAPITokenComponent.new(api_token:, reader_procedure_ids: four_procedures.map(&:id))] }
+
+    it 'names in the modal the shared procedures only' do
+      expect(modal).to have_text(:all, "4 démarches que vous administrez et 1 autre démarche de #{owner.email}")
+      expect(modal.all('tbody tr', visible: :all).map { it.text(:all).squish }).to eq(four_procedures.sort_by(&:libelle).map { "#{it.id} #{it.libelle}" })
+      expect(modal).to have_no_text(:all, other.libelle)
+    end
+  end
 end

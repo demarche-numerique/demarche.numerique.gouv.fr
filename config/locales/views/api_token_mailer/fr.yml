@@ -1,0 +1,24 @@
+fr:
+  api_token_mailer:
+    expiration:
+      subject: "Votre jeton d’API « %{name} » expire le %{date}"
+      title: "Expiration de votre jeton « %{name} »"
+      hello: Bonjour,
+      expires: "Votre jeton « %{name} » expire le %{date}. L’API refusera ensuite ses appels."
+      how_to_replace: Pour le remplacer, dupliquez-le depuis votre profil, donnez le nouveau jeton au logiciel qui l’utilise, puis supprimez l’ancien.
+      tell_the_technical_team: Prévenez l’équipe technique qui gère ce logiciel.
+      co_recipients:
+        one: "Nous avons aussi prévenu cet administrateur de vos démarches : %{emails}."
+        other: "Nous avons aussi prévenu ces administrateurs de vos démarches : %{emails}."
+    expiration_for_co_administrator:
+      subject: Un jeton d’API de %{email} expire le %{date}
+      title: "Expiration du jeton « %{name} »"
+      hello: Bonjour,
+      expires: "Le jeton « %{name} » de %{email} expire le %{date}."
+      reads:
+        one: Il lit une démarche que vous administrez.
+        other: Il lit %{count} démarches que vous administrez.
+      used_ago: Dernière utilisation il y a %{time}.
+      never_used: Il n’a jamais été utilisé.
+      what_to_do: "Si un logiciel de votre équipe l’utilise, demandez à %{email} de le dupliquer, ou cliquez sur « Créer une copie à mon nom » dans votre profil, puis donnez le nouveau jeton à l’équipe technique."
+      other_recipients: "Ont aussi reçu ce message : %{emails}."
