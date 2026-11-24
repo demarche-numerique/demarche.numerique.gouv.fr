@@ -1,0 +1,9 @@
+en:
+  dossier_mailer:
+    notify_brouillon_not_submitted:
+      subject: "Warning: your application no. %{dossier_id} has not been submitted"
+      not_submitted_html: "Application no. %{dossier_id} for the procedure ‘<strong>%{libelle_demarche}</strong>’ has been started but not submitted yet."
+      deadline: If you want this application to be taken into account, you must submit it before %{deadline}, the submission deadline.
+      how_to_submit_html: To do so, open the application with the button below, check it, then click on the <strong>‘Submit the file’</strong> button.
+      nothing_to_do: If you no longer wish to submit this application, you do not need to do anything.
+      access_file: Open your application

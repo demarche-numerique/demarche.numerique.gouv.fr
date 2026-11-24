@@ -3,25 +3,16 @@
 <p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
 
 <p>
-  Le dossier n°<%= @dossier.id %> pour la démarche «&nbsp;
-  <strong><%= @dossier.procedure.libelle %></strong> &nbsp;» est commencé mais
-  n’est pas encore déposé.
+  <%= t('.not_submitted_html', dossier_id: @dossier.id, libelle_demarche: @dossier.procedure.libelle) %>
 </p>
 
 <p>
-  Si vous souhaitez que ce dossier soit pris en compte, il vous faut le déposer
-  avant le <%= procedure_auto_archive_datetime(@dossier.procedure) %>, date
-  limite de dépôt des dossiers.
+  <%= t('.deadline', deadline: procedure_auto_archive_datetime(@dossier.procedure)) %>
 </p>
 
-<p>
-  Pour cela, affichez le dossier avec le bouton ci-dessous, vérifiez votre
-  dossier puis cliquez sur le bouton <strong>'Déposer le dossier'</strong>
-</p>
+<p><%= t('.how_to_submit_html') %></p>
 
-<p>
-  Si vous ne souhaitez plus déposer le dossier, vous n’avez rien à faire.
-</p>
+<p><%= t('.nothing_to_do') %></p>
 
-<%= dsfr_button('Afficher votre dossier', dossier_url(@dossier), :primary) %>
+<%= dsfr_button(t('.access_file'), dossier_url(@dossier), :primary) %>
 <%= render partial: "layouts/mailers/signature" %>
