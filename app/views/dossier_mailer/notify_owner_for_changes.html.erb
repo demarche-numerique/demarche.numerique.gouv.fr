@@ -1,0 +1,25 @@
+<% content_for :procedure_logo do %>
+  <%= render 'layouts/mailers/logo', url: @logo_url %>
+<% end %>
+
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+<p><%= t('.body_html', email_invite: @invite.email) %></p>
+<p><%= t('.link_html') %></p>
+
+<%= dsfr_button(t('.access_file'), dossier_url(@dossier), :primary) %>
+
+<% if @dossier.procedure.auto_archive_on %>
+  <p>
+    <%= t('.submit_before', before: procedure_auto_archive_datetime(@dossier.procedure)) %>
+  </p>
+<% end %>
+
+<%= render 'layouts/mailers/signature' %>
+
+<% content_for :footer do %>
+  <%= render 'layouts/mailers/service_footer', dossier: @dossier %>
+<% end %>
+
+<% content_for :sent_to do %>
+  <%= render 'layouts/mailers/sent_to', dossier: @dossier %>
+<% end %>
