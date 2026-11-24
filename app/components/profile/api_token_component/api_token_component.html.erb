@@ -1,0 +1,45 @@
+<li class="fr-mt-2w flex" id="<%= dom_id(@api_token) %>">
+  <div class="<%= class_names('fr-mr-4w', 'fr-text-default--success': recently_used?) %>">
+    <span class="fr-icon-key-line"></span>
+  </div>
+
+  <div class="flex-grow">
+    <div>
+      <b><%= @api_token.name %></b>
+      <span>(commence par <%= @api_token.prefix %>)</span>
+    </div>
+
+    <div><%= autorizations %></div>
+    <div><%= network_filtering %></div>
+
+    <div>
+      <%= expiration_badge %>
+      <%= use_and_expiration %>
+    </div>
+  </div>
+
+  <div>
+    <ul>
+      <li>
+        <%= link_to 'Modifier',
+          edit_admin_api_token_path(@api_token),
+          class: 'fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-btn--icon-left fr-icon-pencil-line' %>
+      </li>
+
+      <li>
+        <%= button_to 'Dupliquer',
+          nom_admin_api_tokens_path,
+          params: { duplicate: @api_token.id },
+          form: { data: { turbo: false } },
+          class: 'fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-btn--icon-left fr-icon-file-copy-line' %>
+      </li>
+
+      <li>
+        <%= link_to 'Supprimer',
+          admin_api_token_path(@api_token),
+          class: 'fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-btn--icon-left fr-icon-delete-line',
+          data: { turbo_method: :delete, turbo_confirm: "Confirmez-vous la suppression du jeton « #{@api_token.name} » ?" } %>
+      </li>
+    </ul>
+  </div>
+</li>
