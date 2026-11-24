@@ -67,6 +67,10 @@ class Administrateur < ApplicationRecord
     procedure.administrateurs.include?(self)
   end
 
+  def procedure_ids_outside_support
+    procedures.where(administrateurs_procedures: { manager: [false, nil] }).ids
+  end
+
   def instructeur
     user.instructeur
   end
