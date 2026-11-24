@@ -1,6 +1,0 @@
-= link_to @parent.name, gestionnaire_groupe_gestionnaire_path(@parent)
-- unless @children.empty?
-  %ul
-    - @children.each do |parent, children|
-      %li
-        = render(GroupeGestionnaire::GroupeGestionnaireTreeStructures::TreeStructureComponent.new(parent: parent, children: children))
