@@ -1,10 +1,10 @@
 <% content_for(:title, 'Confirmez votre adresse électronique') %>
 
-<p>Bonjour <%= @user.email %> !</p>
+<p>Bonjour <%= @user.email %>&nbsp;!</p>
 
 <p>
   Veuillez confirmer votre adresse électronique en cliquant sur le lien
-  ci-dessous:
+  ci-dessous&nbsp;:
   <%= dsfr_button 'Je confirme', france_connect_confirm_email_url(@token), :primary %>
 </p>
 
