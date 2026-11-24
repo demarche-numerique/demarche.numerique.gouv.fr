@@ -15,7 +15,7 @@ RSpec.describe Dossiers::AmiFollowComponent, type: :component do
     render_component
 
     expect(page).to have_css('.ami-follow')
-    expect(page).to have_text(Ami::APP_NAME)
+    expect(page).to have_text('Suivez vos démarches depuis l’application mobile officielle et gratuite de l’administration française')
     expect(page).to have_link(href: Ami::APP_URL, class: 'fr-icon-smartphone-line')
     expect(page).to have_css("a[href='#{Ami::APP_URL}'] .fr-icon-external-link-line")
     expect(page).to have_css("a[target='_blank'][rel='noopener noreferrer']")
@@ -36,6 +36,7 @@ RSpec.describe Dossiers::AmiFollowComponent, type: :component do
 
     expect(page).to have_css("button[aria-controls='ami-info-modal'][aria-haspopup='dialog']")
     expect(page).to have_css('dialog#ami-info-modal.fr-modal')
+    expect(page).to have_css('#ami-info-modal-title', text: 'Toutes les infos sur l’application')
   end
 
   context 'when previewing the page as an administrateur, without a dossier' do
