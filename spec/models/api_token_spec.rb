@@ -342,6 +342,15 @@ describe APIToken, type: :model do
     end
   end
 
+  describe '#pin_procedures' do
+    let(:api_token) { APIToken.generate(administrateur, allowed_procedure_ids: [1, 2, 3]).first }
+
+    it 'leaves follows_clones of a list token as it was' do
+      api_token.pin_procedures([1, 2])
+      expect(api_token).to have_attributes(allowed_procedure_ids: [1, 2], follows_clones: false)
+    end
+  end
+
   describe '.visible_to' do
     let(:reader) { administrateurs.blank }
     let(:owner) { administrateurs.default }
