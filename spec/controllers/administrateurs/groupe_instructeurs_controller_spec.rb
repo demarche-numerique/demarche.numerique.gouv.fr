@@ -52,7 +52,10 @@ describe Administrateurs::GroupeInstructeursController, type: :controller do
         get :index, params: { procedure_id: procedure.id }
       end
 
-      it { expect(response.body).to include('en attente de traitement', 'Lancer le routage') }
+      it 'asks to configure the rules before routing' do
+        expect(response.body).to include('pas encore été routés')
+        expect(response.parsed_body.at_css('button[disabled]', text: 'Lancer le routage')).to be_present
+      end
     end
 
     context 'with every modal of the page' do
