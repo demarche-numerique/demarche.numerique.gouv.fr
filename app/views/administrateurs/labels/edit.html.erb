@@ -1,15 +1,15 @@
-<% content_for :title, "Modifier le label" %>
+<% content_for :title, t('.title') %>
 <% render_procedure_sticky_title(@procedure) %>
 
-<%= render partial: 'shared/breadcrumbs_section', locals: { steps: [[admin_procedures_back_label(@procedure), admin_procedures_back_path(@procedure)], [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)], ['gestion des labels', [:admin, @procedure, :labels]], ['Modifier le label']] } %>
+<%= render partial: 'shared/breadcrumbs_section', locals: { steps: [[admin_procedures_back_label(@procedure), admin_procedures_back_path(@procedure)], [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)], [t('.labels_management'), [:admin, @procedure, :labels]], [t('.title')]] } %>
 
 <div class="fr-container">
   <div class="fr-mb-3w">
-    <%= link_to "Liste de tous les labels", [:admin, @procedure, :labels], class: "fr-link fr-icon-arrow-left-line fr-link--icon-left" %>
+    <%= link_to t('.back_to_labels'), [:admin, @procedure, :labels], class: "fr-link fr-icon-arrow-left-line fr-link--icon-left" %>
   </div>
 
   <h1 class="fr-h2">
-    Modifier le label
+    <%= t('.title') %>
   </h1>
 
   <%= render partial: 'form', locals: { label: @label, procedure_id: @procedure.id } %>

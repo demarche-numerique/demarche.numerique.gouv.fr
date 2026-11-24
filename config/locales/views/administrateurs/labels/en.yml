@@ -1,6 +1,10 @@
 en:
   administrateurs:
     labels:
+      edit:
+        title: Edit label
+        labels_management: Label management
+        back_to_labels: All labels
       new:
         title: New label
         labels_management: Label management

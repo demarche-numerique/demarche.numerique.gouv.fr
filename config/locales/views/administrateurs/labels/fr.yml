@@ -1,6 +1,10 @@
 fr:
   administrateurs:
     labels:
+      edit:
+        title: Modifier le label
+        labels_management: gestion des labels
+        back_to_labels: Liste de tous les labels
       new:
         title: Nouveau label
         labels_management: gestion des labels
