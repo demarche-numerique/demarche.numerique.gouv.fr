@@ -7,7 +7,10 @@ RSpec.describe InstructeurMailer, type: :mailer do
     let(:dossier) { create(:dossier) }
     subject { described_class.send_dossier(sender, dossier, recipient) }
 
-    it { expect(subject.body).to include('Bonjour') }
+    it 'links to the dossier' do
+      expect(subject.body).to include("#{sender.email} vous a envoyé le dossier n° #{dossier.id}")
+      expect(subject.body).to have_link(href: instructeur_dossier_url(dossier.procedure, dossier))
+    end
 
     context 'when perform_later is called' do
       let(:custom_queue) { 'default' }
@@ -88,6 +91,37 @@ RSpec.describe InstructeurMailer, type: :mailer do
     end
   end
 
+  describe '#send_notifications' do
+    let(:instructeur) { create(:instructeur) }
+    let(:data) do
+      [
+        {
+          procedure_libelle: 'Ma démarche',
+          procedure_id: 213,
+          nb_en_construction: 2,
+          nb_en_instruction: 1,
+          nb_processed: 3,
+          nb_accepted: 1,
+          nb_refused: 2,
+          nb_closed_without_continuation: 0,
+          nb_dossiers_with_notifications: 1,
+          nb_notifications: { 'message' => 1 },
+        },
+      ]
+    end
+
+    subject { described_class.send_notifications(instructeur, data) }
+
+    it 'summarizes the dossiers of each procedure' do
+      expect(subject.body).to have_link('Ma démarche', href: instructeur_procedure_url(213))
+      expect(subject.body).to include('2 dossiers en construction')
+      expect(subject.body).to include('1 dossier en instruction')
+      expect(subject.body).to include('3 dossiers traités')
+      expect(subject.body).to include('(1 accepté, 2 refusés)')
+      expect(subject.body).to include('1 dossier avec des notifications')
+    end
+  end
+
   describe '#last_week_overview' do
     let(:instructeur) { create(:instructeur) }
     let(:procedure) { create(:procedure, :published, instructeurs: [instructeur]) }
@@ -111,6 +145,11 @@ RSpec.describe InstructeurMailer, type: :mailer do
     subject { described_class.last_week_overview(instructeur) }
 
     it { expect(subject.body).to include(I18n.t("instructeur_mailer.last_week_overview.subject")) }
+
+    it 'flags the dossiers waiting for more than a week' do
+      expect(subject.body).to include('desc')
+      expect(subject.body).to include('depuis plus de 7 jours')
+    end
 
     context 'when the instructeur has no active procedures' do
       let(:procedure) { nil }
