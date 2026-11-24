@@ -1070,8 +1070,8 @@ en:
         download_dossier:
           link: Download your application (PDF)
         download_attestation:
-          link: Download your attestation (PDF)
-          filename: Attestation
+          link: Download your decision notice (PDF)
+          filename: Decision notice
         attestation_depot:
           get_attestation_depot: "Get a deposit receipt"
           filename: "deposit-receipt_file-%{dossier_id}.pdf"
