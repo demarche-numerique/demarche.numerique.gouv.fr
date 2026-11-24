@@ -28,4 +28,13 @@ describe 'shared/kaminari/_paginator', type: :view do
       expect(subject).to have_link('Suivant')
     end
   end
+
+  context 'on the last page' do
+    let(:current_page) { 20 }
+
+    it 'hides the next and last links' do
+      expect(subject).not_to have_css('.fr-pagination__link--next, .fr-pagination__link--last')
+      expect(subject).to have_link('Précédent')
+    end
+  end
 end
