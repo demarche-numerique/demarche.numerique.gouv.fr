@@ -12,7 +12,7 @@ describe 'experts/avis/instruction', type: :view do
 
   context 'with a confidential avis' do
     let(:current_avis) { avis.confidentiel }
-    it { is_expected.to have_text("Cet avis est confidentiel et n’est pas affiché aux autres experts consultés") }
+    it { is_expected.to have_text("Cet avis est confidentiel et n’est pas affiché aux autres experts consultés", normalize_ws: true) }
   end
 
   context 'with a not confidential avis' do
