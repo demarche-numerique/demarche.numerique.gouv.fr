@@ -94,6 +94,7 @@ class DossierMailer < ApplicationMailer
   end
 
   def notify_brouillon_deletion(dossier_hashes, to_email)
+    use_recipient_locale(to_email)
     @subject = default_i18n_subject(count: dossier_hashes.size)
     @dossier_hashes = dossier_hashes
 
@@ -101,6 +102,7 @@ class DossierMailer < ApplicationMailer
   end
 
   def notify_en_construction_deletion_to_administration(dossier, to_email)
+    use_recipient_locale(to_email)
     @subject = default_i18n_subject(dossier_id: dossier.id)
     @dossier = dossier
 
@@ -118,6 +120,7 @@ class DossierMailer < ApplicationMailer
   end
 
   def notify_automatic_deletion_for_tiers(hidden_dossiers, to_email)
+    use_recipient_locale(to_email)
     @state = hidden_dossiers.first.state
     @subject = if hidden_dossiers.one?
       default_i18n_subject(count: hidden_dossiers.size, mandataire: "#{hidden_dossiers.first.mandataire_first_name} #{hidden_dossiers.first.mandataire_last_name}")

@@ -193,6 +193,11 @@ RSpec.describe DossierMailer, type: :mailer do
       expect(subject.body).to include(dossier.procedure.libelle)
       expect(subject.body).to include(commencer_url(dossier.procedure.path))
     end
+
+    it "renders in the recipient's locale" do
+      dossier.user.update!(locale: 'en')
+      expect(subject.subject).to eq("A draft application has been deleted")
+    end
   end
 
   describe '.notify_automatic_deletion_to_user' do
