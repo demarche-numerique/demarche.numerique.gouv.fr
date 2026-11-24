@@ -54,6 +54,11 @@ en:
           one: "%{count} authorized procedure"
           other: "%{count} authorized procedures"
         remove_followed_procedure_confirm: Remove ‘%{libelle}’ from this token? Its future clones will no longer enter it either.
+        transfer_title: Hand-over
+        transfer_offered: Offered to %{email}. The token stays yours until the offer is accepted.
+        cancel_transfer: Cancel the hand-over
+        transfer_hint: A co-administrator of every procedure of this token can take it over, with the same secret.
+        transfer: Hand this token over
       update:
         networks_required: You cannot remove the API access restrictions of a permanent token.
         renamed: The token has been renamed.

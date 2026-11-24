@@ -186,6 +186,31 @@ describe Administrateurs::APITokensController, type: :controller do
     end
   end
 
+  describe 'edit' do
+    render_views
+
+    let(:token) { APIToken.generate(admin, allowed_procedure_ids: [procedure.id]).first }
+    let(:recipient) { administrateurs.blank }
+
+    before { procedure.administrateurs << recipient }
+
+    it 'offers to hand the token over' do
+      get :edit, params: { id: token.id }
+      expect(response.body).to have_link('Transmettre ce jeton', href: new_admin_api_token_transfer_path(token))
+    end
+
+    context 'while the token is offered to a co-administrateur' do
+      before { token.offer_transfer!(recipient, by: admin) }
+
+      it 'tells to whom, and lets the owner cancel the offer' do
+        get :edit, params: { id: token.id }
+        expect(response.body).to have_text("Transmission proposée à #{recipient.email}")
+        expect(response.body).to have_button('Annuler la transmission')
+        expect(response.body).to have_no_link('Transmettre ce jeton')
+      end
+    end
+  end
+
   describe 'destroy' do
     render_views
 

@@ -1,0 +1,31 @@
+---
+fr:
+  administrateurs:
+    api_token_transfers:
+      no_longer_pending: Cette proposition n’est plus en cours.
+      not_transferable: Ce jeton ne peut pas être transmis.
+      new:
+        title: Transmettre le jeton « %{name} »
+        dashboard: Tableau de bord
+        intro: La personne qui accepte devient propriétaire du jeton. Le secret ne change pas, le logiciel n’a rien à modifier. Vous ne pourrez plus modifier ni supprimer ce jeton.
+        full_access:
+          one: Ce jeton lit toutes vos démarches. Une fois transmis, il lira seulement la démarche actuelle et ses futurs clones.
+          other: Ce jeton lit toutes vos démarches. Une fois transmis, il lira seulement les %{count} démarches actuelles et leurs futurs clones.
+        recipient: À qui le transmettre ?
+        last_sign_in: dernière connexion le %{date}
+        never_signed_in: aucune connexion
+        submit: Proposer la transmission
+        cancel: Annuler
+        nobody: Aucun autre administrateur n’administre toutes les démarches de ce jeton.
+        not_covering:
+          one: "%{count} administrateur ne peut pas le recevoir"
+          other: "%{count} administrateurs ne peuvent pas le recevoir"
+        not_covering_hint: Il leur manque des démarches de ce jeton. Ajoutez-les comme administrateurs de ces démarches pour pouvoir le leur transmettre.
+        missing:
+          one: "%{email} : il manque %{count} démarche"
+          other: "%{email} : il manque %{count} démarches"
+      create:
+        offered: Proposition envoyée à %{email}.
+        choose_a_recipient: Choisissez un administrateur qui administre toutes les démarches du jeton.
+      destroy:
+        cancelled: La proposition de transmission est annulée.

@@ -1,6 +1,7 @@
 ---
 fr:
   prefix_html: "Commence par %{prefix}"
+  transfer_offered: "Transmission proposée à %{email}"
   read_write: "Lecture et écriture"
   read_only: "Lecture seule"
   used_ago: "Il y a %{time}"

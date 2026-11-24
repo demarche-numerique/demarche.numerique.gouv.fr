@@ -1,6 +1,7 @@
 ---
 en:
   prefix_html: "Starts with %{prefix}"
+  transfer_offered: "Offered to %{email}"
   read_write: "Read and write"
   read_only: "Read only"
   used_ago: "%{time} ago"

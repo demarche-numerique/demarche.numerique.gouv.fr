@@ -241,6 +241,20 @@ describe 'As an administrateur I create an API token', js: true do
     end
   end
 
+  scenario 'cancelling the hand-over of a token' do
+    co_admin = administrateurs.blank
+    procedure.administrateurs << co_admin
+    token = APIToken.generate(administrateur, name: 'Jeton proposé', allowed_procedure_ids: [procedure.id]).first
+    token.offer_transfer!(co_admin, by: administrateur)
+
+    visit edit_admin_api_token_path(token)
+    click_on 'Annuler la transmission'
+
+    expect(page).to have_text('La proposition de transmission est annulée.')
+    expect(page).to have_link('Transmettre ce jeton')
+    expect(token.reload.transfer_recipient).to be_nil
+  end
+
   scenario 'restricting and restoring access to an api token' do
     token = APIToken.generate(administrateur).first
     visit edit_admin_api_token_path(token)

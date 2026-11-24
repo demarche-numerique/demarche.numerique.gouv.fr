@@ -1,0 +1,59 @@
+<% content_for :title, t('.title', name: @api_token.name) %>
+
+<%= render partial: 'shared/breadcrumbs_section',
+  locals: { steps: [[t('.dashboard'), tableau_de_bord_helper_path],
+    [t('users.profil.show.profile'), profil_path(context: :administrateur)],
+    [t('administrateurs.api_tokens.edit.title', name: @api_token.name), edit_admin_api_token_path(@api_token)],
+    [t('.title', name: @api_token.name)]] } %>
+
+<div class="fr-container fr-mt-2w">
+  <h1><%= t('.title', name: @api_token.name) %></h1>
+
+  <p><%= t('.intro') %></p>
+
+  <% if @api_token.full_access? %>
+    <p><%= t('.full_access', count: @api_token.procedure_ids.size) %></p>
+  <% end %>
+
+  <% if @eligible.any? %>
+    <%= form_with url: admin_api_token_transfer_path(@api_token), method: :post, data: { turbo: true } do |f| %>
+      <%= render Dsfr::RadioButtonListComponent.new(form: f,
+        target: :recipient_id,
+        error: @recipient_error,
+        buttons: @eligible.map { |administrateur|
+          { label: administrateur.email,
+            value: administrateur.id,
+            hint: administrateur.user.last_sign_in_at ? t('.last_sign_in', date: l(administrateur.user.last_sign_in_at.to_date, format: :long)) : t('.never_signed_in') }
+        }) do %>
+        <%= t('.recipient') %>
+      <% end %>
+
+      <ul class="fr-btns-group fr-btns-group--inline">
+        <li>
+          <%= link_to t('.cancel'), edit_admin_api_token_path(@api_token), class: 'fr-btn fr-btn--secondary' %>
+        </li>
+
+        <li>
+          <%= f.button t('.submit'), type: :submit, class: 'fr-btn' %>
+        </li>
+      </ul>
+    <% end %>
+  <% else %>
+    <p><%= t('.nobody') %></p>
+  <% end %>
+
+  <% if @not_covering.any? %>
+    <%= tag.details(open: @not_covering.size < 5, class: 'fr-mt-4w') do %>
+      <summary><%= t('.not_covering', count: @not_covering.size) %></summary>
+      <p><%= t('.not_covering_hint') %></p>
+
+      <ul>
+        <% @not_covering.each do |administrateur, missing| %>
+          <li>
+            <%= t('.missing', email: administrateur.email, count: missing) %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+</div>

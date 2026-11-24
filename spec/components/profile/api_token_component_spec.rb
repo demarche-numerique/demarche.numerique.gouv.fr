@@ -4,6 +4,7 @@ RSpec.describe Profile::APITokenComponent, type: :component do
   include ActionView::RecordIdentifier
 
   let(:owner) { administrateurs.default }
+  let(:recipient) { administrateurs.blank }
   let(:listed) { [procedures.individual, procedures.brouillon] }
   let(:api_token) do
     APIToken.generate(owner, name: 'Export', allowed_procedure_ids: listed.map(&:id), follows_clones: true, authorized_networks: [IPAddr.new('192.168.1.0/24'), IPAddr.new('10.0.0.1')]).first
@@ -33,12 +34,13 @@ RSpec.describe Profile::APITokenComponent, type: :component do
   end
 
   context 'when the token expired' do
-    let(:api_token) { APIToken.generate(owner).first.tap { it.update_column(:expires_at, 1.day.ago.to_date) } }
+    let(:api_token) { APIToken.generate(owner).first.tap { it.update_columns(expires_at: 1.day.ago.to_date, transfer_recipient_id: recipient.id) } }
 
-    it 'offers to duplicate it rather than to edit it' do
+    it 'offers to duplicate it rather than to edit it, and no longer mentions its inert hand-over' do
       expect(page).to have_css('.fr-badge--error', text: 'Expiré')
       expect(page).to have_css('button.fr-btn--secondary', text: 'Dupliquer')
       expect(page).to have_no_link('Modifier')
+      expect(page).to have_no_text('Transmission proposée')
     end
   end
 
@@ -52,5 +54,15 @@ RSpec.describe Profile::APITokenComponent, type: :component do
     let(:api_token) { APIToken.generate(owner).first.tap { it.update_column(:requires_ip_filtering, false) } }
 
     it { expect(legend).to have_css('.fr-badge--warning', text: 'Aucun filtrage réseau') }
+  end
+
+  context 'when the token is offered to a co-administrateur' do
+    let(:api_token) { APIToken.generate(owner, allowed_procedure_ids: listed.map(&:id)).first.tap { it.update_column(:transfer_recipient_id, recipient.id) } }
+
+    it 'tells to whom, and leaves the hand-over to the edit page' do
+      expect(page).to have_css('th', text: "Transmission proposée à #{recipient.email}")
+      expect(page).to have_no_link('Transmettre')
+      expect(page).to have_no_button('Annuler la transmission')
+    end
   end
 end
