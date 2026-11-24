@@ -767,6 +767,23 @@ describe Columns::ChampColumn do
       end
     end
 
+    context 'for a number champ' do
+      let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :decimal_number, libelle: 'Montant' }]) }
+      let(:column) { procedure.find_column(label: 'Montant') }
+      let(:amounts) { ['100', '9', '-3', '10.5'] }
+      let!(:dossiers_by_amount) do
+        amounts.index_with do |amount|
+          create(:dossier, procedure:).tap { it.public_root_champs.first.update_columns(value: amount) }
+        end
+      end
+
+      context 'asc' do
+        let(:order) { 'asc' }
+
+        it { is_expected.to eq(dossiers_by_amount.values_at('-3', '9', '10.5', '100').map(&:id)) }
+      end
+    end
+
     context 'for a private champ' do
       let(:column) { procedure.find_column(label: procedure.active_revision.private_root_type_de_champs.first.libelle) }
 
