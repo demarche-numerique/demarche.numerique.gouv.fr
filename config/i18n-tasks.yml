@@ -135,6 +135,7 @@ ignore_unused:
   - 'invite_mailer.*.subject'
   - 'instructeur_mailer.*.subject'
   - 'phishing_alert_mailer.*.subject'
+  - 'api_token_mailer.*.subject'
   - 'activerecord.models.*'
   - 'activerecord.attributes.*'
   - 'activemodel.attributes.map_filter.*'

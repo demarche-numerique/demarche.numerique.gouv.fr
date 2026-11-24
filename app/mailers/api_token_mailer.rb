@@ -6,10 +6,8 @@ class APITokenMailer < ApplicationMailer
 
   def expiration(api_token)
     @api_token = api_token
-    user = api_token.administrateur.user
-    subject = "Votre jeton d’accès à la plateforme #{APPLICATION_NAME} expire le #{l(@api_token.expires_at, format: :long)}"
 
-    mail(to: user.email, subject:)
+    mail(to: api_token.administrateur.email, subject: default_i18n_subject(name: api_token.name, date: l(api_token.expires_at, format: :long)))
   end
 
   # One-off announcement sent when a token created without an expiration date is

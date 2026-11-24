@@ -1,0 +1,8 @@
+en:
+  api_token_mailer:
+    expiration:
+      subject: "Your API token ‘%{name}’ expires on %{date}"
+      title: "Your token ‘%{name}’ expires"
+      hello: Hello,
+      expires: "Your token ‘%{name}’ expires on %{date}. The API will then reject its calls."
+      how_to_replace: Duplicate it from your profile, then replace the old token with the new one wherever it is used.

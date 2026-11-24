@@ -1,0 +1,8 @@
+fr:
+  api_token_mailer:
+    expiration:
+      subject: "Votre jeton d’API « %{name} » expire le %{date}"
+      title: "Expiration de votre jeton « %{name} »"
+      hello: Bonjour,
+      expires: "Votre jeton « %{name} » expire le %{date}. L’API refusera ensuite ses appels."
+      how_to_replace: Dupliquez-le depuis votre profil, puis remplacez l’ancien jeton par le nouveau partout où il est utilisé.
