@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_23_114601) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_24_140000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_catalog.plpgsql"
@@ -130,10 +130,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_23_114601) do
     t.boolean "requires_ip_filtering", default: true, null: false
     t.inet "stored_ips", default: [], array: true
     t.string "token_digest"
+    t.bigint "transfer_recipient_id"
     t.datetime "updated_at", null: false
     t.integer "version", default: 3, null: false
     t.boolean "write_access", default: true, null: false
     t.index ["administrateur_id"], name: "index_api_tokens_on_administrateur_id"
+    t.index ["transfer_recipient_id"], name: "index_api_tokens_on_transfer_recipient_id"
   end
 
   create_table "archives", force: :cascade do |t|

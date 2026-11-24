@@ -274,6 +274,10 @@ scope module: 'administrateurs', path: 'admin', as: 'admin', defaults: { nav_bar
   end
 
   resources :api_tokens, only: [:create, :destroy, :edit, :update] do
+    resource :transfer, controller: 'api_token_transfers', only: [:new, :create, :show, :destroy] do
+      post :accept
+      post :decline
+    end
     member do
       delete 'remove_procedure'
     end

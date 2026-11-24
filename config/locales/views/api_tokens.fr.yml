@@ -54,6 +54,11 @@ fr:
           one: "%{count} démarche autorisée"
           other: "%{count} démarches autorisées"
         remove_followed_procedure_confirm: Retirer « %{libelle} » de ce jeton ? Ses futurs clones n’y entreront plus non plus.
+        transfer_title: Transmission
+        transfer_offered: Transmission proposée à %{email}. Le jeton reste à vous tant qu’elle n’est pas acceptée.
+        cancel_transfer: Annuler la transmission
+        transfer_hint: Un co-administrateur de toutes les démarches de ce jeton peut le reprendre, avec le même secret.
+        transfer: Transmettre ce jeton
       update:
         networks_required: Vous ne pouvez pas supprimer les restrictions d’accès à l’API d’un jeton permanent.
         renamed: Le jeton a été renommé.

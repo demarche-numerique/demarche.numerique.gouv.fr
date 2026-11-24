@@ -12,7 +12,7 @@ class Profile::APITokenCardComponent < ApplicationComponent
   end
 
   def api_tokens
-    @api_tokens ||= current_administrateur.api_tokens.order(created_at: :desc).to_a
+    @api_tokens ||= current_administrateur.api_tokens.includes(:transfer_recipient).order(created_at: :desc).to_a
   end
 
   def valid_api_tokens = api_tokens.reject(&:expired?)
@@ -20,6 +20,10 @@ class Profile::APITokenCardComponent < ApplicationComponent
   def expired_api_tokens = api_tokens.filter(&:expired?)
 
   def expired_unfolded? = @unfold_expired || valid_api_tokens.empty?
+
+  def offered_api_tokens
+    current_administrateur.offered_api_tokens.includes(:administrateur).filter(&:transferable?)
+  end
 
   def shared_api_tokens
     @shared_api_tokens ||= APIToken.visible_to(current_administrateur).includes(:administrateur).order(:name).to_a

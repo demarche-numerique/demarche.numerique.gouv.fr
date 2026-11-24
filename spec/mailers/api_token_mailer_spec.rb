@@ -37,6 +37,32 @@ RSpec.describe APITokenMailer, type: :mailer do
     end
   end
 
+  describe 'transfer' do
+    let(:owner) { administrateurs.default }
+    let(:api_token) { APIToken.generate(owner, name: 'Prod', allowed_procedure_ids: [procedures.individual.id]).first }
+
+    it 'shows the offer to its recipient' do
+      mail = described_class.transfer_offered(api_token, administrateur)
+
+      expect(mail.to).to eq([user.email])
+      expect(mail.body.decoded).to include("/admin/api_tokens/#{api_token.id}/transfer")
+    end
+
+    it 'tells the former owner who took the token over' do
+      mail = described_class.transfer_accepted(api_token_name: 'Prod', former_owner_email: owner.email, new_owner_email: user.email)
+
+      expect(mail.to).to eq([owner.email])
+      expect(mail.body.decoded).to include("#{user.email} a repris le jeton « Prod »")
+    end
+
+    it 'tells the owner who declined the token' do
+      mail = described_class.transfer_declined(api_token_name: 'Prod', owner_email: owner.email, recipient_email: user.email)
+
+      expect(mail.to).to eq([owner.email])
+      expect(mail.body.decoded).to include("#{user.email} a refusé de reprendre le jeton « Prod »")
+    end
+  end
+
   describe '#becomes_expirable' do
     # The cap itself, so the date is always within the create validations, and
     # a fixed one would silently expire. It is also what the backfill passes.

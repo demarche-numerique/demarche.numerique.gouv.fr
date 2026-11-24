@@ -186,6 +186,31 @@ describe Administrateurs::APITokensController, type: :controller do
     end
   end
 
+  describe 'edit' do
+    render_views
+
+    let(:token) { APIToken.generate(admin, allowed_procedure_ids: [procedure.id]).first }
+    let(:recipient) { administrateurs.blank }
+
+    before { procedure.administrateurs << recipient }
+
+    it 'offers to hand the token over' do
+      get :edit, params: { id: token.id }
+      expect(response.body).to have_link('Transmettre ce jeton', href: new_admin_api_token_transfer_path(token))
+    end
+
+    context 'while the token is offered to a co-administrateur' do
+      before { token.offer_transfer!(recipient, by: admin) }
+
+      it 'tells to whom, and lets the owner cancel the offer' do
+        get :edit, params: { id: token.id }
+        expect(response.body).to have_text("Transmission proposée à #{recipient.email}")
+        expect(response.body).to have_button('Annuler la transmission')
+        expect(response.body).to have_no_link('Transmettre ce jeton')
+      end
+    end
+  end
+
   describe 'destroy' do
     render_views
 
@@ -310,6 +335,23 @@ describe Administrateurs::APITokensController, type: :controller do
       end
 
       it 'does not write the listed procedure back' do
+        expect(token.reload.allowed_procedure_ids).to eq([procedure.id])
+      end
+    end
+
+    context 'when the token is handed over to a co-administrateur in the meantime' do
+      let(:params) { { restore_full_access: 'true' } }
+
+      before do
+        token.update!(allowed_procedure_ids: [procedure.id])
+        allow(controller).to receive(:set_api_token).and_wrap_original do |set_api_token|
+          set_api_token.call
+          APIToken.where(id: token.id).update_all(administrateur_id: administrateurs.blank.id)
+        end
+      end
+
+      it 'leaves it alone' do
+        expect { subject }.to raise_error(ActiveRecord::RecordNotFound)
         expect(token.reload.allowed_procedure_ids).to eq([procedure.id])
       end
     end

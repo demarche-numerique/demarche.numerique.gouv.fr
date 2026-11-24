@@ -10,6 +10,17 @@
     <%= t('.first_paragraph_html', application_name: Current.application_name, api_doc_url: API_DOC_URL) %>
   </p>
 
+  <% offered_api_tokens.each do |api_token| %>
+    <%= render Dsfr::AlertComponent.new(title: nil, size: :sm, state: :info, extra_class_names: 'fr-mt-2w') do |c| %>
+      <% c.with_body do %>
+        <p>
+          <%= t('.transfer_offered', name: api_token.name, email: api_token.administrateur.email) %>
+          <%= link_to t('.see_transfer'), admin_api_token_transfer_path(api_token) %>
+        </p>
+      <% end %>
+    <% end %>
+  <% end %>
+
   <%= link_to t('.create_token'), nom_admin_api_tokens_path, class: 'fr-btn fr-btn--icon-left fr-icon-add-circle-line fr-mt-2w' %>
 
   <% if valid_api_tokens.any? %>

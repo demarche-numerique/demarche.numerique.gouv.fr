@@ -41,7 +41,9 @@ class Profile::APITokenComponent < ApplicationComponent
       data: { fr_opened: 'false' })
   end
 
-  def subtitle = nil
+  def subtitle
+    t('.transfer_offered', email: @api_token.transfer_recipient.email) if @api_token.transfer_recipient.present? && !@api_token.expired?
+  end
 
   def prefix = tag.code(@api_token.prefix, class: 'fr-text--xs fr-text-default--grey')
 

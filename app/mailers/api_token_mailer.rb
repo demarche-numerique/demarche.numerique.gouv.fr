@@ -24,6 +24,30 @@ class APITokenMailer < ApplicationMailer
     mail(to: administrateur.email, subject: default_i18n_subject(email: @owner.email, date: l(api_token.expires_at, format: :long)))
   end
 
+  def transfer_offered(api_token, recipient)
+    @api_token = api_token
+    @owner = api_token.administrateur
+
+    mail(to: recipient.email, subject: default_i18n_subject(email: @owner.email))
+  end
+
+  # The answers come as plain values: the token may be deleted, or handed over
+  # again, before the delivery job runs, and a record that no longer
+  # deserializes makes it discard the mail.
+  def transfer_accepted(api_token_name:, former_owner_email:, new_owner_email:)
+    @api_token_name = api_token_name
+    @new_owner_email = new_owner_email
+
+    mail(to: former_owner_email, subject: default_i18n_subject(name: api_token_name))
+  end
+
+  def transfer_declined(api_token_name:, owner_email:, recipient_email:)
+    @api_token_name = api_token_name
+    @recipient_email = recipient_email
+
+    mail(to: owner_email, subject: default_i18n_subject(name: api_token_name))
+  end
+
   # One-off announcement sent when a token created without an expiration date is
   # given one. Grouped per administrateur: some of them own a dozen tokens.
   def becomes_expirable(user, api_tokens, expires_on)
@@ -34,14 +58,14 @@ class APITokenMailer < ApplicationMailer
     mail(to: user.email, subject:, reply_to: CONTACT_EMAIL)
   end
 
-  # Every mail here announces that an API access is about to stop working, which
-  # is service information about a token the administrateur owns, or that reads
-  # their procedures, not outreach. Missing one means discovering the outage in
-  # production, so they all bypass unsubscriptions — the recurring notices most
-  # of all, since they land when there is still time to act.
+  # Every mail here tells who holds an API access, or when it stops working:
+  # service information about a token the administrateur owns or owned, is
+  # offered, or that reads their procedures, not outreach. Missing one means
+  # discovering the outage or the change of hands in production, so they all
+  # bypass unsubscriptions — the recurring notices most of all, since they land
+  # when there is still time to act.
   #
-  # Worth revisiting if this mailer ever carries something that is not a
-  # countdown to a broken integration.
+  # Worth revisiting if this mailer ever carries something else.
   def self.critical_email?(action_name)
     true
   end

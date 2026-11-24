@@ -7,3 +7,5 @@ en:
   expired_tokens_title: Expired tokens (%{count})
   shared_tokens_title: Tokens of other administrators on your procedures
   shared_tokens_intro: They read procedures you administer. Only their owner can change them.
+  transfer_offered: "%{email} would like you to take over their token ‘%{name}’."
+  see_transfer: See the offer

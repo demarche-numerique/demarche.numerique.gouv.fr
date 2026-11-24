@@ -13,6 +13,18 @@ class APITokenMailerPreview < ActionMailer::Preview
     APITokenMailer.expiration_for_co_administrator(api_token, co_administrator, [co_administrator.email])
   end
 
+  def transfer_offered
+    APITokenMailer.transfer_offered(offered_api_token, co_administrator)
+  end
+
+  def transfer_accepted
+    APITokenMailer.transfer_accepted(api_token_name: 'Jeton prod', former_owner_email: user.email, new_owner_email: co_administrator.email)
+  end
+
+  def transfer_declined
+    APITokenMailer.transfer_declined(api_token_name: 'Jeton prod', owner_email: user.email, recipient_email: co_administrator.email)
+  end
+
   def becomes_expirable
     APITokenMailer.becomes_expirable(user, [api_token], Date.new(2027, 8, 31))
   end
@@ -30,6 +42,10 @@ class APITokenMailerPreview < ActionMailer::Preview
       expires_at: 1.week.from_now,
       name: 'My API token'
     )
+  end
+
+  def offered_api_token
+    APIToken.new(id: SecureRandom.uuid, administrateur:, name: 'Jeton prod')
   end
 
   def administrateur
