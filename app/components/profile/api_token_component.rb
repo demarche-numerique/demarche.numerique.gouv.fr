@@ -14,12 +14,14 @@ class Profile::APITokenComponent < ApplicationComponent
       id: details_id,
       name: @api_token.name,
       networks: all_networks,
-      summary: procedures,
+      summary: legend_procedures,
       procedures: named_procedures
     )
   end
 
   private
+
+  def row_id = dom_id(@api_token)
 
   def name_id = dom_id(@api_token, :name)
 
@@ -38,6 +40,8 @@ class Profile::APITokenComponent < ApplicationComponent
       aria: { controls: details_id, haspopup: 'dialog', label: t('.details_label', name: @api_token.name) },
       data: { fr_opened: 'false' })
   end
+
+  def subtitle = nil
 
   def prefix = tag.code(@api_token.prefix, class: 'fr-text--xs fr-text-default--grey')
 
@@ -83,18 +87,20 @@ class Profile::APITokenComponent < ApplicationComponent
     network_cidrs.any? ? tag.ul(safe_join(network_cidrs.map { tag.li(tag.code(it)) })) : networks
   end
 
+  def legend_procedures = @legend_procedures ||= procedures
+
   def procedures
     return t('.all_procedures') if @api_token.full_access?
 
-    @procedures ||= begin
-      listed = if named_procedure_ids.size.between?(1, LISTED_MAX)
-        safe_join(procedure_links, ', ')
-      else
-        t('.procedures_count', count: named_procedure_ids.size)
-      end
+    with_clones(listed_procedures { t('.procedures_count', count: it) })
+  end
 
-      @api_token.follows_clones? ? t('.with_clones_html', procedures: listed, count: named_procedure_ids.size) : listed
-    end
+  def with_clones(procedures)
+    @api_token.follows_clones? ? t('.with_clones_html', procedures:, count: procedure_ids.size) : procedures
+  end
+
+  def listed_procedures
+    named_procedure_ids.size.between?(1, LISTED_MAX) ? safe_join(procedure_links, ', ') : yield(named_procedure_ids.size)
   end
 
   def procedure_links
@@ -103,7 +109,24 @@ class Profile::APITokenComponent < ApplicationComponent
 
   def named_procedures = @named_procedures ||= Procedure.where(id: named_procedure_ids).order(:libelle).pluck(:id, :libelle)
 
-  def named_procedure_ids = @named_procedure_ids ||= @api_token.full_access? ? [] : @api_token.procedure_ids
+  def procedure_ids = @procedure_ids ||= @api_token.procedure_ids
+
+  def named_procedure_ids = @api_token.full_access? ? [] : procedure_ids
+
+  def actions
+    if @api_token.expired?
+      [duplicate_button(primary: true), destroy_link]
+    else
+      [edit_link, duplicate_button(primary: false), destroy_link]
+    end
+  end
+
+  def edit_link
+    link_to t('.edit'),
+      edit_admin_api_token_path(@api_token),
+      class: 'fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left fr-icon-pencil-line',
+      aria: { label: t('.edit_label', name: @api_token.name) }
+  end
 
   def duplicate_button(primary:)
     button_to t('.duplicate'),
@@ -112,5 +135,13 @@ class Profile::APITokenComponent < ApplicationComponent
       form: { data: { turbo: false } },
       class: class_names('fr-btn fr-btn--sm fr-btn--icon-left fr-icon-file-add-line', 'fr-btn--secondary': primary, 'fr-btn--tertiary': !primary),
       aria: { label: t('.duplicate_label', name: @api_token.name) }
+  end
+
+  def destroy_link
+    link_to t('.destroy'),
+      admin_api_token_path(@api_token),
+      class: 'fr-btn fr-btn--sm fr-btn--tertiary fr-btn--icon-left fr-icon-delete-line',
+      aria: { label: t('.destroy_label', name: @api_token.name) },
+      data: { turbo_method: :delete, turbo_confirm: t('.destroy_confirm', name: @api_token.name) }
   end
 end

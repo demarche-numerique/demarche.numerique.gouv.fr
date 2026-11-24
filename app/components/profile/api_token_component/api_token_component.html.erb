@@ -1,4 +1,4 @@
-<tbody id="<%= dom_id(@api_token) %>">
+<tbody id="<%= row_id %>">
   <tr class="api-token-row">
     <th
       scope="row"
@@ -11,6 +11,10 @@
       <span class="fr-hint-text fr-text--regular">
         <%= t('.prefix_html', prefix:) %>
       </span>
+
+      <% if subtitle %>
+        <span class="fr-hint-text fr-text--regular"><%= subtitle %></span>
+      <% end %>
     </th>
 
     <td class="fr-cell--top"><%= access %></td>
@@ -23,19 +27,7 @@
 
     <td class="fr-cell--top api-token-actions">
       <div class="fr-cell--inline">
-        <% if @api_token.expired? %>
-          <%= duplicate_button(primary: true) %>
-        <% else %>
-          <%= link_to t('.edit'), edit_admin_api_token_path(@api_token),
-            class: 'fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left fr-icon-pencil-line',
-            aria: { label: t('.edit_label', name: @api_token.name) } %>
-          <%= duplicate_button(primary: false) %>
-        <% end %>
-
-        <%= link_to t('.destroy'), admin_api_token_path(@api_token),
-          class: 'fr-btn fr-btn--sm fr-btn--tertiary fr-btn--icon-left fr-icon-delete-line',
-          aria: { label: t('.destroy_label', name: @api_token.name) },
-          data: { turbo_method: :delete, turbo_confirm: t('.destroy_confirm', name: @api_token.name) } %>
+        <%= safe_join(actions) %>
       </div>
     </td>
   </tr>
@@ -55,7 +47,7 @@
       </div>
 
       <div class="fr-hint-text">
-        <%= t('.procedures_html', procedures:) %>
+        <%= t('.procedures_html', procedures: legend_procedures) %>
 
         <% if procedures_folded? %>
           <%= details_button %>
