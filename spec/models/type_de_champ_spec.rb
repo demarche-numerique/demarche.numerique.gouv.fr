@@ -765,6 +765,67 @@ describe TypeDeChamp do
     end
   end
 
+  context 'when a reference dataset url mentions a field' do
+    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text, stable_id: 100 }, { type: :text, stable_id: 101 }, { type: :referentiel, stable_id: 200 }]) }
+    let(:revision) { procedure.draft_revision }
+
+    before do
+      revision.type_de_champs.find { it.stable_id == 200 }.update!(referentiel: create(:api_referentiel, :exact_match, mentioned_stable_id: 100))
+    end
+
+    describe '#type_champ_locked?' do
+      it 'locks a field used in a reference dataset url' do
+        expect(revision.type_de_champ(100).type_champ_locked?).to be(true)
+      end
+
+      it 'does not lock a field the reference dataset does not use' do
+        expect(revision.type_de_champ(101).type_champ_locked?).to be(false)
+      end
+    end
+
+    describe '#type_champ_lock_reason' do
+      it 'is the reference dataset for a field used in its url' do
+        expect(revision.type_de_champ(100).type_champ_lock_reason).to eq(:used_by_referentiel_urls)
+      end
+
+      it 'is nil for a field nothing uses' do
+        expect(revision.type_de_champ(101).type_champ_lock_reason).to be_nil
+      end
+    end
+
+    describe '#type_change_locked_message' do
+      it 'says the field is used by a reference dataset' do
+        type_de_champ = revision.type_de_champ(100)
+        expect(type_de_champ.type_change_locked_message).to eq(I18n.t("activerecord.errors.type_de_champ.locked.update.used_by_referentiel_urls", type_de_champ: type_de_champ.libelle))
+      end
+
+      it 'is nil for a field nothing uses' do
+        expect(revision.type_de_champ(101).type_change_locked_message).to be_nil
+      end
+    end
+
+    describe '#deletion_locked_message' do
+      it 'says the field is used by a reference dataset' do
+        type_de_champ = revision.type_de_champ(100)
+        expect(type_de_champ.deletion_locked_message).to eq(I18n.t("activerecord.errors.type_de_champ.locked.destroy.used_by_referentiel_urls", type_de_champ: type_de_champ.libelle))
+      end
+
+      it 'is nil for a field nothing uses' do
+        expect(revision.type_de_champ(101).deletion_locked_message).to be_nil
+      end
+    end
+
+    describe '#referentiel_type_de_champ_using_url' do
+      it 'returns the referentiel field whose url mentions the field' do
+        expect(revision.type_de_champ(100).referentiel_type_de_champ_using_url.stable_id).to eq(200)
+      end
+
+      it 'returns nil for a field no reference dataset url mentions' do
+        expect(revision.type_de_champ(101).referentiel_type_de_champ_using_url).to be_nil
+      end
+    end
+  end
+
   describe '#prefill_targets' do
     let(:procedure) do
       create(:procedure,

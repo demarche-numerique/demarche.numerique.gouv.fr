@@ -27,12 +27,13 @@ module Administrateurs
       was_prefill_with_fc_information = type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?
       update_params = type_de_champ_update_params(type_de_champ)
 
-      if type_de_champ.used_by_routing_rules? && changing_of_type?(type_de_champ, update_params)
-        refuse(type_de_champ, "« #{type_de_champ.libelle} » est utilisé pour le routage, vous ne pouvez pas modifier son type.")
-      elsif type_de_champ.used_by_referentiel_urls? && changing_of_type?(type_de_champ, update_params)
-        refuse(type_de_champ, "« #{type_de_champ.libelle} » est utilisé par un référentiel, vous ne pouvez pas modifier son type.")
+      if type_de_champ.type_champ_locked? && changing_of_type?(type_de_champ, update_params)
+        refuse(type_de_champ, type_de_champ.type_change_locked_message)
       else
+        referentiel_url_stable_ids = []
+
         if changing_of_type?(type_de_champ, update_params)
+          referentiel_url_stable_ids = type_de_champ.stable_ids_used_in_referentiel_url
           type_de_champ = type_de_champ.becomes_type(update_params['type_champ'])
         end
 
@@ -47,7 +48,7 @@ module Administrateurs
           @morphed = if was_prefill_with_fc_information != (type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?)
             champ_components_from(draft.type_de_champs)
           else
-            champ_components_from(siblings_starting_at(type_de_champ))
+            champ_components_from(type_de_champs_for(referentiel_url_stable_ids) + siblings_starting_at(type_de_champ))
           end
         else
           # as the draft has it: the one that failed to save may be of another type
@@ -124,18 +125,17 @@ module Administrateurs
     def destroy
       type_de_champ = draft.type_de_champ(params[:stable_id])
 
-      if type_de_champ&.used_by_referentiel_urls?
-        refuse(type_de_champ, "« #{type_de_champ.libelle} » est utilisé par un référentiel, vous ne pouvez pas le supprimer.")
-      elsif type_de_champ&.used_by_routing_rules?
-        refuse(type_de_champ, "« #{type_de_champ.libelle} » est utilisé pour le routage, vous ne pouvez pas le supprimer.")
+      if type_de_champ&.type_champ_locked?
+        refuse(type_de_champ, type_de_champ.deletion_locked_message)
       elsif type_de_champ.present?
         index = type_de_champ.flat_siblings.index(type_de_champ)
+        referentiel_url_stable_ids = type_de_champ.stable_ids_used_in_referentiel_url
         # nil in case of replay (double click, champ already removed)
         if draft.remove_type_de_champ(params[:stable_id]).present?
           edited(type_de_champ)
           @destroyed = type_de_champ
           # the ones that followed it
-          @morphed = champ_components_from(@siblings.drop(index))
+          @morphed = champ_components_from(type_de_champs_for(referentiel_url_stable_ids) + @siblings.drop(index))
         end
       end
     end
@@ -219,6 +219,10 @@ module Administrateurs
 
     def siblings_starting_at(type_de_champ, offset = 0)
       @siblings.drop([@siblings.index(type_de_champ) + offset, 0].max)
+    end
+
+    def type_de_champs_for(stable_ids)
+      stable_ids.filter_map { draft.type_de_champ(it) }
     end
 
     def champ_component_from(type_de_champ, focused: false, errors: '')
