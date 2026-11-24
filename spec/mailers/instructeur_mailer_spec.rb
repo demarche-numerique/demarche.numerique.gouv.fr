@@ -8,7 +8,7 @@ RSpec.describe InstructeurMailer, type: :mailer do
     subject { described_class.send_dossier(sender, dossier, recipient) }
 
     it 'links to the dossier' do
-      expect(subject.body).to include("#{sender.email} vous a envoyé le dossier n° #{dossier.id}")
+      expect(subject.body).to include("#{sender.email} vous a envoyé le dossier n°\u00A0#{dossier.id}")
       expect(subject.body).to have_link(href: instructeur_dossier_url(dossier.procedure, dossier))
     end
 

@@ -24,7 +24,7 @@ fr:
         team: "L’équipe"
       for_tiers:
         good_morning: Bonjour,
-        first_part: Nous vous informons que le dossier n° %{dossier_id}, rempli en votre nom par %{mandataire_first_name} %{mandataire_last_name}, sur la démarche
+        first_part: Nous vous informons que le dossier n° %{dossier_id}, rempli en votre nom par %{mandataire_first_name} %{mandataire_last_name}, sur la démarche
         second_part: Pour en savoir plus, veuillez vous rapprocher de
         en_construction: a été déposé le %{processed_at}.
         en_instruction: a bien été reçu et pris en charge le %{processed_at}. Il va maintenant être examiné par le service.
@@ -35,7 +35,7 @@ fr:
         accuse_lecture: a été traité le %{processed_at}.
       accuse_lecture:
         good_morning: Bonjour,
-        first_part: Nous vous informons qu’une décision sur le dossier n° %{dossier_id} de la démarche
+        first_part: Nous vous informons qu’une décision sur le dossier n° %{dossier_id} de la démarche
         second_part: a été rendue.
         third_part: Pour en connaitre la nature, veuillez consulter votre dossier dans votre compte %{application_name}.
         button_text: Consulter mon dossier

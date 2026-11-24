@@ -2,7 +2,7 @@ fr:
   instructeur_mailer:
     send_notifications:
       subject: "Votre récapitulatif quotidien"
-      intro: "Voici votre récapitulatif du jour :"
+      intro: "Voici votre récapitulatif du jour :"
       en_construction:
         one: "%{count} dossier en construction"
         other: "%{count} dossiers en construction"
@@ -22,6 +22,6 @@ fr:
         one: "%{count} classé sans suite"
         other: "%{count} classés sans suite"
       with_notifications:
-        one: "%{count} dossier avec des notifications « nouveautés » dont :"
-        other: "%{count} dossiers avec des notifications « nouveautés » dont :"
+        one: "%{count} dossier avec des notifications « nouveautés » dont :"
+        other: "%{count} dossiers avec des notifications « nouveautés » dont :"
       notification: "%{number} « %{label} »"

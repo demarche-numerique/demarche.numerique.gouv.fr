@@ -15,5 +15,5 @@ fr:
         other: dossiers sont en cours d’instruction
       including: dont
       waiting: depuis plus de 7 jours
-      waiting_with_list_html: "depuis plus de 7 jours : %{dossiers}"
+      waiting_with_list_html: "depuis plus de 7 jours : %{dossiers}"
       dossier_number: "n° %{id}"
