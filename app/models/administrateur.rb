@@ -10,6 +10,7 @@ class Administrateur < ApplicationRecord
   has_many :procedures, through: :administrateurs_procedures
   has_many :services
   has_many :api_tokens, inverse_of: :administrateur, dependent: :destroy
+  has_many :offered_api_tokens, class_name: 'APIToken', foreign_key: :transfer_recipient_id, inverse_of: :transfer_recipient, dependent: :nullify
   has_many :commentaire_groupe_gestionnaires, as: :sender
   has_and_belongs_to_many :default_zones, class_name: 'Zone', join_table: 'default_zones_administrateurs'
   has_many :archives, as: :user_profile, dependent: :destroy
@@ -92,8 +93,9 @@ class Administrateur < ApplicationRecord
       # their clones.
       # Tokens move before the old admin leaves its procedures: leaving one
       # drops it from the list tokens the old admin still owns.
-      old_admin.api_tokens.authenticable.find_each do |token|
+      old_admin.api_tokens.authenticable.lock.find_each do |token|
         token.pin_procedures(old_procedure_ids) if token.full_access?
+        token.transfer_recipient = nil
         self.api_tokens << token
       end
 

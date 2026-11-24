@@ -209,6 +209,16 @@ describe Administrateur, type: :model do
       end
     end
 
+    context 'when one of its tokens is offered to a co-administrateur' do
+      let(:co_admin) { administrateurs.default }
+      let!(:api_token) { APIToken.generate(old_admin).first.tap { it.update_column(:transfer_recipient_id, co_admin.id) } }
+
+      it 'withdraws the offer' do
+        subject
+        expect(api_token.reload.transfer_recipient).to be_nil
+      end
+    end
+
     context 'when the old admin has an old api token' do
       let(:old_admin) { create(:administrateur, :with_api_token) }
 

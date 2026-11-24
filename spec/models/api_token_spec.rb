@@ -443,6 +443,122 @@ describe APIToken, type: :model do
     end
   end
 
+  describe 'transfer' do
+    let(:owner) { administrateurs.default }
+    let(:recipient) { administrateurs.blank }
+    let(:shared) { procedures.individual }
+    let(:shared_procedures) { [shared] }
+    let(:api_token) { APIToken.generate(owner, allowed_procedure_ids: [shared.id]).first }
+
+    before { shared_procedures.each { it.administrateurs << recipient } }
+
+    describe '#transfer_coverage' do
+      let(:partial) { create(:administrateur) }
+      let(:support) { create(:administrateur) }
+      let(:shared_procedures) { [shared, procedures.brouillon] }
+
+      before do
+        api_token.update!(allowed_procedure_ids: [shared.id, procedures.brouillon.id])
+        shared.administrateurs << partial
+        shared_procedures.each { AdministrateursProcedure.create!(procedure: it, administrateur: support, manager: true) }
+      end
+
+      it 'tells how many of its procedures each co-administrateur misses, support left out' do
+        expect(api_token.transfer_coverage.to_a).to eq([[recipient, 0], [partial, 1]])
+      end
+    end
+
+    describe '#offer_transfer!' do
+      it 'offers the token to a co-administrateur covering all it reads' do
+        expect(api_token.offer_transfer!(recipient, by: owner)).to be true
+        expect(api_token.reload.transfer_recipient).to eq(recipient)
+      end
+
+      it 'refuses a co-administrateur missing one of its procedures' do
+        api_token.update!(allowed_procedure_ids: [shared.id, procedures.brouillon.id])
+        expect(api_token.offer_transfer!(recipient, by: owner)).to be false
+        expect(api_token.reload.transfer_recipient).to be_nil
+      end
+
+      it 'refuses an expired token, a legacy one and one that reads nothing' do
+        expired = APIToken.generate(owner, allowed_procedure_ids: [shared.id]).first.tap { it.update_column(:expires_at, 1.day.ago.to_date) }
+        legacy = APIToken.generate(owner, allowed_procedure_ids: [shared.id]).first.tap { it.update_column(:version, 2) }
+        empty = APIToken.generate(owner, allowed_procedure_ids: []).first
+
+        expect([expired, legacy, empty].map { it.offer_transfer!(recipient, by: owner) }).to eq([false, false, false])
+      end
+
+      it 'refuses its own owner' do
+        expect(api_token.offer_transfer!(owner, by: owner)).to be false
+      end
+
+      it 'refuses a former owner whose token was handed over meanwhile' do
+        third = create(:administrateur)
+        shared.administrateurs << third
+        APIToken.where(id: api_token.id).update_all(administrateur_id: recipient.id)
+
+        expect(api_token.offer_transfer!(third, by: owner)).to be false
+      end
+    end
+
+    describe '#accept_transfer!' do
+      before { api_token.offer_transfer!(recipient, by: owner) }
+
+      def accept(fingerprint: api_token.transfer_fingerprint)
+        api_token.accept_transfer!(by: recipient, fingerprint:)
+      end
+
+      context 'with a list keeping a procedure its owner left' do
+        let(:left) { create(:procedure, administrateurs: [recipient]) }
+
+        before { api_token.update_column(:allowed_procedure_ids, [shared.id, left.id]) }
+
+        it 'hands the token over, pinned on what it read' do
+          expect(accept).to eq(:accepted)
+          expect(api_token.reload).to have_attributes(administrateur: recipient, transfer_recipient: nil, allowed_procedure_ids: [shared.id], follows_clones: false)
+        end
+      end
+
+      context 'with a full access token' do
+        let(:api_token) { APIToken.generate(owner).first }
+        let(:shared_procedures) { owner.procedures.to_a }
+
+        before { create(:procedure, administrateurs: [recipient]) }
+
+        it 'pins it on the procedures of its former owner, following their clones' do
+          expect(accept).to eq(:accepted)
+          expect(api_token.reload).to have_attributes(allowed_procedure_ids: match_array(shared_procedures.map(&:id)), follows_clones: true)
+        end
+      end
+
+      it 'refuses when the token changed since the page was shown' do
+        fingerprint = api_token.transfer_fingerprint
+        api_token.update!(write_access: false)
+
+        expect(accept(fingerprint:)).to eq(:changed)
+        expect(api_token.reload.administrateur).to eq(owner)
+      end
+
+      it 'refuses once the recipient left one of its procedures' do
+        AdministrateursProcedure.where(procedure: shared, administrateur: recipient).delete_all
+        expect(accept).to eq(:ineligible)
+      end
+
+      it 'refuses once the offer was cancelled' do
+        api_token.cancel_transfer!(by: owner)
+        expect(accept).to eq(:withdrawn)
+      end
+
+      it 'is not undone by a cancellation sent meanwhile' do
+        stale = APIToken.find(api_token.id)
+        accept
+
+        expect(stale.cancel_transfer!(by: owner)).to be false
+        expect(api_token.reload.administrateur).to eq(recipient)
+      end
+    end
+  end
+
   describe '#authenticate' do
     let(:api_token_and_packed_token) { APIToken.generate(administrateur) }
     let(:api_token) { api_token_and_packed_token.first }
