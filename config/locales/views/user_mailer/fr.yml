@@ -51,6 +51,9 @@ fr:
       learn_more: Pour en savoir plus, veuillez vous rapprocher de %{email}.
     resend_confirmation_email:
       subject: Vérification de votre adresse électronique
+      title: Vérification de votre adresse électronique sur %{application_name}
+      retry: "Votre précédente confirmation d’adresse électronique n’a pas fonctionné, vous pouvez essayer de nouveau en cliquant sur ce bouton :"
+      link_html: "Vous pouvez aussi utiliser ce lien : %{link}"
     invite_gestionnaire:
       subject: Activez votre compte gestionnaire
       title: Activation de votre compte gestionnaire

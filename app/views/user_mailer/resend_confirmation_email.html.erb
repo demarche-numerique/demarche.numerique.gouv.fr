@@ -1,21 +1,18 @@
-<% content_for(:title, "Vérification de votre adresse électronique sur #{APPLICATION_NAME}") %>
+<% content_for(:title, t('.title', application_name: APPLICATION_NAME)) %>
 
-<p>Bonjour,</p>
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
 
 <p>
-  Votre précédente confirmation d’adresse électronique n’a pas fonctionné, vous
-  pouvez essayer de nouveau en cliquant sur ce bouton&nbsp;:
-  <%= dsfr_button 'Je confirme', users_confirm_email_url(token: @token), :primary %>
+  <%= t('.retry') %>
+  <%= dsfr_button t('user_mailer.shared.confirm_button'), users_confirm_email_url(token: @token), :primary %>
 </p>
 
 <p>
-  Vous pouvez aussi utiliser ce lien&nbsp;:
-  <%= link_to(users_confirm_email_url(token: @token), users_confirm_email_url(token: @token)) %>
+  <%= t('.link_html', link: link_to(users_confirm_email_url(token: @token), users_confirm_email_url(token: @token))) %>
 </p>
 
 <p>
-  Nous restons à votre disposition si vous avez besoin d’accompagnement à
-  l’adresse <%= link_to CONTACT_EMAIL, "mailto:#{CONTACT_EMAIL}" %>.
+  <%= t('user_mailer.shared.support_html', contact_link: link_to(CONTACT_EMAIL, "mailto:#{CONTACT_EMAIL}")) %>
 </p>
 
 <%= render partial: "layouts/mailers/signature" %>
