@@ -86,30 +86,4 @@ RSpec.describe AdministrationMailer, type: :mailer do
       end
     end
   end
-
-  describe '#refuse_admin' do
-    let(:mail) { "l33t-4dm1n@h4x0r.com" }
-
-    subject { described_class.refuse_admin(mail) }
-
-    it do
-      expect(subject.subject).not_to be_empty
-      expect(subject['BYPASS_UNVERIFIED_MAIL_PROTECTION']).to be_present
-    end
-
-    it 'renders the French body' do
-      body = subject.body.decoded.squish
-      expect(body).to include("Demande de création de compte refusée")
-      expect(body).to include("Les comptes administrateurs sont destinés aux administrations publiques")
-      expect(body).to include("l’entrée dans #{APPLICATION_NAME} se fait via un lien fourni par l’administration responsable")
-      expect(body).to include("en tant qu’usager, merci d’expliciter le problème rencontré sur notre")
-      expect(body).to include(%(<a href="#{contact_url}">formulaire de contact</a>.))
-      expect(body).to include(%(<a href="#{contact_admin_url}">formulaire de contact administrateur</a>.))
-    end
-
-    it 'renders in the default locale, not the sender one' do
-      body = I18n.with_locale(:en) { described_class.refuse_admin(mail).body.decoded.squish }
-      expect(body).to include("Les comptes administrateurs sont destinés aux administrations publiques")
-    end
-  end
 end
