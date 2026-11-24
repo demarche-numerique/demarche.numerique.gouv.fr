@@ -13,3 +13,4 @@ fr:
       more_information:
         one: Pour en savoir plus, veuillez vous rapprocher de
         other: Pour en savoir plus, veuillez vous rapprocher des mandataires ci-dessus.
+      contact_html: "%{name} (%{email})."

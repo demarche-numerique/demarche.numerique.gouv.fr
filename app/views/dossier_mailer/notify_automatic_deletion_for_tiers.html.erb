@@ -1,4 +1,4 @@
-<% content_for(:title, "#{@subject}") %>
+<% content_for(:title, @subject) %>
 
 <p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
 
@@ -11,7 +11,7 @@
         <%= t('.list', count: @hidden_dossiers.size, dossier_id: d.id, libelle: d.procedure.libelle) %>
 
         <% if @hidden_dossiers.many? %>
-          <%= safe_join(["#{d.mandataire_first_name} #{d.mandataire_last_name} (", mail_to(d.user_email_for(:notification)), ")."]) %>
+          <%= t('.contact_html', name: d.mandataire_full_name, email: mail_to(d.user_email_for(:notification))) %>
         <% end %>
       </li>
     <% end %>
@@ -23,7 +23,7 @@
 
   <% if @hidden_dossiers.one? %>
     <% d = @hidden_dossiers.first %>
-    <%= safe_join(["#{d.mandataire_first_name} #{d.mandataire_last_name} (", mail_to(d.user_email_for(:notification)), ")."]) %>
+    <%= t('.contact_html', name: d.mandataire_full_name, email: mail_to(d.user_email_for(:notification))) %>
   <% end %>
 </p>
 

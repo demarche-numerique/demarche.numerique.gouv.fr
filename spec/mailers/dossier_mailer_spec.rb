@@ -133,14 +133,14 @@ RSpec.describe DossierMailer, type: :mailer do
   end
 
   describe '.notify_new_avis_to_instructeur' do
-    let(:avis) { create(:avis, dossier: dossiers.en_instruction) }
+    let(:pending_avis) { avis.pending }
 
-    subject { described_class.notify_new_avis_to_instructeur(avis, to_email) }
+    subject { described_class.notify_new_avis_to_instructeur(pending_avis, to_email) }
 
     it 'links to the dossier' do
-      expect(subject.body).to include(avis.dossier.procedure.libelle)
-      expect(subject.body).to include("Voir le dossier n° #{avis.dossier.id}")
-      expect(subject.body).to include(instructeur_dossier_url(avis.procedure, avis.dossier))
+      expect(subject.body).to include(pending_avis.dossier.procedure.libelle)
+      expect(subject.body).to include("Voir le dossier n° #{pending_avis.dossier.id}")
+      expect(subject.body).to include(instructeur_dossier_url(pending_avis.procedure, pending_avis.dossier))
     end
   end
 

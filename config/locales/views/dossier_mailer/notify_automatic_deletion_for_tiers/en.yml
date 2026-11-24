@@ -13,3 +13,4 @@ en:
       more_information:
         one: For more information, please contact
         other: For more information, please contact the representatives above.
+      contact_html: "%{name} (%{email})."
