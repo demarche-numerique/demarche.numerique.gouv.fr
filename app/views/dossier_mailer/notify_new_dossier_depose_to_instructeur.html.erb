@@ -7,7 +7,7 @@
 </p>
 
 <p>
-  <%= link_to("Consulter le dossier n°#{@dossier.id}", instructeur_dossier_url(procedure_id: @dossier.procedure.id, dossier_id: @dossier.id)) %>
+  <%= link_to(t('.link', dossier_id: @dossier.id), instructeur_dossier_url(procedure_id: @dossier.procedure.id, dossier_id: @dossier.id)) %>
 </p>
 
 <%= render partial: "layouts/mailers/signature" %>
