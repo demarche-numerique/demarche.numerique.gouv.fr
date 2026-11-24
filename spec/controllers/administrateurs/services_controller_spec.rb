@@ -32,10 +32,13 @@ describe Administrateurs::ServicesController, type: :controller do
     end
 
     context 'when admin has no SIRET from ProConnect' do
+      render_views
+
       it 'does not prefill the SIRET' do
         subject
         expect(assigns[:service].siret).to be_nil
         expect(assigns[:prefilled]).to be_nil
+        expect(response.body).to have_css("h1", text: "Nouveau Service")
       end
     end
   end
@@ -202,6 +205,8 @@ describe Administrateurs::ServicesController, type: :controller do
       it 'assigns no other procedures and does not render the warning' do
         subject
         expect(assigns(:other_procedures)).to be_empty
+        expect(response.body).to have_css("h1", text: "Modifier le service")
+        expect(response.body).to have_link("Liste de tous les services")
         expect(response.body).not_to include("impactera également les démarches suivantes")
       end
     end
@@ -218,6 +223,7 @@ describe Administrateurs::ServicesController, type: :controller do
         expect(response.body).to include("Démarche partagée - n°#{other_published.id}")
         expect(response.body).to include("n°#{other_draft.id}")
         expect(response.body).to include("n°#{other_closed.id}")
+        expect(response.body).to have_link("créez un nouveau service")
       end
     end
 
@@ -492,6 +498,8 @@ describe Administrateurs::ServicesController, type: :controller do
         expect(destroy_button(used_service)['title']).to eq('Ce service est encore utilisé par 2 démarches')
         expect(destroy_button(unused_service)['disabled']).to be_nil
         expect(destroy_button(unused_service)['title']).to be_nil
+        expect(response.body).to have_css("caption", text: "Liste des services pouvant être affectés à la démarche")
+        expect(response.body).to have_button("Affecter")
       end
     end
   end
