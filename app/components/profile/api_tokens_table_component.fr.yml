@@ -1,0 +1,7 @@
+---
+fr:
+  token: "Jeton"
+  access: "Accès"
+  last_use: "Dernière utilisation"
+  expiration: "Expiration"
+  actions: "Actions"

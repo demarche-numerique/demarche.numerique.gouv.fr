@@ -205,6 +205,19 @@ describe 'As an administrateur I create an API token', js: true do
     expect(page).to have_button('Continuer', disabled: true)
   end
 
+  scenario 'seeing every procedure a token reads' do
+    APIToken.generate(administrateur, name: 'Export', allowed_procedure_ids: [procedures.individual, procedures.brouillon, procedures.close, procedure].map(&:id))
+
+    visit profil_path
+    expect(page).to have_text('Démarches : 4 démarches')
+    click_on 'Voir le détail'
+
+    within('dialog[open]') do
+      expect(page).to have_text('Jeton « Export »')
+      expect(page).to have_link(procedure.libelle, href: admin_procedure_path(procedure))
+    end
+  end
+
   scenario 'restricting and restoring access to an api token' do
     token = APIToken.generate(administrateur).first
     visit edit_admin_api_token_path(token)

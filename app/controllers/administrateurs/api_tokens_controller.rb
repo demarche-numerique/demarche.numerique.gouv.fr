@@ -108,7 +108,7 @@ module Administrateurs
     def destroy
       @api_token.destroy
 
-      render turbo_stream: turbo_stream.remove(dom_id(@api_token))
+      render turbo_stream: turbo_stream.replace(dom_id(current_administrateur, :profil_api_token), Profile::APITokenCardComponent.new(unfold_expired: @api_token.expired?))
     end
 
     private
