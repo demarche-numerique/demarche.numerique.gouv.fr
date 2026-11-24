@@ -417,6 +417,14 @@ describe APIToken, type: :model do
     end
   end
 
+  describe '#authorized_networks_for_ui' do
+    it 'writes IPv6 networks in their compressed form' do
+      api_token = APIToken.new(authorized_networks: [IPAddr.new('192.168.1.0/24'), IPAddr.new('2a01:e0a:1f2:4b30::/64')])
+
+      expect(api_token.authorized_networks_for_ui).to eq('192.168.1.0/24, 2a01:e0a:1f2:4b30::/64')
+    end
+  end
+
   describe '#store_new_ip' do
     let(:api_token) { APIToken.generate(administrateur).first }
     let(:ip) { '192.168.0.1' }
