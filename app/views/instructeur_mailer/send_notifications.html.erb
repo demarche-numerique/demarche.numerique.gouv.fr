@@ -1,0 +1,71 @@
+<% content_for(:title, 'Votre récapitulatif quotidien') %>
+
+<p>
+  Bonjour,
+</p>
+
+<p>
+  Voici votre récapitulatif du jour :
+</p>
+
+<ul>
+  <% @data.each do |datum| %>
+    <li>
+      <%= link_to(datum[:procedure_libelle], instructeur_procedure_url(datum[:procedure_id])) %>
+
+      <% if datum[:nb_en_construction] > 0 %>
+        <br>
+        <%= "#{datum[:nb_en_construction]} #{'dossier'.pluralize(datum[:nb_en_construction])} en construction" %>
+      <% end %>
+
+      <% if datum[:nb_en_instruction] > 0 %>
+        <br>
+        <%= "#{datum[:nb_en_instruction]} #{'dossier'.pluralize(datum[:nb_en_instruction])} en instruction" %>
+      <% end %>
+
+      <% if datum[:nb_processed] > 0 %>
+        <br>
+        <%= "#{datum[:nb_processed]} #{'dossier'.pluralize(datum[:nb_processed])} #{'traité'.pluralize(datum[:nb_processed])}" %>
+        <% details = [] %>
+        <% details << "#{datum[:nb_accepted]} #{'accepté'.pluralize(datum[:nb_accepted])}" if datum[:nb_accepted] > 0 %>
+        <% details << "#{datum[:nb_refused]} #{'refusé'.pluralize(datum[:nb_refused])}" if datum[:nb_refused] > 0 %>
+        <% details << "#{datum[:nb_closed_without_continuation]} #{'classé'.pluralize(datum[:nb_closed_without_continuation])} sans suite" if datum[:nb_closed_without_continuation] > 0 %>
+        <%= "(#{details.join(', ')})" %>
+      <% end %>
+
+      <% if datum[:nb_dossiers_with_notifications] > 0 %>
+        <br>
+        <%= datum[:nb_dossiers_with_notifications] %>
+        <%= 'dossier'.pluralize(datum[:nb_dossiers_with_notifications]) %>
+        avec des notifications "nouveautés" dont :
+        <ul>
+          <% if datum.dig(:nb_notifications, 'dossier_modifie')&.> 0 %>
+            <li>
+              <%= datum[:nb_notifications]['dossier_modifie'] %> "DOSSIER
+              MODIFIÉ"
+            </li>
+          <% end %>
+
+          <% if datum.dig(:nb_notifications, 'message')&.> 0 %>
+            <li><%= datum[:nb_notifications]['message'] %> "MESSAGE"</li>
+          <% end %>
+
+          <% if datum.dig(:nb_notifications, 'annotation_instructeur')&.> 0 %>
+            <li>
+              <%= datum[:nb_notifications]['annotation_instructeur'] %>
+              "ANNOTATION PRIVÉE"
+            </li>
+          <% end %>
+
+          <% if datum.dig(:nb_notifications, 'avis_externe')&.> 0 %>
+            <li>
+              <%= datum[:nb_notifications]['avis_externe'] %> "AVIS EXTERNE"
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<%= render partial: "layouts/mailers/signature" %>

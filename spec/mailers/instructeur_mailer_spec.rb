@@ -118,7 +118,7 @@ RSpec.describe InstructeurMailer, type: :mailer do
       expect(subject.body).to include('1 dossier en instruction')
       expect(subject.body).to include('3 dossiers traités')
       expect(subject.body).to include('(1 accepté, 2 refusés)')
-      expect(subject.body).to include('1 dossier avec des notifications')
+      expect(subject.body).to match(/1\s+dossier\s+avec des notifications/)
     end
   end
 
