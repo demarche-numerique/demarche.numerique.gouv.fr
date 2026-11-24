@@ -1,6 +1,6 @@
 import { getConfig } from '@utils';
 
-import { withoutPrefilledIdentity } from './prefilled-identity';
+import { matomoAddressOverrides } from './prefilled-identity';
 
 const {
   matomo: { cookieDomain, domain, enabled, host, key }
@@ -29,14 +29,9 @@ if (enabled) {
   // window._paq.push(['enableLinkTracking']);
   // The name a prefill link carries stays out of the statistics, both on the
   // page it opens and on the next one, which reports it as its referrer.
-  for (const [setter, address] of [
-    ['setCustomUrl', window.location.href],
-    ['setReferrerUrl', document.referrer]
-  ]) {
-    if (withoutPrefilledIdentity(address) != address) {
-      window._paq.push([setter, withoutPrefilledIdentity(address)]);
-    }
-  }
+  window._paq.push(
+    ...matomoAddressOverrides(window.location.href, document.referrer)
+  );
   window._paq.push(['trackPageView']);
 
   // Load script from Matomo

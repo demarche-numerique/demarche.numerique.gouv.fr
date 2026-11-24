@@ -5,17 +5,58 @@
 const IDENTITY_PREFIX = 'identite_';
 
 export function withoutPrefilledIdentity(address: string): string {
-  if (!address.includes(IDENTITY_PREFIX) || !URL.canParse(address)) {
+  let url: URL;
+  try {
+    // not URL.canParse: Chrome < 120, Firefox < 115 and Safari < 17 lack it
+    url = new URL(address);
+  } catch {
     return address;
   }
 
-  const url = new URL(address);
   // collected first: deleting while iterating over the live list skips names
   const identity = Array.from(url.searchParams.keys()).filter((name) =>
     name.startsWith(IDENTITY_PREFIX)
   );
+  if (identity.length == 0) {
+    return address;
+  }
   for (const name of identity) {
     url.searchParams.delete(name);
   }
   return url.toString();
+}
+
+// What Matomo must be told before a page view: the address of the page a
+// prefill link opens and, on the next page, the referrer, which is that same
+// address.
+export function matomoAddressOverrides(
+  page: string,
+  referrer: string
+): [setter: string, address: string][] {
+  const overrides: [string, string][] = [];
+  if (withoutPrefilledIdentity(page) != page) {
+    overrides.push(['setCustomUrl', withoutPrefilledIdentity(page)]);
+  }
+  if (withoutPrefilledIdentity(referrer) != referrer) {
+    overrides.push(['setReferrerUrl', withoutPrefilledIdentity(referrer)]);
+  }
+  return overrides;
+}
+
+// An error report carries the same two addresses.
+type ErrorReport = {
+  request?: { url?: string; headers?: Record<string, string> };
+};
+
+export function withoutPrefilledIdentityInReport<Report extends ErrorReport>(
+  report: Report
+): Report {
+  const request = report.request;
+  if (request?.url) {
+    request.url = withoutPrefilledIdentity(request.url);
+  }
+  if (request?.headers?.Referer) {
+    request.headers.Referer = withoutPrefilledIdentity(request.headers.Referer);
+  }
+  return report;
 }

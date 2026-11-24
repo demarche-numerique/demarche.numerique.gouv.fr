@@ -1,6 +1,7 @@
 import * as Sentry from '@sentry/browser';
 import { getConfig } from '@utils';
 
+import { withoutPrefilledIdentityInReport } from './prefilled-identity';
 import { shouldDropEvent } from './sentry-filters';
 
 const {
@@ -42,9 +43,12 @@ if (enabled && key) {
       'NetworkError when attempting to fetch resource. (static.suite.anct.gouv.fr)'
     ],
     // Unhandled errors that did not originate in our bundles, and requests
-    // that failed for availability reasons: see sentry-filters.ts.
+    // that failed for availability reasons: see sentry-filters.ts. The name a
+    // prefill link carries stays out of the reports that are sent.
     beforeSend(event, hint) {
-      return shouldDropEvent(event, hint) ? null : event;
+      return shouldDropEvent(event, hint)
+        ? null
+        : withoutPrefilledIdentityInReport(event);
     }
   });
 
