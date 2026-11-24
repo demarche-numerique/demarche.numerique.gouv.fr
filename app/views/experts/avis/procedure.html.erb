@@ -1,0 +1,84 @@
+<% avis_statut = (@statut == Experts::AvisController::A_DONNER_STATUS) ? t('.title.to_give') : t('.title.given') %>
+<% content_for(:title, avis_statut) %>
+
+<div id="procedure-show">
+  <div class="sub-header">
+    <div class="fr-container flex">
+      <div class="procedure-header">
+        <h1 class="fr-h3 fr-mb-0">
+          <%= procedure_libelle_with_number(@procedure) %>
+          <%= procedure_badge(@procedure, 'super') %>
+        </h1>
+
+        <p>
+          <%= link_to t('.management', procedure_id: @procedure.id), notification_settings_expert_procedure_path(@procedure) %>
+        </p>
+
+        <nav
+          class="fr-tabs"
+          role="navigation"
+          aria-label="<%= t('.tabs_aria_label') %>"
+        >
+          <ul class="fr-tabs__list">
+            <%= tab_item(t('.to_give'), procedure_expert_avis_index_path(statut: Instructeurs::AvisController::A_DONNER_STATUS), active: @statut == Instructeurs::AvisController::A_DONNER_STATUS, badge: @avis_a_donner.count, notification: @avis_a_donner.any?) %>
+            <%= tab_item(t('.given', count: @avis_donnes.count), procedure_expert_avis_index_path(statut: Instructeurs::AvisController::DONNES_STATUS), active: @statut == Instructeurs::AvisController::DONNES_STATUS, badge: @avis_donnes.count) %>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="fr-container">
+  <% if @avis.present? %>
+    <div class="fr-table fr-table--no-scroll fr-table--bordered">
+      <div class="fr-table__wrapper">
+        <div class="fr-table__container">
+          <div class="fr-table__content">
+            <table class="dossiers-table">
+              <thead>
+                <tr>
+                  <th><%= t('.th.dossier_number') %></th>
+                  <th><%= t('.th.applicant') %></th>
+                  <th><%= t('.th.procedure') %></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @avis.each do |avis| %>
+                  <tr>
+                    <td class="fr-cell--numeric">
+                      <%= link_to(expert_avis_path(avis.procedure, avis), class: "fr-link") do %>
+                        <%= avis.dossier.id %>
+                      <% end %>
+                    </td>
+
+                    <td>
+                      <%= link_to(avis.dossier.user_email_for(:display), expert_avis_path(avis.procedure, avis)) %>
+                    </td>
+
+                    <td class="fr-cell--multiline">
+                      <%= link_to(avis.procedure.libelle, expert_avis_path(avis.procedure, avis)) %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="fr-table__footer">
+        <div class="fr-table__footer--start"></div>
+
+        <div class="fr-table__footer--middle">
+          <%= paginate @avis, views_prefix: 'shared' %>
+        </div>
+
+        <div class="fr-table__footer--end flex-no-grow"></div>
+      </div>
+    </div>
+  <% else %>
+    <h2 class="empty-text"><%= t('.empty') %></h2>
+  <% end %>
+</div>
