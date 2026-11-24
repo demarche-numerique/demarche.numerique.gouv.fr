@@ -69,6 +69,15 @@ RSpec.describe ProcedureTemplates::EaeIntegration::PrefillLink do
       expect(value(prefilled_dossier(rows[1]["lien"]), "Corps")).to eq("Mécanicien (MECA)")
     end
 
+    it "reads a list saved by a spreadsheet: byte order mark, Windows-1252, empty lines" do
+      list = "nom;prenom;corps\r\nMartin;Zoé;Mécanicien (MECA)\r\n;;\r\nPetit;Léa;Base (BASE)\r\n"
+      saved = ["\uFEFF#{list}", list.encode(Encoding::WINDOWS_1252).force_encoding(Encoding::UTF_8), list.b]
+
+      links = saved.map { CSV.parse(described_class.csv(procedure, it), headers: true, col_sep: ";")["lien"] }
+
+      expect(links.uniq.sole).to match([/identite_prenom=Zo%C3%A9/, nil, /identite_nom=Petit/])
+    end
+
     it "names the line of a value it refuses" do
       list = "nom,recrutement\nMartin,Externe\nPetit,Extern\n"
 

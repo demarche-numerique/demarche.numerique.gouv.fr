@@ -10,10 +10,17 @@ module ProcedureTemplates
     # Each visit of the link starts a new application: the convocation should
     # tell applicants to use it once, then to come back through their account.
     #
-    # The name is optional, and travels in the link when given.
+    # The name is optional. When given it travels in the address of the link:
+    # the platform keeps it out of its request log and of its audience
+    # statistics, but the access log of a reverse proxy and the history of the
+    # browser keep the whole address. Leave the nom and prenom columns out of
+    # the list to keep the name out of them: the identity step asks for it one
+    # screen later.
     #
-    # For a whole intake, from a console:
-    #   puts ProcedureTemplates::EaeIntegration::PrefillLink.csv(procedure, File.read("candidats.csv"))
+    # For a whole intake, from a console (the byte order mark makes a
+    # spreadsheet read the file as UTF-8):
+    #   links = ProcedureTemplates::EaeIntegration::PrefillLink.csv(procedure, File.read("candidats.csv"))
+    #   File.write("liens.csv", "\uFEFF#{links}")
     class PrefillLink
       FIELDS = [:recruitment, :entrance_exam, :corps].freeze
       CSV_HEADERS = { "nom" => :last_name, "prenom" => :first_name, "recrutement" => :recruitment, "concours" => :entrance_exam, "corps" => :corps }.freeze
@@ -22,9 +29,12 @@ module ProcedureTemplates
       def self.url(procedure, **applicant) = new(procedure).url(**applicant)
 
       # Takes the list of the school, one applicant per line under the headers
-      # of CSV_HEADERS, and returns it with one more column, the link.
+      # of CSV_HEADERS, and returns it with one more column, the link. The
+      # lines keep their place, so that the column can be pasted back next to
+      # the list: an empty line gets no link.
       def self.csv(procedure, list)
         prefill_link = new(procedure)
+        list = utf8(list)
         col_sep = list.lines.first.to_s.count(";") > list.lines.first.to_s.count(",") ? ";" : ","
         rows = CSV.parse(list, headers: true, col_sep:, strip: true)
         unknown_headers = rows.headers - CSV_HEADERS.keys
@@ -33,12 +43,23 @@ module ProcedureTemplates
         CSV.generate(col_sep:) do |csv|
           csv << rows.headers + [CSV_LINK_HEADER]
           rows.each.with_index(2) do |row, line|
-            csv << row.fields + [prefill_link.url(**row.to_h.transform_keys(CSV_HEADERS))]
+            link = prefill_link.url(**row.to_h.transform_keys(CSV_HEADERS)) if row.fields.any?(&:present?)
+            csv << row.fields + [link]
           rescue ArgumentError => e
             raise ArgumentError, "line #{line}: #{e.message}"
           end
         end
       end
+
+      # A spreadsheet saves a list in UTF-8 behind a byte order mark, or in
+      # Windows-1252.
+      def self.utf8(list)
+        list = list.dup.force_encoding(Encoding::UTF_8)
+        list = list.force_encoding(Encoding::WINDOWS_1252).encode(Encoding::UTF_8) if !list.valid_encoding?
+
+        list.delete_prefix("\uFEFF")
+      end
+      private_class_method :utf8
 
       # The link only lasts once the procedure is published: publishing gives
       # the procedure its address, and the former one drops the prefill.
