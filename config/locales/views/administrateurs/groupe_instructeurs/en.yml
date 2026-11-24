@@ -16,6 +16,8 @@ en:
           alert_title: The teams have been created from the field ‘%{champ}’
       index:
         procedures: Procedures
+        groupes: Teams
+        instructeurs: Reviewers
       add_instructeurs:
         wrong_address:
           one: "%{emails} is not a valid email address"

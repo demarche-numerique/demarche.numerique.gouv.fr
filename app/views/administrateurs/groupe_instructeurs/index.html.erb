@@ -5,7 +5,7 @@
 <% end %>
 
 <% render_procedure_sticky_title(@procedure) %>
-<%= render partial: 'shared/breadcrumbs_section', locals: { steps: [[t('.procedures'), admin_procedures_path], [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)], [@procedure.groupe_instructeurs.many? ? 'Groupes' : 'Instructeurs']] } %>
+<%= render partial: 'shared/breadcrumbs_section', locals: { steps: [[t('.procedures'), admin_procedures_path], [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)], [@procedure.groupe_instructeurs.many? ? t('.groupes') : t('.instructeurs')]] } %>
 
 <%= render Procedure::InstructeursMenuComponent.new(procedure: @procedure) do %>
   <% if @procedure.groupe_instructeurs.one? %>

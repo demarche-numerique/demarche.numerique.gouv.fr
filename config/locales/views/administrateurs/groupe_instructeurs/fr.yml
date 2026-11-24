@@ -16,6 +16,8 @@ fr:
           alert_title: "Les groupes instructeurs ont été créés à partir du champ « %{champ} »"
       index:
         procedures: Démarches
+        groupes: Groupes
+        instructeurs: Instructeurs
       add_instructeurs:
         wrong_address:
           one: "%{emails} n’est pas une adresse électronique valide"
