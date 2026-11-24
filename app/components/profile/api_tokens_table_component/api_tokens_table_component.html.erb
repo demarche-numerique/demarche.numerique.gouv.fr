@@ -21,3 +21,8 @@
     </div>
   </div>
 </div>
+
+<%# After the rows: a row builds its details with its own translations, which it can only reach once rendered. %>
+<% @rows.filter_map(&:details).each do |details| %>
+  <%= render details %>
+<% end %>

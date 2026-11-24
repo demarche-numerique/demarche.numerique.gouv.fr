@@ -29,3 +29,8 @@ fr:
   destroy: "Supprimer"
   destroy_label: "Supprimer le jeton « %{name} »"
   destroy_confirm: "Confirmez-vous la suppression du jeton « %{name} » ?"
+  more_networks_html:
+    one: "%{networks} et %{count} autre"
+    other: "%{networks} et %{count} autres"
+  details: "Voir le détail"
+  details_label: "Voir le détail du jeton « %{name} »"

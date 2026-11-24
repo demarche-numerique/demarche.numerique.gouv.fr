@@ -29,3 +29,8 @@ en:
   destroy: "Delete"
   destroy_label: "Delete the token ‘%{name}’"
   destroy_confirm: "Do you confirm the deletion of the token ‘%{name}’?"
+  more_networks_html:
+    one: "%{networks} and %{count} other"
+    other: "%{networks} and %{count} others"
+  details: "See the details"
+  details_label: "See the details of the token ‘%{name}’"

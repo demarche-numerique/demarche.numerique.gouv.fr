@@ -46,8 +46,21 @@
       headers="<%= name_id %>"
       class="fr-cell--multiline fr-cell--top"
     >
-      <div class="fr-hint-text"><%= t('.networks_html', networks:) %></div>
-      <div class="fr-hint-text"><%= t('.procedures_html', procedures:) %></div>
+      <div class="fr-hint-text">
+        <%= t('.networks_html', networks:) %>
+
+        <% if networks_folded? && !procedures_folded? %>
+          <%= details_button %>
+        <% end %>
+      </div>
+
+      <div class="fr-hint-text">
+        <%= t('.procedures_html', procedures:) %>
+
+        <% if procedures_folded? %>
+          <%= details_button %>
+        <% end %>
+      </div>
     </td>
   </tr>
 </tbody>

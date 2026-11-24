@@ -1,15 +1,43 @@
 # frozen_string_literal: true
 
 class Profile::APITokenComponent < ApplicationComponent
-  LISTED_PROCEDURES_MAX = 3
+  LISTED_MAX = 3
 
   def initialize(api_token:)
     @api_token = api_token
   end
 
+  def details
+    return if !folded?
+
+    Profile::APITokenDetailsComponent.new(
+      id: details_id,
+      name: @api_token.name,
+      networks: all_networks,
+      summary: procedures,
+      procedures: named_procedures
+    )
+  end
+
   private
 
   def name_id = dom_id(@api_token, :name)
+
+  def details_id = dom_id(@api_token, :details)
+
+  def folded? = networks_folded? || procedures_folded?
+
+  def networks_folded? = network_cidrs.size > LISTED_MAX
+
+  def procedures_folded? = named_procedure_ids.size > LISTED_MAX
+
+  def details_button
+    tag.button(t('.details'),
+      type: 'button',
+      class: 'fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-my-n1v',
+      aria: { controls: details_id, haspopup: 'dialog', label: t('.details_label', name: @api_token.name) },
+      data: { fr_opened: 'false' })
+  end
 
   def prefix = tag.code(@api_token.prefix, class: 'fr-text--xs fr-text-default--grey')
 
@@ -36,8 +64,10 @@ class Profile::APITokenComponent < ApplicationComponent
   end
 
   def networks
-    if @api_token.authorized_networks.present?
-      safe_join(@api_token.authorized_networks.map { tag.code("#{it}/#{it.prefix}", class: 'fr-text--xs') }, ', ')
+    if networks_folded?
+      t('.more_networks_html', networks: listed_networks(network_cidrs.first(LISTED_MAX)), count: network_cidrs.size - LISTED_MAX)
+    elsif network_cidrs.any?
+      listed_networks(network_cidrs)
     elsif @api_token.pending_auto_ip?
       t('.pending_ip')
     else
@@ -45,25 +75,35 @@ class Profile::APITokenComponent < ApplicationComponent
     end
   end
 
+  def network_cidrs = @network_cidrs ||= @api_token.authorized_cidrs
+
+  def listed_networks(cidrs) = safe_join(cidrs.map { tag.code(it, class: 'fr-text--xs') }, ', ')
+
+  def all_networks
+    network_cidrs.any? ? tag.ul(safe_join(network_cidrs.map { tag.li(tag.code(it)) })) : networks
+  end
+
   def procedures
     return t('.all_procedures') if @api_token.full_access?
 
-    listed = if procedure_ids.size.between?(1, LISTED_PROCEDURES_MAX)
-      safe_join(procedure_links, ', ')
-    else
-      t('.procedures_count', count: procedure_ids.size)
-    end
+    @procedures ||= begin
+      listed = if named_procedure_ids.size.between?(1, LISTED_MAX)
+        safe_join(procedure_links, ', ')
+      else
+        t('.procedures_count', count: named_procedure_ids.size)
+      end
 
-    @api_token.follows_clones? ? t('.with_clones_html', procedures: listed, count: procedure_ids.size) : listed
+      @api_token.follows_clones? ? t('.with_clones_html', procedures: listed, count: named_procedure_ids.size) : listed
+    end
   end
 
   def procedure_links
-    Procedure.where(id: procedure_ids).order(:libelle).pluck(:id, :libelle).map do |id, libelle|
-      link_to t('.procedure', libelle:, id:), admin_procedure_path(id)
-    end
+    named_procedures.map { |id, libelle| link_to t('.procedure', libelle:, id:), admin_procedure_path(id) }
   end
 
-  def procedure_ids = @procedure_ids ||= @api_token.procedure_ids
+  def named_procedures = @named_procedures ||= Procedure.where(id: named_procedure_ids).order(:libelle).pluck(:id, :libelle)
+
+  def named_procedure_ids = @named_procedure_ids ||= @api_token.full_access? ? [] : @api_token.procedure_ids
 
   def duplicate_button(primary:)
     button_to t('.duplicate'),
