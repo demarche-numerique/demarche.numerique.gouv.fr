@@ -1,0 +1,13 @@
+<% content_for(:title, "Demande · Dossier n° #{@dossier.id} (#{@dossier.owner_name})") %>
+<%= render partial: 'header', locals: { avis: @avis, dossier: @dossier } %>
+
+<div class="fr-container">
+  <div class="fr-grid-row fr-grid-row--center">
+    <% summary = ViewableChamp::HeaderSectionsSummaryComponent.new(dossier: @dossier, is_private: false) %>
+    <%= render summary %>
+
+    <div class="<%= class_names("fr-col-12", "fr-col-xl-9" => summary.render?, "fr-col-xl-8" => !summary.render?) %>">
+      <%= render partial: "shared/dossiers/demande", locals: { dossier: @dossier, demande_seen_at: nil, profile: 'expert' } %>
+    </div>
+  </div>
+</div>
