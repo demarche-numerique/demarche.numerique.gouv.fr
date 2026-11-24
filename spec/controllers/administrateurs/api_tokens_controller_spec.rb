@@ -314,6 +314,23 @@ describe Administrateurs::APITokensController, type: :controller do
       end
     end
 
+    context 'when the token is handed over to a co-administrateur in the meantime' do
+      let(:params) { { restore_full_access: 'true' } }
+
+      before do
+        token.update!(allowed_procedure_ids: [procedure.id])
+        allow(controller).to receive(:set_api_token).and_wrap_original do |set_api_token|
+          set_api_token.call
+          APIToken.where(id: token.id).update_all(administrateur_id: administrateurs.blank.id)
+        end
+      end
+
+      it 'leaves it alone' do
+        expect { subject }.to raise_error(ActiveRecord::RecordNotFound)
+        expect(token.reload.allowed_procedure_ids).to eq([procedure.id])
+      end
+    end
+
     context 'with a procedure to add not owned by the admin' do
       let(:another_procedure) { create(:procedure, administrateurs: [create(:administrateur)]) }
       let(:params) { { procedure_to_add: another_procedure.id } }

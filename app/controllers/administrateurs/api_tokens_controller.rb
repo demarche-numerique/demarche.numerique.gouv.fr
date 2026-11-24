@@ -67,7 +67,7 @@ module Administrateurs
         h[:follows_clones] = params[:follows_clones] == '1'
       end
 
-      @api_token.with_lock do
+      with_owned_api_token_locked do
         if params[:restore_full_access].present?
           h[:allowed_procedure_ids] = nil
           h[:follows_clones] = false
@@ -93,7 +93,7 @@ module Administrateurs
       procedure = current_administrateur.procedures.with_discarded.find_by(id: params[:procedure_id])
 
       if procedure.present?
-        @api_token.with_lock do
+        with_owned_api_token_locked do
           remaining_ids = (@api_token.allowed_procedure_ids || current_administrateur.procedures.with_discarded.ids) - [procedure.id]
           @api_token.update!(allowed_procedure_ids: remaining_ids)
         end
@@ -106,7 +106,7 @@ module Administrateurs
     end
 
     def destroy
-      @api_token.destroy
+      with_owned_api_token_locked { @api_token.destroy }
 
       render turbo_stream: turbo_stream.replace(dom_id(current_administrateur, :profil_api_token), Profile::APITokenCardComponent.new(unfold_expired: @api_token.expired?))
     end
@@ -152,6 +152,14 @@ module Administrateurs
 
     def set_api_token
       @api_token = current_administrateur.api_tokens.find(params[:id])
+    end
+
+    def with_owned_api_token_locked
+      @api_token.with_lock do
+        raise ActiveRecord::RecordNotFound if @api_token.administrateur_id != current_administrateur.id
+
+        yield
+      end
     end
 
     def set_api_token_form
