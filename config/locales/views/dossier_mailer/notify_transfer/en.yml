@@ -1,10 +1,10 @@
 en:
   dossier_mailer:
     notify_transfer:
-      subject: You have a pending transfer offer.
-      transfer_text: "To accept or refuse the offer you must log in on %{app_name}:"
+      subject: You have a pending transfer offer
+      transfer_text: "To accept or decline the offer, you must log in to %{app_name}:"
       transfer_link: Access the transfer offer
-      no_user_transfer_text: "To accept or refuse the offer you must have an account:"
+      no_user_transfer_text: "To accept or decline the offer, you must have an account:"
       no_user_transfer_link: Create an account on %{app_name}
-      transfert_multiple: "%{sender} sends you a transfer offer for %{count} files."
-      transfert_simple: "%{sender} sends you a transfer offer for file no. %{dossier_id} on the procedure"
+      transfert_multiple: "%{sender} sends you a transfer offer for %{count} applications."
+      transfert_simple: "%{sender} sends you a transfer offer for application no. %{dossier_id} of the procedure"
