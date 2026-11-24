@@ -90,6 +90,8 @@ en:
         attributes:
           header_section_level:
             gap_error: 'should be preceded by a level %{level} header section'
+        not_added:
+          place_gone: "The field was not added: the chosen place no longer exists, the form was changed in the meantime. Reload the page to see it up to date."
         locked:
           update:
             used_by_routing_rules: "‘%{type_de_champ}’ is used for routing, so its type cannot be changed."

@@ -91,10 +91,10 @@ describe ProcedureCloneConcern, type: :model do
     end
 
     it 'attaches the cloned types de champ to the clone' do
-      type_de_champ_ids = procedure.draft_revision.revision_type_de_champs.map(&:type_de_champ_id)
+      type_de_champ_ids = procedure.draft_revision.type_de_champ_tree.type_de_champ_ids
       TypeDeChamp.where(id: type_de_champ_ids).update_all(procedure_id: procedure.id)
 
-      cloned_type_de_champ_ids = subject.draft_revision.revision_type_de_champs.map(&:type_de_champ_id)
+      cloned_type_de_champ_ids = subject.draft_revision.type_de_champ_tree.type_de_champ_ids
       expect(cloned_type_de_champ_ids.size).to eq(11)
       expect(TypeDeChamp.where(id: cloned_type_de_champ_ids).pluck(:procedure_id)).to all(eq(subject.id))
       expect(TypeDeChamp.where(id: type_de_champ_ids).pluck(:procedure_id)).to all(eq(procedure.id))
@@ -134,7 +134,7 @@ describe ProcedureCloneConcern, type: :model do
         source_tree = procedure.draft_revision.type_de_champ_tree
         tree = subject.draft_revision.reload.read_attribute(:type_de_champ_tree)
 
-        expect(tree).to eq(TypeDeChampTree.from_coordinates(subject.draft_revision.revision_type_de_champs))
+        expect(tree.nodes.map(&:stable_id)).to eq(source_tree.nodes.map(&:stable_id))
         type_de_champ_ids, source_type_de_champ_ids = [tree, source_tree].map { it.nodes.map(&:type_de_champ_id) }
         expect(type_de_champ_ids.size).to eq(source_type_de_champ_ids.size)
         expect(type_de_champ_ids & source_type_de_champ_ids).to be_empty

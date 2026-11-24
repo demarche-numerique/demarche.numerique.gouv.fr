@@ -54,8 +54,7 @@ describe Migrations::BatchUpdatePaysValuesJob, type: :job do
     let(:attributes) { { value: 'RUSSIE' } }
 
     before do
-      dossier.revision.revision_type_de_champs.find { it.stable_id == pays_champ.stable_id }.destroy
-      dossier.revision.store_type_de_champ_tree # laid by hand: the tree follows
+      dossier.revision.update_columns(type_de_champ_tree: dossier.revision.type_de_champ_tree.remove(pays_champ.stable_id))
     end
 
     it 'skips the champ without raising' do

@@ -11,7 +11,8 @@ module Administrateurs
 
     def create
       type_de_champ = draft.add_type_de_champ(type_de_champ_create_params)
-      if type_de_champ.valid?
+      # not saved when refused: it holds why
+      if type_de_champ.persisted?
         edited(type_de_champ)
         @created = champ_component_from(type_de_champ, focused: true)
         @morphed = champ_components_from(siblings_starting_at(type_de_champ, 1))

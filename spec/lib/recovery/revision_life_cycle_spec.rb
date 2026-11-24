@@ -24,9 +24,9 @@ describe 'Recovery::Revision::LifeCycle' do
     context "when type de champ missing" do
       before do
         dossier
-        # its coordinates go with it
+        revision = procedure.published_revision
+        revision.update_columns(type_de_champ_tree: revision.type_de_champ_tree.remove(yes_no_type_de_champ.stable_id))
         TypeDeChamp.find(yes_no_type_de_champ.id).destroy
-        procedure.published_revision.store_type_de_champ_tree # laid by hand: the tree follows
       end
 
       it do
@@ -41,27 +41,6 @@ describe 'Recovery::Revision::LifeCycle' do
         expect(imported_dossier.public_root_champs.size).to eq(2)
         expect(procedure.published_revision.reload.type_de_champ_tree.public_children.size).to eq(2)
         expect(TypeDeChamp.find(yes_no_type_de_champ.id).libelle).to eq('YES!!!')
-      end
-    end
-
-    # FIXME: the editor still builds the tree of a draft from its coordinates (#14009)
-    context "when a draft lost a type de champ" do
-      let(:draft) { procedure.draft_revision }
-      let(:exporter) { Recovery::RevisionExporter.new(revision_ids: [draft.id], file_path:) }
-
-      before do
-        # its coordinates go with it
-        TypeDeChamp.find(yes_no_type_de_champ.id).destroy
-        draft.store_type_de_champ_tree # laid by hand: the tree follows
-      end
-
-      it "keeps what was restored through the next edit" do
-        expect(draft.reload.type_de_champs.map(&:libelle)).not_to include('YES!!!')
-
-        importer.load
-        ProcedureRevision.find(draft.id).add_type_de_champ(type_champ: 'text', libelle: 'added')
-
-        expect(ProcedureRevision.find(draft.id).type_de_champs.map(&:libelle)).to include('YES!!!', 'added')
       end
     end
 

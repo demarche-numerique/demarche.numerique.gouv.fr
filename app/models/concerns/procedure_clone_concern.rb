@@ -282,7 +282,6 @@ module ProcedureCloneConcern
     end
 
     procedure.draft_revision.update_columns(type_de_champ_tree: tree.with_type_de_champ_ids(copy_ids))
-    procedure.draft_revision.create_coordinates_from_type_de_champ_tree
   end
 
   # As the email templates below: copied once the clone is persisted, without

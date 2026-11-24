@@ -11,7 +11,9 @@ class ProcedureRevision < ApplicationRecord
   belongs_to :dossier_submitted_message, inverse_of: :revisions, optional: true, dependent: :destroy
   has_many :llm_rule_suggestions, dependent: :destroy, inverse_of: :procedure_revision
   has_many :dossiers, inverse_of: :revision, foreign_key: :revision_id
-  has_many :revision_type_de_champs, -> { order(:position, :id) }, class_name: 'ProcedureRevisionTypeDeChamp', foreign_key: :revision_id, dependent: :destroy, inverse_of: :revision
+  # FIXME: no longer written nor read. The rows left in the table refer to the
+  # revision, and go with it until the table is dropped (#14009).
+  has_many :revision_type_de_champs, class_name: 'ProcedureRevisionTypeDeChamp', foreign_key: :revision_id, dependent: :destroy, inverse_of: :revision
 
   # Lays out the types de champ of several revisions in one query, where each
   # revision would run its own, anew if it already had. An instance goes to one
@@ -41,8 +43,8 @@ class ProcedureRevision < ApplicationRecord
 
   # Lays out the types de champ again, from the tree as it is now. The ones
   # given are not loaded again, and become the revision's own: an instance
-  # handed here must not be given to any other revision, nor be one a
-  # coordinate holds, as it sits elsewhere in another revision.
+  # handed here must not be given to any other revision, where it sits
+  # elsewhere.
   def lay_out_type_de_champs(own_type_de_champs_by_id = {})
     raise ArgumentError, "a revision lays out its types de champ once saved: they have no stable id before" if new_record?
 
@@ -175,9 +177,8 @@ class ProcedureRevision < ApplicationRecord
 
   private
 
-  # The instances laid out are the revision's own, loaded for it: the ones its
-  # coordinates hold may be shared with the coordinates of another revision (a
-  # preload hands one instance to every owner), where they sit elsewhere.
+  # The instances laid out are the revision's own, loaded for it: another
+  # revision lays out the same types de champ elsewhere.
   #
   # They are laid out from the stored tree, and again once it is another
   # object: an edit writes it, a reload reads it again.

@@ -15,13 +15,19 @@ describe TypeDeChampTree, '.aggregate' do
   let(:published_revisions) { procedure.revisions.where.not(id: procedure.draft_revision_id).order(:id) }
   let(:aggregate) { described_class.aggregate(published_revisions.map(&:type_de_champ_tree)) }
 
-  def stable_id(libelle) = TypeDeChamp.where(id: procedure.revisions.joins(:revision_type_de_champs).select(:type_de_champ_id)).find_by!(libelle:).stable_id
+  def stable_id(libelle) = procedure.type_de_champs.find_by!(libelle:).stable_id
   def draft = procedure.draft_revision
   def publish = procedure.publish_revision!(administrateur).then { procedure.reload }
 
+  # as the editor does: the tree follows the type
+  def change_type(libelle, type_champ)
+    type_de_champ = draft.find_and_ensure_exclusive_use(stable_id(libelle))
+    draft.update_type_de_champ(type_de_champ.becomes_type(type_champ), type_champ:)
+  end
+
   # the layout as nested libelles of the first version of each type de champ
   def layout(nodes)
-    @libelles ||= TypeDeChamp.where(id: procedure.revisions.joins(:revision_type_de_champs).select(:type_de_champ_id)).order(:id).pluck(:stable_id, :libelle).reverse.to_h
+    @libelles ||= procedure.type_de_champs.order(:id).pluck(:stable_id, :libelle).reverse.to_h
     nodes.map { it.children.empty? ? @libelles.fetch(it.stable_id) : { @libelles.fetch(it.stable_id) => layout(it.children) } }
   end
 
@@ -124,7 +130,7 @@ describe TypeDeChampTree, '.aggregate' do
 
   context 'when a repetition became something else' do
     before do
-      draft.find_and_ensure_exclusive_use(stable_id('rep')).update!(type_champ: :text)
+      change_type('rep', 'text')
       publish
     end
 
@@ -135,7 +141,7 @@ describe TypeDeChampTree, '.aggregate' do
 
   context 'when a header section became something else, and its content was removed' do
     before do
-      draft.find_and_ensure_exclusive_use(stable_id('S2')).update!(type_champ: :text)
+      change_type('S2', 'text')
       draft.remove_type_de_champ(stable_id('b'))
       publish
     end
@@ -147,10 +153,10 @@ describe TypeDeChampTree, '.aggregate' do
 
   context 'when a header section was something else for one publication' do
     before do
-      draft.find_and_ensure_exclusive_use(stable_id('S2')).update!(type_champ: :text)
+      change_type('S2', 'text')
       draft.remove_type_de_champ(stable_id('b'))
       publish
-      draft.find_and_ensure_exclusive_use(stable_id('S2')).update!(type_champ: :header_section)
+      change_type('S2', 'header_section')
       publish
     end
 

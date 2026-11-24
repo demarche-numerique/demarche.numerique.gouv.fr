@@ -39,13 +39,12 @@ RSpec.describe ChampValidateConcern do
     context 'do not validate champs not on current revision' do
       before {
         update_champ('test')
-        dossier.revision.revision_type_de_champs.delete_all
-        dossier.revision.store_type_de_champ_tree # laid by hand: the tree follows
+        dossier.revision.update_columns(type_de_champ_tree: TypeDeChampTree.new)
         dossier.reload
         dossier.validate(:champs_public_value)
       }
       it {
-        expect(dossier.revision.revision_type_de_champs).to be_empty
+        expect(dossier.revision.type_de_champs).to be_empty
         expect(dossier.champ_data).not_to be_empty
         expect(dossier.errors).to be_empty
       }
@@ -55,13 +54,12 @@ RSpec.describe ChampValidateConcern do
       let(:public_type_de_champs) { [{ type: :piece_justificative }, { type: :piece_justificative, nature: 'titre_identite' }] }
 
       before {
-        dossier.revision.revision_type_de_champs.delete_all
-        dossier.revision.store_type_de_champ_tree # laid by hand: the tree follows
+        dossier.revision.update_columns(type_de_champ_tree: TypeDeChampTree.new)
         dossier.reload
         dossier.validate(:champs_public_value)
       }
       it {
-        expect(dossier.revision.revision_type_de_champs).to be_empty
+        expect(dossier.revision.type_de_champs).to be_empty
         expect(dossier.champ_data).not_to be_empty
         expect(dossier.errors).to be_empty
       }
@@ -71,13 +69,12 @@ RSpec.describe ChampValidateConcern do
       let(:public_type_de_champs) { [{ type: :drop_down_list }] }
 
       before {
-        dossier.revision.revision_type_de_champs.delete_all
-        dossier.revision.store_type_de_champ_tree # laid by hand: the tree follows
+        dossier.revision.update_columns(type_de_champ_tree: TypeDeChampTree.new)
         dossier.reload
         dossier.validate(:champs_public_value)
       }
       it {
-        expect(dossier.revision.revision_type_de_champs).to be_empty
+        expect(dossier.revision.type_de_champs).to be_empty
         expect(dossier.champ_data).not_to be_empty
         expect(dossier.errors).to be_empty
       }
@@ -90,8 +87,7 @@ RSpec.describe ChampValidateConcern do
         allow_any_instance_of(Champs::PieceJustificativeChamp).to receive(:external_data_needed_for_validation?).and_return(true)
 
         dossier.champ_data.first.update_column(:external_state, 'waiting_for_job')
-        dossier.revision.revision_type_de_champs.delete_all
-        dossier.revision.store_type_de_champ_tree # laid by hand: the tree follows
+        dossier.revision.update_columns(type_de_champ_tree: TypeDeChampTree.new)
 
         dossier.reload
         dossier.validate(:champs_public_value)

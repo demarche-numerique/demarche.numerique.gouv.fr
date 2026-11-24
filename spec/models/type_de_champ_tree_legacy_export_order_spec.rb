@@ -13,12 +13,12 @@ describe TypeDeChampTree, '.legacy_export_order' do
   let(:administrateur) { procedure.administrateurs.first }
   let(:order) { described_class.legacy_export_order(procedure.published_revisions_oldest_first.map(&:type_de_champ_tree)) }
 
-  def stable_id(libelle) = TypeDeChamp.where(id: procedure.revisions.joins(:revision_type_de_champs).select(:type_de_champ_id)).find_by!(libelle:).stable_id
+  def stable_id(libelle) = procedure.type_de_champs.find_by!(libelle:).stable_id
   def libelles(stable_ids) = stable_ids.map { |stable_id| TypeDeChamp.where(stable_id:).order(:id).first.libelle }
   def draft = procedure.draft_revision
   def publish = procedure.publish_revision!(administrateur).then { procedure.reload }
 
-  it 'follows the coordinates: header sections hold nothing, the private ones come last' do
+  it 'reads each container as a flat list: header sections hold nothing, the private ones come last' do
     expect(libelles(order.fetch(nil))).to eq(['a', 'S1', 'b', 'rep', 'c', 'annotation'])
     expect(libelles(order.fetch(stable_id('rep')))).to eq(['r1', 'r2', 'r3'])
   end

@@ -509,7 +509,8 @@ describe ColumnsConcern do
     end
 
     it 'does not query procedure_revisions or type_de_champs on each call (no N+1)' do
-      p = Procedure.includes(published_revision: { revision_type_de_champs: :type_de_champ }).find(procedure.id)
+      p = Procedure.includes(:published_revision).find(procedure.id)
+      ProcedureRevision.preload_type_de_champs([p.published_revision])
 
       revision_query_count = 0
       tdc_query_count = 0

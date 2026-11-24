@@ -13,9 +13,9 @@ describe Administrateurs::TypesDeChampController, type: :controller do
            ])
   end
 
-  def first_coordinate = procedure.draft_revision.public_revision_type_de_champs.first
-  def second_coordinate = procedure.draft_revision.reload.public_revision_type_de_champs.second
-  def third_coordinate = procedure.draft_revision.public_revision_type_de_champs.third
+  def first_type_de_champ = procedure.draft_revision.reload.public_root_type_de_champs.first
+  def second_type_de_champ = procedure.draft_revision.reload.public_root_type_de_champs.second
+  def third_type_de_champ = procedure.draft_revision.reload.public_root_type_de_champs.third
 
   def extract_libelle(champ_component)
     type_de_champ = champ_component.type_de_champ
@@ -50,7 +50,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         type_de_champ: {
           type_champ: type_champ,
           libelle: 'l1.5',
-          after_stable_id: first_coordinate.stable_id,
+          after_stable_id: first_type_de_champ.stable_id,
         },
       }
     end
@@ -91,6 +91,19 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         expect(flash.alert).to eq(["Le champ « Type champ » doit être rempli"])
       end
     end
+
+    context "after a type de champ removed since (double click, another tab)" do
+      let(:type_champ) { TypeDeChamp.type_champs.fetch(:text) }
+
+      before { procedure.draft_revision.remove_type_de_champ(params.dig(:type_de_champ, :after_stable_id)) }
+
+      it 'adds nothing, and tells why' do
+        is_expected.to have_http_status(:ok)
+        expect(siblings).to be_nil
+        expect(flash.alert).to eq([I18n.t('activerecord.errors.type_de_champ.not_added.place_gone')])
+        expect(procedure.draft_revision.reload.public_root_type_de_champs.map(&:libelle)).to eq(['l2', 'l3'])
+      end
+    end
   end
 
   describe '#update' do
@@ -98,7 +111,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
     let(:default_params) do
       {
         procedure_id: procedure.id,
-        stable_id: second_coordinate.stable_id,
+        stable_id: second_type_de_champ.stable_id,
         type_de_champ: {
           libelle: 'updated',
         },
@@ -112,7 +125,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
     it do
       is_expected.to have_http_status(:ok)
       expect(flash.alert).to eq(nil)
-      expect(second_coordinate.libelle).to eq('updated')
+      expect(second_type_de_champ.libelle).to eq('updated')
 
       expect(siblings).to eq(['l1', 'updated', 'l3'])
       expect(morpheds).to eq([['updated', ['l1']], ['l3', ['l1', 'updated']]])
@@ -122,7 +135,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       let(:params) { default_params.merge(stable_id: @removed_stable_id) }
 
       before do
-        @removed_stable_id = second_coordinate.stable_id
+        @removed_stable_id = second_type_de_champ.stable_id
         procedure.draft_revision.remove_type_de_champ(@removed_stable_id)
       end
 
@@ -136,7 +149,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
       it do
         is_expected.to have_http_status(:ok)
-        expect(assigns(:siblings).map(&:stable_id)).to include(second_coordinate.stable_id)
+        expect(assigns(:siblings).map(&:stable_id)).to include(second_type_de_champ.stable_id)
         expect(flash.alert).to be_nil
       end
     end
@@ -147,7 +160,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
       it 'ignores the unknown option' do
         is_expected.to have_http_status(:ok)
-        type_de_champ = second_coordinate.type_de_champ.reload
+        type_de_champ = second_type_de_champ.reload
         expect(type_de_champ.libelle).to eq('updated')
         expect(type_de_champ.options['pre_rempli_hidden']).to be_nil
       end
@@ -160,8 +173,8 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         is_expected.to have_http_status(:ok)
 
         tree = procedure.draft_revision.reload.read_attribute(:type_de_champ_tree)
-        expect(tree.public_children.map(&:stable_id)).to eq([first_coordinate.stable_id, second_coordinate.stable_id])
-        expect(tree.public_children.second.children.map(&:stable_id)).to eq([third_coordinate.stable_id])
+        expect(tree.public_children.map(&:stable_id)).to eq([first_type_de_champ.stable_id, second_type_de_champ.stable_id])
+        expect(tree.public_children.second.children.map(&:stable_id)).to eq([third_type_de_champ.stable_id])
       end
     end
 
@@ -170,7 +183,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       let(:params) do
         {
           procedure_id: procedure.id,
-          stable_id: first_coordinate.stable_id,
+          stable_id: first_type_de_champ.stable_id,
           # the editor form submits the options of the previous type along the new type
           type_de_champ: { type_champ: 'formatted', character_limit: '' },
         }
@@ -179,7 +192,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       it 'persists the formatted default options' do
         is_expected.to have_http_status(:ok)
 
-        options = TypeDeChamp.where(id: first_coordinate.type_de_champ.id).pick(:options)
+        options = TypeDeChamp.where(id: first_type_de_champ.id).pick(:options)
         expect(options).to eq({
           'formatted_mode' => 'simple',
           'letters_accepted' => true,
@@ -193,7 +206,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       let(:params) do
         {
           procedure_id: procedure.id,
-          stable_id: third_coordinate.stable_id,
+          stable_id: third_type_de_champ.stable_id,
           # the editor form submits the options of the previous type along the new type
           type_de_champ: { type_champ: 'yes_no', drop_down_options_from_text: "a\nb" },
         }
@@ -202,20 +215,20 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       it 'ignores the options unknown to the new type (RAILS-MF9)' do
         is_expected.to have_http_status(:ok)
         expect(flash.alert).to be_nil
-        expect(TypeDeChamp.where(id: third_coordinate.type_de_champ.id).pick(:type_champ)).to eq('yes_no')
+        expect(TypeDeChamp.where(id: third_type_de_champ.id).pick(:type_champ)).to eq('yes_no')
       end
     end
 
     describe 'the « Nombre » menu entry' do
-      def type_champ_of(coordinate) = TypeDeChamp.where(id: coordinate.type_de_champ.id).pick(:type_champ)
+      def type_champ_of(type_de_champ) = TypeDeChamp.where(id: type_de_champ.id).pick(:type_champ)
 
       context 'choosing it on a text field' do
         let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text, libelle: 'l1' }]) }
-        let(:params) { { procedure_id: procedure.id, stable_id: first_coordinate.stable_id, type_de_champ: { type_champ: 'numeric' } } }
+        let(:params) { { procedure_id: procedure.id, stable_id: first_type_de_champ.stable_id, type_de_champ: { type_champ: 'numeric' } } }
 
         it 'makes it an integer, the toggle not being displayed yet' do
           is_expected.to have_http_status(:ok)
-          expect(type_champ_of(first_coordinate)).to eq('integer_number')
+          expect(type_champ_of(first_type_de_champ)).to eq('integer_number')
         end
       end
 
@@ -224,17 +237,17 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
         it 'makes the integer a decimal' do
           is_expected.to have_http_status(:ok)
-          expect(type_champ_of(second_coordinate)).to eq('decimal_number')
+          expect(type_champ_of(second_type_de_champ)).to eq('decimal_number')
         end
       end
 
       context 'turning the decimals toggle off' do
         let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :decimal_number, libelle: 'l1' }]) }
-        let(:params) { { procedure_id: procedure.id, stable_id: first_coordinate.stable_id, type_de_champ: { type_champ: 'numeric', numeric_type_champ: 'integer_number' } } }
+        let(:params) { { procedure_id: procedure.id, stable_id: first_type_de_champ.stable_id, type_de_champ: { type_champ: 'numeric', numeric_type_champ: 'integer_number' } } }
 
         it 'makes the decimal an integer' do
           is_expected.to have_http_status(:ok)
-          expect(type_champ_of(first_coordinate)).to eq('integer_number')
+          expect(type_champ_of(first_type_de_champ)).to eq('integer_number')
         end
       end
 
@@ -243,7 +256,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
         it 'follows the menu and ignores the toggle' do
           is_expected.to have_http_status(:ok)
-          expect(type_champ_of(second_coordinate)).to eq('text')
+          expect(type_champ_of(second_type_de_champ)).to eq('text')
         end
       end
 
@@ -252,7 +265,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
         it 'falls back to an integer' do
           is_expected.to have_http_status(:ok)
-          expect(type_champ_of(second_coordinate)).to eq('integer_number')
+          expect(type_champ_of(second_type_de_champ)).to eq('integer_number')
         end
       end
 
@@ -266,13 +279,13 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         it 'saves it, the type being unchanged' do
           is_expected.to have_http_status(:ok)
           expect(flash.alert).to be_nil
-          expect(second_coordinate.libelle).to eq('updated')
+          expect(second_type_de_champ.libelle).to eq('updated')
         end
       end
 
       context 'editing the libelle of a decimal used by routing, its locked toggle sending nothing' do
         let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :decimal_number, libelle: 'l1' }]) }
-        let(:params) { { procedure_id: procedure.id, stable_id: first_coordinate.stable_id, type_de_champ: { type_champ: 'numeric', libelle: 'updated' } } }
+        let(:params) { { procedure_id: procedure.id, stable_id: first_type_de_champ.stable_id, type_de_champ: { type_champ: 'numeric', libelle: 'updated' } } }
 
         before do
           allow_any_instance_of(TypeDeChamp).to receive(:used_by_routing_rules?).and_return(true)
@@ -281,15 +294,15 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         it 'keeps it a decimal and saves the libelle' do
           is_expected.to have_http_status(:ok)
           expect(flash.alert).to be_nil
-          expect(type_champ_of(first_coordinate)).to eq('decimal_number')
-          expect(TypeDeChamp.where(id: first_coordinate.type_de_champ.id).pick(:libelle)).to eq('updated')
+          expect(type_champ_of(first_type_de_champ)).to eq('decimal_number')
+          expect(TypeDeChamp.where(id: first_type_de_champ.id).pick(:libelle)).to eq('updated')
         end
       end
     end
 
     context 'rejected if type changed and routing involved' do
       let(:params) do
-        default_params.deep_merge(type_de_champ: { type_champ: 'text', stable_id: third_coordinate.stable_id })
+        default_params.deep_merge(type_de_champ: { type_champ: 'text', stable_id: third_type_de_champ.stable_id })
       end
 
       before do
@@ -304,7 +317,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
     context 'rejected if type changed and referentiel url involved' do
       let(:params) do
-        default_params.deep_merge(type_de_champ: { type_champ: 'text', stable_id: third_coordinate.stable_id })
+        default_params.deep_merge(type_de_champ: { type_champ: 'text', stable_id: third_type_de_champ.stable_id })
       end
 
       before do
@@ -338,21 +351,21 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
       let(:ineligibilite_enabled) { true }
       let(:params) do
-        default_params.deep_merge(type_de_champ: { type_champ: 'text' }, stable_id: first_coordinate.stable_id)
+        default_params.deep_merge(type_de_champ: { type_champ: 'text' }, stable_id: first_type_de_champ.stable_id)
       end
 
       before do
         procedure.draft_revision.update!(
           ineligibilite_enabled:,
           ineligibilite_message: 'Vous n’êtes pas éligible',
-          ineligibilite_rules: ds_eq(champ_value(first_coordinate.stable_id), constant(1))
+          ineligibilite_rules: ds_eq(champ_value(first_type_de_champ.stable_id), constant(1))
         )
       end
 
       it 'rejects the type change' do
         is_expected.to have_http_status(:ok)
         expect(flash.alert).to eq(I18n.t("activerecord.errors.type_de_champ.locked.update.used_by_ineligibilite_rules", type_de_champ: 'l1'))
-        expect(first_coordinate.reload.type_champ).to eq('integer_number')
+        expect(first_type_de_champ.type_champ).to eq('integer_number')
       end
 
       context 'when the ineligibilite rules are disabled' do
@@ -361,7 +374,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
         it 'accepts the type change' do
           is_expected.to have_http_status(:ok)
           expect(flash.alert).to be_nil
-          expect(procedure.draft_revision.reload.public_revision_type_de_champs.first.type_champ).to eq('text')
+          expect(first_type_de_champ.type_champ).to eq('text')
         end
       end
     end
@@ -375,7 +388,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       let(:params) do
         {
           procedure_id: procedure.id,
-          stable_id: third_coordinate.stable_id,
+          stable_id: third_type_de_champ.stable_id,
           referentiel_file:,
           name: referentiel_file.original_filename,
           type_de_champ: {
@@ -501,12 +514,11 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       let(:multiple_drop_down_list_type_de_champ) do
         procedure.draft_revision.public_root_type_de_champs.first
       end
-      let(:coordinate) { procedure.draft_revision.public_revision_type_de_champs.first }
 
       let(:params) do
         {
           procedure_id: procedure.id,
-          stable_id: coordinate.stable_id,
+          stable_id: multiple_drop_down_list_type_de_champ.stable_id,
           referentiel_file:,
           name: referentiel_file.original_filename,
           type_de_champ: {
@@ -533,7 +545,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
   # destroyed: l3, created: (l3, [l1]), morphed: (l2, [l1, l3])
   describe '#move_up' do
     let(:params) do
-      { procedure_id: procedure.id, stable_id: third_coordinate.stable_id }
+      { procedure_id: procedure.id, stable_id: third_type_de_champ.stable_id }
     end
 
     subject { patch :move_up, params: params, format: :turbo_stream }
@@ -541,7 +553,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
     it do
       is_expected.to have_http_status(:ok)
       expect(flash.alert).to eq(nil)
-      expect(second_coordinate.libelle).to eq('l3')
+      expect(second_type_de_champ.libelle).to eq('l3')
       expect(siblings).to eq(['l1', 'l3', 'l2'])
       expect(assigns(:destroyed).libelle).to eq('l3')
       expect(extract_libelle(assigns(:created))).to eq(['l3', ['l1']])
@@ -553,7 +565,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
   # destroyed: l1, created: (l1, [l2]), morphed: (l2, [])
   describe '#move_down' do
     let(:params) do
-      { procedure_id: procedure.id, stable_id: first_coordinate.stable_id }
+      { procedure_id: procedure.id, stable_id: first_type_de_champ.stable_id }
     end
 
     subject { patch :move_down, params: params, format: :turbo_stream }
@@ -572,7 +584,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
   describe 'moving a champ already removed (replayed click)' do
     render_views
 
-    let(:removed_stable_id) { second_coordinate.stable_id }
+    let(:removed_stable_id) { second_type_de_champ.stable_id }
     let(:params) { { procedure_id: procedure.id, stable_id: removed_stable_id } }
 
     before { procedure.draft_revision.remove_type_de_champ(removed_stable_id) }
@@ -583,17 +595,17 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
         expect(response).to have_http_status(:ok)
         expect(siblings).to be_nil
-        expect(procedure.draft_revision.reload.public_revision_type_de_champs.map(&:libelle)).to eq(['l1', 'l3'])
+        expect(procedure.draft_revision.reload.public_root_type_de_champs.map(&:libelle)).to eq(['l1', 'l3'])
       end
     end
 
     it 'move_and_morph is a no-op as well, whichever of the two is gone' do
-      [[removed_stable_id, first_coordinate.stable_id], [first_coordinate.stable_id, removed_stable_id]].each do |stable_id, target_stable_id|
+      [[removed_stable_id, first_type_de_champ.stable_id], [first_type_de_champ.stable_id, removed_stable_id]].each do |stable_id, target_stable_id|
         patch :move_and_morph, params: { procedure_id: procedure.id, stable_id:, target_stable_id: }, format: :turbo_stream
 
         expect(response).to have_http_status(:ok)
         expect(siblings).to be_nil
-        expect(procedure.draft_revision.reload.public_revision_type_de_champs.map(&:libelle)).to eq(['l1', 'l3'])
+        expect(procedure.draft_revision.reload.public_root_type_de_champs.map(&:libelle)).to eq(['l1', 'l3'])
       end
     end
   end
@@ -602,7 +614,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
     # l1, l2, l3 => l2, l3, l1
     context 'move and morph down' do
       let(:params) do
-        { procedure_id: procedure.id, stable_id: first_coordinate.stable_id, target_stable_id: third_coordinate.stable_id }
+        { procedure_id: procedure.id, stable_id: first_type_de_champ.stable_id, target_stable_id: third_type_de_champ.stable_id }
       end
 
       subject { patch :move_and_morph, params: params, format: :turbo_stream }
@@ -619,16 +631,16 @@ describe Administrateurs::TypesDeChampController, type: :controller do
     # l1, l2, l3 => l1, l3, l2
     context 'move and morph up' do
       let(:params) do
-        { procedure_id: procedure.id, stable_id: third_coordinate.stable_id, target_stable_id: first_coordinate.stable_id }
+        { procedure_id: procedure.id, stable_id: third_type_de_champ.stable_id, target_stable_id: first_type_de_champ.stable_id }
       end
 
       subject { patch :move_and_morph, params: params, format: :turbo_stream }
 
       it do
         is_expected.to have_http_status(:ok)
-        [first_coordinate, second_coordinate, third_coordinate].map(&:reload)
+        [first_type_de_champ, second_type_de_champ, third_type_de_champ].map(&:reload)
         expect(siblings).to eq(['l1', 'l3', 'l2'])
-        expect(assigns(:destroyed).stable_id).to eq(second_coordinate.stable_id)
+        expect(assigns(:destroyed).stable_id).to eq(second_type_de_champ.stable_id)
         expect(extract_libelle(assigns(:created))).to eq(['l3', ['l1']])
         expect(morpheds).to eq([['l3', ['l1']], ['l2', ['l1', 'l3']]])
       end
@@ -637,7 +649,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
     context 'on a published procedure' do
       let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ libelle: 'l1' }, { libelle: 'l2' }, { libelle: 'l3' }]) }
       let(:params) do
-        { procedure_id: procedure.id, stable_id: first_coordinate.stable_id, target_stable_id: third_coordinate.stable_id }
+        { procedure_id: procedure.id, stable_id: first_type_de_champ.stable_id, target_stable_id: third_type_de_champ.stable_id }
       end
 
       it 'leaves the types de champ shared with the published revision as they are' do
@@ -654,7 +666,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
   # destroyed: l2, morphed: (l3, [l1])
   describe '#destroy' do
     let(:params) do
-      { procedure_id: procedure.id, stable_id: second_coordinate.stable_id }
+      { procedure_id: procedure.id, stable_id: second_type_de_champ.stable_id }
     end
 
     subject { delete :destroy, params: params, format: :turbo_stream }
@@ -671,7 +683,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       let(:params) { { procedure_id: procedure.id, stable_id: @removed_stable_id } }
 
       before do
-        @removed_stable_id = second_coordinate.stable_id
+        @removed_stable_id = second_type_de_champ.stable_id
         procedure.draft_revision.remove_type_de_champ(@removed_stable_id)
       end
 
@@ -683,7 +695,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
     context 'rejected if type changed and routing involved' do
       let(:params) do
-        { procedure_id: procedure.id, stable_id: third_coordinate.stable_id }
+        { procedure_id: procedure.id, stable_id: third_type_de_champ.stable_id }
       end
 
       before do
@@ -698,7 +710,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
 
     context 'rejected if referentiel url involved' do
       let(:params) do
-        { procedure_id: procedure.id, stable_id: third_coordinate.stable_id }
+        { procedure_id: procedure.id, stable_id: third_type_de_champ.stable_id }
       end
 
       before do
@@ -731,19 +743,19 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       include Logic
 
       let(:params) do
-        { procedure_id: procedure.id, stable_id: first_coordinate.stable_id }
+        { procedure_id: procedure.id, stable_id: first_type_de_champ.stable_id }
       end
 
       before do
         procedure.draft_revision.update!(
           ineligibilite_enabled: true,
           ineligibilite_message: 'Vous n’êtes pas éligible',
-          ineligibilite_rules: ds_eq(champ_value(first_coordinate.stable_id), constant(1))
+          ineligibilite_rules: ds_eq(champ_value(first_type_de_champ.stable_id), constant(1))
         )
       end
 
       it 'rejects the deletion' do
-        stable_id = first_coordinate.stable_id
+        stable_id = first_type_de_champ.stable_id
 
         is_expected.to have_http_status(:ok)
         expect(flash.alert).to eq(I18n.t("activerecord.errors.type_de_champ.locked.destroy.used_by_ineligibilite_rules", type_de_champ: 'l1'))
@@ -800,7 +812,7 @@ describe Administrateurs::TypesDeChampController, type: :controller do
     end
 
     it 'are loaded at once for the types de champ a stream renders' do
-      params = { procedure_id: procedure.id, stable_id: first_coordinate.stable_id, type_de_champ: { libelle: 'updated' } }
+      params = { procedure_id: procedure.id, stable_id: first_type_de_champ.stable_id, type_de_champ: { libelle: 'updated' } }
 
       queries = count_type_de_champ_attachment_queries { post :update, params:, format: :turbo_stream }
 

@@ -506,13 +506,13 @@ describe DossierRebaseConcern do
       let!(:dossier) { create(:dossier, procedure: procedure) }
       let(:repetition) { procedure.draft_revision.type_de_champs.find(&:repetition?) }
 
-      def child_libelles = dossier.revision.public_revision_type_de_champs.first.revision_type_de_champs.map(&:libelle)
-      def child_types_champ = dossier.revision.public_revision_type_de_champs.first.revision_type_de_champs.map(&:type_champ)
+      def child_libelles = dossier.revision.public_root_type_de_champs.first.flat_children.map(&:libelle)
+      def child_types_champ = dossier.revision.public_root_type_de_champs.first.flat_children.map(&:type_champ)
 
       context 'when a child tdc is added in the middle' do
         before do
           last_child = procedure.draft_revision.type_de_champ(repetition.stable_id).flat_children.last
-          added_tdc = procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'c3', parent_stable_id: repetition.stable_id, after_stable_id: last_child)
+          added_tdc = procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'c3', parent_stable_id: repetition.stable_id, after_stable_id: last_child.stable_id)
           procedure.draft_revision.move_type_de_champ(added_tdc.stable_id, 1)
           # procedure.publish_revision!(procedure.administrateurs.first)
         end

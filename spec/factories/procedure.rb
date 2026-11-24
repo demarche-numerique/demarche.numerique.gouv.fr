@@ -64,7 +64,7 @@ FactoryBot.define do
         public_children: create_type_de_champ_nodes(evaluator.public_type_de_champs, procedure:, scope: :public),
         private_children: create_type_de_champ_nodes(evaluator.private_type_de_champs, procedure:, scope: :private)
       )
-      [procedure.draft_revision, procedure.published_revision].compact.each { store_factory_type_de_champ_tree(it, type_de_champ_tree) }
+      [procedure.draft_revision, procedure.published_revision].compact.each { it.update_columns(type_de_champ_tree:) }
 
       procedure.claim_path!(evaluator.administrateur, evaluator.path)
       evaluator.instructeurs.each { |i| i.assign_to_procedure(procedure) }
@@ -297,17 +297,6 @@ def all_type_de_champs_for_factory(repetition_children: [{ libelle: 'sub type de
       { type: type_champ.to_sym, libelle:, **attributes }
     end
   end
-end
-
-# The tree given to a revision by a factory, in place of the edits which would
-# have built it.
-#
-# FIXME: the coordinates follow, as long as the editor writes them (#14009).
-def store_factory_type_de_champ_tree(revision, type_de_champ_tree)
-  revision.update_columns(type_de_champ_tree:)
-  revision.revision_type_de_champs.each(&:delete)
-  revision.revision_type_de_champs.reset
-  revision.create_coordinates_from_type_de_champ_tree
 end
 
 # The nodes of the types de champ described, each created for the procedure,
