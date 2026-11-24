@@ -1,0 +1,16 @@
+<%= vertical_margin(12) %>
+
+<% actions.each_with_index do |action, index| %>
+  <% variant = (index == 0 ? :primary : :secondary) %>
+
+  <% case action %>
+  <% when EmailTemplate::Actions::SHOW %>
+    <%= dsfr_button(t(:access, scope: [:layouts, :notifications, :actions]), dossier_url(@dossier), variant) %>
+  <% when EmailTemplate::Actions::ASK_QUESTION %>
+    <%= dsfr_button(t(:question, scope: [:layouts, :notifications, :actions]), messagerie_dossier_url(@dossier), variant) %>
+  <% when EmailTemplate::Actions::REPLY %>
+    <%= dsfr_button(t(:reply, scope: [:layouts, :notifications, :actions]), messagerie_dossier_url(@dossier), variant) %>
+  <% end %>
+<% end %>
+
+<%= vertical_margin(5) %>
