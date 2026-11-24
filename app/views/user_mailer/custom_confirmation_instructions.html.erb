@@ -1,0 +1,27 @@
+<% content_for(:title, 'Confirmez votre adresse électronique') %>
+
+<p>Bonjour <%= @user.email %> !</p>
+
+<p>
+  Veuillez confirmer votre adresse électronique en cliquant sur le lien
+  ci-dessous:
+  <%= dsfr_button 'Je confirme', france_connect_confirm_email_url(@token), :primary %>
+</p>
+
+<p>
+  Ce lien est valide
+  <%= distance_of_time_in_words(FranceConnectInformation::CONFIRMATION_EMAIL_VALIDITY) %>.
+</p>
+
+<p>
+  Tant que vous n’aurez pas confirmé votre adresse électronique, vous ne
+  recevrez aucune notification sur l’avancement de vos dossiers.
+</p>
+
+<p>
+  Si vous n’êtes pas à l’origine de cette demande, vous pouvez ignorer ce
+  message. Et si vous avez besoin d’assistance, n’hésitez pas à nous contacter
+  à <%= mail_to CONTACT_EMAIL %>.
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>
