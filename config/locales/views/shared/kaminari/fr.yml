@@ -4,3 +4,5 @@ fr:
     kaminari:
       paginator:
         nav_label: Pagination
+      first_page:
+        title: Première page
