@@ -8,3 +8,5 @@ fr:
         title: Première page
       last_page:
         title: Dernière page
+      page:
+        title: Page %{page}
