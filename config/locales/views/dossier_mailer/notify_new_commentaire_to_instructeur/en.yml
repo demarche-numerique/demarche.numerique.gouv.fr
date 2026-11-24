@@ -1,0 +1,6 @@
+en:
+  dossier_mailer:
+    notify_new_commentaire_to_instructeur:
+      subject: New message sent on application no. %{dossier_id}
+      body: The applicant has sent a new message on application no. %{dossier_id} of the procedure %{libelle_demarche}
+      link: Messaging for application no. %{dossier_id}
