@@ -3,4 +3,4 @@ fr:
     notify_groupe_instructeur_changed:
       subject: Le dossier n° %{dossier_id} a changé de groupe d’instructeurs
       body_html: "Vous suiviez jusqu’à maintenant le dossier n° %{dossier_id} de la démarche <strong>%{libelle_demarche}</strong>. Ce dossier a changé de groupe d’instructeurs et est maintenant affecté à un groupe dont vous ne faites pas partie."
-      footer: Suite à cette modification, vous n’avez plus accès à ce dossier.
+      footer: À la suite de cette modification, vous n’avez plus accès à ce dossier.
