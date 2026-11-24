@@ -1,30 +1,20 @@
 <% content_for(:title, @subject) %>
 <% merge_link = france_connect_merge_using_email_link_url(email_merge_token: @email_merge_token) %>
 
-<p>Bonjour,</p>
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+
+<p><%= t('.click_link') %></p>
+
+<%= dsfr_button t('user_mailer.shared.confirm_button'), merge_link, :primary %>
+
+<p><%= t('.link_html', link: link_to(merge_link, merge_link)) %></p>
 
 <p>
-  Pour confirmer la fusion de votre compte, veuillez cliquer sur le lien
-  suivant&nbsp;:
-</p>
-
-<%= dsfr_button 'Je confirme', merge_link, :primary %>
-
-<p>
-  Vous pouvez aussi visiter ce lien&nbsp;: <%= link_to merge_link, merge_link %>
-</p>
-
-<p>
-  Ce lien est valide
-  <%= distance_of_time_in_words(FranceConnectInformation::MERGE_VALIDITY) %>,
-  jusqu’à
-  <%= I18n.l(@email_merge_token_created_at + FranceConnectInformation::MERGE_VALIDITY, format: :long_with_time_and_timezone) %>.
+  <%= t('.validity', duration: distance_of_time_in_words(FranceConnectInformation::MERGE_VALIDITY), expires_at: I18n.l(@email_merge_token_created_at + FranceConnectInformation::MERGE_VALIDITY, format: :long_with_time_and_timezone)) %>
 </p>
 
 <p>
-  Si vous n’êtes pas à l’origine de cette demande, vous pouvez ignorer ce
-  message. Et si vous avez besoin d’assistance, n’hésitez pas à nous contacter
-  à <%= mail_to CONTACT_EMAIL %>.
+  <%= t('user_mailer.shared.ignore_or_contact_html', contact_link: mail_to(CONTACT_EMAIL)) %>
 </p>
 
 <%= render partial: "layouts/mailers/signature" %>

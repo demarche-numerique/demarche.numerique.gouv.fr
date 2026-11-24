@@ -14,6 +14,9 @@ en:
       step_accept: accept the merge
     france_connect_merge_confirmation:
       subject: Please confirm the account merge
+      click_link: "To confirm the merge of your account, please click the following link:"
+      link_html: "You can also visit this link: %{link}"
+      validity: This link is valid for %{duration}, until %{expires_at}.
     custom_confirmation_instructions:
       subject: Confirm your email address
       greeting: "Hello %{email}!"
