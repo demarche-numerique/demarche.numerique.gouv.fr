@@ -6,6 +6,15 @@ en:
       support_html: "We remain at your disposal at %{contact_link} if you need help."
     new_account_warning:
       subject: Account creation request
+      request: An account creation request was made on the %{application_name} website for the email address %{email}.
+      already_exists: Your account already exists.
+      fill_procedure_html: "If you want to fill in the procedure ‘<i>%{procedure}</i>’, click the button below, then sign in to your account."
+      start_procedure: Start the procedure ‘%{procedure}’
+      new_password: Request a new password
+      sign_in_prompt: Go to the %{application_name} website to sign in to your account.
+      sign_in: Sign in
+      forgot_password: Forgot your password?
+      ignore: If you did not make this request, you can ignore this email.
     ask_for_merge:
       subject: Account merge
       request_html: "The account <b>‘%{email}’</b> has requested to be merged with yours <b>‘%{requested_email}’</b>."

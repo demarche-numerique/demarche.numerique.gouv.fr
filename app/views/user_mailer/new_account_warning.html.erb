@@ -1,39 +1,31 @@
 <% content_for(:title, @subject) %>
 
-<p>Bonjour,</p>
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
 
 <p>
-  Une demande de création de compte a été réalisée sur le site
-  <%= APPLICATION_NAME %> pour l’adresse électronique <%= @user.email %>.
+  <%= t('.request', application_name: APPLICATION_NAME, email: @user.email) %>
 </p>
 
-<p><strong>Votre compte existe déjà.</strong></p>
+<p><strong><%= t('.already_exists') %></strong></p>
 
 <% if @procedure %>
-  <p>
-    Si vous souhaitez remplir la démarche
-    «&nbsp;<i><%= @procedure.libelle %></i>&nbsp;», cliquez sur le bouton
-    ci-dessous, puis connectez-vous à votre compte.
-  </p>
-  <%= dsfr_button("Commencer la démarche « #{@procedure.libelle.truncate(60)} »", commencer_sign_in_url(path: @procedure.path), :primary) %>
+  <p><%= t('.fill_procedure_html', procedure: @procedure.libelle) %></p>
+  <%= dsfr_button(t('.start_procedure', procedure: @procedure.libelle.truncate(60)), commencer_sign_in_url(path: @procedure.path), :primary) %>
   <%= vertical_margin(16) %>
-  <%= dsfr_button('Demander un nouveau mot de passe', new_password_url(@user), :secondary) %>
+  <%= dsfr_button(t('.new_password'), new_password_url(@user), :secondary) %>
 <% else %>
   <p>
-    Rendez-vous sur le site <%= APPLICATION_NAME %> pour vous connecter à votre
-    compte. <%= dsfr_button('Se connecter', new_user_session_url, :primary) %>
+    <%= t('.sign_in_prompt', application_name: APPLICATION_NAME) %>
+    <%= dsfr_button(t('.sign_in'), new_user_session_url, :primary) %>
   </p>
   <p>
-    Vous avez oublié votre mot de passe&nbsp;?
-    <%= dsfr_button('Demander un nouveau mot de passe', new_password_url(@user), :secondary) %>
+    <%= t('.forgot_password') %>
+    <%= dsfr_button(t('.new_password'), new_password_url(@user), :secondary) %>
   </p>
 <% end %>
 
 <%= vertical_margin(6) %>
 
-<p>
-  Si vous n’êtes pas à l’origine de cette demande, vous pouvez ignorer cet
-  email.
-</p>
+<p><%= t('.ignore') %></p>
 
 <%= render partial: "layouts/mailers/signature" %>

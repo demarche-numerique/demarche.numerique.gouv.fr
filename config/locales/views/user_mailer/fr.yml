@@ -6,6 +6,15 @@ fr:
       support_html: "Nous restons à votre disposition si vous avez besoin d’accompagnement à l’adresse %{contact_link}."
     new_account_warning:
       subject: Demande de création de compte
+      request: Une demande de création de compte a été réalisée sur le site %{application_name} pour l’adresse électronique %{email}.
+      already_exists: Votre compte existe déjà.
+      fill_procedure_html: "Si vous souhaitez remplir la démarche « <i>%{procedure}</i> », cliquez sur le bouton ci-dessous, puis connectez-vous à votre compte."
+      start_procedure: Commencer la démarche « %{procedure} »
+      new_password: Demander un nouveau mot de passe
+      sign_in_prompt: Rendez-vous sur le site %{application_name} pour vous connecter à votre compte.
+      sign_in: Se connecter
+      forgot_password: Vous avez oublié votre mot de passe ?
+      ignore: Si vous n’êtes pas à l’origine de cette demande, vous pouvez ignorer cet email.
     ask_for_merge:
       subject: Fusion de compte
       request_html: "L’utilisateur <b>« %{email} »</b> a demandé la fusion de son compte avec le vôtre <b>« %{requested_email} »</b>."
