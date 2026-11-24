@@ -18,7 +18,7 @@
       <ul class="procedure-stats flex wrap flex-gap-1 fr-my-2w">
         <li class="fr-btn fr-btn--tertiary flex justify-center">
           <%= link_to(procedure_expert_avis_index_path(p, statut: Instructeurs::AvisController::A_DONNER_STATUS), class: 'center') do %>
-            <% without_answer_count = procedure_avis.select { _1.answer.nil? }.reject{ _1.dossier.termine?}.size %>
+            <% without_answer_count = procedure_avis.select { it.answer.nil? }.reject { it.dossier.termine? }.size %>
 
             <span class="fr-text--bold fr-text--sm">
               <%= without_answer_count %>
