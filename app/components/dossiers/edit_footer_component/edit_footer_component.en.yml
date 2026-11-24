@@ -1,10 +1,10 @@
 ---
 en:
-  submit: Submit the file
-  submit_changes: Submit file changes
-  submit_changes_disabled_title: Modify the file before resubmitting it
-  submit_disabled: File submission disabled
-  check_completude: Check the file
+  submit: Submit the application
+  submit_changes: Submit application changes
+  submit_changes_disabled_title: Modify the application before resubmitting it
+  submit_disabled: Why can't I submit my application?
+  check_completude: Check the application
   notify_owner_for_changes: Notify the owner of your changes
-  notify_owner_for_changes_alert: The account holder will be notified by email that you have made changes to their file. Do you confirm that the message has been sent?
+  notify_owner_for_changes_alert: The owner will be notified by email that you have made changes to their application. Do you want to send this notification?
   submitting: Submitting…
