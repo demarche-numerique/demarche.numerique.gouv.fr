@@ -48,6 +48,12 @@ describe APITokenForm do
       it { expect(form.errors).to be_of_kind(:networks, :invalid) }
     end
 
+    context 'with networks entered by hand but left empty' do
+      let(:attributes) { { network_filtering: 'customNetworks', networks: ' ' } }
+
+      it { expect(form.errors).to be_of_kind(:networks, :blank) }
+    end
+
     context 'with an infinite lifetime' do
       let(:attributes) { { lifetime: 'infinite' } }
 
