@@ -26,8 +26,10 @@
       <h2><%= t('.subtitle') %></h2>
 
       <div class="fr-alert fr-alert--info fr-mb-3w">
-        <p></p>
-        <%= t('.simple_routable_types_html') %>
+        <p>
+          <%= t('.simple_routable_types_html') %>
+        </p>
+
         <%= render TypesDeChamp::ByCategoryListComponent.new(types: TypeDeChamp.simple_routable_types) %>
 
         <p>
