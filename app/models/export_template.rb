@@ -26,6 +26,8 @@ class ExportTemplate < ApplicationRecord
   scope :shareable, -> { where(shared: true) }
 
   DOSSIER_STATE = Dossier.states.fetch(:en_construction)
+  # Accepted ones last, so first in the picker: they hold the attestation and the decision.
+  PREVIEW_DOSSIER_STATES = Dossier.states.values_at(:en_construction, :en_instruction, :refuse, :sans_suite, :accepte).freeze
 
   # when a pj has been added to a revision, it will not be present in the previous pjs
   # a default value is provided.

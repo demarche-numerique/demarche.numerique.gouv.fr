@@ -12,7 +12,7 @@ module Administrateurs
 
     def edit
       @email_template = find_email_template_by_slug(params[:id])
-      @dossier = preview_dossier
+      assign_preview_dossiers
       if !@email_template.valid?
         flash.now.alert = @email_template.errors.full_messages
       end
@@ -31,7 +31,7 @@ module Administrateurs
       else
         flash.now.alert = "L’email contient des erreurs et n’a pas pu être enregistré. Veuillez les corriger"
         @email_template = email_template
-        @dossier = preview_dossier
+        assign_preview_dossiers
         render :edit
       end
     end
@@ -64,7 +64,7 @@ module Administrateurs
         email_template.json_subject = email_template.tiptap_subject_doc if email_template.json_subject.blank?
       end
 
-      @dossier = preview_dossier
+      @dossier = @procedure.preview_dossier(params[:dossier_id]) || fallback_preview_dossier
       @logo_url = @procedure.logo_url
       @service = @procedure.service
       @actions = email_template.actions_for_dossier(@dossier)
@@ -92,9 +92,14 @@ module Administrateurs
 
     private
 
-    # The preview needs a sample dossier: prefer one on the draft revision, otherwise
+    def assign_preview_dossiers
+      @preview_dossiers = @email_template.preview_dossiers
+      @dossier = @procedure.preview_dossier(params[:dossier_id]) || @preview_dossiers.values.first&.first || fallback_preview_dossier
+    end
+
+    # Without any deposited dossier, prefer one on the draft revision, otherwise
     # fall back to the active (published) revision so a published procedure still previews.
-    def preview_dossier
+    def fallback_preview_dossier
       @procedure.dossier_for_preview(current_user) || @procedure.active_revision.dossier_for_preview(current_user)
     end
 

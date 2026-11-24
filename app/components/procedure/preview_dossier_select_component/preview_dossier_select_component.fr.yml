@@ -1,0 +1,9 @@
+---
+fr:
+  label: Dossier utilisé pour l’aperçu
+  option: "N° %{number} – %{owner} – %{state}"
+  option_without_owner: "N° %{number} – %{state}"
+  search: Filtrer par numéro ou nom
+  section:
+    current: Version actuelle de la démarche
+    previous: Versions précédentes – certaines balises peuvent manquer
