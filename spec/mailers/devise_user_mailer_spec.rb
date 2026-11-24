@@ -48,7 +48,7 @@ RSpec.describe DeviseUserMailer, type: :mailer do
 
       it 'is translated in en' do
         user.update_column(:locale, 'en')
-        expect(text_of(subject.body)).to include("To confirm your account email change on #{APPLICATION_NAME}")
+        expect(text_of(subject.body)).to include('To confirm your account email change, select the following link:')
       end
     end
 

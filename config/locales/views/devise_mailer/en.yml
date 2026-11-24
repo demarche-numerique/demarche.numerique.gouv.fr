@@ -1,0 +1,10 @@
+en:
+  devise_mailer:
+    confirmation_instructions:
+      activation:
+        intro: "To confirm your email address and activate your account on %{application_name}, select the button below:"
+        button: Activate my account
+        fallback: "If the button above does not work, copy and paste the following link into your browser:"
+      email_change:
+        title: Change email address
+        intro: "To confirm your account email change, select the following link:"

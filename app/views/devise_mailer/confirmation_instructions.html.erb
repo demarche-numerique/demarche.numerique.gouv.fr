@@ -3,23 +3,20 @@
   <p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
   <% link = confirmation_url(@user, confirmation_token: @token, procedure_id: @procedure&.id, prefill_token: @prefill_token) %>
   <p>
-    Pour confirmer votre adresse électronique et activer votre compte sur
-    <%= APPLICATION_NAME %>, veuillez cliquer sur le bouton ci-dessous&nbsp;:
+    <%= t('.activation.intro', application_name: APPLICATION_NAME) %>
   </p>
   <p>
-    <%= dsfr_button('Activer mon compte', link, :primary) %>
+    <%= dsfr_button(t('.activation.button'), link, :primary) %>
   </p>
   <p>
-    Si le bouton ci-dessus ne fonctionne pas, veuillez copier/coller le lien
-    suivant dans votre navigateur&nbsp;: <%= link_to(link, link) %>
+    <%= t('.activation.fallback') %> <%= link_to(link, link) %>
   </p>
 <% else %>
-  <% content_for(:title, "Changement d’adresse électronique") %>
+  <% content_for(:title, t('.email_change.title')) %>
   <p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+  <% link = confirmation_url(@user, confirmation_token: @token) %>
   <p>
-    Pour confirmer votre changement d’adresse électronique, veuillez cliquer sur
-    le lien suivant&nbsp;:
-    <%= link_to(confirmation_url(@user, confirmation_token: @token), confirmation_url(@user, confirmation_token: @token)) %>
+    <%= t('.email_change.intro') %> <%= link_to(link, link) %>
   </p>
 <% end %>
 
