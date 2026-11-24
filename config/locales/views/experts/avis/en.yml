@@ -62,3 +62,5 @@ en:
         confidentiel: This opinion is confidential and is not shown to the other experts consulted
         shared: This opinion is shared with the other experts
         submit: Send your opinion
+      messagerie:
+        title: "Messaging · Application no. %{dossier_id} (%{owner_name})"

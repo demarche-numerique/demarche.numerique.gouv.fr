@@ -62,3 +62,5 @@ fr:
         confidentiel: Cet avis est confidentiel et n’est pas affiché aux autres experts consultés
         shared: Cet avis est partagé avec les autres experts
         submit: Envoyer votre avis
+      messagerie:
+        title: "Messagerie · Dossier n° %{dossier_id} (%{owner_name})"
