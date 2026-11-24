@@ -400,6 +400,40 @@ describe APIToken, type: :model do
     end
   end
 
+  describe '#expiration_co_recipients' do
+    let(:owner) { administrateurs.default }
+    let(:procedure) { procedures.individual }
+    let(:stranger) { create(:administrateur) }
+    let(:supported_procedure) { create(:procedure, administrateurs: [stranger]) }
+    let(:api_token) { APIToken.generate(owner, allowed_procedure_ids: [procedure.id, supported_procedure.id]).first }
+    let(:co_admins) { create_list(:administrateur, 6) }
+    let(:token_holder) { co_admins.first }
+    let(:support) { create(:administrateur) }
+
+    before do
+      co_admins.each_with_index do |co_admin, i|
+        procedure.administrateurs << co_admin
+        co_admin.user.update_column(:last_sign_in_at, i.days.ago)
+      end
+      token_holder.user.update_column(:last_sign_in_at, 1.year.ago)
+      APIToken.generate(token_holder, allowed_procedure_ids: [procedure.id])
+
+      APIToken.generate(co_admins.last).first.update_column(:expires_at, 1.day.ago.to_date)
+      APIToken.generate(co_admins.last).first.update_column(:version, 2)
+      APIToken.generate(co_admins.last, allowed_procedure_ids: [procedures.brouillon.id])
+
+      AdministrateursProcedure.create!(procedure:, administrateur: support, manager: true)
+      support.user.update_column(:last_sign_in_at, Time.current)
+
+      AdministrateursProcedure.create!(procedure: supported_procedure, administrateur: owner, manager: true)
+      stranger.user.update_column(:last_sign_in_at, Time.current)
+    end
+
+    it 'picks five co-administrateurs outside support, holders of a valid token on these procedures first, then the most recently signed in' do
+      expect(api_token.expiration_co_recipients).to eq([token_holder, *co_admins[1..4]])
+    end
+  end
+
   describe '#authenticate' do
     let(:api_token_and_packed_token) { APIToken.generate(administrateur) }
     let(:api_token) { api_token_and_packed_token.first }

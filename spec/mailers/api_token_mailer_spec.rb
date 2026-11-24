@@ -14,6 +14,27 @@ RSpec.describe APITokenMailer, type: :mailer do
       expect(mail.subject).to eq("Votre jeton d’API « Prod » expire le #{I18n.l(api_token.expires_at, format: :long)}")
       expect(mail.body.decoded).to include('Dupliquez-le depuis votre profil')
     end
+
+    context 'with a warned co-administrateur' do
+      subject(:mail) { described_class.expiration(api_token, ['collegue@exemple.fr']) }
+
+      it { expect(mail.body.decoded).to include('Nous avons aussi prévenu cet administrateur de vos démarches : collegue@exemple.fr.') }
+    end
+  end
+
+  describe '#expiration_for_co_administrator' do
+    let(:owner) { administrateurs.default }
+    let(:api_token) { APIToken.generate(owner, name: 'Prod', allowed_procedure_ids: [procedures.individual.id]).first }
+
+    before { procedures.individual.administrateurs << administrateur }
+
+    subject(:mail) { described_class.expiration_for_co_administrator(api_token, administrateur, [administrateur.email, 'collegue@exemple.fr']) }
+
+    it 'tells the co-administrateur whose token expires, how to keep the access, and who else was told' do
+      expect(mail.to).to eq([user.email])
+      expect(mail.body.decoded).to include('S’il sert à votre équipe, dupliquez-le depuis votre profil')
+      expect(mail.body.decoded).to include("Ont aussi reçu ce message : #{owner.email} et collegue@exemple.fr.")
+    end
   end
 
   describe '#becomes_expirable' do

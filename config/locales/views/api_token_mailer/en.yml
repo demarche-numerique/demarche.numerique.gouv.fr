@@ -6,3 +6,18 @@ en:
       hello: Hello,
       expires: "Your token ‘%{name}’ expires on %{date}. The API will then reject its calls."
       how_to_replace: Duplicate it from your profile, then replace the old token with the new one wherever it is used.
+      co_recipients:
+        one: "We also told this administrator of your procedures: %{emails}."
+        other: "We also told these administrators of your procedures: %{emails}."
+    expiration_for_co_administrator:
+      subject: An API token of %{email} expires on %{date}
+      title: "The token ‘%{name}’ expires"
+      hello: Hello,
+      expires: "The token ‘%{name}’ of %{email} expires on %{date}."
+      accesses:
+        one: It accesses one procedure you administer.
+        other: It accesses %{count} procedures you administer.
+      used_ago: Last used %{time} ago.
+      never_used: It has never been used.
+      what_to_do: If your team uses it, duplicate it from your profile, then replace the old token with the new one wherever it is used.
+      other_recipients: "Also sent to: %{emails}."

@@ -10,6 +10,12 @@
 
 <p><%= t('.how_to_replace') %></p>
 
+<% if @co_recipient_emails.any? %>
+  <p>
+    <%= t('.co_recipients', count: @co_recipient_emails.size, emails: @co_recipient_emails.to_sentence) %>
+  </p>
+<% end %>
+
 <p><%= link_to profil_url, profil_url %></p>
 
 <%= render partial: "layouts/mailers/signature" %>

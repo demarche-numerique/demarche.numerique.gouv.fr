@@ -23,7 +23,10 @@ class Cron::SendAPITokenExpirationNoticeJob < Cron::CronJob
       APIToken
         .with_expiration_notice_to_send_for(window)
         .find_each do |token|
-        APITokenMailer.expiration(token).deliver_later
+        co_recipients = token.expiration_co_recipients
+        co_recipient_emails = co_recipients.map(&:email)
+        APITokenMailer.expiration(token, co_recipient_emails).deliver_later
+        co_recipients.each { APITokenMailer.expiration_for_co_administrator(token, it, co_recipient_emails).deliver_later }
         token.expiration_notices_sent_at << Time.zone.today
         token.save!
       end
