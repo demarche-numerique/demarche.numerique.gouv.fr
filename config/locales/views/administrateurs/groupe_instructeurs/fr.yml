@@ -60,18 +60,18 @@ fr:
         unrestricted: "Les instructeurs peuvent ajouter des adresses électroniques d’un autre domaine."
       add_instructeur_to_all_groupes:
         wrong_address:
-          one: "%{emails} nʼest pas une adresse électronique valide"
+          one: "%{emails} n’est pas une adresse électronique valide"
           other: "%{emails} ne sont pas des adresses électroniques valides"
         add_all_groupes_assignment:
-          one: "Lʼinstructeur %{emails} a été ajouté à tous les groupes de la démarche."
+          one: "L’instructeur %{emails} a été ajouté à tous les groupes de la démarche."
           other: "Les instructeurs %{emails} ont été ajoutés à tous les groupes de la démarche."
       remove_instructeur_from_all_groupes:
         remove_all_groupes_assignment:
-          one: "Lʼinstructeur %{emails} a été retiré de tous les groupes de la démarche."
+          one: "L’instructeur %{emails} a été retiré de tous les groupes de la démarche."
           other: "Les instructeurs %{emails} ont été retirés de tous les groupes de la démarche."
         remove_all_groupes_partial:
-          one: "Lʼinstructeur %{emails} nʼa pas été retiré de tous les groupes car il est seul instructeur dans certains groupes."
-          other: "Les instructeurs %{emails} nʼont pas été retirés de tous les groupes car ils sont seuls instructeurs dans certains groupes."
+          one: "L’instructeur %{emails} n’a pas été retiré de tous les groupes car il est seul instructeur dans certains groupes."
+          other: "Les instructeurs %{emails} n’ont pas été retirés de tous les groupes car ils sont seuls instructeurs dans certains groupes."
       reaffectation:
         title: "Réaffectation des dossiers du groupe « %{label} »"
         hint:
