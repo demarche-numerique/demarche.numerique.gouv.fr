@@ -37,6 +37,25 @@ RSpec.describe Cron::SendAPITokenExpirationNoticeJob, type: :job do
 
       it { expect(mailer_double).not_to have_received(:deliver_later) }
 
+      context 'when a co-administrateur shares one of its procedures' do
+        let(:co_admin) { administrateurs.blank }
+        let(:co_mailer_double) { double('mailer', deliver_later: true) }
+
+        before do
+          token.update!(allowed_procedure_ids: [procedures.individual.id])
+          procedures.individual.administrateurs << co_admin
+          allow(APITokenMailer).to receive(:expiration_for_co_administrator).and_return(co_mailer_double)
+          travel_to(expires_at - 1.month)
+          perform_now
+        end
+
+        it 'warns them too' do
+          expect(APITokenMailer).to have_received(:expiration).with(token, [co_admin.email])
+          expect(APITokenMailer).to have_received(:expiration_for_co_administrator).with(token, co_admin, [co_admin.email])
+          expect(co_mailer_double).to have_received(:deliver_later)
+        end
+      end
+
       context 'when the token expires less than a month' do
         before do
           travel_to(expires_at - 1.month - 1.day)

@@ -1,0 +1,24 @@
+<% content_for(:title, t('.title', name: @api_token.name)) %>
+
+<p><%= t('.hello') %></p>
+
+<p>
+  <strong>
+    <%= t('.expires', name: @api_token.name, email: @owner.email, date: l(@api_token.expires_at, format: :long)) %>
+  </strong>
+</p>
+
+<p>
+  <%= t('.reads', count: @procedures_count) %>
+  <%= @api_token.last_used_at ? t('.used_ago', time: time_ago_in_words(@api_token.last_used_at)) : t('.never_used') %>
+</p>
+
+<p><%= t('.what_to_do', email: @owner.email) %></p>
+
+<p>
+  <%= t('.other_recipients', emails: @other_recipient_emails.to_sentence) %>
+</p>
+
+<p><%= link_to profil_url, profil_url %></p>
+
+<%= render partial: "layouts/mailers/signature" %>
