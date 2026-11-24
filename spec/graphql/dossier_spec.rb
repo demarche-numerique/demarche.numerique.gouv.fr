@@ -357,6 +357,21 @@ RSpec.describe Types::DossierType, type: :graphql do
         expect(data[:dossier][:champs].first[:dossier]).to be_nil
       }
     end
+
+    context 'with columns' do
+      let(:query) { DOSSIER_WITH_COLUMNS_QUERY }
+
+      it 'exposes the number, the submission date, the title and the agency of the linked dossier' do
+        expect(errors).to be_nil
+        libelle = dossier.public_root_champs.first.libelle
+        expect(data[:dossier][:champs].first[:columns]).to eq([
+          { __typename: 'TextColumn', label: libelle, value: linked_dossier.id.to_s },
+          { __typename: 'DateColumn', label: "#{libelle} – Date de dépôt du dossier", value: linked_dossier.depose_at.to_date.iso8601 },
+          { __typename: 'TextColumn', label: "#{libelle} – Intitulé de la démarche", value: linked_dossier.procedure.libelle },
+          { __typename: 'TextColumn', label: "#{libelle} – Service porteur de la démarche", value: linked_dossier.procedure.organisation_name },
+        ])
+      end
+    end
   end
 
   describe 'dossier with repetition' do
@@ -889,6 +904,25 @@ RSpec.describe Types::DossierType, type: :graphql do
                 type
               }
             }
+          }
+        }
+      }
+    }
+  }
+  GRAPHQL
+
+  DOSSIER_WITH_COLUMNS_QUERY = <<-GRAPHQL
+  query($number: Int!) {
+    dossier(number: $number) {
+      champs {
+        columns {
+          __typename
+          label
+          ... on DateColumn {
+            value
+          }
+          ... on TextColumn {
+            value
           }
         }
       }

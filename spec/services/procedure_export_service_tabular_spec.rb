@@ -189,6 +189,25 @@ describe ProcedureExportService do
         it { expect(dossiers_sheet.data.last.last).to be_an_instance_of(Date) }
       end
 
+      context 'with TypesDeChamp::DossierLinkTypeDeChamp' do
+        let(:public_type_de_champs) { [{ type: :dossier_link, libelle: "dossier_link" }] }
+        let(:labels) { ['dossier_link', 'dossier_link – Date de dépôt du dossier', 'dossier_link – Intitulé de la démarche', 'dossier_link – Service porteur de la démarche'] }
+        let(:exported_columns) { labels.map { ExportedColumn.new(libelle: it, column: procedure.find_column(label: it)) } }
+        let(:linked_procedure) { create(:procedure, libelle: 'Démarche liée', service: create(:service, nom: 'Service lié')) }
+        let(:linked_dossier) { create(:dossier, :en_construction, procedure: linked_procedure).tap { it.update_columns(depose_at: Time.zone.local(2026, 3, 4, 10)) } }
+        let(:champ) { create(:dossier, :en_construction, procedure:).champ_data.first }
+        before { champ.update!(value: linked_dossier.id) }
+        it do
+          expect(dossiers_sheet.headers.last(4)).to eq(labels)
+          expect(dossiers_sheet.data.last.last(4)).to eq([linked_dossier.id.to_s, Date.new(2026, 3, 4), 'Démarche liée', 'Service lié'])
+        end
+
+        context 'when the link has no resolved procedure' do
+          before { champ.update_columns(value: linked_dossier.id.to_s, value_json: nil) }
+          it { expect(dossiers_sheet.data.last.last(3)).to eq([nil, nil, nil]) }
+        end
+      end
+
       context 'with DossierColumn as datetime' do
         let(:public_type_de_champs) { [] }
         let(:exported_columns) { [ExportedColumn.new(libelle: 'Date de passage en instruction', column: procedure.find_column(label: 'Date de passage en instruction'))] }
