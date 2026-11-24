@@ -4,6 +4,18 @@ RSpec.describe APITokenMailer, type: :mailer do
   let(:administrateur) { administrateurs.blank }
   let(:user) { administrateur.user }
 
+  describe '#expiration' do
+    let(:api_token) { APIToken.generate(administrateur, name: 'Prod').first }
+
+    subject(:mail) { described_class.expiration(api_token) }
+
+    it 'tells the owner to duplicate the token before it expires' do
+      expect(mail.to).to eq([user.email])
+      expect(mail.subject).to eq("Votre jeton d’API « Prod » expire le #{I18n.l(api_token.expires_at, format: :long)}")
+      expect(mail.body.encoded).to include('dupliquez')
+    end
+  end
+
   describe '#becomes_expirable' do
     # The cap itself, so the date is always within the create validations, and
     # a fixed one would silently expire. It is also what the backfill passes.

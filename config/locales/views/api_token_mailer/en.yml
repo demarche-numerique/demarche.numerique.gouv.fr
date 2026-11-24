@@ -1,0 +1,9 @@
+en:
+  api_token_mailer:
+    expiration:
+      subject: "Your API token ‘%{name}’ expires on %{date}"
+      title: "Your token ‘%{name}’ expires"
+      hello: Hello,
+      expires: "Your token ‘%{name}’ expires on %{date}. The API will then reject its calls."
+      how_to_replace: To replace it, duplicate it from your profile, give the new token to the software using it, then delete the old one.
+      tell_the_technical_team: Let the technical team in charge of this software know.
