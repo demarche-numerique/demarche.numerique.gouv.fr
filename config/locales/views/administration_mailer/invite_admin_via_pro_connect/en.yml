@@ -1,0 +1,5 @@
+en:
+  administration_mailer:
+    invite_admin_via_pro_connect:
+      subject: Activate your administrator account
+      activate: "To activate it, sign in with ProConnect using this same email address:"

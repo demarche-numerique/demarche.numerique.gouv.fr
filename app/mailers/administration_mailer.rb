@@ -24,8 +24,10 @@ class AdministrationMailer < ApplicationMailer
 
     bypass_unverified_mail_protection!
 
+    use_recipient_locale(user)
+
     mail(to: user.email,
-      subject: "Activez votre compte administrateur",
+      subject: default_i18n_subject,
       reply_to: CONTACT_EMAIL)
   end
 
