@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe DeviseUserMailer, type: :mailer do
-  let(:user) { create(:user) }
+  let(:user) { users.usager }
   let(:token) { SecureRandom.hex }
 
   def text_of(body) = Capybara.string(body.to_s).text.gsub(/\s+/, " ")
