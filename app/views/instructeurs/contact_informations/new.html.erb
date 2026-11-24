@@ -1,10 +1,4 @@
-<% content_for(:title, t('.title')) %>
-
-<%= render partial: 'shared/breadcrumbs_section',
-  locals: { steps: [[@procedure.libelle.truncate_words(10), instructeur_procedure_path(@procedure)],
-    [t('instructeurs.groupe_instructeurs.index.heading'), instructeur_groupes_path(@procedure)],
-    [@groupe_instructeur.label, instructeur_groupe_path(@groupe_instructeur, procedure_id: @procedure.id)],
-    [t('.agency')]] } %>
+<%= render 'heading' %>
 
 <div class="container">
   <h1><%= t('.heading') %></h1>

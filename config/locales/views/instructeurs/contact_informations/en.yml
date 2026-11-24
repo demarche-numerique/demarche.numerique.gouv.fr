@@ -2,10 +2,9 @@ en:
   instructeurs:
     contact_informations:
       edit:
-        agency: Agency
         heading: Edit contact information
+      heading:
+        agency: Agency
         title: Contact
       new:
-        agency: Agency
         heading: Contact information
-        title: Contact

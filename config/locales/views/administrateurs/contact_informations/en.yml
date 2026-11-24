@@ -1,0 +1,11 @@
+en:
+  administrateurs:
+    contact_informations:
+      edit:
+        heading: Edit contact information
+      heading:
+        contact_information: Contact information
+        teams: Teams
+        title: Contact
+      new:
+        heading: Contact information

@@ -3,10 +3,9 @@
 describe Instructeurs::ContactInformationsController, type: :controller do
   render_views
 
-  let(:instructeur) { create(:instructeur) }
-  let(:procedure) { create(:procedure) }
-  let(:assign_to) { create(:assign_to, instructeur: instructeur, groupe_instructeur: build(:groupe_instructeur, procedure: procedure)) }
-  let(:gi) { assign_to.groupe_instructeur }
+  let(:instructeur) { instructeurs.default }
+  let(:procedure) { procedures.individual }
+  let(:gi) { procedure.defaut_groupe_instructeur }
   let(:from_admin) { nil }
 
   let(:other_procedure) { create(:procedure) }
@@ -22,6 +21,8 @@ describe Instructeurs::ContactInformationsController, type: :controller do
       get :new, params: { procedure_id: procedure.id, groupe_id: gi.id }
       expect(response.body).to have_css('h1', text: 'Informations de contact')
       expect(response.body).to have_link('Gestion des instructeurs', href: instructeur_groupes_path(procedure))
+      expect(response.body).to have_field('contact_information[nom]')
+      expect(response.body).not_to have_button('Supprimer')
     end
   end
 
@@ -45,11 +46,11 @@ describe Instructeurs::ContactInformationsController, type: :controller do
         post :create, params: params
         expect(flash.alert).to be_nil
         expect(flash.notice).to eq('Les informations de contact ont bien été ajoutées')
-        expect(ContactInformation.last.nom).to eq('super service')
-        expect(ContactInformation.last.email).to eq('email@toto.com')
-        expect(ContactInformation.last.telephone).to eq('1234')
-        expect(ContactInformation.last.horaires).to eq('horaires')
-        expect(ContactInformation.last.adresse).to eq('adresse')
+        expect(gi.reload.contact_information.nom).to eq('super service')
+        expect(gi.reload.contact_information.email).to eq('email@toto.com')
+        expect(gi.reload.contact_information.telephone).to eq('1234')
+        expect(gi.reload.contact_information.horaires).to eq('horaires')
+        expect(gi.reload.contact_information.adresse).to eq('adresse')
       end
 
       it 'translates the notice in english' do
@@ -88,6 +89,8 @@ describe Instructeurs::ContactInformationsController, type: :controller do
     it do
       get :edit, params: { procedure_id: procedure.id, groupe_id: gi.id }
       expect(response.body).to have_css('h1', text: 'Modifier les informations de contact')
+      expect(response.body).to have_field('contact_information[nom]')
+      expect(response.body).to have_button('Supprimer')
     end
   end
 
@@ -116,7 +119,7 @@ describe Instructeurs::ContactInformationsController, type: :controller do
       it do
         expect(flash.alert).to be_nil
         expect(flash.notice).to eq('Les informations de contact ont bien été modifiées')
-        expect(ContactInformation.last.nom).to eq('nom')
+        expect(gi.reload.contact_information.nom).to eq('nom')
         expect(response).to redirect_to(instructeur_groupe_path(gi, procedure_id: procedure.id))
       end
     end
