@@ -64,3 +64,5 @@ en:
         submit: Send your opinion
       messagerie:
         title: "Messaging · Application no. %{dossier_id} (%{owner_name})"
+      show:
+        title: "Request · Application no. %{dossier_id} (%{owner_name})"

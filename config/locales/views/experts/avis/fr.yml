@@ -64,3 +64,5 @@ fr:
         submit: Envoyer votre avis
       messagerie:
         title: "Messagerie · Dossier n° %{dossier_id} (%{owner_name})"
+      show:
+        title: "Demande · Dossier n° %{dossier_id} (%{owner_name})"
