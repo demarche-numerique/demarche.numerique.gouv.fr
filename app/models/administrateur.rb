@@ -67,6 +67,10 @@ class Administrateur < ApplicationRecord
     procedure.administrateurs.include?(self)
   end
 
+  def procedure_ids_without_support
+    procedures.merge(AdministrateursProcedure.without_support).ids
+  end
+
   def instructeur
     user.instructeur
   end

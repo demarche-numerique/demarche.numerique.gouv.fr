@@ -3,6 +3,7 @@
 class APIToken < ApplicationRecord
   include ActiveRecord::SecureToken
   include APITokenProceduresConcern
+  include APITokenSharingConcern
 
   # A leaked token stays usable until it expires: cap how long that window can be.
   MAX_LIFETIME = ENV.fetch('API_TOKEN_MAX_LIFETIME_IN_DAYS') { 365 }.to_i.days
