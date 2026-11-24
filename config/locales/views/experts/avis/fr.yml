@@ -51,3 +51,5 @@ fr:
           messaging: Messagerie
       avis_list:
         title: "Avis · Dossier n° %{dossier_id} (%{owner_name})"
+      avis_new:
+        title: "Avis · Dossier n° %{dossier_id} (%{owner_name})"

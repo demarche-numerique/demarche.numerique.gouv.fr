@@ -51,3 +51,5 @@ en:
           messaging: Messaging
       avis_list:
         title: "Opinion · Application no. %{dossier_id} (%{owner_name})"
+      avis_new:
+        title: "Opinion · Application no. %{dossier_id} (%{owner_name})"
