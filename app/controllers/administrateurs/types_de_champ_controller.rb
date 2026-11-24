@@ -233,7 +233,7 @@ module Administrateurs
     def champ_components_from(type_de_champs, focused: false, errors: '')
       TypeDeChamp.preload_attachments(type_de_champs.flat_map { [it, *it.flat_children] })
 
-      type_de_champs.map { TypesDeChampEditor::ChampComponent.new(type_de_champ: it, focused:, errors:) }
+      type_de_champs.map { TypesDeChampEditor::NodeComponent.new(type_de_champ: it, focused:, errors:) }
     end
 
     def type_de_champ_create_params

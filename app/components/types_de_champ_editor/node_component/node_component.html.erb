@@ -1,0 +1,7 @@
+<%= tag.li(**html_options.merge(class: ["type-de-champ flex column justify-start fr-mb-5v", html_options[:class]])) do %>
+  <%= render TypesDeChampEditor::ChampComponent.new(type_de_champ:, focused: @focused, errors: @errors) %>
+
+  <div class="type-de-champ-add-button <%= class_names(root: !type_de_champ.in_repetition?, flex: true) %>">
+    <%= render TypesDeChampEditor::AddChampButtonComponent.new(revision:, parent: type_de_champ.enclosing_repetition, is_annotation: type_de_champ.private?, after_stable_id: type_de_champ.stable_id) %>
+  </div>
+<% end %>
