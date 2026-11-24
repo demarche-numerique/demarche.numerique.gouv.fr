@@ -69,6 +69,26 @@ suite('withoutPrefilledIdentityInReport', () => {
     });
   });
 
+  test('removes the identity from the frames of code written in the page', () => {
+    const bundle = 'https://demarche.numerique.gouv.fr/vite/assets/a.js';
+    const report = {
+      exception: {
+        values: [
+          {
+            stacktrace: {
+              frames: [{ filename: NAMED_PAGE }, { filename: bundle }, {}]
+            }
+          }
+        ]
+      }
+    };
+
+    expect(
+      withoutPrefilledIdentityInReport(report).exception.values[0].stacktrace
+        .frames
+    ).toEqual([{ filename: PAGE }, { filename: bundle }, {}]);
+  });
+
   test('leaves a report without address as it is', () => {
     const report = { request: { headers: { 'User-Agent': 'Firefox' } } };
 

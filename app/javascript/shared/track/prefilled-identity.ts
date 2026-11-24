@@ -43,9 +43,13 @@ export function matomoAddressOverrides(
   return overrides;
 }
 
-// An error report carries the same two addresses.
+// An error report carries the same two addresses, and names the page again as
+// the file of each frame of the stack that runs code written in the page.
 type ErrorReport = {
   request?: { url?: string; headers?: Record<string, string> };
+  exception?: {
+    values?: { stacktrace?: { frames?: { filename?: string }[] } }[];
+  };
 };
 
 export function withoutPrefilledIdentityInReport<Report extends ErrorReport>(
@@ -57,6 +61,13 @@ export function withoutPrefilledIdentityInReport<Report extends ErrorReport>(
   }
   if (request?.headers?.Referer) {
     request.headers.Referer = withoutPrefilledIdentity(request.headers.Referer);
+  }
+  for (const exception of report.exception?.values ?? []) {
+    for (const frame of exception.stacktrace?.frames ?? []) {
+      if (frame.filename) {
+        frame.filename = withoutPrefilledIdentity(frame.filename);
+      }
+    }
   }
   return report;
 }
