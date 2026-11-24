@@ -25,6 +25,7 @@ RSpec.describe ProcedureTemplates::EaeIntegration do
     expect(procedure).to have_attributes(
       aasm_state: "brouillon",
       for_individual: true,
+      for_tiers_enabled: false,
       ask_birthday: false,
       opendata: false,
       lien_dpo: "dpd@exemple.fr",

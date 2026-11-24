@@ -614,6 +614,9 @@ module ProcedureTemplates
         # stored as the platform does: the day after the last day of submission
         auto_archive_on: @deadline&.tomorrow,
         for_individual: true,
+        # an admission is personal: nobody files for someone else, and the
+        # identity step opens on the name the link carries
+        for_tiers_enabled: false,
         # the definition of the form stays off the public catalogue
         opendata: false,
         allow_expert_review: false,
