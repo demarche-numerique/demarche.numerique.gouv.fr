@@ -8,16 +8,19 @@
   <% if ENV['APP_HOST'] == 'demarche.numerique.gouv.fr' %>
     <% demarche_link = sign_in_by_link_url(@instructeur.id, jeton: @login_token, host: 'demarche.numerique.gouv.fr') %>
     <%= link_to(demarche_link, demarche_link) %>
-    <p>
-      <%= t('.legacy_address') %>
-      <% ds_link = sign_in_by_link_url(@instructeur.id, jeton: @login_token, host: 'www.demarches-simplifiees.fr') %>
-      <%= link_to(ds_link, ds_link) %>
-    </p>
   <% else %>
     <% link = sign_in_by_link_url(@instructeur.id, jeton: @login_token) %>
     <%= link_to(link, link) %>
   <% end %>
 </p>
+
+<% if ENV['APP_HOST'] == 'demarche.numerique.gouv.fr' %>
+  <p>
+    <%= t('.legacy_address') %>
+    <% ds_link = sign_in_by_link_url(@instructeur.id, jeton: @login_token, host: 'www.demarches-simplifiees.fr') %>
+    <%= link_to(ds_link, ds_link) %>
+  </p>
+<% end %>
 
 <p>
   <%= t('.link_validity_html') %>
