@@ -1,0 +1,10 @@
+<p>
+  Bonjour,
+</p>
+
+<p>
+  <%= "#{@sender.email} vous a envoyé le dossier n° #{@dossier.id}, cliquez sur le lien ci-dessous pour y accéder :" %>
+  <%= link_to(instructeur_dossier_url(@dossier.procedure, @dossier), instructeur_dossier_url(@dossier.procedure, @dossier)) %>
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>
