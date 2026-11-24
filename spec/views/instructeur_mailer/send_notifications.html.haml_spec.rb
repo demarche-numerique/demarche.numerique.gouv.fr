@@ -110,8 +110,8 @@ describe 'instructeur_mailer/send_notifications', type: :view do
     end
 
     it do
-      expect(rendered).to have_text("1 dossier avec des notifications \"nouveautés\"")
-      expect(rendered).to have_text("1 \"DOSSIER MODIFIÉ\"")
+      expect(rendered).to have_text("1 dossier avec des notifications « nouveautés »")
+      expect(rendered).to have_text("1 « DOSSIER MODIFIÉ »")
     end
   end
 end
