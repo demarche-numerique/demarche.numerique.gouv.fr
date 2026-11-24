@@ -278,6 +278,22 @@ describe Columns::JSONPathColumn do
     end
   end
 
+  describe '#sorted_ids' do
+    let(:jsonpath) { '$.city_name' }
+
+    def dossier_in(city)
+      create(:dossier, procedure:).tap { it.champ_data.first.update_columns(value: city.to_s.reverse, value_json: { city_name: city }.compact) }
+    end
+
+    it 'sorts on the JSON attribute, the dossiers without it last ascending' do
+      zurich, annecy, lyon, none = [dossier_in('Zurich'), dossier_in('Annecy'), dossier_in('Lyon'), dossier_in(nil)]
+      dossiers = Dossier.where(id: [zurich, annecy, lyon, none])
+
+      expect(column.sorted_ids(dossiers, 'asc', count: 4)).to eq([annecy, lyon, zurich, none].map(&:id))
+      expect(column.sorted_ids(dossiers, 'desc', count: 4)).to eq([none, zurich, lyon, annecy].map(&:id))
+    end
+  end
+
   describe '#initializer' do
     let(:jsonpath) { %{$.'city_name} }
 

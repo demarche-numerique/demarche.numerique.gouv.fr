@@ -171,6 +171,29 @@
         89
       ],
       "note": "The table and column are escaped, which should make this safe"
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "95d7d39f57eb0765cf203dc062926a31f89938998f6e554e38912553c0869904",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/models/columns/json_path_column.rb",
+      "line": 164,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "Arel.sql(\"jsonb_path_query_first(champs.value_json, '#{jsonpath_for_sql}') #{(\"DESC\" or \"ASC\")}\")",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Columns::JSONPathColumn",
+        "method": "sorted_dossiers"
+      },
+      "user_input": "jsonpath_for_sql",
+      "confidence": "Medium",
+      "cwe_id": [
+        89
+      ],
+      "note": "The jsonpath comes from the code or from the column headers of a référentiel set by an administrateur, and is escaped by quote_string when the column is built (JSONPathColumn#initialize), as in the filters of the same class. The direction is a constant, ASC or DESC."
     }
   ],
   "brakeman_version": "8.0.4"
