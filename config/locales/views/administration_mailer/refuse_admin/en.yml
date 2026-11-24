@@ -1,0 +1,10 @@
+en:
+  administration_mailer:
+    refuse_admin:
+      title: Account creation request rejected
+      intended_for: Administrator accounts are intended for public administrations that want to offer online procedures to their applicants on their own websites. This does not seem to be your case.
+      access: Applicants or public administrations (local authorities, etc.) who want to fill in a procedure or submit an application online access %{application_name} through a link provided by the administration in charge, on its own website. This link will let you create an account and fill in the form right away.
+      contact_html: If, however, you run into problems while using %{application_name} as an applicant, please describe them on our %{link}.
+      contact_link: contact form
+      contact_admin_html: If you made a legitimate administrator account request with a consumer email address (Orange, Wanadoo, etc.), please contact us through our %{link}.
+      contact_admin_link: administrator contact form

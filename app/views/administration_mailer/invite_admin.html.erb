@@ -1,0 +1,27 @@
+<% content_for(:title, t('.title')) %>
+
+<p>
+  <%= t(:hello, scope: [:views, :shared, :greetings]) %>
+</p>
+
+<p>
+  <%= t('.thanks') %>
+</p>
+
+<p>
+  <%= t('.account_created', email: @user.email) %>
+</p>
+
+<% if @user.active? %>
+  <% label, url = t('.sign_in'), edit_user_password_url(reset_password_token: @reset_password_token) %>
+<% else %>
+  <% label, url = t('.activate'), users_activate_url(token: @reset_password_token) %>
+<% end %>
+
+<p>
+  <b><%= label %> <%= link_to url, url %></b>
+</p>
+
+<p>
+  <%= render partial: "layouts/mailers/bizdev_signature", locals: { author_name: @author_name } %>
+</p>

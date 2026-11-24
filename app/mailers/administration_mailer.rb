@@ -8,12 +8,13 @@ class AdministrationMailer < ApplicationMailer
     @reset_password_token = reset_password_token
     @user = user
     @author_name = "Équipe de #{APPLICATION_NAME}"
-    subject = "Activez votre compte administrateur"
 
     bypass_unverified_mail_protection!
 
+    use_recipient_locale(user)
+
     mail(to: user.email,
-      subject: subject,
+      subject: default_i18n_subject,
       reply_to: CONTACT_EMAIL)
   end
 
