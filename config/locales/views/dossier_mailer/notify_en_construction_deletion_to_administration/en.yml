@@ -1,0 +1,5 @@
+en:
+  dossier_mailer:
+    notify_en_construction_deletion_to_administration:
+      subject: Application no. %{dossier_id} has been deleted at the applicant’s request
+      body: At the applicant’s request, application no. %{dossier_id} (%{procedure}) has been deleted.
