@@ -2,8 +2,8 @@ fr:
   dossier_mailer:
     notify_brouillon_not_submitted:
       subject: "Attention : votre dossier n° %{dossier_id} n’est pas déposé"
-      not_submitted_html: "Le dossier n°%{dossier_id} pour la démarche «&nbsp;<strong>%{libelle_demarche}</strong>&nbsp;» est commencé mais n’est pas encore déposé."
+      not_submitted_html: "Le dossier n° %{dossier_id} pour la démarche «&nbsp;<strong>%{libelle_demarche}</strong>&nbsp;» est commencé mais n’est pas encore déposé."
       deadline: Si vous souhaitez que ce dossier soit pris en compte, il vous faut le déposer avant le %{deadline}, date limite de dépôt des dossiers.
-      how_to_submit_html: Pour cela, affichez le dossier avec le bouton ci-dessous, vérifiez votre dossier puis cliquez sur le bouton <strong>'Déposer le dossier'</strong>
+      how_to_submit_html: Pour cela, affichez le dossier avec le bouton ci-dessous, vérifiez votre dossier puis cliquez sur le bouton <strong>« Déposer le dossier »</strong>.
       nothing_to_do: Si vous ne souhaitez plus déposer le dossier, vous n’avez rien à faire.
       access_file: Afficher votre dossier
