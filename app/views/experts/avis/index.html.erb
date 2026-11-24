@@ -1,0 +1,55 @@
+<% content_for(:title, t('.title')) %>
+
+<div class="sub-header">
+  <div class="fr-container">
+    <h1 class="fr-h3"><%= t('.title') %></h1>
+  </div>
+</div>
+
+<div class="fr-container">
+  <% @avis_by_procedure.each do |p, procedure_avis| %>
+    <section class="procedure__item" id="<%= dom_id(p) %>">
+      <h3 class="fr-text--regular fr-link fr-mr-2w">
+        <%= link_to procedure_libelle_with_number(p), procedure_expert_avis_index_path(p, statut: Instructeurs::AvisController::A_DONNER_STATUS) %>
+      </h3>
+
+      <%= procedure_badge(p) %>
+
+      <ul class="procedure-stats flex wrap flex-gap-1 fr-my-2w">
+        <li class="fr-btn fr-btn--tertiary flex justify-center">
+          <%= link_to(procedure_expert_avis_index_path(p, statut: Instructeurs::AvisController::A_DONNER_STATUS), class: 'center') do %>
+            <% without_answer_count = procedure_avis.select { _1.answer.nil? }.reject{ _1.dossier.termine?}.size %>
+
+            <span class="fr-text--bold fr-text--sm">
+              <%= without_answer_count %>
+            </span>
+
+            <div class="fr-text--xs">
+              <%= t(".to_give", count: without_answer_count) %>
+            </div>
+
+            <% if without_answer_count > 0 %>
+              <span class="notifications">
+                <span class="fr-sr-only"><%= t(".notification") %></span>
+              </span>
+            <% end %>
+          <% end %>
+        </li>
+
+        <li class="fr-btn fr-btn--tertiary flex justify-center">
+          <%= link_to(procedure_expert_avis_index_path(p, statut: Instructeurs::AvisController::DONNES_STATUS), class: 'center') do %>
+            <% with_answer_count = procedure_avis.select { |a| a.answer.present? }.size %>
+
+            <span class="fr-text--bold fr-text--sm">
+              <%= with_answer_count %>
+            </span>
+
+            <div class="fr-text--xs">
+              <%= t(".given", count: with_answer_count) %>
+            </div>
+          <% end %>
+        </li>
+      </ul>
+    </section>
+  <% end %>
+</div>
