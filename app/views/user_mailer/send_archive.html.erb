@@ -1,0 +1,20 @@
+<% content_for(:title, 'Votre archive est disponible') %>
+
+<p>Bonjour,</p>
+
+<p>
+  Votre archive pour la démarche
+  <%= link_to("#{@procedure.id} − #{@procedure.libelle}", @procedure_url) %> est
+  disponible. Vous pouvez la télécharger dans votre espace de gestion des
+  archives.
+</p>
+
+<p><%= dsfr_button('Consulter mes archives', @archive_url, :primary) %></p>
+
+<p>
+  Ce fichier est
+  <b>valide <%= distance_of_time_in_words(Archive::RETENTION_DURATION) %></b> et
+  peut-être téléchargé <b>plusieurs fois.</b>
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>
