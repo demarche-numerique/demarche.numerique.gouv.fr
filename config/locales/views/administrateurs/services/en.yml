@@ -1,6 +1,11 @@
 en:
   administrateurs:
     services:
+      new:
+        title: Agency
+        services_choice: Agency selection
+        new_service: New agency
+        heading: New agency
       form:
         siret_hint_html: "Enter the SIRET number of the organization this service belongs to. Search for the SIRET on"
         siret_format: "Expected format: 14 digits. Example: 50000123456789"

@@ -1,9 +1,9 @@
-<% content_for(:title, "Service") %>
+<% content_for(:title, t('.title')) %>
 <% render_procedure_sticky_title(@procedure) %>
 
-<%= render partial: 'shared/breadcrumbs_section', locals: { steps: [[admin_procedures_back_label(@procedure), admin_procedures_back_path(@procedure)], [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)], ['Choix du service', admin_services_path(procedure_id: @procedure.id)], ['Nouveau service']] } %>
+<%= render partial: 'shared/breadcrumbs_section', locals: { steps: [[admin_procedures_back_label(@procedure), admin_procedures_back_path(@procedure)], [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)], [t('.services_choice'), admin_services_path(procedure_id: @procedure.id)], [t('.new_service')]] } %>
 
 <div class="container">
-  <h1>Nouveau Service</h1>
+  <h1><%= t('.heading') %></h1>
   <%= render partial: 'form', locals: { service: @service, procedure: @procedure, prefilled: @prefilled } %>
 </div>
