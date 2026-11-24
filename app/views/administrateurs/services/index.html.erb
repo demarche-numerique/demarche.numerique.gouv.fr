@@ -1,11 +1,11 @@
-<% content_for(:title, "Service") %>
+<% content_for(:title, t('.title')) %>
 <% render_procedure_sticky_title(@procedure) %>
 
-<%= render partial: 'shared/breadcrumbs_section', locals: { steps: [[admin_procedures_back_label(@procedure), admin_procedures_back_path(@procedure)], [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)], ['Service']] } %>
+<%= render partial: 'shared/breadcrumbs_section', locals: { steps: [[admin_procedures_back_label(@procedure), admin_procedures_back_path(@procedure)], [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)], [t('.title')]] } %>
 
 <div class="fr-container" id="services-index">
-  <h1 class="fr-h2">Service</h1>
-  <%= link_to "Nouveau service", new_admin_service_path(procedure_id: @procedure.id), class: "fr-btn fr-btn--primary fr-btn--icon-left fr-icon-add-circle-line fr-mb-6v" %>
+  <h1 class="fr-h2"><%= t('.title') %></h1>
+  <%= link_to t('.new_service'), new_admin_service_path(procedure_id: @procedure.id), class: "fr-btn fr-btn--primary fr-btn--icon-left fr-icon-add-circle-line fr-mb-6v" %>
 
   <div class="fr-table">
     <div class="fr-table__wrapper">
@@ -13,17 +13,17 @@
         <div class="fr-table__content">
           <table>
             <caption>
-              Liste des services pouvant être affectés à la démarche
+              <%= t('.caption') %>
             </caption>
 
             <thead>
               <tr>
                 <th scope="col">
-                  Nom
+                  <%= t('.name') %>
                 </th>
 
                 <th class="fr-col-4" scope="col">
-                  Actions
+                  <%= t('.actions') %>
                 </th>
               </tr>
             </thead>
@@ -40,20 +40,20 @@
                       <div class="fr-col-4 fr-col--middle">
                         <% if @procedure.service == service %>
                           <p class="fr-badge fr-badge--success fr-badge--sm">
-                            ASSIGNÉ
+                            <%= t('.assigned') %>
                           </p>
                         <% else %>
-                          <%= button_to "Affecter", add_to_procedure_admin_services_path(procedure_id: @procedure.id, procedure: { service_id: service.id }), method: :patch, class: 'fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left fr-icon-checkbox-circle-line' %>
+                          <%= button_to t('.assign'), add_to_procedure_admin_services_path(procedure_id: @procedure.id, procedure: { service_id: service.id }), method: :patch, class: 'fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left fr-icon-checkbox-circle-line' %>
                         <% end %>
                       </div>
 
                       <div class="fr-col-4">
-                        <%= link_to('Modifier', edit_admin_service_path(service, procedure_id: @procedure.id), class: 'fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left fr-icon-pencil-line') %>
+                        <%= link_to(t('.edit'), edit_admin_service_path(service, procedure_id: @procedure.id), class: 'fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left fr-icon-pencil-line') %>
                       </div>
 
                       <div class="fr-col-4">
                         <% procedures_count = @procedures_count_by_service_id.fetch(service.id, 0) %>
-                        <%= button_to 'Supprimer', admin_service_path(service, procedure_id: @procedure.id), method: :delete, data: { turbo_confirm: "Confirmez vous la suppression de #{service.nom}" }, form: { data: { turbo: true } }, class: 'fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left fr-icon-delete-line', title: (procedures_count > 0 ? "Ce service est encore utilisé par #{pluralize(procedures_count, 'démarche')}" : nil), disabled: (procedures_count > 0 || service.administrateur_id != current_administrateur.id) %>
+                        <%= button_to t('.delete'), admin_service_path(service, procedure_id: @procedure.id), method: :delete, data: { turbo_confirm: t('.delete_confirm', name: service.nom) }, form: { data: { turbo: true } }, class: 'fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left fr-icon-delete-line', title: (procedures_count > 0 ? t('.still_used', count: procedures_count) : nil), disabled: (procedures_count > 0 || service.administrateur_id != current_administrateur.id) %>
                       </div>
                     </div>
                   </td>

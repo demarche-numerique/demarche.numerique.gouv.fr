@@ -1,6 +1,20 @@
 fr:
   administrateurs:
     services:
+      index:
+        title: Service
+        new_service: Nouveau service
+        caption: Liste des services pouvant être affectés à la démarche
+        name: Nom
+        actions: Actions
+        assigned: ASSIGNÉ
+        assign: Affecter
+        edit: Modifier
+        delete: Supprimer
+        delete_confirm: Confirmez vous la suppression de %{name}
+        still_used:
+          one: Ce service est encore utilisé par %{count} démarche
+          other: Ce service est encore utilisé par %{count} démarches
       edit:
         title: Service
         services_choice: Choix du service
