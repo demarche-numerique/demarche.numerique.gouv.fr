@@ -22,24 +22,6 @@ RSpec.describe ExpertMailer, type: :mailer do
     end
   end
 
-  # TODO: remove alongside the ExpertMailer.send_dossier_decision_v2 shim, once
-  # the mail delivery jobs enqueued under the old action name have drained.
-  describe '.send_dossier_decision_v2 (compat shim)' do
-    it 'delivers the same mail as the new action name' do
-      shimmed = described_class.send_dossier_decision_v2(avis.answered).deliver_now
-      renamed = described_class.send_dossier_decision(avis.answered).deliver_now
-
-      expect(shimmed.to).to eq(renamed.to)
-      expect(shimmed.subject).to eq(renamed.subject)
-      expect(shimmed.html_part.body.to_s).to eq(renamed.html_part.body.to_s)
-    end
-
-    it 'lets a delivery job enqueued under the old action name go through' do
-      expect { PriorizedMailDeliveryJob.perform_now('ExpertMailer', 'send_dossier_decision_v2', 'deliver_now', args: [avis.answered]) }
-        .to change { ActionMailer::Base.deliveries.size }.by(1)
-    end
-  end
-
   # The guard is in the mailer, so it holds whatever the caller did — including
   # a revocation landing between the enqueue and the delivery.
   describe '.send_dossier_decision, once the expert has been revoked' do
