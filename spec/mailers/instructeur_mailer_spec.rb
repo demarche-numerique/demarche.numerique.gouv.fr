@@ -162,6 +162,7 @@ RSpec.describe InstructeurMailer, type: :mailer do
       expect(subject.body).to include('dossier en construction')
       expect(subject.body).to include('dossier est en cours d’instruction')
       expect(subject.body).to include('depuis plus de 7 jours')
+      expect(subject.body).to have_link("n°\u00A0#{dossier.id}", href: instructeur_dossier_url(procedure, dossier))
     end
 
     it "renders the body in the instructeur's locale" do
