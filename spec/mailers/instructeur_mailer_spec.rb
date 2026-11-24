@@ -12,6 +12,11 @@ RSpec.describe InstructeurMailer, type: :mailer do
       expect(subject.body).to have_link(href: instructeur_dossier_url(dossier.procedure, dossier))
     end
 
+    it "renders the body in the recipient's locale" do
+      recipient.user.update!(locale: 'en')
+      expect(subject.body).to include("#{sender.email} sent you application no. #{dossier.id}")
+    end
+
     context 'when perform_later is called' do
       let(:custom_queue) { 'default' }
 

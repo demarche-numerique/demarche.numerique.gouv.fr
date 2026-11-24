@@ -1,9 +1,9 @@
 <p>
-  Bonjour,
+  <%= t(:hello, scope: [:views, :shared, :greetings]) %>
 </p>
 
 <p>
-  <%= "#{@sender.email} vous a envoyé le dossier n° #{@dossier.id}, cliquez sur le lien ci-dessous pour y accéder :" %>
+  <%= t('.body', sender_email: @sender.email, dossier_id: @dossier.id) %>
   <%= link_to(instructeur_dossier_url(@dossier.procedure, @dossier), instructeur_dossier_url(@dossier.procedure, @dossier)) %>
 </p>
 

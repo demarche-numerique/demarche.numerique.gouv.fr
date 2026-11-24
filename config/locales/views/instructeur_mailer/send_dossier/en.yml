@@ -2,3 +2,4 @@ en:
   instructeur_mailer:
     send_dossier:
       subject: "%{sender_email} sent you dossier nº %{dossier_id}"
+      body: "%{sender_email} sent you application no. %{dossier_id}, click the link below to access it:"
