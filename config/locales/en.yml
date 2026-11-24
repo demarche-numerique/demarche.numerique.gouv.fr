@@ -1073,8 +1073,8 @@ en:
           link: Download your decision notice (PDF)
           filename: Decision notice
         attestation_depot:
-          get_attestation_depot: "Get a deposit receipt"
-          filename: "deposit-receipt_file-%{dossier_id}.pdf"
+          get_attestation_depot: "Get a submission receipt"
+          filename: "submission-receipt_application-%{dossier_id}.pdf"
       show_in_trash:
         page_title: "File n° %{numero} - In trash"
         title: "File n° %{numero} has been moved to trash"
