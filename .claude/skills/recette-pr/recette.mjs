@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 // Joue un scénario de recette contre le serveur de la PR.
-//   node recette.mjs <scenario.mjs> --mode auto|guide|video [--base-url URL] [--out DIR]
+//   node recette.mjs <scenario.mjs> --mode auto|guide|video [--base-url URL] [--out DIR] [--rythme N] [--muet] [--voix NOM]
 // auto  : sans tête, joue actions et vérifications ; sert à mettre le scénario au point.
 // guide : navigateur visible, un panneau guide l'humain qui donne un verdict par étape.
-// video : enregistre le scénario joué seul, avec sous-titres, en mp4.
+// video : enregistre le scénario joué seul, avec sous-titres et voix off (macOS `say`), en mp4.
 import { chromium } from 'playwright';
-import { execFileSync } from 'node:child_process';
+import { execFileSync, spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, writeFileSync, readdirSync, renameSync, rmSync } from 'node:fs';
 import { resolve, dirname, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -17,7 +17,9 @@ const { values: opts, positionals } = parseArgs({
     mode: { type: 'string', default: 'guide' },
     'base-url': { type: 'string', default: `http://localhost:${process.env.RECETTE_PORT || 3100}` },
     out: { type: 'string' },
-    rythme: { type: 'string', default: '1' } // multiplicateur des pauses vidéo
+    rythme: { type: 'string', default: '1' }, // multiplicateur des pauses vidéo
+    muet: { type: 'boolean', default: false }, // vidéo sans voix off
+    voix: { type: 'string' } // voix `say -v` ; par défaut la première voix française installée
   }
 });
 const scenarioPath = resolve(positionals[0] ?? die('usage: recette.mjs <scenario.mjs> --mode auto|guide|video'));
@@ -30,6 +32,42 @@ const pause = (ms) => new Promise((r) => setTimeout(r, ms * Number(opts.rythme))
 const PASSWORD = 'this is a very complicated password !'; // db/seeds/setup.rb
 
 function die(msg) { console.error(msg); process.exit(1); }
+
+// ---- Voix off (repris de /demo-pr, #14665) : macOS seulement, sinon vidéo muette ----
+function choisirVoix() {
+  if (mode !== 'video' || opts.muet) return null;
+  const liste = spawnSync('say', ['-v', '?'], { encoding: 'utf8' });
+  if (liste.error || liste.status !== 0) {
+    console.warn('`say` indisponible : vidéo sans voix off (sous-titres seuls).');
+    return null;
+  }
+  if (opts.voix) return opts.voix;
+  const francaises = liste.stdout.split('\n').map((l) => l.match(/^(.+?)\s+fr_FR\s/)?.[1]).filter(Boolean);
+  const voix = ['Thomas', 'Amélie', 'Audrey'].find((v) => francaises.includes(v)) ?? francaises[0];
+  if (!voix) console.warn('Aucune voix fr_FR installée : voix système par défaut.');
+  return voix ?? '';
+}
+
+const dureeAudio = (file) =>
+  parseFloat(execFileSync('ffprobe', ['-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', file], { encoding: 'utf8' }));
+
+// Synthétise chaque phrase une seule fois (avant l'enregistrement, pour ne pas filmer d'attente).
+function synthetiseur(voix) {
+  const cache = new Map();
+  return (texte) => {
+    if (voix === null || !texte?.trim()) return null;
+    if (!cache.has(texte)) {
+      const n = String(cache.size).padStart(3, '0');
+      const txt = join(out, 'voix', `${n}.txt`);
+      const file = join(out, 'voix', `${n}.aiff`);
+      mkdirSync(dirname(file), { recursive: true });
+      writeFileSync(txt, texte);
+      execFileSync('say', [...(voix ? ['-v', voix] : []), '-f', txt, '-o', file]);
+      cache.set(texte, { file, duree: dureeAudio(file) * 1000 });
+    }
+    return cache.get(texte);
+  };
+}
 
 // Préparation des données propres au scénario (en plus des seeds), dans la base de la PR.
 // Le code Ruby imprime en dernière ligne un JSON, exposé aux étapes sous `data`.
@@ -71,7 +109,7 @@ const OVERLAY = () => {
     :host { all: initial; }
     .p { position: fixed; z-index: 2147483647; font: 15px/1.4 Marianne, system-ui, sans-serif; background: #161616; color: #fff; border-radius: 8px; padding: 14px 16px; box-shadow: 0 6px 24px #0007; }
     .guide { right: 16px; bottom: 16px; width: 380px; }
-    .video { left: 50%; bottom: 20px; transform: translateX(-50%); width: min(900px, 90vw); text-align: center; }
+    .s { margin: 10px 0 0; font-size: 13px; color: #cfcfff; }
     .n { color: #9a9aff; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; }
     h2 { margin: 4px 0 6px; font-size: 17px; }
     .c { margin: 0 0 8px; white-space: pre-line; }
@@ -97,13 +135,14 @@ const OVERLAY = () => {
     const e = (t) => String(t ?? '').replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]);
     const guide = s.mode === 'guide';
     host.shadowRoot.innerHTML = `<style>${css}</style>
-      <div class="p ${guide ? 'guide' : 'video'} ${s.reduit ? 'reduit' : ''}" role="dialog" aria-label="Recette">
+      <div class="p guide ${s.reduit ? 'reduit' : ''}" role="dialog" aria-label="Recette">
         ${guide ? '<button class="min" data-ev="reduire" title="Réduire">▁</button>' : ''}
         <div class="n">${e(s.entete)}</div>
         <h2>${e(s.titre)}</h2>
         ${s.consigne ? `<p class="c">${e(s.consigne)}</p>` : ''}
         ${s.attendu ? `<p class="a" ${s.montrerAttendu ? '' : 'hidden'}>✓ Attendu : ${e(s.attendu)}</p>` : ''}
         ${s.echec ? `<p class="e">✗ Échec : ${e(s.echec)}</p>` : ''}
+        ${s.statut ? `<p class="s">${e(s.statut)}</p>` : ''}
         ${guide && s.boutons ? `<div class="b">
           ${s.action && !s.fait ? '<button class="do" data-ev="faire" title="Seulement si vous ne l’avez pas déjà fait à la main">▶ Le faire pour moi</button>' : ''}
           <button class="ok" data-ev="ok">✅ Conforme</button>
@@ -150,6 +189,15 @@ async function main() {
   mkdirSync(out, { recursive: true });
   const data = preparer();
 
+  // Toutes les phrases sont synthétisées d'avance : la vidéo ne filme pas d'attente.
+  const voix = choisirVoix();
+  const synthetiser = synthetiseur(voix);
+  const finOk = 'Fin de la recette.';
+  if (voix !== null) {
+    [scenario.narration ?? scenario.contexte, finOk,
+      ...scenario.etapes.flatMap((e) => [e.narration ?? e.consigne, e.attendu])].forEach(synthetiser);
+  }
+
   // RECETTE_CDP_PORT : permet de piloter le mode guide depuis un autre process (test du runner).
   const browser = await chromium.launch({
     headless: mode !== 'guide' || !!process.env.RECETTE_HEADLESS,
@@ -175,6 +223,18 @@ async function main() {
   if (mode !== 'auto') await context.addInitScript(OVERLAY);
 
   const page = await context.newPage();
+  // La vidéo démarre avec la page : les phrases sont posées sur cette horloge.
+  const t0 = Date.now();
+  const pistes = [];
+  const parler = (texte) => {
+    const segment = synthetiser(texte);
+    if (!segment) return 0;
+    pistes.push({ file: segment.file, debut: Date.now() - t0 });
+    return segment.duree;
+  };
+  // Une scène dure au moins `min` (× rythme) et au moins le temps de sa phrase.
+  const tenir = (depuis, min, voixMs) =>
+    new Promise((r) => setTimeout(r, Math.max(min * Number(opts.rythme), voixMs ? voixMs + 400 : 0) - (Date.now() - depuis)));
   if (process.env.RECETTE_DEBUG) {
     page.on('console', (m) => console.error(`[page] ${m.text()}`));
     page.on('pageerror', (e) => console.error(`[page error] ${e.message}`));
@@ -212,7 +272,8 @@ async function main() {
 
   if (mode === 'video') {
     await afficher({ mode, entete: `PR #${scenario.pr}`, titre: scenario.titre, consigne: scenario.contexte });
-    await pause(3500);
+    const debut = Date.now();
+    await tenir(debut, 3500, parler(scenario.narration ?? scenario.contexte));
   }
 
   for (const [i, etape] of scenario.etapes.entries()) {
@@ -222,7 +283,8 @@ async function main() {
     await eteindre(page);
     if (cible) {
       // Timeout court : une cible absente ne doit pas bloquer le guidage.
-      await cible.first().scrollIntoViewIfNeeded({ timeout: 3000 }).catch(() => {});
+      // Centrée, pour ne pas finir sous le panneau en bas à droite.
+      await cible.first().evaluate((el) => el.scrollIntoView({ block: 'center' }), null, { timeout: 3000 }).catch(() => {});
       await cible.first().evaluate(SURLIGNER, null, { timeout: 3000 }).catch(() => {});
     }
     const resultat = { etape: i + 1, titre: etape.titre, attendu: etape.attendu };
@@ -247,19 +309,31 @@ async function main() {
       }
       if (ferme || !resultat.verdict) break;
     } else {
-      if (mode === 'video') { await afficher({ ...base }); await pause(2200); }
+      // La voix lit la consigne pendant que l'action se joue, puis l'attendu une fois vérifié.
+      const debut = Date.now();
+      let voixAvant = 0;
+      if (mode === 'video') {
+        // Le même panneau que le mode guide : le statut remplace les boutons de verdict.
+        await afficher({ ...base, statut: etape.action ? '▶ Le script joue l’action…' : '⏳ Vérification…' });
+        voixAvant = parler(etape.narration ?? etape.consigne);
+        await pause(1200);
+      }
       try {
         await etape.action?.(ctx);
         await etape.verifier?.(ctx);
         resultat.verdict = etape.verifier ? 'vérifié' : 'joué';
-        // La vidéo n'affiche l'attendu qu'une fois vérifié : elle ne doit rien affirmer de faux.
-        if (mode === 'video') await afficher({ ...base, montrerAttendu: true });
       } catch (err) {
         resultat.verdict = 'échec';
         resultat.erreur = err.message.split('\n')[0];
-        if (mode === 'video') await afficher({ ...base, echec: resultat.erreur });
       }
-      if (mode === 'video') await pause(2800);
+      if (mode === 'video') {
+        await tenir(debut, 2200, voixAvant);
+        // La vidéo n'affiche et ne dit l'attendu qu'une fois vérifié : elle ne doit rien affirmer de faux.
+        const echec = resultat.verdict === 'échec';
+        await afficher({ ...base, ...(echec ? { echec: resultat.erreur } : { montrerAttendu: true, statut: '✓ Vérifié par le script' }) });
+        const apres = Date.now();
+        await tenir(apres, 2800, parler(echec ? `Échec de l'étape ${i + 1}.` : etape.attendu));
+      }
     }
 
     await afficher({ ...state, cache: true });
@@ -286,7 +360,8 @@ async function main() {
   if (mode === 'video') {
     const echec = resultats.find((r) => r.verdict === 'échec');
     await afficher({ mode, entete: `PR #${scenario.pr}`, titre: echec ? `✗ Recette en échec à l'étape ${echec.etape}` : 'Fin de la recette', echec: echec?.erreur });
-    await pause(1500);
+    const debut = Date.now();
+    await tenir(debut, 1500, parler(echec ? `Recette en échec à l'étape ${echec.etape}.` : finOk));
   }
   if (!ferme) await eteindre(page);
   await context.close();
@@ -296,9 +371,19 @@ async function main() {
   if (mode === 'video') {
     const webm = readdirSync(out).find((f) => f.endsWith('.webm'));
     const mp4 = join(out, `recette-pr-${scenario.pr}.mp4`);
-    execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', join(out, webm), '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '28', '-movflags', '+faststart', mp4]);
+    // Chaque phrase est posée à son horodatage, puis mixée sans normalisation (repris de /demo-pr).
+    const audio = pistes.length ? [
+      ...pistes.flatMap((p) => ['-i', p.file]),
+      '-filter_complex', [
+        ...pistes.map((p, i) => `[${i + 1}]adelay=delays=${p.debut}:all=1[a${i}]`),
+        `${pistes.map((_, i) => `[a${i}]`).join('')}amix=inputs=${pistes.length}:normalize=0[a]`
+      ].join(';'),
+      '-map', '0:v', '-map', '[a]', '-c:a', 'aac', '-b:a', '128k'
+    ] : [];
+    execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', join(out, webm), ...audio,
+      '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '28', '-movflags', '+faststart', mp4]);
     renameSync(join(out, webm), join(out, `recette-pr-${scenario.pr}.webm`));
-    console.log(`vidéo : ${mp4}`);
+    console.log(`vidéo : ${mp4}${pistes.length ? ` (voix off : ${voix || 'voix système'})` : ' (muette)'}`);
   }
   console.log(`résultats : ${join(out, 'resultats.json')}`);
   process.exitCode = resultats.some((r) => ['échec', 'non conforme'].includes(r.verdict)) || resultats.length < total ? 1 : 0;

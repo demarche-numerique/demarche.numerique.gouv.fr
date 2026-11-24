@@ -20,6 +20,8 @@ export default {
   pr: 14604,
   titre: "ETQ admin, je n'ai plus qu'un type de champ « Date » au lieu de deux",
   contexte: "Un administrateur construit le formulaire d'une démarche en brouillon.",
+  // Voix off de la vidéo (facultatif) : par défaut, la consigne puis l'attendu de chaque étape.
+  narration: "Avant cette PR, l'éditeur proposait deux types : date, et date et heure. Voyons ce qui change pour un administrateur.",
   persona: 'admin@exemple.fr',
 
   // Deux démarches : une vide pour le parcours, une dont le champ « Date et heure »
@@ -48,6 +50,7 @@ export default {
     {
       titre: 'Le menu ne propose plus qu’une entrée « Date »',
       consigne: 'Ajoutez un champ puis ouvrez le menu « Type de champ » et tapez « date ».',
+      narration: 'On ajoute un champ, et on cherche « date » dans le menu des types.',
       cible: ({ page }) => page.getByRole('button', { name: 'Ajouter un champ' }),
       action: async ({ page }) => {
         await page.getByRole('button', { name: 'Ajouter un champ' }).click();
@@ -95,6 +98,7 @@ export default {
     {
       titre: 'Une date de naissance n’a pas d’heure',
       consigne: 'Sur ce champ date et heure, activez « Ce champ est une date de naissance ».',
+      narration: 'Cas limite : une date de naissance ne peut pas avoir d’heure. On la coche sur notre champ date et heure.',
       cible: ({ page }) => toggle(page, NAISSANCE),
       action: async ({ page }) => {
         await toggle(page, NAISSANCE).click();

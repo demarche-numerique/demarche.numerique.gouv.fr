@@ -13,7 +13,7 @@ Fichiers du skill (`.claude/skills/recette-pr/`) :
 |---|---|
 | `prepare.sh <N>` | worktree détaché `../review-pr-<N>` sur la tête de la PR, dépendances, base `tps_review_pr_<N>` rechargée depuis le schéma de la PR puis seedée (Oaken) |
 | `serve.sh <N>` | Rails sur :3100 et Vite sur :3136, à côté du serveur de dev (3000/3036) qui reste intact |
-| `recette.mjs <scenario> --mode auto\|guide\|video` | joue le scénario (voir plus bas) |
+| `recette.mjs <scenario> --mode auto\|guide\|video` | joue le scénario (voir plus bas) ; la vidéo est commentée en voix off |
 | `exemple-scenario.mjs` | scénario de référence (PR 14604) : à lire avant d'en écrire un |
 | `cleanup.sh <N>` | arrête le serveur, supprime worktree et bases |
 
@@ -62,11 +62,13 @@ export default {
   pr: 14604,
   titre: '…',                 // le titre de la PR
   contexte: '…',              // une phrase, affichée en ouverture de la vidéo
+  narration: '…',             // optionnel : voix off d'ouverture, sinon `contexte`
   persona: 'admin@exemple.fr',// connexion par le formulaire ; omis = anonyme
   preparation: `…ruby…`,      // optionnel, exécuté par bin/rails runner ; dernière ligne = JSON → `data`
   depart: (data) => `/admin/procedures/${data.vide}/champs`,
   etapes: [{
     titre, consigne,          // ce que l'humain lit
+    narration,                // optionnel : voix off de l'étape en vidéo, sinon la consigne
     cible: ({ page }) => locator,       // surlignée avant l'action
     action: async ({ page, data }) => {},  // « Le faire pour moi » en mode guide
     attendu: '…',             // ce que l'humain doit constater
@@ -111,10 +113,14 @@ Dis à l'humain qu'une fenêtre s'est ouverte et ce qu'on attend de lui, puis at
 ## 7. Vidéo (sur demande)
 
 ```bash
-node <repo>/.claude/skills/recette-pr/recette.mjs tmp/recette/scenario.mjs --mode video [--rythme 1.5]
+node <repo>/.claude/skills/recette-pr/recette.mjs tmp/recette/scenario.mjs --mode video [--rythme 1.5] [--muet] [--voix Thomas]
 ```
 
-Sans tête, 1280×800, sous-titres et surlignage incrustés, ~7 s par étape. L'attendu ne s'affiche qu'une fois `verifier` passé ; un échec s'affiche en rouge et termine la vidéo sur « Recette en échec à l'étape N » : ne livre jamais cette vidéo comme une démo : `tmp/recette/resultats-video/recette-pr-N.mp4` (~0,5 Mo). Vérifie 2 ou 3 images avec `ffmpeg -ss <t> -i … -frames:v 1 frame.png` avant de la proposer. `--rythme` ralentit ou accélère.
+Sans tête, 1280×800, avec **le panneau du mode guide** en bas à droite (étape, consigne, attendu ; le statut « ✓ Vérifié par le script » remplace les boutons de verdict) et le surlignage de la cible, **commentée en voix off** (approche de `/demo-pr`, #14665). La voix dit la `narration` de l'étape (sinon sa consigne) pendant que l'action se joue, puis l'attendu une fois vérifié ; une étape dure au moins ~7 s et au moins le temps de ses phrases. Toutes les phrases sont synthétisées avant l'enregistrement. Une `narration` se dit à l'oral : courte, sans parenthèses ni libellés à rallonge.
+
+La voix passe par `say` (macOS) et prend la première voix française installée (Thomas, Amélie…) ; `--voix` en choisit une autre (`say -v '?'`). Sans `say`, ou avec `--muet`, la vidéo sort muette avec ses sous-titres. ffmpeg est requis dans tous les cas (`brew install ffmpeg`).
+
+L'attendu ne s'affiche et ne se dit qu'une fois `verifier` passé ; un échec s'affiche en rouge et termine la vidéo sur « Recette en échec à l'étape N » : ne livre jamais cette vidéo comme une démo : `tmp/recette/resultats-video/recette-pr-N.mp4` (~0,5 Mo). Vérifie 2 ou 3 images avec `ffmpeg -ss <t> -i … -frames:v 1 frame.png` avant de la proposer. `--rythme` ralentit ou accélère.
 
 GitHub n'a pas d'API pour joindre une vidéo à un commentaire : l'humain la glisse dans le commentaire de la PR. Propose le texte (`rapport.md` + verdicts) et ne publie qu'avec son accord (`gh pr comment N --body-file …`).
 
