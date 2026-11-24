@@ -22,3 +22,8 @@ fr:
       button: Changer mon mot de passe
       previous_emails: Cet email invalide les emails similaires que vous avez pu demander précédemment.
       not_you: Si vous n’avez pas effectué une telle demande, merci d’ignorer cet email. Votre mot de passe ne sera pas changé.
+    unlock_instructions:
+      title: Réactivez votre compte
+      locked: Quelqu’un a tenté de se connecter un grand nombre de fois sans succès à votre compte %{email} sur %{application_name}. Par mesure de précaution, nous avons temporairement désactivé l’accès à votre compte.
+      instructions: Pour rétablir l’accès à votre compte, veuillez utiliser le lien ci-dessous.
+      link: Déverrouiller mon compte

@@ -22,3 +22,8 @@ en:
       button: Change the password
       previous_emails: This email invalidates any similar email you may have requested before.
       not_you: If you didn't request this, please ignore this email. Your password won't change.
+    unlock_instructions:
+      title: Reactivate account
+      locked: Someone made too many unsuccessful attempts to connect to your account %{email} on %{application_name}. As a security measure, we temporarily locked access to your account.
+      instructions: "To unlock access to your account, select the following link:"
+      link: Unlock account
