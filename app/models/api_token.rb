@@ -95,9 +95,9 @@ class APIToken < ApplicationRecord
     end
   end
 
-  def authorized_networks_for_ui
-    authorized_networks.map { "#{_1.to_string}/#{_1.prefix}" }.join(', ')
-  end
+  def authorized_cidrs = authorized_networks.map { "#{it}/#{it.prefix}" }
+
+  def authorized_networks_for_ui = authorized_cidrs.join(', ')
 
   def forbidden_network?(ip)
     return false if authorized_networks.blank?
