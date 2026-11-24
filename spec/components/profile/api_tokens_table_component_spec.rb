@@ -2,10 +2,12 @@
 
 RSpec.describe Profile::APITokensTableComponent, type: :component do
   let(:owner) { administrateurs.default }
+  let(:four_procedures) { [procedures.individual, procedures.brouillon, procedures.close, procedures.depubliee] }
   let(:networks) { %w[10.0.0.0/8 192.168.1.0/24 172.16.8.0/22 2a01:e0a:1f2:4b30::/64 2001:db8:85a3::8a2e:370:7334/128].map { IPAddr.new(it) } }
+  let(:rows) { [Profile::APITokenComponent.new(api_token:)] }
   let(:modal) { page.find('dialog', visible: :all) }
 
-  before { render_inline(described_class.new(labelledby: 'title', rows: [Profile::APITokenComponent.new(api_token:)])) }
+  before { render_inline(described_class.new(labelledby: 'title', rows:)) }
 
   context 'with a token whose row shows everything' do
     let(:api_token) { APIToken.generate(owner, allowed_procedure_ids: [procedures.individual.id], authorized_networks: networks.first(3)).first }
@@ -21,7 +23,6 @@ RSpec.describe Profile::APITokensTableComponent, type: :component do
   end
 
   context 'with a token reading more networks and procedures than its row shows' do
-    let(:four_procedures) { [procedures.individual, procedures.brouillon, procedures.close, procedures.depubliee] }
     let(:api_token) { APIToken.generate(owner, allowed_procedure_ids: four_procedures.map(&:id), authorized_networks: networks).first }
 
     it 'folds them in the row, and shows them all in the modal its button opens' do
@@ -30,6 +31,17 @@ RSpec.describe Profile::APITokensTableComponent, type: :component do
       expect(page.find_button('Voir le détail')['aria-controls']).to eq(modal['id'])
 
       expect(modal.all('li code', visible: :all).map { it.text(:all) }).to eq(['10.0.0.0/8', '192.168.1.0/24', '172.16.8.0/22', '2a01:e0a:1f2:4b30::/64', '2001:db8:85a3::8a2e:370:7334/128'])
+      expect(modal.all('tbody tr', visible: :all).map { it.text(:all).squish }).to eq(four_procedures.sort_by(&:libelle).map { "#{it.id} #{it.libelle}" })
+    end
+  end
+
+  context 'with the token of a co-administrator sharing more procedures than its row shows' do
+    let(:other) { procedures.entreprise }
+    let(:api_token) { APIToken.generate(owner, allowed_procedure_ids: [*four_procedures, other].map(&:id)).first }
+    let(:rows) { [Profile::SharedAPITokenComponent.new(api_token:, reader_procedure_ids: four_procedures.map(&:id))] }
+
+    it 'names in the modal the shared procedures only' do
+      expect(modal).to have_css('p', exact_text: "4 démarches que vous administrez et 1 autre démarche de #{owner.email}", visible: :all)
       expect(modal.all('tbody tr', visible: :all).map { it.text(:all).squish }).to eq(four_procedures.sort_by(&:libelle).map { "#{it.id} #{it.libelle}" })
     end
   end

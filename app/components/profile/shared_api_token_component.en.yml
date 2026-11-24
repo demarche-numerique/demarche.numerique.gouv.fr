@@ -1,0 +1,11 @@
+---
+en:
+  managed_by: "Managed by %{email}"
+  shared_procedures_count:
+    one: "%{count} procedure you administer"
+    other: "%{count} procedures you administer"
+  among_all: "among all the procedures of %{email}"
+  others:
+    one: "and %{count} other procedure of %{email}"
+    other: "and %{count} other procedures of %{email}"
+  details_label: "See the details of the token ‘%{name}’ of %{email}"

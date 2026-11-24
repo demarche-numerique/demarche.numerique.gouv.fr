@@ -1,0 +1,11 @@
+---
+fr:
+  managed_by: "Géré par %{email}"
+  shared_procedures_count:
+    one: "%{count} démarche que vous administrez"
+    other: "%{count} démarches que vous administrez"
+  among_all: "parmi toutes les démarches de %{email}"
+  others:
+    one: "et %{count} autre démarche de %{email}"
+    other: "et %{count} autres démarches de %{email}"
+  details_label: "Voir le détail du jeton « %{name} » de %{email}"

@@ -75,6 +75,24 @@ describe Users::ProfilController, type: :controller do
     it { expect(response.body).to include(I18n.t('users.profil.show.change_password')) }
   end
 
+  describe 'GET #show for an administrateur sharing a procedure with another one' do
+    render_views
+
+    let(:user) { administrateurs.blank.user }
+
+    before do
+      procedures.individual.administrateurs << administrateurs.blank
+      APIToken.generate(administrateurs.default, name: 'Jeton du collègue')
+      get :show
+    end
+
+    it 'lists the api tokens of the other administrateur in a table' do
+      shared_tokens = response.parsed_body.at_css('table[aria-labelledby="shared-api-tokens-title"]')
+      expect(response.parsed_body.at_css('#shared-api-tokens-title').text.strip).to eq('Jetons d’autres administrateurs sur vos démarches')
+      expect(shared_tokens.at_css('tbody th').text).to include('Jeton du collègue', "Géré par #{administrateurs.default.email}")
+    end
+  end
+
   describe 'GET #show for an administrateur and their api tokens' do
     render_views
 
