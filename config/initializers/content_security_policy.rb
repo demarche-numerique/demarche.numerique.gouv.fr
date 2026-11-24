@@ -16,8 +16,10 @@ Rails.application.configure do
         "#{cfg['bucket']}.s3.#{cfg['region']}.amazonaws.com"
       end
     end
+    ds_proxy_hosts = [DS_PROXY_URL, DS_PROXY_URL_ALTERNATE].compact_blank.map { URI(it).host }.uniq
+
     images_whitelist = ["*.openstreetmap.org", "*.cloud.ovh.net", "image.crisp.chat", "*"]
-    images_whitelist << URI(DS_PROXY_URL).host if DS_PROXY_URL.present?
+    images_whitelist += ds_proxy_hosts
     images_whitelist << URI(MATOMO_IFRAME_URL).host if MATOMO_IFRAME_URL.present?
     policy.img_src(:self, :data, :blob, *images_whitelist)
 
@@ -36,7 +38,7 @@ Rails.application.configure do
     connect_whitelist << ENV.fetch('APP_HOST_LEGACY') if ENV.key?('APP_HOST_LEGACY') && ENV['APP_HOST_LEGACY'] != ENV['APP_HOST']
     connect_whitelist << amazon_storage_host if amazon_storage_host
     connect_whitelist += ENV.values_at('SENTRY_DSN_JS', 'SENTRY_DSN_RAILS').compact_blank.map { URI(it).host }.uniq
-    connect_whitelist << URI(DS_PROXY_URL).host if DS_PROXY_URL.present?
+    connect_whitelist += ds_proxy_hosts
     connect_whitelist << URI(API_ADRESSE_URL).host if API_ADRESSE_URL.present?
     connect_whitelist << URI(API_EDUCATION_URL).host if API_EDUCATION_URL.present?
     connect_whitelist << URI(API_GEO_URL).host if API_GEO_URL.present?
@@ -48,7 +50,7 @@ Rails.application.configure do
     # allow Matomo's iframe on the /suivi page
     frame_whitelist << URI(MATOMO_IFRAME_URL).host if ENV.enabled?("MATOMO")
     # allow pdf iframes in the PJ gallery
-    frame_whitelist << URI(DS_PROXY_URL).host if DS_PROXY_URL.present?
+    frame_whitelist += ds_proxy_hosts
     frame_whitelist << "*.crisp.help" if ENV.enabled?("CRISP")
     policy.frame_src(:self, *frame_whitelist)
 
@@ -56,16 +58,14 @@ Rails.application.configure do
     # Add the error source in the violation notification
     default_whitelist = ["static.suite.anct.gouv.fr", "fonts.gstatic.com", "in-automate.sendinblue.com", "player.vimeo.com", "app.franceconnect.gouv.fr", "client.crisp.chat", "image.crisp.chat", "storage.crisp.chat", "*.crisp.help", "*.sibautomation.com", "sibautomation.com"]
     default_whitelist += ENV.values_at('SENTRY_DSN_JS', 'SENTRY_DSN_RAILS').compact_blank.map { URI(it).host }.uniq
-    default_whitelist << URI(DS_PROXY_URL).host if DS_PROXY_URL.present?
+    default_whitelist += ds_proxy_hosts
     policy.default_src(:self, :data, :blob, :report_sample, *default_whitelist)
 
     # base-uri does not fall back to default-src: an injected <base> would re-point every relative script
     policy.base_uri(:self)
 
     # <embed> shows PDF attachments (RIB): only from the storage hosts, never data:
-    object_whitelist = []
-    object_whitelist << URI(DS_PROXY_URL).host if DS_PROXY_URL.present?
-    object_whitelist << amazon_storage_host if amazon_storage_host
+    object_whitelist = [*ds_proxy_hosts, amazon_storage_host].compact
     policy.object_src(:self, *object_whitelist)
 
     if Rails.env.development?
