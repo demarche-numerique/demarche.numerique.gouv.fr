@@ -55,7 +55,7 @@ module Dsfr
       def fieldset_error_opts
         if dsfr_champ_container == :fieldset && errors_on_attribute?
           labelledby = [input_label_id(@champ)]
-          labelledby << describedby_id if @champ.description.present?
+          labelledby << describedby_id if describedby_present?
           labelledby << @champ.error_id(@attribute)
 
           {
@@ -65,6 +65,8 @@ module Dsfr
           {}
         end
       end
+
+      def describedby_present? = object.respond_to?(:description) && object.description.present?
 
       def default_hint
         # HtmlSafeTranslation honours the `_html` convention that `I18n.t` ignores.
@@ -126,11 +128,8 @@ module Dsfr
 
         aria_describedby = []
 
-        if object.respond_to?(:description) && object.description.present?
-          aria_describedby << describedby_id
-        elsif hintable?
-          aria_describedby << hint_id
-        end
+        aria_describedby << describedby_id if describedby_present?
+        aria_describedby << hint_id if hintable?
 
         aria_describedby << object.error_id(attribute) if errors_on_attribute? && object.respond_to?(:error_id)
 

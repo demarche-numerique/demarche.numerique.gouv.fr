@@ -25,7 +25,3 @@
 <% if rebased? %>
   <span class="updated-at highlighted"><%= t(".check_content_rebased") %></span>
 <% end %>
-
-<% hints_for_champ.each do |hint| %>
-  <span class="fr-hint-text" <%= tag.attributes(id: hint[:id], data: (hint[:controller] ? { controller: hint[:controller], turbo_force: :browser } : {})) %>><%= hint[:text] %></span>
-<% end %>

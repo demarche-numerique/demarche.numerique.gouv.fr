@@ -5,7 +5,7 @@
     <% end %>
   <% else %>
     <%= turbo_stream.update input_label_id(champ) do %>
-      <%= render EditableChamp::ChampLabelContentComponent.new champ:, form: %>
+      <%= render EditableChamp::ChampLabelContentComponent.new champ: %>
     <% end %>
   <% end %>
 

@@ -49,7 +49,7 @@ class EditableChamp::DossierLinkComponent < EditableChamp::EditableChampBaseComp
 
   def select_aria_describedby
     describedby = []
-    describedby << @champ.describedby_id if @champ.description.present?
+    describedby << @champ.describedby_id if describedby_present?
     describedby << @champ.error_id(:value) if errors_on_attribute?
     describedby.presence&.join(' ')
   end
