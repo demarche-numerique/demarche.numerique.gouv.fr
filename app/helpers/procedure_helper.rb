@@ -28,7 +28,7 @@ module ProcedureHelper
   end
 
   def procedure_auto_archive_time(procedure)
-    "à 23 h 59 (heure de " + Rails.application.config.time_zone + ")"
+    t("helpers.procedure_auto_archive_time", time_zone: Rails.application.config.time_zone)
   end
 
   def procedure_auto_archive_datetime(procedure)

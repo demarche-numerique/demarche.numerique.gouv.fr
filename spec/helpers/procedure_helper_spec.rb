@@ -10,6 +10,12 @@ RSpec.describe ProcedureHelper, type: :helper do
     it "displays the day before the auto archive date (to account for the '23h59' ending time)" do
       expect(subject).to have_text("1 août 2020 à 23 h 59 (heure de Paris)")
     end
+
+    it "is fully translated in English" do
+      I18n.with_locale(:en) do
+        expect(subject).to eq("01 August 2020 at 11:59 PM (Paris time)")
+      end
+    end
   end
 
   describe '#estimated_fill_duration_minutes' do

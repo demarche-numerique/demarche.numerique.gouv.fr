@@ -83,6 +83,7 @@ en:
     commentaire:
       send_message_to_instructeur: "Send a message to the reviewer"
       reply_in_mailbox: "Reply in mailbox"
+    procedure_auto_archive_time: "at 11:59 PM (%{time_zone} time)"
   skiplinks:
     quick: Quick access
     content: Content

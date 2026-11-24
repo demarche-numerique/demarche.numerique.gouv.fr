@@ -77,6 +77,7 @@ fr:
     commentaire:
       send_message_to_instructeur: "Envoyer un message à l’instructeur"
       reply_in_mailbox: "Répondre dans la messagerie"
+    procedure_auto_archive_time: "à 23 h 59 (heure de %{time_zone})"
   skiplinks:
     quick: Accès rapide
     content: Contenu
