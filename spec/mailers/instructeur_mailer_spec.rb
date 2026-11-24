@@ -145,10 +145,9 @@ RSpec.describe InstructeurMailer, type: :mailer do
         created_dossiers_count: 0,
         dossiers_en_construction_count: 1,
         old_dossiers_en_construction: [dossier],
-        dossiers_en_construction_description: 'desc',
         dossiers_en_instruction_count: 1,
         old_dossiers_en_instruction: [dossier],
-        dossiers_en_instruction_description: 'desc')
+        start_date: Date.new(2026, 11, 9))
 
       [procedure_overview]
     end
@@ -160,8 +159,15 @@ RSpec.describe InstructeurMailer, type: :mailer do
     it { expect(subject.body).to include(I18n.t("instructeur_mailer.last_week_overview.subject")) }
 
     it 'flags the dossiers waiting for more than a week' do
-      expect(subject.body).to include('desc')
+      expect(subject.body).to include('dossier en construction')
+      expect(subject.body).to include('dossier est en cours d’instruction')
       expect(subject.body).to include('depuis plus de 7 jours')
+    end
+
+    it "renders the body in the instructeur's locale" do
+      instructeur.user.update!(locale: 'en')
+      expect(subject.body).to include('application under review')
+      expect(subject.body).to include('waiting for more than 7 days')
     end
 
     context 'when the instructeur has no active procedures' do

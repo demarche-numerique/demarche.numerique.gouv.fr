@@ -1,17 +1,17 @@
 <% content_for(:title, @subject) %>
 
 <p>
-  Bonjour,
+  <%= t(:hello, scope: [:views, :shared, :greetings]) %>
 </p>
 
 <p>
-  Voici le résumé de votre activité hebdomadaire :
+  <%= t('.intro') %>
 </p>
 
 <% @overviews.each_with_index do |procedure_overview, index| %>
   <h2 style="font-size: 16px; font-weight: 300; margin: 25px 0 5px;">
     <%= procedure_overview.procedure.libelle %>
-    <%= link_to 'voir', instructeur_procedure_url(procedure_overview.procedure), style: 'color: #0069CC; font-size: 14px;' %>
+    <%= link_to t('.see'), instructeur_procedure_url(procedure_overview.procedure), style: 'color: #0069CC; font-size: 14px;' %>
   </h2>
 
   <table
@@ -27,7 +27,7 @@
               <%= procedure_overview.created_dossiers_count %>
             </span>
 
-            <%= procedure_overview.created_dossier_description %>
+            <%= t('.created', count: procedure_overview.created_dossiers_count, date: l(procedure_overview.start_date.to_date, format: :long)) %>
           </td>
         </tr>
       <% end %>
@@ -39,17 +39,17 @@
               <%= procedure_overview.dossiers_en_construction_count %>
             </span>
 
-            <%= procedure_overview.dossiers_en_construction_description %>
+            <%= t('.en_construction', count: procedure_overview.dossiers_en_construction_count) %>
 
             <% if procedure_overview.old_dossiers_en_construction.count > 0 %>
-              dont
+              <%= t('.including') %>
               <span style="font-weight: bold; color: #FF5D60; padding: 2px 0;">
                 <%= procedure_overview.old_dossiers_en_construction.count %>
               </span>
-              depuis plus de 7 jours
               <% if procedure_overview.old_dossiers_en_construction.count < 6 %>
-                :
-                <%= sanitize(procedure_overview.old_dossiers_en_construction.map { link_to "n° #{it.id}", instructeur_dossier_url(procedure_overview.procedure, it), style: 'color: #0069CC;' }.join(', '), attributes: %w(href style)) %>
+                <%= t('.waiting_with_list_html', dossiers: sanitize(procedure_overview.old_dossiers_en_construction.map { link_to t('.dossier_number', id: it.id), instructeur_dossier_url(procedure_overview.procedure, it), style: 'color: #0069CC;' }.join(', '), attributes: %w(href style))) %>
+              <% else %>
+                <%= t('.waiting') %>
               <% end %>
             <% end %>
           </td>
@@ -63,17 +63,17 @@
               <%= procedure_overview.dossiers_en_instruction_count %>
             </span>
 
-            <%= procedure_overview.dossiers_en_instruction_description %>
+            <%= t('.en_instruction', count: procedure_overview.dossiers_en_instruction_count) %>
 
             <% if procedure_overview.old_dossiers_en_instruction.count > 0 %>
-              dont
+              <%= t('.including') %>
               <span style="font-weight: bold; color: #FF5D60; padding: 2px 0;">
                 <%= procedure_overview.old_dossiers_en_instruction.count %>
               </span>
-              depuis plus de 7 jours
               <% if procedure_overview.old_dossiers_en_instruction.count < 6 %>
-                :
-                <%= sanitize(procedure_overview.old_dossiers_en_instruction.map { link_to "n° #{it.id}", instructeur_dossier_url(procedure_overview.procedure, it), style: 'color: #0069CC;' }.join(', '), attributes: %w(href style)) %>
+                <%= t('.waiting_with_list_html', dossiers: sanitize(procedure_overview.old_dossiers_en_instruction.map { link_to t('.dossier_number', id: it.id), instructeur_dossier_url(procedure_overview.procedure, it), style: 'color: #0069CC;' }.join(', '), attributes: %w(href style))) %>
+              <% else %>
+                <%= t('.waiting') %>
               <% end %>
             <% end %>
           </td>
