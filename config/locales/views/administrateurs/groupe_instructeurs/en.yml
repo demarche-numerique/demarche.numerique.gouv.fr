@@ -27,6 +27,7 @@ en:
         routing_alert_html: "<strong>%{count} files</strong> have been deposited and are waiting to be processed on this procedure. These files have <strong>not been routed according to the configured routing</strong>. You must launch the routing to distribute them to the different teams."
         routing_alert_with_invalid_rules_html: "<strong>%{count} files</strong> have been deposited and are waiting to be processed on this procedure. These files have <strong>not yet been routed</strong>. Once you have configured your routing rules, you will need to launch the routing to distribute them to the different teams."
         bulk_route: Launch routing
+        bulk_routing_in_progress: Routing in progress…
         bulk_routing_confirm: "Are you sure you want to launch the routing for the deposited files waiting to be processed ?"
       update_self_management_restricted_to_email_domain:
         restricted: "Reviewers can only add addresses from their own domain."

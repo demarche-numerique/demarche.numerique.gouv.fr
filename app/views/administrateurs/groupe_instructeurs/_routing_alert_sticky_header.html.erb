@@ -11,7 +11,7 @@
         <% end %>
       </span>
 
-      <%= button_to t('.bulk_route'), bulk_route_admin_procedure_groupe_instructeurs_path(@procedure), class: 'fr-btn no-wrap', disabled: @procedure.groupe_instructeurs.any?(&:invalid_rule?), data: { turbo_submits_with: "Routage en cours…", turbo_confirm: t('.bulk_routing_confirm') }, form: { data: { turbo: true } } %>
+      <%= button_to t('.bulk_route'), bulk_route_admin_procedure_groupe_instructeurs_path(@procedure), class: 'fr-btn no-wrap', disabled: @procedure.groupe_instructeurs.any?(&:invalid_rule?), data: { turbo_submits_with: t('.bulk_routing_in_progress'), turbo_confirm: t('.bulk_routing_confirm') }, form: { data: { turbo: true } } %>
     </div>
   </div>
 </div>
