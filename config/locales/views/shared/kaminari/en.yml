@@ -6,3 +6,5 @@ en:
         nav_label: Pagination
       first_page:
         title: First page
+      last_page:
+        title: Last page

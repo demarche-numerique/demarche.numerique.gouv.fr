@@ -6,3 +6,5 @@ fr:
         nav_label: Pagination
       first_page:
         title: Première page
+      last_page:
+        title: Dernière page
