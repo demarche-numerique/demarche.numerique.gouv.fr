@@ -23,7 +23,9 @@
           </thead>
 
           <tbody>
-            <%= content %>
+            <% @rows.each do |row| %>
+              <%= render row %>
+            <% end %>
           </tbody>
         </table>
       </div>

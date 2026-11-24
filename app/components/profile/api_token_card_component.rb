@@ -20,4 +20,6 @@ class Profile::APITokenCardComponent < ApplicationComponent
   def expired_api_tokens = api_tokens.filter(&:expired?)
 
   def expired_unfolded? = @unfold_expired || valid_api_tokens.empty?
+
+  def rows(api_tokens) = api_tokens.map { Profile::APITokenComponent.new(api_token: it) }
 end
