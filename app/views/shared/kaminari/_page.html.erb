@@ -1,0 +1,5 @@
+<li>
+  <%= link_to_unless page.current?, page, url, rel: page.rel, remote: remote, class: 'fr-pagination__link', 'aria-current': page.current? ? 'page' : nil, title: "Page #{page}", role: 'link' do %>
+    <%= content_tag 'a', page, 'aria-current': 'page', title: "Page #{page}", class: 'fr-pagination__link' %> <%# herb:disable html-anchor-require-href %>
+  <% end %>
+</li>
