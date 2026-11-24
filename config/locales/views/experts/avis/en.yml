@@ -42,3 +42,10 @@ en:
         buttons:
           back_to_procedure: Return to the procedure notices
           save: Save
+      header:
+        breadcrumb_dossier: "Application no. %{dossier_id}"
+        download_dossier: Download the application and all its attachments
+        tabs:
+          request: Request
+          avis: Opinion
+          messaging: Messaging

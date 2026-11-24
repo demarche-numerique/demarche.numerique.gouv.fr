@@ -42,3 +42,10 @@ fr:
         buttons:
           back_to_procedure: Revenir sur les avis de la démarche
           save: Enregistrer
+      header:
+        breadcrumb_dossier: "Dossier n° %{dossier_id}"
+        download_dossier: Télécharger le dossier et toutes ses pièces jointes
+        tabs:
+          request: Demande
+          avis: Avis
+          messaging: Messagerie
