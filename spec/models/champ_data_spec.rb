@@ -3,6 +3,19 @@
 describe ChampData do
   include ActiveJob::TestHelper
 
+  # Guard rail: removing new_id before the old column is dropped would let Active
+  # Record write a column the swap has renamed away.
+  describe 'the new_id shadow column' do
+    it 'is hidden from Active Record' do
+      expect(ChampData.ignored_columns).to include('new_id')
+      expect(ChampData.column_names).not_to include('new_id')
+    end
+
+    it 'is hidden from the STI subclasses that write champs' do
+      expect(Champs::TextChamp.column_names).not_to include('new_id')
+    end
+  end
+
   describe 'mandatory_blank?' do
     let(:type_de_champ) { build(:type_de_champ, mandatory: mandatory) }
     let(:champ) { Champs::TextChamp.new(value: value) }
