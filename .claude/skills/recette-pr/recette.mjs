@@ -8,6 +8,7 @@
 // sonde    : se connecte, ouvre --page (sinon le départ) et affiche l'arbre d'accessibilité,
 //            pour écrire les locators d'après le DOM réel plutôt qu'en devinant.
 import { chromium } from 'playwright';
+import * as outils from './outils.mjs';
 import { execFileSync, spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, writeFileSync, readdirSync, renameSync, rmSync } from 'node:fs';
 import { resolve, dirname, join } from 'node:path';
@@ -81,18 +82,33 @@ function preparer() {
   if (!scenario.preparation) return {};
   const file = join(out, 'preparation.rb');
   writeFileSync(file, scenario.preparation);
-  const stdout = execFileSync('bin/rails', ['runner', file], {
-    cwd: worktree,
-    env: { ...process.env, DB_DATABASE: `tps_review_pr_${scenario.pr}` },
-    encoding: 'utf8'
-  });
+  let stdout;
+  try {
+    stdout = execFileSync('bin/rails', ['runner', file], {
+      cwd: worktree,
+      env: { ...process.env, DB_DATABASE: `tps_review_pr_${scenario.pr}` },
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe']
+    });
+  } catch (err) {
+    // Seulement l'erreur Ruby et les lignes de la préparation, pas la pile des gems.
+    const utiles = String(err.stderr).split('\n').filter((l) => l.trim() && !/\/gems\/|bin\/rails|Skylight|skylight/.test(l));
+    die(`✗ préparation en échec (${file}) :\n${utiles.slice(0, 8).join('\n')}`);
+  }
   const last = stdout.trim().split('\n').pop();
   return last?.startsWith('{') ? JSON.parse(last) : {};
 }
 
-async function connecter(context) {
-  if (!scenario.persona) return;
+// `connexion` remplace le formulaire usager pour les personas qui se connectent autrement
+// (super admin du manager, OTP…) ; elle reçoit `data`, issue de la préparation.
+async function connecter(context, data) {
+  if (!scenario.persona && !scenario.connexion) return;
   const page = await context.newPage();
+  if (scenario.connexion) {
+    await scenario.connexion({ page, data, outils });
+    await page.close();
+    return;
+  }
   await page.goto('/users/sign_in');
   await page.locator('#user_email').fill(scenario.persona);
   await page.locator('#user_password').fill(PASSWORD);
@@ -229,7 +245,7 @@ async function main() {
   });
   const viewport = { width: 1280, height: 800 };
   const auth = await browser.newContext({ baseURL, viewport });
-  await connecter(auth);
+  await connecter(auth, data);
   await sansProfiler(auth);
   const storageState = await auth.storageState();
   await auth.close();
@@ -244,6 +260,13 @@ async function main() {
   await context.exposeBinding('__recetteState', () => state);
   await context.exposeBinding('__recetteEvent', (_src, type, payload) => attente?.({ type, payload }));
   if (mode !== 'auto') await context.addInitScript(OVERLAY);
+  // Le cookie ?pp=disable ne survit pas à un clearCookies (changement de compte dans une étape) :
+  // on masque aussi le badge rack-mini-profiler par CSS, comme /demo-pr.
+  await context.addInitScript(() => document.addEventListener('DOMContentLoaded', () => {
+    const style = document.createElement('style');
+    style.textContent = '.profiler-results { display: none !important; }';
+    document.head.append(style);
+  }));
 
   const page = await context.newPage();
   // La vidéo démarre avec la page : les phrases sont posées sur cette horloge.
@@ -313,7 +336,7 @@ async function main() {
   }
 
   for (const [i, etape] of scenario.etapes.entries()) {
-    const ctx = { page, data };
+    const ctx = { page, data, outils };
     const base = { mode, entete: `Étape ${i + 1}/${total}`, titre: etape.titre, consigne: etape.consigne, attendu: etape.attendu, action: !!etape.action };
     const cible = etape.cible?.(ctx);
     await eteindre(page);

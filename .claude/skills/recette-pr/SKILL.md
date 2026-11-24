@@ -15,6 +15,7 @@ Fichiers du skill (`.claude/skills/recette-pr/`) :
 | `serve.sh <N>` | Rails sur :3100 et Vite sur :3136, à côté du serveur de dev (3000/3036) qui reste intact |
 | `recette.mjs <scenario> --mode auto\|guide\|video\|captures\|sonde` | joue le scénario (voir plus bas) ; la vidéo est commentée en voix off ; `sonde` affiche l'arbre d'accessibilité d'une page |
 | `exemple-scenario.mjs` | scénario de référence (PR 14604) : à lire avant d'en écrire un |
+| `outils.mjs` | outils passés aux étapes sous `outils` : `codeFrais(secret)` pour un code OTP |
 | `cleanup.sh <N>` | arrête le serveur, supprime worktree et bases |
 
 ## 1. Comprendre la PR
@@ -49,6 +50,7 @@ puis `serve.sh N` **en arrière-plan** (`run_in_background`), et attends que `cu
 
 - La base est **jetable et déterministe** : chaque `prepare.sh` la recrée depuis le `schema.rb` de la PR (`SKIP_TEST_DATABASE=1` : sans lui, Rails recréerait aussi la base de test du dépôt principal). Le code des migrations n'est donc pas exécuté : si la PR en contient, ce n'est pas la recette qui le valide. `--keep-db` conserve la base.
 - `prepare.sh` n'arrête un serveur sur 3100/3136 que s'il tourne depuis le worktree de la PR ; sinon il s'arrête et demande.
+- **Un réglage du `.env` peut désactiver ce que la PR teste.** Cherche dans le diff les constantes et drapeaux (`config/initializers/`, `ENV.fetch`) dont dépend la feature : le `.env` de dev désactive par exemple l'OTP super admin (`SUPER_ADMIN_OTP_ENABLED`). Passe la valeur voulue en variable d'environnement, qui prime sur le `.env`, à `serve.sh` **et** à `recette.mjs` (la préparation tourne avec son environnement).
 - **Une autre recette tourne déjà** (3100/3136 pris par un autre `review-pr-*`) : ne l'arrête pas, décale les ports. `RECETTE_PORT=3200 RECETTE_VITE_PORT=3236` devant `prepare.sh` **et** `serve.sh`, puis `--base-url http://localhost:3200` pour `recette.mjs`.
 - Comptes des seeds (mot de passe `users.default_password`, `db/seeds/setup.rb`) : `admin@exemple.fr` (administrateur + instructeur), `instructeur@exemple.fr`, `usager@exemple.fr`. Pour voir les démarches et dossiers seedés : `DB_DATABASE=tps_review_pr_N bin/rails runner 'puts Procedure.pluck(:id, :libelle, :aasm_state).map(&:inspect)'` dans le worktree.
 - E-mails : `http://localhost:3100/letter_opener` pour ceux réellement envoyés. Pour **montrer** un mail, l'aperçu est plus simple : `/rails/mailers/<mailer>/<action>?part=text%2Fhtml` rend le HTML seul, sans le cadre de l'aperçu (les previews sont dans `spec/mailers/previews/`, avec des données fictives).
@@ -64,7 +66,8 @@ export default {
   titre: '…',                 // le titre de la PR
   contexte: '…',              // une phrase, affichée en ouverture de la vidéo
   narration: '…',             // optionnel : voix off d'ouverture, sinon `contexte`
-  persona: 'admin@exemple.fr',// connexion par le formulaire ; omis = anonyme
+  persona: 'admin@exemple.fr',// connexion par le formulaire usager ; omis = anonyme
+  connexion: async ({ page, data, outils }) => {}, // optionnel : remplace `persona` (super admin, OTP…)
   preparation: `…ruby…`,      // optionnel, exécuté par bin/rails runner ; dernière ligne = JSON → `data`
   depart: (data) => `/admin/procedures/${data.vide}/champs`,
   etapes: [{
@@ -72,7 +75,7 @@ export default {
     narration,                // optionnel : voix off de l'étape en vidéo, sinon la consigne
     cible: ({ page }) => locator,       // ce qu'on manipule : surlignée avant l'action
     zone: ({ page }) => locator,        // optionnel : ce qu'on juge, amené à l'écran après l'action
-    action: async ({ page, data }) => {},  // « Le faire pour moi » en mode guide
+    action: async ({ page, data, outils }) => {},  // « Le faire pour moi » en mode guide
     attendu: '…',             // ce que l'humain doit constater
     verifier: async ({ page }) => {}    // lève une erreur si l'attendu n'est pas là
   }]
@@ -86,7 +89,8 @@ Règles :
 - **Cible et zone.** La cible est ce qu'on manipule ; quand l'attendu porte ailleurs (le tableau après « Personnaliser le tableau », une carte après une navigation), donne une `zone` : le runner l'amène à l'écran après l'action, y place le panneau et la cadre dans les captures. Sans elle, la vidéo affiche l'attendu sur un écran qui ne le montre pas.
 - Données hors seeds → `preparation`, jamais des clics de mise en place dans les étapes : la recette montre la feature, pas le décor. Inspire-toi des seeds (`db/seeds/procedures.rb`, `db/seeds/dossiers.rb`) pour construire une démarche et ses dossiers. Le chemin d'une démarche n'est pas une colonne : `Procedure.find_with_path(path).first` pour la retrouver d'un run à l'autre.
 - **`preparation` est rejouée à chaque lancement** (auto, guide, vidéo, captures, sonde) sur la même base : rends-la idempotente (`find_or_create_by!`, purge de ce qu'elle a créé et de ce que les étapes créent, comme une copie). Sinon chaque run empile des données et décale les compteurs que l'attendu cite.
-- **Un attendu se déduit du code, pas de l'aperçu.** Lis le mailer, le composant ou la vue qui produit le texte avant d'écrire l'attendu : qui est listé, qui est exclu, au singulier ou au pluriel. Un attendu deviné fait échouer une étape sur un comportement correct, et c'est du temps perdu à trancher « bug du scénario ou bug de la PR ».
+- **Un attendu se déduit du code, pas de l'aperçu ni des traductions.** Lis le mailer, le composant ou la vue qui produit le texte, **et le contrôleur** (où mène la redirection, sous quelle condition un bloc s'affiche) avant d'écrire l'attendu : qui est listé, qui est exclu, au singulier ou au pluriel, sur quelle page. Une clé de traduction ne dit pas quand ni où elle s'affiche. Un attendu deviné fait échouer une étape sur un comportement correct, et c'est du temps perdu à trancher « bug du scénario ou bug de la PR ».
+- **Personas qui ne passent pas par `/users/sign_in`** (super admin du manager…) : donne une fonction `connexion`. Avec un OTP, la préparation expose le secret (`otp_secret`) dans `data`, et `outils.codeFrais(secret)` calcule le code : il attend la fenêtre de 30 s suivante si le secret vient de servir, car un code consommé est refusé. Pour une étape jouée par un **second** compte (un validateur), l'action fait `page.context().clearCookies()` puis se connecte avec ce compte.
 - Pas besoin de faire défiler la page dans les actions : le runner centre la cible (sans animation : le DSFR anime le défilement, et une capture partirait avant la fin) et recentre avant chaque capture. Le panneau passe du côté opposé à la cible, et revient à droite quand l'action a changé de page. Il est transparent aux clics, sauf ses boutons.
 - `verifier` contrôle l'attendu, pas seulement l'absence d'erreur : chaque étape a le sien. **Tout texte cité entre guillemets dans l'attendu est vérifié mot pour mot** (`getByText`) : les libellés changent au fil des rebases, et un `isDisabled` seul laisse passer un message faux.
 - Textes en français, du point de vue du persona, sans jargon de code.
@@ -98,6 +102,8 @@ cd ../review-pr-N && node <repo>/.claude/skills/recette-pr/recette.mjs tmp/recet
 ```
 
 Sans tête, joue actions et vérifications, écrit une capture par étape, `resultats.json` et `rapport.md` dans `tmp/recette/resultats-auto/`. Le rapport marque ces étapes 🤖 « vérifiées par le script » : seul le mode guide produit des ✅, qui sont des jugements humains. `RECETTE_DEBUG=1` affiche la console de la page.
+
+Une préparation en échec affiche seulement l'erreur Ruby et les lignes du script en cause.
 
 Itère jusqu'au vert, puis **regarde les captures** (Read) : une vérification qui passe sur un écran faux est pire qu'une vérification absente. Une capture qui montre le haut de la page au lieu de la cible est un défaut du runner, pas du scénario : corrige le runner plutôt que d'ajouter des défilements dans les actions.
 
@@ -129,7 +135,7 @@ Compte ~15 s par étape avec la voix : 9 étapes font ~2 min 30. Au-delà de 6 o
 
 La voix passe par `say` (macOS) et prend la première voix française installée (Thomas, Amélie…) ; `--voix` en choisit une autre (`say -v '?'`). Sans `say`, ou avec `--muet`, la vidéo sort muette, avec son panneau. ffmpeg est requis dans tous les cas (`brew install ffmpeg`).
 
-L'attendu ne s'affiche et ne se dit qu'une fois `verifier` passé ; un échec s'affiche en rouge et termine la vidéo sur « Recette en échec à l'étape N » : ne livre jamais cette vidéo comme une démo : `tmp/recette/resultats-video/recette-pr-N.mp4` (~0,5 Mo muette, ~2 Mo par minute avec la voix). Vérifie 2 ou 3 images avec `ffmpeg -ss <t> -i … -frames:v 1 frame.png` avant de la proposer. `--rythme` ralentit ou accélère.
+L'attendu ne s'affiche et ne se dit qu'une fois `verifier` passé ; un échec s'affiche en rouge et termine la vidéo sur « Recette en échec à l'étape N » : ne livre jamais cette vidéo comme une démo : `tmp/recette/resultats-video/recette-pr-N.mp4` (~0,5 Mo muette, ~2 Mo par minute avec la voix). Vérifie 2 ou 3 images avec `ffmpeg -ss <t> -i … -frames:v 1 frame.png` avant de la proposer, **y compris entre deux étapes** : la vidéo garde les états intermédiaires qu'un `verifier` qui attend l'état final ne voit pas (un récapitulatif partiel affiché comme définitif pendant un job, par exemple). C'est un résultat de recette à remonter. `--rythme` ralentit ou accélère.
 
 ### Captures du panneau, pour la description d'une PR
 
