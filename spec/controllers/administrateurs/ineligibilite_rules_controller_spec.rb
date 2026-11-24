@@ -26,6 +26,17 @@ describe Administrateurs::IneligibiliteRulesController, type: :controller do
             .from(nil)
             .to(empty_operator(empty, empty))
         end
+
+        context 'rendered' do
+          render_views
+
+          it 'replaces the rules component' do
+            subject
+            target = ActionView::RecordIdentifier.dom_id(procedure.draft_revision, :ineligibilite_rules)
+            expect(response.body).to have_css("turbo-stream[action='replace'][target='#{target}']", visible: false)
+            expect(response.body).to include(%(<div id="#{target}">))
+          end
+        end
       end
 
       context 'with row' do
