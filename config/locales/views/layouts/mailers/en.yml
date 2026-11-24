@@ -27,7 +27,7 @@ en:
         second_part: To find out more, please contact
         en_construction: has been submitted on %{processed_at}.
         en_instruction: has been received and taken care of on %{processed_at}. The administration is reviewing your application.
-        repasser_en_instruction: will be re-examined, the previous decision on this file is obsolete.
+        repasser_en_instruction: will be re-examined, the previous decision on this application is obsolete.
         accepte: has been approved on %{processed_at}.
         refuse: has been rejected on %{processed_at}.
         sans_suite: has been dismissed on %{processed_at}.
