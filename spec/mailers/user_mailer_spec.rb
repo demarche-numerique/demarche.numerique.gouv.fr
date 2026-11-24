@@ -140,6 +140,11 @@ RSpec.describe UserMailer, type: :mailer do
       end
     end
 
+    context 'neither instructeur nor administrateur' do
+      let(:role) { experts.default }
+      it { expect { subject.message }.to raise_error(ArgumentError) }
+    end
+
     context 'when perform_later is called' do
       let(:role) { administrateurs.default }
       let(:custom_queue) { 'default' }
