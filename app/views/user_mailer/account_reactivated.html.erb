@@ -1,0 +1,20 @@
+<% content_for(:title, @subject) %>
+
+<p>Bonjour,</p>
+
+<p>
+  Votre compte <%= APPLICATION_NAME %> associé à l'adresse
+  <strong><%= @user.email %></strong> a été réactivé par un administrateur.
+</p>
+
+<p>
+  Vous pouvez désormais vous connecter à nouveau en cliquant sur le bouton
+  ci-dessous.
+</p>
+
+<%= dsfr_button('Se connecter', new_user_session_url, :primary) %>
+<%= vertical_margin(6) %>
+
+<p>Si vous avez des questions, veuillez contacter le support.</p>
+
+<%= render partial: "layouts/mailers/signature" %>
