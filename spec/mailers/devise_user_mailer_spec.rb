@@ -65,7 +65,7 @@ RSpec.describe DeviseUserMailer, type: :mailer do
         it 'puts the activation link behind a button and spells it out below' do
           link = user_confirmation_url(confirmation_token: token)
           expect(subject.body).to have_link('Activer mon compte', href: link)
-          expect(text_of(subject.body)).to include("Si le bouton ci-dessus ne fonctionne pas, veuillez copier/coller le lien suivant dans votre navigateur\u00a0:")
+          expect(text_of(subject.body)).to include("Si le bouton ci-dessus ne fonctionne pas, veuillez copier-coller le lien suivant dans votre navigateur\u00a0:")
           expect(subject.body).to have_link(link, href: link)
         end
       end

@@ -4,7 +4,7 @@ fr:
       activation:
         intro: "Pour confirmer votre adresse électronique et activer votre compte sur %{application_name}, veuillez cliquer sur le bouton ci-dessous :"
         button: Activer mon compte
-        fallback: "Si le bouton ci-dessus ne fonctionne pas, veuillez copier/coller le lien suivant dans votre navigateur :"
+        fallback: "Si le bouton ci-dessus ne fonctionne pas, veuillez copier-coller le lien suivant dans votre navigateur :"
       email_change:
         title: Changement d’adresse électronique
         intro: "Pour confirmer votre changement d’adresse électronique, veuillez cliquer sur le lien suivant :"
@@ -18,7 +18,7 @@ fr:
       title: Votre nouveau mot de passe
       body: La demande de changement de mot de passe pour votre compte %{email} sur %{application_name} a bien été prise en compte.
     reset_password_instructions:
-      intro: "Vous avez demandé à changer votre mot de passe sur %{application_name}. Pour ceci, merci de cliquer sur le lien suivant :"
+      intro: "Vous avez demandé à changer votre mot de passe sur %{application_name}. Pour cela, merci de cliquer sur le lien suivant :"
       button: Changer mon mot de passe
       previous_emails: Cet email invalide les emails similaires que vous avez pu demander précédemment.
       not_you: Si vous n’avez pas effectué une telle demande, merci d’ignorer cet email. Votre mot de passe ne sera pas changé.
