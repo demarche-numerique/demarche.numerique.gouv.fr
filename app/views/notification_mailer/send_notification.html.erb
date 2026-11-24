@@ -1,0 +1,21 @@
+<% content_for :procedure_logo do %>
+  <%= render 'layouts/mailers/logo', url: @logo_url %>
+<% end %>
+
+<%= @rendered_template %>
+
+<% if @actions.present? %>
+  <%= render 'notification_mailer/actions', actions: @actions, dossier: @dossier %>
+<% end %>
+
+<% if @jdma_link.present? %>
+  <%= render 'layouts/mailers/jdma' %>
+<% end %>
+
+<% content_for :footer do %>
+  <%= render 'layouts/mailers/service_footer', dossier: @dossier %>
+<% end %>
+
+<% content_for :sent_to do %>
+  <%= render 'layouts/mailers/sent_to', dossier: @dossier %>
+<% end %>
