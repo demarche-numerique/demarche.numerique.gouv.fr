@@ -23,19 +23,19 @@ en:
         team: "The team"
       for_tiers:
         good_morning: Good morning,
-        first_part: We inform you that file no. %{dossier_id}, completed on your behalf by %{mandataire_first_name} %{mandataire_last_name}, on the procedure
+        first_part: We inform you that application no. %{dossier_id}, completed on your behalf by %{mandataire_first_name} %{mandataire_last_name}, on the procedure
         second_part: To find out more, please contact
-        en_construction: has been submited %{processed_at}.
-        en_instruction: has been received and taken care of on %{processed_at}. The administration is reviewing your file.
+        en_construction: has been submitted on %{processed_at}.
+        en_instruction: has been received and taken care of on %{processed_at}. The administration is reviewing your application.
         repasser_en_instruction: will be re-examined, the previous decision on this file is obsolete.
-        accepte: has been accepted on %{processed_at}.
-        refuse: has been refused on %{processed_at}.
-        sans_suite: has been closed without continuation on %{processed_at}.
+        accepte: has been approved on %{processed_at}.
+        refuse: has been rejected on %{processed_at}.
+        sans_suite: has been dismissed on %{processed_at}.
         accuse_lecture: has been processed on %{processed_at}.
       accuse_lecture:
         good_morning: Hello,
-        first_part: We inform you that a decision on file no. %{dossier_id} of the procedure
+        first_part: We inform you that a decision on application no. %{dossier_id} of the procedure
         second_part: has been rendered.
-        third_part: To find out its nature, please consult your file in your %{application_name} account.
-        button_text: View my file
+        third_part: To find out its nature, please consult your application in your %{application_name} account.
+        button_text: View my application
         commentaire_html: <p>Hello,</p><p>We inform you that a decision on your file has been rendered.</p>Sincerely,<br>%{service}
