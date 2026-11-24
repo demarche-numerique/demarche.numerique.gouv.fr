@@ -51,7 +51,7 @@ module ProcedureTemplates
     DESCRIPTION = <<~TEXT
       Vous êtes admis à l’École de l’air et de l’espace par un concours du recrutement externe ou interne. Cette démarche remplace l’envoi de vos pièces administratives par courriel et leur copie sur clé USB : chaque pièce est déposée une seule fois.
 
-      Elle remplace aussi la fiche de renseignements et la fiche de contact de la notice d’intégration (note N°46/EAE/DGFM/CMDT).
+      Elle remplace aussi la fiche de renseignements et la fiche de contact de la notice d’intégration (note n° 46/EAE/DGFM/CMDT).
 
       Les pièces médicales ne sont pas concernées : elles suivent le circuit du service médical indiqué dans la notice.
     TEXT
@@ -61,7 +61,7 @@ module ProcedureTemplates
 
       Elles sont lues par la section administration élèves et le bureau des ressources humaines de l’école. Les informations et les pièces nécessaires à votre gestion sont reprises dans votre dossier administratif et dans le système d’information des ressources humaines.
 
-      Dès que la décision est prise sur votre dossier, vos pièces d’identité, votre acte de naissance, vos justificatifs de situation de famille, votre justificatif de sécurité sociale et votre RIB sont supprimés de votre dossier sur cette plateforme. L’archive que l’école en extrait pour votre dossier administratif, sans vos pièces d’identité, y reste téléchargeable par elle au plus #{EXPORT_LIFETIME} heures. Le reste de votre dossier est supprimé environ #{RETENTION_PERIOD} mois après cette décision.
+      Dès que la décision est prise sur votre dossier, vos pièces d’identité, votre acte de naissance, vos justificatifs de situation de famille, votre justificatif de sécurité sociale et votre RIB sont supprimés de votre dossier sur cette plateforme. L’école en tire auparavant une archive pour votre dossier administratif, sans vos pièces d’identité : chaque archive reste disponible sur cette plateforme #{EXPORT_LIFETIME} heures au plus après sa génération. Le reste de votre dossier est supprimé environ #{RETENTION_PERIOD} mois après cette décision.
 
       Ne déposez aucun document médical dans cette démarche.
 
@@ -85,10 +85,10 @@ module ProcedureTemplates
 
     REVIEWER_INSTRUCTIONS = <<~TEXT
       - Vérifiez les pièces d’identité à l’écran : elles ne figurent ni dans l’archive des pièces ni dans les exports.
-      - Générez l’archive des pièces et l’export pour le SIRH avant de prendre une décision : à la décision, les pièces d’identité, l’acte de naissance, les justificatifs de situation de famille, le justificatif de sécurité sociale et le RIB sont supprimés définitivement du dossier. L’archive générée reste téléchargeable #{EXPORT_LIFETIME} heures, puis elle est supprimée à son tour.
+      - Générez puis téléchargez l’archive des pièces et l’export pour le SIRH avant de prendre une décision : à la décision, les pièces d’identité, l’acte de naissance, les justificatifs de situation de famille, le justificatif de sécurité sociale et le RIB sont supprimés définitivement du dossier. Une archive reste téléchargeable pendant #{EXPORT_LIFETIME} heures après sa génération, que la décision soit prise ou non, puis elle est supprimée à son tour.
       - Prenez une décision sur chaque dossier : tant qu’un dossier reste en construction ou en instruction, rien n’est supprimé. Le dossier est supprimé environ #{RETENTION_PERIOD} mois après la décision.
       - Pour faire corriger plusieurs pièces, listez-les dans une seule demande de correction : une seule demande peut être en attente par dossier, et le courriel envoyé au candidat ne reprend pas votre message.
-      - Cochez vous-même la case « Pièces originales vérifiées le jour de l’intégration », après avoir vu les originaux. Une case déjà cochée ou une observation déjà saisie à l’arrivée du dossier ne viennent pas du service : le lien de dépôt permet au candidat de les remplir. Décochez alors la case et effacez le texte avant de les renseigner vous-même.
+      - Cochez vous-même la case « Pièces originales vérifiées le jour de l’intégration », après avoir vu les originaux. Le lien de dépôt permet au candidat de cocher cette case et de remplir « Observations du service » : la plateforme affiche alors « Donnée remplie automatiquement. » sous le champ, et cette mention y reste après votre propre saisie. Dès l’arrivée du dossier, et avant de générer l’archive ou un export, décochez la case si elle est cochée et effacez toute observation déjà saisie : la fiche de renseignements de l’archive (PDF) les reprend telles quelles sous le titre « Annotations privées », et les exports standards dans leurs colonnes.
     TEXT
 
     # The submission receipt is attached to this e-mail by the platform.
