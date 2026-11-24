@@ -44,7 +44,9 @@ class Profile::APITokenComponent < ApplicationComponent
       data: { fr_opened: 'false' })
   end
 
-  def subtitle = nil
+  def subtitle
+    t('.transfer_offered', email: @api_token.transfer_recipient.email) if @api_token.transfer_recipient.present? && @api_token.transferable?
+  end
 
   def label_args = { name: @api_token.name }
 

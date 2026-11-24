@@ -148,3 +148,24 @@
     </div>
   <%- end -%>
 </div>
+
+<% if api_token.transfer_recipient.present? || api_token.transferable? %>
+  <div class="fr-card fr-p-3w fr-mb-2w">
+    <h2 class="fr-h6"><%= t('.transfer_title') %></h2>
+
+    <% if api_token.transfer_recipient.present? %>
+      <p>
+        <%= t('.transfer_offered', email: api_token.transfer_recipient.email) %>
+      </p>
+      <%= button_to t('.cancel_transfer'),
+        admin_api_token_transfer_path(api_token),
+        method: :delete,
+        class: 'fr-btn fr-btn--secondary fr-btn--sm fr-btn--icon-left fr-icon-close-line' %>
+    <% else %>
+      <p><%= t('.transfer_hint') %></p>
+      <%= link_to t('.transfer'),
+        new_admin_api_token_transfer_path(api_token),
+        class: 'fr-btn fr-btn--secondary fr-btn--sm fr-btn--icon-left fr-icon-send-plane-line' %>
+    <% end %>
+  </div>
+<% end %>

@@ -12,7 +12,7 @@ class Profile::APITokenCardComponent < ApplicationComponent
   end
 
   def api_tokens
-    @api_tokens ||= current_administrateur.api_tokens.order(created_at: :desc).to_a
+    @api_tokens ||= current_administrateur.api_tokens.includes(:transfer_recipient).order(created_at: :desc).to_a
   end
 
   def valid_api_tokens = api_tokens.reject(&:expired?)

@@ -1,0 +1,31 @@
+---
+en:
+  administrateurs:
+    api_token_transfers:
+      no_longer_pending: This offer is no longer pending.
+      not_transferable: This token cannot be handed over.
+      new:
+        title: Hand over the token ‘%{name}’
+        dashboard: Dashboard
+        intro: "The person who accepts becomes the owner of the token. The secret does not change: nothing to update where it is used. You will no longer be able to change or delete this token."
+        full_access:
+          one: This token accesses all your procedures. Once handed over, it will only access the current procedure and its future clones.
+          other: This token accesses all your procedures. Once handed over, it will only access the %{count} current procedures and their future clones.
+        recipient: Who should receive it?
+        last_sign_in: last signed in on %{date}
+        never_signed_in: never signed in
+        submit: Offer the hand-over
+        cancel: Cancel
+        nobody: No other administrator administers all the procedures of this token.
+        not_covering:
+          one: "%{count} administrator cannot receive it"
+          other: "%{count} administrators cannot receive it"
+        not_covering_hint: They do not administer every procedure of this token. Add them as administrators of these procedures to be able to hand it over to them.
+        missing:
+          one: "%{email}: %{count} procedure missing"
+          other: "%{email}: %{count} procedures missing"
+      create:
+        offered: Offer sent to %{email}.
+        choose_a_recipient: Choose an administrator who administers all the procedures of the token.
+      destroy:
+        cancelled: The hand-over offer is cancelled.

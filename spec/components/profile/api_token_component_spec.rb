@@ -2,6 +2,7 @@
 
 RSpec.describe Profile::APITokenComponent, type: :component do
   let(:owner) { administrateurs.default }
+  let(:recipient) { administrateurs.blank }
   let(:listed) { [procedures.individual, procedures.brouillon] }
   let(:api_token) do
     APIToken.generate(owner, name: 'Export', allowed_procedure_ids: listed.map(&:id), follows_clones: true, authorized_networks: [IPAddr.new('192.168.1.0/24'), IPAddr.new('10.0.0.1')]).first
@@ -41,12 +42,13 @@ RSpec.describe Profile::APITokenComponent, type: :component do
   end
 
   context 'when the token expired before its first call' do
-    let(:api_token) { APIToken.generate(owner).first.tap { it.update_column(:expires_at, Date.new(2026, 1, 28)) } }
+    let(:api_token) { APIToken.generate(owner).first.tap { it.update_columns(expires_at: Date.new(2026, 1, 28), transfer_recipient_id: recipient.id) } }
 
-    it 'can no longer be edited, nor waits for that call' do
+    it 'can no longer be edited, nor waits for that call, nor mentions its inert hand-over' do
       expect(cells[2]).to start_with('Expiré le 28/01/2026')
       expect(page).to have_css('td p', exact_text: 'Aucune')
       expect(page).to have_no_link('Modifier')
+      expect(page).to have_no_text('Transmission proposée')
     end
   end
 
@@ -60,5 +62,11 @@ RSpec.describe Profile::APITokenComponent, type: :component do
     let(:api_token) { APIToken.generate(owner).first.tap { it.update_column(:requires_ip_filtering, false) } }
 
     it { expect(page).to have_css('.fr-badge--warning', text: 'Aucun filtrage réseau') }
+  end
+
+  context 'when the token is offered to a co-administrateur' do
+    let(:api_token) { APIToken.generate(owner, allowed_procedure_ids: listed.map(&:id)).first.tap { it.update_column(:transfer_recipient_id, recipient.id) } }
+
+    it { expect(page).to have_css('th', text: "Transmission proposée à #{recipient.email}") }
   end
 end
