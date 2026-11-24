@@ -9,3 +9,4 @@ en:
     one: "and %{count} other procedure of %{email}"
     other: "and %{count} other procedures of %{email}"
   details_label: "See the details of the token ‘%{name}’ of %{email}"
+  duplicate_label: "Duplicate the token ‘%{name}’ of %{email}"

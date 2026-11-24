@@ -16,6 +16,10 @@ RSpec.describe Profile::SharedAPITokenComponent, type: :component do
       expect(page).to have_css('td p', exact_text: "et 1 autre démarche de #{owner.email} et leurs futurs clones")
       expect(page).to have_no_text(procedures.brouillon.libelle)
     end
+
+    it 'only offers to duplicate it' do
+      expect(page.all('.fr-btn').map { it['aria-label'] }).to eq(["Dupliquer le jeton «\u00A0Tableau\u00A0» de #{owner.email}"])
+    end
   end
 
   context 'with a full access token' do

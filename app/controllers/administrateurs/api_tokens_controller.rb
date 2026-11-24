@@ -157,11 +157,15 @@ module Administrateurs
     def set_api_token_form
       @api_token_form =
         if params[:duplicate].present?
-          APITokenForm.from_token(current_administrateur.api_tokens.find(params.expect(:duplicate)))
+          APITokenForm.from_token(duplicable_tokens.find(params.expect(:duplicate)), administrateur: current_administrateur)
         else
-          APITokenForm.new(api_token_form_params.merge(administrateur: current_administrateur))
+          APITokenForm.new(api_token_form_params.merge(administrateur: current_administrateur)).tap do |form|
+            form.source_token = duplicable_tokens.find_by(id: form.duplicated_token_id) if form.duplicating?
+          end
         end
     end
+
+    def duplicable_tokens = APIToken.duplicable_by(current_administrateur)
 
     def api_token_form_params
       if params.key?(:api_token_form)

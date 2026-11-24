@@ -9,3 +9,4 @@ fr:
     one: "et %{count} autre démarche de %{email}"
     other: "et %{count} autres démarches de %{email}"
   details_label: "Voir le détail du jeton « %{name} » de %{email}"
+  duplicate_label: "Dupliquer le jeton « %{name} » de %{email}"

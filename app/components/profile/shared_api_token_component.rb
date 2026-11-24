@@ -25,7 +25,7 @@ class Profile::SharedAPITokenComponent < Profile::APITokenComponent
 
   def named_procedure_ids = @named_procedure_ids ||= procedure_ids.intersection(@reader_procedure_ids)
 
-  def actions = []
+  def actions = [duplicate_button]
 
   def label_args = { name: @api_token.name, email: owner_email }
 

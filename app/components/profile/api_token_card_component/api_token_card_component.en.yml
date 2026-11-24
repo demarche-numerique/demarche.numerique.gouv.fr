@@ -6,4 +6,4 @@ en:
   my_tokens_title: My tokens
   expired_tokens_title: Expired tokens (%{count})
   shared_tokens_title: Tokens of other administrators on your procedures
-  shared_tokens_intro: They access procedures you administer. Only their owner can change them.
+  shared_tokens_intro: "They access procedures you administer. Only their owner can change them, but ‘Duplicate’ creates a copy in your account."

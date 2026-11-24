@@ -6,4 +6,4 @@ fr:
   my_tokens_title: Mes jetons
   expired_tokens_title: Jetons expirés (%{count})
   shared_tokens_title: Jetons d’autres administrateurs sur vos démarches
-  shared_tokens_intro: Ils accèdent à des démarches que vous administrez. Seul leur propriétaire peut les modifier.
+  shared_tokens_intro: "Ils accèdent à des démarches que vous administrez. Seul leur propriétaire peut les modifier, mais « Dupliquer » en crée une copie dans votre compte."

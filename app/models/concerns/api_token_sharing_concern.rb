@@ -15,4 +15,8 @@ module APITokenSharingConcern
 
     scope :duplicable_by, -> (administrateur) { where(administrateur:).or(visible_to(administrateur)) }
   end
+
+  def procedure_ids_shared_with(administrateur)
+    procedure_ids.intersection(administrateur.procedure_ids_without_support)
+  end
 end

@@ -4,6 +4,8 @@ fr:
     api_tokens:
       new_token: Création d’un nouveau jeton
       duplicate_title: Duplication du jeton
+      copy_title: Copie d’un jeton à votre nom
+      copy_name: "%{name} (copie)"
       nom:
         title: Nouveau jeton d’API
         name: Nom du jeton
@@ -13,6 +15,9 @@ fr:
         dashboard: Tableau de bord
       autorisations:
         title: Privilèges du jeton « %{name} »
+        copied_from:
+          one: Copie du jeton « %{name} » de %{email}. La démarche à laquelle il accède et que vous administrez est présélectionnée.
+          other: Copie du jeton « %{name} » de %{email}. Les %{count} démarches auxquelles il accède et que vous administrez sont présélectionnées.
         token_access: Ce jeton accède à
         custom_procedures: certaines de mes démarches
         all_procedures: toutes mes démarches
@@ -64,6 +69,7 @@ fr:
         security_warning: Votre jeton va probablement vous permettre de manipuler des données confidentielles, voir personnelles.
         responsibility: Il est de votre responsabilité de le conserver en sécurité et d’en limiter l’utilisation aux seules personnes habilitées.
         features_intro: Pour vous aider, nous vous proposons des fonctionnalités de filtrage réseau et de durée de vie du jeton.
+        open_source_warning: "Le jeton d’origine accepte toutes les adresses IP : choisissez celles que le nouveau jeton acceptera."
         network_filtering_label: 'Filtrage réseau :'
         auto_assign: Détection automatique au 1er appel API
         auto_assign_hint: L’adresse IP de votre premier appel sera automatiquement autorisée
