@@ -45,12 +45,25 @@ export function matomoAddressOverrides(
 
 // An error report carries the same two addresses, and names the page again as
 // the file of each frame of the stack that runs code written in the page.
+// A breadcrumb names the page too: a navigation inside the page (the skip link
+// to #contenu is one) by its path, a request by its address.
 type ErrorReport = {
   request?: { url?: string; headers?: Record<string, string> };
   exception?: {
     values?: { stacktrace?: { frames?: { filename?: string }[] } }[];
   };
+  breadcrumbs?: { data?: Record<string, unknown> }[];
 };
+
+const BREADCRUMB_ADDRESSES = ['from', 'to', 'url'];
+const NO_ORIGIN = 'https://no-origin.invalid';
+
+function withoutPrefilledIdentityInPath(address: string): string {
+  if (!address.startsWith('/') || address.startsWith('//')) {
+    return withoutPrefilledIdentity(address);
+  }
+  return withoutPrefilledIdentity(NO_ORIGIN + address).slice(NO_ORIGIN.length);
+}
 
 export function withoutPrefilledIdentityInReport<Report extends ErrorReport>(
   report: Report
@@ -66,6 +79,14 @@ export function withoutPrefilledIdentityInReport<Report extends ErrorReport>(
     for (const frame of exception.stacktrace?.frames ?? []) {
       if (frame.filename) {
         frame.filename = withoutPrefilledIdentity(frame.filename);
+      }
+    }
+  }
+  for (const breadcrumb of report.breadcrumbs ?? []) {
+    for (const key of BREADCRUMB_ADDRESSES) {
+      const address = breadcrumb.data?.[key];
+      if (breadcrumb.data && typeof address == 'string') {
+        breadcrumb.data[key] = withoutPrefilledIdentityInPath(address);
       }
     }
   }

@@ -24,6 +24,17 @@ suite('withoutPrefilledIdentity', () => {
     );
   });
 
+  test('works in a browser without URL.canParse', () => {
+    const canParse = URL.canParse;
+    // Chrome < 120, Firefox < 115 and Safari < 17 lack it
+    Reflect.deleteProperty(URL, 'canParse');
+    try {
+      expect(withoutPrefilledIdentity(NAMED_PAGE)).toEqual(PAGE);
+    } finally {
+      URL.canParse = canParse;
+    }
+  });
+
   test('leaves an address without identity as it is', () => {
     const address = `${PAGE}?champ_Q2hhbXAtMQ=Base+%28BASE%29`;
 
@@ -87,6 +98,34 @@ suite('withoutPrefilledIdentityInReport', () => {
       withoutPrefilledIdentityInReport(report).exception.values[0].stacktrace
         .frames
     ).toEqual([{ filename: PAGE }, { filename: bundle }, {}]);
+  });
+
+  test('removes the identity from the breadcrumbs of a navigation inside the page', () => {
+    const path = '/commencer/integration-eae';
+    const report = {
+      breadcrumbs: [
+        { category: 'ui.click', message: 'a.fr-link' },
+        {
+          category: 'navigation',
+          data: {
+            from: `${path}?identite_nom=Martin`,
+            to: `${path}?champ_Q2hhbXAtMQ=Externe&identite_nom=Martin#contenu`
+          }
+        },
+        { category: 'fetch', data: { url: NAMED_PAGE, status_code: 200 } },
+        { category: 'fetch', data: { url: '/dossiers/12/brouillon?x=a%20b' } }
+      ]
+    };
+
+    expect(withoutPrefilledIdentityInReport(report).breadcrumbs).toEqual([
+      { category: 'ui.click', message: 'a.fr-link' },
+      {
+        category: 'navigation',
+        data: { from: path, to: `${path}?champ_Q2hhbXAtMQ=Externe#contenu` }
+      },
+      { category: 'fetch', data: { url: PAGE, status_code: 200 } },
+      { category: 'fetch', data: { url: '/dossiers/12/brouillon?x=a%20b' } }
+    ]);
   });
 
   test('leaves a report without address as it is', () => {
