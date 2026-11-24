@@ -12,15 +12,9 @@ en:
       processed:
         one: "%{count} application decided"
         other: "%{count} applications decided"
-      accepted:
-        one: "%{count} approved"
-        other: "%{count} approved"
-      refused:
-        one: "%{count} rejected"
-        other: "%{count} rejected"
-      closed_without_continuation:
-        one: "%{count} dismissed"
-        other: "%{count} dismissed"
+      accepted: "%{count} approved"
+      refused: "%{count} rejected"
+      closed_without_continuation: "%{count} dismissed"
       with_notifications:
         one: "%{count} application with ‘new’ notifications, including:"
         other: "%{count} applications with ‘new’ notifications, including:"

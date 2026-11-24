@@ -32,46 +32,26 @@
         </tr>
       <% end %>
 
-      <% if procedure_overview.dossiers_en_construction_count > 0 %>
+      <% rows = [
+        [procedure_overview.dossiers_en_construction_count, t('.en_construction', count: procedure_overview.dossiers_en_construction_count), procedure_overview.old_dossiers_en_construction],
+        [procedure_overview.dossiers_en_instruction_count, t('.en_instruction', count: procedure_overview.dossiers_en_instruction_count), procedure_overview.old_dossiers_en_instruction],
+      ] %>
+
+      <% rows.each do |count, label, old_dossiers| %>
+        <% next if count == 0 %>
+
         <tr>
           <td style="padding: 2px 0;">
-            <span style="font-weight: bold;">
-              <%= procedure_overview.dossiers_en_construction_count %>
-            </span>
+            <span style="font-weight: bold;"><%= count %></span>
+            <%= label %>
 
-            <%= t('.en_construction', count: procedure_overview.dossiers_en_construction_count) %>
-
-            <% if procedure_overview.old_dossiers_en_construction.count > 0 %>
+            <% if old_dossiers.any? %>
               <%= t('.including') %>
               <span style="font-weight: bold; color: #FF5D60; padding: 2px 0;">
-                <%= procedure_overview.old_dossiers_en_construction.count %>
+                <%= old_dossiers.size %>
               </span>
-              <% if procedure_overview.old_dossiers_en_construction.count < 6 %>
-                <%= t('.waiting_with_list_html', dossiers: safe_join(procedure_overview.old_dossiers_en_construction.map { link_to t('.dossier_number', id: it.id), instructeur_dossier_url(procedure_overview.procedure, it), style: 'color: #0069CC;' }, ', ')) %>
-              <% else %>
-                <%= t('.waiting') %>
-              <% end %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-
-      <% if procedure_overview.dossiers_en_instruction_count > 0 %>
-        <tr>
-          <td style="padding: 2px 0;">
-            <span style="font-weight: bold;">
-              <%= procedure_overview.dossiers_en_instruction_count %>
-            </span>
-
-            <%= t('.en_instruction', count: procedure_overview.dossiers_en_instruction_count) %>
-
-            <% if procedure_overview.old_dossiers_en_instruction.count > 0 %>
-              <%= t('.including') %>
-              <span style="font-weight: bold; color: #FF5D60; padding: 2px 0;">
-                <%= procedure_overview.old_dossiers_en_instruction.count %>
-              </span>
-              <% if procedure_overview.old_dossiers_en_instruction.count < 6 %>
-                <%= t('.waiting_with_list_html', dossiers: safe_join(procedure_overview.old_dossiers_en_instruction.map { link_to t('.dossier_number', id: it.id), instructeur_dossier_url(procedure_overview.procedure, it), style: 'color: #0069CC;' }, ', ')) %>
+              <% if old_dossiers.size < 6 %>
+                <%= t('.waiting_with_list_html', dossiers: safe_join(old_dossiers.map { link_to t('.dossier_number', id: it.id), instructeur_dossier_url(procedure_overview.procedure, it), style: 'color: #0069CC;' }, ', ')) %>
               <% else %>
                 <%= t('.waiting') %>
               <% end %>

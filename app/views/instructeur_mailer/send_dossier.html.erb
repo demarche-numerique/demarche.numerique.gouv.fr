@@ -4,7 +4,8 @@
 
 <p>
   <%= t('.body', sender_email: @sender.email, dossier_id: @dossier.id) %>
-  <%= link_to(instructeur_dossier_url(@dossier.procedure, @dossier), instructeur_dossier_url(@dossier.procedure, @dossier)) %>
+  <% url = instructeur_dossier_url(@dossier.procedure, @dossier) %>
+  <%= link_to(url, url) %>
 </p>
 
 <%= render partial: "layouts/mailers/signature" %>
