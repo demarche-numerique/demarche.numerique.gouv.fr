@@ -25,7 +25,11 @@ module ProcedureTemplates
       FIELDS = [:recruitment, :entrance_exam, :corps].freeze
       CSV_HEADERS = { "nom" => :last_name, "prenom" => :first_name, "recrutement" => :recruitment, "concours" => :entrance_exam, "corps" => :corps }.freeze
       CSV_LINK_HEADER = "lien"
-      UTF8_READ_AS_WINDOWS_1252 = /[ÃÂ][^\p{ASCII}]/
+      # What another encoding leaves once read as Windows-1252: UTF-8 puts
+      # « Ã© » for « é » and « Å“ » for « œ », Mac Roman « Ž » and MS-DOS « ‚ »
+      # for « é ». Between 0x80 and 0x9F, a French list in Windows-1252 only
+      # needs Œ, œ, Ÿ, ’ and –.
+      NOT_WINDOWS_1252 = /[ÂÃÄÅ][^\p{ASCII}]|[€‚ƒ„…†‡ˆ‰Š‹Ž‘“”•—˜™š›ž]/
 
       def self.url(procedure, **applicant) = new(procedure).url(**applicant)
 
@@ -53,13 +57,13 @@ module ProcedureTemplates
       end
 
       # A spreadsheet saves a list in UTF-8 behind a byte order mark, or in
-      # Windows-1252. Read as Windows-1252, a UTF-8 list with a damaged byte
-      # would put « Ã© » for « é » in every name: it is refused instead.
+      # Windows-1252. Read as Windows-1252, a list in another encoding would
+      # misspell every accented name: it is refused instead.
       def self.utf8(list)
         list = list.dup.force_encoding(Encoding::UTF_8)
         if !list.valid_encoding?
           list = list.force_encoding(Encoding::WINDOWS_1252).encode(Encoding::UTF_8)
-          raise EncodingError if list.match?(UTF8_READ_AS_WINDOWS_1252)
+          raise EncodingError if list.match?(NOT_WINDOWS_1252)
         end
 
         list.delete_prefix("\uFEFF")

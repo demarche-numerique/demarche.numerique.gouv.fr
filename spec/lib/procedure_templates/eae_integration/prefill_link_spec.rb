@@ -78,11 +78,23 @@ RSpec.describe ProcedureTemplates::EaeIntegration::PrefillLink do
       expect(links.uniq.sole).to match([/identite_prenom=Zo%C3%A9/, nil, /identite_nom=Petit/])
     end
 
-    it "refuses a list in another encoding, or with a damaged byte, rather than misspell the names" do
-      mac_roman = "nom;prenom\nMartin;Fran\x8Dois\n".b
-      damaged = "nom;prenom\nMartin;Zoé\nPetit;L\xE9a\n".b
+    it "reads the capitals and the ligatures of a Windows-1252 list" do
+      list = "nom;prenom\nCHÂTEAU;JOÃO\nL’HAŸ;ŒDIPE\nLœuillet;Anne – Lise\n".encode(Encoding::WINDOWS_1252).b
 
-      [mac_roman, damaged].each do |list|
+      links = CSV.parse(described_class.csv(procedure, list), headers: true, col_sep: ";")["lien"]
+
+      expect(links.map { params(it).values_at("identite_prenom", "identite_nom") }).to eq([["JOÃO", "CHÂTEAU"], ["ŒDIPE", "L’HAŸ"], ["Anne – Lise", "Lœuillet"]])
+    end
+
+    it "refuses a list in another encoding, or with a damaged byte, rather than misspell the names" do
+      undefined_in_windows_1252 = "nom;prenom\nMartin;Fran\x8Dois\n".b
+      mac_roman = "nom;prenom\nMartin;Zoé\nPetit;Léa\n".encode("macRoman").b
+      ms_dos = "nom;prenom\nMartin;Zoé\nPetit;Hélène\n".encode("CP850").b
+      damaged = "nom;prenom\nMartin;Zoé\nPetit;L\xE9a\n".b
+      damaged_ligature = "nom;prenom\nŒuvrard;Anne\nPetit;L\xE9a\n".b
+      damaged_guillemets = "nom;prenom\nMartin;Anne « Nanou »\nPetit;L\xE9a\n".b
+
+      [undefined_in_windows_1252, mac_roman, ms_dos, damaged, damaged_ligature, damaged_guillemets].each do |list|
         expect { described_class.csv(procedure, list) }.to raise_error(ArgumentError, /neither in UTF-8 nor in Windows-1252/)
       end
     end
