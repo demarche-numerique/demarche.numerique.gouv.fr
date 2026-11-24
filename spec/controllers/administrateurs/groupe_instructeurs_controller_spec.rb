@@ -215,7 +215,7 @@ describe Administrateurs::GroupeInstructeursController, type: :controller do
 
     it 'checks response and body content' do
       expect(response).to have_http_status(:ok)
-      expect(response.body).to include("Le groupe « deuxième groupe » contient des dossiers. Afin de procéder à sa suppression, vous devez réaffecter ses dossiers à lʼun des 2 autres groupes instructeurs")
+      expect(response.body).to include("Le groupe « deuxième groupe » contient des dossiers. Afin de procéder à sa suppression, vous devez réaffecter ses dossiers à l’un des 2 autres groupes instructeurs.")
     end
   end
 

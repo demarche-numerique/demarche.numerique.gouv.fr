@@ -75,8 +75,8 @@ fr:
       reaffectation:
         title: "Réaffectation des dossiers du groupe « %{label} »"
         hint:
-          one: "Le groupe « %{label} » contient des dossiers. Afin de procéder à sa suppression, vous devez réaffecter ses dossiers à lʼautre groupe instructeur"
-          other: "Le groupe « %{label} » contient des dossiers. Afin de procéder à sa suppression, vous devez réaffecter ses dossiers à lʼun des %{count} autres groupes instructeurs"
+          one: "Le groupe « %{label} » contient des dossiers. Afin de procéder à sa suppression, vous devez réaffecter ses dossiers à l’autre groupe instructeur."
+          other: "Le groupe « %{label} » contient des dossiers. Afin de procéder à sa suppression, vous devez réaffecter ses dossiers à l’un des %{count} autres groupes instructeurs."
         label: Nouveau groupe instructeur
         select: Sélectionner
         submit: Réaffecter les dossiers à ce groupe
