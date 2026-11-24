@@ -39,7 +39,7 @@ module APITokenProceduresConcern
   end
 
   def pin_procedures(procedure_ids)
+    self.follows_clones = true if full_access?
     self.allowed_procedure_ids = procedure_ids
-    self.follows_clones = true
   end
 end
