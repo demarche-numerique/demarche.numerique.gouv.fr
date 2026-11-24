@@ -1,0 +1,19 @@
+<div
+  class="card no-list"
+  data-turbo="true"
+  id="<%= dom_id(current_administrateur, :profil_api_token) %>"
+>
+  <div class="card-title">
+    <%= t('.tokens_title') %>
+  </div>
+
+  <p>
+    <%= t('.first_paragraph_html', application_name: Current.application_name, api_doc_url: API_DOC_URL) %>
+  </p>
+
+  <%= link_to t('.create_token'), nom_admin_api_tokens_path, class: "fr-btn fr-btn--secondary fr-mt-2w" %>
+
+  <ul class="fr-mt-4w">
+    <%= render Profile::APITokenComponent.with_collection(api_tokens) %>
+  </ul>
+</div>
