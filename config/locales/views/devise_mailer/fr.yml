@@ -8,3 +8,9 @@ fr:
       email_change:
         title: Changement d’adresse électronique
         intro: "Pour confirmer votre changement d’adresse électronique, veuillez cliquer sur le lien suivant :"
+    email_changed:
+      title: Votre nouvelle adresse électronique
+      requested: Nous avons reçu une demande de changement d’adresse électronique pour votre compte %{email} sur %{application_name}. La nouvelle adresse demandée est %{requested_email}.
+      changed: Le changement d’adresse électronique de votre compte %{email} sur %{application_name} a bien été pris en compte. Vous pouvez désormais vous connecter avec l’adresse %{new_email}.
+      not_you_html: "Si vous n’êtes pas à l’origine de cette demande, votre compte est peut-être compromis : contactez le support via le %{contact_form_link} ou à l’adresse %{contact_email_link}."
+      contact_form: formulaire de contact

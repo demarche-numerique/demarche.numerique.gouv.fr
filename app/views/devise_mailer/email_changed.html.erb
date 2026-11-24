@@ -1,29 +1,20 @@
-<% content_for(:title, 'Votre nouvelle adresse électronique') %>
+<% content_for(:title, t('.title')) %>
 
 <p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
 <% requested_email = @resource.try(:unconfirmed_email) || @resource.try(:requested_merge_into)&.email %>
 
 <% if requested_email.present? %>
   <p>
-    Nous avons reçu une demande de changement d’adresse électronique pour votre
-    compte <%= @email %> sur <%= APPLICATION_NAME %>. La nouvelle adresse
-    demandée est <%= requested_email %>.
+    <%= t('.requested', email: @email, application_name: APPLICATION_NAME, requested_email:) %>
   </p>
 <% else %>
   <p>
-    Le changement d’adresse électronique de votre compte <%= @email %> sur
-    <%= APPLICATION_NAME %> a bien été pris en compte. Vous pouvez désormais
-    vous connecter avec l’adresse <%= @resource.email %>.
+    <%= t('.changed', email: @email, application_name: APPLICATION_NAME, new_email: @resource.email) %>
   </p>
 <% end %>
 
 <p>
-  Si vous n’êtes pas à l’origine de cette demande, votre compte est peut-être
-  compromis&nbsp;: contactez le support via le
-  <%= link_to 'formulaire de contact', contact_url %> ou à l’adresse
-  <%= succeed '.' do %>
-    <%= mail_to CONTACT_EMAIL %>
-  <% end %>
+  <%= t('.not_you_html', contact_form_link: link_to(t('.contact_form'), contact_url), contact_email_link: mail_to(CONTACT_EMAIL)) %>
 </p>
 
 <%= render partial: "layouts/mailers/signature" %>
