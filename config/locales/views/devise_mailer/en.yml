@@ -17,3 +17,8 @@ en:
     password_change:
       title: New password
       body: A request to change your password on %{application_name} for the account %{email} was successfully processed.
+    reset_password_instructions:
+      intro: "Someone has requested to change your account password on %{application_name}. To define a new password, select the following link:"
+      button: Change the password
+      previous_emails: This email invalidates any similar email you may have requested before.
+      not_you: If you didn't request this, please ignore this email. Your password won't change.
