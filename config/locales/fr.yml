@@ -530,7 +530,6 @@ fr:
           thanks: Merci !
           dossier_success: Votre dossier a bien été déposé sur la démarche « %{libelle} ».
           dossier_acces_html: Vous avez désormais accès à votre <strong>dossier en ligne</strong> pour suivre son traitement et échanger si besoin avec l’administration par la messagerie.
-          download_dossier: Télécharger mon dossier
           acces_dossier: Accéder au dossier
           submit_dossier: Déposer un autre dossier
         show:
@@ -1084,6 +1083,8 @@ fr:
         generated_at: "Fait le %{date},"
         signature: "La direction de %{app_name}"
       show:
+        download_dossier:
+          link: Télécharger mon dossier (PDF)
         download_attestation:
           link: Télécharger mon attestation (PDF)
           filename: Attestation

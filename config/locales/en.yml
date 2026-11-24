@@ -522,7 +522,6 @@ en:
           thanks: Thank you!
           dossier_success: Your file has been submitted on the procedure ‘%{libelle}’.
           dossier_acces_html: You now have access to your <strong>online file</strong> to track its progress and, if needed, exchange with the administration through the messaging system.
-          download_dossier: Download your file
           acces_dossier: Access your file
           submit_dossier: Submit an other file
         show:
@@ -1068,6 +1067,8 @@ en:
         not_available: "The supporting document is not available."
         scan_pending: "The supporting document is being scanned for viruses, please try again in a few minutes."
       show:
+        download_dossier:
+          link: Download your file (PDF)
         download_attestation:
           link: Download your attestation (PDF)
           filename: Attestation
