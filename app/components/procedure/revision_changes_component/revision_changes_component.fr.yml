@@ -92,7 +92,6 @@ fr:
     update_prefill_with_france_connect_information: "Le champ « %{label} » a été modifié. %{to}"
     add_prefill_with_france_connect_information: "La date est désormais préremplie avec FranceConnect."
     remove_prefill_with_france_connect_information: "La date n’est plus préremplie avec FranceConnect."
-    update_header_section_level: "Le niveau du titre de section « %{label} » a été modifié. Le nouveau niveau est %{to}."
     enable_pre_rempli_hidden: "Le champ « %{label} » est désormais masqué pour l’usager."
     disable_pre_rempli_hidden: "Le champ « %{label} » n’est plus masqué pour l’usager."
     remove_start_date: La date de début pour le champ « %{label} » a été supprimée.
@@ -155,7 +154,6 @@ fr:
     update_prefill_with_france_connect_information: "L’annotation privée « %{label} » a été modifiée. %{to}"
     add_prefill_with_france_connect_information: "La date est désormais préremplie avec FranceConnect."
     remove_prefill_with_france_connect_information: "La date n’est plus préremplie avec FranceConnect."
-    update_header_section_level: "Le niveau du titre de section « %{label} » a été modifié. Le nouveau niveau est %{to}."
     enable_pre_rempli_hidden: "L’annotation privée « %{label} » est désormais masquée pour l’usager."
     disable_pre_rempli_hidden: "L’annotation privée « %{label} » n’est plus masquée pour l’usager."
     update_nature: "La nature de l’annotation privée pièce justificative « %{label} » a été modifiée en « %{to} »."

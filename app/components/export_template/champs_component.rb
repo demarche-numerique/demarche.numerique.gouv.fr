@@ -20,7 +20,7 @@ class ExportTemplate::ChampsComponent < ApplicationComponent
 
   def sections
     @type_de_champs
-      .reject { _1.header_section? && _1.header_section_level_value > 1 }
+      .reject { it.header_section? && it.level > 1 }
       .slice_before(&:header_section?)
       .filter_map do |(head, *rest)|
         libelle = head.libelle if head.header_section?

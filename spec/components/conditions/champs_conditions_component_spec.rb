@@ -225,14 +225,13 @@ describe Conditions::ChampsConditionsComponent, type: :component do
       end
 
       context 'and a private annotation among the sources' do
-        let(:annotation) { create(:type_de_champ_yes_no, libelle: 'Statut', private: true) }
-        let(:upper_tdcs) do
-          [
-            create(:type_de_champ_header_section_level_1, libelle: 'Section publique'),
-            create(:type_de_champ_yes_no, libelle: 'Statut'),
-            annotation,
-          ]
+        let(:procedure) do
+          create(:procedure,
+            public_type_de_champs: [{ type: :header_section, level: 1, libelle: 'Section publique' }, { type: :yes_no, libelle: 'Statut' }],
+            private_type_de_champs: [{ type: :yes_no, libelle: 'Statut' }])
         end
+        let(:annotation) { procedure.draft_revision.private_root_type_de_champs.first }
+        let(:upper_tdcs) { procedure.draft_revision.public_root_type_de_champs + [annotation] }
         let(:condition) { ds_eq(champ_value(annotation.stable_id), constant(true)) }
         let(:select) { "select[name='type_de_champ[condition_form][rows][][targeted_champ]']" }
 
@@ -240,6 +239,27 @@ describe Conditions::ChampsConditionsComponent, type: :component do
           expect(page).to have_selector("#{select} > option[disabled]", text: 'Section publique')
           expect(page).to have_selector("#{select} > option", text: 'Statut', count: 1)
           expect(page).to have_selector("#{select} > optgroup[label='Annotations privées'] > option[selected]", text: 'Statut')
+        end
+      end
+
+      context 'and header sections among the sources' do
+        let(:procedure) do
+          create(:procedure, public_type_de_champs: [
+            { type: :header_section, level: 2, libelle: 'Première partie' },
+            { type: :yes_no, libelle: 'a' },
+            { type: :header_section, level: 3, libelle: 'Sous-partie' },
+            { type: :yes_no, libelle: 'b' },
+            { type: :header_section, level: 1, libelle: 'Seconde partie' },
+            { type: :yes_no, libelle: 'c' },
+          ])
+        end
+        let(:upper_tdcs) { procedure.draft_revision.public_root_type_de_champs }
+        let(:condition) { empty_operator(empty, empty) }
+        let(:select) { "select[name='type_de_champ[condition_form][rows][][targeted_champ]']" }
+
+        it 'groups them under the ones at the top of the tree, whatever the level they declare' do
+          expect(page.all("#{select} > option").map(&:text)).to eq(['Sélectionner', 'Première partie', 'a', 'b', 'Seconde partie', 'c'])
+          expect(page.all("#{select} > option[disabled]").map(&:text)).to eq(['Première partie', 'Seconde partie'])
         end
       end
 

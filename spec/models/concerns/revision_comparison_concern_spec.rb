@@ -174,9 +174,8 @@ describe RevisionComparisonConcern do
       ])
     end
 
-    it 'diffs header section, birthdate and pre rempli options' do
+    it 'diffs birthdate and pre rempli options' do
       expect_single_changes([
-        [:header_section, { level: '1' }, { header_section_level: '2' }, update(:header_section_level, '1', '2')],
         [:date, { birthdate: '0' }, { birthdate: '1' }, update(:birthdate, false, true)],
         [:date, { birthdate: '1', prefill_with_france_connect_information: '0' }, { prefill_with_france_connect_information: '1' }, update(:prefill_with_france_connect_information, false, true)],
         [:pre_rempli, {}, { pre_rempli_hidden: '1' }, update(:pre_rempli_hidden, false, true)],
@@ -190,6 +189,7 @@ describe RevisionComparisonConcern do
     let(:not_diffed) do
       {
         carte: TypesDeChamp::CarteTypeDeChamp::LAYERS, # aggregated as :carte_layers
+        header_section: [:header_section_level], # read on the tree: a change of level is a move
         piece_justificative: [:old_pj, :skip_pj_validation, :skip_content_type_pj_validation], # legacy, not editable
       }
     end
@@ -496,6 +496,33 @@ describe RevisionComparisonConcern do
         before { new_draft.move_type_de_champ(moved.stable_id, 4) }
 
         it { is_expected.to contain_exactly(a_hash_including(op: :move, label: 'b', from: 1, to: 1)) }
+      end
+
+      context 'when a header section changes level' do
+        let(:procedure) do
+          create(:procedure, public_type_de_champs: [
+            { type: :header_section, level: 1, libelle: 's1' },
+            { type: :header_section, level: 2, libelle: 's2' },
+            { type: :text, libelle: 'a' },
+          ])
+        end
+        let(:section) { new_draft.public_root_type_de_champs.second }
+
+        before { new_draft.update_type_de_champ(new_draft.find_and_ensure_exclusive_use(section.stable_id), header_section_level: level) }
+
+        context 'to one which moves it in the tree' do
+          let(:level) { '1' }
+
+          it 'is a move' do
+            is_expected.to contain_exactly(a_hash_including(op: :move, label: 's2', from: 0, to: 1))
+          end
+        end
+
+        context 'to one which leaves it where it is' do
+          let(:level) { '3' }
+
+          it { is_expected.to be_empty }
+        end
       end
 
       context 'when a type de champ is removed' do

@@ -105,13 +105,17 @@ class Conditions::ConditionsComponent < ApplicationComponent
   def index_by_top_section(tdcs)
     last_section = nil
     tdcs.each_with_object(Hash.new { |h, k| h[k] = [] }) do |tdc, h|
-      if tdc.header_section? && tdc.header_section_level_value == 1
+      if top_section?(tdc)
         last_section = tdc
       else
         h[last_section] << tdc
       end
     end
   end
+
+  # a header section no other one holds: at the top of the form, of the
+  # annotations or of a repetition
+  def top_section?(tdc) = tdc.header_section? && !tdc.parent&.header_section?
 
   def to_sources(tdcs) = column_mode? ? to_champ_column_values(tdcs) : to_champ_values(tdcs)
 
