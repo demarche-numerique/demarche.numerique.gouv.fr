@@ -8,12 +8,14 @@ RSpec.describe InstructeurMailer, type: :mailer do
     subject { described_class.send_dossier(sender, dossier, recipient) }
 
     it 'links to the dossier' do
+      expect(subject.subject).to eq("#{sender.email} vous a envoyé le dossier n°\u00A0#{dossier.id}")
       expect(subject.body).to include("#{sender.email} vous a envoyé le dossier n°\u00A0#{dossier.id}")
       expect(subject.body).to have_link(href: instructeur_dossier_url(dossier.procedure, dossier))
     end
 
     it "renders the body in the recipient's locale" do
       recipient.user.update!(locale: 'en')
+      expect(subject.subject).to eq("#{sender.email} sent you application no. #{dossier.id}")
       expect(subject.body).to include("#{sender.email} sent you application no. #{dossier.id}")
     end
 
