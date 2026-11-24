@@ -1,5 +1,10 @@
 <% render_procedure_sticky_title(@procedure) %>
-<%= render partial: 'shared/breadcrumbs_section', locals: { steps: [[t('.procedures'), admin_procedures_path], [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)], [t('.groupes'), admin_procedure_groupe_instructeurs_path(@procedure)], [t('.breadcrumb')]] } %>
+
+<%= render partial: 'shared/breadcrumbs_section',
+  locals: { steps: [[t('.procedures'), admin_procedures_path],
+    [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)],
+    [t('.groupes'), admin_procedure_groupe_instructeurs_path(@procedure)],
+    [t('.breadcrumb')]] } %>
 
 <div class="container">
   <div class="fr-grid-row">
@@ -32,7 +37,10 @@
         <%= render TypesDeChamp::ByCategoryListComponent.new(types: TypeDeChamp.custom_routable_types) %>
       </div>
 
-      <%= form_for :create_simple_routing, method: :post, data: { turbo: true, controller: 'enable-submit-if-checked' }, url: create_simple_routing_admin_procedure_groupe_instructeurs_path(@procedure) do |f| %>
+      <%= form_for :create_simple_routing,
+        method: :post,
+        data: { turbo: true, controller: 'enable-submit-if-checked' },
+        url: create_simple_routing_admin_procedure_groupe_instructeurs_path(@procedure) do |f| %>
         <div
           class="card fr-pb-0"
           data-action="click->enable-submit-if-checked#click"
@@ -41,7 +49,13 @@
             <%= t('.select_champ') %>
           </div>
 
-          <% buttons_content = @procedure.active_revision.simple_routable_type_de_champs.map { |tdc| { label: tdc.libelle, value: tdc.stable_id, hint: "[#{t(tdc.type_champ, scope: 'activerecord.attributes.type_de_champ.type_champs')}]", tooltip: (tdc.drop_down_options.join(", ") if tdc.drop_down_list?)} } %>
+          <% buttons_content = @procedure.active_revision.simple_routable_type_de_champs.map do |tdc|
+            { label: tdc.libelle,
+              value: tdc.stable_id,
+              hint: "[#{t(tdc.type_champ, scope: 'activerecord.attributes.type_de_champ.type_champs')}]",
+              tooltip: (tdc.drop_down_options.join(", ") if tdc.drop_down_list?) }
+          end %>
+
           <%= render Dsfr::RadioButtonListComponent.new(form: f, target: :stable_id, buttons: buttons_content) %>
         </div>
 
