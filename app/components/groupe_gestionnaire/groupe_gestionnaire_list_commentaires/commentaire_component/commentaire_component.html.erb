@@ -1,0 +1,14 @@
+<tr id="<%= dom_id(@commentaire) %>">
+  <td>
+    <%= email %>
+
+    <% if highlight? %>
+      <span class="notifications">
+        <span class="fr-sr-only"><%= "notification" %></span>
+      </span>
+    <% end %>
+  </td>
+
+  <td><%= created_at %></td>
+  <td><%= see_button %></td>
+</tr>
