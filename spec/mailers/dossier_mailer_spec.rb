@@ -120,6 +120,43 @@ RSpec.describe DossierMailer, type: :mailer do
     end
   end
 
+  describe '.notify_new_commentaire_to_instructeur' do
+    let(:dossier) { dossiers.en_construction }
+
+    subject { described_class.notify_new_commentaire_to_instructeur(dossier, to_email) }
+
+    it 'links to the messagerie of the dossier' do
+      expect(subject.body).to include(dossier.procedure.libelle)
+      expect(subject.body).to include("Messagerie du dossier n°#{dossier.id}")
+      expect(subject.body).to include(messagerie_instructeur_dossier_url(procedure_id: dossier.procedure.id, dossier_id: dossier.id))
+    end
+  end
+
+  describe '.notify_new_avis_to_instructeur' do
+    let(:avis) { create(:avis, dossier: dossiers.en_instruction) }
+
+    subject { described_class.notify_new_avis_to_instructeur(avis, to_email) }
+
+    it 'links to the dossier' do
+      expect(subject.body).to include(avis.dossier.procedure.libelle)
+      expect(subject.body).to include("Voir le dossier n°#{avis.dossier.id}")
+      expect(subject.body).to include(instructeur_dossier_url(avis.procedure, avis.dossier))
+    end
+  end
+
+  describe '.notify_brouillon_not_submitted' do
+    let(:dossier) { create(:dossier, procedure: create(:simple_procedure, :with_auto_archive)) }
+
+    subject { described_class.notify_brouillon_not_submitted(dossier) }
+
+    it 'asks to submit the dossier before the deadline' do
+      expect(subject.body).to include("Le dossier n°#{dossier.id} pour la démarche")
+      expect(subject.body).to include(dossier.procedure.libelle)
+      expect(subject.body).to include("date limite de dépôt des dossiers")
+      expect(subject.body).to include(dossier_url(dossier))
+    end
+  end
+
   describe '.notify_en_construction_deletion_to_administration' do
     let(:hidden_dossier) { build(:dossier) }
 
