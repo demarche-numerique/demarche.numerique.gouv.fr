@@ -39,12 +39,12 @@ en:
       appointed: You have just been appointed reviewer on %{application_name}.
       account_created_html: "Your account has been created for the email address <strong>%{email}.</strong>"
       activate_html: "To activate it, click the following link: %{link}"
-      next_sign_in_html: "The next times you sign in to %{application_name}, click the ‘Sign in’ button at the top of the page or this link: %{link}"
+      next_sign_in_html: "Next time you sign in to %{application_name}, click the ‘Sign in’ button at the top of the page or this link: %{link}"
       tutorial_html: "We also invite you to read our tutorial for new reviewers: %{link}"
     invite_tiers:
       subject: Verify your email address
       title: Verification of your email address on %{application_name}
-      started_for_procedure: "An application for the procedure: %{procedure} has been started on your behalf by %{email}."
+      started_for_procedure: "An application for the procedure %{procedure} has been started on your behalf by %{email}."
       started: An application has been started on your behalf on %{application_name}.
       confirm: "To keep receiving emails about your application, you must confirm your email address by clicking this button:"
       link_html: "You can also use this link: %{link}"
@@ -55,12 +55,12 @@ en:
       retry: "Your previous email address confirmation did not work, you can try again by clicking this button:"
       link_html: "You can also use this link: %{link}"
     invite_gestionnaire:
-      subject: Activate your manager account
+      subject: Activate your group manager account
       title: Activation of your group manager account
       appointed: You have just been appointed group manager of the administrator group %{groupe_gestionnaire} on %{application_name}.
       account_created_html: "Your account has been created for the email address %{email}. To activate it, please click the following link: %{link}"
     invite_gestionnaire_via_pro_connect:
-      subject: Activate your manager account
+      subject: Activate your group manager account
     reset_password_via_pro_connect:
       subject: Sign in with ProConnect
     send_archive:
