@@ -30,5 +30,5 @@ en:
         submit: Submit
       delete_labels:
         zero: Are you sure you want to remove the label ‘%{label_name}’?
-        one: The label ‘%{label_name}’ is already assigned to a file, are you sure you want to remove it?
-        other: The label ‘%{label_name}’ is already assigned to %{count} files, are you sure you want to remove it?
+        one: The label ‘%{label_name}’ is already assigned to an application, are you sure you want to remove it?
+        other: The label ‘%{label_name}’ is already assigned to %{count} applications, are you sure you want to remove it?
