@@ -28,6 +28,20 @@ en:
       reaffecter_dossiers:
         title: Reassignment
         groupe_instructeurs: Teams
+      simple_routing:
+        procedures: Procedures
+        groupes: Teams
+        breadcrumb: Automatic routing configuration
+        back_to_options: Back to options
+        page_title: Routing
+        title: Routing configuration
+        subtitle: Automatic configuration
+        simple_routable_types_html: "Below is a list of fields of your form from which you can configure routing <strong>automatically</strong>. Teams will be created from the possible values of the field. Only the following fields support this configuration mode:"
+        custom_routable_types_html: "If needed, you can then refine your configuration <strong>manually</strong>, also from the following fields:"
+        select_champ: Select the field from which to create teams
+        cancel: Cancel
+        submitting: Creating teams…
+        submit: Create teams
       add_instructeurs:
         wrong_address:
           one: "%{emails} is not a valid email address"

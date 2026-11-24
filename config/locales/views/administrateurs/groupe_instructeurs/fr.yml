@@ -37,6 +37,18 @@ fr:
         groupe_instructeurs: Groupes d’instructeurs
       simple_routing:
         procedures: Démarches
+        groupes: Groupes
+        breadcrumb: Configuration automatique du routage
+        back_to_options: Revenir aux options
+        page_title: Routage
+        title: Configuration du routage
+        subtitle: Configuration automatique
+        simple_routable_types_html: "Vous trouverez ci-dessous une liste de champs de votre formulaire à partir desquels configurer le routage de façon <strong>automatique</strong>. Les groupes d’instructeurs seront créés à partir des valeurs possibles du champ. Seuls les champs suivants sont ouverts à ce mode de configuration\u00A0:"
+        custom_routable_types_html: "Si besoin, vous pourrez ensuite affiner votre configuration de façon <strong>manuelle</strong>, également à partir des champs suivants\u00A0:"
+        select_champ: Sélectionner le champ à partir duquel créer des groupes d’instructeurs
+        cancel: Annuler
+        submitting: Création des groupes…
+        submit: Créer les groupes
       routing_alert_sticky_header:
         routing_alert_html: "Il y a <strong>%{count} dossiers</strong> déposés et en attente de traitement sur cette démarche. Ces dossiers n’ont <strong>pas été routés selon le routage configuré</strong>. Vous devez lancer le routage pour les répartir dans les différents groupes."
         routing_alert_with_invalid_rules_html: "Il y a <strong>%{count} dossiers</strong> déposés et en attente de traitement sur cette démarche. Ces dossiers n’ont <strong>pas encore été routés</strong>. Une fois que vous aurez configuré vos règles de routage, vous devrez lancer le routage pour les répartir dans les différents groupes."

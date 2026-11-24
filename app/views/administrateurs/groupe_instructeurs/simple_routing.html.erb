@@ -1,5 +1,5 @@
 <% render_procedure_sticky_title(@procedure) %>
-<%= render partial: 'shared/breadcrumbs_section', locals: { steps: [[t('.procedures'), admin_procedures_path], [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)], ['Groupes', admin_procedure_groupe_instructeurs_path(@procedure)], ['Configuration automatique du routage']] } %>
+<%= render partial: 'shared/breadcrumbs_section', locals: { steps: [[t('.procedures'), admin_procedures_path], [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)], [t('.groupes'), admin_procedure_groupe_instructeurs_path(@procedure)], [t('.breadcrumb')]] } %>
 
 <div class="container">
   <div class="fr-grid-row">
@@ -7,34 +7,28 @@
       <div class="fr-container">
         <ul class="fr-btns-group fr-btns-group--inline-md fr-ml-0 fr-sidemenu__inner">
           <li>
-            <%= link_to options_admin_procedure_groupe_instructeurs_path, class: 'fr-link fr-icon-arrow-left-line fr-link--icon-left fr-mb-2w fr-mr-2w ' do %>
-              Revenir aux options
-            <% end %>
+            <%= link_to t('.back_to_options'), options_admin_procedure_groupe_instructeurs_path, class: 'fr-link fr-icon-arrow-left-line fr-link--icon-left fr-mb-2w fr-mr-2w ' %>
           </li>
         </ul>
       </div>
     </div>
 
     <div class="fr-col">
-      <% content_for(:title, 'Routage') %>
+      <% content_for(:title, t('.page_title')) %>
 
-      <h1>Configuration du routage</h1>
+      <h1><%= t('.title') %></h1>
 
-      <h2>Configuration automatique</h2>
+      <h2><%= t('.subtitle') %></h2>
 
       <div class="fr-alert fr-alert--info fr-mb-3w">
         <p></p>
-        Vous trouverez ci-dessous une liste de champs de votre formulaire à
-        partir desquels configurer le routage de façon
-        <strong>automatique</strong>. Les groupes d’instructeurs seront créés à
-        partir des valeurs possibles du champ. Seuls les champs suivants sont
-        ouverts à ce mode de configuration&nbsp;:
+        <%= t('.simple_routable_types_html') %>
         <%= render TypesDeChamp::ByCategoryListComponent.new(types: TypeDeChamp.simple_routable_types) %>
+
         <p>
-          Si besoin, vous pourrez ensuite affiner votre configuration de façon
-          <strong>manuelle</strong>, également à partir des champs
-          suivants&nbsp;:
+          <%= t('.custom_routable_types_html') %>
         </p>
+
         <%= render TypesDeChamp::ByCategoryListComponent.new(types: TypeDeChamp.custom_routable_types) %>
       </div>
 
@@ -44,8 +38,7 @@
           data-action="click->enable-submit-if-checked#click"
         >
           <div class="notice">
-            Sélectionner le champ à partir duquel créer des groupes
-            d’instructeurs
+            <%= t('.select_champ') %>
           </div>
 
           <% buttons_content = @procedure.active_revision.simple_routable_type_de_champs.map { |tdc| { label: tdc.libelle, value: tdc.stable_id, hint: "[#{t(tdc.type_champ, scope: 'activerecord.attributes.type_de_champ.type_champs')}]", tooltip: (tdc.drop_down_options.join(", ") if tdc.drop_down_list?)} } %>
@@ -54,17 +47,17 @@
 
         <ul class="fr-btns-group fr-btns-group--inline-sm">
           <li>
-            <%= link_to 'Annuler', options_admin_procedure_groupe_instructeurs_path(@procedure, state: :choix), class: 'fr-btn fr-btn--secondary' %>
+            <%= link_to t('.cancel'), options_admin_procedure_groupe_instructeurs_path(@procedure, state: :choix), class: 'fr-btn fr-btn--secondary' %>
           </li>
 
           <li>
             <button
               class="fr-btn"
               disabled
-              data-turbo-submits-with="Création des groupes…"
+              data-turbo-submits-with="<%= t('.submitting') %>"
               data-enable-submit-if-checked-target="submit"
             >
-              Créer les groupes
+              <%= t('.submit') %>
             </button>
           </li>
         </ul>
