@@ -49,3 +49,5 @@ en:
           request: Request
           avis: Opinion
           messaging: Messaging
+      avis_list:
+        title: "Opinion · Application no. %{dossier_id} (%{owner_name})"

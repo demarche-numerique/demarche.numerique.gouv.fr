@@ -1,4 +1,4 @@
-<% content_for(:title, "Avis · Dossier n° #{@dossier.id} (#{@dossier.owner_name})") %>
+<% content_for(:title, t('.title', dossier_id: @dossier.id, owner_name: @dossier.owner_name)) %>
 <%= render partial: 'header', locals: { avis: @avis, dossier: @dossier } %>
 
 <div class="container">
