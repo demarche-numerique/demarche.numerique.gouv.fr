@@ -1,6 +1,8 @@
 en:
   administrateurs:
     labels:
+      form:
+        existing_labels: Reminder of existing labels
       order_positions:
         title: Labels
         back_to_labels: Labels list

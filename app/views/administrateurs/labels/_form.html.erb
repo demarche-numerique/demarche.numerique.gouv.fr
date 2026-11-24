@@ -1,6 +1,6 @@
 <% if @labels.present? %>
   <div class="fr-background-alt--grey fr-p-2w fr-mb-2w">
-    <p class="fr-mb-1w">Rappel des labels existants</p>
+    <p class="fr-mb-1w"><%= t('.existing_labels') %></p>
 
     <ul class="horizontal-list">
       <% @labels.each do |label| %>
