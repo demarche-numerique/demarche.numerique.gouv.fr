@@ -1,6 +1,15 @@
 en:
   administrateurs:
     services:
+      edit:
+        title: Agency
+        services_choice: Agency selection
+        heading: Edit agency
+        back_to_services: All agencies
+        new_service: "+ New agency"
+        other_procedures_warning: Editing this agency will also affect the following procedures
+        create_new_service_html: If you only want to change the information for this procedure, %{link} and then assign it to the procedure.
+        create_new_service_link: create a new agency
       new:
         title: Agency
         services_choice: Agency selection

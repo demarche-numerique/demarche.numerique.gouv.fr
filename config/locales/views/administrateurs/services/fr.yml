@@ -1,6 +1,15 @@
 fr:
   administrateurs:
     services:
+      edit:
+        title: Service
+        services_choice: Choix du service
+        heading: Modifier le service
+        back_to_services: Liste de tous les services
+        new_service: "+ Nouveau service"
+        other_procedures_warning: Modifier ce service impactera également les démarches suivantes
+        create_new_service_html: Si vous souhaitez modifier uniquement les informations pour cette démarche, %{link} puis associez-le à la démarche.
+        create_new_service_link: créez un nouveau service
       new:
         title: Service
         services_choice: Choix du service
