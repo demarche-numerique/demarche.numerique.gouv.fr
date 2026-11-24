@@ -533,8 +533,8 @@ en:
             dossier_number: "File no. %{dossier_id}"
             created_date: "- Draft on %{date_du_dossier}"
             submit_date: "- Submitted on %{date_du_dossier}"
-            download: "file-%{dossier_id}.pdf"
-            download_without_number: "DS-file.pdf"
+            download: "application-%{dossier_id}.pdf"
+            download_without_number: "DS-application.pdf"
           status_overview:
             status_draft: draft
             status_in_progress: submitted
@@ -1068,7 +1068,7 @@ en:
         scan_pending: "The supporting document is being scanned for viruses, please try again in a few minutes."
       show:
         download_dossier:
-          link: Download your file (PDF)
+          link: Download your application (PDF)
         download_attestation:
           link: Download your attestation (PDF)
           filename: Attestation
