@@ -127,7 +127,7 @@ RSpec.describe DossierMailer, type: :mailer do
 
     it 'links to the messagerie of the dossier' do
       expect(subject.body).to include(dossier.procedure.libelle)
-      expect(subject.body).to include("Messagerie du dossier n°#{dossier.id}")
+      expect(subject.body).to include("Messagerie du dossier n° #{dossier.id}")
       expect(subject.body).to include(messagerie_instructeur_dossier_url(procedure_id: dossier.procedure.id, dossier_id: dossier.id))
     end
   end
