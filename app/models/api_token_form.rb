@@ -19,6 +19,7 @@ class APITokenForm
 
   validates :name, presence: true
   validates :allowed_procedure_ids, presence: true, if: :custom_target?
+  validates :networks, presence: true, if: :custom_networks?
   validate :networks_are_ip_addresses, if: :custom_networks?
   validates :expires_at, presence: true
   validates :expires_at, comparison: { greater_than_or_equal_to: -> (_) { APIToken.min_expires_at }, less_than_or_equal_to: -> (_) { APIToken.max_expires_at } }, allow_nil: true
