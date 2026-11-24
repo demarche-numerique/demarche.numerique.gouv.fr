@@ -1,0 +1,34 @@
+<% content_for :procedure_logo do %>
+  <%= render 'layouts/mailers/logo', url: @logo_url %>
+<% end %>
+
+<p>
+  <%= t("layouts.mailers.accuse_lecture.good_morning") %>
+</p>
+
+<p>
+  <%= t("layouts.mailers.accuse_lecture.first_part", dossier_id: number_with_delimiter(@dossier.id)) %>
+  <span style="font-weight: bold;"><%= @dossier.procedure.libelle %></span>
+  <%= t("layouts.mailers.accuse_lecture.second_part") %>
+</p>
+
+<p>
+  <%= t("layouts.mailers.accuse_lecture.third_part", application_name: APPLICATION_NAME) %>
+</p>
+
+<%= dsfr_button(t("layouts.mailers.accuse_lecture.button_text"), dossier_url(@dossier), :primary) %>
+
+<p>
+  <%= t(:best_regards, scope: [:views, :shared, :greetings]) %>
+  <br>
+  <%= t('layouts.mailers.signature.team') %>
+  <%= APPLICATION_NAME %>
+</p>
+
+<% content_for :footer do %>
+  <%= render 'layouts/mailers/service_footer', dossier: @dossier %>
+<% end %>
+
+<% content_for :sent_to do %>
+  <%= render 'layouts/mailers/sent_to', dossier: @dossier %>
+<% end %>
