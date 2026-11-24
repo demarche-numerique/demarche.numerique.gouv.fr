@@ -1,0 +1,16 @@
+<% content_for :title, "Nouveau label" %>
+<% render_procedure_sticky_title(@procedure) %>
+
+<%= render partial: 'shared/breadcrumbs_section', locals: { steps: [[admin_procedures_back_label(@procedure), admin_procedures_back_path(@procedure)], [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)], ['gestion des labels', [:admin, @procedure, :labels]], ['Nouveau label']] } %>
+
+<div class="fr-container">
+  <div class="fr-mb-3w">
+    <%= link_to "Liste de tous les labels", [:admin, @procedure, :labels], class: "fr-link fr-icon-arrow-left-line fr-link--icon-left" %>
+  </div>
+
+  <h1 class="fr-h2">
+    Créer un nouveau label
+  </h1>
+
+  <%= render partial: 'form', locals: { label: @label, procedure_id: @procedure.id } %>
+</div>
