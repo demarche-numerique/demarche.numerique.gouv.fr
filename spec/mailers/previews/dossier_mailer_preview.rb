@@ -11,12 +11,12 @@ class DossierMailerPreview < ActionMailer::Preview
   end
 
   def notify_pending_correction
-    commentaire = commentaire(on: dossier_en_construction(sva_svr_decision: :sva)).tap { _1.build_dossier_correction(reason: :incorrect) }
+    commentaire = commentaire(on: dossier_en_construction).tap { it.build_dossier_correction(reason: :incorrect) }
     DossierMailer.with(commentaire:).notify_pending_correction
   end
 
   def notify_pending_correction_sva_correction
-    commentaire = commentaire(on: dossier_en_construction(sva_svr_decision: :sva)).tap { _1.build_dossier_correction(reason: :incorrect) }
+    commentaire = commentaire(on: dossier_en_construction(sva_svr_decision: :sva)).tap { it.build_dossier_correction(reason: :incorrect) }
     DossierMailer.with(commentaire:).notify_pending_correction
   end
 
