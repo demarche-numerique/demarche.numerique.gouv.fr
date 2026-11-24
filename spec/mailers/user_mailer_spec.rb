@@ -118,12 +118,12 @@ RSpec.describe UserMailer, type: :mailer do
   end
 
   describe '.send_archive' do
-    let(:procedure) { create(:procedure) }
+    let(:procedure) { procedures.individual }
     let(:archive) { create(:archive) }
     subject { described_class.send_archive(role, procedure, archive) }
 
     context 'instructeur' do
-      let(:role) { create(:instructeur) }
+      let(:role) { instructeurs.default }
       it 'sends email with correct links to instructeur' do
         expect(subject.to).to eq([role.user.email])
         expect(subject.body).to have_link('Consulter mes archives', href: list_instructeur_archives_url(procedure))
@@ -142,7 +142,7 @@ RSpec.describe UserMailer, type: :mailer do
 
     context 'neither instructeur nor administrateur' do
       let(:role) { experts.default }
-      it { expect { subject.message }.to raise_error(ArgumentError) }
+      it { expect { subject.message }.to raise_error(ArgumentError, /Instructeur or an Administrateur/) }
     end
 
     context 'when perform_later is called' do
