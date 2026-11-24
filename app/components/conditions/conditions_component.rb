@@ -84,10 +84,6 @@ class Conditions::ConditionsComponent < ApplicationComponent
     [[t('.select'), empty.to_json]]
   end
 
-  def column_mode?
-    !@champ_value_in_condition
-  end
-
   # Découper par visibilité avant le regroupement par section : sinon les annotations tombent
   # sous le dernier titre public, sans séparateur.
   def sources_by_visibility
@@ -105,7 +101,7 @@ class Conditions::ConditionsComponent < ApplicationComponent
   def index_by_top_section(tdcs)
     last_section = nil
     tdcs.each_with_object(Hash.new { |h, k| h[k] = [] }) do |tdc, h|
-      if tdc.header_section? && tdc.header_section_level_value == 1
+      if tdc.top_level_section?
         last_section = tdc
       else
         h[last_section] << tdc
@@ -113,24 +109,7 @@ class Conditions::ConditionsComponent < ApplicationComponent
     end
   end
 
-  def to_sources(tdcs) = column_mode? ? to_champ_column_values(tdcs) : to_champ_values(tdcs)
-
-  SUPPORTED_TYPES = [:integer, :decimal, :enum, :enums, :boolean].freeze
-
-  def to_champ_column_values(tdcs)
-    tdcs
-      .reject(&:repetition?)
-      .flat_map { it.columns(procedure_id: @procedure.id) }
-      .filter(&:filterable)
-      .filter { it.type.in?(SUPPORTED_TYPES) }
-      .map { |column| [column.label, champ_column_value(column)] }
-  end
-
-  def to_champ_values(tdcs)
-    tdcs
-      .filter(&:conditionable?)
-      .map { |tdc| [tdc.libelle, champ_value(tdc.stable_id)] }
-  end
+  def to_sources(tdcs) = tdcs.flat_map { it.condition_sources(@procedure) }
 
   def operator_tag(operator_name, targeted_champ, row_index)
     operators_for_select = compatibles_operators_for_select(targeted_champ)

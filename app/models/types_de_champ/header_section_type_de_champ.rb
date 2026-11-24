@@ -12,6 +12,8 @@ class TypesDeChamp::HeaderSectionTypeDeChamp < TypeDeChamp
   def has_label? = false
   def tags_for_template = [].freeze
 
+  def top_level_section? = header_section_level_value == 1
+
   def revision_diff_options = { header_section_level: header_section_level_value.to_s }
 
   def header_section_level_value
