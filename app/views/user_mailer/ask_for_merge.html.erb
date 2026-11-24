@@ -1,24 +1,21 @@
 <% content_for(:title, @subject) %>
 
-<p>Bonjour,</p>
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
 
 <p>
-  L’utilisateur <b>«&nbsp;<%= @user.email %>&nbsp;»</b> a demandé la fusion de
-  son compte avec le vôtre <b>«&nbsp;<%= @requested_email %>&nbsp;»</b>.
+  <%= t('.request_html', email: @user.email, requested_email: @requested_email) %>
 </p>
 
-<p>Si vous désirez confirmer la fusion de ces comptes&nbsp;:</p>
+<p><%= t('.confirm_intro') %></p>
 
 <ol>
-  <li>connectez-vous avec le compte <%= @requested_email %></li>
-  <li>allez sur votre page profil</li>
-  <li>acceptez la fusion</li>
+  <li><%= t('.step_sign_in', requested_email: @requested_email) %></li>
+  <li><%= t('.step_profile') %></li>
+  <li><%= t('.step_accept') %></li>
 </ol>
 
 <p>
-  Si vous n’êtes pas à l’origine de cette demande, vous pouvez ignorer ce
-  message. Et si vous avez besoin d’assistance, n’hésitez pas à nous contacter
-  à <%= mail_to CONTACT_EMAIL %>.
+  <%= t('user_mailer.shared.ignore_or_contact_html', contact_link: mail_to(CONTACT_EMAIL)) %>
 </p>
 
 <%= render partial: "layouts/mailers/signature" %>

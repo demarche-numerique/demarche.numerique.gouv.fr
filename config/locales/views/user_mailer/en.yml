@@ -1,9 +1,16 @@
 en:
   user_mailer:
+    shared:
+      ignore_or_contact_html: "If you did not make this request, you can ignore this message. If you need help, feel free to contact us at %{contact_link}."
     new_account_warning:
       subject: Account creation request
     ask_for_merge:
       subject: Account merge
+      request_html: "The account <b>‘%{email}’</b> has requested to be merged with yours <b>‘%{requested_email}’</b>."
+      confirm_intro: "If you want to confirm the merge of these accounts:"
+      step_sign_in: sign in with the account %{requested_email}
+      step_profile: go to your profile page
+      step_accept: accept the merge
     france_connect_merge_confirmation:
       subject: Please confirm the account merge
     custom_confirmation_instructions:

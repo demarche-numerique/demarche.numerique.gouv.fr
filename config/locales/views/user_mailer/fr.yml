@@ -1,9 +1,16 @@
 fr:
   user_mailer:
+    shared:
+      ignore_or_contact_html: "Si vous n’êtes pas à l’origine de cette demande, vous pouvez ignorer ce message. Et si vous avez besoin d’assistance, n’hésitez pas à nous contacter à %{contact_link}."
     new_account_warning:
       subject: Demande de création de compte
     ask_for_merge:
       subject: Fusion de compte
+      request_html: "L’utilisateur <b>« %{email} »</b> a demandé la fusion de son compte avec le vôtre <b>« %{requested_email} »</b>."
+      confirm_intro: "Si vous désirez confirmer la fusion de ces comptes :"
+      step_sign_in: connectez-vous avec le compte %{requested_email}
+      step_profile: allez sur votre page profil
+      step_accept: acceptez la fusion
     france_connect_merge_confirmation:
       subject: Veuillez confirmer la fusion de compte
     custom_confirmation_instructions:
