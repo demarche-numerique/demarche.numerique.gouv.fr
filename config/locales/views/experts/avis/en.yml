@@ -53,3 +53,12 @@ en:
         title: "Opinion · Application no. %{dossier_id} (%{owner_name})"
       avis_new:
         title: "Opinion · Application no. %{dossier_id} (%{owner_name})"
+      instruction:
+        title: "Opinion · Application no. %{dossier_id} (%{owner_name})"
+        heading: Give your opinion
+        claimant: "Requested by:"
+        requested_on: "Opinion requested on %{date}"
+        answer_placeholder: Your opinion
+        confidentiel: This opinion is confidential and is not shown to the other experts consulted
+        shared: This opinion is shared with the other experts
+        submit: Send your opinion

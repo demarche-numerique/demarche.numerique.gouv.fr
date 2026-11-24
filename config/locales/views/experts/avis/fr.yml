@@ -53,3 +53,12 @@ fr:
         title: "Avis · Dossier n° %{dossier_id} (%{owner_name})"
       avis_new:
         title: "Avis · Dossier n° %{dossier_id} (%{owner_name})"
+      instruction:
+        title: "Avis · Dossier n° %{dossier_id} (%{owner_name})"
+        heading: Donner votre avis
+        claimant: "Demandeur :"
+        requested_on: "Demande d’avis envoyée le %{date}"
+        answer_placeholder: Votre avis
+        confidentiel: Cet avis est confidentiel et n’est pas affiché aux autres experts consultés
+        shared: Cet avis est partagé avec les autres experts
+        submit: Envoyer votre avis

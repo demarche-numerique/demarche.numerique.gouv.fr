@@ -1,4 +1,4 @@
-<% content_for(:title, "Avis · Dossier n° #{@dossier.id} (#{@dossier.owner_name})") %>
+<% content_for(:title, t('.title', dossier_id: @dossier.id, owner_name: @dossier.owner_name)) %>
 <%= render partial: 'header', locals: { avis: @avis, dossier: @dossier } %>
 
 <div class="container">
@@ -10,13 +10,18 @@
     <div class="fr-col">
       <% if !@dossier.termine? %>
         <section class="give-avis">
-          <h1 class="tab-title">Donner votre avis</h1>
+          <h1 class="tab-title"><%= t('.heading') %></h1>
 
           <h2 class="fr-text--sm fr-mb-2w">
-            Demandeur :
-            <span class="email fr-text--regular"><%= safe_claimant_email(@avis.claimant) %></span>
+            <%= t('.claimant') %>
 
-            <span class="fr-text--xs fr-text-mention--grey pull-right">Demande d’avis envoyée le <%= l(@avis.created_at, format: '%d/%m/%y') %></span>
+            <span class="email fr-text--regular">
+              <%= safe_claimant_email(@avis.claimant) %>
+            </span>
+
+            <span class="fr-text--xs fr-text-mention--grey pull-right">
+              <%= t('.requested_on', date: l(@avis.created_at, format: '%d/%m/%y')) %>
+            </span>
           </h2>
 
           <%= render SimpleFormatComponent.new(@avis.introduction, allow_a: false) %>
@@ -41,12 +46,12 @@
                   <div class="fr-fieldset__content">
                     <div class="fr-radio-group">
                       <%= f.radio_button :question_answer, true %>
-                      <%= f.label :question_answer, 'oui', value: true, class: 'fr-label' %>
+                      <%= f.label :question_answer, t('helpers.label.question_answer.true'), value: true, class: 'fr-label' %>
                     </div>
 
                     <div class="fr-radio-group">
                       <%= f.radio_button :question_answer, false %>
-                      <%= f.label :question_answer, 'non', value: false, class: 'fr-label' %>
+                      <%= f.label :question_answer, t('helpers.label.question_answer.false'), value: false, class: 'fr-label' %>
                     </div>
                   </div>
                 </fieldset>
@@ -54,24 +59,21 @@
             <% end %>
 
             <div class="fr-select-group">
-              <%= f.text_area :answer, rows: 3, class: 'fr-input', placeholder: 'Votre avis', required: true %>
+              <%= f.text_area :answer, rows: 3, class: 'fr-input', placeholder: t('.answer_placeholder'), required: true %>
             </div>
 
             <%= render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: @avis.piece_justificative_file, view_as: :download), drop_zone: :none) %>
 
             <p class="confidentiel">
               <% if @avis.confidentiel? %>
-                <span>
-                  Cet avis est confidentiel et n’est pas affiché aux autres
-                  experts consultés
-                </span>
+                <span><%= t('.confidentiel') %></span>
               <% else %>
-                <span> Cet avis est partagé avec les autres experts </span>
+                <span><%= t('.shared') %></span>
               <% end %>
             </p>
 
             <div class="send-wrapper">
-              <%= f.submit 'Envoyer votre avis', class: 'fr-btn' %>
+              <%= f.submit t('.submit'), class: 'fr-btn' %>
             </div>
           <% end %>
         </section>
