@@ -27,6 +27,10 @@ module ProcedureTemplates
     # by the school's own systems, the platform only carries them.
     RETENTION_PERIOD = 3
 
+    # Hours a generated export stays on the platform, whatever happens to the
+    # applications it was made from.
+    EXPORT_LIFETIME = Export::MAX_DUREE_CONSERVATION_EXPORT.in_hours.to_i
+
     # The default team: it also takes an application no routing rule matches.
     STUDENT_ADMINISTRATION_TEAM = "Section administration élèves"
     HUMAN_RESOURCES_TEAM = "Bureau des ressources humaines"
@@ -47,7 +51,7 @@ module ProcedureTemplates
     DESCRIPTION = <<~TEXT
       Vous êtes admis à l’École de l’air et de l’espace par un concours du recrutement externe ou interne. Cette démarche remplace l’envoi de vos pièces administratives par courriel et leur copie sur clé USB : chaque pièce est déposée une seule fois.
 
-      Elle remplace aussi la fiche de renseignements et la fiche de contact de la notice d’intégration.
+      Elle remplace aussi la fiche de renseignements et la fiche de contact de la notice d’intégration (note N°46/EAE/DGFM/CMDT).
 
       Les pièces médicales ne sont pas concernées : elles suivent le circuit du service médical indiqué dans la notice.
     TEXT
@@ -55,13 +59,13 @@ module ProcedureTemplates
     DATA_PROTECTION_NOTICE = <<~TEXT
       Les informations et les pièces déposées ici servent uniquement à votre prise en compte administrative à l’École de l’air et de l’espace (état civil, solde, protection sociale, scolarité, personne à prévenir).
 
-      Elles sont lues par la section administration élèves et le bureau des ressources humaines de l’école. Les informations nécessaires à votre gestion sont reprises dans le système d’information des ressources humaines.
+      Elles sont lues par la section administration élèves et le bureau des ressources humaines de l’école. Les informations et les pièces nécessaires à votre gestion sont reprises dans votre dossier administratif et dans le système d’information des ressources humaines.
 
-      Dès que la décision est prise sur votre dossier, vos pièces d’identité, votre acte de naissance, vos justificatifs de situation de famille, votre justificatif de sécurité sociale et votre RIB sont supprimés de cette plateforme. Le reste de votre dossier est supprimé environ #{RETENTION_PERIOD} mois après cette décision.
+      Dès que la décision est prise sur votre dossier, vos pièces d’identité, votre acte de naissance, vos justificatifs de situation de famille, votre justificatif de sécurité sociale et votre RIB sont supprimés de votre dossier sur cette plateforme. L’archive que l’école en extrait pour votre dossier administratif, sans vos pièces d’identité, y reste téléchargeable par elle au plus #{EXPORT_LIFETIME} heures. Le reste de votre dossier est supprimé environ #{RETENTION_PERIOD} mois après cette décision.
 
       Ne déposez aucun document médical dans cette démarche.
 
-      Vous pouvez accéder à vos données, les faire rectifier ou vous opposer à leur traitement en écrivant au délégué à la protection des données indiqué en bas de page.
+      Vous pouvez accéder à vos données, les faire rectifier ou vous opposer à leur traitement en écrivant au service indiqué en bas de page ou, lorsqu’il y figure, à son délégué à la protection des données.
     TEXT
 
     DUAL_NATIONALITY_NOTICE = <<~TEXT
@@ -81,10 +85,10 @@ module ProcedureTemplates
 
     REVIEWER_INSTRUCTIONS = <<~TEXT
       - Vérifiez les pièces d’identité à l’écran : elles ne figurent ni dans l’archive des pièces ni dans les exports.
-      - Générez l’archive des pièces et l’export pour le SIRH avant de prendre une décision : à la décision, les pièces d’identité, l’acte de naissance, les justificatifs de situation de famille, le justificatif de sécurité sociale et le RIB sont supprimés définitivement.
+      - Générez l’archive des pièces et l’export pour le SIRH avant de prendre une décision : à la décision, les pièces d’identité, l’acte de naissance, les justificatifs de situation de famille, le justificatif de sécurité sociale et le RIB sont supprimés définitivement du dossier. L’archive générée reste téléchargeable #{EXPORT_LIFETIME} heures, puis elle est supprimée à son tour.
       - Prenez une décision sur chaque dossier : tant qu’un dossier reste en construction ou en instruction, rien n’est supprimé. Le dossier est supprimé environ #{RETENTION_PERIOD} mois après la décision.
       - Pour faire corriger plusieurs pièces, listez-les dans une seule demande de correction : une seule demande peut être en attente par dossier, et le courriel envoyé au candidat ne reprend pas votre message.
-      - Cochez vous-même la case ci-dessous le jour de l’intégration, après avoir vu les originaux.
+      - Cochez vous-même la case « Pièces originales vérifiées le jour de l’intégration », après avoir vu les originaux. Une case déjà cochée ou une observation déjà saisie à l’arrivée du dossier ne viennent pas du service : le lien de dépôt permet au candidat de les remplir. Décochez alors la case et effacez le texte avant de les renseigner vous-même.
     TEXT
 
     # The submission receipt is attached to this e-mail by the platform.
@@ -548,13 +552,13 @@ module ProcedureTemplates
       { type: :checkbox, libelle: "Je reconnais avoir pris connaissance de l’attestation de mise en garde" },
     ].freeze
 
-    # The checkbox stays out of the spreadsheet: a prefill link can tick an
-    # internal field, so only a reviewer looking at the application can vouch
-    # for it.
+    # No internal field goes to the spreadsheet: a prefill link can set one
+    # (tick the box, write the observations), so only a reviewer looking at the
+    # application can vouch for it.
     INTERNAL_FIELDS = [
       { type: :explication, libelle: "Consignes d’instruction", description: REVIEWER_INSTRUCTIONS },
       { type: :checkbox, libelle: "Pièces originales vérifiées le jour de l’intégration" },
-      { type: :textarea, libelle: "Observations du service", spreadsheet_header: "Observations" },
+      { type: :textarea, libelle: "Observations du service" },
     ].freeze
 
     # What a field definition says to the builder, not to the platform.
@@ -681,7 +685,8 @@ module ProcedureTemplates
     # deleted, and are shared with the other.
     def create_zip_export_template!
       ExportTemplate.create!(
-        name: "Pièces nommées selon la notice d’intégration",
+        # longer, the export dialog of the reviewers cuts the name
+        name: "Pièces nommées selon la notice",
         kind: "zip",
         shared: true,
         groupe_instructeur: @procedure.defaut_groupe_instructeur,

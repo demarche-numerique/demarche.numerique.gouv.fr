@@ -3,7 +3,9 @@
 require "rails_helper"
 
 RSpec.describe ProcedureTemplates::EaeIntegration do
-  let_it_be(:procedure) { described_class.create!(administrateur: administrateurs.blank, lien_dpo: "dpd@exemple.fr") }
+  let_it_be(:deadline) { Date.current.next_occurring(:wednesday) + 4.weeks }
+  # administrateurs.default is also a reviewer: one the builder could add to a team
+  let_it_be(:procedure) { described_class.create!(administrateur: administrateurs.default, lien_dpo: "dpd@exemple.fr", deadline:) }
   let(:revision) { procedure.draft_revision }
   let(:types_de_champ) { revision.public_flat_type_de_champs }
   let(:pieces_justificatives) { types_de_champ.filter(&:piece_justificative?) }
@@ -26,8 +28,7 @@ RSpec.describe ProcedureTemplates::EaeIntegration do
       ask_birthday: false,
       opendata: false,
       lien_dpo: "dpd@exemple.fr",
-      duree_conservation_dossiers_dans_ds: 3,
-      auto_archive_on: nil
+      duree_conservation_dossiers_dans_ds: 3
     )
   end
 
@@ -165,9 +166,7 @@ RSpec.describe ProcedureTemplates::EaeIntegration do
     let(:wednesday) { Date.current.next_occurring(:wednesday) }
 
     it "closes the procedure the night of the last day of submission" do
-      procedure = described_class.create!(administrateur:, deadline: wednesday + 4.weeks)
-
-      expect(procedure.auto_archive_on).to eq(wednesday + 4.weeks + 1.day)
+      expect(procedure.auto_archive_on).to eq(deadline + 1.day)
     end
 
     it "refuses a day whose eve gets no reminder" do
@@ -242,11 +241,13 @@ RSpec.describe ProcedureTemplates::EaeIntegration do
           .to_h { [it[0], it[1]] }
       end
 
-      it "lists data only, without what a prefill link could have set" do
-        expect(export_template.exported_columns.map { it.column.type }).not_to include(:attachments)
+      it "lists data only, and no internal field: a prefill link can fill those" do
+        columns = export_template.exported_columns.map(&:column)
+
+        expect(columns.map(&:type)).not_to include(:attachments)
+        expect(columns.filter(&:champ_column?).map(&:stable_id) & revision.private_root_type_de_champs.map(&:stable_id)).to be_empty
         expect(headers).to start_with("N° dossier", "État", "Déposé le")
-        expect(headers).to include("Nom", "Date de naissance", "Corps", "Code postal", "NID", "Observations")
-        expect(headers).not_to include("Pièces originales vérifiées le jour de l’intégration")
+        expect(headers).to include("Nom", "Date de naissance", "Corps", "Code postal", "NID")
       end
 
       it "writes one line per application" do

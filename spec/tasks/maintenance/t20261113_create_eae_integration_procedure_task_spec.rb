@@ -18,12 +18,12 @@ module Maintenance
         )
       end
 
-      it "gives the procedure the deadline it is given" do
-        task.deadline = (Date.current.next_occurring(:wednesday) + 4.weeks).iso8601
+      it "gives the builder the deadline it is given" do
+        task.deadline = "2026-12-23"
+
+        expect(ProcedureTemplates::EaeIntegration).to receive(:create!).with(administrateur:, lien_dpo: nil, deadline: Date.new(2026, 12, 23))
 
         task.process(administrateur)
-
-        expect(administrateur.procedures.last.auto_archive_on).to eq(task.deadline + 1.day)
       end
     end
   end
