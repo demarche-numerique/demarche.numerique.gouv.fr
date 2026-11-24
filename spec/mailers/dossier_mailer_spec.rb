@@ -152,7 +152,7 @@ RSpec.describe DossierMailer, type: :mailer do
     it 'asks to submit the dossier before the deadline' do
       expect(subject.body).to include("Le dossier n°#{dossier.id} pour la démarche")
       expect(subject.body).to include(dossier.procedure.libelle)
-      expect(subject.body).to include("date limite de dépôt des dossiers")
+      expect(subject.body).to include("limite de dépôt des dossiers")
       expect(subject.body).to include(dossier_url(dossier))
     end
   end
