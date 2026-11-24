@@ -1,29 +1,21 @@
-<% content_for(:title, 'Activation de votre compte instructeur') %>
+<% content_for(:title, t('.title')) %>
 
-<p>Bonjour,</p>
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
 
-<p>Vous venez d’être nommé instructeur sur <%= APPLICATION_NAME %>.</p>
+<p><%= t('.appointed', application_name: APPLICATION_NAME) %></p>
+
+<p><%= t('.account_created_html', email: @user.email) %></p>
 
 <p>
-  Votre compte a été créé pour l’adresse électronique
-  <strong><%= @user.email %>.</strong>
+  <%= t('.activate_html', link: link_to(users_activate_url(token: @reset_password_token), users_activate_url(token: @reset_password_token))) %>
 </p>
 
 <p>
-  Pour l’activer, cliquez sur le lien suivant&nbsp;:&nbsp;
-  <%= link_to(users_activate_url(token: @reset_password_token), users_activate_url(token: @reset_password_token)) %>
+  <%= t('.next_sign_in_html', application_name: APPLICATION_NAME, link: link_to(new_user_session_url, new_user_session_url)) %>
 </p>
 
 <p>
-  Lors de vos prochaines connexions sur <%= APPLICATION_NAME %>, cliquez sur le
-  bouton «&nbsp;Se connecter&nbsp;» positionné sur le haut de page ou bien sur
-  ce lien&nbsp;:&nbsp; <%= link_to new_user_session_url, new_user_session_url %>
-</p>
-
-<p>
-  Nous vous invitons aussi à consulter notre tutoriel à destination des nouveaux
-  instructeurs&nbsp;:
-  <%= link_to(INSTRUCTEUR_TUTORIAL_URL, INSTRUCTEUR_TUTORIAL_URL) %>
+  <%= t('.tutorial_html', link: link_to(INSTRUCTEUR_TUTORIAL_URL, INSTRUCTEUR_TUTORIAL_URL)) %>
 </p>
 
 <%= render partial: "layouts/mailers/signature" %>

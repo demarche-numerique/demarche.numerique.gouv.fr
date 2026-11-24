@@ -25,6 +25,12 @@ fr:
       no_notification: Tant que vous n’aurez pas confirmé votre adresse électronique, vous ne recevrez aucune notification sur l’avancement de vos dossiers.
     invite_instructeur:
       subject: Activez votre compte instructeur
+      title: Activation de votre compte instructeur
+      appointed: Vous venez d’être nommé instructeur sur %{application_name}.
+      account_created_html: "Votre compte a été créé pour l’adresse électronique <strong>%{email}.</strong>"
+      activate_html: "Pour l’activer, cliquez sur le lien suivant : %{link}"
+      next_sign_in_html: "Lors de vos prochaines connexions sur %{application_name}, cliquez sur le bouton « Se connecter » positionné sur le haut de page ou bien sur ce lien : %{link}"
+      tutorial_html: "Nous vous invitons aussi à consulter notre tutoriel à destination des nouveaux instructeurs : %{link}"
     invite_tiers:
       subject: Vérification de votre adresse électronique
     resend_confirmation_email:

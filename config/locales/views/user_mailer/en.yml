@@ -25,6 +25,12 @@ en:
       no_notification: Until you confirm your email address, you will not receive any notification about the progress of your applications.
     invite_instructeur:
       subject: Activate your reviewer account
+      title: Activation of your reviewer account
+      appointed: You have just been appointed reviewer on %{application_name}.
+      account_created_html: "Your account has been created for the email address <strong>%{email}.</strong>"
+      activate_html: "To activate it, click the following link: %{link}"
+      next_sign_in_html: "The next times you sign in to %{application_name}, click the ‘Sign in’ button at the top of the page or this link: %{link}"
+      tutorial_html: "We also invite you to read our tutorial for new reviewers: %{link}"
     invite_tiers:
       subject: Verify your email address
     resend_confirmation_email:
