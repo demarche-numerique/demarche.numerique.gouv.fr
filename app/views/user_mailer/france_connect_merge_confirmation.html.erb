@@ -17,8 +17,8 @@
 <p>
   Ce lien est valide
   <%= distance_of_time_in_words(FranceConnectInformation::MERGE_VALIDITY) %>,
-  jusqu'à
-  <%= I18n.l(@email_merge_token_created_at + FranceConnectInformation::MERGE_VALIDITY, format: :long_with_time_and_timezone) %>
+  jusqu’à
+  <%= I18n.l(@email_merge_token_created_at + FranceConnectInformation::MERGE_VALIDITY, format: :long_with_time_and_timezone) %>.
 </p>
 
 <p>
