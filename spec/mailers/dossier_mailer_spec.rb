@@ -139,7 +139,7 @@ RSpec.describe DossierMailer, type: :mailer do
 
     it 'links to the dossier' do
       expect(subject.body).to include(avis.dossier.procedure.libelle)
-      expect(subject.body).to include("Voir le dossier n°#{avis.dossier.id}")
+      expect(subject.body).to include("Voir le dossier n° #{avis.dossier.id}")
       expect(subject.body).to include(instructeur_dossier_url(avis.procedure, avis.dossier))
     end
   end
