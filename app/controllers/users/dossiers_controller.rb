@@ -142,7 +142,7 @@ module Users
           @dossier.prefill_individual_from(identity_source) if !@dossier.for_tiers?
         end
         format.turbo_stream do
-          @dossier.assign_for_tiers(params.dig(:dossier, :for_tiers) == 'true', identity_source: identity_prefill_source(@dossier))
+          @dossier.assign_for_tiers(filed_for_tiers?(params.dig(:dossier, :for_tiers)), identity_source: identity_prefill_source(@dossier))
 
           if @dossier.brouillon?
             # Persist the persona choice so the identity form survives a page reload:
@@ -160,9 +160,9 @@ module Users
       @no_description = true
 
       identity_source = identity_prefill_source(@dossier)
-      @dossier.assign_for_tiers(dossier_params[:for_tiers] == 'true', identity_source:)
+      @dossier.assign_for_tiers(filed_for_tiers?(dossier_params[:for_tiers]), identity_source:)
 
-      sanitized_params = dossier_params.dup
+      sanitized_params = dossier_params.merge(for_tiers: @dossier.for_tiers)
       if identity_source.mandataire_locked?
         sanitized_params = sanitized_params.except(:mandataire_first_name, :mandataire_last_name)
       end
@@ -730,6 +730,13 @@ module Users
 
     def dossier_params
       params.require(:dossier).permit(:for_tiers, :mandataire_first_name, :mandataire_last_name, individual_attributes: [:gender, :nom, :prenom, :birthdate, :email, :notification_method])
+    end
+
+    # The identity step only offers to file for a third party when the
+    # procedure allows it: a request cannot ask for more than the step does.
+    # An application already filed for a third party stays so.
+    def filed_for_tiers?(choice)
+      choice == 'true' && (@dossier.for_tiers? || @dossier.procedure.for_tiers_enabled?)
     end
 
     def siret_params

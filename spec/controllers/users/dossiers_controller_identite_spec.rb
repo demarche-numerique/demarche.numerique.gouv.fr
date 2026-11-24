@@ -78,6 +78,18 @@ describe Users::DossiersController, type: :controller do
       end
     end
 
+    # The identity step does not offer the choice then: only a hand-made request asks for it.
+    context 'when the procedure does not let a third party file' do
+      let(:for_tiers_value) { 'true' }
+
+      before { procedure.update!(for_tiers_enabled: false) }
+
+      it 'keeps the application in the name of its applicant' do
+        subject
+        expect(dossier.reload.for_tiers).to be false
+      end
+    end
+
     context 'when the session is connected via ProConnect' do
       # Attach the ProConnect identity to the seeded usager rather than signing in
       # another user: `dossiers.brouillon` belongs to them, and ensure_ownership!
@@ -196,6 +208,27 @@ describe Users::DossiersController, type: :controller do
       it do
         expect(response).not_to have_http_status(:redirect)
         expect(flash[:alert]).to include("Le champ « Nom » doit être rempli", "Le champ « Prénom » doit être rempli")
+      end
+    end
+
+    context 'when the procedure does not let a third party file' do
+      let(:dossier_params) { { for_tiers: 'true', mandataire_first_name: 'Jean', mandataire_last_name: 'Dupont', individual_attributes: { gender: 'M', nom: 'Mouse', prenom: 'Mickey' } } }
+
+      before { procedure.update!(for_tiers_enabled: false) }
+
+      it 'keeps the application in the name of its applicant' do
+        subject
+        expect(dossier.reload.for_tiers).to be false
+        expect(response).to redirect_to(brouillon_dossier_path(dossier))
+      end
+
+      context 'when the application was filed for a third party before' do
+        let(:dossier) { create(:dossier, :for_tiers_without_notification, state: 'brouillon', user:, procedure:) }
+
+        it 'stays filed for that third party' do
+          subject
+          expect(dossier.reload.for_tiers).to be true
+        end
       end
     end
 
