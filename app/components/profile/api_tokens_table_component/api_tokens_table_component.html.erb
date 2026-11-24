@@ -1,0 +1,32 @@
+<div class="fr-table fr-table--sm fr-mb-0 api-tokens-table">
+  <div class="fr-table__wrapper">
+    <div class="fr-table__container">
+      <div class="fr-table__content">
+        <table aria-labelledby="<%= @labelledby %>">
+          <colgroup>
+            <col class="api-tokens-table__token">
+            <col class="api-tokens-table__scope">
+            <col class="api-tokens-table__validity">
+            <col class="api-tokens-table__actions">
+          </colgroup>
+
+          <thead>
+            <tr>
+              <th scope="col"><%= t('.token') %></th>
+              <th scope="col"><%= t('.scope') %></th>
+              <th scope="col"><%= t('.validity') %></th>
+
+              <th scope="col">
+                <span class="fr-sr-only"><%= t('.actions') %></span>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <%= content %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

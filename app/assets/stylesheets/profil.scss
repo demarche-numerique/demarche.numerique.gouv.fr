@@ -17,3 +17,43 @@
     font-weight: bold;
   }
 }
+// Fixed widths: "Mes jetons" and the expired tokens line up, and a badge never widens its column.
+// Below 48rem the table scrolls instead of squeezing its columns.
+.api-tokens-table .fr-table__content {
+  table {
+    table-layout: fixed;
+    min-width: 48rem;
+  }
+
+  .api-tokens-table__token {
+    width: 22%;
+  }
+
+  .api-tokens-table__scope {
+    width: 38%;
+  }
+
+  .api-tokens-table__validity {
+    width: 21%;
+  }
+
+  .api-tokens-table__actions {
+    width: 19%;
+  }
+
+  th,
+  td {
+    overflow-wrap: anywhere;
+  }
+
+  // The DSFR lets every word of a multiline cell wrap.
+  .fr-badge,
+  .api-token-expiration {
+    white-space: nowrap;
+  }
+
+  .api-token-actions .fr-btn {
+    width: auto;
+    margin: 0;
+  }
+}

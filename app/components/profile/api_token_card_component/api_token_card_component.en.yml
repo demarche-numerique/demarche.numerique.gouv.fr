@@ -3,3 +3,5 @@ en:
   first_paragraph_html: |
     These tokens are needed to make calls to the API of %{application_name}. Learn more about the <a target="_blank" rel="noopener" href="%{api_doc_url}" title="See %{application_name} API documentation">GraphQL API</a>
   create_token: create a new token
+  my_tokens_title: My tokens
+  expired_tokens_title: Expired tokens (%{count})

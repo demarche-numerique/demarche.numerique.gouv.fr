@@ -75,6 +75,40 @@ describe Users::ProfilController, type: :controller do
     it { expect(response.body).to include(I18n.t('users.profil.show.change_password')) }
   end
 
+  describe 'GET #show for an administrateur and their api tokens' do
+    render_views
+
+    let(:administrateur) { administrateurs.blank }
+    let(:user) { administrateur.user }
+    let(:card) { response.parsed_body.at_css("##{ActionView::RecordIdentifier.dom_id(administrateur, :profil_api_token)}") }
+    let(:expired_button) { card.at_css('#expired-api-tokens .fr-accordion__btn') }
+
+    it 'only offers to create a token when there is none' do
+      get :show
+      expect(card.at_css('a.fr-btn').text.strip).to eq('Créer un nouveau jeton')
+      expect(card.at_css('table')).to be_nil
+    end
+
+    it 'lists my valid tokens, and folds the expired ones away' do
+      APIToken.generate(administrateur, name: 'Jeton valide')
+      APIToken.generate(administrateur, name: 'Jeton expiré').first.update_column(:expires_at, 1.day.ago.to_date)
+      get :show
+
+      expect(card.at_css('table[aria-labelledby="my-api-tokens-title"] tbody th').text).to include('Jeton valide')
+      expect(expired_button.text.strip).to eq('Jetons expirés (1)')
+      expect(expired_button['aria-expanded']).to eq('false')
+      expect(card.at_css('#expired-api-tokens table tbody th').text).to include('Jeton expiré')
+    end
+
+    it 'unfolds the expired tokens when no token is valid' do
+      APIToken.generate(administrateur, name: 'Jeton expiré').first.update_column(:expires_at, 1.day.ago.to_date)
+      get :show
+
+      expect(card.at_css('table[aria-labelledby="my-api-tokens-title"]')).to be_nil
+      expect(expired_button['aria-expanded']).to eq('true')
+    end
+  end
+
   describe 'GET #show when ProConnect is required for the administrateur' do
     render_views
 

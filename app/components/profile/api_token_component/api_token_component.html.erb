@@ -1,45 +1,61 @@
-<li class="fr-mt-2w flex" id="<%= dom_id(@api_token) %>">
-  <div class="<%= class_names('fr-mr-4w', 'fr-text-default--success': recently_used?) %>">
-    <span class="fr-icon-key-line"></span>
-  </div>
+<tr id="<%= dom_id(@api_token) %>">
+  <th scope="row" class="fr-cell--multiline fr-cell--top">
+    <%= @api_token.name %>
 
-  <div class="flex-grow">
-    <div>
-      <b><%= @api_token.name %></b>
-      <span>(commence par <%= @api_token.prefix %>)</span>
-    </div>
+    <p class="fr-text--sm fr-text--regular fr-my-0"><%= access %></p>
 
-    <div><%= autorizations %></div>
-    <div><%= network_filtering %></div>
+    <p class="fr-hint-text fr-text--regular fr-my-0">
+      <%= t('.prefix_html', prefix:) %>
+    </p>
+  </th>
 
-    <div>
-      <%= expiration_badge %>
-      <%= use_and_expiration %>
-    </div>
-  </div>
+  <td class="fr-cell--multiline fr-cell--top">
+    <p class="fr-text--xs fr-text-mention--grey fr-my-0">
+      <%= t('.procedures') %>
+    </p>
 
-  <div>
-    <ul>
+    <%= procedures %>
+
+    <p class="fr-text--xs fr-text-mention--grey fr-mt-1w fr-mb-0">
+      <%= t('.networks') %>
+    </p>
+
+    <%= networks %>
+  </td>
+
+  <td class="fr-cell--multiline fr-cell--top">
+    <p class="fr-text--xs fr-text-mention--grey fr-my-0">
+      <%= @api_token.expired? ? t('.expired_on') : t('.expires_on') %>
+    </p>
+
+    <p class="fr-text--sm fr-my-0 api-token-expiration"><%= expiration %></p>
+    <%= expiring_soon_badge %>
+
+    <p class="fr-text--xs fr-text-mention--grey fr-mt-1w fr-mb-0">
+      <%= t('.last_use') %>
+    </p>
+
+    <p class="fr-text--sm fr-my-0"><%= last_use %></p>
+  </td>
+
+  <td class="fr-cell--top api-token-actions">
+    <ul class="fr-btns-group fr-btns-group--sm fr-btns-group--icon-left fr-m-0">
+      <% if !@api_token.expired? %>
+        <li>
+          <%= link_to t('.edit'), edit_admin_api_token_path(@api_token),
+            class: 'fr-btn fr-btn--tertiary-no-outline fr-icon-pencil-line',
+            aria: { label: t('.edit_label', name: @api_token.name) } %>
+        </li>
+      <% end %>
+
+      <li><%= duplicate_button %></li>
+
       <li>
-        <%= link_to 'Modifier',
-          edit_admin_api_token_path(@api_token),
-          class: 'fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-btn--icon-left fr-icon-pencil-line' %>
-      </li>
-
-      <li>
-        <%= button_to 'Dupliquer',
-          nom_admin_api_tokens_path,
-          params: { duplicate: @api_token.id },
-          form: { data: { turbo: false } },
-          class: 'fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-btn--icon-left fr-icon-file-copy-line' %>
-      </li>
-
-      <li>
-        <%= link_to 'Supprimer',
-          admin_api_token_path(@api_token),
-          class: 'fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-btn--icon-left fr-icon-delete-line',
-          data: { turbo_method: :delete, turbo_confirm: "Confirmez-vous la suppression du jeton « #{@api_token.name} » ?" } %>
+        <%= link_to t('.destroy'), admin_api_token_path(@api_token),
+          class: 'fr-btn fr-btn--tertiary-no-outline fr-icon-delete-line',
+          aria: { label: t('.destroy_label', name: @api_token.name) },
+          data: { turbo_method: :delete, turbo_confirm: t('.destroy_confirm', name: @api_token.name) } %>
       </li>
     </ul>
-  </div>
-</li>
+  </td>
+</tr>

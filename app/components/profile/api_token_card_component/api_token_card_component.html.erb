@@ -1,19 +1,47 @@
-<div
-  class="card no-list"
+<section
+  class="card"
   data-turbo="true"
   id="<%= dom_id(current_administrateur, :profil_api_token) %>"
+  aria-labelledby="api-tokens-title"
 >
-  <div class="card-title">
-    <%= t('.tokens_title') %>
-  </div>
+  <h2 class="card-title" id="api-tokens-title"><%= t('.tokens_title') %></h2>
 
   <p>
     <%= t('.first_paragraph_html', application_name: Current.application_name, api_doc_url: API_DOC_URL) %>
   </p>
 
-  <%= link_to t('.create_token'), nom_admin_api_tokens_path, class: "fr-btn fr-btn--secondary fr-mt-2w" %>
+  <%= link_to t('.create_token'), nom_admin_api_tokens_path, class: 'fr-btn fr-btn--icon-left fr-icon-add-circle-line fr-mt-2w' %>
 
-  <ul class="fr-mt-4w">
-    <%= render Profile::APITokenComponent.with_collection(api_tokens) %>
-  </ul>
-</div>
+  <% if valid_api_tokens.any? %>
+    <h3 class="fr-h6 fr-mt-4w fr-mb-1w" id="my-api-tokens-title">
+      <%= t('.my_tokens_title') %>
+    </h3>
+    <%= render Profile::APITokensTableComponent.new(labelledby: 'my-api-tokens-title') do %>
+      <%= render Profile::APITokenComponent.with_collection(valid_api_tokens) %>
+    <% end %>
+  <% end %>
+
+  <% if expired_api_tokens.any? %>
+    <section class="fr-accordion fr-mt-3w" id="expired-api-tokens">
+      <h3 class="fr-accordion__title" id="expired-api-tokens-title">
+        <button
+          type="button"
+          class="fr-accordion__btn"
+          aria-expanded="<%= expired_unfolded? %>"
+          aria-controls="expired-api-tokens-content"
+        >
+          <%= t('.expired_tokens_title', count: expired_api_tokens.size) %>
+        </button>
+      </h3>
+
+      <div
+        id="expired-api-tokens-content"
+        class="<%= class_names('fr-collapse fr-mx-0 fr-px-0', 'fr-collapse--expanded': expired_unfolded?) %>"
+      >
+        <%= render Profile::APITokensTableComponent.new(labelledby: 'expired-api-tokens-title') do %>
+          <%= render Profile::APITokenComponent.with_collection(expired_api_tokens) %>
+        <% end %>
+      </div>
+    </section>
+  <% end %>
+</section>
