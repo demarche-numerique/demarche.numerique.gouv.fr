@@ -11,11 +11,11 @@ module ProcedureTemplates
     # tell applicants to use it once, then to come back through their account.
     #
     # The name is optional. When given it travels in the address of the link:
-    # the platform keeps it out of its request log and of its audience
-    # statistics, but the access log of a reverse proxy and the history of the
-    # browser keep the whole address. Leave the nom and prenom columns out of
-    # the list to keep the name out of them: the identity step asks for it one
-    # screen later.
+    # the platform keeps it out of its request log, of its audience statistics
+    # and of the error reports of the browser, but the access log of a reverse
+    # proxy and the history of the browser keep the whole address. Leave the
+    # nom and prenom columns out of the list to keep the name out of them: the
+    # identity step asks for it one screen later.
     #
     # For a whole intake, from a console (the byte order mark makes a
     # spreadsheet read the file as UTF-8):
@@ -25,6 +25,7 @@ module ProcedureTemplates
       FIELDS = [:recruitment, :entrance_exam, :corps].freeze
       CSV_HEADERS = { "nom" => :last_name, "prenom" => :first_name, "recrutement" => :recruitment, "concours" => :entrance_exam, "corps" => :corps }.freeze
       CSV_LINK_HEADER = "lien"
+      UTF8_READ_AS_WINDOWS_1252 = /[ÃÂ][^\p{ASCII}]/
 
       def self.url(procedure, **applicant) = new(procedure).url(**applicant)
 
@@ -52,12 +53,18 @@ module ProcedureTemplates
       end
 
       # A spreadsheet saves a list in UTF-8 behind a byte order mark, or in
-      # Windows-1252.
+      # Windows-1252. Read as Windows-1252, a UTF-8 list with a damaged byte
+      # would put « Ã© » for « é » in every name: it is refused instead.
       def self.utf8(list)
         list = list.dup.force_encoding(Encoding::UTF_8)
-        list = list.force_encoding(Encoding::WINDOWS_1252).encode(Encoding::UTF_8) if !list.valid_encoding?
+        if !list.valid_encoding?
+          list = list.force_encoding(Encoding::WINDOWS_1252).encode(Encoding::UTF_8)
+          raise EncodingError if list.match?(UTF8_READ_AS_WINDOWS_1252)
+        end
 
         list.delete_prefix("\uFEFF")
+      rescue EncodingError
+        raise ArgumentError, "the list is neither in UTF-8 nor in Windows-1252: save it as CSV UTF-8"
       end
       private_class_method :utf8
 

@@ -78,6 +78,15 @@ RSpec.describe ProcedureTemplates::EaeIntegration::PrefillLink do
       expect(links.uniq.sole).to match([/identite_prenom=Zo%C3%A9/, nil, /identite_nom=Petit/])
     end
 
+    it "refuses a list in another encoding, or with a damaged byte, rather than misspell the names" do
+      mac_roman = "nom;prenom\nMartin;Fran\x8Dois\n".b
+      damaged = "nom;prenom\nMartin;Zoé\nPetit;L\xE9a\n".b
+
+      [mac_roman, damaged].each do |list|
+        expect { described_class.csv(procedure, list) }.to raise_error(ArgumentError, /neither in UTF-8 nor in Windows-1252/)
+      end
+    end
+
     it "names the line of a value it refuses" do
       list = "nom,recrutement\nMartin,Externe\nPetit,Extern\n"
 
