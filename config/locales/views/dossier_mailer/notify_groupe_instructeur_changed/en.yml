@@ -1,0 +1,6 @@
+en:
+  dossier_mailer:
+    notify_groupe_instructeur_changed:
+      subject: Application no. %{dossier_id} has changed team
+      body_html: "You were following application no. %{dossier_id} of the procedure <strong>%{libelle_demarche}</strong>. This application has changed team and is now assigned to a team you are not part of."
+      footer: Following this change, you no longer have access to this application.
