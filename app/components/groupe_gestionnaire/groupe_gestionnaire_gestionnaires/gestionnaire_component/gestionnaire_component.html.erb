@@ -1,0 +1,9 @@
+<tr id="<%= dom_id(@gestionnaire) %>">
+  <td><%= email %></td>
+  <td><%= created_at %></td>
+  <td><%= registration_state %></td>
+
+  <% if @is_gestionnaire %>
+    <td><%= remove_button %></td>
+  <% end %>
+</tr>
