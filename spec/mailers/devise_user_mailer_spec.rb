@@ -131,7 +131,7 @@ RSpec.describe DeviseUserMailer, type: :mailer do
 
       it 'is translated in en' do
         body = I18n.with_locale(:en) { described_class.email_changed(user, to: user.email).body.to_s }
-        expect(text_of(body)).to include("You can now connect with the email address #{user.email}")
+        expect(text_of(body)).to include("You can now sign in with the email address #{user.email}")
         expect(body).to have_link('contact form', href: contact_url)
       end
     end
