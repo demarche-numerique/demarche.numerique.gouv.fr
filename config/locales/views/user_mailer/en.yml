@@ -40,3 +40,7 @@ en:
       subject: Your account password has been changed
     account_reactivated:
       subject: Your account has been reactivated
+      reactivated_html: "Your %{application_name} account associated with the address <strong>%{email}</strong> has been reactivated by an administrator."
+      sign_in_again: You can now sign in again by clicking the button below.
+      sign_in: Sign in
+      questions: If you have any questions, please contact support.

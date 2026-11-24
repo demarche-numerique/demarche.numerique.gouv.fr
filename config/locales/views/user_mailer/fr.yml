@@ -40,3 +40,7 @@ fr:
       subject: Le mot de passe de votre compte a été modifié
     account_reactivated:
       subject: Votre compte a été réactivé
+      reactivated_html: "Votre compte %{application_name} associé à l’adresse <strong>%{email}</strong> a été réactivé par un administrateur."
+      sign_in_again: Vous pouvez désormais vous connecter à nouveau en cliquant sur le bouton ci-dessous.
+      sign_in: Se connecter
+      questions: Si vous avez des questions, veuillez contacter le support.
