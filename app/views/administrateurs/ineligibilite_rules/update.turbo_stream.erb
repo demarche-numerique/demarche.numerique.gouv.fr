@@ -1,7 +1,5 @@
-<% rendered = render @ineligibilite_rules_component %>
-
-<% if rendered.present? %>
-  <%= turbo_stream.replace dom_id(@procedure.draft_revision, :ineligibilite_rules), rendered %>
+<% if @ineligibilite_rules_component.render? %>
+  <%= turbo_stream.replace dom_id(@procedure.draft_revision, :ineligibilite_rules), @ineligibilite_rules_component %>
 <% else %>
   <%= turbo_stream.remove dom_id(@procedure.draft_revision, :ineligibilite_rules) %>
 <% end %>
