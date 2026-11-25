@@ -8,7 +8,7 @@ class Instructeurs::ProcedureSummaryComponent < ApplicationComponent
             :procedure_libelle_with_number,
             :procedure_badge,
             :external_link_attributes,
-            :new_tab_suffix,
+            :new_tab_link_attributes,
             to: :helpers
 
   attr_reader :procedure

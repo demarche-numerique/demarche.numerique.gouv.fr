@@ -22,7 +22,8 @@
       = t('views.confirmation.new.resent')
 
     %p.fr-text--sm.fr-text-mention--grey.fr-mt-3w
-      = t('views.users.sessions.link_sent.consult_help_page_html', href: t("links.common.faq.confirmer_compte_chaque_connexion_url"))
+      = t('views.users.sessions.link_sent.consult_help_page_html',
+        link: link_to(t('views.users.sessions.link_sent.consult_help_page_link'), t("links.common.faq.confirmer_compte_chaque_connexion_url"), **new_tab_link_attributes(t('views.users.sessions.link_sent.consult_help_page_link'))))
 
     %p.fr-text--sm.fr-text-mention--grey.fr-mt-3w.fr-mb-6w
       = t('views.users.shared.contact_us_if_any_trouble_html', href: contact_admin_url)

@@ -1,2 +1,2 @@
 - if dossier && dossier.attestation.present?
-  = link_to "#{t('views.users.dossiers.merci.download_attestation')} (PDF)", attestation_dossier_path(dossier), download: "Attestation", target: "_blank", rel: "noopener", class: 'fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-download-line'
+  = link_to "#{t('views.users.dossiers.merci.download_attestation')} (PDF)", attestation_dossier_path(dossier), download: "Attestation", class: 'fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-download-line', **new_tab_link_attributes("#{t('views.users.dossiers.merci.download_attestation')} (PDF)")

@@ -20,7 +20,7 @@ module Redcarpet
       }
 
       unless href.starts_with?('/')
-        html_options.merge!(title: new_tab_suffix(content), **external_link_attributes)
+        html_options.merge!(external_link_attributes(content))
       end
 
       content_tag(:a, content, html_options, false)

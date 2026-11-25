@@ -80,11 +80,11 @@
 
                     <ul class="fr-text--sm fr-mb-0">
                       <li>
-                        <%= t('.pre_rempli.notice_referentiel_html', link: link_to(t('.pre_rempli.notice_referentiel_link'), DOC_REFERENTIEL_URL, title: helpers.new_tab_suffix(t('.pre_rempli.notice_referentiel_link')), **helpers.external_link_attributes)) %>
+                        <%= t('.pre_rempli.notice_referentiel_html', link: link_to(t('.pre_rempli.notice_referentiel_link'), DOC_REFERENTIEL_URL, **helpers.external_link_attributes(t('.pre_rempli.notice_referentiel_link')))) %>
                       </li>
 
                       <li>
-                        <%= t('.pre_rempli.notice_prefill_html', link: link_to(t('.pre_rempli.notice_prefill_link'), DOC_PREFILL_URL, title: helpers.new_tab_suffix(t('.pre_rempli.notice_prefill_link')), **helpers.external_link_attributes)) %>
+                        <%= t('.pre_rempli.notice_prefill_html', link: link_to(t('.pre_rempli.notice_prefill_link'), DOC_PREFILL_URL, **helpers.external_link_attributes(t('.pre_rempli.notice_prefill_link')))) %>
                       </li>
                     </ul>
                   </div>

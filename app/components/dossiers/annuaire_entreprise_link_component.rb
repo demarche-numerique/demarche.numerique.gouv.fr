@@ -10,6 +10,6 @@ class Dossiers::AnnuaireEntrepriseLinkComponent < ApplicationComponent
   def call
     link_to t('.more_information'),
       helpers.annuaire_link(siret),
-      **helpers.external_link_attributes.merge(class: Array.wrap(extra_class_names).append('fr-link'))
+      **helpers.external_link_attributes(t('.more_information')).merge(class: Array.wrap(extra_class_names).append('fr-link'))
   end
 end

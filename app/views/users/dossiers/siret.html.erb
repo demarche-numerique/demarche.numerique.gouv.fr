@@ -37,7 +37,7 @@
 
       <div class="fr-fieldset__element">
         <p class="fr-text--sm">
-          <%= t('views.users.dossiers.identite.siret_help_html', annuaire_link: link_to('annuaire-entreprises.data.gouv.fr', annuaire_link, title: new_tab_suffix(t('views.users.dossiers.identite.annuaire_link_title')), **external_link_attributes)) %>
+          <%= t('views.users.dossiers.identite.siret_help_html', annuaire_link: link_to('annuaire-entreprises.data.gouv.fr', annuaire_link, **external_link_attributes(t('views.users.dossiers.identite.annuaire_link_title')))) %>
         </p>
       </div>
     </fieldset>

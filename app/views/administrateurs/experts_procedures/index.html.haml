@@ -14,8 +14,7 @@
       Pendant l’instruction d’un dossier, les instructeurs peuvent demander leur avis à un ou plusieurs experts.
       %p
         = link_to('Comment gérer les avis externes', t('.experts_doc.url'),
-          title: t('.experts_doc.title'),
-          **external_link_attributes)
+          **external_link_attributes(t('.experts_doc.title')))
 
   %fieldset.fr-fieldset
     .fr-fieldset__element

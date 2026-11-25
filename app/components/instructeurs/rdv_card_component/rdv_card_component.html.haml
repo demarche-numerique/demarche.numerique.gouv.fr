@@ -18,4 +18,4 @@
             = owner
         %p.fr-mb-0
           = t('.info_and_cancellation')
-          = link_to rdv_url, rdv_url, class: "fr-link", target: "_blank"
+          = link_to rdv_url, rdv_url, class: "fr-link", **helpers.external_link_attributes(rdv_url)

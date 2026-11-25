@@ -2,7 +2,7 @@
   - menu.with_button_inner_html do
     Télécharger
   - menu.with_item do
-    = link_to telecharger_pjs_instructeur_dossier_path(dossier.procedure, dossier), target: "_blank", rel: "noopener", class: "menu-item menu-link", role: 'menuitem'  do
+    = link_to telecharger_pjs_instructeur_dossier_path(dossier.procedure, dossier), class: "menu-item menu-link", role: 'menuitem', **new_tab_link_attributes("Télécharger le dossier et toutes ses pièces jointes") do
       Télécharger le dossier et toutes ses pièces jointes
 
 
@@ -11,7 +11,7 @@
     Imprimer
 
   - menu.with_item do
-    = link_to print_instructeur_dossier_path(dossier.procedure, dossier), role: 'menuitem', target: "_blank", rel: "noopener", class: "menu-item menu-link" do
+    = link_to print_instructeur_dossier_path(dossier.procedure, dossier), role: 'menuitem', class: "menu-item menu-link", **new_tab_link_attributes("Imprimer tout le dossier") do
       Tout le dossier
 
   - menu.with_item do
@@ -19,10 +19,10 @@
       Uniquement cet onglet
 
   - menu.with_item do
-    = link_to instructeur_dossier_path(dossier.procedure, dossier, statut: params[:statut], format: :pdf), target: "_blank", rel: "noopener", class: "menu-item menu-link", role: 'menuitem' do
+    = link_to instructeur_dossier_path(dossier.procedure, dossier, statut: params[:statut], format: :pdf), class: "menu-item menu-link", role: 'menuitem', **new_tab_link_attributes("Export PDF") do
       Export PDF
 
   - if dossier.geo_data?
     - menu.with_item do
-      = link_to  geo_data_instructeur_dossier_path(dossier.procedure, dossier), target: "_blank", rel: "noopener", class: "menu-item menu-link", role: 'menuitem' do
+      = link_to  geo_data_instructeur_dossier_path(dossier.procedure, dossier), class: "menu-item menu-link", role: 'menuitem', **new_tab_link_attributes("Export GeoJSON") do
         Export GeoJSON

@@ -1,5 +1,5 @@
 <% if field.data.present? %>
-  <%= link_to commencer_path(field.resource.path), commencer_path(field.resource.path), target: '_blank', rel: 'noopener' %>
+  <%= link_to commencer_path(field.resource.path), commencer_path(field.resource.path), **new_tab_link_attributes(commencer_path(field.resource.path)) %>
 <% else %>
   Plus en ligne
 <% end %>

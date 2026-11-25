@@ -9,9 +9,11 @@
     .fr-col-12.fr-col-offset-md-2.fr-col-md-8
       %h1= t('administrateurs.procedures.closing_notification.page_title')
       - if @procedure.closing_reason_other?
-        %h2.fr-h5= t('administrateurs.procedures.closing_notification.page_subtitle_html', closing_path: closing_details_path(@procedure.path))
+        %h2.fr-h5= t('administrateurs.procedures.closing_notification.page_subtitle_html',
+          link: link_to(t('administrateurs.procedures.closing_notification.closing_page_link'), closing_details_path(@procedure.path), **new_tab_link_attributes(t('administrateurs.procedures.closing_notification.closing_page_link'))))
       - else
-        %h2.fr-h5= t('administrateurs.procedures.closing_notification.page_subtitle_with_redirection_html', redirection_path: commencer_path(@procedure.replaced_by_procedure.path))
+        %h2.fr-h5= t('administrateurs.procedures.closing_notification.page_subtitle_with_redirection_html',
+          link: link_to(t('administrateurs.procedures.closing_notification.redirection_link'), commencer_path(@procedure.replaced_by_procedure.path), **new_tab_link_attributes(t('administrateurs.procedures.closing_notification.redirection_link'))))
 
       = render Dsfr::AlertComponent.new(state: :info, size: :sm, extra_class_names: 'fr-mb-2w') do |c|
         - c.with_body do

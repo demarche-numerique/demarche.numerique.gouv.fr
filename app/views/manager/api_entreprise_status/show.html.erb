@@ -7,7 +7,7 @@
 <header class="main-content__header">
   <h1 class="main-content__page-title"><%= content_for(:title) %></h1>
 
-  <%= link_to "État officiel sur status.entreprise.api.gouv.fr", APIEntreprise::Status::STATUS_PAGE_URL, target: "_blank", rel: "noopener" %>
+  <%= link_to "État officiel sur status.entreprise.api.gouv.fr", APIEntreprise::Status::STATUS_PAGE_URL, **external_link_attributes("État officiel sur status.entreprise.api.gouv.fr") %>
 </header>
 
 <section class="main-content__body api-status">

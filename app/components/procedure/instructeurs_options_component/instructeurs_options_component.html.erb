@@ -44,7 +44,7 @@
   </p>
   <p class="fr-alert fr-alert--info fr-mb-3w" aria-hidden="true">
     <%= t('.routage_doc.learn_more') %>
-    <%= link_to(t('.routage_doc.link_text'), ROUTAGE_URL, title: t('.routage_doc.title'), **helpers.external_link_attributes) %>
+    <%= link_to(t('.routage_doc.link_text'), ROUTAGE_URL, **helpers.external_link_attributes(t('.routage_doc.title'))) %>
   </p>
   <% if !@procedure.routing_enabled? %>
     <p class="fr-mt-2w">
@@ -111,7 +111,7 @@
     <% c.with_body do %>
       <p>
         <%= t('.anonymisation_callout.content_part_1') %>
-        <%= link_to t('.anonymisation_callout.link_text'), t('.anonymisation_callout.link_url'), title: helpers.new_tab_suffix(t('.anonymisation_callout.link_text')), **helpers.external_link_attributes %>
+        <%= link_to t('.anonymisation_callout.link_text'), t('.anonymisation_callout.link_url'), **helpers.external_link_attributes(t('.anonymisation_callout.link_text')) %>
       </p>
 
       <p>

@@ -11,7 +11,7 @@
   %h1.fr-h4= t('instructeurs.dossiers.header.banner.export_templates')
   = render Dsfr::AlertComponent.new(state: :info) do |c|
     - c.with_body do
-      %p= t('.export_template_list_description_html', doc_template_url: DOC_EXPORT_TEMPLATE_URL)
+      %p= t('.export_template_list_description_html', link: link_to(t('.export_template_doc_link'), DOC_EXPORT_TEMPLATE_URL, **external_link_attributes(t('.export_template_doc_link'))))
 
   .fr-mt-5w
     = link_to t('.new_zip_export_template'), new_instructeur_procedure_export_template_path(@procedure, kind: 'zip'), class: "fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-add-line fr-mr-1w"

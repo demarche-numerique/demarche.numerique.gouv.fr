@@ -19,7 +19,7 @@
         </p>
         <p>
           En savoir plus sur la
-          <a href="https://doc.demarches-simplifiees.fr/tutoriels/tutoriel-instructeur#la-prise-de-rendez-vous" target="_blank">prise de rendez-vous</a>.
+          <%= link_to "prise de rendez-vous", "https://doc.demarches-simplifiees.fr/tutoriels/tutoriel-instructeur#la-prise-de-rendez-vous", **external_link_attributes("prise de rendez-vous") %>.
         </p>
       <% end %>
 
@@ -51,7 +51,7 @@
             sur le site RDV Service Public.
           </p>
           <p>
-            <%= link_to "Voir mon agenda dans RDV Service Public", RdvService.rdv_sp_agenda_url, class: 'fr-btn', target: '_blank' %>
+            <%= link_to "Voir mon agenda dans RDV Service Public", RdvService.rdv_sp_agenda_url, class: 'fr-btn', **external_link_attributes("Voir mon agenda dans RDV Service Public") %>
           </p>
         <% else %>
           <div class="fr-mb-2w">

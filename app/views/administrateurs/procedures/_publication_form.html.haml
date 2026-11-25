@@ -21,16 +21,14 @@
         - c.with_body do
           %p.fr-mb-2w
             = t('.dpd_part_1')
-            %a{ href:'https://www.cnil.fr/fr/protection-des-donnees-les-bons-reflexes', target:'_blank' }
-              https://www.cnil.fr/fr/protection-des-donnees-les-bons-reflexes
+            = link_to 'https://www.cnil.fr/fr/protection-des-donnees-les-bons-reflexes', 'https://www.cnil.fr/fr/protection-des-donnees-les-bons-reflexes', **external_link_attributes('https://www.cnil.fr/fr/protection-des-donnees-les-bons-reflexes')
 
           %p.fr-mb-2w
             = t('.dpd_part_2')
 
           %p.fr-mb-2w
             = t('.dpd_part_3')
-            %a{ href:'https://www.cnil.fr/fr/RGDP-le-registre-des-activites-de-traitement', target:'_blank' }
-              https://www.cnil.fr/fr/RGDP-le-registre-des-activites-de-traitement
+            = link_to 'https://www.cnil.fr/fr/RGDP-le-registre-des-activites-de-traitement', 'https://www.cnil.fr/fr/RGDP-le-registre-des-activites-de-traitement', **external_link_attributes('https://www.cnil.fr/fr/RGDP-le-registre-des-activites-de-traitement')
 
           %p.fr-mb-2w
             = t('.dpd_part_4')
