@@ -111,6 +111,22 @@ describe 'staying signed in', type: :request do
     end
   end
 
+  context 'a session whose cookie still holds the choice' do
+    it 'moves it to the row, and keeps a cookie that outlives the browser' do
+      post_user_session(usager, remember_me: false)
+
+      Warden.on_next_request do |proxy|
+        SessionRegistrableConcern.warden_session(proxy, :user)[SessionRegistrableConcern::PERSISTENT_KEY] = true
+      end
+
+      get profil_path
+
+      expect(usager.user_sessions.sole.persistent).to be(true)
+      expect(session['warden.user.user.session']).not_to have_key(SessionRegistrableConcern::PERSISTENT_KEY)
+      expect(session_cookie_expiry).to be_present
+    end
+  end
+
   # One duration for everyone. What differs per role is the row, and the row
   # is what actually cuts.
   context 'an agent' do

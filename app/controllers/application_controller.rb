@@ -216,7 +216,7 @@ class ApplicationController < ActionController::Base
     if user_signed_in?
       # The sign out drops "stay signed in" with the session, and providers never ask.
       # Not for another account: on a shared computer, it never made that choice.
-      user.remember_me = SessionRegistrableConcern.persistent?(warden, :user) if current_user == user
+      user.remember_me = Current.user_session.persistent? if current_user == user
       sign_out(:user)
       # Set by the fetch of the account just signed out, which the sign out leaves.
       request.session_options[:expire_after] = nil

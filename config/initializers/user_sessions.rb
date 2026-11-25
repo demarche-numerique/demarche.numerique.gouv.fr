@@ -41,27 +41,6 @@ Warden::Manager.after_set_user do |record, warden, options|
   end
 end
 
-# Not gated: "stay signed in" is not part of the registry, and gating it would
-# take the persistent cookie away from everyone while the flag is off.
-Warden::Manager.after_set_user do |record, warden, options|
-  next unless record.is_a?(SessionRegistrableConcern)
-
-  case options[:event]
-  in :authentication | :set_user
-    SessionRegistrableConcern.remember!(record, warden, options[:scope])
-  in :fetch
-    # The hook above may have just logged this scope out: stamping then would
-    # resurrect the key Warden deleted and refresh a session that failed its check.
-    next if SessionRegistrableConcern.signed_out?(warden, options[:scope])
-
-    # Here rather than beside the check that reads it, because that check is
-    # gated: closing the flag would let `last_seen_on` go stale, and opening it
-    # again would sign every active user out at once.
-    SessionRegistrableConcern.touch_last_seen!(SessionRegistrableConcern.warden_session(warden, options[:scope]))
-    SessionRegistrableConcern.persist_cookie!(warden, options[:scope])
-  end
-end
-
 # Not gated: a row left alive by a sign out would make the session list lie.
 Warden::Manager.before_logout do |record, warden, options|
   next unless record.is_a?(SessionRegistrableConcern)

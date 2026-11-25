@@ -140,7 +140,7 @@ describe FranceConnectController, type: :controller do
             it 'keeps the choice to stay signed in' do
               subject
 
-              expect(warden.session(:user)[SessionRegistrableConcern::PERSISTENT_KEY]).to be(true)
+              expect(fc_user.user_sessions.find_by!(login_method: :france_connect).persistent).to be(true)
             end
           end
 
@@ -155,7 +155,7 @@ describe FranceConnectController, type: :controller do
               subject
 
               expect(controller.current_user).to eq(fc_user)
-              expect(warden.session(:user)[SessionRegistrableConcern::PERSISTENT_KEY]).to be_nil
+              expect(fc_user.user_sessions.sole.persistent).to be(false)
             end
           end
 

@@ -74,4 +74,16 @@ class UserSession < ApplicationRecord
 
     :expired if expires_at.present? && expires_at.past?
   end
+
+  # A date and not an instant: the window is counted in weeks. Nil on a row
+  # opened before it was recorded whose cookie had no date to move over either:
+  # unused since before the cookie carried one, at the end of September.
+  def inactive?
+    last_seen_on.nil? || last_seen_on < SessionRegistrableConcern::INACTIVITY_WINDOW.ago.to_date
+  end
+
+  # Written only when the day turns: one UPDATE a day for each session in use.
+  def touch_last_seen!
+    update_column(:last_seen_on, Date.current) if last_seen_on != Date.current
+  end
 end

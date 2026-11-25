@@ -2,7 +2,7 @@
 
 describe Users::SessionsController, type: :controller do
   def persistent_session?
-    session.dig('warden.user.user.session', SessionRegistrableConcern::PERSISTENT_KEY)
+    UserSession.find(session.dig('warden.user.user.session', SessionRegistrableConcern::SESSION_KEY)).persistent
   end
 
   let(:email) { 'unique@plop.com' }

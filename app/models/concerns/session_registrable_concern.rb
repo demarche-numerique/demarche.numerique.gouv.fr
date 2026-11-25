@@ -10,10 +10,10 @@ module SessionRegistrableConcern
   # show an usager's reason on the super admin sign in page.
   END_REASON_KEY_PREFIX = 'ds.session_end_reason.'
 
+  # Where the cookie kept the last visit and "stay signed in" before the row did.
+  # Read only to move them over: unused once every cookie that carried them has
+  # been away longer than the inactivity window.
   LAST_SEEN_KEY = 'last_seen_on'
-
-  # A decision, not a parameter: the checkbox only exists on the sign in
-  # request, and the expiry has to be set again on every response.
   PERSISTENT_KEY = 'persistent'
 
   # The same for every role, and not the only bound: a shorter absolute
@@ -49,11 +49,12 @@ module SessionRegistrableConcern
     user_session = record.transaction do
       drop_former_session!(outgoing)
 
-      record.open_user_session!(user_agent, remote_ip, login_method:, france_connect_information:, continuing:)
+      record.open_user_session!(user_agent, remote_ip, login_method:, france_connect_information:, continuing:, persistent: stays_signed_in?(record, outgoing))
     end
 
     # in cookie
-    warden.session(scope).merge!(LAST_SEEN_KEY => Date.current.iso8601, SESSION_KEY => user_session.id)
+    warden.session(scope)[SESSION_KEY] = user_session.id
+    persist_cookie!(warden, user_session)
 
     # in current request, the usager's only: the same request loads the super admin too
     Current.user_session = user_session if scope == :user
@@ -76,50 +77,33 @@ module SessionRegistrableConcern
     UserSession.where(id: session_id).revoke_all!(:new_session) if session_id.present?
   end
 
-  # Read from the signed cookie, so the client cannot push the date forward.
-  # A date and not an instant: the window is counted in weeks.
-  def self.inactive?(session)
-    last_seen = session[LAST_SEEN_KEY]
-    return false if last_seen.blank?
-
-    Date.parse(last_seen) < INACTIVITY_WINDOW.ago.to_date
-  rescue Date::Error
-    false
-  end
-
   # "Stay signed in" is an expiry on the session cookie, granting nothing on its
-  # own. Written only when someone said something: a programmatic `sign_in`
-  # leaves the accessor nil, and must not silently take the choice back.
-  def self.remember!(record, warden, scope)
+  # own. Said on the sign in form only: a programmatic `sign_in` leaves the
+  # accessor nil, and keeps the choice of the session it replaces -- when that
+  # session is the account's own.
+  def self.stays_signed_in?(record, outgoing)
     remember_me = record.try(:remember_me)
+    return remember_me if !remember_me.nil?
 
-    warden.session(scope)[PERSISTENT_KEY] = !!remember_me if !remember_me.nil?
-
-    persist_cookie!(warden, scope)
+    outgoing.present? && record.user_sessions.exists?(id: outgoing, persistent: true)
   end
-
-  def self.persistent?(warden, scope) = !!warden_session(warden, scope)[PERSISTENT_KEY]
 
   # Rails rewrites the session cookie on every response (random ciphertext), and
   # a rewrite carrying no expiry turns a persistent cookie back into a session
   # one -- so the option has to be set again every time.
-  def self.persist_cookie!(warden, scope)
-    return if !persistent?(warden, scope)
+  def self.persist_cookie!(warden, user_session)
+    return if !user_session.persistent?
 
     warden.request.session_options[:expire_after] = SESSION_COOKIE_LIFETIME
   end
 
-  # Written only when the day turns, so the cookie is left alone the rest of
-  # the time.
-  def self.touch_last_seen!(session)
-    today = Date.current.iso8601
+  def self.move_cookie_stamps!(user_session, session)
+    stamps = {
+      persistent: session.delete(PERSISTENT_KEY),
+      last_seen_on: session.delete(LAST_SEEN_KEY),
+    }.compact
 
-    session[LAST_SEEN_KEY] = today if session[LAST_SEEN_KEY] != today
-  end
-
-  # Whether `continue_session!` has just dropped this scope.
-  def self.signed_out?(warden, scope)
-    warden.raw_session["warden.user.#{scope}.key"].nil?
+    user_session.update_columns(stamps) if stamps.any?
   end
 
   # Read back from the cookie on every later request, so the row it names has to
@@ -130,6 +114,7 @@ module SessionRegistrableConcern
     session_id = session[SESSION_KEY]
 
     user_session = UserSession.find_by(id: session_id, sessionable: record) if session_id.present?
+    move_cookie_stamps!(user_session, session) if user_session
 
     # The row first: a session both revoked and stale must say it was revoked,
     # which is the message the user needs.
@@ -140,11 +125,13 @@ module SessionRegistrableConcern
         :expired
       elsif user_session.nil? || user_session.unusable?
         user_session&.unusable_reason || :session_revoked
-      elsif inactive?(session)
+      elsif user_session.inactive?
         :inactivity
       end
 
     if reason.nil?
+      user_session.touch_last_seen!
+      persist_cookie!(warden, user_session)
       Current.user_session = user_session if scope == :user
       return
     end
@@ -178,16 +165,18 @@ module SessionRegistrableConcern
 
   # The raw user-agent and not a label: deriving it at display time means a
   # better parser later also improves old rows. The address is never rewritten
-  # afterwards -- reading a row on every request must stay a read.
+  # afterwards.
   #
   # A row `continuing:` another one keeps its start and deadline, which the role
   # deadlines are counted from.
-  def open_user_session!(user_agent, ip_address = nil, login_method: nil, france_connect_information: nil, continuing: nil)
+  def open_user_session!(user_agent, ip_address = nil, login_method: nil, france_connect_information: nil, continuing: nil, persistent: false)
     user_sessions.create!(
       user_agent: sanitized_user_agent(user_agent),
       ip_address:,
       login_method:,
       france_connect_information:,
+      persistent:,
+      last_seen_on: Date.current,
       created_at: continuing&.created_at,
       expires_at: continuing ? continuing.expires_at : session_max_lifetime&.from_now
     )
