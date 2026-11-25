@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+# The card of a type de champ in the editor: its form, its condition and what
+# moves or removes it. The list item around it is NodeComponent.
 class TypesDeChampEditor::ChampComponent < ApplicationComponent
   attr_reader :type_de_champ
 
@@ -47,20 +49,6 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
 
   def type_de_champ_path
     admin_procedure_type_de_champ_path(procedure, type_de_champ.stable_id)
-  end
-
-  def html_options
-    {
-      id: dom_id(type_de_champ, :type_de_champ_editor),
-      class: class_names('type-header-section': type_de_champ.header_section?,
-        first: index.zero?,
-        last: index == siblings.size - 1),
-      data: {
-        controller: 'type-de-champ-editor',
-        type_de_champ_editor_move_up_url_value: move_up_admin_procedure_type_de_champ_path(procedure, type_de_champ.stable_id),
-        type_de_champ_editor_move_down_url_value: move_down_admin_procedure_type_de_champ_path(procedure, type_de_champ.stable_id),
-      },
-    }
   end
 
   def form_options

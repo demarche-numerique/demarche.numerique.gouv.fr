@@ -1,520 +1,514 @@
-<%= tag.li(**html_options.merge(class: ["type-de-champ flex column justify-start fr-mb-5v", html_options[:class]])) do %>
-  <div
-    class="type-de-champ-container"
-    id="<%= dom_id(type_de_champ, :editor_error) %>"
-  >
-    <% if @errors.present? %>
-      <div class="types-de-champ-errors"><%= @errors %></div>
-    <% end %>
+<div
+  class="type-de-champ-container"
+  id="<%= dom_id(type_de_champ, :editor_error) %>"
+>
+  <% if @errors.present? %>
+    <div class="types-de-champ-errors"><%= @errors %></div>
+  <% end %>
 
-    <div class="flex justify-start section head">
-      <%= form_for(type_de_champ, form_options) do |form| %>
-        <div class="flex justify-start flex-gap fr-mb-4w">
-          <div class="flex justify-start width-33">
-            <div class="cell flex justify-start column flex-grow">
-              <%= render TypesDeChampEditor::TypeDeChampSelectorComponent.new(type_de_champ:, form:) %>
+  <div class="flex justify-start section head">
+    <%= form_for(type_de_champ, form_options) do |form| %>
+      <div class="flex justify-start flex-gap fr-mb-4w">
+        <div class="flex justify-start width-33">
+          <div class="cell flex justify-start column flex-grow">
+            <%= render TypesDeChampEditor::TypeDeChampSelectorComponent.new(type_de_champ:, form:) %>
 
-              <% if type_de_champ.siret? || type_de_champ.communes? || type_de_champ.departements? || type_de_champ.address? || type_de_champ.epci? %>
-                <div class="cell fr-mt-1w">
-                  <%= button_tag(t(".info_remontees_button"), type: :button, class: "fr-btn fr-icon-info-line fr-btn--icon-left fr-btn--tertiary-no-outline fr-btn--sm",
-                    data: { "fr-opened" => "false", "turbo-frame" => "api-champ-columns", action: "lazy-modal#load" },
-                    src: api_champ_columns_admin_procedure_path(id: procedure.id, stable_id: type_de_champ.stable_id),
-                    "aria-controls" => "api-champ-columns-modal",
-                    "aria-haspopup" => "dialog") %>
-                </div>
+            <% if type_de_champ.siret? || type_de_champ.communes? || type_de_champ.departements? || type_de_champ.address? || type_de_champ.epci? %>
+              <div class="cell fr-mt-1w">
+                <%= button_tag(t(".info_remontees_button"), type: :button, class: "fr-btn fr-icon-info-line fr-btn--icon-left fr-btn--tertiary-no-outline fr-btn--sm",
+                  data: { "fr-opened" => "false", "turbo-frame" => "api-champ-columns", action: "lazy-modal#load" },
+                  src: api_champ_columns_admin_procedure_path(id: procedure.id, stable_id: type_de_champ.stable_id),
+                  "aria-controls" => "api-champ-columns-modal",
+                  "aria-haspopup" => "dialog") %>
+              </div>
+            <% end %>
+
+            <% if type_de_champ.communes? %>
+              <div class="cell fr-mt-1w">
+                <%= render Dsfr::NoticeComponent.new(state: "warning", closable: false) do |c| %>
+                  <% c.with_title { t(".communes_warning_title") } %>
+                  <% c.with_desc { t(".communes_warning_desc_html") } %>
+
+                  <% c.with_link do %>
+                    <%= button_tag(t(".communes_info_link"), type: :button, class: "fr-pl-0 fr-link fr-notice__link fr-text-default--warning  fr-mt-1w",
+                      data: { "fr-opened" => "false", "turbo-frame" => "api-champ-columns", action: "lazy-modal#load", href: true },
+                      src: commune_info_admin_procedure_path(id: procedure.id, stable_id: type_de_champ.stable_id),
+                      "aria-controls" => "api-champ-columns-modal",
+                      "aria-haspopup" => "dialog") %>
+                  <% end %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="flex column justify-start width-66">
+          <div class="cell">
+            <div class="flex align-center">
+              <% if libelle_configurable? %>
+                <%= form.label :libelle, type_de_champ.libelle_optionnal? ? t(".libelle_label_optionnal") : t(".libelle_label"), class: "flex-grow", for: dom_id(type_de_champ, :libelle) %>
               <% end %>
 
-              <% if type_de_champ.communes? %>
-                <div class="cell fr-mt-1w">
-                  <%= render Dsfr::NoticeComponent.new(state: "warning", closable: false) do |c| %>
-                    <% c.with_title { t(".communes_warning_title") } %>
-                    <% c.with_desc { t(".communes_warning_desc_html") } %>
-
-                    <% c.with_link do %>
-                      <%= button_tag(t(".communes_info_link"), type: :button, class: "fr-pl-0 fr-link fr-notice__link fr-text-default--warning  fr-mt-1w",
-                        data: { "fr-opened" => "false", "turbo-frame" => "api-champ-columns", action: "lazy-modal#load", href: true },
-                        src: commune_info_admin_procedure_path(id: procedure.id, stable_id: type_de_champ.stable_id),
-                        "aria-controls" => "api-champ-columns-modal",
-                        "aria-haspopup" => "dialog") %>
-                    <% end %>
-                  <% end %>
+              <% if mandatory_configurable? %>
+                <div class="flex align-center">
+                  <%= form.check_box :mandatory, class: 'small-margin small', id: dom_id(type_de_champ, :mandatory) %>
+                  <%= form.label :mandatory, t(".mandatory_label"), for: dom_id(type_de_champ, :mandatory) %>
                 </div>
               <% end %>
             </div>
+
+            <% if libelle_configurable? %>
+              <%= form.text_field :libelle, class: 'fr-input small-margin small width-100', id: dom_id(type_de_champ, :libelle), data: input_autofocus %>
+            <% end %>
           </div>
 
-          <div class="flex column justify-start width-66">
-            <div class="cell">
-              <div class="flex align-center">
-                <% if libelle_configurable? %>
-                  <%= form.label :libelle, type_de_champ.libelle_optionnal? ? t(".libelle_label_optionnal") : t(".libelle_label"), class: "flex-grow", for: dom_id(type_de_champ, :libelle) %>
-                <% end %>
+          <% if description_configurable? %>
+            <div class="cell fr-mt-1w">
+              <%= form.label :description, t(".description_label"), for: dom_id(type_de_champ, :description) %>
+              <%= form.text_area :description, class: 'fr-input small-margin small width-100 resize-y', rows: 3, id: dom_id(type_de_champ, :description) %>
+            </div>
+          <% end %>
 
-                <% if mandatory_configurable? %>
-                  <div class="flex align-center">
-                    <%= form.check_box :mandatory, class: 'small-margin small', id: dom_id(type_de_champ, :mandatory) %>
-                    <%= form.label :mandatory, t(".mandatory_label"), for: dom_id(type_de_champ, :mandatory) %>
+          <% if type_de_champ.pre_rempli? %>
+            <div class="cell fr-mt-2w">
+              <div class="fr-notice fr-notice--info">
+                <div class="fr-container">
+                  <div class="fr-notice__body">
+                    <p class="fr-notice__title">
+                      <%= t('.pre_rempli.notice_title') %>
+                    </p>
+
+                    <ul class="fr-text--sm fr-mb-0">
+                      <li>
+                        <%= t('.pre_rempli.notice_referentiel_html', link: link_to(t('.pre_rempli.notice_referentiel_link'), DOC_REFERENTIEL_URL, title: helpers.new_tab_suffix(t('.pre_rempli.notice_referentiel_link')), **helpers.external_link_attributes)) %>
+                      </li>
+
+                      <li>
+                        <%= t('.pre_rempli.notice_prefill_html', link: link_to(t('.pre_rempli.notice_prefill_link'), DOC_PREFILL_URL, title: helpers.new_tab_suffix(t('.pre_rempli.notice_prefill_link')), **helpers.external_link_attributes)) %>
+                      </li>
+                    </ul>
                   </div>
-                <% end %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+
+          <% if type_de_champ.header_section? %>
+            <p class="fr-text--sm"><%= t(".header_section_hint") %></p>
+            <div class="cell fr-mt-1w">
+              <%= render TypesDeChampEditor::HeaderSectionComponent.new(form:, type_de_champ:) %>
+            </div>
+          <% end %>
+
+          <% if type_de_champ.textarea? %>
+            <div class="cell fr-mt-1w">
+              <%= form.label :character_limit, t(".character_limit_label"), for: dom_id(type_de_champ, :character_limit) %>
+
+              <%= form.select :character_limit, options_for_character_limit, {}, { id: dom_id(type_de_champ, :character_limit), class: 'fr-select' } %>
+            </div>
+          <% end %>
+
+          <% if type_de_champ.explication? %>
+            <div class="cell fr-mt-2w">
+              <div class="fr-toggle fr-toggle--no-label">
+                <%= form.check_box :collapsible_explanation_enabled, id: dom_id(type_de_champ, :collapsible_explanation_enabled), class: 'fr-toggle__input' %>
+                <%= form.label :collapsible_explanation_enabled, t(".collapsible_explanation_label"), for: dom_id(type_de_champ, :collapsible_explanation_enabled), class: "fr-toggle__label fr-label" %>
               </div>
 
-              <% if libelle_configurable? %>
-                <%= form.text_field :libelle, class: 'fr-input small-margin small width-100', id: dom_id(type_de_champ, :libelle), data: input_autofocus %>
+              <% if form.object.collapsible_explanation_enabled? %>
+                <div class="cell fr-mt-1w">
+                  <%= form.label :collapsible_explanation_text, t(".collapsible_explanation_text_label"), for: dom_id(type_de_champ, :collapsible_explanation_text) %>
+
+                  <%= form.text_area :collapsible_explanation_text, class: "fr-input small-margin small", id: dom_id(type_de_champ, :collapsible_explanation_text) %>
+                </div>
               <% end %>
             </div>
+            <div class="cell fr-mt-1w">
+              <%= form.label :notice_explicative, t(".notice_explicative_label"), for: dom_id(type_de_champ, :notice_explicative) %>
+              <%= render Attachment::FileFieldComponent.new(context: Attachment::Context.new(**notice_explicative_options), drop_zone: :none) %>
+            </div>
+          <% end %>
 
-            <% if description_configurable? %>
-              <div class="cell fr-mt-1w">
-                <%= form.label :description, t(".description_label"), for: dom_id(type_de_champ, :description) %>
-                <%= form.text_area :description, class: 'fr-input small-margin small width-100 resize-y', rows: 3, id: dom_id(type_de_champ, :description) %>
-              </div>
-            <% end %>
+          <%= render TypesDeChampEditor::ChampPieceJustificativeComponent.new(type_de_champ:, form:, procedure:) %>
 
-            <% if type_de_champ.pre_rempli? %>
-              <div class="cell fr-mt-2w">
-                <div class="fr-notice fr-notice--info">
-                  <div class="fr-container">
-                    <div class="fr-notice__body">
-                      <p class="fr-notice__title">
-                        <%= t('.pre_rempli.notice_title') %>
-                      </p>
+          <% if type_de_champ.integer_number? || type_de_champ.decimal_number? %>
+            <div class="border-left-dark fr-mt-2w">
+              <div class="cell">
+                <legend class="fake-label">
+                  <%= t(".format_accepted_legend") %>
+                </legend>
 
-                      <ul class="fr-text--sm fr-mb-0">
-                        <li>
-                          <%= t('.pre_rempli.notice_referentiel_html', link: link_to(t('.pre_rempli.notice_referentiel_link'), DOC_REFERENTIEL_URL, title: helpers.new_tab_suffix(t('.pre_rempli.notice_referentiel_link')), **helpers.external_link_attributes)) %>
-                        </li>
+                <% numeric_type_champ_hint_id = dom_id(type_de_champ, :numeric_type_champ_hint) %>
+                <% type_champ_locked = type_de_champ.type_champ_locked? %>
 
-                        <li>
-                          <%= t('.pre_rempli.notice_prefill_html', link: link_to(t('.pre_rempli.notice_prefill_link'), DOC_PREFILL_URL, title: helpers.new_tab_suffix(t('.pre_rempli.notice_prefill_link')), **helpers.external_link_attributes)) %>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <% end %>
-
-            <% if type_de_champ.header_section? %>
-              <p class="fr-text--sm"><%= t(".header_section_hint") %></p>
-              <div class="cell fr-mt-1w">
-                <%= render TypesDeChampEditor::HeaderSectionComponent.new(form:, type_de_champ:) %>
-              </div>
-            <% end %>
-
-            <% if type_de_champ.textarea? %>
-              <div class="cell fr-mt-1w">
-                <%= form.label :character_limit, t(".character_limit_label"), for: dom_id(type_de_champ, :character_limit) %>
-
-                <%= form.select :character_limit, options_for_character_limit, {}, { id: dom_id(type_de_champ, :character_limit), class: 'fr-select' } %>
-              </div>
-            <% end %>
-
-            <% if type_de_champ.explication? %>
-              <div class="cell fr-mt-2w">
                 <div class="fr-toggle fr-toggle--no-label">
-                  <%= form.check_box :collapsible_explanation_enabled, id: dom_id(type_de_champ, :collapsible_explanation_enabled), class: 'fr-toggle__input' %>
-                  <%= form.label :collapsible_explanation_enabled, t(".collapsible_explanation_label"), for: dom_id(type_de_champ, :collapsible_explanation_enabled), class: "fr-toggle__label fr-label" %>
-                </div>
+                  <%= form.check_box :numeric_type_champ, { id: dom_id(type_de_champ, :numeric_type_champ), class: 'fr-toggle__input', disabled: type_champ_locked, 'aria-describedby': (numeric_type_champ_hint_id if type_champ_locked) }, 'decimal_number', 'integer_number' %>
+                  <%= form.label :numeric_type_champ, t(".numeric_type_champ_label"), for: dom_id(type_de_champ, :numeric_type_champ), class: "fr-toggle__label fr-label" %>
 
-                <% if form.object.collapsible_explanation_enabled? %>
-                  <div class="cell fr-mt-1w">
-                    <%= form.label :collapsible_explanation_text, t(".collapsible_explanation_text_label"), for: dom_id(type_de_champ, :collapsible_explanation_text) %>
-
-                    <%= form.text_area :collapsible_explanation_text, class: "fr-input small-margin small", id: dom_id(type_de_champ, :collapsible_explanation_text) %>
-                  </div>
-                <% end %>
-              </div>
-              <div class="cell fr-mt-1w">
-                <%= form.label :notice_explicative, t(".notice_explicative_label"), for: dom_id(type_de_champ, :notice_explicative) %>
-                <%= render Attachment::FileFieldComponent.new(context: Attachment::Context.new(**notice_explicative_options), drop_zone: :none) %>
-              </div>
-            <% end %>
-
-            <%= render TypesDeChampEditor::ChampPieceJustificativeComponent.new(type_de_champ:, form:, procedure:) %>
-
-            <% if type_de_champ.integer_number? || type_de_champ.decimal_number? %>
-              <div class="border-left-dark fr-mt-2w">
-                <div class="cell">
-                  <legend class="fake-label">
-                    <%= t(".format_accepted_legend") %>
-                  </legend>
-
-                  <% numeric_type_champ_hint_id = dom_id(type_de_champ, :numeric_type_champ_hint) %>
-                  <% type_champ_locked = type_de_champ.type_champ_locked? %>
-
-                  <div class="fr-toggle fr-toggle--no-label">
-                    <%= form.check_box :numeric_type_champ, { id: dom_id(type_de_champ, :numeric_type_champ), class: 'fr-toggle__input', disabled: type_champ_locked, 'aria-describedby': (numeric_type_champ_hint_id if type_champ_locked) }, 'decimal_number', 'integer_number' %>
-                    <%= form.label :numeric_type_champ, t(".numeric_type_champ_label"), for: dom_id(type_de_champ, :numeric_type_champ), class: "fr-toggle__label fr-label" %>
-
-                    <% if type_champ_locked %>
-                      <p
-                        class="fr-hint-text"
-                        id="<%= numeric_type_champ_hint_id %>"
-                      >
-                        <%= type_de_champ.type_change_locked_message %>
-                      </p>
-                    <% end %>
-                  </div>
-
-                  <div class="cell fr-mt-2w">
-                    <div class="fr-toggle fr-toggle--no-label">
-                      <%= form.check_box :positive_number, id: dom_id(type_de_champ, :positive_number), class: 'fr-toggle__input' %>
-                      <%= form.label :positive_number, t(".positive_number_label"), for: dom_id(type_de_champ, :positive_number), class: "fr-toggle__label fr-label" %>
-                    </div>
-                  </div>
+                  <% if type_champ_locked %>
+                    <p
+                      class="fr-hint-text"
+                      id="<%= numeric_type_champ_hint_id %>"
+                    >
+                      <%= type_de_champ.type_change_locked_message %>
+                    </p>
+                  <% end %>
                 </div>
 
                 <div class="cell fr-mt-2w">
                   <div class="fr-toggle fr-toggle--no-label">
-                    <%= form.check_box :range_number, id: dom_id(type_de_champ, :range_number), class: 'fr-toggle__input' %>
-                    <%= form.label :range_number, t(".range_number_label"), for: dom_id(type_de_champ, :range_number), class: "fr-toggle__label fr-label" %>
+                    <%= form.check_box :positive_number, id: dom_id(type_de_champ, :positive_number), class: 'fr-toggle__input' %>
+                    <%= form.label :positive_number, t(".positive_number_label"), for: dom_id(type_de_champ, :positive_number), class: "fr-toggle__label fr-label" %>
                   </div>
                 </div>
-
-                <% if form.object.range_number? %>
-                  <div class="cell fr-mt-1w">
-                    <fieldset class="fr-fieldset">
-                      <div class="fr-fieldset__element fr-fieldset__element--inline fr-mb-0">
-                        <div class="fr-input-group">
-                          <%= form.label :min_number, t(".min_number_label"), for: dom_id(type_de_champ, :min_number) %>
-
-                          <%= form.number_field :min_number, class: "fr-input", id: dom_id(type_de_champ, :min_number) %>
-                        </div>
-                      </div>
-
-                      <div class="fr-fieldset__element fr-fieldset__element--inline fr-mb-0">
-                        <div class="fr-input-group">
-                          <%= form.label :max_number, t(".max_number_label"), for: dom_id(type_de_champ, :max_number) %>
-
-                          <%= form.number_field :max_number, class: "fr-input", id: dom_id(type_de_champ, :max_number) %>
-                        </div>
-                      </div>
-                    </fieldset>
-                  </div>
-                <% end %>
               </div>
-            <% end %>
 
-            <% if type_de_champ.date? || type_de_champ.datetime? %>
-              <div class="border-left-dark fr-mt-2w">
-                <div class="cell">
-                  <legend class="fake-label">
-                    <%= t(".format_accepted_legend") %>
-                  </legend>
-
-                  <% if type_de_champ.date? %>
-                    <div class="fr-toggle fr-toggle--no-label">
-                      <%= form.check_box :birthdate, id: dom_id(type_de_champ, :birthdate), class: 'fr-toggle__input' %>
-                      <%= form.label :birthdate, t(".birthdate_label"), for: dom_id(type_de_champ, :birthdate), class: "fr-toggle__label fr-label" %>
-                    </div>
-                    <p class="fr-hint-text"><%= t(".birthdate_hint") %></p>
-                  <% end %>
-
-                  <% if type_de_champ.date? && form.object.birthdate? %>
-                    <div class="fr-toggle fr-mt-2w fr-toggle--no-label">
-                      <%= form.check_box :prefill_with_france_connect_information, { id: dom_id(type_de_champ, :prefill_with_france_connect_information), class: 'fr-toggle__input', disabled: prefill_with_france_connect_information_locked_by_sibling? } %>
-                      <%= form.label :prefill_with_france_connect_information, t(".prefill_fc_birthdate_label"), for: dom_id(type_de_champ, :prefill_with_france_connect_information), class: "fr-toggle__label fr-label" %>
-                    </div>
-                    <p class="fr-hint-text">
-                      <% if prefill_with_france_connect_information_locked_by_sibling? %>
-                        <%= t(".prefill_fc_locked_hint") %>
-                      <% else %>
-                        <%= t(".prefill_fc_hint") %>
-                      <% end %>
-                    </p>
-                  <% end %>
-
-                  <% if !form.object.birthdate? %>
-                    <div class="fr-toggle fr-mt-2w fr-toggle--no-label">
-                      <%= form.check_box :date_in_past, id: dom_id(type_de_champ, :date_in_past), class: 'fr-toggle__input' %>
-                      <%= form.label :date_in_past, t(".date_in_past_label"), for: dom_id(type_de_champ, :date_in_past), class: "fr-toggle__label fr-label" %>
-                    </div>
-                    <div class="fr-toggle fr-mt-2w fr-toggle--no-label">
-                      <%= form.check_box :range_date, id: dom_id(type_de_champ, :range_date), class: 'fr-toggle__input' %>
-                      <%= form.label :range_date, t(".range_date_label"), for: dom_id(type_de_champ, :range_date), class: "fr-toggle__label fr-label" %>
-                    </div>
-                    <% if form.object.range_date? %>
-                      <div class="cell fr-mt-1w">
-                        <fieldset class="fr-fieldset">
-                          <div class="fr-fieldset__element fr-fieldset__element--inline fr-mb-0">
-                            <div class="fr-input-group">
-                              <%= form.label :start_date, t(".start_date_label"), for: dom_id(type_de_champ, :start_date) %>
-
-                              <%= form.date_field :start_date, class: "fr-input", value: type_de_champ.start_date, id: dom_id(type_de_champ, :start_date) %>
-                            </div>
-                          </div>
-
-                          <div class="fr-fieldset__element fr-fieldset__element--inline fr-mb-0">
-                            <div class="fr-input-group">
-                              <%= form.label :end_date, t(".end_date_label"), for: dom_id(type_de_champ, :end_date) %>
-
-                              <%= form.date_field :end_date, class: "fr-input", value: type_de_champ.end_date, id: dom_id(type_de_champ, :end_date) %>
-                            </div>
-                          </div>
-                        </fieldset>
-                      </div>
-                    <% end %>
-                  <% end %>
+              <div class="cell fr-mt-2w">
+                <div class="fr-toggle fr-toggle--no-label">
+                  <%= form.check_box :range_number, id: dom_id(type_de_champ, :range_number), class: 'fr-toggle__input' %>
+                  <%= form.label :range_number, t(".range_number_label"), for: dom_id(type_de_champ, :range_number), class: "fr-toggle__label fr-label" %>
                 </div>
               </div>
-            <% end %>
 
-            <% if type_de_champ.france_connect? %>
-              <div class="cell fr-my-auto fr-mx-3w">
-                <%= t(".france_connect.#{type_de_champ.type_champ}") %>
-              </div>
-            <% end %>
+              <% if form.object.range_number? %>
+                <div class="cell fr-mt-1w">
+                  <fieldset class="fr-fieldset">
+                    <div class="fr-fieldset__element fr-fieldset__element--inline fr-mb-0">
+                      <div class="fr-input-group">
+                        <%= form.label :min_number, t(".min_number_label"), for: dom_id(type_de_champ, :min_number) %>
 
-            <% if type_de_champ.dossier_link? %>
-              <div class="fr-hr fr-mt-2w"></div>
+                        <%= form.number_field :min_number, class: "fr-input", id: dom_id(type_de_champ, :min_number) %>
+                      </div>
+                    </div>
+
+                    <div class="fr-fieldset__element fr-fieldset__element--inline fr-mb-0">
+                      <div class="fr-input-group">
+                        <%= form.label :max_number, t(".max_number_label"), for: dom_id(type_de_champ, :max_number) %>
+
+                        <%= form.number_field :max_number, class: "fr-input", id: dom_id(type_de_champ, :max_number) %>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+
+          <% if type_de_champ.date? || type_de_champ.datetime? %>
+            <div class="border-left-dark fr-mt-2w">
               <div class="cell">
-                <div class="fr-toggle fr-mb-2w">
-                  <%= form.check_box :procedures_limit, id: dom_id(type_de_champ, :procedures_limit), class: 'fr-toggle__input' %>
-                  <%= form.label :procedures_limit, t(".procedures_limit_label"), for: dom_id(type_de_champ, :procedures_limit), class: "fr-toggle__label fr-label" %>
-                </div>
+                <legend class="fake-label">
+                  <%= t(".format_accepted_legend") %>
+                </legend>
 
-                <% if form.object.procedures_limit? %>
-                  <div class="border-left-dark">
-                    <div class="fr-notice fr-notice--info">
-                      <div class="fr-container">
-                        <div class="fr-notice__body">
-                          <p>
-                            <span class="fr-notice__desc fr-text--sm fr-mr-0">
-                              <%= t(".procedures_limit_notice_html") %>
-                            </span>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="cell fr-mt-2w">
-                      <%= render TypesDeChampEditor::DossierLinkChampComponent.new(procedures: current_administrateur.procedures, type_de_champ: type_de_champ, form: form, procedure: procedure) %>
-                    </div>
+                <% if type_de_champ.date? %>
+                  <div class="fr-toggle fr-toggle--no-label">
+                    <%= form.check_box :birthdate, id: dom_id(type_de_champ, :birthdate), class: 'fr-toggle__input' %>
+                    <%= form.label :birthdate, t(".birthdate_label"), for: dom_id(type_de_champ, :birthdate), class: "fr-toggle__label fr-label" %>
                   </div>
+                  <p class="fr-hint-text"><%= t(".birthdate_hint") %></p>
                 <% end %>
-              </div>
-            <% end %>
 
-            <% if type_de_champ.repetition? %>
-              <div class="border-left-dark fr-mt-2w">
-                <div class="cell">
-                  <legend class="fake-label">
-                    <%= t(".limit_repetitions_legend") %>
-                  </legend>
-
-                  <div class="fr-toggle">
-                    <%= form.check_box :limit_repetitions, id: dom_id(type_de_champ, :limit_repetitions), class: "fr-toggle__input" %>
-                    <%= form.label :limit_repetitions, t(".limit_repetitions_label"), for: dom_id(type_de_champ, :limit_repetitions), class: "fr-toggle__label fr-label" %>
+                <% if type_de_champ.date? && form.object.birthdate? %>
+                  <div class="fr-toggle fr-mt-2w fr-toggle--no-label">
+                    <%= form.check_box :prefill_with_france_connect_information, { id: dom_id(type_de_champ, :prefill_with_france_connect_information), class: 'fr-toggle__input', disabled: prefill_with_france_connect_information_locked_by_sibling? } %>
+                    <%= form.label :prefill_with_france_connect_information, t(".prefill_fc_birthdate_label"), for: dom_id(type_de_champ, :prefill_with_france_connect_information), class: "fr-toggle__label fr-label" %>
                   </div>
+                  <p class="fr-hint-text">
+                    <% if prefill_with_france_connect_information_locked_by_sibling? %>
+                      <%= t(".prefill_fc_locked_hint") %>
+                    <% else %>
+                      <%= t(".prefill_fc_hint") %>
+                    <% end %>
+                  </p>
+                <% end %>
 
-                  <% if form.object.limit_repetitions? %>
+                <% if !form.object.birthdate? %>
+                  <div class="fr-toggle fr-mt-2w fr-toggle--no-label">
+                    <%= form.check_box :date_in_past, id: dom_id(type_de_champ, :date_in_past), class: 'fr-toggle__input' %>
+                    <%= form.label :date_in_past, t(".date_in_past_label"), for: dom_id(type_de_champ, :date_in_past), class: "fr-toggle__label fr-label" %>
+                  </div>
+                  <div class="fr-toggle fr-mt-2w fr-toggle--no-label">
+                    <%= form.check_box :range_date, id: dom_id(type_de_champ, :range_date), class: 'fr-toggle__input' %>
+                    <%= form.label :range_date, t(".range_date_label"), for: dom_id(type_de_champ, :range_date), class: "fr-toggle__label fr-label" %>
+                  </div>
+                  <% if form.object.range_date? %>
                     <div class="cell fr-mt-1w">
                       <fieldset class="fr-fieldset">
                         <div class="fr-fieldset__element fr-fieldset__element--inline fr-mb-0">
                           <div class="fr-input-group">
-                            <%= form.label :min_repetitions, t(".min_repetitions_label"), for: dom_id(type_de_champ, :min_repetitions) %>
-                            <%= form.number_field :min_repetitions, class: "fr-input", id: dom_id(type_de_champ, :min_repetitions), min: 0 %>
+                            <%= form.label :start_date, t(".start_date_label"), for: dom_id(type_de_champ, :start_date) %>
+
+                            <%= form.date_field :start_date, class: "fr-input", value: type_de_champ.start_date, id: dom_id(type_de_champ, :start_date) %>
                           </div>
                         </div>
 
                         <div class="fr-fieldset__element fr-fieldset__element--inline fr-mb-0">
                           <div class="fr-input-group">
-                            <%= form.label :max_repetitions, t(".max_repetitions_label"), for: dom_id(type_de_champ, :max_repetitions) %>
-                            <%= form.number_field :max_repetitions, class: "fr-input", id: dom_id(type_de_champ, :max_repetitions), min: 1 %>
+                            <%= form.label :end_date, t(".end_date_label"), for: dom_id(type_de_champ, :end_date) %>
+
+                            <%= form.date_field :end_date, class: "fr-input", value: type_de_champ.end_date, id: dom_id(type_de_champ, :end_date) %>
                           </div>
                         </div>
                       </fieldset>
                     </div>
-                    <% if @errors.present? %>
-                      <div class="fr-message fr-message--error fr-mt-1w">
-                        <%= @errors %>
-                      </div>
-                    <% end %>
-                    <div class="fr-message fr-message--info fr-mt-1w">
-                      <%= t(".repetitions_hint") %>
-                    </div>
                   <% end %>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-
-        <div class="flex justify-start fr-mt-1w flex-gap">
-          <% if type_de_champ.linked_drop_down_list? %>
-            <div class="flex column justify-start width-33">
-              <div class="cell">
-                <%= form.label :drop_down_options_from_text, t(".drop_down_options_label"), for: dom_id(type_de_champ, :drop_down_options_from_text) %>
-
-                <%= form.text_area :drop_down_options_from_text,
-                  value: type_de_champ.drop_down_options.join("\r\n"),
-                  class: 'fr-input small-margin small width-100',
-                  rows: 7,
-                  id: dom_id(type_de_champ, :drop_down_options_from_text) %>
+                <% end %>
               </div>
             </div>
-          <% elsif type_de_champ.drop_down_list? || type_de_champ.multiple_drop_down_list? %>
-            <div class="flex justify-start column width-33 fr-mt-1w">
-              <div class="cell">
-                <fieldset class="fr-segmented fr-segmented">
-                  <legend class="fr-segmented__legend">
-                    <%= t(".drop_down_choice_legend") %>
-                  </legend>
+          <% end %>
 
-                  <div class="fr-segmented__elements">
-                    <div class="fr-segmented__element">
-                      <%= form.radio_button :drop_down_mode, 'simple', checked: type_de_champ.drop_down_simple?, id: dom_id(type_de_champ, :simple) %>
-                      <%= form.label :drop_down_mode_simple, t('.drop_down_list.labels.simple'), for: dom_id(type_de_champ, :simple), class: 'fr-label' %>
-                    </div>
+          <% if type_de_champ.france_connect? %>
+            <div class="cell fr-my-auto fr-mx-3w">
+              <%= t(".france_connect.#{type_de_champ.type_champ}") %>
+            </div>
+          <% end %>
 
-                    <div class="fr-segmented__element">
-                      <%= form.radio_button :drop_down_mode, 'advanced', id: dom_id(type_de_champ, :advanced) %>
-                      <%= form.label :drop_down_mode_advanced, t('.drop_down_list.labels.advanced'), for: dom_id(type_de_champ, :advanced), class: 'fr-label' %>
+          <% if type_de_champ.dossier_link? %>
+            <div class="fr-hr fr-mt-2w"></div>
+            <div class="cell">
+              <div class="fr-toggle fr-mb-2w">
+                <%= form.check_box :procedures_limit, id: dom_id(type_de_champ, :procedures_limit), class: 'fr-toggle__input' %>
+                <%= form.label :procedures_limit, t(".procedures_limit_label"), for: dom_id(type_de_champ, :procedures_limit), class: "fr-toggle__label fr-label" %>
+              </div>
+
+              <% if form.object.procedures_limit? %>
+                <div class="border-left-dark">
+                  <div class="fr-notice fr-notice--info">
+                    <div class="fr-container">
+                      <div class="fr-notice__body">
+                        <p>
+                          <span class="fr-notice__desc fr-text--sm fr-mr-0">
+                            <%= t(".procedures_limit_notice_html") %>
+                          </span>
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </fieldset>
-              </div>
-            </div>
-            <div class="flex column justify-start flex-grow border-left-dark fr-my-1w">
-              <%= render TypesDeChampEditor::ChampDropDownSimpleComponent.new(type_de_champ:, form:, procedure:) %>
-              <%= render TypesDeChampEditor::ChampDropDownAdvancedComponent.new(type_de_champ:, form:, procedure:) %>
 
-              <% if type_de_champ.drop_down_list? %>
-                <div class="cell flex align-center">
-                  <%= form.check_box :drop_down_other, class: "small-margin small", id: dom_id(type_de_champ, :drop_down_other) %>
-
-                  <%= form.label :drop_down_other, t(".drop_down_other_label"), for: dom_id(type_de_champ, :drop_down_other) %>
+                  <div class="cell fr-mt-2w">
+                    <%= render TypesDeChampEditor::DossierLinkChampComponent.new(procedures: current_administrateur.procedures, type_de_champ: type_de_champ, form: form, procedure: procedure) %>
+                  </div>
                 </div>
               <% end %>
             </div>
-          <% elsif type_de_champ.pre_rempli? %>
-            <div class="flex column justify-start flex-grow fr-mt-1w">
-              <div class="cell">
-                <%= form.label :drop_down_options_from_text, t('.pre_rempli.options_label'), for: dom_id(type_de_champ, :drop_down_options_from_text) %>
-
-                <%= form.text_area :drop_down_options_from_text,
-                  value: type_de_champ.drop_down_options.join("\r\n"),
-                  class: 'fr-input small-margin small width-100',
-                  rows: 7,
-                  id: dom_id(type_de_champ, :drop_down_options_from_text) %>
-              </div>
-
-              <div class="cell fr-mt-1w flex align-center">
-                <%= form.check_box :pre_rempli_hidden, class: "small-margin small", id: dom_id(type_de_champ, :pre_rempli_hidden) %>
-
-                <%= form.label :pre_rempli_hidden, t('.pre_rempli.hidden_label'), for: dom_id(type_de_champ, :pre_rempli_hidden) %>
-              </div>
-            </div>
           <% end %>
 
-          <% if type_de_champ.linked_drop_down_list? %>
-            <div class="flex column justify-start flex-grow">
+          <% if type_de_champ.repetition? %>
+            <div class="border-left-dark fr-mt-2w">
               <div class="cell">
-                <%= form.label :drop_down_secondary_libelle, t(".secondary_libelle_label"), class: "flex-grow", for: dom_id(type_de_champ, :drop_down_secondary_libelle) %>
-                <%= form.text_field :drop_down_secondary_libelle, class: 'fr-input small-margin small width-100', id: dom_id(type_de_champ, :drop_down_secondary_libelle) %>
-              </div>
+                <legend class="fake-label">
+                  <%= t(".limit_repetitions_legend") %>
+                </legend>
 
-              <div class="cell fr-mt-1w">
-                <%= form.label :drop_down_secondary_description, t(".secondary_description_label"), for: dom_id(type_de_champ, :drop_down_secondary_description) %>
-                <%= form.text_area :drop_down_secondary_description, class: 'fr-input small-margin small width-100', rows: 3, id: dom_id(type_de_champ, :drop_down_secondary_description) %>
-              </div>
-            </div>
-          <% end %>
-
-          <% if type_de_champ.carte? %>
-            <% type_de_champ.editable_options.each do |slice| %>
-              <div class="cell">
-                <div class="carte-options">
-                  <%= form.fields_for :editable_options do |form| %>
-                    <% slice.each do |(name, checked, disabled)| %>
-                      <%= form.label name, for: dom_id(type_de_champ, "layer_#{name}") do %>
-                        <%= form.check_box name, checked:, disabled:, class: 'small-margin small', id: dom_id(type_de_champ, "layer_#{name}") %>
-                        <%= t(".layers.#{name}") %>
-                      <% end %>
-                    <% end %>
-                  <% end %>
+                <div class="fr-toggle">
+                  <%= form.check_box :limit_repetitions, id: dom_id(type_de_champ, :limit_repetitions), class: "fr-toggle__input" %>
+                  <%= form.label :limit_repetitions, t(".limit_repetitions_label"), for: dom_id(type_de_champ, :limit_repetitions), class: "fr-toggle__label fr-label" %>
                 </div>
-              </div>
-            <% end %>
-          <% end %>
 
-          <% if type_de_champ.formatted? %>
-            <div class="flex justify-start column width-33">
+                <% if form.object.limit_repetitions? %>
+                  <div class="cell fr-mt-1w">
+                    <fieldset class="fr-fieldset">
+                      <div class="fr-fieldset__element fr-fieldset__element--inline fr-mb-0">
+                        <div class="fr-input-group">
+                          <%= form.label :min_repetitions, t(".min_repetitions_label"), for: dom_id(type_de_champ, :min_repetitions) %>
+                          <%= form.number_field :min_repetitions, class: "fr-input", id: dom_id(type_de_champ, :min_repetitions), min: 0 %>
+                        </div>
+                      </div>
+
+                      <div class="fr-fieldset__element fr-fieldset__element--inline fr-mb-0">
+                        <div class="fr-input-group">
+                          <%= form.label :max_repetitions, t(".max_repetitions_label"), for: dom_id(type_de_champ, :max_repetitions) %>
+                          <%= form.number_field :max_repetitions, class: "fr-input", id: dom_id(type_de_champ, :max_repetitions), min: 1 %>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                  <% if @errors.present? %>
+                    <div class="fr-message fr-message--error fr-mt-1w">
+                      <%= @errors %>
+                    </div>
+                  <% end %>
+                  <div class="fr-message fr-message--info fr-mt-1w">
+                    <%= t(".repetitions_hint") %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="flex justify-start fr-mt-1w flex-gap">
+        <% if type_de_champ.linked_drop_down_list? %>
+          <div class="flex column justify-start width-33">
+            <div class="cell">
+              <%= form.label :drop_down_options_from_text, t(".drop_down_options_label"), for: dom_id(type_de_champ, :drop_down_options_from_text) %>
+
+              <%= form.text_area :drop_down_options_from_text,
+                value: type_de_champ.drop_down_options.join("\r\n"),
+                class: 'fr-input small-margin small width-100',
+                rows: 7,
+                id: dom_id(type_de_champ, :drop_down_options_from_text) %>
+            </div>
+          </div>
+        <% elsif type_de_champ.drop_down_list? || type_de_champ.multiple_drop_down_list? %>
+          <div class="flex justify-start column width-33 fr-mt-1w">
+            <div class="cell">
               <fieldset class="fr-segmented fr-segmented">
-                <legend class="fr-segmented__legend fr-mb-1w">
-                  <%= t(".formatted_legend") %>
+                <legend class="fr-segmented__legend">
+                  <%= t(".drop_down_choice_legend") %>
                 </legend>
 
                 <div class="fr-segmented__elements">
                   <div class="fr-segmented__element">
-                    <%= form.radio_button :formatted_mode, 'simple', checked: type_de_champ.formatted_simple?, id: dom_id(type_de_champ, :simple) %>
-                    <%= form.label :formatted_mode_simple, t('.kind.labels.simple'), for: dom_id(type_de_champ, :simple), class: 'fr-label' %>
+                    <%= form.radio_button :drop_down_mode, 'simple', checked: type_de_champ.drop_down_simple?, id: dom_id(type_de_champ, :simple) %>
+                    <%= form.label :drop_down_mode_simple, t('.drop_down_list.labels.simple'), for: dom_id(type_de_champ, :simple), class: 'fr-label' %>
                   </div>
 
                   <div class="fr-segmented__element">
-                    <%= form.radio_button :formatted_mode, 'advanced', id: dom_id(type_de_champ, :advanced) %>
-                    <%= form.label :formatted_mode_advanced, t('.kind.labels.advanced'), for: dom_id(type_de_champ, :advanced), class: 'fr-label' %>
+                    <%= form.radio_button :drop_down_mode, 'advanced', id: dom_id(type_de_champ, :advanced) %>
+                    <%= form.label :drop_down_mode_advanced, t('.drop_down_list.labels.advanced'), for: dom_id(type_de_champ, :advanced), class: 'fr-label' %>
                   </div>
                 </div>
               </fieldset>
             </div>
-            <%= render TypesDeChampEditor::ChampFormattedSimpleComponent.new(type_de_champ:, form:, procedure:) %>
-            <%= render TypesDeChampEditor::ChampFormattedAdvancedComponent.new(type_de_champ:, form:, procedure:) %>
-          <% end %>
-        </div>
-      <% end %>
-    </div>
-
-    <% if type_de_champ.referentiel? %>
-      <%= render(TypesDeChampEditor::InfoReferentielComponent.new(procedure:, type_de_champ:)) %>
-    <% end %>
-
-    <% if type_de_champ.france_connect? %>
-      <%= render(TypesDeChampEditor::FranceConnectComponent.new(procedure:, type_de_champ:)) %>
-    <% end %>
-
-    <% if type_de_champ.repetition? %>
-      <div class="flex justify-start section fr-ml-1w">
-        <div class="editor-block flex-grow cell">
-          <%= render TypesDeChampEditor::BlockComponent.new(block: type_de_champ, type_de_champs: type_de_champ.flat_children) %>
-
-          <div
-            class="type-de-champ-add-button <%= class_names(hidden: type_de_champ.children.any?) %>"
-            id="<%= dom_id(type_de_champ, :type_de_champ_add_button) %>"
-          >
-            <%= render TypesDeChampEditor::AddChampButtonComponent.new(revision:, parent: type_de_champ, is_annotation: type_de_champ.private?) %>
           </div>
-        </div>
-      </div>
-    <% end %>
+          <div class="flex column justify-start flex-grow border-left-dark fr-my-1w">
+            <%= render TypesDeChampEditor::ChampDropDownSimpleComponent.new(type_de_champ:, form:, procedure:) %>
+            <%= render TypesDeChampEditor::ChampDropDownAdvancedComponent.new(type_de_champ:, form:, procedure:) %>
 
-    <%= render(Conditions::ChampsConditionsComponent.new(tdc: type_de_champ, upper_tdcs: type_de_champ.condition_source_type_de_champs, procedure:)) %>
+            <% if type_de_champ.drop_down_list? %>
+              <div class="cell flex align-center">
+                <%= form.check_box :drop_down_other, class: "small-margin small", id: dom_id(type_de_champ, :drop_down_other) %>
 
-    <div class="flex justify-between section footer">
-      <div class="position flex align-center">
-        <%= (index + 1).to_s %>
-      </div>
+                <%= form.label :drop_down_other, t(".drop_down_other_label"), for: dom_id(type_de_champ, :drop_down_other) %>
+              </div>
+            <% end %>
+          </div>
+        <% elsif type_de_champ.pre_rempli? %>
+          <div class="flex column justify-start flex-grow fr-mt-1w">
+            <div class="cell">
+              <%= form.label :drop_down_options_from_text, t('.pre_rempli.options_label'), for: dom_id(type_de_champ, :drop_down_options_from_text) %>
 
-      <%= tag.button(class: "fr-btn fr-btn--tertiary-no-outline fr-icon-arrow-up-line move-up", **move_button_options(:up)) %>
-      <%= tag.button(class: "fr-btn fr-btn--tertiary-no-outline fr-icon-arrow-down-line move-down", **move_button_options(:down)) %>
-      <%= render TypesDeChampEditor::SelectChampPositionComponent.new(type_de_champ:) %>
+              <%= form.text_area :drop_down_options_from_text,
+                value: type_de_champ.drop_down_options.join("\r\n"),
+                class: 'fr-input small-margin small width-100',
+                rows: 7,
+                id: dom_id(type_de_champ, :drop_down_options_from_text) %>
+            </div>
 
-      <div class="flex right">
-        <% if type_de_champ.type_champ_locked? %>
-          <%= lock_explanation %>
-        <% else %>
-          <% if type_de_champ.prefilled_by_type_de_champ %>
-            <span><%= t(".prefilled_referentiel") %></span>
-          <% end %>
-          <%= button_to type_de_champ_path, class: 'fr-btn fr-btn--tertiary-no-outline fr-icon-delete-line', title: t(".delete_title"), method: :delete, form: { data: { turbo_confirm: } } do %>
-            <span class="fr-sr-only"><%= t(".delete_label") %></span>
+            <div class="cell fr-mt-1w flex align-center">
+              <%= form.check_box :pre_rempli_hidden, class: "small-margin small", id: dom_id(type_de_champ, :pre_rempli_hidden) %>
+
+              <%= form.label :pre_rempli_hidden, t('.pre_rempli.hidden_label'), for: dom_id(type_de_champ, :pre_rempli_hidden) %>
+            </div>
+          </div>
+        <% end %>
+
+        <% if type_de_champ.linked_drop_down_list? %>
+          <div class="flex column justify-start flex-grow">
+            <div class="cell">
+              <%= form.label :drop_down_secondary_libelle, t(".secondary_libelle_label"), class: "flex-grow", for: dom_id(type_de_champ, :drop_down_secondary_libelle) %>
+              <%= form.text_field :drop_down_secondary_libelle, class: 'fr-input small-margin small width-100', id: dom_id(type_de_champ, :drop_down_secondary_libelle) %>
+            </div>
+
+            <div class="cell fr-mt-1w">
+              <%= form.label :drop_down_secondary_description, t(".secondary_description_label"), for: dom_id(type_de_champ, :drop_down_secondary_description) %>
+              <%= form.text_area :drop_down_secondary_description, class: 'fr-input small-margin small width-100', rows: 3, id: dom_id(type_de_champ, :drop_down_secondary_description) %>
+            </div>
+          </div>
+        <% end %>
+
+        <% if type_de_champ.carte? %>
+          <% type_de_champ.editable_options.each do |slice| %>
+            <div class="cell">
+              <div class="carte-options">
+                <%= form.fields_for :editable_options do |form| %>
+                  <% slice.each do |(name, checked, disabled)| %>
+                    <%= form.label name, for: dom_id(type_de_champ, "layer_#{name}") do %>
+                      <%= form.check_box name, checked:, disabled:, class: 'small-margin small', id: dom_id(type_de_champ, "layer_#{name}") %>
+                      <%= t(".layers.#{name}") %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
           <% end %>
         <% end %>
+
+        <% if type_de_champ.formatted? %>
+          <div class="flex justify-start column width-33">
+            <fieldset class="fr-segmented fr-segmented">
+              <legend class="fr-segmented__legend fr-mb-1w">
+                <%= t(".formatted_legend") %>
+              </legend>
+
+              <div class="fr-segmented__elements">
+                <div class="fr-segmented__element">
+                  <%= form.radio_button :formatted_mode, 'simple', checked: type_de_champ.formatted_simple?, id: dom_id(type_de_champ, :simple) %>
+                  <%= form.label :formatted_mode_simple, t('.kind.labels.simple'), for: dom_id(type_de_champ, :simple), class: 'fr-label' %>
+                </div>
+
+                <div class="fr-segmented__element">
+                  <%= form.radio_button :formatted_mode, 'advanced', id: dom_id(type_de_champ, :advanced) %>
+                  <%= form.label :formatted_mode_advanced, t('.kind.labels.advanced'), for: dom_id(type_de_champ, :advanced), class: 'fr-label' %>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <%= render TypesDeChampEditor::ChampFormattedSimpleComponent.new(type_de_champ:, form:, procedure:) %>
+          <%= render TypesDeChampEditor::ChampFormattedAdvancedComponent.new(type_de_champ:, form:, procedure:) %>
+        <% end %>
       </div>
-    </div>
+    <% end %>
   </div>
 
-  <div class="type-de-champ-add-button <%= class_names(root: !type_de_champ.in_repetition?, flex: true) %>">
-    <%= render TypesDeChampEditor::AddChampButtonComponent.new(revision:, parent: type_de_champ.enclosing_repetition, is_annotation: type_de_champ.private?, after_stable_id: type_de_champ.stable_id) %>
+  <% if type_de_champ.referentiel? %>
+    <%= render(TypesDeChampEditor::InfoReferentielComponent.new(procedure:, type_de_champ:)) %>
+  <% end %>
+
+  <% if type_de_champ.france_connect? %>
+    <%= render(TypesDeChampEditor::FranceConnectComponent.new(procedure:, type_de_champ:)) %>
+  <% end %>
+
+  <% if type_de_champ.repetition? %>
+    <div class="flex justify-start section fr-ml-1w">
+      <div class="editor-block flex-grow cell">
+        <%= render TypesDeChampEditor::BlockComponent.new(block: type_de_champ, type_de_champs: type_de_champ.flat_children) %>
+
+        <div
+          class="type-de-champ-add-button <%= class_names(hidden: type_de_champ.children.any?) %>"
+          id="<%= dom_id(type_de_champ, :type_de_champ_add_button) %>"
+        >
+          <%= render TypesDeChampEditor::AddChampButtonComponent.new(revision:, parent: type_de_champ, is_annotation: type_de_champ.private?) %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <%= render(Conditions::ChampsConditionsComponent.new(tdc: type_de_champ, upper_tdcs: type_de_champ.condition_source_type_de_champs, procedure:)) %>
+
+  <div class="flex justify-between section footer">
+    <div class="position flex align-center">
+      <%= (index + 1).to_s %>
+    </div>
+
+    <%= tag.button(class: "fr-btn fr-btn--tertiary-no-outline fr-icon-arrow-up-line move-up", **move_button_options(:up)) %>
+    <%= tag.button(class: "fr-btn fr-btn--tertiary-no-outline fr-icon-arrow-down-line move-down", **move_button_options(:down)) %>
+    <%= render TypesDeChampEditor::SelectChampPositionComponent.new(type_de_champ:) %>
+
+    <div class="flex right">
+      <% if type_de_champ.type_champ_locked? %>
+        <%= lock_explanation %>
+      <% else %>
+        <% if type_de_champ.prefilled_by_type_de_champ %>
+          <span><%= t(".prefilled_referentiel") %></span>
+        <% end %>
+        <%= button_to type_de_champ_path, class: 'fr-btn fr-btn--tertiary-no-outline fr-icon-delete-line', title: t(".delete_title"), method: :delete, form: { data: { turbo_confirm: } } do %>
+          <span class="fr-sr-only"><%= t(".delete_label") %></span>
+        <% end %>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>
