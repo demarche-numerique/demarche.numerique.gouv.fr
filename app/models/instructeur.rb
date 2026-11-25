@@ -337,6 +337,10 @@ class Instructeur < ApplicationRecord
     groupe_instructeurs.where(procedure:).pluck(:label, :id)
   end
 
+  def groupe_instructeur_ids_for(procedure)
+    unordered_groupe_instructeurs.where(procedure:).ids
+  end
+
   def feature_enabled?(feature)
     Flipper.enabled?(feature, self)
   end

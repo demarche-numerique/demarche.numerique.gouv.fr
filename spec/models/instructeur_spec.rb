@@ -426,6 +426,17 @@ describe Instructeur, type: :model do
     it { expect(instructeur_a.procedures.all.to_ary).to eq([procedure_a]) }
   end
 
+  describe '#groupe_instructeur_ids_for' do
+    let!(:groupe) { create(:groupe_instructeur, procedure:, instructeurs: [instructeur]) }
+
+    before { create(:groupe_instructeur, procedure:) }
+
+    it 'returns the ids of the instructeur groups on the procedure only' do
+      expect(instructeur.groupe_instructeur_ids_for(procedure)).to match_array([procedure.defaut_groupe_instructeur.id, groupe.id])
+      expect(instructeur.groupe_instructeur_ids_for(procedure.id)).to match_array([procedure.defaut_groupe_instructeur.id, groupe.id])
+    end
+  end
+
   describe "#can_be_deleted?" do
     subject { instructeur.can_be_deleted? }
 
