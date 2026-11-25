@@ -154,6 +154,14 @@ RSpec.describe DeviseUserMailer, type: :mailer do
     end
   end
 
+  describe 'locale' do
+    it 'follows the recipient, not the request that enqueued the email' do
+      user.update_column(:locale, 'en')
+      body = I18n.with_locale(:fr) { described_class.reset_password_instructions(user, token).body.to_s }
+      expect(body).to have_link('Change the password')
+    end
+  end
+
   describe '.unlock_instructions' do
     it 'links to the unlock page in fr and en' do
       link = user_unlock_url(unlock_token: token)
