@@ -13,10 +13,6 @@ class AdministrationMailerPreview < ActionMailer::Preview
     AdministrationMailer.invite_admin_via_pro_connect(administrateur)
   end
 
-  def refuse_admin
-    AdministrationMailer.refuse_admin('bad_admin@pipo.com')
-  end
-
   private
 
   def procedure_1

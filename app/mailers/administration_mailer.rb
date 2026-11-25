@@ -31,16 +31,6 @@ class AdministrationMailer < ApplicationMailer
       reply_to: CONTACT_EMAIL)
   end
 
-  def refuse_admin(admin_email)
-    subject = "Votre demande de compte a été refusée"
-
-    bypass_unverified_mail_protection!
-
-    mail(to: admin_email,
-      subject: subject,
-      reply_to: CONTACT_EMAIL)
-  end
-
   def self.critical_email?(action_name)
     action_name.in?(["invite_admin", "invite_admin_via_pro_connect"])
   end
