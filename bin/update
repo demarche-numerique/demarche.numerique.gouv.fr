@@ -15,8 +15,50 @@ FileUtils.chdir APP_ROOT do
   puts '== Installing dependencies =='
   system! 'gem install bundler --conservative'
   system('bundle check') || system!('bundle install')
+
+  # The DSFR refuses to install unless its terms of use are accepted. We do not
+  # commit a .dsfr.yml, because it would answer for every clone of this repo:
+  # whoever installs decides for their own machine. See config/env.example.
+  def dsfr_install_env
+    # A local .dsfr.yml is the DSFR's own mechanism: let its hook check it, so a
+    # revision of the terms is reported instead of being silently overridden.
+    return {} if File.exist?('.dsfr.yml')
+
+    accepted = ENV['DSFR_ACCEPT_LICENSE'] == '1' ||
+      (File.exist?('.env') &&
+       File.foreach('.env').any? { |line| line.match?(/\A\s*DSFR_ACCEPT_LICENSE\s*=\s*["']?1["']?\s*\z/) })
+
+    return { 'DSFR_ACCEPT_LICENSE' => '1' } if accepted
+
+    abort <<~MESSAGE
+      The DSFR (@gouvfr/dsfr) will not install until you accept its terms of use:
+      https://github.com/GouvernementFR/dsfr/blob/main/doc/legal/cgu.md
+
+      They intend the DSFR for State services on a .gouv.fr domain, subject State
+      operators to an approval procedure, and leave third parties outside the State
+      to use it under their own responsibility.
+
+      If you are entitled to use it, uncomment DSFR_ACCEPT_LICENSE in your .env and
+      run this script again. That file is yours and is never committed.
+    MESSAGE
+  end
+
+  unless dsfr_license_accepted?
+    abort <<~MESSAGE
+      The DSFR (@gouvfr/dsfr) will not install until you accept its terms of use:
+      https://github.com/GouvernementFR/dsfr/blob/main/doc/legal/cgu.md
+
+      They intend the DSFR for State services on a .gouv.fr domain, subject State
+      operators to an approval procedure, and leave third parties outside the State
+      to use it under their own responsibility.
+
+      If you are entitled to use it, uncomment DSFR_ACCEPT_LICENSE in your .env
+      and run this script again. That file is yours and is never committed.
+    MESSAGE
+  end
+
   system! 'bun --version'
-  system! 'bun install'
+  system! dsfr_install_env, 'bun install'
   system! 'bun playwright install chromium'
 
   puts "\n== Updating database =="
