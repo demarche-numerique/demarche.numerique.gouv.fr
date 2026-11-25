@@ -11,7 +11,8 @@ module Administrateurs
 
     def create
       type_de_champ = draft.add_type_de_champ(type_de_champ_create_params)
-      if type_de_champ.valid?
+      # not saved when refused: it holds why
+      if type_de_champ.persisted?
         edited(type_de_champ)
         @created = champ_component_from(type_de_champ, focused: true)
         @morphed = champ_components_from(siblings_starting_at(type_de_champ, 1))
@@ -27,7 +28,7 @@ module Administrateurs
       was_prefill_with_fc_information = type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?
       update_params = type_de_champ_update_params(type_de_champ)
 
-      if type_de_champ.type_champ_locked? && changing_of_type?(type_de_champ, update_params)
+      if type_de_champ.type_change_locked? && changing_of_type?(type_de_champ, update_params)
         refuse(type_de_champ, type_de_champ.type_change_locked_message)
       else
         referentiel_url_stable_ids = []

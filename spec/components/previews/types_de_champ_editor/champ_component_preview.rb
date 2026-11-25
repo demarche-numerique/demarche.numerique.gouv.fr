@@ -1,17 +1,10 @@
 # frozen_string_literal: true
 
 class TypesDeChampEditor::ChampComponentPreview < ViewComponent::Preview
-  include Logic
-
   def nominal
-    tdc = TypeDeChamp.new(type_champ: 'text', stable_id: 123)
-    procedure = Procedure.new(id: 123)
-    coordinate = ProcedureRevisionTypeDeChamp.new(type_de_champ: tdc, procedure:)
-    errors = 'une grosse erreur'
+    # the first type de champ a draft lays out: a card needs to know where it sits
+    type_de_champ = Procedure.find_each(batch_size: 10).lazy.filter_map { it.draft_revision&.type_de_champs&.first }.first
 
-    render_with_template(locals: {
-      coordinate:,
-      errors:,
-    })
+    render_with_template(locals: { type_de_champ:, errors: 'une grosse erreur' })
   end
 end

@@ -95,8 +95,6 @@ ActiveRecord::Base.transaction do
   end
 
   revision.update_columns(type_de_champ_tree: TypeDeChampTree.new(public_children:, private_children:))
-  # FIXME: the coordinates follow, as long as the editor writes them (#14009)
-  revision.create_coordinates_from_type_de_champ_tree
 
   procedures.label tous_champs: procedure
 

@@ -445,9 +445,9 @@ describe 'As an administrateur I can edit types de champ', js: true do
 
   context 'move and morph' do
     let(:procedure) { create(:procedure, public_type_de_champs: tdcs) }
-    let!(:initial_first_coordinate) { procedure.draft_revision.public_revision_type_de_champs[0] }
-    let!(:initial_second_coordinate) { procedure.draft_revision.public_revision_type_de_champs[1] }
-    let!(:initial_third_coordinate) { procedure.draft_revision.public_revision_type_de_champs[2] }
+    let!(:initial_first_type_de_champ) { procedure.draft_revision.public_root_type_de_champs[0] }
+    let!(:initial_second_type_de_champ) { procedure.draft_revision.public_root_type_de_champs[1] }
+    let!(:initial_third_type_de_champ) { procedure.draft_revision.public_root_type_de_champs[2] }
 
     context 'with root champs' do
       let(:tdcs) do
@@ -457,49 +457,49 @@ describe 'As an administrateur I can edit types de champ', js: true do
           { type: :text, libelle: 'last_tdc' },
         ]
       end
-      let(:initial_first_coordinate_selector) { "##{ActionView::RecordIdentifier.dom_id(initial_first_coordinate.type_de_champ, :move_and_morph)}" }
+      let(:initial_first_selector) { "##{ActionView::RecordIdentifier.dom_id(initial_first_type_de_champ, :move_and_morph)}" }
 
       scenario 'root select is empty by default' do
-        # at first, select only contains the current coordinate
-        expect(page).to have_selector("#{initial_first_coordinate_selector} option", count: 1)
-        expect(page.find(initial_first_coordinate_selector).all("option").first.value.to_s).to eq(initial_first_coordinate.stable_id.to_s)
+        # at first, select only contains the current type de champ
+        expect(page).to have_selector("#{initial_first_selector} option", count: 1)
+        expect(page.find(initial_first_selector).all("option").first.value.to_s).to eq(initial_first_type_de_champ.stable_id.to_s)
       end
 
       scenario 'when select is focused, it seeds its options' do
-        # once clicked, the select is updated with root champs options only, preselected on coordinates and have nice libelles
-        page.find(initial_first_coordinate_selector).click
-        expect(page).to have_selector("#{initial_first_coordinate_selector} option", count: 3)
-        expect(page.find(initial_first_coordinate_selector).find("option[selected]").value.to_s).to eq(initial_first_coordinate.stable_id.to_s)
-        expect(page.find(initial_first_coordinate_selector).all("option").map(&:text)).to match_array(['1 - first_tdc', '2 - middle_tdc', '3 - last_tdc'])
+        # once clicked, the select is updated with root champs options only, preselected on the current one and have nice libelles
+        page.find(initial_first_selector).click
+        expect(page).to have_selector("#{initial_first_selector} option", count: 3)
+        expect(page.find(initial_first_selector).find("option[selected]").value.to_s).to eq(initial_first_type_de_champ.stable_id.to_s)
+        expect(page.find(initial_first_selector).all("option").map(&:text)).to match_array(['1 - first_tdc', '2 - middle_tdc', '3 - last_tdc'])
 
         # renaming a tdc renames it's option
-        within "##{dom_id(initial_first_coordinate.type_de_champ, :type_de_champ_editor)}" do
+        within "##{dom_id(initial_first_type_de_champ, :type_de_champ_editor)}" do
           fill_in 'Libellé du champ', with: 'renamed'
         end
-        wait_until { initial_first_coordinate.reload.libelle == 'renamed' }
+        wait_until { initial_first_type_de_champ.reload.libelle == 'renamed' }
         # wait until turbo response
         expect(page).to have_text('Formulaire enregistré')
-        page.find(initial_first_coordinate_selector).click
-        expect(page).to have_css("#{initial_first_coordinate_selector} option", count: 3)
-        expect(page.find(initial_first_coordinate_selector).all("option").map(&:text)).to match_array(['1 - renamed', '2 - middle_tdc', '3 - last_tdc'])
+        page.find(initial_first_selector).click
+        expect(page).to have_css("#{initial_first_selector} option", count: 3)
+        expect(page.find(initial_first_selector).all("option").map(&:text)).to match_array(['1 - renamed', '2 - middle_tdc', '3 - last_tdc'])
       end
 
-      scenario 'when select is changed, it move the coordinates' do
-        page.find(initial_first_coordinate_selector).click # seeds
-        page.find(initial_first_coordinate_selector).select(initial_third_coordinate.libelle)
+      scenario 'when select is changed, it moves the type de champ' do
+        page.find(initial_first_selector).click # seeds
+        page.find(initial_first_selector).select(initial_third_type_de_champ.libelle)
         wait_until do
-          procedure.reload.draft_revision.revision_type_de_champs.last.type_de_champ.libelle == initial_first_coordinate.type_de_champ.libelle
+          procedure.reload.draft_revision.public_root_type_de_champs.last.libelle == initial_first_type_de_champ.libelle
         end
         # wait until turbo response
         expect(page).to have_text('Formulaire enregistré')
 
         # check reorder worked on backend
-        reordered_coordinates = [initial_second_coordinate, initial_third_coordinate, initial_first_coordinate]
-        expect(procedure.reload.draft_revision.revision_type_de_champs.map(&:stable_id)).to eq(reordered_coordinates.map(&:stable_id))
+        reordered_type_de_champs = [initial_second_type_de_champ, initial_third_type_de_champ, initial_first_type_de_champ]
+        expect(procedure.reload.draft_revision.public_root_type_de_champs.map(&:stable_id)).to eq(reordered_type_de_champs.map(&:stable_id))
 
         # check reorder rerendered champ component between target->destination
-        reordered_coordinates.map(&:reload).map do |coordinate|
-          expect(page).to have_selector("##{ActionView::RecordIdentifier.dom_id(coordinate.type_de_champ, :type_de_champ_editor)} .position", text: coordinate.position + 1)
+        reordered_type_de_champs.each_with_index do |type_de_champ, position|
+          expect(page).to have_selector("##{ActionView::RecordIdentifier.dom_id(type_de_champ, :type_de_champ_editor)} .position", text: position + 1)
         end
       end
     end
@@ -519,45 +519,45 @@ describe 'As an administrateur I can edit types de champ', js: true do
           { type: :text, libelle: 'root_thrid_tdc' },
         ]
       end
-      let(:children_coordinates) { procedure.draft_revision.revision_type_de_champs.filter { _1.parent.present? } }
-      let(:first_child_coordinate_selector) { "##{ActionView::RecordIdentifier.dom_id(children_coordinates.first.type_de_champ, :move_and_morph)}" }
+      let(:children) { procedure.draft_revision.type_de_champs.filter(&:in_repetition?) }
+      let(:first_child_selector) { "##{ActionView::RecordIdentifier.dom_id(children.first, :move_and_morph)}" }
 
       scenario 'first child of repetition select is empty by default' do
-        expect(page).to have_selector("#{first_child_coordinate_selector} option", count: 1)
-        expect(page.find(first_child_coordinate_selector).all("option").first.value.to_s).to eq(children_coordinates.first.stable_id.to_s)
+        expect(page).to have_selector("#{first_child_selector} option", count: 1)
+        expect(page.find(first_child_selector).all("option").first.value.to_s).to eq(children.first.stable_id.to_s)
       end
 
       scenario 'when first child select is focused, seed with repetition only tdcs' do
-        page.find(first_child_coordinate_selector).click
-        expect(page).to have_selector("#{first_child_coordinate_selector} option", count: 2)
+        page.find(first_child_selector).click
+        expect(page).to have_selector("#{first_child_selector} option", count: 2)
 
-        opts = page.find(first_child_coordinate_selector).all("option").map(&:text)
-        expect(opts).to match_array(children_coordinates.map { "#{_1.position + 1} - #{_1.libelle}" })
+        opts = page.find(first_child_selector).all("option").map(&:text)
+        expect(opts).to match_array(children.map { "#{_1.position + 1} - #{_1.libelle}" })
       end
 
       scenario 'when first child select is changed, move champ in repetition' do
-        page.find(first_child_coordinate_selector).click
-        expect(children_coordinates.first.position).to eq(0)
-        page.find(first_child_coordinate_selector).select(children_coordinates.last.libelle)
+        page.find(first_child_selector).click
+        expect(children.first.position).to eq(0)
+        page.find(first_child_selector).select(children.last.libelle)
         # check reorder works on backend
         wait_until do
-          children_coordinates.first.reload.position == 1
+          procedure.reload.draft_revision.type_de_champ(children.first.stable_id).position == 1
         end
         # wait until turbo response
         expect(page).to have_text('Formulaire enregistré')
 
         # check reorder worked on backend
-        reordered_coordinates = children_coordinates.reverse
-        expect(procedure.reload.draft_revision.revision_type_de_champs.filter { _1.parent.present? }.sort_by(&:position).map(&:stable_id)).to eq(reordered_coordinates.map(&:stable_id))
+        reordered_children = children.reverse
+        expect(procedure.reload.draft_revision.type_de_champs.filter(&:in_repetition?).map(&:stable_id)).to eq(reordered_children.map(&:stable_id))
 
         # check reorder rerendered champ component between target->destination
-        reordered_coordinates.map(&:reload).map do |coordinate|
-          expect(page).to have_selector("##{ActionView::RecordIdentifier.dom_id(coordinate.type_de_champ, :type_de_champ_editor)} .position", text: coordinate.position + 1)
+        reordered_children.each_with_index do |type_de_champ, position|
+          expect(page).to have_selector("##{ActionView::RecordIdentifier.dom_id(type_de_champ, :type_de_champ_editor)} .position", text: position + 1)
         end
       end
 
       scenario 'can configure limit repetitions on repetition champ' do
-        repetition_tdc = initial_second_coordinate.type_de_champ
+        repetition_tdc = initial_second_type_de_champ
 
         find("label[for='#{dom_id(repetition_tdc, :limit_repetitions)}']").click
         wait_until { repetition_tdc.reload.limit_repetitions == "1" }

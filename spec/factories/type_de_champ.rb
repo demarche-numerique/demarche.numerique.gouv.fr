@@ -238,5 +238,5 @@ def lay_out_type_de_champ_for_factory(type_de_champ, parent: nil)
   end
   node = TypeDeChampNode.new(stable_id: type_de_champ.stable_id, type_de_champ_id: type_de_champ.id)
 
-  store_factory_type_de_champ_tree(revision, tree.insert(node, parent:, after: siblings.last&.stable_id))
+  revision.update_columns(type_de_champ_tree: tree.insert(node, parent:, after: siblings.last&.stable_id))
 end

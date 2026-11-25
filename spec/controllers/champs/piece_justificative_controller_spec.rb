@@ -75,7 +75,7 @@ describe Champs::PieceJustificativeController, type: :controller do
     end
   end
 
-  describe 'a row whose repetition became a text in the draft revision' do
+  describe 'a row whose repetition was emptied and became a text in the draft revision' do
     let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :repetition, children: [{ type: :piece_justificative }] }]) }
     let(:dossier) { create(:dossier, user:, procedure:) }
     let!(:child) { dossier.public_root_champs.first.rows.first.flat_children.first }
@@ -84,10 +84,12 @@ describe Champs::PieceJustificativeController, type: :controller do
       sign_in user
       draft = procedure.draft_revision
       repetition = draft.find_and_ensure_exclusive_use(draft.public_root_type_de_champs.first.stable_id)
-      draft.update_type_de_champ(repetition.becomes_type('text'), type_champ: 'text')
+      # a repetition holding types de champ keeps its type
+      repetition.flat_children.each { draft.remove_type_de_champ(it.stable_id) }
+      draft.update_type_de_champ(draft.type_de_champ(repetition.stable_id).becomes_type('text'), type_champ: 'text')
     end
 
-    it 'is out of the revision: the tree only nests children under a repetition' do
+    it 'is out of the revision' do
       get :template, params: { dossier_id: dossier.id, public_id: child.public_id }
 
       expect(response).to have_http_status(:not_found)

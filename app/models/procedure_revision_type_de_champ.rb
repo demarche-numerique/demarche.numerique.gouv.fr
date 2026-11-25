@@ -1,47 +1,13 @@
 # frozen_string_literal: true
 
+# FIXME: where a type de champ sat in a revision, before the revisions stored
+# their tree (ProcedureRevision#type_de_champ_tree). No longer written nor
+# read: the rows left go with their revision or their type de champ, until the
+# table is dropped (#14009).
 class ProcedureRevisionTypeDeChamp < ApplicationRecord
   belongs_to :revision, class_name: 'ProcedureRevision'
   belongs_to :type_de_champ
 
   belongs_to :parent, class_name: 'ProcedureRevisionTypeDeChamp', optional: true
-  # this relationship is necessary for cascade with dependent: :destroy
-  has_many :children_revision_type_de_champs, -> { ordered }, foreign_key: :parent_id, class_name: 'ProcedureRevisionTypeDeChamp', inverse_of: :parent, dependent: :destroy
-  has_one :procedure, through: :revision
-  scope :root, -> { where(parent: nil) }
-  scope :ordered, -> { order(:position, :id) }
-  scope :revision_ordered, -> { order(:revision_id) }
-  scope :public_only, -> { joins(:type_de_champ).where(types_de_champ: { private: false }) }
-  scope :private_only, -> { joins(:type_de_champ).where(types_de_champ: { private: true }) }
-
-  delegate :libelle, :display_libelle, :description, :type_champ, :header_section?, :repetition?, :mandatory?, :public?, :private?, :to_typed_id, to: :type_de_champ
-  delegate :type_de_champ, to: :parent, prefix: true, allow_nil: true
-
-  default_scope { eager_load(:type_de_champ) }
-
-  def revision_type_de_champs = revision.revision_type_de_champs.filter { _1.persisted? ? _1.parent_id == id : _1.parent == self }.sort_by(&:position)
-  def type_de_champs = revision_type_de_champs.map(&:type_de_champ)
-
-  # significant perf gain when accessed hundreds of thousands of times in API or export context
-  def stable_id
-    @stable_id ||= type_de_champ.stable_id
-  end
-
-  def root?
-    persisted? ? parent_id.nil? : parent.nil?
-  end
-
-  def child?
-    parent_id.present?
-  end
-
-  def siblings
-    if child?
-      parent.revision_type_de_champs
-    elsif private?
-      revision.private_revision_type_de_champs
-    else
-      revision.public_revision_type_de_champs
-    end
-  end
+  has_many :children_revision_type_de_champs, foreign_key: :parent_id, class_name: 'ProcedureRevisionTypeDeChamp', inverse_of: :parent, dependent: :destroy
 end

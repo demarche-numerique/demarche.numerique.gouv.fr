@@ -13,7 +13,7 @@ describe ProcedureExportOrderConcern do
   end
   let(:legacy_export_order) { false }
 
-  def stable_id(libelle) = TypeDeChamp.where(id: procedure.revisions.joins(:revision_type_de_champs).select(:type_de_champ_id)).find_by!(libelle:).stable_id
+  def stable_id(libelle) = procedure.type_de_champs.find_by!(libelle:).stable_id
   def libelles(type_de_champs) = type_de_champs.map(&:libelle)
 
   def remove_and_publish(*libelles)

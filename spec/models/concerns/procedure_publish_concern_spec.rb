@@ -138,7 +138,6 @@ describe ProcedurePublishConcern do
     it 'creates a new draft revision' do
       expect { subject }.to change(ProcedureRevision, :count).by(1)
       expect(procedure.draft_revision).to be_present
-      expect(procedure.draft_revision.public_revision_type_de_champs).to be_present
       expect(procedure.draft_revision.public_root_type_de_champs).to be_present
       expect(procedure.draft_revision.public_root_type_de_champs.first.libelle).to eq('libelle 1')
     end
@@ -163,14 +162,14 @@ describe ProcedurePublishConcern do
     it 'stores the tree the database holds, whatever the draft loaded before' do
       subject
 
-      stable_id = procedure.draft_revision.revision_type_de_champs.first.stable_id
+      stable_id = procedure.draft_revision.type_de_champ_tree.public_children.first.stable_id
       edited = Procedure.find(procedure.id).draft_revision.find_and_ensure_exclusive_use(stable_id)
       edited.update!(libelle: 'libelle 1 edited')
 
       procedure.publish_revision!(administrateur)
 
       expect(procedure.published_revision.reload.read_attribute(:type_de_champ_tree).public_children.map(&:type_de_champ_id)).to eq([edited.id])
-      expect(procedure.draft_revision.reload.revision_type_de_champs.map(&:type_de_champ_id)).to eq([edited.id])
+      expect(procedure.draft_revision.reload.type_de_champ_tree.type_de_champ_ids).to eq([edited.id])
     end
 
     it 'lays out what the database holds, whatever the draft laid out before' do
@@ -214,23 +213,24 @@ describe ProcedurePublishConcern do
       expect(procedure.published_revision.public_root_type_de_champs.map(&:id)).to eq([edited.id])
     end
 
-    context 'when a repetition was turned into another type' do
+    context 'when a repetition was emptied and turned into another type' do
       let(:procedure) { create(:procedure, :published, administrateurs: [administrateur], public_type_de_champs: [{ type: :repetition, children: [{ type: :text }] }]) }
       let(:draft) { procedure.draft_revision }
       let(:repetition) { draft.public_root_type_de_champs.find(&:repetition?) }
       let!(:child) { draft.type_de_champ(repetition.stable_id).flat_children.first }
 
       before do
+        # a repetition holding types de champ keeps its type
+        draft.remove_type_de_champ(child.stable_id)
         text = draft.find_and_ensure_exclusive_use(repetition.stable_id).becomes_type('text')
         draft.update_type_de_champ(text, type_champ: 'text')
-        expect(draft.revision_type_de_champs.reject(&:root?)).to be_present
       end
 
-      it 'removes the children coordinates the tree leaves out, cloned into the next draft otherwise' do
+      it 'leaves its children out of the trees, and keeps the ones a past revision lays out' do
         subject
 
-        expect(procedure.published_revision.revision_type_de_champs.reject(&:root?)).to be_empty
-        expect(procedure.draft_revision.revision_type_de_champs.reject(&:root?)).to be_empty
+        expect(procedure.published_revision.type_de_champ_tree.type_de_champ_ids).not_to include(child.id)
+        expect(procedure.draft_revision.type_de_champ_tree.type_de_champ_ids).not_to include(child.id)
         # laid out by the first published revision
         expect { child.reload }.not_to raise_error
       end
@@ -308,7 +308,7 @@ describe ProcedurePublishConcern do
         expect(procedure.draft_revision.dossier_submitted_message).to eq(previous_dossier_submitted_message)
       end
 
-      it "stores the type de champ tree of the new draft, built from its coordinates" do
+      it "stores the type de champ tree of the new draft" do
         procedure = procedures.individual
         procedure.draft_revision.add_type_de_champ(tdc_attributes)
 
@@ -316,7 +316,7 @@ describe ProcedurePublishConcern do
 
         draft_revision = procedure.draft_revision.reload
         expect(draft_revision.read_attribute(:type_de_champ_tree)).to eq(procedure.published_revision.type_de_champ_tree)
-        expect(draft_revision.read_attribute(:type_de_champ_tree)).to eq(TypeDeChampTree.from_coordinates(draft_revision.revision_type_de_champs))
+        expect(draft_revision.type_de_champs).to eq(procedure.published_revision.type_de_champs)
       end
 
       it "purges the types de champ of the draft, the ones removed from it since the publication included" do

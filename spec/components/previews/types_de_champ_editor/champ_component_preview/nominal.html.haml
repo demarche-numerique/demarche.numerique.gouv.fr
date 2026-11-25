@@ -2,6 +2,4 @@
   .container
     .types-de-champ-editor
       %ul.types-de-champ-block
-        = render TypesDeChampEditor::ChampComponent.new(coordinate:,
-          focused: false,
-          errors:)
+        = render TypesDeChampEditor::NodeComponent.new(type_de_champ:, errors:)

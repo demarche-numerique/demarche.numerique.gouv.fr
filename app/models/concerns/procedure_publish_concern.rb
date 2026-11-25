@@ -88,16 +88,13 @@ module ProcedurePublishConcern
   end
 
   # The new revision takes the tree as it is, and lays out the same types de
-  # champ: the coordinates are made out of the tree.
+  # champ.
   def create_new_revision(revision = nil)
-    transaction do
-      (revision || draft_revision)
-        .deep_clone
-        .tap { |revision| revision.published_at = nil }
-        .tap { |revision| revision.administrateur_id = nil }
-        .tap(&:save!)
-        .create_coordinates_from_type_de_champ_tree
-    end
+    (revision || draft_revision)
+      .deep_clone
+      .tap { |revision| revision.published_at = nil }
+      .tap { |revision| revision.administrateur_id = nil }
+      .tap(&:save!)
   end
 
   private
@@ -108,7 +105,6 @@ module ProcedurePublishConcern
     # it before the next draft takes it
     draft_revision.edit_type_de_champs do
       cleanup_type_de_champs_options!
-      draft_revision.remove_coordinates_out_of_tree
       nullify_unused_referentiels
     end
     self.published_revision = draft_revision
@@ -118,7 +114,7 @@ module ProcedurePublishConcern
     purge_type_de_champs_laid_out_by_no_revision
   end
 
-  # Removing a type de champ from the draft only drops its coordinate: the
+  # Removing a type de champ from the draft only takes it out of the tree: the
   # types de champ of the procedure which no revision lays out any more are
   # purged here, once the new draft holds its tree. The trees of the
   # revisions, not the aggregate: it lays out what the dossiers may hold

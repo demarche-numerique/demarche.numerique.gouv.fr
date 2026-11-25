@@ -669,8 +669,8 @@ RSpec.describe Types::DossierType, type: :graphql do
     it 'loads the descriptors of the revision on demand' do
       traitement = data[:dossier][:traitements].first
       expect(traitement[:revision][:id]).to eq(dossier.revision.to_typed_id)
-      expect(traitement[:revision][:champDescriptors].map { _1[:id] }).to eq(dossier.revision.public_revision_type_de_champs.map(&:to_typed_id))
-      expect(traitement[:revision][:annotationDescriptors].map { _1[:id] }).to eq(dossier.revision.private_revision_type_de_champs.map(&:to_typed_id))
+      expect(traitement[:revision][:champDescriptors].map { _1[:id] }).to eq(dossier.revision.public_root_type_de_champs.map(&:to_typed_id))
+      expect(traitement[:revision][:annotationDescriptors].map { _1[:id] }).to eq(dossier.revision.private_root_type_de_champs.map(&:to_typed_id))
     end
   end
 
