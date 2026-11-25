@@ -49,9 +49,15 @@ function choisirVoix() {
     return null;
   }
   if (opts.voix) return opts.voix;
+  // Une voix compacte (installée d'office) sonne robotique : on prend la meilleure qualité
+  // installée, Premium puis Améliorée, et à qualité égale Aurélie d'abord (jugée la plus naturelle).
   const francaises = liste.stdout.split('\n').map((l) => l.match(/^(.+?)\s+fr_FR\s/)?.[1]).filter(Boolean);
-  const voix = ['Thomas', 'Amélie', 'Audrey'].find((v) => francaises.includes(v)) ?? francaises[0];
+  const qualite = (v) => (/Premium/i.test(v) ? 2 : /Enhanced|Améliorée/i.test(v) ? 1 : 0);
+  const prenom = (v) => ['Aurélie', 'Audrey', 'Marie', 'Thomas'].findIndex((p) => v.startsWith(p));
+  const rang = (v) => qualite(v) * 10 - (prenom(v) === -1 ? 5 : prenom(v));
+  const voix = [...francaises].sort((a, b) => rang(b) - rang(a))[0];
   if (!voix) console.warn('Aucune voix fr_FR installée : voix système par défaut.');
+  else if (!qualite(voix)) console.warn(`Voix compacte (${voix}), au rendu robotique : installez une voix française Améliorée ou Premium (Réglages Système > Accessibilité > Lire et énoncer > ⓘ à côté de « Voix système »).`);
   return voix ?? '';
 }
 
