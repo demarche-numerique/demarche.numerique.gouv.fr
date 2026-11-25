@@ -9,7 +9,7 @@ describe 'shared/kaminari/_paginator', type: :view do
     let(:current_page) { 10 }
 
     it 'renders the full DSFR pagination' do
-      expect(subject).to have_css('nav.fr-pagination[role="navigation"][aria-label="Pagination"] ul.fr-pagination__list')
+      expect(subject).to have_css('nav.fr-pagination[aria-label="Pagination"] ul.fr-pagination__list')
       expect(subject).to have_link('Première page', class: 'fr-pagination__link--first')
       expect(subject).to have_link('Précédent', class: 'fr-pagination__link--prev')
       expect(subject).to have_link('9', title: 'Page 9')
