@@ -33,10 +33,7 @@ class Columns::ChampColumn < Column
   end
 
   def sorted_ids(dossiers, order, count:, **)
-    ids = dossiers
-      .with_type_de_champ(stable_id)
-      .order("champs.value #{order}")
-      .pluck(:id)
+    ids = sorted_dossiers(dossiers, order).pluck(:id)
     if ids.size != count
       rest = dossiers.where.not(id: ids).order(id: order).pluck(:id)
       order == 'asc' ? ids + rest : rest + ids
@@ -138,6 +135,8 @@ class Columns::ChampColumn < Column
   end
 
   def string_value(champ) = champ.public_send(column)
+
+  def sorted_dossiers(dossiers, order) = dossiers.with_type_de_champ(stable_id).order("champs.value #{order}")
 
   def typed_value(champ)
     value = string_value(champ)

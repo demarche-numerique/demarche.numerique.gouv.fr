@@ -109,6 +109,15 @@ class Columns::JSONPathColumn < Columns::ChampColumn
     JsonPath.on(champ.value_json, jsonpath).first
   end
 
+  # Sorts on the attribute shown in the column, not on the raw champ value.
+  # A JSON null sorts before every value: NULLIF ranks it with a missing attribute.
+  def sorted_dossiers(dossiers, order)
+    direction = order == 'desc' ? 'DESC' : 'ASC'
+    dossiers
+      .with_type_de_champ(stable_id)
+      .order(Arel.sql("NULLIF(jsonb_path_query_first(champs.value_json, '#{jsonpath_for_sql}'), 'null'::jsonb) #{direction}"), id: order)
+  end
+
   def quote_string(string) = ActiveRecord::Base.connection.quote_string(string)
 
   def targeted_dossiers(dossiers, condition)
