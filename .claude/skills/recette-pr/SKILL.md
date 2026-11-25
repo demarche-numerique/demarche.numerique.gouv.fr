@@ -15,6 +15,7 @@ Fichiers du skill (`.claude/skills/recette-pr/`) :
 | `serve.sh <N>` | Rails sur :3100 et Vite sur :3136, à côté du serveur de dev (3000/3036) qui reste intact |
 | `recette.mjs <scenario> --mode auto\|guide\|video\|captures\|sonde` | joue le scénario (voir plus bas) ; la vidéo est commentée en voix off ; `sonde` affiche l'arbre d'accessibilité d'une page |
 | `exemple-scenario.mjs` | scénario de référence (PR 14604) : à lire avant d'en écrire un |
+| `commentaire.mjs <scenario> <resultats.json> <url des images> [--video <url>]` | écrit le commentaire de recette à poster sur la PR (voir plus bas) |
 | `outils.mjs` | outils passés aux étapes sous `outils` : `codeFrais(secret)` pour un code OTP |
 | `cleanup.sh <N>` | arrête le serveur, supprime worktree et bases |
 
@@ -67,7 +68,8 @@ export default {
   contexte: '…',              // une phrase, affichée en ouverture de la vidéo
   narration: '…',             // optionnel : voix off d'ouverture, sinon `contexte`
   persona: 'admin@exemple.fr',// connexion par le formulaire usager ; omis = anonyme
-  connexion: async ({ page, data, outils }) => {}, // optionnel : remplace `persona` (super admin, OTP…)
+  connexion: async ({ page, data, outils }) => {}, // optionnel : connexion à la place du formulaire usager (super admin, OTP…) ; `persona` reste affiché
+  env: { SUPER_ADMIN_OTP_ENABLED: 'enabled' },     // optionnel : variables à passer à serve.sh et recette.mjs
   preparation: `…ruby…`,      // optionnel, exécuté par bin/rails runner ; dernière ligne = JSON → `data`
   depart: (data) => `/admin/procedures/${data.vide}/champs`,
   etapes: [{
@@ -144,6 +146,21 @@ node <repo>/.claude/skills/recette-pr/recette.mjs tmp/recette/scenario.mjs --mod
 ```
 
 Sans tête, joue le scénario avec le panneau du mode guide et capture chaque étape deux fois : `NN-consigne.png` (consigne, cible surlignée) et `NN-attendu.png` (après l'action, attendu à juger). **Aucun verdict n'est cliqué** : ne simule jamais un ✅ pour produire une image, un bilan « 9/9 conformes » sans humain serait un faux.
+
+### Commentaire de recette sur la PR
+
+```bash
+node <repo>/.claude/skills/recette-pr/commentaire.mjs tmp/recette/scenario.mjs tmp/recette/resultats-captures/resultats.json <url des images> [--video <url user-attachments>]
+```
+
+Le commentaire se lit sans rien déplier, puis se creuse à la demande. Sous le titre « Recette guidée de #N », quatre sections :
+- **Contexte** : une phrase, la situation suivie du persona ;
+- **À juger**, si `--a-juger <fichier.md>` est donné : les constats de la recette que l'humain doit trancher (écart de comportement, état intermédiaire vu dans la vidéo…) ;
+- **Validation visuelle** : la vidéo commentée ;
+- **Critères d'acceptation**, avec le bilan dans le titre (« N/M vérifiés par le script 🤖 », tant qu'aucun humain n'a jugé). Un accordéon `<details>` par étape : le bouton ne porte que le verdict, le numéro et le titre ; déplié, il donne la consigne, l'attendu et les deux captures du mode `captures` en pleine largeur ;
+- **Rejouer en local** : un prompt à copier dans Claude Code, autonome car il embarque le scénario joué (clôture à quatre accents graves, le scénario étant lui-même un bloc de code).
+
+Les images sont des URL brutes (un gist, voir ci-dessous) nommées `NN-consigne.png` et `NN-attendu.png`. `--video` reprend l'URL `user-attachments` d'une vidéo déjà glissée dans GitHub, pour la garder en régénérant le commentaire.
 
 GitHub n'a pas d'API pour joindre une vidéo à un commentaire : l'humain la glisse dans le commentaire de la PR. Même chose pour les captures : un gist public peut être refusé par les permissions de la session (fuite d'informations) ; dans ce cas, ne contourne pas, donne les chemins à l'humain. Propose le texte (`rapport.md` + verdicts) et ne publie qu'avec son accord (`gh pr comment N --body-file …`).
 
