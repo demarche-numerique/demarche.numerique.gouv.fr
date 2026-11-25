@@ -11,6 +11,12 @@ class DeviseUserMailer < Devise::Mailer
   layout 'mailers/layout'
   default from: "#{APPLICATION_NAME} <#{CONTACT_EMAIL}>"
 
+  # Every Devise email goes to the record passed first. deliver_later replays the request locale,
+  # a safe fallback only because the recipient triggers these emails (super admins have no locale).
+  def process(action, record = nil, *)
+    I18n.with_locale(record.try(:locale) || I18n.locale) { super }
+  end
+
   def template_paths
     ['devise_mailer']
   end
@@ -23,14 +29,12 @@ class DeviseUserMailer < Devise::Mailer
 
     bypass_unverified_mail_protection!
 
-    I18n.with_locale(record.locale) do
-      if record.unconfirmed_email.nil?
-        @subject = t('.subject', application_name: APPLICATION_NAME)
-        opts_or_headers[:subject] = @subject
-      end
-
-      super
+    if record.unconfirmed_email.nil?
+      @subject = t('.subject', application_name: APPLICATION_NAME)
+      opts_or_headers[:subject] = @subject
     end
+
+    super
   end
 
   def reset_password_instructions(record, token, opts = {})

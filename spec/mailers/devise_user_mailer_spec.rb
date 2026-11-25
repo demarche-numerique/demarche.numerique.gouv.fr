@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 RSpec.describe DeviseUserMailer, type: :mailer do
-  let(:user) { create(:user) }
+  let(:user) { users.usager }
   let(:token) { SecureRandom.hex }
+
+  def text_of(body) = Capybara.string(body.to_s).text.gsub(/\s+/, " ")
+
   describe '.confirmation_instructions' do
     subject { described_class.confirmation_instructions(user, token, opts = {}) }
 
@@ -40,6 +43,12 @@ RSpec.describe DeviseUserMailer, type: :mailer do
       it 'keeps its own subject and no activation button' do
         expect(subject.subject).to eq('Instructions de confirmation')
         expect(subject.body).not_to have_link('Activer mon compte')
+        expect(subject.body).to have_link(user_confirmation_url(confirmation_token: token))
+      end
+
+      it 'is translated in en' do
+        user.update_column(:locale, 'en')
+        expect(text_of(subject.body)).to include('To confirm your account email change, select the following link:')
       end
     end
 
@@ -56,7 +65,7 @@ RSpec.describe DeviseUserMailer, type: :mailer do
         it 'puts the activation link behind a button and spells it out below' do
           link = user_confirmation_url(confirmation_token: token)
           expect(subject.body).to have_link('Activer mon compte', href: link)
-          expect(subject.body).to have_text("Si le bouton ci-dessus ne fonctionne pas, veuillez copier/coller le lien suivant dans votre navigateur\u00a0:")
+          expect(text_of(subject.body)).to include("Si le bouton ci-dessus ne fonctionne pas, veuillez copier-coller le lien suivant dans votre navigateur\u00a0:")
           expect(subject.body).to have_link(link, href: link)
         end
       end
@@ -73,7 +82,7 @@ RSpec.describe DeviseUserMailer, type: :mailer do
         it 'puts the activation link behind a button and spells it out below' do
           link = user_confirmation_url(confirmation_token: token)
           expect(subject.body).to have_link('Activate my account', href: link)
-          expect(subject.body).to have_text('If the button above does not work, copy and paste the following link into your browser:')
+          expect(text_of(subject.body)).to include('If the button above does not work, copy and paste the following link into your browser:')
           expect(subject.body).to have_link(link, href: link)
         end
 
@@ -113,6 +122,52 @@ RSpec.describe DeviseUserMailer, type: :mailer do
       before { user.update_column(:requested_merge_into_id, other_user.id) }
 
       it_behaves_like 'a warning to the current address'
+    end
+
+    context 'when the change is done' do
+      it 'gives the new address' do
+        expect(text_of(subject.body)).to include("Vous pouvez désormais vous connecter avec l’adresse #{user.email}")
+      end
+
+      it 'is translated in en' do
+        body = I18n.with_locale(:en) { described_class.email_changed(user, to: user.email).body.to_s }
+        expect(text_of(body)).to include("You can now sign in with the email address #{user.email}")
+        expect(body).to have_link('contact form', href: contact_url)
+      end
+    end
+  end
+
+  describe '.password_change' do
+    it 'confirms the change in fr and en' do
+      expect(text_of(described_class.password_change(user, {}).body)).to include("La demande de changement de mot de passe pour votre compte #{user.email}")
+      body = I18n.with_locale(:en) { described_class.password_change(user, {}).body.to_s }
+      expect(text_of(body)).to include("A request to change your password on #{APPLICATION_NAME} for the account #{user.email}")
+    end
+  end
+
+  describe '.reset_password_instructions' do
+    it 'links to the new password form in fr and en' do
+      link = edit_user_password_url(reset_password_token: token)
+      expect(described_class.reset_password_instructions(user, token).body).to have_link('Changer mon mot de passe', href: link)
+      body = I18n.with_locale(:en) { described_class.reset_password_instructions(user, token).body.to_s }
+      expect(body).to have_link('Change the password', href: link)
+    end
+  end
+
+  describe 'locale' do
+    it 'follows the recipient, not the request that enqueued the email' do
+      user.update_column(:locale, 'en')
+      body = I18n.with_locale(:fr) { described_class.reset_password_instructions(user, token).body.to_s }
+      expect(body).to have_link('Change the password')
+    end
+  end
+
+  describe '.unlock_instructions' do
+    it 'links to the unlock page in fr and en' do
+      link = user_unlock_url(unlock_token: token)
+      expect(described_class.unlock_instructions(user, token).body).to have_link('Déverrouiller mon compte', href: link)
+      body = I18n.with_locale(:en) { described_class.unlock_instructions(user, token).body.to_s }
+      expect(body).to have_link('Unlock account', href: link)
     end
   end
 end

@@ -1,0 +1,29 @@
+en:
+  devise_mailer:
+    confirmation_instructions:
+      activation:
+        intro: "To confirm your email address and activate your account on %{application_name}, select the button below:"
+        button: Activate my account
+        fallback: "If the button above does not work, copy and paste the following link into your browser:"
+      email_change:
+        title: Change email address
+        intro: "To confirm your account email change, select the following link:"
+    email_changed:
+      title: New email address
+      requested: We received a request to change the email address associated with your account %{email} on %{application_name}. The requested address is %{requested_email}.
+      changed: A change to the email address associated with your account %{email} was made on %{application_name}. You can now sign in with the email address %{new_email}.
+      not_you_html: "If you did not make this request, your account may be compromised: contact support through the %{contact_form_link} or at %{contact_email_link}."
+      contact_form: contact form
+    password_change:
+      title: New password
+      body: A request to change your password on %{application_name} for the account %{email} was successfully processed.
+    reset_password_instructions:
+      intro: "Someone has requested to change your account password on %{application_name}. To set a new password, select the following link:"
+      button: Change the password
+      previous_emails: This email invalidates any similar email you may have requested before.
+      not_you: If you didn't request this, please ignore this email. Your password won't change.
+    unlock_instructions:
+      title: Reactivate account
+      locked: Someone made too many unsuccessful attempts to sign in to your account %{email} on %{application_name}. As a security measure, we temporarily locked access to your account.
+      instructions: "To unlock access to your account, select the following link:"
+      link: Unlock account

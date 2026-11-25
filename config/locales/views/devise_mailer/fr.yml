@@ -1,0 +1,29 @@
+fr:
+  devise_mailer:
+    confirmation_instructions:
+      activation:
+        intro: "Pour confirmer votre adresse électronique et activer votre compte sur %{application_name}, veuillez cliquer sur le bouton ci-dessous :"
+        button: Activer mon compte
+        fallback: "Si le bouton ci-dessus ne fonctionne pas, veuillez copier-coller le lien suivant dans votre navigateur :"
+      email_change:
+        title: Changement d’adresse électronique
+        intro: "Pour confirmer votre changement d’adresse électronique, veuillez cliquer sur le lien suivant :"
+    email_changed:
+      title: Votre nouvelle adresse électronique
+      requested: Nous avons reçu une demande de changement d’adresse électronique pour votre compte %{email} sur %{application_name}. La nouvelle adresse demandée est %{requested_email}.
+      changed: Le changement d’adresse électronique de votre compte %{email} sur %{application_name} a bien été pris en compte. Vous pouvez désormais vous connecter avec l’adresse %{new_email}.
+      not_you_html: "Si vous n’êtes pas à l’origine de cette demande, votre compte est peut-être compromis : contactez le support via le %{contact_form_link} ou à l’adresse %{contact_email_link}."
+      contact_form: formulaire de contact
+    password_change:
+      title: Votre nouveau mot de passe
+      body: La demande de changement de mot de passe pour votre compte %{email} sur %{application_name} a bien été prise en compte.
+    reset_password_instructions:
+      intro: "Vous avez demandé à changer votre mot de passe sur %{application_name}. Pour cela, merci de cliquer sur le lien suivant :"
+      button: Changer mon mot de passe
+      previous_emails: Cet email invalide les emails similaires que vous avez pu demander précédemment.
+      not_you: Si vous n’avez pas effectué une telle demande, merci d’ignorer cet email. Votre mot de passe ne sera pas changé.
+    unlock_instructions:
+      title: Réactivez votre compte
+      locked: Quelqu’un a tenté de se connecter un grand nombre de fois sans succès à votre compte %{email} sur %{application_name}. Par mesure de précaution, nous avons temporairement désactivé l’accès à votre compte.
+      instructions: Pour rétablir l’accès à votre compte, veuillez utiliser le lien ci-dessous.
+      link: Déverrouiller mon compte

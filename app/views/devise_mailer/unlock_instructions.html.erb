@@ -1,0 +1,17 @@
+<% content_for(:title, t('.title')) %>
+
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+
+<p>
+  <%= t('.locked', email: @resource.email, application_name: APPLICATION_NAME) %>
+</p>
+
+<p>
+  <%= t('.instructions') %>
+</p>
+
+<p>
+  <%= link_to t('.link'), unlock_url(@resource, unlock_token: @token) %>
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>

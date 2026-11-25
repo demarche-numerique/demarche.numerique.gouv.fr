@@ -1,0 +1,20 @@
+<% content_for(:title, t('.title')) %>
+
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+<% requested_email = @resource.try(:unconfirmed_email) || @resource.try(:requested_merge_into)&.email %>
+
+<% if requested_email.present? %>
+  <p>
+    <%= t('.requested', email: @email, application_name: APPLICATION_NAME, requested_email:) %>
+  </p>
+<% else %>
+  <p>
+    <%= t('.changed', email: @email, application_name: APPLICATION_NAME, new_email: @resource.email) %>
+  </p>
+<% end %>
+
+<p>
+  <%= t('.not_you_html', contact_form_link: link_to(t('.contact_form'), contact_url), contact_email_link: mail_to(CONTACT_EMAIL)) %>
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>

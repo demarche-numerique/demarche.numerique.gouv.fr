@@ -1,0 +1,23 @@
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+
+<% if @user.unconfirmed_email.nil? %>
+  <% content_for(:title, @subject) %>
+  <% link = confirmation_url(@user, confirmation_token: @token, procedure_id: @procedure&.id, prefill_token: @prefill_token) %>
+  <p>
+    <%= t('.activation.intro', application_name: APPLICATION_NAME) %>
+  </p>
+  <p>
+    <%= dsfr_button(t('.activation.button'), link, :primary) %>
+  </p>
+  <p>
+    <%= t('.activation.fallback') %> <%= link_to(link, link) %>
+  </p>
+<% else %>
+  <% content_for(:title, t('.email_change.title')) %>
+  <% link = confirmation_url(@user, confirmation_token: @token) %>
+  <p>
+    <%= t('.email_change.intro') %> <%= link_to(link, link) %>
+  </p>
+<% end %>
+
+<%= render partial: "layouts/mailers/signature" %>
