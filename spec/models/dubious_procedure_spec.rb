@@ -33,7 +33,7 @@ describe DubiousProcedure, type: :model do
       it 'names once a champ several revisions lay out' do
         procedure.publish!(procedure.administrateurs.first)
         draft = procedure.reload.draft_revision
-        draft.update_type_de_champ(draft.find_and_ensure_exclusive_use(draft.type_de_champs.first.stable_id), description: 'edited')
+        draft.update_type_de_champ(draft.type_de_champs.first.stable_id, description: 'edited')
 
         expect(subject.find { it.id == procedure.id }.dubious_champs).to eq("num de securite sociale, stp - t’aurais une carte bancaire ?")
       end

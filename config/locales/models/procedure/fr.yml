@@ -106,7 +106,6 @@ fr:
               empty_drop_down: 'doit comporter au moins un choix sélectionnable'
               empty_csv: 'doit comporter au moins un fichier csv'
               missing_primary_option: 'doit commencer par une entrée de menu primaire de la forme « --texte-- »'
-              inconsistent_header_section: "%{custom_message}"
               missing_libelle:  "Le libellé du champ en position %{position} doit être rempli"
               missing_libelle_in_repetition: "Le libellé du champ en position %{position}, dans le bloc répétable en position %{parent_position}, doit être rempli"
               expression_reguliere_invalid: "est invalide, veuillez la corriger"
@@ -119,7 +118,6 @@ fr:
               empty_drop_down: 'doit comporter au moins un choix sélectionnable'
               empty_csv: 'doit comporter au moins un fichier csv'
               missing_primary_option: 'doit commencer par une entrée de menu primaire de la forme « --texte-- »'
-              inconsistent_header_section: "%{custom_message}"
               missing_libelle:  "Le libellé du champ en position %{position} doit être rempli"
               missing_libelle_in_repetition: "Le libellé du champ en position %{position}, dans le bloc répétable en position %{parent_position}, doit être rempli"
               expression_reguliere_invalid: "est invalide, veuillez la corriger"

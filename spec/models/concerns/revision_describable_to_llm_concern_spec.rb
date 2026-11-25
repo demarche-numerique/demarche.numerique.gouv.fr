@@ -33,6 +33,13 @@ describe RevisionDescribableToLLMConcern do
         expect(schema.first.keys).to eq([:stable_id, :type, :libelle, :mandatory, :description, :position, :header_section_level, :display_condition])
       end
 
+      it 'tells the header section holding a champ' do
+        h1, h2 = revision.public_root_type_de_champs.filter(&:header_section?)
+
+        expect(revision.schema_to_llm.map { [it[:libelle], it[:section_id]] })
+          .to eq([['h1', nil], ['a', h1.stable_id], ['r', h1.stable_id], ['r1', nil], ['r2', nil], ['h2', h1.stable_id], ['b', h2.stable_id]])
+      end
+
       it 'leaves out the keys rejected' do
         expect(revision.schema_to_llm(reject: [:position, :parent_id]).flat_map(&:keys)).not_to include(:position, :parent_id)
       end

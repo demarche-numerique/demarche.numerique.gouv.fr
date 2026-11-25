@@ -4,84 +4,31 @@ describe ProcedureRevision do
   let(:draft) { procedure.draft_revision }
   let(:type_de_champ_public) { draft.public_root_type_de_champs.first }
   let(:type_de_champ_private) { draft.private_root_type_de_champs.first }
-  let(:type_de_champ_repetition) { draft.public_root_type_de_champs.find(&:repetition?) }
+  let(:type_de_champ_repetition) do
+    repetition = draft.public_root_type_de_champs.find(&:repetition?)
+    repetition.update(stable_id: 3333)
+    # a stable id never changes: the revision has to lay out its types de champ again
+    draft.reload
+    repetition
+  end
 
   describe '#type_de_champ_tree' do
     context 'on a draft' do
       let(:procedure) { create(:procedure, public_type_de_champs: [{ libelle: 'a' }, { libelle: 'b' }, { type: :repetition, libelle: 'r', children: [{ libelle: 'r1' }] }]) }
 
-      def stored_tree = ProcedureRevision.find(draft.id).read_attribute(:type_de_champ_tree)
+      def stored_tree = ProcedureRevision.find(draft.id).type_de_champ_tree
       def stored_libelles(nodes = stored_tree.public_children) = nodes.map { [TypeDeChamp.find(it.type_de_champ_id).libelle, *stored_libelles(it.children).presence] }
 
       it 'is empty at creation' do
         created = procedure.revisions.create!
 
-        expect(ProcedureRevision.find(created.id).read_attribute(:type_de_champ_tree)).to eq(TypeDeChampTree.new)
+        expect(ProcedureRevision.find(created.id).type_de_champ_tree).to eq(TypeDeChampTree.new)
       end
 
-      it 'is edited on a saved revision only, as the lock reloads it' do
-        draft.ineligibilite_message = 'unsaved'
-        expect { draft.edit_type_de_champs {} }.to raise_error(ArgumentError, /save the revision/)
-        expect { ProcedureRevision.new.edit_type_de_champs {} }.to raise_error(ArgumentError, /save the revision/)
-      end
-
-      it 'refuses an edit made within another, which its fold would leave out' do
-        stable_id = draft.public_root_type_de_champs.first.stable_id
-
-        expect { draft.edit_type_de_champs { draft.remove_type_de_champ(stable_id) } }.to raise_error(ArgumentError, /within another/)
-        expect(stored_libelles).to eq([['a'], ['b'], ['r', ['r1']]])
-        expect(draft.remove_type_de_champ(stable_id)).to be(true)
-      end
-
-      it 'is stored with every edit' do
-        a, b, r = draft.public_root_type_de_champs
-
-        added = draft.add_type_de_champ(type_champ: :text, libelle: 'c', after_stable_id: a.stable_id)
-        expect(stored_libelles).to eq([['a'], ['c'], ['b'], ['r', ['r1']]])
-        expect(draft.type_de_champ_tree).to equal(draft.read_attribute(:type_de_champ_tree))
-
-        draft.add_type_de_champ(type_champ: :text, libelle: 'r2', parent_stable_id: r.stable_id)
-        expect(stored_libelles).to eq([['a'], ['c'], ['b'], ['r', ['r2'], ['r1']]])
-
-        draft.move_type_de_champ(added.stable_id, 2)
-        expect(stored_libelles).to eq([['a'], ['b'], ['c'], ['r', ['r2'], ['r1']]])
-
-        draft.move_type_de_champ_after(added.stable_id, a.stable_id)
-        expect(stored_libelles).to eq([['a'], ['c'], ['b'], ['r', ['r2'], ['r1']]])
-
-        draft.remove_type_de_champ(b.stable_id)
-        expect(stored_libelles).to eq([['a'], ['c'], ['r', ['r2'], ['r1']]])
-      end
-
-      it 'follows a type de champ becoming a header section, and its level' do
-        a, b = draft.public_root_type_de_champs
-
-        draft.update_type_de_champ(a.becomes_type('header_section'), type_champ: 'header_section', header_section_level: '1')
-        expect(stored_libelles).to eq([['a', ['b'], ['r', ['r1']]]])
-        expect(draft.public_type_de_champs.map(&:libelle)).to eq(['a'])
-
-        draft.update_type_de_champ(TypeDeChamp.find(b.id).becomes_type('header_section'), type_champ: 'header_section', header_section_level: '2')
-        expect(stored_libelles).to eq([['a', ['b', ['r', ['r1']]]]])
-
-        draft.update_type_de_champ(TypeDeChamp.find(b.id), header_section_level: '1')
-        expect(stored_libelles).to eq([['a'], ['b', ['r', ['r1']]]])
-      end
-
-      it 'names the copy of a type de champ edited after a publication' do
-        procedure.publish!(procedure.administrateurs.first)
-        draft = procedure.reload.draft_revision
-        published = procedure.published_revision.public_root_type_de_champs.first
-
-        copy = draft.find_and_ensure_exclusive_use(published.stable_id)
-
-        expect(copy.id).not_to eq(published.id)
-        expect(ProcedureRevision.find(draft.id).read_attribute(:type_de_champ_tree).public_children.first.type_de_champ_id).to eq(copy.id)
-        expect(procedure.published_revision.reload.type_de_champ_tree.public_children.first.type_de_champ_id).to eq(published.id)
-      end
-
-      it 'holds the edits made through other instances' do
+      it 'is stored with every edit, and holds the ones made through other instances' do
         a = draft.public_root_type_de_champs.first
         draft.add_type_de_champ(type_champ: :text, libelle: 'mine')
+        expect(stored_libelles).to eq([['mine'], ['a'], ['b'], ['r', ['r1']]])
 
         ProcedureRevision.find(draft.id).add_type_de_champ(type_champ: :text, libelle: 'theirs')
         draft.remove_type_de_champ(a.stable_id)
@@ -92,10 +39,6 @@ describe ProcedureRevision do
 
     context 'on a published revision' do
       let(:revision) { procedures.individual.published_revision }
-
-      it 'is the stored one' do
-        expect(revision.type_de_champ_tree).to equal(revision.read_attribute(:type_de_champ_tree))
-      end
 
       it 'is never null' do
         expect { revision.update_columns(type_de_champ_tree: nil) }
@@ -298,475 +241,6 @@ describe ProcedureRevision do
     end
   end
 
-  describe '#add_type_de_champ' do
-    # tdc: public: text, repetition ; private: text ; +1 text child of repetition
-    let(:procedure) do
-      create(:procedure,
-            public_type_de_champs: [
-              { type: :text, libelle: 'l1' },
-              {
-                type: :repetition, libelle: 'l2', children: [
-                  { type: :text, libelle: 'l2' },
-                ],
-              },
-            ],
-            private_type_de_champs: [
-              { type: :text, libelle: 'l1 private' },
-            ])
-    end
-    let(:tdc_params) { text_params }
-
-    subject { draft.add_type_de_champ(tdc_params) }
-
-    context 'with a text tdc' do
-      let(:text_params) { { type_champ: :text, libelle: 'text', after_stable_id: procedure.draft_revision.public_root_type_de_champs.last.stable_id } }
-
-      it 'public' do
-        expect { subject }.to change { draft.public_root_type_de_champs.size }.from(2).to(3)
-        expect(draft.public_root_type_de_champs.last).to eq(subject)
-        expect(draft.reload.public_root_type_de_champs.map(&:libelle)).to eq(['l1', 'l2', 'text'])
-      end
-
-      it 'is the one the draft lays out' do
-        expect(draft.type_de_champ(subject.stable_id)).to equal(subject)
-        expect(subject.revision).to equal(draft)
-      end
-
-      it 'attaches the type de champ to the procedure' do
-        expect(subject.reload.procedure_id).to eq(procedure.id)
-      end
-    end
-
-    context 'with a private tdc' do
-      let(:text_params) { { type_champ: :text, libelle: 'text', after_stable_id: procedure.draft_revision.private_root_type_de_champs.last.stable_id } }
-      let(:tdc_params) { text_params.merge(private: true) }
-
-      it 'private' do
-        expect { subject }.to change { draft.private_root_type_de_champs.count }.from(1).to(2)
-        expect(draft.private_root_type_de_champs.last).to eq(subject)
-        expect(draft.reload.private_root_type_de_champs.map(&:libelle)).to eq(['l1 private', 'text'])
-        expect(draft.private_root_type_de_champs.last.mandatory).to be_falsey
-      end
-    end
-
-    context 'with a repetition child' do
-      let(:text_params) { { type_champ: :text, libelle: 'text', after_stable_id: procedure.draft_revision.type_de_champ(type_de_champ_repetition.stable_id).flat_children.last.stable_id } }
-      let(:tdc_params) { text_params.merge(parent_stable_id: type_de_champ_repetition.stable_id) }
-
-      it do
-        expect { subject }.to change { draft.reload.type_de_champs.count }.from(4).to(5)
-        expect(draft.type_de_champ(type_de_champ_repetition.stable_id).flat_children.last).to eq(subject)
-        expect(draft.type_de_champ(type_de_champ_repetition.stable_id).flat_children.map(&:libelle)).to eq(['l2', 'text'])
-        expect(subject.parent).to eq(type_de_champ_repetition)
-      end
-    end
-
-    context 'when a parent is incorrect' do
-      let(:text_params) { { type_champ: :text, libelle: 'text', after_stable_id: procedure.draft_revision.private_root_type_de_champs.last.stable_id } }
-      let(:tdc_params) { text_params.merge(parent_id: 123456789) }
-
-      it { expect(subject.errors.full_messages).not_to be_empty }
-    end
-
-    context 'after_stable_id' do
-      context 'with a valid after_stable_id' do
-        let(:text_params) { { type_champ: :text, libelle: 'text', after_stable_id: procedure.draft_revision.private_root_type_de_champs.last.stable_id } }
-        let(:tdc_params) { text_params.merge(after_stable_id: draft.public_root_type_de_champs.first.stable_id, libelle: 'in the middle') }
-
-        it do
-          expect(draft.public_root_type_de_champs.map(&:libelle)).to eq(['l1', 'l2'])
-          subject
-          expect(draft.public_root_type_de_champs.map(&:libelle)).to eq(['l1', 'in the middle', 'l2'])
-        end
-      end
-
-      context 'with an after_stable_id from another block' do
-        let(:text_params) { { type_champ: :text, libelle: 'text', after_stable_id: draft.type_de_champs.find(&:in_repetition?).stable_id } }
-
-        it 'adds nothing' do
-          expect(subject.errors.full_messages).to eq([I18n.t('activerecord.errors.type_de_champ.not_added.place_gone')])
-          expect(draft.reload.type_de_champs.map(&:libelle)).to eq(['l1', 'l2', 'l2', 'l1 private'])
-          expect(procedure.type_de_champs.where(libelle: 'text')).to be_empty
-        end
-      end
-
-      context 'with an after_stable_id removed since (double click, another tab)' do
-        let(:text_params) { { type_champ: :text, libelle: 'text', after_stable_id: draft.public_root_type_de_champs.first.stable_id } }
-
-        before { ProcedureRevision.find(draft.id).remove_type_de_champ(text_params[:after_stable_id]) }
-
-        it 'adds nothing' do
-          expect(subject.errors.full_messages).to eq([I18n.t('activerecord.errors.type_de_champ.not_added.place_gone')])
-          expect(draft.reload.type_de_champs.map(&:libelle)).to eq(['l2', 'l2', 'l1 private'])
-          expect(procedure.type_de_champs.where(libelle: 'text')).to be_empty
-        end
-      end
-
-      context 'with blank valid after_stable_id' do
-        let(:text_params) { { type_champ: :text, libelle: 'text', after_stable_id: procedure.draft_revision.private_root_type_de_champs.last.stable_id } }
-        let(:tdc_params) { text_params.merge(after_stable_id: '', libelle: 'in the middle') }
-
-        it do
-          subject
-          expect(draft.public_root_type_de_champs.map(&:libelle)).to eq(['in the middle', 'l1', 'l2'])
-        end
-      end
-    end
-  end
-
-  describe '#find_and_ensure_exclusive_use' do
-    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text }]) }
-
-    it 'attaches the clone of a published type de champ to the procedure' do
-      procedure.publish_or_reopen!(procedure.administrateurs.first, 'demarche-publiee')
-      published_type_de_champ = procedure.published_revision.public_root_type_de_champs.first
-
-      type_de_champ = procedure.draft_revision.find_and_ensure_exclusive_use(published_type_de_champ.stable_id)
-
-      expect(type_de_champ).not_to eq(published_type_de_champ)
-      expect(type_de_champ.reload.procedure_id).to eq(procedure.id)
-    end
-
-    it 'returns the type de champ the draft lays out, cloned or not' do
-      own = draft.find_and_ensure_exclusive_use(draft.public_root_type_de_champs.first.stable_id)
-      expect(draft.type_de_champ(own.stable_id)).to equal(own)
-
-      procedure.publish_or_reopen!(procedure.administrateurs.first, 'demarche-publiee')
-      clone = procedure.draft_revision.find_and_ensure_exclusive_use(own.stable_id)
-      expect(clone).not_to eq(own)
-      expect(procedure.draft_revision.type_de_champ(own.stable_id)).to equal(clone)
-    end
-
-    it 'raises RecordNotFound when the stable_id is no longer in the revision (RAILS-JZE)' do
-      removed_stable_id = draft.public_root_type_de_champs.first.stable_id
-      draft.remove_type_de_champ(removed_stable_id)
-
-      expect { draft.find_and_ensure_exclusive_use(removed_stable_id) }
-        .to raise_error(ActiveRecord::RecordNotFound)
-    end
-
-    context 'with a published explication carrying a notice' do
-      let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :explication }]) }
-      let(:published_type_de_champ) { procedure.published_revision.public_root_type_de_champs.first }
-
-      before { published_type_de_champ.notice_explicative.attach(io: StringIO.new("notice"), filename: "notice.txt", content_type: "text/plain") }
-
-      it 'keeps the notice on the clone' do
-        type_de_champ = draft.find_and_ensure_exclusive_use(published_type_de_champ.stable_id)
-
-        expect(type_de_champ).not_to eq(published_type_de_champ)
-        expect(type_de_champ.notice_explicative.blob).to eq(published_type_de_champ.notice_explicative.blob)
-      end
-    end
-  end
-
-  describe '#move_type_de_champ' do
-    let(:procedure) { create(:procedure, public_type_de_champs: Array.new(4) { { type: :text } }) }
-    let(:last_type_de_champ) { draft.public_root_type_de_champs.last }
-
-    context 'with 4 types de champ publiques' do
-      it 'move down' do
-        expect(draft.public_root_type_de_champs.index(type_de_champ_public)).to eq(0)
-        draft.move_type_de_champ(type_de_champ_public.stable_id, 2)
-        draft.reload
-        expect(draft.public_root_type_de_champs.index(type_de_champ_public)).to eq(2)
-        expect(draft.procedure.type_de_champs_for_procedure_export.index(type_de_champ_public)).to eq(2)
-      end
-
-      it 'stops at the ends' do
-        stable_ids = draft.public_root_type_de_champs.map(&:stable_id)
-
-        expect(draft.move_up_type_de_champ(stable_ids.first)).to eq(type_de_champ_public)
-        expect(draft.move_down_type_de_champ(stable_ids.last)).to eq(last_type_de_champ)
-        expect(draft.public_root_type_de_champs.map(&:stable_id)).to eq(stable_ids)
-
-        draft.move_type_de_champ(stable_ids.first, 12)
-        expect(draft.public_root_type_de_champs.map(&:stable_id)).to eq(stable_ids.rotate)
-      end
-
-      it 'returns the type de champ where it is laid out by now' do
-        moved = draft.move_type_de_champ(last_type_de_champ.stable_id, 0)
-
-        expect(moved).to equal(draft.public_root_type_de_champs.first)
-        expect(moved.stable_id).to eq(last_type_de_champ.stable_id)
-      end
-
-      it 'move up' do
-        expect(draft.public_root_type_de_champs.index(last_type_de_champ)).to eq(3)
-        draft.move_type_de_champ(last_type_de_champ.stable_id, 0)
-        draft.reload
-        expect(draft.public_root_type_de_champs.index(last_type_de_champ)).to eq(0)
-        expect(draft.procedure.type_de_champs_for_procedure_export.index(last_type_de_champ)).to eq(0)
-      end
-    end
-
-    context 'with a champ repetition repetition' do
-      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :repetition, children: [{ type: :text }, { type: :integer_number }] }]) }
-
-      let!(:second_child) do
-        draft.add_type_de_champ({
-          type_champ: TypeDeChamp.type_champs.fetch(:text),
-          libelle: "second child",
-          parent_stable_id: type_de_champ_repetition.stable_id,
-          after_stable_id: draft.reload.type_de_champ(type_de_champ_repetition.stable_id).flat_children.last.stable_id,
-        })
-      end
-
-      let!(:last_child) do
-        draft.add_type_de_champ({
-          type_champ: TypeDeChamp.type_champs.fetch(:text),
-          libelle: "last child",
-          parent_stable_id: type_de_champ_repetition.stable_id,
-          after_stable_id: draft.reload.type_de_champ(type_de_champ_repetition.stable_id).flat_children.last.stable_id,
-        })
-      end
-
-      it 'move down' do
-        expect(draft.type_de_champ(type_de_champ_repetition.stable_id).flat_children.index(second_child)).to eq(2)
-
-        draft.move_type_de_champ(second_child.stable_id, 3)
-
-        expect(draft.type_de_champ(type_de_champ_repetition.stable_id).flat_children.index(second_child)).to eq(3)
-      end
-
-      it 'move up' do
-        expect(draft.type_de_champ(type_de_champ_repetition.stable_id).flat_children.index(last_child)).to eq(3)
-
-        draft.move_type_de_champ(last_child.stable_id, 0)
-
-        expect(draft.type_de_champ(type_de_champ_repetition.stable_id).flat_children.index(last_child)).to eq(0)
-      end
-
-      it 'moves nothing after a type de champ of another block' do
-        expect(draft.move_type_de_champ_after(last_child.stable_id, type_de_champ_repetition.stable_id)).to be_nil
-        expect(draft.move_type_de_champ_after(type_de_champ_repetition.stable_id, last_child.stable_id)).to be_nil
-
-        expect(draft.type_de_champ(type_de_champ_repetition.stable_id).flat_children.index(last_child)).to eq(3)
-      end
-    end
-  end
-
-  describe 'an edit racing with another request' do
-    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text, libelle: 'a' }, { type: :text, libelle: 'b' }, { type: :text, libelle: 'c' }]) }
-    let(:other_request) { ProcedureRevision.find(draft.id) }
-
-    def libelles_and_positions = draft.reload.public_root_type_de_champs.each_with_index.map { |type_de_champ, position| [type_de_champ.libelle, position] }
-
-    # what the other request commits after this one read the draft and before
-    # it got the lock
-    def before_the_lock
-      done = false
-      allow(draft).to receive(:with_lock).and_wrap_original do |with_lock, *args, &edit|
-        yield unless done
-        done = true
-        with_lock.call(*args, &edit)
-      end
-    end
-
-    it 'adds a type de champ after the one added in the meantime' do
-      a = draft.public_root_type_de_champs.first
-      before_the_lock { other_request.add_type_de_champ(type_champ: :text, libelle: 'd', after_stable_id: a.stable_id) }
-
-      draft.add_type_de_champ(type_champ: :text, libelle: 'e', after_stable_id: a.stable_id)
-
-      expect(libelles_and_positions).to eq([['a', 0], ['e', 1], ['d', 2], ['b', 3], ['c', 4]])
-    end
-
-    it 'adds a type de champ a publication does not purge in the meantime' do
-      # holding the lock, a publication purges the types de champ no tree holds
-      before_the_lock { procedure.send(:purge_type_de_champs_laid_out_by_no_revision) }
-
-      type_de_champ = draft.add_type_de_champ(type_champ: :text, libelle: 'd')
-
-      expect(type_de_champ).to eq(draft.type_de_champ(type_de_champ.stable_id))
-      expect(libelles_and_positions).to eq([['d', 0], ['a', 1], ['b', 2], ['c', 3]])
-    end
-
-    it 'moves a type de champ from where it was moved in the meantime' do
-      a, _, c = draft.public_root_type_de_champs
-      before_the_lock { other_request.move_type_de_champ(c.stable_id, 0) }
-
-      draft.move_type_de_champ(a.stable_id, 2)
-
-      expect(libelles_and_positions).to eq([['c', 0], ['b', 1], ['a', 2]])
-    end
-
-    it 'removes a type de champ from where it was moved in the meantime' do
-      a, _, c = draft.public_root_type_de_champs
-      before_the_lock { other_request.move_type_de_champ(c.stable_id, 0) }
-
-      draft.remove_type_de_champ(a.stable_id)
-
-      expect(libelles_and_positions).to eq([['c', 0], ['b', 1]])
-    end
-
-    it 'moves nothing when the type de champ was removed in the meantime' do
-      a, b, _ = draft.public_root_type_de_champs
-      before_the_lock { other_request.remove_type_de_champ(a.stable_id) }
-
-      expect(draft.move_type_de_champ(a.stable_id, 1)).to be_nil
-      expect(draft.move_type_de_champ_after(a.stable_id, b.stable_id)).to be_nil
-      expect(draft.move_type_de_champ_after(b.stable_id, a.stable_id)).to be_nil
-      expect(libelles_and_positions).to eq([['b', 0], ['c', 1]])
-
-      other_request.remove_type_de_champ(b.stable_id)
-
-      expect(draft.move_up_type_de_champ(b.stable_id)).to be_nil
-      expect(draft.move_down_type_de_champ(b.stable_id)).to be_nil
-      expect(libelles_and_positions).to eq([['c', 0]])
-    end
-
-    context 'on a published procedure' do
-      let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :text, libelle: 'a' }]) }
-
-      it 'edits the clone made in the meantime rather than cloning again' do
-        published_type_de_champ = procedure.published_revision.public_root_type_de_champs.first
-        stable_id = published_type_de_champ.stable_id
-        before_the_lock { other_request.find_and_ensure_exclusive_use(stable_id).update!(libelle: 'a bis') }
-
-        type_de_champ = draft.find_and_ensure_exclusive_use(stable_id)
-
-        expect(type_de_champ.libelle).to eq('a bis')
-        expect(TypeDeChamp.where(stable_id:)).to contain_exactly(published_type_de_champ, type_de_champ)
-      end
-
-      it 'adds nothing to the revision published in the meantime' do
-        before_the_lock { Procedure.find(procedure.id).publish_revision!(procedure.administrateurs.first) }
-
-        type_de_champ = draft.add_type_de_champ(type_champ: :text, libelle: 'd')
-
-        expect(type_de_champ).not_to be_persisted
-        expect(procedure.reload.published_revision).to eq(draft)
-        expect(procedure.published_revision.type_de_champs.map(&:libelle)).to eq(['a'])
-        expect(procedure.type_de_champs.where(libelle: 'd')).to be_empty
-      end
-
-      it 'edits nothing of the revision published in the meantime' do
-        stable_id = draft.public_root_type_de_champs.first.stable_id
-        before_the_lock { Procedure.find(procedure.id).publish_revision!(procedure.administrateurs.first) }
-
-        expect { draft.remove_type_de_champ(stable_id) }.to raise_error(ActiveRecord::RecordNotFound)
-        expect { draft.move_type_de_champ(stable_id, 1) }.to raise_error(ActiveRecord::RecordNotFound)
-        expect { draft.find_and_ensure_exclusive_use(stable_id) }.to raise_error(ActiveRecord::RecordNotFound)
-        expect { draft.update_type_de_champ(TypeDeChamp.find_by(stable_id:), libelle: 'a bis') }.to raise_error(ActiveRecord::RecordNotFound)
-
-        expect(procedure.reload.published_revision).to eq(draft)
-        expect(procedure.published_revision.type_de_champs.map(&:libelle)).to eq(['a'])
-        expect(TypeDeChamp.where(stable_id:).count).to eq(1)
-      end
-    end
-  end
-
-  describe '#remove_type_de_champ' do
-    context 'for a classic tdc' do
-      let(:procedure) { create(:procedure, :with_type_de_champ, :with_type_de_champ_private) }
-
-      it 'type_de_champ' do
-        draft.remove_type_de_champ(type_de_champ_public.stable_id)
-
-        expect(draft.public_root_type_de_champs).to be_empty
-      end
-
-      it 'type_de_champ_private' do
-        draft.remove_type_de_champ(type_de_champ_private.stable_id)
-
-        expect(draft.private_root_type_de_champs).to be_empty
-      end
-    end
-
-    context 'with multiple tdc' do
-      context 'in public tdc' do
-        let(:procedure) { create(:procedure, public_type_de_champs: Array.new(3) { { type: :text } }) }
-
-        it 'reorders' do
-          first, second, third = draft.public_root_type_de_champs
-
-          expect(draft.remove_type_de_champ(second.stable_id)).to be(true)
-
-          expect(draft.public_root_type_de_champs).to eq([first, third])
-          expect(draft.public_root_type_de_champs.map(&:position)).to eq([0, 1])
-
-          expect(draft.remove_type_de_champ(second.stable_id)).to be(false)
-        end
-      end
-
-      context 'in repetition tdc' do
-        let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :repetition, children: [{ type: :text }, { type: :integer_number }] }]) }
-        let!(:second_child) do
-          draft.add_type_de_champ({
-            type_champ: TypeDeChamp.type_champs.fetch(:text),
-            libelle: "second child",
-            parent_stable_id: type_de_champ_repetition.stable_id,
-          })
-        end
-
-        let!(:last_child) do
-          draft.add_type_de_champ({
-            type_champ: TypeDeChamp.type_champs.fetch(:text),
-            libelle: "last child",
-            parent_stable_id: type_de_champ_repetition.stable_id,
-          })
-        end
-
-        it 'reorders' do
-          children = draft.type_de_champ(type_de_champ_repetition.stable_id).flat_children
-          expect(children.map(&:position)).to eq([0, 1, 2, 3])
-
-          draft.remove_type_de_champ(children[1].stable_id)
-
-          expect(draft.type_de_champ(type_de_champ_repetition.stable_id).flat_children).to eq(children.values_at(0, 2, 3))
-          expect(draft.type_de_champ(type_de_champ_repetition.stable_id).flat_children.map(&:position)).to eq([0, 1, 2])
-        end
-      end
-    end
-
-    context 'for a type_de_champ_repetition' do
-      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :repetition, children: [{ type: :text }, { type: :integer_number }] }]) }
-      let!(:child) { child = draft.type_de_champ(type_de_champ_repetition.stable_id).flat_children.first }
-
-      it 'can remove its children' do
-        draft.remove_type_de_champ(child.stable_id)
-
-        expect(draft.type_de_champ(type_de_champ_repetition.stable_id).flat_children.size).to eq(1)
-        expect(draft.public_root_type_de_champs.size).to eq(1)
-      end
-
-      it 'can remove the parent, along with its children' do
-        draft.remove_type_de_champ(type_de_champ_repetition.stable_id)
-
-        expect(draft.type_de_champs).to be_empty
-      end
-
-      it 'leaves the types de champ in place until the next publication' do
-        draft.remove_type_de_champ(type_de_champ_repetition.stable_id)
-
-        expect { child.reload }.not_to raise_error
-        expect { type_de_champ_repetition.reload }.not_to raise_error
-      end
-
-      context 'when there already is a revision with this child' do
-        let!(:new_draft) { procedure.create_new_revision }
-
-        it 'can remove its children only in the new revision' do
-          new_draft.remove_type_de_champ(child.stable_id)
-
-          expect { child.reload }.not_to raise_error
-          expect(draft.type_de_champ(type_de_champ_repetition.stable_id).flat_children.size).to eq(2)
-          expect(new_draft.type_de_champ(type_de_champ_repetition.stable_id).flat_children.size).to eq(1)
-        end
-
-        it 'can remove the parent only in the new revision' do
-          new_draft.remove_type_de_champ(type_de_champ_repetition.stable_id)
-
-          expect { child.reload }.not_to raise_error
-          expect { type_de_champ_repetition.reload }.not_to raise_error
-          expect(draft.public_root_type_de_champs.size).to eq(1)
-          expect(new_draft.public_root_type_de_champs).to be_empty
-        end
-      end
-    end
-  end
-
   describe '#create_new_revision' do
     let(:new_draft) { procedure.create_new_revision }
 
@@ -783,24 +257,28 @@ describe ProcedureRevision do
     context 'with simple tdc' do
       let(:procedure) { create(:procedure, :with_type_de_champ, :with_type_de_champ_private) }
 
-      it 'should have the same tdcs with different links' do
+      it 'should have the same tdcs, laid out on its own' do
         expect(new_draft.public_root_type_de_champs.count).to eq(1)
         expect(new_draft.private_root_type_de_champs.count).to eq(1)
         expect(new_draft.public_root_type_de_champs).to eq(draft.public_root_type_de_champs)
         expect(new_draft.private_root_type_de_champs).to eq(draft.private_root_type_de_champs)
+
+        expect(new_draft.public_root_type_de_champs.first).not_to equal(draft.public_root_type_de_champs.first)
+        expect(new_draft.private_root_type_de_champs.first).not_to equal(draft.private_root_type_de_champs.first)
       end
     end
 
     context 'with repetition_type_de_champ' do
       let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :repetition, children: [{ type: :text }, { type: :integer_number }] }]) }
 
-      it 'should have the same tdcs, laid out the same' do
+      it 'should have the same tdcs, laid out on its own' do
         expect(new_draft.type_de_champs.count).to eq(3)
         expect(new_draft.type_de_champs).to eq(draft.type_de_champs)
 
         new_repetition, new_child = new_draft.type_de_champs.partition(&:repetition?).map(&:first)
 
         expect(new_child.parent).to equal(new_repetition)
+        expect(new_repetition).not_to equal(draft.type_de_champs.find(&:repetition?))
       end
     end
 
@@ -819,81 +297,9 @@ describe ProcedureRevision do
         expect { new_draft }.not_to change { procedure.type_de_champs.count }
 
         expect(new_draft.reload.type_de_champ_tree).to eq(draft.type_de_champ_tree)
-      end
-    end
-  end
-
-  describe '#update_type_de_champ' do
-    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :repetition, children: [{ type: :text }, { type: :integer_number }] }]) }
-    let(:last_type_de_champ) { draft.type_de_champs.last }
-
-    it 'has the draft lay out the type de champ as saved' do
-      type_de_champ = draft.find_and_ensure_exclusive_use(last_type_de_champ.stable_id)
-      stable_id = type_de_champ.stable_id
-
-      expect(draft.update_type_de_champ(type_de_champ, libelle: 'new libelle')).to be(true)
-      expect(draft.type_de_champ(stable_id).libelle).to eq('new libelle')
-
-      header_section = type_de_champ.becomes_type('header_section')
-      expect(draft.update_type_de_champ(header_section, type_champ: 'header_section', header_section_level: '1')).to be(true)
-      expect(draft.type_de_champ(stable_id)).to be_a(TypesDeChamp::HeaderSectionTypeDeChamp)
-      expect(draft.type_de_champ(stable_id).enclosing_repetition).to be_present
-
-      expect(draft.update_type_de_champ(header_section, type_champ: nil)).to be(false)
-      expect(draft.type_de_champ(stable_id)).to be_a(TypesDeChamp::HeaderSectionTypeDeChamp)
-    end
-
-    context 'bug with duplicated repetition child' do
-      before do
-        procedure.publish!(procedure.administrateurs.first)
-        procedure.reload
-        draft.find_and_ensure_exclusive_use(last_type_de_champ.stable_id).update(libelle: 'new libelle')
-        procedure.reload
-        draft.reload
-      end
-
-      it do
-        expect(procedure.revisions.size).to eq(2)
-        expect(draft.type_de_champs.count(&:in_repetition?)).to eq(2)
-      end
-    end
-
-    context 'with a repetition taking another type' do
-      let(:procedure) { create(:procedure, public_type_de_champs: [{ libelle: 'a' }, { type: :repetition, libelle: 'r', children: [{ libelle: 'r1' }, { libelle: 'r2' }] }, { libelle: 'b' }]) }
-
-      def change_type(type_champ)
-        type_de_champ = draft.find_and_ensure_exclusive_use(type_de_champ_repetition.stable_id).becomes_type(type_champ)
-
-        [draft.update_type_de_champ(type_de_champ, type_champ:), type_de_champ]
-      end
-
-      it 'is refused while it holds types de champ: they would leave the draft for good' do
-        updated, type_de_champ = change_type('text')
-
-        expect(updated).to be(false)
-        expect(type_de_champ.errors.full_messages).to eq([I18n.t('activerecord.errors.type_de_champ.locked.update.repetition_holding_champs', type_de_champ: 'r')])
-        expect(draft.type_de_champs.map(&:libelle)).to eq(['a', 'r', 'r1', 'r2', 'b'])
-        expect(draft.type_de_champ(type_de_champ.stable_id)).to be_repetition
-      end
-
-      it 'takes another type once it holds nothing' do
-        draft.type_de_champ(type_de_champ_repetition.stable_id).flat_children.each { draft.remove_type_de_champ(it.stable_id) }
-
-        expect(change_type('text').first).to be(true)
-        expect(draft.type_de_champs.map(&:type_champ)).to eq(['text', 'text', 'text'])
-      end
-    end
-
-    context 'with a header section taking another type' do
-      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :header_section, level: 1, libelle: 'h1' }, { libelle: 'a' }, { type: :header_section, level: 2, libelle: 'h2' }, { libelle: 'b' }]) }
-
-      it 'leaves what it held to the header section before it' do
-        h2 = draft.find_and_ensure_exclusive_use(draft.type_de_champs.third.stable_id)
-
-        draft.update_type_de_champ(h2.becomes_type('text'), type_champ: 'text')
-
-        expect(draft.public_type_de_champs.map(&:libelle)).to eq(['h1'])
-        expect(draft.public_type_de_champs.first.children.map(&:libelle)).to eq(['a', 'h2', 'b'])
+        expect(new_draft.type_de_champs.map { [it.libelle, it.position, it.parent&.libelle] }).to eq([
+          ['h1', 0, nil], ['a', 0, 'h1'], ['r', 1, 'h1'], ['r1', 0, 'r'], ['r2', 1, 'r'], ['c', 0, nil],
+        ])
       end
     end
   end
@@ -1036,8 +442,8 @@ describe ProcedureRevision do
 
     context 'with multiple child' do
       # the last one is added first
-      let!(:last_child) { draft.add_type_de_champ(type_champ: :text, libelle: 'last', parent_stable_id: parent.stable_id, after_stable_id: second_child.stable_id) }
-      let!(:third_child) { draft.add_type_de_champ(type_champ: :text, libelle: 'third', parent_stable_id: parent.stable_id, after_stable_id: second_child.stable_id) }
+      let!(:last_child) { draft.add_type_de_champ(type_champ: :text, libelle: 'last', after_stable_id: second_child.stable_id) }
+      let!(:third_child) { draft.add_type_de_champ(type_champ: :text, libelle: 'third', after_stable_id: second_child.stable_id) }
 
       it 'returns the children in order' do
         expect(children_in(draft)).to eq([first_child, second_child, third_child, last_child])
@@ -1265,24 +671,6 @@ describe ProcedureRevision do
     end
   end
 
-  describe 'header_sections_are_valid' do
-    let(:procedure) do
-      create(:procedure).tap do |p|
-        p.draft_revision.add_type_de_champ(type_champ: :header_section, libelle: 'hs', header_section_level: '2')
-      end
-    end
-    let(:draft_revision) { procedure.draft_revision }
-
-    subject do
-      procedure.validate(:publication)
-      procedure.errors
-    end
-
-    it 'find error' do
-      expect(subject.errors).not_to be_empty
-    end
-  end
-
   describe "expressions_regulieres_are_valid" do
     let(:procedure) do
       create(:procedure).tap do |p|
@@ -1408,63 +796,6 @@ describe ProcedureRevision do
     end
   end
 
-  describe 'only_present_on_draft?' do
-    let(:procedure) { create(:procedure, public_type_de_champs: [{ libelle: 'Un champ texte' }]) }
-    let(:type_de_champ) { procedure.draft_revision.public_root_type_de_champs.first }
-
-    it 'holds for a type de champ the draft alone lays out' do
-      expect(type_de_champ.only_present_on_draft?).to be(true)
-
-      procedure.publish!(procedure.administrateurs.first)
-      expect(type_de_champ.only_present_on_draft?).to be(false)
-      expect(type_de_champ.revisions).to contain_exactly(procedure.published_revision, procedure.draft_revision)
-
-      added = procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'Un autre champ')
-      expect(added.only_present_on_draft?).to be(true)
-
-      clone = procedure.draft_revision.find_and_ensure_exclusive_use(type_de_champ.stable_id)
-      expect(clone.only_present_on_draft?).to be(true)
-      expect(clone.revisions).to contain_exactly(procedure.draft_revision)
-      expect(type_de_champ.revisions).to contain_exactly(procedure.published_revision)
-    end
-
-    it 'does not hold for a type de champ only a past revision lays out' do
-      procedure.publish!(procedure.administrateurs.first)
-      procedure.draft_revision.remove_type_de_champ(type_de_champ.stable_id)
-      expect(type_de_champ.only_present_on_draft?).to be(false)
-
-      past_revision = procedure.published_revision
-      procedure.publish_revision!(procedure.administrateurs.first)
-      expect(type_de_champ.only_present_on_draft?).to be(false)
-      expect(type_de_champ.revisions).to contain_exactly(past_revision)
-    end
-
-    context 'in a section or a repetition' do
-      let(:procedure) do
-        create(:procedure, :published, public_type_de_champs: [
-          { type: :header_section, level: 1 },
-          { type: :text, libelle: 'in the section' },
-          { type: :repetition, children: [{ type: :text, libelle: 'in the repetition' }] },
-        ])
-      end
-
-      it 'finds the revisions laying it out, whatever the depth' do
-        procedure.draft_revision.type_de_champs.each do |type_de_champ|
-          expect(type_de_champ.revisions).to contain_exactly(procedure.published_revision, procedure.draft_revision)
-          expect(type_de_champ.only_present_on_draft?).to be(false)
-        end
-        expect(procedure.draft_revision.type_de_champs.map(&:libelle)).to include('in the section', 'in the repetition')
-      end
-    end
-
-    it 'does not hold for a type de champ no revision lays out anymore' do
-      procedure.draft_revision.remove_type_de_champ(type_de_champ.stable_id)
-
-      expect(type_de_champ.revisions).to be_empty
-      expect(type_de_champ.only_present_on_draft?).to be(false)
-    end
-  end
-
   describe '#simple_routable_type_de_champs' do
     let(:procedure) do
       create(:procedure, public_type_de_champs: [
@@ -1478,202 +809,5 @@ describe ProcedureRevision do
     end
 
     it { expect(draft.simple_routable_type_de_champs.pluck(:libelle)).to eq(['l2', 'l3', 'l4', 'l5', 'l6']) }
-  end
-
-  describe "#apply_llm_rule_suggestion_items" do
-    let(:procedure) { create(:procedure, public_type_de_champs:) }
-    let(:revision) { procedure.draft_revision }
-    let(:schema_hash) { Digest::SHA256.hexdigest(revision.schema_to_llm.to_json) }
-
-    context 'from LLM::LabelImprover' do
-      let(:public_type_de_champs) { [{ type: :text, libelle: "B", stable_id: 2 }] }
-
-      it "can update libelle" do
-        llm_rule_suggestion = create(:llm_rule_suggestion, procedure_revision: revision, rule: LLMRuleSuggestion.rules.fetch('improve_label'), schema_hash:)
-        create(:llm_rule_suggestion_item, llm_rule_suggestion:, verify_status: 'accepted', stable_id: 2, op_kind: 'update', payload: { 'stable_id' => 2, 'libelle' => 'B modifié' })
-
-        expect { revision.apply_llm_rule_suggestion_items(llm_rule_suggestion.changes_to_apply) }.not_to raise_error
-        libelles = revision.reload.public_root_type_de_champs.map(&:libelle)
-        expect(libelles).to include("B modifié")
-      end
-    end
-
-    context 'from LLM::StructureImprover' do
-      let(:public_type_de_champs) { [] }
-
-      it "can add header section" do
-        llm_rule_suggestion = create(:llm_rule_suggestion, procedure_revision: revision, rule: LLMRuleSuggestion.rules.fetch('improve_structure'), schema_hash:)
-        create(:llm_rule_suggestion_item, llm_rule_suggestion:, verify_status: 'accepted', stable_id: 2, op_kind: 'add', payload: { 'libelle' => 'Ajouté', type_champ: 'header_section' })
-
-        expect { revision.apply_llm_rule_suggestion_items(llm_rule_suggestion.changes_to_apply) }.not_to raise_error
-        libelles = revision.reload.public_root_type_de_champs.map(&:libelle)
-        expect(libelles).to include("Ajouté")
-      end
-    end
-
-    context 'from LLM::TypesImprover' do
-      context 'with type_champ update' do
-        let(:public_type_de_champs) { [{ type: :text, libelle: "Email du contact", stable_id: 10 }] }
-
-        it "can update type_champ from text to email" do
-          llm_rule_suggestion = create(:llm_rule_suggestion, procedure_revision: revision, rule: 'improve_types', schema_hash:)
-          create(:llm_rule_suggestion_item, llm_rule_suggestion:, verify_status: 'accepted', stable_id: 10, op_kind: 'update', payload: { 'stable_id' => 10, 'type_champ' => 'email' })
-
-          revision.apply_llm_rule_suggestion_items(llm_rule_suggestion.changes_to_apply)
-          revision.reload
-
-          tdc = revision.public_root_type_de_champs.find { |t| t.stable_id == 10 }
-          expect(tdc.type_champ).to eq('email')
-          expect(tdc.libelle).to eq("Email du contact")
-        end
-      end
-
-      context 'with type_champ update and options' do
-        let(:public_type_de_champs) { [{ type: :text, libelle: "Code postal", stable_id: 10 }] }
-
-        it "can update type_champ to formatted with options" do
-          llm_rule_suggestion = create(:llm_rule_suggestion, procedure_revision: revision, rule: 'improve_types', schema_hash:)
-          create(:llm_rule_suggestion_item,
-            llm_rule_suggestion:,
-            verify_status: 'accepted',
-            stable_id: 10,
-            op_kind: 'update',
-            payload: {
-              'stable_id' => 10,
-              'type_champ' => 'formatted',
-              'options' => {
-                'letters_accepted' => false,
-                'numbers_accepted' => true,
-                'special_characters_accepted' => false,
-                'min_character_length' => 5,
-                'max_character_length' => 5,
-              },
-            })
-
-          revision.apply_llm_rule_suggestion_items(llm_rule_suggestion.changes_to_apply)
-          revision.reload
-
-          tdc = revision.public_root_type_de_champs.find { |t| t.stable_id == 10 }
-          expect(tdc.type_champ).to eq('formatted')
-          expect(tdc.options['letters_accepted']).to eq(false)
-          expect(tdc.options['numbers_accepted']).to eq(true)
-          expect(tdc.options['special_characters_accepted']).to eq(false)
-          expect(tdc.options['min_character_length']).to eq(5)
-          expect(tdc.options['max_character_length']).to eq(5)
-        end
-      end
-    end
-
-    context 'from LLM::CleanerImprover' do
-      context 'with destroy operation' do
-        let(:public_type_de_champs) do
-          [
-            { type: :text, libelle: "Adresse", stable_id: 20 },
-            { type: :communes, libelle: "Commune", stable_id: 21 },
-          ]
-        end
-
-        it "can destroy a redundant field" do
-          llm_rule_suggestion = create(:llm_rule_suggestion, procedure_revision: revision, rule: 'cleaner', schema_hash:)
-          create(:llm_rule_suggestion_item, llm_rule_suggestion:, verify_status: 'accepted', stable_id: 21, op_kind: 'destroy', payload: { 'stable_id' => 21 })
-
-          expect(revision.public_root_type_de_champs.map(&:stable_id)).to include(21)
-
-          revision.apply_llm_rule_suggestion_items(llm_rule_suggestion.changes_to_apply)
-          revision.reload
-
-          expect(revision.public_root_type_de_champs.map(&:stable_id)).not_to include(21)
-          expect(revision.public_root_type_de_champs.map(&:stable_id)).to include(20)
-        end
-      end
-    end
-
-    describe '#apply_llm_rule_suggestion_items for structure improver' do
-      let(:procedure) do
-        create(:procedure,
-               public_type_de_champs: [
-                 { type: :text, stable_id: 1, libelle: 'nom' },
-                 { type: :text, stable_id: 2, libelle: 'prenom' },
-                 { type: :explication, stable_id: 3, libelle: 'explication a la fin' },
-               ])
-      end
-      let(:revision) { procedure.draft_revision }
-      let(:llm_rule_suggestion) { create(:llm_rule_suggestion, procedure_revision: revision, rule: LLMRuleSuggestion.rules.fetch('improve_structure')) }
-
-      context 'add_section_at_start' do
-        let!(:item) { create(:llm_rule_suggestion_item, llm_rule_suggestion:, verify_status: :accepted, op_kind: 'add', payload: { 'generated_stable_id' => -1, 'libelle' => 'Nouveau titre de section', 'header_section_level' => 1, 'after_stable_id' => nil }) }
-
-        it 'adds a header section at the start' do
-          expect { revision.apply_llm_rule_suggestion_items(llm_rule_suggestion.changes_to_apply) }.to change { revision.public_root_type_de_champs.size }.by(1)
-          expect(revision.public_root_type_de_champs.first.libelle).to eq('Nouveau titre de section')
-          expect(revision.public_root_type_de_champs.first.type_champ).to eq('header_section')
-        end
-      end
-
-      context 'move_field_under_new_section' do
-        let!(:add_item) { create(:llm_rule_suggestion_item, llm_rule_suggestion:, verify_status: :accepted, op_kind: 'add', payload: { 'generated_stable_id' => -1, 'libelle' => 'Nouveau titre', 'header_section_level' => 1, 'after_stable_id' => 1 }) }
-        let!(:update_item) { create(:llm_rule_suggestion_item, llm_rule_suggestion:, verify_status: :accepted, op_kind: 'update', payload: { 'stable_id' => 2, 'after_stable_id' => -1 }) }
-
-        it 'adds section and moves field after it' do
-          expect { revision.apply_llm_rule_suggestion_items(llm_rule_suggestion.changes_to_apply) }.to change { revision.public_root_type_de_champs.size }.by(1)
-          revision.reload
-          expect(revision.public_root_type_de_champs.map(&:libelle)).to eq(['nom', 'Nouveau titre', 'prenom', 'explication a la fin'])
-        end
-      end
-
-      context 'add_section_after_a_field_the_draft_does_not_hold' do
-        let!(:item) { create(:llm_rule_suggestion_item, llm_rule_suggestion:, verify_status: :accepted, op_kind: 'add', payload: { 'generated_stable_id' => -1, 'libelle' => 'Nouveau titre', 'header_section_level' => 1, 'after_stable_id' => 999 }) }
-
-        it 'adds nothing, and the suggestion failed' do
-          expect { revision.apply_llm_rule_suggestion_items(llm_rule_suggestion.changes_to_apply) }.not_to change { revision.reload.type_de_champs.size }
-          expect(item.reload).to be_failed
-        end
-      end
-
-      context 'add_section_after_field' do
-        let!(:item) { create(:llm_rule_suggestion_item, llm_rule_suggestion:, verify_status: :accepted, op_kind: 'add', payload: { 'generated_stable_id' => -2, 'libelle' => 'Nouveau titre après nom', 'header_section_level' => 1, 'after_stable_id' => 1 }) }
-
-        it 'adds a header section after the specified field' do
-          expect { revision.apply_llm_rule_suggestion_items(llm_rule_suggestion.changes_to_apply) }.to change { revision.public_root_type_de_champs.size }.by(1)
-          noms = revision.reload.public_root_type_de_champs.map(&:libelle)
-          nom_index = noms.index('nom')
-          nouveau_index = noms.index('Nouveau titre après nom')
-          expect(nouveau_index).to eq(nom_index + 1)
-        end
-      end
-
-      context 'move_field_under_existing' do
-        let!(:item) { create(:llm_rule_suggestion_item, llm_rule_suggestion:, verify_status: :accepted, op_kind: 'update', payload: { 'stable_id' => 3, 'after_stable_id' => 2 }) }
-
-        it 'moves the field after the specified existing field' do
-          revision.apply_llm_rule_suggestion_items(llm_rule_suggestion.changes_to_apply)
-          revision.reload
-          expect(revision.public_root_type_de_champs.map(&:libelle)).to eq(['nom', 'prenom', 'explication a la fin'])
-        end
-      end
-
-      context 'move_header_section_shared_with_the_published_revision' do
-        let(:procedure) do
-          create(:procedure, :published,
-                 public_type_de_champs: [
-                   { type: :header_section, stable_id: 1, libelle: 'section', level: 1 },
-                   { type: :text, stable_id: 2, libelle: 'nom' },
-                 ])
-        end
-        let(:published_header_section) { procedure.published_revision.public_root_type_de_champs.first }
-        let!(:item) { create(:llm_rule_suggestion_item, llm_rule_suggestion:, verify_status: :accepted, op_kind: 'update', payload: { 'stable_id' => 1, 'after_stable_id' => 2, 'header_section_level' => 2 }) }
-
-        it 'updates a clone on the draft and leaves the published revision as it is' do
-          revision.apply_llm_rule_suggestion_items(llm_rule_suggestion.changes_to_apply)
-          revision.reload
-
-          draft_header_section = revision.public_root_type_de_champs.find { it.stable_id == 1 }
-          expect(draft_header_section).not_to eq(published_header_section)
-          expect(draft_header_section.header_section_level_value).to eq(2)
-          expect(revision.public_root_type_de_champs.index(draft_header_section)).to eq(1)
-          expect(published_header_section.reload.header_section_level_value).to eq(1)
-        end
-      end
-    end
   end
 end

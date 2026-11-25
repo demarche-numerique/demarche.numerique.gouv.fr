@@ -38,7 +38,7 @@ describe TypeDeChampTree, '.legacy_export_order' do
 
   context 'when a type de champ was moved' do
     before do
-      draft.move_type_de_champ(stable_id('c'), 0)
+      draft.move_type_de_champ(stable_id('c'))
       publish
     end
 

@@ -151,7 +151,7 @@ describe Logic::ChampColumnValue do
 
         before do
           draft = procedure.draft_revision
-          draft.update_type_de_champ(draft.find_and_ensure_exclusive_use(stable_id).becomes_type('multiple_drop_down_list'), type_champ: 'multiple_drop_down_list')
+          draft.update_type_de_champ(stable_id, type_champ: 'multiple_drop_down_list')
         end
 
         it { is_expected.to eq(:enums) }

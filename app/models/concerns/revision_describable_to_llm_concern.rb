@@ -5,7 +5,8 @@ module RevisionDescribableToLLMConcern
 
   # The form in document order, the content of a repetition right after it. A
   # position counts from 0 among the champs outside any repetition, or within
-  # the repetition: header sections hold nothing here.
+  # the repetition. A header section holds the champs naming it as their
+  # section.
   def schema_to_llm(reject: [])
     public_root_type_de_champs.each_with_index.flat_map do |tdc, position|
       children = tdc.repetition? ? tdc.flat_children : []
@@ -31,16 +32,11 @@ module RevisionDescribableToLLMConcern
       choices_dynamic: (tdc.referentiel.present? ? true : nil),
       position:,
       parent_id:,
-      header_section_level: (header_section_level(tdc) if tdc.header_section?),
+      section_id: (tdc.parent.stable_id if tdc.parent&.header_section?),
+      header_section_level: (tdc.block_level if tdc.header_section?),
       display_condition: tdc.condition.present?,
       options: options_for_llm(tdc),
     }.compact.reject { |k, _v| reject.include?(k) }
-  end
-
-  # How deep the header section sits among the ones of the form, or of its
-  # repetition: the count restarts there, as the positions do.
-  def header_section_level(tdc)
-    tdc.level - (tdc.enclosing_repetition&.level || 0)
   end
 
   def options_for_llm(tdc)

@@ -48,12 +48,15 @@
       align-items: center;
     }
 
-    &.first .move-up {
-      display: none;
-    }
+    // what a header section or a repetition holds
+    .type-de-champ-children {
+      margin-left: 3 * $default-spacer;
+      padding-left: 2 * $default-spacer;
+      border-left: 2px solid var(--border-default-grey);
 
-    &.last .move-down {
-      display: none;
+      > .types-de-champ-block {
+        padding-left: 0;
+      }
     }
 
     .flex {

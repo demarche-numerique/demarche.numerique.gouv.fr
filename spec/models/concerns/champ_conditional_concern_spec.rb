@@ -130,7 +130,7 @@ describe ChampConditionalConcern do
       # draft is only validated at publication
       before do
         draft = procedure.draft_revision
-        draft.update_type_de_champ(draft.find_and_ensure_exclusive_use(99), type_champ: 'yes_no')
+        draft.update_type_de_champ(99, type_champ: 'yes_no')
         dossier.champ_data.find { it.stable_id == 99 }.update_columns(value: 'true')
         dossier.reload
       end

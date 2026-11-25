@@ -37,8 +37,8 @@ describe ProcedurePresentation do
         let(:tdc0) { { type_champ: :integer_number, libelle: 'libelle 0' } }
 
         before do
-          created_tdc0 = procedure.draft_revision.add_type_de_champ(tdc0)
-          procedure.draft_revision.reload.move_type_de_champ(created_tdc0.stable_id, 0)
+          # added first, without a sibling to come after
+          procedure.draft_revision.add_type_de_champ(tdc0)
           procedure.publish_revision!(procedure.administrateurs.first)
         end
 

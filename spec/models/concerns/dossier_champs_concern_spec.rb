@@ -490,10 +490,9 @@ RSpec.describe DossierChampsConcern do
   describe "#champs_for_prefill" do
     subject { dossier.champs_for_prefill([991, 995]) }
 
-    # Order follows the revision's coordinates, where public and private
-    # positions both start at zero: assert on the set, not the sequence.
+    # document order, the public ones first
     it {
-      expect(subject.map(&:libelle)).to contain_exactly("Une annotation", "Un autre champ text")
+      expect(subject.map(&:libelle)).to eq(["Un autre champ text", "Une annotation"])
       expect(subject.all?(&:persisted?)).to be_truthy
     }
 

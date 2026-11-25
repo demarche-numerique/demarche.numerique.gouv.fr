@@ -1,5 +1,6 @@
-- c = TypesDeChampEditor::SelectChampTemplatePositionComponent.new(block: @block, type_de_champs: @type_de_champs)
-%ul.fr-mt-0.types-de-champ-block{ id: block_id, data: { controller: 'select-champ-position-template', 'select-champ-position-template-template-id-value': c.block_id } }
+- template = position_template
+%ul.fr-mt-0.types-de-champ-block{ id: block_id, data: template ? { controller: 'select-champ-position-template', 'select-champ-position-template-template-id-value': template.block_id } : {} }
   - @type_de_champs.each do |type_de_champ|
-    = render TypesDeChampEditor::NodeComponent.new(type_de_champ:)
-  %li.hidden= render c
+    = render TypesDeChampEditor::NodeComponent.new(type_de_champ:, focused_stable_id: @focused_stable_id, errors: @errors)
+  - if template
+    %li.hidden= render template

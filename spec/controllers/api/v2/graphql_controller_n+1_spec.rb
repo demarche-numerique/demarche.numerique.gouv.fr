@@ -46,7 +46,7 @@ describe API::V2::GraphqlController do
     end
 
     # The descriptors of the démarche and the champs of its dossiers read the
-    # revisions' trees, not their coordinates.
+    # revisions' trees.
     it "loads the types de champ of the dossiers' revision once" do
       variables = { demarcheNumber: procedure.id, includeDossiers: true, includeChamps: true, includeTraitements: false }
       dossier

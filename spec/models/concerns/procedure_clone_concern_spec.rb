@@ -142,7 +142,7 @@ describe ProcedureCloneConcern, type: :model do
 
       it 'copies the types de champ of the tree and no other, from the oldest to the latest' do
         # laid out first, created last
-        procedure.draft_revision.move_type_de_champ(type_de_champ_repetition.stable_id, 0)
+        procedure.draft_revision.move_type_de_champ(type_de_champ_repetition.stable_id)
         left_out = procedure.draft_revision.add_type_de_champ(type_champ: :text, libelle: 'removed since')
         procedure.draft_revision.remove_type_de_champ(left_out.stable_id)
 

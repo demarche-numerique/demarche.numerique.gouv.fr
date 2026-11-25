@@ -90,11 +90,6 @@ fr:
           avis_impot: "Avis d’impôt"
     errors:
       type_de_champ:
-        attributes:
-          header_section_level:
-            gap_error: "devrait être précédé d’un titre de niveau %{level}"
-        not_added:
-          place_gone: "Le champ n’a pas été ajouté : l’endroit choisi n’existe plus, le formulaire a été modifié entre-temps. Rechargez la page pour le voir à jour."
         locked:
           update:
             used_by_routing_rules: "« %{type_de_champ} » est utilisé pour le routage, vous ne pouvez pas modifier son type."

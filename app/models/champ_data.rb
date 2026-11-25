@@ -109,7 +109,6 @@ class ChampData < ApplicationRecord
     :drop_down_advanced?,
     :collapsible_explanation_enabled?,
     :collapsible_explanation_text,
-    :header_section_level_value,
     :level,
     :fillable?,
     :mandatory?,

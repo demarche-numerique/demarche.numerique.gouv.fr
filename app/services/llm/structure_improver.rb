@@ -15,11 +15,11 @@ module LLM
               description: 'Ajout d\'une nouvelle header_section.',
               properties: {
                 generated_stable_id: { type: 'integer', description: "Identifiant stable unique du nouveau header_section. Génère en entier negatif auto-décrémenté en partant de -1" },
-                after_stable_id: { type: ['integer', 'null'], description: "Identifiant du champ après lequel la header_section doit être ajoutée. Utiliser null UNIQUEMENT si le header_section doit être positionné en premier." },
+                after_stable_id: { type: ['integer', 'null'], description: "Identifiant du champ après lequel la header_section doit être ajoutée : elle est placée au même endroit que lui, dans la même section s'il est dans une section. Après une header_section, elle est placée après tous les champs que celle-ci contient. Utiliser null UNIQUEMENT si le header_section doit être positionné en premier." },
+                parent_stable_id: { type: ['integer', 'null'], description: "Quand after_stable_id est null : identifiant de la header_section dans laquelle placer la nouvelle en premier (un generated_stable_id pour une section que tu ajoutes). null pour le début du formulaire." },
                 libelle: { type: 'string', description: 'Libellé de la section (<= 80 chars)' },
-                header_section_level: { type: ['integer', 'null'], description: "Le niveau de la section (1 pour la plus haute hiérarchie, jusqu\'à 3), uniquement si le champ est de type header_section" },
               },
-              required: %w[generated_stable_id after_stable_id libelle header_section_level],
+              required: %w[generated_stable_id after_stable_id parent_stable_id libelle],
             },
             justification: { type: 'string', description: "Justification concise en 1-2 phrases : 1) Indique quels champs (citer leurs libellés) sont regroupés et pourquoi ce regroupement aide l'usager. 2) Précise après quel champ la section est placée (ou 'en première position' si after_stable_id est null). Exemple : 'Regroupement des 4 champs relatifs à l'entreprise (Nom entreprise, SIRET, Adresse siège, Téléphone entreprise) sous une section dédiée pour clarifier cette partie du formulaire. Section placée après le champ Email.'" },
           },
@@ -32,14 +32,16 @@ module LLM
       <<~TXT
         Tu es un assistant expert en simplification administrative française. Ton objectif : améliorer la structure des formulaires pour faciliter le parcours usager, en ajoutant des sections selon les principes de logique et de présentation.
 
-        IMPORTANT : Une section est définie par un champ header_section suivi de tous les champs qui viennent après, jusqu'à la prochaine header_section de même niveau.
+        IMPORTANT : Une section contient des champs : dans le schéma, `section_id` désigne la header_section qui contient un champ. La header_section que tu ajoutes prend les champs qui la suivent là où elle est placée, jusqu'à la prochaine header_section.
 
         ## PRINCIPE CRITIQUE DE POSITIONNEMENT :
 
-        Le paramètre `after_stable_id` désigne le champ APRÈS LEQUEL tu veux insérer la section.
-        - Si tu veux que ta section apparaisse AVANT le champ X, tu dois utiliser le stable_id du champ qui PRÉCÈDE X
-        - after_stable_id: null = placer la section en TOUTE PREMIÈRE position
-        - Exemple : pour insérer une section avant le champ en position 3, utilise le stable_id du champ en position 2
+        Le paramètre `after_stable_id` désigne le champ APRÈS LEQUEL tu veux insérer la section, parmi ceux qui ont le même `section_id`.
+        - Si tu veux que ta section apparaisse AVANT le champ X, tu dois utiliser le stable_id du champ qui PRÉCÈDE X avec le même `section_id` que X
+        - Si X est le premier champ de sa section : after_stable_id: null et parent_stable_id: le `section_id` de X
+        - Une header_section en after_stable_id place la section APRÈS tous les champs qu'elle contient, jamais juste après son titre
+        - after_stable_id: null et parent_stable_id: null = placer la section en TOUTE PREMIÈRE position
+        - Exemple : pour insérer une section avant le champ en position 3, utilise le stable_id du champ en position 2 s'il a le même `section_id`
 
         ## EXEMPLES DE RAISONNEMENT CORRECT :
 
@@ -85,7 +87,7 @@ module LLM
             "generated_stable_id": -1,
             "after_stable_id": 10,
             "libelle": "Informations sur l'entreprise",
-            "header_section_level": 1
+            "parent_stable_id": null
           },
           "justification": "Regroupement des 4 champs relatifs à l'entreprise (Nom entreprise, SIRET, Adresse siège, Téléphone entreprise) sous une section dédiée pour clarifier cette partie du formulaire. Section placée après le champ Email."
         }
@@ -117,7 +119,7 @@ module LLM
             "generated_stable_id": -1,
             "after_stable_id": null,
             "libelle": "Votre identité",
-            "header_section_level": 1
+            "parent_stable_id": null
           },
           "justification": "Regroupement des 4 champs d'identité (Nom, Prénom, Date de naissance, Nationalité) sous une section en début de formulaire. Section placée en première position."
         }
@@ -131,20 +133,53 @@ module LLM
         [
           { stable_id: 5, libelle: "Email", position: 0, type: "email" },
           { stable_id: 10, libelle: "Informations sur l'entreprise", position: 1, type: "header_section", header_section_level: 1 },
-          { stable_id: 20, libelle: "Nom entreprise", position: 2, type: "text" },
-          { stable_id: 30, libelle: "SIRET", position: 3, type: "siret" },
-          { stable_id: 40, libelle: "Adresse siège", position: 4, type: "address" },
-          { stable_id: 50, libelle: "Téléphone entreprise", position: 5, type: "phone" }
+          { stable_id: 20, libelle: "Nom entreprise", position: 2, type: "text", section_id: 10 },
+          { stable_id: 30, libelle: "SIRET", position: 3, type: "siret", section_id: 10 },
+          { stable_id: 40, libelle: "Adresse siège", position: 4, type: "address", section_id: 10 },
+          { stable_id: 50, libelle: "Téléphone entreprise", position: 5, type: "phone", section_id: 10 }
         ]
 
         Analyse :
         - Les champs Nom/SIRET/Adresse/Téléphone forment un groupe cohérent
         - Ce groupe contient 4 champs
         - MAIS : Une header_section "Informations sur l'entreprise" existe DÉJÀ (stable_id: 10, position: 1)
-        - Cette section regroupe déjà les champs qui suivent
+        - Cette section contient déjà ces champs (section_id: 10)
         - DÉCISION : Je ne propose PAS de nouvelle section (éviter la redondance)
 
         Rappel : Vérifie toujours si une section appropriée existe déjà avant d'en proposer une nouvelle.
+
+        **Exemple 5 : Sous-section en début de section (ACCEPTÉ)**
+
+        Schéma initial :
+        [
+          { stable_id: 10, libelle: "Votre projet", position: 0, type: "header_section", header_section_level: 1 },
+          { stable_id: 20, libelle: "Montant demandé", position: 1, type: "decimal_number", section_id: 10 },
+          { stable_id: 30, libelle: "Montant des autres aides", position: 2, type: "decimal_number", section_id: 10 },
+          { stable_id: 40, libelle: "Budget total", position: 3, type: "decimal_number", section_id: 10 },
+          { stable_id: 50, libelle: "Calendrier du projet", position: 4, type: "header_section", header_section_level: 2, section_id: 10 },
+          { stable_id: 60, libelle: "Date de début", position: 5, type: "date", section_id: 50 },
+          { stable_id: 70, libelle: "Date de fin", position: 6, type: "date", section_id: 50 }
+        ]
+
+        Analyse :
+        - Les champs Montant demandé/Montant des autres aides/Budget total forment un groupe "Budget du projet", au même niveau que "Calendrier du projet"
+        - Le premier champ du groupe (Montant demandé) est le premier de sa section (section_id: 10)
+        - Aucun champ ne le précède dans cette section : after_stable_id: 10 placerait la section APRÈS tout ce que contient "Votre projet"
+        - DONC : after_stable_id = null et parent_stable_id = 10
+
+        Tool call correct :
+        {
+          "add": {
+            "generated_stable_id": -1,
+            "after_stable_id": null,
+            "libelle": "Budget du projet",
+            "parent_stable_id": 10
+          },
+          "justification": "Regroupement des 3 champs de budget (Montant demandé, Montant des autres aides, Budget total) sous une sous-section. Section placée en première position de la section Votre projet."
+        }
+
+        Structure résultante :
+        [SECTION "Votre projet"] → [SOUS-SECTION "Budget du projet"] → [Montant demandé] → [Montant des autres aides] → [Budget total] → [SOUS-SECTION "Calendrier du projet"] → [Date de début] → [Date de fin]
 
         ## MÉTHODOLOGIE OBLIGATOIRE EN 2 PHASES :
 
@@ -155,7 +190,7 @@ module LLM
         3. Vérifie qu'aucun champ n'a de display_condition
         4. Vérifie qu'une header_section appropriée n'existe PAS déjà pour ce groupe
         5. Identifie la position du premier champ du groupe
-        6. Trouve le stable_id du champ qui PRÉCÈDE cette position (sera ton after_stable_id)
+        6. Trouve le stable_id du champ qui PRÉCÈDE cette position avec le même section_id (sera ton after_stable_id) ; si le premier champ du groupe est le premier de sa section, after_stable_id est null et parent_stable_id est son section_id
 
         PHASE 2 - AMELIORATION (avec tool calls) :
         Pour chaque groupe validé, utilise UN tool call avec l'outil #{TOOL_DEFINITION.dig(:function, :name)} pour proposer l'ajout de la header_section.
@@ -214,7 +249,7 @@ module LLM
 
         1.4. Unicité des positions
             - Chaque after_stable_id que tu proposes doit être UNIQUE dans tes propositions
-            - JAMAIS proposer 2 sections avec le même after_stable_id
+            - JAMAIS proposer 2 sections avec le même after_stable_id, ni 2 sections en premier dans la même section (même parent_stable_id avec after_stable_id: null)
               KO Deux sections avec after_stable_id: 10
               OK Section A avec after_stable_id: 10, Section B avec after_stable_id: 20
 
@@ -231,10 +266,10 @@ module LLM
               OK Section "Votre identité" → [Nom, Prénom, Date naissance]
 
         2.2. Cohérence hiérarchique
-            - Les sections suivent une progression logique : niveau 1 → 2 → 3
-            - Une sous-section (niveau 2) doit apparaître après une section principale (niveau 1)
-              KO [Champs] → Section niveau 2 "Détails" (sans section niveau 1 avant)
-              OK Section niveau 1 "Projet" → Section niveau 2 "Budget du projet"
+            - Les sections s'imbriquent sur 3 niveaux au plus
+            - Une sous-section se place dans une section : après un champ de cette section (after_stable_id), ou en premier dans celle-ci (parent_stable_id)
+              KO Sous-section "Détails" dans une section de niveau 3
+              OK Section "Projet" → sous-section "Budget du projet" placée après un champ de "Projet"
 
         ═══════════════════════════════════════════════════════════════
         PRIORITÉ 3 : QUALITÉ RÉDACTIONNELLE (bonnes pratiques UX)

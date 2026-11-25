@@ -141,19 +141,6 @@ FactoryBot.define do
       type_champ { TypeDeChamp.type_champs.fetch(:header_section) }
     end
 
-    factory :type_de_champ_header_section_level_1 do
-      type_champ { TypeDeChamp.type_champs.fetch(:header_section) }
-      header_section_level { 1 }
-    end
-    factory :type_de_champ_header_section_level_2 do
-      type_champ { TypeDeChamp.type_champs.fetch(:header_section) }
-      header_section_level { 2 }
-    end
-    factory :type_de_champ_header_section_level_3 do
-      type_champ { TypeDeChamp.type_champs.fetch(:header_section) }
-      header_section_level { 3 }
-    end
-
     factory :type_de_champ_explication do
       type_champ { TypeDeChamp.type_champs.fetch(:explication) }
     end

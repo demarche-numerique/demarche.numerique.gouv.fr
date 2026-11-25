@@ -1,6 +1,5 @@
 fr:
   step_title: "Structure du formulaire"
   add_section: "Ajout de section"
-  section_level: "(niveau %{header_section_level})"
   reorganization: "Réorganisation"
   unchanged: "Inchangé"

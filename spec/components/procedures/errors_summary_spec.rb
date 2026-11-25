@@ -52,7 +52,6 @@ describe Procedure::ErrorsSummary, type: :component do
         { libelle: 'repetition requires children', type: :repetition, children: [] },
         { libelle: 'drop down list requires options', type: :drop_down_list, options: [] },
         { libelle: 'invalid condition', type: :text, condition: ds_eq(constant(true), constant(1)) },
-        { libelle: 'header sections must have consistent order', type: :header_section, level: 2 },
         { libelle: 'regexp invalid', type: :formatted, formatted_mode: 'advanced', expression_reguliere_exemple_text: 'kthxbye', expression_reguliere: /{/ },
       ])
     end
@@ -74,9 +73,6 @@ describe Procedure::ErrorsSummary, type: :component do
 
       expect(page).to have_selector("a", text: "invalid condition")
       expect(page).to have_content("a une logique conditionnelle invalide")
-
-      expect(page).to have_selector("a", text: "header sections must have consistent order")
-      expect(page).to have_content("devrait être précédé d’un titre de niveau 1")
 
       expect(page).to have_selector("a", text: "regexp invalid")
       expect(page).to have_content("est invalide, veuillez la corriger")

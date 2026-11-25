@@ -169,11 +169,11 @@ describe TypesDeChampEditor::TypeDeChampSelectorComponent, type: :component do
     end
   end
 
-  describe 'ACCEPTED_TYPES' do
+  describe 'the types a published type converts to' do
     let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text }]) }
 
     it 'contains expected conversions' do
-      expect(described_class::ACCEPTED_TYPES).to include(
+      expect(RevisionEditConcern::CASTABLE_TYPE_CHAMPS).to include(
         "checkbox" => ["yes_no", "text", "textarea", "formatted"],
         "civilite" => ["text", "textarea", "formatted"],
         "communes" => ["text", "textarea", "formatted"],

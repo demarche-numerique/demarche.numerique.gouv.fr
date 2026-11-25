@@ -234,7 +234,7 @@ describe Procedure::RevisionChangesComponent, type: :component do
     end
 
     before do
-      new_revision.update_type_de_champ(new_revision.find_and_ensure_exclusive_use(tdcs[1].stable_id), header_section_level: "1")
+      new_revision.move_out_type_de_champ(tdcs[1].stable_id)
       new_revision.find_and_ensure_exclusive_use(tdcs[2].stable_id).update!(birthdate: "1", prefill_with_france_connect_information: "1")
       new_revision.find_and_ensure_exclusive_use(tdcs[3].stable_id).update!(pre_rempli_hidden: "1")
     end

@@ -177,6 +177,15 @@ class ProcedureRevision < ApplicationRecord
 
   private
 
+  # Writes the tree an edit left (RevisionEditConcern). Once written, the
+  # column hands the same tree as another object: what was laid out from it
+  # still stands.
+  def write_type_de_champ_tree
+    laid_out = type_de_champs_laid_out?
+    update_columns(type_de_champ_tree:)
+    @laid_out_type_de_champ_tree = type_de_champ_tree if laid_out
+  end
+
   # The instances laid out are the revision's own, loaded for it: another
   # revision lays out the same types de champ elsewhere.
   #

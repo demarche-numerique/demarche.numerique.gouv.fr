@@ -285,7 +285,7 @@ describe 'As an administrateur I can edit types de champ', js: true do
     end
     page.refresh
 
-    within '.type-de-champ .editor-block' do
+    within '.type-de-champ .type-de-champ-children' do
       click_on 'Ajouter un champ'
 
       fill_in 'Libellé du champ', with: 'libellé de champ 1'
@@ -411,96 +411,119 @@ describe 'As an administrateur I can edit types de champ', js: true do
     end
   end
 
-  context 'header section' do
-    scenario 'with public tdc, having invalid order, it pops up errors summary' do
-      add_champ
-      select_type_de_champ('Titre de section')
-      wait_until { procedure.reload.active_revision.public_root_type_de_champs.first&.type_champ == TypeDeChamp.type_champs.fetch(:header_section) }
-      first_header = procedure.active_revision.public_root_type_de_champs.first
-      select('Titre de niveau 1', from: dom_id(first_header, :header_section_level))
+  context 'header sections' do
+    let(:procedure) do
+      create(:procedure, public_type_de_champs: [
+        { libelle: 'premier' },
+        { libelle: 'titre' },
+        { libelle: 'second' },
+        { libelle: 'dernier' },
+      ])
+    end
 
-      within(find('.type-de-champ-add-button', match: :first)) {
-        add_champ
-      }
+    def layout(type_de_champs = procedure.draft_revision.reload.public_type_de_champs)
+      type_de_champs.map { it.header_section? ? { it.libelle => layout(it.children) } : it.libelle }
+    end
 
-      wait_until { procedure.reload.active_revision.public_root_type_de_champs.count == 2 }
-      second_header = procedure.active_revision.public_root_type_de_champs.last
-      select_type_de_champ('Titre de section', from: dom_id(second_header, :type_champ))
-      wait_until { procedure.reload.active_revision.public_root_type_de_champs.last&.type_champ == TypeDeChamp.type_champs.fetch(:header_section) }
-      select('Titre de niveau 2', from: dom_id(second_header, :header_section_level))
+    def card(libelle) = find('.type-de-champ-container', text: nil) { |card| card.has_field?('Libellé du champ', with: libelle, wait: false) }
 
-      within(".types-de-champ-block li:first-child") do
-        accept_alert do
-          click_on 'Supprimer'
-        end
-      end
-      expect(page).to have_content("devrait être précédé d’un titre de niveau 1")
+    scenario 'a champ becomes a header section, takes what follows, and champs move in and out of it' do
+      titre = procedure.draft_revision.type_de_champs.find { it.libelle == 'titre' }
+      select_type_de_champ('Titre de section', from: dom_id(titre, :type_champ))
+      wait_until { layout == ['premier', { 'titre' => [] }, 'second', 'dernier'] }
+      expect(page).to have_text('Titre de niveau 1')
+      # the summary of the page follows
+      expect(page).to have_link('titre')
 
-      # check summary refresh
-      procedure.reload.active_revision.private_root_type_de_champs.each do |header_section|
-        expect(page).to have_link(header_section.libelle)
-      end
+      within(card('titre')) { click_on 'Inclure les champs qui suivent' }
+      wait_until { layout == ['premier', { 'titre' => ['second', 'dernier'] }] }
+      expect(page).to have_css("##{dom_id(titre, :types_de_champ_editor_block)} > li.type-de-champ", count: 2)
+      # the button is gone with what it took: the focus stays on the card
+      expect(page).to have_css("##{dom_id(titre, :libelle)}:focus")
+      expect(page).to have_select(dom_id(titre, :move_to_place), options: ['Déplacer le champ après'])
+
+      within(card('dernier')) { click_on 'Sortir le champ de sa section' }
+      wait_until { layout == ['premier', { 'titre' => ['second'] }, 'dernier'] }
+      # on the move back in: it has no section to leave any more
+      expect(page).to have_css("##{dom_id(procedure.draft_revision.type_de_champs.find { it.libelle == 'dernier' }, :move_in_button)}:focus")
+
+      within(card('dernier')) { click_on 'Faire entrer le champ dans la section qui le précède' }
+      wait_until { layout == ['premier', { 'titre' => ['second', 'dernier'] }] }
+
+      # the first of a section moves out of it, right before
+      within(card('second')) { click_on 'Déplacer le champ vers le haut' }
+      wait_until { layout == ['premier', 'second', { 'titre' => ['dernier'] }] }
+      expect(page).to have_css("##{dom_id(titre, :types_de_champ_editor_block)} > li.type-de-champ", count: 1)
+
+      # removing the section leaves what it holds in its place
+      within(card('titre')) { accept_alert { click_on 'Supprimer' } }
+      wait_until { layout == ['premier', 'second', 'dernier'] }
+      expect(page).to have_no_link('titre')
+      expect(page).to have_css('.types-de-champ-editor > .types-de-champ-block > li.type-de-champ', count: 3)
     end
   end
 
-  context 'move and morph' do
+  context 'moving to a place' do
     let(:procedure) { create(:procedure, public_type_de_champs: tdcs) }
-    let!(:initial_first_type_de_champ) { procedure.draft_revision.public_root_type_de_champs[0] }
-    let!(:initial_second_type_de_champ) { procedure.draft_revision.public_root_type_de_champs[1] }
-    let!(:initial_third_type_de_champ) { procedure.draft_revision.public_root_type_de_champs[2] }
+    let(:draft) { procedure.draft_revision }
+
+    def select_of(type_de_champ) = "##{dom_id(type_de_champ, :move_to_place)}"
+    def positions(type_de_champs) = type_de_champs.map { find("##{dom_id(it, :type_de_champ_editor)} > .type-de-champ-container .position").text }
 
     context 'with root champs' do
       let(:tdcs) do
         [
           { type: :text, libelle: 'first_tdc' },
-          { type: :text, libelle: 'middle_tdc' },
+          { type: :header_section, libelle: 'section', children: [{ type: :text, libelle: 'middle_tdc' }] },
           { type: :text, libelle: 'last_tdc' },
         ]
       end
-      let(:initial_first_selector) { "##{ActionView::RecordIdentifier.dom_id(initial_first_type_de_champ, :move_and_morph)}" }
+      let!(:first) { draft.public_root_type_de_champs.first }
+      let!(:section) { draft.public_root_type_de_champs.second }
+      let!(:last) { draft.public_root_type_de_champs.last }
 
-      scenario 'root select is empty by default' do
-        # at first, select only contains the current type de champ
-        expect(page).to have_selector("#{initial_first_selector} option", count: 1)
-        expect(page.find(initial_first_selector).all("option").first.value.to_s).to eq(initial_first_type_de_champ.stable_id.to_s)
+      scenario 'the select only holds the place of its champ by default' do
+        expect(page).to have_selector("#{select_of(first)} option", count: 1)
+        expect(page.find(select_of(first)).all("option").first.value).to eq("after:#{first.stable_id}")
       end
 
-      scenario 'when select is focused, it seeds its options' do
-        # once clicked, the select is updated with root champs options only, preselected on the current one and have nice libelles
-        page.find(initial_first_selector).click
-        expect(page).to have_selector("#{initial_first_selector} option", count: 3)
-        expect(page.find(initial_first_selector).find("option[selected]").value.to_s).to eq(initial_first_type_de_champ.stable_id.to_s)
-        expect(page.find(initial_first_selector).all("option").map(&:text)).to match_array(['1 - first_tdc', '2 - middle_tdc', '3 - last_tdc'])
+      scenario 'when the select is focused, it lists the places of the form' do
+        page.find(select_of(first)).click
+        expect(page).to have_selector("#{select_of(first)} option", count: 6)
+        expect(page.find(select_of(first)).find("option[selected]").value).to eq("after:#{first.stable_id}")
+        expect(page.find(select_of(first)).all("option").map(&:text)).to eq(['Au début', '1 - first_tdc', '2 - section', '— 3 - middle_tdc', '(après la section « section »)', '4 - last_tdc'])
 
-        # renaming a tdc renames it's option
-        within "##{dom_id(initial_first_type_de_champ, :type_de_champ_editor)}" do
+        # a header section does not move within itself
+        page.find(select_of(section)).click
+        expect(page.find(select_of(section)).all("option[disabled]").map(&:text)).to eq(['2 - section', '— 3 - middle_tdc', '(après la section « section »)'])
+
+        # renaming a tdc renames its option
+        within "##{dom_id(first, :type_de_champ_editor)}" do
           fill_in 'Libellé du champ', with: 'renamed'
         end
-        wait_until { initial_first_type_de_champ.reload.libelle == 'renamed' }
+        wait_until { first.reload.libelle == 'renamed' }
         # wait until turbo response
         expect(page).to have_text('Formulaire enregistré')
-        page.find(initial_first_selector).click
-        expect(page).to have_css("#{initial_first_selector} option", count: 3)
-        expect(page.find(initial_first_selector).all("option").map(&:text)).to match_array(['1 - renamed', '2 - middle_tdc', '3 - last_tdc'])
+        page.find(select_of(first)).click
+        expect(page.find(select_of(first)).all("option").map(&:text)).to include('1 - renamed')
       end
 
-      scenario 'when select is changed, it moves the type de champ' do
-        page.find(initial_first_selector).click # seeds
-        page.find(initial_first_selector).select(initial_third_type_de_champ.libelle)
-        wait_until do
-          procedure.reload.draft_revision.public_root_type_de_champs.last.libelle == initial_first_type_de_champ.libelle
-        end
+      scenario 'when the select is changed, it moves the champ' do
+        page.find(select_of(first)).click # seeds
+        page.find(select_of(first)).select('4 - last_tdc')
+        wait_until { draft.reload.public_type_de_champs.map(&:libelle) == ['section', 'last_tdc', 'first_tdc'] }
         # wait until turbo response
         expect(page).to have_text('Formulaire enregistré')
 
-        # check reorder worked on backend
-        reordered_type_de_champs = [initial_second_type_de_champ, initial_third_type_de_champ, initial_first_type_de_champ]
-        expect(procedure.reload.draft_revision.public_root_type_de_champs.map(&:stable_id)).to eq(reordered_type_de_champs.map(&:stable_id))
+        # the champs which sit elsewhere say so
+        expect(positions(draft.public_root_type_de_champs)).to eq(['1', '2', '3', '4'])
 
-        # check reorder rerendered champ component between target->destination
-        reordered_type_de_champs.each_with_index do |type_de_champ, position|
-          expect(page).to have_selector("##{ActionView::RecordIdentifier.dom_id(type_de_champ, :type_de_champ_editor)} .position", text: position + 1)
-        end
+        # right after the title of the section: first of what it holds
+        page.find(select_of(last)).click
+        page.find(select_of(last)).select('1 - section')
+        wait_until { draft.reload.type_de_champ(section.stable_id).children.map(&:libelle) == ['last_tdc', 'middle_tdc'] }
+        expect(page).to have_css("##{dom_id(section, :types_de_champ_editor_block)} > li.type-de-champ", count: 2)
+        expect(positions(draft.public_root_type_de_champs)).to eq(['1', '2', '3', '4'])
       end
     end
 
@@ -519,45 +542,33 @@ describe 'As an administrateur I can edit types de champ', js: true do
           { type: :text, libelle: 'root_thrid_tdc' },
         ]
       end
-      let(:children) { procedure.draft_revision.type_de_champs.filter(&:in_repetition?) }
-      let(:first_child_selector) { "##{ActionView::RecordIdentifier.dom_id(children.first, :move_and_morph)}" }
+      let!(:repetition) { draft.public_type_de_champs.second }
+      let!(:first_child) { repetition.children.first }
 
-      scenario 'first child of repetition select is empty by default' do
-        expect(page).to have_selector("#{first_child_selector} option", count: 1)
-        expect(page.find(first_child_selector).all("option").first.value.to_s).to eq(children.first.stable_id.to_s)
+      scenario 'the select of a child of the repetition only holds its place by default' do
+        expect(page).to have_selector("#{select_of(first_child)} option", count: 1)
+        expect(page.find(select_of(first_child)).all("option").first.value).to eq("after:#{first_child.stable_id}")
       end
 
-      scenario 'when first child select is focused, seed with repetition only tdcs' do
-        page.find(first_child_selector).click
-        expect(page).to have_selector("#{first_child_selector} option", count: 2)
+      scenario 'when it is focused, it lists the places of the repetition only' do
+        page.find(select_of(first_child)).click
 
-        opts = page.find(first_child_selector).all("option").map(&:text)
-        expect(opts).to match_array(children.map { "#{_1.position + 1} - #{_1.libelle}" })
+        expect(page.find(select_of(first_child)).all("option").map(&:text)).to eq(['Au début', '1 - child_first_tdc', '2 - child_second_tdc'])
       end
 
-      scenario 'when first child select is changed, move champ in repetition' do
-        page.find(first_child_selector).click
-        expect(children.first.position).to eq(0)
-        page.find(first_child_selector).select(children.last.libelle)
-        # check reorder works on backend
-        wait_until do
-          procedure.reload.draft_revision.type_de_champ(children.first.stable_id).position == 1
-        end
+      scenario 'when it is changed, the champ moves within the repetition' do
+        page.find(select_of(first_child)).click
+        page.find(select_of(first_child)).select('2 - child_second_tdc')
+        wait_until { draft.reload.type_de_champ(repetition.stable_id).children.map(&:libelle) == ['child_second_tdc', 'child_first_tdc'] }
         # wait until turbo response
         expect(page).to have_text('Formulaire enregistré')
 
-        # check reorder worked on backend
-        reordered_children = children.reverse
-        expect(procedure.reload.draft_revision.type_de_champs.filter(&:in_repetition?).map(&:stable_id)).to eq(reordered_children.map(&:stable_id))
-
-        # check reorder rerendered champ component between target->destination
-        reordered_children.each_with_index do |type_de_champ, position|
-          expect(page).to have_selector("##{ActionView::RecordIdentifier.dom_id(type_de_champ, :type_de_champ_editor)} .position", text: position + 1)
-        end
+        expect(positions(draft.type_de_champ(repetition.stable_id).children)).to eq(['1', '2'])
+        expect(draft.public_type_de_champs.map(&:libelle)).to eq(['root_first_tdc', 'root_second_tdc', 'root_thrid_tdc'])
       end
 
       scenario 'can configure limit repetitions on repetition champ' do
-        repetition_tdc = initial_second_type_de_champ
+        repetition_tdc = repetition
 
         find("label[for='#{dom_id(repetition_tdc, :limit_repetitions)}']").click
         wait_until { repetition_tdc.reload.limit_repetitions == "1" }

@@ -1,7 +1,20 @@
-<%= tag.li(**html_options.merge(class: ["type-de-champ flex column justify-start fr-mb-5v", html_options[:class]])) do %>
-  <%= render TypesDeChampEditor::ChampComponent.new(type_de_champ:, focused: @focused, errors: @errors) %>
+<%= tag.li(id: dom_id(type_de_champ, :type_de_champ_editor), class: class_names("type-de-champ flex column justify-start fr-mb-5v", "type-header-section": type_de_champ.header_section?)) do %>
+  <%= render TypesDeChampEditor::ChampComponent.new(type_de_champ:, focused: type_de_champ.stable_id == @focused_stable_id, errors: @errors.fetch(type_de_champ.stable_id, "")) %>
+
+  <% if holds? %>
+    <div class="type-de-champ-children">
+      <%= render TypesDeChampEditor::BlockComponent.new(block: type_de_champ, type_de_champs: type_de_champ.children, focused_stable_id: @focused_stable_id, errors: @errors) %>
+
+      <div
+        class="type-de-champ-add-button fr-mb-5v <%= class_names(hidden: type_de_champ.children.any?) %>"
+        id="<%= dom_id(type_de_champ, :type_de_champ_add_button) %>"
+      >
+        <%= render TypesDeChampEditor::AddChampButtonComponent.new(revision:, parent: type_de_champ, is_annotation: type_de_champ.private?) %>
+      </div>
+    </div>
+  <% end %>
 
   <div class="type-de-champ-add-button <%= class_names(root: !type_de_champ.in_repetition?, flex: true) %>">
-    <%= render TypesDeChampEditor::AddChampButtonComponent.new(revision:, parent: type_de_champ.enclosing_repetition, is_annotation: type_de_champ.private?, after_stable_id: type_de_champ.stable_id) %>
+    <%= render TypesDeChampEditor::AddChampButtonComponent.new(revision:, is_annotation: type_de_champ.private?, after_stable_id: type_de_champ.stable_id) %>
   </div>
 <% end %>

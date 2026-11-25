@@ -175,12 +175,6 @@ class TypeDeChamp < ApplicationRecord
     ProcedureRevision.where(procedure_id:).laying_out(self)
   end
 
-  def only_present_on_draft?
-    # two are enough to tell
-    laid_out_by = revisions.take(2)
-    laid_out_by.one? && laid_out_by.first.draft?
-  end
-
   def prefillable? = false
 
   def fillable? = true
@@ -202,13 +196,6 @@ class TypeDeChamp < ApplicationRecord
   def any_drop_down_list? = false
 
   def options_for_select = nil
-
-  def previous_section_level(upper_tdcs)
-    previous_header_section = upper_tdcs.reverse.find(&:header_section?)
-
-    return 0 if !previous_header_section
-    previous_header_section.header_section_level_value.to_i
-  end
 
   def to_typed_id
     GraphQL::Schema::UniqueWithinType.encode('Champ', stable_id)
@@ -568,6 +555,14 @@ class TypeDeChamp < ApplicationRecord
     ancestors.last
   end
 
+  # the ones its parent holds, itself included, or the top of its side of the form
+  def siblings
+    parent&.children || (private? ? revision.private_type_de_champs : revision.public_type_de_champs)
+  end
+
+  def previous_sibling = (siblings[position - 1] if position > 0)
+  def next_sibling = siblings[position + 1]
+
   def in_repetition?
     ancestors.any?(&:repetition?)
   end
@@ -590,6 +585,12 @@ class TypeDeChamp < ApplicationRecord
   # holding it: the heading outline of the whole form, up to 6.
   def level
     ancestors.count(&:header_section?) + (header_section? ? 1 : 0)
+  end
+
+  # The same, counted within its block: the form, the annotations, or the
+  # repetition holding it. The level a header section is given in the editor.
+  def block_level
+    level - (enclosing_repetition&.level || 0)
   end
 
   def used_by_routing_rules?

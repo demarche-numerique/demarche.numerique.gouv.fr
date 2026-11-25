@@ -19,10 +19,11 @@ describe TypeDeChampTree, '.aggregate' do
   def draft = procedure.draft_revision
   def publish = procedure.publish_revision!(administrateur).then { procedure.reload }
 
-  # as the editor does: the tree follows the type
-  def change_type(libelle, type_champ)
+  # written by hand: the editor refuses to change the type of a published repetition or header section
+  def change_type(libelle, type_champ, children:)
     type_de_champ = draft.find_and_ensure_exclusive_use(stable_id(libelle))
-    draft.update_type_de_champ(type_de_champ.becomes_type(type_champ), type_champ:)
+    type_de_champ.update!(type_champ:)
+    draft.update_columns(type_de_champ_tree: draft.type_de_champ_tree.replace(type_de_champ.stable_id, type_de_champ_id: type_de_champ.id, children:))
   end
 
   # the layout as nested libelles of the first version of each type de champ
@@ -52,7 +53,7 @@ describe TypeDeChampTree, '.aggregate' do
     end
 
     it 'lays it after what the section holds in the newest revision' do
-      draft.add_type_de_champ(type_champ: :text, libelle: 'c', after_stable_id: stable_id('S1'))
+      draft.add_type_de_champ(type_champ: :text, libelle: 'c', parent_stable_id: stable_id('S1'))
       publish
 
       expect(layout(aggregate.public_children)).to eq(['intro', { 'rep' => ['r1', 'r2'] }, { 'S1' => ['c', 'a'] }, { 'S2' => ['b'] }])
@@ -78,7 +79,7 @@ describe TypeDeChampTree, '.aggregate' do
     end
 
     it 'lays it at the end, its content staying where the newest revision lays it' do
-      expect(layout(aggregate.public_children)).to eq(['intro', { 'rep' => ['r1', 'r2'] }, { 'S1' => ['a', 'b'] }, 'S2'])
+      expect(layout(aggregate.public_children)).to eq(['intro', { 'rep' => ['r1', 'r2'] }, { 'S1' => ['a'] }, 'b', 'S2'])
     end
   end
 
@@ -95,7 +96,7 @@ describe TypeDeChampTree, '.aggregate' do
 
   context 'when a type de champ was moved to another section' do
     before do
-      draft.move_type_de_champ(stable_id('b'), 3)
+      draft.move_type_de_champ(stable_id('b'), parent_stable_id: stable_id('S1'))
       publish
     end
 
@@ -130,9 +131,7 @@ describe TypeDeChampTree, '.aggregate' do
 
   context 'when a repetition became something else' do
     before do
-      # a repetition holding types de champ keeps its type
-      ['r1', 'r2'].each { draft.remove_type_de_champ(stable_id(it)) }
-      change_type('rep', 'text')
+      change_type('rep', :text, children: :remove)
       publish
     end
 
@@ -143,8 +142,9 @@ describe TypeDeChampTree, '.aggregate' do
 
   context 'when a header section became something else, and its content was removed' do
     before do
-      change_type('S2', 'text')
+      change_type('S2', :text, children: :inline)
       draft.remove_type_de_champ(stable_id('b'))
+      draft.move_in_type_de_champ(stable_id('S2'))
       publish
     end
 
@@ -155,10 +155,12 @@ describe TypeDeChampTree, '.aggregate' do
 
   context 'when a header section was something else for one publication' do
     before do
-      change_type('S2', 'text')
+      change_type('S2', :text, children: :inline)
       draft.remove_type_de_champ(stable_id('b'))
+      draft.move_in_type_de_champ(stable_id('S2'))
       publish
-      change_type('S2', 'header_section')
+      change_type('S2', :header_section, children: :keep)
+      draft.move_out_type_de_champ(stable_id('S2'))
       publish
     end
 
@@ -170,11 +172,11 @@ describe TypeDeChampTree, '.aggregate' do
   context 'over several publications' do
     before do
       draft.remove_type_de_champ(stable_id('a'))
-      draft.add_type_de_champ(type_champ: :text, libelle: 'c', after_stable_id: stable_id('S1'))
+      draft.add_type_de_champ(type_champ: :text, libelle: 'c', parent_stable_id: stable_id('S1'))
       publish
       draft.remove_type_de_champ(stable_id('r2'))
       draft.remove_type_de_champ(stable_id('c'))
-      draft.move_type_de_champ(stable_id('intro'), 3)
+      draft.move_type_de_champ(stable_id('intro'), parent_stable_id: stable_id('S2'))
       publish
     end
 

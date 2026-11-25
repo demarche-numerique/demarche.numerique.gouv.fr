@@ -12,11 +12,12 @@ class TypesDeChampEditor::EditorComponent < ApplicationComponent
     @is_annotation
   end
 
+  # the top of the tree: header sections and repetitions render what they hold
   def type_de_champs
     if annotations?
-      @revision.private_root_type_de_champs
+      @revision.private_type_de_champs
     else
-      @revision.public_root_type_de_champs
+      @revision.public_type_de_champs
     end
   end
 

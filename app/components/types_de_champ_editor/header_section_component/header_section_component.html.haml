@@ -1,5 +1,0 @@
-%div{ id: dom_id(@tdc, :header_section) }
-- if errors?
-  .errors-summary= errors
-= @form.label :header_section_level, "Niveau du titre", for: dom_id(@tdc, :header_section_level)
-= @form.select :header_section_level, header_section_options_for_select, {}, id: dom_id(@tdc, :header_section_level), class: 'fr-select width-33'

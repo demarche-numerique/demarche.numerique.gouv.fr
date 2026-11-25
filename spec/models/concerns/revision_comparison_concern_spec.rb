@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 describe RevisionComparisonConcern do
-  # Builds a procedure with one public type de champ (`from`), applies `to`
-  # to it in a new draft and returns the changes between the two revisions.
+  # Builds a published procedure with one public type de champ (`from`),
+  # applies `to` to it in the draft and returns the changes between the two
+  # revisions.
   def compare(type, from: {}, to: {})
-    procedure = create(:procedure, public_type_de_champs: [{ type:, libelle: 'champ', **from }])
-    new_draft = procedure.create_new_revision
+    procedure = create(:procedure, :published, public_type_de_champs: [{ type:, libelle: 'champ', **from }])
+    new_draft = procedure.draft_revision
     stable_id = procedure.active_revision.public_root_type_de_champs.first.stable_id
     type_de_champ = new_draft.find_and_ensure_exclusive_use(stable_id)
     yield type_de_champ if block_given?
@@ -189,7 +190,6 @@ describe RevisionComparisonConcern do
     let(:not_diffed) do
       {
         carte: TypesDeChamp::CarteTypeDeChamp::LAYERS, # aggregated as :carte_layers
-        header_section: [:header_section_level], # read on the tree: a change of level is a move
         piece_justificative: [:old_pj, :skip_pj_validation, :skip_content_type_pj_validation], # legacy, not editable
       }
     end
@@ -208,18 +208,19 @@ describe RevisionComparisonConcern do
   end
 
   describe '#compare_type_de_champs between two revisions' do
-    let(:draft) { procedure.draft_revision }
+    # the draft makes its own copy of a type de champ the published revision lays out
+    let(:published) { procedure.published_revision }
     include Logic
-    let(:new_draft) { procedure.create_new_revision }
+    let(:new_draft) { procedure.draft_revision }
     subject { procedure.active_revision.compare_type_de_champs(new_draft.reload).map(&:to_h) }
 
     describe 'when tdcs changes' do
-      let(:first_tdc) { draft.public_root_type_de_champs.first }
-      let(:second_tdc) { draft.public_root_type_de_champs.second }
+      let(:first_tdc) { published.public_root_type_de_champs.first }
+      let(:second_tdc) { published.public_root_type_de_champs.second }
 
       context 'with a procedure with 2 tdcs' do
         let(:procedure) do
-          create(:procedure, public_type_de_champs: [
+          create(:procedure, :published, public_type_de_champs: [
             { type: :integer_number, libelle: 'l1' },
             { type: :text, libelle: 'l2' },
           ])
@@ -249,7 +250,7 @@ describe RevisionComparisonConcern do
         context 'when a condition is removed' do
           before do
             second_tdc.update(condition: ds_eq(champ_value(first_tdc.stable_id), constant(2)))
-            draft.reload
+            published.reload
 
             second = new_draft.find_and_ensure_exclusive_use(second_tdc.stable_id)
             second.update(condition: nil)
@@ -273,7 +274,7 @@ describe RevisionComparisonConcern do
         context 'when a condition is changed' do
           before do
             second_tdc.update(condition: ds_eq(champ_value(first_tdc.stable_id), constant(2)))
-            draft.reload
+            published.reload
 
             second = new_draft.find_and_ensure_exclusive_use(second_tdc.stable_id)
             second.update(condition: ds_eq(champ_value(first_tdc.stable_id), constant(3)))
@@ -296,7 +297,7 @@ describe RevisionComparisonConcern do
       end
 
       context 'when a type de champ is added' do
-        let(:procedure) { create(:procedure) }
+        let(:procedure) { create(:procedure, :published) }
         let(:new_tdc) do
           new_draft.add_type_de_champ(
             type_champ: TypeDeChamp.type_champs.fetch(:text),
@@ -322,7 +323,7 @@ describe RevisionComparisonConcern do
 
       context 'when a type de champ is changed' do
         context 'when libelle, description, and mandatory are changed' do
-          let(:procedure) { create(:procedure, :with_type_de_champ) }
+          let(:procedure) { create(:procedure, :published, :with_type_de_champ) }
 
           before do
             updated_tdc = new_draft.find_and_ensure_exclusive_use(first_tdc.stable_id)
@@ -364,7 +365,7 @@ describe RevisionComparisonConcern do
         end
 
         context 'when collapsible_explanation_enabled and collapsible_explanation_text are changed' do
-          let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :explication }]) }
+          let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :explication }]) }
 
           before do
             updated_tdc = new_draft.find_and_ensure_exclusive_use(first_tdc.stable_id)
@@ -397,7 +398,7 @@ describe RevisionComparisonConcern do
       end
 
       context 'when a type de champ is transformed into a text_area with no character limit' do
-        let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text }]) }
+        let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :text }]) }
 
         before do
           updated_tdc = new_draft.find_and_ensure_exclusive_use(first_tdc.stable_id)
@@ -420,14 +421,14 @@ describe RevisionComparisonConcern do
       end
 
       context 'when a type de champ is moved' do
-        let(:procedure) { create(:procedure, public_type_de_champs: Array.new(3) { { type: :text } }) }
+        let(:procedure) { create(:procedure, :published, public_type_de_champs: Array.new(3) { { type: :text } }) }
         let(:new_draft_second_tdc) { new_draft.public_root_type_de_champs.second }
         let(:new_draft_third_tdc) { new_draft.public_root_type_de_champs.third }
 
         before do
           new_draft_second_tdc
           new_draft_third_tdc
-          new_draft.move_type_de_champ(new_draft_second_tdc.stable_id, 2)
+          new_draft.move_type_de_champ(new_draft_second_tdc.stable_id, after_stable_id: new_draft_third_tdc.stable_id)
         end
 
         it do
@@ -453,10 +454,10 @@ describe RevisionComparisonConcern do
       end
 
       context 'when a type de champ is moved within a repetition' do
-        let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text }, { type: :text }, { type: :repetition, children: [{ type: :text, libelle: 'first' }, { type: :text, libelle: 'second' }] }]) }
+        let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :text }, { type: :text }, { type: :repetition, children: [{ type: :text, libelle: 'first' }, { type: :text, libelle: 'second' }] }]) }
         let(:first_child) { new_draft.public_root_type_de_champs.last.children.first }
 
-        before { new_draft.move_type_de_champ(first_child.stable_id, 1) }
+        before { new_draft.move_down_type_de_champ(first_child.stable_id) }
 
         it 'counts positions among the content of the repetition' do
           is_expected.to contain_exactly(
@@ -467,10 +468,10 @@ describe RevisionComparisonConcern do
       end
 
       context 'when a type de champ is moved out of a header section' do
-        let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text, libelle: 'before' }, { type: :header_section, libelle: 'section' }, { type: :text, libelle: 'within' }]) }
+        let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :text, libelle: 'before' }, { type: :header_section, libelle: 'section' }, { type: :text, libelle: 'within' }]) }
         let(:within) { new_draft.public_root_type_de_champs.last }
 
-        before { new_draft.move_type_de_champ(within.stable_id, 0) }
+        before { new_draft.move_type_de_champ(within.stable_id) }
 
         it 'counts positions among the children of the parent' do
           is_expected.to contain_exactly(
@@ -483,7 +484,7 @@ describe RevisionComparisonConcern do
 
       context 'when a type de champ changes header section at the same position' do
         let(:procedure) do
-          create(:procedure, public_type_de_champs: [
+          create(:procedure, :published, public_type_de_champs: [
             { type: :header_section, level: 1, libelle: 's1' },
             { type: :text, libelle: 'a' },
             { type: :text, libelle: 'b' },
@@ -493,14 +494,14 @@ describe RevisionComparisonConcern do
         end
         let(:moved) { new_draft.public_root_type_de_champs.third }
 
-        before { new_draft.move_type_de_champ(moved.stable_id, 4) }
+        before { new_draft.move_type_de_champ(moved.stable_id, after_stable_id: new_draft.public_root_type_de_champs.last.stable_id) }
 
         it { is_expected.to contain_exactly(a_hash_including(op: :move, label: 'b', from: 1, to: 1)) }
       end
 
       context 'when a header section changes level' do
         let(:procedure) do
-          create(:procedure, public_type_de_champs: [
+          create(:procedure, :published, public_type_de_champs: [
             { type: :header_section, level: 1, libelle: 's1' },
             { type: :header_section, level: 2, libelle: 's2' },
             { type: :text, libelle: 'a' },
@@ -508,25 +509,15 @@ describe RevisionComparisonConcern do
         end
         let(:section) { new_draft.public_root_type_de_champs.second }
 
-        before { new_draft.update_type_de_champ(new_draft.find_and_ensure_exclusive_use(section.stable_id), header_section_level: level) }
+        before { new_draft.move_out_type_de_champ(section.stable_id) }
 
-        context 'to one which moves it in the tree' do
-          let(:level) { '1' }
-
-          it 'is a move' do
-            is_expected.to contain_exactly(a_hash_including(op: :move, label: 's2', from: 0, to: 1))
-          end
-        end
-
-        context 'to one which leaves it where it is' do
-          let(:level) { '3' }
-
-          it { is_expected.to be_empty }
+        it 'is a move' do
+          is_expected.to contain_exactly(a_hash_including(op: :move, label: 's2', from: 0, to: 1))
         end
       end
 
       context 'when a type de champ is removed' do
-        let(:procedure) { create(:procedure, :with_type_de_champ) }
+        let(:procedure) { create(:procedure, :published, :with_type_de_champ) }
 
         before do
           new_draft.remove_type_de_champ(first_tdc.stable_id)
@@ -545,7 +536,7 @@ describe RevisionComparisonConcern do
       end
 
       context 'when a child type de champ is transformed into a drop_down_list' do
-        let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :repetition, children: [{ type: :text, libelle: 'sub type de champ' }, { type: :integer_number }] }]) }
+        let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :repetition, children: [{ type: :text, libelle: 'sub type de champ' }, { type: :integer_number }] }]) }
 
         before do
           child = new_draft.public_root_type_de_champs.last.flat_children.first
@@ -577,7 +568,7 @@ describe RevisionComparisonConcern do
       end
 
       context 'when a child type de champ is transformed into a map' do
-        let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :repetition, children: [{ type: :text, libelle: 'sub type de champ' }, { type: :integer_number }] }]) }
+        let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :repetition, children: [{ type: :text, libelle: 'sub type de champ' }, { type: :integer_number }] }]) }
 
         before do
           child = new_draft.public_root_type_de_champs.last.flat_children.first
@@ -609,7 +600,7 @@ describe RevisionComparisonConcern do
       end
 
       describe '#compare_referentiel_changes' do
-        let(:procedure) { create(:procedure, public_type_de_champs:) }
+        let(:procedure) { create(:procedure, :published, public_type_de_champs:) }
         let(:referentiel_1) do
           create(
             :api_referentiel,
@@ -693,7 +684,7 @@ describe RevisionComparisonConcern do
       end
 
       context 'when a dossier_link type de champ has procedures_limit and procedure_ids changed' do
-        let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :dossier_link, libelle: 'Dossier lié' }]) }
+        let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :dossier_link, libelle: 'Dossier lié' }]) }
 
         context 'when procedures_limit is enabled' do
           before do
@@ -743,8 +734,8 @@ describe RevisionComparisonConcern do
     end
 
     context 'when repetition limits are changed' do
-      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :repetition, libelle: 'bloc' }]) }
-      let(:repetition_tdc) { draft.public_root_type_de_champs.first }
+      let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :repetition, libelle: 'bloc' }]) }
+      let(:repetition_tdc) { published.public_root_type_de_champs.first }
 
       before do
         updated_tdc = new_draft.find_and_ensure_exclusive_use(repetition_tdc.stable_id)

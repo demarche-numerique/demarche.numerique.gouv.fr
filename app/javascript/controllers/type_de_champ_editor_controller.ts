@@ -12,14 +12,6 @@ const {
 const AUTOSAVE_DEBOUNCE_DELAY = debounce_delay;
 
 export class TypeDeChampEditorController extends ApplicationController {
-  static values = {
-    typeDeChampStableId: String,
-    moveUpUrl: String,
-    moveDownUrl: String
-  };
-
-  declare readonly moveUpUrlValue: string;
-  declare readonly moveDownUrlValue: string;
   declare readonly isVisible: boolean;
 
   #latestPromise = Promise.resolve();
@@ -46,11 +38,9 @@ export class TypeDeChampEditorController extends ApplicationController {
     this.#inFlightForms.clear();
   }
 
-  onMoveButtonClick(event: ActionEvent) {
-    const { direction } = event.params;
-    const action =
-      direction == 'up' ? this.moveUpUrlValue : this.moveDownUrlValue;
-    const form = createForm(action, 'patch');
+  // a move of the type de champ: the button names the endpoint
+  onEditButtonClick(event: ActionEvent) {
+    const form = createForm(event.params.url, 'patch');
     this.requestSubmitForm(form);
   }
 

@@ -300,9 +300,10 @@ def all_type_de_champs_for_factory(repetition_children: [{ libelle: 'sub type de
 end
 
 # The nodes of the types de champ described, each created for the procedure,
-# in document order. A repetition holds its children. A header section holds
-# what follows it, up to the next header section of its level or above (level
-# 1 unless given).
+# in document order. A repetition holds its children, and so does a header
+# section given some. One given a level instead (1 when given none) holds what
+# follows it, up to the next header section of its level or above: the form
+# as a flat list of titles reads.
 def create_type_de_champ_nodes(type_de_champs, procedure:, scope: :public)
   type_de_champ_nodes_for_factory(lay_type_de_champs_for_factory(type_de_champs, procedure:, scope:))
 end
@@ -314,10 +315,10 @@ def lay_type_de_champs_for_factory(type_de_champs, procedure:, scope:)
   open_sections = []
 
   type_de_champs.each do |attributes|
-    type_de_champ = create_type_de_champ_for_factory(attributes.except(:children), procedure:, scope:)
+    type_de_champ = create_type_de_champ_for_factory(attributes.except(:children, :level), procedure:, scope:)
 
-    if type_de_champ.header_section?
-      level = type_de_champ.header_section_level_value
+    if type_de_champ.header_section? && !attributes.key?(:children)
+      level = attributes.fetch(:level, 1).to_i
       open_sections.pop while open_sections.any? && open_sections.last.first >= level
       held = []
       (open_sections.last&.last || root) << [type_de_champ, held]
@@ -366,10 +367,6 @@ def create_type_de_champ_for_factory(source_attributes, procedure:, scope: :publ
 
   if type == :carte && layers.present?
     type_de_champ_attributes[:editable_options] = layers.index_with { '1' }
-  end
-
-  if type == :header_section
-    type_de_champ_attributes[:header_section_level] = type_de_champ_attributes.delete(:level)
   end
 
   traits = scope == :private ? [:private] : []

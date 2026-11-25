@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 # The card of a type de champ in the editor: its form, its condition and what
-# moves or removes it. The list item around it is NodeComponent.
+# moves or removes it. What it holds is not in there (NodeComponent): the card
+# is rendered again on its own.
 class TypesDeChampEditor::ChampComponent < ApplicationComponent
   attr_reader :type_de_champ
 
@@ -10,6 +11,16 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
     @type_de_champ = type_de_champ
     @focused = focused
     @errors = errors
+  end
+
+  OPPOSITE_MOVES = { move_up: :move_down, move_down: :move_up, move_in: :move_out, move_out: :move_in }.freeze
+
+  # What an edit made from the card gives the focus back to: its button when
+  # the card still shows it, the opposite move otherwise, or the libellé.
+  def focus_after(edit)
+    button = [edit, OPPOSITE_MOVES[edit]].compact.find { edit?(it) }
+
+    dom_id(type_de_champ, button ? :"#{button}_button" : :libelle)
   end
 
   private
@@ -51,6 +62,14 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
     admin_procedure_type_de_champ_path(procedure, type_de_champ.stable_id)
   end
 
+  def html_options
+    {
+      id: dom_id(type_de_champ, :editor_error),
+      class: 'type-de-champ-container',
+      data: { controller: 'type-de-champ-editor' },
+    }
+  end
+
   def form_options
     {
       url: admin_procedure_type_de_champ_path(procedure, type_de_champ.stable_id),
@@ -58,13 +77,45 @@ class TypesDeChampEditor::ChampComponent < ApplicationComponent
     }
   end
 
-  def move_button_options(direction)
+  # a move leaving it where it is has no button
+  def move?(move)
+    case move
+    when :move_up then type_de_champ.previous_sibling.present? || in_section?
+    when :move_down then type_de_champ.next_sibling.present? || in_section?
+    when :move_in then type_de_champ.previous_sibling&.header_section?
+    when :move_out then in_section?
+    end
+  end
+
+  def in_section? = type_de_champ.parent&.header_section?
+
+  MOVE_ICONS = { move_up: 'fr-icon-arrow-up-line', move_down: 'fr-icon-arrow-down-line', move_in: 'fr-icon-arrow-right-line', move_out: 'fr-icon-arrow-left-line' }.freeze
+
+  def move_button_options(move)
+    edit_button_options(move).merge(
+      title: t(".#{move}_title"),
+      class: class_names('fr-btn fr-btn--tertiary-no-outline', MOVE_ICONS.fetch(move), hidden: !move?(move))
+    )
+  end
+
+  def edit_button_options(edit)
     {
       type: 'button',
-      data: { action: 'type-de-champ-editor#onMoveButtonClick', type_de_champ_editor_direction_param: direction },
-      title: direction == :up ? t(".move_up_title") : t(".move_down_title"),
+      id: dom_id(type_de_champ, :"#{edit}_button"),
+      data: {
+        action: 'type-de-champ-editor#onEditButtonClick',
+        type_de_champ_editor_url_param: url_for([edit, :admin, procedure, :type_de_champ, { stable_id: type_de_champ.stable_id }]),
+      },
     }
   end
+
+  # a header section followed by anything but another one
+  def takes_following_siblings?
+    type_de_champ.header_section? && type_de_champ.next_sibling.present? && !type_de_champ.next_sibling.header_section?
+  end
+
+  # the button of an edit leaving everything where it is stays hidden
+  def edit?(edit) = edit == :take_following_siblings ? takes_following_siblings? : move?(edit)
 
   def input_autofocus
     @focused ? { controller: 'autofocus' } : nil
