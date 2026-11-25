@@ -1,0 +1,31 @@
+<% content_for(:title, t('user_mailer.shared.confirm_email_title', application_name: APPLICATION_NAME)) %>
+<% confirm_url = users_confirm_email_url(token: @token) %>
+
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+
+<% if @dossier.present? %>
+  <p>
+    <%= t('.started_for_procedure', procedure: @dossier.procedure.libelle, email: @dossier.user.email) %>
+  </p>
+<% else %>
+  <p><%= t('.started', application_name: APPLICATION_NAME) %></p>
+<% end %>
+
+<p>
+  <%= t('.confirm') %>
+  <%= dsfr_button t('user_mailer.shared.confirm_button'), confirm_url, :primary %>
+</p>
+
+<p>
+  <%= t('user_mailer.shared.confirm_link_html', link: link_to(confirm_url, confirm_url)) %>
+</p>
+
+<% if @dossier.present? %>
+  <p><%= t('.learn_more', email: @dossier.user.email) %></p>
+<% else %>
+  <p>
+    <%= t('user_mailer.shared.support_html', contact_link: mail_to(CONTACT_EMAIL)) %>
+  </p>
+<% end %>
+
+<%= render partial: "layouts/mailers/signature" %>

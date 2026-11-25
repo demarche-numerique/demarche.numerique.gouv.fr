@@ -1,0 +1,31 @@
+<% content_for(:title, @subject) %>
+
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+
+<p>
+  <%= t('.request', application_name: APPLICATION_NAME, email: @user.email) %>
+</p>
+
+<p><strong><%= t('.already_exists') %></strong></p>
+
+<% if @procedure %>
+  <p><%= t('.fill_procedure_html', procedure: @procedure.libelle) %></p>
+  <%= dsfr_button(t('.start_procedure', procedure: @procedure.libelle.truncate(60)), commencer_sign_in_url(path: @procedure.path), :primary) %>
+  <%= vertical_margin(16) %>
+  <%= dsfr_button(t('.new_password'), new_password_url(@user), :secondary) %>
+<% else %>
+  <p>
+    <%= t('.sign_in_prompt', application_name: APPLICATION_NAME) %>
+    <%= dsfr_button(t('.sign_in'), new_user_session_url, :primary) %>
+  </p>
+  <p>
+    <%= t('.forgot_password') %>
+    <%= dsfr_button(t('.new_password'), new_password_url(@user), :secondary) %>
+  </p>
+<% end %>
+
+<%= vertical_margin(6) %>
+
+<p><%= t('.ignore') %></p>
+
+<%= render partial: "layouts/mailers/signature" %>

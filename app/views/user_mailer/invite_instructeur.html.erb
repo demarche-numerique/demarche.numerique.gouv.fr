@@ -1,0 +1,22 @@
+<% content_for(:title, t('.title')) %>
+<% activate_url = users_activate_url(token: @reset_password_token) %>
+
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+
+<p><%= t('.appointed', application_name: APPLICATION_NAME) %></p>
+
+<p><%= t('.account_created_html', email: @user.email) %></p>
+
+<p>
+  <%= t('.activate_html', link: link_to(activate_url, activate_url)) %>
+</p>
+
+<p>
+  <%= t('.next_sign_in_html', application_name: APPLICATION_NAME, link: link_to(new_user_session_url, new_user_session_url)) %>
+</p>
+
+<p>
+  <%= t('.tutorial_html', link: link_to(INSTRUCTEUR_TUTORIAL_URL, INSTRUCTEUR_TUTORIAL_URL)) %>
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>

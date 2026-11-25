@@ -1,27 +1,71 @@
 fr:
   user_mailer:
+    shared:
+      confirm_email_title: Vérification de votre adresse électronique sur %{application_name}
+      confirm_link_html: "Vous pouvez aussi utiliser ce lien : %{link}"
+      ignore_or_contact_html: "Si vous n’êtes pas à l’origine de cette demande, vous pouvez ignorer ce message. Et si vous avez besoin d’assistance, n’hésitez pas à nous contacter à %{contact_link}."
+      confirm_button: Je confirme
+      support_html: "Nous restons à votre disposition si vous avez besoin d’accompagnement à l’adresse %{contact_link}."
     new_account_warning:
       subject: Demande de création de compte
+      request: Une demande de création de compte a été réalisée sur le site %{application_name} pour l’adresse électronique %{email}.
+      already_exists: Votre compte existe déjà.
+      fill_procedure_html: "Si vous souhaitez remplir la démarche « <i>%{procedure}</i> », cliquez sur le bouton ci-dessous, puis connectez-vous à votre compte."
+      start_procedure: Commencer la démarche « %{procedure} »
+      new_password: Demander un nouveau mot de passe
+      sign_in_prompt: Rendez-vous sur le site %{application_name} pour vous connecter à votre compte.
+      sign_in: Se connecter
+      forgot_password: Vous avez oublié votre mot de passe ?
+      ignore: Si vous n’êtes pas à l’origine de cette demande, vous pouvez ignorer cet email.
     ask_for_merge:
       subject: Fusion de compte
+      request_html: "L’utilisateur <b>« %{email} »</b> a demandé la fusion de son compte avec le vôtre <b>« %{requested_email} »</b>."
+      confirm_intro: "Si vous désirez confirmer la fusion de ces comptes :"
+      step_sign_in: connectez-vous avec le compte %{requested_email}
+      step_profile: allez sur votre page profil
+      step_accept: acceptez la fusion
     france_connect_merge_confirmation:
       subject: Veuillez confirmer la fusion de compte
+      click_link: "Pour confirmer la fusion de votre compte, veuillez cliquer sur le lien suivant :"
+      link_html: "Vous pouvez aussi visiter ce lien : %{link}"
+      validity: Ce lien est valide %{duration}, jusqu’à %{expires_at}.
     custom_confirmation_instructions:
       subject: Confirmez votre adresse électronique
+      greeting: "Bonjour %{email} !"
+      confirm: "Veuillez confirmer votre adresse électronique en cliquant sur le lien ci-dessous :"
+      validity: Ce lien est valide %{duration}.
+      no_notification: Tant que vous n’aurez pas confirmé votre adresse électronique, vous ne recevrez aucune notification sur l’avancement de vos dossiers.
     invite_instructeur:
       subject: Activez votre compte instructeur
+      title: Activation de votre compte instructeur
+      appointed: Vous venez d’être nommé instructeur sur %{application_name}.
+      account_created_html: "Votre compte a été créé pour l’adresse électronique <strong>%{email}.</strong>"
+      activate_html: "Pour l’activer, cliquez sur le lien suivant : %{link}"
+      next_sign_in_html: "Lors de vos prochaines connexions sur %{application_name}, cliquez sur le bouton « Se connecter » positionné sur le haut de page ou bien sur ce lien : %{link}"
+      tutorial_html: "Nous vous invitons aussi à consulter notre tutoriel à destination des nouveaux instructeurs : %{link}"
     invite_tiers:
       subject: Vérification de votre adresse électronique
+      started_for_procedure: "Un dossier sur la démarche : %{procedure} a été démarré en votre nom par %{email}."
+      started: Un dossier a été démarré en votre nom sur %{application_name}.
+      confirm: "Pour continuer à recevoir les mails concernant votre dossier, vous devez confirmer votre adresse électronique en cliquant sur ce bouton :"
+      learn_more: Pour en savoir plus, veuillez vous rapprocher de %{email}.
     resend_confirmation_email:
       subject: Vérification de votre adresse électronique
+      retry: "Votre précédente confirmation d’adresse électronique n’a pas fonctionné, vous pouvez essayer de nouveau en cliquant sur ce bouton :"
     invite_gestionnaire:
       subject: Activez votre compte gestionnaire
+      title: Activation de votre compte gestionnaire
+      appointed: Vous venez d’être nommé gestionnaire du groupe gestionnaire %{groupe_gestionnaire} sur %{application_name}.
+      account_created_html: "Votre compte a été créé pour l’adresse électronique %{email}. Pour l’activer, nous vous invitons à cliquer sur le lien suivant : %{link}"
     invite_gestionnaire_via_pro_connect:
       subject: Activez votre compte gestionnaire
     reset_password_via_pro_connect:
       subject: Connectez-vous avec ProConnect
     send_archive:
       subject: Votre archive est disponible
+      available_html: "Votre archive pour la démarche %{procedure_link} est disponible. Vous pouvez la télécharger dans votre espace de gestion des archives."
+      view_archives: Consulter mes archives
+      validity_html: "Ce fichier est <b>valide %{duration}</b> et peut être téléchargé <b>plusieurs fois.</b>"
     notify_inactive_close_to_deletion:
       subject: "Votre compte %{application_name} sera supprimé dans %{remaining_weeks} semaines"
       inactive_html: "Cela fait plus de %{years} ans que vous ne vous êtes pas connecté(e) à votre <strong>compte %{application_name}</strong> avec l’adresse %{email}."
@@ -40,3 +84,7 @@ fr:
       subject: Le mot de passe de votre compte a été modifié
     account_reactivated:
       subject: Votre compte a été réactivé
+      reactivated_html: "Votre compte %{application_name} associé à l’adresse <strong>%{email}</strong> a été réactivé par un administrateur."
+      sign_in_again: Vous pouvez désormais vous connecter à nouveau en cliquant sur le bouton ci-dessous.
+      sign_in: Se connecter
+      questions: Si vous avez des questions, veuillez contacter le support.

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe UserMailer, type: :mailer do
-  let(:user) { create(:user) }
+  let(:user) { users.usager }
 
   describe '.new_account_warning' do
     subject { described_class.new_account_warning(user) }
@@ -150,6 +150,7 @@ RSpec.describe UserMailer, type: :mailer do
   end
 
   describe '.notify_inactive_close_to_deletion' do
+    let(:user) { create(:user) }
     subject { described_class.notify_inactive_close_to_deletion(user) }
 
     let(:body) { Capybara.string(subject.body.to_s) }
@@ -211,14 +212,46 @@ RSpec.describe UserMailer, type: :mailer do
   describe '.invite_instructeur' do
     subject { described_class.invite_instructeur(user, "reset_token") }
 
-    it { expect(subject['BYPASS_UNVERIFIED_MAIL_PROTECTION']).to be_present }
+    it do
+      expect(subject.body).to include(user.email)
+      expect(subject.body).to have_link(href: users_activate_url(token: "reset_token"))
+      expect(subject['BYPASS_UNVERIFIED_MAIL_PROTECTION']).to be_present
+    end
+  end
+
+  describe '.invite_tiers' do
+    let(:dossier) { dossiers.en_construction }
+    subject { described_class.invite_tiers(user, "confirm_token", dossier) }
+
+    it do
+      expect(subject.body).to include(dossier.procedure.libelle)
+      expect(subject.body).to include(dossier.user.email)
+      expect(subject.body).to have_link('Je confirme', href: users_confirm_email_url(token: "confirm_token"))
+      expect(subject['BYPASS_UNVERIFIED_MAIL_PROTECTION']).to be_present
+    end
+
+    context 'without dossier' do
+      let(:dossier) { nil }
+
+      it { expect(subject.body).to have_link(CONTACT_EMAIL, href: "mailto:#{CONTACT_EMAIL}") }
+    end
+  end
+
+  describe '.resend_confirmation_email' do
+    subject { described_class.resend_confirmation_email(user, "confirm_token") }
+
+    it { expect(subject.body).to have_link('Je confirme', href: users_confirm_email_url(token: "confirm_token")) }
   end
 
   describe '.invite_gestionnaire' do
     let(:groupe_gestionnaire) { create(:groupe_gestionnaire) }
     subject { described_class.invite_gestionnaire(user, "reset_token", groupe_gestionnaire) }
 
-    it { expect(subject['BYPASS_UNVERIFIED_MAIL_PROTECTION']).to be_present }
+    it do
+      expect(subject.body).to include(groupe_gestionnaire.name)
+      expect(subject.body).to have_link(href: users_activate_url(token: "reset_token"))
+      expect(subject['BYPASS_UNVERIFIED_MAIL_PROTECTION']).to be_present
+    end
   end
 
   describe '.invite_gestionnaire_via_pro_connect' do

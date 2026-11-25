@@ -1,0 +1,16 @@
+<% content_for(:title, @subject) %>
+
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+
+<p>
+  <%= t('.reactivated_html', application_name: APPLICATION_NAME, email: @user.email) %>
+</p>
+
+<p><%= t('.sign_in_again') %></p>
+
+<%= dsfr_button(t('.sign_in'), new_user_session_url, :primary) %>
+<%= vertical_margin(6) %>
+
+<p><%= t('.questions') %></p>
+
+<%= render partial: "layouts/mailers/signature" %>

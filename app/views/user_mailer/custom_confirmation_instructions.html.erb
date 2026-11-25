@@ -1,0 +1,20 @@
+<% content_for(:title, t('.subject')) %>
+
+<p><%= t('.greeting', email: @user.email) %></p>
+
+<p>
+  <%= t('.confirm') %>
+  <%= dsfr_button t('user_mailer.shared.confirm_button'), france_connect_confirm_email_url(@token), :primary %>
+</p>
+
+<p>
+  <%= t('.validity', duration: distance_of_time_in_words(FranceConnectInformation::CONFIRMATION_EMAIL_VALIDITY)) %>
+</p>
+
+<p><%= t('.no_notification') %></p>
+
+<p>
+  <%= t('user_mailer.shared.ignore_or_contact_html', contact_link: mail_to(CONTACT_EMAIL)) %>
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>

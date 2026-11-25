@@ -1,0 +1,14 @@
+<% content_for(:title, t('.title')) %>
+<% activate_url = users_activate_url(token: @reset_password_token) %>
+
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+
+<p>
+  <%= t('.appointed', groupe_gestionnaire: @groupe_gestionnaire.name, application_name: APPLICATION_NAME) %>
+</p>
+
+<p>
+  <%= t('.account_created_html', email: @user.email, link: link_to(activate_url, activate_url)) %>
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>

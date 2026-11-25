@@ -1,0 +1,21 @@
+<% content_for(:title, @subject) %>
+
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+
+<p>
+  <%= t('.request_html', email: @user.email, requested_email: @requested_email) %>
+</p>
+
+<p><%= t('.confirm_intro') %></p>
+
+<ol>
+  <li><%= t('.step_sign_in', requested_email: @requested_email) %></li>
+  <li><%= t('.step_profile') %></li>
+  <li><%= t('.step_accept') %></li>
+</ol>
+
+<p>
+  <%= t('user_mailer.shared.ignore_or_contact_html', contact_link: mail_to(CONTACT_EMAIL)) %>
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>

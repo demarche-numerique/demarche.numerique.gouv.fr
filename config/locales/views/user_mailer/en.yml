@@ -1,27 +1,71 @@
 en:
   user_mailer:
+    shared:
+      confirm_email_title: Verification of your email address on %{application_name}
+      confirm_link_html: "You can also use this link: %{link}"
+      ignore_or_contact_html: "If you did not make this request, you can ignore this message. If you need help, feel free to contact us at %{contact_link}."
+      confirm_button: I confirm
+      support_html: "We remain at your disposal at %{contact_link} if you need help."
     new_account_warning:
       subject: Account creation request
+      request: An account creation request was made on the %{application_name} website for the email address %{email}.
+      already_exists: Your account already exists.
+      fill_procedure_html: "If you want to fill in the procedure ‘<i>%{procedure}</i>’, click the button below, then sign in to your account."
+      start_procedure: Start the procedure ‘%{procedure}’
+      new_password: Request a new password
+      sign_in_prompt: Go to the %{application_name} website to sign in to your account.
+      sign_in: Sign in
+      forgot_password: Forgot your password?
+      ignore: If you did not make this request, you can ignore this email.
     ask_for_merge:
       subject: Account merge
+      request_html: "The account <b>‘%{email}’</b> has requested to be merged with yours <b>‘%{requested_email}’</b>."
+      confirm_intro: "If you want to confirm the merge of these accounts:"
+      step_sign_in: sign in with the account %{requested_email}
+      step_profile: go to your profile page
+      step_accept: accept the merge
     france_connect_merge_confirmation:
       subject: Please confirm the account merge
+      click_link: "To confirm the merge of your account, please click the following link:"
+      link_html: "You can also visit this link: %{link}"
+      validity: This link is valid for %{duration}, until %{expires_at}.
     custom_confirmation_instructions:
       subject: Confirm your email address
+      greeting: "Hello %{email}!"
+      confirm: "Please confirm your email address by clicking the link below:"
+      validity: This link is valid for %{duration}.
+      no_notification: Until you confirm your email address, you will not receive any notification about the progress of your applications.
     invite_instructeur:
       subject: Activate your reviewer account
+      title: Activation of your reviewer account
+      appointed: You have just been appointed reviewer on %{application_name}.
+      account_created_html: "Your account has been created for the email address <strong>%{email}.</strong>"
+      activate_html: "To activate it, click the following link: %{link}"
+      next_sign_in_html: "Next time you sign in to %{application_name}, click the ‘Sign in’ button at the top of the page or this link: %{link}"
+      tutorial_html: "We also invite you to read our tutorial for new reviewers: %{link}"
     invite_tiers:
       subject: Verify your email address
+      started_for_procedure: "An application for the procedure %{procedure} has been started on your behalf by %{email}."
+      started: An application has been started on your behalf on %{application_name}.
+      confirm: "To keep receiving emails about your application, you must confirm your email address by clicking this button:"
+      learn_more: To learn more, please contact %{email}.
     resend_confirmation_email:
       subject: Verify your email address
+      retry: "Your previous email address confirmation did not work, you can try again by clicking this button:"
     invite_gestionnaire:
-      subject: Activate your manager account
+      subject: Activate your group manager account
+      title: Activation of your group manager account
+      appointed: You have just been appointed group manager of the administrator group %{groupe_gestionnaire} on %{application_name}.
+      account_created_html: "Your account has been created for the email address %{email}. To activate it, please click the following link: %{link}"
     invite_gestionnaire_via_pro_connect:
-      subject: Activate your manager account
+      subject: Activate your group manager account
     reset_password_via_pro_connect:
       subject: Sign in with ProConnect
     send_archive:
       subject: Your archive is available
+      available_html: "Your archive for the procedure %{procedure_link} is available. You can download it from your archive management space."
+      view_archives: View my archives
+      validity_html: "This file is <b>valid for %{duration}</b> and can be downloaded <b>several times.</b>"
     notify_inactive_close_to_deletion:
       subject: "Your %{application_name} account will be deleted in %{remaining_weeks} weeks"
       inactive_html: "You have not signed in to your <strong>%{application_name} account</strong> with the address %{email} for more than %{years} years."
@@ -40,3 +84,7 @@ en:
       subject: Your account password has been changed
     account_reactivated:
       subject: Your account has been reactivated
+      reactivated_html: "Your %{application_name} account associated with the address <strong>%{email}</strong> has been reactivated by an administrator."
+      sign_in_again: You can now sign in again by clicking the button below.
+      sign_in: Sign in
+      questions: If you have any questions, please contact support.
