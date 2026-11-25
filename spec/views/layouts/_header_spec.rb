@@ -24,7 +24,20 @@ describe 'layouts/_header', type: :view do
 
     it do
       is_expected.to have_css(".fr-header__logo")
+      is_expected.to have_css(".fr-logo")
       is_expected.to_not have_css(".account-btn")
+    end
+
+    context 'when OVERRIDE_DSFR is enabled' do
+      before do
+        stub_const('OVERRIDE_DSFR', true)
+        stub_const('HEADER_LOGO_SRC', 'marianne.png')
+      end
+
+      it 'displays the custom logo instead of the bloc marque' do
+        is_expected.to have_css(".fr-header__logo img[src*='marianne']")
+        is_expected.not_to have_css(".fr-logo")
+      end
     end
 
     it 'displays the Help link' do
