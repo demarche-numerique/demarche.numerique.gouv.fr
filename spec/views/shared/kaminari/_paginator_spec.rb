@@ -18,6 +18,12 @@ describe 'shared/kaminari/_paginator', type: :view do
       expect(subject).to have_link('Suivant', class: 'fr-pagination__link--next')
       expect(subject).to have_css('a.fr-pagination__link--last:not([rel])', text: 'Dernière page')
     end
+
+    it 'points every rel=next and rel=prev link to the adjacent page' do
+      html = Capybara.string(subject)
+      expect(html.all('a[rel="next"]').map { it[:href] }.uniq).to contain_exactly(a_string_including('page=11'))
+      expect(html.all('a[rel="prev"]').map { it[:href] }.uniq).to contain_exactly(a_string_including('page=9'))
+    end
   end
 
   context 'on the first page' do
