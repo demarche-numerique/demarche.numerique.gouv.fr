@@ -10,9 +10,7 @@ describe 'super admin rejected attempt logs', type: :request do
     row = super_admin.open_user_session!('a browser')
 
     Warden.on_next_request do |proxy|
-      session = SessionRegistrableConcern.warden_session(proxy, :super_admin)
-      session[SessionRegistrableConcern::SESSION_KEY] = row.id
-      session[SessionRegistrableConcern::LAST_SEEN_KEY] = Date.current.iso8601
+      SessionRegistrableConcern.warden_session(proxy, :super_admin)[SessionRegistrableConcern::SESSION_KEY] = row.id
     end
 
     login_as super_admin, scope: :super_admin, event: :fetch

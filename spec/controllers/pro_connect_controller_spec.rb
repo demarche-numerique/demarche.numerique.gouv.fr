@@ -91,7 +91,7 @@ describe ProConnectController, type: :controller do
           it 'keeps the choice to stay signed in' do
             subject
 
-            expect(warden.session(:user)[SessionRegistrableConcern::PERSISTENT_KEY]).to be(true)
+            expect(user.user_sessions.find_by!(login_method: :pro_connect).persistent).to be(true)
           end
         end
 

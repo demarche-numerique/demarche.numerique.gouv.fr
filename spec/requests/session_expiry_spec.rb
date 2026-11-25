@@ -89,6 +89,49 @@ describe 'session deadlines', type: :request do
     it 'is not bounded by an absolute deadline the way an agent is' do
       expect(user.session_max_lifetime).to eq(User::USAGER_SESSION_MAX_LIFETIME)
     end
+
+    it 'keeps nothing in the cookie but the id of its row' do
+      travel(1.day) { get profil_path }
+
+      expect(session['warden.user.user.session']).to eq(SessionRegistrableConcern::SESSION_KEY => user.user_sessions.sole.id)
+    end
+  end
+
+  context 'an usager whose row has no last visit, opened before the row held it' do
+    let(:user) { users.usager }
+
+    def last_visit_in_cookie(date)
+      Warden.on_next_request do |proxy|
+        SessionRegistrableConcern.warden_session(proxy, :user)[SessionRegistrableConcern::LAST_SEEN_KEY] = date.iso8601
+      end
+    end
+
+    before { user.user_sessions.sole.update_column(:last_seen_on, nil) }
+
+    it 'is signed out two weeks after the last visit its cookie holds' do
+      last_visit_in_cookie(15.days.ago.to_date)
+
+      get profil_path
+
+      expect(response).to redirect_to(new_user_session_path)
+      expect(flash[:alert]).to eq(I18n.t('devise.failure.inactivity'))
+    end
+
+    it 'goes on from a recent one, which leaves the cookie' do
+      last_visit_in_cookie(3.days.ago.to_date)
+
+      get profil_path
+
+      expect(response).to have_http_status(:ok)
+      expect(session['warden.user.user.session']).to eq(SessionRegistrableConcern::SESSION_KEY => user.user_sessions.sole.id)
+    end
+
+    it 'is signed out when its cookie holds none either' do
+      get profil_path
+
+      expect(response).to redirect_to(new_user_session_path)
+      expect(flash[:alert]).to eq(I18n.t('devise.failure.inactivity'))
+    end
   end
 
   # The deadline is frozen, but a role granted mid-session must not leave the
