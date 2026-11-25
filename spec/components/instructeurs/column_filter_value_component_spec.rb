@@ -116,6 +116,28 @@ describe Instructeurs::ColumnFilterValueComponent, type: :component do
     end
   end
 
+  describe 'the suggestions case' do
+    let(:column) { double("Column", column: :value, type: :text, suggestions?: true, filter_options:, mandatory: true, h_id: {}, label: 'Intitulé') }
+
+    context 'with values to suggest' do
+      let(:filter_options) { ['Démarche Alpha', 'Démarche Bravo'] }
+
+      it 'offers them in a combobox taking free text' do
+        props = JSON.parse(page.find('react-component')['props'])
+        expect(props).to include('items' => filter_options, 'allows_custom_value' => true)
+      end
+    end
+
+    context 'without any value to suggest' do
+      let(:filter_options) { [] }
+
+      it 'keeps a plain text input' do
+        expect(page).to have_no_css('react-component')
+        expect(page).to have_selector('input[name="filter[filter][value][]"][type="text"][maxlength]')
+      end
+    end
+  end
+
   describe 'label truncation' do
     let(:long_label) { 'a' * 60 }
     let(:column) do

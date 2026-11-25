@@ -47,6 +47,10 @@ class Instructeurs::ColumnFilterValueComponent < ApplicationComponent
   end
 
   def column_filter_options
+    @column_filter_options ||= build_column_filter_options
+  end
+
+  def build_column_filter_options
     options = column.filter_options(groupe_instructeur_ids)
 
     if tdc_type.in?([TypeDeChamp.type_champs.fetch(:yes_no), TypeDeChamp.type_champs.fetch(:civilite)]) && !column.mandatory
@@ -97,7 +101,8 @@ class Instructeurs::ColumnFilterValueComponent < ApplicationComponent
     column&.type&.in?([:enum, :enums])
   end
 
-  def suggestions? = column&.suggestions?
+  # Without any value to suggest, the filter stays a plain text input.
+  def suggestions? = column&.suggestions? && column_filter_options.present?
 
   def radio_buttons?
     column&.type&.in?([:boolean]) || tdc_type == TypeDeChamp.type_champs.fetch(:civilite) || (column.respond_to?(:table) && column.table == "individual" && column.column == "gender")
