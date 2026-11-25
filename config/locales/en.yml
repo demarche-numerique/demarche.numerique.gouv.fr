@@ -1070,7 +1070,7 @@ en:
           filename: "application-%{dossier_id}.pdf"
         download_attestation:
           link: Download your decision notice (PDF)
-          filename: Decision notice
+          filename: "decision-notice.pdf"
         attestation_depot:
           get_attestation_depot: "Get a submission receipt"
           filename: "submission-receipt_application-%{dossier_id}.pdf"
