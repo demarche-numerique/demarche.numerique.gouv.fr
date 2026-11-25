@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_23_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_23_120100) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_catalog.plpgsql"
@@ -1080,18 +1080,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_23_120000) do
     t.jsonb "traites_filters", default: [], null: false, array: true
     t.datetime "updated_at", precision: nil
     t.index ["assign_to_id"], name: "index_procedure_presentations_on_assign_to_id", unique: true
-  end
-
-  create_table "procedure_revision_types_de_champ", force: :cascade do |t|
-    t.datetime "created_at", precision: nil, null: false
-    t.bigint "parent_id"
-    t.integer "position", null: false
-    t.bigint "revision_id", null: false
-    t.bigint "type_de_champ_id", null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.index ["parent_id"], name: "index_procedure_revision_types_de_champ_on_parent_id"
-    t.index ["revision_id"], name: "index_procedure_revision_types_de_champ_on_revision_id"
-    t.index ["type_de_champ_id"], name: "index_procedure_revision_types_de_champ_on_type_de_champ_id"
   end
 
   create_table "procedure_revisions", force: :cascade do |t|
