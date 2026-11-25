@@ -23,6 +23,7 @@ module Administrateurs
       condition = Logic.add_empty_condition_to(draft_revision.ineligibilite_rules)
       draft_revision.update!(ineligibilite_rules: condition)
       @ineligibilite_rules_component = build_ineligibilite_rules_component
+      render :update
     end
 
     def delete_row
@@ -30,6 +31,7 @@ module Administrateurs
       draft_revision.update!(ineligibilite_rules: condition)
 
       @ineligibilite_rules_component = build_ineligibilite_rules_component
+      render :update
     end
 
     def update
@@ -43,6 +45,7 @@ module Administrateurs
       condition = condition_form.change_champ(row_index).to_condition
       draft_revision.update!(ineligibilite_rules: condition)
       @ineligibilite_rules_component = build_ineligibilite_rules_component
+      render :update
     end
 
     private
