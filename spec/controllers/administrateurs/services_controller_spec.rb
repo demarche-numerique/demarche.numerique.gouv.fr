@@ -39,6 +39,7 @@ describe Administrateurs::ServicesController, type: :controller do
         expect(assigns[:service].siret).to be_nil
         expect(assigns[:prefilled]).to be_nil
         expect(response.body).to have_css("h1", text: "Nouveau service")
+        expect(response.body).to have_title(/^\s*Nouveau service · /)
       end
     end
   end
@@ -206,6 +207,7 @@ describe Administrateurs::ServicesController, type: :controller do
         subject
         expect(assigns(:other_procedures)).to be_empty
         expect(response.body).to have_css("h1", text: "Modifier le service")
+        expect(response.body).to have_title(/^\s*Modifier le service · /)
         expect(response.body).to have_link("Liste de tous les services")
         expect(response.body).not_to include("impactera également les démarches suivantes")
       end

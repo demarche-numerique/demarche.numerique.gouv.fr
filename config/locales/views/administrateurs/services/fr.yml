@@ -16,7 +16,6 @@ fr:
           one: Ce service est encore utilisé par %{count} démarche
           other: Ce service est encore utilisé par %{count} démarches
       edit:
-        title: Service
         services_choice: Choix du service
         heading: Modifier le service
         back_to_services: Liste de tous les services
@@ -25,7 +24,6 @@ fr:
         create_new_service_html: Si vous souhaitez modifier uniquement les informations pour cette démarche, %{link} puis associez-le à la démarche.
         create_new_service_link: créez un nouveau service
       new:
-        title: Service
         services_choice: Choix du service
         new_service: Nouveau service
       form:
