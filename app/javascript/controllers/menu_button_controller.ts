@@ -150,7 +150,8 @@ export class MenuButtonController extends ApplicationController {
   }
 
   performMenuAction(target: EventTarget | null) {
-    target?.dispatchEvent(new Event('click'));
+    // a synthetic Event('click') runs listeners but neither submits a form nor follows a link
+    if (target instanceof HTMLElement) target.click();
   }
 
   private onButtonKeydown(event: KeyboardEvent) {
@@ -208,6 +209,8 @@ export class MenuButtonController extends ApplicationController {
     } else {
       switch (event.key) {
         case ' ':
+          // a button activates natively on Space: clicking it here would submit twice
+          if (event.target instanceof HTMLButtonElement) break;
           this.performMenuAction(event.target);
           stopPropagation = true;
           break;
