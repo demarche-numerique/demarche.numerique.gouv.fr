@@ -1,6 +1,6 @@
 ---
 en:
-  c_est_vous: "%{email} (It's you!)"
+  c_est_vous: "%{email} (you)"
   remove_from_group: "Remove from group"
   remove_confirm: "Remove ‘%{email}’ from the administrators of ‘%{group_name}’?"
   revoke_admin_access: "Revoke administrator access"

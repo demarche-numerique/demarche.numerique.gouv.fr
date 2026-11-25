@@ -10,7 +10,7 @@ class GroupeGestionnaire::GroupeGestionnaireAdministrateurs::AdministrateurCompo
   end
 
   def email
-    if @administrateur == current_gestionnaire
+    if @administrateur.user_id == current_user&.id
       t(".c_est_vous", email: @administrateur.email)
     else
       @administrateur.email
