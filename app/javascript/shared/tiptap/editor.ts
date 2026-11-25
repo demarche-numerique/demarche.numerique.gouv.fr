@@ -1,12 +1,9 @@
 import Document from '@tiptap/extension-document';
-import Hystory from '@tiptap/extension-history';
+import { Gapcursor, UndoRedo } from '@tiptap/extensions';
 import TextAlign from '@tiptap/extension-text-align';
-import Gapcursor from '@tiptap/extension-gapcursor';
 
 import Paragraph from '@tiptap/extension-paragraph';
-import BulletList from '@tiptap/extension-bullet-list';
-import OrderedList from '@tiptap/extension-ordered-list';
-import ListItem from '@tiptap/extension-list-item';
+import { BulletList, ListItem, OrderedList } from '@tiptap/extension-list';
 
 import Text from '@tiptap/extension-text';
 import Highlight from '@tiptap/extension-highlight';
@@ -225,7 +222,7 @@ function getEditorOptions(
     editorProps: { attributes },
     extensions: [
       documentExtension,
-      Hystory,
+      UndoRedo,
       Typography,
       Gapcursor,
       Paragraph,
