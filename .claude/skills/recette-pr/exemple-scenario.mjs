@@ -68,6 +68,7 @@ export default {
       titre: 'Choisir « Date »',
       consigne: 'Dans le menu « Type de champ », sélectionnez « Date ».',
       cible: ({ page }) => champ(page).getByRole('button', { name: /Type de champ/ }),
+      zone: ({ page }) => champ(page),
       action: async ({ page }) => {
         await ouvrirMenu(page);
         await page.locator('.select-popover [role="option"]', { hasText: /^Date$/ }).click();

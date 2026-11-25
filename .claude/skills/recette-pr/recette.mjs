@@ -23,6 +23,8 @@ const { values: opts, positionals } = parseArgs({
     out: { type: 'string' },
     rythme: { type: 'string', default: '1' }, // multiplicateur des pauses vidéo
     muet: { type: 'boolean', default: false }, // vidéo sans voix off
+    enregistrer: { type: 'boolean', default: false }, // guide : filme la recette du relecteur, en mp4
+    juge: { type: 'string', default: 'humain' }, // guide : « agent » quand un agent joue le relecteur
     voix: { type: 'string' }, // voix `say -v` ; par défaut la première voix française installée
     page: { type: 'string' }, // sonde : chemin à ouvrir
     clic: { type: 'string', multiple: true } // sonde : boutons ou liens à cliquer avant d'afficher l'arbre
@@ -33,6 +35,8 @@ const scenario = (await import(pathToFileURL(scenarioPath))).default;
 const mode = opts.mode;
 if (!['auto', 'guide', 'video', 'captures', 'sonde'].includes(mode)) die(`mode inconnu : ${mode}`);
 const baseURL = opts['base-url'];
+// Le mode vidéo filme le script ; le mode guide peut filmer le relecteur, pour montrer la recette.
+const filmer = mode === 'video' || (mode === 'guide' && opts.enregistrer);
 const out = resolve(opts.out ?? join(dirname(scenarioPath), `resultats-${mode}`));
 const worktree = execFileSync('git', ['-C', dirname(scenarioPath), 'rev-parse', '--show-toplevel'], { encoding: 'utf8' }).trim();
 const pause = (ms) => new Promise((r) => setTimeout(r, ms * Number(opts.rythme)));
@@ -42,7 +46,7 @@ function die(msg) { console.error(msg); process.exit(1); }
 
 // ---- Voix off (repris de /demo-pr, #14665) : macOS seulement, sinon vidéo muette ----
 function choisirVoix() {
-  if (mode !== 'video' || opts.muet) return null;
+  if (!filmer || opts.muet) return null;
   const liste = spawnSync('say', ['-v', '?'], { encoding: 'utf8' });
   if (liste.error || liste.status !== 0) {
     console.warn('`say` indisponible : vidéo sans voix off (sous-titres seuls).');
@@ -238,9 +242,22 @@ async function main() {
   const voix = choisirVoix();
   const synthetiser = synthetiseur(voix);
   const finOk = 'Fin de la recette.';
-  if (voix !== null) {
+  // Voix du mode guide filmé : elle explique le panneau d'aide à la revue, puis ce que chaque
+  // critère cherche à valider et le verdict du relecteur.
+  const dire = {
+    intro: 'Voici la recette guidée, vue par le relecteur. Le panneau d’aide lui donne, pour chaque critère d’acceptation, la consigne à suivre et le résultat attendu, et entoure en orange l’élément à manipuler. Il peut faire l’action lui-même, ou cliquer « Le faire pour moi ». Puis il compare l’écran à l’attendu, et tranche : conforme, ou pas conforme avec un commentaire.',
+    etape: (i, e) => `Critère ${i + 1} : ${e.titre}. ${e.narration ?? e.consigne}`,
+    valider: (e) => `Ce qu’on valide : ${e.attendu}`,
+    ok: 'Le relecteur juge le critère conforme.',
+    ko: (commentaire) => `Pas conforme. Le relecteur explique pourquoi : ${commentaire}`,
+    fin: (n, t) => `La recette est terminée : ${n} critères sur ${t} sont conformes. Le rapport liste les verdicts et les commentaires, prêt à coller dans la PR.`
+  };
+  if (voix !== null && mode === 'video') {
     [scenario.narration ?? scenario.contexte, finOk,
       ...scenario.etapes.flatMap((e) => [e.narration ?? e.consigne, e.attendu])].forEach(synthetiser);
+  }
+  if (voix !== null && mode === 'guide') {
+    [dire.intro, dire.ok, ...scenario.etapes.flatMap((e, i) => [dire.etape(i, e), dire.valider(e)])].forEach(synthetiser);
   }
 
   // RECETTE_CDP_PORT : permet de piloter le mode guide depuis un autre process (test du runner).
@@ -258,7 +275,7 @@ async function main() {
 
   const context = await browser.newContext({
     baseURL, viewport, storageState, locale: 'fr-FR',
-    ...(mode === 'video' ? { recordVideo: { dir: out, size: viewport } } : {})
+    ...(filmer ? { recordVideo: { dir: out, size: viewport } } : {})
   });
 
   let state = null;
@@ -266,6 +283,32 @@ async function main() {
   await context.exposeBinding('__recetteState', () => state);
   await context.exposeBinding('__recetteEvent', (_src, type, payload) => attente?.({ type, payload }));
   if (mode !== 'auto') await context.addInitScript(OVERLAY);
+  // Filmé, Playwright n'a ni pointeur ni clic visibles : un faux curseur suit la souris et un halo
+  // marque chaque clic, panneau compris (les événements du shadow DOM remontent au document).
+  if (filmer) await context.addInitScript(() => {
+    const poser = () => {
+      const css = document.createElement('style');
+      css.textContent = `
+        #recette-curseur { position: fixed; z-index: 2147483647; width: 26px; height: 26px; margin: -13px 0 0 -13px; border-radius: 50%;
+          background: #ffffffcc; border: 2px solid #161616; box-shadow: 0 1px 4px #0006; pointer-events: none; transition: left .12s, top .12s; }
+        .recette-clic { position: fixed; z-index: 2147483646; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%;
+          border: 3px solid #ff9940; pointer-events: none; animation: recette-clic .8s ease-out forwards; }
+        @keyframes recette-clic { to { transform: scale(3.5); opacity: 0; } }`;
+      document.head.append(css);
+      const curseur = document.createElement('div');
+      curseur.id = 'recette-curseur';
+      document.documentElement.append(curseur);
+      addEventListener('mousemove', (e) => { curseur.style.left = `${e.clientX}px`; curseur.style.top = `${e.clientY}px`; }, true);
+      addEventListener('mousedown', (e) => {
+        const halo = document.createElement('div');
+        halo.className = 'recette-clic';
+        halo.style.left = `${e.clientX}px`; halo.style.top = `${e.clientY}px`;
+        document.documentElement.append(halo);
+        setTimeout(() => halo.remove(), 900);
+      }, true);
+    };
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', poser); else poser();
+  });
   // Le cookie ?pp=disable ne survit pas à un clearCookies (changement de compte dans une étape) :
   // on masque aussi le badge rack-mini-profiler par CSS, comme /demo-pr.
   await context.addInitScript(() => document.addEventListener('DOMContentLoaded', () => {
@@ -284,6 +327,11 @@ async function main() {
     pistes.push({ file: segment.file, debut: Date.now() - t0 });
     return segment.duree;
   };
+  // Mode guide filmé : la phrase en cours finit à `voixJusqua`, publié dans l'état du panneau
+  // pour qu'un relecteur de démonstration attende la fin avant d'agir.
+  let voixJusqua = 0;
+  const direGuide = (texte) => { voixJusqua = Math.max(voixJusqua, Date.now()) + parler(texte); return voixJusqua; };
+  const finirPhrase = () => new Promise((r) => setTimeout(r, Math.max(0, voixJusqua + 300 - Date.now())));
   // Une scène dure au moins `min` (× rythme) et au moins le temps de sa phrase.
   const tenir = (depuis, min, voixMs) =>
     new Promise((r) => setTimeout(r, Math.max(min * Number(opts.rythme), voixMs ? voixMs + 400 : 0) - (Date.now() - depuis)));
@@ -327,7 +375,7 @@ async function main() {
     writeFileSync(join(out, 'rapport.md'), [
       mode === 'guide' ? `### Recette manuelle — ${scenario.titre}` : `### Vérification automatique — ${scenario.titre}`, '',
       `Persona : \`${scenario.persona ?? 'anonyme'}\` · ` + (mode === 'guide'
-        ? `${resultats.filter((r) => r.verdict === 'conforme').length}/${total} jugées conformes par un humain`
+        ? `${resultats.filter((r) => r.verdict === 'conforme').length}/${total} jugées conformes par ${opts.juge === 'agent' ? 'un agent qui joue le relecteur (aucun verdict humain)' : 'un humain'}`
         : `${resultats.filter((r) => r.verdict === 'vérifié').length}/${total} vérifiées par le script (aucun jugement humain)`), '',
       '| # | Étape | Attendu | Verdict |', '|---|---|---|---|',
       ...resultats.map((r) => `| ${r.etape} | ${cell(r.titre)} | ${cell(r.attendu)} | ${icone[r.verdict] ?? ''} ${cell(r.commentaire ?? r.erreur ?? '')} |`),
@@ -359,19 +407,25 @@ async function main() {
     if (mode === 'guide') {
       // Le panneau se redessine après chaque navigation via __recetteState.
       let reduit = false;
-      await afficher({ ...base, boutons: true, montrerAttendu: true, reduit });
+      if (voix !== null) direGuide(i === 0 ? `${dire.intro} ${dire.etape(i, etape)}` : dire.etape(i, etape));
+      await afficher({ ...base, boutons: true, montrerAttendu: true, reduit, voixJusqua });
       for (;;) {
         const ev = await evenement();
         if (ev.type === 'reduire') { reduit = !reduit; await afficher({ ...state, reduit }); continue; }
         if (ev.type === 'fermer') break;
         if (ev.type === 'faire') {
           await afficher({ ...state, fait: true, consigne: '⏳ En cours…' });
-          try { await etape.action(ctx); await centrer(etape, ctx, true); await placer(state, etape, ctx, true); await afficher({ ...state, consigne: '✓ Fait. Vérifiez l’attendu ci-dessous.' }); }
+          try {
+            await etape.action(ctx); await centrer(etape, ctx, true); await placer(state, etape, ctx, true);
+            if (voix !== null) direGuide(dire.valider(etape));
+            await afficher({ ...state, consigne: '✓ Fait. Vérifiez l’attendu ci-dessous.', voixJusqua });
+          }
           catch (err) { await afficher({ ...state, consigne: `⚠ Action impossible : ${err.message.split('\n')[0]}. Faites-la à la main.` }); }
           continue;
         }
         resultat.verdict = ev.type === 'ok' ? 'conforme' : 'non conforme';
         if (ev.payload) resultat.commentaire = ev.payload;
+        if (voix !== null) { direGuide(ev.type === 'ok' ? dire.ok : dire.ko(ev.payload ?? '')); await finirPhrase(); }
         break;
       }
       if (ferme || !resultat.verdict) break;
@@ -432,13 +486,15 @@ async function main() {
   if (mode === 'guide' && !ferme) {
     const ko = resultats.filter((r) => r.verdict === 'non conforme');
     await eteindre(page);
+    if (voix !== null) direGuide(dire.fin(resultats.length - ko.length, total));
     await afficher({
-      mode, fin: true, entete: 'Recette terminée',
+      mode, fin: true, entete: 'Recette terminée', voixJusqua,
       titre: `${resultats.length - ko.length}/${total} conformes`,
       consigne: [...ko.map((r) => `❌ ${r.etape}. ${r.titre}${r.commentaire ? ` — ${r.commentaire}` : ''}`),
         `Rapport : ${join(out, 'rapport.md')}`].join('\n')
     });
     await evenement();
+    await finirPhrase(); // filmé : ne pas couper la dernière phrase
   }
 
   if (mode === 'video') {
@@ -452,9 +508,10 @@ async function main() {
   await browser.close();
 
   ecrireRapport();
-  if (mode === 'video') {
+  if (filmer) {
     const webm = readdirSync(out).find((f) => f.endsWith('.webm'));
-    const mp4 = join(out, `recette-pr-${scenario.pr}.mp4`);
+    const nom = `recette-pr-${scenario.pr}${mode === 'guide' ? '-guide' : ''}`;
+    const mp4 = join(out, `${nom}.mp4`);
     // Chaque phrase est posée à son horodatage, puis mixée sans normalisation (repris de /demo-pr).
     const audio = pistes.length ? [
       ...pistes.flatMap((p) => ['-i', p.file]),
@@ -466,7 +523,7 @@ async function main() {
     ] : [];
     execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', join(out, webm), ...audio,
       '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '28', '-movflags', '+faststart', mp4]);
-    renameSync(join(out, webm), join(out, `recette-pr-${scenario.pr}.webm`));
+    renameSync(join(out, webm), join(out, `${nom}.webm`));
     console.log(`vidéo : ${mp4}${pistes.length ? ` (voix off : ${voix || 'voix système'})` : ' (muette)'}`);
   }
   console.log(`résultats : ${join(out, 'resultats.json')}`);

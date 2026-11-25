@@ -123,6 +123,8 @@ Un Chromium s'ouvre, connecté avec le persona. Le panneau en bas à droite donn
 
 À la fin, le panneau affiche le bilan (« 5/6 conformes », les ❌ avec leur commentaire) et un bouton **Fermer la recette**. `resultats.json` et `rapport.md` sont réécrits après chaque verdict : fermer la fenêtre en cours de route garde ce qui a déjà été jugé.
 
+`--enregistrer` filme la recette guidée en mp4 (`recette-pr-N-guide.mp4`) : la vidéo montre ce que vit le relecteur, panneau, « Le faire pour moi », verdicts et commentaires, à côté de la vidéo du mode `video` où le script joue seul. Une voix off (sauf `--muet`) explique le panneau d'aide à la revue, puis pour chaque critère ce qu'on cherche à valider et le verdict ; l'heure de fin de la phrase en cours est publiée dans l'état du panneau (`voixJusqua`) pour qu'un relecteur de démonstration attende la fin avant d'agir. Dans les deux vidéos, un faux curseur suit la souris et un halo orange marque chaque clic : Playwright filme la page, pas l'écran, donc les options d'accessibilité de macOS n'y apparaissent pas. Quand un agent tient le rôle du relecteur (démonstration, pilotage par CDP avec `RECETTE_CDP_PORT`), lance avec `--juge agent` : le rapport le dit au lieu de compter des verdicts humains.
+
 Dis à l'humain qu'une fenêtre s'est ouverte et ce qu'on attend de lui, puis attends la notification de fin. Lis `tmp/recette/resultats-guide/resultats.json` et les captures, et résume : verdicts, commentaires des ❌, ce que tu en déduis pour la PR.
 
 ## 7. Vidéo (sur demande)
