@@ -3,7 +3,7 @@
 //   node recette.mjs <scenario.mjs> --mode auto|guide|video|captures [--base-url URL] [--out DIR] [--rythme N] [--muet] [--voix NOM]
 // auto     : sans tête, joue actions et vérifications ; sert à mettre le scénario au point.
 // guide    : navigateur visible, un panneau guide l'humain qui donne un verdict par étape.
-// video    : enregistre le scénario joué seul, avec le panneau et une voix off (Piper), en mp4.
+// video    : enregistre le scénario joué seul, avec le panneau et une voix off (say ou Piper), en mp4.
 // captures : sans tête, capture le panneau du mode guide à chaque étape (pour la description d'une PR).
 // sonde    : se connecte, ouvre --page (sinon le départ) et affiche l'arbre d'accessibilité,
 //            pour écrire les locators d'après le DOM réel plutôt qu'en devinant.
@@ -26,7 +26,7 @@ const { values: opts, positionals } = parseArgs({
     muet: { type: 'boolean', default: false }, // vidéo sans voix off
     enregistrer: { type: 'boolean', default: false }, // guide : filme la recette du relecteur, en mp4
     juge: { type: 'string', default: 'humain' }, // guide : « agent » quand un agent joue le relecteur
-    voix: { type: 'string' }, // voix Piper : « fr_FR-siwis-medium », « …:locuteur » ou chemin .onnx ; par défaut la première installée
+    voix: { type: 'string' }, // voix say (« Aurélie (Enhanced) ») ou Piper (« fr_FR-siwis-medium », « …:locuteur », chemin .onnx)
     page: { type: 'string' }, // sonde : chemin à ouvrir
     clic: { type: 'string', multiple: true } // sonde : boutons ou liens à cliquer avant d'afficher l'arbre
   }
@@ -46,8 +46,9 @@ const PASSWORD = 'this is a very complicated password !'; // db/seeds/setup.rb
 function die(msg) { console.error(msg); process.exit(1); }
 
 // ---- Voix off (repris de /demo-pr, #14665) ----
-// Piper seul : libre, local, la même voix pour tous, sous Linux comme sous macOS.
-// Rend { bin, chemin, locuteur, nom } ou null pour une vidéo muette.
+// `say` d'abord quand il a une voix française Améliorée ou Premium (macOS : les plus naturelles),
+// sinon Piper (libre et local, Linux compris), sinon `say` avec une voix compacte, sinon muet.
+// Rend { moteur: 'say' | 'piper', nom, … } ou null pour une vidéo muette.
 const VOIX_PIPER = ['fr_FR-siwis-medium', 'fr_FR-upmc-medium', 'fr_FR-tom-medium']; // ordre de préférence
 const dossierPiper = process.env.RECETTE_PIPER_MODELS ?? join(homedir(), '.local/share/piper');
 
@@ -62,20 +63,42 @@ function binairePiper() {
 function voixPiper(bin, nom) {
   const [modele, locuteur] = nom.split(':');
   const chemin = modele.endsWith('.onnx') ? resolve(modele) : join(dossierPiper, `${modele}.onnx`);
-  return existsSync(chemin) ? { bin, chemin, locuteur, nom } : null;
+  return existsSync(chemin) ? { moteur: 'piper', bin, chemin, locuteur, nom } : null;
+}
+
+// Voix `say` installées : [{ nom, langue, qualite }], qualite 2 Premium, 1 Améliorée, 0 compacte.
+function voixSay() {
+  const liste = spawnSync('say', ['-v', '?'], { encoding: 'utf8' });
+  if (liste.error || liste.status !== 0) return [];
+  return liste.stdout.split('\n').map((l) => l.match(/^(.+?)\s+([a-z]{2}_[A-Z]{2})\s/)).filter(Boolean)
+    .map(([, nom, langue]) => ({ nom, langue, qualite: /Premium/i.test(nom) ? 2 : /Enhanced|Améliorée/i.test(nom) ? 1 : 0 }));
+}
+
+// Meilleure voix fr_FR : la qualité d'abord, puis Aurélie, Audrey, Marie, Thomas.
+function meilleureSay(installees) {
+  const prenom = (v) => ['Aurélie', 'Audrey', 'Marie', 'Thomas'].findIndex((p) => v.nom.startsWith(p));
+  const rang = (v) => v.qualite * 10 - (prenom(v) === -1 ? 5 : prenom(v));
+  return installees.filter((v) => v.langue === 'fr_FR').sort((a, b) => rang(b) - rang(a))[0];
 }
 
 function choisirVoix() {
   if (!filmer || opts.muet) return null;
+  const installees = voixSay();
   const bin = binairePiper();
-  if (!bin) {
-    console.warn('Piper absent : vidéo sans voix off (panneau seul). Installation : voir SKILL.md, section 7.');
-    return null;
+  if (opts.voix) {
+    if (installees.some((v) => v.nom === opts.voix)) return { moteur: 'say', nom: opts.voix };
+    return (bin && voixPiper(bin, opts.voix)) ?? die(`voix introuvable : ${opts.voix} (ni voix say, ni modèle Piper dans ${dossierPiper})`);
   }
-  if (opts.voix) return voixPiper(bin, opts.voix) ?? die(`voix introuvable : ${opts.voix} (aucun modèle dans ${dossierPiper})`);
-  const voix = VOIX_PIPER.map((v) => voixPiper(bin, v)).find(Boolean);
-  if (!voix) console.warn(`Aucune voix française dans ${dossierPiper} : vidéo sans voix off. Installation : voir SKILL.md, section 7.`);
-  return voix ?? null;
+  const say = meilleureSay(installees);
+  if (say?.qualite) return { moteur: 'say', nom: say.nom };
+  const piper = bin && VOIX_PIPER.map((v) => voixPiper(bin, v)).find(Boolean);
+  if (piper) return piper;
+  if (say) {
+    console.warn(`Voix say compacte (${say.nom}), au rendu robotique : installez une voix française Améliorée ou Premium, ou Piper (voir SKILL.md, section 7).`);
+    return { moteur: 'say', nom: say.nom };
+  }
+  console.warn('Ni say ni Piper : vidéo sans voix off (panneau seul). Installation : voir SKILL.md, section 7.');
+  return null;
 }
 
 // ---- Prononciation : ce que dit la voix, sans toucher au texte affiché ----
@@ -88,11 +111,16 @@ const LETTRES = { A: 'ˈa', B: 'bˈe', C: 'sˈe', D: 'dˈe', E: 'ˈə', F: 'ˈɛ
 const SE_DISENT = { SIRET: 'siret', SIREN: 'sirène', IBAN: 'iban', RIB: 'rib' };
 
 const echapper = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-function prononcer(texte) {
+function prononcer(texte, moteur) {
   let t = texte;
-  for (const [mot, dit] of Object.entries({ ...SE_DISENT, ...(scenario.prononciations ?? {}) })) {
+  // `say` ne comprend pas les phonèmes [[ … ]] de Piper (sa syntaxe [[ ]] sert à des commandes) :
+  // avec lui, seules les prononciations en texte s'appliquent, et il lit les sigles lui-même.
+  const mots = Object.entries({ ...SE_DISENT, ...scenario.prononciations })
+    .filter(([, dit]) => moteur === 'piper' || !dit.includes('[['));
+  for (const [mot, dit] of mots) {
     t = t.replace(new RegExp(`(?<![\\p{L}\\[])${echapper(mot)}(?![\\p{L}\\]])`, 'gu'), dit);
   }
+  if (moteur !== 'piper') return t;
   // Les acronymes restants sont épelés, sans toucher aux blocs [[ … ]] déjà posés.
   return t.split(/(\[\[.*?\]\])/).map((bout) => (bout.startsWith('[[') ? bout
     : bout.replace(/(?<!\p{L})[A-Z]{2,}(?!\p{L})/gu, (sigle) => `[[ ${[...sigle].map((l) => LETTRES[l]).join(' ')} ]]`))).join('');
@@ -109,10 +137,14 @@ function synthetiseur(voix) {
     if (!cache.has(texte)) {
       const n = String(cache.size).padStart(3, '0');
       const txt = join(out, 'voix', `${n}.txt`);
-      const file = join(out, 'voix', `${n}.wav`);
+      const file = join(out, 'voix', `${n}.${voix.moteur === 'piper' ? 'wav' : 'aiff'}`);
       mkdirSync(dirname(txt), { recursive: true });
-      writeFileSync(txt, prononcer(texte.replace(/\s*\n\s*/g, ' '))); // une phrase par fichier, sur une ligne
-      execFileSync(voix.bin, ['-m', voix.chemin, ...(voix.locuteur ? ['-s', voix.locuteur] : []), '-i', txt, '-f', file], { stdio: 'ignore' });
+      writeFileSync(txt, prononcer(texte.replace(/\s*\n\s*/g, ' '), voix.moteur)); // une phrase par fichier, sur une ligne
+      if (voix.moteur === 'piper') {
+        execFileSync(voix.bin, ['-m', voix.chemin, ...(voix.locuteur ? ['-s', voix.locuteur] : []), '-i', txt, '-f', file], { stdio: 'ignore' });
+      } else {
+        execFileSync('say', ['-v', voix.nom, '-f', txt, '-o', file]);
+      }
       cache.set(texte, { file, duree: dureeAudio(file) * 1000 });
     }
     return cache.get(texte);
@@ -557,7 +589,7 @@ async function main() {
     execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', join(out, webm), ...audio,
       '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '28', '-movflags', '+faststart', mp4]);
     renameSync(join(out, webm), join(out, `${nom}.webm`));
-    console.log(`vidéo : ${mp4}${pistes.length ? ` (voix off : ${voix.nom})` : ' (muette)'}`);
+    console.log(`vidéo : ${mp4}${pistes.length ? ` (voix off : ${voix.moteur} ${voix.nom})` : ' (muette)'}`);
   }
   console.log(`résultats : ${join(out, 'resultats.json')}`);
   process.exitCode = resultats.some((r) => ['échec', 'non conforme'].includes(r.verdict)) || resultats.length < total ? 1 : 0;

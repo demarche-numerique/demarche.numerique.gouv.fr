@@ -149,16 +149,18 @@ Sans tête, 1280×800, avec **le panneau du mode guide** en bas à droite (étap
 
 Compte ~15 s par étape avec la voix : 9 étapes font ~2 min 30. Au-delà de 6 ou 7 étapes, propose de garder les cas limites pour le mode guide, ou d'écrire des `narration` plus courtes que les attendus.
 
-La voix passe par **Piper**, un moteur de synthèse libre et local : même voix sous Linux et macOS. Installation, une fois :
+La voix off passe par **`say`** quand il a une voix française Améliorée ou Premium : sur macOS, ce sont les plus naturelles (la meilleure qualité d'abord, puis Aurélie, Audrey, Marie, Thomas). Une telle voix s'installe dans Réglages Système > Accessibilité > Lire et énoncer > ⓘ à côté de « Voix système » ; vérifie avec `say -v '?'` qu'elle est visible de `say` (les voix Siri ne le sont pas).
+
+Sinon, sous Linux ou sur un Mac sans bonne voix, elle passe par **Piper**, un moteur de synthèse libre et local. Installation, une fois :
 
 ```bash
 uv tool install --python 3.12 piper-tts     # ou pipx install piper-tts
 ~/.local/share/uv/tools/piper-tts/bin/python -m piper.download_voices --download-dir ~/.local/share/piper fr_FR-siwis-medium
 ```
 
-Sans `--voix`, le runner prend la première voix installée parmi `fr_FR-siwis-medium`, `fr_FR-upmc-medium` et `fr_FR-tom-medium`, dans `~/.local/share/piper` (ou `RECETTE_PIPER_MODELS`). `--voix` en impose une : un nom de modèle, `modèle:locuteur` (par exemple `fr_FR-upmc-medium:1`) ou un chemin vers un `.onnx`. Sans Piper ou sans voix, ou avec `--muet`, la vidéo sort muette, avec son panneau, et le runner rappelle l'installation. ffmpeg est requis dans tous les cas (`brew install ffmpeg`, ou le paquet de la distribution).
+Le runner prend la première voix Piper installée parmi `fr_FR-siwis-medium`, `fr_FR-upmc-medium` et `fr_FR-tom-medium`, dans `~/.local/share/piper` (ou `RECETTE_PIPER_MODELS`). En dernier recours, une voix `say` compacte, au rendu robotique, avec un avertissement ; sans l'un ni l'autre, ou avec `--muet`, la vidéo sort muette, avec son panneau. `--voix` impose une voix : un nom `say` (`'Aurélie (Enhanced)'`), un modèle Piper, `modèle:locuteur` (par exemple `fr_FR-upmc-medium:1`) ou un chemin vers un `.onnx`. ffmpeg est requis dans tous les cas (`brew install ffmpeg`, ou le paquet de la distribution).
 
-**Prononciation.** Piper phonétise avec espeak-ng, dont le dictionnaire développe certaines abréviations : « PR » y est « professeur ». Le runner épelle donc tout acronyme (deux majuscules ou plus) en phonèmes, passés à Piper entre `[[ … ]]`, sauf ceux qui se disent comme un mot (SIRET, SIREN, IBAN, RIB). Le texte affiché ne change pas : seule la voix est concernée. Un mot propre à la PR qui sonne mal se corrige dans le champ `prononciations` du scénario, en texte (`{ ZIP: 'zip' }`, pour un sigle qui se dit comme un mot) ou en phonèmes (`{ Mathieu: '[[ matjˈø ]]' }`). Pour trouver les phonèmes d'un mot, fais phonétiser à Piper une graphie qui sonne juste :
+**Prononciation.** Avec Piper, le dictionnaire d'espeak-ng développe certaines abréviations : « PR » y est « professeur ». Le runner épelle donc tout acronyme (deux majuscules ou plus) en phonèmes, passés à Piper entre `[[ … ]]`, sauf ceux qui se disent comme un mot (SIRET, SIREN, IBAN, RIB). `say` lit les sigles lui-même et ne comprend pas ces phonèmes : avec lui, seules les prononciations en texte s'appliquent. Le texte affiché ne change pas : seule la voix est concernée. Un mot propre à la PR qui sonne mal se corrige dans le champ `prononciations` du scénario, en texte (`{ ZIP: 'zip' }`, pour un sigle qui se dit comme un mot) ou en phonèmes pour Piper (`{ Mathieu: '[[ matjˈø ]]' }`). Pour trouver les phonèmes d'un mot, fais phonétiser à Piper une graphie qui sonne juste :
 
 ```bash
 ~/.local/share/uv/tools/piper-tts/bin/python -c "from piper import PiperVoice; v = PiperVoice.load('$HOME/.local/share/piper/fr_FR-siwis-medium.onnx'); print(''.join(v.phonemize('pé erre')[0]))"
