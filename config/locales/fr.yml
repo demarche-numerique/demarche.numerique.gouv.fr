@@ -383,7 +383,7 @@ fr:
       last: Dernier
       previous: Précédent
       first: Premier
-      truncate: '&hellip;'
+      truncate: '…'
     shared:
       label:
         email: 'Adresse électronique'

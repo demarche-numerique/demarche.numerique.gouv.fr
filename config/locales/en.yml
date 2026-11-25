@@ -382,7 +382,7 @@ en:
       last: Last
       previous: Previous
       first: First
-      truncate: '&hellip;'
+      truncate: '…'
     shared:
       label:
         email: 'Email'
