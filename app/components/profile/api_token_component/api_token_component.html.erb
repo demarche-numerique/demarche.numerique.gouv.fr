@@ -7,6 +7,10 @@
     <p class="fr-hint-text fr-text--regular fr-my-0">
       <%= t('.prefix_html', prefix:) %>
     </p>
+
+    <% if subtitle %>
+      <p class="fr-hint-text fr-text--regular fr-my-0"><%= subtitle %></p>
+    <% end %>
   </th>
 
   <td class="fr-cell--multiline fr-cell--top">
@@ -44,22 +48,9 @@
 
   <td class="fr-cell--top api-token-actions">
     <ul class="fr-btns-group fr-btns-group--sm fr-btns-group--icon-left fr-m-0">
-      <% if !@api_token.expired? %>
-        <li>
-          <%= link_to t('.edit'), edit_admin_api_token_path(@api_token),
-            class: 'fr-btn fr-btn--tertiary-no-outline fr-icon-pencil-line',
-            aria: { label: t('.edit_label', name: @api_token.name) } %>
-        </li>
+      <% actions.each do |action| %>
+        <li><%= action %></li>
       <% end %>
-
-      <li><%= duplicate_button %></li>
-
-      <li>
-        <%= link_to t('.destroy'), admin_api_token_path(@api_token),
-          class: 'fr-btn fr-btn--tertiary-no-outline fr-icon-delete-line',
-          aria: { label: t('.destroy_label', name: @api_token.name) },
-          data: { turbo_method: :delete, turbo_confirm: t('.destroy_confirm', name: @api_token.name) } %>
-      </li>
     </ul>
   </td>
 </tr>
