@@ -83,7 +83,6 @@ en:
     commentaire:
       send_message_to_instructeur: "Send a message to the reviewer"
       reply_in_mailbox: "Reply in mailbox"
-    procedure_auto_archive_time: "at 11:59 PM (%{time_zone} time)"
   skiplinks:
     quick: Quick access
     content: Content
@@ -950,6 +949,8 @@ en:
       short_with_time: "%d %b %Y at %H:%M"
       messagerie_date: "On %d %b %Y %H:%M"
       human: "%A %-d %B at %Hh%M"
+      deadline: "%-d %B %Y at %-I:%M %p (Paris time)"
+      deadline_time: "at %-I:%M %p (Paris time)"
   datetime:
     formats:
       long: "%d %B %Y at %H:%M"

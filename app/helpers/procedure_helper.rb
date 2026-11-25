@@ -23,16 +23,13 @@ module ProcedureHelper
     end
   end
 
-  def procedure_auto_archive_date(procedure)
-    I18n.l(procedure.auto_archive_on - 1.day, format: :long)
-  end
-
-  def procedure_auto_archive_time(procedure)
-    t("helpers.procedure_auto_archive_time", time_zone: Rails.application.config.time_zone)
-  end
-
+  # Procedures close at the start of auto_archive_on, i.e. 23:59 the day before.
   def procedure_auto_archive_datetime(procedure)
-    procedure_auto_archive_date(procedure) + ' ' + procedure_auto_archive_time(procedure)
+    l((procedure.auto_archive_on - 1.day).in_time_zone.end_of_day, format: :deadline)
+  end
+
+  def procedure_auto_archive_time
+    l(Time.zone.now.end_of_day, format: :deadline_time)
   end
 
   def url_or_email_to_lien_dpo(procedure)

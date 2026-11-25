@@ -159,7 +159,7 @@
             - value = @procedure.auto_archive_on ? @procedure.auto_archive_on - 1.day : nil
             = f.date_field :auto_archive_on, id: 'auto_archive_on', class: 'fr-input', value: value
             %span.fr-ml-1w.fr-text-mention--grey
-              #{procedure_auto_archive_time(@procedure)}.
+              #{procedure_auto_archive_time}.
 
       -# _was, not the attribute: after a failed save the object already carries the submitted value.
       %fieldset.fr-fieldset{ "aria-labelledby": "declarative_with_state-legend", data: { controller: "declarative-setting", "declarative-setting-initial-value": @procedure.declarative_with_state_was.to_s } }
