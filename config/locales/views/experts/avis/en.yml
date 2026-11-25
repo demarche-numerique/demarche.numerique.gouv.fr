@@ -13,12 +13,12 @@ en:
           one: "opinion given"
           other: "opinions given"
       procedure:
-        management: Notification management of the procedure
+        management: Notification settings for this procedure
         tabs_aria_label: "Opinions"
         to_give: "Opinions to give"
         given: "Opinions given"
         th:
-          dossier_number: "File number"
+          dossier_number: "Application number"
           applicant: "Applicant"
           procedure: "Procedure"
         empty: "No opinion"
@@ -27,18 +27,42 @@ en:
           given: "Opinions given"
       notification_settings:
         utils:
-          positive: Yes
-          negative: No
-        title: Email Notifications
-        subtitle: Configure on this page the notifications you wish to receive by email
+          positive: "Yes"
+          negative: "No"
+        title: Email notifications
+        subtitle: Choose on this page which notifications you want to receive by email
         for_each_avis_submitted:
-          title: Receive a notification for each avis requested from you
-          notice_1: This email alerts you that an avis is requested from you.
+          title: Receive a notification for each opinion requested from you
+          notice_1: This email alerts you that an opinion has been requested from you.
           notice_2: It is sent each time a reviewer asks you for an opinion.
         for_each_message_submitted:
           title: Receive a notification for each message received
           notice_1: This email notifies you that a new message is available in the messaging system.
-          notice_2: It is sent every time a reviewer or user sends a message.
+          notice_2: It is sent every time a reviewer or applicant sends a message.
         buttons:
-          back_to_procedure: Return to the procedure notices
+          back_to_procedure: Back to the opinions of this procedure
           save: Save
+      header:
+        breadcrumb_dossier: "Application no. %{dossier_id}"
+        download_dossier: Download the application and all its attachments
+        tabs:
+          request: Request
+          avis: Opinion
+          messaging: Messaging
+      avis_list:
+        title: "Opinion · Application no. %{dossier_id} (%{owner_name})"
+      avis_new:
+        title: "Opinion · Application no. %{dossier_id} (%{owner_name})"
+      instruction:
+        title: "Opinion · Application no. %{dossier_id} (%{owner_name})"
+        heading: Give your opinion
+        claimant: "Requested by:"
+        requested_on: "Opinion requested on %{date}"
+        answer_placeholder: Your opinion
+        confidentiel: This opinion is confidential and is not shown to the other experts consulted
+        shared: This opinion is shared with the other experts
+        submit: Send your opinion
+      messagerie:
+        title: "Messaging · Application no. %{dossier_id} (%{owner_name})"
+      show:
+        title: "Request · Application no. %{dossier_id} (%{owner_name})"

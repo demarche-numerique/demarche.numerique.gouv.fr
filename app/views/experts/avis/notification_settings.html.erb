@@ -1,0 +1,99 @@
+<div class="sub-header">
+  <div class="fr-container flex">
+    <div class="procedure-header">
+      <h1 class="fr-h3"><%= procedure_libelle_with_number(@procedure) %></h1>
+    </div>
+  </div>
+</div>
+
+<div class="fr-container">
+  <h1 class="fr-h3">
+    <%= t('.title') %>
+  </h1>
+
+  <%= form_for @expert_procedure, url: update_notification_settings_expert_procedure_path(@procedure), html: { class: 'form' } do |form| %>
+    <%= render Dsfr::AlertComponent.new(state: :info, size: :sm, extra_class_names: 'fr-mb-2w') do |c| %>
+      <% c.with_body do %>
+        <p>
+          <%= t('.subtitle') %>
+        </p>
+      <% end %>
+    <% end %>
+
+    <fieldset class="fr-fieldset">
+      <legend class="fr-fieldset__legend">
+        <%= t(".for_each_avis_submitted.title") %>
+
+        <span class="fr-hint-text">
+          <%= t('.for_each_avis_submitted.notice_1') %>
+        </span>
+
+        <span class="fr-hint-text">
+          <%= t('.for_each_avis_submitted.notice_2') %>
+        </span>
+      </legend>
+
+      <div class="fr-fieldset__element fr-fieldset__element--inline">
+        <div class="fr-radio-group">
+          <%= form.radio_button :notify_on_new_avis, true, id: 'notify_on_new_avis_true' %>
+
+          <label class="fr-label" for="notify_on_new_avis_true">
+            <%= t('.utils.positive') %>
+          </label>
+        </div>
+      </div>
+
+      <div class="fr-fieldset__element fr-fieldset__element--inline">
+        <div class="fr-radio-group">
+          <%= form.radio_button :notify_on_new_avis, false, id: 'notify_on_new_avis_false' %>
+
+          <label class="fr-label" for="notify_on_new_avis_false">
+            <%= t('.utils.negative') %>
+          </label>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="fr-fieldset">
+      <legend class="fr-fieldset__legend">
+        <%= t(".for_each_message_submitted.title") %>
+
+        <span class="fr-hint-text">
+          <%= t('.for_each_message_submitted.notice_1') %>
+        </span>
+
+        <span class="fr-hint-text">
+          <%= t('.for_each_message_submitted.notice_2') %>
+        </span>
+      </legend>
+
+      <div class="fr-fieldset__element fr-fieldset__element--inline">
+        <div class="fr-radio-group">
+          <%= form.radio_button :notify_on_new_message, true, id: 'notify_on_new_message_true' %>
+
+          <label class="fr-label" for="notify_on_new_message_true">
+            <%= t('.utils.positive') %>
+          </label>
+        </div>
+      </div>
+
+      <div class="fr-fieldset__element fr-fieldset__element--inline">
+        <div class="fr-radio-group">
+          <%= form.radio_button :notify_on_new_message, false, id: 'notify_on_new_message_false' %>
+
+          <label class="fr-label" for="notify_on_new_message_false">
+            <%= t('.utils.negative') %>
+          </label>
+        </div>
+      </div>
+    </fieldset>
+
+    <ul class="fr-btns-group fr-btns-group--inline">
+      <li><%= form.submit t('.buttons.save'), class: "fr-btn" %></li>
+
+      <li>
+        <%= link_to t('.buttons.back_to_procedure', procedure_id: @procedure.id), procedure_expert_avis_index_path(@procedure), class: 'fr-btn fr-btn--secondary' %>
+      </li>
+    </ul>
+  <% end %>
+</div>

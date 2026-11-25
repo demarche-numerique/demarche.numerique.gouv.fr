@@ -1,0 +1,42 @@
+<div class="sub-header">
+  <div class="fr-container">
+    <%= render partial: 'shared/breadcrumbs', locals: { profile: :expert, steps: [[dossier.procedure.libelle.truncate_words(10), procedure_expert_avis_index_path(dossier.procedure)], [t('.breadcrumb_dossier', dossier_id: dossier.id)]] } %>
+
+    <div class="flex">
+      <div class="fr-mb-3w">
+        <h1 class="fr-h3 fr-mb-0">
+          <%= t('show_dossier', scope: [:layouts, :breadcrumb], dossier_id: dossier.id, owner_name: dossier.owner_name) %>
+        </h1>
+
+        <p class="fr-text--bold fr-mb-0">
+          <%= dossier.procedure.libelle.truncate_words(15) %>
+          <%= procedure_badge(dossier.procedure) %>
+        </p>
+      </div>
+
+      <div class="header-actions fr-ml-auto">
+        <div class="fr-download">
+          <%= link_to telecharger_pjs_expert_avis_path(dossier.procedure, @avis), download: :download, class: "menu-item menu-link fr-download__link" do %>
+            <%= t('.download_dossier') %>
+            <span class="fr-download__detail"> ZIP </span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <nav
+      class="fr-tabs"
+      role="navigation"
+      aria-label="<%= t('views.users.dossiers.dossier_menu', id: dossier.id) %>"
+    >
+      <ul class="fr-tabs__list">
+        <%= dynamic_tab_item(t('.tabs.request'), expert_avis_path(dossier.procedure, @avis)) %>
+        <%= dynamic_tab_item(t('.tabs.avis'), instruction_expert_avis_path(dossier.procedure, @avis), notification: @avis.answer.blank?) %>
+
+        <% if dossier.procedure.allow_expert_messaging %>
+          <%= dynamic_tab_item(t('.tabs.messaging'), messagerie_expert_avis_path(dossier.procedure, @avis)) %>
+        <% end %>
+      </ul>
+    </nav>
+  </div>
+</div>

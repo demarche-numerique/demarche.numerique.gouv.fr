@@ -501,6 +501,24 @@ describe Experts::AvisController, type: :controller do
       end
     end
 
+    describe '#avis_list' do
+      before { get :avis_list, params: { procedure_id:, id: avis_with_answer.id } }
+
+      it do
+        expect(response).to have_http_status(:success)
+        expect(response.body).to include('yop')
+      end
+    end
+
+    describe '#notification_settings' do
+      before { get :notification_settings, params: { procedure_id: } }
+
+      it do
+        expect(response).to have_http_status(:success)
+        expect(response.body).to include('notify_on_new_avis_true', 'notify_on_new_message_false')
+      end
+    end
+
     describe '#avis_new' do
       before do
         allow(Expert).to receive(:autocomplete_mails).and_return([])

@@ -1,0 +1,90 @@
+<% content_for(:title, t('.title', dossier_id: @dossier.id, owner_name: @dossier.owner_name)) %>
+<%= render partial: 'header', locals: { avis: @avis, dossier: @dossier } %>
+
+<div class="container">
+  <div class="fr-grid-row">
+    <div class="fr-col fr-col-12 fr-col-md-3">
+      <%= render partial: 'sidemenu' %>
+    </div>
+
+    <div class="fr-col">
+      <% if !@dossier.termine? %>
+        <section class="give-avis">
+          <h1 class="tab-title"><%= t('.heading') %></h1>
+
+          <h2 class="fr-text--sm fr-mb-2w">
+            <%= t('.claimant') %>
+
+            <span class="email fr-text--regular">
+              <%= safe_claimant_email(@avis.claimant) %>
+            </span>
+
+            <span class="fr-text--xs fr-text-mention--grey pull-right">
+              <%= t('.requested_on', date: l(@avis.created_at, format: '%d/%m/%y')) %>
+            </span>
+          </h2>
+
+          <%= render SimpleFormatComponent.new(@avis.introduction, allow_a: false) %>
+
+          <% if @avis.introduction_file.attached? %>
+            <%= render Attachment::ShowComponent.new(attachment: @avis.introduction_file.attachment) %>
+          <% end %>
+
+          <%= render NestedForms::FormOwnerComponent.new %>
+
+          <%= form_for @avis, url: expert_avis_path(@avis.procedure, @avis), html: { data: { controller: 'persisted-form', persisted_form_key_value: dom_id(@avis) }, multipart: true } do |f| %>
+            <% if @avis.question_label.present? %>
+              <div class="fr-form-group">
+                <fieldset class="fr-fieldset fr-fieldset--inline">
+                  <legend
+                    class="fr-fieldset__legend fr-text--regular"
+                    id="radio-inline-legend"
+                  >
+                    <%= render SimpleFormatComponent.new(@avis.question_label, allow_a: false) %>
+                  </legend>
+
+                  <div class="fr-fieldset__content">
+                    <div class="fr-radio-group">
+                      <%= f.radio_button :question_answer, true %>
+                      <%= f.label :question_answer, t('helpers.label.question_answer.true'), value: true, class: 'fr-label' %>
+                    </div>
+
+                    <div class="fr-radio-group">
+                      <%= f.radio_button :question_answer, false %>
+                      <%= f.label :question_answer, t('helpers.label.question_answer.false'), value: false, class: 'fr-label' %>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+            <% end %>
+
+            <div class="fr-select-group">
+              <%= f.text_area :answer, rows: 3, class: 'fr-input', placeholder: t('.answer_placeholder'), required: true %>
+            </div>
+
+            <%= render Attachment::FileFieldComponent.new(context: Attachment::Context.new(attached_file: @avis.piece_justificative_file, view_as: :download), drop_zone: :none) %>
+
+            <p class="confidentiel">
+              <% if @avis.confidentiel? %>
+                <span><%= t('.confidentiel') %></span>
+              <% else %>
+                <span><%= t('.shared') %></span>
+              <% end %>
+            </p>
+
+            <div class="send-wrapper">
+              <%= f.submit t('.submit'), class: 'fr-btn' %>
+            </div>
+          <% end %>
+        </section>
+      <% else %>
+        <h2 class="empty-text">
+          <%= t('helpers.information_text.no_new_avis_text') %>
+        </h2>
+        <p class="empty-text-details">
+          <%= t('helpers.information_text.no_new_avis_text_detail') %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>
