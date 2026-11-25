@@ -1,4 +1,4 @@
 en:
   remove: Remove
-  its_you: "(It's you!)"
+  its_you: "(you)"
   confirm_remove: "Remove ‘%{email}’ from the administrators of ‘%{libelle}’?"
