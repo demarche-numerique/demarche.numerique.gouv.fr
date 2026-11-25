@@ -1,0 +1,46 @@
+<%= render Dsfr::ModalComponent.new(id: @id, size: :lg, icon: nil) do |modal| %>
+  <% modal.with_title { t('.title', name: @name) } %>
+
+  <h3 class="fr-h6 fr-mb-1w" id="<%= procedures_title_id %>">
+    <%= t('.procedures') %>
+  </h3>
+
+  <p><%= @summary %></p>
+
+  <% if @procedures.any? %>
+    <div class="fr-table fr-table--sm fr-mb-0">
+      <div class="fr-table__wrapper">
+        <div class="fr-table__container">
+          <div class="fr-table__content">
+            <table aria-labelledby="<%= procedures_title_id %>">
+              <thead>
+                <tr>
+                  <th scope="col"><%= t('.number') %></th>
+
+                  <th scope="col" aria-sort="ascending">
+                    <%= t('.libelle') %>
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @procedures.each do |id, libelle| %>
+                  <tr>
+                    <td><%= id %></td>
+
+                    <td class="fr-cell--multiline">
+                      <%= link_to libelle, admin_procedure_path(id) %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <h3 class="fr-h6 fr-mt-4w fr-mb-1w"><%= t('.networks') %></h3>
+  <%= @networks %>
+<% end %>

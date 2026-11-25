@@ -1,0 +1,7 @@
+---
+en:
+  title: "Token ‘%{name}’"
+  networks: "Authorized IP addresses"
+  procedures: "Procedures"
+  number: "No."
+  libelle: "Title"

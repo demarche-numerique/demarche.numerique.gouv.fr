@@ -27,6 +27,9 @@ en:
   with_clones:
     one: "and its future clones"
     other: "and their future clones"
+  more_networks:
+    one: "and %{count} other"
+    other: "and %{count} others"
   edit: "Edit"
   edit_label: "Edit the token ‘%{name}’"
   duplicate: "Duplicate"
@@ -34,3 +37,5 @@ en:
   destroy: "Delete"
   destroy_label: "Delete the token ‘%{name}’"
   destroy_confirm: "Do you confirm the deletion of the token ‘%{name}’?"
+  details: "See the details"
+  details_label: "See the details of the token ‘%{name}’"

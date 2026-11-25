@@ -52,6 +52,13 @@
     white-space: nowrap;
   }
 
+  .api-token-procedure {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+
   .api-token-actions .fr-btn {
     width: auto;
     margin: 0;

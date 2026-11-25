@@ -21,6 +21,10 @@
     </p>
 
     <%= networks %>
+
+    <% if folded? %>
+      <p class="fr-mt-1w fr-mb-0"><%= details_button %></p>
+    <% end %>
   </td>
 
   <td class="fr-cell--multiline fr-cell--top">

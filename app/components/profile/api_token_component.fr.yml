@@ -27,6 +27,9 @@ fr:
   with_clones:
     one: "et ses futurs clones"
     other: "et leurs futurs clones"
+  more_networks:
+    one: "et %{count} autre"
+    other: "et %{count} autres"
   edit: "Modifier"
   edit_label: "Modifier le jeton « %{name} »"
   duplicate: "Dupliquer"
@@ -34,3 +37,5 @@ fr:
   destroy: "Supprimer"
   destroy_label: "Supprimer le jeton « %{name} »"
   destroy_confirm: "Confirmez-vous la suppression du jeton « %{name} » ?"
+  details: "Voir le détail"
+  details_label: "Voir le détail du jeton « %{name} »"

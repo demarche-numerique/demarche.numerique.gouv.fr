@@ -1,13 +1,48 @@
 # frozen_string_literal: true
 
 class Profile::APITokenComponent < ApplicationComponent
-  LISTED_PROCEDURES_MAX = 3
+  LISTED_MAX = 3
+  # Past this length, number included, a procedure title may no longer fit on the two lines
+  # its column gives it in the narrowest table (see profil.scss), when written in capitals.
+  TITLE_SHOWN_MAX = 45
 
   def initialize(api_token:)
     @api_token = api_token
   end
 
+  def details
+    return if !folded?
+
+    Profile::APITokenDetailsComponent.new(
+      id: details_id,
+      name: @api_token.name,
+      networks: all_networks,
+      summary: procedures_summary,
+      procedures: named_procedures
+    )
+  end
+
   private
+
+  def details_id = dom_id(@api_token, :details)
+
+  def folded? = networks_folded? || procedures_folded? || title_cut?
+
+  def networks_folded? = network_cidrs.size > LISTED_MAX
+
+  def procedures_folded? = named_procedure_ids.size > LISTED_MAX
+
+  def procedures_listed? = named_procedure_ids.size.between?(1, LISTED_MAX)
+
+  def title_cut? = procedures_listed? && named_procedures.any? { |id, libelle| "#{t('.procedure_number', id:)} #{libelle}".size > TITLE_SHOWN_MAX }
+
+  def details_button
+    tag.button(t('.details'),
+      type: 'button',
+      class: 'fr-link fr-link--sm',
+      aria: { controls: details_id, haspopup: 'dialog', label: t('.details_label', name: @api_token.name) },
+      data: { fr_opened: 'false' })
+  end
 
   def prefix = tag.code(@api_token.prefix, class: 'fr-text--xs fr-text-default--grey')
 
@@ -32,8 +67,8 @@ class Profile::APITokenComponent < ApplicationComponent
   end
 
   def networks
-    if @api_token.authorized_networks.present?
-      raw_list(@api_token.authorized_cidrs.map { tag.code(it) })
+    if network_cidrs.any?
+      raw_list(network_cidrs.first(LISTED_MAX).map { tag.code(it) }, (t('.more_networks', count: network_cidrs.size - LISTED_MAX) if networks_folded?))
     elsif @api_token.expired?
       line(t('.no_network'))
     elsif @api_token.pending_auto_ip?
@@ -43,23 +78,31 @@ class Profile::APITokenComponent < ApplicationComponent
     end
   end
 
-  def procedures
-    return line(t('.all_procedures')) if @api_token.full_access?
+  def network_cidrs = @network_cidrs ||= @api_token.authorized_cidrs
 
-    if procedure_ids.size.between?(1, LISTED_PROCEDURES_MAX)
-      raw_list(procedure_items, clones)
-    else
-      line(safe_join([t('.procedures_count', count: procedure_ids.size), clones].compact, ' '))
-    end
+  def all_networks
+    network_cidrs.any? ? tag.ul(safe_join(network_cidrs.map { tag.li(tag.code(it)) })) : networks
+  end
+
+  def procedures
+    return line(procedures_summary) if !procedures_listed?
+
+    raw_list(procedure_items, clones)
+  end
+
+  def procedures_summary
+    return t('.all_procedures') if @api_token.full_access?
+
+    safe_join([t('.procedures_count', count: named_procedure_ids.size), clones].compact, ' ')
   end
 
   def clones
-    t('.with_clones', count: procedure_ids.size) if @api_token.follows_clones? && procedure_ids.any?
+    t('.with_clones', count: named_procedure_ids.size) if @api_token.follows_clones? && named_procedure_ids.any?
   end
 
   def procedure_items
-    Procedure.where(id: procedure_ids).order(:libelle).pluck(:id, :libelle).map do |id, libelle|
-      safe_join([tag.span(t('.procedure_number', id:), class: 'fr-text-mention--grey'), link_to(libelle, admin_procedure_path(id))], ' ')
+    named_procedures.map do |id, libelle|
+      tag.span(safe_join([tag.span(t('.procedure_number', id:), class: 'fr-text-mention--grey'), link_to(libelle, admin_procedure_path(id))], ' '), class: 'api-token-procedure')
     end
   end
 
@@ -70,7 +113,9 @@ class Profile::APITokenComponent < ApplicationComponent
     note ? safe_join([list, line(note)]) : list
   end
 
-  def procedure_ids = @procedure_ids ||= @api_token.procedure_ids
+  def named_procedures = @named_procedures ||= Procedure.where(id: named_procedure_ids).order(:libelle).pluck(:id, :libelle)
+
+  def named_procedure_ids = @named_procedure_ids ||= @api_token.full_access? ? [] : @api_token.procedure_ids
 
   def duplicate_button
     button_to t('.duplicate'),
