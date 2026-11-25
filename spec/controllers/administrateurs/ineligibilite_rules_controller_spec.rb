@@ -2,6 +2,7 @@
 
 describe Administrateurs::IneligibiliteRulesController, type: :controller do
   include Logic
+  include ActionView::RecordIdentifier
   let(:user) { create(:user) }
   let(:admin) { create(:administrateur, user: create(:user)) }
   let(:procedure) { create(:procedure, administrateurs: [admin], public_type_de_champs:) }
@@ -25,6 +26,16 @@ describe Administrateurs::IneligibiliteRulesController, type: :controller do
           expect { subject }.to change { procedure.draft_revision.reload.ineligibilite_rules }
             .from(nil)
             .to(empty_operator(empty, empty))
+        end
+
+        context 'rendered' do
+          render_views
+
+          it 'replaces the rules component' do
+            subject
+            target = dom_id(procedure.draft_revision, :ineligibilite_rules)
+            expect(Nokogiri::HTML5.fragment(response.body).at_css("turbo-stream[action='replace'][target='#{target}'] template ##{target}")).to be_present
+          end
         end
       end
 
