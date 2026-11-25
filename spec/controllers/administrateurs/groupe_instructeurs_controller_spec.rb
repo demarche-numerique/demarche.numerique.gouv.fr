@@ -46,6 +46,18 @@ describe Administrateurs::GroupeInstructeursController, type: :controller do
       end
     end
 
+    context 'when the routing alert is on' do
+      before do
+        procedure.update!(routing_alert: true)
+        get :index, params: { procedure_id: procedure.id }
+      end
+
+      it 'asks to configure the rules before routing' do
+        expect(response.body).to include('pas encore été routés')
+        expect(response.parsed_body.at_css('button[disabled]', text: 'Lancer le routage')).to be_present
+      end
+    end
+
     context 'with every modal of the page' do
       let(:modal_html) { response.body }
 
@@ -206,7 +218,7 @@ describe Administrateurs::GroupeInstructeursController, type: :controller do
 
     it 'checks response and body content' do
       expect(response).to have_http_status(:ok)
-      expect(response.body).to include("Le groupe « deuxième groupe » contient des dossiers. Afin de procéder à sa suppression, vous devez réaffecter ses dossiers à lʼun des 2 autres groupes instructeurs")
+      expect(response.body).to include("Le groupe « deuxième groupe » contient des dossiers. Afin de procéder à sa suppression, vous devez réaffecter ses dossiers à l’un des 2 autres groupes instructeurs.")
     end
   end
 
@@ -1283,6 +1295,12 @@ describe Administrateurs::GroupeInstructeursController, type: :controller do
       expect { subject }.to change { procedure.reload.instructeurs_can_edit_dossiers? }.from(false).to(true)
       expect(response).to redirect_to(options_admin_procedure_groupe_instructeurs_path(procedure))
     end
+  end
+
+  describe '#simple_routing' do
+    before { get :simple_routing, params: { procedure_id: procedure.id } }
+
+    it { expect(response.body).to include('Configuration automatique', 'Créer les groupes') }
   end
 
   describe '#create_simple_routing' do

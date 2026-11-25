@@ -1,0 +1,21 @@
+<div class="sticky-header sticky-header-warning">
+  <div class="fr-container">
+    <div class="flex justify-between align-center fr-text-default--warning">
+      <span>
+        <%= dsfr_icon("fr-icon-warning-fill fr-mr-1v") %>
+
+        <% if @procedure.groupe_instructeurs.any?(&:invalid_rule?) %>
+          <%= t('.routing_alert_with_invalid_rules_html', count: @procedure.dossiers.state_en_construction_ou_instruction.count) %>
+        <% else %>
+          <%= t('.routing_alert_html', count: @procedure.dossiers.state_en_construction_ou_instruction.count) %>
+        <% end %>
+      </span>
+
+      <%= button_to t('.bulk_route'), bulk_route_admin_procedure_groupe_instructeurs_path(@procedure),
+        class: 'fr-btn no-wrap',
+        disabled: @procedure.groupe_instructeurs.any?(&:invalid_rule?),
+        data: { turbo_submits_with: t('.bulk_routing_in_progress'), turbo_confirm: t('.bulk_routing_confirm') },
+        form: { data: { turbo: true } } %>
+    </div>
+  </div>
+</div>

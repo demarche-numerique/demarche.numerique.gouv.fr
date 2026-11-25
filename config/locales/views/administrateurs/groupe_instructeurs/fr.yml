@@ -16,6 +16,8 @@ fr:
           alert_title: "Les groupes instructeurs ont été créés à partir du champ « %{champ} »"
       index:
         procedures: Démarches
+        groupes: Groupes
+        instructeurs: Instructeurs
       add_instructeurs:
         wrong_address:
           one: "%{emails} n’est pas une adresse électronique valide"
@@ -25,35 +27,56 @@ fr:
           other: "Les instructeurs %{emails} ont été ajoutés au groupe « %{groupe} »."
       options:
         procedures: Démarches
+        groupes: Groupes
+        instructeurs: Instructeurs
+        options: Options
+      show:
+        groupe_instructeurs: Groupes d’instructeurs
+      reaffecter_dossiers:
+        title: Réaffectation
+        groupe_instructeurs: Groupes d’instructeurs
       simple_routing:
         procedures: Démarches
+        groupes: Groupes
+        breadcrumb: Configuration automatique du routage
+        back_to_options: Revenir aux options
+        page_title: Routage
+        title: Configuration du routage
+        subtitle: Configuration automatique
+        simple_routable_types_html: "Vous trouverez ci-dessous une liste de champs de votre formulaire à partir desquels configurer le routage de façon <strong>automatique</strong>. Les groupes d’instructeurs seront créés à partir des valeurs possibles du champ. Seuls les champs suivants sont ouverts à ce mode de configuration\u00A0:"
+        custom_routable_types_html: "Si besoin, vous pourrez ensuite affiner votre configuration de façon <strong>manuelle</strong>, également à partir des champs suivants\u00A0:"
+        select_champ: Sélectionner le champ à partir duquel créer des groupes d’instructeurs
+        cancel: Annuler
+        submitting: Création des groupes…
+        submit: Créer les groupes
       routing_alert_sticky_header:
         routing_alert_html: "Il y a <strong>%{count} dossiers</strong> déposés et en attente de traitement sur cette démarche. Ces dossiers n’ont <strong>pas été routés selon le routage configuré</strong>. Vous devez lancer le routage pour les répartir dans les différents groupes."
         routing_alert_with_invalid_rules_html: "Il y a <strong>%{count} dossiers</strong> déposés et en attente de traitement sur cette démarche. Ces dossiers n’ont <strong>pas encore été routés</strong>. Une fois que vous aurez configuré vos règles de routage, vous devrez lancer le routage pour les répartir dans les différents groupes."
         bulk_route: Lancer le routage
+        bulk_routing_in_progress: Routage en cours…
         bulk_routing_confirm: "Êtes-vous sûr de vouloir lancer le routage pour les dossiers déposés et en attente de traitement ?"
       update_self_management_restricted_to_email_domain:
         restricted: "Les instructeurs ne peuvent ajouter que des adresses de leur domaine."
         unrestricted: "Les instructeurs peuvent ajouter des adresses électroniques d’un autre domaine."
       add_instructeur_to_all_groupes:
         wrong_address:
-          one: "%{emails} nʼest pas une adresse électronique valide"
+          one: "%{emails} n’est pas une adresse électronique valide"
           other: "%{emails} ne sont pas des adresses électroniques valides"
         add_all_groupes_assignment:
-          one: "Lʼinstructeur %{emails} a été ajouté à tous les groupes de la démarche."
+          one: "L’instructeur %{emails} a été ajouté à tous les groupes de la démarche."
           other: "Les instructeurs %{emails} ont été ajoutés à tous les groupes de la démarche."
       remove_instructeur_from_all_groupes:
         remove_all_groupes_assignment:
-          one: "Lʼinstructeur %{emails} a été retiré de tous les groupes de la démarche."
+          one: "L’instructeur %{emails} a été retiré de tous les groupes de la démarche."
           other: "Les instructeurs %{emails} ont été retirés de tous les groupes de la démarche."
         remove_all_groupes_partial:
-          one: "Lʼinstructeur %{emails} nʼa pas été retiré de tous les groupes car il est seul instructeur dans certains groupes."
-          other: "Les instructeurs %{emails} nʼont pas été retirés de tous les groupes car ils sont seuls instructeurs dans certains groupes."
+          one: "L’instructeur %{emails} n’a pas été retiré de tous les groupes car il est seul instructeur dans certains groupes."
+          other: "Les instructeurs %{emails} n’ont pas été retirés de tous les groupes car ils sont seuls instructeurs dans certains groupes."
       reaffectation:
         title: "Réaffectation des dossiers du groupe « %{label} »"
         hint:
-          one: "Le groupe « %{label} » contient des dossiers. Afin de procéder à sa suppression, vous devez réaffecter ses dossiers à lʼautre groupe instructeur"
-          other: "Le groupe « %{label} » contient des dossiers. Afin de procéder à sa suppression, vous devez réaffecter ses dossiers à lʼun des %{count} autres groupes instructeurs"
+          one: "Le groupe « %{label} » contient des dossiers. Afin de procéder à sa suppression, vous devez réaffecter ses dossiers à l’autre groupe instructeur."
+          other: "Le groupe « %{label} » contient des dossiers. Afin de procéder à sa suppression, vous devez réaffecter ses dossiers à l’un des %{count} autres groupes instructeurs."
         label: Nouveau groupe instructeur
         select: Sélectionner
         submit: Réaffecter les dossiers à ce groupe

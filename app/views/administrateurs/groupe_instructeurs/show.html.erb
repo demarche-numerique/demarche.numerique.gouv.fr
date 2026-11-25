@@ -1,0 +1,25 @@
+<% content_for(:title, @groupe_instructeur.label) %>
+<% render_procedure_sticky_title(@procedure) %>
+
+<%= render partial: 'shared/breadcrumbs_section',
+  locals: { steps: [[admin_procedures_back_label(@procedure), admin_procedures_back_path(@procedure)],
+    [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)],
+    [t('.groupe_instructeurs'), admin_procedure_groupe_instructeurs_path(@procedure)],
+    [@groupe_instructeur.label]] } %>
+
+<%= render Procedure::GroupeInstructeurMenuComponent.new(procedure: @procedure) do %>
+  <%= render Procedure::OneGroupeManagementComponent.new(revision: @procedure.active_revision, groupe_instructeur: @groupe_instructeur) %>
+
+  <%= render partial: 'shared/groupe_instructeurs/instructeurs', locals: { procedure: @procedure,
+      groupe_instructeur: @groupe_instructeur,
+      instructeurs: @instructeurs,
+      available_instructeur_emails: @available_instructeur_emails,
+      disabled_as_super_admin: administrateur_as_manager? } %>
+
+  <%= render partial: 'shared/groupe_instructeurs/contact_information', locals: { procedure: @procedure, groupe_instructeur: @groupe_instructeur } %>
+
+  <% if @procedure.attestation_acceptation_template&.activated? %>
+    <%= render partial: "shared/groupe_instructeurs/signature_form", locals: { groupe_instructeur: @groupe_instructeur,
+      preview_path: preview_attestation_acceptation_admin_procedure_groupe_instructeur_path(@groupe_instructeur.procedure, @groupe_instructeur) } %>
+  <% end %>
+<% end %>

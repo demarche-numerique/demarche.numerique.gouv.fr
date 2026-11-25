@@ -1,0 +1,42 @@
+<% content_for(:title, t('.title')) %>
+<% render_procedure_sticky_title(@procedure) %>
+
+<%= render partial: 'shared/breadcrumbs_section',
+  locals: { steps: [[admin_procedures_back_label(@procedure), admin_procedures_back_path(@procedure)],
+    [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)],
+    [t('.groupe_instructeurs'), admin_procedure_groupe_instructeurs_path(@procedure)],
+    [@groupe_instructeur.label]] } %>
+
+<div class="fr-container">
+  <h1 class="fr-h2">
+    <%= t('administrateurs.groupe_instructeurs.reaffectation.title', label: @groupe_instructeur.label) %>
+  </h1>
+
+  <p>
+    <%= t('administrateurs.groupe_instructeurs.reaffectation.hint', label: @groupe_instructeur.label, count: @groupes_instructeurs.count) %>
+  </p>
+
+  <%= form_with url: reaffecter_admin_procedure_groupe_instructeur_path, method: :post, local: true, data: { turbo: true, controller: 'enable-submit-if-filled', action: 'change->enable-submit-if-filled#fill' } do |form| %>
+    <div class="fr-grid-row fr-grid-row--gutters fr-grid-row--bottom fr-mt-3w">
+      <div class="fr-col-8">
+        <div class="fr-select-group">
+          <react-fragment>
+            <%= render ReactComponent.new "Select/SingleSelect",
+              label: t('administrateurs.groupe_instructeurs.reaffectation.label'),
+              name: 'target_group',
+              placeholder: t('administrateurs.groupe_instructeurs.reaffectation.select'),
+              items: @groupes_instructeurs.map { |g| { label: g.label, value: g.id.to_s } },
+              data: { enable_submit_if_filled_target: 'input' } %>
+          </react-fragment>
+        </div>
+      </div>
+
+      <div class="fr-col-4">
+        <%= form.submit t('administrateurs.groupe_instructeurs.reaffectation.submit'),
+          class: 'fr-btn fr-btn-sm',
+          data: { enable_submit_if_filled_target: 'submit', turbo_confirm: t('administrateurs.groupe_instructeurs.reaffectation.confirm', label: @groupe_instructeur.label) },
+          disabled: true %>
+      </div>
+    </div>
+  <% end %>
+</div>
