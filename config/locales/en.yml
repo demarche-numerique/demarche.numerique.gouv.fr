@@ -1068,7 +1068,6 @@ en:
         download_dossier:
           link: Download your application (PDF)
           filename: "application-%{dossier_id}.pdf"
-          filename_without_number: "DS-application.pdf"
         download_attestation:
           link: Download your decision notice (PDF)
           filename: Decision notice

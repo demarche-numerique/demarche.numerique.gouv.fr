@@ -1084,7 +1084,6 @@ fr:
         download_dossier:
           link: Télécharger mon dossier (PDF)
           filename: "dossier-%{dossier_id}.pdf"
-          filename_without_number: "dossier-DS.pdf"
         download_attestation:
           link: Télécharger mon attestation (PDF)
           filename: Attestation

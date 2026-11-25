@@ -1,6 +1,8 @@
 <% if dossier.present? %>
   <%= link_to t('.link'), dossier_path(dossier, format: :pdf), download: t('.filename', dossier_id: dossier.id), class: 'fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-download-line', **new_tab_link_attributes(t('.link')) %>
 <% else %>
-  <%# admins previewing the end-of-submission message %>
-  <%= link_to t('.link'), "#", download: t('.filename_without_number'), class: 'fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-download-line', **new_tab_link_attributes(t('.link')) %> <%# herb:disable html-anchor-require-href %>
+  <%# admin preview of the end-of-submission message: no dossier to download %>
+  <span class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-download-line">
+    <%= t('.link') %>
+  </span>
 <% end %>
