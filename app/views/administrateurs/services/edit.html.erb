@@ -1,0 +1,33 @@
+<% content_for(:title, t('.heading')) %>
+<% render_procedure_sticky_title(@procedure) %>
+
+<%= render partial: 'shared/breadcrumbs_section', locals: { steps: [[admin_procedures_back_label(@procedure), admin_procedures_back_path(@procedure)], [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)], [t('.services_choice'), admin_services_path(procedure_id: @procedure.id)], [t('.heading')]] } %>
+
+<div class="fr-container">
+  <div class="flex justify-between align-center fr-mb-3w">
+    <%= link_to t('.back_to_services'), admin_services_path(procedure_id: @procedure.id), class: "fr-link fr-icon-arrow-left-line fr-link--icon-left" %>
+    <%= link_to t('.new_service'), new_admin_service_path(procedure_id: @procedure.id), class: "fr-btn" %>
+  </div>
+
+  <h1 class="fr-h2">
+    <%= t('.heading') %>
+  </h1>
+
+  <% if @other_procedures.any? %>
+    <%= render Dsfr::AlertComponent.new(state: :warning, title: t('.other_procedures_warning'), extra_class_names: 'fr-mb-3w') do |c| %>
+      <% c.with_body do %>
+        <ul>
+          <% @other_procedures.each do |proc| %>
+            <li><%= procedure_libelle_with_number(proc) %></li>
+          <% end %>
+        </ul>
+
+        <p class="fr-mt-6v">
+          <%= t('.create_new_service_html', link: link_to(t('.create_new_service_link'), new_admin_service_path(procedure_id: @procedure.id))) %>
+        </p>
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <%= render partial: 'form', locals: { service: @service, procedure: @procedure } %>
+</div>

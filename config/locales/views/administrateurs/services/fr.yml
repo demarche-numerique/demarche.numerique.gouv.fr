@@ -1,6 +1,31 @@
 fr:
   administrateurs:
     services:
+      index:
+        title: Service
+        new_service: Nouveau service
+        caption: Liste des services pouvant être affectés à la démarche
+        name: Nom
+        actions: Actions
+        assigned: Assigné
+        assign: Affecter
+        edit: Modifier
+        delete: Supprimer
+        delete_confirm: Confirmez-vous la suppression de %{name} ?
+        still_used:
+          one: Ce service est encore utilisé par %{count} démarche
+          other: Ce service est encore utilisé par %{count} démarches
+      edit:
+        services_choice: Choix du service
+        heading: Modifier le service
+        back_to_services: Liste de tous les services
+        new_service: "+ Nouveau service"
+        other_procedures_warning: Modifier ce service impactera également les démarches suivantes
+        create_new_service_html: Si vous souhaitez modifier uniquement les informations pour cette démarche, %{link} puis associez-le à la démarche.
+        create_new_service_link: créez un nouveau service
+      new:
+        services_choice: Choix du service
+        new_service: Nouveau service
       form:
         siret_hint_html: "Indiquez le numéro de SIRET de l’organisme dont ce service dépend. Rechercher le SIRET sur"
         siret_format: "Format attendu : 14 chiffres. Exemple : 50000123456789"

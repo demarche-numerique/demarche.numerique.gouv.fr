@@ -1,0 +1,59 @@
+<% content_for :title, t('.title') %>
+<% render_procedure_sticky_title(@procedure) %>
+
+<%= render partial: 'shared/breadcrumbs_section', locals: { steps: [[admin_procedures_back_label(@procedure), admin_procedures_back_path(@procedure)], [@procedure.libelle.truncate_words(10), admin_procedure_path(@procedure)], [t('.title')]] } %>
+
+<div class="fr-container">
+  <h1 class="fr-h2"><%= t('.title') %></h1>
+  <%= link_to t('.new_label'), [:new, :admin, @procedure, :label], class: "fr-btn fr-btn--primary fr-btn--icon-left fr-icon-add-circle-line fr-mb-4w" %>
+
+  <% if @labels.present? %>
+    <div class="fr-container flex justify-between fr-mb-2w fr-p-0">
+      <h2 id="labels-list-title" class="fr-h6 fr-m-0">
+        <%= t('.labels_list') %>
+      </h2>
+
+      <% if @labels.size > 1 %>
+        <%= link_to t('.customize_order'), order_positions_admin_procedure_labels_path, class: 'fr-btn fr-btn--sm fr-btn--tertiary fr-btn--icon-left fr-icon-settings-5-line' %>
+      <% end %>
+    </div>
+    <div class="fr-table fr-table--lg">
+      <div class="fr-table__wrapper">
+        <div class="fr-table__container">
+          <div class="fr-table__content">
+            <table aria-labelledby="labels-list-title">
+              <thead>
+                <tr>
+                  <th scope="col">
+                    <%= t('.name') %>
+                  </th>
+
+                  <th class="change" scope="col">
+                    <%= t('.actions') %>
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <% @labels.each do |label| %>
+                  <tr>
+                    <td>
+                      <%= tag_label(label.name, label.color) %>
+                    </td>
+
+                    <td class="change">
+                      <%= link_to t('.edit'), [:edit, :admin, @procedure, label], class: 'fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left fr-icon-pencil-line' %>
+                      <%= button_to t('.delete'), [:admin, @procedure, label], method: :delete, data: { turbo_confirm: t("administrateurs.labels.delete_labels", count: label.dossier_labels.size, label_name: label.name) }, form: { class: 'inline', data: { turbo: true } }, class: 'fr-btn fr-btn--sm fr-btn--secondary fr-btn--icon-left fr-icon-delete-line fr-ml-1w' %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= render Procedure::FixedFooterComponent.new(procedure: @procedure) %>

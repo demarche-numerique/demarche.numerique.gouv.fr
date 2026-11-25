@@ -23,6 +23,40 @@ describe Administrateurs::LabelsController, type: :controller do
       expect(response.body).to have_link("Nouveau label")
       expect(response.body).to have_link("Modifier", count: 3)
       expect(response.body).to have_button("Supprimer", count: 3)
+      expect(response.body).to have_link("Personnaliser l’ordre")
+      expect(response.body).to have_css("h1", text: "Labels")
+      expect(response.body).to have_css("table[aria-labelledby='labels-list-title']")
+      expect(response.body).to have_css("h2#labels-list-title", text: "Liste des labels")
+    end
+  end
+
+  describe '#new' do
+    render_views
+    let!(:label) { create(:label, procedure:, name: 'Label existant') }
+
+    before { sign_in(admin.user) }
+
+    it 'renders the form with a reminder of existing labels' do
+      get :new, params: { procedure_id: procedure.id }
+      expect(response.body).to have_css("h1", text: "Créer un nouveau label")
+      expect(response.body).to have_link("Liste de tous les labels")
+      expect(response.body).to have_text("Rappel des labels existants")
+      expect(response.body).to have_text("Label existant")
+      expect(response.body).to have_field("label[color]", type: :radio)
+    end
+  end
+
+  describe '#edit' do
+    render_views
+    let!(:label) { create(:label, procedure:) }
+
+    before { sign_in(admin.user) }
+
+    it 'renders the form' do
+      get :edit, params: { procedure_id: procedure.id, id: label.id }
+      expect(response.body).to have_css("h1", text: "Modifier le label")
+      expect(response.body).to have_link("Liste de tous les labels")
+      expect(response.body).to have_field("label[name]", with: label.name)
     end
   end
 

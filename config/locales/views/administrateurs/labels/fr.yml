@@ -1,6 +1,26 @@
 fr:
   administrateurs:
     labels:
+      index:
+        title: Labels
+        new_label: Nouveau label
+        labels_list: Liste des labels
+        customize_order: Personnaliser l’ordre
+        name: Nom
+        actions: Actions
+        edit: Modifier
+        delete: Supprimer
+      edit:
+        title: Modifier le label
+        labels_management: Gestion des labels
+        back_to_labels: Liste de tous les labels
+      new:
+        title: Nouveau label
+        labels_management: Gestion des labels
+        back_to_labels: Liste de tous les labels
+        heading: Créer un nouveau label
+      form:
+        existing_labels: Rappel des labels existants
       order_positions:
         title: Labels
         back_to_labels: Liste des labels
@@ -9,6 +29,6 @@ fr:
         cancel: Annuler
         submit: Valider
       delete_labels:
-        zero: Êtes-vous sûr de vouloir supprimer le label « %{label_name} » ?
-        one: Le label « %{label_name} » est déjà assigné à un dossier, êtes-vous sûr de vouloir le supprimer ?
-        other: Le label « %{label_name} » est déjà assigné à %{count} dossiers, êtes-vous sûr de vouloir le supprimer ?
+        zero: Êtes-vous sûr de vouloir supprimer le label « %{label_name} » ?
+        one: Le label « %{label_name} » est déjà assigné à un dossier, êtes-vous sûr de vouloir le supprimer ?
+        other: Le label « %{label_name} » est déjà assigné à %{count} dossiers, êtes-vous sûr de vouloir le supprimer ?

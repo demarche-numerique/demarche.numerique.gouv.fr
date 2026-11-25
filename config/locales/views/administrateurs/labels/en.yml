@@ -1,6 +1,26 @@
 en:
   administrateurs:
     labels:
+      index:
+        title: Labels
+        new_label: New label
+        labels_list: Labels list
+        customize_order: Customize order
+        name: Name
+        actions: Actions
+        edit: Edit
+        delete: Delete
+      edit:
+        title: Edit label
+        labels_management: Label management
+        back_to_labels: All labels
+      new:
+        title: New label
+        labels_management: Label management
+        back_to_labels: All labels
+        heading: Create a new label
+      form:
+        existing_labels: Reminder of existing labels
       order_positions:
         title: Labels
         back_to_labels: Labels list
@@ -10,5 +30,5 @@ en:
         submit: Submit
       delete_labels:
         zero: Are you sure you want to remove the label ‘%{label_name}’?
-        one: The label ‘%{label_name}’ is already assigned to a file, are you sure you want to remove it?
-        other: The label ‘%{label_name}’ is already assigned to %{count} files, are you sure you want to remove it?
+        one: The label ‘%{label_name}’ is already assigned to an application, are you sure you want to remove it?
+        other: The label ‘%{label_name}’ is already assigned to %{count} applications, are you sure you want to remove it?
