@@ -311,7 +311,7 @@ describe Columns::JSONPathColumn do
 
   describe '#filter_options' do
     let(:jsonpath) { '$.city_name' }
-    let(:column) { described_class.new(procedure_id: procedure.id, label: 'label', stable_id:, tdc_type:, jsonpath:, displayable: true, mandatory: true, options_for_select: described_class::MOST_FREQUENT) }
+    let(:column) { described_class.new(procedure_id: procedure.id, label: 'label', stable_id:, tdc_type:, jsonpath:, displayable: true, mandatory: true, suggestions: true) }
     let(:groupe) { procedure.defaut_groupe_instructeur }
     let(:other_groupe) { create(:groupe_instructeur, procedure:) }
 
@@ -344,10 +344,6 @@ describe Columns::JSONPathColumn do
       dossier_in('Zurich')
 
       expect(column.filter_options([groupe.id])).to eq(['Zurich'])
-    end
-
-    it 'keeps a text value as its own label' do
-      expect(column.label_for_value('Lyon')).to eq('Lyon')
     end
 
     it 'returns a copy of static options' do

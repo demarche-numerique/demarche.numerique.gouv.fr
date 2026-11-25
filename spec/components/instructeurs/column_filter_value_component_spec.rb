@@ -123,6 +123,7 @@ describe Instructeurs::ColumnFilterValueComponent, type: :component do
         "Column",
         column: :value,
         type: :string,
+        suggestions?: false,
         mandatory: true,
         h_id: {},
         label: long_label
@@ -148,6 +149,7 @@ describe Instructeurs::ColumnFilterValueComponent, type: :component do
         "Column",
         column: :value,
         type: :string,
+        suggestions?: false,
         mandatory: true,
         h_id: {},
         label: 'label court'

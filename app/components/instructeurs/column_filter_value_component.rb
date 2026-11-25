@@ -97,10 +97,7 @@ class Instructeurs::ColumnFilterValueComponent < ApplicationComponent
     column&.type&.in?([:enum, :enums])
   end
 
-  # A text column with options offers them as suggestions, free text still allowed.
-  def suggestions?
-    column&.type == :text && column.options_for_select.present?
-  end
+  def suggestions? = column&.suggestions?
 
   def radio_buttons?
     column&.type&.in?([:boolean]) || tdc_type == TypeDeChamp.type_champs.fetch(:civilite) || (column.respond_to?(:table) && column.table == "individual" && column.column == "gender")

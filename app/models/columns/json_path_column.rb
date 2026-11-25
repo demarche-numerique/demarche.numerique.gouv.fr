@@ -1,16 +1,15 @@
 # frozen_string_literal: true
 
 class Columns::JSONPathColumn < Columns::ChampColumn
-  # Passed as options_for_select: the filter suggests the most frequent values.
-  MOST_FREQUENT = :most_frequent
   SUGGESTIONS_LIMIT = 50
   SUGGESTIONS_SAMPLE_SIZE = 1_000
   SUGGESTIONS_MIN_PER_GROUP = 100
 
   attr_reader :jsonpath
 
-  def initialize(procedure_id:, label:, stable_id:, tdc_type:, jsonpath:, options_for_select: [], displayable:, filterable: true, type: :text, mandatory:)
+  def initialize(procedure_id:, label:, stable_id:, tdc_type:, jsonpath:, options_for_select: [], displayable:, filterable: true, type: :text, mandatory:, suggestions: false)
     @jsonpath = quote_string(jsonpath)
+    @suggestions = suggestions
 
     super(
       procedure_id:,
@@ -46,14 +45,10 @@ class Columns::JSONPathColumn < Columns::ChampColumn
 
   def column_id = "type_de_champ/#{stable_id}-#{jsonpath}"
 
-  # A text value is its own label: never read the options, which may be the
-  # MOST_FREQUENT marker.
-  def label_for_value(value)
-    options_for_select == MOST_FREQUENT ? value : super
-  end
+  def suggestions? = @suggestions
 
   def filter_options(groupe_instructeur_ids)
-    options_for_select == MOST_FREQUENT ? suggested_values(groupe_instructeur_ids) : super
+    suggestions? ? suggested_values(groupe_instructeur_ids) : super
   end
 
   # The most frequent values among the latest dossiers the groups can see. Each
