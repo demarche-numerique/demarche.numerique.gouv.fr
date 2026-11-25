@@ -4,7 +4,7 @@ RSpec.describe GroupeGestionnaire::GroupeGestionnaireAdministrateurs::Administra
   let(:administrateur) { administrateurs.default }
   let(:component) { described_class.new(groupe_gestionnaire: nil, administrateur:, is_gestionnaire: false) }
 
-  before { allow(component).to receive(:current_gestionnaire).and_return(administrateur) }
+  before { allow(component).to receive(:current_user).and_return(administrateur.user) }
 
   it "flags the current account in English" do
     I18n.with_locale(:en) { render_inline(component) }
