@@ -32,7 +32,7 @@ RSpec.describe GroupeGestionnaire::GroupeGestionnaireListCommentaires::Commentai
     it { expect(subject).to have_text("Messages avec le groupe gestionnaire parent") }
 
     it "labels the thread in English" do
-      I18n.with_locale(:en) { expect(subject).to have_text("Messages with the parent administrator group") }
+      I18n.with_locale(:en) { expect(subject).to have_text("Messages with the parent admins group") }
     end
   end
 
