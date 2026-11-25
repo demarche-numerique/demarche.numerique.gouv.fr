@@ -9,7 +9,7 @@ en:
       inactivity: For your security, your session expired after a spell of inactivity. Please sign in again.
       expired: For your security, your session has expired. Please sign in again.
       france_connect_unlinked: A FranceConnect identity was unlinked from your account. Please sign in again.
-      logout_all: You signed out of all your devices. Please sign in again.
+      logout_all: This device was signed out from another device. Please sign in again.
       logout_device: This device was signed out from your profile. Please sign in again.
       new_session: You were signed out because a new sign in happened on your account. If it was not you, change your password.
       session_revoked: Your session was closed. Please sign in again.

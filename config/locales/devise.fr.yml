@@ -9,7 +9,7 @@ fr:
       inactivity: Pour votre sécurité, votre session a expiré faute d’activité. Reconnectez-vous pour continuer.
       expired: Pour votre sécurité, votre session a expiré. Reconnectez-vous pour continuer.
       france_connect_unlinked: Une identité FranceConnect a été déliée de votre compte. Reconnectez-vous pour continuer.
-      logout_all: Vous avez déconnecté tous vos appareils. Reconnectez-vous pour continuer.
+      logout_all: Cet appareil a été déconnecté depuis un autre appareil. Reconnectez-vous pour continuer.
       logout_device: Cet appareil a été déconnecté depuis votre profil. Reconnectez-vous pour continuer.
       new_session: Vous avez été déconnecté(e) car une nouvelle connexion a eu lieu sur votre compte. Si ce n’était pas vous, changez votre mot de passe.
       session_revoked: Votre session a été fermée. Reconnectez-vous pour continuer.

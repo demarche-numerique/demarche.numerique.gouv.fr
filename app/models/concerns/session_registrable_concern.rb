@@ -39,11 +39,18 @@ module SessionRegistrableConcern
     warden.raw_session["warden.user.#{scope}.session"] ||= {}
   end
 
+  # One transaction, the cookie after it: a failed INSERT leaves the session it
+  # was replacing as it was, not revoked with the cookie still naming it.
   def self.open_session!(record, warden, scope, login_method: nil, france_connect_information: nil, continuing: nil)
     user_agent, remote_ip = warden.request.user_agent, warden.request.remote_ip
+    outgoing = warden.session(scope)[SESSION_KEY]
 
     # in db
-    user_session = record.open_user_session!(user_agent, remote_ip, login_method:, france_connect_information:, continuing:)
+    user_session = record.transaction do
+      drop_former_session!(outgoing)
+
+      record.open_user_session!(user_agent, remote_ip, login_method:, france_connect_information:, continuing:)
+    end
 
     # in cookie
     warden.session(scope).merge!(LAST_SEEN_KEY => Date.current.iso8601, SESSION_KEY => user_session.id)
@@ -64,11 +71,14 @@ module SessionRegistrableConcern
     end
   end
 
+  # By id: the key being taken over may name another account's session.
+  def self.drop_former_session!(session_id)
+    UserSession.where(id: session_id).revoke_all!(:new_session) if session_id.present?
+  end
+
   # Read from the signed cookie, so the client cannot push the date forward.
   # A date and not an instant: the window is counted in weeks.
   def self.inactive?(session)
-    # No stamp means a session older than this code: adopt it, the request that
-    # adopts it stamps it.
     last_seen = session[LAST_SEEN_KEY]
     return false if last_seen.blank?
 
@@ -119,14 +129,16 @@ module SessionRegistrableConcern
     session = warden.session(scope)
     session_id = session[SESSION_KEY]
 
-    return open_session!(record, warden, scope) if session_id.nil?
-
-    user_session = UserSession.find_by(id: session_id, sessionable: record)
+    user_session = UserSession.find_by(id: session_id, sessionable: record) if session_id.present?
 
     # The row first: a session both revoked and stale must say it was revoked,
     # which is the message the user needs.
     reason =
-      if user_session.nil? || user_session.unusable?
+      if session_id.nil?
+        # Opened before the registry. Such sessions were adopted for a week after
+        # every account was covered; one still arriving has been away all that time.
+        :expired
+      elsif user_session.nil? || user_session.unusable?
         user_session&.unusable_reason || :session_revoked
       elsif inactive?(session)
         :inactivity
@@ -198,14 +210,21 @@ module SessionRegistrableConcern
   # turn into `where.not(id: nil)` and revoke every row, the one to spare first.
   # Then the account-wide steps, so a failure on the rows cannot leave an account
   # half signed out.
-  def revoke_sessions!(reason:, except: nil)
+  #
+  # `only:` goes through here rather than straight to the relation, so closing one
+  # device still does everything else a revocation must do.
+  def revoke_sessions!(reason:, except: nil, only: nil)
     UserSession.validate_reason!(reason)
     raise ArgumentError, 'cannot spare a session that is not persisted' if except && !except.persisted?
+    raise ArgumentError, 'cannot revoke a session that is not persisted' if only && !only.persisted?
+    raise ArgumentError, 'cannot combine except: and only:' if except && only
 
     transaction do
       revoke_account_wide!(reason)
 
-      scope = except ? user_sessions.where.not(id: except.id) : user_sessions
+      scope = user_sessions
+      scope = scope.where.not(id: except.id) if except
+      scope = scope.where(id: only.id) if only
       scope.revoke_all!(reason)
     end
   end
