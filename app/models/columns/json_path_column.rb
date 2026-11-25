@@ -1,10 +1,15 @@
 # frozen_string_literal: true
 
 class Columns::JSONPathColumn < Columns::ChampColumn
+  SUGGESTIONS_LIMIT = 50
+  SUGGESTIONS_SAMPLE_SIZE = 1_000
+  SUGGESTIONS_MIN_PER_GROUP = 100
+
   attr_reader :jsonpath
 
-  def initialize(procedure_id:, label:, stable_id:, tdc_type:, jsonpath:, options_for_select: [], displayable:, filterable: true, type: :text, mandatory:)
+  def initialize(procedure_id:, label:, stable_id:, tdc_type:, jsonpath:, options_for_select: [], displayable:, filterable: true, type: :text, mandatory:, suggestions: false)
     @jsonpath = quote_string(jsonpath)
+    @suggestions = suggestions
 
     super(
       procedure_id:,
@@ -39,6 +44,34 @@ class Columns::JSONPathColumn < Columns::ChampColumn
   end
 
   def column_id = "type_de_champ/#{stable_id}-#{jsonpath}"
+
+  def suggestions? = @suggestions
+
+  def filter_options(groupe_instructeur_ids)
+    suggestions? ? suggested_values(groupe_instructeur_ids) : super
+  end
+
+  # The most frequent values among the latest dossiers the groups can see. Each
+  # group reads its latest dossiers on its own index, so the cost stays bounded
+  # whatever the procedure size; the result is cached per set of groups.
+  def suggested_values(groupe_instructeur_ids)
+    return [] if groupe_instructeur_ids.blank?
+
+    ids = groupe_instructeur_ids.map(&:to_i).uniq.sort
+
+    Rails.cache.fetch(['procedure', @procedure_id, column_id, 'suggested_values', ids], expires_in: 1.hour) do
+      value = "jsonb_path_query_first(champs.value_json, '#{jsonpath_for_sql}') #>> '{}'"
+
+      ChampData
+        .where(stable_id:, stream: Dossier::MAIN_STREAM)
+        .joins("JOIN (#{latest_dossiers_sql(ids)}) latest_dossiers ON latest_dossiers.id = champs.dossier_id")
+        .where("#{value} <> ''")
+        .group(Arel.sql(value))
+        .order(Arel.sql("COUNT(*) DESC, #{value}"))
+        .limit(SUGGESTIONS_LIMIT)
+        .pluck(Arel.sql(value))
+    end
+  end
 
   private
 
@@ -125,6 +158,23 @@ class Columns::JSONPathColumn < Columns::ChampColumn
     dossiers
       .with_type_de_champ(stable_id)
       .order(Arel.sql("NULLIF(jsonb_path_query_first(champs.value_json, '#{jsonpath_for_sql}'), 'null'::jsonb) #{direction}"), id: order)
+  end
+
+  # A plain ORDER BY id DESC LIMIT walks the primary key through every other
+  # procedure's dossiers: one LATERAL per group reads its own index instead.
+  def latest_dossiers_sql(groupe_instructeur_ids)
+    per_group = [SUGGESTIONS_SAMPLE_SIZE / groupe_instructeur_ids.size, SUGGESTIONS_MIN_PER_GROUP].max
+
+    ActiveRecord::Base.sanitize_sql_array([<<~SQL.squish, groupe_instructeur_ids, per_group, SUGGESTIONS_SAMPLE_SIZE])
+      SELECT latest.id FROM unnest(ARRAY[?]::bigint[]) AS groupes(id)
+      CROSS JOIN LATERAL (
+        SELECT dossiers.id, dossiers.depose_at FROM dossiers
+        WHERE dossiers.groupe_instructeur_id = groupes.id AND dossiers.depose_at IS NOT NULL
+          AND dossiers.hidden_by_administration_at IS NULL AND dossiers.hidden_by_expired_at IS NULL
+        ORDER BY dossiers.depose_at DESC LIMIT ?
+      ) latest
+      ORDER BY latest.depose_at DESC LIMIT ?
+    SQL
   end
 
   def quote_string(string) = ActiveRecord::Base.connection.quote_string(string)

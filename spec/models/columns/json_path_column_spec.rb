@@ -309,6 +309,52 @@ describe Columns::JSONPathColumn do
     end
   end
 
+  describe '#filter_options' do
+    let(:jsonpath) { '$.city_name' }
+    let(:column) { described_class.new(procedure_id: procedure.id, label: 'label', stable_id:, tdc_type:, jsonpath:, displayable: true, mandatory: true, suggestions: true) }
+    let(:groupe) { procedure.defaut_groupe_instructeur }
+    let(:other_groupe) { create(:groupe_instructeur, procedure:) }
+
+    def dossier_in(city, state: :en_construction, groupe_instructeur: groupe)
+      @submitted_at = (@submitted_at || 1.month.ago) + 1.day
+      create(:dossier, state, procedure:, groupe_instructeur:).tap do
+        it.update_columns(depose_at: (@submitted_at unless state == :brouillon))
+        it.champ_data.first.update_columns(value_json: { city_name: city }.compact)
+      end
+    end
+
+    before do
+      dossier_in('Annecy')
+      2.times { dossier_in('Lyon') }
+      dossier_in(nil)
+      dossier_in('')
+      dossier_in('Paris', state: :brouillon)
+      dossier_in('Marseille', groupe_instructeur: other_groupe)
+    end
+
+    it 'suggests the filled values of the groups dossiers, the most frequent first' do
+      expect(column.filter_options([groupe.id])).to eq(['Lyon', 'Annecy'])
+      expect(column.filter_options([groupe.id, other_groupe.id])).to eq(['Lyon', 'Annecy', 'Marseille'])
+      expect(column.filter_options([])).to eq([])
+    end
+
+    it 'only reads the latest submitted dossiers' do
+      stub_const('Columns::JSONPathColumn::SUGGESTIONS_SAMPLE_SIZE', 3)
+      stub_const('Columns::JSONPathColumn::SUGGESTIONS_MIN_PER_GROUP', 1)
+      dossier_in('Zurich')
+
+      expect(column.filter_options([groupe.id])).to eq(['Zurich'])
+    end
+
+    it 'returns a copy of static options' do
+      options = [['Lyon', 'Lyon']]
+      static = described_class.new(procedure_id: procedure.id, label: 'label', stable_id:, tdc_type:, jsonpath:, displayable: true, mandatory: true, options_for_select: options)
+
+      static.filter_options([groupe.id]) << ['Paris', 'Paris']
+      expect(static.options_for_select).to eq([['Lyon', 'Lyon']])
+    end
+  end
+
   describe '#initializer' do
     let(:jsonpath) { %{$.'city_name} }
 

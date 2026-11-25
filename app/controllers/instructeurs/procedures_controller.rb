@@ -210,7 +210,7 @@ module Instructeurs
       @disable_checkbox_all = @projected_dossiers.all? { it.dossier.batch_operation_id.present? }
 
       @batch_operations = BatchOperation.joins(:groupe_instructeurs)
-        .where(groupe_instructeurs: current_instructeur.groupe_instructeurs.where(procedure_id: @procedure.id))
+        .where(groupe_instructeurs: { id: groupe_instructeur_ids })
         .where(seen_at: nil)
         .distinct
 
@@ -445,16 +445,8 @@ module Instructeurs
       )
     end
 
-    def assign_tos
-      @assign_tos ||= current_instructeur
-        .assign_to
-        .joins(:groupe_instructeur)
-        .where(groupe_instructeur: { procedure_id: procedure_id })
-    end
-
     def groupe_instructeur_ids
-      @groupe_instructeur_ids ||= assign_tos
-        .map(&:groupe_instructeur_id)
+      @groupe_instructeur_ids ||= current_instructeur.groupe_instructeur_ids_for(procedure_id)
     end
 
     def statut

@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
 class Instructeurs::EditableFiltersComponent < ApplicationComponent
-  attr_reader :procedure_presentation, :statut, :instructeur_procedure
+  attr_reader :procedure_presentation, :statut, :instructeur_procedure, :groupe_instructeur_ids
 
-  def initialize(procedure_presentation:, instructeur_procedure:, statut:)
+  def initialize(procedure_presentation:, instructeur_procedure:, statut:, groupe_instructeur_ids:)
     @procedure_presentation = procedure_presentation
     @instructeur_procedure = instructeur_procedure
     @statut = statut
+    @groupe_instructeur_ids = groupe_instructeur_ids
   end
 
   def id
