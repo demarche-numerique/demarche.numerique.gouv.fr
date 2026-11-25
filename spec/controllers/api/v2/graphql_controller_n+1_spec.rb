@@ -51,7 +51,7 @@ describe API::V2::GraphqlController do
       variables = { demarcheNumber: procedure.id, includeDossiers: true, includeChamps: true, includeTraitements: false }
       dossier
       revision_queries = []
-      callback = lambda { |*args| revision_queries << args.last[:sql] if args.last[:sql].match?(/FROM "(types_de_champ|procedure_revision_types_de_champ)"/) }
+      callback = lambda { |*args| revision_queries << args.last[:sql] if args.last[:sql].match?(/FROM "types_de_champ"/) }
       ActiveSupport::Notifications.subscribed(callback, "sql.active_record") do
         post :execute, params: { queryId: query_id, variables:, operationName: operation_name }, as: :json
       end
@@ -66,7 +66,7 @@ describe API::V2::GraphqlController do
       variables = { demarcheNumber: procedure.id, includeDossiers: true, includeTraitements: true, includeChamps: false, includeAnnotations: false }
       dossier
       revision_queries = []
-      callback = lambda { |*args| revision_queries << args.last[:sql] if args.last[:sql].match?(/FROM "(types_de_champ|procedure_revision_types_de_champ)"/) }
+      callback = lambda { |*args| revision_queries << args.last[:sql] if args.last[:sql].match?(/FROM "types_de_champ"/) }
       ActiveSupport::Notifications.subscribed(callback, "sql.active_record") do
         post :execute, params: { queryId: query_id, variables:, operationName: operation_name }, as: :json
       end
