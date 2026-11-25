@@ -87,7 +87,7 @@ const etapes = scenario.etapes.map((etape, i) => {
 });
 
 console.log([
-  `## Recette guidée de #${N}`,
+  `## Recette de #${N}`, // guidée ou non : le bilan des critères dit qui a joué et qui a jugé
   '',
   '### Contexte',
   '',

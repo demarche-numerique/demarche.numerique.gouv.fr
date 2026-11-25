@@ -370,7 +370,7 @@ async function main() {
   function ecrireRapport() {
     writeFileSync(join(out, 'resultats.json'), JSON.stringify({ pr: scenario.pr, titre: scenario.titre, mode, juge: mode === 'guide' ? opts.juge : 'script', resultats }, null, 2));
     // Un ✅ ne sort que d'un humain ; une vérification machine est un 🤖.
-    const icone = { conforme: '✅', vérifié: '🤖', joué: '▶️', 'non conforme': '❌', échec: '❌' };
+    const icone = { conforme: opts.juge === 'agent' ? '🤖' : '✅', vérifié: '🤖', joué: '▶️', 'non conforme': '❌', échec: '❌' };
     const cell = (t) => String(t ?? '').replace(/\|/g, '\\|').replace(/\n/g, ' ');
     writeFileSync(join(out, 'rapport.md'), [
       mode === 'guide' ? `### Recette manuelle — ${scenario.titre}` : `### Vérification automatique — ${scenario.titre}`, '',

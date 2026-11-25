@@ -103,7 +103,7 @@ export default {
 
 - **DSFR** : un « bouton » peut être un lien (`link "Personnaliser"`) ; le défilement est animé (`scroll-behavior: smooth`), d'où le défilement instantané du runner.
 - **React Aria** : un `Select` est un `button` qui ouvre une `listbox`, sans champ texte, et sa liste est **virtualisée** : une option hors de vue n'est pas dans le DOM, fais défiler la `listbox` jusqu'à elle.
-- **Stimulus** : un bouton activé par un contrôleur pas encore branché reste grisé ; attends `networkidle` avant d'agir.
+- **Stimulus et React chargés tard** : un bouton activé par un contrôleur pas encore branché reste grisé, et un composant React qui porte une valeur du formulaire (une démarche présélectionnée, par exemple) ne l'ajoute qu'une fois monté. Soumettre avant envoie un formulaire incomplet, sans erreur visible tout de suite : le mode `auto` échoue alors au hasard, les modes plus lents passent. Attends `networkidle` et la valeur visible avant de soumettre.
 - **OTP** : un code déjà consommé dans la fenêtre de 30 s est refusé ; `outils.codeFrais` attend la fenêtre suivante.
 - **`.env` de dev** : il peut désactiver la feature testée (section 3) ; déclare la variable dans `env`.
 - **Le chemin d'une démarche** n'est pas une colonne : `Procedure.find_with_path(path).first` pour la retrouver d'un run à l'autre.
@@ -164,7 +164,7 @@ Ce que reçoit le relecteur de la PR : un commentaire de recette, avec les captu
 3. **Poster** : propose le texte, et ne publie qu'avec l'accord de l'humain (`gh pr comment N --body-file tmp/recette/commentaire.md`).
 4. **Vidéo** : GitHub n'a pas d'API pour joindre une vidéo. L'humain la glisse dans le commentaire, à la place de « _Vidéo à glisser ici_ ».
 
-Le commentaire se lit sans rien déplier, puis se creuse à la demande. Sous le titre « Recette guidée de #N » :
+Le commentaire se lit sans rien déplier, puis se creuse à la demande. Sous le titre « Recette de #N » :
 - **Contexte** : une phrase, la situation suivie du persona ;
 - **À juger**, avec `--a-juger` : les constats de la recette (écart de comportement, état intermédiaire vu dans la vidéo…) ;
 - **Validation visuelle** : la vidéo ;
