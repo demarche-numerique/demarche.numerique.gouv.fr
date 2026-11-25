@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Columns::ChampColumn < Column
+  # A number champ stores text: cast it, or "10" would sort before "9".
+  NUMERIC_VALUE = Arel.sql("CASE WHEN champs.value ~ '^-?[0-9]+(\\.[0-9]+)?$' THEN champs.value::numeric END")
+
   attr_reader :stable_id, :tdc_type
 
   def initialize(procedure_id:, label:, stable_id:, tdc_type:, displayable: true, filterable: true, type: :text, options_for_select: [], mandatory:)
@@ -136,7 +139,10 @@ class Columns::ChampColumn < Column
 
   def string_value(champ) = champ.public_send(column)
 
-  def sorted_dossiers(dossiers, order) = dossiers.with_type_de_champ(stable_id).order("champs.value #{order}")
+  def sorted_dossiers(dossiers, order)
+    value = type.in?([:integer, :decimal]) ? NUMERIC_VALUE : Arel.sql('champs.value')
+    dossiers.with_type_de_champ(stable_id).order(order == 'desc' ? value.desc : value.asc)
+  end
 
   def typed_value(champ)
     value = string_value(champ)
