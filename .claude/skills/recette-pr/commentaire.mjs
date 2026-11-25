@@ -12,14 +12,23 @@ import { parseArgs } from 'node:util';
 const { values: opts, positionals } = parseArgs({ allowPositionals: true, options: { video: { type: 'string' }, 'a-juger': { type: 'string' } } });
 const [scenarioPath, resultatsPath, images] = positionals;
 if (!images) {
-  console.error('usage: commentaire.mjs <scenario.mjs> <resultats.json> <url des images> [--video <url>]');
+  console.error('usage: commentaire.mjs <scenario.mjs> <resultats.json> <url des images> [--video <url>] [--a-juger <fichier.md>]');
   process.exit(1);
 }
 
 const scenario = (await import(pathToFileURL(resolve(scenarioPath)))).default;
-const { resultats } = JSON.parse(readFileSync(resultatsPath, 'utf8'));
-const icone = { vérifié: '🤖', joué: '▶️', échec: '❌', conforme: '✅', 'non conforme': '❌' };
-const verifiees = resultats.filter((r) => r.verdict === 'vérifié').length;
+const lus = JSON.parse(readFileSync(resultatsPath, 'utf8'));
+const { resultats } = lus;
+// Résultats antérieurs au champ juge : le mode guide était jugé par un humain, les autres par le script.
+const juge = lus.juge ?? (lus.mode === 'guide' ? 'humain' : 'script');
+// Un ✅ ne sort que d'un humain : le script vérifie (🤖), un agent qui joue le relecteur juge (🤖 aussi).
+const icone = { vérifié: '🤖', joué: '▶️', échec: '❌', conforme: juge === 'humain' ? '✅' : '🤖', 'non conforme': '❌' };
+const total = scenario.etapes.length;
+const bilan = {
+  script: `${resultats.filter((r) => r.verdict === 'vérifié').length}/${total} vérifiés par le script 🤖`,
+  humain: `${resultats.filter((r) => r.verdict === 'conforme').length}/${total} jugés conformes par un humain ✅`,
+  agent: `${resultats.filter((r) => r.verdict === 'conforme').length}/${total} jugés conformes par un agent 🤖 (aucun verdict humain)`
+}[juge];
 const cite = (t) => String(t ?? '').replace(/\n/g, ' ');
 const source = readFileSync(resolve(scenarioPath), 'utf8').trimEnd();
 const N = scenario.pr;
@@ -68,9 +77,9 @@ const etapes = scenario.etapes.map((etape, i) => {
     `**Attendu** : ${cite(etape.attendu)}`,
     ...(r?.erreur ? ['', `**Échec** : \`${cite(r.erreur)}\``] : []),
     '',
-    `<img src="${images}/${n}-consigne.png" width="100%" alt="Étape ${i + 1}, avant l'action">`,
+    `<img src="${images}/${n}-consigne.png" width="100%" alt="Critère ${i + 1}, avant l'action">`,
     '',
-    `<img src="${images}/${n}-attendu.png" width="100%" alt="Étape ${i + 1}, après l'action">`,
+    `<img src="${images}/${n}-attendu.png" width="100%" alt="Critère ${i + 1}, après l'action">`,
     '',
     '</details>',
     ''
@@ -88,9 +97,10 @@ console.log([
   '### Validation visuelle',
   '',
   ...(opts.video ? [opts.video, ''] : ['_Vidéo à glisser ici._', '']),
-  // Le bilan tient dans le titre : 🤖 tant qu'aucun humain n'a jugé.
-  `### Critères d’acceptation : ${verifiees}/${scenario.etapes.length} vérifiés par le script 🤖`,
+  // Le bilan tient dans le titre ; la fiche dit si un humain a signé les critères ou les a délégués.
+  `### Critères d’acceptation : ${bilan}`,
   '',
+  ...(scenario.fiche ? [`_Fiche de critères ${scenario.fiche}._`, ''] : []),
   ...etapes,
   rejouer
 ].join('\n'));

@@ -368,7 +368,7 @@ async function main() {
   const total = scenario.etapes.length;
   const resultats = [];
   function ecrireRapport() {
-    writeFileSync(join(out, 'resultats.json'), JSON.stringify({ pr: scenario.pr, titre: scenario.titre, mode, resultats }, null, 2));
+    writeFileSync(join(out, 'resultats.json'), JSON.stringify({ pr: scenario.pr, titre: scenario.titre, mode, juge: mode === 'guide' ? opts.juge : 'script', resultats }, null, 2));
     // Un ✅ ne sort que d'un humain ; une vérification machine est un 🤖.
     const icone = { conforme: '✅', vérifié: '🤖', joué: '▶️', 'non conforme': '❌', échec: '❌' };
     const cell = (t) => String(t ?? '').replace(/\|/g, '\\|').replace(/\n/g, ' ');
@@ -377,7 +377,7 @@ async function main() {
       `Persona : \`${scenario.persona ?? 'anonyme'}\` · ` + (mode === 'guide'
         ? `${resultats.filter((r) => r.verdict === 'conforme').length}/${total} jugées conformes par ${opts.juge === 'agent' ? 'un agent qui joue le relecteur (aucun verdict humain)' : 'un humain'}`
         : `${resultats.filter((r) => r.verdict === 'vérifié').length}/${total} vérifiées par le script (aucun jugement humain)`), '',
-      '| # | Étape | Attendu | Verdict |', '|---|---|---|---|',
+      '| # | Critère d’acceptation | Attendu | Verdict |', '|---|---|---|---|',
       ...resultats.map((r) => `| ${r.etape} | ${cell(r.titre)} | ${cell(r.attendu)} | ${icone[r.verdict] ?? ''} ${cell(r.commentaire ?? r.erreur ?? '')} |`),
       ...(resultats.length < total ? [`| | ${total - resultats.length} étape(s) non jouée(s) | | |`] : [])
     ].join('\n') + '\n');
@@ -391,7 +391,7 @@ async function main() {
 
   for (const [i, etape] of scenario.etapes.entries()) {
     const ctx = { page, data, outils };
-    const base = { mode, entete: `Étape ${i + 1}/${total}`, titre: etape.titre, consigne: etape.consigne, attendu: etape.attendu, action: !!etape.action };
+    const base = { mode, entete: `Critère ${i + 1}/${total}`, titre: etape.titre, consigne: etape.consigne, attendu: etape.attendu, action: !!etape.action };
     const cible = etape.cible?.(ctx);
     await eteindre(page);
     if (cible) {
@@ -468,7 +468,7 @@ async function main() {
         const echec = resultat.verdict === 'échec';
         await afficher({ ...base, ...(echec ? { echec: resultat.erreur } : { montrerAttendu: true, statut: '✓ Vérifié par le script' }) });
         const apres = Date.now();
-        await tenir(apres, 2800, parler(echec ? `Échec de l'étape ${i + 1}.` : etape.attendu));
+        await tenir(apres, 2800, parler(echec ? `Échec du critère ${i + 1}.` : etape.attendu));
       }
     }
 
@@ -499,9 +499,9 @@ async function main() {
 
   if (mode === 'video') {
     const echec = resultats.find((r) => r.verdict === 'échec');
-    await afficher({ mode, entete: `PR #${scenario.pr}`, titre: echec ? `✗ Recette en échec à l'étape ${echec.etape}` : 'Fin de la recette', echec: echec?.erreur });
+    await afficher({ mode, entete: `PR #${scenario.pr}`, titre: echec ? `✗ Recette en échec au critère ${echec.etape}` : 'Fin de la recette', echec: echec?.erreur });
     const debut = Date.now();
-    await tenir(debut, 1500, parler(echec ? `Recette en échec à l'étape ${echec.etape}.` : finOk));
+    await tenir(debut, 1500, parler(echec ? `Recette en échec au critère ${echec.etape}.` : finOk));
   }
   if (!ferme) await eteindre(page);
   await context.close();
