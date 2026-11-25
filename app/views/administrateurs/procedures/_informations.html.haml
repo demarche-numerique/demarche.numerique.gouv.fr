@@ -150,7 +150,7 @@
             = f.text_field :web_hook_url, class: 'fr-input', placeholder: 'https://callback.exemple.fr/'
 
         .fr-fieldset__element
-          = f.label :auto_archive_on, class: 'fr-label fr-mb-2w' do
+          = f.label :auto_archive_on, for: 'auto_archive_on', class: 'fr-label fr-mb-2w' do
             = t('.auto_archive_on.label')
             %span.fr-hint-text= t('.auto_archive_on.hint')
           %span.flex.align-center

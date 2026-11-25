@@ -593,7 +593,7 @@ describe Administrateurs::ProceduresController, type: :controller do
         it 'translates the submission deadline field in English' do
           admin.user.update!(locale: 'en')
 
-          expect(subject.body).to have_css('label', text: 'Application submission deadline')
+          expect(subject.body).to have_css('label[for=auto_archive_on]', text: 'Application submission deadline')
           expect(subject.body).to have_text('at 11:59 PM (Paris time).')
         end
       end
