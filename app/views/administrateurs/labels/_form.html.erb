@@ -10,7 +10,7 @@
   </div>
 <% end %>
 
-<%= form_with model: label, url: [:admin, @procedure, @label], local: true do |f| %>
+<%= form_with model: label, url: [:admin, @procedure, label], local: true do |f| %>
   <%= render Dsfr::InputComponent.new(form: f, attribute: :name, input_type: :text_field, opts: { maxlength: Label::NAME_MAX_LENGTH}) %>
 
   <fieldset class="fr-fieldset">
