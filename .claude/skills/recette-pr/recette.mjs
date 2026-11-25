@@ -3,7 +3,7 @@
 //   node recette.mjs <scenario.mjs> --mode auto|guide|video|captures [--base-url URL] [--out DIR] [--rythme N] [--muet] [--voix NOM]
 // auto     : sans tête, joue actions et vérifications ; sert à mettre le scénario au point.
 // guide    : navigateur visible, un panneau guide l'humain qui donne un verdict par étape.
-// video    : enregistre le scénario joué seul, avec le panneau et une voix off (macOS `say`), en mp4.
+// video    : enregistre le scénario joué seul, avec le panneau et une voix off (Piper), en mp4.
 // captures : sans tête, capture le panneau du mode guide à chaque étape (pour la description d'une PR).
 // sonde    : se connecte, ouvre --page (sinon le départ) et affiche l'arbre d'accessibilité,
 //            pour écrire les locators d'après le DOM réel plutôt qu'en devinant.
@@ -13,6 +13,7 @@ import { execFileSync, spawnSync } from 'node:child_process';
 import { existsSync, mkdirSync, writeFileSync, readdirSync, renameSync, rmSync } from 'node:fs';
 import { resolve, dirname, join } from 'node:path';
 import { pathToFileURL } from 'node:url';
+import { homedir } from 'node:os';
 import { parseArgs } from 'node:util';
 
 const { values: opts, positionals } = parseArgs({
@@ -25,7 +26,7 @@ const { values: opts, positionals } = parseArgs({
     muet: { type: 'boolean', default: false }, // vidéo sans voix off
     enregistrer: { type: 'boolean', default: false }, // guide : filme la recette du relecteur, en mp4
     juge: { type: 'string', default: 'humain' }, // guide : « agent » quand un agent joue le relecteur
-    voix: { type: 'string' }, // voix `say -v` ; par défaut la première voix française installée
+    voix: { type: 'string' }, // voix Piper : « fr_FR-siwis-medium », « …:locuteur » ou chemin .onnx ; par défaut la première installée
     page: { type: 'string' }, // sonde : chemin à ouvrir
     clic: { type: 'string', multiple: true } // sonde : boutons ou liens à cliquer avant d'afficher l'arbre
   }
@@ -44,25 +45,57 @@ const PASSWORD = 'this is a very complicated password !'; // db/seeds/setup.rb
 
 function die(msg) { console.error(msg); process.exit(1); }
 
-// ---- Voix off (repris de /demo-pr, #14665) : macOS seulement, sinon vidéo muette ----
+// ---- Voix off (repris de /demo-pr, #14665) ----
+// Piper seul : libre, local, la même voix pour tous, sous Linux comme sous macOS.
+// Rend { bin, chemin, locuteur, nom } ou null pour une vidéo muette.
+const VOIX_PIPER = ['fr_FR-siwis-medium', 'fr_FR-upmc-medium', 'fr_FR-tom-medium']; // ordre de préférence
+const dossierPiper = process.env.RECETTE_PIPER_MODELS ?? join(homedir(), '.local/share/piper');
+
+function binairePiper() {
+  for (const bin of [process.env.RECETTE_PIPER, 'piper', join(homedir(), '.local/bin/piper')].filter(Boolean)) {
+    if (!spawnSync(bin, ['--help']).error) return bin;
+  }
+  return null;
+}
+
+// « fr_FR-upmc-medium:1 » : modèle et locuteur ; un chemin vers un .onnx est accepté tel quel.
+function voixPiper(bin, nom) {
+  const [modele, locuteur] = nom.split(':');
+  const chemin = modele.endsWith('.onnx') ? resolve(modele) : join(dossierPiper, `${modele}.onnx`);
+  return existsSync(chemin) ? { bin, chemin, locuteur, nom } : null;
+}
+
 function choisirVoix() {
   if (!filmer || opts.muet) return null;
-  const liste = spawnSync('say', ['-v', '?'], { encoding: 'utf8' });
-  if (liste.error || liste.status !== 0) {
-    console.warn('`say` indisponible : vidéo sans voix off (sous-titres seuls).');
+  const bin = binairePiper();
+  if (!bin) {
+    console.warn('Piper absent : vidéo sans voix off (panneau seul). Installation : voir SKILL.md, section 7.');
     return null;
   }
-  if (opts.voix) return opts.voix;
-  // Une voix compacte (installée d'office) sonne robotique : on prend la meilleure qualité
-  // installée, Premium puis Améliorée, et à qualité égale Aurélie d'abord (jugée la plus naturelle).
-  const francaises = liste.stdout.split('\n').map((l) => l.match(/^(.+?)\s+fr_FR\s/)?.[1]).filter(Boolean);
-  const qualite = (v) => (/Premium/i.test(v) ? 2 : /Enhanced|Améliorée/i.test(v) ? 1 : 0);
-  const prenom = (v) => ['Aurélie', 'Audrey', 'Marie', 'Thomas'].findIndex((p) => v.startsWith(p));
-  const rang = (v) => qualite(v) * 10 - (prenom(v) === -1 ? 5 : prenom(v));
-  const voix = [...francaises].sort((a, b) => rang(b) - rang(a))[0];
-  if (!voix) console.warn('Aucune voix fr_FR installée : voix système par défaut.');
-  else if (!qualite(voix)) console.warn(`Voix compacte (${voix}), au rendu robotique : installez une voix française Améliorée ou Premium (Réglages Système > Accessibilité > Lire et énoncer > ⓘ à côté de « Voix système »).`);
-  return voix ?? '';
+  if (opts.voix) return voixPiper(bin, opts.voix) ?? die(`voix introuvable : ${opts.voix} (aucun modèle dans ${dossierPiper})`);
+  const voix = VOIX_PIPER.map((v) => voixPiper(bin, v)).find(Boolean);
+  if (!voix) console.warn(`Aucune voix française dans ${dossierPiper} : vidéo sans voix off. Installation : voir SKILL.md, section 7.`);
+  return voix ?? null;
+}
+
+// ---- Prononciation : ce que dit la voix, sans toucher au texte affiché ----
+// Le dictionnaire d'espeak-ng (utilisé par Piper) développe certaines abréviations : « PR » y est
+// « professeur ». Tout acronyme (deux majuscules ou plus) est donc épelé, en phonèmes passés à Piper
+// entre [[ … ]], sauf ceux qui se disent comme un mot. `scenario.prononciations` complète ou corrige.
+const LETTRES = { A: 'ˈa', B: 'bˈe', C: 'sˈe', D: 'dˈe', E: 'ˈə', F: 'ˈɛf', G: 'ʒˈe', H: 'ˈaʃ', I: 'ˈi', J: 'ʒˈi',
+  K: 'kˈa', L: 'ˈɛl', M: 'ˈɛm', N: 'ˈɛn', O: 'ˈo', P: 'pˈe', Q: 'kˈy', R: 'ˈɛʁ', S: 'ˈɛs', T: 'tˈe', U: 'ˈy',
+  V: 'vˈe', W: 'dubləvˈe', X: 'ˈiks', Y: 'iɡʁˈɛk', Z: 'zˈɛd' };
+const SE_DISENT = { SIRET: 'siret', SIREN: 'sirène', IBAN: 'iban', RIB: 'rib' };
+
+const echapper = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+function prononcer(texte) {
+  let t = texte;
+  for (const [mot, dit] of Object.entries({ ...SE_DISENT, ...(scenario.prononciations ?? {}) })) {
+    t = t.replace(new RegExp(`(?<![\\p{L}\\[])${echapper(mot)}(?![\\p{L}\\]])`, 'gu'), dit);
+  }
+  // Les acronymes restants sont épelés, sans toucher aux blocs [[ … ]] déjà posés.
+  return t.split(/(\[\[.*?\]\])/).map((bout) => (bout.startsWith('[[') ? bout
+    : bout.replace(/(?<!\p{L})[A-Z]{2,}(?!\p{L})/gu, (sigle) => `[[ ${[...sigle].map((l) => LETTRES[l]).join(' ')} ]]`))).join('');
 }
 
 const dureeAudio = (file) =>
@@ -76,10 +109,10 @@ function synthetiseur(voix) {
     if (!cache.has(texte)) {
       const n = String(cache.size).padStart(3, '0');
       const txt = join(out, 'voix', `${n}.txt`);
-      const file = join(out, 'voix', `${n}.aiff`);
-      mkdirSync(dirname(file), { recursive: true });
-      writeFileSync(txt, texte);
-      execFileSync('say', [...(voix ? ['-v', voix] : []), '-f', txt, '-o', file]);
+      const file = join(out, 'voix', `${n}.wav`);
+      mkdirSync(dirname(txt), { recursive: true });
+      writeFileSync(txt, prononcer(texte.replace(/\s*\n\s*/g, ' '))); // une phrase par fichier, sur une ligne
+      execFileSync(voix.bin, ['-m', voix.chemin, ...(voix.locuteur ? ['-s', voix.locuteur] : []), '-i', txt, '-f', file], { stdio: 'ignore' });
       cache.set(texte, { file, duree: dureeAudio(file) * 1000 });
     }
     return cache.get(texte);
@@ -524,7 +557,7 @@ async function main() {
     execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', join(out, webm), ...audio,
       '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '28', '-movflags', '+faststart', mp4]);
     renameSync(join(out, webm), join(out, `${nom}.webm`));
-    console.log(`vidéo : ${mp4}${pistes.length ? ` (voix off : ${voix || 'voix système'})` : ' (muette)'}`);
+    console.log(`vidéo : ${mp4}${pistes.length ? ` (voix off : ${voix.nom})` : ' (muette)'}`);
   }
   console.log(`résultats : ${join(out, 'resultats.json')}`);
   process.exitCode = resultats.some((r) => ['échec', 'non conforme'].includes(r.verdict)) || resultats.length < total ? 1 : 0;

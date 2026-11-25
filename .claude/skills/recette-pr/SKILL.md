@@ -74,6 +74,7 @@ export default {
   persona: 'admin@exemple.fr',// connexion par le formulaire usager ; omis = anonyme
   connexion: async ({ page, data, outils }) => {}, // optionnel : connexion à la place du formulaire usager (super admin, OTP…) ; `persona` reste affiché
   env: { SUPER_ADMIN_OTP_ENABLED: 'enabled' },     // optionnel : variables à passer à serve.sh et recette.mjs
+  prononciations: { ZIP: 'zip' },                   // optionnel : ce que la voix dit à la place d'un mot (section 7)
   preparation: `…ruby…`,      // optionnel, exécuté par bin/rails runner ; dernière ligne = JSON → `data`
   depart: (data) => `/admin/procedures/${data.vide}/champs`,
   etapes: [{                  // une étape par critère d'acceptation
@@ -148,7 +149,20 @@ Sans tête, 1280×800, avec **le panneau du mode guide** en bas à droite (étap
 
 Compte ~15 s par étape avec la voix : 9 étapes font ~2 min 30. Au-delà de 6 ou 7 étapes, propose de garder les cas limites pour le mode guide, ou d'écrire des `narration` plus courtes que les attendus.
 
-La voix passe par `say` (macOS). Sans `--voix`, le runner prend la meilleure voix fr_FR installée : Premium, puis Améliorée (`Enhanced`), puis compacte, et à qualité égale Aurélie d'abord. Il avertit quand il n'a qu'une voix compacte : installée d'office, elle sonne robotique. Une meilleure voix s'installe dans Réglages Système > Accessibilité > Lire et énoncer > ⓘ à côté de « Voix système » ; vérifie avec `say -v '?'` qu'elle est visible de `say` (les voix Siri ne le sont pas). `--voix` en impose une. Sans `say`, ou avec `--muet`, la vidéo sort muette, avec son panneau. ffmpeg est requis dans tous les cas (`brew install ffmpeg`).
+La voix passe par **Piper**, un moteur de synthèse libre et local : même voix sous Linux et macOS. Installation, une fois :
+
+```bash
+uv tool install --python 3.12 piper-tts     # ou pipx install piper-tts
+~/.local/share/uv/tools/piper-tts/bin/python -m piper.download_voices --download-dir ~/.local/share/piper fr_FR-siwis-medium
+```
+
+Sans `--voix`, le runner prend la première voix installée parmi `fr_FR-siwis-medium`, `fr_FR-upmc-medium` et `fr_FR-tom-medium`, dans `~/.local/share/piper` (ou `RECETTE_PIPER_MODELS`). `--voix` en impose une : un nom de modèle, `modèle:locuteur` (par exemple `fr_FR-upmc-medium:1`) ou un chemin vers un `.onnx`. Sans Piper ou sans voix, ou avec `--muet`, la vidéo sort muette, avec son panneau, et le runner rappelle l'installation. ffmpeg est requis dans tous les cas (`brew install ffmpeg`, ou le paquet de la distribution).
+
+**Prononciation.** Piper phonétise avec espeak-ng, dont le dictionnaire développe certaines abréviations : « PR » y est « professeur ». Le runner épelle donc tout acronyme (deux majuscules ou plus) en phonèmes, passés à Piper entre `[[ … ]]`, sauf ceux qui se disent comme un mot (SIRET, SIREN, IBAN, RIB). Le texte affiché ne change pas : seule la voix est concernée. Un mot propre à la PR qui sonne mal se corrige dans le champ `prononciations` du scénario, en texte (`{ ZIP: 'zip' }`, pour un sigle qui se dit comme un mot) ou en phonèmes (`{ Mathieu: '[[ matjˈø ]]' }`). Pour trouver les phonèmes d'un mot, fais phonétiser à Piper une graphie qui sonne juste :
+
+```bash
+~/.local/share/uv/tools/piper-tts/bin/python -c "from piper import PiperVoice; v = PiperVoice.load('$HOME/.local/share/piper/fr_FR-siwis-medium.onnx'); print(''.join(v.phonemize('pé erre')[0]))"
+```
 
 L'attendu ne s'affiche et ne se dit qu'une fois `verifier` passé ; un échec s'affiche en rouge et termine la vidéo sur « Recette en échec à l'étape N » : ne livre jamais cette vidéo comme une démo : `tmp/recette/resultats-video/recette-pr-N.mp4` (~0,5 Mo muette, ~2 Mo par minute avec la voix). Vérifie 2 ou 3 images avec `ffmpeg -ss <t> -i … -frames:v 1 frame.png` avant de la proposer, **y compris entre deux étapes** : la vidéo garde les états intermédiaires qu'un `verifier` qui attend l'état final ne voit pas (un récapitulatif partiel affiché comme définitif pendant un job, par exemple). C'est un résultat de recette à remonter. `--rythme` ralentit ou accélère.
 
