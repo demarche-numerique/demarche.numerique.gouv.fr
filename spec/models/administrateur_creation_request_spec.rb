@@ -129,6 +129,16 @@ describe AdministrateurCreationRequest do
     end
   end
 
+  describe '#complete?' do
+    it 'is complete once every address has an outcome' do
+      request = described_class.new(emails: ['a@x.fr', 'b@x.fr', 'c@x.fr'], results: { 'a@x.fr' => 'created' })
+      expect(request).not_to be_complete
+
+      request.results = { 'a@x.fr' => 'created', 'b@x.fr' => 'invalid', 'c@x.fr' => 'already_administrateur' }
+      expect(request).to be_complete
+    end
+  end
+
   describe '#create_accounts!' do
     let(:existing) { administrateurs.default }
     let(:creation_request) do

@@ -38,6 +38,16 @@ describe Manager::AdministrateurCreationRequestsController, type: :controller do
         expect(response.body).not_to include('name="otp_attempt"')
       end
     end
+
+    context 'when the accounts are being created' do
+      let(:emails) { ['a@numerique.gouv.fr', 'b@numerique.gouv.fr', 'c@numerique.gouv.fr'] }
+      let!(:creation_request) { AdministrateurCreationRequest.create!(requester:, emails:, state: :approved, results: { 'a@numerique.gouv.fr' => 'created' }) }
+
+      it 'keeps showing the progress until every address is processed' do
+        expect(response.body).to include('Création des comptes en cours.')
+        expect(response.body).not_to include('Administrateur créé.')
+      end
+    end
   end
 
   describe '#approve' do

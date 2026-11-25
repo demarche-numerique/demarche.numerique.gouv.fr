@@ -17,7 +17,7 @@
 
       <% if @creation_request.approved? %>
         <p>
-          <%= @creation_request.results.present? ? @creation_request.results_summary : t(".in_progress") %>
+          <%= @creation_request.complete? ? @creation_request.results_summary : t(".in_progress") %>
         </p>
       <% end %>
     </div>

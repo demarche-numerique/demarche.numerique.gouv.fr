@@ -41,6 +41,8 @@ class AdministrateurCreationRequest < ApplicationRecord
 
   def cancel! = decide!(:cancelled, nil)
 
+  def complete? = (emails - results.keys).empty?
+
   def create_accounts!
     inviter = validator || requester
     pending_emails = emails - results.keys
