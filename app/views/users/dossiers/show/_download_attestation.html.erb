@@ -1,0 +1,3 @@
+<% if dossier&.attestation.present? %>
+  <%= link_to t('.link'), attestation_dossier_path(dossier), download: t('.filename'), class: 'fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-download-line', **new_tab_link_attributes(t('.link')) %>
+<% end %>

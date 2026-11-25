@@ -520,23 +520,19 @@ en:
           back: Back
         merci:
           thanks: Thank you!
-          dossier_success: Your file has been submitted on the procedure ‘%{libelle}’.
-          dossier_acces_html: You now have access to your <strong>online file</strong> to track its progress and, if needed, exchange with the administration through the messaging system.
-          download_dossier: Download your file
-          download_attestation: Download your attestation
-          acces_dossier: Access your file
-          submit_dossier: Submit an other file
+          dossier_success: Your application has been submitted on the procedure ‘%{libelle}’.
+          dossier_acces_html: You now have access to your <strong>online application</strong> to track its progress and, if needed, exchange with the administration through the messaging system.
+          acces_dossier: Access your application
+          submit_dossier: Submit another application
         show:
           header:
-            summary_html: 'Follow-up<span class="fr-hidden fr-unhidden-sm"> on your file</span>'
-            request: "Your file"
-            mailbox_html: '<span class="fr-hidden fr-unhidden-sm">Administration </span> messaging'
+            summary_html: 'Follow-up<span class="fr-hidden fr-unhidden-sm"> on your application</span>'
+            request: "Your application"
+            mailbox_html: 'Messaging<span class="fr-hidden fr-unhidden-sm"> with the administration</span>'
             rendez_vous: "Appointment"
-            dossier_number: "File no. %{dossier_id}"
+            dossier_number: "Application no. %{dossier_id}"
             created_date: "- Draft on %{date_du_dossier}"
-            submit_date: "- Submit on %{date_du_dossier}"
-            download: "file-%{dossier_id}.pdf"
-            download_without_number: "DS-file.pdf"
+            submit_date: "- Submitted on %{date_du_dossier}"
           status_overview:
             status_draft: draft
             status_in_progress: submitted
@@ -551,7 +547,7 @@ en:
             use_mailbox_for_questions_html: "<strong>You have a question?</strong> Use the mailbox to <a href=\"%{mailbox_url}\">contact the administration directly</a>."
             motivation: "Motivation :"
             attestation: "Attestation :"
-            justificatif: "Justification of decision :"
+            justificatif: "Decision document:"
             acceptee: "Your file had been accepted"
             accepte_motivation: "Reason"
             accepte_attestation: "Download the attestation"
@@ -1069,9 +1065,15 @@ en:
         not_available: "The supporting document is not available."
         scan_pending: "The supporting document is being scanned for viruses, please try again in a few minutes."
       show:
+        download_dossier:
+          link: Download your application (PDF)
+          filename: "application-%{dossier_id}.pdf"
+        download_attestation:
+          link: Download your decision notice (PDF)
+          filename: "decision-notice.pdf"
         attestation_depot:
-          get_attestation_depot: "Get a deposit receipt"
-          filename: "deposit-receipt_file-%{dossier_id}.pdf"
+          get_attestation_depot: "Get a submission receipt"
+          filename: "submission-receipt_application-%{dossier_id}.pdf"
       show_in_trash:
         page_title: "File n° %{numero} - In trash"
         title: "File n° %{numero} has been moved to trash"

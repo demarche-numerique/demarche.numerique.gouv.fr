@@ -1,0 +1,17 @@
+<% latest_message = dossier.commentaires_chronological.last %>
+
+<% if latest_message.present? %>
+  <div class="latest-message-section">
+    <h2 class="fr-h5">
+      <%= t('views.users.dossiers.show.latest_message.latest_message') %>
+    </h2>
+
+    <div class="message">
+      <%= render Dossiers::MessageComponent.new(commentaire: latest_message, connected_user: current_user, heading_level: 'h3') %>
+    </div>
+
+    <%= link_to messagerie_dossier_url(dossier, anchor: 'new_commentaire'), class: 'fr-btn fr-btn--icon-left fr-icon-discuss-line' do %>
+      <%= commentaire_answer_action(latest_message, current_user) %>
+    <% end %>
+  </div>
+<% end %>

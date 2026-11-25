@@ -1,0 +1,6 @@
+<% if dossier.present? && dossier.justificatif_motivation.attached? %>
+  <span class="fr-hint-text">
+    <%= t('views.users.dossiers.show.status_overview.justificatif') %>
+  </span>
+  <%= render Attachment::ShowComponent.new(attachment: dossier.justificatif_motivation.attachment) %>
+<% end %>

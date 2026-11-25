@@ -1,0 +1,8 @@
+<% if dossier.present? %>
+  <%= link_to t('.link'), dossier_path(dossier, format: :pdf), download: t('.filename', dossier_id: dossier.id), class: 'fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-download-line', **new_tab_link_attributes(t('.link')) %>
+<% else %>
+  <%# admin preview of the end-of-submission message: no dossier to download %>
+  <span class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-download-line">
+    <%= t('.link') %>
+  </span>
+<% end %>

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 describe 'users/dossiers/show/header', type: :view do
-  let(:dossier) { create(:dossier, :en_construction, procedure: create(:procedure)) }
+  let(:dossier) { dossiers.en_construction }
   let(:user) { dossier.user }
 
   before do
@@ -41,8 +41,7 @@ describe 'users/dossiers/show/header', type: :view do
   end
 
   context "when the procedure is closed with a dossier en construction" do
-    let(:procedure) { create(:procedure, :closed) }
-    let(:dossier) { create(:dossier, :en_construction, procedure: procedure) }
+    let(:dossier) { create(:dossier, :en_construction, procedure: procedures.close) }
 
     it "n’affiche pas de banner" do
       expect(rendered).not_to have_text("La démarche liée à votre dossier est close")
@@ -134,12 +133,11 @@ describe 'users/dossiers/show/header', type: :view do
 
   context "when user is invited" do
     context "when the procedure is closed with a dossier en construction" do
-      let(:procedure) { create(:procedure, :closed) }
-      let(:dossier) { create(:dossier, :en_construction, procedure: procedure) }
+      let(:dossier) { create(:dossier, :en_construction, procedure: procedures.close) }
       let(:user) { create(:user) }
 
       before do
-        create(:invite, user: user, dossier: dossier)
+        create(:invite, user:, dossier:)
       end
 
       it "n’affiche pas de banner" do
