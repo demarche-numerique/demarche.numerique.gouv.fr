@@ -16,7 +16,7 @@ RSpec.describe GroupeGestionnaire::GroupeGestionnaireListCommentaires::Commentai
   context "when the commentaire is unread" do
     it do
       expect(subject).to have_text(administrateur.email)
-      expect(subject).to have_css(".notifications .fr-sr-only", exact_text: "notification")
+      expect(subject).to have_css(".notifications .fr-sr-only", exact_text: "Messages non lus")
     end
   end
 
