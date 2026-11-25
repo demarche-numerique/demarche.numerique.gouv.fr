@@ -7,7 +7,7 @@ fr:
         caption: Liste des services pouvant être affectés à la démarche
         name: Nom
         actions: Actions
-        assigned: ASSIGNÉ
+        assigned: Assigné
         assign: Affecter
         edit: Modifier
         delete: Supprimer

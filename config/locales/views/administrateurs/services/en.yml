@@ -7,7 +7,7 @@ en:
         caption: Agencies that can be assigned to the procedure
         name: Name
         actions: Actions
-        assigned: ASSIGNED
+        assigned: Assigned
         assign: Assign
         edit: Edit
         delete: Delete
