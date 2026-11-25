@@ -106,7 +106,16 @@ class Columns::JSONPathColumn < Columns::ChampColumn
   end
 
   def typed_value(champ)
-    JsonPath.on(champ.value_json, jsonpath).first
+    value = JsonPath.on(champ.value_json, jsonpath).first
+
+    case type
+    when :date
+      parse_datetime(value)&.to_date
+    when :datetime
+      parse_datetime(value)
+    else
+      value
+    end
   end
 
   # Sorts on the attribute shown in the column, not on the raw champ value.
