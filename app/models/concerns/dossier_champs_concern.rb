@@ -131,11 +131,12 @@ module DossierChampsConcern
     champ_for_update(type_de_champ, row_id:, updated_by:)
   end
 
-  def repetition_add_row(type_de_champ, updated_by:)
+  def repetition_add_row(type_de_champ, updated_by:, prefilled_by: nil)
     raise "Can't add row to non-repetition type de champ" if !type_de_champ.repetition?
 
     row_id = ULID.generate
-    champ_for_update(type_de_champ, row_id:, updated_by:)
+    marker = champ_for_update(type_de_champ, row_id:, updated_by:)
+    marker.mark_prefilled_by!(prefilled_by) if prefilled_by
     row_id
   end
 

@@ -96,7 +96,7 @@ class ChampLayout < Data.define(
 
     def lay_out_rows(repetition, ancestors:, flat:)
       @dossier.project_rows(repetition.type_de_champ).map.with_index(1) do |marker, index|
-        row = RepetitionRow.new(id: marker.row_id, index:, repetition:)
+        row = RepetitionRow.new(id: marker.row_id, index:, repetition:, prefilled_by: marker.prefilled_by)
         row.lay_out(children: walk(repetition.type_de_champ.children, ancestors:, row:, flat:))
       end.freeze
     end

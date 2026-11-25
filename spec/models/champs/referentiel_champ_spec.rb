@@ -321,14 +321,9 @@ describe Champs::ReferentielChamp, type: :model do
       Dossier.find(dossier.id).champs.find(&:referentiel?).update_external_data!(data:)
     end
 
-    def rows
-      reloaded = Dossier.find(dossier.id)
-      repetition = reloaded.find_type_de_champ_by_stable_id(200)
-      nom, siren = [201, 202].map { reloaded.find_type_de_champ_by_stable_id(it) }
-      reloaded.project_champ(repetition).row_ids.map do |row_id|
-        [reloaded.project_champ(nom, row_id:).value, reloaded.project_champ(siren, row_id:).value]
-      end
-    end
+    def repetition = Dossier.find(dossier.id).public_champs.find(&:repetition?)
+
+    def rows = repetition.rows.map { it.children.map(&:value) }
 
     it 'adds exactly one row for a new element of the array' do
       prefill(societes: [{ nom: 'ACME', siren: '111' }])
@@ -355,9 +350,7 @@ describe Champs::ReferentielChamp, type: :model do
 
     it 're-injects an element whose row the usager removed' do
       prefill(societes: [{ nom: 'ACME', siren: '111' }])
-      reloaded = Dossier.find(dossier.id)
-      repetition = reloaded.find_type_de_champ_by_stable_id(200)
-      reloaded.repetition_remove_row(repetition, reloaded.project_champ(repetition).row_ids.first, updated_by: 'test')
+      repetition.then { it.remove_row(it.row_ids.first, updated_by: 'test') }
 
       prefill(societes: [{ nom: 'ACME', siren: '111' }])
 

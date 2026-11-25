@@ -1391,17 +1391,15 @@ describe Users::DossiersController, type: :controller do
 
     context 'when the champ is the row marker of a prefilled repetition' do
       let(:procedure) { create(:procedure, :published, public_type_de_champs: [{ type: :repetition, children: [{}] }]) }
-      let(:repetition) { dossier.public_root_champs.first.type_de_champ }
-      let(:row_id) { dossier.project_champ(repetition).row_ids.first }
+      let(:repetition) { dossier.public_champs.first }
       let(:source) { double(public_id: '100') }
-
-      before { dossier.champ_for_update(repetition, row_id:, updated_by: user.email).mark_prefilled_by!(source) }
+      let!(:row_id) { repetition.add_row(updated_by: user.email, prefilled_by: source) }
 
       it 'leaves the marker untouched' do
-        patch :revert_prefill, params: { id: dossier.id, public_id: repetition.public_id(row_id) }, format: :turbo_stream
+        patch :revert_prefill, params: { id: dossier.id, public_id: repetition.type_de_champ.public_id(row_id) }, format: :turbo_stream
 
         expect(response).to have_http_status(:success)
-        expect(Dossier.find(dossier.id).project_rows(repetition).first).to be_prefilled_by(source)
+        expect(Dossier.find(dossier.id).public_champs.first.rows.find { it.id == row_id }.prefilled_by).to eq(source.public_id)
       end
     end
 
