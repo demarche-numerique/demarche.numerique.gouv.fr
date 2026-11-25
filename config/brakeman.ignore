@@ -175,13 +175,13 @@
     {
       "warning_type": "SQL Injection",
       "warning_code": 0,
-      "fingerprint": "95d7d39f57eb0765cf203dc062926a31f89938998f6e554e38912553c0869904",
+      "fingerprint": "9c6ea410a9a1e6497d2d582cd6109528fa24f7c39529d6466066197ea5ad5d08",
       "check_name": "SQL",
       "message": "Possible SQL injection",
       "file": "app/models/columns/json_path_column.rb",
-      "line": 164,
+      "line": 118,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "Arel.sql(\"jsonb_path_query_first(champs.value_json, '#{jsonpath_for_sql}') #{(\"DESC\" or \"ASC\")}\")",
+      "code": "Arel.sql(\"NULLIF(jsonb_path_query_first(champs.value_json, '#{jsonpath_for_sql}'), 'null'::jsonb) #{(\"DESC\" or \"ASC\")}\")",
       "render_path": null,
       "location": {
         "type": "method",
