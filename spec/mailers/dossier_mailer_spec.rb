@@ -120,6 +120,43 @@ RSpec.describe DossierMailer, type: :mailer do
     end
   end
 
+  describe '.notify_new_commentaire_to_instructeur' do
+    let(:dossier) { dossiers.en_construction }
+
+    subject { described_class.notify_new_commentaire_to_instructeur(dossier, to_email) }
+
+    it 'links to the messagerie of the dossier' do
+      expect(subject.body).to include(dossier.procedure.libelle)
+      expect(subject.body).to include("Messagerie du dossier n° #{dossier.id}")
+      expect(subject.body).to include(messagerie_instructeur_dossier_url(procedure_id: dossier.procedure.id, dossier_id: dossier.id))
+    end
+  end
+
+  describe '.notify_new_avis_to_instructeur' do
+    let(:pending_avis) { avis.pending }
+
+    subject { described_class.notify_new_avis_to_instructeur(pending_avis, to_email) }
+
+    it 'links to the dossier' do
+      expect(subject.body).to include(pending_avis.dossier.procedure.libelle)
+      expect(subject.body).to include("Voir le dossier n° #{pending_avis.dossier.id}")
+      expect(subject.body).to include(instructeur_dossier_url(pending_avis.procedure, pending_avis.dossier))
+    end
+  end
+
+  describe '.notify_brouillon_not_submitted' do
+    let(:dossier) { create(:dossier, procedure: create(:simple_procedure, :with_auto_archive)) }
+
+    subject { described_class.notify_brouillon_not_submitted(dossier) }
+
+    it 'asks to submit the dossier before the deadline' do
+      expect(subject.body).to include("Le dossier n° #{dossier.id} pour la démarche")
+      expect(subject.body).to include(dossier.procedure.libelle)
+      expect(subject.body).to include("limite de dépôt des dossiers")
+      expect(subject.body).to include(dossier_url(dossier))
+    end
+  end
+
   describe '.notify_en_construction_deletion_to_administration' do
     let(:hidden_dossier) { build(:dossier) }
 
@@ -155,6 +192,11 @@ RSpec.describe DossierMailer, type: :mailer do
       expect(subject.body).to include("n° #{dossier.id}")
       expect(subject.body).to include(dossier.procedure.libelle)
       expect(subject.body).to include(commencer_url(dossier.procedure.path))
+    end
+
+    it "renders in the recipient's locale" do
+      dossier.user.update!(locale: 'en')
+      expect(subject.subject).to eq("A draft application has been deleted")
     end
   end
 
@@ -472,7 +514,7 @@ RSpec.describe DossierMailer, type: :mailer do
 
     context 'when it is a transfer of one dossier' do
       it 'includes relevant details about the single dossier transfer offer' do
-        expect(subject.subject).to include("Vous avez une proposition de transfert en attente.")
+        expect(subject.subject).to include("Vous avez une proposition de transfert en attente")
         expect(subject.body).to include("#{user.email} vous adresse une proposition de transfert pour le dossier n° #{dossier.id} sur la démarche")
         expect(subject.body).to include(procedure.libelle.to_s)
       end
@@ -489,14 +531,14 @@ RSpec.describe DossierMailer, type: :mailer do
         dossier_transfer.update!(email: user_2.email)
       end
       it 'includes a direct URL to transfers' do
-        expect(subject.body).to include('Pour accepter ou refuser la proposition vous devez vous connecter sur')
+        expect(subject.body).to include('Pour accepter ou refuser la proposition, vous devez vous connecter sur')
         expect(subject.body).to include(transferts_url)
       end
     end
 
     context 'when the user has no account' do
       it 'includes a URL to create one' do
-        expect(subject.body).to include('Pour accepter ou refuser la proposition vous devez avoir un compte :')
+        expect(subject.body).to include('Pour accepter ou refuser la proposition, vous devez avoir un compte :')
         expect(subject.body).to include(new_user_registration_url)
       end
     end
@@ -504,7 +546,7 @@ RSpec.describe DossierMailer, type: :mailer do
     context 'when it is a transfer of multiple dossiers' do
       let!(:dossier2) { create(:dossier, user: user, transfer: dossier_transfer, procedure: procedure) }
       it 'includes a summary of multiple dossiers transfer offer' do
-        expect(subject.subject).to include("Vous avez une proposition de transfert en attente.")
+        expect(subject.subject).to include("Vous avez une proposition de transfert en attente")
         expect(subject.body).to include("#{user.email} vous adresse une proposition de transfert pour 2 dossiers.")
       end
     end
@@ -515,7 +557,7 @@ RSpec.describe DossierMailer, type: :mailer do
       end
 
       it 'includes details indicating the transfer offer is from support' do
-        expect(subject.subject).to include("Vous avez une proposition de transfert en attente.")
+        expect(subject.subject).to include("Vous avez une proposition de transfert en attente")
         expect(subject.body).to include("Le support technique vous adresse une proposition de transfert")
       end
     end

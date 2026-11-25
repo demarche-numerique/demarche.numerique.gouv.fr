@@ -1,0 +1,11 @@
+<% content_for(:title, @subject) %>
+
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+
+<p>
+  <%= t('.body_html', dossier_id: @dossier.id, libelle_demarche: @dossier.procedure.libelle) %>
+</p>
+
+<p><%= t('.footer') %></p>
+
+<%= render partial: "layouts/mailers/signature" %>

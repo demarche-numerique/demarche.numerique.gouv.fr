@@ -10,3 +10,4 @@ fr:
       account_active:
         one: Votre compte reste activé sur %{application_name}, seul le dossier sera supprimé.
         other: Votre compte reste activé sur %{application_name}, seuls les dossiers seront supprimés.
+      dossier: "n°\u00A0%{dossier_id} (%{libelle})"

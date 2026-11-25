@@ -1,0 +1,30 @@
+<% content_for(:title, @subject) %>
+
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+
+<p>
+  <%= t('.header', count: @hidden_dossiers.size, deletion_date: human_date(@deletion_date.to_date)) %>
+
+  <ul>
+    <% @hidden_dossiers.each do |d| %>
+      <li>
+        <%= t('.list', count: @hidden_dossiers.size, dossier_id: d.id, libelle: d.procedure.libelle) %>
+
+        <% if @hidden_dossiers.many? %>
+          <%= t('.contact_html', name: d.mandataire_full_name, email: mail_to(d.user_email_for(:notification))) %>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</p>
+
+<p>
+  <%= t('.more_information', count: @hidden_dossiers.size) %>
+
+  <% if @hidden_dossiers.one? %>
+    <% d = @hidden_dossiers.first %>
+    <%= t('.contact_html', name: d.mandataire_full_name, email: mail_to(d.user_email_for(:notification))) %>
+  <% end %>
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>

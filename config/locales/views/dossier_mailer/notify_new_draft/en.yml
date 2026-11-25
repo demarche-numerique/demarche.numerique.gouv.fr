@@ -1,10 +1,10 @@
 en:
   dossier_mailer:
     notify_new_draft:
-      subject: Draft file created on procedure ‘%{libelle_demarche}’
+      subject: Find your draft for the procedure ‘%{libelle_demarche}’
       body_html: |
-        You created a draft file on procedure <b>‘%{libelle_demarche}’</b>.
+        You started filling in an application for the procedure <b>‘%{libelle_demarche}’</b>.
       link_html: |
-        You can access your file, to <b>review or complete</b>, by clicking on the following button:
-      submit_before: Your file needs to be submitted before %{before}
-      access_file: Open file
+        You can <b>find and complete your application</b> by clicking the button below:
+      submit_before: You can submit your application until %{before}.
+      access_file: Open your application

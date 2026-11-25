@@ -1,0 +1,6 @@
+en:
+  dossier_mailer:
+    notify_new_avis_to_instructeur:
+      subject: New opinion given on application no. %{dossier_id}
+      body: An expert has given a new opinion on application no. %{dossier_id} of the procedure %{libelle_demarche}.
+      link: View application no. %{dossier_id}

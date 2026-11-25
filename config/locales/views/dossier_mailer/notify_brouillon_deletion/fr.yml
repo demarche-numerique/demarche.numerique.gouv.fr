@@ -7,3 +7,4 @@ fr:
       header:
         one: "Le délai maximum de conservation du dossier en brouillon a été atteint, celui-ci a donc été supprimé :"
         other: "Le délai maximum de conservation des dossiers en brouillon a été atteint, ceux-ci ont donc été supprimés :"
+      dossier_html: "n°\u00A0%{dossier_id} (%{link})"

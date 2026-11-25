@@ -1,5 +1,6 @@
 fr:
   dossier_mailer:
     notify_new_commentaire_to_instructeur:
-      subject: Nouveau message envoyé sur le dossier n°%{dossier_id}
-      body: Un nouveau message a été envoyé par l’usager sur le dossier n° %{dossier_id} de la démarche %{libelle_demarche}
+      subject: Nouveau message envoyé sur le dossier n° %{dossier_id}
+      body: Un nouveau message a été envoyé par l’usager sur le dossier n° %{dossier_id} de la démarche %{libelle_demarche}.
+      link: Messagerie du dossier n° %{dossier_id}

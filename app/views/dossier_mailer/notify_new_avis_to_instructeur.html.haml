@@ -1,9 +1,0 @@
-- content_for(:title, "#{@subject}")
-
-%p= t(:hello, scope: [:views, :shared, :greetings])
-
-%p
-  = t('.body', dossier_id: @avis.dossier.id, libelle_demarche: @avis.dossier.procedure.libelle)
-%p= link_to("Voir le dossier n°#{@avis.dossier.id}", instructeur_dossier_url(@avis.procedure, @avis.dossier))
-
-= render partial: "layouts/mailers/signature"

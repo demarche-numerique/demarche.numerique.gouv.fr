@@ -1,0 +1,16 @@
+en:
+  dossier_mailer:
+    notify_automatic_deletion_for_tiers:
+      subject:
+        one: "Your application filled in on your behalf by the representative %{mandataire} has been moved to the trash"
+        other: "Applications filled in on your behalf by representatives have been moved to the trash"
+      header:
+        one: "The maximum retention period for the application has been reached.\nThe following application will be permanently deleted on %{deletion_date}:"
+        other: "The maximum retention period for the applications has been reached.\nThe following applications will be permanently deleted on %{deletion_date}:"
+      list:
+        one: "No. %{dossier_id} (%{libelle})"
+        other: "No. %{dossier_id} (%{libelle}) by"
+      more_information:
+        one: For more information, please contact
+        other: For more information, please contact the representatives above.
+      contact_html: "%{name} (%{email})."

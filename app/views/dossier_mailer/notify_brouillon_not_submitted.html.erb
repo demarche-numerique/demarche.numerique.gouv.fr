@@ -1,0 +1,18 @@
+<% content_for(:title, @subject) %>
+
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+
+<p>
+  <%= t('.not_submitted_html', dossier_id: @dossier.id, libelle_demarche: @dossier.procedure.libelle) %>
+</p>
+
+<p>
+  <%= t('.deadline', deadline: procedure_auto_archive_datetime(@dossier.procedure)) %>
+</p>
+
+<p><%= t('.how_to_submit_html') %></p>
+
+<p><%= t('.nothing_to_do') %></p>
+
+<%= dsfr_button(t('.access_file'), dossier_url(@dossier), :primary) %>
+<%= render partial: "layouts/mailers/signature" %>

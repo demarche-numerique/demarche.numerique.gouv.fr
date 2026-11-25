@@ -1,0 +1,17 @@
+<% content_for(:title, @subject) %>
+
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+
+<p>
+  <%= t('.header', count: @dossier_hashes.size) %>
+
+  <ul>
+    <% @dossier_hashes.each do |d| %>
+      <li>
+        <%= t('.dossier_html', dossier_id: d[:id], link: link_to(d[:procedure_libelle], commencer_url(d[:procedure_path]))) %>
+      </li>
+    <% end %>
+  </ul>
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>

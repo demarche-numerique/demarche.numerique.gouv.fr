@@ -1,0 +1,13 @@
+en:
+  dossier_mailer:
+    notify_brouillon_near_deletion:
+      subject:
+        one: A draft application will soon be deleted
+        other: Draft applications will soon be deleted
+      header:
+        one: "To limit the retention of your personal data, this draft application will be deleted on %{expiration_date}:"
+        other: "To limit the retention of your personal data, these draft applications will be deleted on %{expiration_date}:"
+      account_active:
+        one: Your account remains active on %{application_name}, only the application will be deleted.
+        other: Your account remains active on %{application_name}, only the applications will be deleted.
+      dossier: no. %{dossier_id} (%{libelle})
