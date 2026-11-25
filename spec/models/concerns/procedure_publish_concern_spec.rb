@@ -213,13 +213,15 @@ describe ProcedurePublishConcern do
       expect(procedure.published_revision.public_root_type_de_champs.map(&:id)).to eq([edited.id])
     end
 
-    context 'when a repetition was turned into another type' do
+    context 'when a repetition was emptied and turned into another type' do
       let(:procedure) { create(:procedure, :published, administrateurs: [administrateur], public_type_de_champs: [{ type: :repetition, children: [{ type: :text }] }]) }
       let(:draft) { procedure.draft_revision }
       let(:repetition) { draft.public_root_type_de_champs.find(&:repetition?) }
       let!(:child) { draft.type_de_champ(repetition.stable_id).flat_children.first }
 
       before do
+        # a repetition holding types de champ keeps its type
+        draft.remove_type_de_champ(child.stable_id)
         text = draft.find_and_ensure_exclusive_use(repetition.stable_id).becomes_type('text')
         draft.update_type_de_champ(text, type_champ: 'text')
       end

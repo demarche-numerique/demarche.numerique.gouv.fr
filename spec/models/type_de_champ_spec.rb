@@ -765,6 +765,24 @@ describe TypeDeChamp do
     end
   end
 
+  context 'when a repetition holds types de champ' do
+    let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :repetition, libelle: 'held', children: [{ type: :text }] }, { type: :repetition, libelle: 'empty' }]) }
+    let(:held) { procedure.draft_revision.public_root_type_de_champs.first }
+    let(:empty) { procedure.draft_revision.public_root_type_de_champs.second }
+
+    it 'keeps its type, and is removed all the same' do
+      expect(held.type_change_locked?).to be(true)
+      expect(held.type_change_locked_message).to eq(I18n.t("activerecord.errors.type_de_champ.locked.update.repetition_holding_champs", type_de_champ: 'held'))
+      expect(held.type_champ_locked?).to be(false)
+      expect(held.deletion_locked_message).to be_nil
+    end
+
+    it 'changes type when it holds nothing' do
+      expect(empty.type_change_locked?).to be(false)
+      expect(empty.type_change_locked_message).to be_nil
+    end
+  end
+
   context 'when a reference dataset url mentions a field' do
     let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :text, stable_id: 100 }, { type: :text, stable_id: 101 }, { type: :referentiel, stable_id: 200 }]) }
     let(:revision) { procedure.draft_revision }

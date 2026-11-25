@@ -861,17 +861,26 @@ describe ProcedureRevision do
     context 'with a repetition taking another type' do
       let(:procedure) { create(:procedure, public_type_de_champs: [{ libelle: 'a' }, { type: :repetition, libelle: 'r', children: [{ libelle: 'r1' }, { libelle: 'r2' }] }, { libelle: 'b' }]) }
 
-      it 'takes what it held out of the tree, for good' do
-        repetition = draft.find_and_ensure_exclusive_use(type_de_champ_repetition.stable_id)
-        children = repetition.flat_children
+      def change_type(type_champ)
+        type_de_champ = draft.find_and_ensure_exclusive_use(type_de_champ_repetition.stable_id).becomes_type(type_champ)
 
-        draft.update_type_de_champ(repetition.becomes_type('text'), type_champ: 'text')
-        expect(draft.type_de_champs.map(&:libelle)).to eq(['a', 'r', 'b'])
-        # left in place until the next publication
-        expect(TypeDeChamp.where(id: children.map(&:id)).count).to eq(2)
+        [draft.update_type_de_champ(type_de_champ, type_champ:), type_de_champ]
+      end
 
-        draft.update_type_de_champ(draft.type_de_champ(repetition.stable_id).becomes_type('repetition'), type_champ: 'repetition')
-        expect(draft.type_de_champs.map(&:libelle)).to eq(['a', 'r', 'b'])
+      it 'is refused while it holds types de champ: they would leave the draft for good' do
+        updated, type_de_champ = change_type('text')
+
+        expect(updated).to be(false)
+        expect(type_de_champ.errors.full_messages).to eq([I18n.t('activerecord.errors.type_de_champ.locked.update.repetition_holding_champs', type_de_champ: 'r')])
+        expect(draft.type_de_champs.map(&:libelle)).to eq(['a', 'r', 'r1', 'r2', 'b'])
+        expect(draft.type_de_champ(type_de_champ.stable_id)).to be_repetition
+      end
+
+      it 'takes another type once it holds nothing' do
+        draft.type_de_champ(type_de_champ_repetition.stable_id).flat_children.each { draft.remove_type_de_champ(it.stable_id) }
+
+        expect(change_type('text').first).to be(true)
+        expect(draft.type_de_champs.map(&:type_champ)).to eq(['text', 'text', 'text'])
       end
     end
 

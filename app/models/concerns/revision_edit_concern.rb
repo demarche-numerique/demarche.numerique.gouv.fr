@@ -77,8 +77,20 @@ module RevisionEditConcern
   # the tree as much as the order does.
   # The lock lays the revision out anew: read the type de champ again
   # (type_de_champ(stable_id)) rather than keep the one given.
+  #
+  # A repetition holding champs keeps its type: the fold would leave them out
+  # of the draft for good. Read under the lock, and answered as a failed save.
   def update_type_de_champ(type_de_champ, params)
-    edit_type_de_champs { type_de_champ.update(params) }
+    edit_type_de_champs do
+      type_de_champ.assign_attributes(params)
+
+      if type_de_champ.type_champ_changed?(from: TypeDeChamp.type_champs.fetch(:repetition)) && holds_type_de_champs?(type_de_champ.stable_id)
+        type_de_champ.errors.add(:base, I18n.t('activerecord.errors.type_de_champ.locked.update.repetition_holding_champs', type_de_champ: type_de_champ.libelle))
+        next false
+      end
+
+      type_de_champ.save
+    end
   end
 
   # A move returns the type de champ where it is laid out by now. The
@@ -228,6 +240,10 @@ module RevisionEditConcern
     ensure
       @editing_type_de_champs = false
     end
+  end
+
+  def holds_type_de_champs?(stable_id)
+    type_de_champ_tree.nodes.find { it.stable_id == stable_id }&.children.present?
   end
 
   # what tells the trees apart: the options are not loaded, some hold thousands of choices

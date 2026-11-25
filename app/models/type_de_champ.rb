@@ -618,14 +618,27 @@ class TypeDeChamp < ApplicationRecord
     type_champ_lock_reason.present?
   end
 
+  # What keeps its type as it is: the lock, or the champs a repetition holds,
+  # which would leave the draft with it for good. The latter is not shown as a
+  # lock: it comes and goes as the editor adds and removes them.
+  def type_change_lock_reason
+    type_champ_lock_reason || (:repetition_holding_champs if repetition? && children.any?)
+  end
+
+  def type_change_locked?
+    type_change_lock_reason.present?
+  end
+
   def type_change_locked_message
-    case type_champ_lock_reason
+    case type_change_lock_reason
     when :used_by_routing_rules
       I18n.t("activerecord.errors.type_de_champ.locked.update.used_by_routing_rules", type_de_champ: libelle)
     when :used_by_referentiel_urls
       I18n.t("activerecord.errors.type_de_champ.locked.update.used_by_referentiel_urls", type_de_champ: libelle)
     when :used_by_ineligibilite_rules
       I18n.t("activerecord.errors.type_de_champ.locked.update.used_by_ineligibilite_rules", type_de_champ: libelle)
+    when :repetition_holding_champs
+      I18n.t("activerecord.errors.type_de_champ.locked.update.repetition_holding_champs", type_de_champ: libelle)
     end
   end
 

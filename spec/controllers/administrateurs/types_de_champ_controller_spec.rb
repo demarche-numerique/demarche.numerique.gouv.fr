@@ -315,6 +315,30 @@ describe Administrateurs::TypesDeChampController, type: :controller do
       end
     end
 
+    context 'rejected if type changed and the repetition holds types de champ' do
+      let(:procedure) { create(:procedure, public_type_de_champs: [{ type: :repetition, libelle: 'held', children: [{ libelle: 'child' }] }, { type: :repetition, libelle: 'empty' }]) }
+      let(:params) { { procedure_id: procedure.id, stable_id:, type_de_champ: { type_champ: 'text' } } }
+      let(:stable_id) { first_type_de_champ.stable_id }
+
+      it 'leaves it as it is, and shows why' do
+        is_expected.to have_http_status(:ok)
+        expect(flash.alert).to eq(I18n.t("activerecord.errors.type_de_champ.locked.update.repetition_holding_champs", type_de_champ: 'held'))
+        expect(morpheds).to eq([['held', []]])
+        expect(procedure.draft_revision.reload.type_de_champs.map(&:libelle)).to eq(['held', 'child', 'empty'])
+        expect(first_type_de_champ).to be_repetition
+      end
+
+      context 'when it holds nothing' do
+        let(:stable_id) { second_type_de_champ.stable_id }
+
+        it 'changes its type' do
+          is_expected.to have_http_status(:ok)
+          expect(flash.alert).to be_nil
+          expect(second_type_de_champ.type_champ).to eq('text')
+        end
+      end
+    end
+
     context 'rejected if type changed and referentiel url involved' do
       let(:params) do
         default_params.deep_merge(type_de_champ: { type_champ: 'text', stable_id: third_type_de_champ.stable_id })

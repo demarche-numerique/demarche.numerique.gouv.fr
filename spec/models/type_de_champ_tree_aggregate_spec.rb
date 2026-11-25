@@ -130,6 +130,8 @@ describe TypeDeChampTree, '.aggregate' do
 
   context 'when a repetition became something else' do
     before do
+      # a repetition holding types de champ keeps its type
+      ['r1', 'r2'].each { draft.remove_type_de_champ(stable_id(it)) }
       change_type('rep', 'text')
       publish
     end

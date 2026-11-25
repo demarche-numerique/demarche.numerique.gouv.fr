@@ -28,7 +28,7 @@ module Administrateurs
       was_prefill_with_fc_information = type_de_champ.date? && type_de_champ.prefill_with_france_connect_information?
       update_params = type_de_champ_update_params(type_de_champ)
 
-      if type_de_champ.type_champ_locked? && changing_of_type?(type_de_champ, update_params)
+      if type_de_champ.type_change_locked? && changing_of_type?(type_de_champ, update_params)
         refuse(type_de_champ, type_de_champ.type_change_locked_message)
       else
         referentiel_url_stable_ids = []
