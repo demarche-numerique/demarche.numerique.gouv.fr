@@ -8,7 +8,23 @@ export class MenuButtonController extends ApplicationController {
 
   connect() {
     this.setup();
+    // capture: stop the click before the item's own listeners (Stimulus actions, DSFR modals)
+    this.element.addEventListener('click', this.blockDisabledMenuitem, true);
   }
+
+  disconnect() {
+    this.element.removeEventListener('click', this.blockDisabledMenuitem, true);
+    super.disconnect();
+  }
+
+  // a disabled menuitem uses aria-disabled to stay focusable, so the browser does not block it
+  private blockDisabledMenuitem = (event: Event) => {
+    const target = event.target as HTMLElement;
+    if (target.closest('[role="menuitem"][aria-disabled="true"]')) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  };
 
   private get isOpen() {
     return (this.element as HTMLElement).classList.contains('open');

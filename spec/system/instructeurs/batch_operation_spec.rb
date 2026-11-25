@@ -637,6 +637,17 @@ describe 'BatchOperation a dossier:', js: true do
       find('button[aria-haspopup="menu"]:not([disabled])', text: 'Autres actions multiples').send_keys(:down)
     end
 
+    scenario 'a disabled operation stays reachable but cannot be triggered' do
+      # "Suivre les dossiers" comes first and does not apply to a followed dossier
+      open_menu_with_arrow_down('tous')
+      expect(page).to have_selector('[role="menuitem"][aria-disabled="true"]:focus', text: 'Suivre les dossiers')
+
+      page.send_keys(:enter)
+      page.send_keys(:down)
+      expect(page).to have_selector('[role="menuitem"]:not([aria-disabled="true"]):focus', text: 'Ne plus suivre les dossiers')
+      expect(BatchOperation.count).to eq(0)
+    end
+
     scenario 'Space triggers the focused operation' do
       open_menu_with_arrow_down('suivis')
       expect(page).to have_selector('[role="menuitem"]:focus', text: 'Ne plus suivre les dossiers')

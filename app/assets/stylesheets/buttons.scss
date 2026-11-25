@@ -359,6 +359,12 @@ ul.dropdown-items {
       --active-tint: transparent;
     }
 
+    // A disabled menuitem keeps the focus (aria-disabled): grey it like :disabled
+    .dropdown-items-link[aria-disabled='true'] {
+      color: var(--text-disabled-grey);
+      cursor: not-allowed;
+    }
+
     .icon {
       flex-shrink: 0;
     }
