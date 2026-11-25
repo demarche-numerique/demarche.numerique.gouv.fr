@@ -24,13 +24,13 @@
 </div>
 
 <div class="fr-container groupe-instructeur">
-  <h4>
+  <h2 class="fr-h4">
     <% if @procedure.routing_enabled? %>
       <%= t('.group_heading', label: @groupe_instructeur.label) %>
     <% else %>
       <%= t('.procedure_heading', libelle: @procedure.libelle) %>
     <% end %>
-  </h4>
+  </h2>
 
   <%= render partial: 'shared/groupe_instructeurs/instructeurs', locals: {
     procedure: @procedure,
