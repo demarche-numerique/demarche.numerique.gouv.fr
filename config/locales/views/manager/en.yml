@@ -46,7 +46,61 @@ en:
         warning_html: "You are about to delete the reviewer role of <strong>%{email}</strong>. Their assignments to teams, their dossier follows, their bulk messages, their exports and their archives are destroyed."
         account: "Their sign-in account is not deleted: only the reviewer role is. The messages they wrote in the mailboxes stay visible."
         submit: "Delete the reviewer"
+    administrateur_creation_requests:
+      other_super_admin_required: "Please share this link with another super admin so that they approve your request."
+      requester_only: "Only the super admin who made the request can cancel it."
+      closed:
+        approved: "This request has already been approved."
+        refused: "This request has been rejected."
+        cancelled: "This request has been cancelled."
+        expired: "This request has expired."
+      results:
+        created:
+          one: "Administrator created."
+          other: "%{count} administrators created."
+        already_administrateur:
+          one: "Already an administrator, skipped: %{emails}."
+          other: "Already administrators, skipped: %{emails}."
+        invalid:
+          one: "Address refused: %{emails}."
+          other: "Addresses refused: %{emails}."
+      show:
+        title: "Approval request"
+        share_title: "Link to share with another super admin"
+        share_body: "No account has been created yet. The %{count} accounts will be created once another super admin approves the request with their OTP code."
+        link_label: "Approval link"
+        copy: "Copy the link"
+        expires: "You cannot approve this request yourself. Without approval, it expires automatically on %{date}."
+        edit: "Edit the list"
+        cancel: "Cancel the request"
+        edit_hint: "‘Edit the list’ cancels this request and goes back to the form with the addresses filled in; a new request and a new link will be created. Either way, this link will stop working."
+        request_html: "<strong>%{requester}</strong> requests the creation of <strong>%{count} administrator accounts</strong>."
+        dates: "Requested on %{created_at} · valid until %{expires_at}"
+        approve: "Approve the creation of %{count} administrator accounts"
+        refuse: "Reject"
+        self_approval: "The requester cannot approve their own request."
+        domains: "Domains:"
+        addresses: "Addresses (%{count})"
+        in_progress: "Accounts are being created."
+      approve:
+        success: "Request approved: the %{count} administrator accounts are being created."
+      refuse:
+        success: "Request rejected. No account was created."
+      cancel:
+        success: "Request cancelled. No account was created."
     administrateurs:
+      new:
+        title: "Create administrator account(s)"
+        info: "You can create one or more administrator accounts. From 2 accounts, the creation is confirmed with an OTP code; above %{max_without_validation}, it must also be approved by another super admin. %{max} accounts at most per request."
+        emails_label: "Email addresses"
+        emails_hint: "Paste one or more addresses, in any format: they are cleaned up automatically, one per line."
+        summary: "Summary"
+        count: "administrator accounts to create"
+        domains: "Domains:"
+        validation_notice: "More than %{max_without_validation} accounts: a link to share with another super admin will be generated at the next step."
+        submit_one: "Create the administrator account"
+        submit_many: "Create %{count} administrator accounts"
+        submit_validation: "Request approval (creation of %{count} accounts)"
       show:
         cannot_be_deleted: "This administrateur cannot be deleted: they are the only administrateur of a procedure that has dossiers."
       delete_edit:

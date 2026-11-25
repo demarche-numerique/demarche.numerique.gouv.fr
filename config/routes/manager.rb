@@ -51,6 +51,14 @@ namespace :manager do
     end
   end
 
+  resources :administrateur_creation_requests, only: [:show] do
+    member do
+      post :approve
+      post :refuse
+      post :cancel
+    end
+  end
+
   resources :users, only: [:index, :show, :edit, :update] do
     member do
       get :delete_edit

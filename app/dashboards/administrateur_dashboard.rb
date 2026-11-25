@@ -18,7 +18,6 @@ class AdministrateurDashboard < Administrate::BaseDashboard
     groupe_gestionnaire: Field::BelongsTo,
     registration_state: Field::String.with_options(searchable: false),
     features: FeaturesField,
-    email: Field::Email.with_options(searchable: false),
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -51,9 +50,7 @@ class AdministrateurDashboard < Administrate::BaseDashboard
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
-  FORM_ATTRIBUTES = [
-    :email,
-  ].freeze
+  FORM_ATTRIBUTES = [].freeze
 
   # Overwrite this method to customize how procedures are displayed
   # across all pages of the admin dashboard.

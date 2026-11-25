@@ -1,0 +1,102 @@
+<% content_for(:title) { t(".title") } %>
+<% requester = @creation_request.requester_id == current_super_admin.id %>
+<% count = @creation_request.emails.size %>
+
+<header class="main-content__header">
+  <h1 class="main-content__page-title"><%= content_for(:title) %></h1>
+
+  <div>
+    <%= link_to t("administrate.actions.back"), manager_administrateurs_path, class: "button" %>
+  </div>
+</header>
+
+<section class="main-content__body admin-creation__request">
+  <% if !@creation_request.open? %>
+    <div class="flash flash-alert">
+      <p><%= closed_message %></p>
+
+      <% if @creation_request.approved? %>
+        <p>
+          <%= @creation_request.complete? ? @creation_request.results_summary : t(".in_progress") %>
+        </p>
+      <% end %>
+    </div>
+  <% elsif requester %>
+    <div class="flash flash-notice">
+      <h2 class="admin-creation__subtitle"><%= t(".share_title") %></h2>
+      <p><%= t(".share_body", count:) %></p>
+    </div>
+    <% url = manager_administrateur_creation_request_url(@creation_request) %>
+    <label for="validation_url"><%= t(".link_label") %></label>
+    <input
+      id="validation_url"
+      type="text"
+      value="<%= url %>"
+      readonly
+      autocomplete="off"
+      aria-describedby="validation_url_hint"
+    >
+    <%= render Dsfr::CopyButtonComponent.new(text: url, title: t(".copy")) %>
+    <p id="validation_url_hint" class="admin-creation__hint">
+      <%= t(".expires", date: l(@creation_request.expires_at, format: :long_with_time)) %>
+    </p>
+    <div class="admin-creation__actions">
+      <%= button_to t(".edit"), cancel_manager_administrateur_creation_request_path(@creation_request), params: { edit: true }, class: "button button--alt", "aria-describedby": "edit_hint" %>
+      <%= button_to t(".cancel"), cancel_manager_administrateur_creation_request_path(@creation_request), class: "button button--danger" %>
+    </div>
+    <p id="edit_hint" class="admin-creation__hint"><%= t(".edit_hint") %></p>
+  <% else %>
+    <div class="flash flash-alert">
+      <p>
+        <%= t(".request_html", requester: @creation_request.requester&.email, count:) %>
+      </p>
+
+      <p>
+        <%= t(".dates",
+              created_at: l(@creation_request.created_at, format: :long_with_time),
+              expires_at: l(@creation_request.expires_at, format: :long_with_time)) %>
+      </p>
+    </div>
+  <% end %>
+
+  <h2 class="admin-creation__subtitle"><%= t(".domains") %></h2>
+
+  <p>
+    <%= @creation_request.domains.map { |domain, n| "#{domain} · #{n}" }.join(", ") %>
+  </p>
+
+  <h2 class="admin-creation__subtitle"><%= t(".addresses", count:) %></h2>
+
+  <ul class="admin-creation__list">
+    <% @creation_request.emails.each do |email| %>
+      <li><%= email %></li>
+    <% end %>
+  </ul>
+
+  <% if @creation_request.open? && !requester %>
+    <%= form_tag approve_manager_administrateur_creation_request_path(@creation_request) do %>
+      <div class="field-unit field-unit--string field-unit--required">
+        <%= render Manager::OtpAttemptInputComponent.new %>
+      </div>
+
+      <div class="admin-creation__actions">
+        <button type="submit" aria-describedby="self_approval_hint">
+          <%= t(".approve", count:) %>
+        </button>
+
+        <button
+          type="submit"
+          class="button--danger"
+          formaction="<%= refuse_manager_administrateur_creation_request_path(@creation_request) %>"
+          formnovalidate
+        >
+          <%= t(".refuse") %>
+        </button>
+      </div>
+
+      <p id="self_approval_hint" class="admin-creation__hint">
+        <%= t(".self_approval") %>
+      </p>
+    <% end %>
+  <% end %>
+</section>

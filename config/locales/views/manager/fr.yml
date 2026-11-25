@@ -54,7 +54,61 @@ fr:
         submit: "Supprimer le super-admin"
       delete:
         success: "Le compte super-admin de %{email} a été supprimé."
+    administrateur_creation_requests:
+      other_super_admin_required: "Veuillez partager ce lien avec un autre super admin pour qu’il valide votre demande."
+      requester_only: "Seul le super admin qui a fait la demande peut l’annuler."
+      closed:
+        approved: "Cette demande a déjà été validée."
+        refused: "Cette demande a été refusée."
+        cancelled: "Cette demande a été annulée."
+        expired: "Cette demande a expiré."
+      results:
+        created:
+          one: "Administrateur créé."
+          other: "%{count} administrateurs créés."
+        already_administrateur:
+          one: "Déjà administrateur, ignoré : %{emails}."
+          other: "Déjà administrateurs, ignorés : %{emails}."
+        invalid:
+          one: "Adresse refusée : %{emails}."
+          other: "Adresses refusées : %{emails}."
+      show:
+        title: "Demande de validation"
+        share_title: "Lien à transmettre à un autre super admin"
+        share_body: "Aucun compte n’est encore créé. Les %{count} comptes seront créés quand un autre super admin aura validé la demande et saisi son code OTP."
+        link_label: "Lien de validation"
+        copy: "Copier le lien"
+        expires: "Vous ne pouvez pas valider vous-même cette demande. Sans validation, elle expire automatiquement le %{date}."
+        edit: "Modifier la liste"
+        cancel: "Annuler la demande"
+        edit_hint: "« Modifier la liste » annule cette demande et revient au formulaire avec les adresses déjà remplies ; une nouvelle demande et un nouveau lien seront créés. Dans les deux cas, ce lien ne fonctionnera plus."
+        request_html: "<strong>%{requester}</strong> demande la création de <strong>%{count} comptes administrateurs</strong>."
+        dates: "Demande du %{created_at} · valable jusqu’au %{expires_at}"
+        approve: "Valider la création de %{count} comptes administrateurs"
+        refuse: "Refuser"
+        self_approval: "Le demandeur ne peut pas valider sa propre demande."
+        domains: "Domaines :"
+        addresses: "Adresses (%{count})"
+        in_progress: "Création des comptes en cours."
+      approve:
+        success: "Demande validée : la création des %{count} comptes administrateurs est en cours."
+      refuse:
+        success: "Demande refusée. Aucun compte n’a été créé."
+      cancel:
+        success: "Demande annulée. Aucun compte n’a été créé."
     administrateurs:
+      new:
+        title: "Création de compte(s) administrateur"
+        info: "Vous pouvez créer un ou plusieurs comptes administrateurs. À partir de 2 comptes, la création se confirme par code OTP ; au-delà de %{max_without_validation}, elle doit aussi être validée par un autre super admin. %{max} comptes maximum par demande."
+        emails_label: "Adresses électroniques"
+        emails_hint: "Collez une ou plusieurs adresses, dans n’importe quel format : elles sont nettoyées automatiquement, une par ligne."
+        summary: "Récapitulatif"
+        count: "comptes administrateurs à créer"
+        domains: "Domaines :"
+        validation_notice: "Plus de %{max_without_validation} comptes : un lien à transmettre à un autre super admin sera généré à l’étape suivante."
+        submit_one: "Créer le compte administrateur"
+        submit_many: "Créer %{count} comptes administrateurs"
+        submit_validation: "Demander la validation (création de %{count} comptes)"
       show:
         cannot_be_deleted: "Cet administrateur ne peut pas être supprimé : il est le seul administrateur d’une démarche ayant des dossiers."
       delete_edit:

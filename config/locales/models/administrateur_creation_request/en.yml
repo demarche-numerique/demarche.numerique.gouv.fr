@@ -1,0 +1,13 @@
+en:
+  activerecord:
+    attributes:
+      administrateur_creation_request:
+        emails: Email addresses
+    errors:
+      models:
+        administrateur_creation_request:
+          attributes:
+            emails:
+              too_short: "Enter at least one email address."
+              too_long: "You cannot create more than %{count} accounts per request."
+              daily_quota_exceeded: "You cannot create more than %{count} accounts per day. No account was created."
