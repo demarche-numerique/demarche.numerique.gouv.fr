@@ -589,6 +589,13 @@ describe Administrateurs::ProceduresController, type: :controller do
 
           expect(response.body).to have_css('details[open] #declarative_with_state-legend', visible: :all)
         end
+
+        it 'translates the submission deadline field in English' do
+          admin.user.update!(locale: 'en')
+
+          expect(subject.body).to have_css('label', text: 'Application submission deadline')
+          expect(subject.body).to have_text('at 11:59 PM (Paris time).')
+        end
       end
 
       context 'when procedure doesn’t exist' do

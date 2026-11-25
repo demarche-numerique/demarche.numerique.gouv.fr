@@ -151,10 +151,8 @@
 
         .fr-fieldset__element
           = f.label :auto_archive_on, class: 'fr-label fr-mb-2w' do
-            Date limite de dépôt des dossiers
-            %span.fr-hint-text
-              Si une date est définie, aucun dossier ne pourra plus être déposé ou modifié après cette limite.
-              Les dossiers en construction passeront en instruction et la démarche sera clôturée.
+            = t('.auto_archive_on.label')
+            %span.fr-hint-text= t('.auto_archive_on.hint')
           %span.flex.align-center
             - value = @procedure.auto_archive_on ? @procedure.auto_archive_on - 1.day : nil
             = f.date_field :auto_archive_on, id: 'auto_archive_on', class: 'fr-input', value: value
