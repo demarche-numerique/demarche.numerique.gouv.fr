@@ -5,10 +5,8 @@ class Conditions::ConditionsErrorsComponent < ApplicationComponent
     @condition, @source_tdcs = condition, source_tdcs
   end
 
-  private
-
-  def errors = to_html_list(messages)
-
+  # Also read without rendering, by DraftEditorService: the same wording for
+  # a client that edits the draft without the editor.
   def messages
     @messages ||= begin
       errors = @condition ? Logic.errors(@condition, @source_tdcs).uniq : []
@@ -23,6 +21,10 @@ class Conditions::ConditionsErrorsComponent < ApplicationComponent
       end
     end
   end
+
+  private
+
+  def errors = to_html_list(messages)
 
   def to_html_list(messages)
     messages
