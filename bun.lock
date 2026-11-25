@@ -97,6 +97,7 @@
     },
   },
   "trustedDependencies": [
+    "@gouvfr/dsfr",
     "core-js",
     "esbuild",
   ],

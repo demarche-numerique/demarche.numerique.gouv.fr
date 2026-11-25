@@ -109,6 +109,7 @@
     "i18n:extract": "lingui extract"
   },
   "trustedDependencies": [
+    "@gouvfr/dsfr",
     "core-js",
     "esbuild",
     "rollup"
