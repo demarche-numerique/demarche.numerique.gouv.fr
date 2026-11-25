@@ -10,13 +10,13 @@ describe 'shared/kaminari/_paginator', type: :view do
 
     it 'renders the full DSFR pagination' do
       expect(subject).to have_css('nav.fr-pagination[role="navigation"][aria-label="Pagination"] ul.fr-pagination__list')
-      expect(subject).to have_link('Premier', class: 'fr-pagination__link--first', title: 'Première page')
+      expect(subject).to have_link('Première page', class: 'fr-pagination__link--first')
       expect(subject).to have_link('Précédent', class: 'fr-pagination__link--prev')
       expect(subject).to have_link('9', title: 'Page 9')
       expect(subject).to have_css('a.fr-pagination__link[aria-current="page"][title="Page 10"]:not([href])', text: '10')
-      expect(subject).to have_link('…', href: '#', class: 'fr-displayed-lg')
+      expect(subject).to have_css('a.fr-pagination__link.fr-displayed-lg:not([href])', text: '…')
       expect(subject).to have_link('Suivant', class: 'fr-pagination__link--next')
-      expect(subject).to have_link('Dernier', class: 'fr-pagination__link--last', title: 'Dernière page')
+      expect(subject).to have_link('Dernière page', class: 'fr-pagination__link--last')
     end
   end
 
