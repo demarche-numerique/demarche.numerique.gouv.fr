@@ -1,2 +1,3 @@
 en:
-  messages_with_parent_group: "Messages with the parent managing group"
+  messages_with_parent_group: "Messages with the parent admins group"
+  notification: "Unread messages"
