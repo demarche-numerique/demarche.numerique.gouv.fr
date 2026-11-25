@@ -12,13 +12,14 @@ RSpec.describe Dossiers::EditFooterComponent, type: :component do
   end
 
   context 'when brouillon' do
-    let(:dossier) { create(:dossier, :brouillon) }
+    let(:dossier) { dossiers.brouillon }
 
     context 'when dossier can be submitted' do
       before { allow(component).to receive(:can_passer_en_construction?).and_return(true) }
 
       it 'renders submit button without disabled' do
         expect(subject).to have_selector('button', text: 'Déposer le dossier')
+        expect(I18n.with_locale(:en) { render_inline(component).to_html }).to have_selector('button', text: 'Submit the application')
       end
     end
 
@@ -42,7 +43,7 @@ RSpec.describe Dossiers::EditFooterComponent, type: :component do
   end
 
   context 'when en construction' do
-    let(:dossier) { create(:dossier, :en_construction) }
+    let(:dossier) { dossiers.en_construction }
     before { allow(dossier).to receive(:user_buffer_changes?).and_return(true) }
 
     context 'when dossier can be submitted' do

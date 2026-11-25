@@ -155,6 +155,11 @@ RSpec.describe DossierMailer, type: :mailer do
       expect(subject.body).to include("limite de dépôt des dossiers")
       expect(subject.body).to include(dossier_url(dossier))
     end
+
+    it 'names the submit button as it reads in English' do
+      dossier.user.update!(locale: 'en')
+      expect(subject.body).to include('‘Submit the application’')
+    end
   end
 
   describe '.notify_en_construction_deletion_to_administration' do
