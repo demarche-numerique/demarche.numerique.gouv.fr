@@ -51,6 +51,16 @@ const SingleLine = Extension.create({
   }
 });
 
+// Stored links carry no `title`: drop the attribute Link 3 adds, which would
+// otherwise be saved as `title: null` on every new link.
+const StoredLink = Link.extend({
+  addAttributes() {
+    return Object.fromEntries(
+      Object.entries(this.parent?.() ?? {}).filter(([name]) => name != 'title')
+    );
+  }
+});
+
 export function createEditor({
   editorElement,
   content,
@@ -118,7 +128,7 @@ function getEditorOptions(
         break;
       case 'link':
         extensions.push(
-          Link.configure({
+          StoredLink.configure({
             openOnClick: false,
             HTMLAttributes: {
               target: '_blank',

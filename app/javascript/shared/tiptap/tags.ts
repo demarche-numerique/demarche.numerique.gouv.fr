@@ -102,6 +102,11 @@ class SuggestionMenu {
     });
 
     this.render();
+    // Suggestion starts the menu before it fetches the items: the menu element
+    // only exists once the first update brings them.
+    if (this.#element && this.#props.items.length > 0) {
+      this.#popup?.setContent(this.#element);
+    }
   }
 
   onKeyDown(key: string) {
