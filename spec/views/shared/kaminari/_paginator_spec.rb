@@ -16,7 +16,7 @@ describe 'shared/kaminari/_paginator', type: :view do
       expect(subject).to have_css('a.fr-pagination__link[aria-current="page"][title="Page 10"]:not([href])', text: '10')
       expect(subject).to have_css('a.fr-pagination__link.fr-displayed-lg:not([href])', text: '…')
       expect(subject).to have_link('Suivant', class: 'fr-pagination__link--next')
-      expect(subject).to have_link('Dernière page', class: 'fr-pagination__link--last')
+      expect(subject).to have_css('a.fr-pagination__link--last:not([rel])', text: 'Dernière page')
     end
   end
 
