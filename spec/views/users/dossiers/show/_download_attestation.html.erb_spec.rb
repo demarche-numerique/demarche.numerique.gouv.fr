@@ -16,4 +16,10 @@ describe 'users/dossiers/show/_download_attestation', type: :view do
 
     it { expect(subject).to be_blank }
   end
+
+  context 'without dossier (admin preview of the end-of-submission message)' do
+    let(:dossier) { nil }
+
+    it { expect(subject).to be_blank }
+  end
 end
