@@ -54,6 +54,12 @@ module BrevoBlockableConcern
 
   def brevo_blocked? = brevo_last_blocked_at.present? && (brevo_unblocked_at.nil? || brevo_last_blocked_at >= brevo_unblocked_at)
 
+  def brevo_current_block_reason
+    return brevo_blocked_reason if brevo_unblocked_at.nil?
+
+    brevo_blocked_reason if brevo_blocked_reason_at.present? && brevo_blocked_reason_at >= brevo_unblocked_at
+  end
+
   # At most once a day: an address that blocks again keeps its block until then.
   # An invalid address would only bounce.
   def unblock_brevo_for_critical_mail!

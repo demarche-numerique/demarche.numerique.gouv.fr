@@ -114,6 +114,31 @@ describe BrevoBlockableConcern do
     end
   end
 
+  describe '#brevo_current_block_reason' do
+    it 'is the recorded reason when the address was never unblocked' do
+      user.record_brevo_block!(at: earlier, event: 'spam')
+
+      expect(user.reload.brevo_current_block_reason).to eq('spam')
+    end
+
+    context 'once unblocked' do
+      before { user.update_columns(brevo_unblocked_at: between) }
+
+      it 'is unknown when only a blocked event came after the unblock' do
+        user.record_brevo_block!(at: earlier, event: 'spam')
+        user.record_brevo_block!(at: later, event: 'blocked')
+
+        expect(user.reload.brevo_current_block_reason).to be_nil
+      end
+
+      it 'is the reason recorded after the unblock' do
+        user.record_brevo_block!(at: later, event: 'hard_bounce')
+
+        expect(user.reload.brevo_current_block_reason).to eq('hard_bounce')
+      end
+    end
+  end
+
   describe '#unblock_brevo_for_critical_mail!' do
     let(:brevo) { instance_double(Brevo::API, unblock_user: true) }
 
