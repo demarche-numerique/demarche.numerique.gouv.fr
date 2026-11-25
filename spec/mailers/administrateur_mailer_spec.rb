@@ -51,6 +51,7 @@ end
       expect(subject.subject).to include("nº#{procedure.id}")
       expect(subject.body).to include(procedure.libelle)
       expect(subject.body).to include("empêcher la création")
+      expect(subject.body).to include("(heure de Paris)")
     end
   end
 

@@ -75,6 +75,11 @@ RSpec.describe UserMailer, type: :mailer do
       expect(subject.body).to include(france_connect_merge_using_email_link_url(email_merge_token: code))
     end
 
+    it 'gives the link expiry in Paris time' do
+      mail = described_class.france_connect_merge_confirmation(email, code, Time.zone.local(2026, 8, 1, 13, 50))
+      expect(mail.body).to include("jusqu’au 1 août 2026 à 14 h 05 (heure de Paris)")
+    end
+
     context 'without SafeMailer configured' do
       it { expect(subject[BalancerDeliveryMethod::FORCE_DELIVERY_METHOD_HEADER]&.value).to eq(nil) }
     end

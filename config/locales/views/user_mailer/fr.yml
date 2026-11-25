@@ -28,7 +28,7 @@ fr:
       subject: Veuillez confirmer la fusion de compte
       click_link: "Pour confirmer la fusion de votre compte, veuillez cliquer sur le lien suivant :"
       link_html: "Vous pouvez aussi visiter ce lien : %{link}"
-      validity: Ce lien est valide %{duration}, jusqu’à %{expires_at}.
+      validity: Ce lien est valide %{duration}, jusqu’au %{expires_at}.
     custom_confirmation_instructions:
       subject: Confirmez votre adresse électronique
       greeting: "Bonjour %{email} !"
