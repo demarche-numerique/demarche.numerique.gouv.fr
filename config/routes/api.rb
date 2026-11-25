@@ -7,6 +7,8 @@ get 'graphql' => redirect(API_GRAPHQL_CLIENT_DOC_URL, status: 302)
 namespace :api do
   namespace :v2 do
     post :graphql, to: "graphql#execute"
+    post :mcp, to: "mcp#create"
+    get :mcp, to: "mcp#stream"
     get 'dossiers/pdf/:id', format: :pdf, to: "dossiers#pdf", as: :dossier_pdf
     get 'dossiers/geojson/:id', to: "dossiers#geojson", as: :dossier_geojson
   end

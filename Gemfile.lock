@@ -456,6 +456,8 @@ GEM
       zeitwerk (>= 2.6.2)
     marcel (1.2.1)
     matrix (0.4.3)
+    mcp (1.11.0)
+      json_schemer (>= 2.4)
     memory_profiler (1.1.0)
     mime-types (3.7.0)
       logger
@@ -1003,6 +1005,7 @@ DEPENDENCIES
   mail (~> 2.9.1)
   maintenance_tasks
   matrix
+  mcp
   memory_profiler
   oaken
   oauth2
