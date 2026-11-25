@@ -1,6 +1,5 @@
 import type { SuggestionOptions, SuggestionProps } from '@tiptap/suggestion';
 import * as s from 'superstruct';
-import tippy, { type Instance as TippyInstance } from 'tippy.js';
 import { matchSorter } from 'match-sorter';
 
 export const tagSchema = s.coerce(
@@ -53,60 +52,19 @@ class SuggestionMenu {
   #selectedIndex = 0;
   #props: SuggestionProps<TagSchema>;
 
-  #element?: Element;
-  #popup?: TippyInstance;
+  #element: HTMLElement;
+  #unmount: () => void;
 
-  constructor(props: SuggestionProps<TagSchema>, editorElement: Element) {
+  constructor(props: SuggestionProps<TagSchema>) {
     this.#props = props;
+    this.#element = this.createMenu();
     this.render();
-    this.init(editorElement);
-  }
-
-  init(editorElement: Element) {
-    if (!this.#props.clientRect) {
-      return;
-    }
-
-    this.#popup = tippy(document.body, {
-      getReferenceClientRect: () => {
-        const domRect = this.#props?.clientRect?.();
-        if (!domRect) {
-          throw new Error('domRect is null');
-        }
-        return domRect;
-      },
-      appendTo: editorElement,
-      content: this.#element,
-      showOnCreate: true,
-      interactive: true,
-      trigger: 'manual',
-      placement: 'bottom-start'
-    });
+    this.#unmount = props.mount(this.#element);
   }
 
   update(props: SuggestionProps<TagSchema>) {
     this.#props = props;
-
-    if (!this.#props.clientRect) {
-      return;
-    }
-
-    this.#popup?.setProps({
-      getReferenceClientRect: () => {
-        const domRect = props.clientRect?.();
-        if (!domRect) {
-          throw new Error('domRect is null');
-        }
-        return domRect;
-      }
-    });
-
     this.render();
-    // Suggestion starts the menu before it fetches the items: the menu element
-    // only exists once the first update brings them.
-    if (this.#element && this.#props.items.length > 0) {
-      this.#popup?.setContent(this.#element);
-    }
   }
 
   onKeyDown(key: string) {
@@ -117,9 +75,6 @@ class SuggestionMenu {
       case 'ArrowUp':
         this.up();
         return true;
-      case 'Escape':
-        this.escape();
-        return true;
       case 'Enter':
         this.enter();
         return true;
@@ -128,18 +83,14 @@ class SuggestionMenu {
   }
 
   destroy() {
-    this.#popup?.destroy();
-    this.#element?.remove();
-    this.#element?.removeEventListener('click', this.handleItemClick);
+    this.#unmount();
+    this.#element.removeEventListener('click', this.handleItemClick);
   }
 
   private render() {
-    if (this.#props.items.length == 0) {
-      this.#element?.remove();
-      return;
-    }
+    // No item while the first fetch runs, or when nothing matches the query.
+    this.#element.classList.toggle('hidden', this.#props.items.length == 0);
 
-    this.#element ??= this.createMenu();
     const list = this.#element.firstChild as HTMLUListElement;
 
     list.textContent = '';
@@ -190,7 +141,6 @@ class SuggestionMenu {
     }
 
     this.#props.command(this.#props.items[Number(target.dataset.tagIndex)]);
-    this.#popup?.hide();
   };
 
   private up() {
@@ -212,21 +162,19 @@ class SuggestionMenu {
       this.#props.command(item);
     }
   }
-
-  private escape() {
-    this.#popup?.hide();
-    this.#selectedIndex = 0;
-  }
 }
 
 export function createSuggestionMenu(
   tags: TagSchema[],
-  editorElement: Element
+  editorElement: HTMLElement
 ): Omit<SuggestionOptions<TagSchema>, 'editor'> {
   return {
     char: '@',
     allowedPrefixes: null,
     allowSpaces: true,
+    // Inside the editor, where the tags menu styles apply.
+    container: editorElement,
+    offset: { mainAxis: 10 },
     items: ({ query }) => {
       return matchSorter(tags, query, { keys: ['label'] }).slice(0, 6);
     },
@@ -235,7 +183,7 @@ export function createSuggestionMenu(
 
       return {
         onStart: (props) => {
-          menu = new SuggestionMenu(props, editorElement);
+          menu = new SuggestionMenu(props);
         },
 
         onUpdate(props) {

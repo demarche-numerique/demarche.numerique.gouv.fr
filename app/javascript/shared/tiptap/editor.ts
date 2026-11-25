@@ -67,7 +67,7 @@ export function createEditor({
   singleLine = false,
   onChange
 }: {
-  editorElement: Element;
+  editorElement: HTMLElement;
   content?: JSONContent;
   tags: TagSchema[];
   buttons: string[];
@@ -89,7 +89,7 @@ export function createEditor({
 }
 
 function getEditorOptions(
-  element: Element,
+  element: HTMLElement,
   tags: TagSchema[],
   actions: string[],
   content?: JSONContent,

@@ -33,7 +33,7 @@ export class TiptapController extends ApplicationController {
     singleLine: { type: Boolean, default: false }
   };
 
-  declare editorTarget: Element;
+  declare editorTarget: HTMLElement;
   declare inputTarget: HTMLInputElement;
   declare buttonTargets: HTMLButtonElement[];
   declare tagTargets: HTMLElement[];
