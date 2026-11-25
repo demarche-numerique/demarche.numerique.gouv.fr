@@ -9,7 +9,7 @@
 
   <% if @labels.present? %>
     <div class="fr-container flex justify-between fr-mb-2w fr-p-0">
-      <h2 class="fr-h6 fr-m-0">
+      <h2 id="labels-list-title" class="fr-h6 fr-m-0">
         <%= t('.labels_list') %>
       </h2>
 
@@ -21,7 +21,7 @@
       <div class="fr-table__wrapper">
         <div class="fr-table__container">
           <div class="fr-table__content">
-            <table>
+            <table aria-labelledby="labels-list-title">
               <thead>
                 <tr>
                   <th scope="col">

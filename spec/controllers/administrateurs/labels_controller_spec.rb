@@ -25,6 +25,8 @@ describe Administrateurs::LabelsController, type: :controller do
       expect(response.body).to have_button("Supprimer", count: 3)
       expect(response.body).to have_link("Personnaliser l’ordre")
       expect(response.body).to have_css("h1", text: "Labels")
+      expect(response.body).to have_css("table[aria-labelledby='labels-list-title']")
+      expect(response.body).to have_css("h2#labels-list-title", text: "Liste des labels")
     end
   end
 
