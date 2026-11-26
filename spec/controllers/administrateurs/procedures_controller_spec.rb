@@ -1621,7 +1621,7 @@ describe Administrateurs::ProceduresController, type: :controller do
       it 'dates each publication in English' do
         get :modifications, params: { id: procedure.id, locale: :en }
 
-        expect(response.body).to include("Changes published on 1 December 2026 at 14:05 by #{admin.email}")
+        expect(response.body).to include("Changes published on 1 December 2026 at 2:05pm by #{admin.email}")
       end
     end
   end

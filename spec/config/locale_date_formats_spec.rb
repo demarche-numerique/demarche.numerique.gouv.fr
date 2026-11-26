@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# English follows the GOV.UK style guide: no leading zero, full month in text.
+# English follows the GOV.UK style guide: no leading zero, full month in text, 12-hour clock.
 describe 'Date and time formats' do
   let(:date) { Date.new(2026, 12, 1) }
   let(:time) { Time.zone.local(2026, 12, 1, 14, 5) }
@@ -9,11 +9,12 @@ describe 'Date and time formats' do
     en: {
       date: { default: '1 December 2026', long: '1 December 2026', short: '1 Dec 2026', in_text: '1 December 2026', day_month_short: '1 Dec' },
       time: {
-        default: '1 December 2026 14:05',
-        long_with_time: '1 December 2026 at 14:05',
-        short_with_time: '1 Dec 2026 at 14:05',
-        messagerie_date: 'On 1 Dec 2026 14:05',
-        human: 'Tuesday 1 December at 14h05',
+        default: '1 December 2026 2:05pm',
+        long_with_time: '1 December 2026 at 2:05pm',
+        short_with_time: '1 Dec 2026 at 2:05pm',
+        messagerie_date: 'On 1 Dec 2026 2:05pm',
+        human: 'Tuesday 1 December at 2:05pm',
+        time_only: '2:05pm',
       },
     },
     fr: {
@@ -24,6 +25,7 @@ describe 'Date and time formats' do
         short_with_time: '01/12/2026 à 14:05',
         messagerie_date: 'Le 01/12/2026 14:05',
         human: 'mardi 1 décembre à 14h05',
+        time_only: '14:05',
       },
     },
   }.each do |locale, formats|
