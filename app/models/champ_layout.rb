@@ -8,7 +8,7 @@ class ChampLayout < Data.define(
   :public_champs, :private_champs,
   :public_flat_champs, :private_flat_champs,
   :public_root_champs, :private_root_champs,
-  :champs_by_row_id,
+  :champs_by_public_id, :champs_by_row_id,
   :ancestors_by_public_id, :children_by_public_id, :rows_by_stable_id, :row_by_public_id
 )
   class NotLaidOutError < StandardError
@@ -22,6 +22,9 @@ class ChampLayout < Data.define(
   # All champs in document order, the content of header sections and rows
   # inlined after them.
   def champs = public_flat_champs + private_flat_champs
+
+  # nil for a champ that is not laid out: not of the revision, or of a row the dossier has not
+  def champ(public_id) = champs_by_public_id[public_id.to_s]
 
   # what a champ on `row_id` can reference: its own row, and what sits outside
   # repetitions; a champ outside any repetition sees only the latter
@@ -63,6 +66,7 @@ class ChampLayout < Data.define(
         private_flat_champs: private_flat_champs.freeze,
         public_root_champs: public_flat_champs.reject(&:in_repetition?).freeze,
         private_root_champs: private_flat_champs.reject(&:in_repetition?).freeze,
+        champs_by_public_id: (public_flat_champs + private_flat_champs).index_by(&:public_id).freeze,
         champs_by_row_id: (public_flat_champs + private_flat_champs).group_by(&:row_id).freeze,
         ancestors_by_public_id: @ancestors.freeze,
         children_by_public_id: @children.freeze,

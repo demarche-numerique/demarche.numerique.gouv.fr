@@ -7,7 +7,8 @@ module DossierChampsConcern
   # revision that removes a champ rebases every non-terminated dossier, so a browser
   # still showing the previous form keeps posting a champ that has since disappeared.
   # It is also raised for a stable_id taken straight from a URL that never matched
-  # anything. Callers that can render turbo_stream drop the orphaned input; see
+  # anything, and for a champ of a row the dossier does not have (or no longer has).
+  # Callers that can render turbo_stream drop the orphaned input; see
   # ApplicationController#champ_not_in_revision.
   class ChampNotInRevisionError < StandardError
     attr_reader :public_id
@@ -54,6 +55,11 @@ module DossierChampsConcern
     :champs, :champs_for_row,
     to: :champ_layout
 
+  # A champ of the form as it is laid out: of the revision, and of a row the dossier has.
+  def champ(public_id)
+    champ_layout.champ(public_id) || raise(ChampNotInRevisionError.new(public_id))
+  end
+
   def find_type_de_champ_by_stable_id(stable_id, scope = nil)
     type_de_champ = revision.type_de_champ(stable_id)
 
@@ -98,13 +104,11 @@ module DossierChampsConcern
   end
 
   def public_champ(public_id)
-    type_de_champ, row_id = find_type_de_champ_by_public_id!(public_id, :public)
-    project_champ(type_de_champ, row_id:)
+    champ(public_id).tap { raise ChampNotInRevisionError.new(public_id) if !it.public? }
   end
 
   def private_champ(public_id)
-    type_de_champ, row_id = find_type_de_champ_by_public_id!(public_id, :private)
-    project_champ(type_de_champ, row_id:)
+    champ(public_id).tap { raise ChampNotInRevisionError.new(public_id) if !it.private? }
   end
 
   def public_champ_for_update(public_id, updated_by:)
