@@ -1,0 +1,12 @@
+---
+en:
+  shared:
+    kaminari:
+      paginator:
+        nav_label: Pagination
+      first_page:
+        label: First page
+      last_page:
+        label: Last page
+      page:
+        title: Page %{page}
