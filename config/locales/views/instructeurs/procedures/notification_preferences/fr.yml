@@ -2,6 +2,7 @@ fr:
   instructeurs:
     procedures:
       notification_preferences:
+        page_title: Notifications
         title: Gestion des notifications
         libelle:
           mail: Notifications par email
