@@ -957,7 +957,6 @@ en:
       long: "%-d %B %Y at %-l:%M%P"
   date:
     formats:
-      default: "%-d %B %Y"
       long: "%-d %B %Y"
       short: "%-d %b %Y"
       # A date inside a short label: numeric in French, month in full in English (GOV.UK)

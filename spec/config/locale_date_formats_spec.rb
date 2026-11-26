@@ -5,6 +5,8 @@ describe 'Date and time formats' do
   let(:date) { Date.new(2026, 12, 1) }
   let(:time) { Time.zone.local(2026, 12, 1, 14, 5) }
 
+  before { travel_to(Time.zone.local(2026, 12, 2)) }
+
   {
     en: {
       date: { default: '1 December 2026', long: '1 December 2026', short: '1 Dec 2026', in_text: '1 December 2026', day_month_short: '1 Dec' },
@@ -15,6 +17,9 @@ describe 'Date and time formats' do
         messagerie_date: 'On 1 Dec 2026 2:05pm',
         human: 'Tuesday 1 December at 2:05pm',
         time_only: '2:05pm',
+        veryshort: '1 Dec 14:05',
+        message_date: '1 December at 14:05',
+        message_date_with_year: '1 December 2026 at 14:05',
       },
     },
     fr: {
@@ -26,6 +31,9 @@ describe 'Date and time formats' do
         messagerie_date: 'Le 01/12/2026 14:05',
         human: 'mardi 1 décembre à 14h05',
         time_only: '14:05',
+        veryshort: '01/12 14:05',
+        message_date: "le 1er décembre à 14\u00A0h\u00A005",
+        message_date_with_year: "le 1er décembre 2026 à 14\u00A0h\u00A005",
       },
     },
   }.each do |locale, formats|
