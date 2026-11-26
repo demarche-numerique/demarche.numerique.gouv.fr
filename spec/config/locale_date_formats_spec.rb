@@ -9,7 +9,7 @@ describe 'Date and time formats' do
 
   {
     en: {
-      date: { default: '1 December 2026', long: '1 December 2026', short: '1 Dec 2026', in_text: '1 December 2026', day_month_short: '1 Dec' },
+      date: { long: '1 December 2026', short: '1 Dec 2026', in_text: '1 December 2026', day_month_short: '1 Dec' },
       time: {
         default: '1 December 2026 2:05pm',
         long_with_time: '1 December 2026 at 2:05pm',
@@ -23,7 +23,7 @@ describe 'Date and time formats' do
       },
     },
     fr: {
-      date: { default: '01 décembre 2026', long: '01 décembre 2026', short: '01/12/2026', in_text: '01/12/2026', day_month_short: '01 déc.' },
+      date: { long: '01 décembre 2026', short: '01/12/2026', in_text: '01/12/2026', day_month_short: '01 déc.' },
       time: {
         default: '01 décembre 2026 14:05',
         long_with_time: '01 décembre 2026 à 14:05',

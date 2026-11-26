@@ -952,6 +952,8 @@ en:
       messagerie_date: "On %-d %b %Y %-l:%M%P"
       human: "%A %-d %B at %-l:%M%P"
       time_only: "%-l:%M%P"
+      # Frozen: read by the GraphQL API and the exports
+      api: "%d %B %Y %R"
   datetime:
     formats:
       long: "%-d %B %Y at %-l:%M%P"
@@ -964,6 +966,8 @@ en:
       dashed: "%Y-%m-%d"
       month_year: "%B %Y"
       day_month_short: "%-d %b"
+      # Frozen: read by the GraphQL API
+      api: "%d %B %Y"
   dates:
     today: "Today"
     yesterday: "Yesterday"

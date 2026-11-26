@@ -14,4 +14,8 @@ class TypesDeChamp::DatetimeTypeDeChamp < TypeDeChamp
   def typed_champ_value(champ)
     I18n.l(Time.zone.parse(champ.value))
   end
+
+  def typed_champ_value_for_api(champ, version: 2)
+    version == 2 ? I18n.l(Time.zone.parse(champ.value), format: :api) : super
+  end
 end

@@ -238,9 +238,9 @@ class Columns::ChampColumn < Column
     [:date, :formatted] => -> (v) { I18n.l(v, format: :long) },
     # datetime
     [:datetime, :date] => -> (v) { v.to_date },
-    [:datetime, :text] => -> (v) { I18n.l(v) },
-    [:datetime, :textarea] => -> (v) { I18n.l(v) },
-    [:datetime, :formatted] => -> (v) { I18n.l(v) },
+    [:datetime, :text] => -> (v) { I18n.l(v, format: :api) },
+    [:datetime, :textarea] => -> (v) { I18n.l(v, format: :api) },
+    [:datetime, :formatted] => -> (v) { I18n.l(v, format: :api) },
     # checkbox
     [:checkbox, :yes_no] => -> (v) { v },
     [:checkbox, :text] => -> (v) { v ? 'Oui' : 'Non' },

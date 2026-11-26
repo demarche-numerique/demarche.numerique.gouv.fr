@@ -128,6 +128,16 @@ describe Columns::ChampColumn do
 
           it { expect(column('date').value(champ)).to be_nil }
         end
+
+        # Read by the GraphQL API and the exports, so not the display formats.
+        describe 'as text' do
+          let(:value) { '2019-07-01T14:05:00+02:00' }
+
+          it 'keeps its format in both locales' do
+            expect(I18n.with_locale(:fr) { column('text').value(champ) }).to eq('01 juillet 2019 14:05')
+            expect(I18n.with_locale(:en) { column('text').value(champ) }).to eq('01 July 2019 14:05')
+          end
+        end
       end
 
       context 'from a drop_down_list' do
