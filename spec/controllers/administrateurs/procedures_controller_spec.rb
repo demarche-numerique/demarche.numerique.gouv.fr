@@ -1608,6 +1608,22 @@ describe Administrateurs::ProceduresController, type: :controller do
       expect(response.body).to include('second champ')
       expect(response.body).not_to include('champ du brouillon')
     end
+
+    context 'with a publication date' do
+      before { procedure.published_revision.update_column(:published_at, Time.zone.local(2026, 12, 1, 14, 5)) }
+
+      it 'dates each publication in French' do
+        get :modifications, params: { id: procedure.id }
+
+        expect(response.body).to include("Modifications publiées le 01 décembre 2026 à 14:05 par #{admin.email}")
+      end
+
+      it 'dates each publication in English' do
+        get :modifications, params: { id: procedure.id, locale: :en }
+
+        expect(response.body).to include("Changes published on 01 December 2026 at 14:05 by #{admin.email}")
+      end
+    end
   end
 
   describe 'PUT #publish' do

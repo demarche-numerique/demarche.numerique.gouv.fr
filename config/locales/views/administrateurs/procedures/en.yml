@@ -58,6 +58,8 @@ en:
         email_content_en_cours: You want to send an email to users with a file ‘in construction’ or ‘under review’
       preview_unavailable: Preview is unavailable due to procedure misconfiguration
       modifications:
+        published_on: "Changes published on %{date}"
+        published_on_by: "Changes published on %{date} by %{email}"
         dossiers_en_construction_and_dossiers_en_instruction: "%{en_construction_count} files ‘in construction’ and %{en_instruction_count} files ‘under review’ on this procedure version."
         dossier_en_construction_and_dossiers_en_instruction:
           one: One file ‘in construction’ and one file ‘under review’ on this procedure version.
