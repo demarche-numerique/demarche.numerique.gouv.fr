@@ -3,8 +3,11 @@
 class Dossiers::DeletedDossiersComponent < ApplicationComponent
   include DossierHelper
 
-  def initialize(deleted_dossiers:)
+  attr_reader :heading_level
+
+  def initialize(deleted_dossiers:, heading_level: :h1)
     @deleted_dossiers = deleted_dossiers
+    @heading_level = heading_level
   end
 
   def role
