@@ -52,6 +52,26 @@ RSpec.describe Procedure::EmailTemplateCardComponent, type: :component do
     end
   end
 
+  context 'when the email was edited on a given day' do
+    let(:email_template) { create(:email_depose, procedure:, updated_at: Time.zone.local(2026, 12, 1, 14, 5)) }
+
+    it 'dates the tag in French' do
+      expect(rendered).to have_selector('.fr-tag', text: 'modifié le 01/12/2026')
+    end
+
+    it 'dates the tag in English' do
+      I18n.with_locale(:en) do
+        expect(rendered).to have_selector('.fr-tag', text: 'edited on 01 Dec 2026')
+      end
+    end
+  end
+
+  context 'when the email is a standard template, in English' do
+    let(:email_template) { Emails::Depose.default_for_procedure(procedure) }
+
+    it { I18n.with_locale(:en) { expect(rendered).to have_selector('.fr-tag', text: 'Standard template') } }
+  end
+
   context 'when the procedure is declarative with an automatic acceptance' do
     before { procedure.declarative_with_state = :accepte }
 

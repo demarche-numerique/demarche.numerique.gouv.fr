@@ -1,5 +1,7 @@
 ---
 fr:
+  edited_on: "modifié le %{date}"
+  standard_template: "Modèle standard"
   descriptions:
     depose:
       default: |-
