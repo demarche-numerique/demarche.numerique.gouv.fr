@@ -30,3 +30,6 @@ en:
         title: Administrators
       history:
         title: History
+      deleted_dossiers:
+        title: Deleted
+        breadcrumb: Deleted applications history

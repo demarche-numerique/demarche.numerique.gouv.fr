@@ -30,3 +30,6 @@ fr:
         title: Administrateurs
       history:
         title: Historique
+      deleted_dossiers:
+        title: Supprimés
+        breadcrumb: Historique des dossiers supprimés
