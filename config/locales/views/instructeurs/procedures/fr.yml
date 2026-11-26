@@ -26,3 +26,5 @@ fr:
           supprimes: "Corbeille"
       exports:
         title: Exports
+      administrateurs:
+        title: Administrateurs

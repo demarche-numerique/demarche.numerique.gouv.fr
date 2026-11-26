@@ -26,3 +26,5 @@ en:
           supprimes: "Trash"
       exports:
         title: Exports
+      administrateurs:
+        title: Administrators
