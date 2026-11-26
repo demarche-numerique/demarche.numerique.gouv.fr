@@ -53,6 +53,7 @@ class TypesDeChamp::RepetitionTypeDeChamp < TypeDeChamp
   def fillable_children = flat_children.filter(&:fillable?)
 
   def typed_champ_blank?(champ) = champ.dossier.repetition_row_ids(self).blank?
+  def block_level_tag? = true
 
   private
 

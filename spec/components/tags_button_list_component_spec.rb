@@ -35,6 +35,14 @@ RSpec.describe TagsButtonListComponent, type: :component do
           mandatory: true,
           conditional: true,
         },
+        {
+          id: 'tdc16',
+          libelle: 'Une répétition',
+          description: '',
+          mandatory: true,
+          conditional: false,
+          block: true,
+        },
       ],
 
       champ_private: [
@@ -57,6 +65,11 @@ RSpec.describe TagsButtonListComponent, type: :component do
     expect(subject).to have_text("civilité")
     expect(subject).to have_text("Votre avis")
     expect(subject).to have_text("Montant accordé")
+  end
+
+  it 'flags the tags rendered as a list for the editor' do
+    expect(subject).to have_css("button[data-tag-id='tdc16'][data-tag-block='true']")
+    expect(subject).to have_css("button[data-tag-id='dossier_number'][data-tag-block='']")
   end
 
   it "hides optional and conditional tags by default" do
