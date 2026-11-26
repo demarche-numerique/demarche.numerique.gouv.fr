@@ -1,4 +1,4 @@
-<% content_for(:title, "Archives") %>
+<% content_for(:title, t('.title')) %>
 
 <div class="sub-header">
   <div class="fr-container flex column">
@@ -8,7 +8,10 @@
 </div>
 
 <div class="container">
-  <h2 class="fr-mb-4v fr-h4">Téléchargement mensuel</h2>
+  <h2 class="fr-mb-4v fr-h4">
+    <%= t('instructeurs.dossiers.header.banner.archives') %>
+  </h2>
+
   <%= render partial: "shared/archives/notice", locals: { with_bills: false } %>
   <%= render partial: "shared/archives/table", locals: {count_dossiers_termines_by_month: @count_dossiers_termines_by_month, archives: @archives, average_dossier_weight: @average_dossier_weight, procedure: @procedure } %>
 </div>
