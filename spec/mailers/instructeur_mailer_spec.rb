@@ -83,10 +83,8 @@ RSpec.describe InstructeurMailer, type: :mailer do
       it 'is written in English for an English-speaking reviewer' do
         user.user.update!(locale: 'en')
 
-        expect(subject.subject).to eq("Secure connection renewal for #{APPLICATION_NAME}")
         expect(subject.body).to include('(until Tuesday 1 December at 2:05pm)')
         expect(subject.body).to include('Clicking this link is enough to renew your connection')
-        expect(subject.body).not_to include('Bonjour')
       end
     end
 

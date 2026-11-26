@@ -1045,8 +1045,9 @@ describe Instructeurs::ProceduresController, type: :controller do
 
         let(:procedure) { procedures.individual }
         let(:instructeur) { instructeurs.default }
+        let(:dossier_count) { 3 }
 
-        before { create(:bulk_message, procedure:, instructeur:, dossier_count: 3, sent_at: Time.zone.local(2026, 12, 1, 14, 5)) }
+        before { create(:bulk_message, procedure:, instructeur:, dossier_count:, sent_at: Time.zone.local(2026, 12, 1, 14, 5)) }
 
         it 'dates the message in French' do
           get :email_usagers, params: { procedure_id: procedure.id }
@@ -1054,12 +1055,14 @@ describe Instructeurs::ProceduresController, type: :controller do
           expect(response.body).to include("#{instructeur.email} a envoyé ce message à 3 usagers le 01 décembre 2026 à 14:05")
         end
 
-        it 'agrees the recipient count with a single applicant' do
-          BulkMessage.where(procedure:).update_all(dossier_count: 1)
+        context 'sent to a single applicant' do
+          let(:dossier_count) { 1 }
 
-          get :email_usagers, params: { procedure_id: procedure.id }
+          it 'agrees the recipient count' do
+            get :email_usagers, params: { procedure_id: procedure.id }
 
-          expect(response.body).to include("#{instructeur.email} a envoyé ce message à 1 usager le 01 décembre 2026 à 14:05")
+            expect(response.body).to include("#{instructeur.email} a envoyé ce message à 1 usager le 01 décembre 2026 à 14:05")
+          end
         end
 
         it 'dates the message in English' do

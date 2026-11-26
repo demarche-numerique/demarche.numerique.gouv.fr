@@ -21,10 +21,11 @@
       - dossiers_en_instruction_count = dossiers.state_en_instruction.count
       .card.fr-mb-8v
         %h2.card-title
+          - published_at = l(revision.published_at, format: :long_with_time)
           - if revision.administrateur.present?
-            = t('.published_on_by', date: l(revision.published_at, format: :long_with_time), email: revision.administrateur.user.email)
+            = t('.published_on_by', date: published_at, email: revision.administrateur.user.email)
           - else
-            = t('.published_on', date: l(revision.published_at, format: :long_with_time))
+            = t('.published_on', date: published_at)
         - if !dossiers_en_construction_count.zero? && !dossiers_en_instruction_count.zero?
           %p
             - if dossiers_en_construction_count == 1
