@@ -9,46 +9,57 @@
 
   <fr-container data-controller="move-cards-position">
     <%= form_tag update_order_positions_instructeur_procedures_path, method: :patch, id: 'order-instructeur-procedures-form' do %>
-      <% @procedures.each do |procedure| %>
-        <div class="fr-card fr-mb-1w fr-py-1w fr-px-2w">
-          <div class="flex align-center">
-            <button
-              class="fr-btn fr-icon-arrow-up-line fr-btn--secondary fr-col-1"
-              title="<%= t('shared.order_positions.move_up') %>"
-              data-action="move-cards-position#moveUp"
-            >
-              <span class="fr-sr-only">
-                <%= t('shared.order_positions.move_up') %>
+      <ol class="fr-raw-list">
+        <% @procedures.each do |procedure| %>
+          <li class="fr-card fr-mb-1w fr-py-1w fr-px-2w">
+            <div class="flex align-center">
+              <% if procedure.close? %>
+                <span class="fr-badge fr-mr-2w"><%= t('.status_close') %></span>
+              <% elsif procedure.depubliee? %>
+                <span class="fr-badge fr-mr-2w">
+                  <%= t('.status_depubliee') %>
+                </span>
+              <% end %>
+
+              <span id="procedure-<%= procedure.id %>-libelle">
+                <%= "#{procedure.libelle} - n°#{procedure.id}" %>
               </span>
-            </button>
 
-            <button
-              class="
-                fr-btn fr-icon-arrow-down-line fr-btn--secondary fr-col-1
-                fr-mx-2w
-              "
-              title="<%= t('shared.order_positions.move_down') %>"
-              data-action="move-cards-position#moveDown"
-            >
-              <span class="fr-sr-only">
-                <%= t('shared.order_positions.move_down') %>
+              <span class="order-first flex">
+                <button
+                  class="fr-btn fr-icon-arrow-up-line fr-btn--secondary"
+                  title="<%= t('shared.order_positions.move_up') %>"
+                  aria-labelledby="procedure-<%= procedure.id %>-move-up procedure-<%= procedure.id %>-libelle"
+                  data-action="move-cards-position#moveUp"
+                >
+                  <span
+                    id="procedure-<%= procedure.id %>-move-up"
+                    class="fr-sr-only"
+                  >
+                    <%= t('shared.order_positions.move_up') %>
+                  </span>
+                </button>
+
+                <button
+                  class="fr-btn fr-icon-arrow-down-line fr-btn--secondary fr-mx-2w"
+                  title="<%= t('shared.order_positions.move_down') %>"
+                  aria-labelledby="procedure-<%= procedure.id %>-move-down procedure-<%= procedure.id %>-libelle"
+                  data-action="move-cards-position#moveDown"
+                >
+                  <span
+                    id="procedure-<%= procedure.id %>-move-down"
+                    class="fr-sr-only"
+                  >
+                    <%= t('shared.order_positions.move_down') %>
+                  </span>
+                </button>
               </span>
-            </button>
+            </div>
 
-            <% if procedure.close? %>
-              <span class="fr-badge fr-mr-2w"><%= t('.status_close') %></span>
-            <% elsif procedure.depubliee? %>
-              <span class="fr-badge fr-mr-2w">
-                <%= t('.status_depubliee') %>
-              </span>
-            <% end %>
-
-            <%= "#{procedure.libelle} - n°#{procedure.id}" %>
-          </div>
-
-          <%= hidden_field_tag "ordered_procedure_ids[]", procedure.id %>
-        </div>
-      <% end %>
+            <%= hidden_field_tag "ordered_procedure_ids[]", procedure.id %>
+          </li>
+        <% end %>
+      </ol>
     <% end %>
   </fr-container>
 </div>
