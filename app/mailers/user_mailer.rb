@@ -112,19 +112,14 @@ class UserMailer < ApplicationMailer
   end
 
   def send_archive(administrateur_or_instructeur, procedure, archive)
+    @archive_url, @procedure_url = case administrateur_or_instructeur
+    when Instructeur then [list_instructeur_archives_url(procedure), instructeur_procedure_url(procedure.id)]
+    when Administrateur then [admin_procedure_archives_url(procedure), admin_procedure_url(procedure)]
+    else raise ArgumentError, "send_archive expects either an Instructeur or an Administrateur"
+    end
     use_recipient_locale(administrateur_or_instructeur.user)
     @archive = archive
     @procedure = procedure
-    @archive_url = case administrateur_or_instructeur
-    when Instructeur then list_instructeur_archives_url(@procedure)
-    when Administrateur then admin_procedure_archives_url(@procedure)
-    else raise ArgumentError("send_archive expect either an Instructeur or an Administrateur")
-    end
-    @procedure_url = case administrateur_or_instructeur
-    when Instructeur then instructeur_procedure_url(@procedure.id)
-    when Administrateur then admin_procedure_url(@procedure)
-    else raise ArgumentError("send_archive expect either an Instructeur or an Administrateur")
-    end
     mail(to: administrateur_or_instructeur.email, subject: default_i18n_subject)
   end
 
