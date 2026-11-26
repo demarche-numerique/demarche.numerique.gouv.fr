@@ -73,6 +73,8 @@ fr:
         dossiers_en_instruction:
           one: Il y a un dossier « en instruction » sur cette version de la démarche.
           other: Il y a %{count} dossiers « en instruction » sur cette version de la démarche.
+      show:
+        closing_notification_sent: "Un email a été envoyé pour informer les usagers le %{date}"
       publication:
         publish_title: Publier votre démarche
         confirmation: Votre démarche est désormais publiée !

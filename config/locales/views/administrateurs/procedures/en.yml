@@ -73,6 +73,8 @@ en:
         dossiers_en_instruction:
           one: One file ‘under review’ on this procedure version.
           other: "%{count} files ‘under review’ on this procedure version."
+      show:
+        closing_notification_sent: "Applicants were notified by email on %{date}"
       publication:
         publish_title: Publish your procedure
         confirmation: Your procedure is now published !

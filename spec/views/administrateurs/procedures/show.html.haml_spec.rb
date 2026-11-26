@@ -65,6 +65,26 @@ describe 'administrateurs/procedures/show', type: :view do
     end
   end
 
+  describe 'procedure is closed with a notification to the applicants' do
+    before do
+      procedure.publish!(procedure.administrateurs.first)
+      procedure.close!
+      procedure.update_columns(closing_notification_en_cours: true, closed_at: Time.zone.local(2026, 12, 1, 14, 5))
+    end
+
+    it 'dates the notification in French' do
+      render
+
+      expect(rendered).to have_content('Un email a été envoyé pour informer les usagers le 01 décembre 2026')
+    end
+
+    it 'dates the notification in English' do
+      I18n.with_locale(:en) { render }
+
+      expect(rendered).to have_content('Applicants were notified by email on 01 December 2026')
+    end
+  end
+
   describe 'procedure is closed with internal_procedure replacement' do
     let(:replacement) { create(:procedure, :published, libelle: 'Démarche de remplacement') }
 
