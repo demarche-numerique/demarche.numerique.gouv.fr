@@ -11,6 +11,13 @@ fr:
         cancel: Annuler
         submit: Valider
       show:
+        title: Dossiers
+        select_all: Sélectionner tous les dossiers
+        select_dossier: Sélectionner le dossier %{dossier_id}
+        actions: Actions
+        badge_notice:
+          title: NOUVEAUTÉ – Vous pouvez maintenant personnaliser l’affichage de vos badges de notifications.
+          link: Personnaliser l’affichage dès maintenant !
         file_tracking: Suivi des dossiers
         reinit_display: Votre affichage a dû être réinitialisé en raison d’un problème technique.
         sva_svr_disabled: "Le %{rule} ne s’applique plus : aucune décision automatique pour les dossiers déposés à partir du %{date}."

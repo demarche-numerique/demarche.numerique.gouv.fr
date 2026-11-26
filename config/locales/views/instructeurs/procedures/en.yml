@@ -11,6 +11,13 @@ en:
         cancel: Cancel
         submit: Submit
       show:
+        title: Applications
+        select_all: Select all applications
+        select_dossier: Select application %{dossier_id}
+        actions: Actions
+        badge_notice:
+          title: NEW – You can now customize how your notification badges are displayed.
+          link: Customize the display now!
         file_tracking: File tracking
         reinit_display: Your display had to be reset due to a technical issue.
         sva_svr_disabled: "Automatic decision (%{rule}) no longer applies: applications submitted from %{date} onwards get no automatic decision."
