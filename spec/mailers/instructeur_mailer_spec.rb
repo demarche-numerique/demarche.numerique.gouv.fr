@@ -71,6 +71,25 @@ RSpec.describe InstructeurMailer, type: :mailer do
       expect(subject.body).to include('Cliquer sur ce lien suffit à renouveler votre connexion')
     end
 
+    context 'with a given expiry' do
+      let(:user) { instructeurs.default }
+
+      subject { described_class.trusted_device_token_renewal(user, token, Time.zone.local(2026, 12, 1, 14, 5)) }
+
+      it 'dates the expiry in French' do
+        expect(subject.body).to include('(jusqu’au mardi 1 décembre à 14h05)')
+      end
+
+      it 'is written in English for an English-speaking reviewer' do
+        user.user.update!(locale: 'en')
+
+        expect(subject.subject).to eq("Secure connection renewal for #{APPLICATION_NAME}")
+        expect(subject.body).to include('(until Tuesday 1 December at 2:05pm)')
+        expect(subject.body).to include('Clicking this link is enough to renew your connection')
+        expect(subject.body).not_to include('Bonjour')
+      end
+    end
+
     context 'without SafeMailer configured' do
       it { expect(subject[BalancerDeliveryMethod::FORCE_DELIVERY_METHOD_HEADER]&.value).to eq(nil) }
     end
