@@ -9,7 +9,7 @@
       locals: { procedure: @procedure }
 
 .messagerie.fr-container
-  %h1.fr-h4= t('instructeurs.dossiers.header.banner.contact_users')
+  %h2.fr-h4= t('instructeurs.dossiers.header.banner.contact_users')
 
   - if @dossiers_count_per_groupe_instructeur.values.sum.positive?
     = render Instructeurs::BulkMessageFormComponent.new(current_instructeur:, procedure: @procedure, dossiers_count_per_groupe_instructeur: @dossiers_count_per_groupe_instructeur)

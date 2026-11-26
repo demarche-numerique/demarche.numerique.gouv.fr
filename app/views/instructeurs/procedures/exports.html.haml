@@ -10,7 +10,7 @@
       locals: { procedure: @procedure }
 
 .fr-container
-  %h1.fr-h4= t('.title')
+  %h2.fr-h4= t('.title')
 
   = render Dsfr::CalloutComponent.new(title: nil) do |c|
     - c.with_body do

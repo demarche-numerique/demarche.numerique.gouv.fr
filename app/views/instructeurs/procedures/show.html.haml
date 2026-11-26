@@ -17,7 +17,7 @@
       = render partial: 'header', locals: { procedure: @procedure, statut: @statut }
       %hr
       .flex
-        %h1.fr-h5.fr-mb-0= t('.file_tracking')
+        %h2.fr-h5.fr-mb-0= t('.file_tracking')
         = render Instructeurs::TabsExplanationsComponent.new
       = render Instructeurs::WarningBannerComponent.new(draft: @procedure.brouillon?, single_procedure: true)
       - if sva_svr_running && @procedure.sva_svr_rule_disabled?

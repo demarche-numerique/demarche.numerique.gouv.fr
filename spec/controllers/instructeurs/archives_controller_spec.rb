@@ -26,6 +26,17 @@ describe Instructeurs::ArchivesController, type: :controller do
       let(:manager) { false }
 
       it { is_expected.to have_http_status(:success) }
+
+      context 'with views' do
+        render_views
+
+        it 'titles the page with a h2 under the procedure h1' do
+          subject
+          expect(response.body).to have_selector('main h1', count: 1)
+          expect(response.body).to have_selector('main h2.fr-h4', text: 'Téléchargement mensuel')
+        end
+      end
+
       it 'assigns archives' do
         subject
         expect(assigns(:archives)).to eq([archive1])

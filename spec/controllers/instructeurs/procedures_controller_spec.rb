@@ -1615,4 +1615,28 @@ describe Instructeurs::ProceduresController, type: :controller do
       end
     end
   end
+
+  describe 'heading levels' do
+    render_views
+
+    before { sign_in(instructeurs.default.user) }
+
+    {
+      show: 'Suivi des dossiers',
+      administrateurs: 'Administrateurs de la démarche',
+      email_usagers: 'Contacter les usagers',
+      export_templates: 'Modèles d’export',
+      exports: 'Exports',
+      history: 'Historique des modifications du formulaire',
+      notification_preferences: 'Gestion des notifications',
+      deleted_dossiers: 'Historique des dossiers supprimés',
+      stats: 'Statistiques de la démarche',
+    }.each do |action, title|
+      it "titles the #{action} page with a h2 under the procedure h1" do
+        get action, params: { procedure_id: procedures.individual.id }
+        expect(response.body).to have_selector('main h1', count: 1)
+        expect(response.body).to have_selector('main h2', text: title)
+      end
+    end
+  end
 end

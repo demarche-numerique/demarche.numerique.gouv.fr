@@ -8,7 +8,7 @@
     = render partial: 'instructeurs/procedures/header',
       locals: { procedure: @procedure }
 .container
-  %h1.fr-h4
+  %h2.fr-h4
     = t('instructeurs.procedures.administrators_list.title', procedure_id: @procedure.id, procedure_libelle: @procedure.libelle)
 
   %ul

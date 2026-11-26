@@ -8,7 +8,7 @@
 
 
 .fr-container
-  %h1.fr-h4= t('instructeurs.dossiers.header.banner.export_templates')
+  %h2.fr-h4= t('instructeurs.dossiers.header.banner.export_templates')
   = render Dsfr::AlertComponent.new(state: :info) do |c|
     - c.with_body do
       %p= t('.export_template_list_description_html', doc_template_url: DOC_EXPORT_TEMPLATE_URL)
