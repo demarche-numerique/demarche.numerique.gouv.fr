@@ -11,7 +11,9 @@ en:
         cancel: Cancel
         submit: Submit
       email_usagers:
-        sent_message: "%{email} sent this message to %{count} applicants on %{date}"
+        sent_message:
+          one: "%{email} sent this message to %{count} applicant on %{date}"
+          other: "%{email} sent this message to %{count} applicants on %{date}"
       show:
         file_tracking: File tracking
         reinit_display: Your display had to be reset due to a technical issue.

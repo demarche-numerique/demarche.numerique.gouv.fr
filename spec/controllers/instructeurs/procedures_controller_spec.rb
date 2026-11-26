@@ -1054,6 +1054,14 @@ describe Instructeurs::ProceduresController, type: :controller do
           expect(response.body).to include("#{instructeur.email} a envoyé ce message à 3 usagers le 01 décembre 2026 à 14:05")
         end
 
+        it 'agrees the recipient count with a single applicant' do
+          BulkMessage.where(procedure:).update_all(dossier_count: 1)
+
+          get :email_usagers, params: { procedure_id: procedure.id }
+
+          expect(response.body).to include("#{instructeur.email} a envoyé ce message à 1 usager le 01 décembre 2026 à 14:05")
+        end
+
         it 'dates the message in English' do
           get :email_usagers, params: { procedure_id: procedure.id, locale: :en }
 

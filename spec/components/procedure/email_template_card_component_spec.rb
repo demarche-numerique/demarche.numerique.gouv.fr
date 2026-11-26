@@ -23,7 +23,7 @@ RSpec.describe Procedure::EmailTemplateCardComponent, type: :component do
     it 'renders the subject excerpt with the tag styled as a chip' do
       expect(rendered).to have_text('Accusé pour le dossier numéro du dossier')
       expect(rendered).to have_selector('.fr-tag', text: 'numéro du dossier')
-      expect(rendered).to have_selector('.fr-tag.fr-tag--blue-ecume', text: /modifié le/)
+      expect(rendered).to have_selector('.fr-tag.fr-tag--blue-ecume', text: /Modifié le/)
     end
   end
 
@@ -56,12 +56,12 @@ RSpec.describe Procedure::EmailTemplateCardComponent, type: :component do
     let(:email_template) { create(:email_depose, procedure:, updated_at: Time.zone.local(2026, 12, 1, 14, 5)) }
 
     it 'dates the tag in French' do
-      expect(rendered).to have_selector('.fr-tag', text: 'modifié le 01/12/2026')
+      expect(rendered).to have_selector('.fr-tag', text: 'Modifié le 01/12/2026')
     end
 
     it 'dates the tag in English' do
       I18n.with_locale(:en) do
-        expect(rendered).to have_selector('.fr-tag', text: 'edited on 01 Dec 2026')
+        expect(rendered).to have_selector('.fr-tag', text: 'Edited on 01 Dec 2026')
       end
     end
   end
