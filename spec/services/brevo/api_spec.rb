@@ -36,6 +36,61 @@ describe Brevo::API do
     end
   end
 
+  describe '#blocked_contacts' do
+    let(:blocked_at) { Time.zone.parse('2026-11-02 09:05') }
+
+    def contact(email, code) = { email:, reason: { code:, message: 'Free text' }, blockedAt: '2026-11-02T08:05:00Z', senderEmail: nil }
+
+    def stub_page(status:, body:)
+      stub_request(:get, "#{BREVO_API_V3_URL}/smtp/blockedContacts")
+        .with(query: { sort: 'asc', offset: '200', limit: '100' }, headers: { 'api-key' => 'api-key' })
+        .to_return(status:, body: body.to_json, headers: { 'content-type' => 'application/json' })
+    end
+
+    it 'returns a page of the blocked contacts, oldest first, as webhook events' do
+      stub_page(status: 200, body: { contacts: [contact('a@example.com', 'hardBounce'), contact('b@example.com', 'unsubscribedViaEmail')], count: 202 })
+
+      expect(api.blocked_contacts(offset: 200)).to eq(Success([
+        { email: 'a@example.com', event: 'hard_bounce', at: blocked_at },
+        { email: 'b@example.com', event: 'unsubscribed', at: blocked_at },
+      ]))
+    end
+
+    it 'gives a blocked event to a code that says nothing of the reason' do
+      stub_page(status: 200, body: { contacts: [contact('a@example.com', 'adminBlocked'), contact('b@example.com', 'newBrevoCode')], count: 202 })
+
+      expect(api.blocked_contacts(offset: 200).value!.pluck(:event)).to eq(['blocked', 'blocked'])
+    end
+
+    it 'gives no event to an unsubscription from a marketing automation or through the API' do
+      stub_page(status: 200, body: { contacts: [contact('a@example.com', 'unsubscribedViaMA'), contact('b@example.com', 'unsubscribedViaApi')], count: 202 })
+
+      expect(api.blocked_contacts(offset: 200).value!.pluck(:event)).to eq([nil, nil])
+    end
+
+    it 'reads the blocks of a single day' do
+      page = stub_request(:get, "#{BREVO_API_V3_URL}/smtp/blockedContacts")
+        .with(query: { sort: 'asc', offset: '0', limit: '100', startDate: '2026-11-02', endDate: '2026-11-02' })
+        .to_return(status: 200, body: { count: 0 }.to_json, headers: { 'content-type' => 'application/json' })
+
+      api.blocked_contacts(offset: 0, day: Date.new(2026, 11, 2))
+
+      expect(page).to have_been_requested
+    end
+
+    it 'returns no contact past the last page' do
+      stub_page(status: 200, body: { count: 200 })
+
+      expect(api.blocked_contacts(offset: 200)).to eq(Success([]))
+    end
+
+    it 'classifies a failure' do
+      stub_page(status: 429, body: { code: 'too_many_requests', message: 'Rate limit' })
+
+      expect(api.blocked_contacts(offset: 200).failure).to have_attributes(kind: :throttled, http_code: 429)
+    end
+  end
+
   describe '#send_email' do
     it 'returns the message ids' do
       stub_send(status: 201, body: { messageId: '<1@smtp-relay.mailin.fr>' })

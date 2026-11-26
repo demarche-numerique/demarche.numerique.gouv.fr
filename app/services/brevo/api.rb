@@ -9,6 +9,19 @@ class Brevo::API
   DUPLICATE_CODES = %w[duplicate_parameter duplicate_request].freeze
   ACCOUNT_HTTP_CODES = [401, 402, 403].freeze
 
+  BLOCKED_CONTACTS_MAX_LIMIT = 100
+
+  # adminBlocked, a block set by hand in Brevo, and any code added later say
+  # nothing of the reason. No event for an unsubscription from a marketing
+  # automation or through the API: it says nothing of our mails.
+  BLOCKED_CONTACT_EVENTS = {
+    'hardBounce' => 'hard_bounce',
+    'contactFlaggedAsSpam' => 'spam',
+    'unsubscribedViaEmail' => 'unsubscribed',
+    'unsubscribedViaMA' => nil,
+    'unsubscribedViaApi' => nil,
+  }.freeze
+
   def initialize
     @failures = []
   end
@@ -85,6 +98,25 @@ class Brevo::API
     false
   end
 
+  # The addresses Brevo blocks, as webhook events, oldest first: an address
+  # blocked while the pages are read lands on a later one.
+  def blocked_contacts(offset:, limit: BLOCKED_CONTACTS_MAX_LIMIT, day: nil)
+    dates = day ? { startDate: day.iso8601, endDate: day.iso8601 } : {}
+
+    result = API::Client.new.call(
+      url: "#{BREVO_API_V3_URL}/smtp/blockedContacts",
+      params: { sort: 'asc', offset:, limit:, **dates },
+      headers: { 'api-key' => client_key }
+    )
+
+    case result
+    in Success(body:)
+      Success(body.fetch(:contacts, []).map { blocked_contact_event(it) })
+    in Failure(error)
+      Failure(classify(error))
+    end
+  end
+
   def send_email(payload)
     result = API::Client.new.call(
       url: "#{BREVO_API_V3_URL}/smtp/email",
@@ -145,6 +177,14 @@ class Brevo::API
 
   def client_key
     ENV.fetch("BREVO_API_V3_KEY", nil)
+  end
+
+  def blocked_contact_event(contact)
+    {
+      email: contact[:email],
+      event: BLOCKED_CONTACT_EVENTS.fetch(contact.dig(:reason, :code), BrevoBlockableConcern::BREVO_BLOCKED_EVENT),
+      at: Time.zone.parse(contact[:blockedAt]),
+    }
   end
 
   def parse_date(date)
