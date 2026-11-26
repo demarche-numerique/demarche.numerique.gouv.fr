@@ -90,7 +90,7 @@ RSpec.describe ChangedColumn do
         [{ type: :repetition, libelle: "Répétition", stable_id: 993, children: [{ type: :text, libelle: 'Nom', stable_id: 994 }, { type: :checkbox, libelle: 'Case', stable_id: 995 }] }]
       end
       let(:type_de_champ) { dossier.find_type_de_champ_by_stable_id(993) }
-      let(:row_id) { dossier.repetition_row_ids(type_de_champ).first }
+      let(:row_id) { dossier.project_champ(type_de_champ).row_ids.first }
 
       before do
         dossier.champ_data.find { it.stable_id == 995 && it.row_id == row_id }.update_columns(value: 'true')

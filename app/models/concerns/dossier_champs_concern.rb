@@ -40,6 +40,16 @@ module DossierChampsConcern
     end
   end
 
+  # The live rows of a repetition, as the champs marking them, in row order:
+  # what the layout builds its rows from, as it builds its champs from project_champ.
+  def project_rows(type_de_champ)
+    return [] if !type_de_champ.repetition?
+    @projected_rows ||= {}
+    @projected_rows[type_de_champ.stable_id] ||= champ_data_on_stream
+      .filter { it.row? && it.stable_id == type_de_champ.stable_id && !it.discarded? }
+      .sort_by(&:row_id)
+  end
+
   # The champs laid out as the types de champ of the revision are, until the
   # champs change (reset_champs_cache).
   def champ_layout
@@ -119,15 +129,6 @@ module DossierChampsConcern
   def private_champ_for_update(public_id, updated_by:)
     type_de_champ, row_id = find_type_de_champ_by_public_id!(public_id, :private)
     champ_for_update(type_de_champ, row_id:, updated_by:)
-  end
-
-  def repetition_row_ids(type_de_champ)
-    return [] if !type_de_champ.repetition?
-    @repetition_row_ids ||= {}
-    @repetition_row_ids[type_de_champ.stable_id] ||= champ_data_on_stream
-      .filter { _1.row? && _1.stable_id == type_de_champ.stable_id && !_1.discarded? }
-      .map(&:row_id)
-      .sort
   end
 
   def repetition_add_row(type_de_champ, updated_by:)
@@ -473,7 +474,7 @@ module DossierChampsConcern
     @built_champs = nil
     @champ_layout = nil
     @discarded_champ_data_by_public_id = nil
-    @repetition_row_ids = nil
+    @projected_rows = nil
     @revision_stable_ids = nil
     @champ_data_on_stream = nil
   end

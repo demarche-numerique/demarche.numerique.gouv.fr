@@ -41,7 +41,7 @@ module DossierExportConcern
   private
 
   def inline_repetition_values_for_export(type_de_champ, inline_repetition, format:)
-    row_ids = repetition_row_ids(type_de_champ)
+    row_ids = project_rows(type_de_champ).map(&:row_id)
 
     (1..inline_repetition.max_rows).flat_map do |index|
       row_id = row_ids[index - 1]

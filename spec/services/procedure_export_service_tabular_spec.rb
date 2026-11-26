@@ -371,7 +371,7 @@ describe ProcedureExportService do
     before do
       create(:dossier, :en_instruction, :with_populated_champs, :with_individual, procedure:)
       dossier = create(:dossier, :en_instruction, :with_populated_champs, :with_individual, procedure:)
-      dossier.repetition_remove_row(bloc, dossier.repetition_row_ids(bloc).last, updated_by: 'test')
+      dossier.repetition_remove_row(bloc, dossier.project_champ(bloc).row_ids.last, updated_by: 'test')
     end
 
     context 'with a checked child column' do

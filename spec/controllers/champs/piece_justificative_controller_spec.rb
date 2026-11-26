@@ -110,7 +110,7 @@ describe Champs::PieceJustificativeController, type: :controller do
     let(:dossier) { create(:dossier, user:, procedure:) }
     let(:repetition_type_de_champ) { procedure.active_revision.public_root_type_de_champs.first }
     let(:children) { procedure.active_revision.type_de_champ(repetition_type_de_champ.stable_id).flat_children }
-    let(:row_id) { dossier.repetition_row_ids(repetition_type_de_champ).first }
+    let(:row_id) { dossier.project_champ(repetition_type_de_champ).row_ids.first }
     let(:file) { fixture_file_upload('spec/fixtures/files/piece_justificative_0.pdf', 'application/pdf') }
 
     before do
@@ -248,7 +248,7 @@ describe Champs::PieceJustificativeController, type: :controller do
       let(:champ) do
         repetition = dossier.revision.public_root_type_de_champs.first
         child = dossier.revision.type_de_champ(repetition.stable_id).flat_children.first
-        dossier.champ_for_update(child, row_id: dossier.repetition_row_ids(repetition).first, updated_by: user.email)
+        dossier.champ_for_update(child, row_id: dossier.project_champ(repetition).row_ids.first, updated_by: user.email)
       end
       let(:file) { fixture_file_upload('spec/fixtures/files/piece_justificative_0.pdf', 'application/pdf') }
 

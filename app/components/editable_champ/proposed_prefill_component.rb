@@ -50,7 +50,7 @@ class EditableChamp::ProposedPrefillComponent < ApplicationComponent
     row_columns.group_by(&:row_id).values
       .group_by { repetition(it.first) }
       .flat_map do |repetition, rows|
-        first_number = @champ.dossier.repetition_row_ids(repetition).size + 1
+        first_number = @champ.dossier.champ(repetition.public_id(nil)).rows.size + 1
         rows.map.with_index(first_number) do |columns, number|
           [t('.row_added', libelle: repetition.libelle, number:), columns.map { [libelle(it), change(it)] }]
         end

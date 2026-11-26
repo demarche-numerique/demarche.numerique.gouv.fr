@@ -451,14 +451,18 @@ RSpec.describe DossierChampsConcern do
     end
   end
 
-  describe '#repetition_row_ids' do
+  describe '#project_rows' do
     let(:type_de_champ_repetition) { dossier.find_type_de_champ_by_stable_id(993) }
-    subject { dossier.repetition_row_ids(type_de_champ_repetition) }
+    subject { dossier.project_rows(type_de_champ_repetition) }
 
-    it { expect(subject.size).to eq(1) }
+    it 'returns the champs marking the rows' do
+      expect(subject.map(&:row_id)).to eq(dossier.project_champ(type_de_champ_repetition).row_ids)
+      expect(subject).to all(be_row)
+      expect(subject.size).to eq(1)
+    end
 
     it "returns [] for a type de champ that is not a repetition" do
-      expect(dossier.repetition_row_ids(dossier.find_type_de_champ_by_stable_id(99))).to eq([])
+      expect(dossier.project_rows(dossier.find_type_de_champ_by_stable_id(99))).to eq([])
     end
 
     context 'given a type de champ repetition in another revision' do
@@ -473,11 +477,11 @@ RSpec.describe DossierChampsConcern do
 
   describe '#repetition_add_row' do
     let(:type_de_champ_repetition) { dossier.find_type_de_champ_by_stable_id(993) }
-    let(:row_ids) { dossier.repetition_row_ids(type_de_champ_repetition) }
+    let(:row_ids) { dossier.project_champ(type_de_champ_repetition).row_ids }
     subject { dossier.repetition_add_row(type_de_champ_repetition, updated_by: 'test') }
 
     it do
-      expect { subject }.to change { dossier.repetition_row_ids(type_de_champ_repetition).size }.by(1)
+      expect { subject }.to change { dossier.project_champ(type_de_champ_repetition).row_ids.size }.by(1)
       expect(subject).to be_in(row_ids)
     end
 
@@ -489,11 +493,11 @@ RSpec.describe DossierChampsConcern do
 
   describe '#repetition_remove_row' do
     let(:type_de_champ_repetition) { dossier.find_type_de_champ_by_stable_id(993) }
-    let(:row_id) { dossier.repetition_row_ids(type_de_champ_repetition).first }
-    let(:row_ids) { dossier.repetition_row_ids(type_de_champ_repetition) }
+    let(:row_id) { dossier.project_champ(type_de_champ_repetition).row_ids.first }
+    let(:row_ids) { dossier.project_champ(type_de_champ_repetition).row_ids }
     subject { dossier.repetition_remove_row(type_de_champ_repetition, row_id, updated_by: 'test') }
 
-    it { expect { subject }.to change { dossier.repetition_row_ids(type_de_champ_repetition).size }.by(-1) }
+    it { expect { subject }.to change { dossier.project_champ(type_de_champ_repetition).row_ids.size }.by(-1) }
     it { row_id; subject; expect(row_id).not_to be_in(row_ids) }
 
     it "raises when the type de champ is not a repetition" do

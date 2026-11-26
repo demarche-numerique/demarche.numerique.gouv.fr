@@ -17,7 +17,7 @@ class Champs::RepetitionChamp < ChampData
   end
 
   def row_ids
-    dossier.repetition_row_ids(type_de_champ)
+    rows.map(&:id)
   end
 
   def add_row(updated_by:)
