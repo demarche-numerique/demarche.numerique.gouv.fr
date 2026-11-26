@@ -1,0 +1,15 @@
+en:
+  dossier_mailer:
+    notify_near_deletion_for_tiers:
+      subject:
+        one: Your application filled in on your behalf by the representative %{mandataire} will soon be deleted
+        other: Applications filled in on your behalf by representatives will soon be deleted
+      header_termine:
+        one: "To comply with the retention period of your personal data, this decided application will be deleted on %{expiration_date}:"
+        other: "To comply with the retention period of your personal data, these decided applications will be deleted on %{expiration_date}:"
+      list:
+        one: "No. %{dossier_id} (%{libelle})"
+        other: "No. %{dossier_id} (%{libelle}) by"
+      more_information:
+        one: For more information, please contact
+        other: For more information, please contact the representatives above.

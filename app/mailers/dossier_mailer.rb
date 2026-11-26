@@ -151,6 +151,7 @@ class DossierMailer < ApplicationMailer
   end
 
   def notify_near_deletion_for_tiers(dossiers, to_email)
+    use_recipient_locale(to_email)
     @subject = if dossiers.one?
       default_i18n_subject(count: dossiers.size, mandataire: "#{dossiers.first.mandataire_first_name} #{dossiers.first.mandataire_last_name}")
     else

@@ -16,6 +16,12 @@ RSpec.describe NotificationMailer, type: :mailer do
       expect(subject.body).to include("a été déposé le")
       expect(subject.body).to include("Pour en savoir plus, veuillez vous rapprocher de\n<a href=\"mailto:#{dossier_for_tiers.user.email}\">#{dossier_for_tiers.user.email}</a>.")
     end
+
+    it "renders in the locale of the beneficiary's account" do
+      create(:user, email: dossier_for_tiers.individual.email, locale: 'en')
+      expect(subject.subject).to eq("Your application filled in by the representative John Doe has been updated")
+      expect(subject.body).to include("To find out more, please contact")
+    end
   end
 
   describe 'send_notification_for_tiers for repasser_en_instruction' do

@@ -33,6 +33,7 @@ class NotificationMailer < ApplicationMailer
       return
     end
 
+    use_recipient_locale(@dossier.individual.email)
     @subject = default_i18n_subject(first_name: @dossier.mandataire_first_name, last_name: @dossier.mandataire_last_name)
     @email = @dossier.individual.email
     @logo_url = procedure_logo_url(@dossier.procedure)

@@ -380,6 +380,12 @@ RSpec.describe DossierMailer, type: :mailer do
       expect(subject.body).to include(dossier_for_tiers.user.email)
       expect(subject.body).to include(I18n.l(Expired::REMAINING_WEEKS_BEFORE_EXPIRATION.weeks.from_now.to_date, format: :long).to_s)
     end
+
+    it "renders in the locale of the beneficiary's account" do
+      create(:user, email: dossier_for_tiers.individual.email, locale: 'en')
+      expect(subject.subject).to eq("Your application filled in on your behalf by the representative John Doe will soon be deleted")
+      expect(subject.body).to include("For more information, please contact")
+    end
   end
 
   describe '.notify_groupe_instructeur_changed_to_instructeur' do
