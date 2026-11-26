@@ -17,9 +17,9 @@ describe 'Date and time formats' do
         messagerie_date: 'On 1 Dec 2026 2:05pm',
         human: 'Tuesday 1 December at 2:05pm',
         time_only: '2:05pm',
-        veryshort: '1 Dec 14:05',
-        message_date: '1 December at 14:05',
-        message_date_with_year: '1 December 2026 at 14:05',
+        veryshort: '1 Dec 2:05pm',
+        message_date: '1 December at 2:05pm',
+        message_date_with_year: '1 December 2026 at 2:05pm',
       },
     },
     fr: {
