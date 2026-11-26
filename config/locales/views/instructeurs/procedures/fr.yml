@@ -10,6 +10,8 @@ fr:
         status_depubliee: Dépubliée
         cancel: Annuler
         submit: Valider
+      email_usagers:
+        sent_message: "%{email} a envoyé ce message à %{count} usagers le %{date}"
       show:
         file_tracking: Suivi des dossiers
         reinit_display: Votre affichage a dû être réinitialisé en raison d’un problème technique.

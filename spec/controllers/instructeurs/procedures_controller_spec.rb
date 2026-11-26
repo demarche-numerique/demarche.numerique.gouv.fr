@@ -1039,6 +1039,27 @@ describe Instructeurs::ProceduresController, type: :controller do
           expect(assigns(:dossiers_count_per_groupe_instructeur)).to match({ nil => 1, defaut_groupe_instructeur.id => 1 }) # only dossier_in_group
         end
       end
+
+      context 'with a message previously sent' do
+        render_views
+
+        let(:procedure) { procedures.individual }
+        let(:instructeur) { instructeurs.default }
+
+        before { create(:bulk_message, procedure:, instructeur:, dossier_count: 3, sent_at: Time.zone.local(2026, 12, 1, 14, 5)) }
+
+        it 'dates the message in French' do
+          get :email_usagers, params: { procedure_id: procedure.id }
+
+          expect(response.body).to include("#{instructeur.email} a envoyé ce message à 3 usagers le 01 décembre 2026 à 14:05")
+        end
+
+        it 'dates the message in English' do
+          get :email_usagers, params: { procedure_id: procedure.id, locale: :en }
+
+          expect(response.body).to include("#{instructeur.email} sent this message to 3 applicants on 01 December 2026 at 14:05")
+        end
+      end
     end
   end
 
