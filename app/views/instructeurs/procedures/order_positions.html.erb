@@ -7,7 +7,10 @@
 
   <p><%= t('.description') %></p>
 
-  <fr-container data-controller="move-cards-position">
+  <fr-container
+    data-controller="move-cards-position"
+    data-move-cards-position-moved-message-value="<%= t('.moved') %>"
+  >
     <%= form_tag update_order_positions_instructeur_procedures_path, method: :patch, id: 'order-instructeur-procedures-form' do %>
       <ol class="fr-raw-list">
         <% @procedures.each do |procedure| %>
@@ -61,6 +64,12 @@
         <% end %>
       </ol>
     <% end %>
+
+    <p
+      class="fr-sr-only"
+      role="status"
+      data-move-cards-position-target="status"
+    ></p>
   </fr-container>
 </div>
 

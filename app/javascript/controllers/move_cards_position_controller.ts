@@ -1,30 +1,65 @@
 import { ApplicationController } from './application_controller';
 
 export class MoveCardsPositionController extends ApplicationController {
+  static targets = ['status'];
+  static values = { movedMessage: String };
+
+  declare readonly hasStatusTarget: boolean;
+  declare readonly statusTarget: HTMLElement;
+  declare readonly movedMessageValue: string;
+
   connect() {
     this.updateButtonsStates();
   }
 
   async moveUp(event: Event) {
     event.preventDefault();
+    if (this.isMoving()) return;
     const button = event.currentTarget as HTMLButtonElement;
-    const upCard = button.closest('.fr-card');
+    const card = button.closest('.fr-card')!;
+    const previousCard = card.previousElementSibling!;
 
-    await this.switchCards(upCard!, upCard!.previousElementSibling!);
+    await this.switchCards(card, previousCard);
 
-    upCard!.parentNode!.insertBefore(upCard!, upCard!.previousElementSibling);
-    this.updateButtonsStates();
+    // move the other card so the focused button stays in the DOM and keeps the focus
+    card.after(previousCard);
+    this.moved(button, card);
   }
 
   async moveDown(event: Event) {
     event.preventDefault();
+    if (this.isMoving()) return;
     const button = event.currentTarget as HTMLButtonElement;
-    const downCard = button.closest('.fr-card');
+    const card = button.closest('.fr-card')!;
+    const nextCard = card.nextElementSibling!;
 
-    await this.switchCards(downCard!.nextElementSibling!, downCard!);
+    await this.switchCards(nextCard, card);
 
-    downCard!.parentNode!.insertBefore(downCard!.nextElementSibling!, downCard);
+    card.before(nextCard);
+    this.moved(button, card);
+  }
+
+  private moved(button: HTMLButtonElement, card: Element) {
     this.updateButtonsStates();
+
+    if (button.disabled) {
+      card.querySelector<HTMLButtonElement>('button:enabled')?.focus();
+    }
+
+    if (this.hasStatusTarget) {
+      const cards = [...card.parentElement!.children];
+      const message = this.movedMessageValue
+        .replace('%{position}', String(cards.indexOf(card) + 1))
+        .replace('%{total}', String(cards.length));
+      // empty the region first so a message identical to the previous one is announced again
+      this.statusTarget.textContent = '';
+      requestAnimationFrame(() => (this.statusTarget.textContent = message));
+    }
+  }
+
+  // ignore repeated presses while cards are still swapping
+  private isMoving() {
+    return this.element.getAnimations({ subtree: true }).length > 0;
   }
 
   private async switchCards(upCard: Element, downCard: Element): Promise<void> {
