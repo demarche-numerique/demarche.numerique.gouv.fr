@@ -99,6 +99,8 @@ ignore_missing:
   # Abstract base component: t('.add_condition') etc. resolve at runtime against
   # each subclass's sidecar (champs_conditions, ineligibilite_rules, routing_rules).
   - 'conditions.conditions_component.*'
+  # Defined for fr in config/locales/time_format.fr.rb, which i18n-tasks does not read.
+  - 'date.formats.default'
 
 ## Consider these keys used:
 ignore_unused:

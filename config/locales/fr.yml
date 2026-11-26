@@ -964,6 +964,7 @@ fr:
     formats:
       long: "%d %B %Y"
       short: "%d/%m/%Y"
+      in_text: "%d/%m/%Y"
       dashed: "%Y-%m-%d"
       month_year: "%B %Y"
       day_month_short: "%d %b"

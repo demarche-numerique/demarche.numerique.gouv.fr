@@ -1065,7 +1065,7 @@ describe Instructeurs::ProceduresController, type: :controller do
         it 'dates the message in English' do
           get :email_usagers, params: { procedure_id: procedure.id, locale: :en }
 
-          expect(response.body).to include("#{instructeur.email} sent this message to 3 applicants on 01 December 2026 at 14:05")
+          expect(response.body).to include("#{instructeur.email} sent this message to 3 applicants on 1 December 2026 at 14:05")
         end
       end
     end

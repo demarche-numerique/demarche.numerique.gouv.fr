@@ -61,7 +61,7 @@ RSpec.describe Procedure::EmailTemplateCardComponent, type: :component do
 
     it 'dates the tag in English' do
       I18n.with_locale(:en) do
-        expect(rendered).to have_selector('.fr-tag', text: 'Edited on 01 Dec 2026')
+        expect(rendered).to have_selector('.fr-tag', text: 'Edited on 1 December 2026')
       end
     end
   end

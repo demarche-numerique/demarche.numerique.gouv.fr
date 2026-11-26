@@ -81,7 +81,7 @@ describe 'administrateurs/procedures/show', type: :view do
     it 'dates the notification in English' do
       I18n.with_locale(:en) { render }
 
-      expect(rendered).to have_content('Applicants were notified by email on 01 December 2026')
+      expect(rendered).to have_content('Applicants were notified by email on 1 December 2026')
     end
   end
 
