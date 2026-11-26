@@ -33,3 +33,8 @@ fr:
       deleted_dossiers:
         title: Supprimés
         breadcrumb: Historique des dossiers supprimés
+      email_usagers:
+        title: Contacter
+        no_brouillon: Il n’y a aucun dossier en brouillon
+        previous_messages: Messages envoyés précédemment
+        message_sent: "%{email} a envoyé ce message à %{dossier_count} usagers le %{date}"

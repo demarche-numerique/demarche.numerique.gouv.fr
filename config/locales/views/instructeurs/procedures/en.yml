@@ -33,3 +33,8 @@ en:
       deleted_dossiers:
         title: Deleted
         breadcrumb: Deleted applications history
+      email_usagers:
+        title: Contact
+        no_brouillon: There is no draft application
+        previous_messages: Previously sent messages
+        message_sent: "%{email} sent this message to %{dossier_count} applicants on %{date}"
