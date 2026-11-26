@@ -1,9 +1,5 @@
 <%= paginator.render do %>
-  <nav
-    class="fr-pagination"
-    role="navigation"
-    aria-label="<%= t('.nav_label') %>"
-  >
+  <nav class="fr-pagination" aria-label="<%= t('.nav_label') %>">
     <ul class="fr-pagination__list">
       <%= first_page_tag unless current_page.first? %>
       <%= prev_page_tag unless current_page.first? %>

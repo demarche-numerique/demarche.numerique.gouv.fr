@@ -1,7 +1,7 @@
 <% title = t('.title', page:) %>
 
 <li>
-  <%= link_to_unless page.current?, page, url, rel: page.rel, remote: remote, class: 'fr-pagination__link', title:, role: 'link' do %>
+  <%= link_to_unless page.current?, page, url, rel: page.rel, remote: remote, class: 'fr-pagination__link', title: do %>
     <%= content_tag 'a', page, 'aria-current': 'page', title:, class: 'fr-pagination__link' %> <%# herb:disable html-anchor-require-href %>
   <% end %>
 </li>

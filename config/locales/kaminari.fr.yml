@@ -17,4 +17,4 @@ fr:
       last: Dernier
       next: Suivant
       previous: 'Précédent'
-      truncate: '&hellip;'
+      truncate: '…'

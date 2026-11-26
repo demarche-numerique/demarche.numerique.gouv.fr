@@ -9,14 +9,20 @@ describe 'shared/kaminari/_paginator', type: :view do
     let(:current_page) { 10 }
 
     it 'renders the full DSFR pagination' do
-      expect(subject).to have_css('nav.fr-pagination[role="navigation"][aria-label="Pagination"] ul.fr-pagination__list')
+      expect(subject).to have_css('nav.fr-pagination[aria-label="Pagination"] ul.fr-pagination__list')
       expect(subject).to have_link('Première page', class: 'fr-pagination__link--first')
       expect(subject).to have_link('Précédent', class: 'fr-pagination__link--prev')
       expect(subject).to have_link('9', title: 'Page 9')
       expect(subject).to have_css('a.fr-pagination__link[aria-current="page"][title="Page 10"]:not([href])', text: '10')
       expect(subject).to have_css('a.fr-pagination__link.fr-displayed-lg:not([href])', text: '…')
       expect(subject).to have_link('Suivant', class: 'fr-pagination__link--next')
-      expect(subject).to have_link('Dernière page', class: 'fr-pagination__link--last')
+      expect(subject).to have_css('a.fr-pagination__link--last:not([rel])', text: 'Dernière page')
+    end
+
+    it 'points every rel=next and rel=prev link to the adjacent page' do
+      html = Capybara.string(subject)
+      expect(html.all('a[rel="next"]').map { it[:href] }.uniq).to contain_exactly(a_string_including('page=11'))
+      expect(html.all('a[rel="prev"]').map { it[:href] }.uniq).to contain_exactly(a_string_including('page=9'))
     end
   end
 

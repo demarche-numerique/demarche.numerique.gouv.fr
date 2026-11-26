@@ -17,4 +17,4 @@ en:
       last: Last
       next: Next
       previous: 'Prev'
-      truncate: '&hellip;'
+      truncate: '…'
