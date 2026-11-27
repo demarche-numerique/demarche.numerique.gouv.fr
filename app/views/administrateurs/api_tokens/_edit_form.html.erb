@@ -45,6 +45,8 @@
       <div class="flex">
         <%= f.text_field :networks,
           class: class_names('fr-input': true, 'fr-input--error': invalid_network_message.present?),
+          'aria-describedby': ('networks-error' if invalid_network_message.present?),
+          'aria-invalid': (invalid_network_message.present? || nil),
           autocomplete: 'off',
           autocapitalize: 'off',
           autocorrect: 'off',
@@ -58,7 +60,9 @@
     </div>
 
     <%- if invalid_network_message.present? -%>
-      <p class="fr-error-text"><%= invalid_network_message %></p>
+      <p id="networks-error" class="fr-error-text">
+        <%= invalid_network_message %>
+      </p>
     <%- end -%>
 
     <%- if api_token.pending_auto_ip? -%>
