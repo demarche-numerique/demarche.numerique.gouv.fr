@@ -190,8 +190,18 @@ class APIToken < ApplicationRecord
   private
 
   def authorized_networks_not_too_wide
-    if authorized_networks.any? { it.prefix < (it.ipv4? ? 24 : 48) }
+    if authorized_networks.any? { it.prefix < minimum_prefix(it) }
       errors.add(:authorized_networks, :too_wide)
+    end
+  end
+
+  def minimum_prefix(network)
+    if network.ipv4?
+      24
+    elsif network.ipv4_mapped?
+      96 + 24
+    else
+      48
     end
   end
 

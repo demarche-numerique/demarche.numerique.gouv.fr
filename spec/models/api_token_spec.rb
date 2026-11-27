@@ -387,7 +387,7 @@ describe APIToken, type: :model do
 
     before { api_token.authorized_networks = [IPAddr.new(network)] }
 
-    ['192.168.1.0/24', '192.168.1.23', '2001:db8:1234::/48', '2001:db8::1'].each do |accepted|
+    ['192.168.1.0/24', '192.168.1.23', '2001:db8:1234::/48', '2001:db8::1', '::ffff:10.0.0.0/120'].each do |accepted|
       context "with #{accepted}" do
         let(:network) { accepted }
 
@@ -395,7 +395,7 @@ describe APIToken, type: :model do
       end
     end
 
-    ['192.168.0.0/23', '2001:db8::/47'].each do |rejected|
+    ['192.168.0.0/23', '2001:db8::/47', '::ffff:10.0.0.0/112'].each do |rejected|
       context "with #{rejected}" do
         let(:network) { rejected }
 
