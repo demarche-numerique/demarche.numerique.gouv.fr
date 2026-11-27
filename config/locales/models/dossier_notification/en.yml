@@ -20,6 +20,22 @@ en:
         avis_externe: External opinion
         a11y:
           news:
-            for_summary: files with at least one news
-            for_not_summary: at least one news
+            summary:
+              dossier_modifie:
+                one: "%{count} unread modified application"
+                other: "%{count} unread modified applications"
+              message:
+                one: "%{count} application with at least one unread message"
+                other: "%{count} applications with at least one unread message"
+              annotation_instructeur:
+                one: "%{count} application with at least one unread internal field"
+                other: "%{count} applications with at least one unread internal field"
+              avis_externe:
+                one: "%{count} application with at least one unread external opinion"
+                other: "%{count} applications with at least one unread external opinion"
+            unread:
+              dossier_modifie: unread
+              message: unread
+              annotation_instructeur: unread
+              avis_externe: unread
           others: filles
