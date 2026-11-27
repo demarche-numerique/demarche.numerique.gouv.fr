@@ -78,8 +78,8 @@ Rack::Attack.throttled_responder = lambda do |request|
 
   [
     429, headers, [
-      "Calme toi, cowboy ! T'enchaines un peu trop les requêtes. Respire un peu réessaie dans un petit moment.\n" +
-      "Calm down, cowboy! You're making too many requests. Take a breather and try again soon.\n",
+      "Vous avez effectué trop de requêtes en peu de temps. Merci de patienter quelques instants avant de réessayer.\n" +
+      "You have made too many requests in a short time. Please wait a moment before trying again.\n",
     ],
   ]
 end
