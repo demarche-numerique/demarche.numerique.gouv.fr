@@ -24,6 +24,8 @@ class Logic::NAryOperator < Logic::Term
     self.new(h['operands'].map { |operand_h| Logic.from_h(operand_h) })
   end
 
+  def to_expr = [Logic::EXPR_OPERATORS.fetch(self.class), *@operands.map(&:to_expr)]
+
   def errors(type_de_champs = [])
     errors = []
 
