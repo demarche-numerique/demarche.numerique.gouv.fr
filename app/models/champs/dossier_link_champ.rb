@@ -14,7 +14,57 @@ class Champs::DossierLinkChamp < ChampData
   validates :value, format: { with: DOSSIER_NUMBER_REGEXP }, allow_blank: true, if: :should_validate_in_current_context?
   validates_with DossierLinkValidator, if: -> { should_validate_in_current_context? && dossier_number? }
 
+  before_save :store_linked_dossier, if: :value_changed?
+
+  def self.complete_linked_dossiers!(champs)
+    incomplete = champs.filter(&:linked_dossier_incomplete?)
+
+    return if incomplete.empty?
+
+    value_jsons = linked_value_jsons(incomplete.map { it.value.to_i }.uniq)
+
+    incomplete.group_by { [it.value, it.value_json] }.each do |(value, stored), group|
+      submitted_on = value_jsons[value.to_i]&.dig('submitted_on')
+      next if submitted_on.nil?
+
+      value_json = stored.to_h.merge('submitted_on' => submitted_on)
+      next if where(id: group.map(&:id), value:, value_json: stored).update_all(value_json:) != group.size
+
+      group.each do |champ|
+        champ.value_json = value_json
+        champ.clear_attribute_changes([:value_json])
+      end
+    end
+  end
+
+  def self.linked_value_jsons(dossier_ids)
+    live = Dossier.joins(:revision).where(id: dossier_ids).pluck('dossiers.id', 'procedure_revisions.procedure_id', 'dossiers.depose_at')
+    missing_ids = dossier_ids - live.map(&:first)
+    deleted = missing_ids.empty? ? [] : DeletedDossier.where(dossier_id: missing_ids).pluck(:dossier_id, :procedure_id, :depose_at)
+
+    rows = deleted + live
+    procedures = Procedure.with_discarded.where(id: rows.map { it[1] })
+      .left_joins(:service)
+      .pluck(:id, :libelle, Arel.sql('COALESCE(services.nom, procedures.organisation)'))
+      .to_h { |id, title, agency| [id, { 'procedure_title' => title, 'procedure_agency' => agency }] }
+
+    rows.to_h do |dossier_id, procedure_id, depose_at|
+      [dossier_id, procedures.fetch(procedure_id, {}).merge('submitted_on' => depose_at&.to_date&.iso8601).compact]
+    end
+  end
+
+  def clone_value_from(champ)
+    @cloning_value = true
+    super
+  ensure
+    @cloning_value = false
+  end
+
   def dossier_number? = value&.match?(DOSSIER_NUMBER_REGEXP)
+
+  def linked_dossier_incomplete?
+    dossier_number? && value_json.present? && value_json['submitted_on'].nil?
+  end
 
   # The (still existing) procedures the field is restricted to, in the admin-configured order.
   def linkable_procedures
@@ -47,6 +97,12 @@ class Champs::DossierLinkChamp < ChampData
   end
 
   private
+
+  def store_linked_dossier
+    return if @cloning_value
+
+    self.value_json = dossier_number? ? self.class.linked_value_jsons([value.to_i])[value.to_i] : nil
+  end
 
   def linkable_dossiers
     active_linkable_dossiers + deleted_linkable_dossiers

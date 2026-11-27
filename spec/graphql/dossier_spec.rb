@@ -357,6 +357,17 @@ RSpec.describe Types::DossierType, type: :graphql do
         expect(data[:dossier][:champs].first[:dossier]).to be_nil
       }
     end
+
+    context 'with columns' do
+      let(:query) { DOSSIER_WITH_COLUMNS_QUERY }
+
+      it 'preserves the existing number column without exposing the new reviewer columns' do
+        expect(errors).to be_nil
+        expect(data[:dossier][:champs].first[:columns]).to eq([
+          { __typename: 'TextColumn', label: dossier.public_root_champs.first.libelle, value: linked_dossier.id.to_s },
+        ])
+      end
+    end
   end
 
   describe 'dossier with repetition' do
@@ -889,6 +900,28 @@ RSpec.describe Types::DossierType, type: :graphql do
                 type
               }
             }
+          }
+        }
+      }
+    }
+  }
+  GRAPHQL
+
+  DOSSIER_WITH_COLUMNS_QUERY = <<-GRAPHQL
+  query($number: Int!) {
+    dossier(number: $number) {
+      champs {
+        columns {
+          __typename
+          label
+          ... on EnumColumn {
+            value
+          }
+          ... on DateColumn {
+            value
+          }
+          ... on TextColumn {
+            value
           }
         }
       }

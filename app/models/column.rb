@@ -61,6 +61,7 @@ class Column
   def dossier_column? = false
   def champ_column? = false
   def filterable? = filterable
+  def usable_in_conditions? = true
   def suggestions? = false
 
   # The values a reviewer's filter offers, among the dossiers of their groups.
