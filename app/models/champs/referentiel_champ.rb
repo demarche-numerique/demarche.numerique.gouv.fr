@@ -337,6 +337,9 @@ class Champs::ReferentielChamp < ChampData
     prefill_champ.reset_external_data! if prefill_champ.has_async_external_data? && attributes.key?(:external_id) && prefill_champ.external_id != attributes[:external_id]
     attributes[:prefilled] = true
     prefill_champ.update(attributes.merge(prefilled_original_value: attributes.except(:prefilled)))
+    # A prefilled value is a modification like the referentiel data it comes
+    # from; a refetch landing the same value leaves the champ undated.
+    prefill_champ.update_timestamps if prefill_champ.saved_changes.except('updated_at', 'updated_by').any?
     prefill_champ
   end
 
