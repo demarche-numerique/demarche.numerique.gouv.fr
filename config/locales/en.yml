@@ -113,7 +113,7 @@ en:
       locale_name: "English"
     notifications:
       actions:
-        access: View your File
+        access: View your application
         question: I have a question
         reply: Reply to this message
     root_path_link_title:

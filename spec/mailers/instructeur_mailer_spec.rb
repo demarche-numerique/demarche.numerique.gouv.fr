@@ -7,7 +7,17 @@ RSpec.describe InstructeurMailer, type: :mailer do
     let(:dossier) { create(:dossier) }
     subject { described_class.send_dossier(sender, dossier, recipient) }
 
-    it { expect(subject.body).to include('Bonjour') }
+    it 'links to the dossier' do
+      expect(subject.subject).to eq("#{sender.email} vous a envoyé le dossier n°\u00A0#{dossier.id}")
+      expect(subject.body).to include("#{sender.email} vous a envoyé le dossier n°\u00A0#{dossier.id}")
+      expect(subject.body).to have_link(href: instructeur_dossier_url(dossier.procedure, dossier))
+    end
+
+    it "renders the body in the recipient's locale" do
+      recipient.user.update!(locale: 'en')
+      expect(subject.subject).to eq("#{sender.email} sent you application no. #{dossier.id}")
+      expect(subject.body).to include("#{sender.email} sent you application no. #{dossier.id}")
+    end
 
     context 'when perform_later is called' do
       let(:custom_queue) { 'default' }
@@ -88,6 +98,45 @@ RSpec.describe InstructeurMailer, type: :mailer do
     end
   end
 
+  describe '#send_notifications' do
+    let(:instructeur) { create(:instructeur) }
+    let(:data) do
+      [
+        {
+          procedure_libelle: 'Ma démarche',
+          procedure_id: 213,
+          nb_en_construction: 2,
+          nb_en_instruction: 1,
+          nb_processed: 3,
+          nb_accepted: 1,
+          nb_refused: 2,
+          nb_closed_without_continuation: 0,
+          nb_dossiers_with_notifications: 1,
+          nb_notifications: { 'message' => 1 },
+        },
+      ]
+    end
+
+    subject { described_class.send_notifications(instructeur, data) }
+
+    it 'summarizes the dossiers of each procedure' do
+      expect(subject.body).to have_link('Ma démarche', href: instructeur_procedure_url(213))
+      expect(subject.body).to include('2 dossiers en construction')
+      expect(subject.body).to include('1 dossier en instruction')
+      expect(subject.body).to include('3 dossiers traités')
+      expect(subject.body).to include('(1 accepté, 2 refusés)')
+      expect(subject.body).to match(/1\s+dossier\s+avec des notifications «\u00A0nouveautés\u00A0» dont/)
+      expect(subject.body).to include("«\u00A0MESSAGE\u00A0»")
+    end
+
+    it "renders the body in the instructeur's locale" do
+      instructeur.user.update!(locale: 'en')
+      expect(subject.body).to include('2 applications submitted')
+      expect(subject.body).to include('(1 approved, 2 rejected)')
+      expect(subject.body).to include('‘MESSAGE’')
+    end
+  end
+
   describe '#last_week_overview' do
     let(:instructeur) { create(:instructeur) }
     let(:procedure) { create(:procedure, :published, instructeurs: [instructeur]) }
@@ -98,10 +147,9 @@ RSpec.describe InstructeurMailer, type: :mailer do
         created_dossiers_count: 0,
         dossiers_en_construction_count: 1,
         old_dossiers_en_construction: [dossier],
-        dossiers_en_construction_description: 'desc',
         dossiers_en_instruction_count: 1,
         old_dossiers_en_instruction: [dossier],
-        dossiers_en_instruction_description: 'desc')
+        start_date: Date.new(2026, 11, 9))
 
       [procedure_overview]
     end
@@ -111,6 +159,19 @@ RSpec.describe InstructeurMailer, type: :mailer do
     subject { described_class.last_week_overview(instructeur) }
 
     it { expect(subject.body).to include(I18n.t("instructeur_mailer.last_week_overview.subject")) }
+
+    it 'flags the dossiers waiting for more than a week' do
+      expect(subject.body).to include('dossier en construction')
+      expect(subject.body).to include('dossier est en cours d’instruction')
+      expect(subject.body).to include('depuis plus de 7 jours')
+      expect(subject.body).to have_link("n°\u00A0#{dossier.id}", href: instructeur_dossier_url(procedure, dossier))
+    end
+
+    it "renders the body in the instructeur's locale" do
+      instructeur.user.update!(locale: 'en')
+      expect(subject.body).to include('application under review')
+      expect(subject.body).to include('waiting for more than 7 days')
+    end
 
     context 'when the instructeur has no active procedures' do
       let(:procedure) { nil }

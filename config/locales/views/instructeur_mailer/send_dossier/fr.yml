@@ -1,4 +1,5 @@
 fr:
   instructeur_mailer:
     send_dossier:
-      subject: "%{sender_email} vous a envoyé le dossier nº %{dossier_id}"
+      subject: "%{sender_email} vous a envoyé le dossier n° %{dossier_id}"
+      body: "%{sender_email} vous a envoyé le dossier n° %{dossier_id}, cliquez sur le lien ci-dessous pour y accéder :"

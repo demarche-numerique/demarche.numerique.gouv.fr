@@ -2,3 +2,18 @@ fr:
   instructeur_mailer:
     last_week_overview:
       subject: "Votre activité hebdomadaire"
+      intro: "Voici le résumé de votre activité hebdomadaire :"
+      see: voir
+      created:
+        one: "nouveau dossier a été déposé depuis le %{date}"
+        other: "nouveaux dossiers ont été déposés depuis le %{date}"
+      en_construction:
+        one: dossier en construction
+        other: dossiers en construction
+      en_instruction:
+        one: dossier est en cours d’instruction
+        other: dossiers sont en cours d’instruction
+      including: dont
+      waiting: depuis plus de 7 jours
+      waiting_with_list_html: "depuis plus de 7 jours : %{dossiers}"
+      dossier_number: "n° %{id}"

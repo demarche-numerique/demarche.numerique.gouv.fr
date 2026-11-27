@@ -14,7 +14,7 @@ RSpec.describe NotificationMailer, type: :mailer do
       expect(subject.subject).to include(I18n.t("notification_mailer.send_notification_for_tiers.subject", first_name: dossier_for_tiers.mandataire_first_name, last_name: dossier_for_tiers.mandataire_last_name))
       expect(subject.to).to eq([dossier_for_tiers.individual.email])
       expect(subject.body).to include("a été déposé le")
-      expect(subject.body).to include("Pour en savoir plus, veuillez vous rapprocher de\n<a href=\"mailto:#{dossier_for_tiers.user.email}\">#{dossier_for_tiers.user.email}</a>.")
+      expect(subject.body).to match(%r{Pour en savoir plus, veuillez vous rapprocher de\s+<a href="mailto:#{dossier_for_tiers.user.email}">#{dossier_for_tiers.user.email}</a>\.})
     end
   end
 
@@ -27,7 +27,7 @@ RSpec.describe NotificationMailer, type: :mailer do
       expect(subject.subject).to include(I18n.t("notification_mailer.send_notification_for_tiers.subject", first_name: dossier_for_tiers.mandataire_first_name, last_name: dossier_for_tiers.mandataire_last_name))
       expect(subject.to).to eq([dossier_for_tiers.individual.email])
       expect(subject.body).to include("va être réexaminé, la précédente décision sur ce dossier est caduque.")
-      expect(subject.body).to include("Pour en savoir plus, veuillez vous rapprocher de\n<a href=\"mailto:#{dossier_for_tiers.user.email}\">#{dossier_for_tiers.user.email}</a>.")
+      expect(subject.body).to match(%r{Pour en savoir plus, veuillez vous rapprocher de\s+<a href="mailto:#{dossier_for_tiers.user.email}">#{dossier_for_tiers.user.email}</a>\.})
     end
   end
 
@@ -40,7 +40,7 @@ RSpec.describe NotificationMailer, type: :mailer do
       expect(subject.subject).to include(I18n.t("notification_mailer.send_notification_for_tiers.subject", first_name: dossier_for_tiers.mandataire_first_name, last_name: dossier_for_tiers.mandataire_last_name))
       expect(subject.to).to eq([dossier_for_tiers.individual.email])
       expect(subject.body).to include("a été traité le")
-      expect(subject.body).to include("Pour en savoir plus, veuillez vous rapprocher de\n<a href=\"mailto:#{dossier_for_tiers.user.email}\">#{dossier_for_tiers.user.email}</a>.")
+      expect(subject.body).to match(%r{Pour en savoir plus, veuillez vous rapprocher de\s+<a href="mailto:#{dossier_for_tiers.user.email}">#{dossier_for_tiers.user.email}</a>\.})
     end
   end
 
@@ -52,6 +52,12 @@ RSpec.describe NotificationMailer, type: :mailer do
       expect(subject.subject).to include(I18n.t("notification_mailer.send_accuse_lecture_notification.subject", dossier_id: dossier.id, libelle: dossier.procedure.libelle))
       expect(subject.body).to include("Pour en connaitre la nature, veuillez consulter votre dossier dans votre compte #{APPLICATION_NAME}")
       expect(subject.body).to have_link("Consulter mon dossier", href: dossier_url(dossier))
+    end
+
+    it "renders the email in the applicant's locale" do
+      dossier.user.update!(locale: 'en')
+      expect(subject.subject).to eq("A decision has been made on your application no. #{dossier.id} (#{dossier.procedure.libelle})")
+      expect(subject.body).to have_link("View my application", href: dossier_url(dossier))
     end
   end
 

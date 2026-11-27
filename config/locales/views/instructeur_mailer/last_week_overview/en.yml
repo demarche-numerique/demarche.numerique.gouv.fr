@@ -2,3 +2,18 @@ en:
   instructeur_mailer:
     last_week_overview:
       subject: "Your weekly activity"
+      intro: "Here is the summary of your weekly activity:"
+      see: view
+      created:
+        one: "new application submitted since %{date}"
+        other: "new applications submitted since %{date}"
+      en_construction:
+        one: application submitted
+        other: applications submitted
+      en_instruction:
+        one: application under review
+        other: applications under review
+      including: including
+      waiting: waiting for more than 7 days
+      waiting_with_list_html: "waiting for more than 7 days: %{dossiers}"
+      dossier_number: "no. %{id}"

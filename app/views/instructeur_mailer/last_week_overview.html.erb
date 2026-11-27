@@ -1,0 +1,73 @@
+<% content_for(:title, @subject) %>
+
+<p>
+  <%= t(:hello, scope: [:views, :shared, :greetings]) %>
+</p>
+
+<p>
+  <%= t('.intro') %>
+</p>
+
+<% @overviews.each_with_index do |procedure_overview, index| %>
+  <h2 style="font-size: 16px; font-weight: 300; margin: 25px 0 5px;">
+    <%= procedure_overview.procedure.libelle %>
+    <%= link_to t('.see'), instructeur_procedure_url(procedure_overview.procedure), style: 'color: #0069CC; font-size: 14px;' %>
+  </h2>
+
+  <table
+    cellpadding="0"
+    cellspacing="0"
+    style="width: 100%; padding-bottom: 20px;"
+  >
+    <tbody>
+      <% if procedure_overview.created_dossiers_count > 0 %>
+        <tr>
+          <td style="padding: 2px 0;">
+            <span style="font-weight: bold;">
+              <%= procedure_overview.created_dossiers_count %>
+            </span>
+
+            <%= t('.created', count: procedure_overview.created_dossiers_count, date: l(procedure_overview.start_date.to_date, format: :long)) %>
+          </td>
+        </tr>
+      <% end %>
+
+      <% rows = [
+        [procedure_overview.dossiers_en_construction_count, t('.en_construction', count: procedure_overview.dossiers_en_construction_count), procedure_overview.old_dossiers_en_construction],
+        [procedure_overview.dossiers_en_instruction_count, t('.en_instruction', count: procedure_overview.dossiers_en_instruction_count), procedure_overview.old_dossiers_en_instruction],
+      ] %>
+
+      <% rows.each do |count, label, old_dossiers| %>
+        <% next if count == 0 %>
+
+        <tr>
+          <td style="padding: 2px 0;">
+            <span style="font-weight: bold;"><%= count %></span>
+            <%= label %>
+
+            <% if old_dossiers.any? %>
+              <%= t('.including') %>
+              <span style="font-weight: bold; color: #FF5D60; padding: 2px 0;">
+                <%= old_dossiers.size %>
+              </span>
+              <% if old_dossiers.size < 6 %>
+                <%= t('.waiting_with_list_html', dossiers: safe_join(old_dossiers.map { link_to t('.dossier_number', id: it.id), instructeur_dossier_url(procedure_overview.procedure, it), style: 'color: #0069CC;' }, ', ')) %>
+              <% else %>
+                <%= t('.waiting') %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <% if index != (@overviews.count - 1) %>
+    <div
+      class="spacer"
+      style="border-bottom: 1px solid #CCC; margin: 25px 0 30px;"
+    ></div>
+  <% end %>
+<% end %>
+
+<%= render partial: "layouts/mailers/signature" %>

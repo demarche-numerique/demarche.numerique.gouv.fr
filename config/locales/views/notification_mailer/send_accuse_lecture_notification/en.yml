@@ -1,0 +1,4 @@
+en:
+  notification_mailer:
+    send_accuse_lecture_notification:
+      subject: "A decision has been made on your application no. %{dossier_id} (%{libelle})"

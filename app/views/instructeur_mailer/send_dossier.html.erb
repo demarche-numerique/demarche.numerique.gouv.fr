@@ -1,0 +1,11 @@
+<p>
+  <%= t(:hello, scope: [:views, :shared, :greetings]) %>
+</p>
+
+<p>
+  <%= t('.body', sender_email: @sender.email, dossier_id: @dossier.id) %>
+  <% url = instructeur_dossier_url(@dossier.procedure, @dossier) %>
+  <%= link_to(url, url) %>
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>
