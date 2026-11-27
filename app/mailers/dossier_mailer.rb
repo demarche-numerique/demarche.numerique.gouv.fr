@@ -13,7 +13,7 @@ class DossierMailer < ApplicationMailer
   default from: NO_REPLY_EMAIL
 
   before_action :abort_perform_deliveries, only: [:notify_transfer]
-  before_action :prevent_perform_deliveries, only: [:notify_new_draft, :notify_new_answer, :notify_pending_correction, :notify_transfer]
+  before_action :prevent_perform_deliveries, only: [:notify_new_draft, :notify_new_answer, :notify_pending_correction, :notify_dossier_modifie_par_instructeur, :notify_transfer]
 
   # when we don't want to render the view
   rescue_from AbortDeliveryError, with: -> {}
@@ -32,16 +32,9 @@ class DossierMailer < ApplicationMailer
 
   def notify_new_answer
     commentaire = params[:commentaire]
-    dossier = commentaire.dossier
-
-    use_recipient_locale(dossier.user)
-    @dossier = dossier
-    @service = dossier.procedure.service
-    @logo_url = procedure_logo_url(@dossier.procedure)
     @body = commentaire.body
-    @subject = default_i18n_subject(dossier_id: dossier.id, libelle_demarche: dossier.procedure.libelle)
 
-    mail(to: dossier.user_email_for(:notification), subject: @subject)
+    mail_to_usager(commentaire.dossier)
   end
 
   def notify_new_commentaire_to_instructeur(dossier, instructeur_email)
@@ -66,6 +59,10 @@ class DossierMailer < ApplicationMailer
     @subject = t(".#{@correction.reason}.subject", dossier_id: dossier.id, libelle_demarche: dossier.procedure.libelle)
 
     mail(to: dossier.user_email_for(:notification), subject: @subject)
+  end
+
+  def notify_dossier_modifie_par_instructeur
+    mail_to_usager(params[:commentaire].dossier)
   end
 
   def notify_new_avis_to_instructeur(avis, instructeur_email)
@@ -212,6 +209,16 @@ class DossierMailer < ApplicationMailer
   end
 
   protected
+
+  def mail_to_usager(dossier)
+    use_recipient_locale(dossier.user)
+    @dossier = dossier
+    @service = dossier.procedure.service
+    @logo_url = procedure_logo_url(dossier.procedure)
+    @subject = default_i18n_subject(dossier_id: dossier.id, libelle_demarche: dossier.procedure.libelle)
+
+    mail(to: dossier.user_email_for(:notification), subject: @subject)
+  end
 
   def prevent_perform_deliveries
     commentaire = params[:commentaire]
