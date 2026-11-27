@@ -30,7 +30,12 @@ describe Instructeurs::GroupeInstructeursController, type: :controller do
   describe '#index (plus, ensure_allowed!)' do
     context 'when i own the procedure' do
       before { get :index, params: { procedure_id: procedure.id } }
-      it { expect(response).to have_http_status(:ok) }
+
+      it 'titles the page with a h2 under the procedure h1' do
+        expect(response).to have_http_status(:ok)
+        expect(response.body).to have_selector('main h1', count: 1)
+        expect(response.body).to have_selector('h2.fr-h4', text: 'Gestion des instructeurs')
+      end
     end
 
     context 'when i am an instructeur of the procedure and instructeurs_self_management_enabled is true' do
@@ -84,7 +89,12 @@ describe Instructeurs::GroupeInstructeursController, type: :controller do
         get :show, params: { procedure_id: procedure.id, id: gi_1_2.id }
       end
 
-      it { expect(response).to have_http_status(:ok) }
+      it 'titles the group with a h2 under the procedure h1' do
+        expect(response).to have_http_status(:ok)
+        expect(response.body).to have_selector('main h1', count: 1)
+        expect(response.body).to have_selector('h2.fr-h4', text: gi_1_2.label)
+        expect(response.body).not_to have_selector('main h4')
+      end
 
       it 'tells which email domain can be added' do
         expect(response.body).to have_selector('#instructeur-emails-domain-hint')

@@ -1,5 +1,5 @@
 <div class="fr-container fr-my-4w">
-  <h1 class="fr-h4"><%= title %></h1>
+  <%= content_tag(local_assigns.fetch(:heading_level, :h1), title, class: "fr-h4") %>
 
   <div class="fr-grid-row fr-grid-row--gutters">
     <% if @usual_traitement_time.present? && (local_assigns[:show_user_indication] || @procedure.estimated_processing_duration_visible?) -%>

@@ -18,6 +18,8 @@ fr:
 
         no_export_html: Vous n’avez pas d’export pour le moment. <br> Vous ne trouvez pas un export ? Il a peut-être expiré, les exports sont supprimés au bout de %{expiration_time} heures.
       export_templates:
+        shared: partagé
+        not_shared: non partagé
         export_template_list_description_html: |
           Chaque instructeur a la possibilité de <b>configurer un modèle</b> d’export pour personnaliser les exports (nom des pièces jointes pour un export au format zip, sélection des colonnes pour un export tabulaire). Il sera <b>mis à disposition de l’ensemble des instructeurs</b> affectés à la démarche<br>
           %{link}

@@ -1,13 +1,13 @@
-- content_for(:title, "Supprimés")
+- content_for(:title, t(".title"))
 
 .sub-header
   .fr-container.flex.column
     = render partial: 'shared/breadcrumbs',
       locals: { steps: [[t('show_procedure', scope: [:layouts, :breadcrumb], libelle: @procedure.libelle.truncate(22)), instructeur_procedure_path(@procedure)],
-                        ['Historique des dossiers supprimés']] }
+                        [t(".breadcrumb")]] }
 
     = render partial: 'instructeurs/procedures/header',
       locals: { procedure: @procedure }
 
 
-= render Dossiers::DeletedDossiersComponent.new(deleted_dossiers: @deleted_dossiers)
+= render Dossiers::DeletedDossiersComponent.new(deleted_dossiers: @deleted_dossiers, heading_level: :h2)

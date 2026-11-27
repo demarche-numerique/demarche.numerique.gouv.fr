@@ -1,4 +1,4 @@
-- content_for(:title, "Contacter")
+- content_for(:title, t('.title'))
 
 .sub-header
   .fr-container.flex.column
@@ -9,24 +9,22 @@
       locals: { procedure: @procedure }
 
 .messagerie.fr-container
-  %h1.fr-h4= t('instructeurs.dossiers.header.banner.contact_users')
+  %h2.fr-h4= t('instructeurs.dossiers.header.banner.contact_users')
 
   - if @dossiers_count_per_groupe_instructeur.values.sum.positive?
     = render Instructeurs::BulkMessageFormComponent.new(current_instructeur:, procedure: @procedure, dossiers_count_per_groupe_instructeur: @dossiers_count_per_groupe_instructeur)
   - else
     .page-title.center
-      %h2 Il n’y a aucun dossier en brouillon
+      %h2= t('.no_brouillon')
 
   - if @bulk_messages.present?
     %section.list-avis.fr-mt-16v
       %h2.tab-title
-        Messages envoyés précédemment
+        = t('.previous_messages')
         %span.fr-badge= @bulk_messages.count
 
       %ul
         - @bulk_messages.each do |message|
           %li
-            %b
-              = message.instructeur.email
-              a envoyé ce message à #{message.dossier_count} usagers le #{I18n.l(message.sent_at, format: :long_with_time)}
+            %b= t('.message_sent', email: message.instructeur.email, dossier_count: message.dossier_count, date: I18n.l(message.sent_at, format: :long_with_time))
             %p= message.body

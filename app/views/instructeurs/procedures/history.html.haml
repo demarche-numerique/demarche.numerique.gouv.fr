@@ -1,4 +1,4 @@
-- content_for(:title, "Historique")
+- content_for(:title, t(".title"))
 
 .sub-header
   .fr-container.flex.column
@@ -10,7 +10,7 @@
       locals: { procedure: @procedure }
 
 .fr-container
-  %h1.fr-h4= t('instructeurs.dossiers.header.banner.history.title')
+  %h2.fr-h4= t('instructeurs.dossiers.header.banner.history.title')
   - @revisions.each_cons(2) do |current_revision, previous_revision|
     .fr-card.fr-mb-2w.fr-p-2w
       %div

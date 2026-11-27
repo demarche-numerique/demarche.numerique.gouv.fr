@@ -1,4 +1,4 @@
-- content_for(:title, "Modèles d'export")
+- content_for(:title, t('instructeurs.dossiers.header.banner.export_templates'))
 
 .sub-header
   .fr-container.flex.column
@@ -8,7 +8,7 @@
 
 
 .fr-container
-  %h1.fr-h4= t('instructeurs.dossiers.header.banner.export_templates')
+  %h2.fr-h4= t('instructeurs.dossiers.header.banner.export_templates')
   = render Dsfr::AlertComponent.new(state: :info) do |c|
     - c.with_body do
       %p= t('.export_template_list_description_html', link: link_to(t('.export_template_doc_link'), DOC_EXPORT_TEMPLATE_URL, **external_link_attributes(t('.export_template_doc_link'))))
@@ -42,11 +42,9 @@
                     %td= export_template.groupe_instructeur.label
                     %td
                       - if export_template.shared
-                        %span.fr-badge.fr-badge--sm.fr-badge--success
-                          partagé
+                        %span.fr-badge.fr-badge--sm.fr-badge--success= t('.shared')
                       - else
-                        %span.fr-badge.fr-badge--sm
-                          non partagé
+                        %span.fr-badge.fr-badge--sm= t('.not_shared')
                   %td
                     .flex.wrap.align-center.flex-gap-1
                       = link_to t('.modify_template'), [:edit, :instructeur, @procedure, export_template], class: "fr-btn fr-btn--icon-left fr-icon-edit-line"

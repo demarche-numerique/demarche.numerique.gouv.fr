@@ -1,7 +1,6 @@
 
 .fr-container
-  %h1.fr-h4
-    = t('.title')
+  = content_tag(heading_level, t('.title'), class: "fr-h4")
 
 .fr-container
   - if @deleted_dossiers.present?

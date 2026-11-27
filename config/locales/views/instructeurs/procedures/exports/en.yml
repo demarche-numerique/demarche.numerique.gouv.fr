@@ -18,6 +18,8 @@ en:
 
         no_export_html: You have no export at the moment. <br> Can't find an export? It may have expired, exports are deleted after %{expiration_time} hours.
       export_templates:
+        shared: shared
+        not_shared: not shared
         export_template_list_description_html: |
           Each reviewer can <b>configure an export template</b> to customize exports (attachments name for a zip export, columns selection for a tabular export). It will be made <b>available to all reviewers</b> assigned to the procedure.</br>
           %{link}

@@ -1,4 +1,4 @@
-- content_for(:title, "Notifications")
+- content_for(:title, t(".page_title"))
 
 .sub-header
   .fr-container.flex.column
@@ -9,7 +9,7 @@
       locals: { procedure: @procedure }
 
 .fr-container
-  %h1.fr-h4
+  %h2.fr-h4
     = t('.title')
 
   .fr-tabs
