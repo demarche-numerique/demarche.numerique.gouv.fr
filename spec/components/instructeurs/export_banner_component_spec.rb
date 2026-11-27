@@ -68,12 +68,21 @@ RSpec.describe Instructeurs::ExportBannerComponent, type: :component do
   end
 
   context 'with an available export' do
-    let(:export) { ready(create(:export, format: :xlsx, groupe_instructeurs: [gi])) }
+    let(:export) { ready(create(:export, format: :xlsx, groupe_instructeurs: [gi], user_profile: instructeur)) }
 
     it 'offers the download without polling' do
       expect(page).to have_css('.alert.alert-success[role="status"]', text: 'Le dernier export au format xlsx est prêt.')
       expect(page).to have_link('télécharger', href: export.file.url)
       expect(page).to have_no_css('[data-controller="turbo-poll"]')
+    end
+  end
+
+  context 'with an available export requested by a colleague' do
+    let(:colleague) { create(:instructeur) }
+    let(:export) { ready(create(:export, format: :xlsx, groupe_instructeurs: [gi], user_profile: colleague)) }
+
+    it 'names the colleague who requested it' do
+      expect(page).to have_css('.alert-success', text: "Le dernier export au format xlsx, demandé par #{colleague.email}, est prêt.")
     end
   end
 

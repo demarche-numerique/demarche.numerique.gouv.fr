@@ -43,7 +43,7 @@ describe 'Export banner:', js: true do
 
     ready(export)
     visit instructeur_procedure_path(other_procedure)
-    expect(page).to have_css('#export-banner .alert-success', text: 'Le dernier export au format csv est prêt.')
+    expect(page).to have_css('#export-banner .alert-success', text: "Le dernier export au format csv, demandé par #{instructeur.email}, est prêt.")
   end
 
   scenario 'an action flash stacks above the export banner' do

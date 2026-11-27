@@ -51,12 +51,20 @@ class Instructeurs::ExportBannerComponent < ApplicationComponent
     }
   end
 
+  def requested_by_colleague?
+    export.user_profile_type == 'Instructeur' && export.user_profile_id != @instructeur.id
+  end
+
   def message
     case state
     when :failed
       t('.failed', file_format: export.format)
     when :available
-      t('.available_html', file_format: export.format, file_url: export.file.url)
+      if requested_by_colleague?
+        t('.available_by_colleague_html', file_format: export.format, file_url: export.file.url, email: export.user_profile.email)
+      else
+        t('.available_html', file_format: export.format, file_url: export.file.url)
+      end
     else
       t('.pending_html', url: exports_instructeur_procedure_path(export.procedure))
     end
