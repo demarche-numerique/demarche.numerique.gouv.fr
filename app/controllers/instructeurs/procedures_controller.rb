@@ -247,7 +247,7 @@ module Instructeurs
         .where(procedure: procedure)
 
       export = Export.find_or_create_fresh_export(export_format, groupe_instructeurs, current_instructeur, **export_options)
-      current_instructeur.request_export!(export)
+      current_instructeur.request_export!
 
       @procedure = procedure
       @dossiers_count = export.count

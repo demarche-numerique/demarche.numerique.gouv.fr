@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 describe InstructeurExportBannerConcern do
-  let(:procedure) { create(:procedure) }
+  let(:procedure) { procedures.individual }
   let(:gi) { procedure.defaut_groupe_instructeur }
-  let(:instructeur) { create(:instructeur, groupe_instructeurs: [gi]) }
+  let(:instructeur) { instructeurs.default }
   let(:colleague) { create(:instructeur, groupe_instructeurs: [gi]) }
 
   def ready(export)
@@ -17,18 +17,18 @@ describe InstructeurExportBannerConcern do
       expect(instructeur.export_for_banner(pro_connect: false)).to be_nil
     end
 
-    it 'returns the last requested export whatever its state' do
+    it 'returns an own pending or failed export' do
       export = create(:export, :pending, groupe_instructeurs: [gi], user_profile: instructeur)
-      instructeur.request_export!(export)
+      instructeur.request_export!
       expect(instructeur.export_for_banner(pro_connect: false)).to eq(export)
       export.update!(job_status: :failed)
       expect(instructeur.reload.export_for_banner(pro_connect: false)).to eq(export)
     end
 
     it 'hides an own export dismissed before it was ready, until it gets ready' do
-      export = create(:export, :pending, groupe_instructeurs: [gi], user_profile: instructeur)
-      instructeur.request_export!(export)
-      travel_to(1.minute.ago) { instructeur.dismiss_export_banner!(export.id) }
+      export = travel_to(2.minutes.ago) { create(:export, :pending, groupe_instructeurs: [gi], user_profile: instructeur) }
+      instructeur.request_export!
+      travel_to(1.minute.ago) { instructeur.dismiss_export_banner! }
       expect(instructeur.reload.export_for_banner(pro_connect: false)).to be_nil
       export.update!(job_status: :failed)
       export.update!(job_status: :pending)
@@ -38,38 +38,76 @@ describe InstructeurExportBannerConcern do
     end
 
     it 'hides an own export dismissed once ready' do
-      export = ready(create(:export, groupe_instructeurs: [gi], user_profile: instructeur))
-      instructeur.request_export!(export)
-      instructeur.dismiss_export_banner!(export.id)
+      ready(create(:export, groupe_instructeurs: [gi], user_profile: instructeur))
+      instructeur.request_export!
+      instructeur.dismiss_export_banner!
       expect(instructeur.reload.export_for_banner(pro_connect: false)).to be_nil
+    end
+
+    it 'keeps earlier colleague exports hidden after closing the own pending export' do
+      travel_to(2.minutes.ago) { ready(create(:export, groupe_instructeurs: [gi], user_profile: colleague)) }
+      create(:export, :pending, groupe_instructeurs: [gi], user_profile: instructeur)
+      instructeur.request_export!
+
+      instructeur.dismiss_export_banner!
+
+      expect(instructeur.reload.export_for_banner(pro_connect: false)).to be_nil
+    end
+
+    it 'keeps earlier own exports hidden after closing a colleague export' do
+      travel_to(2.minutes.ago) { ready(create(:export, groupe_instructeurs: [gi], user_profile: instructeur)) }
+      instructeur.request_export!
+      ready(create(:export, groupe_instructeurs: [gi], user_profile: colleague))
+
+      instructeur.dismiss_export_banner!
+
+      expect(instructeur.reload.export_for_banner(pro_connect: false)).to be_nil
+    end
+
+    it 'shows an own failure after its pending banner was closed' do
+      own = travel_to(2.minutes.ago) { create(:export, :pending, groupe_instructeurs: [gi], user_profile: instructeur) }
+      instructeur.request_export!
+      travel_to(1.minute.ago) { instructeur.dismiss_export_banner! }
+
+      own.update!(job_status: :failed)
+
+      expect(instructeur.reload.export_for_banner(pro_connect: false)).to eq(own)
+    end
+
+    it 'shows a newer ready colleague export instead of an older own failure' do
+      travel_to(2.minutes.ago) { create(:export, :failed, groupe_instructeurs: [gi], user_profile: instructeur) }
+      instructeur.request_export!
+      latest = ready(create(:export, groupe_instructeurs: [gi], user_profile: colleague))
+
+      expect(instructeur.export_for_banner(pro_connect: false)).to eq(latest)
     end
 
     it 'shows a dismissed own export again when it is requested again' do
       export = create(:export, :pending, groupe_instructeurs: [gi], user_profile: instructeur)
-      instructeur.request_export!(export)
-      instructeur.dismiss_export_banner!(export.id)
-      instructeur.request_export!(export)
+      instructeur.request_export!
+      instructeur.dismiss_export_banner!
+      instructeur.request_export!
       expect(instructeur.reload.export_for_banner(pro_connect: false)).to eq(export)
     end
 
     it 'returns nil once the own export is purged' do
       export = create(:export, :pending, groupe_instructeurs: [gi], user_profile: instructeur)
-      instructeur.request_export!(export)
+      instructeur.request_export!
       export.destroy!
       expect(instructeur.reload.export_for_banner(pro_connect: false)).to be_nil
     end
 
     it 'returns nil when the instructeur left a group of the export' do
-      export = create(:export, :pending, groupe_instructeurs: [gi], user_profile: instructeur)
-      instructeur.request_export!(export)
+      create(:export, :pending, groupe_instructeurs: [gi], user_profile: instructeur)
+      instructeur.request_export!
       instructeur.assign_to.find_by(groupe_instructeur: gi).destroy!
       expect(instructeur.reload.export_for_banner(pro_connect: false)).to be_nil
     end
 
     it 'returns nil when the own export also covers a group the instructeur is not in' do
       other_gi = create(:groupe_instructeur, procedure:, instructeurs: [colleague])
-      export = create(:export, :pending, groupe_instructeurs: [gi, other_gi], user_profile: instructeur)
-      instructeur.request_export!(export)
+      create(:export, :pending, groupe_instructeurs: [gi, other_gi], user_profile: instructeur)
+      instructeur.request_export!
       expect(instructeur.reload.export_for_banner(pro_connect: false)).to be_nil
     end
 
@@ -104,28 +142,38 @@ describe InstructeurExportBannerConcern do
 
     it 'prefers the own export over a newer colleague export' do
       own = create(:export, :pending, groupe_instructeurs: [gi], user_profile: instructeur)
-      instructeur.request_export!(own)
+      instructeur.request_export!
       ready(create(:export, groupe_instructeurs: [gi], user_profile: colleague))
       expect(instructeur.export_for_banner(pro_connect: false)).to eq(own)
     end
 
-    it 'falls back to a ready colleague export once the own export is dismissed' do
-      own = ready(create(:export, groupe_instructeurs: [gi], user_profile: instructeur))
-      instructeur.request_export!(own)
-      old = travel_to(2.minutes.ago) { ready(create(:export, groupe_instructeurs: [gi], user_profile: colleague)) }
-      travel_to(1.minute.ago) { instructeur.dismiss_export_banner!(old.id) }
-      newer = ready(create(:export, groupe_instructeurs: [gi], user_profile: colleague))
-      expect(instructeur.reload.export_for_banner(pro_connect: false)).to eq(own)
-      instructeur.dismiss_export_banner!(own.id)
-      expect(instructeur.reload.export_for_banner(pro_connect: false)).to eq(newer)
+    it 'shows the latest completed event even when an earlier own export exists' do
+      travel_to(2.minutes.ago) { ready(create(:export, groupe_instructeurs: [gi], user_profile: instructeur)) }
+      latest = ready(create(:export, groupe_instructeurs: [gi], user_profile: colleague))
+
+      expect(instructeur.export_for_banner(pro_connect: false)).to eq(latest)
     end
 
-    it 'keeps the own export when a colleague export is dismissed' do
-      own = create(:export, :pending, groupe_instructeurs: [gi], user_profile: instructeur)
-      instructeur.request_export!(own)
-      colleague_export = ready(create(:export, groupe_instructeurs: [gi], user_profile: colleague))
-      instructeur.dismiss_export_banner!(colleague_export.id)
-      expect(instructeur.reload.export_for_banner(pro_connect: false)).to eq(own)
+    it 'shows an own failure more recent than a ready colleague export' do
+      travel_to(2.minutes.ago) { ready(create(:export, groupe_instructeurs: [gi], user_profile: colleague)) }
+      latest = create(:export, :failed, groupe_instructeurs: [gi], user_profile: instructeur)
+
+      expect(instructeur.export_for_banner(pro_connect: false)).to eq(latest)
+    end
+
+    it 'shows a dismissed ready export again without refreshing its file age' do
+      export = ready(create(:export, groupe_instructeurs: [gi], user_profile: instructeur))
+      instructeur.dismiss_export_banner!
+
+      expect { instructeur.request_export! }.not_to change { export.reload.updated_at }
+      expect(instructeur.reload.export_for_banner(pro_connect: false)).to eq(export)
+    end
+
+    it 'does not let a generated export without a file hide an older ready export' do
+      ready_export = travel_to(2.minutes.ago) { ready(create(:export, groupe_instructeurs: [gi], user_profile: colleague)) }
+      create(:export, :generated, groupe_instructeurs: [gi], user_profile: colleague)
+
+      expect(instructeur.export_for_banner(pro_connect: false)).to eq(ready_export)
     end
 
     it 'ignores a generated colleague export whose file is not attached' do
@@ -134,8 +182,8 @@ describe InstructeurExportBannerConcern do
     end
 
     it 'hides colleague exports ready before the last dismissal' do
-      old = ready(create(:export, groupe_instructeurs: [gi], user_profile: colleague))
-      instructeur.dismiss_export_banner!(old.id)
+      ready(create(:export, groupe_instructeurs: [gi], user_profile: colleague))
+      instructeur.dismiss_export_banner!
       expect(instructeur.reload.export_for_banner(pro_connect: false)).to be_nil
       newer = travel_to(1.minute.from_now) { ready(create(:export, groupe_instructeurs: [gi], user_profile: colleague)) }
       expect(instructeur.reload.export_for_banner(pro_connect: false)).to eq(newer)
@@ -147,8 +195,8 @@ describe InstructeurExportBannerConcern do
       [true, false].each do |pro_connect|
         context "with pro_connect: #{pro_connect}" do
           it 'hides an own export' do
-            export = ready(create(:export, groupe_instructeurs: [gi], user_profile: instructeur))
-            instructeur.request_export!(export)
+            ready(create(:export, groupe_instructeurs: [gi], user_profile: instructeur))
+            instructeur.request_export!
             expect(instructeur.reload.export_for_banner(pro_connect:)).to be_nil
           end
 
@@ -165,7 +213,7 @@ describe InstructeurExportBannerConcern do
 
       it 'hides an own export without a ProConnect session' do
         export = ready(create(:export, groupe_instructeurs: [gi], user_profile: instructeur))
-        instructeur.request_export!(export)
+        instructeur.request_export!
         expect(instructeur.reload.export_for_banner(pro_connect: false)).to be_nil
         expect(instructeur.export_for_banner(pro_connect: true)).to eq(export)
       end

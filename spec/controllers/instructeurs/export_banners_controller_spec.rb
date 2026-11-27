@@ -9,7 +9,6 @@ describe Instructeurs::ExportBannersController, type: :controller do
   let!(:export) { create(:export, :pending, groupe_instructeurs: [gi], user_profile: instructeur) }
 
   before do
-    instructeur.request_export!(export)
     sign_in(instructeur.user)
   end
 
@@ -32,7 +31,6 @@ describe Instructeurs::ExportBannersController, type: :controller do
       colleague_export = create(:export, groupe_instructeurs: [gi], user_profile: colleague)
       colleague_export.file.attach(io: StringIO.new('x'), filename: 'e.csv')
       colleague_export.update!(job_status: :generated)
-      instructeur.update!(last_requested_export_id: nil)
       procedure.update!(pro_connect_restriction: :instructeurs)
 
       get :polling, format: :turbo_stream
@@ -45,9 +43,9 @@ describe Instructeurs::ExportBannersController, type: :controller do
 
   describe '#destroy' do
     it 'dismisses the banner and empties it' do
-      delete :destroy, params: { export_id: export.id }, format: :turbo_stream
+      delete :destroy, format: :turbo_stream
 
-      expect(instructeur.reload.last_requested_export_dismissed_at).to be_present
+      expect(instructeur.reload.export_for_banner(pro_connect: false)).to be_nil
       expect(response.body).to include('turbo-stream action="update" target="export-banner"')
       expect(response.body).not_to include('action="focus"')
     end
@@ -55,19 +53,20 @@ describe Instructeurs::ExportBannersController, type: :controller do
     it 'redirects back without JavaScript' do
       request.env['HTTP_REFERER'] = instructeur_procedure_path(procedure)
 
-      delete :destroy, params: { export_id: export.id }
+      delete :destroy
 
       expect(response).to redirect_to(instructeur_procedure_path(procedure))
     end
 
-    it 'only stamps the caller account for an export it cannot see' do
-      foreign = create(:export, :generated)
+    it 'only closes the banner for the caller' do
+      colleague = create(:instructeur, groupe_instructeurs: [gi])
+      colleague_export = create(:export, :pending, groupe_instructeurs: [gi], user_profile: colleague)
 
-      delete :destroy, params: { export_id: foreign.id }, format: :turbo_stream
+      delete :destroy, format: :turbo_stream
 
       expect(response).to have_http_status(:ok)
-      expect(instructeur.reload.last_requested_export_dismissed_at).to be_nil
-      expect(instructeur.colleague_exports_dismissed_at).to be_present
+      expect(instructeur.reload.export_for_banner(pro_connect: false)).to be_nil
+      expect(colleague.reload.export_for_banner(pro_connect: false)).to eq(colleague_export)
     end
   end
 end

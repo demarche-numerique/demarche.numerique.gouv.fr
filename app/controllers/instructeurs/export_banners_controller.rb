@@ -7,7 +7,7 @@ module Instructeurs
     end
 
     def destroy
-      current_instructeur.dismiss_export_banner!(params[:export_id].to_i)
+      current_instructeur.dismiss_export_banner!
 
       respond_to do |format|
         format.turbo_stream { render turbo_stream: turbo_stream.update('export-banner', '') }

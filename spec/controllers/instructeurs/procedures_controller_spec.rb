@@ -784,7 +784,7 @@ describe Instructeurs::ProceduresController, type: :controller do
         let!(:export) { create(:export, :pending, groupe_instructeurs: [gi_2], user_profile: instructeur) }
 
         before do
-          instructeur.request_export!(export)
+          instructeur.request_export!
           subject
         end
 
@@ -1123,9 +1123,10 @@ describe Instructeurs::ProceduresController, type: :controller do
 
       it { expect { subject }.to change { Export.where(user_profile: instructeur).count }.by(1) }
 
-      it 'points the banner to the requested export' do
+      it 'shows the requested export after the banner was closed' do
+        instructeur.dismiss_export_banner!
         subject
-        expect(instructeur.reload.last_requested_export).to eq(Export.find_by(user_profile: instructeur))
+        expect(instructeur.reload.export_for_banner(pro_connect: false)).to eq(Export.find_by(user_profile: instructeur))
       end
 
       context 'with an export template' do
@@ -1149,9 +1150,10 @@ describe Instructeurs::ProceduresController, type: :controller do
         expect(flash.notice).to be_nil
       end
 
-      it 'points the banner to the reused export' do
-        expect { subject }.not_to change { Export.count }
-        expect(instructeur.reload.last_requested_export).to eq(export)
+      it 'shows the reused pending export after the banner was closed' do
+        instructeur.dismiss_export_banner!
+        expect { subject }.not_to change { Export.where(user_profile: instructeur).count }
+        expect(instructeur.reload.export_for_banner(pro_connect: false)).to eq(export)
       end
     end
 
@@ -1167,9 +1169,10 @@ describe Instructeurs::ProceduresController, type: :controller do
         expect(response.headers['Location']).to start_with("http://test.host/rails/active_storage/disk")
       end
 
-      it 'points the banner to the reused export' do
-        subject
-        expect(instructeur.reload.last_requested_export).to eq(export)
+      it 'shows the reused ready export after the banner was closed' do
+        instructeur.dismiss_export_banner!
+        expect { subject }.not_to change { Export.where(user_profile: instructeur).count }
+        expect(instructeur.reload.export_for_banner(pro_connect: false)).to eq(export)
       end
     end
 
