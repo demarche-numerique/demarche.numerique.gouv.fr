@@ -8,3 +8,5 @@ en:
               blank: "must be set"
               greater_than: "must be later than today"
               less_than_or_equal_to: "cannot exceed the maximum allowed duration"
+            authorized_networks:
+              too_wide: "Network ranges cannot be wider than /24 for IPv4 or /48 for IPv6"
