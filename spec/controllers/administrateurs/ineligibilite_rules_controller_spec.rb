@@ -90,6 +90,21 @@ describe Administrateurs::IneligibiliteRulesController, type: :controller do
           .from(initial_condition)
           .to(empty_operator(empty, empty))
       end
+
+      context 'when the last rule is removed and no field can be targeted' do
+        let(:condition_form) do
+          { rows: [{ targeted_champ: empty.to_json, operator_name: Logic::EmptyOperator, value: empty.to_json }] }
+        end
+        render_views
+
+        it 'removes the rules component' do
+          procedure.draft_revision.update(ineligibilite_rules: empty_operator(empty, empty))
+          subject
+          target = dom_id(procedure.draft_revision, :ineligibilite_rules)
+          expect(procedure.draft_revision.reload.ineligibilite_rules).to be_nil
+          expect(Nokogiri::HTML5.fragment(response.body).at_css("turbo-stream[action='remove'][target='#{target}']")).to be_present
+        end
+      end
     end
 
     context 'simple tdc' do

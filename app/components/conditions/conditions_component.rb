@@ -3,6 +3,10 @@
 class Conditions::ConditionsComponent < ApplicationComponent
   include Logic
 
+  def render?
+    @condition.present? || sources_by_visibility.values.any?(&:present?)
+  end
+
   private
 
   def rows
@@ -268,10 +272,6 @@ class Conditions::ConditionsComponent < ApplicationComponent
       formmethod: 'delete',
       formnovalidate: true
     )
-  end
-
-  def render?
-    @condition.present? || sources_by_visibility.values.any?(&:present?)
   end
 
   def input_name_for(name)
