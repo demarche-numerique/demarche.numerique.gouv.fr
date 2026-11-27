@@ -15,8 +15,18 @@ RSpec.describe Dsfr::InputStatusMessageComponent, type: :component do
     let(:public_type_de_champs) { [{ type: :text, libelle: "Plop" }] }
     let(:errors_on_attribute) { true }
     let(:error_full_messages) { ["Invalid input"] }
-    it "renders the error message" do
+    it "renders the error message in an assertive live region" do
       expect(subject).to have_css(".fr-message--error", text: "« #{champ.libelle} »")
+      expect(subject).to have_css(".fr-messages-group[aria-live='assertive']")
+    end
+
+    context "when the champ has a persistent live region" do
+      let(:public_type_de_champs) { [{ type: :dossier_link, libelle: "Plop" }] }
+
+      it "leaves the announcement to the persistent region" do
+        expect(subject).to have_css(".fr-message--error", text: "« #{champ.libelle} »")
+        expect(subject).not_to have_css(".fr-messages-group[aria-live]")
+      end
     end
 
     context "when row_number is provided" do
@@ -165,8 +175,8 @@ RSpec.describe Dsfr::InputStatusMessageComponent, type: :component do
         context "when the validation rejected the number" do
           before { champ.errors.add(:value, :not_in_allowed_procedures) }
 
-          it "announces nothing, as the visible region shows the error" do
-            expect(subject.text.strip).to be_empty
+          it "announces the error shown by the visible region, not the dossier" do
+            expect(subject.text.strip).to eq("« #{champ.libelle} » Ce dossier n’est pas dans une démarche autorisée")
           end
         end
 
@@ -177,8 +187,8 @@ RSpec.describe Dsfr::InputStatusMessageComponent, type: :component do
             champ.dossier.errors.objects.append(DossierValidateConcern::ChampNestedError.new(champ.dossier, other_instance.errors.first))
           end
 
-          it "announces nothing" do
-            expect(subject.text.strip).to be_empty
+          it "announces the error" do
+            expect(subject.text.strip).to eq("« #{champ.libelle} » Ce dossier n’est pas dans une démarche autorisée")
           end
         end
       end

@@ -22,13 +22,19 @@ module Dsfr
       statutable? && statut_message.present?
     end
 
-    # The visible region shows the errors instead of the status: never announce what it hides.
-    def announceable?
-      !errored? && status_announcement?
+    def errored?
+      announced_error_messages.any?
     end
 
-    def errored?
-      @champ.errors.any? || @champ.dossier_nested_errors.any?
+    # Same messages as the visible region, which shows the errors instead of the status.
+    def announced_error_messages
+      @announced_error_messages ||= (@champ.dossier_nested_errors.map(&:message) + @champ.errors.map(&:message)).uniq
+    end
+
+    # A champ with a persistent region announces its errors there: the visible region is
+    # recreated on each autosave, and a new live region is not reliably read out.
+    def visible_region_live
+      :assertive if @error_full_messages.any? && !@champ.status_announceable?
     end
 
     def statutable?

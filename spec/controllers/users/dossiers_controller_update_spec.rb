@@ -417,11 +417,10 @@ describe Users::DossiersController, type: :controller do
       let(:payload) { submit_payload.merge(validate: 'true') }
       let(:value) { linked_dossier.id.to_s }
 
-      it 'empties the live region instead of announcing the linked dossier' do
+      it 'announces the error in the live region instead of the linked dossier' do
         subject
         region = Nokogiri::HTML5.fragment(response.body).at_css(%(turbo-stream[action="update"][target="#{first_champ.focusable_input_id}-aria-live"]))
-        expect(response.body).to include("Ce dossier n’est pas dans une démarche autorisée")
-        expect(region.text.strip).to be_empty
+        expect(region.text.strip).to eq("« #{first_champ.libelle} » Ce dossier n’est pas dans une démarche autorisée")
       end
     end
 
