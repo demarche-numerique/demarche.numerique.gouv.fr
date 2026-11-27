@@ -112,6 +112,13 @@ class APIToken < ApplicationRecord
     end
   end
 
+  # IPAddr#== ignores the prefix: without this, changing only the prefix of a
+  # network is neither detected nor saved.
+  def authorized_networks=(networks)
+    authorized_networks_will_change!
+    super
+  end
+
   def authorized_networks_for_ui
     authorized_networks.map { "#{_1.to_string}/#{_1.prefix}" }.join(', ')
   end

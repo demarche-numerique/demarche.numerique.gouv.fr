@@ -418,6 +418,12 @@ describe APIToken, type: :model do
         expect(api_token.reload.stored_ips).to eq([IPAddr.new('10.0.1.1')])
         expect(api_token.name).to eq('renamed')
       end
+
+      it 'can be narrowed by changing only the prefix' do
+        api_token.update!(authorized_networks: [IPAddr.new('10.0.0.0/24')])
+
+        expect(api_token.reload.authorized_networks_for_ui).to eq('10.0.0.0/24')
+      end
     end
   end
 
