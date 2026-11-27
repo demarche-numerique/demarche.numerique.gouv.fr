@@ -13,7 +13,7 @@ describe APITokenParams do
           name: 'Mon jeton',
           write_access: true,
           allowed_procedure_ids: nil,
-          authorized_networks: [IPAddr.new('192.168.1.0/24'), IPAddr.new('10.0.0.0/8')]
+          authorized_networks: [IPAddr.new('192.168.1.0/24'), IPAddr.new('10.0.0.0/24')]
         )
       end
 
@@ -23,7 +23,7 @@ describe APITokenParams do
           target: 'all',
           access: 'read_write',
           networkFiltering: 'customNetworks',
-          networks: '192.168.1.0/24 10.0.0.0/8'
+          networks: '192.168.1.0/24 10.0.0.0/24'
         )
       end
     end

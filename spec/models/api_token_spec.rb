@@ -382,6 +382,45 @@ describe APIToken, type: :model do
     end
   end
 
+  describe 'authorized_networks validation' do
+    let(:api_token) { APIToken.generate(administrateur).first }
+
+    before { api_token.authorized_networks = [IPAddr.new(network)] }
+
+    ['192.168.1.0/24', '192.168.1.23', '2001:db8:1234::/48', '2001:db8::1'].each do |accepted|
+      context "with #{accepted}" do
+        let(:network) { accepted }
+
+        it { expect(api_token).to be_valid }
+      end
+    end
+
+    ['192.168.0.0/23', '2001:db8::/47'].each do |rejected|
+      context "with #{rejected}" do
+        let(:network) { rejected }
+
+        it 'is rejected as too wide' do
+          expect(api_token).to be_invalid
+          expect(api_token.errors).to be_of_kind(:authorized_networks, :too_wide)
+        end
+      end
+    end
+
+    context 'with an existing token on a wider range' do
+      let(:network) { '10.0.0.0/16' }
+
+      before { api_token.save!(validate: false) }
+
+      it 'still records new IPs and other changes' do
+        api_token.store_new_ip('10.0.1.1')
+        api_token.update!(name: 'renamed')
+
+        expect(api_token.reload.stored_ips).to eq([IPAddr.new('10.0.1.1')])
+        expect(api_token.name).to eq('renamed')
+      end
+    end
+  end
+
   describe '#forbidden_network?' do
     let(:api_token_and_packed_token) { APIToken.generate(administrateur) }
     let(:api_token) { api_token_and_packed_token.first }

@@ -25,6 +25,10 @@ class APIToken < ApplicationRecord
             allow_nil: true,
             on: :create
 
+  # Every API call saves the token (stored_ips): only check the networks when
+  # they change, so that tokens on a wider range keep working.
+  validate :authorized_networks_not_too_wide, if: :authorized_networks_changed?
+
   # Version 1 and 2 tokens stopped authenticating when v1 was sunset; nothing
   # promotes them back. Naming the rule here keeps it from living only inside
   # authenticate, where the expiration notices could not reach it.
@@ -184,6 +188,12 @@ class APIToken < ApplicationRecord
   end
 
   private
+
+  def authorized_networks_not_too_wide
+    if authorized_networks.any? { it.prefix < (it.ipv4? ? 24 : 48) }
+      errors.add(:authorized_networks, :too_wide)
+    end
+  end
 
   def sanitize_targeted_procedure_ids
     if targeted_procedure_ids.present?
