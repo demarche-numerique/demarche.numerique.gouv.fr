@@ -1,0 +1,4 @@
+en:
+  notification_mailer:
+    send_notification_for_tiers:
+      subject: "Your application filled in by the representative %{first_name} %{last_name} has been updated"

@@ -33,8 +33,9 @@ class NotificationMailer < ApplicationMailer
       return
     end
 
-    @subject = default_i18n_subject(first_name: @dossier.mandataire_first_name, last_name: @dossier.mandataire_last_name)
     @email = @dossier.individual.email
+    use_recipient_locale(@email)
+    @subject = default_i18n_subject(first_name: @dossier.mandataire_first_name, last_name: @dossier.mandataire_last_name)
     @logo_url = procedure_logo_url(@dossier.procedure)
 
     mail(subject: @subject, to: @email, template_name: 'send_notification_for_tiers')
