@@ -343,7 +343,7 @@ describe AttachmentsController, type: :controller do
     let(:dossier) { create(:dossier, user:, procedure:) }
     let(:repetition_type_de_champ) { procedure.active_revision.public_root_type_de_champs.first }
     let(:children) { procedure.active_revision.type_de_champ(repetition_type_de_champ.stable_id).flat_children }
-    let(:row_id) { dossier.repetition_row_ids(repetition_type_de_champ).first }
+    let(:row_id) { dossier.project_champ(repetition_type_de_champ).row_ids.first }
     let(:attachment) { ActiveStorage::Attachment.find_by(record_id: buffered_pj.id) }
     let(:buffered_pj) do
       dossier.champ_for_update(children.first, row_id:, updated_by: user.email).update!(value: 'non')

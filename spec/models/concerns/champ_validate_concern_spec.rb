@@ -141,7 +141,7 @@ RSpec.describe ChampValidateConcern do
   context 'when in a row' do
     let(:public_type_de_champs) { [{ type: :repetition, children: [{ type: :email }], mandatory: true }] }
     let(:type_de_champ_in_repetition) { dossier.revision.type_de_champ(type_de_champ.stable_id).flat_children.first }
-    let(:row_id) { dossier.repetition_row_ids(type_de_champ).first }
+    let(:row_id) { dossier.project_champ(type_de_champ).row_ids.first }
     let(:public_id) { type_de_champ_in_repetition.public_id(row_id) }
 
     context 'valid' do

@@ -25,8 +25,11 @@ class TypesDeChamp::PrefillRepetitionTypeDeChamp < TypesDeChamp::PrefillTypeDeCh
     rows = rows_from(value)
     return [] if rows.blank?
 
+    # read once: every row written below resets the layout the rows are read from
+    row_ids = champ.row_ids
+
     rows.flat_map.with_index do |repetition, index|
-      PrefillRepetitionRow.new(champ, repetition, index, @revision).to_assignable_attributes
+      PrefillRepetitionRow.new(champ, repetition, row_ids[index], @revision).to_assignable_attributes
     end.compact_blank
   end
 
@@ -67,19 +70,20 @@ class TypesDeChamp::PrefillRepetitionTypeDeChamp < TypesDeChamp::PrefillTypeDeCh
   end
 
   class PrefillRepetitionRow
-    attr_reader :champ, :repetition, :index, :revision
+    attr_reader :champ, :repetition, :row_id, :revision
 
-    def initialize(champ, repetition, index, revision)
+    # row_id is nil when the repetition has no row at this position yet
+    def initialize(champ, repetition, row_id, revision)
       @champ = champ
       @repetition = repetition
-      @index = index
+      @row_id = row_id
       @revision = revision
     end
 
     def to_assignable_attributes
       return unless repetition.is_a?(Hash)
 
-      row_id = champ.row_ids[index] || champ.add_row(updated_by: nil)
+      row_id = @row_id || champ.add_row(updated_by: nil)
 
       repetition.filter_map do |key, value|
         next if !key.is_a?(String) || !key.starts_with?("champ_")

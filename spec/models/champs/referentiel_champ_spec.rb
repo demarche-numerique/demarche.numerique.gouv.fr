@@ -187,7 +187,7 @@ describe Champs::ReferentielChamp, type: :model do
 
     def row_ids_of(stable_id)
       reloaded = Dossier.find(dossier.id)
-      reloaded.repetition_row_ids(reloaded.find_type_de_champ_by_stable_id(stable_id))
+      reloaded.project_champ(reloaded.find_type_de_champ_by_stable_id(stable_id)).row_ids
     end
 
     context 'when the prefill targets its own repetition' do

@@ -52,7 +52,7 @@ class TypesDeChamp::RepetitionTypeDeChamp < TypeDeChamp
   # what a row may hold: the columns of the repetition's sheet in an export
   def fillable_children = flat_children.filter(&:fillable?)
 
-  def typed_champ_blank?(champ) = champ.dossier.repetition_row_ids(self).blank?
+  def typed_champ_blank?(champ) = champ.rows.blank?
 
   private
 

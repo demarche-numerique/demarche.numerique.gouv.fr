@@ -4,7 +4,7 @@
 # champ data, without projecting the champs of the row.
 class ProcedureExportService::RepetitionRow < Data.define(:dossier, :id, :index)
   def self.for(dossier, type_de_champ)
-    dossier.repetition_row_ids(type_de_champ).map.with_index(1) { |id, index| new(dossier:, id:, index:) }
+    dossier.project_rows(type_de_champ).map.with_index(1) { |marker, index| new(dossier:, id: marker.row_id, index:) }
   end
 
   def spreadsheet_columns(type_de_champs, export_template: nil, format:)

@@ -21,7 +21,7 @@ describe ProcedureExportService::RepetitionRow do
     it 'numbers the rows of the dossier from 1, in row id order' do
       rows = described_class.for(fresh_dossier, repetition)
 
-      expect(rows.map(&:id)).to eq(fresh_dossier.repetition_row_ids(repetition))
+      expect(rows.map(&:id)).to eq(fresh_dossier.project_champ(repetition).row_ids)
       expect(rows.map(&:index)).to eq([1, 2, 3, 4])
     end
   end

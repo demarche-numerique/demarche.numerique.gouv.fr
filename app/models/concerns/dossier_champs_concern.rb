@@ -7,7 +7,8 @@ module DossierChampsConcern
   # revision that removes a champ rebases every non-terminated dossier, so a browser
   # still showing the previous form keeps posting a champ that has since disappeared.
   # It is also raised for a stable_id taken straight from a URL that never matched
-  # anything. Callers that can render turbo_stream drop the orphaned input; see
+  # anything, and for a champ of a row the dossier does not have (or no longer has).
+  # Callers that can render turbo_stream drop the orphaned input; see
   # ApplicationController#champ_not_in_revision.
   class ChampNotInRevisionError < StandardError
     attr_reader :public_id
@@ -39,6 +40,16 @@ module DossierChampsConcern
     end
   end
 
+  # The live rows of a repetition, as the champs marking them, in row order:
+  # what the layout builds its rows from, as it builds its champs from project_champ.
+  def project_rows(type_de_champ)
+    return [] if !type_de_champ.repetition?
+    @projected_rows ||= {}
+    @projected_rows[type_de_champ.stable_id] ||= champ_data_on_stream
+      .filter { it.row? && it.stable_id == type_de_champ.stable_id && !it.discarded? }
+      .sort_by(&:row_id)
+  end
+
   # The champs laid out as the types de champ of the revision are, until the
   # champs change (reset_champs_cache).
   def champ_layout
@@ -53,6 +64,11 @@ module DossierChampsConcern
     :public_root_champs, :private_root_champs,
     :champs, :champs_for_row,
     to: :champ_layout
+
+  # A champ of the form as it is laid out: of the revision, and of a row the dossier has.
+  def champ(public_id)
+    champ_layout.champ(public_id) || raise(ChampNotInRevisionError.new(public_id))
+  end
 
   def find_type_de_champ_by_stable_id(stable_id, scope = nil)
     type_de_champ = revision.type_de_champ(stable_id)
@@ -98,13 +114,11 @@ module DossierChampsConcern
   end
 
   def public_champ(public_id)
-    type_de_champ, row_id = find_type_de_champ_by_public_id!(public_id, :public)
-    project_champ(type_de_champ, row_id:)
+    champ(public_id).tap { raise ChampNotInRevisionError.new(public_id) if !it.public? }
   end
 
   def private_champ(public_id)
-    type_de_champ, row_id = find_type_de_champ_by_public_id!(public_id, :private)
-    project_champ(type_de_champ, row_id:)
+    champ(public_id).tap { raise ChampNotInRevisionError.new(public_id) if !it.private? }
   end
 
   def public_champ_for_update(public_id, updated_by:)
@@ -115,15 +129,6 @@ module DossierChampsConcern
   def private_champ_for_update(public_id, updated_by:)
     type_de_champ, row_id = find_type_de_champ_by_public_id!(public_id, :private)
     champ_for_update(type_de_champ, row_id:, updated_by:)
-  end
-
-  def repetition_row_ids(type_de_champ)
-    return [] if !type_de_champ.repetition?
-    @repetition_row_ids ||= {}
-    @repetition_row_ids[type_de_champ.stable_id] ||= champ_data_on_stream
-      .filter { _1.row? && _1.stable_id == type_de_champ.stable_id && !_1.discarded? }
-      .map(&:row_id)
-      .sort
   end
 
   def repetition_add_row(type_de_champ, updated_by:)
@@ -469,7 +474,7 @@ module DossierChampsConcern
     @built_champs = nil
     @champ_layout = nil
     @discarded_champ_data_by_public_id = nil
-    @repetition_row_ids = nil
+    @projected_rows = nil
     @revision_stable_ids = nil
     @champ_data_on_stream = nil
   end

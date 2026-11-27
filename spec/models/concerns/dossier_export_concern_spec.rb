@@ -233,7 +233,7 @@ describe DossierExportConcern do
     end
 
     before do
-      row_id = dossier.repetition_row_ids(bloc).first
+      row_id = dossier.project_champ(bloc).row_ids.first
       dossier.public_champ_for_update("11-#{row_id}", updated_by: 'test').update!(value: 'Léa')
       dossier.public_champ_for_update("12-#{row_id}", updated_by: 'test').update!(value: '7')
     end
