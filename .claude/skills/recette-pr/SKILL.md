@@ -19,6 +19,7 @@ Fichiers du skill (`.claude/skills/recette-pr/`) :
 | `publier.sh <N> [--verdicts <resultats.json>] [--video <url>] [--a-juger <fichier.md>]` | publie les captures dans un gist, puis écrit le commentaire (section 8) |
 | `outils.mjs` | outils passés aux étapes sous `outils` : `codeFrais(secret)` pour un code OTP |
 | `cleanup.sh <N>` | arrête le serveur, supprime worktree et bases (section 9) |
+| `voiceover.sh --check` / `voiceover.sh <scenario> [options]` | recette guidée au lecteur d'écran : vérifie la configuration du Mac, filme l'écran avec la voix de VoiceOver, relève les plages de parole (section 10) |
 
 ## 1. Comprendre la PR
 
@@ -198,3 +199,43 @@ Le commentaire se lit sans rien déplier, puis se creuse à la demande. Sous le 
 ## 9. Nettoyer
 
 Quand l'humain a fini : `.claude/skills/recette-pr/cleanup.sh N`. Garde le worktree s'il veut revenir sur la recette après de nouveaux commits : `prepare.sh N` le remet sur la nouvelle tête et recrée la base, le scénario reste dans `tmp/recette/`.
+
+## 10. Recette au lecteur d'écran (VoiceOver, macOS)
+
+Quand la PR touche à ce qu'entend un lecteur d'écran (région `aria-live`, `aria-describedby`, ordre de lecture), le bandeau d'un `script` (section 4) montre ce qui est **envoyé** ; seul VoiceOver dit ce qui est **prononcé**. Un nœud live inséré avec son contenu (un `turbo_stream.replace`, par exemple) n'est souvent pas lu : la recette au lecteur d'écran le révèle, la vérification du DOM jamais.
+
+### Configuration du Mac, une fois
+
+`voiceover.sh --check` vérifie tout ce qui se vérifie en ligne de commande et dit quoi faire pour le reste.
+
+1. **Pilote de bouclage audio** : `brew install blackhole-2ch` (redémarrage du Mac demandé).
+2. **Appareil à sorties multiples** : Configuration audio et MIDI > **+** > « Créer un appareil à sorties multiples » ; cocher le casque ou les haut-parleurs (appareil principal) **et** BlackHole 2ch, « Correction de la dérive » sur BlackHole. On entend, et BlackHole reçoit la même chose.
+3. **Sortie de VoiceOver** : Utilitaire VoiceOver > **Son** > Périphérique de sortie = l'appareil à sorties multiples. Seule la voix de VoiceOver part dans l'enregistrement, pas les notifications ; la sortie du Mac ne change pas. La barre latérale de l'Utilitaire est masquée quand la fenêtre est étroite : l'élargir ou ⌃⌘S.
+4. **Sous-titres** : Utilitaire VoiceOver > **Effets visuels** > afficher le panneau des sous-titres. Le texte de chaque phrase apparaît à l'écran : c'est ce que l'agent lit dans la vidéo.
+5. **Enregistrement de l'écran** : Réglages Système > Confidentialité et sécurité > Enregistrement de l'écran et audio du système > cocher le terminal, puis le **quitter (⌘Q) et le rouvrir**. La session Claude Code s'arrête : donner à l'humain la commande `claude --resume <id de session>`, l'id est dans le chemin du scratchpad ; les serveurs lancés en arrière-plan (`serve.sh`) sont à relancer.
+6. Optionnel : Utilitaire VoiceOver > Général > « Permettre à AppleScript de contrôler VoiceOver » ; `tell application "VoiceOver" to content of last phrase` rend la dernière phrase dite, base d'une vérification automatique (non outillée ici).
+
+Pièges : `screencapture` qui échoue avec « could not create image from display » = autorisation manquante ; ffmpeg avfoundation refuse `yuv420p` en entrée (`-pixel_format nv12`) ; la locale française fait lire « 113.7 » comme 113 à `awk` (`LC_ALL=C`).
+
+### Jouer la recette
+
+```bash
+cd ../review-pr-N && <repo>/.claude/skills/recette-pr/voiceover.sh tmp/recette/scenario.mjs --base-url http://localhost:3100
+```
+
+Lance-le en arrière-plan. Dis à l'humain : ⌘F5 pour activer VoiceOver ; pour chaque critère, saisir puis **Tab** (l'enregistrement automatique part à la sortie du champ) et écouter ; verdicts à la souris ; tout faire dans la fenêtre Chromium (tout l'écran est filmé) ; **fermer la fenêtre de recette** à la fin, ce qui arrête et finalise la vidéo. Sortie : `tmp/recette/recette-voiceover.mp4`, `tmp/recette/parole.txt` (plages où VoiceOver parle), verdicts dans `tmp/recette/resultats-voiceover/`.
+
+### Lire ce que VoiceOver a dit
+
+Les sous-titres sont dans la vidéo : l'agent les lit, l'humain n'a rien à retranscrire.
+
+1. `parole.txt` donne les plages à regarder ; aucune parole = VoiceOver jamais activé, ou sa sortie ne passe pas par BlackHole.
+2. Une planche toutes les 3 s pour suivre les critères : `ffmpeg -ss <début> -i recette-voiceover.mp4 -t <durée> -vf "fps=1/3,scale=640:-1,tile=3x6" -frames:v 1 planche.png`.
+3. Puis le panneau des sous-titres seul, 2 images par seconde, sur la plage d'un critère : repère sa position sur une image, puis `-vf "fps=2,crop=<l>:<h>:<x>:<y>,tile=4x10"`. Une annonce polie ne dure qu'une ou deux secondes : une planche à 1/3 s la rate.
+4. Compare à l'attendu, mot pour mot, et regarde **ce qui la suit** : une relecture du champ juste après l'annonce (le champ focalisé recréé par un `replace`) peut la couper.
+5. Vérifie que l'humain a joué l'action décrite (le bon champ, la bonne valeur) : un ✅ sur une étape jouée ailleurs ne prouve rien, signale-le.
+
+### Publier la vidéo
+
+Coupe ce qui précède la première parole (`ffmpeg -ss <début - 2 s> -i … -c:v libx264 -crf 26 -c:a aac -b:a 96k -movflags +faststart court.mp4`). GitHub n'a pas d'API pour joindre une vidéo : publie-la dans un gist (comme `publier.sh` : `gh gist create` d'un README, clone, ajout du mp4, push), **secret** par défaut, car tout l'écran est filmé. Le gist la sert en `application/octet-stream` : le lien la télécharge. Pour qu'elle se lise dans le commentaire de recette, l'humain la glisse dans GitHub.
+
