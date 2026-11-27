@@ -23,7 +23,11 @@ describe ChampData do
       champ.stable_id = -2
       champ.save!
 
-      expect(champ.reload.new_id).to eq(champ.id)
+      # new_id is in ignored_columns, so it can only be read back in SQL.
+      new_id = ActiveRecord::Base.connection.select_value(
+        "SELECT new_id FROM champs WHERE id = #{champ.id}"
+      )
+      expect(new_id).to eq(champ.id)
     end
 
     it 'is installed by db:schema:load, which schema.rb cannot express' do

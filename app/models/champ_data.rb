@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class ChampData < ApplicationRecord
+  # Shadow column of the champs.id int4 -> bigint migration: a trigger fills it,
+  # and partial_inserts is false, so Active Record must never write it itself.
+  self.ignored_columns += [:new_id]
+
   include ChampConditionalConcern
   include ChampValidateConcern
   include ChampRevisionConcern
