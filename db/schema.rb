@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_25_100000) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_27_100000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_buffercache"
   enable_extension "pg_catalog.plpgsql"
@@ -750,6 +750,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_25_100000) do
     t.bigint "export_id", null: false
     t.bigint "groupe_instructeur_id", null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.index ["export_id"], name: "index_exports_groupe_instructeurs_on_export_id"
+    t.index ["groupe_instructeur_id", "export_id"], name: "idx_on_groupe_instructeur_id_export_id_247f96de96"
   end
 
   create_table "flipper_features", force: :cascade do |t|
@@ -909,6 +911,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_25_100000) do
     t.boolean "bypass_email_login_token", default: false, null: false
     t.datetime "created_at", precision: nil
     t.text "encrypted_login_token"
+    t.datetime "export_banner_dismissed_at", default: -> { "(now() AT TIME ZONE 'UTC'::text)" }
     t.datetime "login_token_created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.bigint "user_id", null: false

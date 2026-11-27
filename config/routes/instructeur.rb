@@ -2,6 +2,9 @@
 
 scope module: 'instructeurs', as: 'instructeur', defaults: { nav_bar_profile: :instructeur } do
   resource :rdv_connections, only: [:show, :destroy]
+  resource :export_banner, only: [:destroy] do
+    get :polling
+  end
   resources :procedures, only: [] do
     resources :export_templates, only: [:new, :create, :edit, :update, :destroy] do
       collection do
@@ -139,7 +142,6 @@ scope module: 'instructeurs', as: 'instructeur', defaults: { nav_bar_profile: :i
       get 'apercu'
       get 'download_export'
       post 'download_export'
-      get 'polling_last_export'
       get 'polling_batch_operation'
       get 'stats'
       get 'exports'

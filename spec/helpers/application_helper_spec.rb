@@ -73,6 +73,7 @@ describe ApplicationHelper do
   describe "#flash_class" do
     it do
       expect(flash_class('notice')).to eq 'alert-success fr-icon-success-line fr-icon--sm fr-text--sm fr-mb-0'
+      expect(flash_class('info')).to eq 'alert-info fr-icon-information-line fr-icon--sm fr-text--sm fr-mb-0'
       expect(flash_class('alert', sticky: true, fixed: true)).to eq 'alert-danger fr-icon-error-line fr-icon--sm fr-text--sm fr-mb-0 sticky alert-fixed'
       expect(flash_class('error')).to eq 'alert-danger fr-icon-error-line fr-icon--sm fr-text--sm fr-mb-0'
       expect(flash_class('unknown-level')).to eq ''

@@ -1,11 +1,6 @@
 fr:
   instructeurs:
     procedures:
-      export_available_html: L’export au format %{file_format} est prêt. Vous pouvez le <a href="%{file_url}">télécharger</a>
-      export_pending_html: Nous générons cet export. Vous pouvez retrouver tous vos exports sur  <a href="%{url}">la liste des exports</a>.
-      last_export_available_html: Votre dernier export au format %{file_format} est prêt. Vous pouvez le <a href="%{file_url}">télécharger</a>
-      last_export_failed: Votre dernier export au format %{file_format} n’a pas fonctionné.
-      last_export_pending: Votre dernier export est en cours de création.
       exports:
         title: Liste des exports
         export_description: |
