@@ -8,7 +8,23 @@ export class MenuButtonController extends ApplicationController {
 
   connect() {
     this.setup();
+    // capture: stop the click before the item's own listeners (Stimulus actions, DSFR modals)
+    this.element.addEventListener('click', this.blockDisabledMenuitem, true);
   }
+
+  disconnect() {
+    this.element.removeEventListener('click', this.blockDisabledMenuitem, true);
+    super.disconnect();
+  }
+
+  // a disabled menuitem uses aria-disabled to stay focusable, so the browser does not block it
+  private blockDisabledMenuitem = (event: Event) => {
+    const target = event.target as HTMLElement;
+    if (target.closest('[role="menuitem"][aria-disabled="true"]')) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+  };
 
   private get isOpen() {
     return (this.element as HTMLElement).classList.contains('open');
@@ -70,6 +86,8 @@ export class MenuButtonController extends ApplicationController {
   private open(focusMenuItem: 'first' | 'last' = 'first') {
     this.buttonTarget.setAttribute('aria-expanded', 'true');
     this.menuTarget.parentElement?.classList.add('open');
+    // a disclosure keeps the focus on its button
+    if (!this.isMenu) return;
     this.menuTarget.focus();
 
     requestAnimationFrame(() => {
@@ -148,7 +166,8 @@ export class MenuButtonController extends ApplicationController {
   }
 
   performMenuAction(target: EventTarget | null) {
-    target?.dispatchEvent(new Event('click'));
+    // a synthetic Event('click') runs listeners but neither submits a form nor follows a link
+    if (target instanceof HTMLElement) target.click();
   }
 
   private onButtonKeydown(event: KeyboardEvent) {
@@ -165,8 +184,10 @@ export class MenuButtonController extends ApplicationController {
         break;
       case 'ArrowDown':
       case 'Down':
-        this.open();
-        stopPropagation = true;
+        if (this.isMenu) {
+          this.open();
+          stopPropagation = true;
+        }
         break;
       case 'Esc':
       case 'Escape':
@@ -175,8 +196,10 @@ export class MenuButtonController extends ApplicationController {
         break;
       case 'Up':
       case 'ArrowUp':
-        this.open('last');
-        stopPropagation = true;
+        if (this.isMenu) {
+          this.open('last');
+          stopPropagation = true;
+        }
         break;
       default:
         break;
@@ -202,6 +225,8 @@ export class MenuButtonController extends ApplicationController {
     } else {
       switch (event.key) {
         case ' ':
+          // a button activates natively on Space: clicking it here would submit twice
+          if (event.target instanceof HTMLButtonElement) break;
           this.performMenuAction(event.target);
           stopPropagation = true;
           break;

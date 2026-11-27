@@ -128,7 +128,7 @@ export class BatchOperationController extends ApplicationController {
           )
         );
 
-        const disabled = buttons.every((button) => button.disabled);
+        const disabled = buttons.every(isDisabled);
 
         if (disabled) {
           disable(dropdown);
@@ -295,8 +295,22 @@ function isInputForOperation(operation: string) {
     (input.dataset.operations?.split(',') ?? []).includes(operation);
 }
 
+// A disabled menuitem stays focusable (APG menu pattern): aria-disabled, not disabled.
+// menu_button_controller blocks its activation.
+function isMenuitem(button: HTMLButtonElement) {
+  return button.getAttribute('role') == 'menuitem';
+}
+
+function isDisabled(button: HTMLButtonElement) {
+  return isMenuitem(button)
+    ? button.getAttribute('aria-disabled') == 'true'
+    : button.disabled;
+}
+
 function switchButton(button: HTMLButtonElement, flag: boolean) {
-  if (flag) {
+  if (isMenuitem(button)) {
+    button.setAttribute('aria-disabled', String(!flag));
+  } else if (flag) {
     enable(button);
     button.querySelectorAll('button').forEach((button) => enable(button));
   } else {

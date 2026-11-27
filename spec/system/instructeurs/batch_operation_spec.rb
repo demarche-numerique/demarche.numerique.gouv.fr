@@ -626,6 +626,38 @@ describe 'BatchOperation a dossier:', js: true do
     expect(dossier_1.justificatif_motivation).to be_attached
   end
 
+  context 'with the keyboard, in the other operations menu' do
+    let!(:dossier) { create(:dossier, :en_construction, procedure:).tap { instructeur.follow(it) } }
+
+    before { login_as(instructeur.user, scope: :user) }
+
+    def open_menu_with_arrow_down(statut)
+      visit instructeur_procedure_path(procedure, statut:)
+      check(dom_id(BatchOperation.new, "checkbox_#{dossier.id}"))
+      find('button[aria-haspopup="menu"]:not([disabled])', text: 'Autres actions multiples').send_keys(:down)
+    end
+
+    scenario 'a disabled operation stays reachable but cannot be triggered' do
+      # "Suivre les dossiers" comes first and does not apply to a followed dossier
+      open_menu_with_arrow_down('tous')
+      expect(page).to have_selector('[role="menuitem"][aria-disabled="true"]:focus', text: 'Suivre les dossiers')
+
+      page.send_keys(:enter)
+      page.send_keys(:down)
+      expect(page).to have_selector('[role="menuitem"]:not([aria-disabled="true"]):focus', text: 'Ne plus suivre les dossiers')
+      expect(BatchOperation.count).to eq(0)
+    end
+
+    scenario 'Space triggers the focused operation' do
+      open_menu_with_arrow_down('suivis')
+      expect(page).to have_selector('[role="menuitem"]:focus', text: 'Ne plus suivre les dossiers')
+
+      accept_confirm { page.send_keys(:space) }
+      expect(page).to have_content('Une action de masse est en cours')
+      expect(BatchOperation.last.operation).to eq('unfollow')
+    end
+  end
+
   def log_in(email, password)
     visit new_user_session_path
     expect(page).to have_current_path(new_user_session_path)

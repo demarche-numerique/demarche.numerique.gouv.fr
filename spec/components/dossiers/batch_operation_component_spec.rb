@@ -6,6 +6,11 @@ RSpec.describe Dossiers::BatchOperationComponent, type: :component do
   include ActionView::Helpers::FormOptionsHelper
 
   describe "available_operations" do
+    # a disabled menuitem stays focusable: aria-disabled, not disabled
+    def have_disabled_menuitem(label)
+      have_selector('button[role="menuitem"][aria-disabled="true"]', exact_text: label, normalize_ws: true)
+    end
+
     let(:component) do
       cmp = nil
       form_for(BatchOperation.new, url: Rails.application.routes.url_helpers.instructeur_batch_operations_path(procedure_id: 1), method: :post, data: { controller: 'batch-operation' }) do |_form|
@@ -65,10 +70,15 @@ RSpec.describe Dossiers::BatchOperationComponent, type: :component do
         is_expected.to have_button('Passer les dossiers en instruction', disabled: true)
         is_expected.to have_button('Rendre une décision', disabled: true)
         is_expected.to have_button('Autres actions multiples', disabled: true)
-        is_expected.to have_button('Repasser les dossiers en construction', disabled: true)
-        is_expected.to have_button('Ne plus suivre les dossiers', disabled: true)
-        is_expected.to have_button('Demander un avis externe', disabled: true)
-        is_expected.to have_button('Envoyer un message aux usagers', disabled: true)
+        is_expected.to have_disabled_menuitem('Repasser les dossiers en construction')
+        is_expected.to have_disabled_menuitem('Ne plus suivre les dossiers')
+        is_expected.to have_disabled_menuitem('Demander un avis externe')
+        is_expected.to have_disabled_menuitem('Envoyer un message aux usagers')
+      end
+
+      it 'renders the other operations as a menu' do
+        is_expected.to have_selector('button[aria-haspopup="menu"]', text: 'Autres actions multiples')
+        is_expected.to have_selector('#state-menu[role="menu"] li[role="none"] > button[role="menuitem"]', text: 'Ne plus suivre les dossiers')
       end
 
       it 'renders the instruction modal outside the batch form' do
@@ -93,9 +103,9 @@ RSpec.describe Dossiers::BatchOperationComponent, type: :component do
           is_expected.to have_button('Passer les dossiers en instruction', disabled: true)
           is_expected.to have_button('Rendre une décision', disabled: true)
           is_expected.to have_button('Autres actions multiples', disabled: true)
-          is_expected.to have_button('Repasser les dossiers en construction', disabled: true)
-          is_expected.to have_button('Ne plus suivre les dossiers', disabled: true)
-          is_expected.not_to have_button('Demander un avis externe', disabled: true)
+          is_expected.to have_disabled_menuitem('Repasser les dossiers en construction')
+          is_expected.to have_disabled_menuitem('Ne plus suivre les dossiers')
+          is_expected.not_to have_button('Demander un avis externe')
         end
       end
     end
@@ -115,13 +125,13 @@ RSpec.describe Dossiers::BatchOperationComponent, type: :component do
         is_expected.to have_button('Envoyer un message aux usagers', disabled: true)
         is_expected.to have_button('Rendre une décision', disabled: true)
         is_expected.to have_button('Autres actions multiples', disabled: true)
-        is_expected.to have_button('Suivre les dossiers', disabled: true)
-        is_expected.to have_button('Ne plus suivre les dossiers', disabled: true)
-        is_expected.to have_button('Passer les dossiers en instruction', disabled: true)
-        is_expected.to have_button('Repasser les dossiers en construction', disabled: true)
-        is_expected.to have_button('Déplacer les dossiers dans « à archiver »', disabled: true)
-        is_expected.to have_button('Mettre les dossiers à la corbeille', disabled: true)
-        is_expected.to have_button('Demander un avis externe', disabled: true)
+        is_expected.to have_disabled_menuitem('Suivre les dossiers')
+        is_expected.to have_disabled_menuitem('Ne plus suivre les dossiers')
+        is_expected.to have_disabled_menuitem('Passer les dossiers en instruction')
+        is_expected.to have_disabled_menuitem('Repasser les dossiers en construction')
+        is_expected.to have_disabled_menuitem('Déplacer les dossiers dans « à archiver »')
+        is_expected.to have_disabled_menuitem('Mettre les dossiers à la corbeille')
+        is_expected.to have_disabled_menuitem('Demander un avis externe')
       end
     end
 
