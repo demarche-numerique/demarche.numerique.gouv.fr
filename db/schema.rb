@@ -911,7 +911,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_27_100000) do
     t.boolean "bypass_email_login_token", default: false, null: false
     t.datetime "created_at", precision: nil
     t.text "encrypted_login_token"
-    t.datetime "export_banner_dismissed_at"
+    t.datetime "export_banner_dismissed_at", default: -> { "(now() AT TIME ZONE 'UTC'::text)" }
     t.datetime "login_token_created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.bigint "user_id", null: false

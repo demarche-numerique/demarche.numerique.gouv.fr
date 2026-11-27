@@ -6,6 +6,8 @@ describe InstructeurExportBannerConcern do
   let(:instructeur) { instructeurs.default }
   let(:colleague) { create(:instructeur, groupe_instructeurs: [gi]) }
 
+  before { instructeur.update!(export_banner_dismissed_at: nil) }
+
   def ready(export)
     export.file.attach(io: StringIO.new('x'), filename: 'e.csv')
     export.update!(job_status: :generated)
@@ -15,6 +17,14 @@ describe InstructeurExportBannerConcern do
   describe '#export_for_banner' do
     it 'returns nil without any export' do
       expect(instructeur.export_for_banner(pro_connect: false)).to be_nil
+    end
+
+    it 'starts with exports completed before account creation dismissed' do
+      travel_to(1.hour.ago) { ready(create(:export, groupe_instructeurs: [gi], user_profile: colleague)) }
+      newcomer = create(:instructeur, groupe_instructeurs: [gi])
+
+      expect(newcomer.reload.export_banner_dismissed_at).to be_present
+      expect(newcomer.export_for_banner(pro_connect: false)).to be_nil
     end
 
     it 'returns an own pending or failed export' do
