@@ -76,6 +76,8 @@ export default {
   env: { SUPER_ADMIN_OTP_ENABLED: 'enabled' },     // optionnel : variables à passer à serve.sh et recette.mjs
   prononciations: { ZIP: 'zip' },                   // optionnel : ce que la voix dit à la place d'un mot (section 7)
   preparation: `…ruby…`,      // optionnel, exécuté par bin/rails runner ; dernière ligne = JSON → `data`
+  donnees: '…',               // optionnel : l'état de départ en prose, affiché dans l'onglet « Données » du panneau
+  script: () => {},           // optionnel : script injecté dans chaque page (addInitScript), pour rendre visible ce qui ne l'est pas
   depart: (data) => `/admin/procedures/${data.vide}/champs`,
   etapes: [{                  // une étape par critère d'acceptation
     titre, consigne,          // ce que l'humain lit
@@ -97,6 +99,8 @@ export default {
 - **`verifier` contrôle l'attendu**, pas seulement l'absence d'erreur : chaque étape a le sien. **Tout texte cité entre guillemets dans l'attendu est vérifié mot pour mot** (`getByText`) : les libellés changent au fil des rebases, et un `isDisabled` seul laisse passer un message faux.
 - **Cible et zone.** La cible est ce qu'on manipule ; quand l'attendu porte ailleurs (le tableau après « Personnaliser le tableau », une carte après une navigation, un réglage plus bas dans le bloc), donne une `zone` : le runner l'amène à l'écran après l'action, y place le panneau et la cadre dans les captures. Sans elle, le relecteur doit faire défiler, et la vidéo affiche l'attendu sur un écran qui ne le montre pas. Pas besoin de défilement dans les actions : le runner centre la cible et la zone, sans animation, et le panneau se place du côté opposé, transparent aux clics sauf ses boutons.
 - **Données hors seeds → `preparation`**, jamais des clics de mise en place dans les étapes : la recette montre la feature, pas le décor. Inspire-toi des seeds (`db/seeds/procedures.rb`, `db/seeds/dossiers.rb`) pour construire une démarche et ses dossiers. **Elle est rejouée à chaque lancement** (auto, guide, vidéo, captures, sonde) sur la même base : rends-la idempotente (`find_or_create_by!`, purge de ce qu'elle a créé et de ce que les étapes créent, comme une copie). Sinon chaque run empile des données et décale les compteurs que l'attendu cite.
+- **`donnees` dit au relecteur d'où vient l'état qu'il voit** : ce que fournissent les seeds, ce que la préparation ajoute, et pourquoi (un champ limité à une démarche où le persona n'a rien, par exemple). L'onglet « Données » du panneau l'affiche, avec les valeurs de `data` et le Ruby de la préparation.
+- **Ce qui ne se voit pas à l'écran** (une région `aria-live` en `fr-sr-only`, un attribut) : rends-le visible avec un `script`, par exemple un bandeau qui recopie la région, marqué comme outil de recette et en `aria-hidden`. Il passe par le contexte de la recette : une `connexion` ne peut pas l'installer, elle tourne dans un contexte séparé dont seuls les cookies sont gardés. Le `verifier` lit l'élément d'origine, jamais le bandeau.
 - **Personas qui ne passent pas par `/users/sign_in`** (super admin du manager…) : donne une fonction `connexion`. Avec un OTP, la préparation expose le secret (`otp_secret`) dans `data`, et `outils.codeFrais(secret)` calcule le code. Pour une étape jouée par un **second** compte (un validateur), l'action fait `page.context().clearCookies()` puis se connecte avec ce compte.
 - Textes en français, du point de vue du persona, sans jargon de code.
 
@@ -119,6 +123,8 @@ Sans tête, joue actions et vérifications, écrit une capture par étape, `resu
 
 Une préparation en échec affiche seulement l'erreur Ruby et les lignes du script en cause.
 
+**Chaque lancement vide son dossier de sortie** (`resultats-<mode>/`). Pour mettre au point le runner ou le panneau après une recette humaine, passe `--out` vers un dossier jetable : sinon les verdicts ✅ et les captures de l'humain sont écrasés, et lui seul peut les refaire.
+
 Itère jusqu'au vert, puis **regarde les captures** (Read) : une vérification qui passe sur un écran faux est pire qu'une vérification absente. Une capture qui montre le haut de la page au lieu de la cible est un défaut du runner, pas du scénario : corrige le runner plutôt que d'ajouter des défilements dans les actions.
 
 Le runner s'arrête au premier échec : les étapes suivantes partent d'un état qui n'est plus garanti. Pour **comparer deux versions** (avant et après un correctif), `--continuer` joue toutes les étapes et donne le bilan complet ; chaque étape doit alors repartir d'un état qu'elle installe elle-même.
@@ -133,7 +139,7 @@ Lance en arrière-plan (`run_in_background`) :
 cd ../review-pr-N && node <repo>/.claude/skills/recette-pr/recette.mjs tmp/recette/scenario.mjs --mode guide
 ```
 
-Un Chromium s'ouvre, connecté avec le persona. Le panneau en bas à droite donne le critère, sa consigne et son attendu, surligne l'élément à manipuler et propose : **▶ Le faire pour moi**, **✅ Conforme**, **❌ Pas conforme** (champ de commentaire, Entrée pour valider), **▁** pour réduire le panneau. L'humain peut tout faire lui-même et explorer hors scénario avant de donner son verdict. « Le faire pour moi » sert **une fois par étape**, seulement si l'action n'a pas été faite à la main : sinon elle la défait (un toggle se recoche). Une action qui n'aboutit pas en 10 s affiche « Action impossible » et rend la main.
+Un Chromium s'ouvre, connecté avec le persona. Le panneau en bas à droite donne le critère, sa consigne et son attendu (onglet **📋 Consigne**, rouvert à chaque critère et après « Le faire pour moi ») ; quand le scénario a une `preparation` ou des `donnees`, l'onglet **🧪 Données** élargit le panneau et montre l'état de départ, les valeurs de `data` et le Ruby exécuté. Le panneau surligne l'élément à manipuler et propose : **▶ Le faire pour moi**, **✅ Conforme**, **❌ Pas conforme** (champ de commentaire, Entrée pour valider), **▁** pour réduire le panneau. L'humain peut tout faire lui-même et explorer hors scénario avant de donner son verdict. « Le faire pour moi » sert **une fois par étape**, seulement si l'action n'a pas été faite à la main : sinon elle la défait (un toggle se recoche). Une action qui n'aboutit pas en 10 s affiche « Action impossible » et rend la main.
 
 À la fin, le panneau affiche le bilan (« 5/6 conformes », les ❌ avec leur commentaire) et un bouton **Fermer la recette**. `resultats.json` et `rapport.md` sont réécrits après chaque verdict : fermer la fenêtre en cours de route garde ce qui a déjà été jugé.
 

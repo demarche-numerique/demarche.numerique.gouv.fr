@@ -200,6 +200,13 @@ async function sansProfiler(context) {
   await page.close();
 }
 
+function desindenter(code) {
+  if (!code) return null;
+  const lignes = code.replace(/^\s*\n/, '').replace(/\s+$/, '').split('\n');
+  const marge = Math.min(...lignes.filter((l) => l.trim()).map((l) => l.match(/^ */)[0].length));
+  return lignes.map((l) => l.slice(marge)).join('\n');
+}
+
 // ---- Panneau injecté dans la page (hors <body> : Turbo remplace le body) ----
 const OVERLAY = () => {
   if (window.top !== window) return;
@@ -208,6 +215,7 @@ const OVERLAY = () => {
     .p { position: fixed; z-index: 2147483647; font: 15px/1.4 Marianne, system-ui, sans-serif; background: #161616; color: #fff; border-radius: 8px; padding: 14px 16px; box-shadow: 0 6px 24px #0007; }
     .guide { right: 16px; bottom: 16px; width: 380px; }
     .guide.gauche { right: auto; left: 16px; }
+    .guide.large { width: min(640px, calc(100vw - 32px)); }
     /* Transparent aux clics, sauf ses commandes : une action enchaînée sur plusieurs pages
        ne doit pas buter sur le panneau (Playwright refuse un clic sur un élément recouvert). */
     .p { pointer-events: none; } button, textarea { pointer-events: auto; }
@@ -223,7 +231,16 @@ const OVERLAY = () => {
     .ok { background: #3fb96f; } .ko { background: #e1000f; color: #fff; } .do { background: #fff; }
     textarea { width: 100%; box-sizing: border-box; margin-top: 8px; min-height: 60px; font: inherit; }
     .min { position: absolute; top: 6px; right: 8px; background: none; color: #aaa; padding: 2px 6px; }
-    .reduit .c, .reduit .a, .reduit .b, .reduit textarea { display: none; }`;
+    .reduit .c, .reduit .a, .reduit .b, .reduit textarea, .reduit .d { display: none; }
+    .o { display: flex; gap: 2px; margin: 8px 0 10px; border-bottom: 1px solid #444; }
+    .o button { background: none; color: #aaa; border-radius: 4px 4px 0 0; padding: 4px 10px; border-bottom: 2px solid transparent; }
+    .o button[aria-selected="true"] { color: #fff; border-bottom-color: #9a9aff; }
+    .reduit .o { display: none; }
+    .d { pointer-events: auto; margin: 0; padding: 8px 10px; max-height: 45vh; overflow: auto; background: #24243a; border-left: 4px solid #9a9aff; border-radius: 4px; font-size: 13px; }
+    .d h3 { margin: 8px 0 4px; font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: #9a9aff; }
+    .d h3:first-child { margin-top: 0; }
+    .d p { margin: 0 0 6px; white-space: pre-line; }
+    .d pre { margin: 0; padding: 6px; background: #111; border-radius: 4px; font: 11px/1.35 ui-monospace, Menlo, monospace; white-space: pre; overflow: auto; }`;
   const render = (s) => {
     let host = document.getElementById('recette-host');
     if (!s) return host?.remove();
@@ -237,14 +254,25 @@ const OVERLAY = () => {
     const e = (t) => String(t ?? '').replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]);
     const guide = s.mode === 'guide';
     host.shadowRoot.innerHTML = `<style>${css}</style>
-      <div class="p guide ${s.cote === 'gauche' ? 'gauche' : ''} ${s.reduit ? 'reduit' : ''}" role="dialog" aria-label="Recette">
+      <div class="p guide ${s.cote === 'gauche' ? 'gauche' : ''} ${s.reduit ? 'reduit' : ''} ${s.onglet === 'donnees' && s.donnees && !s.reduit ? 'large' : ''}" role="dialog" aria-label="Recette">
         ${guide ? '<button class="min" data-ev="reduire" title="Réduire">▁</button>' : ''}
         <div class="n">${e(s.entete)}</div>
         <h2>${e(s.titre)}</h2>
+        ${guide && s.donnees ? `<div class="o" role="tablist">
+          <button role="tab" data-ev="onglet:consigne" aria-selected="${s.onglet !== 'donnees'}">📋 Consigne</button>
+          <button role="tab" data-ev="onglet:donnees" aria-selected="${s.onglet === 'donnees'}" title="Comment les données de la recette ont été préparées">🧪 Données</button>
+        </div>` : ''}
+        ${s.onglet === 'donnees' && guide && s.donnees ? '' : `
         ${s.consigne ? `<p class="c">${e(s.consigne)}</p>` : ''}
         ${s.attendu ? `<p class="a" ${s.montrerAttendu ? '' : 'hidden'}>✓ Attendu : ${e(s.attendu)}</p>` : ''}
         ${s.echec ? `<p class="e">✗ Échec : ${e(s.echec)}</p>` : ''}
-        ${s.statut ? `<p class="s">${e(s.statut)}</p>` : ''}
+        ${s.statut ? `<p class="s">${e(s.statut)}</p>` : ''}`}
+        ${guide && s.donnees && s.onglet === 'donnees' ? `<div class="d" role="tabpanel">
+          ${s.donnees.texte ? `<h3>État de départ</h3><p>${e(s.donnees.texte)}</p>` : ''}
+          <h3>Base</h3><p>Base dédiée seedée par prepare.sh (db/seeds, Oaken), puis la préparation ci-dessous, rejouée à chaque lancement.</p>
+          ${s.donnees.data ? `<h3>Valeurs obtenues (data)</h3><pre>${e(s.donnees.data)}</pre>` : ''}
+          ${s.donnees.ruby ? `<h3>Ruby exécuté (bin/rails runner ${e(s.donnees.fichier)})</h3><pre>${e(s.donnees.ruby)}</pre>` : ''}
+        </div>` : ''}
         ${guide && s.boutons ? `<div class="b">
           ${s.action && !s.fait ? '<button class="do" data-ev="faire" title="Seulement si vous ne l’avez pas déjà fait à la main">▶ Le faire pour moi</button>' : ''}
           <button class="ok" data-ev="ok">✅ Conforme</button>
@@ -277,7 +305,9 @@ const SURLIGNER = (el) => {
   el.style.setProperty('outline-offset', '3px', 'important');
   el.style.setProperty('border-radius', '4px');
 };
-const eteindre = (page) => page.locator('[data-recette-cible]').evaluateAll((els) => els.forEach((el) => {
+// Le Turbo morph peut retirer l'attribut et garder le style inline : on repère aussi le contour.
+const eteindre = (page) => page.evaluate(() => document.querySelectorAll('[data-recette-cible], [style*="outline"]').forEach((el) => {
+  if (!el.hasAttribute('data-recette-cible') && el.style.outlineColor !== 'rgb(255, 153, 64)') return;
   el.removeAttribute('data-recette-cible');
   ['outline', 'outline-offset', 'border-radius'].forEach((p) => el.style.removeProperty(p));
 })).catch(() => {});
@@ -349,6 +379,8 @@ async function main() {
   await context.exposeBinding('__recetteState', () => state);
   await context.exposeBinding('__recetteEvent', (_src, type, payload) => attente?.({ type, payload }));
   if (mode !== 'auto') await context.addInitScript(OVERLAY);
+  // `script` du scénario : outil de recette injecté dans chaque page (rendre visible ce qui ne l'est pas).
+  if (scenario.script) await context.addInitScript(scenario.script);
   // Filmé, Playwright n'a ni pointeur ni clic visibles : un faux curseur suit la souris et un halo
   // marque chaque clic, panneau compris (les événements du shadow DOM remontent au document).
   if (filmer) await context.addInitScript(() => {
@@ -433,6 +465,14 @@ async function main() {
 
   const total = scenario.etapes.length;
   const resultats = [];
+  // Onglet « Données » du panneau : d'où vient l'état de départ (texte du scénario, data, Ruby joué).
+  const donnees = scenario.preparation || scenario.donnees ? {
+    texte: scenario.donnees,
+    data: Object.keys(data).length ? JSON.stringify(data, null, 2) : null,
+    ruby: desindenter(scenario.preparation),
+    fichier: join(out, 'preparation.rb')
+  } : null;
+  let onglet = 'consigne'; // onglet du panneau, revient sur la consigne à chaque critère
   function ecrireRapport() {
     writeFileSync(join(out, 'resultats.json'), JSON.stringify({ pr: scenario.pr, titre: scenario.titre, mode, juge: mode === 'guide' ? opts.juge : 'script', resultats }, null, 2));
     // Un ✅ ne sort que d'un humain ; une vérification machine est un 🤖.
@@ -457,7 +497,8 @@ async function main() {
 
   for (const [i, etape] of scenario.etapes.entries()) {
     const ctx = { page, data, outils };
-    const base = { mode, entete: `Critère ${i + 1}/${total}`, titre: etape.titre, consigne: etape.consigne, attendu: etape.attendu, action: !!etape.action };
+    onglet = 'consigne';
+    const base = { mode, entete: `Critère ${i + 1}/${total}`, titre: etape.titre, consigne: etape.consigne, attendu: etape.attendu, action: !!etape.action, donnees, onglet };
     const cible = etape.cible?.(ctx);
     await eteindre(page);
     if (cible) {
@@ -478,9 +519,11 @@ async function main() {
       for (;;) {
         const ev = await evenement();
         if (ev.type === 'reduire') { reduit = !reduit; await afficher({ ...state, reduit }); continue; }
+        if (ev.type.startsWith('onglet:')) { onglet = ev.type.slice(7); await afficher({ ...state, onglet }); continue; }
         if (ev.type === 'fermer') break;
         if (ev.type === 'faire') {
-          await afficher({ ...state, fait: true, consigne: '⏳ En cours…' });
+          onglet = 'consigne'; // ce que fait l'action et l'attendu sont dans cet onglet
+          await afficher({ ...state, fait: true, onglet, consigne: '⏳ En cours…' });
           try {
             await etape.action(ctx); await centrer(etape, ctx, true); await placer(state, etape, ctx, true);
             if (voix !== null) direGuide(dire.valider(etape));
