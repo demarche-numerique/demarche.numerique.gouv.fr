@@ -188,14 +188,13 @@ module DossierHelper
 
   def tag_summary_notification(notification_type_count)
     type, count = notification_type_count
-    hidden = news_notification?(type) || nil
 
     tag.span(class: [badge_notification_class(type), 'fr-badge--no-icon']) do
       safe_join([
-        tag.span(count, class: "fr-background-alt--grey fr-my-1v fr-mr-1v fr-px-1v fr-text-default--grey", aria: { hidden: }),
+        tag.span(count, class: "fr-background-alt--grey fr-my-1v fr-mr-1v fr-px-1v fr-text-default--grey", aria: { hidden: true }),
         tag.span(nil, class: [badge_notification_class(type), 'fr-my-0', 'fr-mx-0', 'fr-px-0'], aria: { hidden: true }),
         tag.span(badge_notification_text_a11y(type, count:), class: "fr-sr-only"),
-        tag.span(badge_notification_text(type, generic: true), aria: { hidden: }),
+        tag.span(badge_notification_text(type, generic: true), aria: { hidden: true }),
       ])
     end
   end
@@ -260,14 +259,10 @@ module DossierHelper
   def badge_notification_text_a11y(notification, count: nil)
     type = extract_notification_type(notification)
 
-    if news_notification?(type)
-      if count
-        t("activerecord.attributes.notification.a11y.news.summary.#{type}", count:)
-      else
-        t("activerecord.attributes.notification.a11y.news.unread.#{type}")
-      end
-    elsif count
-      t("activerecord.attributes.notification.a11y.others")
+    if count
+      t("activerecord.attributes.notification.a11y.summary.#{type}", count:)
+    elsif news_notification?(type)
+      t("activerecord.attributes.notification.a11y.news.unread.#{type}")
     end
   end
 

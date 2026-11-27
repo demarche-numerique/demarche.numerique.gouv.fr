@@ -310,11 +310,10 @@ RSpec.describe DossierHelper, type: :helper do
       let(:notification_type) { "attente_correction" }
       let(:count) { 2 }
 
-      it "keeps the count and the label announced" do
-        expect(subject).to have_css(".fr-sr-only", text: "dossiers", exact_text: true)
-        expect(subject).to have_no_css("[aria-hidden=true]", text: "2")
-        expect(subject).to have_no_css("[aria-hidden=true]", text: "En attente de correction")
-        expect(subject).to have_text("En attente de correction")
+      it "announces a single sentence instead of the count and the label" do
+        expect(subject).to have_css(".fr-sr-only", text: "2 dossiers en attente de correction", exact_text: true)
+        expect(subject).to have_css("[aria-hidden=true]", text: "2", exact_text: true)
+        expect(subject).to have_css("[aria-hidden=true]", text: "En attente de correction", exact_text: true)
       end
     end
   end
@@ -344,10 +343,20 @@ RSpec.describe DossierHelper, type: :helper do
       end
     end
 
-    context "with a notification that is not a nouveauté" do
-      it "only announces something in a summary" do
-        expect(badge_notification_text_a11y(:attente_correction, count: 1)).to eq("dossiers")
-        expect(badge_notification_text_a11y(:attente_correction)).to be_nil
+    {
+      dossier_depose: ["1 dossier déposé depuis longtemps", "2 dossiers déposés depuis longtemps"],
+      dossier_expirant: ["1 dossier qui expire bientôt", "2 dossiers qui expirent bientôt"],
+      dossier_suppression: ["1 dossier bientôt supprimé", "2 dossiers bientôt supprimés"],
+      attente_correction: ["1 dossier en attente de correction", "2 dossiers en attente de correction"],
+      attente_reponse: ["1 dossier en attente de réponse", "2 dossiers en attente de réponse"],
+      attente_avis: ["1 dossier en attente d’avis externe", "2 dossiers en attente d’avis externe"],
+    }.each do |notification_type, (one, other)|
+      context "with a #{notification_type} notification" do
+        it "only announces something in a summary" do
+          expect(badge_notification_text_a11y(notification_type, count: 1)).to eq(one)
+          expect(badge_notification_text_a11y(notification_type, count: 2)).to eq(other)
+          expect(badge_notification_text_a11y(notification_type)).to be_nil
+        end
       end
     end
   end

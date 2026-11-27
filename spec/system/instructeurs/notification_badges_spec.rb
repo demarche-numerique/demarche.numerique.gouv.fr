@@ -11,6 +11,7 @@ describe "Instructeur notification badges:", js: true do
     create(:dossier_notification, instructeur:, dossier: dossier_with_message, notification_type: :message)
     create(:dossier_notification, instructeur:, dossier: dossier_with_message_and_annotation, notification_type: :message)
     create(:dossier_notification, instructeur:, dossier: dossier_with_message_and_annotation, notification_type: :annotation_instructeur)
+    create(:dossier_notification, instructeur:, dossier: dossier_with_message, notification_type: :attente_correction)
 
     login_as instructeur.user, scope: :user
   end
@@ -21,6 +22,7 @@ describe "Instructeur notification badges:", js: true do
     within("#procedure-#{procedure.id}-notifications") do
       expect(page).to have_css(".fr-sr-only", text: "2 dossiers avec au moins un message non lu", exact_text: true, visible: :all)
       expect(page).to have_css(".fr-sr-only", text: "1 dossier avec au moins une annotation privée non lue", exact_text: true, visible: :all)
+      expect(page).to have_css(".fr-sr-only", text: "1 dossier en attente de correction", exact_text: true, visible: :all)
       expect(page).to have_css("[aria-hidden=true]", text: "Message", exact_text: true)
 
       click_on "Détails des notifications"

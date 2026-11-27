@@ -19,23 +19,40 @@ en:
         annotation_instructeur: Private annotation
         avis_externe: External opinion
         a11y:
+          summary:
+            dossier_depose:
+              one: "%{count} application submitted a long time ago"
+              other: "%{count} applications submitted a long time ago"
+            dossier_expirant:
+              one: "%{count} application expiring soon"
+              other: "%{count} applications expiring soon"
+            dossier_suppression:
+              one: "%{count} application soon to be deleted"
+              other: "%{count} applications soon to be deleted"
+            dossier_modifie:
+              one: "%{count} unread modified application"
+              other: "%{count} unread modified applications"
+            message:
+              one: "%{count} application with at least one unread message"
+              other: "%{count} applications with at least one unread message"
+            annotation_instructeur:
+              one: "%{count} application with at least one unread internal field"
+              other: "%{count} applications with at least one unread internal field"
+            avis_externe:
+              one: "%{count} application with at least one unread external opinion"
+              other: "%{count} applications with at least one unread external opinion"
+            attente_correction:
+              one: "%{count} application awaiting correction"
+              other: "%{count} applications awaiting correction"
+            attente_reponse:
+              one: "%{count} application awaiting response"
+              other: "%{count} applications awaiting response"
+            attente_avis:
+              one: "%{count} application awaiting external opinion"
+              other: "%{count} applications awaiting external opinion"
           news:
-            summary:
-              dossier_modifie:
-                one: "%{count} unread modified application"
-                other: "%{count} unread modified applications"
-              message:
-                one: "%{count} application with at least one unread message"
-                other: "%{count} applications with at least one unread message"
-              annotation_instructeur:
-                one: "%{count} application with at least one unread internal field"
-                other: "%{count} applications with at least one unread internal field"
-              avis_externe:
-                one: "%{count} application with at least one unread external opinion"
-                other: "%{count} applications with at least one unread external opinion"
             unread:
               dossier_modifie: unread
               message: unread
               annotation_instructeur: unread
               avis_externe: unread
-          others: filles
