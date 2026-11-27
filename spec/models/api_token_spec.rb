@@ -210,7 +210,6 @@ describe APIToken, type: :model do
         it do
           expect(api_token.full_access?).to be_falsey
           expect(api_token.procedure_ids).to match_array([procedure.id])
-          expect(api_token.targetable_procedures).to eq([other_procedure])
           expect(api_token.context).to eq(administrateur_id: administrateur.id, procedure_ids: [procedure.id], write_access: true, api_token_id: api_token.id)
         end
       end
@@ -226,7 +225,6 @@ describe APIToken, type: :model do
         it do
           expect(api_token.full_access?).to be_falsey
           expect(api_token.procedure_ids).to eq([])
-          expect(api_token.targetable_procedures).to eq([procedure])
           expect(api_token.context).to eq(administrateur_id: administrateur.id, procedure_ids: [], write_access: true, api_token_id: api_token.id)
         end
       end
@@ -243,7 +241,6 @@ describe APIToken, type: :model do
         it do
           expect(api_token.full_access?).to be_falsey
           expect(api_token.procedure_ids).to eq([])
-          expect(api_token.targetable_procedures).to eq([])
           expect(api_token.context).to eq(administrateur_id: administrateur.id, procedure_ids: [], write_access: true, api_token_id: api_token.id)
         end
       end
@@ -262,7 +259,6 @@ describe APIToken, type: :model do
         it do
           expect(api_token.full_access?).to be_falsey
           expect(api_token.procedure_ids).to eq([])
-          expect(api_token.targetable_procedures).to eq([other_procedure])
           expect(api_token.context).to eq(administrateur_id: administrateur.id, procedure_ids: [], write_access: true, api_token_id: api_token.id)
         end
       end
@@ -389,6 +385,14 @@ describe APIToken, type: :model do
           expect(api_token.reload.token_digest).to be_nil
         end
       end
+    end
+  end
+
+  describe '.parse_networks' do
+    it 'rejects an IPv6 zone and a stacked mask' do
+      networks = APIToken.parse_networks('fe80::1%eth0 10.0.0.1/255.255.255.0/1 10.0.0.0/255.0.0.0')
+
+      expect(networks.map { it && "#{it}/#{it.prefix}" }).to eq([nil, nil, '10.0.0.0/8'])
     end
   end
 

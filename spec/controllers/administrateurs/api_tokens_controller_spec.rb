@@ -3,6 +3,8 @@
 describe Administrateurs::APITokensController, type: :controller do
   let(:admin) { administrateurs.default }
   let(:procedure) { create(:procedure, administrateur: admin) }
+  let(:streams) { Nokogiri::HTML5.fragment(response.body) }
+  let(:flash_message) { streams.at_css('turbo-stream[target="flash_messages"] template .alert').text.strip }
 
   before { sign_in(admin.user) }
 
@@ -158,13 +160,15 @@ describe Administrateurs::APITokensController, type: :controller do
   end
 
   describe 'update' do
+    render_views
+
     let(:token) { APIToken.generate(admin).first }
-    let(:params) { { name:, networks:, procedure_to_add: } }
+    let(:params) { { name:, networks: } }
     let(:name) { 'new name' }
     let(:networks) { '118.218.200.200' }
-    let(:procedure_to_add) { nil }
+    let(:network_error) { streams.at_css('turbo-stream[target="tokenUpdate"] template .fr-error-text').text.strip }
 
-    subject { patch :update, params: params.merge(id: token.id) }
+    subject { patch :update, params: params.merge(id: token.id), format: :turbo_stream }
 
     context 'nominal' do
       before { subject; token.reload }
@@ -175,6 +179,22 @@ describe Administrateurs::APITokensController, type: :controller do
       end
     end
 
+    context 'when renaming the token' do
+      let(:params) { { name: 'new name' } }
+
+      before { subject }
+
+      it { expect(flash_message).to eq('Le jeton a été renommé.') }
+    end
+
+    context 'when changing its networks' do
+      let(:params) { { networks: '118.218.200.200' } }
+
+      before { subject }
+
+      it { expect(flash_message).to eq('Les réseaux autorisés ont été modifiés.') }
+    end
+
     context 'with bad network' do
       let(:networks) { 'bad' }
 
@@ -182,7 +202,7 @@ describe Administrateurs::APITokensController, type: :controller do
 
       it 'does not update a token' do
         expect(token.authorized_networks).to be_blank
-        expect(assigns(:invalid_network_message)).to eq('vous devez entrer des adresses ipv4 ou ipv6 valides')
+        expect(network_error).to eq('Vous devez entrer des adresses IPv4 ou IPv6 valides')
       end
     end
 
@@ -202,7 +222,7 @@ describe Administrateurs::APITokensController, type: :controller do
 
       it 'does not update a token' do
         expect(token.authorized_networks).to eq([IPAddr.new('118.218.200.200')])
-        expect(assigns(:invalid_network_message)).to eq("Vous ne pouvez pas supprimer les restrictions d’accès à l’API d’un jeton permanent.")
+        expect(network_error).to eq("Vous ne pouvez pas supprimer les restrictions d’accès à l’API d’un jeton permanent.")
       end
     end
 
@@ -211,7 +231,18 @@ describe Administrateurs::APITokensController, type: :controller do
 
       before { subject; token.reload }
 
-      it { expect(token.allowed_procedure_ids).to eq([procedure.id]) }
+      it 'adds it and says so' do
+        expect(token.allowed_procedure_ids).to eq([procedure.id])
+        expect(flash_message).to eq("La démarche «\u00a0#{procedure.libelle}\u00a0» a été ajoutée au jeton.")
+      end
+
+      context 'whose libelle looks like HTML' do
+        let(:procedure) { create(:procedure, administrateur: admin, libelle: '<a href="https://example.com">Aides</a>') }
+
+        it 'shows the libelle as text' do
+          expect(flash_message).to include('<a href="https://example.com">Aides</a>')
+        end
+      end
     end
 
     context 'when its owner is removed from a listed procedure in the meantime' do
@@ -238,7 +269,7 @@ describe Administrateurs::APITokensController, type: :controller do
 
       before { subject; token.reload }
 
-      it { expect(token.allowed_procedure_ids).to eq([]) }
+      it { expect(token.allowed_procedure_ids).to be_nil }
     end
 
     context 'with an empty procedure to add' do
@@ -246,7 +277,11 @@ describe Administrateurs::APITokensController, type: :controller do
 
       before { subject; token.reload }
 
-      it { expect(token.allowed_procedure_ids).to eq([]) }
+      it 'keeps the access to all procedures' do
+        expect(token.allowed_procedure_ids).to be_nil
+      end
+
+      it { expect(flash_message).to eq('Choisissez une démarche à ajouter.') }
     end
 
     context 'with restore_full_access' do
@@ -261,6 +296,7 @@ describe Administrateurs::APITokensController, type: :controller do
       it 'restores full access' do
         expect(token.allowed_procedure_ids).to be_nil
         expect(token.full_access?).to be true
+        expect(flash_message).to eq('Le jeton a de nouveau accès à toutes vos démarches.')
       end
     end
   end
@@ -334,7 +370,7 @@ describe Administrateurs::APITokensController, type: :controller do
     let!(:procedure2) { create(:procedure, administrateurs: [admin]) }
     let(:token) { APIToken.generate(admin).first }
 
-    subject { delete :remove_procedure, params: { id: token.id, procedure_id: procedure1.id } }
+    subject { delete :remove_procedure, params: { id: token.id, procedure_id: procedure1.id }, format: :turbo_stream }
 
     context 'with all procedures allowed' do
       it do
@@ -342,6 +378,15 @@ describe Administrateurs::APITokensController, type: :controller do
         subject
         token.reload
         expect(token.allowed_procedure_ids).to eq([procedure2.id])
+      end
+
+      context 'and a procedure in the bin' do
+        let!(:binned_procedure) { create(:procedure, :discarded, administrateurs: [admin]) }
+
+        it 'keeps the binned procedure in the list' do
+          subject
+          expect(token.reload.allowed_procedure_ids).to contain_exactly(procedure2.id, binned_procedure.id)
+        end
       end
     end
 
@@ -354,6 +399,37 @@ describe Administrateurs::APITokensController, type: :controller do
         subject
         token.reload
         expect(token.allowed_procedure_ids).to eq([procedure2.id])
+      end
+
+      context 'with the views rendered' do
+        render_views
+
+        it 'says the procedure was removed' do
+          subject
+          expect(flash_message).to eq("La démarche «\u00a0#{procedure1.libelle}\u00a0» a été retirée du jeton.")
+        end
+      end
+
+      context 'when the procedure has been put in the bin since the page was loaded' do
+        before { procedure1.discard! }
+
+        it 'still removes it from the token' do
+          subject
+          expect(token.reload.allowed_procedure_ids).to eq([procedure2.id])
+        end
+      end
+
+      context 'when its owner has been removed from the procedure since the page was loaded' do
+        before do
+          procedure1.administrateurs << administrateurs.default
+          procedure1.administrateurs.delete(admin)
+        end
+
+        it 'refreshes the form' do
+          subject
+          expect(response).to have_http_status(:ok)
+          expect(token.reload.allowed_procedure_ids).to eq([procedure2.id])
+        end
       end
 
       context 'when the procedure requires ProConnect' do

@@ -72,10 +72,12 @@
 </div>
 
 <div class="fr-card fr-p-3w fr-mb-2w">
+  <%- restricted = !api_token.full_access? || restricting -%>
+
   <div class="fr-input-group fr-mb-0" data-controller="toggle-restriction">
     <div
       data-toggle-restriction-target="fullAccessBlock"
-      class="<%= 'hidden' unless api_token.full_access? %>"
+      class="<%= class_names(hidden: restricted) %>"
     >
       <p><%= t('.full_access_message') %></p>
 
@@ -90,7 +92,7 @@
 
     <div
       data-toggle-restriction-target="restrictedBlock"
-      class="<%= 'hidden' if api_token.full_access? %>"
+      class="<%= class_names(hidden: !restricted) %>"
     >
       <div class="fr-select-group">
         <label class="fr-label" for="procedure_to_add">
@@ -120,8 +122,7 @@
             remove_procedure_admin_api_token_path(api_token, procedure_id: procedure.id),
             class: 'fr-btn fr-btn--tertiary-no-outline fr-btn--sm fr-btn--icon-left fr-icon-delete-line',
             form_class: 'inline',
-            method: :delete,
-            form: { data: { turbo: 'true' } } %>
+            method: :delete %>
         </li>
       <%- end -%>
     </ul>

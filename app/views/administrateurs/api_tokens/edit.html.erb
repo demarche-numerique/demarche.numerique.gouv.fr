@@ -6,9 +6,9 @@
     [t('.title', name: @api_token.name)]] } %>
 
 <div class="fr-container fr-mt-2w">
-  <turbo-frame id="tokenUpdate">
-    <%= render partial: 'edit_form', locals: { api_token: @api_token, libelle_id_procedures: @libelle_id_procedures, invalid_network_message: @invalid_network_message } %>
-  </turbo-frame>
+  <div id="tokenUpdate" data-turbo="true">
+    <%= render partial: 'edit_form', locals: { api_token: @api_token, libelle_id_procedures: @libelle_id_procedures, invalid_network_message: @invalid_network_message, restricting: false } %>
+  </div>
 
   <ul class="fr-btns-group fr-btns-group--inline">
     <li>
