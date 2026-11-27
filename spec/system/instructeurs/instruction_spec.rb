@@ -365,6 +365,21 @@ describe 'Instructing a dossier:', js: true do
     after { DownloadHelpers.clear_downloads }
   end
 
+  context 'with a single text annotation' do
+    let(:procedure) { create(:procedure, :published, instructeurs: [instructeur], private_type_de_champs: [{ type: :text, libelle: 'Note' }]) }
+
+    scenario 'pressing enter in the annotation saves it without leaving the page' do
+      login_as(instructeur.user, scope: :user)
+      visit annotations_privees_instructeur_dossier_path(procedure, dossier)
+
+      fill_in 'Note', with: 'test'
+      find_field('Note').send_keys(:enter)
+
+      expect(page).to have_text 'Annotations enregistrées'
+      expect(page).to have_current_path(annotations_privees_instructeur_dossier_path(procedure, dossier))
+    end
+  end
+
   context 'An instructeur can add labels' do
     let(:procedure) { create(:procedure, :with_labels, :published, instructeurs: [instructeur]) }
 
