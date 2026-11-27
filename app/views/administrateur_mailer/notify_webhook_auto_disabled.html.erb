@@ -1,0 +1,25 @@
+<%- content_for(:title, t('.title')) %>
+
+<p><%= t(:hello, scope: [:views, :shared, :greetings]) %></p>
+
+<p>
+  <%= t('.administrator_html', procedure: link_to("« #{@procedure.libelle} »", admin_procedure_url(@procedure))) %>
+</p>
+
+<p>
+  <strong>
+    <% if @gone %>
+      <%= t('.disabled_gone', webhook: @webhook.label.presence || @webhook.url) %>
+    <% else %>
+      <%= t('.disabled', webhook: @webhook.label.presence || @webhook.url, attempts: Webhook::MAX_ATTEMPTS) %>
+    <% end %>
+  </strong>
+</p>
+
+<p><%= t('.last_error', error: @webhook.last_error) %></p>
+
+<p>
+  <%= t('.retention_html', days: WebhookEvent::RETENTION_PERIOD.in_days.to_i) %>
+</p>
+
+<%= render partial: "layouts/mailers/signature" %>

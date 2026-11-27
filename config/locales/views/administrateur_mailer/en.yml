@@ -8,3 +8,11 @@ en:
       title: Agency with missing SIRET
       missing_siret: You are an administrator on the %{application_name} platform and at least one of your agencies has no SIRET number.
       fill_in_siret: "To avoid any malfunction on the platform, please fill it in as soon as possible at this address:"
+    notify_webhook_auto_disabled:
+      subject: A webhook of your procedure no. %{procedure_id} has been disabled
+      title: A webhook of your procedure has been disabled
+      administrator_html: You are an administrator of the procedure %{procedure}.
+      disabled: The webhook %{webhook} was automatically disabled after %{attempts} failed delivery attempts.
+      disabled_gone: "The webhook %{webhook} was automatically disabled: its destination URL answered ‘410 Gone’, which asks for deliveries to stop."
+      last_error: "Last error: %{error}"
+      retention_html: "The events of the procedure are still recorded for %{days} days. Once the problem is fixed, you can reactivate the webhook with the <code>webhookActiver</code> GraphQL mutation: the pending events will then be delivered in order."

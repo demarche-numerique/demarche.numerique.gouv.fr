@@ -8,3 +8,11 @@ fr:
       title: Service avec SIRET manquant
       missing_siret: Vous êtes administrateur sur la plateforme %{application_name} et au moins un de vos services n’a pas son SIRET renseigné.
       fill_in_siret: "Afin d’éviter tout dysfonctionnement sur la plateforme, nous vous invitons à le remplir au plus vite à cette adresse :"
+    notify_webhook_auto_disabled:
+      subject: Un webhook de votre démarche nº%{procedure_id} a été désactivé
+      title: Un webhook de votre démarche a été désactivé
+      administrator_html: Vous êtes administrateur de la démarche %{procedure}.
+      disabled: Le webhook %{webhook} a été automatiquement désactivé après %{attempts} tentatives de livraison infructueuses.
+      disabled_gone: "Le webhook %{webhook} a été automatiquement désactivé : son URL de destination a répondu « 410 Gone », qui demande l’arrêt des livraisons."
+      last_error: "Dernière erreur rencontrée : %{error}"
+      retention_html: "Les évènements de la démarche continuent d’être enregistrés pendant %{days} jours. Une fois le problème corrigé, vous pouvez réactiver le webhook via la mutation GraphQL <code>webhookActiver</code> : les évènements en attente seront alors livrés dans l’ordre."

@@ -54,6 +54,37 @@ end
     end
   end
 
+  describe '.notify_webhook_auto_disabled' do
+    let(:administrateur) { administrateurs.default }
+    let(:webhook) { webhooks.default }
+
+    before { webhook.update!(auto_disabled_at: Time.current, last_error: "HTTP 500 (Internal Server Error)") }
+
+    subject { described_class.notify_webhook_auto_disabled(administrateur, webhook) }
+
+    it do
+      expect(subject.to).to eq([administrateur.email])
+      expect(subject.subject).to eq("Un webhook de votre démarche nº#{webhook.procedure_id} a été désactivé")
+      expect(subject.body).to include(webhook.label)
+      expect(subject.body).to include("HTTP 500 (Internal Server Error)")
+      expect(subject.body).to include("webhookActiver")
+      expect(subject.body.to_s).to match(/#{Webhook::MAX_ATTEMPTS}\s+tentatives/)
+    end
+
+    context 'after a 410 Gone' do
+      subject { described_class.notify_webhook_auto_disabled(administrateur, webhook, gone: true) }
+
+      it { expect(subject.body).to include("410 Gone") }
+    end
+
+    it "is written in the locale of the admin's account" do
+      administrateur.user.update!(locale: 'en')
+
+      expect(subject.subject).to eq("A webhook of your procedure no. #{webhook.procedure_id} has been disabled")
+      expect(subject.body).to include("failed delivery attempts")
+    end
+  end
+
   describe '.notify_service_without_siret' do
     subject { described_class.notify_service_without_siret(admin_email) }
 

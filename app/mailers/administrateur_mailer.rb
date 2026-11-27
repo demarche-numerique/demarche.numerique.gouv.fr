@@ -27,6 +27,18 @@ class AdministrateurMailer < ApplicationMailer
       reply_to: CONTACT_EMAIL)
   end
 
+  def notify_webhook_auto_disabled(administrateur, webhook, gone: false)
+    use_recipient_locale(administrateur.user)
+    @webhook = webhook
+    @gone = gone
+    @procedure = webhook.procedure
+    @subject = t('.subject', procedure_id: @procedure.id)
+
+    mail(to: administrateur.email,
+      subject: @subject,
+      reply_to: CONTACT_EMAIL)
+  end
+
   def api_entreprise_token_expiration(administrateur, procedure)
     @procedure = procedure
     @expires_at = procedure.api_entreprise_token.expires_at
