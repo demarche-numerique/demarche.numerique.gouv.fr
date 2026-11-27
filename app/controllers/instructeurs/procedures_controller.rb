@@ -249,9 +249,6 @@ module Instructeurs
       export = Export.find_or_create_fresh_export(export_format, groupe_instructeurs, current_instructeur, **export_options)
       current_instructeur.request_export!
 
-      @procedure = procedure
-      @dossiers_count = export.count
-
       respond_to do |format|
         format.turbo_stream
         format.html do
