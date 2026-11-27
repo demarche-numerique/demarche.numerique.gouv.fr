@@ -18,7 +18,6 @@ en:
         all_procedures: all my procedures
         all_procedures_hint: current and future
         select_procedures: Select authorized procedures
-        no_procedure: Select at least one procedure
         token_permission: This token allows
         read_only: read only
         read_only_hint: retrieve dossiers, attachments
@@ -56,7 +55,6 @@ en:
         custom_networks: Manual entry of authorised networks
         enter_ips: Enter authorised IP addresses
         network_hint: 'network addresses separated by spaces. e.g. 176.31.79.200 192.168.33.0/24 2001:41d0:304:400::52f/128'
-        invalid_network: You must enter valid IPv4 or IPv6 addresses
         lifetime_label: 'Token lifetime:'
         lifetime:
           one_week: 1 week
@@ -64,7 +62,6 @@ en:
           six_months: 6 months
           one_year: 1 year
         custom_lifetime_label: 'custom duration, at most %{count} days'
-        invalid_lifetime: You must choose a lifetime between tomorrow and the maximum allowed duration
         enter_expiry: Enter the token expiry date
         validate: Valider
         back: Back

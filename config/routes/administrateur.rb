@@ -278,9 +278,9 @@ scope module: 'administrateurs', path: 'admin', as: 'admin', defaults: { nav_bar
       delete 'remove_procedure'
     end
     collection do
-      get :nom
-      get :autorisations
-      get :securite
+      match :nom, via: [:get, :post]
+      post :autorisations
+      post :securite
     end
   end
 end

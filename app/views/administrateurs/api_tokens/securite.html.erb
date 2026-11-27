@@ -1,13 +1,13 @@
-<%= content_for :title, t('.title', name: @name) %>
+<%= content_for :title, t('.title', name: @api_token_form.name) %>
 
 <%= render partial: 'shared/breadcrumbs_section',
   locals: { steps: [[t('.dashboard'), tableau_de_bord_helper_path],
     [t('users.profil.show.profile'), profil_path(context: :administrateur)],
-    [@api_token_params.duplicating? ? t('administrateurs.api_tokens.duplicate_title') : t('administrateurs.api_tokens.new_token')]] } %>
+    [@api_token_form.duplicating? ? t('administrateurs.api_tokens.duplicate_title') : t('administrateurs.api_tokens.new_token')]] } %>
 
 <div class="fr-container fr-mt-2w">
   <h1>
-    <%= @api_token_params.duplicating? ? t('administrateurs.api_tokens.duplicate_title') : t('administrateurs.api_tokens.new_token') %>
+    <%= @api_token_form.duplicating? ? t('administrateurs.api_tokens.duplicate_title') : t('administrateurs.api_tokens.new_token') %>
   </h1>
 
   <%= render Dsfr::AlertComponent.new(title: nil, size: :sm, state: :info, extra_class_names: 'fr-mb-2w') do |c| %>
@@ -22,45 +22,47 @@
     <% end %>
   <% end %>
 
-  <%= form_with url: admin_api_tokens_path,
+  <%= form_with model: @api_token_form, url: admin_api_tokens_path,
     method: :post,
     html: { class: 'fr-mt-2w' },
     data: { controller: 'api-token-securite' } do |f| %>
+    <%- networks_error = @api_token_form.errors[:networks].first -%>
+
     <%= render Dsfr::RadioButtonListComponent.new(form: f,
-      target: :networkFiltering,
+      target: :network_filtering,
       buttons: [ { label: t('.auto_assign'),
         hint: t('.auto_assign_hint'),
         value: :autoAssign,
-        checked: params[:networkFiltering] != 'customNetworks',
         'data-action': 'click->api-token-securite#hideNetworkFiltering' },
         { label: t('.custom_networks'),
         value: :customNetworks,
-        checked: params[:networkFiltering] == 'customNetworks',
         'data-action': 'click->api-token-securite#showNetworkFiltering' }]) do %>
       <%= t('.network_filtering_label') %>
     <% end %>
 
     <div
-      class="fr-input-group fr-mb-4w <%= class_names('hidden': params[:networkFiltering] != 'customNetworks', 'fr-input-group--error': params[:invalidNetwork].present?) %>"
+      class="fr-input-group fr-mb-4w <%= class_names('hidden': !@api_token_form.custom_networks?, 'fr-input-group--error': networks_error) %>"
       data-api-token-securite-target="networkFiltering"
     >
-      <%= f.label :name, class: 'fr-label' do %>
+      <%= f.label :networks, class: 'fr-label' do %>
         <%= t('.enter_ips') %>
         <span class="fr-hint-text"><%= t('.network_hint') %></span>
       <% end %>
 
       <%= f.text_field :networks,
-        class: class_names('fr-input': true, 'fr-input--error': params[:invalidNetwork].present?),
+        class: class_names('fr-input': true, 'fr-input--error': networks_error),
+        aria: { describedby: ('api-token-networks-error' if networks_error), invalid: ('true' if networks_error) },
         autocomplete: 'off',
         autocapitalize: 'off',
         autocorrect: 'off',
         spellcheck: false,
-        value: params[:networks],
         'data-action': 'input->api-token-securite#setContinueButtonState',
         'data-api-token-securite-target': 'networks' %>
 
-      <%- if params[:invalidNetwork].present? -%>
-        <p class="fr-error-text"><%= t('.invalid_network') %></p>
+      <%- if networks_error -%>
+        <p class="fr-error-text" id="api-token-networks-error">
+          <%= networks_error %>
+        </p>
       <%- end -%>
     </div>
 
@@ -68,45 +70,45 @@
 
     <%= render Dsfr::RadioButtonListComponent.new(form: f,
       target: :lifetime,
-      error: params[:invalidLifetime].present? ? t('.invalid_lifetime') : nil,
+      error: @api_token_form.errors[:expires_at].first,
       buttons: APIToken.selectable_lifetimes.keys.map { |lifetime|
         { label: t(".lifetime.#{lifetime.to_s.underscore}"),
           value: lifetime,
-          checked: params[:lifetime].to_s == lifetime.to_s,
           'data-action': 'click->api-token-securite#hideCustomLifetime' }
       } + [{ label: t('.custom_lifetime_label', count: APIToken::MAX_LIFETIME.in_days.to_i),
         value: :custom,
-        checked: params[:lifetime] == 'custom',
         'data-action': 'click->api-token-securite#showCustomLifetime' }]) do %>
       <%= t('.lifetime_label') %>
     <% end %>
 
     <div
-      class="fr-input-group fr-mb-4w <%= class_names('hidden': params[:lifetime] != 'custom') %>"
+      class="fr-input-group fr-mb-4w <%= class_names('hidden': @api_token_form.lifetime != 'custom') %>"
       data-api-token-securite-target="customLifetime"
     >
-      <%= f.label :name, class: 'fr-label' do %>
+      <%= f.label :custom_lifetime, class: 'fr-label' do %>
         <%= t('.enter_expiry') %>
       <% end %>
 
-      <input
-        autocomplete="off"
-        type="date"
-        class="fr-input width-33 fr-mb-4w"
-        name="customLifetime"
-        value="<%= params[:customLifetime] %>"
-        data-action="input->api-token-securite#setContinueButtonState"
-        data-api-token-securite-target="customLifetimeInput"
-        min="<%= Date.tomorrow.iso8601 %>"
-        max="<%= APIToken.max_expires_at.iso8601 %>"
-      >
+      <%= f.date_field :custom_lifetime,
+        class: 'fr-input width-33 fr-mb-4w',
+        autocomplete: 'off',
+        min: APIToken.min_expires_at,
+        max: APIToken.max_expires_at,
+        'data-action': 'input->api-token-securite#setContinueButtonState',
+        'data-api-token-securite-target': 'customLifetimeInput' %>
     </div>
 
-    <%= render APITokens::HiddenFieldsComponent.new(fields: @api_token_params.hidden_fields_for(%i[networkFiltering networks lifetime customLifetime])) %>
+    <%= render APITokens::HiddenFieldsComponent.new(form: f, except: %i[network_filtering networks lifetime custom_lifetime]) %>
 
     <ul class="fr-btns-group fr-btns-group--inline">
       <li>
-        <%= link_to t('.back'), autorisations_admin_api_tokens_path(@api_token_params.to_h), class: "fr-btn fr-btn--secondary" %>
+        <button
+          type="submit"
+          form="api-token-securite-back"
+          class="fr-btn fr-btn--secondary"
+        >
+          <%= t('.back') %>
+        </button>
       </li>
 
       <li>
@@ -118,5 +120,9 @@
         <% end %>
       </li>
     </ul>
+  <% end %>
+
+  <%= form_with model: @api_token_form, url: autorisations_admin_api_tokens_path, method: :post, id: 'api-token-securite-back' do |back| %>
+    <%= render APITokens::HiddenFieldsComponent.new(form: back) %>
   <% end %>
 </div>

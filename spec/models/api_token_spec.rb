@@ -24,7 +24,7 @@ describe APIToken, type: :model do
 
       it 'is rejected as too soon' do
         expect(api_token).to be_invalid
-        expect(api_token.errors).to be_of_kind(:expires_at, :greater_than)
+        expect(api_token.errors).to be_of_kind(:expires_at, :greater_than_or_equal_to)
       end
     end
 
@@ -33,7 +33,7 @@ describe APIToken, type: :model do
 
       it 'is rejected as too soon' do
         expect(api_token).to be_invalid
-        expect(api_token.errors).to be_of_kind(:expires_at, :greater_than)
+        expect(api_token.errors).to be_of_kind(:expires_at, :greater_than_or_equal_to)
       end
     end
 
@@ -264,6 +264,36 @@ describe APIToken, type: :model do
           expect(api_token.procedure_ids).to eq([])
           expect(api_token.targetable_procedures).to eq([other_procedure])
           expect(api_token.context).to eq(administrateur_id: administrateur.id, procedure_ids: [], write_access: true, api_token_id: api_token.id)
+        end
+      end
+
+      context 'with a listed procedure put in the bin then restored' do
+        before do
+          api_token.update!(allowed_procedure_ids: [procedure.id])
+          procedure.discard!
+          api_token.store_new_ip('203.0.113.7')
+          procedure.undiscard!
+        end
+
+        it { expect(api_token.reload.procedure_ids).to eq([procedure.id]) }
+      end
+
+      context 'when its owner is removed from a listed procedure' do
+        let(:co_admin) { administrateurs.default }
+        let(:procedure) { procedures.individual }
+        let(:other_procedure) { procedures.brouillon }
+        let(:co_admin_token) { APIToken.generate(co_admin).first }
+
+        before do
+          [procedure, other_procedure].each { it.administrateurs << administrateur }
+          api_token.update!(allowed_procedure_ids: [procedure.id, other_procedure.id])
+          co_admin_token.update!(allowed_procedure_ids: [procedure.id])
+          procedure.administrateurs.delete(administrateur)
+        end
+
+        it 'drops the procedure from its own tokens only' do
+          expect(api_token.reload.allowed_procedure_ids).to eq([other_procedure.id])
+          expect(co_admin_token.reload.allowed_procedure_ids).to eq([procedure.id])
         end
       end
     end
