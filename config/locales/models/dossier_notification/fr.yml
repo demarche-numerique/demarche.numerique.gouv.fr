@@ -20,23 +20,40 @@ fr:
         annotation_instructeur: Annotation privée
         avis_externe: Avis externe
         a11y:
+          summary:
+            dossier_depose:
+              one: "%{count} dossier déposé depuis longtemps"
+              other: "%{count} dossiers déposés depuis longtemps"
+            dossier_expirant:
+              one: "%{count} dossier qui expire bientôt"
+              other: "%{count} dossiers qui expirent bientôt"
+            dossier_suppression:
+              one: "%{count} dossier bientôt supprimé"
+              other: "%{count} dossiers bientôt supprimés"
+            dossier_modifie:
+              one: "%{count} dossier modifié non lu"
+              other: "%{count} dossiers modifiés non lus"
+            message:
+              one: "%{count} dossier avec au moins un message non lu"
+              other: "%{count} dossiers avec au moins un message non lu"
+            annotation_instructeur:
+              one: "%{count} dossier avec au moins une annotation privée non lue"
+              other: "%{count} dossiers avec au moins une annotation privée non lue"
+            avis_externe:
+              one: "%{count} dossier avec au moins un avis externe non lu"
+              other: "%{count} dossiers avec au moins un avis externe non lu"
+            attente_correction:
+              one: "%{count} dossier en attente de correction"
+              other: "%{count} dossiers en attente de correction"
+            attente_reponse:
+              one: "%{count} dossier en attente de réponse"
+              other: "%{count} dossiers en attente de réponse"
+            attente_avis:
+              one: "%{count} dossier en attente d’avis externe"
+              other: "%{count} dossiers en attente d’avis externe"
           news:
-            summary:
-              dossier_modifie:
-                one: "%{count} dossier modifié non lu"
-                other: "%{count} dossiers modifiés non lus"
-              message:
-                one: "%{count} dossier avec au moins un message non lu"
-                other: "%{count} dossiers avec au moins un message non lu"
-              annotation_instructeur:
-                one: "%{count} dossier avec au moins une annotation privée non lue"
-                other: "%{count} dossiers avec au moins une annotation privée non lue"
-              avis_externe:
-                one: "%{count} dossier avec au moins un avis externe non lu"
-                other: "%{count} dossiers avec au moins un avis externe non lu"
             unread:
               dossier_modifie: non lu
               message: non lu
               annotation_instructeur: non lue
               avis_externe: non lu
-          others: dossiers
