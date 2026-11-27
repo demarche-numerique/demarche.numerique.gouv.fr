@@ -121,6 +121,8 @@ Une préparation en échec affiche seulement l'erreur Ruby et les lignes du scri
 
 Itère jusqu'au vert, puis **regarde les captures** (Read) : une vérification qui passe sur un écran faux est pire qu'une vérification absente. Une capture qui montre le haut de la page au lieu de la cible est un défaut du runner, pas du scénario : corrige le runner plutôt que d'ajouter des défilements dans les actions.
 
+Le runner s'arrête au premier échec : les étapes suivantes partent d'un état qui n'est plus garanti. Pour **comparer deux versions** (avant et après un correctif), `--continuer` joue toutes les étapes et donne le bilan complet ; chaque étape doit alors repartir d'un état qu'elle installe elle-même.
+
 Quand une étape échoue, tranche : **bug du scénario** (locator, timing) → corrige ; **bug de la PR** (l'attendu tiré de la description n'est pas là) → c'est un résultat de recette. Ne contourne pas, note-le pour l'humain avec la capture.
 
 ## 6. Recette guidée

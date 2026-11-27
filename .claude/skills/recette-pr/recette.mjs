@@ -28,7 +28,8 @@ const { values: opts, positionals } = parseArgs({
     juge: { type: 'string', default: 'humain' }, // guide : « agent » quand un agent joue le relecteur
     voix: { type: 'string' }, // voix say (« Aurélie (Enhanced) ») ou Piper (« fr_FR-siwis-medium », « …:locuteur », chemin .onnx)
     page: { type: 'string' }, // sonde : chemin à ouvrir
-    clic: { type: 'string', multiple: true } // sonde : boutons ou liens à cliquer avant d'afficher l'arbre
+    clic: { type: 'string', multiple: true }, // sonde : boutons ou liens à cliquer avant d'afficher l'arbre
+    continuer: { type: 'boolean', default: false } // auto : joue toutes les étapes malgré un échec (comparer deux versions)
   }
 });
 const scenarioPath = resolve(positionals[0] ?? die('usage: recette.mjs <scenario.mjs> --mode auto|guide|video|captures'));
@@ -545,7 +546,7 @@ async function main() {
     resultats.push(resultat);
     console.log(`${resultat.verdict === 'échec' || resultat.verdict === 'non conforme' ? '✗' : '✓'} ${i + 1}. ${etape.titre} — ${resultat.verdict}${resultat.erreur ? ` : ${resultat.erreur}` : ''}${resultat.commentaire ? ` : ${resultat.commentaire}` : ''}`);
     ecrireRapport();
-    if (resultat.verdict === 'échec') break;
+    if (resultat.verdict === 'échec' && !opts.continuer) break;
   }
 
   if (mode === 'guide' && !ferme) {
