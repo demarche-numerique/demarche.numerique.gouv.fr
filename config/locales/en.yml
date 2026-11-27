@@ -951,6 +951,8 @@ en:
       short_with_time: "%d %b %Y at %H:%M"
       messagerie_date: "On %d %b %Y %H:%M"
       human: "%A %-d %B at %Hh%M"
+      deadline: "%-d %B %Y at %-I:%M %p (Paris time)"
+      deadline_time: "at %-I:%M %p (Paris time)"
   datetime:
     formats:
       long: "%d %B %Y at %H:%M"

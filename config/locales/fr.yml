@@ -957,6 +957,8 @@ fr:
       short_with_time: "%d/%m/%Y à %H:%M"
       messagerie_date: "Le %d/%m/%Y %H:%M"
       human: "%A %-d %B à %Hh%M"
+      deadline: "%-d %B %Y à %H h %M (heure de Paris)"
+      deadline_time: "à %H h %M (heure de Paris)"
   datetime:
     formats:
       long: "%d %B %Y à %H:%M"

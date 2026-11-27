@@ -10,7 +10,7 @@
 <p><%= t('.link_html', link: link_to(merge_link, merge_link)) %></p>
 
 <p>
-  <%= t('.validity', duration: distance_of_time_in_words(FranceConnectInformation::MERGE_VALIDITY), expires_at: I18n.l(@email_merge_token_created_at + FranceConnectInformation::MERGE_VALIDITY, format: :long_with_time_and_timezone)) %>
+  <%= t('.validity', duration: distance_of_time_in_words(FranceConnectInformation::MERGE_VALIDITY), expires_at: I18n.l(@email_merge_token_created_at + FranceConnectInformation::MERGE_VALIDITY, format: :deadline)) %>
 </p>
 
 <p>

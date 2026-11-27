@@ -24,8 +24,8 @@
       <% c.with_body do %>
         <p>
           Votre jeton <%= api_name %> expirera le
-          <%= l(token.expires_at, format: :long_with_time) %>. Merci de le
-          renouveler avant cette date.
+          <%= l(token.expires_at, format: :deadline) %>. Merci de le renouveler
+          avant cette date.
         </p>
       <% end %>
     <% end %>

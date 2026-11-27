@@ -21,6 +21,9 @@ en:
         col_registered_at: Registered on
         expand_admin: View procedures
       informations:
+        auto_archive_on:
+          label: Application submission deadline
+          hint: If a date is set, no application can be submitted or edited after this deadline. Submitted applications will move under review and the procedure will be closed.
         email_templates_reset_warning:
           title: 'Warning '
           desc: The acknowledgment of receipt you may have customized will be deleted and adapted to this new setting. The other email templates are kept.

@@ -50,7 +50,8 @@ RSpec.describe 'administrateurs/jetons/_token_expiration_alert', type: :view do
     it "should display an error" do
       subject
 
-      expect(rendered).to have_content("Votre jeton API Particulier expirera le #{I18n.l(expiration, format: :long_with_time)}.", normalize_ws: true)
+      expect(rendered).to have_content("Votre jeton API Particulier expirera le #{I18n.l(expiration, format: :deadline).tr("\u00a0", " ")}.", normalize_ws: true)
+      expect(rendered).to have_content("(heure de Paris)")
     end
   end
 

@@ -21,6 +21,9 @@ fr:
         col_registered_at: Inscrit le
         expand_admin: Voir les démarches
       informations:
+        auto_archive_on:
+          label: Date limite de dépôt des dossiers
+          hint: Si une date est définie, aucun dossier ne pourra plus être déposé ou modifié après cette limite. Les dossiers en construction passeront en instruction et la démarche sera clôturée.
         email_templates_reset_warning:
           title: 'Attention '
           desc: Le modèle d’accusé de réception éventuellement personnalisé sera supprimé et adapté à ce nouveau paramétrage. Les autres modèles d’emails sont conservés.
