@@ -21,6 +21,22 @@ fr:
         avis_externe: Avis externe
         a11y:
           news:
-            for_summary: dossiers avec au moins une nouveauté
-            for_not_summary: au moins une nouveauté
+            summary:
+              dossier_modifie:
+                one: "%{count} dossier modifié non lu"
+                other: "%{count} dossiers modifiés non lus"
+              message:
+                one: "%{count} dossier avec au moins un message non lu"
+                other: "%{count} dossiers avec au moins un message non lu"
+              annotation_instructeur:
+                one: "%{count} dossier avec au moins une annotation privée non lue"
+                other: "%{count} dossiers avec au moins une annotation privée non lue"
+              avis_externe:
+                one: "%{count} dossier avec au moins un avis externe non lu"
+                other: "%{count} dossiers avec au moins un avis externe non lu"
+            unread:
+              dossier_modifie: non lu
+              message: non lu
+              annotation_instructeur: non lue
+              avis_externe: non lu
           others: dossiers

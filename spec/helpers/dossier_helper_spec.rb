@@ -292,20 +292,62 @@ RSpec.describe DossierHelper, type: :helper do
     end
   end
 
+  describe ".tag_summary_notification" do
+    subject { tag_summary_notification([notification_type, count]) }
+
+    context "with a nouveauté" do
+      let(:notification_type) { "message" }
+      let(:count) { 2 }
+
+      it "announces a single sentence instead of the count and the label" do
+        expect(subject).to have_css(".fr-sr-only", text: "2 dossiers avec au moins un message non lu")
+        expect(subject).to have_css("[aria-hidden=true]", text: "2", exact_text: true)
+        expect(subject).to have_css("[aria-hidden=true]", text: "Message", exact_text: true)
+      end
+    end
+
+    context "with a notification that is not a nouveauté" do
+      let(:notification_type) { "attente_correction" }
+      let(:count) { 2 }
+
+      it "keeps the count and the label announced" do
+        expect(subject).to have_css(".fr-sr-only", text: "dossiers", exact_text: true)
+        expect(subject).to have_no_css("[aria-hidden=true]", text: "2")
+        expect(subject).to have_no_css("[aria-hidden=true]", text: "En attente de correction")
+        expect(subject).to have_text("En attente de correction")
+      end
+    end
+  end
+
+  describe ".tag_notification" do
+    subject { tag_notification(:annotation_instructeur) }
+
+    it "announces that the nouveauté is unread after its label" do
+      expect(subject).to have_css(".fr-badge--new", text: "Annotation privée")
+      expect(subject).to have_css(".fr-sr-only", text: "non lue", exact_text: true)
+    end
+  end
+
   describe ".badge_notification_text_a11y" do
-    [:dossier_modifie, :message, :annotation_instructeur, :avis_externe].each do |notification_type|
+    {
+      dossier_modifie: ["1 dossier modifié non lu", "2 dossiers modifiés non lus", "non lu"],
+      message: ["1 dossier avec au moins un message non lu", "2 dossiers avec au moins un message non lu", "non lu"],
+      annotation_instructeur: ["1 dossier avec au moins une annotation privée non lue", "2 dossiers avec au moins une annotation privée non lue", "non lue"],
+      avis_externe: ["1 dossier avec au moins un avis externe non lu", "2 dossiers avec au moins un avis externe non lu", "non lu"],
+    }.each do |notification_type, (one, other, unread)|
       context "with a #{notification_type} notification" do
-        it "announces a nouveauté" do
-          expect(badge_notification_text_a11y(notification_type, summary: true)).to eq("dossiers avec au moins une nouveauté")
-          expect(badge_notification_text_a11y(notification_type, summary: false)).to eq("au moins une nouveauté")
+        it "announces what is unread" do
+          expect(badge_notification_text_a11y(notification_type, count: 1)).to eq(one)
+          expect(badge_notification_text_a11y(notification_type, count: 2)).to eq(other)
+          expect(badge_notification_text_a11y(notification_type)).to eq(unread)
         end
       end
     end
 
     context "with a notification that is not a nouveauté" do
       it "only announces something in a summary" do
-        expect(badge_notification_text_a11y(:attente_correction, summary: true)).to eq("dossiers")
-        expect(badge_notification_text_a11y(:attente_correction, summary: false)).to be_nil
+        expect(badge_notification_text_a11y(:attente_correction, count: 1)).to eq("dossiers")
+        expect(badge_notification_text_a11y(:attente_correction)).to be_nil
       end
     end
   end

@@ -188,13 +188,14 @@ module DossierHelper
 
   def tag_summary_notification(notification_type_count)
     type, count = notification_type_count
+    hidden = news_notification?(type) || nil
 
     tag.span(class: [badge_notification_class(type), 'fr-badge--no-icon']) do
       safe_join([
-        tag.span(count, class: "fr-background-alt--grey fr-my-1v fr-mr-1v fr-px-1v fr-text-default--grey"),
+        tag.span(count, class: "fr-background-alt--grey fr-my-1v fr-mr-1v fr-px-1v fr-text-default--grey", aria: { hidden: }),
         tag.span(nil, class: [badge_notification_class(type), 'fr-my-0', 'fr-mx-0', 'fr-px-0'], aria: { hidden: true }),
-        tag.span(badge_notification_text_a11y(type, summary: true), class: "fr-sr-only"),
-        badge_notification_text(type, generic: true),
+        tag.span(badge_notification_text_a11y(type, count:), class: "fr-sr-only"),
+        tag.span(badge_notification_text(type, generic: true), aria: { hidden: }),
       ])
     end
   end
@@ -208,7 +209,7 @@ module DossierHelper
   def tag_notification(notification, generic: false)
     safe_join([
       tag.span(badge_notification_text(notification, generic:), class: badge_notification_class(notification)),
-      tag.span(badge_notification_text_a11y(notification, summary: false), class: "fr-sr-only"),
+      tag.span(badge_notification_text_a11y(notification), class: "fr-sr-only"),
     ])
   end
 
@@ -256,21 +257,17 @@ module DossierHelper
     end
   end
 
-  def badge_notification_text_a11y(notification, summary:)
+  def badge_notification_text_a11y(notification, count: nil)
     type = extract_notification_type(notification)
 
-    case type
-    when DossierNotification.notification_types.fetch(:dossier_modifie),
-      DossierNotification.notification_types.fetch(:message),
-      DossierNotification.notification_types.fetch(:annotation_instructeur),
-      DossierNotification.notification_types.fetch(:avis_externe)
-      if summary
-        t("activerecord.attributes.notification.a11y.news.for_summary")
+    if news_notification?(type)
+      if count
+        t("activerecord.attributes.notification.a11y.news.summary.#{type}", count:)
       else
-        t("activerecord.attributes.notification.a11y.news.for_not_summary")
+        t("activerecord.attributes.notification.a11y.news.unread.#{type}")
       end
-    else
-      t("activerecord.attributes.notification.a11y.others") if summary
+    elsif count
+      t("activerecord.attributes.notification.a11y.others")
     end
   end
 
@@ -331,6 +328,12 @@ module DossierHelper
 
   def extract_notification_type(notification_or_type)
     notification_or_type.is_a?(DossierNotification) ? notification_or_type.notification_type : notification_or_type.to_s
+  end
+
+  def news_notification?(notification)
+    DossierNotification.notification_types
+      .values_at(:dossier_modifie, :message, :annotation_instructeur, :avis_externe)
+      .include?(extract_notification_type(notification))
   end
 
   def days_for_specific_badge_notification(notification, type)
