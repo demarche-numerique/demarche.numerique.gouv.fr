@@ -34,6 +34,7 @@ fr:
           numeric: 'Nombre'
           date: 'Date'
           datetime: 'Date et heure'
+          temporal: 'Date'
           piece_justificative: 'Pièce à joindre'
           titre_identite: 'Titre identité'
           checkbox: 'Case à cocher seule'

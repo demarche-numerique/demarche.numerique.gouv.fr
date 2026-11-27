@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
-class TypesDeChamp::DateTypeDeChamp < TypeDeChamp
-  def self.icon = 'fr-icon-calendar-line'
-  def self.option_keys = [:birthdate, :prefill_with_france_connect_information, :date_in_past, :start_date, :end_date, :range_date]
+class TypesDeChamp::DateTypeDeChamp < TypesDeChamp::TemporalTypeDeChamp
+  def self.option_keys = super.push(:birthdate, :prefill_with_france_connect_information)
   def self.column_type = :date
 
-  def prefillable? = true
-  def customizable? = true
-  store_accessor :options, :birthdate, :prefill_with_france_connect_information, :date_in_past, :range_date, :start_date, :end_date
-  boolean_options :birthdate, :date_in_past, :range_date, :prefill_with_france_connect_information
+  store_accessor :options, :birthdate, :prefill_with_france_connect_information
+  boolean_options :birthdate, :prefill_with_france_connect_information
 
   before_save :clear_conflicting_options, if: :birthdate?
   before_save :clear_prefill_with_france_connect_information, if: -> { !birthdate? }

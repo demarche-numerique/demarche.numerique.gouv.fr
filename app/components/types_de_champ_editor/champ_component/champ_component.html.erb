@@ -195,35 +195,51 @@
           <% end %>
 
           <% if type_de_champ.date? || type_de_champ.datetime? %>
+            <% temporal_type_champ_hint_id = dom_id(type_de_champ, :temporal_type_champ_hint) %>
+            <% type_champ_locked = type_de_champ.type_champ_locked? %>
+            <% birthdate_locked = type_de_champ.datetime? && type_champ_locked %>
+            <% birthdate_hint_id = dom_id(type_de_champ, :birthdate_hint) %>
+            <% prefill_fc_hint_id = dom_id(type_de_champ, :prefill_with_france_connect_information_hint) %>
             <div class="border-left-dark fr-mt-2w">
               <div class="cell">
                 <legend class="fake-label">
                   <%= t(".format_accepted_legend") %>
                 </legend>
 
-                <% if type_de_champ.date? %>
-                  <div class="fr-toggle fr-toggle--no-label">
-                    <%= form.check_box :birthdate, id: dom_id(type_de_champ, :birthdate), class: 'fr-toggle__input' %>
-                    <%= form.label :birthdate, t(".birthdate_label"), for: dom_id(type_de_champ, :birthdate), class: "fr-toggle__label fr-label" %>
-                  </div>
-                  <p class="fr-hint-text"><%= t(".birthdate_hint") %></p>
-                <% end %>
+                <div class="fr-toggle fr-mt-2w fr-toggle--no-label">
+                  <%= form.check_box :birthdate, { id: dom_id(type_de_champ, :birthdate), class: 'fr-toggle__input', checked: type_de_champ.birthdate?, disabled: birthdate_locked, 'aria-describedby': birthdate_hint_id } %>
+                  <%= form.label :birthdate, t(".birthdate_label"), for: dom_id(type_de_champ, :birthdate), class: "fr-toggle__label fr-label" %>
+                </div>
+
+                <p class="fr-hint-text fr-m-0" id="<%= birthdate_hint_id %>">
+                  <% if birthdate_locked %>
+                    <%= type_de_champ.type_change_locked_message %>
+                  <% else %>
+                    <%= t(".birthdate_hint") %>
+                  <% end %>
+                </p>
 
                 <% if type_de_champ.date? && form.object.birthdate? %>
-                  <div class="fr-toggle fr-mt-2w fr-toggle--no-label">
-                    <%= form.check_box :prefill_with_france_connect_information, { id: dom_id(type_de_champ, :prefill_with_france_connect_information), class: 'fr-toggle__input', disabled: prefill_with_france_connect_information_locked_by_sibling? } %>
-                    <%= form.label :prefill_with_france_connect_information, t(".prefill_fc_birthdate_label"), for: dom_id(type_de_champ, :prefill_with_france_connect_information), class: "fr-toggle__label fr-label" %>
+                  <div class="fr-background-alt--blue-france fr-p-2w fr-mt-2w">
+                    <div class="fr-toggle fr-toggle--no-label">
+                      <%= form.check_box :prefill_with_france_connect_information, { id: dom_id(type_de_champ, :prefill_with_france_connect_information), class: 'fr-toggle__input', disabled: prefill_with_france_connect_information_locked_by_sibling?, 'aria-describedby': prefill_fc_hint_id } %>
+                      <%= form.label :prefill_with_france_connect_information, t(".prefill_fc_birthdate_label"), for: dom_id(type_de_champ, :prefill_with_france_connect_information), class: "fr-toggle__label fr-label" %>
+                    </div>
+
+                    <p
+                      class="fr-hint-text fr-m-0"
+                      id="<%= prefill_fc_hint_id %>"
+                    >
+                      <% if prefill_with_france_connect_information_locked_by_sibling? %>
+                        <%= t(".prefill_fc_locked_hint") %>
+                      <% else %>
+                        <%= t(".prefill_fc_hint") %>
+                      <% end %>
+                    </p>
                   </div>
-                  <p class="fr-hint-text">
-                    <% if prefill_with_france_connect_information_locked_by_sibling? %>
-                      <%= t(".prefill_fc_locked_hint") %>
-                    <% else %>
-                      <%= t(".prefill_fc_hint") %>
-                    <% end %>
-                  </p>
                 <% end %>
 
-                <% if !form.object.birthdate? %>
+                <% if !type_de_champ.birthdate? %>
                   <div class="fr-toggle fr-mt-2w fr-toggle--no-label">
                     <%= form.check_box :date_in_past, id: dom_id(type_de_champ, :date_in_past), class: 'fr-toggle__input' %>
                     <%= form.label :date_in_past, t(".date_in_past_label"), for: dom_id(type_de_champ, :date_in_past), class: "fr-toggle__label fr-label" %>
@@ -253,6 +269,19 @@
                       </fieldset>
                     </div>
                   <% end %>
+                  <div class="fr-toggle fr-toggle--no-label fr-mt-2w">
+                    <%= form.check_box :temporal_type_champ, { id: dom_id(type_de_champ, :temporal_type_champ), class: 'fr-toggle__input', disabled: type_champ_locked, 'aria-describedby': (temporal_type_champ_hint_id if type_champ_locked) }, 'datetime', 'date' %>
+                    <%= form.label :temporal_type_champ, t(".temporal_type_champ_label"), for: dom_id(type_de_champ, :temporal_type_champ), class: "fr-toggle__label fr-label" %>
+
+                    <% if type_champ_locked %>
+                      <p
+                        class="fr-hint-text"
+                        id="<%= temporal_type_champ_hint_id %>"
+                      >
+                        <%= type_de_champ.type_change_locked_message %>
+                      </p>
+                    <% end %>
+                  </div>
                 <% end %>
               </div>
             </div>
