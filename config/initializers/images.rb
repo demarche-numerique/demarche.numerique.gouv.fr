@@ -31,3 +31,6 @@ PROCEDURE_DEFAULT_LOGO_SRC = ENV.fetch("PROCEDURE_DEFAULT_LOGO_SRC", "republique
 
 # Logo in PDF export of a "Dossier"
 DOSSIER_PDF_EXPORT_LOGO_SRC = Rails.root.join(ENV.fetch("DOSSIER_PDF_EXPORT_LOGO_SRC", "app/assets/images/header/logo-ds-wide.png")).to_s
+
+# Theme override
+OVERRIDE_DSFR = ENV.enabled?("OVERRIDE_DSFR")
