@@ -1,0 +1,498 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`stored JSON shape > builds a mail body through commands 1`] = `
+{
+  "content": [
+    {
+      "content": [
+        {
+          "text": "Bonjour ",
+          "type": "text",
+        },
+        {
+          "attrs": {
+            "id": "dossier_number",
+            "label": "numéro du dossier",
+          },
+          "type": "mention",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "marks": [
+            {
+              "attrs": {
+                "class": null,
+                "href": "https://example.com",
+                "rel": "noopener noreferrer",
+                "target": "_blank",
+              },
+              "type": "link",
+            },
+            {
+              "type": "bold",
+            },
+          ],
+          "text": "lien",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+  ],
+  "type": "doc",
+}
+`;
+
+exports[`stored JSON shape > builds every attestation node and mark through commands 1`] = `
+{
+  "content": [
+    {
+      "content": [
+        {
+          "attrs": {
+            "textAlign": "left",
+          },
+          "content": [
+            {
+              "attrs": {
+                "textAlign": "left",
+              },
+              "content": [
+                {
+                  "attrs": {
+                    "id": "dossier_service_name",
+                    "label": "nom du service",
+                  },
+                  "type": "mention",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "headerColumn",
+        },
+        {
+          "attrs": {
+            "textAlign": "left",
+          },
+          "content": [
+            {
+              "attrs": {
+                "textAlign": "left",
+              },
+              "content": [
+                {
+                  "text": "Fait le ",
+                  "type": "text",
+                },
+                {
+                  "attrs": {
+                    "id": "dossier_processed_at",
+                    "label": "date de décision",
+                  },
+                  "type": "mention",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "headerColumn",
+        },
+      ],
+      "type": "header",
+    },
+    {
+      "attrs": {
+        "textAlign": "center",
+      },
+      "content": [
+        {
+          "text": "Titre de l’attestation",
+          "type": "text",
+        },
+      ],
+      "type": "title",
+    },
+    {
+      "attrs": {
+        "textAlign": "left",
+      },
+      "content": [
+        {
+          "text": "Vous pouvez éditer ce texte.",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "attrs": {
+        "level": 2,
+        "textAlign": "left",
+      },
+      "content": [
+        {
+          "text": "Titre deux",
+          "type": "text",
+        },
+      ],
+      "type": "heading",
+    },
+    {
+      "attrs": {
+        "level": 3,
+        "textAlign": "left",
+      },
+      "content": [
+        {
+          "text": "Titre trois",
+          "type": "text",
+        },
+      ],
+      "type": "heading",
+    },
+    {
+      "attrs": {
+        "textAlign": "left",
+      },
+      "content": [
+        {
+          "marks": [
+            {
+              "type": "bold",
+            },
+          ],
+          "text": "gras",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "attrs": {
+        "textAlign": "justify",
+      },
+      "content": [
+        {
+          "marks": [
+            {
+              "attrs": {
+                "class": null,
+                "href": "https://example.com",
+                "rel": "noopener noreferrer",
+                "target": "_blank",
+              },
+              "type": "link",
+            },
+            {
+              "type": "italic",
+            },
+            {
+              "type": "underline",
+            },
+            {
+              "type": "highlight",
+            },
+          ],
+          "text": "mix",
+          "type": "text",
+        },
+        {
+          "type": "hardBreak",
+        },
+        {
+          "attrs": {
+            "id": "dossier_number",
+            "label": "numéro du dossier",
+          },
+          "type": "mention",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "attrs": {
+                "textAlign": "justify",
+              },
+              "content": [
+                {
+                  "text": "puce",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "attrs": {
+                        "textAlign": "justify",
+                      },
+                      "content": [
+                        {
+                          "text": "sous-puce",
+                          "type": "text",
+                        },
+                      ],
+                      "type": "paragraph",
+                    },
+                  ],
+                  "type": "listItem",
+                },
+              ],
+              "type": "bulletList",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "bulletList",
+    },
+    {
+      "attrs": {
+        "start": 1,
+        "type": null,
+      },
+      "content": [
+        {
+          "content": [
+            {
+              "attrs": {
+                "textAlign": "justify",
+              },
+              "content": [
+                {
+                  "text": "numéro",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "orderedList",
+    },
+    {
+      "type": "pageBreak",
+    },
+    {
+      "attrs": {
+        "textAlign": "right",
+      },
+      "content": [
+        {
+          "text": "fin",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+  ],
+  "type": "doc",
+}
+`;
+
+exports[`stored JSON shape > loads a mail body 1`] = `
+{
+  "content": [
+    {
+      "content": [
+        {
+          "text": "Bonjour,",
+          "type": "text",
+        },
+        {
+          "type": "hardBreak",
+        },
+        {
+          "text": "Votre dossier n° ",
+          "type": "text",
+        },
+        {
+          "attrs": {
+            "id": "dossier_number",
+            "label": "numéro du dossier",
+          },
+          "type": "mention",
+        },
+        {
+          "marks": [
+            {
+              "type": "bold",
+            },
+          ],
+          "text": " a été déposé",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "text": "un",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "bulletList",
+    },
+    {
+      "attrs": {
+        "start": 1,
+        "type": null,
+      },
+      "content": [
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "text": "deux",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "orderedList",
+    },
+  ],
+  "type": "doc",
+}
+`;
+
+exports[`stored JSON shape > loads a single line subject 1`] = `
+{
+  "content": [
+    {
+      "content": [
+        {
+          "text": "Dossier ",
+          "type": "text",
+        },
+        {
+          "attrs": {
+            "id": "dossier_number",
+            "label": "numéro du dossier",
+          },
+          "type": "mention",
+        },
+      ],
+      "type": "paragraph",
+    },
+  ],
+  "type": "doc",
+}
+`;
+
+exports[`stored JSON shape > loads the default attestation 1`] = `
+{
+  "content": [
+    {
+      "content": [
+        {
+          "attrs": {
+            "textAlign": "left",
+          },
+          "content": [
+            {
+              "attrs": {
+                "textAlign": "left",
+              },
+              "content": [
+                {
+                  "attrs": {
+                    "id": "dossier_service_name",
+                    "label": "nom du service",
+                  },
+                  "type": "mention",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "headerColumn",
+        },
+        {
+          "attrs": {
+            "textAlign": "left",
+          },
+          "content": [
+            {
+              "attrs": {
+                "textAlign": "left",
+              },
+              "content": [
+                {
+                  "text": "Fait le ",
+                  "type": "text",
+                },
+                {
+                  "attrs": {
+                    "id": "dossier_processed_at",
+                    "label": "date de décision",
+                  },
+                  "type": "mention",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "headerColumn",
+        },
+      ],
+      "type": "header",
+    },
+    {
+      "attrs": {
+        "textAlign": "center",
+      },
+      "content": [
+        {
+          "text": "Titre de l’attestation",
+          "type": "text",
+        },
+      ],
+      "type": "title",
+    },
+    {
+      "attrs": {
+        "textAlign": "left",
+      },
+      "content": [
+        {
+          "text": "Vous pouvez éditer ce texte.",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+  ],
+  "type": "doc",
+}
+`;

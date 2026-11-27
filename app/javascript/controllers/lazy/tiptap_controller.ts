@@ -33,7 +33,7 @@ export class TiptapController extends ApplicationController {
     singleLine: { type: Boolean, default: false }
   };
 
-  declare editorTarget: Element;
+  declare editorTarget: HTMLElement;
   declare inputTarget: HTMLInputElement;
   declare buttonTargets: HTMLButtonElement[];
   declare tagTargets: HTMLElement[];
@@ -54,7 +54,6 @@ export class TiptapController extends ApplicationController {
   declare hasRemoveLinkButtonTarget: boolean;
   declare removeLinkButtonTarget: HTMLButtonElement;
 
-  #initializing = true;
   #editor?: Editor;
   #previewTimeout?: ReturnType<typeof setTimeout>;
 
@@ -71,27 +70,7 @@ export class TiptapController extends ApplicationController {
       attributes: { class: 'fr-input', ...this.attributesValue },
       onChange: ({ editor, transaction }) => {
         // Button state depends on the selection, so refresh it on every transaction.
-        for (const button of this.buttonTargets) {
-          const action = getAction(editor, button);
-          button.classList.toggle('fr-btn--secondary', !action.isActive());
-
-          // Special handling for link button: disable when no selection and no existing link
-          if (button.dataset.tiptapAction === 'link') {
-            const { empty } = editor.state.selection;
-            const hasExistingLink = !!editor.getAttributes('link').href;
-            button.disabled = empty && !hasExistingLink;
-          } else {
-            button.disabled = action.isDisabled();
-          }
-        }
-
-        // The first transaction is the initial content load: sync the hidden input
-        // once, but don't trigger a preview.
-        if (this.#initializing) {
-          this.#initializing = false;
-          this.inputTarget.value = JSON.stringify(editor.getJSON());
-          return;
-        }
+        this.#refreshButtons(editor);
 
         // Selection-only transactions (cursor moves) leave the document untouched;
         // skip the re-serialization and the preview refresh they don't need.
@@ -105,6 +84,27 @@ export class TiptapController extends ApplicationController {
         this.#schedulePreview();
       }
     });
+
+    // Loading the content dispatches no transaction: sync the hidden input and
+    // the buttons once, without a preview.
+    this.inputTarget.value = JSON.stringify(this.#editor.getJSON());
+    this.#refreshButtons(this.#editor);
+  }
+
+  #refreshButtons(editor: Editor) {
+    for (const button of this.buttonTargets) {
+      const action = getAction(editor, button);
+      button.classList.toggle('fr-btn--secondary', !action.isActive());
+
+      // Special handling for link button: disable when no selection and no existing link
+      if (button.dataset.tiptapAction === 'link') {
+        const { empty } = editor.state.selection;
+        const hasExistingLink = !!editor.getAttributes('link').href;
+        button.disabled = empty && !hasExistingLink;
+      } else {
+        button.disabled = action.isDisabled();
+      }
+    }
   }
 
   disconnect(): void {

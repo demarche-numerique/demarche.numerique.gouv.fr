@@ -1,12 +1,9 @@
 import Document from '@tiptap/extension-document';
-import Hystory from '@tiptap/extension-history';
+import { Gapcursor, UndoRedo } from '@tiptap/extensions';
 import TextAlign from '@tiptap/extension-text-align';
-import Gapcursor from '@tiptap/extension-gapcursor';
 
 import Paragraph from '@tiptap/extension-paragraph';
-import BulletList from '@tiptap/extension-bullet-list';
-import OrderedList from '@tiptap/extension-ordered-list';
-import ListItem from '@tiptap/extension-list-item';
+import { BulletList, ListItem, OrderedList } from '@tiptap/extension-list';
 
 import Text from '@tiptap/extension-text';
 import Highlight from '@tiptap/extension-highlight';
@@ -51,6 +48,16 @@ const SingleLine = Extension.create({
   }
 });
 
+// Stored links carry no `title`: drop the attribute Link 3 adds, which would
+// otherwise be saved as `title: null` on every new link.
+const StoredLink = Link.extend({
+  addAttributes() {
+    return Object.fromEntries(
+      Object.entries(this.parent?.() ?? {}).filter(([name]) => name != 'title')
+    );
+  }
+});
+
 export function createEditor({
   editorElement,
   content,
@@ -60,7 +67,7 @@ export function createEditor({
   singleLine = false,
   onChange
 }: {
-  editorElement: Element;
+  editorElement: HTMLElement;
   content?: JSONContent;
   tags: TagSchema[];
   buttons: string[];
@@ -82,7 +89,7 @@ export function createEditor({
 }
 
 function getEditorOptions(
-  element: Element,
+  element: HTMLElement,
   tags: TagSchema[],
   actions: string[],
   content?: JSONContent,
@@ -118,7 +125,7 @@ function getEditorOptions(
         break;
       case 'link':
         extensions.push(
-          Link.configure({
+          StoredLink.configure({
             openOnClick: false,
             HTMLAttributes: {
               target: '_blank',
@@ -215,7 +222,7 @@ function getEditorOptions(
     editorProps: { attributes },
     extensions: [
       documentExtension,
-      Hystory,
+      UndoRedo,
       Typography,
       Gapcursor,
       Paragraph,

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vite-plus/test';
 
+import { createEditor } from './editor';
 import { tagDisplay } from './tags';
 
 describe('tagDisplay', () => {
@@ -44,5 +45,27 @@ describe('tagDisplay', () => {
       text: 'numéro du dossier',
       classes: ['fr-tag', 'fr-tag--sm']
     });
+  });
+});
+
+describe('tags menu', () => {
+  it('lists the matching tags after @', async () => {
+    const element = document.createElement('div');
+    document.body.appendChild(element);
+    const editor = createEditor({
+      editorElement: element,
+      tags: [{ id: 'dossier_number', label: 'numéro du dossier' }],
+      buttons: [],
+      onChange: () => {}
+    });
+
+    editor.chain().focus().insertContent('@').run();
+
+    await expect
+      .poll(() => element.querySelector('.fr-menu [data-tag-index="0"]'))
+      .toHaveTextContent('numéro du dossier');
+
+    editor.destroy();
+    element.remove();
   });
 });
