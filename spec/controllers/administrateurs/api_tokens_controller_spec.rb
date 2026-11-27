@@ -106,6 +106,17 @@ describe Administrateurs::APITokensController, type: :controller do
       end
     end
 
+    context 'with a network range wider than allowed' do
+      let(:params) { default_params.merge(networkFiltering: 'customNetworks', networks: '192.168.0.0/16') }
+
+      it 'creates no token and shows the error on the security step' do
+        expect(token).to be_nil
+        expect(response).to have_http_status(:unprocessable_content)
+        expect(response).to render_template(:securite)
+        expect(assigns(:invalid_network_message)).to include('/24')
+      end
+    end
+
     context 'with network filtering' do
       let(:networks) { '192.168.1.23/32 2001:41d0:304:400::52f/128' }
       let(:params) { default_params.merge(networkFiltering: 'customNetworks', networks:) }
@@ -231,6 +242,18 @@ describe Administrateurs::APITokensController, type: :controller do
       it 'does not update a token' do
         expect(token.authorized_networks).to be_blank
         expect(assigns(:invalid_network_message)).to eq('vous devez entrer des adresses ipv4 ou ipv6 valides')
+      end
+    end
+
+    context 'with a network range wider than allowed' do
+      let(:networks) { '2001:db8::/32' }
+
+      before { subject; token.reload }
+
+      it 'does not update a token' do
+        expect(token.name).not_to eq('new name')
+        expect(token.authorized_networks).to be_blank
+        expect(assigns(:invalid_network_message)).to include('/48')
       end
     end
 

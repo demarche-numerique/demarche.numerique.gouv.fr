@@ -19,6 +19,7 @@ module Administrateurs
     end
 
     def securite
+      @invalid_network_message = t('.invalid_network') if params[:invalidNetwork].present?
     end
 
     def create
@@ -28,6 +29,11 @@ module Administrateurs
 
       if params[:networkFiltering] == "customNetworks" && invalid_network?
         return redirect_to securite_admin_api_tokens_path(@api_token_params.to_h.merge(invalidNetwork: true))
+      end
+
+      @invalid_network_message = network_errors(APIToken.new(authorized_networks:).tap(&:validate))
+      if @invalid_network_message.present?
+        return render :securite, status: :unprocessable_content
       end
 
       expires_at = requested_expires_at
@@ -88,7 +94,10 @@ module Administrateurs
         h[:name] = params[:name]
       end
 
-      @api_token.update!(h)
+      if !@api_token.update(h)
+        @invalid_network_message = network_errors(@api_token)
+        @api_token.restore_attributes
+      end
 
       render :edit
     end
@@ -148,6 +157,10 @@ module Administrateurs
             true
           end
         end
+    end
+
+    def network_errors(api_token)
+      api_token.errors.messages_for(:authorized_networks).to_sentence
     end
 
     def networks

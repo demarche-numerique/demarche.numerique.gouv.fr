@@ -41,7 +41,7 @@
     <% end %>
 
     <div
-      class="fr-input-group fr-mb-4w <%= class_names('hidden': params[:networkFiltering] != 'customNetworks', 'fr-input-group--error': params[:invalidNetwork].present?) %>"
+      class="fr-input-group fr-mb-4w <%= class_names('hidden': params[:networkFiltering] != 'customNetworks', 'fr-input-group--error': @invalid_network_message.present?) %>"
       data-api-token-securite-target="networkFiltering"
     >
       <%= f.label :name, class: 'fr-label' do %>
@@ -50,7 +50,7 @@
       <% end %>
 
       <%= f.text_field :networks,
-        class: class_names('fr-input': true, 'fr-input--error': params[:invalidNetwork].present?),
+        class: class_names('fr-input': true, 'fr-input--error': @invalid_network_message.present?),
         autocomplete: 'off',
         autocapitalize: 'off',
         autocorrect: 'off',
@@ -59,8 +59,8 @@
         'data-action': 'input->api-token-securite#setContinueButtonState',
         'data-api-token-securite-target': 'networks' %>
 
-      <%- if params[:invalidNetwork].present? -%>
-        <p class="fr-error-text"><%= t('.invalid_network') %></p>
+      <%- if @invalid_network_message.present? -%>
+        <p class="fr-error-text"><%= @invalid_network_message %></p>
       <%- end -%>
     </div>
 
