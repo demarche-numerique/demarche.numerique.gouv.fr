@@ -20,7 +20,7 @@
             </span>
 
             <span class="fr-text--xs fr-text-mention--grey pull-right">
-              <%= t('.requested_on', date: l(@avis.created_at, format: '%d/%m/%y')) %>
+              <%= t('.requested_on', date: l(@avis.created_at.to_date, format: :in_text)) %>
             </span>
           </h2>
 

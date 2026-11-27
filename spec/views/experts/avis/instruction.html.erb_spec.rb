@@ -20,6 +20,18 @@ describe 'experts/avis/instruction', type: :view do
     it { is_expected.to have_text("Cet avis est partagé avec les autres experts") }
   end
 
+  context 'with a request date' do
+    let(:current_avis) { avis.pending }
+
+    before { current_avis.update_column(:created_at, Time.zone.local(2026, 12, 1, 14, 5)) }
+
+    it { is_expected.to have_text('Demande d’avis envoyée le 01/12/2026') }
+
+    it 'dates the request in English' do
+      I18n.with_locale(:en) { expect(render).to have_text('Opinion requested on 1 December 2026') }
+    end
+  end
+
   context 'when the avis has a question' do
     let(:current_avis) { create(:avis, question_label: "is it useful?", claimant: instructeurs.default, experts_procedure: experts_procedures.default, dossier: dossiers.en_instruction) }
 

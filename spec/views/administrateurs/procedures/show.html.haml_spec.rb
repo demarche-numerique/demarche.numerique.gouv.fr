@@ -65,6 +65,26 @@ describe 'administrateurs/procedures/show', type: :view do
     end
   end
 
+  describe 'procedure is closed with a notification to the applicants' do
+    before do
+      procedure.publish!(procedure.administrateurs.first)
+      procedure.close!
+      procedure.update_columns(closing_notification_en_cours: true, closed_at: Time.zone.local(2026, 12, 1, 14, 5))
+    end
+
+    it 'dates the notification in French' do
+      render
+
+      expect(rendered).to have_content('Un email a été envoyé pour informer les usagers le 01 décembre 2026')
+    end
+
+    it 'dates the notification in English' do
+      I18n.with_locale(:en) { render }
+
+      expect(rendered).to have_content('Applicants were notified by email on 1 December 2026')
+    end
+  end
+
   describe 'procedure is closed with internal_procedure replacement' do
     let(:replacement) { create(:procedure, :published, libelle: 'Démarche de remplacement') }
 
@@ -92,7 +112,7 @@ describe 'administrateurs/procedures/show', type: :view do
 
       it 'renders the libelle without a link and a fallback message' do
         expect(rendered).to have_content('Démarche de remplacement')
-        expect(rendered).to have_content("n'est plus disponible")
+        expect(rendered).to have_content("n’est plus disponible")
         expect(rendered).not_to have_link('Démarche de remplacement')
       end
     end
@@ -104,7 +124,7 @@ describe 'administrateurs/procedures/show', type: :view do
       end
 
       it 'renders a fallback message and does not crash' do
-        expect(rendered).to have_content("Cette démarche était remplacée par une démarche qui n'est plus disponible.")
+        expect(rendered).to have_content("Cette démarche était remplacée par une démarche qui n’est plus disponible.")
         expect(rendered).not_to have_content('Cette démarche est remplacée par une autre démarche')
       end
     end

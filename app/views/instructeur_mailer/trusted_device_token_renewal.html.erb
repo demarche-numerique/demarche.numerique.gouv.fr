@@ -1,23 +1,18 @@
 <p>
-  Bonjour
+  <%= t(:hello, scope: [:views, :shared, :greetings]) %>
 </p>
 
 <p>
-  Votre connexion sécurisée à <%= APPLICATION_NAME %> expirera dans une semaine.
-  Vous pouvez la renouveler dès maintenant en cliquant sur le lien
-  suivant&nbsp;:
+  <%= t('.expires_soon', application_name: APPLICATION_NAME) %>
   <%= link_to(sign_in_by_link_url(@instructeur.id, jeton: @renewal_token), sign_in_by_link_url(@instructeur.id, jeton: @renewal_token)) %>
 </p>
 
 <p>
-  Ce lien est <b>valable pendant une semaine</b> (jusqu’au
-  <%= l(@valid_until, format: :human) %>) et peut être réutilisé
-  <b>plusieurs fois.</b>
+  <%= t('.link_validity_html', valid_until: l(@valid_until, format: :human)) %>
 </p>
 
 <p>
-  Cliquer sur ce lien suffit à renouveler votre connexion&nbsp;: aucune autre
-  action n’est nécessaire de votre part.
+  <%= t('.no_other_action') %>
 </p>
 
 <%= render partial: "layouts/mailers/signature" %>

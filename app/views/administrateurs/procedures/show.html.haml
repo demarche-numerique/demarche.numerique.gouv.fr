@@ -78,7 +78,7 @@
 
 - if @procedure.close?
   .fr-container
-    = render Dsfr::AlertComponent.new(title: 'cette démarche est close', state: (:warning), heading_level: 'h2', extra_class_names: 'fr-my-2w') do |c|
+    = render Dsfr::AlertComponent.new(title: 'Cette démarche est close', state: (:warning), heading_level: 'h2', extra_class_names: 'fr-my-2w') do |c|
       - c.with_body do
         %p
           Les dossiers en cours peuvent être instruits, mais aucun nouveau dossier ne peut plus être déposé.
@@ -89,14 +89,14 @@
               = "Cette démarche est remplacée par une autre démarche dans #{Current.application_name} :"
               = link_to(new_procedure.libelle, admin_procedure_path(new_procedure))
             - elsif new_procedure
-              = "Cette démarche était remplacée par « #{new_procedure.libelle} », démarche qui n'est plus disponible."
+              = "Cette démarche était remplacée par « #{new_procedure.libelle} », démarche qui n’est plus disponible."
             - else
-              = "Cette démarche était remplacée par une démarche qui n'est plus disponible."
+              = "Cette démarche était remplacée par une démarche qui n’est plus disponible."
         - if @procedure.closing_reason == 'other'
           %p
             = "Plus d’informations dans la #{link_to('page de fermeture', closing_details_path(@procedure.path))}, visible par les usagers."
         - if @procedure.closing_notification_brouillon? || @procedure.closing_notification_en_cours?
-          = "Un email a été envoyé pour informer les usagers le #{ l(@procedure.closed_at.to_date, format: :long) }"
+          = t('.closing_notification_sent', date: try_format_date(@procedure.closed_at))
 
 .fr-container
   %h2= "Gestion de la démarche № #{number_with_html_delimiter(@procedure.id)}"

@@ -27,7 +27,7 @@
               - if procedure.updated_at.today?
                 %span
                   = t('administrateurs.procedures.updated_at_today')
-                  = l(procedure.updated_at, format: '%H:%M')
+                  = l(procedure.updated_at, format: :time_only)
               - else
                 %span
                   = t('administrateurs.procedures.updated_at')

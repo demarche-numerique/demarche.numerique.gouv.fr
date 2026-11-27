@@ -13,13 +13,19 @@ class TypesDeChamp::DateTypeDeChamp < TypeDeChamp
   before_save :clear_conflicting_options, if: :birthdate?
   before_save :clear_prefill_with_france_connect_information, if: -> { !birthdate? }
 
-  def typed_champ_value(champ)
-    I18n.l(Time.zone.parse(champ.value).to_date, format: :long)
-  rescue ArgumentError
-    champ.value.presence || "" # old dossiers can have not parseable dates
+  def typed_champ_value(champ) = localized_value(champ, :long)
+
+  def typed_champ_value_for_api(champ, version: 2)
+    version == 2 ? localized_value(champ, :api) : super
   end
 
   private
+
+  def localized_value(champ, format)
+    I18n.l(Time.zone.parse(champ.value).to_date, format:)
+  rescue ArgumentError
+    champ.value.presence || "" # old dossiers can have not parseable dates
+  end
 
   def clear_conflicting_options
     self.date_in_past = nil

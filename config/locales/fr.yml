@@ -957,6 +957,9 @@ fr:
       short_with_time: "%d/%m/%Y à %H:%M"
       messagerie_date: "Le %d/%m/%Y %H:%M"
       human: "%A %-d %B à %Hh%M"
+      time_only: "%H:%M"
+      # Frozen: read by the GraphQL API and the exports
+      api: "%d %B %Y %R"
   datetime:
     formats:
       long: "%d %B %Y à %H:%M"
@@ -964,9 +967,12 @@ fr:
     formats:
       long: "%d %B %Y"
       short: "%d/%m/%Y"
+      in_text: "%d/%m/%Y"
       dashed: "%Y-%m-%d"
       month_year: "%B %Y"
       day_month_short: "%d %b"
+      # Frozen: read by the GraphQL API
+      api: "%d %B %Y"
   dates:
     today: "Aujourd’hui"
     yesterday: "Hier"

@@ -40,9 +40,9 @@ class Procedure::EmailTemplateCardComponent < ApplicationComponent
 
   def tag_label
     if edited?
-      "modifié le #{l(@email_template.updated_at.to_date, format: :short)}"
+      t('.edited_on', date: l(@email_template.updated_at.to_date, format: :in_text))
     else
-      "Modèle standard"
+      t('.standard_template')
     end
   end
 

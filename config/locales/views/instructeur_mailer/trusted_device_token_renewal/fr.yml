@@ -2,3 +2,6 @@ fr:
   instructeur_mailer:
     trusted_device_token_renewal:
       subject: "Renouvellement de la connexion sécurisée à %{application_name}"
+      expires_soon: "Votre connexion sécurisée à %{application_name} expirera dans une semaine. Vous pouvez la renouveler dès maintenant en cliquant sur le lien suivant\u00A0:"
+      link_validity_html: "Ce lien est <b>valable pendant une semaine</b> (jusqu’au %{valid_until}) et peut être réutilisé <b>plusieurs fois.</b>"
+      no_other_action: "Cliquer sur ce lien suffit à renouveler votre connexion\u00A0: aucune autre action n’est nécessaire de votre part."

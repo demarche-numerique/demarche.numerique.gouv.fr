@@ -58,6 +58,8 @@ fr:
         email_content_en_cours: Contenu de l’email
       preview_unavailable: Aperçu non disponible car la démarche est mal configurée
       modifications:
+        published_on: "Modifications publiées le %{date}"
+        published_on_by: "Modifications publiées le %{date} par %{email}"
         dossiers_en_construction_and_dossiers_en_instruction: Il y a %{en_construction_count} dossiers « en construction » et %{en_instruction_count} dossiers « en instruction » sur cette version de la démarche.
         dossier_en_construction_and_dossiers_en_instruction:
           one: Il y a un dossier « en construction » et un dossier « en instruction » sur cette version de la démarche.
@@ -71,6 +73,8 @@ fr:
         dossiers_en_instruction:
           one: Il y a un dossier « en instruction » sur cette version de la démarche.
           other: Il y a %{count} dossiers « en instruction » sur cette version de la démarche.
+      show:
+        closing_notification_sent: "Un email a été envoyé pour informer les usagers le %{date}"
       publication:
         publish_title: Publier votre démarche
         confirmation: Votre démarche est désormais publiée !
