@@ -243,6 +243,75 @@ describe "procedure filters" do
     end
   end
 
+  describe 'with dossier link' do
+    let(:public_type_de_champs) { [{ type: :dossier_link, libelle: 'Dossier lié' }] }
+    let(:column_label) { 'Dossier lié – Intitulé de la démarche' }
+    let(:column_labels) { ['Dossier lié', 'Dossier lié – Date de dépôt du dossier', column_label, 'Dossier lié – Service porteur de la démarche'] }
+    let(:first_target) { create(:procedure, libelle: 'Démarche cible Alpha', service: create(:service, nom: 'Service Alpha')) }
+    let(:second_target) { create(:procedure, libelle: 'Démarche cible Bravo', service: create(:service, nom: 'Service Bravo')) }
+
+    def linked_dossier(target, submitted_at) = create(:dossier, :en_construction, procedure: target).tap { it.update_columns(depose_at: submitted_at) }
+
+    scenario "should display, sort and filter the linked dossier columns", js: true do
+      # the title filter suggests the values of the submitted dossiers
+      [new_unfollow_dossier, new_unfollow_dossier_2].each { it.update_columns(depose_at: 1.day.ago) }
+      champ_2.update!(value: linked_dossier(second_target, Time.zone.local(2026, 5, 6, 10)).id)
+      champ.update!(value: linked_dossier(first_target, Time.zone.local(2026, 3, 4, 10)).id)
+      expect(champ_2.value.to_i).to be < champ.value.to_i
+      visit instructeur_procedure_path(procedure)
+
+      add_column(*column_labels)
+      within ".dossiers-table" do
+        column_labels.each { expect(page).to have_button(it) }
+        expect(page).to have_css('tr', text: /#{new_unfollow_dossier.id}.*#{champ.value}.*04\/03\/2026.*Démarche cible Alpha.*Service Alpha/)
+        expect(page).to have_css('tr', text: /#{new_unfollow_dossier_2.id}.*#{champ_2.value}.*06\/05\/2026.*Démarche cible Bravo.*Service Bravo/)
+      end
+      expect(page).to be_axe_clean
+
+      within(".dossiers-table") { click_button column_label }
+      within ".dossiers-table" do
+        expect(page).to have_css('th[aria-sort="ascending"]', text: column_label)
+        expect(find('tbody')).to have_text(/Démarche cible Alpha.*Démarche cible Bravo/m)
+      end
+
+      within(".dossiers-table") { click_button column_label }
+      within ".dossiers-table" do
+        expect(page).to have_css('th[aria-sort="descending"]', text: column_label)
+        expect(find('tbody')).to have_text(/Démarche cible Bravo.*Démarche cible Alpha/m)
+      end
+
+      add_filter("formulaire-usager", column_label)
+      within("#editable-filters-component") { find_field(column_label).click }
+      expect(page).to have_css('[role="option"]', text: 'Démarche cible Bravo')
+      expect(page).to be_axe_clean.within('.fr-ds-combobox__menu')
+      page.active_element.send_keys(:escape)
+      expect(page).to have_no_css('[role="option"]')
+      expect(page).to be_axe_clean
+
+      within("#editable-filters-component") { find_field(column_label).send_keys('alpha') }
+      expect(page).to have_no_css('[role="option"]', text: 'Démarche cible Bravo')
+      find('[role="option"]', text: 'Démarche cible Alpha').click
+
+      within ".dossiers-table" do
+        expect(page).to have_link(new_unfollow_dossier.id.to_s, exact: true)
+        expect(page).not_to have_link(new_unfollow_dossier_2.id.to_s, exact: true)
+      end
+      expect(page).to have_button("#{column_label} : Démarche cible Alpha")
+      expect(page).to be_axe_clean
+
+      # a typed value matches a part of the title
+      within find_field(column_label).ancestor("[id$='_column_filter_value_component']") do
+        fill_in column_label, with: 'bravo'
+        click_button 'Mettre à jour'
+      end
+      within ".dossiers-table" do
+        expect(page).to have_link(new_unfollow_dossier.id.to_s, exact: true)
+        expect(page).to have_link(new_unfollow_dossier_2.id.to_s, exact: true)
+      end
+      expect(page).to have_button("#{column_label} : bravo")
+    end
+  end
+
   describe 'dossier labels' do
     scenario "should be able to filter by dossier labels", js: true do
       DossierLabel.create!(dossier_id: new_unfollow_dossier.id, label_id: procedure.labels.first.id)
@@ -343,9 +412,9 @@ describe "procedure filters" do
     click_button text: filter_value
   end
 
-  def add_column(column_name)
+  def add_column(*column_names)
     click_on 'Personnaliser le tableau'
-    select_autocomplete('Colonne à afficher', column_name)
+    column_names.each { select_autocomplete('Colonne à afficher', it) }
     click_button "Enregistrer"
   end
 

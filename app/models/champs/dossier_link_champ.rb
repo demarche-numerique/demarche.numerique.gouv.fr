@@ -14,7 +14,64 @@ class Champs::DossierLinkChamp < ChampData
   validates :value, format: { with: DOSSIER_NUMBER_REGEXP }, allow_blank: true, if: :should_validate_in_current_context?
   validates_with DossierLinkValidator, if: -> { should_validate_in_current_context? && dossier_number? }
 
+  before_save :store_linked_dossier, if: :value_changed?
+
+  def self.complete_linked_dossiers!(champs)
+    incomplete = champs.filter(&:linked_dossier_incomplete?)
+
+    return if incomplete.empty?
+
+    value_jsons = linked_value_jsons(incomplete.map { it.value.to_i }.uniq)
+
+    incomplete.group_by(&:value).each do |value, champs_with_value|
+      value_json = value_jsons[value.to_i]
+      group = champs_with_value.filter { it.value_json != value_json }
+
+      next if value_json.blank? || group.empty?
+      next if where(id: group.map(&:id), value:).update_all(value_json:) != group.size
+
+      group.each do |champ|
+        champ.value_json = value_json
+        champ.clear_attribute_changes([:value_json])
+      end
+    end
+  end
+
+  def self.linked_value_jsons(dossier_ids)
+    live = Dossier.joins(:revision).where(id: dossier_ids).pluck('dossiers.id', 'procedure_revisions.procedure_id', 'dossiers.depose_at')
+    missing_ids = dossier_ids - live.map(&:first)
+    deleted = missing_ids.empty? ? [] : DeletedDossier.where(dossier_id: missing_ids).pluck(:dossier_id, :procedure_id, :depose_at)
+    rows = deleted + live
+    procedures = linked_procedures(rows.map(&:second).uniq)
+
+    rows.to_h do |dossier_id, procedure_id, depose_at|
+      title, agency = procedures[procedure_id]
+      value_json = {
+        'procedure_id' => procedure_id,
+        'submitted_on' => depose_at&.to_date&.iso8601,
+        'procedure_title' => title,
+        'procedure_agency' => agency.presence,
+      }
+      [dossier_id, value_json.compact]
+    end
+  end
+
+  # Title and agency are a snapshot taken when the link is stored: a later
+  # renaming of the procedure or of its service does not reach existing champs.
+  def self.linked_procedures(procedure_ids)
+    Procedure.with_discarded
+      .left_joins(:service)
+      .where(id: procedure_ids)
+      .pluck(:id, :libelle, Arel.sql('COALESCE(services.nom, procedures.organisation)'))
+      .to_h { |id, title, agency| [id, [title, agency]] }
+  end
+  private_class_method :linked_procedures
+
   def dossier_number? = value&.match?(DOSSIER_NUMBER_REGEXP)
+
+  def linked_dossier_incomplete?
+    dossier_number? && value_json.to_h.values_at('procedure_id', 'submitted_on').any?(&:nil?)
+  end
 
   # The (still existing) procedures the field is restricted to, in the admin-configured order.
   def linkable_procedures
@@ -47,6 +104,10 @@ class Champs::DossierLinkChamp < ChampData
   end
 
   private
+
+  def store_linked_dossier
+    self.value_json = dossier_number? ? self.class.linked_value_jsons([value.to_i])[value.to_i] : nil
+  end
 
   def linkable_dossiers
     active_linkable_dossiers + deleted_linkable_dossiers

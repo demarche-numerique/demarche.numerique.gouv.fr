@@ -16,6 +16,26 @@ module DossierLinkHelper
       organisme: tag.strong(dossier.procedure.organisation_name))
   end
 
+  def dossier_link_card?(dossier)
+    controller.try(:nav_bar_profile) == :instructeur &&
+      controller.action_name != "print" &&
+      !dossier.brouillon? &&
+      dossier_linked_path(current_instructeur, dossier).present?
+  end
+
+  def dossier_link_card_rows(dossier)
+    scope = 'activerecord.attributes.procedure_presentation.fields.dossier_link'
+    numero = t('shared.champs.dossier_link.application_link', id: dossier.id)
+    link = link_to(numero, dossier_linked_path(current_instructeur, dossier), title: new_tab_suffix(numero), target: '_blank', rel: 'noopener')
+
+    [
+      [t(:application_number, scope:), link, { copy: false }],
+      [t(:submitted_on, scope:), l(dossier.depose_at.to_date, format: :short)],
+      [t(:procedure_title, scope:), dossier.procedure.libelle],
+      [t(:procedure_agency, scope:), dossier.procedure.organisation_name],
+    ]
+  end
+
   def dossier_linked_path(user, dossier)
     if user.is_a?(Instructeur)
       if user.groupe_instructeurs.include?(dossier.groupe_instructeur)

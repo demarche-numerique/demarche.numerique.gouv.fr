@@ -211,7 +211,8 @@ module SystemHelpers
     page.active_element.send_keys(value)
 
     within '[role="listbox"]' do
-      option = find('[role="option"]', text: value)
+      # a value can be the prefix of other options ("Dossier lié" and "Dossier lié – …")
+      option = first('[role="option"]', exact_text: value, minimum: 0) || find('[role="option"]', text: value)
       expect(option).to be_visible
       sleep 0.1 # wait for any animation to complete
       option.click
