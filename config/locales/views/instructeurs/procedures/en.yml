@@ -8,6 +8,7 @@ en:
         description: "Move procedures in the list to sort them by your preferences:"
         status_close: Closed
         status_depubliee: Unpublished
+        moved: Moved to position %{position} of %{total}
         cancel: Cancel
         submit: Submit
       show:
